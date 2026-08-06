@@ -427,7 +427,10 @@ class TestExitCodes(unittest.TestCase):
         # as an inherited WAIT-equilibrium -> CLEAR. Under raw both block.
         osc = compiled_bot("oscbot", OSCILLATOR_BOT)
         with tempfile.TemporaryDirectory() as tmp:
-            code, payload = self.run_panel(osc, osc, Path(tmp))
+            # 30-turn games -> use a 10-turn liveness window so a full-game
+            # stall window forms (the default 60 exceeds the game length).
+            code, payload = self.run_panel(osc, osc, Path(tmp),
+                                           liveness_window=10)
             self.assertEqual(
                 code, fp.EXIT_BLOCK,
                 "raw gate must block a candidate D-1/P4 even when the parent "
