@@ -60,9 +60,11 @@ jobs:
           base = json.loads(Path('claude_1/pipeline/fuzz-panel-config.json').read_text())
           cand = Path('chatgpt_1/banana-solve/candidate-banana-r2.min.rs')
           base['task'] = '20260802-banana-restoration-r2 owner-directed conservative candidate'
-          base['candidate']['source'] = '../../chatgpt_1/banana-solve/candidate-banana-r2.min.rs'
+          # Paths are resolved relative to this generated config in .../banana-solve/ci.
+          base['candidate']['source'] = '../candidate-banana-r2.min.rs'
           base['candidate']['sha256'] = hashlib.sha256(cand.read_bytes()).hexdigest()
           base['candidate']['crate'] = 'chatgpt_1_banana_solve'
+          base['parent']['source'] = '../../../cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs'
           base['games_dir'] = '/tmp/chatgpt-banana-solve/games'
           base['bin_cache_dir'] = '/tmp/chatgpt-banana-solve/bin'
           Path('chatgpt_1/banana-solve/ci/fuzz-config.json').write_text(json.dumps(base, indent=2, sort_keys=True) + '\n')
