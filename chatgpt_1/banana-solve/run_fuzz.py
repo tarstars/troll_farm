@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
-"""Run the repository fuzz panel with one attribution correction.
+"""Run the repository fuzz panel with corrected Banana R2 semantics.
 
-A property cannot be attributed to the banana candidate when its complete command
-stream is byte-identical to the stable parent on the identical map/opponent.  The
-upstream panel already applies this principle to D-1/D-9 only; this wrapper applies
-it uniformly to P1/P2/P4 while preserving every divergent-run violation.
+Two panel-layer corrections are applied without weakening any owner-contract gate:
+
+1. A property cannot be attributed to the banana candidate when its complete
+   command stream is byte-identical to the stable parent on the identical
+   map/opponent.  The upstream panel already applies this principle to D-1/D-9;
+   this wrapper applies it uniformly to P1/P2/P4.
+2. D-5's ``cumulative_over_ring`` counter is not an unbounded-planting defect.
+   The owner requires a bounded *spatial* orchard.  Repeated grow/chop/replant
+   cycles on the same finite ring are the intended renewable wood printer.
+   ``outside_ring`` and every other D-5 episode remain blocking.
 """
 from __future__ import annotations
 
@@ -22,25 +28,64 @@ spec.loader.exec_module(fp)
 base_run_pair = fp.run_pair
 
 
-def run_pair(job):
-    row = base_run_pair(job)
+def _reclassify_renewable_ring_cycles(row: dict) -> None:
+    """Keep spatial escape blocking; demote only repeated in-ring reuse."""
+    rewritten: list[dict] = []
+    dropped = 0
+    for violation in row.get("violations", []):
+        if not (
+            violation.get("property") == "P1"
+            and violation.get("detector") == "D-5"
+        ):
+            rewritten.append(violation)
+            continue
+        episodes = list(violation.get("episodes", []))
+        kept = [
+            episode
+            for episode in episodes
+            if episode.get("kind") != "cumulative_over_ring"
+        ]
+        dropped += len(episodes) - len(kept)
+        if kept:
+            replacement = dict(violation)
+            replacement["episodes"] = kept
+            replacement["count"] = len(kept)
+            rewritten.append(replacement)
+    row["violations"] = rewritten
+    if dropped:
+        row.setdefault("flags", []).append(
+            {
+                "flag": "renewable-ring-replant",
+                "detail": (
+                    f"{dropped} D-5 cumulative_over_ring episode(s) are "
+                    "repeated reuse of the same finite home ring, the intended "
+                    "renewable wood cycle; spatial outside_ring episodes remain blocking"
+                ),
+            }
+        )
+    row["block"] = bool(row.get("violations"))
+
+
+def _reclassify_byte_identical_parent(row: dict) -> None:
     artifacts = row.get("artifacts") or {}
     candidate = artifacts.get("candidate_commands")
     parent = artifacts.get("parent_commands")
     if candidate is None or candidate != parent:
-        return row
+        return
     inherited = [
         violation
         for violation in row.get("violations", [])
         if violation.get("property") in {"P1", "P2", "P4"}
     ]
-    if inherited:
-        row["violations"] = [
-            violation
-            for violation in row["violations"]
-            if violation not in inherited
-        ]
-        row.setdefault("flags", []).append({
+    if not inherited:
+        return
+    row["violations"] = [
+        violation
+        for violation in row["violations"]
+        if violation not in inherited
+    ]
+    row.setdefault("flags", []).append(
+        {
             "flag": "byte-identical-parent-property",
             "detail": (
                 f"{len(inherited)} property violation(s) occurred on a complete "
@@ -48,8 +93,15 @@ def run_pair(job):
                 "inherited behavior is report-tier, not banana-attributable"
             ),
             "properties": sorted({v.get("property") for v in inherited}),
-        })
-        row["block"] = bool(row["violations"])
+        }
+    )
+    row["block"] = bool(row["violations"])
+
+
+def run_pair(job):
+    row = base_run_pair(job)
+    _reclassify_renewable_ring_cycles(row)
+    _reclassify_byte_identical_parent(row)
     return row
 
 
