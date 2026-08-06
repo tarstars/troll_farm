@@ -1,5 +1,5 @@
-commit=cb280ecef995d299a3ed9dd9ff65a06a0b32fbac
-utc=2026-08-06T11:49:03Z
+commit=c72d50cf97b3e012b117648703e0d6cede42e3b8
+utc=2026-08-06T11:51:02Z
 python=Python 3.12.3
 rustc=rustc 1.97.1 (8bab26f4f 2026-07-14)
 
@@ -561,5 +561,5 @@ OK
 trace_detector_tests_exit=0
 
 == fuzz panel ==
-fuzz_panel: tool/config error: candidate source missing: /home/runner/work/troll_farm/troll_farm/chatgpt_1/chatgpt_1/banana-solve/candidate-banana-r2.min.rs
-fuzz_panel_exit=2
+fuzz_panel: BLOCK (240 games, 24 blocking, 101 flagged, 15.6 s; report: ../../chatgpt_1/banana-solve/ci/fuzz.md)
+fuzz_panel_exit=1

@@ -3,7 +3,7 @@
   "candidate": {
     "crate": "chatgpt_1_banana_solve",
     "sha256": "46805357c26233bf91aa49a81fb50ff7276b19d7166284818e0635b1b2e2a5af",
-    "source": "../../chatgpt_1/banana-solve/candidate-banana-r2.min.rs"
+    "source": "../candidate-banana-r2.min.rs"
   },
   "class_mix": {
     "choke_corridor": 0.25,
@@ -31,7 +31,7 @@
   "parent": {
     "crate": "banana_r2_fuzz_parent",
     "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
-    "source": "../../cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs"
+    "source": "../../../cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs"
   },
   "processes": 8,
   "seeds": [
