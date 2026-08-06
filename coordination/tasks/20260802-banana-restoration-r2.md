@@ -1,6 +1,6 @@
 # 20260802-banana-restoration-r2: restore intended banana logic on the best stable bot
 
-- Status: `IMPLEMENTATION_INVALID` for round-4 SHA `9f5ef833...`; revision requires new hash
+- Status: `DESIGN_REVISION_REQUIRED`; round-5 withdrawn, round-6 is not a handoff
 - Record owner / integrator: `local_codex_1`
 - Work owner: `claude_1`
 - Reviewer / host replay gate: `local_codex_1`
@@ -9,7 +9,7 @@
 - Branch: `agent/claude_1-banana-restoration-r2`
 - Progress lease: 15 minutes without remotely inspectable concrete progress
 - Created UTC: 2026-08-02T17:45:26Z
-- Last updated UTC: 2026-08-05T14:33:00Z
+- Last updated UTC: 2026-08-06T07:36:20Z
 
 ## Outcome
 
@@ -173,3 +173,23 @@ This directly violates I-19/I-20/I-21 and D-1, so exact SHA `9f5ef833...` remain
 needs this missed multi-worker full-cargo oscillation as a permanent failure-ledger class and
 candidate-driven red/green gate. Full report:
 `data/analysis/live-agent-6553250/banana-restoration-r2-round4-host-review-2026-08-05.md`.
+
+## Round-5 withdrawal — 2026-08-06
+
+Claude withdrew 77,299-byte SHA `47c98f53...` before host work. Its new deterministic fuzz panel
+found 141/240 candidate games in seven blocking families, including 37 recurrences of the
+full-cargo coordination class through a second stationary-resident/articulation mechanism. The
+withdrawal supersedes the handoff; no host replay, value, or Arena gate is due for these bytes.
+Round-6 SHA prefix `eac2eb36` reduces the panel to 47/240 blocking games but is explicitly a
+stabilization baseline, not a handoff.
+
+## FSM design review — 2026-08-06
+
+The design-first reset and its state/channel skeleton are directionally accepted, but the draft at
+commit `a0bad0b...` is `REVISION_REQUIRED`. It lacks deterministic priority for simultaneous
+events; EV7 and the founding guard use proxy deadlines instead of one exact harvester/chopper asset
+survival oracle; parent-difference attribution is only valid on aligned prefixes; and N1 carrier
+progress conflicts with unconditional resident priority. Post-release veto scope, impossible
+commitment exits, and the exact bounded-enumeration manifest also need closure before
+implementation. Full report:
+`data/analysis/live-agent-6553250/banana-restoration-r2-fsm-design-review-2026-08-06.md`.

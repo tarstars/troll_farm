@@ -105,3 +105,22 @@ Verdict: **IMPLEMENTATION_INVALID** for exact SHA `9f5ef833...`. The banana-live
 also misses this class because its critical-claim list excludes the banking/oscillation invariants;
 the finding must enter the permanent failure ledger and a candidate-driven red/green gate. No
 Arena mutation occurred. Full report: `banana-restoration-r2-round4-host-review-2026-08-05.md`.
+
+## 2026-08-06 — banana round 5 withdrawn; FSM design requires revision
+
+Claude withdrew 77,299-byte SHA `47c98f53...` before host execution after its new deterministic
+120-map/two-seat fuzz gate blocked 141/240 candidate games. The prior mother-forbidden fix removed
+one mechanism but not the class: 37 games still exhibited full-cargo coordination failures through
+a stationary resident and articulation/occupancy interaction. The panel also exposed fruit-safety,
+stall, oscillation, diagonal-chop, lost-fruit, and planting-bound violations. Round 6
+`eac2eb36...` cuts the blocking set to 47/240 but is explicitly not a handoff. No host, value, or
+Arena work ran for either SHA.
+
+Independent review of Claude's replacement 11-state/six-channel design accepts the design-first
+method, latched-mother claim, transit neutrality, lost-worker release, and verification ordering.
+It remains **REVISION_REQUIRED**: simultaneous events lack atomic priority; EV7 and the founding
+guard use proxy ETA thresholds rather than one exact harvester/chopper survival oracle; parent
+slot divergence is causal only on an aligned prefix; and unconditional resident priority conflicts
+with the carrier-progress invariant. Post-release veto scope, impossible-commitment exits, and the
+exact bounded-enumeration manifest are also open. Full report:
+`banana-restoration-r2-fsm-design-review-2026-08-06.md`.

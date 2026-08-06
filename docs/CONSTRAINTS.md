@@ -1119,3 +1119,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   a paired causal estimate. Reject blanket deletion; future orchard work must be bounded
   activation or coordination refinement. Exact E7a was restored source-exact as
   `6592131`/`41086057`. [20260803-owner-no-orchard-ablation-arena]
+- **Banana round-5 SHA `47c98f53...` is withdrawn and must not enter host/value/Arena gates.**
+  A deterministic 240-game candidate panel blocks 141 games; removing mother cells from the
+  movement-forbidden set fixed only one carrier-livelock mechanism, while stationary resident
+  occupancy reproduced the same class in 37 games. Round-6 `eac2eb36...` is a non-handoff
+  stabilization baseline with 47/240 blocks. Reopening implementation requires the reviewed FSM
+  revision: atomic concurrent-event priority, one exact harvester/chopper asset-survival oracle,
+  aligned-prefix plus channel-telemetry attribution, an enforcing carrier-yield rule, bounded
+  post-release edits, impossible-commitment exits, and a frozen coverage manifest. Do not infer a
+  value verdict about banana production from these implementation failures. [banana R2 rounds
+  5/6 and FSM review, 2026-08-06]
