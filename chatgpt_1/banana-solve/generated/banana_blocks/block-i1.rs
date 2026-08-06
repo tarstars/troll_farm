@@ -1057,7 +1057,7 @@ impl Bot for BananaBot {
         // Some(cmd) = the wrapper controls the resident this turn;
         // None = released (dormant, F-D2 starvation, or post-loss with
         // nothing left to bank — F-D1).
-        let wrapper_action: Option<String> = match self
+        let mut wrapper_action: Option<String> = match self
             .banana_worker
             .and_then(|id| view.unit(id))
         {
@@ -1084,6 +1084,36 @@ impl Bot for BananaBot {
             }
             _ => None,
         };
+        // Break a resident two-cell return before it becomes a sustained
+        // A-B-A-B loop.  The task/target latch is deliberately left intact:
+        // one stationary turn forces the existing blocked/progress accounting
+        // to re-evaluate rather than manufacturing a new target.
+        if let Some(worker_id) = self.banana_worker {
+            if let Some(worker) = view.unit(worker_id) {
+                let (older, previous) = self
+                    .banana_peer_history
+                    .get(&worker_id)
+                    .copied()
+                    .unwrap_or((worker.cell, worker.cell));
+                let returns_to_a = older == worker.cell && previous != worker.cell;
+                let move_returns_to_b = wrapper_action
+                    .as_ref()
+                    .filter(|action| returns_to_a && action.starts_with("MOVE "))
+                    .map(|action| {
+                        let parts: Vec<&str> = action.split_whitespace().collect();
+                        parts.len() == 4
+                            && parts[2].parse::<i32>().ok() == Some(previous.0)
+                            && parts[3].parse::<i32>().ok() == Some(previous.1)
+                    })
+                    .unwrap_or(false);
+                self.banana_peer_history
+                    .insert(worker_id, (previous, worker.cell));
+                if move_returns_to_b {
+                    wrapper_action = Some("WAIT".to_string());
+                }
+            }
+        }
+
         // F-C2 persistent claim (rev. 2026-08-06): the protected-cell
         // claim survives ownership loss while the lost plant lives — the
         // I6 retain filter keeps every inner candidate off the

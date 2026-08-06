@@ -3587,7 +3587,7 @@
   {
    "attempt": 0,
    "banana_active": true,
-   "block": true,
+   "block": false,
    "candidate": {
     "inventory": [
      0,
@@ -3611,7 +3611,7 @@
    },
    "class": "single_door_tent",
    "detector_counts": {
-    "D-1": 1,
+    "D-1": 0,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -3649,31 +3649,7 @@
    "seat": 1,
    "seed": 982451653,
    "turns": 200,
-   "violations": [
-    {
-     "count": 1,
-     "detector": "D-1",
-     "episodes": [
-      {
-       "cells": [
-        [
-         11,
-         2
-        ],
-        [
-         11,
-         3
-        ]
-       ],
-       "k": 3,
-       "turn_end": 169,
-       "turn_start": 163,
-       "unit": 0
-      }
-     ],
-     "property": "P1"
-    }
-   ]
+   "violations": []
   },
   {
    "attempt": 0,
@@ -10498,9 +10474,9 @@
      0,
      2,
      0,
-     34
+     35
     ],
-    "margin": 138,
+    "margin": 142,
     "opp_inventory": [
      0,
      0,
@@ -10510,7 +10486,7 @@
      0
     ],
     "opp_score": 0,
-    "score": 138
+    "score": 142
    },
    "class": "open_field",
    "detector_counts": {
@@ -12526,14 +12502,14 @@
    "block": false,
    "candidate": {
     "inventory": [
-     1,
      0,
      0,
-     10,
      0,
-     27
+     0,
+     0,
+     24
     ],
-    "margin": 119,
+    "margin": 96,
     "opp_inventory": [
      0,
      0,
@@ -12543,7 +12519,7 @@
      0
     ],
     "opp_score": 0,
-    "score": 119
+    "score": 96
    },
    "class": "single_door_tent",
    "detector_counts": {
@@ -17801,7 +17777,7 @@
  ],
  "stats": {
   "banana_activated_games": 161,
-  "blocking_games": 1,
+  "blocking_games": 0,
   "by_class": {
    "choke_corridor": 60,
    "forest_dense": 20,
@@ -17823,8 +17799,8 @@
   "orchard_eligible_games": 12,
   "orchard_inertness_checks_passed": 12,
   "turns_per_game": 200,
-  "wall_time_seconds": 15.24
+  "wall_time_seconds": 14.74
  },
  "task": "20260802-banana-restoration-r2 owner-directed conservative candidate",
- "verdict": "BLOCK"
+ "verdict": "CLEAR"
 }

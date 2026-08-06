@@ -1,12 +1,12 @@
 # fuzz panel report - 20260802-banana-restoration-r2 owner-directed conservative candidate
 
-- candidate: `../candidate-banana-r2.min.rs` (sha256 5fb00f217ec17a1e42fe52d8d113e23f3c6b3e267d96186c33ae0658d5a593d5)
+- candidate: `../candidate-banana-r2.min.rs` (sha256 2ada1da49e32a8edf1490bebd65c12c6587486f0080b1201254d50c3b5bc47f2)
 - parent: `../../../cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs` (sha256 a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55)
 - seeds: [982451653, 15485863, 32452843, 49979687, 67867967, 86028121]
 - maps: 120 (x2 seats = 240 candidate games + 240 parent games), 200 turns each
-- wall time: 15.2 s
+- wall time: 14.7 s
 
-## Verdict: BLOCK
+## Verdict: CLEAR
 
 ## Coverage
 
@@ -16,7 +16,7 @@
 | banana_activated_games | 161 |
 | orchard_eligible_games | 12 |
 | orchard_inertness_checks_passed | 12 |
-| blocking_games | 1 |
+| blocking_games | 0 |
 | flagged_games | 110 |
 
 | class | games |
@@ -35,12 +35,6 @@
 | chopper_aggressor | 72 |
 | harvester | 96 |
 | idle | 72 |
-
-## Blocking violations
-
-### m024 seat 1 (single_door_tent, idle, seed 982451653)
-
-- **P1**: {"count": 1, "detector": "D-1", "episodes": [{"cells": [[11, 2], [11, 3]], "k": 3, "turn_end": 169, "turn_start": 163, "unit": 0}]}
 
 ## Report-tier flags (non-blocking)
 
@@ -169,4 +163,4 @@
 
 ---
 
-**VERDICT: BLOCK**
+**VERDICT: CLEAR**
