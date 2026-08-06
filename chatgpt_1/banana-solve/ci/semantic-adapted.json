@@ -1,0 +1,36 @@
+{
+  "checks": {
+    "renewable_lifecycle": "PASS",
+    "tier_c_hard_fixtures": "PASS",
+    "tier_p": "FAIL"
+  },
+  "hard_failures": [],
+  "owner_lifecycle_replacement": {},
+  "raw_exit": 1,
+  "raw_summary": {
+    "golden": "chatgpt_1/banana-solve/ci/tier-p.json",
+    "tier_c": {
+      "c_arbitration": "PASS",
+      "c_banking": "PASS",
+      "c_bootstrap_budget": "PASS",
+      "c_bounded_placement": "PASS",
+      "c_eta_suppression": "PASS",
+      "c_late_conversion": "PASS",
+      "c_replant_renewable": "FAIL",
+      "c_target_recovery": "PASS"
+    },
+    "tier_p": {
+      "p_banana_inventory_dormant": "PASS",
+      "p_baseline_plain": "PASS",
+      "p_late_window": "PASS",
+      "p_orchard_eligible": "PASS",
+      "p_training": "PASS",
+      "p_two_worker": "PASS",
+      "p_wood_banking": "PASS"
+    }
+  },
+  "renewable_raw": null,
+  "stderr": "",
+  "stdout": "{\"tier_p\": {\"p_baseline_plain\": \"PASS\", \"p_orchard_eligible\": \"PASS\", \"p_banana_inventory_dormant\": \"PASS\", \"p_wood_banking\": \"PASS\", \"p_two_worker\": \"PASS\", \"p_late_window\": \"PASS\", \"p_training\": \"PASS\"}, \"golden\": \"chatgpt_1/banana-solve/ci/tier-p.json\", \"tier_c\": {\"c_bootstrap_budget\": \"PASS\", \"c_bounded_placement\": \"PASS\", \"c_replant_renewable\": \"FAIL\", \"c_late_conversion\": \"PASS\", \"c_banking\": \"PASS\", \"c_eta_suppression\": \"PASS\", \"c_arbitration\": \"PASS\", \"c_target_recovery\": \"PASS\"}}\n",
+  "verdict": "FAIL"
+}

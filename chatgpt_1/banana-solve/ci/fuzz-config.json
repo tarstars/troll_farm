@@ -2,7 +2,7 @@
   "bin_cache_dir": "/tmp/chatgpt-banana-solve/bin",
   "candidate": {
     "crate": "chatgpt_1_banana_solve",
-    "sha256": "840a82b47375f2b73153282caab9faef55d00a6ed97a9df0eb8bbb70bf40d79a",
+    "sha256": "bbe54a489c98222d2e382b112cf26034defaf6e287b0576a1c3282438deea951",
     "source": "../candidate-banana-r2.min.rs"
   },
   "class_mix": {
@@ -42,6 +42,6 @@
     67867967,
     86028121
   ],
-  "task": "20260802-banana-restoration-r2 owner-directed renewable candidate",
+  "task": "20260802-banana-restoration-r2 strict private-founding candidate",
   "turns": 200
 }

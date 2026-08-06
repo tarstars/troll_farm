@@ -120,10 +120,6 @@ pub struct BananaBot {
     // only after banana activation to stop a candidate-attributable A-B-A
     // return before it becomes a sustained oscillation.
     banana_peer_history: std::collections::BTreeMap<i32, (Cell, Cell)>,
-    // Previous ETAs to the exact latched mother.  A falling ETA is an
-    // observable approach; a static far opponent is not treated as movement.
-    banana_prev_h_eta: Option<i32>,
-    banana_prev_x_eta: Option<i32>,
 }
 
 impl BananaBot {
@@ -145,8 +141,6 @@ impl BananaBot {
             banana_lost_banking: false,
             banana_mother: None,
             banana_peer_history: std::collections::BTreeMap::new(),
-            banana_prev_h_eta: None,
-            banana_prev_x_eta: None,
         }
     }
 
@@ -334,12 +328,8 @@ impl BananaBot {
         // exact conservative fresh-plant-to-first-fruit horizon (creation tick
         // included); ties are unsafe because cross-player co-location and
         // last-fruit duplication are legal.
-        // Two full cooldown periods are the bounded response window:
-        // a far opponent cannot reach the fresh mother before the resident
-        // can observe a lost race and convert/abandon it, while the canonical
-        // eta-13 lifecycle remains available (dry threshold = 12).
-        let response_window = 2 * cooldown;
-        eta_h > response_window && eta_x > response_window
+        let first_fruit = resident_eta + 4 * cooldown + 2;
+        eta_h > first_fruit && eta_x > first_fruit
     }
 
 
@@ -690,112 +680,8 @@ impl BananaBot {
                 .map(|d| MoisanBot::ceil_div(*d, worker.stats.movement_speed))
                 .unwrap_or(10_000);
             let eta_opp = Self::banana_opponent_eta(view, mother, false);
-            let eta_chop = Self::banana_opponent_eta(view, mother, true);
-            let h_approaching = self
-                .banana_prev_h_eta
-                .map(|previous| eta_opp < previous)
-                .unwrap_or(false);
-            let x_approaching = self
-                .banana_prev_x_eta
-                .map(|previous| eta_chop < previous)
-                .unwrap_or(false);
-            self.banana_prev_h_eta = Some(eta_opp);
-            self.banana_prev_x_eta = Some(eta_chop);
             let banking_drop_now = worker.carry[crate::game::types::WOOD] > 0
                 && is_adjacent(worker.cell, view.shacks[0]);
-
-            // Dynamic mother service.  The wrapper observes one full state
-            // before classifying motion: a far static opponent leaves ETAs
-            // unchanged, while a closing opponent makes one or both ETAs
-            // strictly decrease.  Cargo banking remains higher priority.
-            if !banking_drop_now && worker.total_carried() == 0 {
-                if let Some(plant) = Self::banana_live(view, mother) {
-                    if plant.fruits == 0 {
-                        let ripe = MoisanBot::ticks_until_fruit(view, plant);
-                        let h_threatens = eta_opp <= ripe;
-                        let x_threatens = eta_chop <= ripe;
-                        let approaching =
-                            (h_approaching && h_threatens)
-                                || (x_approaching && x_threatens);
-                        if approaching {
-                            let mut deadline = 10_000;
-                            if h_approaching && h_threatens {
-                                deadline = deadline.min(eta_opp);
-                            }
-                            if x_approaching && x_threatens {
-                                deadline = deadline.min(eta_chop);
-                            }
-                            let conversion = if worker.stats.chop_power > 0
-                                && resident_eta < 10_000
-                            {
-                                let arrival = Self::banana_predict_growth(
-                                    view,
-                                    plant,
-                                    resident_eta,
-                                );
-                                MoisanBot::chop_outcome(
-                                    view,
-                                    plant,
-                                    arrival,
-                                    worker.stats.chop_power,
-                                )
-                                .map(|(turns, _wood)| resident_eta + turns - 1)
-                            } else {
-                                None
-                            };
-                            if conversion
-                                .map(|completion| completion < deadline)
-                                .unwrap_or(false)
-                            {
-                                // A real closing threat: convert immediately,
-                                // latching the exact mother until it falls.
-                                self.banana_target =
-                                    Some((BananaTask::Chop, mother));
-                                self.banana_hold_age = 0;
-                                self.banana_blocked_turns = 0;
-                                self.banana_last_cell = Some(worker.cell);
-                                self.banana_last_move = worker.cell != mother;
-                                self.banana_best_dist = None;
-                                self.banana_idle_streak = 0;
-                                return Some(if worker.cell == mother {
-                                    format!("CHOP {}", worker.id)
-                                } else {
-                                    format!(
-                                        "MOVE {} {} {}",
-                                        worker.id,
-                                        mother.0,
-                                        mother.1,
-                                    )
-                                });
-                            }
-                        }
-                        if h_threatens || x_threatens {
-                            // The threat is currently static (or a first
-                            // observation).  Keep the resident on the mother
-                            // until either it becomes harvest-safe or motion
-                            // is observed on the next turn.
-                            self.banana_target =
-                                Some((BananaTask::Harvest, mother));
-                            self.banana_hold_age = 0;
-                            self.banana_blocked_turns = 0;
-                            self.banana_last_cell = Some(worker.cell);
-                            self.banana_last_move = worker.cell != mother;
-                            self.banana_best_dist = None;
-                            self.banana_idle_streak = 0;
-                            return Some(if worker.cell == mother {
-                                "WAIT".to_string()
-                            } else {
-                                format!(
-                                    "MOVE {} {} {}",
-                                    worker.id,
-                                    mother.0,
-                                    mother.1,
-                                )
-                            });
-                        }
-                    }
-                }
-            }
             if resident_eta >= eta_opp && !banking_drop_now {
                 let plant = Self::banana_live(view, mother);
                 let fruits_ready = plant.map(|p| p.fruits > 0).unwrap_or(false);
@@ -1001,8 +887,6 @@ impl BananaBot {
             && !is_adjacent(chosen.2, view.shacks[0])
         {
             self.banana_mother = Some(chosen.2);
-            self.banana_prev_h_eta = None;
-            self.banana_prev_x_eta = None;
         }
         if chosen.1 == BananaTask::Idle {
             self.banana_idle_streak += 1;
@@ -1351,48 +1235,10 @@ impl Bot for BananaBot {
             self.banana_peer_history
                 .insert(unit.id, (previous, unit.cell));
 
-            let mut resident_leaves_service_radius = false;
-            if wrapper_action.is_none()
-                && Some(unit.id) == self.banana_worker
-                && commands[slot].starts_with("MOVE ")
-            {
-                if let Some(mother) = self.banana_mother_cell(view) {
-                    let parts: Vec<&str> = commands[slot].split_whitespace().collect();
-                    if parts.len() == 4 {
-                        if let (Ok(x), Ok(y)) =
-                            (parts[2].parse::<i32>(), parts[3].parse::<i32>())
-                        {
-                            let landing = next_cell(
-                                &view.walkable,
-                                unit.cell,
-                                (x, y),
-                                unit.stats.movement_speed,
-                            );
-                            let dist = bfs_distances(&view.walkable, &[mother]);
-                            let landing_dist = dist.get(&landing).copied().unwrap_or(10_000);
-                            if landing_dist > 2 {
-                                let current_dist =
-                                    dist.get(&unit.cell).copied().unwrap_or(10_000);
-                                commands[slot] = if current_dist > 2 {
-                                    format!(
-                                        "MOVE {} {} {}",
-                                        unit.id,
-                                        mother.0,
-                                        mother.1,
-                                    )
-                                } else {
-                                    "WAIT".to_string()
-                                };
-                                resident_leaves_service_radius = true;
-                            }
-                        }
-                    }
-                }
-            }
             if harms_mother || steals_seed || plants_banana_invalid || move_returns_to_b {
                 commands[slot] = "WAIT".to_string();
+                peer_move_rewritten |= move_returns_to_b;
             }
-            peer_move_rewritten |= move_returns_to_b || resident_leaves_service_radius;
         }
         // C8 (rev. round 5, R-5): resident priority in move resolution;
         // the mother is NOT movement-forbidden. I-29's protection intent
