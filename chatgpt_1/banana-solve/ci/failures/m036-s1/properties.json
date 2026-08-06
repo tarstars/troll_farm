@@ -9,19 +9,19 @@
    0,
    0,
    0,
-   23
+   15
   ],
-  "margin": 77,
+  "margin": 42,
   "opp_inventory": [
-   8,
+   4,
    0,
    0,
-   7,
+   14,
    0,
    0
   ],
-  "opp_score": 15,
-  "score": 92
+  "opp_score": 18,
+  "score": 60
  },
  "class": "multi_door",
  "detector_counts": {
@@ -30,7 +30,7 @@
   "D-3": 0,
   "D-4": 0,
   "D-5": 0,
-  "D-6": 6,
+  "D-6": 9,
   "D-7": 0,
   "D-8": 0,
   "D-9": 0
@@ -65,7 +65,7 @@
  "turns": 200,
  "violations": [
   {
-   "count": 6,
+   "count": 9,
    "detector": "D-6",
    "episodes": [
     {
@@ -75,8 +75,8 @@
      ],
      "kind": "opp_harvested_ours",
      "opp_unit": 5,
-     "turn_end": 135,
-     "turn_start": 134,
+     "turn_end": 62,
+     "turn_start": 61,
      "unit": null
     },
     {
@@ -86,8 +86,8 @@
      ],
      "kind": "opp_harvested_ours",
      "opp_unit": 5,
-     "turn_end": 136,
-     "turn_start": 135,
+     "turn_end": 90,
+     "turn_start": 89,
      "unit": null
     },
     {
@@ -97,8 +97,8 @@
      ],
      "kind": "opp_harvested_ours",
      "opp_unit": 5,
-     "turn_end": 164,
-     "turn_start": 163,
+     "turn_end": 91,
+     "turn_start": 90,
      "unit": null
     },
     {
@@ -108,8 +108,8 @@
      ],
      "kind": "opp_harvested_ours",
      "opp_unit": 5,
-     "turn_end": 165,
-     "turn_start": 164,
+     "turn_end": 119,
+     "turn_start": 118,
      "unit": null
     },
     {
@@ -119,8 +119,8 @@
      ],
      "kind": "opp_harvested_ours",
      "opp_unit": 5,
-     "turn_end": 193,
-     "turn_start": 192,
+     "turn_end": 120,
+     "turn_start": 119,
      "unit": null
     }
    ],

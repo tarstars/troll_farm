@@ -1,9 +1,9 @@
-MSG yamo-carry-regen-transit-idle-harvest-rust;WAIT;WAIT
-WAIT;WAIT
-WAIT;WAIT
-PICK 0 BANANA;WAIT
+MSG yamo-carry-regen-transit-idle-harvest-rust;PICK 0 BANANA;WAIT
 MOVE 0 2 2;WAIT
 PLANT 0 BANANA;WAIT
+WAIT;WAIT
+WAIT;WAIT
+WAIT;WAIT
 WAIT;WAIT
 WAIT;WAIT
 WAIT;WAIT

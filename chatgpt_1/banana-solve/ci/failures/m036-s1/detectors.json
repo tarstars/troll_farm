@@ -30,7 +30,7 @@
   "verdict": "PASS"
  },
  {
-  "count": 6,
+  "count": 9,
   "detector": "D-6",
   "episodes": [
    {
@@ -40,8 +40,8 @@
     ],
     "kind": "opp_harvested_ours",
     "opp_unit": 5,
-    "turn_end": 135,
-    "turn_start": 134,
+    "turn_end": 62,
+    "turn_start": 61,
     "unit": null
    },
    {
@@ -51,8 +51,8 @@
     ],
     "kind": "opp_harvested_ours",
     "opp_unit": 5,
-    "turn_end": 136,
-    "turn_start": 135,
+    "turn_end": 90,
+    "turn_start": 89,
     "unit": null
    },
    {
@@ -62,8 +62,8 @@
     ],
     "kind": "opp_harvested_ours",
     "opp_unit": 5,
-    "turn_end": 164,
-    "turn_start": 163,
+    "turn_end": 91,
+    "turn_start": 90,
     "unit": null
    },
    {
@@ -73,8 +73,8 @@
     ],
     "kind": "opp_harvested_ours",
     "opp_unit": 5,
-    "turn_end": 165,
-    "turn_start": 164,
+    "turn_end": 119,
+    "turn_start": 118,
     "unit": null
    },
    {
@@ -84,8 +84,8 @@
     ],
     "kind": "opp_harvested_ours",
     "opp_unit": 5,
-    "turn_end": 193,
-    "turn_start": 192,
+    "turn_end": 120,
+    "turn_start": 119,
     "unit": null
    },
    {
@@ -95,8 +95,41 @@
     ],
     "kind": "opp_harvested_ours",
     "opp_unit": 5,
-    "turn_end": 194,
-    "turn_start": 193,
+    "turn_end": 148,
+    "turn_start": 147,
+    "unit": null
+   },
+   {
+    "cell": [
+     11,
+     7
+    ],
+    "kind": "opp_harvested_ours",
+    "opp_unit": 5,
+    "turn_end": 149,
+    "turn_start": 148,
+    "unit": null
+   },
+   {
+    "cell": [
+     11,
+     7
+    ],
+    "kind": "opp_harvested_ours",
+    "opp_unit": 5,
+    "turn_end": 177,
+    "turn_start": 176,
+    "unit": null
+   },
+   {
+    "cell": [
+     11,
+     7
+    ],
+    "kind": "opp_harvested_ours",
+    "opp_unit": 5,
+    "turn_end": 178,
+    "turn_start": 177,
     "unit": null
    }
   ],

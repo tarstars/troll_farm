@@ -1,27 +1,27 @@
 {
  "attempt": 0,
  "banana_active": true,
- "block": false,
+ "block": true,
  "candidate": {
   "inventory": [
-   1,
    0,
    0,
-   7,
    0,
-   17
+   0,
+   0,
+   7
   ],
-  "margin": 48,
+  "margin": 14,
   "opp_inventory": [
-   20,
+   7,
    0,
    7,
-   1,
+   0,
    0,
    0
   ],
-  "opp_score": 28,
-  "score": 76
+  "opp_score": 14,
+  "score": 28
  },
  "class": "water_diagonal",
  "detector_counts": {
@@ -31,16 +31,11 @@
   "D-4": 0,
   "D-5": 0,
   "D-6": 0,
-  "D-7": 1,
-  "D-8": 0,
+  "D-7": 0,
+  "D-8": 3,
   "D-9": 0
  },
- "flags": [
-  {
-   "detail": "1 D-7 unbanked_at_end episode(s) have a final PLANT BANANA or DROP command whose S_(T+1) effect is outside the finite panel transcript",
-   "flag": "terminal-consuming-command"
-  }
- ],
+ "flags": [],
  "map_id": "m049",
  "orchard_eligible": false,
  "parent": {
@@ -68,5 +63,64 @@
  "seat": 0,
  "seed": 15485863,
  "turns": 200,
- "violations": []
+ "violations": [
+  {
+   "count": 3,
+   "detector": "D-8",
+   "episodes": [
+    {
+     "cell": [
+      0,
+      7
+     ],
+     "completion_turn": 7,
+     "eta_opp_at_chop_start": 11,
+     "exact_chop_turns": 3,
+     "flip_turn": null,
+     "health_decreased": true,
+     "kind": "diag_mother_chop",
+     "opponent_harvest_turn": 27,
+     "reason": "discretionary_owned",
+     "turn_end": 5,
+     "turn_start": 5,
+     "unit": 0
+    },
+    {
+     "cell": [
+      0,
+      7
+     ],
+     "completion_turn": 7,
+     "eta_opp_at_chop_start": 11,
+     "exact_chop_turns": 3,
+     "flip_turn": null,
+     "health_decreased": true,
+     "kind": "diag_mother_chop",
+     "opponent_harvest_turn": 27,
+     "reason": "discretionary_owned",
+     "turn_end": 6,
+     "turn_start": 6,
+     "unit": 0
+    },
+    {
+     "cell": [
+      0,
+      7
+     ],
+     "completion_turn": 7,
+     "eta_opp_at_chop_start": 11,
+     "exact_chop_turns": 3,
+     "flip_turn": null,
+     "health_decreased": true,
+     "kind": "diag_mother_chop",
+     "opponent_harvest_turn": 27,
+     "reason": "discretionary_owned",
+     "turn_end": 7,
+     "turn_start": 7,
+     "unit": 0
+    }
+   ],
+   "property": "P1"
+  }
+ ]
 }

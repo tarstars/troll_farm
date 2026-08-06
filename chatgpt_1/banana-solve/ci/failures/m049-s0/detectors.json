@@ -36,24 +36,68 @@
   "verdict": "PASS"
  },
  {
-  "count": 1,
+  "count": 0,
   "detector": "D-7",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 3,
+  "detector": "D-8",
   "episodes": [
    {
-    "kind": "unbanked_at_end",
-    "provenance": "bank_pick",
-    "turn_end": 200,
-    "turn_start": 200,
+    "cell": [
+     0,
+     7
+    ],
+    "completion_turn": 7,
+    "eta_opp_at_chop_start": 11,
+    "exact_chop_turns": 3,
+    "flip_turn": null,
+    "health_decreased": true,
+    "kind": "diag_mother_chop",
+    "opponent_harvest_turn": 27,
+    "reason": "discretionary_owned",
+    "turn_end": 5,
+    "turn_start": 5,
+    "unit": 0
+   },
+   {
+    "cell": [
+     0,
+     7
+    ],
+    "completion_turn": 7,
+    "eta_opp_at_chop_start": 11,
+    "exact_chop_turns": 3,
+    "flip_turn": null,
+    "health_decreased": true,
+    "kind": "diag_mother_chop",
+    "opponent_harvest_turn": 27,
+    "reason": "discretionary_owned",
+    "turn_end": 6,
+    "turn_start": 6,
+    "unit": 0
+   },
+   {
+    "cell": [
+     0,
+     7
+    ],
+    "completion_turn": 7,
+    "eta_opp_at_chop_start": 11,
+    "exact_chop_turns": 3,
+    "flip_turn": null,
+    "health_decreased": true,
+    "kind": "diag_mother_chop",
+    "opponent_harvest_turn": 27,
+    "reason": "discretionary_owned",
+    "turn_end": 7,
+    "turn_start": 7,
     "unit": 0
    }
   ],
   "verdict": "FAIL"
- },
- {
-  "count": 0,
-  "detector": "D-8",
-  "episodes": [],
-  "verdict": "PASS"
  },
  {
   "count": 0,
