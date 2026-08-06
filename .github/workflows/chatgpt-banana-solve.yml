@@ -41,7 +41,7 @@ jobs:
             echo "rustc=$(rustc --version 2>&1)"
           } >> "$OUT"
 
-          run_gate "candidate build" python3 chatgpt_1/banana-solve/build_candidate.py
+          run_gate "candidate build" python3 chatgpt_1/banana-solve/build_candidate_v2.py
           run_gate "oracle selftest" python3 claude_1/banana-restoration-r2/conversion_race_oracle.py
           run_gate "compile candidate" rustc --crate-name banana_candidate --edition=2021 -O "$CAND" -o /tmp/banana-candidate
           echo >> "$OUT"
@@ -60,7 +60,6 @@ jobs:
           base = json.loads(Path('claude_1/pipeline/fuzz-panel-config.json').read_text())
           cand = Path('chatgpt_1/banana-solve/candidate-banana-r2.min.rs')
           base['task'] = '20260802-banana-restoration-r2 owner-directed conservative candidate'
-          # Paths are resolved relative to this generated config in .../banana-solve/ci.
           base['candidate']['source'] = '../candidate-banana-r2.min.rs'
           base['candidate']['sha256'] = hashlib.sha256(cand.read_bytes()).hexdigest()
           base['candidate']['crate'] = 'chatgpt_1_banana_solve'
