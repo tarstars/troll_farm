@@ -35,7 +35,14 @@ F2, F5, F6, F7, F9: read and judged design-adequate (S6 demoted to a Mealy outpu
    limit of any coverage argument and is honestly the enumeration tier's job, not a defect —
    but the design should state that the 70 = |EV|+|T-ids|+|collisions|+|ST|+|reds| is the
    claimed-complete set, so the claim is auditable.
-Neither is blocking; both are one-line documentation asks.
+3. **RC-3 (found on this pass, now fixed by me):** the revision-a summary block still carried
+   the pre-F8/pre-F10 numbers — "1588" and a "13/3/1" §C tally — contradicting the actual
+   materialized manifest (1,594) and the recomputed §C table (8/6/3). An internal
+   inconsistency of exactly the overclaim-residue class. I corrected the summary in place
+   (commit on the task branch) and left the arithmetic reconciliation ("1588 base + ST6/ST7 +
+   reds = 1594") intact.
+
+None is a correctness defect; RC-1/RC-2 are folded in as clarifications, RC-3 is fixed.
 
 ## Task 2 — comparison: my analysis vs the agent's reported work
 
@@ -46,11 +53,11 @@ Neither is blocking; both are one-line documentation asks.
 - **No unverifiable claim.** The agent's headline numbers (1,594 rows; 8/6/3 §C tally; oracle
   self-test green; deterministic manifest) all reproduced exactly on my own runs. No claim was
   taken on faith and none failed.
-- **Two things the agent did NOT surface that I did:** RC-1 and RC-2 above — both
+- **Three things the agent did NOT surface that I did:** RC-1, RC-2, and RC-3 above — both
   documentation-level, neither a correctness defect. This is the expected residue: the agent
   fixed what the reviewer named; the independent pass finds the softer edges around the fixes.
 - **Net:** the agent's work is accurate and complete against the ten findings. My independent
-  review does not contradict it; it adds two non-blocking clarity asks.
+  review does not contradict it; it adds two clarity asks and one fixed internal-inconsistency (RC-3).
 
 ## Disposition (my recommendation to the coordinator)
 
