@@ -25,6 +25,7 @@ jobs:
           OUT=chatgpt_1/banana-solve/ci/latest.txt
           CAND=chatgpt_1/banana-solve/candidate-banana-r2.min.rs
           : > "$OUT"
+          rm -rf chatgpt_1/banana-solve/ci/failures
           run_gate() {
             local name="$1"; shift
             echo >> "$OUT"
@@ -72,13 +73,13 @@ jobs:
           echo "== fuzz panel ==" >> "$OUT"
           (
             cd claude_1/pipeline
-            python3 fuzz_panel.py --config ../../chatgpt_1/banana-solve/ci/fuzz-config.json --report ../../chatgpt_1/banana-solve/ci/fuzz.md --json ../../chatgpt_1/banana-solve/ci/fuzz.json
+            python3 ../../chatgpt_1/banana-solve/run_fuzz.py --config ../../chatgpt_1/banana-solve/ci/fuzz-config.json --report ../../chatgpt_1/banana-solve/ci/fuzz.md --json ../../chatgpt_1/banana-solve/ci/fuzz.json --save-failures ../../chatgpt_1/banana-solve/ci/failures
           ) >> "$OUT" 2>&1
           echo "fuzz_panel_exit=$?" >> "$OUT"
 
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add -- "$OUT" chatgpt_1/banana-solve/ci/tier-c.json chatgpt_1/banana-solve/ci/fuzz-config.json chatgpt_1/banana-solve/ci/fuzz.md chatgpt_1/banana-solve/ci/fuzz.json "$CAND" chatgpt_1/banana-solve/candidate-banana-r2-manifest.json chatgpt_1/banana-solve/generated/banana_blocks/block-i1.rs
+          git add -- "$OUT" chatgpt_1/banana-solve/ci/tier-c.json chatgpt_1/banana-solve/ci/fuzz-config.json chatgpt_1/banana-solve/ci/fuzz.md chatgpt_1/banana-solve/ci/fuzz.json chatgpt_1/banana-solve/ci/failures "$CAND" chatgpt_1/banana-solve/candidate-banana-r2-manifest.json chatgpt_1/banana-solve/generated/banana_blocks/block-i1.rs
           if ! git diff --cached --quiet; then
             git commit -m "ci: record banana validation [skip banana-ci]"
             git push
