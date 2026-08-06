@@ -9,9 +9,9 @@
    0,
    0,
    0,
-   6
+   4
   ],
-  "margin": 8,
+  "margin": 0,
   "opp_inventory": [
    0,
    0,
@@ -21,7 +21,7 @@
    4
   ],
   "opp_score": 16,
-  "score": 24
+  "score": 16
  },
  "class": "water_diagonal",
  "detector_counts": {
@@ -71,26 +71,34 @@
     {
      "cells": [
       [
-       8,
-       2
+       11,
+       0
       ],
       [
-       7,
-       2
+       11,
+       1
       ]
      ],
-     "k": 6,
-     "turn_end": 29,
-     "turn_start": 16,
+     "k": 18,
+     "turn_end": 64,
+     "turn_start": 28,
      "unit": 2
     }
    ],
    "property": "P1"
   },
   {
-   "detail": "full wood carrier (carry [0, 0, 0, 0, 0, 2], free_capacity 0) exhibits a two-cell alternation cells (8, 2)<->(7, 2) over turns 16-29 (14 states, >= 3 A->B->A cycles) with cargo unchanged and no DROP - violates I-19 (no monotone door approach), I-20 (non-progress beyond the one-turn conflict tolerance) and I-21 (banking commitment never completes); a D-1 episode by construction",
-   "property": "P2",
-   "unit": 2
+   "detail": {
+    "parent_progress_turns": [
+     29,
+     30,
+     32
+    ],
+    "why": "candidate makes no progress over turns 22-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
+    "window_end": 199,
+    "window_start": 22
+   },
+   "property": "P4"
   }
  ]
 }

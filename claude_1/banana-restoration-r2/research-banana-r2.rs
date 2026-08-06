@@ -2176,6 +2176,9 @@ mod bot {
             banana_last_cell: Option<Cell>,
             banana_last_move: bool,
             banana_lost: bool,
+            banana_idle_streak: i32,
+            banana_best_dist: Option<i32>,
+            banana_lost_banking: bool,
         }
         impl BananaBot {
             pub fn new(inner: SecureOrchardBot) -> Self {
@@ -2191,6 +2194,9 @@ mod bot {
                     banana_last_cell: None,
                     banana_last_move: false,
                     banana_lost: false,
+                    banana_idle_streak: 0,
+                    banana_best_dist: None,
+                    banana_lost_banking: false,
                 }
             }
             fn banana_orchard_geometry(view: &GameState) -> bool {
@@ -2336,8 +2342,18 @@ mod bot {
                 if resident_eta >= 10_000 {
                     return false;
                 }
-                Self::banana_opponent_eta(view, cell, false) > resident_eta
-                    && Self::banana_opponent_eta(view, cell, true) > 2
+                if is_adjacent(cell, tent) {
+                    return Self::banana_opponent_eta(view, cell, false) > resident_eta
+                        && Self::banana_opponent_eta(view, cell, true) > 2;
+                }
+                let near_water = view.water.iter().any(|water| is_adjacent(*water, cell));
+                let margin = effective_cooldown(PlantKind::Banana, near_water)
+                    + MoisanBot::ceil_div(
+                        tree_health(PlantKind::Banana, 2),
+                        worker.stats.chop_power.max(1),
+                    );
+                Self::banana_opponent_eta(view, cell, false) > margin
+                    && Self::banana_opponent_eta(view, cell, true) > margin
             }
             fn banana_bank(
                 view: &GameState,
@@ -2347,8 +2363,18 @@ mod bot {
                 move_score: i32,
                 out: &mut Vec<(i32, BananaTask, Cell, String)>,
             ) {
-                for door in ortho_neighbors(view.shacks[0]) {
-                    if !view.walkable.contains(&door) {
+                let occupied = |cell: Cell| {
+                    view.units
+                        .iter()
+                        .any(|other| other.id != worker.id && other.cell == cell)
+                };
+                let doors: Vec<Cell> = ortho_neighbors(view.shacks[0])
+                    .into_iter()
+                    .filter(|door| view.walkable.contains(door))
+                    .collect();
+                let any_free = doors.iter().any(|door| !occupied(*door));
+                for door in doors {
+                    if any_free && occupied(door) {
                         continue;
                     }
                     if door == worker.cell {
@@ -2516,8 +2542,15 @@ mod bot {
                 }
                 out
             }
-            fn banana_action(&mut self, view: &GameState, worker: &Unit) -> String {
-                let stalled = self.banana_last_move && self.banana_last_cell == Some(worker.cell);
+            fn banana_action(&mut self, view: &GameState, worker: &Unit) -> Option<String> {
+                let stalled = self.banana_last_move
+                    && match (self.banana_target, self.banana_best_dist) {
+                        (Some((_task, cell)), Some(best)) => bfs_distances(&view.walkable, &[cell])
+                            .get(&worker.cell)
+                            .map(|d| *d >= best)
+                            .unwrap_or(true),
+                        _ => self.banana_last_cell == Some(worker.cell),
+                    };
                 self.banana_blocked_turns = if stalled {
                     self.banana_blocked_turns + 1
                 } else {
@@ -2529,11 +2562,13 @@ mod bot {
                         self.banana_blocked_turns = 0;
                         self.banana_last_cell = Some(worker.cell);
                         self.banana_last_move = worker.cell != mother;
-                        return if worker.cell == mother {
+                        self.banana_best_dist = None;
+                        self.banana_idle_streak = 0;
+                        return Some(if worker.cell == mother {
                             format!("CHOP {}", worker.id)
                         } else {
                             format!("MOVE {} {} {}", worker.id, mother.0, mother.1)
-                        };
+                        });
                     }
                     let dist = bfs_distances(&view.walkable, &[mother]);
                     let resident_eta = dist
@@ -2556,7 +2591,9 @@ mod bot {
                             self.banana_blocked_turns = 0;
                             self.banana_last_cell = Some(worker.cell);
                             self.banana_last_move = false;
-                            return format!("HARVEST {}", worker.id);
+                            self.banana_best_dist = None;
+                            self.banana_idle_streak = 0;
+                            return Some(format!("HARVEST {}", worker.id));
                         }
                         let feasible = worker.stats.chop_power > 0
                             && resident_eta < 10_000
@@ -2580,20 +2617,29 @@ mod bot {
                             self.banana_blocked_turns = 0;
                             self.banana_last_cell = Some(worker.cell);
                             self.banana_last_move = worker.cell != mother;
-                            return if worker.cell == mother {
+                            self.banana_best_dist = None;
+                            self.banana_idle_streak = 0;
+                            return Some(if worker.cell == mother {
                                 format!("CHOP {}", worker.id)
                             } else {
                                 format!("MOVE {} {} {}", worker.id, mother.0, mother.1)
-                            };
+                            });
                         }
                         self.banana_phase = BananaPhase::Abandoned;
                         self.banana_lost = true;
+                        self.banana_lost_banking = worker.total_carried() > 0;
                         self.banana_target = None;
                         self.banana_hold_age = 0;
                         self.banana_blocked_turns = 0;
                         self.banana_last_cell = Some(worker.cell);
                         self.banana_last_move = false;
-                        return Self::banana_lost_action(view, worker);
+                        self.banana_best_dist = None;
+                        self.banana_idle_streak = 0;
+                        return if self.banana_lost_banking {
+                            Some(Self::banana_lost_action(view, worker))
+                        } else {
+                            None
+                        };
                     }
                 }
                 let candidates = self.banana_candidates(view, worker);
@@ -2630,22 +2676,109 @@ mod bot {
                         }
                     }
                     _ => {
+                        let block_triggered = self.banana_blocked_turns >= 2
+                            && self
+                                .banana_target
+                                .map(|(task, cell)| {
+                                    candidates
+                                        .iter()
+                                        .any(|candidate| candidate.1 == task && candidate.2 == cell)
+                                })
+                                .unwrap_or(false);
                         self.banana_hold_age = 0;
                         self.banana_blocked_turns = 0;
-                        candidates
+                        let best = candidates
                             .iter()
                             .max_by_key(|candidate| (candidate.0, candidate.1, candidate.2))
                             .cloned()
-                            .unwrap_or((0, BananaTask::Idle, worker.cell, "WAIT".to_string()))
+                            .unwrap_or((0, BananaTask::Idle, worker.cell, "WAIT".to_string()));
+                        if block_triggered
+                            && best.1 != BananaTask::Idle
+                            && Some((best.1, best.2)) == self.banana_target
+                            && worker.carry[crate::game::types::WOOD] == 0
+                        {
+                            self.banana_idle_streak = 0;
+                            self.banana_last_move = false;
+                            self.banana_last_cell = Some(worker.cell);
+                            return Some("WAIT".to_string());
+                        }
+                        best
                     }
                 };
+                let target_changed = self.banana_target != Some((chosen.1, chosen.2));
                 self.banana_target = Some((chosen.1, chosen.2));
                 self.banana_last_move = chosen.3.starts_with("MOVE ");
                 self.banana_last_cell = Some(worker.cell);
+                let now_dist = bfs_distances(&view.walkable, &[chosen.2])
+                    .get(&worker.cell)
+                    .copied()
+                    .unwrap_or(10_000);
+                self.banana_best_dist = Some(if target_changed {
+                    now_dist
+                } else {
+                    self.banana_best_dist
+                        .map_or(now_dist, |best| best.min(now_dist))
+                });
                 if chosen.3.starts_with("PICK ") {
                     self.banana_bootstrap_used = true;
                 }
-                chosen.3
+                if chosen.1 == BananaTask::Idle {
+                    self.banana_idle_streak += 1;
+                    let on_mother = Self::banana_mother_cell(view) == Some(worker.cell);
+                    if on_mother {
+                        let loaded: Vec<&Unit> = view
+                            .units
+                            .iter()
+                            .filter(|other| {
+                                other.player == 0
+                                    && other.id != worker.id
+                                    && other.total_carried() > 0
+                                    && (other.cell.0 - worker.cell.0)
+                                        .abs()
+                                        .max((other.cell.1 - worker.cell.1).abs())
+                                        <= 2
+                            })
+                            .collect();
+                        if !loaded.is_empty() {
+                            let doors: Vec<Cell> = ortho_neighbors(view.shacks[0])
+                                .into_iter()
+                                .filter(|door| view.walkable.contains(door))
+                                .collect();
+                            let mut aside: Option<Cell> = None;
+                            for cell in ortho_neighbors(worker.cell) {
+                                if !view.walkable.contains(&cell) {
+                                    continue;
+                                }
+                                if view.units.iter().any(|other| other.cell == cell) {
+                                    continue;
+                                }
+                                let mut walk = view.walkable.clone();
+                                walk.remove(&cell);
+                                let keeps_bank_open = loaded.iter().all(|teammate| {
+                                    let dist = bfs_distances(&walk, &[teammate.cell]);
+                                    doors.iter().any(|door| dist.contains_key(door))
+                                });
+                                if keeps_bank_open && aside.map(|best| cell < best).unwrap_or(true)
+                                {
+                                    aside = Some(cell);
+                                }
+                            }
+                            if let Some(cell) = aside {
+                                self.banana_last_move = true;
+                                return Some(format!("MOVE {} {} {}", worker.id, cell.0, cell.1));
+                            }
+                        }
+                    }
+                    if self.banana_idle_streak >= 3 {
+                        return None;
+                    }
+                } else if self.banana_idle_streak >= 3 && chosen.1 == BananaTask::Bank {
+                    self.banana_idle_streak += 1;
+                    return None;
+                } else {
+                    self.banana_idle_streak = 0;
+                }
+                Some(chosen.3)
             }
             fn banana_update_phase(&mut self, view: &GameState) {
                 match self.banana_phase {
@@ -2680,6 +2813,8 @@ mod bot {
                             self.banana_hold_age = 0;
                             self.banana_blocked_turns = 0;
                             self.banana_last_move = false;
+                            self.banana_best_dist = None;
+                            self.banana_idle_streak = 0;
                         }
                     }
                     BananaPhase::Active => {
@@ -2708,32 +2843,39 @@ mod bot {
                 }
                 let active =
                     self.banana_enabled == Some(true) && self.banana_phase == BananaPhase::Active;
-                let lost_hold = self.banana_enabled == Some(true)
-                    && self.banana_lost
-                    && self
-                        .banana_worker
-                        .map(|id| view.unit(id).is_some())
-                        .unwrap_or(false);
-                self.inner.inner.banana_idle_unit = if active || lost_hold {
-                    self.banana_worker
-                } else {
-                    None
-                };
-                self.inner.inner.banana_protected_cell = if active {
+                let wrapper_action: Option<String> =
+                    match self.banana_worker.and_then(|id| view.unit(id)) {
+                        Some(worker) if active => self.banana_action(view, worker),
+                        Some(worker)
+                            if self.banana_enabled == Some(true)
+                                && self.banana_lost
+                                && self.banana_lost_banking =>
+                        {
+                            if worker.total_carried() > 0 {
+                                Some(Self::banana_lost_action(view, worker))
+                            } else {
+                                self.banana_lost_banking = false;
+                                None
+                            }
+                        }
+                        _ => None,
+                    };
+                let claim = if active || (self.banana_enabled == Some(true) && self.banana_lost) {
                     Self::banana_mother_cell(view)
                 } else {
                     None
                 };
+                self.inner.inner.banana_idle_unit = if wrapper_action.is_some() {
+                    self.banana_worker
+                } else {
+                    None
+                };
+                self.inner.inner.banana_protected_cell = claim;
                 let mut commands = self.inner.commands(view);
-                if !active && !lost_hold {
+                let lost = self.banana_enabled == Some(true) && self.banana_lost;
+                if wrapper_action.is_none() && claim.is_none() && !active && !lost {
                     return commands;
                 }
-                let Some(worker_id) = self.banana_worker else {
-                    return commands;
-                };
-                let Some(worker) = view.unit(worker_id) else {
-                    return commands;
-                };
                 let mut unit_ids: Vec<i32> = view
                     .units
                     .iter()
@@ -2741,42 +2883,48 @@ mod bot {
                     .map(|unit| unit.id)
                     .collect();
                 unit_ids.sort_unstable();
-                let action = if active {
-                    self.banana_action(view, worker)
-                } else {
-                    Self::banana_lost_action(view, worker)
-                };
-                SecureOrchardBot::replace_action(&mut commands, &unit_ids, worker_id, action);
-                let mother = if self.banana_lost {
-                    None
-                } else {
-                    Self::banana_mother_cell(view)
-                };
+                let mut wrapper_worker: Option<i32> = None;
+                if let (Some(worker_id), Some(action)) =
+                    (self.banana_worker, wrapper_action.clone())
+                {
+                    if view.unit(worker_id).is_some() {
+                        SecureOrchardBot::replace_action(
+                            &mut commands,
+                            &unit_ids,
+                            worker_id,
+                            action,
+                        );
+                        wrapper_worker = Some(worker_id);
+                    }
+                }
                 for unit in view
                     .units
                     .iter()
-                    .filter(|unit| unit.player == 0 && unit.id != worker_id)
+                    .filter(|unit| unit.player == 0 && Some(unit.id) != wrapper_worker)
                 {
                     let Some(slot) =
                         SecureOrchardBot::unit_action_slot(&commands, &unit_ids, unit.id)
                     else {
                         continue;
                     };
-                    let on_mother = mother == Some(unit.cell);
+                    let on_mother = claim == Some(unit.cell);
                     let harms_mother = on_mother
                         && (commands[slot].starts_with("CHOP ")
                             || commands[slot].starts_with("HARVEST "));
-                    let steals_seed =
-                        commands[slot].starts_with("PICK ") && commands[slot].ends_with(" BANANA");
+                    let steals_seed = (active || lost)
+                        && commands[slot].starts_with("PICK ")
+                        && commands[slot].ends_with(" BANANA");
                     if harms_mother || steals_seed {
                         commands[slot] = "WAIT".to_string();
                     }
                 }
-                MoisanBot::resolve_move_conflicts_with_priority(
-                    view,
-                    &mut commands,
-                    &BTreeSet::from([worker_id]),
-                );
+                if let Some(worker_id) = wrapper_worker {
+                    MoisanBot::resolve_move_conflicts_with_priority(
+                        view,
+                        &mut commands,
+                        &BTreeSet::from([worker_id]),
+                    );
+                }
                 commands
             }
         }

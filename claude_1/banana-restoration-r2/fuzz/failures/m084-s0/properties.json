@@ -7,11 +7,11 @@
    1,
    0,
    0,
-   16,
    0,
-   5
+   0,
+   4
   ],
-  "margin": 37,
+  "margin": 17,
   "opp_inventory": [
    0,
    0,
@@ -21,17 +21,17 @@
    0
   ],
   "opp_score": 0,
-  "score": 37
+  "score": 17
  },
  "class": "single_door_tent",
  "detector_counts": {
   "D-1": 0,
   "D-2": 0,
   "D-3": 0,
-  "D-4": 1,
+  "D-4": 0,
   "D-5": 0,
   "D-6": 0,
-  "D-7": 0,
+  "D-7": 4,
   "D-8": 0,
   "D-9": 0
  },
@@ -65,17 +65,52 @@
  "turns": 200,
  "violations": [
   {
-   "count": 1,
-   "detector": "D-4",
+   "count": 4,
+   "detector": "D-7",
    "episodes": [
     {
-     "kind": "no_progress",
-     "turn_end": 55,
+     "kind": "carried_overage",
+     "provenance": "harvest",
+     "turn_end": 65,
+     "turn_start": 52,
+     "unit": 0
+    },
+    {
+     "kind": "carried_overage",
+     "provenance": "harvest",
+     "turn_end": 66,
      "turn_start": 53,
-     "unit": 2
+     "unit": 0
+    },
+    {
+     "kind": "unbanked_at_end",
+     "provenance": "harvest",
+     "turn_end": 200,
+     "turn_start": 52,
+     "unit": 0
+    },
+    {
+     "kind": "unbanked_at_end",
+     "provenance": "harvest",
+     "turn_end": 200,
+     "turn_start": 53,
+     "unit": 0
     }
    ],
    "property": "P1"
+  },
+  {
+   "detail": {
+    "parent_progress_turns": [
+     60,
+     68,
+     69
+    ],
+    "why": "candidate makes no progress over turns 58-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
+    "window_end": 199,
+    "window_start": 58
+   },
+   "property": "P4"
   }
  ]
 }

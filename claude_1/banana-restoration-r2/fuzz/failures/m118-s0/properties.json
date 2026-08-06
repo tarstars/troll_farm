@@ -9,9 +9,9 @@
    0,
    0,
    0,
-   6
+   5
   ],
-  "margin": 8,
+  "margin": 4,
   "opp_inventory": [
    0,
    0,
@@ -21,7 +21,7 @@
    4
   ],
   "opp_score": 16,
-  "score": 24
+  "score": 20
  },
  "class": "choke_corridor",
  "detector_counts": {
@@ -67,11 +67,14 @@
   {
    "detail": {
     "parent_progress_turns": [
+     9,
+     10,
+     12,
      13
     ],
-    "why": "candidate makes no progress over turns 13-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
+    "why": "candidate makes no progress over turns 9-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
     "window_end": 199,
-    "window_start": 13
+    "window_start": 9
    },
    "property": "P4"
   }

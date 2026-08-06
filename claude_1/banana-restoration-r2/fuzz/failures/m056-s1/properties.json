@@ -7,25 +7,25 @@
    0,
    0,
    0,
-   16,
    0,
-   34
+   0,
+   28
   ],
-  "margin": 53,
+  "margin": 43,
   "opp_inventory": [
-   17,
+   13,
    0,
    23,
-   59,
+   33,
    0,
    0
   ],
-  "opp_score": 99,
-  "score": 152
+  "opp_score": 69,
+  "score": 112
  },
  "class": "forest_dense",
  "detector_counts": {
-  "D-1": 3,
+  "D-1": 1,
   "D-2": 0,
   "D-3": 0,
   "D-4": 0,
@@ -65,64 +65,32 @@
  "turns": 200,
  "violations": [
   {
-   "count": 3,
+   "count": 1,
    "detector": "D-1",
    "episodes": [
     {
      "cells": [
       [
-       9,
-       1
+       4,
+       0
       ],
-      [
-       9,
-       2
-      ]
-     ],
-     "k": 3,
-     "turn_end": 105,
-     "turn_start": 99,
-     "unit": 0
-    },
-    {
-     "cells": [
-      [
-       9,
-       1
-      ],
-      [
-       9,
-       2
-      ]
-     ],
-     "k": 3,
-     "turn_end": 165,
-     "turn_start": 159,
-     "unit": 0
-    },
-    {
-     "cells": [
       [
        5,
-       2
-      ],
-      [
-       6,
-       2
+       0
       ]
      ],
-     "k": 6,
-     "turn_end": 29,
-     "turn_start": 17,
-     "unit": 2
+     "k": 8,
+     "turn_end": 96,
+     "turn_start": 79,
+     "unit": 0
     }
    ],
    "property": "P1"
   },
   {
-   "detail": "full wood carrier (carry [0, 0, 0, 0, 0, 2], free_capacity 0) exhibits a two-cell alternation cells (5, 2)<->(6, 2) over turns 17-29 (13 states, >= 3 A->B->A cycles) with cargo unchanged and no DROP - violates I-19 (no monotone door approach), I-20 (non-progress beyond the one-turn conflict tolerance) and I-21 (banking commitment never completes); a D-1 episode by construction",
+   "detail": "full wood carrier (carry [0, 0, 0, 0, 0, 2], free_capacity 0) exhibits a two-cell alternation cells (4, 0)<->(5, 0) over turns 79-96 (18 states, >= 3 A->B->A cycles) with cargo unchanged and no DROP - violates I-19 (no monotone door approach), I-20 (non-progress beyond the one-turn conflict tolerance) and I-21 (banking commitment never completes); a D-1 episode by construction",
    "property": "P2",
-   "unit": 2
+   "unit": 0
   }
  ]
 }

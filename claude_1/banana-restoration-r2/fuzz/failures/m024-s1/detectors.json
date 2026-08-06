@@ -1,54 +1,38 @@
 [
  {
-  "count": 3,
+  "count": 2,
   "detector": "D-1",
   "episodes": [
    {
     "cells": [
      [
-      11,
-      2
-     ],
-     [
-      11,
+      9,
       3
-     ]
-    ],
-    "k": 3,
-    "turn_end": 111,
-    "turn_start": 105,
-    "unit": 0
-   },
-   {
-    "cells": [
-     [
-      11,
-      2
      ],
-     [
-      11,
-      3
-     ]
-    ],
-    "k": 3,
-    "turn_end": 148,
-    "turn_start": 142,
-    "unit": 0
-   },
-   {
-    "cells": [
      [
       8,
       3
-     ],
+     ]
+    ],
+    "k": 4,
+    "turn_end": 55,
+    "turn_start": 47,
+    "unit": 2
+   },
+   {
+    "cells": [
      [
       9,
+      3
+     ],
+     [
+      8,
       3
      ]
     ],
     "k": 3,
-    "turn_end": 37,
-    "turn_start": 31,
+    "turn_end": 101,
+    "turn_start": 95,
     "unit": 2
    }
   ],

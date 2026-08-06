@@ -67,12 +67,11 @@
   {
    "detail": {
     "parent_progress_turns": [
-     31,
      32
     ],
-    "why": "candidate makes no progress over turns 30-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
+    "why": "candidate makes no progress over turns 32-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
     "window_end": 199,
-    "window_start": 30
+    "window_start": 32
    },
    "property": "P4"
   }

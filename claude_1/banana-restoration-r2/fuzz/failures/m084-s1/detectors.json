@@ -1,6 +1,6 @@
 [
  {
-  "count": 2,
+  "count": 1,
   "detector": "D-1",
   "episodes": [
    {
@@ -15,24 +15,8 @@
      ]
     ],
     "k": 4,
-    "turn_end": 200,
-    "turn_start": 192,
-    "unit": 0
-   },
-   {
-    "cells": [
-     [
-      7,
-      2
-     ],
-     [
-      8,
-      2
-     ]
-    ],
-    "k": 10,
-    "turn_end": 29,
-    "turn_start": 9,
+    "turn_end": 79,
+    "turn_start": 71,
     "unit": 2
    }
   ],
@@ -69,32 +53,10 @@
   "verdict": "PASS"
  },
  {
-  "count": 3,
+  "count": 0,
   "detector": "D-7",
-  "episodes": [
-   {
-    "kind": "carried_overage",
-    "provenance": "harvest",
-    "turn_end": 200,
-    "turn_start": 187,
-    "unit": 0
-   },
-   {
-    "kind": "unbanked_at_end",
-    "provenance": "harvest",
-    "turn_end": 200,
-    "turn_start": 187,
-    "unit": 0
-   },
-   {
-    "kind": "unbanked_at_end",
-    "provenance": "harvest",
-    "turn_end": 200,
-    "turn_start": 192,
-    "unit": 0
-   }
-  ],
-  "verdict": "FAIL"
+  "episodes": [],
+  "verdict": "PASS"
  },
  {
   "count": 0,

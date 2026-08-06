@@ -5,32 +5,32 @@
  "candidate": {
   "inventory": [
    0,
+   0,
+   0,
    1,
    0,
-   9,
-   0,
-   21
+   6
   ],
-  "margin": 70,
+  "margin": 7,
   "opp_inventory": [
-   21,
+   1,
    0,
    0,
-   3,
+   17,
    0,
    0
   ],
-  "opp_score": 24,
-  "score": 94
+  "opp_score": 18,
+  "score": 25
  },
  "class": "multi_door",
  "detector_counts": {
-  "D-1": 1,
+  "D-1": 0,
   "D-2": 0,
   "D-3": 0,
   "D-4": 0,
   "D-5": 0,
-  "D-6": 1,
+  "D-6": 11,
   "D-7": 0,
   "D-8": 0,
   "D-9": 0
@@ -65,30 +65,7 @@
  "turns": 200,
  "violations": [
   {
-   "count": 1,
-   "detector": "D-1",
-   "episodes": [
-    {
-     "cells": [
-      [
-       10,
-       7
-      ],
-      [
-       9,
-       7
-      ]
-     ],
-     "k": 3,
-     "turn_end": 84,
-     "turn_start": 78,
-     "unit": 2
-    }
-   ],
-   "property": "P1"
-  },
-  {
-   "count": 1,
+   "count": 11,
    "detector": "D-6",
    "episodes": [
     {
@@ -98,8 +75,52 @@
      ],
      "kind": "opp_harvested_ours",
      "opp_unit": 5,
-     "turn_end": 130,
-     "turn_start": 129,
+     "turn_end": 38,
+     "turn_start": 37,
+     "unit": null
+    },
+    {
+     "cell": [
+      11,
+      7
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 66,
+     "turn_start": 65,
+     "unit": null
+    },
+    {
+     "cell": [
+      11,
+      7
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 67,
+     "turn_start": 66,
+     "unit": null
+    },
+    {
+     "cell": [
+      11,
+      7
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 95,
+     "turn_start": 94,
+     "unit": null
+    },
+    {
+     "cell": [
+      11,
+      7
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 96,
+     "turn_start": 95,
      "unit": null
     }
    ],

@@ -9,30 +9,30 @@
    0,
    0,
    0,
-   6
+   8
   ],
-  "margin": -16,
+  "margin": 2,
   "opp_inventory": [
-   20,
+   2,
    0,
-   13,
-   7,
+   1,
+   27,
    0,
    0
   ],
-  "opp_score": 40,
-  "score": 24
+  "opp_score": 30,
+  "score": 32
  },
  "class": "forest_sparse",
  "detector_counts": {
-  "D-1": 2,
+  "D-1": 0,
   "D-2": 0,
   "D-3": 0,
   "D-4": 0,
   "D-5": 0,
-  "D-6": 4,
+  "D-6": 17,
   "D-7": 0,
-  "D-8": 6,
+  "D-8": 0,
   "D-9": 0
  },
  "flags": [],
@@ -65,186 +65,78 @@
  "turns": 200,
  "violations": [
   {
-   "count": 2,
-   "detector": "D-1",
-   "episodes": [
-    {
-     "cells": [
-      [
-       6,
-       4
-      ],
-      [
-       5,
-       4
-      ]
-     ],
-     "k": 5,
-     "turn_end": 42,
-     "turn_start": 32,
-     "unit": 2
-    },
-    {
-     "cells": [
-      [
-       6,
-       4
-      ],
-      [
-       5,
-       4
-      ]
-     ],
-     "k": 74,
-     "turn_end": 200,
-     "turn_start": 51,
-     "unit": 2
-    }
-   ],
-   "property": "P1"
-  },
-  {
-   "count": 4,
+   "count": 17,
    "detector": "D-6",
    "episodes": [
     {
      "cell": [
-      7,
+      8,
       4
      ],
      "kind": "opp_harvested_ours",
      "opp_unit": 6,
-     "turn_end": 80,
-     "turn_start": 79,
+     "turn_end": 38,
+     "turn_start": 37,
      "unit": null
     },
     {
      "cell": [
-      7,
+      8,
       4
      ],
      "kind": "opp_harvested_ours",
-     "opp_unit": 6,
-     "turn_end": 117,
-     "turn_start": 116,
+     "opp_unit": 5,
+     "turn_end": 52,
+     "turn_start": 51,
      "unit": null
     },
     {
      "cell": [
-      7,
+      8,
       4
      ],
      "kind": "opp_harvested_ours",
-     "opp_unit": 6,
-     "turn_end": 156,
-     "turn_start": 155,
+     "opp_unit": 5,
+     "turn_end": 54,
+     "turn_start": 53,
      "unit": null
     },
     {
      "cell": [
-      7,
+      8,
       4
      ],
      "kind": "opp_harvested_ours",
      "opp_unit": 6,
-     "turn_end": 197,
-     "turn_start": 196,
+     "turn_end": 66,
+     "turn_start": 65,
+     "unit": null
+    },
+    {
+     "cell": [
+      8,
+      4
+     ],
+     "kind": "opp_harvested_ours",
+     "opp_unit": 5,
+     "turn_end": 79,
+     "turn_start": 78,
      "unit": null
     }
    ],
    "property": "P1"
   },
   {
-   "count": 6,
-   "detector": "D-8",
-   "episodes": [
-    {
-     "cell": [
-      6,
-      4
-     ],
-     "completion_turn": 47,
-     "eta_opp_at_chop_start": 1,
-     "exact_chop_turns": 6,
-     "flip_turn": 31,
-     "health_decreased": true,
-     "kind": "diag_mother_chop",
-     "opponent_harvest_turn": 43,
-     "reason": "flip_but_infeasible",
-     "turn_end": 42,
-     "turn_start": 42,
-     "unit": 2
-    },
-    {
-     "cell": [
-      6,
-      4
-     ],
-     "completion_turn": 47,
-     "eta_opp_at_chop_start": 1,
-     "exact_chop_turns": 6,
-     "flip_turn": 31,
-     "health_decreased": true,
-     "kind": "diag_mother_chop",
-     "opponent_harvest_turn": 43,
-     "reason": "flip_but_infeasible",
-     "turn_end": 43,
-     "turn_start": 43,
-     "unit": 2
-    },
-    {
-     "cell": [
-      6,
-      4
-     ],
-     "completion_turn": 47,
-     "eta_opp_at_chop_start": 1,
-     "exact_chop_turns": 6,
-     "flip_turn": 31,
-     "health_decreased": true,
-     "kind": "diag_mother_chop",
-     "opponent_harvest_turn": 43,
-     "reason": "flip_but_infeasible",
-     "turn_end": 44,
-     "turn_start": 44,
-     "unit": 2
-    },
-    {
-     "cell": [
-      6,
-      4
-     ],
-     "completion_turn": 47,
-     "eta_opp_at_chop_start": 1,
-     "exact_chop_turns": 6,
-     "flip_turn": 31,
-     "health_decreased": true,
-     "kind": "diag_mother_chop",
-     "opponent_harvest_turn": 43,
-     "reason": "flip_but_infeasible",
-     "turn_end": 45,
-     "turn_start": 45,
-     "unit": 2
-    },
-    {
-     "cell": [
-      6,
-      4
-     ],
-     "completion_turn": 47,
-     "eta_opp_at_chop_start": 1,
-     "exact_chop_turns": 6,
-     "flip_turn": 31,
-     "health_decreased": true,
-     "kind": "diag_mother_chop",
-     "opponent_harvest_turn": 43,
-     "reason": "flip_but_infeasible",
-     "turn_end": 46,
-     "turn_start": 46,
-     "unit": 2
-    }
-   ],
-   "property": "P1"
+   "detail": {
+    "parent_progress_turns": [
+     45,
+     46
+    ],
+    "why": "candidate makes no progress over turns 45-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
+    "window_end": 199,
+    "window_start": 45
+   },
+   "property": "P4"
   }
  ]
 }

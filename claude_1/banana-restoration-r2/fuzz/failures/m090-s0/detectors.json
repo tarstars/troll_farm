@@ -7,16 +7,16 @@
     "cells": [
      [
       2,
-      4
+      5
      ],
      [
       2,
-      5
+      4
      ]
     ],
-    "k": 30,
-    "turn_end": 101,
-    "turn_start": 41,
+    "k": 27,
+    "turn_end": 100,
+    "turn_start": 45,
     "unit": 2
    }
   ],
@@ -47,22 +47,10 @@
   "verdict": "PASS"
  },
  {
-  "count": 1,
+  "count": 0,
   "detector": "D-6",
-  "episodes": [
-   {
-    "cell": [
-     1,
-     5
-    ],
-    "kind": "opp_harvested_ours",
-    "opp_unit": 5,
-    "turn_end": 192,
-    "turn_start": 191,
-    "unit": null
-   }
-  ],
-  "verdict": "FAIL"
+  "episodes": [],
+  "verdict": "PASS"
  },
  {
   "count": 0,

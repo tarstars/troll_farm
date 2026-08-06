@@ -5,13 +5,13 @@
  "candidate": {
   "inventory": [
    0,
+   1,
    0,
+   1,
    0,
-   0,
-   0,
-   11
+   6
   ],
-  "margin": 44,
+  "margin": 26,
   "opp_inventory": [
    0,
    0,
@@ -21,7 +21,7 @@
    0
   ],
   "opp_score": 0,
-  "score": 44
+  "score": 26
  },
  "class": "single_door_tent",
  "detector_counts": {
@@ -71,21 +71,41 @@
     {
      "cells": [
       [
-       1,
-       4
+       7,
+       0
       ],
       [
-       2,
-       4
+       8,
+       0
       ]
      ],
-     "k": 3,
-     "turn_end": 10,
-     "turn_start": 4,
+     "k": 73,
+     "turn_end": 200,
+     "turn_start": 54,
      "unit": 2
     }
    ],
    "property": "P1"
+  },
+  {
+   "detail": {
+    "parent_progress_turns": [
+     45,
+     46,
+     49,
+     50,
+     51,
+     52,
+     55,
+     56,
+     69,
+     70
+    ],
+    "why": "candidate makes no progress over turns 44-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
+    "window_end": 199,
+    "window_start": 44
+   },
+   "property": "P4"
   }
  ]
 }

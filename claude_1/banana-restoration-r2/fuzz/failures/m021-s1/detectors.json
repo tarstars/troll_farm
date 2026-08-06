@@ -1,26 +1,9 @@
 [
  {
-  "count": 1,
+  "count": 0,
   "detector": "D-1",
-  "episodes": [
-   {
-    "cells": [
-     [
-      10,
-      2
-     ],
-     [
-      11,
-      2
-     ]
-    ],
-    "k": 3,
-    "turn_end": 11,
-    "turn_start": 5,
-    "unit": 2
-   }
-  ],
-  "verdict": "FAIL"
+  "episodes": [],
+  "verdict": "PASS"
  },
  {
   "count": 0,
@@ -40,8 +23,8 @@
   "episodes": [
    {
     "kind": "no_progress",
-    "turn_end": 30,
-    "turn_start": 28,
+    "turn_end": 24,
+    "turn_start": 22,
     "unit": 2
    }
   ],

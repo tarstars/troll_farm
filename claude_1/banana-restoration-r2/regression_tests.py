@@ -283,10 +283,15 @@ def r2_abandon(tr: td.Trace, mother=None, opp_id=5) -> dict:
     Scenario contract (t3_abandon): the mother is UNRIPE at the ownership
     flip and conversion is impossible (travel + ceil(health/chop_power)
     chop turns cannot complete strictly before the opponent's earliest
-    harvest), so I-10a requires the Abandoned transition: "no further
-    commands invested in the asset". FAIL if after the flip turn the
-    resident keeps investing: any MOVE targeted at the mother cell, any
-    PLANT, or any HARVEST/CHOP while standing on the mother cell.
+    harvest), so I-10a requires the Abandoned transition: no further
+    MOTHER-DIRECTED investment (invariant-spec Revision 2026-08-06:
+    "cease all investment" binds the ASSET, not the worker — the released
+    resident's ordinary economy actions are sanctioned). FAIL if after the
+    flip turn the resident keeps investing in the asset: any MOVE targeted
+    at the mother cell, any PLANT on the mother cell, or any HARVEST/CHOP
+    while standing on the mother cell. (Amended 2026-08-06 exactly as far
+    as the revision block requires: the former any-PLANT clause is now
+    mother-scoped; economy actions elsewhere are allowed.)
     """ + R2_DOC
     mother = mother or mbt.MOTHER_CELL
     rid = resident_id(tr)
@@ -308,9 +313,12 @@ def r2_abandon(tr: td.Trace, mother=None, opp_id=5) -> dict:
         if cmd.verb == "MOVE" and cmd.args and cmd.args[0] == mother:
             violations.append({"turn": t, "command": cmd.raw,
                                "why": "MOVE toward the lost mother"})
-        elif cmd.verb == "PLANT":
+        elif cmd.verb == "PLANT" and unit.cell == mother:
+            # Revision 2026-08-06: mother-scoped (economy PLANTs by the
+            # released resident elsewhere are sanctioned).
             violations.append({"turn": t, "command": cmd.raw,
-                               "why": "PLANT after ownership flip"})
+                               "why": "PLANT on the lost mother cell "
+                                      "after ownership flip"})
         elif cmd.verb in ("HARVEST", "CHOP") and unit.cell == mother:
             violations.append({"turn": t, "command": cmd.raw,
                                "why": cmd.verb + " on the lost mother"})

@@ -1,8 +1,11 @@
 {
-  "task": "20260802-banana-restoration-r2 fuzz panel (candidate 47c98f53 vs parent a8eb3b2b)",
+  "task": "20260802-banana-restoration-r2 fuzz panel (candidate eac2eb36 vs parent a8eb3b2b)",
+  "notes": [
+    "P1/D-9 is parent-differential at the PANEL layer (round-6 ROOT-A ruling, 2026-08-06, diagnosis-r6-2026-08-06.md family (a)): a D-9 episode blocks only if absent from the parent's run on the identical map/opponent; episodes the parent reproduces identically are report-tier 'inherited-parent-D9' flags. trace_detectors.detect_d9 is unmodified - the base-detector question goes to the integrator."
+  ],
   "candidate": {
     "source": "../banana-restoration-r2/candidate-banana-r2.min.rs",
-    "sha256": "47c98f5354ec89ea032c425394287ee24955c75846690d3527ee60ee2d167834",
+    "sha256": "eac2eb36b5f2abf0e92b62615584f3d9135055a09e6eec0bbee7c4e4a6a4f23b",
     "crate": "banana_r2_fuzz_candidate"
   },
   "parent": {
@@ -10,7 +13,14 @@
     "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
     "crate": "banana_r2_fuzz_parent"
   },
-  "seeds": [982451653, 15485863, 32452843, 49979687, 67867967, 86028121],
+  "seeds": [
+    982451653,
+    15485863,
+    32452843,
+    49979687,
+    67867967,
+    86028121
+  ],
   "maps": 120,
   "turns": 200,
   "processes": 8,
@@ -20,17 +30,17 @@
   "class_mix": {
     "choke_corridor": 0.25,
     "open_field": 0.15,
-    "single_door_tent": 0.10,
-    "multi_door": 0.10,
+    "single_door_tent": 0.1,
+    "multi_door": 0.1,
     "water_diagonal": 0.15,
-    "orchard_eligible": 0.10,
+    "orchard_eligible": 0.1,
     "forest_dense": 0.08,
     "forest_sparse": 0.07
   },
   "opponent_mix": {
-    "idle": 0.30,
-    "harvester": 0.40,
-    "chopper_aggressor": 0.30
+    "idle": 0.3,
+    "harvester": 0.4,
+    "chopper_aggressor": 0.3
   },
   "games_dir": "/tmp/claude-1000/-home-tarstars-prj-troll-farm/3b336b91-cd2f-4655-9aaf-31fd6d3d156f/scratchpad/fuzz/games-banana-r2",
   "bin_cache_dir": "/tmp/claude-1000/-home-tarstars-prj-troll-farm/3b336b91-cd2f-4655-9aaf-31fd6d3d156f/scratchpad/fuzz/bin"

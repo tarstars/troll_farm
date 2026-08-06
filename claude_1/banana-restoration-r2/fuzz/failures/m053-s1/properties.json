@@ -1,7 +1,7 @@
 {
  "attempt": 0,
  "banana_active": true,
- "block": true,
+ "block": false,
  "candidate": {
   "inventory": [
    0,
@@ -35,7 +35,12 @@
   "D-8": 0,
   "D-9": 4
  },
- "flags": [],
+ "flags": [
+  {
+   "detail": "4 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)",
+   "flag": "inherited-parent-D9"
+  }
+ ],
  "map_id": "m053",
  "orchard_eligible": false,
  "parent": {
@@ -63,41 +68,5 @@
  "seat": 1,
  "seed": 86028121,
  "turns": 200,
- "violations": [
-  {
-   "count": 4,
-   "detector": "D-9",
-   "episodes": [
-    {
-     "kind": "banana_before_train",
-     "turn_end": 63,
-     "turn_start": 63,
-     "unit": 0,
-     "verb": "PICK"
-    },
-    {
-     "kind": "banana_before_train",
-     "turn_end": 64,
-     "turn_start": 64,
-     "unit": 0,
-     "verb": "PLANT"
-    },
-    {
-     "kind": "banana_before_train",
-     "turn_end": 69,
-     "turn_start": 69,
-     "unit": 0,
-     "verb": "PICK"
-    },
-    {
-     "kind": "banana_before_train",
-     "turn_end": 70,
-     "turn_start": 70,
-     "unit": 0,
-     "verb": "PLANT"
-    }
-   ],
-   "property": "P1"
-  }
- ]
+ "violations": []
 }

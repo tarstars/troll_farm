@@ -5,33 +5,33 @@
  "candidate": {
   "inventory": [
    0,
-   6,
    0,
-   3,
    0,
-   10
+   0,
+   0,
+   13
   ],
-  "margin": -71,
+  "margin": 4,
   "opp_inventory": [
    0,
    0,
    0,
    0,
    0,
-   30
+   12
   ],
-  "opp_score": 120,
-  "score": 49
+  "opp_score": 48,
+  "score": 52
  },
  "class": "forest_dense",
  "detector_counts": {
-  "D-1": 1,
+  "D-1": 0,
   "D-2": 0,
   "D-3": 0,
   "D-4": 0,
   "D-5": 0,
-  "D-6": 3,
-  "D-7": 2,
+  "D-6": 0,
+  "D-7": 0,
   "D-8": 0,
   "D-9": 0
  },
@@ -65,88 +65,16 @@
  "turns": 200,
  "violations": [
   {
-   "count": 1,
-   "detector": "D-1",
-   "episodes": [
-    {
-     "cells": [
-      [
-       1,
-       3
-      ],
-      [
-       0,
-       3
-      ]
-     ],
-     "k": 24,
-     "turn_end": 89,
-     "turn_start": 41,
-     "unit": 0
-    }
-   ],
-   "property": "P1"
-  },
-  {
-   "count": 3,
-   "detector": "D-6",
-   "episodes": [
-    {
-     "cell": [
-      2,
-      1
-     ],
-     "eta_opp_x": 0,
-     "kind": "opp_chop_eta",
-     "turn_end": 171,
-     "turn_start": 171,
-     "unit": 0
-    },
-    {
-     "cell": [
-      2,
-      1
-     ],
-     "eta_opp_x": 0,
-     "kind": "opp_chop_eta",
-     "turn_end": 174,
-     "turn_start": 174,
-     "unit": 0
-    },
-    {
-     "cell": [
-      2,
-      1
-     ],
-     "eta_opp_x": 1,
-     "kind": "opp_chop_eta",
-     "turn_end": 177,
-     "turn_start": 177,
-     "unit": 0
-    }
-   ],
-   "property": "P1"
-  },
-  {
-   "count": 2,
-   "detector": "D-7",
-   "episodes": [
-    {
-     "kind": "carried_overage",
-     "provenance": "harvest",
-     "turn_end": 49,
-     "turn_start": 36,
-     "unit": 0
-    },
-    {
-     "kind": "carried_overage",
-     "provenance": "harvest",
-     "turn_end": 54,
-     "turn_start": 41,
-     "unit": 0
-    }
-   ],
-   "property": "P1"
+   "detail": {
+    "parent_progress_turns": [
+     104,
+     105
+    ],
+    "why": "candidate makes no progress over turns 102-199 (>= 60 turns) while the parent progresses in the same window on the identical map (not an inherited WAIT-equilibrium)",
+    "window_end": 199,
+    "window_start": 102
+   },
+   "property": "P4"
   }
  ]
 }
