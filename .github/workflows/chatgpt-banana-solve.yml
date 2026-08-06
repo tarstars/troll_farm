@@ -23,6 +23,7 @@ jobs:
           set +e
           mkdir -p chatgpt_1/banana-solve/ci
           OUT=chatgpt_1/banana-solve/ci/latest.txt
+          CAND=chatgpt_1/banana-solve/candidate-banana-r2.min.rs
           : > "$OUT"
           run_gate() {
             local name="$1"; shift
@@ -40,29 +41,43 @@ jobs:
             echo "rustc=$(rustc --version 2>&1)"
           } >> "$OUT"
 
-          run_gate "candidate build" python3 claude_1/banana-restoration-r2/build_banana_candidate.py
+          run_gate "candidate build" python3 chatgpt_1/banana-solve/build_candidate.py
           run_gate "oracle selftest" python3 claude_1/banana-restoration-r2/conversion_race_oracle.py
-          run_gate "compile candidate" rustc --crate-name banana_candidate --edition=2021 -O claude_1/banana-restoration-r2/candidate-banana-r2.min.rs -o /tmp/banana-candidate
+          run_gate "compile candidate" rustc --crate-name banana_candidate --edition=2021 -O "$CAND" -o /tmp/banana-candidate
           echo >> "$OUT"
           echo "== smoke empty input ==" >> "$OUT"
           timeout 5s /tmp/banana-candidate </dev/null >/tmp/banana.stdout 2>/tmp/banana.stderr
           echo "smoke_exit=$? stdout_bytes=$(wc -c </tmp/banana.stdout) stderr_bytes=$(wc -c </tmp/banana.stderr)" >> "$OUT"
           cat /tmp/banana.stderr >> "$OUT"
 
-          run_gate "regression all" python3 claude_1/banana-restoration-r2/regression_tests.py all --source claude_1/banana-restoration-r2/candidate-banana-r2.min.rs
-          run_gate "semantic harness" python3 claude_1/banana-restoration-r2/semantic_harness.py --parent cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs --candidate claude_1/banana-restoration-r2/candidate-banana-r2.min.rs --golden-out /tmp/tier-p.json --results-out chatgpt_1/banana-solve/ci/tier-c.json
+          run_gate "regression all" python3 claude_1/banana-restoration-r2/regression_tests.py all --source "$CAND"
+          run_gate "semantic harness" python3 claude_1/banana-restoration-r2/semantic_harness.py --parent cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs --candidate "$CAND" --golden-out /tmp/tier-p.json --results-out chatgpt_1/banana-solve/ci/tier-c.json
           run_gate "trace detector tests" python3 -m unittest discover -s claude_1/banana-restoration-r2 -p test_trace_detectors.py
+
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          base = json.loads(Path('claude_1/pipeline/fuzz-panel-config.json').read_text())
+          cand = Path('chatgpt_1/banana-solve/candidate-banana-r2.min.rs')
+          base['task'] = '20260802-banana-restoration-r2 owner-directed conservative candidate'
+          base['candidate']['source'] = '../../chatgpt_1/banana-solve/candidate-banana-r2.min.rs'
+          base['candidate']['sha256'] = hashlib.sha256(cand.read_bytes()).hexdigest()
+          base['candidate']['crate'] = 'chatgpt_1_banana_solve'
+          base['games_dir'] = '/tmp/chatgpt-banana-solve/games'
+          base['bin_cache_dir'] = '/tmp/chatgpt-banana-solve/bin'
+          Path('chatgpt_1/banana-solve/ci/fuzz-config.json').write_text(json.dumps(base, indent=2, sort_keys=True) + '\n')
+          PY
           echo >> "$OUT"
           echo "== fuzz panel ==" >> "$OUT"
           (
             cd claude_1/pipeline
-            python3 fuzz_panel.py --config fuzz-panel-config.json --report ../../chatgpt_1/banana-solve/ci/fuzz.md --json ../../chatgpt_1/banana-solve/ci/fuzz.json
+            python3 fuzz_panel.py --config ../../chatgpt_1/banana-solve/ci/fuzz-config.json --report ../../chatgpt_1/banana-solve/ci/fuzz.md --json ../../chatgpt_1/banana-solve/ci/fuzz.json
           ) >> "$OUT" 2>&1
           echo "fuzz_panel_exit=$?" >> "$OUT"
 
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add -- "$OUT" chatgpt_1/banana-solve/ci/tier-c.json chatgpt_1/banana-solve/ci/fuzz.md chatgpt_1/banana-solve/ci/fuzz.json claude_1/banana-restoration-r2/candidate-banana-r2.min.rs claude_1/banana-restoration-r2/candidate-banana-r2-manifest.json
+          git add -- "$OUT" chatgpt_1/banana-solve/ci/tier-c.json chatgpt_1/banana-solve/ci/fuzz-config.json chatgpt_1/banana-solve/ci/fuzz.md chatgpt_1/banana-solve/ci/fuzz.json "$CAND" chatgpt_1/banana-solve/candidate-banana-r2-manifest.json chatgpt_1/banana-solve/generated/banana_blocks/block-i1.rs
           if ! git diff --cached --quiet; then
             git commit -m "ci: record banana validation [skip banana-ci]"
             git push
