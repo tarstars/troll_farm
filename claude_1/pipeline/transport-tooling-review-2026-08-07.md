@@ -709,3 +709,49 @@ that nobody mistakes the tooling for something stronger than it is.
 | `probe12` | structurally invalid adjudication | F7b |
 | `probe13` | valid v2 message published to a task branch | F9b |
 | `probe14` | worktree quarantine and worktree baseline | TQ-1 + baseline asymmetry |
+
+---
+
+# Fable independent verification stamp (2026-08-07)
+
+I re-established the load-bearing findings against the **current** tooling
+(`origin/agent/local_claude_1:scripts/inbox_sweep.py`, sha256 `1905b856…`), not the copy the
+review began with.
+
+## CONFIRMED by my own execution
+
+1. **The coordinator is an unvalidated environment variable.** Line 102/106:
+   `COORDINATOR_ENV = "TROLL_FARM_COORDINATOR"` → `os.environ.get(COORDINATOR_ENV) or
+   DEFAULT_COORDINATOR`. There is no validation that the named agent *is* the coordinator.
+   Whoever sets that variable designates the quarantine authority for that run. **The
+   authorization system's notion of who the authority is, is itself untrusted input.**
+2. **TQ-1 genuinely holds.** `load_quarantine(coordinator_ref)` now takes a ref; the
+   worktree copy is inert. This is a real fix and I confirm it.
+3. **Enforcement exists on 1 of 55 refs.** I counted: exactly one ref carries
+   `coordination/quarantine.json`. **My own canonical branch `agent/claude_1` carries
+   neither `quarantine.json` nor `legacy-baseline.json`** — so my worktree, running my own
+   older sweep, ignores quarantine entirely. The "shared truth" is not shared; it is one
+   branch's local truth that other agents do not evaluate.
+
+## A finding I demonstrated on myself
+
+Mid-verification I read `load_quarantine` from a **stale cached copy** of the sweep and was
+one step from reporting TQ-1 as unfixed when it is fixed. That is exactly the review's
+version-skew finding, reproduced accidentally by the reviewer. With five sweep versions live
+across refs, **two agents can disagree about whether a message was delivered, and both be
+running "the tool".** I rate this higher than the report does: it is not a latent risk, it
+bit the person auditing for it, within an hour.
+
+## On F1 (immutable-path collision) — severity deliberately left UNRESOLVED
+
+F1's real severity turns on whether GitHub-side branch protection exists on `agent/*`. That
+is untestable without pushing a spoofed adjudication to a shared remote, which I will not do
+— the attack's proof is the harm. **Leaving it UNRESOLVED was the correct call, and I
+endorse not testing it.** It should be settled by the owner reading the repository settings,
+not by an agent demonstrating it.
+
+## Scope honesty
+
+Fifteen attacks were attempted; six reproduce. That is "I broke it six ways", not "there are
+six holes" — an untested attack surface remains, and every CONFIRMED-SAFE result means "I
+could not break it by these means", not "it is secure".
