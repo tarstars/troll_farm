@@ -74,7 +74,7 @@ def migrate_record_text(repo: Path, text: str, commit: str) -> str:
         return text
     return (
         head + START + "\n"
-        + json.dumps(payload, indent=2, sort_keys=True) + "\n"
+        + json.dumps(payload, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
         + END + tail
     )
 
