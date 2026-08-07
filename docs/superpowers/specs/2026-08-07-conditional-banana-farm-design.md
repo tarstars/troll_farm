@@ -29,11 +29,24 @@ p10 margin −72 (bar −20), worst pair −235 (bar −60), and opponent-score 
 The last of those is superseded by the owner's 2026-08-07 delta ruling: judge on margin, not on
 absolute opponent gain.
 
-The tail is the real defect, and its cause is documented: of the opponent's +82.863, only
-**+12.453** came from crops of ours they took; **+76.508** came from their *own* created crops.
-The farm did not leak by theft — it freed the opponent to complete their own reproductive loop
-while our starter tended a private orchard. The worst cell (map 9,914,047, seat 0, Gold adaptive)
-had our score rise 163 and theirs rise 398.
+The tail is the real defect. Its *cause* is *not* established — see the correction below. The
+worst cell (map 9,914,047, seat 0, Gold adaptive) had our score rise 163 and theirs rise 398.
+
+> **CORRECTION 2026-08-07 (`local_claude_1`), after `claude_1`'s scoping re-derivation.**
+> Earlier revisions of this spec stated that of the opponent's +82.863, only **+12.453** came
+> from crops of ours they took while **+76.508** came from their own created crops, and treated
+> that as a measured causal decomposition. **It is not measured.** Those two figures appear only
+> as prose in `d89a-banana-seed-factory-result-2026-07-21.md`; the committed
+> `…-discovery-result-2026-07-21.json` contains no such fields, the per-task panel TSVs were
+> never committed on any ref, and `medium_data` is unmounted. The split is **UNRESOLVED**.
+> `+82.863` itself reproduces exactly from the JSON and stands. `claude_1` made and corrected
+> the same over-claim in its own disposition review; I propagated it here and into
+> `docs/BACKLOG.md`.
+>
+> **Consequence for this design:** the objection recorded in §9 — that the owner's
+> banana-collection sensor watches a minor term — **rests on an unmeasured split and is
+> withdrawn as a quantified claim.** Whether theft or opponent-own production dominates is an
+> open question. The owner's sensor may be well aimed; we do not know.
 
 This design does not try to fix that leak. It bounds exposure to it instead: farm only in games
 we are already losing, and stop as soon as the farm is observably feeding the opponent.
@@ -191,12 +204,25 @@ action. No formatter over `rust/src/bin/` or `cgauto/`. The resident source stay
 
 ## 9. Known risks
 
-**The abort watches the minor term.** Theft was +12.453 of D89a's +82.863 leak; the dominant
-+76.508 was the opponent's own production. A farm can therefore pass the banana-collection test
-and still lose the way D89a lost. The owner specified this sensor after that decomposition was
-presented. A margin-based abort (snapshot `view.scores`, abort when their score grows faster)
-watches the dominant term at identical implementation cost and remains available as a variant if
-G4 passes but the tail does not improve.
+**The abort may watch a minor term — but this is now an open question, not a finding.** The
+theft-versus-opponent-own-production split behind the original form of this risk is
+**UNRESOLVED** (see the correction in §2); it was prose, not measurement, and I propagated it as
+fact. What survives is weaker and still worth stating: a farm could pass the banana-collection
+test and still lose the way D89a lost, because the test only sees bananas. A margin-based abort
+(snapshot `view.scores`, abort when their score grows faster) watches total outcome at identical
+implementation cost and remains available as a variant if G4 passes but the tail does not
+improve. Choosing between the two sensors on evidence would require the decomposition that does
+not currently exist.
+
+**`claude_1` returned `NOT_REPAIRABLE` on the D89a leak (2026-08-07).** Its strongest evidence is
+an isolation, not a correlation: D92 ran a trained-only variant with **898** opponent-crop target
+selections against D89's **166** — a 5.4× denial dose with the starter provably unchanged — and
+opponent score moved **+0.188, upward**. Denial does not buy the gate back. It also reports
+`gold_adaptive` mean opponent-score delta at **208.78**, far worse than the +82.863 aggregate
+implies, and recommends that **neither** route proceed to Phase 3 before a read-only check and
+measurement repair. That verdict is awaiting `chatgpt_1`'s independent review and does not block
+this design, which never depended on the leak being repairable — but it materially weakens the
+case for entering FARM at all, and should be read before implementation starts.
 
 **Late farm start may not compound.** D89a began at worker-2 materialization; here FARM begins
 when the opponent reaches three trolls, typically much later. There may be too few turns left for

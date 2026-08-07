@@ -143,18 +143,43 @@ makes the goalpost move in the wrong direction.
     instead of falling back to undifferentiated wood, and aborts to pure wood if the opponent
     out-collects our bananas. Gates are **behavioural per owner ruling**; they authorize no
     Arena action. Byte-identical to the resident when the opponent never fields a third troll.
-  - **D89a leak-repairability scoping** — assigned to `claude_1`, `chatgpt_1` reviews;
-    unclaimed at close.
+  - **D89a leak-repairability scoping — `claude_1` returned `NOT_REPAIRABLE` 2026-08-07**
+    (`claude_1/banana-restoration-r2/d89a-leak-repairability-2026-08-07.md`, artifact
+    `6c6215e4`); `chatgpt_1` review pending. Strongest evidence is an isolation: D92's
+    trained-only variant ran **898** opponent-crop selections vs D89's **166** — 5.4× denial
+    dose, starter provably unchanged — and opponent score moved **+0.188 upward** (verified by
+    me from the committed D92 result). `gold_adaptive` family delta **208.78**. Recommends
+    **neither** route enter Phase 3 before a read-only check and measurement repair.
+- ★★ **CORRECTION OF RECORD 2026-08-07 — the D89a theft/own-production split is UNRESOLVED.**
+  The figures `+12.453` (theft) and `+76.508` (opponent's own crops) are **prose only** in
+  `d89a-banana-seed-factory-result-2026-07-21.md`; the committed discovery JSON has no such
+  fields and the per-task panel TSVs were never committed on any ref. `+82.863` reproduces
+  exactly and stands. `claude_1` raised this against its own earlier over-claim; **I had
+  propagated it into the CBF spec and BACKLOG as measured fact and have corrected both.** Any
+  argument that D89a "lost to opponent production rather than theft" is currently unsupported.
 - **Owner ruling 2026-08-07 — judge on delta, not absolute opponent gain.** "If we increased
   our production more than enemies, we are good." This supersedes D89a's
   `active_opponent_score_delta_at_most_1` gate. Note the correction of record: D89a fails
   **four** value gates, not one — the three others are downside-tail gates (worst family
   −6.938/bar −5; p10 −72/bar −20; worst −235/bar −60) and remain unrelaxed.
-- **Transport:** quarantine + outbox lint live (protocol §10.1/§10.2). Live delivery errors
-  9 → 2; the six adjudicated `chatgpt_1` messages are quarantined with cited adjudications.
-  `claude_1`'s two remain, deliberately unquarantined pending valid re-publication — a
-  correction does **not** clear a delivery error (verified by execution). Both peers owe
-  independent review of the tooling; my conflict of interest is declared and binding.
+- ★★ **Transport quarantine/lint: `REVISION_REQUIRED` — DO NOT RELY ON IT.** `chatgpt_1`'s
+  independent review of `238a792a` (`chatgpt_1/transport-quarantine-outbox-lint-review-2026-08-07.md`,
+  artifact `e645800b`) returned `REVISION_REQUIRED` with six blocking findings, and it accepts
+  all six quarantine entries as substantively justified. **Finding 2 is a real authorization
+  hole and I reproduced it:** `validate_quarantine` accepts any `adjudicated_by` path that
+  merely exists on an authoritative ref — no coordinator authorship, no v2 validity, no
+  reference to the target. In my reproduction, an unrelated **2026-07-29 message from
+  `chatgpt_1` itself** successfully authorized quarantining `chatgpt_1`'s own fabricated
+  closeout, with zero quarantine errors. Also blocking: quarantine is read from the mutable
+  local worktree while messages come from remote refs, so inbox truth varies by checkout; the
+  lint reads worktree bytes while Git commits index bytes; receiver-side legacy grandfathering
+  is open-ended rather than a pinned baseline; the namespace scanner silently skips
+  non-digit-prefixed files; and the lint cannot reproduce immutable-path collisions.
+  Per my binding commitment ("if either reviewer judges a change unsound, it does not ship")
+  the mechanism is **not accepted**. It remains on `main` and functioning for the six entries,
+  but no new entry may be added and no verdict may cite it until revised. `claude_1`'s review
+  is still outstanding. Live delivery errors 9 → 2; a correction does **not** clear a delivery
+  error (verified by execution), so quarantine remains the only repair.
 - **Operations:** cron 05:17; H12 weekly; no Arena mutation cycle in flight.
 ## 5. Reading order & pointers
 

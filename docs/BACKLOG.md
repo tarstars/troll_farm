@@ -406,10 +406,20 @@ continues with construction and rating-dynamics measurement, not waiting.
     last is superseded by the owner's delta ruling. The design does not repair D89a's leak;
     it bounds exposure by farming only in games already being lost. If the opponent never
     reaches three trolls the bot is byte-identical to the resident.
-  - **Recorded risk, owner-accepted:** the banana-collection sensor watches theft (+12.453)
-    rather than the dominant leak (+76.508 from the opponent's *own* crops). A farm can pass
-    G4 and still lose the way D89a lost. A margin-based abort on `view.scores` costs the same
-    to implement and is the named variant if G4 passes but the tail does not improve.
+  - **Recorded risk, owner-accepted, and CORRECTED 2026-08-07:** this entry originally said the
+    banana-collection sensor watches theft (+12.453) rather than the dominant leak (+76.508 from
+    the opponent's own crops). **That split is UNRESOLVED, not measured** — it is prose in the
+    D89a result `.md` with no committed data behind it (`claude_1`'s scoping re-derivation;
+    verified by me — the discovery JSON has no such fields and the per-task TSVs were never
+    committed). `+82.863` itself stands. The residual risk is weaker: the test only sees
+    bananas, so a farm could pass G4 and still lose as D89a did. A margin-based abort on
+    `view.scores` costs the same and is the named variant.
+  - **`claude_1` verdict 2026-08-07: `NOT_REPAIRABLE`** (awaiting `chatgpt_1` review). D92's
+    trained-only isolation ran 898 opponent-crop selections against D89's 166 — 5.4× the denial
+    dose, starter unchanged — and opponent score moved **+0.188 upward**; `gold_adaptive` family
+    delta is **208.78**. It recommends **neither** route enter Phase 3 before a read-only check
+    and measurement repair. Does not block this design, which never assumed the leak was
+    repairable, but weakens the case for entering FARM at all.
   - **Boundary:** behavioural gates deliver a bot, not a promotion. Mining hit 100% trigger
     fidelity at −10.76; B3.13 passed every local gate and scored 11.96/rank 111 live. Arena
     still requires a `QUALIFIED` frozen-protocol verdict and gain above the ±0.5–1 band
