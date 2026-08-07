@@ -48,22 +48,61 @@ except ImportError:  # invoked as `python3 -m scripts.lint_outbox`
     from scripts import inbox_sweep
 
 
-def outbox_paths(root: pathlib.Path, me: str) -> list[str]:
-    """Candidate messages in my own namespace, published or not.
+# The namespace is closed: anything that is not a message must be listed here
+# explicitly, or it is an error. Silently skipping unrecognised files hid typo'd
+# filenames, which never get delivered and are never reported (finding TQ-5).
+NAMESPACE_ALLOWLIST = frozenset({"README.md"})
 
-    A message filename always begins with its UTC stamp, so a digit-prefixed
-    file is one and must parse as one — that is how a typo'd stamp or kind gets
-    caught instead of silently never being delivered. Everything else in the
-    namespace (`README.md`) is documentation and is not a message.
-    """
+
+def worktree_namespace(root: pathlib.Path, me: str) -> dict[str, str]:
+    """Every regular file in my namespace → its text, from the worktree."""
     base = root / inbox_sweep.NAMESPACE / me
     if not base.is_dir():
-        return []
-    return sorted(
-        str(p.relative_to(root))
-        for p in base.rglob("*.md")
-        if p.is_file() and p.name[:1].isdigit()
-    )
+        return {}
+    return {
+        str(p.relative_to(root)): p.read_text(encoding="utf-8")
+        for p in sorted(base.rglob("*"))
+        if p.is_file()
+    }
+
+
+def staged_namespace(me: str) -> dict[str, str]:
+    """Every file in my namespace → its text, from the Git index.
+
+    Git publishes the index, not the worktree, so this is what a commit would
+    actually deliver (finding TQ-4).
+    """
+    prefix = f"{inbox_sweep.NAMESPACE}{me}/"
+    out: dict[str, str] = {}
+    for line in inbox_sweep.git("ls-files", "-s", "--", prefix).splitlines():
+        meta, _, path = line.partition("\t")
+        parts = meta.split()
+        if len(parts) != 3 or not path:
+            continue
+        out[path] = inbox_sweep.git("cat-file", "blob", parts[1])
+    return out
+
+
+def head_namespace(me: str) -> set[str]:
+    """Message paths my namespace currently has in HEAD (empty on unborn HEAD)."""
+    prefix = f"{inbox_sweep.NAMESPACE}{me}/"
+    listing = inbox_sweep.run_git("ls-tree", "-r", "--name-only", "HEAD", "--", prefix)
+    if listing.returncode != 0:
+        return set()
+    return {
+        line.strip() for line in listing.stdout.splitlines()
+        if line.strip() and classify(line.strip()) == "message"
+    }
+
+
+def classify(path: str) -> str:
+    """`message`, `allowed` (documentation) or `foreign` (a namespace error)."""
+    name = pathlib.Path(path).name
+    if inbox_sweep.MSG_RE.match(name):
+        return "message"
+    if name in NAMESPACE_ALLOWLIST:
+        return "allowed"
+    return "foreign"
 
 
 def published_bodies(per_path: dict[str, dict[str, list[str]]], path: str) -> list[str]:
@@ -77,12 +116,6 @@ def lint_message(
     remote_ref_names: set[str],
     published: bool,
 ) -> list[str]:
-    name = pathlib.Path(path).name
-    if not inbox_sweep.MSG_RE.match(name):
-        return [
-            f"{name!r} does not match the message filename pattern "
-            "<UTC-stamp>-<task-id>-<kind>.md"
-        ]
     msg = inbox_sweep.Message(path, "worktree", text)
     if not msg.is_v2:
         # Transport rule 5 grandfathers legacy messages indefinitely, so this
@@ -103,6 +136,11 @@ def main() -> int:
         "--all",
         action="store_true",
         help="also lint messages already published on an authoritative remote ref",
+    )
+    ap.add_argument(
+        "--staged",
+        action="store_true",
+        help="lint the Git index — the bytes a commit would actually publish",
     )
     args = ap.parse_args()
 
@@ -128,13 +166,33 @@ def main() -> int:
     authoritative_paths = set(per_path)
     remote_ref_names = set(refs)
 
-    paths = outbox_paths(root, args.me)
+    tree = staged_namespace(args.me) if args.staged else worktree_namespace(root, args.me)
+    source = "index (staged)" if args.staged else "worktree"
     errors: list[tuple[str, str]] = []
     linted = 0
-    for path in paths:
-        text = (root / path).read_text(encoding="utf-8")
+    for path, text in sorted(tree.items()):
+        kind = classify(path)
+        if kind == "allowed":
+            continue
+        if kind == "foreign":
+            errors.append((
+                path,
+                f"{pathlib.Path(path).name!r} is not a message and is not an allowed "
+                "namespace file; a message is <UTC-stamp>-<task-id>-<kind>.md "
+                f"(allowed: {', '.join(sorted(NAMESPACE_ALLOWLIST))})",
+            ))
+            continue
         published = path in authoritative_paths
         if published:
+            # The receiver treats differing bodies at one path as a collision;
+            # matching one side of it is not immutability (finding TQ-6).
+            if len(per_path[path]) != 1:
+                errors.append((
+                    path,
+                    "immutable-path collision: this path has different bytes on "
+                    f"{len(per_path[path])} authoritative refs",
+                ))
+                continue
             if text not in published_bodies(per_path, path):
                 errors.append((
                     path,
@@ -152,10 +210,23 @@ def main() -> int:
             )
         )
 
+    # A message present in HEAD but absent from the proposed tree would be
+    # deleted by this commit. Enumerating only existing files hid that entirely
+    # (finding TQ-4). The baseline is HEAD, not every authoritative ref: a peer's
+    # newest messages legitimately are not on my branch, and comparing against
+    # all refs reports those as deletions.
+    for path in sorted(head_namespace(args.me)):
+        if path not in tree:
+            errors.append((
+                path,
+                f"message is in HEAD but missing from the {source}; committing this "
+                "tree would delete it, and published messages are immutable",
+            ))
+
     print(f"agent: {args.me}")
     print(
-        f"outbox: {inbox_sweep.NAMESPACE}{args.me} "
-        f"({len(paths)} files, {linted} linted, "
+        f"outbox: {inbox_sweep.NAMESPACE}{args.me} from {source} "
+        f"({len(tree)} files, {linted} linted, "
         f"{len(refs)} authoritative remote refs)"
     )
     print(f"\nerrors ({len(errors)}):")

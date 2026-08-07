@@ -148,7 +148,7 @@ def test_malformed_message_filename_fails(repo):
 
     result = lint(repo)
     assert result.returncode == 2
-    assert "does not match the message filename pattern" in result.stdout
+    assert "is not a message and is not an allowed namespace file" in result.stdout
 
 
 def test_namespace_readme_is_not_treated_as_a_message(repo):
@@ -230,6 +230,86 @@ def test_editing_an_already_published_message_is_flagged(repo):
     result = lint(repo)
     assert result.returncode == 2
     assert "already published with different bytes" in result.stdout
+
+
+# --- TQ-4: Git publishes the index, not the worktree ---
+
+def test_staged_invalid_message_is_caught_even_when_worktree_is_valid(repo):
+    path = msg_path(ME, STAMP, "task-a", "update")
+    valid = v2_message(path, kind="update", task="task-a", sender=ME, to=PEER,
+                       requires_ack=False)
+    invalid = v2_message(path, kind="update", task="task-a", sender=ME, to=PEER,
+                         requires_ack=False,
+                         overrides={"message_id": "coordination/messages/x/wrong.md"})
+    repo.write_worktree(path, invalid)
+    repo._git("add", path)
+    repo.write_worktree(path, valid)  # worktree now looks clean
+
+    assert lint(repo).returncode == 0  # worktree mode is fooled, by design
+    staged = lint(repo, ME, "--staged")
+    assert staged.returncode == 2
+    assert "message_id" in staged.stdout
+
+
+def test_staged_mode_reports_deletion_of_a_committed_message(repo):
+    path = msg_path(ME, "20260805T100000Z", "task-a", "update")
+    body = v2_message(path, kind="update", task="task-a", sender=ME, to=PEER,
+                      requires_ack=False)
+    repo.write_worktree(path, body)
+    repo._git("add", path)
+    repo._git("commit", "-q", "-m", "publish")
+    repo._git("rm", "-q", "--cached", path)
+
+    result = lint(repo, ME, "--staged")
+    assert result.returncode == 2
+    assert "committing this tree would delete it" in result.stdout
+    assert path in result.stdout
+
+
+def test_peer_messages_absent_from_my_branch_are_not_deletions(repo):
+    # Linting a peer's namespace from my own worktree must not report their
+    # newest messages as deletions merely because my branch lacks them.
+    publish_v2(repo, PEER, "20260805T100000Z", "task-a", "update",
+               to=ME, requires_ack=False)
+
+    result = lint(repo, PEER, "--all")
+    assert result.returncode == 0
+    assert "would delete" not in result.stdout
+
+
+# --- TQ-5: the sender namespace is closed by default ---
+
+def test_non_digit_prefixed_file_in_the_namespace_fails(repo):
+    repo.write_worktree(f"coordination/messages/{ME}/notes.md", "scratch\n")
+
+    result = lint(repo)
+    assert result.returncode == 2
+    assert "is not a message and is not an allowed namespace file" in result.stdout
+
+
+def test_wrong_extension_in_the_namespace_fails(repo):
+    repo.write_worktree(
+        f"coordination/messages/{ME}/20260807T120000Z-task-a-update.txt", "x\n"
+    )
+
+    result = lint(repo)
+    assert result.returncode == 2
+    assert "is not a message and is not an allowed namespace file" in result.stdout
+
+
+# --- TQ-6: the lint must reproduce the receiver's collision error ---
+
+def test_lint_reports_an_immutable_path_collision(repo):
+    path = msg_path(ME, "20260805T100000Z", "task-a", "update")
+    body = v2_message(path, kind="update", task="task-a", sender=ME, to=PEER,
+                      requires_ack=False)
+    repo.commit(f"agent/{ME}", {path: body})
+    repo.commit(f"agent/{ME}-side", {path: body + "tampered\n"})
+    repo.write_worktree(path, body)  # matches one side of the collision
+
+    result = lint(repo, ME, "--all")
+    assert result.returncode == 2
+    assert "immutable-path collision" in result.stdout
 
 
 def test_valid_handoff_with_pushed_artifact_passes(repo):
