@@ -1,0 +1,80 @@
+name: chatgpt_1 finalize orchard activation and species audit
+
+on:
+  push:
+    branches:
+      - agent/chatgpt_1-orchard-activation-species-audit
+    paths:
+      - .github/workflows/chatgpt_1-orchard-activation-species-finalize.yml
+      - chatgpt_1/finalize_orchard_activation_species_audit.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out exact analysis branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/chatgpt_1-orchard-activation-species-audit
+          fetch-depth: 5
+          lfs: false
+
+      - name: Apply final scientific corrections
+        run: |
+          python3 chatgpt_1/finalize_orchard_activation_species_audit.py
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path('chatgpt_1/orchard-activation-species-audit-2026-08-04.json')
+          report = json.loads(path.read_text())
+          deltas = sorted(float(value) for value in report['arena_ab']['paired_score_deltas'])
+          report['arena_ab']['paired_score_bootstrap']['median'] = (
+              deltas[len(deltas)//2 - 1] + deltas[len(deltas)//2]
+          ) / 2
+          path.write_text(json.dumps(report, indent=2, sort_keys=True) + '\n')
+          bootstrap = report['arena_ab']['paired_score_bootstrap']
+          assert bootstrap['lower_95'] == -0.645
+          assert bootstrap['upper_95'] == 1.815
+          assert bootstrap['probability_le_zero'] == 0.234375
+          assert bootstrap['median'] == 0.620000000000001
+          assert report['actual_apple']['work_conserving_kept'] == 3
+          assert report['species']['apple_idle']['activations'] == 0
+          assert report['actual_apple']['kill_safe_blocked'] == 0
+          print(json.dumps(bootstrap, indent=2, sort_keys=True))
+          PY
+          python3 -m py_compile \
+            chatgpt_1/orchard_activation_species_audit.py \
+            chatgpt_1/patch_orchard_activation_species_audit.py \
+            chatgpt_1/finalize_orchard_activation_species_audit.py
+
+      - name: Record final hashes
+        run: |
+          sha256sum \
+            chatgpt_1/orchard_activation_species_audit.py \
+            chatgpt_1/patch_orchard_activation_species_audit.py \
+            chatgpt_1/finalize_orchard_activation_species_audit.py \
+            chatgpt_1/orchard-activation-opportunities-2026-08-04.csv \
+            chatgpt_1/orchard-activation-species-audit-2026-08-04.json \
+            chatgpt_1/orchard-activation-species-audit-2026-08-04.md \
+            > chatgpt_1/orchard-activation-species-audit-SHA256SUMS-2026-08-04.txt
+
+      - name: Commit corrected final report
+        run: |
+          git config user.name 'chatgpt_1 orchard audit'
+          git config user.email 'noreply@openai.com'
+          git add -- \
+            chatgpt_1/orchard_activation_species_audit.py \
+            chatgpt_1/finalize_orchard_activation_species_audit.py \
+            chatgpt_1/orchard-activation-species-audit-2026-08-04.json \
+            chatgpt_1/orchard-activation-species-audit-2026-08-04.md \
+            chatgpt_1/orchard-activation-species-audit-SHA256SUMS-2026-08-04.txt
+          if ! git diff --cached --quiet; then
+            git commit -m 'analysis: finalize corrected orchard activation audit'
+            git push origin HEAD:agent/chatgpt_1-orchard-activation-species-audit
+          fi

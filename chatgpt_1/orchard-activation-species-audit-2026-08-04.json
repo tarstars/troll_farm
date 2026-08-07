@@ -1,0 +1,454 @@
+{
+  "actual_apple": {
+    "activated": 54,
+    "activation_rate": 0.084375,
+    "all_active_outcomes": {
+      "catastrophe_rate": 0.2777777777777778,
+      "catastrophes": 15,
+      "games": 54,
+      "losses": 26,
+      "mean_margin": -32.75925925925926,
+      "median_margin": 4.0,
+      "negative_margin_mass": 4273,
+      "ties": 0,
+      "win_rate": 0.5185185185185185,
+      "wins": 28
+    },
+    "banked_fruit_median": 121.0,
+    "base_command_verbs": {
+      "CHOP": 1,
+      "MOVE": 50,
+      "WAIT": 3
+    },
+    "combined_kept": 3,
+    "combined_kept_outcomes": {
+      "catastrophe_rate": 0.3333333333333333,
+      "catastrophes": 1,
+      "games": 3,
+      "losses": 1,
+      "mean_margin": -53.333333333333336,
+      "median_margin": 3.0,
+      "negative_margin_mass": 223,
+      "ties": 0,
+      "win_rate": 0.6666666666666666,
+      "wins": 2
+    },
+    "enemy_eta_minus_apple_bank_eta": {
+      "median": 1.0,
+      "p10": -4.0,
+      "p90": 6991.900000000028
+    },
+    "first_bank_delay_median": 13.0,
+    "games_with_banked_fruit": 51,
+    "kill_safe_blocked": 0,
+    "kill_safe_blocked_outcomes": {
+      "catastrophe_rate": null,
+      "catastrophes": 0,
+      "games": 0,
+      "losses": 0,
+      "mean_margin": null,
+      "median_margin": null,
+      "negative_margin_mass": 0,
+      "ties": 0,
+      "win_rate": null,
+      "wins": 0
+    },
+    "kill_safe_kept": 54,
+    "kill_safe_kept_outcomes": {
+      "catastrophe_rate": 0.2777777777777778,
+      "catastrophes": 15,
+      "games": 54,
+      "losses": 26,
+      "mean_margin": -32.75925925925926,
+      "median_margin": 4.0,
+      "negative_margin_mass": 4273,
+      "ties": 0,
+      "win_rate": 0.5185185185185185,
+      "wins": 28
+    },
+    "mother_planted": 52,
+    "mother_survived": 32,
+    "orchard_games": 640,
+    "payback_safe_blocked": 25,
+    "payback_safe_blocked_outcomes": {
+      "catastrophe_rate": 0.24,
+      "catastrophes": 6,
+      "games": 25,
+      "losses": 10,
+      "mean_margin": -10.2,
+      "median_margin": 36.0,
+      "negative_margin_mass": 1605,
+      "ties": 0,
+      "win_rate": 0.6,
+      "wins": 15
+    },
+    "payback_safe_kept": 29,
+    "payback_safe_kept_outcomes": {
+      "catastrophe_rate": 0.3103448275862069,
+      "catastrophes": 9,
+      "games": 29,
+      "losses": 16,
+      "mean_margin": -52.206896551724135,
+      "median_margin": -17.0,
+      "negative_margin_mass": 2668,
+      "ties": 0,
+      "win_rate": 0.4482758620689655,
+      "wins": 13
+    },
+    "total_banked_fruit": 5615,
+    "total_harvested_fruit": 5660,
+    "work_conserving_blocked": 51,
+    "work_conserving_blocked_outcomes": {
+      "catastrophe_rate": 0.27450980392156865,
+      "catastrophes": 14,
+      "games": 51,
+      "losses": 25,
+      "mean_margin": -31.54901960784314,
+      "median_margin": 5.0,
+      "negative_margin_mass": 4050,
+      "ties": 0,
+      "win_rate": 0.5098039215686274,
+      "wins": 26
+    },
+    "work_conserving_kept": 3,
+    "work_conserving_kept_outcomes": {
+      "catastrophe_rate": 0.3333333333333333,
+      "catastrophes": 1,
+      "games": 3,
+      "losses": 1,
+      "mean_margin": -53.333333333333336,
+      "median_margin": 3.0,
+      "negative_margin_mass": 223,
+      "ties": 0,
+      "win_rate": 0.6666666666666666,
+      "wins": 2
+    }
+  },
+  "arena_ab": {
+    "no-orchard": {
+      "catastrophes": 69,
+      "games": 640,
+      "legs": 4,
+      "losses": 280,
+      "mean_arena_score": 23.1075,
+      "mean_margin": 8.2328125,
+      "median_arena_score": 23.905,
+      "negative_margin_mass": 21777.0,
+      "ties": 17,
+      "wins": 343
+    },
+    "orchard": {
+      "catastrophes": 91,
+      "games": 640,
+      "legs": 4,
+      "losses": 251,
+      "mean_arena_score": 23.6925,
+      "mean_margin": 6.128125,
+      "median_arena_score": 23.35,
+      "negative_margin_mass": 23956.0,
+      "ties": 8,
+      "wins": 381
+    },
+    "paired_score_bootstrap": {
+      "lower_95": 0.585,
+      "mean": 0.585,
+      "median": 0.620000000000001,
+      "pairs": 4,
+      "probability_le_zero": 0.0,
+      "repetitions": 100000,
+      "upper_95": 0.585
+    },
+    "paired_score_deltas": [
+      1.6000000000000014,
+      2.0299999999999976,
+      -0.35999999999999943,
+      -0.9299999999999997
+    ],
+    "paired_score_mean": 0.585,
+    "paired_score_median": 0.620000000000001
+  },
+  "data": {
+    "games": 1280,
+    "legs": 8,
+    "packages": [
+      {
+        "leg": 1,
+        "manifest": "data/shared-lfs/orchard-ab-night-20260803/leg-01-no-orchard/manifest.json",
+        "package": "data/shared-lfs/orchard-ab-night-20260803/leg-01-no-orchard/games-agent6592330-submission41086822.jsonl.gz",
+        "package_sha256": "846d41bd9c2a682c31a522601230431721cfc45b0d7331dacd59f2be467b8a87",
+        "variant": "no-orchard"
+      },
+      {
+        "leg": 2,
+        "manifest": "data/shared-lfs/orchard-ab-night-20260803/leg-02-orchard/manifest.json",
+        "package": "data/shared-lfs/orchard-ab-night-20260803/leg-02-orchard/games-agent6592362-submission41087022.jsonl.gz",
+        "package_sha256": "4af16b6ad3c2bfadd15a729a714f788db919280e3a4213f11a544d87162065d9",
+        "variant": "orchard"
+      },
+      {
+        "leg": 3,
+        "manifest": "data/shared-lfs/orchard-ab-night-20260803/leg-03-no-orchard/manifest.json",
+        "package": "data/shared-lfs/orchard-ab-night-20260803/leg-03-no-orchard/games-agent6592383-submission41087215.jsonl.gz",
+        "package_sha256": "817595fc87a5639c42c18f2dd51aa7fee6a226f0b495c4eda9e50c3549c9f0fe",
+        "variant": "no-orchard"
+      },
+      {
+        "leg": 4,
+        "manifest": "data/shared-lfs/orchard-ab-night-20260803/leg-04-orchard/manifest.json",
+        "package": "data/shared-lfs/orchard-ab-night-20260803/leg-04-orchard/games-agent6592447-submission41087483.jsonl.gz",
+        "package_sha256": "e76c312c36ce06e0bf0a10df79a06d1b84893aca321459f086599ac1782435b9",
+        "variant": "orchard"
+      },
+      {
+        "leg": 5,
+        "manifest": "data/shared-lfs/orchard-ab-night-20260803/leg-05-no-orchard/manifest.json",
+        "package": "data/shared-lfs/orchard-ab-night-20260803/leg-05-no-orchard/games-agent6592495-submission41087642.jsonl.gz",
+        "package_sha256": "98cc14ec254fa62c647e48cf0a9551974eb206f6916d10fc78219de69faaffc3",
+        "variant": "no-orchard"
+      },
+      {
+        "leg": 6,
+        "manifest": "data/shared-lfs/orchard-ab-night-20260803/leg-06-orchard/manifest.json",
+        "package": "data/shared-lfs/orchard-ab-night-20260803/leg-06-orchard/games-agent6592529-submission41087744.jsonl.gz",
+        "package_sha256": "c63929baec33791e7ce07db2581652034749df0e8488e55ecaea248509bd8539",
+        "variant": "orchard"
+      },
+      {
+        "leg": 7,
+        "manifest": "data/shared-lfs/orchard-ab-night-20260803/leg-07-no-orchard/manifest.json",
+        "package": "data/shared-lfs/orchard-ab-night-20260803/leg-07-no-orchard/games-agent6592612-submission41087830.jsonl.gz",
+        "package_sha256": "0fc30ac5390d5dd39f17914d0486458edd03115536945325e18049e13e90202e",
+        "variant": "no-orchard"
+      },
+      {
+        "leg": 8,
+        "manifest": "data/shared-lfs/orchard-ab-night-20260803/leg-08-orchard/manifest.json",
+        "package": "data/shared-lfs/orchard-ab-night-20260803/leg-08-orchard/games-agent6592744-submission41087983.jsonl.gz",
+        "package_sha256": "b3d0f2cf95c81e7bcc9621013d73719cee7b06cd79b6cbb8828731240b3fcdd7",
+        "variant": "orchard"
+      }
+    ]
+  },
+  "direction_checks": {
+    "adversarial_kill_safety_favorable": false,
+    "first_bank_safety_favorable": false,
+    "idle_only_favorable": false
+  },
+  "exact_initial_pairs": {
+    "activation": {
+      "bootstrap": null,
+      "catastrophes_added": 0,
+      "mean_margin_delta": null,
+      "median_margin_delta": null,
+      "pairs": 0,
+      "wins_added": 0
+    },
+    "activation_idle_blocked": {
+      "bootstrap": null,
+      "catastrophes_added": 0,
+      "mean_margin_delta": null,
+      "median_margin_delta": null,
+      "pairs": 0,
+      "wins_added": 0
+    },
+    "activation_idle_kept": {
+      "bootstrap": null,
+      "catastrophes_added": 0,
+      "mean_margin_delta": null,
+      "median_margin_delta": null,
+      "pairs": 0,
+      "wins_added": 0
+    },
+    "activation_kill_safe": {
+      "bootstrap": null,
+      "catastrophes_added": 0,
+      "mean_margin_delta": null,
+      "median_margin_delta": null,
+      "pairs": 0,
+      "wins_added": 0
+    },
+    "activation_kill_unsafe": {
+      "bootstrap": null,
+      "catastrophes_added": 0,
+      "mean_margin_delta": null,
+      "median_margin_delta": null,
+      "pairs": 0,
+      "wins_added": 0
+    },
+    "activation_payback_safe": {
+      "bootstrap": null,
+      "catastrophes_added": 0,
+      "mean_margin_delta": null,
+      "median_margin_delta": null,
+      "pairs": 0,
+      "wins_added": 0
+    },
+    "activation_payback_unsafe": {
+      "bootstrap": null,
+      "catastrophes_added": 0,
+      "mean_margin_delta": null,
+      "median_margin_delta": null,
+      "pairs": 0,
+      "wins_added": 0
+    },
+    "all": {
+      "bootstrap": null,
+      "catastrophes_added": 0,
+      "mean_margin_delta": null,
+      "median_margin_delta": null,
+      "pairs": 0,
+      "wins_added": 0
+    },
+    "exact_pairs": 0,
+    "inactive": {
+      "bootstrap": null,
+      "catastrophes_added": 0,
+      "mean_margin_delta": null,
+      "median_margin_delta": null,
+      "pairs": 0,
+      "wins_added": 0
+    },
+    "matching_key": [
+      "initial_fingerprint",
+      "opponent_agent_id",
+      "opponent_submission_id",
+      "seat"
+    ],
+    "rows": []
+  },
+  "quality": {
+    "deployed_command_parity_games": 696,
+    "deployed_prefix_exact_through_turn_100_games": 911,
+    "packages": 8,
+    "raw_replays_republished": false,
+    "teacher_forced_boundary": "only first divergence from no-orchard is interpreted for generated variants"
+  },
+  "recommendation": "Do not change activation from replay association alone. Keep current APPLE orchard and run a fresh closed-loop three-arm panel (current, idle-only, idle-only plus first-bank safety). The existing replays do not show a clean enough direction for an immediate gate change.",
+  "rows_sha256": "2d2debe33e9735cb364a735f3dda77d92f282af6d14204236187450c467b5cfb",
+  "schema": "troll-farm-orchard-activation-species-audit/1",
+  "source_identity": {
+    "current": {
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+      "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+    },
+    "generated_variants": {
+      "apple_idle": "current source with require_idle_starter false -> true only",
+      "banana_current": "current SecureOrchardBot APPLE references -> BANANA only",
+      "banana_idle": "banana_current plus require_idle_starter true"
+    },
+    "no_orchard": {
+      "path": "claude_1/no-orchard-arena/candidate-e7a-r28-no-orchard.rs",
+      "sha256": "d1f32c358d0f7b6a49b988c1b4ad6958a2d8ed84a9e3492632087732aae7e02a"
+    }
+  },
+  "species": {
+    "apple": {
+      "activation_rate": 0.071875,
+      "activations": 46,
+      "field": "current_apple_activation_turn",
+      "outcomes": {
+        "catastrophe_rate": 0.21739130434782608,
+        "catastrophes": 10,
+        "games": 46,
+        "losses": 27,
+        "mean_margin": -38.52173913043478,
+        "median_margin": -21.0,
+        "negative_margin_mass": 2765,
+        "ties": 1,
+        "win_rate": 0.391304347826087,
+        "wins": 18
+      },
+      "turn_median": 3.0
+    },
+    "apple_idle": {
+      "activation_rate": 0.0,
+      "activations": 0,
+      "field": "apple_idle_activation_turn",
+      "outcomes": {
+        "catastrophe_rate": null,
+        "catastrophes": 0,
+        "games": 0,
+        "losses": 0,
+        "mean_margin": null,
+        "median_margin": null,
+        "negative_margin_mass": 0,
+        "ties": 0,
+        "win_rate": null,
+        "wins": 0
+      },
+      "turn_median": null
+    },
+    "banana": {
+      "activation_rate": 0.071875,
+      "activations": 46,
+      "field": "banana_activation_turn",
+      "outcomes": {
+        "catastrophe_rate": 0.21739130434782608,
+        "catastrophes": 10,
+        "games": 46,
+        "losses": 27,
+        "mean_margin": -38.52173913043478,
+        "median_margin": -21.0,
+        "negative_margin_mass": 2765,
+        "ties": 1,
+        "win_rate": 0.391304347826087,
+        "wins": 18
+      },
+      "turn_median": 3.0
+    },
+    "banana_idle": {
+      "activation_rate": 0.0,
+      "activations": 0,
+      "field": "banana_idle_activation_turn",
+      "outcomes": {
+        "catastrophe_rate": null,
+        "catastrophes": 0,
+        "games": 0,
+        "losses": 0,
+        "mean_margin": null,
+        "median_margin": null,
+        "negative_margin_mass": 0,
+        "ties": 0,
+        "win_rate": null,
+        "wins": 0
+      },
+      "turn_median": null
+    },
+    "both_species_projected": {
+      "apple_seed_also_available": 46,
+      "banana_seed_also_available": 46,
+      "games": 46,
+      "mean_apple_banked_fruit_ceiling": 133.15217391304347,
+      "mean_apple_minus_banana_ceiling": 68.34782608695652,
+      "mean_banana_banked_fruit_ceiling": 64.80434782608695
+    },
+    "mechanics": {
+      "first_bank_eta_formula": {
+        "APPLE": "starter_travel_turns + 11",
+        "BANANA": "starter_travel_turns + 19"
+      },
+      "interpretation": "The secure mother is harvested and protected, not chopped. APPLE's hard-to-chop health is defensive value; water reduces APPLE cooldown to 2 versus BANANA 4.",
+      "mature_health": {
+        "APPLE": 20,
+        "BANANA": 6
+      },
+      "steady_state_bank_interval": {
+        "APPLE": 2,
+        "BANANA": 4
+      },
+      "water_adjacent_effective_cooldown": {
+        "APPLE": 2,
+        "BANANA": 4
+      }
+    },
+    "scope": "640 no-orchard trajectories; exact only through each variant's first divergence",
+    "support_overlap": {
+      "apple_only": 0,
+      "banana_only": 0,
+      "both": 46,
+      "neither": 594
+    }
+  },
+  "task_id": "20260804-orchard-activation-species-audit",
+  "verdict": "APPLE remains the correct species for the current protected, water-adjacent harvest mother. Idle-only activation has non-decisive replay direction; travel-only first-bank safety has non-decisive direction; adversarial kill safety has non-decisive direction. Any terminal-value claim still requires a fresh closed-loop comparison."
+}
