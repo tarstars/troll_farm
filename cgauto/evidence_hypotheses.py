@@ -31,7 +31,9 @@ def load_hypotheses(repo_root: Path) -> list[dict[str, Any]]:
         key=lambda h: int(h["id"][1:]) if ID_RE.match(h.get("id", "")) else 0,
     )
 
-def validate_hypothesis(h: dict[str, Any], record_ids: set[str]) -> None:
+def validate_hypothesis(
+    h: dict[str, Any], record_ids: set[str], repo_root: Path | None = None
+) -> None:
     missing = sorted(HYPOTHESIS_REQUIRED - h.keys())
     if missing:
         raise HypothesisError(f"{h.get('id','<unknown>')}: missing fields {missing}")
@@ -46,6 +48,12 @@ def validate_hypothesis(h: dict[str, Any], record_ids: set[str]) -> None:
     for key in ("origin", "positions"):
         if not isinstance(h[key], list) or not h[key]:
             raise HypothesisError(f"{hid}: non-empty {key} required")
+    for origin in h["origin"]:
+        p = Path(origin)
+        if p.is_absolute() or ".." in p.parts:
+            raise HypothesisError(f"{hid}: unsafe origin path: {origin}")
+        if repo_root is not None and not (repo_root / p).exists():
+            raise HypothesisError(f"{hid}: origin path does not exist: {origin}")
     for i, pos in enumerate(h["positions"]):
         if not isinstance(pos, dict) or not pos.get("agent") or not pos.get("stance"):
             raise HypothesisError(f"{hid}.positions[{i}]: agent and stance required")

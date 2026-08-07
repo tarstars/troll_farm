@@ -68,6 +68,32 @@ def test_graduation_target_must_exist(tmp_path):
     with pytest.raises(HypothesisError, match="unknown record"):
         validate_hypothesis(h, record_ids={"D101"})
 
+def test_origin_path_must_exist_when_repo_root_given(tmp_path):
+    h = base_hypothesis()
+    h["origin"] = ["docs/does-not-exist.md"]
+    with pytest.raises(HypothesisError, match="origin path does not exist"):
+        validate_hypothesis(h, record_ids=set(), repo_root=tmp_path)
+
+def test_origin_path_existing_passes_when_repo_root_given(tmp_path):
+    (tmp_path / "docs").mkdir()
+    (tmp_path / "docs" / "real.md").write_text("hello\n")
+    h = base_hypothesis()
+    h["origin"] = ["docs/real.md"]
+    validate_hypothesis(h, record_ids=set(), repo_root=tmp_path)
+
+def test_origin_path_existence_skipped_without_repo_root(tmp_path):
+    # base_hypothesis()'s origin paths are message paths that do not exist
+    # relative to tmp_path; omitting repo_root preserves the old
+    # repo-agnostic behaviour so existing unit-level callers are unaffected.
+    h = base_hypothesis()
+    validate_hypothesis(h, record_ids=set())
+
+def test_unsafe_origin_path_rejected(tmp_path):
+    h = base_hypothesis()
+    h["origin"] = ["../escape.md"]
+    with pytest.raises(HypothesisError, match="unsafe origin path"):
+        validate_hypothesis(h, record_ids=set())
+
 def test_load_hypotheses_returns_empty_for_absent_directory(tmp_path):
     assert not (tmp_path / "docs/evidence/hypotheses").exists()
     assert load_hypotheses(tmp_path) == []

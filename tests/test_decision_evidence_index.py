@@ -9,6 +9,7 @@ if str(ROOT) not in sys.path:
 
 from cgauto.build_decision_evidence_index import build
 from cgauto.check_decision_evidence_index import ValidationError, validate_repository
+from cgauto.evidence_git import is_ancestor, ref_exists
 
 START = "<!-- DECISION-EVIDENCE-JSON"
 END = "END-DECISION-EVIDENCE-JSON -->"
@@ -327,6 +328,63 @@ def test_quote_present_in_current_file_produces_no_drift_warning(tmp_path):
     build(repo)
     _records, warnings = validate_repository(repo, require_pilot=False, check_generated=True)
     assert not [w for w in warnings if "drift" in w], warnings
+
+HYPOTHESIS_START = "<!-- HYPOTHESIS-JSON"
+HYPOTHESIS_END = "END-HYPOTHESIS-JSON -->"
+
+def write_hypothesis(repo: Path, hid: str):
+    d = repo / "docs/evidence/hypotheses"
+    d.mkdir(parents=True, exist_ok=True)
+    h = {
+        "id": hid,
+        "question": "Duplicate-id fixture question?",
+        "origin": ["source.md"],
+        "positions": [{"agent": "tester", "stance": "n/a"}],
+        "status": "open",
+        "next_action": "n/a",
+    }
+    (d / f"{hid}-{len(list(d.glob('*.md')))}.md").write_text(
+        f"# {hid}\n\n{HYPOTHESIS_START}\n{json.dumps(h, indent=2, sort_keys=True)}\n{HYPOTHESIS_END}\n"
+    )
+
+def test_duplicate_hypothesis_id_is_hard_error(tmp_path):
+    repo = make_repo(tmp_path, build_generated=False)
+    write_hypothesis(repo, "Q1")
+    write_hypothesis(repo, "Q1")
+    with pytest.raises(ValidationError, match="duplicate hypothesis id"):
+        validate_repository(repo, require_pilot=False, check_generated=False)
+
+def test_pending_integration_warns_via_local_main_fallback(tmp_path):
+    """No refs/remotes/origin/main exists in this fixture (single-branch
+    clone / agent-branch checkout, exactly like a CI checkout with no
+    remote configured). The check must fall back to refs/heads/main rather
+    than silently no-opping, and must warn (not fail) on a pin that is not
+    yet an ancestor of it."""
+    repo = make_repo(tmp_path, build_generated=False)
+    assert not ref_exists(repo, "refs/remotes/origin/main")
+    # `main` marks the integrated tip; HEAD (still on the init branch) then
+    # moves ahead with an unmerged commit that `main` does not contain.
+    git(repo, "branch", "main")
+    (repo / "source.md").write_text(
+        (repo / "source.md").read_text() + "Unmerged extra line.\n"
+    )
+    git(repo, "add", "-A")
+    git(repo, "commit", "-qm", "unmerged change")
+    pending_sha = git(repo, "rev-parse", "HEAD").strip()
+    assert not is_ancestor(repo, pending_sha, "refs/heads/main")
+
+    record = base_record()
+    record["textual_evidence"][0]["source"] = {
+        "path": "source.md", "commit": pending_sha, "locator": "lines 1-2",
+    }
+    for src in (record["constraint_projection"]["source"],
+                record["decisive_claims"][0]["source"]):
+        src.setdefault("commit", pending_sha)
+    write_record(repo, record)
+    build(repo)
+    _records, warnings = validate_repository(repo, require_pilot=False, check_generated=True)
+    pending = [w for w in warnings if "pending integration" in w]
+    assert pending, warnings
 
 def test_accepted_state_is_allowed(tmp_path):
     record = base_record()

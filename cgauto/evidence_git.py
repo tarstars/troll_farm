@@ -12,7 +12,8 @@ class GitLookupError(ValueError):
 
 def _run(repo: Path, args: list[str]) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
-        ["git", "-C", str(repo), *args], capture_output=True, text=True
+        ["git", "-C", str(repo), *args],
+        capture_output=True, text=True, encoding="utf-8",
     )
 
 def commit_resolves(repo: Path, commit: str) -> bool:

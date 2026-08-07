@@ -38,6 +38,17 @@ REQUIRED = {
 LINE_RE = re.compile(r"^lines (\d+)-(\d+)$")
 NUM_RE = re.compile(r"(?<![A-Za-z])[-+−±]?\d+(?:\.\d+)?(?:/\d+)?%?")
 INTEGRATION_REF = "refs/remotes/origin/main"
+INTEGRATION_REF_FALLBACK = "refs/heads/main"
+
+def integration_ref(repo: Path) -> str | None:
+    """The ref an unmerged pin is measured against, preferring the tracked
+    remote but falling back to a local `main` (single-branch clones, agent
+    branches checked out without a remote-tracking ref)."""
+    if ref_exists(repo, INTEGRATION_REF):
+        return INTEGRATION_REF
+    if ref_exists(repo, INTEGRATION_REF_FALLBACK):
+        return INTEGRATION_REF_FALLBACK
+    return None
 
 class ValidationError(ValueError):
     pass
@@ -109,7 +120,8 @@ def validate_source(
             raise ValidationError(f"{context}: JSON pointer requires .json source")
         result = resolve_pointer(json.loads(text), pointer)
     if warnings is not None:
-        if ref_exists(repo, INTEGRATION_REF) and not is_ancestor(repo, commit, INTEGRATION_REF):
+        ref = integration_ref(repo)
+        if ref is not None and not is_ancestor(repo, commit, ref):
             warnings.append(f"{context}: commit {commit[:12]} pending integration into main")
         quote = source.get("quote")
         if quote:
@@ -245,9 +257,12 @@ def validate_repository(
     for r in records:
         validate_record(repo, r, idset, warnings)
     hypotheses = load_hypotheses(repo)
+    hyp_ids = [h["id"] for h in hypotheses]
+    if len(hyp_ids) != len(set(hyp_ids)):
+        raise ValidationError("duplicate hypothesis id")
     for h in hypotheses:
         try:
-            validate_hypothesis(h, idset)
+            validate_hypothesis(h, idset, repo)
         except HypothesisError as exc:
             raise ValidationError(str(exc)) from None
     if check_generated:

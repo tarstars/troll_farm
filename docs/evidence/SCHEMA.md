@@ -28,9 +28,16 @@ Every `source` is a git-pinned coordinate:
 - `quote` — optional verbatim excerpt. Used only for the currency check: if it no longer
   appears in the *current* file, the validator warns. It never fails the build.
 
-Hard errors on a source are: unresolvable commit, path absent at the pinned commit, line
-range out of bounds at that commit, and (for locator sources) claimed numeric tokens absent
-from the pinned excerpt. These are build failures.
+Hard errors on a source include: unresolvable commit; path absent at the pinned commit;
+violating the exactly-one-of-`locator`/`json_pointer` rule; an invalid line range (`a<1` or
+`b<a`); a line range out of bounds at that commit; a `json_pointer` source whose path is not
+`.json`; an unresolved `json_pointer`; a `json_pointer` result that differs from a declared
+`expected_value`; (for locator sources) claimed numeric tokens absent from the pinned excerpt;
+and, for a citation of `docs/CONSTRAINTS.md`, an excerpt that does not identify the citing
+record's id. These are build failures. This list is not exhaustive — malformed input (a
+missing `source.path`, a non-40-character `commit`, an unparseable `locator` or `json_pointer`
+string) also fails the build; `validate_source` in `cgauto/check_decision_evidence_index.py`
+is the source of truth.
 
 Line numbers are meaningless without their commit: `docs/CONSTRAINTS.md` is append-heavy and
 every insertion shifts all citations below it. Pinning is what makes a citation permanent.
@@ -57,6 +64,9 @@ is only valid on a `void-premise` record.
 Entry cost is deliberately low — the 21-field record schema is the closing tax, not the entry
 tax. A `resolved` hypothesis requires `graduated_to`, naming an existing record id; the
 lightweight entry is never deleted, because the trail from question to answer is the product.
+Hypothesis ids must be unique across `hypotheses/`, and every `origin` path must exist in the
+repository — the same rot the git-pinned `source` coordinate abolishes for records applies here
+too, just without a commit pin.
 
 `generated/OPEN-QUESTIONS.md` is the backlog view. Like everything in `generated/`, it is
 deterministic and must never be hand-edited.
@@ -69,6 +79,7 @@ deterministic and must never be hand-edited.
 - `generated/DECISION-EVIDENCE-INDEX.md`;
 - `generated/CONSTRAINTS-PILOT-PROJECTION.md`;
 - `generated/equivalence-report.md`;
+- `generated/OPEN-QUESTIONS.md`;
 - `generated/manifest.json`.
 
 The projection is a review aid only and does not modify `docs/CONSTRAINTS.md`.
