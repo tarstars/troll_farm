@@ -1,0 +1,1277 @@
+{
+  "causal_boundary": {
+    "allowed_claim": "observational source comparison after opponent standardization",
+    "forbidden_claim": "rank 12 to rank 34 is the orchard treatment effect",
+    "paired_maps": false,
+    "paired_opponents": false,
+    "randomized": false,
+    "rating_formula_reconstructed": false
+  },
+  "fresh_ladder_difference": {
+    "orchard_minus_no_orchard_score": 0.28999999999999915,
+    "orchard_rank_minus_no_orchard_rank": -2
+  },
+  "historical_context": {
+    "old_orchard_rank": 12,
+    "old_orchard_score": 25.3,
+    "warning": "the old and freshly restored orchard agents use the same exact E7a source but differ by 1.74 ladder score and 20 rank places; old rank 12 is not a clean source control"
+  },
+  "identity": {
+    "no_orchard": {
+      "agent_id": 6592097,
+      "field_size": 137,
+      "rank": 34,
+      "score": 23.27,
+      "submission_id": 41085842
+    },
+    "orchard": {
+      "agent_id": 6592131,
+      "field_size": 137,
+      "rank": 32,
+      "score": 23.56,
+      "submission_id": 41086057
+    }
+  },
+  "opponent_standardized": {
+    "common_opponents": 35,
+    "no_orchard_games_on_common_opponents": 128,
+    "opponent_cluster_bootstrap": {
+      "equal_opponent": {
+        "catastrophe_rate": {
+          "lower_95": -0.059444444444444446,
+          "median": 0.010079365079365079,
+          "probability_le_zero": 0.38564,
+          "upper_95": 0.0784126984126984
+        },
+        "margin": {
+          "lower_95": -40.48331065759637,
+          "median": -7.405816326530613,
+          "probability_le_zero": 0.67435,
+          "upper_95": 24.305600907029476
+        },
+        "opponent_score": {
+          "lower_95": -22.215192743764174,
+          "median": 12.908253968253966,
+          "probability_le_zero": 0.24279,
+          "upper_95": 52.70526077097505
+        },
+        "our_score": {
+          "lower_95": -14.22619047619048,
+          "median": 5.802142857142856,
+          "probability_le_zero": 0.29098,
+          "upper_95": 27.496904761904762
+        },
+        "win_rate": {
+          "lower_95": -0.1345124716553288,
+          "median": 0.0013151927437641724,
+          "probability_le_zero": 0.49253,
+          "upper_95": 0.13321995464852607
+        }
+      },
+      "repetitions": 100000,
+      "seed": 2026080301
+    },
+    "opponent_id_jaccard": 0.4268292682926829,
+    "orchard_games_on_common_opponents": 126,
+    "per_opponent": [
+      {
+        "minimum_support_weight": 1.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": 51.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 49.0,
+          "our_score": 100.0,
+          "win_rate": 1.0
+        },
+        "opponent": "Kheopsian",
+        "opponent_agent_id": 6479388,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 3.0,
+          "margin": 79.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 127.33333333333333,
+          "our_score": 206.33333333333334,
+          "win_rate": 1.0
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": 28.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 78.33333333333333,
+          "our_score": 106.33333333333334,
+          "win_rate": 0.0
+        },
+        "pooled_support_weight": 4.0
+      },
+      {
+        "minimum_support_weight": 1.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": 20.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 124.0,
+          "our_score": 144.0,
+          "win_rate": 1.0
+        },
+        "opponent": "RiggedBot",
+        "opponent_agent_id": 6479504,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": 42.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 190.0,
+          "our_score": 232.0,
+          "win_rate": 1.0
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": 22.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 66.0,
+          "our_score": 88.0,
+          "win_rate": 0.0
+        },
+        "pooled_support_weight": 2.0
+      },
+      {
+        "minimum_support_weight": 5.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.4,
+          "games": 5.0,
+          "margin": -90.2,
+          "nonloss_rate": 0.6,
+          "opponent_score": 254.2,
+          "our_score": 164.0,
+          "win_rate": 0.6
+        },
+        "opponent": "aangairbender",
+        "opponent_agent_id": 6479532,
+        "orchard": {
+          "catastrophe_rate": 0.125,
+          "games": 8.0,
+          "margin": 93.0,
+          "nonloss_rate": 0.75,
+          "opponent_score": 104.0,
+          "our_score": 197.0,
+          "win_rate": 0.75
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": -0.275,
+          "margin": 183.2,
+          "nonloss_rate": 0.15000000000000002,
+          "opponent_score": -150.2,
+          "our_score": 33.0,
+          "win_rate": 0.15000000000000002
+        },
+        "pooled_support_weight": 13.0
+      },
+      {
+        "minimum_support_weight": 5.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 7.0,
+          "margin": -18.428571428571427,
+          "nonloss_rate": 0.2857142857142857,
+          "opponent_score": 191.42857142857142,
+          "our_score": 173.0,
+          "win_rate": 0.2857142857142857
+        },
+        "opponent": "xSkyline",
+        "opponent_agent_id": 6479542,
+        "orchard": {
+          "catastrophe_rate": 0.2,
+          "games": 5.0,
+          "margin": 2.2,
+          "nonloss_rate": 0.6,
+          "opponent_score": 178.4,
+          "our_score": 180.6,
+          "win_rate": 0.6
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.2,
+          "margin": 20.628571428571426,
+          "nonloss_rate": 0.3142857142857143,
+          "opponent_score": -13.02857142857141,
+          "our_score": 7.599999999999994,
+          "win_rate": 0.3142857142857143
+        },
+        "pooled_support_weight": 12.0
+      },
+      {
+        "minimum_support_weight": 1.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": 168.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 15.0,
+          "our_score": 183.0,
+          "win_rate": 1.0
+        },
+        "opponent": "Wld",
+        "opponent_agent_id": 6479553,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": 46.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 361.0,
+          "our_score": 407.0,
+          "win_rate": 1.0
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": -122.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 346.0,
+          "our_score": 224.0,
+          "win_rate": 0.0
+        },
+        "pooled_support_weight": 2.0
+      },
+      {
+        "minimum_support_weight": 3.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 4.0,
+          "margin": 102.5,
+          "nonloss_rate": 1.0,
+          "opponent_score": 176.5,
+          "our_score": 279.0,
+          "win_rate": 1.0
+        },
+        "opponent": "eulerscheZahl",
+        "opponent_agent_id": 6479658,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 3.0,
+          "margin": 58.666666666666664,
+          "nonloss_rate": 1.0,
+          "opponent_score": 119.33333333333333,
+          "our_score": 178.0,
+          "win_rate": 1.0
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": -43.833333333333336,
+          "nonloss_rate": 0.0,
+          "opponent_score": -57.16666666666667,
+          "our_score": -101.0,
+          "win_rate": 0.0
+        },
+        "pooled_support_weight": 7.0
+      },
+      {
+        "minimum_support_weight": 5.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 5.0,
+          "margin": 24.8,
+          "nonloss_rate": 1.0,
+          "opponent_score": 126.4,
+          "our_score": 151.2,
+          "win_rate": 1.0
+        },
+        "opponent": "mehdi_ayari",
+        "opponent_agent_id": 6479750,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 6.0,
+          "margin": 22.166666666666668,
+          "nonloss_rate": 0.6666666666666666,
+          "opponent_score": 111.16666666666667,
+          "our_score": 133.33333333333334,
+          "win_rate": 0.6666666666666666
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": -2.633333333333333,
+          "nonloss_rate": -0.33333333333333337,
+          "opponent_score": -15.233333333333334,
+          "our_score": -17.866666666666646,
+          "win_rate": -0.33333333333333337
+        },
+        "pooled_support_weight": 11.0
+      },
+      {
+        "minimum_support_weight": 5.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 6.0,
+          "margin": 27.333333333333332,
+          "nonloss_rate": 0.5,
+          "opponent_score": 194.16666666666666,
+          "our_score": 221.5,
+          "win_rate": 0.5
+        },
+        "opponent": "siman",
+        "opponent_agent_id": 6479840,
+        "orchard": {
+          "catastrophe_rate": 0.2,
+          "games": 5.0,
+          "margin": 71.6,
+          "nonloss_rate": 0.6,
+          "opponent_score": 187.4,
+          "our_score": 259.0,
+          "win_rate": 0.6
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.2,
+          "margin": 44.266666666666666,
+          "nonloss_rate": 0.09999999999999998,
+          "opponent_score": -6.7666666666666515,
+          "our_score": 37.5,
+          "win_rate": 0.09999999999999998
+        },
+        "pooled_support_weight": 11.0
+      },
+      {
+        "minimum_support_weight": 10.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.25,
+          "games": 12.0,
+          "margin": -46.583333333333336,
+          "nonloss_rate": 0.3333333333333333,
+          "opponent_score": 259.1666666666667,
+          "our_score": 212.58333333333334,
+          "win_rate": 0.3333333333333333
+        },
+        "opponent": "R1FA",
+        "opponent_agent_id": 6479863,
+        "orchard": {
+          "catastrophe_rate": 0.4,
+          "games": 10.0,
+          "margin": -29.5,
+          "nonloss_rate": 0.3,
+          "opponent_score": 241.2,
+          "our_score": 211.7,
+          "win_rate": 0.3
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.15000000000000002,
+          "margin": 17.083333333333336,
+          "nonloss_rate": -0.033333333333333326,
+          "opponent_score": -17.966666666666697,
+          "our_score": -0.8833333333333542,
+          "win_rate": -0.033333333333333326
+        },
+        "pooled_support_weight": 22.0
+      },
+      {
+        "minimum_support_weight": 6.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 6.0,
+          "margin": 38.0,
+          "nonloss_rate": 0.8333333333333334,
+          "opponent_score": 119.33333333333333,
+          "our_score": 157.33333333333334,
+          "win_rate": 0.8333333333333334
+        },
+        "opponent": "FinkPloyd",
+        "opponent_agent_id": 6479914,
+        "orchard": {
+          "catastrophe_rate": 0.3333333333333333,
+          "games": 6.0,
+          "margin": -77.0,
+          "nonloss_rate": 0.3333333333333333,
+          "opponent_score": 236.5,
+          "our_score": 159.5,
+          "win_rate": 0.3333333333333333
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.3333333333333333,
+          "margin": -115.0,
+          "nonloss_rate": -0.5,
+          "opponent_score": 117.16666666666667,
+          "our_score": 2.166666666666657,
+          "win_rate": -0.5
+        },
+        "pooled_support_weight": 12.0
+      },
+      {
+        "minimum_support_weight": 1.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": -9.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 281.0,
+          "our_score": 272.0,
+          "win_rate": 0.0
+        },
+        "opponent": "FredericBautista",
+        "opponent_agent_id": 6480515,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 3.0,
+          "margin": 8.333333333333334,
+          "nonloss_rate": 0.6666666666666666,
+          "opponent_score": 181.0,
+          "our_score": 189.33333333333334,
+          "win_rate": 0.6666666666666666
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": 17.333333333333336,
+          "nonloss_rate": 0.6666666666666666,
+          "opponent_score": -100.0,
+          "our_score": -82.66666666666666,
+          "win_rate": 0.6666666666666666
+        },
+        "pooled_support_weight": 4.0
+      },
+      {
+        "minimum_support_weight": 3.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.2,
+          "games": 5.0,
+          "margin": -2.6,
+          "nonloss_rate": 0.6,
+          "opponent_score": 192.2,
+          "our_score": 189.6,
+          "win_rate": 0.6
+        },
+        "opponent": "Ztrk",
+        "opponent_agent_id": 6480516,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 3.0,
+          "margin": 89.33333333333333,
+          "nonloss_rate": 1.0,
+          "opponent_score": 105.33333333333333,
+          "our_score": 194.66666666666666,
+          "win_rate": 1.0
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": -0.2,
+          "margin": 91.93333333333332,
+          "nonloss_rate": 0.4,
+          "opponent_score": -86.86666666666666,
+          "our_score": 5.066666666666663,
+          "win_rate": 0.4
+        },
+        "pooled_support_weight": 8.0
+      },
+      {
+        "minimum_support_weight": 6.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.5,
+          "games": 6.0,
+          "margin": -94.83333333333333,
+          "nonloss_rate": 0.0,
+          "opponent_score": 282.8333333333333,
+          "our_score": 188.0,
+          "win_rate": 0.0
+        },
+        "opponent": "BoatBuilder",
+        "opponent_agent_id": 6480545,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 6.0,
+          "margin": 15.666666666666666,
+          "nonloss_rate": 0.3333333333333333,
+          "opponent_score": 169.16666666666666,
+          "our_score": 184.83333333333334,
+          "win_rate": 0.3333333333333333
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": -0.5,
+          "margin": 110.5,
+          "nonloss_rate": 0.3333333333333333,
+          "opponent_score": -113.66666666666666,
+          "our_score": -3.166666666666657,
+          "win_rate": 0.3333333333333333
+        },
+        "pooled_support_weight": 12.0
+      },
+      {
+        "minimum_support_weight": 9.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 9.0,
+          "margin": 46.888888888888886,
+          "nonloss_rate": 0.8888888888888888,
+          "opponent_score": 105.44444444444444,
+          "our_score": 152.33333333333334,
+          "win_rate": 0.8888888888888888
+        },
+        "opponent": "khanh-alice",
+        "opponent_agent_id": 6480947,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 10.0,
+          "margin": 19.6,
+          "nonloss_rate": 0.6,
+          "opponent_score": 128.8,
+          "our_score": 148.4,
+          "win_rate": 0.5
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": -27.288888888888884,
+          "nonloss_rate": -0.28888888888888886,
+          "opponent_score": 23.35555555555557,
+          "our_score": -3.933333333333337,
+          "win_rate": -0.38888888888888884
+        },
+        "pooled_support_weight": 19.0
+      },
+      {
+        "minimum_support_weight": 3.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.25,
+          "games": 4.0,
+          "margin": 34.25,
+          "nonloss_rate": 0.75,
+          "opponent_score": 228.5,
+          "our_score": 262.75,
+          "win_rate": 0.75
+        },
+        "opponent": "uta_ccc",
+        "opponent_agent_id": 6481139,
+        "orchard": {
+          "catastrophe_rate": 0.3333333333333333,
+          "games": 3.0,
+          "margin": -57.333333333333336,
+          "nonloss_rate": 0.6666666666666666,
+          "opponent_score": 270.0,
+          "our_score": 212.66666666666666,
+          "win_rate": 0.6666666666666666
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.08333333333333331,
+          "margin": -91.58333333333334,
+          "nonloss_rate": -0.08333333333333337,
+          "opponent_score": 41.5,
+          "our_score": -50.08333333333334,
+          "win_rate": -0.08333333333333337
+        },
+        "pooled_support_weight": 7.0
+      },
+      {
+        "minimum_support_weight": 4.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 4.0,
+          "margin": 36.0,
+          "nonloss_rate": 0.75,
+          "opponent_score": 205.5,
+          "our_score": 241.5,
+          "win_rate": 0.75
+        },
+        "opponent": "Pafin",
+        "opponent_agent_id": 6481143,
+        "orchard": {
+          "catastrophe_rate": 0.2,
+          "games": 5.0,
+          "margin": 5.2,
+          "nonloss_rate": 0.6,
+          "opponent_score": 216.6,
+          "our_score": 221.8,
+          "win_rate": 0.6
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.2,
+          "margin": -30.8,
+          "nonloss_rate": -0.15000000000000002,
+          "opponent_score": 11.099999999999994,
+          "our_score": -19.69999999999999,
+          "win_rate": -0.15000000000000002
+        },
+        "pooled_support_weight": 9.0
+      },
+      {
+        "minimum_support_weight": 4.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.4,
+          "games": 5.0,
+          "margin": 0.6,
+          "nonloss_rate": 0.6,
+          "opponent_score": 195.4,
+          "our_score": 196.0,
+          "win_rate": 0.6
+        },
+        "opponent": "mikmak",
+        "opponent_agent_id": 6481225,
+        "orchard": {
+          "catastrophe_rate": 0.5,
+          "games": 4.0,
+          "margin": -156.0,
+          "nonloss_rate": 0.5,
+          "opponent_score": 339.75,
+          "our_score": 183.75,
+          "win_rate": 0.5
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.09999999999999998,
+          "margin": -156.6,
+          "nonloss_rate": -0.09999999999999998,
+          "opponent_score": 144.35,
+          "our_score": -12.25,
+          "win_rate": -0.09999999999999998
+        },
+        "pooled_support_weight": 9.0
+      },
+      {
+        "minimum_support_weight": 1.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": 20.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 180.0,
+          "our_score": 200.0,
+          "win_rate": 1.0
+        },
+        "opponent": "Quentin18",
+        "opponent_agent_id": 6481265,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": -35.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 201.0,
+          "our_score": 166.0,
+          "win_rate": 0.0
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": -55.0,
+          "nonloss_rate": -1.0,
+          "opponent_score": 21.0,
+          "our_score": -34.0,
+          "win_rate": -1.0
+        },
+        "pooled_support_weight": 2.0
+      },
+      {
+        "minimum_support_weight": 1.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": -1.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 185.0,
+          "our_score": 184.0,
+          "win_rate": 0.0
+        },
+        "opponent": "zasmu",
+        "opponent_agent_id": 6481270,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 3.0,
+          "margin": 7.0,
+          "nonloss_rate": 0.3333333333333333,
+          "opponent_score": 151.66666666666666,
+          "our_score": 158.66666666666666,
+          "win_rate": 0.3333333333333333
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": 8.0,
+          "nonloss_rate": 0.3333333333333333,
+          "opponent_score": -33.33333333333334,
+          "our_score": -25.333333333333343,
+          "win_rate": 0.3333333333333333
+        },
+        "pooled_support_weight": 4.0
+      },
+      {
+        "minimum_support_weight": 7.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.1111111111111111,
+          "games": 9.0,
+          "margin": -35.0,
+          "nonloss_rate": 0.3333333333333333,
+          "opponent_score": 194.0,
+          "our_score": 159.0,
+          "win_rate": 0.1111111111111111
+        },
+        "opponent": "DoubtinGiyov",
+        "opponent_agent_id": 6482016,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 7.0,
+          "margin": -12.428571428571429,
+          "nonloss_rate": 0.5714285714285714,
+          "opponent_score": 171.42857142857142,
+          "our_score": 159.0,
+          "win_rate": 0.42857142857142855
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": -0.1111111111111111,
+          "margin": 22.57142857142857,
+          "nonloss_rate": 0.23809523809523808,
+          "opponent_score": -22.571428571428584,
+          "our_score": 0.0,
+          "win_rate": 0.31746031746031744
+        },
+        "pooled_support_weight": 16.0
+      },
+      {
+        "minimum_support_weight": 1.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.5,
+          "games": 2.0,
+          "margin": -78.0,
+          "nonloss_rate": 0.5,
+          "opponent_score": 282.5,
+          "our_score": 204.5,
+          "win_rate": 0.5
+        },
+        "opponent": "xMizar",
+        "opponent_agent_id": 6483321,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": 66.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 74.0,
+          "our_score": 140.0,
+          "win_rate": 1.0
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": -0.5,
+          "margin": 144.0,
+          "nonloss_rate": 0.5,
+          "opponent_score": -208.5,
+          "our_score": -64.5,
+          "win_rate": 0.5
+        },
+        "pooled_support_weight": 3.0
+      },
+      {
+        "minimum_support_weight": 1.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": 140.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 11.0,
+          "our_score": 151.0,
+          "win_rate": 1.0
+        },
+        "opponent": "Pech1",
+        "opponent_agent_id": 6483325,
+        "orchard": {
+          "catastrophe_rate": 0.5,
+          "games": 2.0,
+          "margin": -170.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 371.0,
+          "our_score": 201.0,
+          "win_rate": 0.0
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.5,
+          "margin": -310.0,
+          "nonloss_rate": -1.0,
+          "opponent_score": 360.0,
+          "our_score": 50.0,
+          "win_rate": -1.0
+        },
+        "pooled_support_weight": 3.0
+      },
+      {
+        "minimum_support_weight": 1.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": -20.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 156.0,
+          "our_score": 136.0,
+          "win_rate": 0.0
+        },
+        "opponent": "VINCE_MX",
+        "opponent_agent_id": 6483491,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 2.0,
+          "margin": -92.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 250.0,
+          "our_score": 158.0,
+          "win_rate": 0.0
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": -72.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 94.0,
+          "our_score": 22.0,
+          "win_rate": 0.0
+        },
+        "pooled_support_weight": 3.0
+      },
+      {
+        "minimum_support_weight": 1.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 3.0,
+          "margin": 38.666666666666664,
+          "nonloss_rate": 0.6666666666666666,
+          "opponent_score": 193.33333333333334,
+          "our_score": 232.0,
+          "win_rate": 0.6666666666666666
+        },
+        "opponent": "Zabym",
+        "opponent_agent_id": 6483514,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": 252.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 21.0,
+          "our_score": 273.0,
+          "win_rate": 1.0
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": 213.33333333333334,
+          "nonloss_rate": 0.33333333333333337,
+          "opponent_score": -172.33333333333334,
+          "our_score": 41.0,
+          "win_rate": 0.33333333333333337
+        },
+        "pooled_support_weight": 4.0
+      },
+      {
+        "minimum_support_weight": 1.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.3333333333333333,
+          "games": 3.0,
+          "margin": -67.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 241.66666666666666,
+          "our_score": 174.66666666666666,
+          "win_rate": 0.0
+        },
+        "opponent": "Pduhard-",
+        "opponent_agent_id": 6488390,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": 5.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 239.0,
+          "our_score": 244.0,
+          "win_rate": 1.0
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": -0.3333333333333333,
+          "margin": 72.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": -2.666666666666657,
+          "our_score": 69.33333333333334,
+          "win_rate": 1.0
+        },
+        "pooled_support_weight": 4.0
+      },
+      {
+        "minimum_support_weight": 2.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 2.0,
+          "margin": 42.5,
+          "nonloss_rate": 1.0,
+          "opponent_score": 118.5,
+          "our_score": 161.0,
+          "win_rate": 1.0
+        },
+        "opponent": "Renatys",
+        "opponent_agent_id": 6491198,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 2.0,
+          "margin": 83.5,
+          "nonloss_rate": 1.0,
+          "opponent_score": 102.5,
+          "our_score": 186.0,
+          "win_rate": 1.0
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": 41.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": -16.0,
+          "our_score": 25.0,
+          "win_rate": 0.0
+        },
+        "pooled_support_weight": 4.0
+      },
+      {
+        "minimum_support_weight": 1.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 2.0,
+          "margin": 3.5,
+          "nonloss_rate": 0.5,
+          "opponent_score": 232.0,
+          "our_score": 235.5,
+          "win_rate": 0.5
+        },
+        "opponent": "daaskare",
+        "opponent_agent_id": 6491404,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": -25.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 230.0,
+          "our_score": 205.0,
+          "win_rate": 0.0
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": -28.5,
+          "nonloss_rate": -0.5,
+          "opponent_score": -2.0,
+          "our_score": -30.5,
+          "win_rate": -0.5
+        },
+        "pooled_support_weight": 3.0
+      },
+      {
+        "minimum_support_weight": 1.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": 241.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 26.0,
+          "our_score": 267.0,
+          "win_rate": 1.0
+        },
+        "opponent": "_H3R0_",
+        "opponent_agent_id": 6491567,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": 94.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 39.0,
+          "our_score": 133.0,
+          "win_rate": 1.0
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": -147.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 13.0,
+          "our_score": -134.0,
+          "win_rate": 0.0
+        },
+        "pooled_support_weight": 2.0
+      },
+      {
+        "minimum_support_weight": 3.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 3.0,
+          "margin": 88.66666666666667,
+          "nonloss_rate": 1.0,
+          "opponent_score": 110.66666666666667,
+          "our_score": 199.33333333333334,
+          "win_rate": 1.0
+        },
+        "opponent": "Highruler",
+        "opponent_agent_id": 6505286,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 4.0,
+          "margin": 68.25,
+          "nonloss_rate": 0.75,
+          "opponent_score": 130.75,
+          "our_score": 199.0,
+          "win_rate": 0.75
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": -20.41666666666667,
+          "nonloss_rate": -0.25,
+          "opponent_score": 20.08333333333333,
+          "our_score": -0.3333333333333428,
+          "win_rate": -0.25
+        },
+        "pooled_support_weight": 7.0
+      },
+      {
+        "minimum_support_weight": 5.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 10.0,
+          "margin": 1.8,
+          "nonloss_rate": 0.5,
+          "opponent_score": 178.1,
+          "our_score": 179.9,
+          "win_rate": 0.4
+        },
+        "opponent": "celeria",
+        "opponent_agent_id": 6512040,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 5.0,
+          "margin": 14.6,
+          "nonloss_rate": 0.4,
+          "opponent_score": 148.6,
+          "our_score": 163.2,
+          "win_rate": 0.4
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": 12.799999999999999,
+          "nonloss_rate": -0.09999999999999998,
+          "opponent_score": -29.5,
+          "our_score": -16.700000000000017,
+          "win_rate": 0.0
+        },
+        "pooled_support_weight": 15.0
+      },
+      {
+        "minimum_support_weight": 1.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": 22.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 64.0,
+          "our_score": 86.0,
+          "win_rate": 1.0
+        },
+        "opponent": "PonyPonyCodeCode",
+        "opponent_agent_id": 6541377,
+        "orchard": {
+          "catastrophe_rate": 0.5,
+          "games": 2.0,
+          "margin": -18.5,
+          "nonloss_rate": 0.5,
+          "opponent_score": 152.5,
+          "our_score": 134.0,
+          "win_rate": 0.5
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.5,
+          "margin": -40.5,
+          "nonloss_rate": -0.5,
+          "opponent_score": 88.5,
+          "our_score": 48.0,
+          "win_rate": -0.5
+        },
+        "pooled_support_weight": 3.0
+      },
+      {
+        "minimum_support_weight": 1.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": -4.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 236.0,
+          "our_score": 232.0,
+          "win_rate": 0.0
+        },
+        "opponent": "ATsibin",
+        "opponent_agent_id": 6575572,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": -90.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 258.0,
+          "our_score": 168.0,
+          "win_rate": 0.0
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": -86.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 22.0,
+          "our_score": -64.0,
+          "win_rate": 0.0
+        },
+        "pooled_support_weight": 2.0
+      },
+      {
+        "minimum_support_weight": 1.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": 47.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 152.0,
+          "our_score": 199.0,
+          "win_rate": 1.0
+        },
+        "opponent": "nwin",
+        "opponent_agent_id": 6588416,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": 63.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 173.0,
+          "our_score": 236.0,
+          "win_rate": 1.0
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": 16.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 21.0,
+          "our_score": 37.0,
+          "win_rate": 0.0
+        },
+        "pooled_support_weight": 2.0
+      },
+      {
+        "minimum_support_weight": 1.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": 64.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 108.0,
+          "our_score": 172.0,
+          "win_rate": 1.0
+        },
+        "opponent": "Mmdrlol",
+        "opponent_agent_id": 6588478,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 1.0,
+          "margin": 54.0,
+          "nonloss_rate": 1.0,
+          "opponent_score": 181.0,
+          "our_score": 235.0,
+          "win_rate": 1.0
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": -10.0,
+          "nonloss_rate": 0.0,
+          "opponent_score": 73.0,
+          "our_score": 63.0,
+          "win_rate": 0.0
+        },
+        "pooled_support_weight": 2.0
+      },
+      {
+        "minimum_support_weight": 3.0,
+        "no_orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 3.0,
+          "margin": 4.0,
+          "nonloss_rate": 0.3333333333333333,
+          "opponent_score": 150.66666666666666,
+          "our_score": 154.66666666666666,
+          "win_rate": 0.3333333333333333
+        },
+        "opponent": "FreZzz",
+        "opponent_agent_id": 6592021,
+        "orchard": {
+          "catastrophe_rate": 0.0,
+          "games": 8.0,
+          "margin": 35.375,
+          "nonloss_rate": 0.75,
+          "opponent_score": 129.75,
+          "our_score": 165.125,
+          "win_rate": 0.75
+        },
+        "orchard_minus_no_orchard": {
+          "catastrophe_rate": 0.0,
+          "margin": 31.375,
+          "nonloss_rate": 0.4166666666666667,
+          "opponent_score": -20.916666666666657,
+          "our_score": 10.458333333333343,
+          "win_rate": 0.4166666666666667
+        },
+        "pooled_support_weight": 11.0
+      }
+    ],
+    "standardized_differences": {
+      "equal_opponent": {
+        "catastrophe_rate": 0.00992063492063492,
+        "margin": -7.518015873015874,
+        "nonloss_rate": -0.0015192743764172346,
+        "opponent_score": 13.476349206349207,
+        "our_score": 5.958333333333333,
+        "win_rate": 0.0007482993197278901
+      },
+      "minimum_count": {
+        "catastrophe_rate": 0.01298941798941799,
+        "margin": 2.2098526077097507,
+        "nonloss_rate": -0.012653061224489795,
+        "opponent_score": -2.2515192743764185,
+        "our_score": -0.04166666666666883,
+        "win_rate": -0.01117157974300831
+      },
+      "pooled_count": {
+        "catastrophe_rate": 0.009437882764654421,
+        "margin": 6.222133170853644,
+        "nonloss_rate": 0.012895263092113491,
+        "opponent_score": -5.602940257467817,
+        "our_score": 0.6191929133858249,
+        "win_rate": 0.01631983502062243
+      }
+    }
+  },
+  "raw": {
+    "no_orchard": {
+      "catastrophe_rate": 0.1,
+      "catastrophes": 16,
+      "distinct_opponents": 58,
+      "games": 160,
+      "losses": 65,
+      "margin_q10": -98.39999999999999,
+      "margin_q25": -44.25,
+      "margin_q75": 64.5,
+      "margin_q90": 148.0,
+      "mean_margin": 10.56875,
+      "mean_opponent_score": 178.8625,
+      "mean_our_score": 189.43125,
+      "median_margin": 12.0,
+      "negative_margin_mass": 5441.0,
+      "nonloss_rate": 0.59375,
+      "ties": 4,
+      "win_rate": 0.56875,
+      "wins": 91
+    },
+    "orchard": {
+      "catastrophe_rate": 0.1111111111111111,
+      "catastrophes": 18,
+      "distinct_opponents": 59,
+      "games": 162,
+      "losses": 66,
+      "margin_q10": -108.0,
+      "margin_q25": -33.5,
+      "margin_q75": 71.0,
+      "margin_q90": 147.10000000000005,
+      "mean_margin": 9.808641975308642,
+      "mean_opponent_score": 174.0185185185185,
+      "mean_our_score": 183.82716049382717,
+      "median_margin": 10.5,
+      "negative_margin_mass": 5569.0,
+      "nonloss_rate": 0.5925925925925926,
+      "ties": 3,
+      "win_rate": 0.5740740740740741,
+      "wins": 93
+    },
+    "orchard_minus_no_orchard": {
+      "catastrophe_rate": 0.0111111111111111,
+      "mean_margin": -0.7601080246913572,
+      "mean_opponent_score": -4.8439814814815065,
+      "mean_our_score": -5.604089506172841,
+      "negative_margin_mass": 128.0,
+      "nonloss_rate": -0.0011574074074074403,
+      "win_rate": 0.005324074074074092
+    }
+  },
+  "schema": "troll-farm-orchard-ablation-checkpoint-analysis/1"
+}

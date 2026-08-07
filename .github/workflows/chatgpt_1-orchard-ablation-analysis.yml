@@ -1,0 +1,58 @@
+name: chatgpt_1 orchard ablation analysis
+
+on:
+  push:
+    branches:
+      - agent/chatgpt_1-orchard-ablation-analysis
+    paths:
+      - .github/workflows/chatgpt_1-orchard-ablation-analysis.yml
+      - chatgpt_1/orchard_ablation_checkpoint_analysis.py
+      - data/analysis/live-agent-6553250/no-orchard-ablation-terminal-checkpoint-20260803T154310Z.json
+      - data/analysis/live-agent-6553250/e7a-restore-collected-games-checkpoint-20260803T175757Z.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/chatgpt_1-orchard-ablation-analysis
+
+      - name: Run opponent-standardized comparison
+        run: |
+          python3 chatgpt_1/orchard_ablation_checkpoint_analysis.py --bootstrap 100000
+
+      - name: Validate outputs
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('chatgpt_1/orchard-ablation-opponent-standardized-2026-08-03.json')
+          r = json.loads(p.read_text())
+          assert r['identity']['orchard']['agent_id'] == 6592131
+          assert r['identity']['no_orchard']['agent_id'] == 6592097
+          assert r['raw']['orchard']['games'] == 162
+          assert r['raw']['no_orchard']['games'] == 160
+          assert r['opponent_standardized']['common_opponents'] > 0
+          print(r['fresh_ladder_difference'])
+          print('common opponents', r['opponent_standardized']['common_opponents'])
+          PY
+
+      - name: Commit compact results
+        run: |
+          git config user.name "chatgpt_1 orchard audit"
+          git config user.email "noreply@openai.com"
+          git add -- \
+            chatgpt_1/orchard-ablation-opponent-standardized-2026-08-03.json \
+            chatgpt_1/orchard-ablation-opponent-standardized-2026-08-03.md
+          if git diff --cached --quiet; then
+            echo "outputs unchanged"
+          else
+            git commit -m "analysis: publish orchard ablation opponent standardization"
+            git push origin HEAD:agent/chatgpt_1-orchard-ablation-analysis
+          fi
