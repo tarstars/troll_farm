@@ -187,6 +187,8 @@ def counts(stdout: str) -> dict[str, int]:
     for label in (
         "immutable-path collisions",
         "delivery errors",
+        "quarantine errors",
+        "quarantined",
         "new (unseen)",
         "unacknowledged, ack required",
         "local diagnostics — unpublished, NOT authoritative",
@@ -789,6 +791,143 @@ def test_legacy_repository_messages_parse_without_mutation():
     assert not (REPO_ROOT / fake_me).exists()
     for p, data in before_bytes.items():
         assert p.read_bytes() == data
+
+
+# ---------------------------------------------------------------------------
+# 18. quarantine: coordinator-adjudicated invalid messages stop poisoning the
+#     transport (suppressed from delivery errors / selection, listed loudly)
+# ---------------------------------------------------------------------------
+
+def write_quarantine(repo: TransportRepo, entries: list[dict], raw: str | None = None):
+    payload = raw if raw is not None else json.dumps(
+        {"schema_version": 1, "entries": entries}, indent=2
+    ) + "\n"
+    repo.write_worktree("coordination/quarantine.json", payload)
+
+
+def test_quarantined_message_suppresses_errors_and_recovers_exit(repo):
+    bad = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "finding",
+                     requires_ack=False)
+    broken = repo.sweep("--me", ME)
+    assert broken.returncode == 2
+    assert "unknown v2 message kind" in broken.stdout
+
+    adj = publish_v2(repo, ME, "20260805T110000Z", "task-q", "policy", to=PEER)
+    write_quarantine(repo, [
+        {"path": bad, "reason": "schema-invalid, adjudicated", "adjudicated_by": adj},
+    ])
+
+    result = repo.sweep("--me", ME)
+    c = counts(result.stdout)
+    assert result.returncode == 0
+    assert c["delivery errors"] == 0
+    assert c["quarantine errors"] == 0
+    assert c["quarantined"] == 1
+    assert c["new (unseen)"] == 0
+    assert c["unacknowledged, ack required"] == 0
+    quarantined_section = result.stdout.split("quarantined (")[1]
+    assert bad in quarantined_section
+    assert "schema-invalid, adjudicated" in quarantined_section
+
+    marked = repo.sweep("--me", ME, "--mark")
+    assert marked.returncode == 0
+    assert repo.seen_file().exists()
+
+
+def test_quarantine_entry_with_unknown_adjudication_message_fails(repo):
+    bad = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "finding",
+                     requires_ack=False)
+    ghost = msg_path(ME, "20260805T110000Z", "task-q", "policy")
+    write_quarantine(repo, [
+        {"path": bad, "reason": "r", "adjudicated_by": ghost},
+    ])
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert counts(result.stdout)["quarantine errors"] == 1
+    assert "adjudicated_by not found on any authoritative remote ref" in result.stdout
+    # A broken quarantine file must not suppress anything.
+    assert counts(result.stdout)["delivery errors"] >= 1
+
+
+def test_quarantine_entry_for_nonexistent_message_path_fails(repo):
+    adj = publish_v2(repo, ME, "20260805T110000Z", "task-q", "policy", to=PEER)
+    ghost = msg_path(PEER, "20260801T000000Z", "task-x", "update")
+    write_quarantine(repo, [
+        {"path": ghost, "reason": "typo", "adjudicated_by": adj},
+    ])
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert "path not found on any authoritative remote ref" in result.stdout
+
+
+def test_malformed_quarantine_file_fails_loudly(repo):
+    publish_v2(repo, PEER, "20260805T100000Z", "task-a", "update",
+               requires_ack=False)
+    write_quarantine(repo, [], raw="{not json\n")
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert "malformed quarantine file" in result.stderr
+
+
+def test_quarantine_missing_entry_fields_fails_loudly(repo):
+    publish_v2(repo, PEER, "20260805T100000Z", "task-a", "update",
+               requires_ack=False)
+    write_quarantine(repo, raw=json.dumps(
+        {"schema_version": 1, "entries": [{"path": "x", "reason": ""}]}
+    ) + "\n", entries=[])
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert "malformed quarantine file" in result.stderr
+
+
+def test_quarantined_ack_of_mine_acknowledges_nothing(repo):
+    q = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "question")
+    ack = publish_v2(repo, ME, "20260805T110000Z", "task-a", "ack", to=PEER,
+                     ack_for=(q,))
+    clean = repo.sweep("--me", ME)
+    assert clean.returncode == 0
+
+    adj = publish_v2(repo, ME, "20260805T120000Z", "task-q", "policy", to=PEER)
+    write_quarantine(repo, [
+        {"path": ack, "reason": "fabricated verdict", "adjudicated_by": adj},
+    ])
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 1
+    assert counts(result.stdout)["unacknowledged, ack required"] == 1
+    assert q in result.stdout
+
+
+def test_collision_on_quarantined_path_still_fails(repo):
+    path = msg_path(PEER, "20260805T100000Z", "task-a", "update")
+    body = v2_message(path, kind="update", task="task-a", sender=PEER,
+                      requires_ack=False)
+    repo.commit(f"agent/{PEER}", {path: body})
+    repo.commit(f"agent/{PEER}-side", {path: body + "tampered\n"})
+    adj = publish_v2(repo, ME, "20260805T110000Z", "task-q", "policy", to=PEER)
+    write_quarantine(repo, [
+        {"path": path, "reason": "r", "adjudicated_by": adj},
+    ])
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert counts(result.stdout)["immutable-path collisions"] == 1
+
+
+def test_self_adjudicated_quarantine_entry_fails(repo):
+    bad = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "finding",
+                     requires_ack=False)
+    write_quarantine(repo, [
+        {"path": bad, "reason": "r", "adjudicated_by": bad},
+    ])
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert "adjudicated_by is itself quarantined" in result.stdout
 
 
 # ---------------------------------------------------------------------------

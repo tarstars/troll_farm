@@ -34,6 +34,18 @@ Transport rules implemented here:
    (atomic, deterministic writes). A missing seen-state file falls back once to the
    legacy `<agent-id>/inbox-watermark.txt` as a migration hint; the legacy file is
    never rewritten or deleted. Marking seen never acknowledges anything.
+7. `coordination/quarantine.json` records coordinator adjudications of immutable
+   messages that are permanently invalid (schema violations, fabricated verdicts)
+   and that their sender will not repair. A valid quarantine entry names an exact
+   message path, a reason, and an `adjudicated_by` message that exists on the
+   authoritative remote refs. Quarantined messages are excluded from delivery
+   validation, newness, and acknowledgement (a quarantined ACK acknowledges
+   nothing) and are listed in their own `quarantined` section instead. The file
+   itself is validated strictly: a malformed file or an entry whose path or
+   adjudication is unknown is a transport error (exit 2) and suppresses nothing.
+   Immutable-path collisions are never suppressed by quarantine. Only the
+   coordinator/integrator may modify the quarantine file, and every entry must
+   cite a published adjudication message.
 
 Usage:
     python3 scripts/inbox_sweep.py --me claude_1                    # report
@@ -79,6 +91,9 @@ YAML_FIELD_RE = re.compile(
 )
 HEX40_RE = re.compile(r"^[0-9a-f]{40}$")
 SEEN_STATE_SCHEMA_VERSION = 1
+QUARANTINE_FILE = "coordination/quarantine.json"
+QUARANTINE_SCHEMA_VERSION = 1
+QUARANTINE_ENTRY_FIELDS = ("path", "reason", "adjudicated_by")
 
 
 class GitError(RuntimeError):
@@ -349,8 +364,14 @@ def validate_v2(
     authoritative_paths: set[str],
     canonical_paths_by_agent: dict[str, set[str]],
     remote_ref_names: set[str],
+    require_canonical: bool = True,
 ) -> list[str]:
-    """Return a list of human-readable validation errors for a v2 message."""
+    """Return a list of human-readable validation errors for a v2 message.
+
+    `require_canonical=False` skips the canonical-branch presence check for a
+    message that is not published yet (`scripts/lint_outbox.py`); every other
+    rule is identical, so the sender sees exactly what the receiver will.
+    """
     errors: list[str] = []
     if msg.schema_error:
         errors.append(msg.schema_error)
@@ -400,11 +421,12 @@ def validate_v2(
 
     # Canonical presence: a v2 message is delivered only from the sender's
     # canonical branch refs/remotes/origin/agent/<from>.
-    canonical = canonical_paths_by_agent.get(msg.sender, set())
-    if msg.path not in canonical:
-        errors.append(
-            f"message not present on canonical {REMOTE_PREFIX}agent/{msg.sender}"
-        )
+    if require_canonical:
+        canonical = canonical_paths_by_agent.get(msg.sender, set())
+        if msg.path not in canonical:
+            errors.append(
+                f"message not present on canonical {REMOTE_PREFIX}agent/{msg.sender}"
+            )
 
     if msg.kind == "handoff":
         errors.extend(validate_v2_handoff(msg, remote_ref_names))
@@ -608,6 +630,72 @@ def write_seen_state(
 
 
 # ---------------------------------------------------------------------------
+# Quarantine (rule 7: coordinator-adjudicated permanently-invalid messages)
+# ---------------------------------------------------------------------------
+
+def load_quarantine(root: pathlib.Path) -> list[dict[str, str]]:
+    """Return quarantine entries; raise ValueError on a malformed file.
+
+    Structural validation only — existence of the quarantined and adjudicating
+    messages on the authoritative refs is checked by `validate_quarantine`.
+    """
+    quarantine_file = root / QUARANTINE_FILE
+    if not quarantine_file.exists():
+        return []
+    try:
+        data = json.loads(quarantine_file.read_text(encoding="utf-8"))
+        if not isinstance(data, dict):
+            raise ValueError("quarantine is not a JSON object")
+        version = data.get("schema_version")
+        if isinstance(version, bool) or version != QUARANTINE_SCHEMA_VERSION:
+            raise ValueError(
+                f"schema_version {version!r} is not the supported version "
+                f"{QUARANTINE_SCHEMA_VERSION}"
+            )
+        entries = data["entries"]
+        if not isinstance(entries, list):
+            raise ValueError("entries is not a list")
+        for i, entry in enumerate(entries):
+            if not isinstance(entry, dict):
+                raise ValueError(f"entry {i} is not an object")
+            for field in QUARANTINE_ENTRY_FIELDS:
+                value = entry.get(field)
+                if not isinstance(value, str) or not value.strip():
+                    raise ValueError(
+                        f"entry {i} field {field!r} is not a non-empty string"
+                    )
+    except (json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
+        raise ValueError(
+            f"malformed quarantine file {quarantine_file}: {exc}"
+        ) from exc
+    return entries
+
+
+def validate_quarantine(
+    entries: list[dict[str, str]], authoritative_paths: set[str]
+) -> list[str]:
+    """Return errors for entries whose paths/adjudications are not authoritative."""
+    errors: list[str] = []
+    quarantined_paths = {entry["path"] for entry in entries}
+    seen: set[str] = set()
+    for entry in entries:
+        path, adjudicator = entry["path"], entry["adjudicated_by"]
+        if path in seen:
+            errors.append(f"duplicate quarantine path: {path!r}")
+        seen.add(path)
+        for label, target in (("path", path), ("adjudicated_by", adjudicator)):
+            if not target.startswith(NAMESPACE):
+                errors.append(f"{label} is not a message path: {target!r}")
+            elif target not in authoritative_paths:
+                errors.append(
+                    f"{label} not found on any authoritative remote ref: {target!r}"
+                )
+        if adjudicator in quarantined_paths:
+            errors.append(f"adjudicated_by is itself quarantined: {adjudicator!r}")
+    return errors
+
+
+# ---------------------------------------------------------------------------
 # Main sweep
 # ---------------------------------------------------------------------------
 
@@ -669,19 +757,30 @@ def main() -> int:
         if len(per_path[path]) > 1:
             collisions.append((path, per_path[path]))
     collided = {path for path, _ in collisions}
+    authoritative_paths = set(per_path)
+
+    # Quarantine (rule 7): adjudicated-invalid messages leave the transport.
+    try:
+        quarantine_entries = load_quarantine(root)
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
+    quarantine_errors = validate_quarantine(quarantine_entries, authoritative_paths)
+    # A broken quarantine file suppresses nothing.
+    quarantined: dict[str, dict[str, str]] = (
+        {} if quarantine_errors else {e["path"]: e for e in quarantine_entries}
+    )
 
     # Materialize authoritative messages (one body per unique path).
     messages: dict[str, Message] = {}
     for path in sorted(per_path):
-        if path in collided:
+        if path in collided or path in quarantined:
             continue
         (oid, refs_for_path), = per_path[path].items()
         body = git("cat-file", "blob", oid)
         messages[path] = Message(
             path, display_ref(path, refs_for_path, sender_of(path)), body
         )
-
-    authoritative_paths = set(messages) | collided
     # Canonical presence is derived from the single authoritative scan above —
     # no second per-ref tree lookup.
     canonical_paths_by_agent: dict[str, set[str]] = {}
@@ -764,6 +863,15 @@ def main() -> int:
     for path, error in delivery_errors:
         print(f"  {path}: {error}")
 
+    print(f"\nquarantine errors ({len(quarantine_errors)}):")
+    for error in quarantine_errors:
+        print(f"  {QUARANTINE_FILE}: {error}")
+
+    print(f"\nquarantined ({len(quarantined)}):")
+    for path in sorted(quarantined):
+        entry = quarantined[path]
+        print(f"  {path}: {entry['reason']}   [{entry['adjudicated_by']}]")
+
     for warning in ack_warnings:
         print(f"\nwarning: {warning}")
 
@@ -791,7 +899,7 @@ def main() -> int:
         for path, src in unique:
             print(f"  {path}   [{src}]")
 
-    transport_broken = bool(collisions or delivery_errors)
+    transport_broken = bool(collisions or delivery_errors or quarantine_errors)
 
     if args.mark:
         if transport_broken:

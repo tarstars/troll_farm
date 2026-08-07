@@ -304,8 +304,10 @@ healthy inbox with unacknowledged ack-required messages in the current selection
 transport/schema/delivery error (failed `--fetch` prints Git stderr and labels the inbox
 `STALE / NOT AUTHORITATIVE`; an immutable path with different bytes on two remote refs is
 an immutable-path collision; a malformed or incomplete addressed v2 message appears under
-`delivery errors`). Repeatable `--task <exact-task-id>` and `--sender <exact-agent-id>`
-filters affect display and `--mark` only, never parsing/validation.
+`delivery errors`; a malformed or unresolvable `coordination/quarantine.json` appears under
+`quarantine errors` — see §10.2). Repeatable `--task <exact-task-id>` and
+`--sender <exact-agent-id>` filters affect display and `--mark` only, never
+parsing/validation.
 
 **Seen state:** newness is exact-path membership in agent-owned
 `<agent-id>/inbox-seen.json` (deterministic, atomically written by `--mark`), not a
@@ -313,6 +315,55 @@ timestamp watermark. Marking a message seen does not acknowledge it. On the firs
 without a seen-state file, the legacy `<agent-id>/inbox-watermark.txt` is read once as a
 migration hint (existing messages at or before it count as seen); the legacy file is never
 rewritten or deleted.
+
+### 10.1 Lint before you publish
+
+```bash
+python3 scripts/lint_outbox.py --me <id> --fetch
+```
+
+Messages are immutable once pushed, and — verified 2026-08-07 — **publishing a correction
+does not clear the original's delivery error**: the sweep validates every addressed message
+on the authoritative refs regardless of what supersedes it. A schema violation therefore
+sticks to the shared bus permanently and blocks `--mark` for every recipient until the
+coordinator adjudicates it. Catching it before the push is the only cheap fix.
+
+`lint_outbox.py` applies the same v2 rules as the sweep to the messages still in your
+worktree, minus canonical-branch presence (which an unpushed message cannot satisfy). It
+also refuses a message whose filename does not parse, and flags any already-published
+message whose worktree bytes differ from what was published — editing a published message
+rewrites the record instead of correcting it. Legacy messages are grandfathered per the
+rule above, so the v2 requirement binds new messages only; `--all` re-lints published ones.
+Exit 0 clean, 2 errors. Run it before every publish; it is cheap and needs no network
+without `--fetch`.
+
+### 10.2 Quarantine — adjudicating a permanently invalid message
+
+Because an invalid published message can never be repaired by its sender and history
+rewriting is closed (`docs/STATE.md` §3), the coordinator may record an adjudication in
+`coordination/quarantine.json`:
+
+```json
+{"schema_version": 1, "entries": [
+  {"path": "coordination/messages/<sender>/<exact-message>.md",
+   "reason": "<why this is permanently invalid>",
+   "adjudicated_by": "coordination/messages/<coordinator>/<exact-message>.md"}
+]}
+```
+
+A quarantined message is excluded from delivery validation, newness, and acknowledgement —
+**a quarantined ACK acknowledges nothing** — and is listed in its own `quarantined` section
+instead, so the record is preserved rather than erased. Rules:
+
+- **Only the coordinator/integrator writes this file**, and every entry must cite a
+  published adjudication message that is itself authoritative and not quarantined.
+- A malformed file, an entry naming a path that is not on the authoritative refs, or a
+  self-adjudicating entry is a transport error (exit 2) and **suppresses nothing** — a
+  broken quarantine can never hide a real delivery failure.
+- Immutable-path collisions are never suppressed by quarantine.
+- Quarantine is for messages that are permanently invalid, not merely wrong or unwelcome.
+  Content that is still needed must be re-published validly by its sender *before* the
+  invalid original is quarantined, or it disappears from the transport's view.
 
 **Migration to v2 (one-time, per agent).** Run from your own worktree, substituting your
 agent id — shown here for `claude_1`, `local_codex_1`, and `chatgpt_1`:
