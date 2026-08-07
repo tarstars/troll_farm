@@ -1,22 +1,27 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-06T12:35:00Z
-- State: Banana R2 revised-FSM design review completed; `REVISION_REQUIRED` handoff published
-- Role: contributor/reviewer; no Arena mutation authority
-- Current task: none; awaiting coordinator ACK/action on `20260802-banana-restoration-r2`
-- Branch: `agent/chatgpt_1`
-- Assignment: `coordination/messages/local_claude_1/20260806T094600Z-20260802-banana-restoration-r2-policy.md`
-- Reviewed artifact: canonical `agent/claude_1` commit `46588155b2c4cd59d21f7334f407878b537ed83d`
-- Review artifact: `chatgpt_1/banana-restoration-r2-fsm-design-rereview-2026-08-06.md`
-- Review artifact commit: `3afd187fc80a6f0a4bbefb300ff8f12f3f601fd2`
-- Handoff: `coordination/messages/chatgpt_1/20260806T123500Z-20260802-banana-restoration-r2-handoff.md`
-- Handoff commit: `1018aa5a75821623c4297576ca5f49a9de28b68c`
-- Final disposition: `REVISION_REQUIRED`; implementation/host/value/Arena gates remain blocked
-- Accepted directions: aligned-prefix attribution, latched mother, finite claim intent, worker-two dormancy, explicit infeasibility intent, verification order
-- Blocking classes: atomic causality/S6/EV7, non-exact oracle/founding, carrier enforcement, fungible bank provenance, route infeasibility, absent exact manifest, indirect telemetry, §C overclaim
-- Last concrete progress UTC: 2026-08-06T12:35:00Z
-- Running job: none
-- Next checkpoint: exact-path ACK from `local_claude_1` and design-only correction routed to `claude_1`
-- Safety: no implementation/source/frozen edit, replay/map/range/bulk data, host/516/value gate, TestSession, submission, restore, or Arena mutation
+- Updated UTC: 2026-08-07T11:20:00Z
+- State: both assigned owner-directed reviews completed and handed off; awaiting coordinator ACK
+- Role: contributor/reviewer; no Banana implementation ownership and no Arena mutation authority
+- Current task: none
+- Canonical branch: `agent/chatgpt_1`
+- Completed task 1: `20260807-gate-architecture-review`
+- Architecture artifact: `chatgpt_1/gate-architecture-review-2026-08-07.md`
+- Architecture artifact commit: `8daad3f21ec2112f82d4b78cf275c9f90064a054`
+- Architecture handoff: `coordination/messages/chatgpt_1/20260807T104000Z-20260807-gate-architecture-review-handoff.md`
+- Architecture handoff commit: `a0c50664d0577e3edb5c8cfd8ba3cce94ea5b3b0`
+- Architecture verdict: `REVISION_REQUIRED`
+- Completed task 2: `20260807-banana-disposition-review-chatgpt_1`
+- Disposition artifact: `chatgpt_1/banana-work-disposition-review-2026-08-07.md`
+- Disposition artifact commit: `3bf465b9531ab058478f3d5a5452743da6f007de`
+- Disposition handoff: `coordination/messages/chatgpt_1/20260807T112000Z-20260807-banana-disposition-review-chatgpt_1-handoff.md`
+- Disposition handoff commit: `6f3f8e0e86eb316f8d1892787495e3c4d69c9ecb`
+- Independence: `local_codex_1`'s paired disposition was not read before publication
+- Main disposition: keep owner contract, exact oracle direction, reversible builder/seam, executable-enumeration scaffold, broad verification and red evidence; discard both candidates, v5-v11 behavior, verdict adapters, invalid runner, self-triggering CI, absent CLEAR and unbounded factory behavior
+- Best behavioral reference: v4 only after the parent/inner resolver itself is repaired to raw D-1=0 and D-4=0
+- Banana R2 work owner: `claude_1`
 - Coordinator/integrator and sole Arena controller: `local_claude_1`
+- Safety: no corpus/detector/gate/candidate/workflow/frozen-artifact edit; no host run, value protocol, TestSession, submission, restore, or Arena action
+- Running job: none
+- Next checkpoint: exact-path ACK/adjudication from `local_claude_1`
 - Arena controller: no
