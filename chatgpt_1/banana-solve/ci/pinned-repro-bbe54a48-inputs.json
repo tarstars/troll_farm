@@ -1,0 +1,50 @@
+{
+  "banana_activated_games": null,
+  "blocking_games": null,
+  "exit_code": 1,
+  "inputs": {
+    "candidate": {
+      "bytes": 84094,
+      "path": "/home/runner/work/troll_farm/troll_farm/chatgpt_1/banana-solve/candidate-banana-r2.min.rs",
+      "sha256": "bbe54a489c98222d2e382b112cf26034defaf6e287b0576a1c3282438deea951"
+    },
+    "conversion_race_oracle.py": {
+      "bytes": 30367,
+      "path": "/tmp/banana-pinned/claude_1/banana-restoration-r2/conversion_race_oracle.py",
+      "sha256": "e0896e3f7cb2c7ac4ced35350469d704432f8c7a1a8a4c9c4ce41495ca13ecf7"
+    },
+    "effective-config": {
+      "bytes": 1854,
+      "path": "/tmp/banana-pinned-cfg.json",
+      "sha256": "60d1f5426e125bf8f0c7287ea685c015c42758ae060574ab529acc47d41f390b"
+    },
+    "fuzz-panel-config.original.json": {
+      "bytes": 1803,
+      "path": "/tmp/banana-pinned/claude_1/pipeline/fuzz-panel-config.json",
+      "sha256": "686057b046b3b1e7f04253df31bc913a3895fbd9a3a2a6b26b361d44405dfc98"
+    },
+    "fuzz_panel.py": {
+      "bytes": 47093,
+      "path": "/tmp/banana-pinned/claude_1/pipeline/fuzz_panel.py",
+      "sha256": "45d40344b32c3a4b263a225748ddc3f2f1009c885bae69099374caef1a5ee64a"
+    },
+    "parent": {
+      "bytes": 62725,
+      "path": "/tmp/banana-pinned/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+      "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+    },
+    "result-json": {
+      "bytes": 258423,
+      "path": "/home/runner/work/troll_farm/troll_farm/chatgpt_1/banana-solve/ci/pinned-repro-bbe54a48.json",
+      "sha256": "7ae087dcd4b70367a218f1fc277a9eae64041c82ff8ceb832747351ed432ca86"
+    },
+    "trace_detectors.py": {
+      "bytes": 55061,
+      "path": "/tmp/banana-pinned/claude_1/banana-restoration-r2/trace_detectors.py",
+      "sha256": "59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209"
+    }
+  },
+  "orchard_inertness_checks_passed": null,
+  "recipe_commit": "b16f44d62caa9802253adaf255eb07b98273421b",
+  "verdict": "BLOCK"
+}

@@ -12,19 +12,19 @@
     "within_budget": true
   },
   "candidate": {
-    "bytes": 80934,
-    "path": "/home/runner/work/troll_farm/troll_farm/claude_1/banana-restoration-r2/candidate-banana-r2.min.rs",
-    "sha256": "eac2eb36b5f2abf0e92b62615584f3d9135055a09e6eec0bbee7c4e4a6a4f23b"
+    "bytes": 87336,
+    "path": "/home/runner/work/troll_farm/troll_farm/chatgpt_1/banana-solve/candidate-banana-r2.min.rs",
+    "sha256": "7ad9d784c6bd694170590b49ee475c70da8bd24d359fe6ceedf068d4e1b2fb49"
   },
   "insertions": [
     {
       "anchor": "pub struct SecureOrchardBot{",
       "block": "block-i1.rs",
-      "inserted_bytes": 17763,
-      "inserted_sha256": "c338afba06addb7f01b63579d1bf57bd72459093ad6cd0f4a862128d3d602243",
+      "inserted_bytes": 24165,
+      "inserted_sha256": "d597b0411a65d3be2df0dc2c055729d6baf5c7abd802a31317cbca22e5f25d1b",
       "mode": "before",
       "name": "I1",
-      "readable_block_bytes": 57534
+      "readable_block_bytes": 71033
     },
     {
       "anchor": "external_protected_tree:Option<Cell>,}",
@@ -72,6 +72,11 @@
       "readable_block_bytes": 983
     }
   ],
+  "owner_directed_patch": {
+    "base_block_sha": "347356a3347ba9b01667b071017e8ad1599b975e",
+    "patched_block": "/home/runner/work/troll_farm/troll_farm/chatgpt_1/banana-solve/generated/banana_blocks/block-i1.rs",
+    "policy": "safe-private-mother-v1"
+  },
   "parent": {
     "bytes": 62725,
     "path": "/home/runner/work/troll_farm/troll_farm/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
