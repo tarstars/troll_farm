@@ -319,7 +319,7 @@ rewritten or deleted.
 ### 10.1 Lint before you publish
 
 ```bash
-python3 scripts/lint_outbox.py --me <id> --fetch
+python3 scripts/lint_outbox.py --me <id> --fetch --staged
 ```
 
 Messages are immutable once pushed, and — verified 2026-08-07 — **publishing a correction
@@ -328,14 +328,22 @@ on the authoritative refs regardless of what supersedes it. A schema violation t
 sticks to the shared bus permanently and blocks `--mark` for every recipient until the
 coordinator adjudicates it. Catching it before the push is the only cheap fix.
 
-`lint_outbox.py` applies the same v2 rules as the sweep to the messages still in your
-worktree, minus canonical-branch presence (which an unpushed message cannot satisfy). It
-also refuses a message whose filename does not parse, and flags any already-published
-message whose worktree bytes differ from what was published — editing a published message
-rewrites the record instead of correcting it. Legacy messages are grandfathered per the
-rule above, so the v2 requirement binds new messages only; `--all` re-lints published ones.
-Exit 0 clean, 2 errors. Run it before every publish; it is cheap and needs no network
-without `--fetch`.
+`lint_outbox.py` applies the same v2 rules as the sweep to messages you have not published
+yet, minus canonical-branch presence (which an unpushed message cannot satisfy).
+
+**Use `--staged`.** Git publishes the *index*, not the worktree, so a message that is staged
+malformed and then fixed in the worktree passes a worktree-only lint and is committed
+malformed. `--staged` reads index blobs — the bytes a commit would actually deliver. Without
+it the lint is a convenience check and does not prove publish safety.
+
+It also reports: any message present in `HEAD` but absent from the proposed tree (committing
+that tree would delete a published message); any already-published message whose bytes
+differ from what was published, since editing one rewrites the record instead of correcting
+it; an immutable-path collision, matching the receiver; and any file in your namespace that
+is neither a message nor explicitly allowlisted (`README.md`). That last rule exists because
+a typo'd filename silently stops being a message — it is never delivered and never reported
+missing. Legacy messages are grandfathered only per the frozen baseline in §10.2; `--all`
+re-lints published ones. Exit 0 clean, 2 errors.
 
 ### 10.2 Quarantine — adjudicating a permanently invalid message
 
@@ -344,12 +352,25 @@ rewriting is closed (`docs/STATE.md` §3), the coordinator may record an adjudic
 `coordination/quarantine.json`:
 
 ```json
-{"schema_version": 1, "entries": [
+{"schema_version": 2, "entries": [
   {"path": "coordination/messages/<sender>/<exact-message>.md",
    "reason": "<why this is permanently invalid>",
-   "adjudicated_by": "coordination/messages/<coordinator>/<exact-message>.md"}
+   "adjudicated_by": "coordination/messages/<coordinator>/<exact-message>.md",
+   "target_blob": "<40-hex blob oid of the quarantined message>"}
 ]}
 ```
+
+**Authority is the coordinator's canonical ref**, `refs/remotes/origin/agent/<coordinator>`,
+never the worktree — otherwise two agents at the same fetched state get different inbox truth
+from their local checkouts, and any local edit suppresses a message. The sweep prints the ref
+and blob it used and warns when the local copy drifts.
+
+**An adjudication must actually adjudicate.** It must be a valid v2 message, authored by the
+coordinator, present on the coordinator's canonical ref, naming the exact target in a
+`quarantines: ["<exact path>", …]` front-matter array — and the entry must pin the target's
+blob. Existence of a path is never sufficient. Under the first implementation it was, and an
+unrelated message authored by the quarantined agent itself authorized suppression of its own
+fabricated closeout.
 
 A quarantined message is excluded from delivery validation, newness, and acknowledgement —
 **a quarantined ACK acknowledges nothing** — and is listed in its own `quarantined` section
@@ -364,6 +385,15 @@ instead, so the record is preserved rather than erased. Rules:
 - Quarantine is for messages that are permanently invalid, not merely wrong or unwelcome.
   Content that is still needed must be re-published validly by its sender *before* the
   invalid original is quarantined, or it disappears from the transport's view.
+
+**Frozen legacy baseline.** Rule 5 grandfathers pre-v2 messages, but only the exact paths
+pinned by blob in `coordination/legacy-baseline.json` on the coordinator's canonical ref
+(691 at the migration). Any message outside that baseline must be v2, enforced by the
+*receiver*. Otherwise omitting `schema_version` skips v2 validation entirely for anyone who
+does not voluntarily run the lint, and a backdated filename defeats a date cutoff. The
+baseline is generated once by `scripts/build_legacy_baseline.py` and is frozen — a
+legitimately new legacy message is a contradiction in terms, so regenerating it to clear a
+delivery error would reopen the hole it closes. `--check` audits drift.
 
 **Migration to v2 (one-time, per agent).** Run from your own worktree, substituting your
 agent id — shown here for `claude_1`, `local_codex_1`, and `chatgpt_1`:
