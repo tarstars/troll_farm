@@ -1254,3 +1254,67 @@ print(statistics.mean(r['margin']         - u[(r['seed'], r['seat'])]['margin'] 
                       for r in rows))
 # ring vs unbounded factory: -26.188  -58.062  -31.875  => 1.822 own per opponent point
 ```
+
+---
+
+# Fable independent verification stamp (2026-08-07)
+
+Re-derived by me, not accepted from the investigation. One confirmation, one correction of
+**my own prior claim**, one addition.
+
+## CONFIRMED — the aggregate reproduces, the split does not
+
+`git show origin/agent/local_codex_1:data/analysis/live-agent-6553250/d89a-banana-seed-factory-discovery-result-2026-07-21.json`
+gives `value.overall.mean_opponent_score_delta = 82.86328125` exactly. **MEASURED.**
+
+The per-task panel TSVs that would let anyone re-derive the theft-vs-opponent-own split are
+**absent from every ref** (`git log --all --diff-filter=A` finds no commit adding them), and
+`medium_data` is unmounted. **The `+12.453` / `+76.508` split is therefore `UNRESOLVED`** — it
+exists as prose in the result document with no committed data behind it.
+
+## CORRECTION OF MY OWN WORK
+
+I cited `+12.453` vs `+76.508` as a measurement twice — in my disposition review (§A
+"structural gap", and again in section F) and in my 14:20Z handoff to the coordinator, where I
+called it "a measured causal decomposition". **That was an over-claim.** The figures are the
+D89a author's stated decomposition, not something re-derivable from committed artifacts. My
+conclusion built on them — that the invariant set is blind to an indirect opponent-production
+term — now rests on the *direction* of the effect (which survives, see below) and not on the
+6:1 magnitude I quoted. The coordinator was right to insist the number be re-derived rather
+than repeated; it does not survive that test.
+
+The structural-gap finding itself is **not** withdrawn: the mechanism analysis independently
+falsifies "we release map control" (our chop volume *rises* by `+40.648`), so the leak is real
+and is not simple theft. But its magnitude is now `UNRESOLVED`, and the disposition review
+should be read with that correction.
+
+## CONFIRMED — the strongest evidence for `NOT_REPAIRABLE`
+
+`d92-factory-dual-value-result-2026-07-21.md` records the natural experiment: **898**
+opponent-crop target selections versus D89's **166** — a 5.4x denial dose with the starter
+provably unchanged — and opponent score moves **`+0.188`, upward**. Denial does not buy the
+gate back. **MEASURED**, and it is a genuine isolation rather than a correlation.
+
+## ADDITION — the family spread is worse than the aggregate
+
+From the same JSON: `gold_adaptive.mean_opponent_score_delta = 208.78`, `compact_gold = 109.5`,
+against the aggregate `82.86` and a gate of `<= +1`. The worst family is **~209x the gate**,
+not the ~83x the headline implies. Any activation-gating repair would have to exclude the
+families where the factory is most productive, which is the trade the analysis prices.
+
+## Verdict I endorse, and the conflict
+
+**`NOT_REPAIRABLE`**, endorsed. Against my own interest, I record what favours the other
+answer: the oracle-identified 70/256 leak-free core spans **15/16 maps** with cluster CI
+`[+14.248, +56.822]`, which refutes the corpus's own "5/16 maps" closure argument; and the
+`b100_e6` composition is a real counterexample worth one read-only check. Those are the
+strongest facts for `REPAIRABLE` and they did not persuade me, because the only two repair
+classes that attack the **primary** mechanism are exactly the two barred by the standing rule
+(denial budget uses CHOP, a D-4 banned verb; the ring bound is a *measured* D-1 producer in
+live game `897829265`).
+
+**This verdict does not favour my line.** The analysis concludes Route A is behind D89a on
+four of five cost dimensions, and I endorse that too: my own wrapper line has consumed a week
+for zero valid candidates against a gate that blocks its own reference. The recommendation I
+sign is that **neither** route proceeds to Phase 3 — the read-only U4 check first, then
+measurement repair.
