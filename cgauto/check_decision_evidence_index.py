@@ -35,6 +35,7 @@ REQUIRED = {
 }
 LINE_RE = re.compile(r"^lines (\d+)-(\d+)$")
 NUM_RE = re.compile(r"(?<![A-Za-z])[-+−±]?\d+(?:\.\d+)?(?:/\d+)?%?")
+INTEGRATION_REF = "refs/remotes/origin/main"
 
 class ValidationError(ValueError):
     pass
@@ -69,7 +70,9 @@ def resolve_pointer(value: Any, pointer: str) -> Any:
             raise ValidationError(f"unresolved JSON pointer: {pointer}")
     return cur
 
-def validate_source(repo: Path, source: dict[str, Any], context: str) -> Any:
+def validate_source(
+    repo: Path, source: dict[str, Any], context: str, warnings: list[str] | None = None
+) -> Any:
     if not isinstance(source, dict) or not source.get("path"):
         raise ValidationError(f"{context}: source.path required")
     rel = source["path"]
@@ -98,10 +101,22 @@ def validate_source(repo: Path, source: dict[str, Any], context: str) -> Any:
         lines = text.splitlines()
         if b > len(lines):
             raise ValidationError(f"{context}: line range exceeds {rel} ({len(lines)})")
-        return "\n".join(lines[a - 1:b])
-    if Path(rel).suffix.lower() != ".json":
-        raise ValidationError(f"{context}: JSON pointer requires .json source")
-    return resolve_pointer(json.loads(text), pointer)
+        result = "\n".join(lines[a - 1:b])
+    else:
+        if Path(rel).suffix.lower() != ".json":
+            raise ValidationError(f"{context}: JSON pointer requires .json source")
+        result = resolve_pointer(json.loads(text), pointer)
+    if warnings is not None:
+        if ref_exists(repo, INTEGRATION_REF) and not is_ancestor(repo, commit, INTEGRATION_REF):
+            warnings.append(f"{context}: commit {commit[:12]} pending integration into main")
+        quote = source.get("quote")
+        if quote:
+            current = repo / rel
+            if not current.exists() or quote not in current.read_text(
+                encoding="utf-8", errors="replace"
+            ):
+                warnings.append(f"{context}: quote drift — evidence no longer in current {rel}")
+    return result
 
 def numeric_tokens(text: str) -> list[str]:
     return NUM_RE.findall(text)
@@ -119,7 +134,9 @@ def require_constraints_identity(source: dict[str, Any], excerpt: Any, rid: str,
     if not isinstance(excerpt, str) or rid not in excerpt:
         raise ValidationError(f"{context}: CONSTRAINTS excerpt does not identify {rid}")
 
-def validate_record(repo: Path, record: dict[str, Any], ids: set[str]) -> None:
+def validate_record(
+    repo: Path, record: dict[str, Any], ids: set[str], warnings: list[str] | None = None
+) -> None:
     missing = sorted(REQUIRED - record.keys())
     if missing:
         raise ValidationError(f"{record.get('id','<unknown>')}: missing fields {missing}")
@@ -145,7 +162,7 @@ def validate_record(repo: Path, record: dict[str, Any], ids: set[str]) -> None:
         pf = record.get("premise_failure")
         if not isinstance(pf, dict) or not pf.get("false_premise") or not pf.get("refutation"):
             raise ValidationError(f"{rid}: void-premise requires premise_failure")
-        excerpt = validate_source(repo, pf.get("source", {}), f"{rid}.premise_failure")
+        excerpt = validate_source(repo, pf.get("source", {}), f"{rid}.premise_failure", warnings)
         require_constraints_identity(pf.get("source", {}), excerpt, rid, f"{rid}.premise_failure")
     elif "premise_failure" in record and record["premise_failure"]:
         raise ValidationError(f"{rid}: premise_failure only valid for void-premise")
@@ -158,7 +175,7 @@ def validate_record(repo: Path, record: dict[str, Any], ids: set[str]) -> None:
         if c["evidence_strength"] not in ALLOWED_STRENGTH:
             raise ValidationError(f"{ctx}: invalid evidence strength")
         has_arena |= c["evidence_strength"] == "arena_measured"
-        resolved = validate_source(repo, c["source"], ctx)
+        resolved = validate_source(repo, c["source"], ctx, warnings)
         if c["source"].get("locator"):
             require_excerpt_tokens(resolved, numeric_tokens(c["display"]), ctx)
             require_constraints_identity(c["source"], resolved, rid, ctx)
@@ -179,7 +196,7 @@ def validate_record(repo: Path, record: dict[str, Any], ids: set[str]) -> None:
         if not e.get("claim"):
             raise ValidationError(f"{rid}.textual_evidence[{i}]: claim required")
         ctx = f"{rid}.textual_evidence[{i}]"
-        excerpt = validate_source(repo, e.get("source", {}), ctx)
+        excerpt = validate_source(repo, e.get("source", {}), ctx, warnings)
         if e.get("source", {}).get("locator"):
             require_excerpt_tokens(excerpt, numeric_tokens(e["claim"]), ctx)
             require_constraints_identity(e.get("source", {}), excerpt, rid, ctx)
@@ -194,7 +211,7 @@ def validate_record(repo: Path, record: dict[str, Any], ids: set[str]) -> None:
     cp = record["constraint_projection"]
     if not cp.get("section") or not cp.get("bullet"):
         raise ValidationError(f"{rid}: constraint projection section/bullet required")
-    cp_excerpt = validate_source(repo, cp.get("source", {}), f"{rid}.constraint_projection")
+    cp_excerpt = validate_source(repo, cp.get("source", {}), f"{rid}.constraint_projection", warnings)
     bullet = cp["bullet"]
     binding_tokens: list[str] = []
     for c in record["decisive_claims"]:
@@ -212,7 +229,9 @@ def validate_record(repo: Path, record: dict[str, Any], ids: set[str]) -> None:
         if outcomes != {"mechanism":"successful","value":"immaterial","protocol_quality":"gate_design_error"}:
             raise ValidationError("D176a must preserve mechanism/value/gate-design distinctions")
 
-def validate_repository(repo: Path, require_pilot: bool = True, check_generated: bool = True) -> list[dict[str, Any]]:
+def validate_repository(
+    repo: Path, require_pilot: bool = True, check_generated: bool = True
+) -> tuple[list[dict[str, Any]], list[str]]:
     records = load_records(repo)
     ids = [r["id"] for r in records]
     if len(ids) != len(set(ids)):
@@ -220,8 +239,9 @@ def validate_repository(repo: Path, require_pilot: bool = True, check_generated:
     idset = set(ids)
     if require_pilot and idset != PILOT_IDS:
         raise ValidationError(f"pilot ids mismatch: missing={sorted(PILOT_IDS-idset)} extra={sorted(idset-PILOT_IDS)}")
+    warnings: list[str] = []
     for r in records:
-        validate_record(repo, r, idset)
+        validate_record(repo, r, idset, warnings)
     if check_generated:
         expected = expected_outputs(records)
         for name, content in expected.items():
@@ -238,7 +258,7 @@ def validate_repository(repo: Path, require_pilot: bool = True, check_generated:
             raise ValidationError("manifest void count mismatch")
         if manifest.get("closure_count_excluding_void") != sum(r["status"] in {"closed","invalidated"} for r in records):
             raise ValidationError("manifest closure count mismatch")
-    return records
+    return records, warnings
 
 def main() -> int:
     p = argparse.ArgumentParser()
@@ -246,13 +266,16 @@ def main() -> int:
     p.add_argument("--no-generated-check", action="store_true")
     p.add_argument("--allow-subset", action="store_true")
     args = p.parse_args()
-    records = validate_repository(
+    records, warnings = validate_repository(
         args.repo_root,
         require_pilot=not args.allow_subset,
         check_generated=not args.no_generated_check,
     )
+    for w in warnings:
+        print(f"warning: {w}", file=sys.stderr)
     print(json.dumps({
         "records": len(records),
+        "warnings": len(warnings),
         "closures_excluding_void": sum(r["status"] in {"closed","invalidated"} for r in records),
         "void_premise": sum(r["status"]=="void-premise" for r in records),
         "status": "ok",

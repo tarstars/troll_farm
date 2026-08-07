@@ -156,7 +156,7 @@ def test_void_premise_is_not_counted_as_closure(tmp_path):
         "source": {"path":"source.md","locator":"lines 1-2"},
     }
     repo = make_repo(tmp_path, r)
-    records = validate_repository(repo, require_pilot=False, check_generated=True)
+    records, _warnings = validate_repository(repo, require_pilot=False, check_generated=True)
     manifest = json.loads((repo/"docs/evidence/generated/manifest.json").read_text())
     assert len(records) == 1
     assert manifest["void_premise_count"] == 1
@@ -295,3 +295,36 @@ def test_missing_tokens_at_pinned_commit_is_hard_error(tmp_path):
     build(repo)
     with pytest.raises(ValidationError, match="omits content tokens"):
         validate_repository(repo, require_pilot=False, check_generated=False)
+
+def test_quote_drift_warns_but_does_not_fail(tmp_path):
+    repo = make_repo(tmp_path, build_generated=False)
+    sha = git_init_and_commit(repo)
+    record = base_record()
+    record["textual_evidence"][0]["source"] = {
+        "path": "source.md", "commit": sha, "locator": "lines 2-2",
+        "quote": "Fixture text.",
+    }
+    for src in (record["constraint_projection"]["source"],
+                record["decisive_claims"][0]["source"]):
+        src.setdefault("commit", sha)
+    write_record(repo, record)
+    (repo / "source.md").write_text("Fixture value is +1.0 on 4/4 tasks. [T1]\nREWORDED.\n")
+    build(repo)
+    _records, warnings = validate_repository(repo, require_pilot=False, check_generated=True)
+    assert any("drift" in w for w in warnings), warnings
+
+def test_quote_present_in_current_file_produces_no_drift_warning(tmp_path):
+    repo = make_repo(tmp_path, build_generated=False)
+    sha = git_init_and_commit(repo)
+    record = base_record()
+    record["textual_evidence"][0]["source"] = {
+        "path": "source.md", "commit": sha, "locator": "lines 2-2",
+        "quote": "Fixture text.",
+    }
+    for src in (record["constraint_projection"]["source"],
+                record["decisive_claims"][0]["source"]):
+        src.setdefault("commit", sha)
+    write_record(repo, record)
+    build(repo)
+    _records, warnings = validate_repository(repo, require_pilot=False, check_generated=True)
+    assert not [w for w in warnings if "drift" in w], warnings
