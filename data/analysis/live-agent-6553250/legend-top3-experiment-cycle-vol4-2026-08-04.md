@@ -124,3 +124,32 @@ slot divergence is causal only on an aligned prefix; and unconditional resident 
 with the carrier-progress invariant. Post-release veto scope, impossible-commitment exits, and the
 exact bounded-enumeration manifest are also open. Full report:
 `banana-restoration-r2-fsm-design-review-2026-08-06.md`.
+
+## 2026-08-07 — resident denial scoring: the starter is the denial unit
+
+Read-only source audit answering an owner question ("we choose one of lemon or plum and
+concentrate on chopping it out — is that correct?"). Partly: `focus_type` picks ONE species,
+by smaller summed BFS distance from OUR shack, frozen for the game; the denial term is then an
+additive `900/(1+manhattan-to-opponent-shack)` bonus on top of a `1000*wood/turns` base, not a
+clearing phase, with no completion condition and no revision.
+
+Because `wood` is capped by carry capacity and chop turns scale with chop power, the base term
+differs ~8x between worker classes while the bonus is identical. Crossover distance — where the
+bonus stops outweighing wood efficiency — is **16-21 cells for the starter (1/1/1) but only 1-5
+for a trained worker (3/3/3)**. An unassigned division of labour follows: the starter is the
+denial unit, the trained worker the economy unit, and the allocation is inverted relative to
+capability. Pulled to a size-4 focus tree by the opponent shack, the starter spends 25 turns to
+bank one wood; the trained worker would take 9 turns for three. This is a visible mechanism for
+the previously measured "pre-fruit denial recovers 18.8 opponent points while forfeiting 81.5
+own".
+
+Also recorded: `opponent_trolls <= 2` is already a scale-conditioned abort, so the owner's
+proposed give-up rule exists as a trigger; what is missing is a destination, since the abort
+falls back to undifferentiated wood maximisation. This qualifies B3.1's "the resident never
+conditions on it" — it does condition here, only to switch denial off.
+
+Descriptive only; reopens nothing. N6 already closed the weight ("keep 900"), and H4 closed
+denial as bill prevention (`NO_MATERIAL_DENIABLE_BILL`, strict rate 0.0). Source
+`fff6669b...` unmodified. Full report: `resident-denial-scoring-audit-2026-08-07.md`;
+reproduce with `python3 cgauto/analyze_resident_denial_scoring.py`; drift guard
+`tests/test_analyze_resident_denial_scoring.py` (9 tests).
