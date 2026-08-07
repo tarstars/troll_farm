@@ -37,9 +37,28 @@ information and cannot certify anything.
 
 **(b) The dominant terms were measurement artifacts, not defects.** P4 counted the
 post-completion coast to the sim horizon as a liveness stall — **198 of 204 stall windows
-ended at turn 199**, the last turn. After calibration P4 dropped 204 → 30. D-9 fires
-**exactly 74 times in all three runs** — floor, `bbe54a48`, and tip alike — i.e. it is
-completely insensitive to which bot is under test.
+ended at turn 199**, the last turn. After calibration P4 dropped 204 → 30. D-9 blocks
+**exactly 74 games in all three runs** — floor, `bbe54a48`, and tip alike — i.e. its
+contribution to the verdict is insensitive to which bot is under test.
+
+> **Units note (reconciliation, 2026-08-07).** Two correct counts of the same run differ by
+> unit: **games** (report rows; a game blocks once however many episodes it contains) and
+> **episodes** (the sum of per-game `count`). The coordinator's independently-run floor
+> reports D-9 = 196 and D-1 = 35 in *episodes*; my 74 and 32 are the same runs in *games*.
+> Both are right. Verified across all three runs:
+>
+> | detector | floor games / episodes | `bbe54a48` | tip `7ad9d784` |
+> |---|---|---|---|
+> | D-9 | 74 / 196 | 74 / 196 | 74 / **176** |
+> | D-1 | 32 / 35 | 27 / 29 | 0 / 0 |
+> | D-4 | 6 / 6 | 6 / 6 | 35 / 46 |
+>
+> This refines — and partly weakens — the claim in §5. D-9 is invariant in its **gating
+> contribution** (74 games in every run, so it can never change an accept/reject decision),
+> but it is *not* strictly invariant in episodes: the tip differs (176 vs 196). The
+> zero-information argument therefore holds **for the verdict**, which is what the tier
+> rule keys on, and not as a claim about the raw episode stream. Everywhere this document
+> says "variance", it means variance in blocking games.
 
 The prior parent-relative exemptions were not a bad rule so much as a *mask* over these
 artifacts. Removing them (owner ruling, 2026-08-06) was correct and did its job: it made
@@ -105,14 +124,16 @@ detector cannot be assigned a tier by hand.
 
 ### 4.3 Current classification from measured data
 
+All counts are **blocking games** (see the units note in §1); episodes in parentheses.
+
 | detector | floor | `bbe54a48` | tip | variance | tier |
 |---|---|---|---|---|---|
-| D-9 second-worker TRAIN displacement | 74 | 74 | 74 | **0** | **Q** |
-| D-1 A→B→A movement | 32 | 27 | 0 | yes | B |
-| D-4 abandoned carried wood | 6 | 6 | 35 | yes | B |
-| D-6 opponent-favored fruit | 9 | 9 | 0 | yes | B |
-| D-5 unbounded planting | 1 | 1 | 0 | yes | B |
-| D-7 lost harvested fruit | 0 | 2 | 35 | yes | **A** |
+| D-9 second-worker TRAIN displacement | 74 (196) | 74 (196) | 74 (176) | **0 games** | **Q** |
+| D-1 A→B→A movement | 32 (35) | 27 (29) | 0 (0) | yes | B → **see §6a** |
+| D-4 abandoned carried wood | 6 (6) | 6 (6) | 35 (46) | yes | B → **see §6a** |
+| D-6 opponent-favored fruit | 9 (15) | 9 (15) | 0 (0) | yes | B |
+| D-5 unbounded planting | 1 (1) | 1 (1) | 0 (0) | yes | B |
+| D-7 lost harvested fruit | 0 (0) | 2 (2) | 35 (67) | yes | **A** |
 | D-2 repeated PICK/DROP | 0 | 0 | 0 | 0 | **U** |
 | D-3 same-target contention | 0 | 0 | 0 | 0 | **U** |
 | D-8 diagonal-mother chop | 0 | 0 | 0 | 0 | **U** |
@@ -181,6 +202,32 @@ integrator runs as a host gate, and it encodes spec invariants I-16..I-18; chang
 changes what every agent's gate accepts. Detector semantics are integrator/owner scope by
 standing convention. Referred here for decision.
 
+## 6a. Self-reported incompatibility with the standing strict rule
+
+The coordinator's policy `20260807T093500Z` requires any proposal element that would weaken,
+waive, or reclassify **D-1** or **D-4** to be reported as incompatible rather than argued.
+**One element of this proposal does exactly that, and I am flagging it against my own work:**
+
+§4.3 classifies D-1 (floor 32 games) and D-4 (floor 6 games) as **Tier B**, which would gate
+them on per-map delta against the floor and permit ratified waivers. Under owner ruling
+2026-08-07 (raw `D-1 == 0`, `D-4 == 0`, no inherited-parent or aligned-prefix exemption)
+that classification is **not available**. The tiering machinery is descriptive — it reports
+what the evidence shows — but it does not have the authority to place D-1 or D-4 anywhere
+that tolerates a nonzero count.
+
+**Resolution adopted here, pending review:** D-1 and D-4 are **carved out of Tier B by
+ruling**. They gate raw at zero, no waiver-ledger entry may reference them, and the FST
+reports their floor purely as a *repair backlog*, not as a tolerance. Tier B therefore
+applies only to detectors the strict rule does not name (D-5, D-6, P4, P2). The rest of the
+architecture — floor self-test, evidence-assigned tiers, per-map delta, verdict manifest,
+UNPROVEN reporting — is unaffected and remains compatible with the strict rule.
+
+The consequence is the one the owner has already accepted: **the parent lineage must be
+repaired.** Reaching raw D-1 = 0 and D-4 = 0 on delivered bytes means eliminating the
+parent's own 32 D-1 games (35 episodes) and 6 D-4 games (6 episodes) — work on the inner
+policy, not on the banana wrapper. Scoping that honestly is a separate deliverable I owe as
+work owner, and an infeasibility finding on the current parent is an admissible outcome.
+
 ## 6. What this does NOT change
 
 - No detector predicate is weakened. Tiering changes *how a detector may gate*, never what
@@ -195,7 +242,11 @@ standing convention. Referred here for decision.
 
 1. **Is the waiver ledger meaningfully different from what was banned?** I argue yes
    (finite, enumerated, hash-pinned, ratified vs unbounded, invisible, runtime). This is the
-   proposal's load-bearing claim and the one I most want attacked.
+   proposal's load-bearing claim and the one I most want attacked. **Scope after §6a:** the
+   ledger may never reference D-1 or D-4, so the question is whether it is defensible for
+   the detectors the strict rule does not name (D-5, D-6, P4, P2) — or whether, once D-1/D-4
+   are carved out, it earns too little to justify the mechanism at all. A verdict of
+   "drop the ledger entirely" is a legitimate review outcome.
 2. **Should Tier B gate on per-map delta ≤ 0, or strictly = 0 (no new failure anywhere,
    ever)?** Delta ≤ 0 permits trading a failure on map X for a fix on map Y.
 3. **Who owns `trace_detectors.py` changes** — and is the D-9 affordability fix in scope for
