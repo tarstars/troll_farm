@@ -25,6 +25,7 @@ SCRIPT = REPO_ROOT / "scripts" / "inbox_sweep.py"
 ME = "local_codex_1"
 PEER = "claude_1"
 THIRD = "chatgpt_1"
+COORDINATOR = "local_claude_1"
 
 
 # ---------------------------------------------------------------------------
@@ -119,10 +120,15 @@ class TransportRepo:
             cwd=self.work,
             capture_output=True,
             text=True,
+            env=dict(os.environ, TROLL_FARM_COORDINATOR=COORDINATOR),
         )
 
     def seen_file(self, me: str = ME) -> pathlib.Path:
         return self.work / me / "inbox-seen.json"
+
+    def blob_oid(self, path: str) -> str:
+        sender = path[len("coordination/messages/"):].split("/", 1)[0]
+        return self._git("rev-parse", f"origin/agent/{sender}:{path}")
 
 
 @pytest.fixture()
@@ -795,14 +801,62 @@ def test_legacy_repository_messages_parse_without_mutation():
 
 # ---------------------------------------------------------------------------
 # 18. quarantine: coordinator-adjudicated invalid messages stop poisoning the
-#     transport (suppressed from delivery errors / selection, listed loudly)
+#     transport. Authority is the coordinator's canonical ref, and an
+#     adjudication must actually adjudicate the target (findings TQ-1/TQ-2).
 # ---------------------------------------------------------------------------
 
-def write_quarantine(repo: TransportRepo, entries: list[dict], raw: str | None = None):
+def publish_adjudication(
+    repo: TransportRepo,
+    quarantines: tuple[str, ...],
+    stamp: str = "20260805T105000Z",
+    task: str = "task-q",
+    sender: str = COORDINATOR,
+) -> str:
+    """Publish a coordinator policy that machine-names the paths it quarantines.
+
+    Addressed to the peer, not to ME: an adjudication is itself an ack-required
+    policy, and routing it to ME would add an unacknowledged item to the very
+    inbox under test.
+    """
+    path = msg_path(sender, stamp, task, "policy")
+    body = v2_message(
+        path, kind="policy", task=task, sender=sender, to=PEER,
+        extra_fields={"quarantines": json.dumps(list(quarantines))},
+    )
+    repo.commit(f"agent/{sender}", {path: body})
+    return path
+
+
+def publish_quarantine(
+    repo: TransportRepo,
+    entries: list[dict],
+    raw: str | None = None,
+    branch: str | None = None,
+):
+    """Quarantine is authoritative only on the coordinator's canonical ref."""
     payload = raw if raw is not None else json.dumps(
-        {"schema_version": 1, "entries": entries}, indent=2
+        {"schema_version": 2, "entries": entries}, indent=2
     ) + "\n"
-    repo.write_worktree("coordination/quarantine.json", payload)
+    repo.commit(branch or f"agent/{COORDINATOR}",
+                {"coordination/quarantine.json": payload})
+
+
+def quarantine_entry(repo: TransportRepo, path: str, adjudicated_by: str,
+                     reason: str = "schema-invalid, adjudicated") -> dict:
+    return {
+        "path": path,
+        "reason": reason,
+        "adjudicated_by": adjudicated_by,
+        "target_blob": repo.blob_oid(path),
+    }
+
+
+def publish_baseline(repo: TransportRepo, paths: dict[str, str]):
+    repo.commit(f"agent/{COORDINATOR}", {
+        inbox_sweep.LEGACY_BASELINE_FILE: json.dumps(
+            {"schema_version": 1, "paths": paths}, indent=2
+        ) + "\n"
+    })
 
 
 def test_quarantined_message_suppresses_errors_and_recovers_exit(repo):
@@ -812,10 +866,8 @@ def test_quarantined_message_suppresses_errors_and_recovers_exit(repo):
     assert broken.returncode == 2
     assert "unknown v2 message kind" in broken.stdout
 
-    adj = publish_v2(repo, ME, "20260805T110000Z", "task-q", "policy", to=PEER)
-    write_quarantine(repo, [
-        {"path": bad, "reason": "schema-invalid, adjudicated", "adjudicated_by": adj},
-    ])
+    adj = publish_adjudication(repo, (bad,))
+    publish_quarantine(repo, [quarantine_entry(repo, bad, adj)])
 
     result = repo.sweep("--me", ME)
     c = counts(result.stdout)
@@ -828,33 +880,122 @@ def test_quarantined_message_suppresses_errors_and_recovers_exit(repo):
     quarantined_section = result.stdout.split("quarantined (")[1]
     assert bad in quarantined_section
     assert "schema-invalid, adjudicated" in quarantined_section
+    # TQ-1: the authority actually used must be reported.
+    assert f"{inbox_sweep.REMOTE_PREFIX}agent/{COORDINATOR}" in result.stdout
 
     marked = repo.sweep("--me", ME, "--mark")
     assert marked.returncode == 0
     assert repo.seen_file().exists()
 
 
+# --- TQ-1: quarantine truth comes from the coordinator ref, not the worktree ---
+
+def test_worktree_quarantine_alone_suppresses_nothing(repo):
+    bad = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "finding",
+                     requires_ack=False)
+    adj = publish_adjudication(repo, (bad,))
+    # Structurally perfect, but only in the local worktree.
+    repo.write_worktree("coordination/quarantine.json", json.dumps(
+        {"schema_version": 2,
+         "entries": [quarantine_entry(repo, bad, adj)]}, indent=2) + "\n")
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert counts(result.stdout)["quarantined"] == 0
+    assert counts(result.stdout)["delivery errors"] >= 1
+
+
+def test_local_quarantine_drift_from_authority_is_loud(repo):
+    bad = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "finding",
+                     requires_ack=False)
+    adj = publish_adjudication(repo, (bad,))
+    publish_quarantine(repo, [quarantine_entry(repo, bad, adj)])
+    repo.write_worktree("coordination/quarantine.json",
+                        '{"schema_version": 2, "entries": []}\n')
+
+    result = repo.sweep("--me", ME)
+    assert "local quarantine differs from the authoritative blob" in result.stdout
+    # The authoritative copy still governs.
+    assert counts(result.stdout)["quarantined"] == 1
+
+
+def test_quarantine_on_a_non_coordinator_ref_is_ignored(repo):
+    bad = publish_v2(repo, THIRD, "20260805T100000Z", "task-a", "finding",
+                     requires_ack=False)
+    adj = publish_adjudication(repo, (bad,))
+    publish_quarantine(repo, [quarantine_entry(repo, bad, adj)],
+                       branch=f"agent/{THIRD}")
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert counts(result.stdout)["quarantined"] == 0
+
+
+# --- TQ-2: the adjudication must actually adjudicate the target ---
+
+def test_unrelated_existing_message_cannot_authorize_quarantine(repo):
+    # chatgpt_1's reproduction: mere existence of a path must not suppress.
+    bad = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "finding",
+                     requires_ack=False)
+    unrelated = publish_v2(repo, COORDINATOR, "20260805T101000Z", "other", "update",
+                           to=PEER, requires_ack=False)
+    publish_quarantine(repo, [quarantine_entry(repo, bad, unrelated)])
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert counts(result.stdout)["quarantined"] == 0
+    assert "does not name" in result.stdout
+    assert counts(result.stdout)["delivery errors"] >= 1
+
+
+def test_adjudication_from_a_non_coordinator_is_rejected(repo):
+    bad = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "finding",
+                     requires_ack=False)
+    # A peer publishes a well-formed adjudication naming the target.
+    adj = publish_adjudication(repo, (bad,), sender=THIRD)
+    publish_quarantine(repo, [quarantine_entry(repo, bad, adj)])
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert counts(result.stdout)["quarantined"] == 0
+    assert "not authored by the coordinator" in result.stdout
+
+
 def test_quarantine_entry_with_unknown_adjudication_message_fails(repo):
     bad = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "finding",
                      requires_ack=False)
-    ghost = msg_path(ME, "20260805T110000Z", "task-q", "policy")
-    write_quarantine(repo, [
-        {"path": bad, "reason": "r", "adjudicated_by": ghost},
+    ghost = msg_path(COORDINATOR, "20260805T110000Z", "task-q", "policy")
+    publish_quarantine(repo, [
+        {"path": bad, "reason": "r", "adjudicated_by": ghost,
+         "target_blob": repo.blob_oid(bad)},
     ])
 
     result = repo.sweep("--me", ME)
     assert result.returncode == 2
-    assert counts(result.stdout)["quarantine errors"] == 1
+    assert counts(result.stdout)["quarantine errors"] >= 1
     assert "adjudicated_by not found on any authoritative remote ref" in result.stdout
-    # A broken quarantine file must not suppress anything.
     assert counts(result.stdout)["delivery errors"] >= 1
 
 
+def test_target_blob_must_match_the_quarantined_message(repo):
+    bad = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "finding",
+                     requires_ack=False)
+    adj = publish_adjudication(repo, (bad,))
+    entry = quarantine_entry(repo, bad, adj)
+    entry["target_blob"] = "0" * 40
+    publish_quarantine(repo, [entry])
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert "target_blob does not match" in result.stdout
+
+
 def test_quarantine_entry_for_nonexistent_message_path_fails(repo):
-    adj = publish_v2(repo, ME, "20260805T110000Z", "task-q", "policy", to=PEER)
     ghost = msg_path(PEER, "20260801T000000Z", "task-x", "update")
-    write_quarantine(repo, [
-        {"path": ghost, "reason": "typo", "adjudicated_by": adj},
+    adj = publish_adjudication(repo, (ghost,))
+    publish_quarantine(repo, [
+        {"path": ghost, "reason": "typo", "adjudicated_by": adj,
+         "target_blob": "0" * 40},
     ])
 
     result = repo.sweep("--me", ME)
@@ -865,7 +1006,7 @@ def test_quarantine_entry_for_nonexistent_message_path_fails(repo):
 def test_malformed_quarantine_file_fails_loudly(repo):
     publish_v2(repo, PEER, "20260805T100000Z", "task-a", "update",
                requires_ack=False)
-    write_quarantine(repo, [], raw="{not json\n")
+    publish_quarantine(repo, [], raw="{not json\n")
 
     result = repo.sweep("--me", ME)
     assert result.returncode == 2
@@ -875,9 +1016,9 @@ def test_malformed_quarantine_file_fails_loudly(repo):
 def test_quarantine_missing_entry_fields_fails_loudly(repo):
     publish_v2(repo, PEER, "20260805T100000Z", "task-a", "update",
                requires_ack=False)
-    write_quarantine(repo, raw=json.dumps(
-        {"schema_version": 1, "entries": [{"path": "x", "reason": ""}]}
-    ) + "\n", entries=[])
+    publish_quarantine(repo, [], raw=json.dumps(
+        {"schema_version": 2, "entries": [{"path": "x", "reason": ""}]}
+    ) + "\n")
 
     result = repo.sweep("--me", ME)
     assert result.returncode == 2
@@ -891,9 +1032,9 @@ def test_quarantined_ack_of_mine_acknowledges_nothing(repo):
     clean = repo.sweep("--me", ME)
     assert clean.returncode == 0
 
-    adj = publish_v2(repo, ME, "20260805T120000Z", "task-q", "policy", to=PEER)
-    write_quarantine(repo, [
-        {"path": ack, "reason": "fabricated verdict", "adjudicated_by": adj},
+    adj = publish_adjudication(repo, (ack,), stamp="20260805T120000Z")
+    publish_quarantine(repo, [
+        quarantine_entry(repo, ack, adj, reason="fabricated verdict"),
     ])
 
     result = repo.sweep("--me", ME)
@@ -907,10 +1048,11 @@ def test_collision_on_quarantined_path_still_fails(repo):
     body = v2_message(path, kind="update", task="task-a", sender=PEER,
                       requires_ack=False)
     repo.commit(f"agent/{PEER}", {path: body})
+    oid = repo.blob_oid(path)
     repo.commit(f"agent/{PEER}-side", {path: body + "tampered\n"})
-    adj = publish_v2(repo, ME, "20260805T110000Z", "task-q", "policy", to=PEER)
-    write_quarantine(repo, [
-        {"path": path, "reason": "r", "adjudicated_by": adj},
+    adj = publish_adjudication(repo, (path,))
+    publish_quarantine(repo, [
+        {"path": path, "reason": "r", "adjudicated_by": adj, "target_blob": oid},
     ])
 
     result = repo.sweep("--me", ME)
@@ -921,8 +1063,9 @@ def test_collision_on_quarantined_path_still_fails(repo):
 def test_self_adjudicated_quarantine_entry_fails(repo):
     bad = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "finding",
                      requires_ack=False)
-    write_quarantine(repo, [
-        {"path": bad, "reason": "r", "adjudicated_by": bad},
+    publish_quarantine(repo, [
+        {"path": bad, "reason": "r", "adjudicated_by": bad,
+         "target_blob": repo.blob_oid(bad)},
     ])
 
     result = repo.sweep("--me", ME)
@@ -930,6 +1073,57 @@ def test_self_adjudicated_quarantine_entry_fails(repo):
     assert "adjudicated_by is itself quarantined" in result.stdout
 
 
+# --- TQ-3: legacy grandfathering is a pinned baseline, not an open category ---
+
+def test_new_legacy_message_outside_the_baseline_is_a_delivery_error(repo):
+    # A frozen baseline exists; a sender then publishes a NEW no-schema message
+    # and skips the advisory lint. The receiver must catch it.
+    old = msg_path(PEER, "20260101T000000Z", "task-old", "handoff")
+    repo.commit(f"agent/{PEER}", {old: legacy_message("task-old")})
+    publish_baseline(repo, {old: repo.blob_oid(old)})
+    new = msg_path(PEER, "20260805T100000Z", "task-a", "handoff")
+    repo.commit(f"agent/{PEER}", {new: legacy_message("task-a")})
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert "not in the frozen legacy baseline" in result.stdout
+    assert new in result.stdout
+
+
+def test_backdated_filename_does_not_defeat_the_baseline(repo):
+    # A date cutoff would be defeated by backdating; exact-path pinning is not.
+    old = msg_path(PEER, "20260101T000000Z", "task-old", "handoff")
+    repo.commit(f"agent/{PEER}", {old: legacy_message("task-old")})
+    publish_baseline(repo, {old: repo.blob_oid(old)})
+    backdated = msg_path(PEER, "20250101T000000Z", "task-ancient", "handoff")
+    repo.commit(f"agent/{PEER}", {backdated: legacy_message("task-ancient")})
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert "not in the frozen legacy baseline" in result.stdout
+
+
+def test_baselined_legacy_message_is_still_accepted(repo):
+    path = msg_path(PEER, "20260805T100000Z", "task-a", "handoff")
+    repo.commit(f"agent/{PEER}", {path: legacy_message("task-a")})
+    publish_baseline(repo, {path: repo.blob_oid(path)})
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 1  # valid legacy, merely unacknowledged
+    assert counts(result.stdout)["delivery errors"] == 0
+
+
+def test_baselined_legacy_message_with_changed_bytes_is_rejected(repo):
+    path = msg_path(PEER, "20260805T100000Z", "task-a", "handoff")
+    repo.commit(f"agent/{PEER}", {path: legacy_message("task-a")})
+    publish_baseline(repo, {path: "0" * 40})
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert "legacy baseline blob mismatch" in result.stdout
+
+
+# ---------------------------------------------------------------------------
 # ---------------------------------------------------------------------------
 # Retained legacy parsing unit tests (unchanged semantics)
 # ---------------------------------------------------------------------------
