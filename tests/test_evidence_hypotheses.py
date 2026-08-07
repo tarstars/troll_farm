@@ -10,6 +10,7 @@ if str(ROOT) not in sys.path:
 from cgauto.evidence_hypotheses import (
     HypothesisError, load_hypotheses, validate_hypothesis,
 )
+from cgauto.build_decision_evidence_index import render_open_questions
 
 START = "<!-- HYPOTHESIS-JSON"
 END = "END-HYPOTHESIS-JSON -->"
@@ -66,3 +67,27 @@ def test_graduation_target_must_exist(tmp_path):
     h["graduated_to"] = "NOPE"
     with pytest.raises(HypothesisError, match="unknown record"):
         validate_hypothesis(h, record_ids={"D101"})
+
+def test_load_hypotheses_returns_empty_for_absent_directory(tmp_path):
+    assert not (tmp_path / "docs/evidence/hypotheses").exists()
+    assert load_hypotheses(tmp_path) == []
+
+def test_load_hypotheses_returns_empty_for_empty_directory(tmp_path):
+    (tmp_path / "docs/evidence/hypotheses").mkdir(parents=True)
+    assert load_hypotheses(tmp_path) == []
+
+def test_open_questions_render_is_deterministic_and_lists_open_first(tmp_path):
+    h1 = base_hypothesis()
+    h2 = base_hypothesis(); h2["id"] = "Q2"; h2["status"] = "void"
+    first = render_open_questions([h1, h2])
+    second = render_open_questions([h1, h2])
+    assert first == second
+    assert "Q1" in first and "Q2" in first
+    assert first.index("Q1") < first.index("Q2")
+    assert "Is v4 the best rebuild base?" in first
+
+def test_open_questions_render_handles_empty_list(tmp_path):
+    rendered = render_open_questions([])
+    assert "Live questions: **0**" in rendered
+    assert "Total entries: **0**" in rendered
+    assert rendered.endswith("\n") and not rendered.endswith("\n\n")

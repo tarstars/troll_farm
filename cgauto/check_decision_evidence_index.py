@@ -12,6 +12,7 @@ from cgauto.build_decision_evidence_index import load_records, expected_outputs
 from cgauto.evidence_git import (
     COMMIT_RE, GitLookupError, commit_resolves, is_ancestor, read_blob, ref_exists,
 )
+from cgauto.evidence_hypotheses import HypothesisError, load_hypotheses, validate_hypothesis
 
 ALLOWED_STATUS = {"proposed","accepted","authorized","closed","invalidated","diagnosis","void-premise","superseded","declined"}
 ALLOWED_ACCEPTANCE = {"proposed", "accepted"}
@@ -243,8 +244,14 @@ def validate_repository(
     warnings: list[str] = []
     for r in records:
         validate_record(repo, r, idset, warnings)
+    hypotheses = load_hypotheses(repo)
+    for h in hypotheses:
+        try:
+            validate_hypothesis(h, idset)
+        except HypothesisError as exc:
+            raise ValidationError(str(exc)) from None
     if check_generated:
-        expected = expected_outputs(records)
+        expected = expected_outputs(records, hypotheses)
         for name, content in expected.items():
             path = repo / "docs/evidence/generated" / name
             if not path.exists() or path.read_text(encoding="utf-8") != content:
@@ -259,6 +266,8 @@ def validate_repository(
             raise ValidationError("manifest void count mismatch")
         if manifest.get("closure_count_excluding_void") != sum(r["status"] in {"closed","invalidated"} for r in records):
             raise ValidationError("manifest closure count mismatch")
+        if manifest.get("hypothesis_count") != len(hypotheses):
+            raise ValidationError("manifest hypothesis_count mismatch")
     return records, warnings
 
 def main() -> int:
