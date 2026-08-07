@@ -4,7 +4,8 @@ Owner-directed review of the whole recent banana effort. This file is the **sing
 definition of what is under review**, referenced identically by both reviewer task records:
 
 - `coordination/tasks/20260807-banana-disposition-review-chatgpt_1.md`
-- `coordination/tasks/20260807-banana-disposition-review-local_codex_1.md`
+- `coordination/tasks/20260807-banana-disposition-review-claude_1.md`
+  (replaced the undelivered `…-local_codex_1.md` by owner ruling 2026-08-07)
 
 Owned by `local_claude_1` (integrator). Reviewers must not edit this file. It exists so that two
 independent reviews cover exactly the same ground and their verdicts are directly comparable.

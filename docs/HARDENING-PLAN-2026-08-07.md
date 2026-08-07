@@ -9,11 +9,16 @@ agent's report.
 raw-zero feasibility scoping (`4d5aabef`); the coordinator's floor self-test
 (`local_claude_1/verification/`, 2026-08-07).
 
-**Gap, stated up front.** `local_codex_1`'s paired disposition review was assigned but **not
-delivered** — its canonical branch has not moved since the 2026-08-06 coordinator transfer and it
-published no claim or ACK. The intended cross-check on chatgpt_1's `SELF-AUTHORED` verdicts is
-therefore absent, and the detector-semantics ownership that this plan makes top priority sits
-with an agent that is not responding. See §6, decision 1.
+**Second review — reassigned 2026-08-07.** `local_codex_1`'s paired disposition review was
+assigned but never delivered (no claim, no ACK, canonical branch static since the 2026-08-06
+transfer). By owner ruling the second reviewer is **`claude_1`**
+(`coordination/tasks/20260807-banana-disposition-review-claude_1.md`). Because chatgpt_1's
+disposition was already published and cc'd to claude_1, that review is structured as a **declared
+cross-check** rather than a blind independent read: claude_1 states its own per-item verdicts and
+then agrees/disputes chatgpt_1's item by item, prioritising chatgpt_1's `SELF-AUTHORED` items —
+the cross-check that is actually missing. **Until it lands, every verdict in §3 that chatgpt_1
+gave on its own work remains unverified.** Detector-semantics ownership is separately unresolved;
+see §6, decision 1.
 
 ---
 
@@ -172,11 +177,14 @@ These are cheap, and every one of them corresponds to a failure that actually ha
 
 ## 6. Open decisions for the owner
 
-1. **`local_codex_1` is unresponsive** and holds detector-semantics ownership — which Phase 1
-   makes the top priority. Recommendation: reassign detector work to `claude_1` (it owns the
-   panel and tooling) with `chatgpt_1` as independent reviewer, and leave `local_codex_1`'s
-   disposition review open for delivery if it returns. Without it, chatgpt_1's verdicts on its own
-   artifacts remain uncross-checked.
+1. **`local_codex_1` is unresponsive.** Its disposition review is **resolved** — reassigned to
+   `claude_1` by owner ruling 2026-08-07. Still open: `local_codex_1` also holds
+   **detector-semantics ownership** (`trace_detectors.py`, spec invariants I-16..I-18), which
+   Phase 1 makes the top priority, and the D-9 affordability question referred to it under
+   `20260807-gate-architecture-review`. Recommendation: reassign detector work to `claude_1` (it
+   owns the panel and tooling) with `chatgpt_1` as independent reviewer — noting that this makes
+   claude_1 author of the design, the gate, the detectors and the candidate, so the reviewing
+   discipline around it has to be correspondingly strict.
 2. **Four chatgpt_1 CI workflows remain on `main`**, pushed after the revocation order. I removed
    the task-branch copies but have not touched the shared default branch.
 3. **Scope confirmation.** This plan hardens the foundation; it does not pursue the ≥25.40 goal

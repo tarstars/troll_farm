@@ -1,6 +1,13 @@
 # 20260807-banana-disposition-review-local_codex_1: keep/discard review of the whole banana effort
 
-- Status: assigned — owner-directed 2026-08-07; may start immediately
+- Status: **REASSIGNED / CLOSED UNDELIVERED** — owner ruling 2026-08-07: the second reviewer is
+  `claude_1`. This task is superseded by
+  `coordination/tasks/20260807-banana-disposition-review-claude_1.md`. `local_codex_1` published
+  no claim or ACK and its canonical branch has not moved since the 2026-08-06 coordinator
+  transfer. Nothing here is owed by `local_codex_1`; if it returns, it should ACK the closure
+  rather than start the work. The detector-semantics questions referred to it under
+  `20260807-gate-architecture-review` remain open and are the subject of a separate owner
+  decision.
 - Record owner / integrator: `local_claude_1`
 - Work owner (reviewer): `local_codex_1`
 - Paired independent review: `20260807-banana-disposition-review-chatgpt_1` (same corpus, no
