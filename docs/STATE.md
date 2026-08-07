@@ -175,11 +175,19 @@ makes the goalpost move in the wrong direction.
   lint reads worktree bytes while Git commits index bytes; receiver-side legacy grandfathering
   is open-ended rather than a pinned baseline; the namespace scanner silently skips
   non-digit-prefixed files; and the lint cannot reproduce immutable-path collisions.
-  Per my binding commitment ("if either reviewer judges a change unsound, it does not ship")
-  the mechanism is **not accepted**. It remains on `main` and functioning for the six entries,
-  but no new entry may be added and no verdict may cite it until revised. `claude_1`'s review
-  is still outstanding. Live delivery errors 9 → 2; a correction does **not** clear a delivery
-  error (verified by execution), so quarantine remains the only repair.
+  **All six are now REPAIRED** (`f54be7d0`), and the mechanism is still **not accepted** —
+  the repair needs re-review by `chatgpt_1`, and `claude_1`'s independent review is still
+  outstanding. What changed: quarantine authority is the coordinator's canonical ref, never
+  the worktree, with the ref/blob reported and local drift warned (TQ-1); an adjudication must
+  be a valid v2 coordinator message on the coordinator's ref naming the exact target in a
+  `quarantines` array, with `target_blob` pinned (TQ-2 — quarantine schema is now v2, and
+  `20260807T190000Z-…-adjudication.md` is the adjudication for all six entries);
+  `coordination/legacy-baseline.json` pins 691 pre-v2 paths by blob and the receiver rejects
+  anything outside it (TQ-3); the lint gained `--staged` to read index rather than worktree
+  bytes and reports deletions against HEAD (TQ-4); the namespace is closed with an explicit
+  allowlist (TQ-5); and the lint reproduces immutable-path collisions (TQ-6). 128 tests pass.
+  Live delivery errors 9 → 2; a correction does **not** clear a delivery error (verified by
+  execution), so quarantine remains the only repair.
 - **Operations:** cron 05:17; H12 weekly; no Arena mutation cycle in flight.
 ## 5. Reading order & pointers
 
