@@ -14,6 +14,7 @@ from cgauto.evidence_git import (
 )
 
 ALLOWED_STATUS = {"proposed","accepted","authorized","closed","invalidated","diagnosis","void-premise","superseded","declined"}
+ALLOWED_ACCEPTANCE = {"proposed", "accepted"}
 ALLOWED_STRENGTH = {
     "mechanics_proof","panel_causal","arena_measured","observational_audit",
     "accounting_model","public_source_statement","inference_or_hypothesis",
@@ -156,8 +157,8 @@ def validate_record(
     cost = record["cost"]
     if not isinstance(cost, dict) or not cost.get("class") or not cost.get("actual"):
         raise ValidationError(f"{rid}: cost.class and cost.actual required")
-    if record["acceptance"].get("state") != "proposed":
-        raise ValidationError(f"{rid}: pilot record must be proposed")
+    if record["acceptance"].get("state") not in ALLOWED_ACCEPTANCE:
+        raise ValidationError(f"{rid}: invalid acceptance state")
     if record["status"] == "void-premise":
         pf = record.get("premise_failure")
         if not isinstance(pf, dict) or not pf.get("false_premise") or not pf.get("refutation"):

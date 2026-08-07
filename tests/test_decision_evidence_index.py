@@ -178,7 +178,6 @@ def test_disclosed_population_mismatch_passes(tmp_path):
     lambda r: r["decisive_claims"][0].update(source={"json_pointer":"/value"}),
     lambda r: r["decisive_claims"][0].update(source={"path":"evidence.json","json_pointer":"/value","locator":"lines 1-1"}),
     lambda r: r["relations"].append({"type":"invalid_relation","target":"external:X"}),
-    lambda r: r["acceptance"].update(state="accepted"),
     lambda r: r.update(question=""),
 ])
 def test_additional_mandatory_rule_failures(tmp_path, mutator):
@@ -328,3 +327,16 @@ def test_quote_present_in_current_file_produces_no_drift_warning(tmp_path):
     build(repo)
     _records, warnings = validate_repository(repo, require_pilot=False, check_generated=True)
     assert not [w for w in warnings if "drift" in w], warnings
+
+def test_accepted_state_is_allowed(tmp_path):
+    record = base_record()
+    record["acceptance"] = {"state": "accepted", "author": "a", "reviewer": "b"}
+    repo = make_repo(tmp_path, record=record)
+    validate_repository(repo, require_pilot=False, check_generated=True)
+
+def test_unknown_acceptance_state_rejected(tmp_path):
+    record = base_record()
+    record["acceptance"] = {"state": "rubber-stamped", "author": "a", "reviewer": "b"}
+    repo = make_repo(tmp_path, record=record)
+    with pytest.raises(ValidationError, match="acceptance state"):
+        validate_repository(repo, require_pilot=False, check_generated=False)
