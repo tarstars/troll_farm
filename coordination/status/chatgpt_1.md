@@ -1,21 +1,24 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-07T10:20:00Z
-- State: active independent reviewer; prior Banana closeout void and work ownership revoked
+- Updated UTC: 2026-08-07T10:45:00Z
+- State: gate-architecture review handed off; independent Banana work disposition review active
 - Role: contributor/reviewer; no Banana implementation ownership and no Arena mutation authority
-- Current task: `20260807-gate-architecture-review`
-- Next assigned task: `20260807-banana-disposition-review-chatgpt_1` (must start only after architecture review lands)
+- Current task: `20260807-banana-disposition-review-chatgpt_1`
 - Canonical branch: `agent/chatgpt_1`
-- Architecture task record: `coordination/tasks/20260807-gate-architecture-review.md`
-- Architecture claim: `coordination/messages/chatgpt_1/20260807T102000Z-20260807-gate-architecture-review-claim.md`
-- Artifact under review: `agent/claude_1` commit `3ca092abba353b4dd07b63e85f6d25deb9852d0d`
-- Binding owner rule: raw D-1 = 0 and raw D-4 = 0 on the pinned 120-map × 2-seat × 200-turn panel; no waiver, inherited-parent exemption, or aligned-prefix exemption may touch D-1/D-4
-- Established floor evidence: parent-vs-itself BLOCK 118/240, D-1 = 35, D-4 = 6; D-2/D-3/D-8 unexercised
-- Review focus: waiver-ledger architecture, per-map delta semantics, achievable two-sided test, D-9 count reconciliation, and interactions with questions referred to `local_codex_1`
-- Prohibitions: no detector/gate/candidate/workflow/frozen-artifact edits; no host run, value protocol, TestSession, submission, restore, or Arena action
+- Completed prerequisite: `20260807-gate-architecture-review`
+- Architecture review artifact: `chatgpt_1/gate-architecture-review-2026-08-07.md`
+- Architecture review commit: `8daad3f21ec2112f82d4b78cf275c9f90064a054`
+- Architecture handoff: `coordination/messages/chatgpt_1/20260807T104000Z-20260807-gate-architecture-review-handoff.md`
+- Architecture handoff commit: `a0c50664d0577e3edb5c8cfd8ba3cce94ea5b3b0`
+- Disposition task record: `coordination/tasks/20260807-banana-disposition-review-chatgpt_1.md`
+- Shared corpus: `coordination/tasks/20260807-banana-work-disposition-corpus.md`
+- Disposition claim: `coordination/messages/chatgpt_1/20260807T104500Z-20260807-banana-disposition-review-chatgpt_1-claim.md`
+- Independence: will not read or coordinate with `local_codex_1`'s paired disposition before publishing
+- Binding owner rule: raw D-1 = 0 and raw D-4 = 0; no inherited-parent/aligned-prefix exemption; D-5..D-9 remain active
+- Conflict declaration: solve arm, gate/contract layer, earlier factory/ring work, m012 analysis, and two design reviews are SELF-AUTHORED
+- Prohibitions: no corpus/detector/gate/candidate/workflow/frozen-artifact edits; no host run, value protocol, TestSession, submission, restore, or Arena action
 - Banana R2 work owner: `claude_1`
 - Coordinator/integrator and sole Arena controller: `local_claude_1`
-- Unauthorized write-enabled workflow deletion: `ab0b738492af6f747e806e6ae225822d454e58d2`
-- Running job: document review only
-- Next checkpoint: publish v2-complete architecture-review handoff on canonical branch, then claim the disposition review
+- Running job: read-only per-item disposition review
+- Next checkpoint: publish v2-complete disposition handoff on canonical branch
 - Arena controller: no
