@@ -40,7 +40,7 @@ Non-goal: comprehensive historical coverage. That is queued separately as
 
 | field | required | meaning |
 |---|---|---|
-| `commit` | yes | 40-char SHA, must be reachable from `main` |
+| `commit` | yes | 40-char SHA; must resolve in the object database (see reachability below) |
 | `path` | yes | repo-relative path, as it existed at `commit` |
 | `locator` | yes | `lines N-M`, interpreted **at that commit** |
 | `quote` | no | verbatim excerpt, used only for the currency check |
@@ -50,7 +50,7 @@ commit.
 
 Validation splits into two signals:
 
-- **Hard error** — commit unreachable from `main`; path absent at that commit; line range out of
+- **Hard error** — commit does not resolve at all; path absent at that commit; line range out of
   bounds; or the excerpt at that commit missing the numeric tokens the claim's `display` asserts.
   The existing `require_excerpt_tokens` check is preserved unchanged, now pointed at immutable
   ground.
@@ -68,9 +68,18 @@ migration is fully mechanical — all 8 records carrying numeric claims already 
 line numbers that validate perfectly against the commit that authored them. No human judgement is
 required to migrate.
 
-**Reachability.** Pinned commits must be ancestors of `main`. This is safe under the standing
-procedure in `docs/BRANCH-INTEGRATION-RUNBOOK.md`, which merges before deleting — verified: even
-branch tips deleted on 2026-08-07 remain reachable from `main`.
+**Reachability, in two levels.** A record may be authored on an agent branch citing a commit that
+`main` has not yet absorbed, so requiring `main`-reachability outright would make every new record
+fail until integration. Therefore:
+
+- the commit must **resolve** (be present in the object database) — otherwise hard error;
+- the commit **should** be an ancestor of `main` — if it resolves but is not yet on `main`, that
+  is a **warning** (`pending integration`), not a failure.
+
+The warning clears when the branch is merged. This is safe under the standing procedure in
+`docs/BRANCH-INTEGRATION-RUNBOOK.md`, which merges before deleting — verified: even branch tips
+deleted on 2026-08-07 remain reachable from `main`. Cleanup that deletes an unmerged branch would
+turn its citations into hard errors, which is the correct and loud outcome.
 
 ### 2. Hypothesis tier
 
@@ -120,7 +129,9 @@ accepted by integrator merge. This is the step the pilot never reached.
   hypothesis-tier validation, reachability check.
 - `cgauto/build_decision_evidence_index.py` — emit `OPEN-QUESTIONS.md` and the `Drifted` section.
 - `cgauto/migrate_evidence_locators.py` (new, single-use) — pin each existing record to the commit
-  that last touched it.
+  that last touched it, and **capture the excerpt at that commit as `quote`** so migrated records
+  get drift detection immediately rather than only on next edit. Both steps are mechanical; the
+  script must be idempotent and must not alter any field other than `source`.
 - `docs/evidence/SCHEMA.md` — bump to version 2, document both tiers.
 - `tests/test_decision_evidence_index.py` — extended.
 
@@ -128,7 +139,8 @@ accepted by integrator merge. This is the step the pilot never reached.
 
 | condition | behaviour |
 |---|---|
-| `commit` missing or not an ancestor of `main` | hard error naming the record and claim |
+| `commit` missing or unresolvable | hard error naming the record and claim |
+| `commit` resolves but is not yet an ancestor of `main` | warning (`pending integration`) |
 | `path` absent at that commit | hard error |
 | line range out of bounds at that commit | hard error |
 | numeric tokens absent from the pinned excerpt | hard error (the record is wrong) |
@@ -140,10 +152,12 @@ Generated files remain deterministic and hash-manifested; hand-editing them stay
 
 ## Testing
 
-TDD against the existing 25-test suite. New cases: valid pinned record; unreachable commit;
-path absent at commit; out-of-range lines; missing tokens at the pinned commit; quote drift warns
-but does not fail; minimal valid hypothesis; hypothesis missing a required field; `resolved`
-hypothesis without a graduation link; generated `OPEN-QUESTIONS.md` is deterministic.
+TDD against the existing 25-test suite. New cases: valid pinned record; unresolvable commit
+(error); commit resolving but not on `main` (warning, not error); path absent at commit;
+out-of-range lines; missing tokens at the pinned commit; quote drift warns but does not fail;
+minimal valid hypothesis; hypothesis missing a required field; `resolved` hypothesis without a
+graduation link; generated `OPEN-QUESTIONS.md` is deterministic; migration script is idempotent
+and touches only `source`.
 
 Acceptance: full suite green, and `check_decision_evidence_index.py` exits 0 on all 11 migrated
 records plus the 8 seeded hypotheses.
