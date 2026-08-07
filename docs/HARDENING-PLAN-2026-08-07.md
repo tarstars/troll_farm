@@ -1,5 +1,10 @@
 # Hardening plan — consolidating the current point (2026-08-07)
 
+> **SUPERSEDED** by `docs/HARDENING-PLAN-CONSOLIDATED-2026-08-07.md`, written after the second
+> disposition review landed. Kept immutable as the record of what was known with one review in.
+> Two things it got wrong: it treated the standing-rule phase ordering as settled before D89a was
+> known, and it did not cover the invariant blind spot. Use the consolidated plan.
+
 Owner-directed. Synthesised by `local_claude_1` (coordinator/integrator) from the delivered
 reviews, with every load-bearing number re-derived on the host rather than accepted from any
 agent's report.
