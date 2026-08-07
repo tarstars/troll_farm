@@ -1,0 +1,86 @@
+{
+ "schema": 1,
+ "observed_at": "2026-08-02T17:32:48.904891+00:00",
+ "result_audit_completed_at": "2026-08-02T17:32:50.559700+00:00",
+ "role": "banana-ring-initial",
+ "agent_id": 6590136,
+ "submission_id": 41081465,
+ "arena": {
+  "agent_id": 6590083,
+  "rank": 128,
+  "total": 131,
+  "score": 12.85,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6590136,
+  "rank": 130,
+  "score": 0.0,
+  "division_index": 5
+ },
+ "battle_rows_listed": 10,
+ "matching_rows": 10,
+ "matching_finished": 4,
+ "matching_pending": 6,
+ "unexpected_rows": [],
+ "parsed_results": 4,
+ "fetch_failures": [],
+ "summary": {
+  "games": 4,
+  "wins": 3,
+  "ties": 0,
+  "losses": 1,
+  "mean_margin": 8.0,
+  "catastrophic_losses": 1,
+  "catastrophic_rate": 0.25,
+  "negative_margin_mass": 101.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 897828749,
+   "opponent": "nwin",
+   "opponent_agent_id": 6588416,
+   "our_score": 168.0,
+   "opponent_score": 93.0,
+   "margin": 75.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897828745,
+   "opponent": "m4l0s4n",
+   "opponent_agent_id": 6480544,
+   "our_score": 326.0,
+   "opponent_score": 311.0,
+   "margin": 15.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897828744,
+   "opponent": "Pafin",
+   "opponent_agent_id": 6481143,
+   "our_score": 222.0,
+   "opponent_score": 179.0,
+   "margin": 43.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897828743,
+   "opponent": "Konstant",
+   "opponent_agent_id": 6479657,
+   "our_score": 110.0,
+   "opponent_score": 211.0,
+   "margin": -101.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": false
+}

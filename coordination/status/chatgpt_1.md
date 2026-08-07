@@ -1,22 +1,22 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-02T16:49:00Z
-- State: E7a sector candidate source transform implemented; corrected focused suite and host G4 bridge run pending
-- Role: implementation/research agent; not Arena controller
-- Current task: `20260802-e7a-sector-candidate`
-- Current branch: `agent/chatgpt_1-e7a-sector-candidate`
-- Base: shared commit `3ebd573b76484b14deb6fa2160e124eaaef00e5a`
-- Parent: strongest established `preseed-orchard-coverage-slim`, SHA-256 `a8eb3b2b...`
-- Frozen rule: default LEMON and alternate-minus-default aggregate tree distance <= 8 -> return PLUM; otherwise exact parent choice
-- Source seam: replace only complete `MoisanBot::focus_type`; inverse replacement restores parent bytes
-- Builder: `chatgpt_1/e7a_sector_candidate_builder.py`
-- Focused tests: parent/anchor/inverse, 13/60 and 10/13 census, all-root exact geometry, standalone compile
-- Coordinator review: initial geometry test exposed signed-gap mismatch; corrected at `afef851b9efc41bab4f56c78bef330e8d4acf41a` without changing the rule
-- G4 validator: `chatgpt_1/e7a_sector_candidate_bridge.py`; requires complete result equality to E7 full-FLIP inside sector and control outside, 8 roots x both seats
-- Host request: `coordination/messages/chatgpt_1/20260802T164500Z-20260802-e7a-sector-candidate-host-run-request.md`
-- Current disposition: not yet `MATERIALIZED_EXACT_BRIDGE`; candidate packet awaits green host build/test/bridge
-- Value status: unqualified; exploratory consumed-label sign sector, no fresh terminal-value gate
-- Prohibited: TestSession/Arena mutation, second live cycle, shared-doc/source rewrite, consumed full-panel rerun, sealed data
-- Coordinator/integrator and sole Arena controller: `local_codex_1`
-- Next checkpoint: host build result, exact candidate SHA/bytes, green tests and bridge, then handoff
+- Updated UTC: 2026-08-06T12:35:00Z
+- State: Banana R2 revised-FSM design review completed; `REVISION_REQUIRED` handoff published
+- Role: contributor/reviewer; no Arena mutation authority
+- Current task: none; awaiting coordinator ACK/action on `20260802-banana-restoration-r2`
+- Branch: `agent/chatgpt_1`
+- Assignment: `coordination/messages/local_claude_1/20260806T094600Z-20260802-banana-restoration-r2-policy.md`
+- Reviewed artifact: canonical `agent/claude_1` commit `46588155b2c4cd59d21f7334f407878b537ed83d`
+- Review artifact: `chatgpt_1/banana-restoration-r2-fsm-design-rereview-2026-08-06.md`
+- Review artifact commit: `3afd187fc80a6f0a4bbefb300ff8f12f3f601fd2`
+- Handoff: `coordination/messages/chatgpt_1/20260806T123500Z-20260802-banana-restoration-r2-handoff.md`
+- Handoff commit: `1018aa5a75821623c4297576ca5f49a9de28b68c`
+- Final disposition: `REVISION_REQUIRED`; implementation/host/value/Arena gates remain blocked
+- Accepted directions: aligned-prefix attribution, latched mother, finite claim intent, worker-two dormancy, explicit infeasibility intent, verification order
+- Blocking classes: atomic causality/S6/EV7, non-exact oracle/founding, carrier enforcement, fungible bank provenance, route infeasibility, absent exact manifest, indirect telemetry, §C overclaim
+- Last concrete progress UTC: 2026-08-06T12:35:00Z
+- Running job: none
+- Next checkpoint: exact-path ACK from `local_claude_1` and design-only correction routed to `claude_1`
+- Safety: no implementation/source/frozen edit, replay/map/range/bulk data, host/516/value gate, TestSession, submission, restore, or Arena mutation
+- Coordinator/integrator and sole Arena controller: `local_claude_1`
 - Arena controller: no

@@ -1,0 +1,333 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=17mm,top=18mm,bottom=20mm,includeheadfoot,headheight=20pt,headsep=4mm,footskip=9mm]{geometry}
+\usepackage{fontspec}
+\setmainfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\definecolor{ink}{HTML}{172033}
+\definecolor{muted}{HTML}{5F6B7A}
+\definecolor{accent}{HTML}{3157A4}
+\definecolor{accentlight}{HTML}{EAF0FC}
+\definecolor{good}{HTML}{176B52}
+\definecolor{warn}{HTML}{A35A00}
+\definecolor{bad}{HTML}{A12B35}
+\definecolor{rule}{HTML}{CBD3DF}
+
+\hypersetup{colorlinks=true,linkcolor=accent,urlcolor=accent,
+  pdftitle={Troll Farm E7a near-tie sector agent: algorithms and design ideas},
+  pdfauthor={local_codex_1}}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\color{muted}Troll Farm · E7a sector agent}
+\rhead{\small\color{muted}2 August 2026}
+\cfoot{\small\color{muted}Page \thepage\ of \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{rule}\leaders\hrule height \headrulewidth\hfill}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\emergencystretch=2em
+\setlist[itemize]{leftmargin=5mm,itemsep=2pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=6mm,itemsep=2pt,topsep=3pt}
+\renewcommand{\arraystretch}{1.17}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\begin{document}
+{\color{accent}\rule{\textwidth}{1.4pt}}
+
+{\Huge\bfseries\color{ink} E7a near-tie sector agent}
+
+{\large\color{muted} Algorithms, strategic ideas, evidence and failure profile}
+
+\vspace{2mm}
+\begin{tabularx}{\textwidth}{@{}lY@{}}
+\textbf{Arena identity} & agent \texttt{6590141}, submission \texttt{41081503} \\
+\textbf{Candidate} & 62,820 bytes; SHA-256 \texttt{97bfe71e3f2f05e1...9fa9be79a8e48595} \\
+\textbf{Stable parent} & 62,725 bytes; SHA-256 \texttt{a8eb3b2bb646c59b...dbded047b884e55} \\
+\textbf{Code delta} & +95 bytes; one complete function anchor, \texttt{MoisanBot::focus\_type} \\
+\textbf{Mature checkpoint} & 25.34, rank 11/131, 160 games \\
+\end{tabularx}
+
+\vspace{2mm}
+\fcolorbox{accent}{accentlight}{\parbox{0.95\textwidth}{
+\textbf{What this agent is.} The exact stable pre-seed/secure-orchard controller with one
+map-conditioned opening choice: prefer PLUM denial when PLUM is closer, or when its total
+access penalty relative to LEMON is at most eight path cells. The choice is frozen at
+initialization and affects a soft chop bonus. Training, pathfinding, assignment, collision
+handling, orchard protection and endgame conversion are inherited byte for byte.
+}}
+
+\section*{1. Executive assessment}
+
+E7a is an unusually interpretable candidate. It does not add a wrapper, a new state machine
+or a learned model. It changes one strategic bit---which natural fruit species receives the
+denial bonus---only in a narrow opening geometry sector. This preserves the established
+parent on most maps and avoids the large loss of a global PLUM flip.
+
+At the 160-game checkpoint it was the project's highest mature live scorer: 82 wins, three
+ties, 75 losses, score 25.34 and rank 11/131. The result is encouraging but not causal: the
+rule was selected on consumed development outcomes, its bootstrap interval crosses zero,
+and there is no same-window parent control.
+
+The bot is also not liveness-clean. A new exact-replay audit found period-2 MOVE episodes of
+at least six turns in 25/160 games. In game \texttt{897832286}, a worker carrying two wood
+alternates between cells $(6,3)$ and $(6,4)$ from turns 160 through 286. The high ladder
+score therefore coexists with a material inherited execution defect.
+
+\section*{2. Identity and evidence boundary}
+
+\begin{tabularx}{\textwidth}{@{}p{31mm}Y@{}}
+\toprule
+\textbf{Artifact} & \textbf{Exact value} \\
+\midrule
+Candidate path & \nolinkurl{cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs} \\
+Candidate SHA-256 & \scriptsize\texttt{97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595} \\
+Stable-parent path & \nolinkurl{cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs} \\
+Parent SHA-256 & \scriptsize\texttt{a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55} \\
+Arena identity & agent \texttt{6590141}; submission \texttt{41081503} \\
+\bottomrule
+\end{tabularx}
+
+The sacred development source was not modified. The live result is an owner-overridden
+exploratory deployment, not a prospectively qualified experiment. Local bridge evidence,
+consumed-panel pricing and live matchmaking are reported separately.
+
+\section*{3. Overall controller architecture}
+
+\begin{center}
+\fbox{protocol input}\ $\rightarrow$ \fbox{GameState}\ $\rightarrow$
+\fbox{opening plan}\ $\rightarrow$ \fbox{per-worker candidates}
+
+$\downarrow$
+
+\fbox{joint assignment}\ $\rightarrow$ \fbox{movement/door resolver}\ $\rightarrow$
+\fbox{secure orchard + endgame}\ $\rightarrow$ \fbox{commands}
+\end{center}
+
+The parser maintains terrain, units, plants, inventories and the turn counter. The inner
+controller produces scored actions for every worker. With two workers it exhaustively
+scores compatible candidate pairs. A movement layer reserves landing cells, applies
+orchard priorities and keeps shack doors usable. The outer secure-orchard wrapper may
+reserve one worker for an APPLE mother. Endgame logic converts fruit into wood when a full
+plant--chop--return cycle fits before turn 300.
+
+The controller permanently caps itself at two workers. It is a refined two-worker denial
+and conversion policy, not a scalable economy.
+
+\section*{4. The E7a near-tie sector rule}
+
+Let $D_L$ be the sum of shortest-path distances from every walkable orthogonal door beside
+our shack to every natural LEMON tree. Let $D_P$ be the corresponding PLUM sum. An
+unreachable tree contributes 10,000.
+
+The stable parent chooses PLUM only if $D_P < D_L$; ties go to LEMON. E7a chooses PLUM when
+
+\[
+  D_P < D_L \quad\text{or}\quad 0 \le D_P-D_L \le 8.
+\]
+
+It retains LEMON only when LEMON's aggregate path advantage exceeds eight. Therefore the
+patch changes parent behavior only in a LEMON-default near-tie sector. The result is cached
+as \texttt{type\_to\_cut} during opening; it is not recomputed each turn.
+
+For a viable tree, base chop value is approximately
+
+\[
+  V_{cycle}=1000\,\frac{\text{expected wood}}{\text{travel + chop + return turns}}.
+\]
+
+When the tree type equals \texttt{type\_to\_cut} and the rival has no more than two
+workers, the controller adds
+
+\[
+  V_{denial}=\frac{900}{1+\operatorname{Manhattan}(tree,enemy\ shack)}.
+\]
+
+This is a soft valuation shift. It does not command ``chop PLUM''; a higher-value bank,
+mine, harvest or different tree may still win. The bonus is strongest close to the enemy
+shack, where denial has the greatest strategic intent.
+
+\section*{5. Opening and workforce}
+
+The opening enumerates a second troll with movement, carry and chop in $1..3$ and harvest
+fixed to zero. For each specification it estimates the ETA to collect the necessary PLUM,
+LEMON and, where present, IRON bill. It prefers carry at least two and chop at least one,
+uses a 15-turn horizon, accepts up to 15 turns of ETA slack for a stronger worker, and has
+a hard turn-35 downgrade deadline.
+
+Before training, both trolls collect missing bill resources; carried material is banked
+instead of abandoned. At the deadline the controller chooses the strongest affordable
+fallback. After the second troll is created, \texttt{can\_train} always returns false for
+another worker. Recent top-player evidence makes this cap expensive: several stronger
+agents reach worker three in over 80\% of games and worker four in roughly 40--95\%.
+
+\section*{6. Per-worker candidate generation}
+
+\textbf{Banking.} A carrier at a shack door receives a very high DROP candidate. Otherwise
+it receives a MOVE-to-bank candidate discounted by travel ETA.
+
+\textbf{Fruit.} The controller predicts travel, tree ripening and required waiting. It
+issues HARVEST only on the tree. Persistent regenerative cargo is tracked as a commitment
+so a seed is not casually abandoned.
+
+\textbf{Iron.} A worker routes to a walkable cell adjacent to ore and issues MINE when in
+position.
+
+\textbf{Wood.} A chop candidate forecasts path length, growth and health, opponent chop
+damage, own chop duration, return path and final deposit. Unreachable, nonviable or too-late
+cycles are rejected. Throughput value is augmented by the E7a focus bonus.
+
+\textbf{Seeds.} When resources are scarce after turn 100 and a worker is at a door, the
+controller may pick banked fruit for regeneration. In ordinary play, however, the policy
+remains predominantly chop-oriented.
+
+\section*{7. Joint scheduling, collisions and doors}
+
+Candidates target a shack, bank, cell, tree or no exclusive object. Compatibility prevents
+two workers from claiming the same tree or cell and verifies that simultaneous PICKs do not
+exceed bank inventory. Because the bot caps itself at two workers, it evaluates the full
+Cartesian product and maximizes summed score rather than relying on unit order.
+
+The movement resolver projects each landing cell at the unit's movement speed. Stationary
+units and earlier mover destinations are reserved. An orchard starter can receive priority,
+while the mother cell is forbidden to other units. A blocked landing triggers an orthogonal
+detour minimizing the remaining BFS distance; if no detour is legal, the worker waits.
+
+A specialized door-clear layer handles carriers, blockers and swap patterns so that the
+own shack retains a usable door. These are strong local safety rules, but no global progress
+measure prevents two consecutive replans from reversing each other's target. The 160-game
+liveness result demonstrates the gap.
+
+\section*{8. Secure APPLE orchard}
+
+The outer wrapper moves through \texttt{Dormant}, \texttt{CarryingSeed}, \texttt{Active}
+and \texttt{Abandoned}. It may establish one APPLE mother on an empty water-adjacent door
+cell near our shack. Activation requires at least two shack doors, distant natural trees,
+an enemy-safe mother, a trained second worker, an APPLE in the bank, alternate access for
+the other worker, and no sacrificed contested natural tree.
+
+The starter picks the seed, plants the mother, deposits cargo, harvests ripe APPLEs and
+otherwise waits. Other workers cannot occupy the mother or steal its seed. If ownership or
+safety fails, the wrapper abandons and returns to the inner controller.
+
+This creates a protected renewable asset but can monopolize half the workforce. Across the
+new agent's 160 decoded games, only 10 of 1,704 attributed created crops were reaped by the
+agent. The live policy is therefore not a broad self-reproducing economy.
+
+\section*{9. Endgame fruit-to-wood conversion}
+
+After turn 250---or when very few plants remain and the bot trails---fruit can be planted,
+chopped and returned before turn 300. A worker already on a tree receives very high chop
+priority. Ripe-fruit fallback is admitted only when travel, harvest, return and deposit all
+fit before the deadline.
+
+This is a central behavior, not a corner case: the replay audit attributed 942 completed
+post-turn-250 planted-and-chopped conversions across the 160 games. It embodies a useful
+two-phase economic idea: renewable fruit is valuable early, while terminal wood is worth
+four points and dominates when no future harvest can amortize planting.
+
+\section*{10. Why the sector idea was selected}
+
+\begin{tabularx}{\textwidth}{@{}l r Y@{}}
+\toprule
+\textbf{Evidence} & \textbf{Result} & \textbf{Interpretation} \\
+\midrule
+Exploratory sector & 13/60 roots & 10 positive, 3 nonpositive; precision 76.92\% \\
+Association & OR 7.86 & Fisher $p=0.00348$; discovery only \\
+Exact bridge & 16/16 & inside sector = full flip; outside = parent; zero faults \\
+Parent comparison & +4.008 & root bootstrap 95\% CI $[-1.588,+13.101]$ \\
+Score decomposition & $+0.21/-3.80$ & own score / opponent score; gain mainly suppression \\
+Global PLUM flip & $-12.174$ & blanket policy is harmful \\
+Hindsight oracle & $+10.510$ & conditional opportunity exists but is not directly realizable \\
+\bottomrule
+\end{tabularx}
+
+All six opponent-family means and all six leave-one-family-out means were positive, but the
+primary interval crosses zero. The scientific conclusion is narrower than the live rank:
+the rule is plausible, mechanically exact and sparse; its causal value remains unresolved.
+
+\section*{11. Live behavior and the liveness defect}
+
+\begin{tabularx}{\textwidth}{@{}l r l r@{}}
+\toprule
+Games & 160 & Wins / ties / losses & 82 / 3 / 75 \\
+Score & 25.34 & Rank & 11 / 131 \\
+Mean margin & $-29.3$ & Catastrophes ($\le-100$) & 35 (21.9\%) \\
+Negative mass & 10,045 & Runtime/identity faults & 0 \\
+\bottomrule
+\end{tabularx}
+
+The stable parent's repeated mature median was 24.19 and best recorded mature run 24.77.
+E7a is +1.15 over the median and +0.57 over that best, but the comparison crosses eras and
+matchmaking populations. It is not an A/B estimate.
+
+The new public-replay census decoded all 160 E7a games with zero fetch or state-decoder
+faults. Twenty-five games have a continuous period-2 MOVE run of at least six turns. The
+worst exact trace is game \texttt{897832286}: worker 2 carries two wood and alternates
+$(6,3)\leftrightarrow(6,4)$ for 127 consecutive turns. Commands execute successfully, so
+this is planner liveness, not collision blocking or a runtime error.
+
+\section*{12. Ideas worth retaining}
+
+\begin{enumerate}
+  \item \textbf{Tiny conditional patch.} Preserve a strong exact parent and alter one
+        strategic choice rather than adding a broad wrapper.
+  \item \textbf{Geometry as policy context.} Convert a global denial decision into a
+        map-sector decision.
+  \item \textbf{Aggregate access burden.} Sum route costs over the resource field instead
+        of looking only at the nearest tree.
+  \item \textbf{Near-tie trade.} Accept a bounded own-efficiency penalty for a more useful
+        denial target, but only where the costs are close.
+  \item \textbf{Frozen strategic intent.} Make the species choice at $t=0$ to prevent
+        high-level target churn.
+  \item \textbf{Behavioral bridge.} Prove exact parent behavior outside the sector and
+        exact treatment behavior inside it.
+  \item \textbf{Mechanism decomposition.} Distinguish own production gain from opponent
+        suppression; E7a's development gain is primarily the latter.
+\end{enumerate}
+
+\section*{13. Limitations and next priorities}
+
+\begin{itemize}
+  \item The selection used consumed labels; no same-window parent control exists.
+  \item The policy has a hard two-worker ceiling and no renewable macro-economy.
+  \item Only PLUM versus LEMON is conditioned, and the decision never adapts after $t=0$.
+  \item Scores are hand tuned and deterministic; there is no learned opponent model.
+  \item The orchard can reserve one of two workers indefinitely.
+  \item The live tail is large: 35 catastrophes and 10,045 negative-margin mass.
+  \item Legal movement is not sufficient for progress; long executed ABAB routes remain.
+\end{itemize}
+
+The best immediate engineering task is a baseline-preserving bank-commitment/liveness fix:
+once a wood carrier chooses to return, its destination and progress measure must remain
+stable until DROP or a proved obstruction. Validate against all 25 E7a counterexamples and
+the earlier ring counterexample before any value test. The larger research priority remains
+a scalable renewable economy with worker-three funding and concurrent production.
+
+\section*{14. Reproducibility anchors}
+
+\small\sloppy
+\begin{itemize}
+  \item Manifest: \nolinkurl{chatgpt_1/e7a-sector-candidate-manifest-2026-08-02.json}
+  \item Exact bridge: \nolinkurl{chatgpt_1/e7a-sector-candidate-bridge-2026-08-02.json}
+  \item Pricing: \nolinkurl{chatgpt_1/e7a-sector-candidate-pricing-2026-08-02.json}
+  \item Arena execution: \nolinkurl{data/analysis/live-agent-6553250/e7a-sector-owner-override-arena-execution-2026-08-02.md}
+  \item Top-15 inventory: \nolinkurl{data/analysis/live-agent-6553250/top15-public-battle-inventory-2026-08-02.json}
+  \item Full report source: \nolinkurl{docs/reports/2026-08-02-e7a-sector-agent-description.md}
+\end{itemize}
+
+\vfill
+\footnotesize\color{muted}
+Prepared by \texttt{local\_codex\_1}. Measurements are labeled by evidence boundary;
+descriptive public-replay results do not qualify a new candidate or prove causal value.
+
+\end{document}

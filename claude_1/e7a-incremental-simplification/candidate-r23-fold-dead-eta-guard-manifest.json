@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 56643,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r23-fold-dead-eta-guard.rs",
+    "removed_from_initial_62278": 5635,
+    "removed_this_round": 8,
+    "sha256": "c6f4c6c1462f2226118aa6bdeee6da93021752f508322a0167ee066fb4a7a7c8"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact offline live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "fold the constant-false 15<=0 disjunct out of the opening-upgrade guard, preserving the surviving conjunction verbatim",
+  "minification": false,
+  "parent": {
+    "bytes": 56651,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r22-delete-opening-policy-record.rs",
+    "sha256": "2943ad840ccaf2332ab515ab768aa8c97bac2de894a7eda6228b92ea5f0707cc"
+  },
+  "round": 23,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}

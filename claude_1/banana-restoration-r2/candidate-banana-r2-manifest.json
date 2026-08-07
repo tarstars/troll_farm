@@ -1,0 +1,81 @@
+{
+  "asserts": [
+    "parent sha256 verified",
+    "per-block compact(readable) == inserted string",
+    "every anchor count == 1 in parent",
+    "every inserted string count == 0 in parent, == 1 in output",
+    "inserted strings pairwise non-substring",
+    "sha256(output minus insertions) == parent sha256"
+  ],
+  "byte_budget": {
+    "limit": 100000,
+    "within_budget": true
+  },
+  "candidate": {
+    "bytes": 80934,
+    "path": "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/candidate-banana-r2.min.rs",
+    "sha256": "eac2eb36b5f2abf0e92b62615584f3d9135055a09e6eec0bbee7c4e4a6a4f23b"
+  },
+  "insertions": [
+    {
+      "anchor": "pub struct SecureOrchardBot{",
+      "block": "block-i1.rs",
+      "inserted_bytes": 17763,
+      "inserted_sha256": "c338afba06addb7f01b63579d1bf57bd72459093ad6cd0f4a862128d3d602243",
+      "mode": "before",
+      "name": "I1",
+      "readable_block_bytes": 57534
+    },
+    {
+      "anchor": "external_protected_tree:Option<Cell>,}",
+      "block": "block-i2.rs",
+      "inserted_bytes": 64,
+      "inserted_sha256": "b4930ffcc142f018105f7c44d66ff812de653542ca29d06848d99174323ef072",
+      "mode": "before_last:1",
+      "name": "I2",
+      "readable_block_bytes": 598
+    },
+    {
+      "anchor": "external_protected_tree:None,}}",
+      "block": "block-i3.rs",
+      "inserted_bytes": 49,
+      "inserted_sha256": "f0d8a2738986f36989674a5c5f02ed35f407db412238b0459a56feffc481f97f",
+      "mode": "before_last:2",
+      "name": "I3",
+      "readable_block_bytes": 398
+    },
+    {
+      "anchor": "if let Some(id)=self.external_idle_unit{by_id.insert(id,vec![MoisanBot::wait()]);}",
+      "block": "block-i4.rs",
+      "inserted_bytes": 80,
+      "inserted_sha256": "42b8dc6d3f902639bef3babd25336e75924b9e646263107d574879ee7d2283a0",
+      "mode": "after",
+      "name": "I4",
+      "readable_block_bytes": 676
+    },
+    {
+      "anchor": "else{return;};let mut bot=SecureOrchardBot::new();",
+      "block": "block-i5.rs",
+      "inserted_bytes": 67,
+      "inserted_sha256": "f596fb78842293253327bdf077f4c2d9f3fc324d473a67413dae9f66fb47a4a6",
+      "mode": "after",
+      "name": "I5",
+      "readable_block_bytes": 528
+    },
+    {
+      "anchor": "if let Some(protected)=self.external_protected_tree{candidates.retain(|candidate|{!matches!(candidate.target,Target::Tree(cell)|Target::Bank(cell)|Target::Cell(cell)if cell==protected)});}",
+      "block": "block-i6.rs",
+      "inserted_bytes": 186,
+      "inserted_sha256": "7abf88e04fb3b29d09f52f6255e2b794e7fbd065996cd7156eea504544a7470b",
+      "mode": "after",
+      "name": "I6",
+      "readable_block_bytes": 983
+    }
+  ],
+  "parent": {
+    "bytes": 62725,
+    "path": "/home/tarstars/prj/troll_farm-claude_1/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+    "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+  },
+  "schema": "troll-farm-banana-r2-candidate-manifest/1"
+}

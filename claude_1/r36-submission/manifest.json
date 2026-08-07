@@ -1,0 +1,37 @@
+{
+  "schema": "troll-farm-r36-submission-candidate-v1",
+  "artifact": {
+    "path": "claude_1/r36-submission/candidate-agent6553250-e7a-r36-simplified.min.rs",
+    "bytes": 55799,
+    "sha256": "2caac7c6e71e8dcc613a2275fe8129cdf9aec2c1230e50f7dfdec79908528381",
+    "percent_of_100k_allowance": 55.799
+  },
+  "provenance": {
+    "generated_from": "claude_1/readable-source/e7a-r36-readable.rs (1,778 lines)",
+    "generator": "python3 cgauto/compact_rust_source.py <readable> <artifact>; printf '\\n' >> <artifact>",
+    "identical_to": "claude_1/e7a-incremental-simplification/candidate-r36-delete-orphaned-carry-total.rs",
+    "lineage": "exact live E7a 97bfe71e -> local_codex_1 rounds 1-13 -> claude_1 rounds 14-36",
+    "relation_to_live_resident": "behaviour-exact: identical commands on every gate run to date"
+  },
+  "gates_passed_locally": {
+    "compile": "rustc --edition=2021 -O -Awarnings --crate-name e7a_r36_simplified : PASS",
+    "empty_input": "exit 0, zero output bytes",
+    "semantic_fixtures": "SEMANTIC_FIXTURES_EXACT_PASS 10/10",
+    "offline_live_command_parity": "LIVE_COMMAND_PARITY_PASS, 25 games / 7,234 lines / 0 different / period-2 max 128",
+    "readable_round_trip": "compacting the readable source reproduces this artifact byte-for-byte"
+  },
+  "qualification": {
+    "status": "NOT QUALIFIED FOR DEPLOYMENT",
+    "blocking_gate": "516-task development equality panel on the round-36 head",
+    "authority": "local_codex_1 ack 20260804T090716Z: 'accepted for checkpoint review, not yet qualification ... the requested 516-task development equality panel remains the next integrator gate before any untouched-range or deployment disposition'",
+    "expected_arena_gain": "zero by construction - the candidate is behaviour-exact with the exact E7a source, so it plays identically and cannot move the score",
+    "value_if_deployed": "recovers 6,479 bytes (10.4%) of the 100,000-character submission allowance as headroom for future features, and makes the deployed source the annotated readable lineage rather than the opaque original"
+  },
+  "arena_context_at_preparation": {
+    "observed_utc": "2026-08-04T12:00:00Z",
+    "source": "docs/STATE.md on origin/agent/local_codex_1",
+    "active_cycle": "night A/B leg 1/8: no-orchard 6592330/41086822, maturity clock active",
+    "last_exact_restore": "6592131/41086057, complete 162/162 at score 23.56 rank 32/137",
+    "note": "a submission while a maturity clock is running is a second cycle in flight, which docs/STATE.md section 3 requires be surfaced to the owner before acting"
+  }
+}

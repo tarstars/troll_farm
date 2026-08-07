@@ -6,6 +6,19 @@ Re-rank only from written evidence. One experiment in flight at a time; read-onl
 may run in parallel and are claimable by any agent under
 `coordination/multi-agent-protocol.md`.
 
+## P0 operational safety — coordination transport hardening
+
+- **DONE / PHASE 3 MANDATORY.** The 2026-08-05 banana handoff exposed incomplete canonical delivery,
+  a missed pushed review, a 188-message stale inbox, clock-skew-sensitive ACK matching, and an
+  inbox implementation that can silently accept failed fetches or count an unpushed working-tree
+  ACK. Replace it with remote-only authoritative state, exact-path `ack_for`, canonical handoff
+  artifact validation, exact-path seen state, corrections as new immutable messages, loud errors,
+  filters, and backward-compatible migration. The bounded revision passes 41/41 tests and a
+  701-message remote-only live scan with zero collisions/delivery errors; it is integrated and
+  schema v2 is mandatory for new messages. Per-agent seen-state migration remains operational
+  rollout, not a code blocker. Task:
+  `coordination/tasks/20260805-coordination-transport-hardening.md`.
+
 ## P0 operational safety — Arena submission registry
 
 - **R1 DONE / INTEGRATED — categorized submission-history registry and query tool.** The
@@ -18,21 +31,30 @@ may run in parallel and are claimable by any agent under
   must never select by a single maximum. Task and acceptance contract:
   `coordination/tasks/20260802-arena-submission-history-registry.md`. Run
   `python3 cgauto/submission_history.py preflight <candidate-source>` before selection;
-  deterministic build/validation pass and the maintained real pytest suite is 44/44. `current`
-  names exact live submission `41081195` / agent `6590083`.
+  deterministic build/validation pass and the maintained real pytest suite is 45/45. The live
+  registry is current through rejected no-orchard `41085842` and active exact E7a restore
+  `41086057` / agent `6592131`; deterministic validation passes with 45 observations.
 
 ## Position summary (2026-08-02)
 
-Active resident `6590083`/`41081195` is the owner's unqualified live override combining the
-closed-loop banana factory with b100/e6. Exact source is 99,440 bytes, SHA `2d164ecbaf8a…`.
-Its approximately 30-minute checkpoint is mechanically clean but weak: 98/98 parsed plus one
-pending, score 12.99/rank 127/131, 49W/49L, mean margin +4.643, and 22 catastrophes. It remains
-provisional under the 100-finished rule; monitoring is read-only and no automatic mutation follows.
-The owner-corrected next build is a gate-aware Chebyshev-1 banana ring: diagonal seed mothers,
-orthogonal cut/replant wood trees, and surplus fruit banked at a full ring. Its pre-lock packet is
-integrated and local build paths are assigned; no successor source or Arena authority exists yet.
-The displaced b100/e6 resident finished at 23.12/160; repeated preseed evidence remains the
-registry leader at median 24.19. Corpus catch-up is complete at 10,470 games / 513 agents / zero parse
+Active resident is exact E7a restore agent `6592131` / submission `41086057`, source SHA
+`97bfe71e3f2f...`. Its complete identity-clean checkpoint has 162/162 finished, score 23.56/rank
+32/137, 93W/3T/66L, and zero runtime signals. The preceding exact deployment read 25.3/rank 12;
+the exact source now has two mature runs at median 24.41. The owner-directed no-orchard ablation
+terminated at 23.27/rank 34 and was rejected. E7a remains a consumed-panel owner override, not
+prospective validation.
+
+**P0 BANANA RESTORATION R2 — assigned to Claude; round 4 implementation-invalid.** The unbounded factory
+`6590083`/`41081195` and bounded ring `6590136`/`41081465` are implementation-invalid trials, not
+evidence rejecting banana production. The ring bot has exact long period-2 movement in live game
+`897829265`; the unbounded bot violated the intended geometry/collection lifecycle. Claude retries
+from stable parent `a8eb3b2b...` under `coordination/tasks/20260802-banana-restoration-r2.md`.
+Implementation validity, broad inactive-state equality, and exact counterexample liveness precede
+any value test. Round-4 SHA `9f5ef833...` repairs the conversion oracle/flip response but a broad
+host task has a full wood carrier oscillating for 225 turns; a new hash and red/green banking gate
+are required.
+The displaced b100/e6 resident finished at 23.12/160; repeated exact E7a evidence is now the
+registry leader at median 24.41. Corpus catch-up is complete at 10,470 games / 513 agents / zero parse
 failures, +282 in the manual run and +1,388 over the stale STATE count. **Goal
 re-scoped 2026-07-30: mature score ≥ 25.40, interim checkpoint 24.70 = yamo; rank ≤3
 superseded. H2 is optional upside, not goal-required.** **The TERMINAL SYNTHESIS closed all eight improvement

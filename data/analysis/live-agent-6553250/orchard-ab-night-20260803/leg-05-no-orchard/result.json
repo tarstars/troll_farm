@@ -1,0 +1,30 @@
+{
+  "agent_id": 6592495,
+  "arena": {
+    "agent_id": 6592495,
+    "division_index": 5,
+    "rank": 24,
+    "score": 24.18,
+    "total": 137
+  },
+  "checkpoint": "data/analysis/live-agent-6553250/orchard-ab-night-20260803/leg-05-no-orchard/checkpoint.json",
+  "completed_at_utc": "2026-08-04T00:32:29Z",
+  "game_count": 160,
+  "leg": 5,
+  "package_bytes": 5928942,
+  "package_manifest": "data/shared-lfs/orchard-ab-night-20260803/leg-05-no-orchard/manifest.json",
+  "package_sha256": "98cc14ec254fa62c647e48cf0a9551974eb206f6916d10fc78219de69faaffc3",
+  "submission_id": 41087642,
+  "summary": {
+    "catastrophic_losses": 21,
+    "catastrophic_rate": 0.13125,
+    "games": 160,
+    "losses": 76,
+    "mean_margin": -1.58125,
+    "negative_margin_mass": 6195.0,
+    "ties": 2,
+    "validity_runtime_signals": [],
+    "wins": 82
+  },
+  "variant": "no-orchard"
+}

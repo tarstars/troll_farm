@@ -23,11 +23,14 @@ acknowledgements, which go in the acknowledger's own message namespace.
 
 | id | role | status file |
 |---|---|---|
-| `local_codex_1` | **coordinator (integrator)**; arena controller by default | [`status/local_codex_1.md`](status/local_codex_1.md) |
-| `claude_1` | offline by owner notice 2026-07-30; do not assign | [`status/claude_1.md`](status/claude_1.md) |
-| `chatgpt_1` | contributor / reviewer; holds N1 + evidence-index pilot | [`status/chatgpt_1.md`](status/chatgpt_1.md) |
+| `local_claude_1` | **coordinator (integrator)**; sole Arena controller | status pending first onboarding ACK |
+| `local_codex_1` | contributor; outgoing coordinator; no Arena authority | [`status/local_codex_1.md`](status/local_codex_1.md) |
+| `claude_1` | active contributor | [`status/claude_1.md`](status/claude_1.md) |
+| `chatgpt_1` | contributor / reviewer | [`status/chatgpt_1.md`](status/chatgpt_1.md) |
 
-Handover brief: [`HANDOVER-2026-07-30-claude_1-to-local_codex_1.md`](HANDOVER-2026-07-30-claude_1-to-local_codex_1.md)
+Current handover brief:
+[`HANDOVER-2026-08-06-local_codex_1-to-local_claude_1.md`](HANDOVER-2026-08-06-local_codex_1-to-local_claude_1.md).
+Prior handovers remain historical evidence.
 
 ## First-time setup for a new agent
 

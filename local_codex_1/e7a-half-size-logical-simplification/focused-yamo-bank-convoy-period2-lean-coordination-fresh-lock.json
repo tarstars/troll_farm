@@ -1,0 +1,128 @@
+{
+  "schema": "troll-farm-e7a-half-size-fresh-gate-lock-v1",
+  "task_id": "20260802-e7a-half-size-logical-simplification",
+  "locked_at_utc": "2026-08-03T02:13:08Z",
+  "state_at_lock": "UNOPENED",
+  "one_shot": true,
+  "candidate": {
+    "path": "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-bank-convoy-period2-lean-coordination.rs",
+    "bytes": 31405,
+    "sha256": "9a202242afdac6ffbb463ac4caba1cc803376a90f37066767efabc5bb9584290"
+  },
+  "baseline": {
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+    "bytes": 62820,
+    "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+  },
+  "sacred": {
+    "path": "rust/src/bin/yamo_orchard_live.rs",
+    "sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "validation": {
+    "seed_start": 9864000,
+    "seed_end_inclusive": 9864042,
+    "maps": 43,
+    "seats": [0, 1],
+    "opponents": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot"
+    ],
+    "paired_tasks": 516,
+    "threads": 8,
+    "bootstrap_samples": 50000,
+    "bootstrap_rng_seed": 20260803,
+    "range_arguments_exposed": false,
+    "map_count_arguments_exposed": false,
+    "thread_count_arguments_exposed": false,
+    "bootstrap_arguments_exposed": false
+  },
+  "gates": {
+    "coverage_at_least_512": true,
+    "six_families": true,
+    "zero_critical_and_unclassified": true,
+    "mean_margin_delta_minimum": -0.5,
+    "bootstrap_95_lower_strictly_above": -2,
+    "catastrophes_may_increase": false,
+    "negative_margin_mass_may_increase": false,
+    "minimum_nonnegative_family_means": 5,
+    "both_seat_means_nonnegative": true,
+    "worker2_coverage_minimum": 0.95,
+    "median_worker2_delay_maximum": 10,
+    "candidate_period2_ge6_maximum": 0,
+    "latency_p95_ratio_maximum": 1.2,
+    "latency_maximum_ms_strictly_below": 50
+  },
+  "collision_audit": {
+    "result": "NO_RECORDED_SEED_COLLISION",
+    "live_record_roots": [
+      "docs",
+      "coordination",
+      "cgauto",
+      "scripts",
+      "local_codex_1/e7a-half-size-logical-simplification",
+      "data/analysis/live-agent-6553250"
+    ],
+    "exact_tokens": ["9864000", "9_864_000", "9,864,000", "9,864"],
+    "tracked_live_record_matches_before_reservation": 0,
+    "task_working_tree_matches_before_reservation": 0,
+    "tracked_filename_matches_before_reservation": 0,
+    "tracked_history_exact_matches_before_reservation": 0,
+    "external_artifact_filename_matches_before_reservation": 0,
+    "external_roots_verified_beneath_project_volume": true,
+    "excluded_recorded_ranges": [
+      "9844200-9844215",
+      "9852000-9852063",
+      "9853000-9853127",
+      "9854000-9854127",
+      "9855000-9855127",
+      "9856000-9856255",
+      "9857000-9857127",
+      "9858000-9858031",
+      "9859000-9859127",
+      "9860000-9860511",
+      "9861000 selection material",
+      "9862000-9862063",
+      "9863000-9863042"
+    ]
+  },
+  "hashes": {
+    "builder": "76fd3653df27e7aec8814a6a0735f2704d389696b052c7e6f7f125398bc19dc0",
+    "candidate_manifest": "e3172f34f79c7cba4885efff38ce8cbd53e7919231eefc087919b703532add91",
+    "semantic_validator": "fcf279595cd5663796014d2d85a3c1db989ce46a8e2dee83947201ef2a3fb5ff",
+    "semantic_result": "7a9b1d34df5f446b3bcfe641e4c053a559bb209826e068bd41b6f282a0817d8d",
+    "motion_evaluator": "aeccde7b73891fbfa03a57c657ce230c65e1930ef04ff735c081cbf4134b6258",
+    "motion_result": "c2adb7b7c084ecbce89832a2c9bec010744dffd5645a7c7c3b0c3e2c89dd8f7d",
+    "live_packet_evaluator": "841e13b5fa4354d5717bc2e681ee1f6cf0ba7627997b66ea8132bd7009f04ee3",
+    "live_packet_result": "e33024d2357439dcff179409a78e5a1e0ac4ca107e6e2bc7401c95d069bdfa43",
+    "shared_panel_analyzer": "fa1fc5c29d857b4d6c5fd3116f678f33d51be46566af2c503307ae4f21d8acff",
+    "fresh_evaluator": "cfffdf323ab2bb05a3fd9147b76f0bd8e0a77ab9bdc7e68fda43df17caa78a67",
+    "runner_template": "05335ff0226394abe0216e172bf234c56051358bbc29fceb5f5de86da9361a45",
+    "generated_fresh_runner": "1dee8d70fce255ed0802afd40e1e5b516bcbea6501209e83a4d84b4837fac723",
+    "rust_library": "1802bd8d69023b2e374d0a9586c33296485456892a9821dc635f5cb6dde0e660",
+    "consumed_panel_tsv": "f55004d788020baffa9e159bf7ae84b2afc451f4973793edd0a2b44a6cdbfadf",
+    "consumed_result": "3d6b2fb676320abc363b016133071851134474a54771048075c53e51dff2fc1d"
+  },
+  "pre_run_checks": {
+    "standalone_optimized_compile": true,
+    "empty_input_exit_zero": true,
+    "empty_input_stdout_bytes": 0,
+    "empty_input_stderr_bytes": 0,
+    "semantic_fixtures": "PASS_10_OF_10",
+    "consumed_panel": "QUALIFIED_OPEN_PANEL",
+    "live_period2_packet": "PASS_25_OF_25_MAXIMUM_2",
+    "fresh_runner_compile_only": "PASS_NO_MAP_GENERATION"
+  },
+  "one_shot_command": [
+    "python3",
+    "local_codex_1/e7a-half-size-logical-simplification/evaluate_fresh_period2_lean_coordination_gate.py",
+    "--panel",
+    "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-bank-convoy-period2-lean-coordination-fresh-panel.tsv",
+    "--output",
+    "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-bank-convoy-period2-lean-coordination-fresh-panel.json"
+  ],
+  "evidence_boundary": "Untouched engineering transfer gate; not an Arena-rating predictor"
+}

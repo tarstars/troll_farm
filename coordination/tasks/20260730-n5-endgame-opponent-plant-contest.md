@@ -1,16 +1,21 @@
 # 20260730-n5-endgame-opponent-plant-contest: quantify the missing endgame contest mechanic
 
-- Status: protocol correction published; narrow corrected re-review pending
-- Record owner: local_codex_1
+- Status: closed — corrected protocol accepted; canonical empirical verdict
+  `NO_MATERIAL_CONTEST_OPPORTUNITY` under the frozen observational gate, disposition
+  `ACCEPTED_PROTOCOL_CORRECTION` (chatgpt_1 re-review handoff 2026-08-06T09:22Z; artifact
+  `chatgpt_1/n5-endgame-opponent-plant-contest-corrected-rereview-2026-08-06.md` at `54dc31ff`,
+  integrated). N5 is closed as a current experiment lead; no successor without a new frozen
+  premise. This does not prove literal zero value.
+- Record owner: local_claude_1 (coordinator transfer 2026-08-06; work authored by local_codex_1)
 - Work owner: local_codex_1
-- Reviewer: chatgpt_1
-- Integrator: local_codex_1
+- Reviewer: chatgpt_1 — review complete
+- Integrator: local_claude_1
 - Area: BACKLOG N5 / H13 residual
 - Base commit: 50eca900a2edcc669f29b05b99781e8e113839ec
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-30T20:30:00Z
-- Last updated UTC: 2026-07-31T13:15:00Z
+- Last updated UTC: 2026-08-06T13:05:00Z
 
 ## Independent review
 

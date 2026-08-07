@@ -1,23 +1,24 @@
 # STATE — Troll Farm (single entry point)
 
-Last updated: 2026-08-02. This file is live state, not a record — the ledger volumes are
+Last updated: 2026-08-06. This file is live state, not a record — the ledger volumes are
 the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 
 ## 1. Live identity
 
 - Player `tass`, Legend practice ladder (contest ended 2026-05-25 — no deadline).
-- Active resident: owner-directed banana-factory + opponent-crop b100/e6 agent `6590083`,
-  submission `41081195`. The 30-minute checkpoint is clean at 98/98 parsed plus one pending,
-  score 12.99, rank 127/131; it remains provisional and weak, not a qualified promotion.
-- Source: `local_codex_1/banana-factory-b100-owner-override/banana-factory-b100-e6.arena.rs`
-  (99,440 bytes, SHA-256 `2d164ecbaf8a06092f91fffd253f295ec6d6233f2094ac707eda152b28cb2533`).
+- Live round-36 simplified E7a `6594200`/`41090606`: exact 55,799-byte source
+  `cgauto/submissions/candidate-agent6553250-e7a-r36-simplified.min.rs`, SHA `2caac7c6...`;
+  settled 22.81/rank 32/137 over 160, 93W/2T/65L, identity/runtime clean.
 - `cgauto/api_submit.py` default remains the exact fallback source; do not change casually.
-- Latest exact read: **2026-08-02T16:29:58Z**, agent `6590083`; 49W/49L, +4.643 mean
-  margin, 22 catastrophes (22.45%), negative mass 4,851, clean identity and zero runtime
-  signals. Monitoring remains read-only; no automatic restore or second candidate follows.
-- Rank bar: 1. delineate 31.02, 2. norxondor_gorgonax 29.67, 3. MSz 28.21.
-- Corpus: **10,470 games** / 513 agents, zero parse failures. The 2026-08-02 manual wide
-  catch-up added 282; the 05:17 cron was healthy and the prior STATE count was stale.
+- Pre-mutation orchard `6592744`/`41087983`: 22.88/rank 32 over 160, exact and healthy.
+- **Arena cycle complete:** round 36 passed 0/516 equality, was accepted once, recovered exact,
+  and settled at 22.81/rank 32. Pre-mutation readable no-orchard `6593838`/`41089629` completed at
+  24.76/rank 21 over 160, 94W/2T/64L, identity/runtime clean.
+- **No-orchard terminal-rejected:** 23.27/rank 34 versus E7a 25.3/rank 12. Exact E7a restore
+  `6592131`/`41086057` is source-exact and complete at 23.56/rank 32; cycle closed.
+- Rank bar: 1. delineate 31.02, 2. norxondor_gorgonax 29.67, 3. MSz 28.26.
+- Corpus: **10,470 games** / 513 agents, zero parse failures. The restore's exact 162-game
+  queue is also a sanitized 5.8 MB Git LFS corpus; the 05:17 cron remains unchanged.
 
 ## 2. Goal (RE-SCOPED 2026-07-30 by owner decision)
 
@@ -63,7 +64,7 @@ makes the goalpost move in the wrong direction.
     cycle starts and again when it terminates; (v) every submission id and terminal
     response is logged to the ledger.
   - **Unchanged:** mutations remain serialized through the **single arena controller**
-    (now `local_codex_1` by default — see the reassignment note in this section). No peer agent or subagent may submit. The no-churn evidence still binds
+    (now `local_claude_1` by owner reassignment — see the note in this section). No peer agent or subagent may submit. The no-churn evidence still binds
     the judgment even though it no longer binds the permission.
 - Never churn submissions: fresh reads sit 3–4 points below matured ones; every failed
   trial costs days of standing.
@@ -76,7 +77,7 @@ makes the goalpost move in the wrong direction.
   (`AGENTS.md`, `docs/storage-policy.md`). YT root:
   `//home/delivery_ml/research/tarstars/troll_farm`.
 - **Multi-agent coordination protocol in force**: `coordination/multi-agent-protocol.md`.
-  **Coordinator (integrator) = `local_codex_1` from 2026-07-30** (owner reassignment); arena controller follows the coordinator by protocol default unless the owner directs otherwise. `claude_1` is again an active contributor but not controller; `chatgpt_1` is a contributor. Handover: `coordination/HANDOVER-2026-07-30-claude_1-to-local_codex_1.md`. Hazards (§7) bind every agent: the dev copy
+  **Coordinator (integrator) = `local_claude_1` from 2026-08-06** (owner reassignment); arena controller follows the coordinator by protocol default. `local_codex_1` is the outgoing coordinator and no longer a controller; `claude_1` and `chatgpt_1` are contributors. Handover: `coordination/HANDOVER-2026-08-06-local_codex_1-to-local_claude_1.md`. Hazards (§7) bind every agent: the dev copy
   `rust/src/bin/yamo_orchard_live.rs` stays byte-exact at SHA prefix `fff6669b`
   (library-visible to all experiments); no formatters over `rust/src/bin/` or `cgauto/`
   (locks record hashes); do not disturb `data/raw/games/` or the 05:17 cron.
@@ -127,22 +128,20 @@ makes the goalpost move in the wrong direction.
   CI crosses zero. **M4 DONE:** +0.438, CI crosses; late 60 use four lineages. **M5
   DONE:** −1.44, CI crosses. **N5 CORRECTED/RE-REVIEW PENDING:** literal ETA keeps CI <20. **N6
   ACCEPTED/CLOSED_AT_DEVELOPMENT:** HIGH +0.559 fails direction/breadth. **E1 NARROWED:** only a
-  terminal pairs are runtime-closed by N4. **E1 CLOSED:** N4 surface infeasible. **E2 DONE:** 0.335 hindsight move-turn/side-game. **E3 VOID:** tree order closed. **E4 DONE:** mother reverse −0.0855. **E5 DONE:** +0.106, seat 0 loses. **E6 VOID:** seed carry. **E7 DONE:** flip −12.174; hindsight +10.510; E7a exact deltas recovered for frozen no-fit pricing. **S1 DONE:** full exact infeasible. **S2 BLOCKED:** no valued library or map representation. **S3 GATED:** distinct combination; specification/model/runtime unresolved. **H10a NARROWED:** 72 spatial +17 decision fields; peer-gated. **L1 PRIMITIVE-ONLY:** 199 exact games; hidden plan/beam unlabeled; peer-gated. **L2/L3 CLOSED:** N4 runtime close. **N7 DONE:** deploy already slim; sacred fixtures stay exact. **H4 DONE:** 0/17 strict deniable bills. **H7′ DONE:** contention ubiquitous, not strong-cohort. **H3′ SIGNAL:** DiD 0.606; pre-loss 0.510; **H3a ACTIVE:** Phase-A package accepted with limits; literal gate 4 pending; substrate defects block Phase B/C. **H11 DONE:** generic umbrella decomposed. **B3.7 DONE:** resident orchard is conversion-by-design. **B3.10 CLOSED:** gross direct margin ceiling 4.84/game. **B3.11 CORRECTED/RE-REVIEW PENDING.** **B3.12 DISPLACED:** far-denial historical 22.99/160, repeat 19.37. **OWNER BANANA LIVE:** exact `6590083`/`41081195`; clean but weak provisional 12.99/98, rank 127/131. **B3.13 TERMINAL FAIL:** 11.96/101. **B3.14 AUDIT-ONLY:** bank-loss ceiling 0.444 own points/game. **B3.15 DISPLACED / NO CURRENT RECURRENCE.** **B3.16 TERMINAL FAIL:** funding-first diagonal denial 16.37/265. **B3.17 REJECTED FROM RANKING:** cohort attribution unavailable; no defensible value. **F1 RELEASED:** leakage-controlled readiness only.
-- **Coordination:** `local_codex_1` integrates/controls Arena; `claude_1` is an active
-  contributor without platform credentials; `chatgpt_1` is a contributor. Inbox: `python3 scripts/inbox_sweep.py --me local_codex_1 --fetch`.
-- **Operations:** daily collection cron 05:17; B5.3 migration ripens ~2026-08-03; H12 weekly
-  surveillance. Sole Arena leg: banana-factory+b100/e6 `6590083`/`41081195`; next local-only
-  build is the bounded gate-aware banana ring, with no source or Arena handoff yet.
-
+  terminal pairs are runtime-closed by N4. **E1 CLOSED:** N4 surface infeasible. **E2 DONE:** 0.335 hindsight move-turn/side-game. **E3 VOID:** tree order closed. **E4 DONE:** mother reverse −0.0855. **E5 DONE:** +0.106, seat 0 loses. **E6 VOID:** seed carry. **E7 DONE:** flip −12.174; hindsight +10.510; **E7a SECTOR LIVE:** restore `6592131`/`41086057` is 23.56/162; two exact mature runs median 24.41. **E7a HALF-SIZE:** 31,407-byte tree-edge source transfer-rejected on catastrophes and negative mass; no Arena action. **S1 DONE:** full exact infeasible. **S2 BLOCKED:** no valued library or map representation. **S3 GATED:** distinct combination; specification/model/runtime unresolved. **H10a NARROWED:** 72 spatial +17 decision fields; peer-gated. **L1 PRIMITIVE-ONLY:** 199 exact games; hidden plan/beam unlabeled; peer-gated. **L2/L3 CLOSED:** N4 runtime close. **N7 DONE:** deploy already slim; sacred fixtures stay exact. **H4 DONE:** 0/17 strict deniable bills. **H7′ DONE:** contention ubiquitous, not strong-cohort. **H3′ SIGNAL:** DiD 0.606; pre-loss 0.510; **H3a PAUSED FOR OWNER PRIORITY.** **BANANA R2 through 9f5e INVALID:** the oracle/real flip are repaired, but a full wood carrier oscillates for 225 turns on the first broad host panel; no value test. **H11 DONE:** umbrella decomposed. **B3.7 DONE:** orchard is conversion-by-design. **B3.10 CLOSED:** ceiling 4.84/game. **B3.11 RE-REVIEW PENDING.** **B3.12 DISPLACED:** 22.99 historical, 19.37 repeat. **B3.13 FAIL; B3.14 AUDIT; B3.15 DISPLACED; B3.16 FAIL; B3.17 UNRANKED.** **F1 RELEASED.**
+- **BANANA R2 CURRENT (supersedes inline `through 9f5e`):** `47c98f53` withdrawn at 141/240 fuzz blocks; `eac2eb36` is not a handoff. FSM event priority, exact asset-survival timing, attribution, and carrier precedence remain open; no value/Arena test.
+- **E7a ITERATIVE DELETION:** round 36 is 55,799 bytes and passes compile/fixtures, 7,234 live
+  commands, and 0/516 development equality. Owner-directed live measurement `6594200`/`41090606`
+  is 22.81/rank 32 over 160; no further mutation.
+- **Coordination:** `local_claude_1` integrates/controls Arena; `local_codex_1`, Claude, and ChatGPT contribute. Incoming operational ACK is pending; Arena stays unchanged during the gap.
+- **Operations:** cron 05:17; H12 weekly; no Arena mutation cycle in flight.
 ## 5. Reading order & pointers
 
 1. This file.
 2. `docs/CONSTRAINTS.md` — check BEFORE proposing any experiment.
 3. `docs/BACKLOG.md` — live priorities at the top; historical tiers below are the record.
 4. `coordination/README.md` + inbox sweep — mandatory for any agent before writing.
-5. Live ledger: `data/analysis/live-agent-6553250/legend-top3-experiment-cycle-vol3-2026-07-30.md`
-   (vol 2 `...-vol2-2026-07-23.md` frozen after A2-1; vol 1
-   `...-2026-07-18.md` frozen at D166). Atlas: `docs/D-series-atlas.pdf`.
+5. Live ledger: `data/analysis/live-agent-6553250/legend-top3-experiment-cycle-vol4-2026-08-04.md`; prior volumes frozen. Atlas: `docs/D-series-atlas.pdf`.
 6. `AGENTS.md` (process), `docs/storage-policy.md`, `docs/mechanics.md`,
    `docs/archive/INDEX.md` (superseded docs).
 

@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 59165,
+    "path": "local_codex_1/e7a-iterative-logical-deletion/candidate-r11-remove-zero-opponent-risk.rs",
+    "removed_from_initial_62278": 3113,
+    "removed_this_round": 1341,
+    "sha256": "5e79857bdf2e66aa0603a0880a80189070f8ab3208b21369fac8634fcb52ca8d"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "delete the opponent-arrival risk calculation after the sole executable factory fixes its penalty to zero, preserving protected-tree filtering and all candidates",
+  "minification": false,
+  "parent": {
+    "bytes": 60506,
+    "path": "local_codex_1/e7a-iterative-logical-deletion/candidate-r10-remove-nonpersistent-mode.rs",
+    "sha256": "f6f40374d3016627454d2c51ab0e0cd5dae28e93881446915658e087ecdd63c8"
+  },
+  "round": 11,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}

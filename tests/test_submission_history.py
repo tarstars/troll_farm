@@ -390,10 +390,24 @@ def test_rejected_source_warning_survives_a_live_mature_repeat(registry: dict) -
     assert any(w.startswith("CROSS_ERA") for w in opponent_crop["warnings"])
 
 
-def test_repeated_preseed_evidence_now_ranks_above_opponent_crop(registry: dict) -> None:
+def test_repeated_e7a_evidence_now_ranks_above_preseed_and_opponent_crop(
+    registry: dict,
+) -> None:
     ranked = sh.rank_sources(registry)
-    assert ranked[0]["source_id"] == "preseed-orchard-coverage-slim"
+    assert ranked[0]["source_id"] == "preseed-e7a-lemon-near-tie"
+    assert ranked[0]["mature_runs"] == 2
+    assert ranked[0]["median_score"] == pytest.approx(24.41)
     assert ranked[0]["median_score"] > ranked[1]["median_score"]
+    assert ranked[1]["source_id"] == "preseed-orchard-coverage-slim"
+    assert ranked[2]["source_id"] == "opponent-crop-b100-e6-slim"
+
+
+def test_repeated_e7a_no_longer_has_single_run_warning(registry: dict) -> None:
+    ranked = sh.rank_sources(registry)
+    by_id = {summary["source_id"]: summary for summary in ranked}
+    e7a = by_id["preseed-e7a-lemon-near-tie"]
+    assert e7a["mature_runs"] == 2
+    assert not any(w.startswith("SINGLE_MATURE_RUN") for w in e7a["warnings"])
 
 
 def test_cross_era_comparison_is_flagged(registry: dict) -> None:
@@ -504,6 +518,7 @@ def test_every_deployment_since_the_restored_resident_era_is_covered(registry: d
         41009795, 41009911, 41009991, 41012256, 41012399, 41012593,
         41012867, 41012883, 41015603, 41070584, 41070944, 41071034,
         41071067, 41071204, 41071360, 41079354, 41079653, 41081195,
+        41081465, 41081503, 41085842, 41086057, 41089629, 41090606,
     ):
         assert submission_id in covered, f"submission {submission_id} is missing"
     assert registry["unresolved"], "the unresolved list must state what is NOT covered"
@@ -512,8 +527,8 @@ def test_every_deployment_since_the_restored_resident_era_is_covered(registry: d
 def test_exactly_one_submission_is_active(registry: dict) -> None:
     live = [s for s in registry["submissions"] if s["disposition"] == "active"]
     assert len(live) == 1
-    assert live[0]["submission_id"] == 41081195
-    assert live[0]["agent_id"] == 6590083
+    assert live[0]["submission_id"] == 41090606
+    assert live[0]["agent_id"] == 6594200
 
 
 def test_every_source_file_still_hashes_to_its_recorded_value(registry: dict) -> None:

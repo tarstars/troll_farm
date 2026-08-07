@@ -1,0 +1,163 @@
+{
+ "schema": 1,
+ "observed_at": "2026-08-04T14:57:50.105179+00:00",
+ "result_audit_completed_at": "2026-08-04T14:57:54.164113+00:00",
+ "role": "r36-simplified-initial-health",
+ "agent_id": 6594200,
+ "submission_id": 41090606,
+ "arena": {
+  "agent_id": 6594200,
+  "rank": 136,
+  "total": 137,
+  "score": 0.0,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6594200,
+  "rank": 102,
+  "score": 17.55,
+  "division_index": 5
+ },
+ "battle_rows_listed": 12,
+ "matching_rows": 12,
+ "matching_finished": 11,
+ "matching_pending": 1,
+ "unexpected_rows": [],
+ "parsed_results": 11,
+ "fetch_failures": [],
+ "summary": {
+  "games": 11,
+  "wins": 7,
+  "ties": 0,
+  "losses": 4,
+  "mean_margin": 11.636363636363637,
+  "catastrophic_losses": 1,
+  "catastrophic_rate": 0.09090909090909091,
+  "negative_margin_mass": 375.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 898013331,
+   "opponent": "Frac",
+   "opponent_agent_id": 6481176,
+   "our_score": 196.0,
+   "opponent_score": 405.0,
+   "margin": -209.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898013305,
+   "opponent": "Elost",
+   "opponent_agent_id": 6579290,
+   "our_score": 213.0,
+   "opponent_score": 191.0,
+   "margin": 22.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898013304,
+   "opponent": "JohnEqua",
+   "opponent_agent_id": 6588485,
+   "our_score": 302.0,
+   "opponent_score": 339.0,
+   "margin": -37.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898013303,
+   "opponent": "DamienLi",
+   "opponent_agent_id": 6579809,
+   "our_score": 268.0,
+   "opponent_score": 304.0,
+   "margin": -36.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898013302,
+   "opponent": "OccitanieFreelancer",
+   "opponent_agent_id": 6480996,
+   "our_score": 160.0,
+   "opponent_score": 15.0,
+   "margin": 145.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898013301,
+   "opponent": "Alexdelia",
+   "opponent_agent_id": 6480519,
+   "our_score": 160.0,
+   "opponent_score": 79.0,
+   "margin": 81.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898013300,
+   "opponent": "daaskare",
+   "opponent_agent_id": 6491404,
+   "our_score": 325.0,
+   "opponent_score": 294.0,
+   "margin": 31.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898013299,
+   "opponent": "Kheopsian",
+   "opponent_agent_id": 6479388,
+   "our_score": 136.0,
+   "opponent_score": 110.0,
+   "margin": 26.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898013298,
+   "opponent": "aangairbender",
+   "opponent_agent_id": 6479532,
+   "our_score": 325.0,
+   "opponent_score": 154.0,
+   "margin": 171.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898013297,
+   "opponent": "Konstant",
+   "opponent_agent_id": 6479657,
+   "our_score": 179.0,
+   "opponent_score": 272.0,
+   "margin": -93.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898013296,
+   "opponent": "yaichi",
+   "opponent_agent_id": 6480541,
+   "our_score": 152.0,
+   "opponent_score": 125.0,
+   "margin": 27.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": true
+}

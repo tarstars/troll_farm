@@ -1,0 +1,218 @@
+{
+ "schema": 1,
+ "observed_at": "2026-08-02T17:44:40.016009+00:00",
+ "result_audit_completed_at": "2026-08-02T17:44:45.606619+00:00",
+ "role": "owner-sector-replacement",
+ "agent_id": 6590141,
+ "submission_id": 41081503,
+ "arena": {
+  "agent_id": 6590141,
+  "rank": 69,
+  "total": 131,
+  "score": 19.42,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6590141,
+  "rank": 69,
+  "score": 19.42,
+  "division_index": 5
+ },
+ "battle_rows_listed": 17,
+ "matching_rows": 17,
+ "matching_finished": 16,
+ "matching_pending": 1,
+ "unexpected_rows": [],
+ "parsed_results": 16,
+ "fetch_failures": [],
+ "summary": {
+  "games": 16,
+  "wins": 11,
+  "ties": 1,
+  "losses": 4,
+  "mean_margin": 41.6875,
+  "catastrophic_losses": 0,
+  "catastrophic_rate": 0.0,
+  "negative_margin_mass": 175.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 897830043,
+   "opponent": "oidrissi",
+   "opponent_agent_id": 6502964,
+   "our_score": 152.0,
+   "opponent_score": 144.0,
+   "margin": 8.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897830035,
+   "opponent": "Zabym",
+   "opponent_agent_id": 6483514,
+   "our_score": 139.0,
+   "opponent_score": 21.0,
+   "margin": 118.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897830016,
+   "opponent": "abdelmathin",
+   "opponent_agent_id": 6479931,
+   "our_score": 236.0,
+   "opponent_score": 291.0,
+   "margin": -55.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897829998,
+   "opponent": "VINCE_MX",
+   "opponent_agent_id": 6483491,
+   "our_score": 196.0,
+   "opponent_score": 196.0,
+   "margin": 0.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897829979,
+   "opponent": "DaNinja",
+   "opponent_agent_id": 6481252,
+   "our_score": 252.0,
+   "opponent_score": 257.0,
+   "margin": -5.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897829955,
+   "opponent": "DoubtinGiyov",
+   "opponent_agent_id": 6482016,
+   "our_score": 140.0,
+   "opponent_score": 164.0,
+   "margin": -24.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897829896,
+   "opponent": "JohnEqua",
+   "opponent_agent_id": 6588485,
+   "our_score": 237.0,
+   "opponent_score": 129.0,
+   "margin": 108.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897829895,
+   "opponent": "PhOeNyX",
+   "opponent_agent_id": 6588481,
+   "our_score": 144.0,
+   "opponent_score": 84.0,
+   "margin": 60.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897829894,
+   "opponent": "DaFish",
+   "opponent_agent_id": 6588475,
+   "our_score": 210.0,
+   "opponent_score": 48.0,
+   "margin": 162.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897829893,
+   "opponent": "Regulus136",
+   "opponent_agent_id": 6480942,
+   "our_score": 137.0,
+   "opponent_score": 53.0,
+   "margin": 84.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897829892,
+   "opponent": "a76a44",
+   "opponent_agent_id": 6586318,
+   "our_score": 220.0,
+   "opponent_score": 169.0,
+   "margin": 51.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897829891,
+   "opponent": "dabino",
+   "opponent_agent_id": 6480948,
+   "our_score": 144.0,
+   "opponent_score": 48.0,
+   "margin": 96.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897829890,
+   "opponent": "icecuber",
+   "opponent_agent_id": 6479842,
+   "our_score": 252.0,
+   "opponent_score": 207.0,
+   "margin": 45.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897829889,
+   "opponent": "khanh-alice",
+   "opponent_agent_id": 6480947,
+   "our_score": 124.0,
+   "opponent_score": 120.0,
+   "margin": 4.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897829888,
+   "opponent": "bl4sterino",
+   "opponent_agent_id": 6481547,
+   "our_score": 339.0,
+   "opponent_score": 430.0,
+   "margin": -91.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897829887,
+   "opponent": "Stounate",
+   "opponent_agent_id": 6491563,
+   "our_score": 288.0,
+   "opponent_score": 182.0,
+   "margin": 106.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": true
+}

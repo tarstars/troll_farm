@@ -1,0 +1,71 @@
+{
+ "results": [
+  {
+   "check": "single-model",
+   "findings": [
+    {
+     "class": "MODEL_DIVERGENCE",
+     "detail": "listed as allowed_importer of CONVERSION_RACE_ORACLE but no import statement matching '^\\\\s*(?:import\\\\s+.*\\\\bconversion_race_oracle\\\\b|from\\\\s+.*\\\\bconversion_race_oracle\\\\b\\\\s+import\\\\b)' was found - its quantity references are unexplained",
+     "subject": "/tmp/banana-r3-state/trace_detectors.py"
+    },
+    {
+     "class": "MODEL_DIVERGENCE",
+     "detail": "listed as allowed_importer of CONVERSION_RACE_ORACLE but no import statement matching '^\\\\s*(?:import\\\\s+.*\\\\bconversion_race_oracle\\\\b|from\\\\s+.*\\\\bconversion_race_oracle\\\\b\\\\s+import\\\\b)' was found - its quantity references are unexplained",
+     "subject": "/tmp/banana-r3-state/regression_tests.py"
+    },
+    {
+     "class": "MODEL_DIVERGENCE",
+     "detail": "declared mirror of CONVERSION_RACE_ORACLE lacks the required marker 'CONVERSION_RACE_ORACLE' - an unmarked mirror is indistinguishable from a divergent reimplementation",
+     "subject": "/tmp/banana-r3-state/block-i1.rs"
+    },
+    {
+     "class": "MODEL_DIVERGENCE",
+     "detail": "quantity governed by CONVERSION_RACE_ORACLE computed outside the oracle (pattern 'ceil\\\\w*\\\\(\\\\s*(?:current_)?health\\\\b[^)]*chop') in a file that is neither a verified importer nor a declared mirror: ceil(health / chop_power) claims four.",
+     "subject": "/tmp/banana-r3-state/trace_detectors.py:162"
+    },
+    {
+     "class": "MODEL_DIVERGENCE",
+     "detail": "quantity governed by CONVERSION_RACE_ORACLE computed outside the oracle (pattern 'exact_chops\\\\w*\\\\s*<\\\\s*eta_opp') in a file that is neither a verified importer nor a declared mirror: race_won = exact_chops < eta_opp_now",
+     "subject": "/tmp/banana-r3-state/trace_detectors.py:1119"
+    },
+    {
+     "class": "MODEL_DIVERGENCE",
+     "detail": "quantity governed by CONVERSION_RACE_ORACLE computed outside the oracle (pattern 'ceil\\\\w*\\\\(\\\\s*(?:current_)?health\\\\b[^)]*chop') in a file that is neither a verified importer nor a declared mirror: flip and conversion is impossible (travel + ceil(health/chop_power)",
+     "subject": "/tmp/banana-r3-state/regression_tests.py:193"
+    },
+    {
+     "class": "MODEL_DIVERGENCE",
+     "detail": "quantity governed by CONVERSION_RACE_ORACLE computed outside the oracle (pattern 'ceil\\\\w*\\\\(\\\\s*(?:current_)?health\\\\b[^)]*chop') in a file that is neither a verified importer nor a declared mirror: ceil(health/chop_power) chop turns) completes strictly before eta_opp,",
+     "subject": "/tmp/banana-r3-state/regression_tests.py:245"
+    },
+    {
+     "class": "MODEL_DIVERGENCE",
+     "detail": "quantity governed by CONVERSION_RACE_ORACLE computed outside the oracle (pattern 'ceil\\\\w*\\\\(\\\\s*(?:current_)?health\\\\b[^)]*chop') in a file that is neither a verified importer nor a declared mirror: static ``chop_turns = ceil(current_health / chop_power)`` and the",
+     "subject": "/tmp/banana-r3-state/regression_tests.py:330"
+    },
+    {
+     "class": "MODEL_DIVERGENCE",
+     "detail": "quantity governed by CONVERSION_RACE_ORACLE computed outside the oracle (pattern 'max\\\\(\\\\s*(?:t\\\\s*\\\\+\\\\s*)?eta_opp') in a file that is neither a verified importer nor a declared mirror: ripen-proxy deadline ``max(eta_opp, cooldown)``, ignoring growth during",
+     "subject": "/tmp/banana-r3-state/regression_tests.py:331"
+    },
+    {
+     "class": "MODEL_DIVERGENCE",
+     "detail": "quantity governed by CONVERSION_RACE_ORACLE computed outside the oracle (pattern 'max\\\\(\\\\s*(?:t\\\\s*\\\\+\\\\s*)?eta_opp') in a file that is neither a verified importer nor a declared mirror: static_deadline = max(eta_opp_t0, ripen_proxy)",
+     "subject": "/tmp/banana-r3-state/regression_tests.py:394"
+    },
+    {
+     "class": "MODEL_DIVERGENCE",
+     "detail": "quantity governed by CONVERSION_RACE_ORACLE computed outside the oracle (pattern 'eta_opp\\\\w*\\\\s*\\\\.\\\\s*max\\\\s*\\\\(') in a file that is neither a verified importer nor a declared mirror: Some(resident_eta + chop_turns < eta_opp.max(ripen))",
+     "subject": "/tmp/banana-r3-state/block-i1.rs:550"
+    }
+   ],
+   "info": [
+    "CONVERSION_RACE_ORACLE: /tmp/banana-r3-state/regression_tests.py: 2 comment-only mention(s) (prose, not computation - not blocking)",
+    "CONVERSION_RACE_ORACLE: /tmp/banana-r3-state/block-i1.rs: 4 comment-only mention(s) (prose, not computation - not blocking)"
+   ],
+   "verdict": "BLOCK"
+  }
+ ],
+ "task": "HISTORICAL round-3-era instruments (8b000bad): single-model vs CONVERSION_RACE_ORACLE",
+ "verdict": "BLOCK"
+}

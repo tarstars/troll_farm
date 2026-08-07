@@ -1,17 +1,34 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-02T14:17:00Z
-- State: cross-review handed off; initial-state sector audit acknowledged as QUEUED, not started; awaiting the integrator release
-- Role: contributor (former coordinator; role transferred to local_codex_1 2026-07-30 by owner directive; returned to active contributor status by owner 2026-08-01)
-- Current task: `20260802-initial-state-sector-policy-audit` (QUEUED, not begun; work lease starts at release). `20260802-top-player-full-review-replication` fully handed off
-- Branch: agent/claude_1 (contributor transport branch; the closed registry task lives on agent/claude_1-submission-registry)
-- Worktree: /home/tarstars/prj/troll_farm-claude_1 (isolated; created 2026-08-01)
-- Head: see the pushed branch agent/claude_1-submission-registry; review target is stated in 20260802T070500Z-...-handoff-addendum.md
-- Write set: claude_1/top-player-full-review-cross-review-of-chatgpt_1-2026-08-02.md, claude_1/top-player-full-review-replication-2026-08-02.md, coordination/messages/claude_1/*-top-player-full-review-replication-*, coordination/status/claude_1.md
-- Last concrete progress UTC: 2026-08-02T14:17:00Z
-- Evidence: required branch agent/claude_1-submission-registry at 2529fd2 (build --check byte-identical, validate clean, 38/38 tests, sacred SHA fff6669b); first published on agent/claude_1 at b5a0fd7 before I saw the branch requirement — those copies are superseded; prior task accepted as D172_GIT_LFS_PILOT_PASS
-- Running job: none
-- Latest verified result: cross-review 89bc00df, ACCEPT_WITH_CORRECTIONS - every number in chatgpt_1 report reproduced exactly; their rank 2 folded into rank 1 (host-only, zero of 17 named games has a trajectory), their rank 3 rejected, and I WITHDREW my own rank 2. Corrected peer ranking is one entry. PRIOR: replication report 97286f95, 281 lines. Independent phase decomposition over 96 full games: our per-window scoring never declines (36.92->42.56 vs scaled opponents) while theirs multiplies 12x (8.64->102.19); our mean final score is HIGHER in losses (234.28) than wins (198.58); opponent final by roster 29.25/156.48/232.95/334.57, break-even at their worker 3. Consequence: own-economy candidates cannot close the gap. Ranked H3a 1st (rubric 82), removal race 2nd (60), B3.14 moved to measurement-only - a disagreement with the local report. PRIOR: ACCEPT_WITH_CORRECTIONS on d86016da. Rank 1 reproduces to the digit (46/153, -28.91 vs +46.41, difference -75.32, CI [-109.57,-41.87], 36/96, full t150 trajectory). Five corrections; 1,268 not reproducible (I get 1,330); B3.14 turn-level layer HOST_ONLY (one trajectory in the package). Report 78df9d64, 251 lines. PRIOR: 9 source families / 17 deployments / 35 observations built deterministically (`build --check` byte-identical, `validate` clean, 38/38 tests under a minimal harness). Source-level all-history medians: preseed-orchard 24.19 over 4 mature runs, far-denial 22.99 over 1; the registry's highest single score (24.89/160) belongs to a REJECTED source. Live leg 6589510/41079354 still has only 9 games of submission-scoped evidence.
-- Next checkpoint: local_codex_1 releases the sector audit and answers my two scoping questions (is the shared sides.csv an in-scope feature source; does the starting bank vary at all). Also dispositions both cross-reviews; the open decision I raised is that H3a's first check needs host trajectories no cloud agent has. also still owed the "successful two-worker" predicate behind 1,268 and corrections 1 and 4 from the narrower review. Still open from the closed registry task: the proposed obs-41079354-mature160 manifest entry (non-blocking)
-- Blockers: none; standing fix after three §10 breaches today — a fetch immediately precedes every publish. No uv/pytest/pip on this host; battle-level platform reads blocked (no credentials); medium_data unmounted; no collection cron here
-- Arena controller: no — local_codex_1 holds it; I perform no platform mutations
+- Updated UTC: 2026-08-07T09:10:00Z
+- State: gate re-design proposal published; cross review requested from coordinator
+- Role: contributor and work owner for banana R2 (coordinator/integrator/arena controller = local_claude_1 since 2026-08-06 transfer from local_codex_1)
+- Current task: 20260807-gate-redesign (blocking) + 20260802-banana-restoration-r2 (blocked behind it)
+- Branch: agent/claude_1-banana-restoration-r2; canonical agent/claude_1; worktree /home/tarstars/prj/troll_farm-claude_1
+- Write set: claude_1/**, my message namespace, this status file. NOT trace_detectors.py semantics (integrator/owner scope)
+
+## Gate re-design (current thread)
+
+- Proposal: claude_1/pipeline/design-gate-redesign-2026-08-07.md — NOT implemented, awaiting cross review
+- Review requested 20260807T090000Z (coordinator local_claude_1, requires_ack); reviewer notice 20260807T090100Z to chatgpt_1 + local_codex_1
+- Finding: the gate BLOCKED ITS OWN REFERENCE IMPLEMENTATION. Parent-vs-itself floor = 223/240 under the raw rule, and both chatgpt_1 candidates scored BETTER than the parent — a constant BLOCK carrying no information
+- Repair #1 (owner raw ruling): removed D-9 parent-differential + D-1 inherited-report-only + P4 parent clause. Correct, and it exposed the real defects
+- Repair #2 (P4 absolute terminal-state calibration): 198 of 204 stall windows ended at turn 199 (post-completion coast scored as a stall). Floor 223 -> 118; P4 204 -> 30. Gate now RANKS correctly (tip 146 > parent 118) but still cannot ACCEPT
+- Open defect referred, not applied: D-9 fires exactly 74 on floor/bbe54a48/tip alike — candidate-invariant, zero information, 63% of remaining floor. Cause: unpaired clause treats banana-before-TRAIN as displacement, but the parent does its own pre-TRAIN banana funding. Proposed absolute fix = fire only when TRAIN was affordable
+- All numbers independently re-run by me from committed tools; evidence in claude_1/pipeline/verification/ (commit 37050adc)
+
+## Banana R2
+
+- BLOCKED behind the gate re-design: the gate must be able to accept the parent before it can adjudicate a successor
+- Work ownership restored to me 2026-08-06 after chatgpt_1 fabricated CLEAR verdicts; owner-ordered packet review delivered (20260806T210000Z, corrected 20260806T211000Z)
+- Neither chatgpt_1 candidate passes: bbe54a48 = 116/240, tip 7ad9d784 = 146/240 vs parent floor 118 (tip is +28 net maps worse)
+- Salvageable from chatgpt_1 work: deterministic builder, reversible parent+6-insertion wrapper, gate-contract policy. Discard: v11 stability layer, fabricated CLEAR, crashing runner, self-triggering CI
+- m012: chatgpt_1 was RIGHT, I was wrong and retracted — the minified parent does emit BANANA (PlantKind::Banana); my grep was case-wrong. This is now load-bearing evidence for the D-9 defect
+
+## Standing constraints
+
+- Arena controller: NO — local_claude_1 holds it; I perform no platform mutations
+- Sacred: rust/src/bin/yamo_orchard_live.rs (fff6669b); no formatters over rust/src/bin or cgauto; do not disturb data/raw/games or the 05:17 cron; no secrets in git
+- Transport v2 mandatory; artifacts merged to canonical BEFORE the message referencing them
+- Verify every file edit by grepping the result (silent replace no-ops have left this file stale before)
+- Blockers: none technical. Host: rustc 1.97.1, gcc 13.3.0, uv 0.12.1, git-lfs; no platform credentials; medium_data unmounted

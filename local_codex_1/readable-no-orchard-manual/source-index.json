@@ -1,0 +1,646 @@
+{
+  "schema": 1,
+  "source": "local_codex_1/readable-orchard-code-cost/e7a-without-orchard-readable.rs",
+  "sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+  "bytes": 75634,
+  "physical_lines": 1475,
+  "code_lines": 1470,
+  "symbols": [
+    {
+      "kind": "type",
+      "name": "Cell",
+      "line": 9,
+      "declaration": "pub type Cell=(i32,i32);"
+    },
+    {
+      "kind": "const",
+      "name": "ITEM_COUNT",
+      "line": 10,
+      "declaration": "pub const ITEM_COUNT:usize=6;"
+    },
+    {
+      "kind": "const",
+      "name": "PLUM",
+      "line": 11,
+      "declaration": "pub const PLUM:usize=0;"
+    },
+    {
+      "kind": "const",
+      "name": "LEMON",
+      "line": 12,
+      "declaration": "pub const LEMON:usize=1;"
+    },
+    {
+      "kind": "const",
+      "name": "APPLE",
+      "line": 13,
+      "declaration": "pub const APPLE:usize=2;"
+    },
+    {
+      "kind": "const",
+      "name": "BANANA",
+      "line": 14,
+      "declaration": "pub const BANANA:usize=3;"
+    },
+    {
+      "kind": "const",
+      "name": "IRON",
+      "line": 15,
+      "declaration": "pub const IRON:usize=4;"
+    },
+    {
+      "kind": "const",
+      "name": "WOOD",
+      "line": 16,
+      "declaration": "pub const WOOD:usize=5;"
+    },
+    {
+      "kind": "type",
+      "name": "Stock",
+      "line": 17,
+      "declaration": "pub type Stock=[i32;"
+    },
+    {
+      "kind": "enum",
+      "name": "PlantKind",
+      "line": 19,
+      "declaration": "#[derive(Clone,Copy,Debug,Eq,PartialEq,Ord,PartialOrd,Hash)]pub enum PlantKind{"
+    },
+    {
+      "kind": "fn",
+      "name": "parse",
+      "line": 23,
+      "declaration": "pub fn parse(value:&str)->Option<PlantKind>{"
+    },
+    {
+      "kind": "fn",
+      "name": "as_str",
+      "line": 28,
+      "declaration": "pub fn as_str(self)->&'static str{"
+    },
+    {
+      "kind": "fn",
+      "name": "item_index",
+      "line": 33,
+      "declaration": "pub fn item_index(self)->usize{"
+    },
+    {
+      "kind": "struct",
+      "name": "Stats",
+      "line": 39,
+      "declaration": "#[derive(Clone,Copy,Debug,Eq,PartialEq)]pub struct Stats{"
+    },
+    {
+      "kind": "fn",
+      "name": "tuple",
+      "line": 43,
+      "declaration": "pub fn tuple(self)->(i32,i32,i32,i32){"
+    },
+    {
+      "kind": "struct",
+      "name": "Unit",
+      "line": 47,
+      "declaration": "#[derive(Clone,Debug,Eq,PartialEq)]pub struct Unit{"
+    },
+    {
+      "kind": "fn",
+      "name": "total_carried",
+      "line": 51,
+      "declaration": "pub fn total_carried(&self)->i32{"
+    },
+    {
+      "kind": "fn",
+      "name": "free_capacity",
+      "line": 54,
+      "declaration": "pub fn free_capacity(&self)->i32{"
+    },
+    {
+      "kind": "struct",
+      "name": "Plant",
+      "line": 58,
+      "declaration": "#[derive(Clone,Debug,Eq,PartialEq)]pub struct Plant{"
+    },
+    {
+      "kind": "struct",
+      "name": "GameState",
+      "line": 61,
+      "declaration": "#[derive(Clone,Debug,Eq,PartialEq)]pub struct GameState{"
+    },
+    {
+      "kind": "fn",
+      "name": "plant_at",
+      "line": 68,
+      "declaration": "pub fn plant_at(&self,cell:Cell)->Option<usize>{"
+    },
+    {
+      "kind": "fn",
+      "name": "unit",
+      "line": 71,
+      "declaration": "pub fn unit(&self,id:i32)->Option<&Unit>{"
+    },
+    {
+      "kind": "const",
+      "name": "TOTAL_TURNS",
+      "line": 81,
+      "declaration": "pub const TOTAL_TURNS:i32=300;"
+    },
+    {
+      "kind": "const",
+      "name": "WOOD_POINTS",
+      "line": 82,
+      "declaration": "pub const WOOD_POINTS:i32=4;"
+    },
+    {
+      "kind": "fn",
+      "name": "plant_cooldown",
+      "line": 83,
+      "declaration": "pub fn plant_cooldown(kind:PlantKind)->i32{"
+    },
+    {
+      "kind": "fn",
+      "name": "water_boost",
+      "line": 88,
+      "declaration": "pub fn water_boost(kind:PlantKind)->i32{"
+    },
+    {
+      "kind": "fn",
+      "name": "tree_health_params",
+      "line": 93,
+      "declaration": "pub fn tree_health_params(kind:PlantKind)->(i32,i32){"
+    },
+    {
+      "kind": "fn",
+      "name": "tree_health",
+      "line": 98,
+      "declaration": "pub fn tree_health(kind:PlantKind,size:i32)->i32{"
+    },
+    {
+      "kind": "fn",
+      "name": "effective_cooldown",
+      "line": 102,
+      "declaration": "pub fn effective_cooldown(kind:PlantKind,near_water:bool)->i32{"
+    },
+    {
+      "kind": "fn",
+      "name": "training_cost",
+      "line": 110,
+      "declaration": "pub fn training_cost(n:i32,talents:(i32,i32,i32,i32))->Stock{"
+    },
+    {
+      "kind": "fn",
+      "name": "score",
+      "line": 120,
+      "declaration": "pub fn score(inventory:&Stock)->i32{"
+    },
+    {
+      "kind": "fn",
+      "name": "item_index",
+      "line": 123,
+      "declaration": "pub fn item_index(name:&str)->Option<usize>{"
+    },
+    {
+      "kind": "const",
+      "name": "NEIGHBORS",
+      "line": 135,
+      "declaration": "pub const NEIGHBORS:[Cell;"
+    },
+    {
+      "kind": "fn",
+      "name": "manhattan",
+      "line": 137,
+      "declaration": "pub fn manhattan(a:Cell,b:Cell)->i32{"
+    },
+    {
+      "kind": "fn",
+      "name": "ortho_neighbors",
+      "line": 140,
+      "declaration": "pub fn ortho_neighbors(cell:Cell)->[Cell;"
+    },
+    {
+      "kind": "fn",
+      "name": "is_adjacent",
+      "line": 144,
+      "declaration": "pub fn is_adjacent(a:Cell,b:Cell)->bool{"
+    },
+    {
+      "kind": "fn",
+      "name": "bfs_distances",
+      "line": 147,
+      "declaration": "pub fn bfs_distances(walkable:&BTreeSet<Cell>,sources:&[Cell])->BTreeMap<Cell,i32>{"
+    },
+    {
+      "kind": "fn",
+      "name": "next_cell",
+      "line": 167,
+      "declaration": "pub fn next_cell(walkable:&BTreeSet<Cell>,current:Cell,target:Cell,speed:i32)->Cell{"
+    },
+    {
+      "kind": "struct",
+      "name": "StaticMap",
+      "line": 197,
+      "declaration": "#[derive(Clone,Debug)]pub struct StaticMap{"
+    },
+    {
+      "kind": "fn",
+      "name": "read_line",
+      "line": 201,
+      "declaration": "pub fn read_line(reader:&mut impl BufRead)->Option<String>{"
+    },
+    {
+      "kind": "fn",
+      "name": "read_static_map",
+      "line": 207,
+      "declaration": "pub fn read_static_map(reader:&mut impl BufRead)->Option<StaticMap>{"
+    },
+    {
+      "kind": "fn",
+      "name": "parse_static_map",
+      "line": 218,
+      "declaration": "pub fn parse_static_map(width:i32,height:i32,rows:&[String])->StaticMap{"
+    },
+    {
+      "kind": "fn",
+      "name": "read_turn",
+      "line": 245,
+      "declaration": "pub fn read_turn(reader:&mut impl BufRead,map:&StaticMap,turn:i32)->Option<GameState>{"
+    },
+    {
+      "kind": "enum",
+      "name": "Target",
+      "line": 315,
+      "declaration": "#[derive(Clone,Copy,Debug,Eq,PartialEq,Ord,PartialOrd)]enum Target{"
+    },
+    {
+      "kind": "struct",
+      "name": "Candidate",
+      "line": 318,
+      "declaration": "#[derive(Clone,Debug)]struct Candidate{"
+    },
+    {
+      "kind": "struct",
+      "name": "MoisanBot",
+      "line": 321,
+      "declaration": "struct MoisanBot;"
+    },
+    {
+      "kind": "struct",
+      "name": "YamoOpeningPolicy",
+      "line": 322,
+      "declaration": "#[derive(Clone,Copy,Debug,Eq,PartialEq)]pub struct YamoOpeningPolicy{"
+    },
+    {
+      "kind": "const",
+      "name": "TUNED_CARRY",
+      "line": 326,
+      "declaration": "pub const TUNED_CARRY:Self=Self{"
+    },
+    {
+      "kind": "struct",
+      "name": "OpeningObjective",
+      "line": 331,
+      "declaration": "#[derive(Clone,Copy,Debug,Eq,PartialEq)]struct OpeningObjective{"
+    },
+    {
+      "kind": "struct",
+      "name": "YamoBot",
+      "line": 334,
+      "declaration": "pub struct YamoBot{"
+    },
+    {
+      "kind": "struct",
+      "name": "PredictedTree",
+      "line": 337,
+      "declaration": "#[derive(Clone,Copy)]struct PredictedTree{"
+    },
+    {
+      "kind": "fn",
+      "name": "focus_type",
+      "line": 341,
+      "declaration": "fn focus_type(view:&GameState)->PlantKind{"
+    },
+    {
+      "kind": "fn",
+      "name": "ceil_div",
+      "line": 357,
+      "declaration": "fn ceil_div(a:i32,b:i32)->i32{"
+    },
+    {
+      "kind": "fn",
+      "name": "carry_total",
+      "line": 365,
+      "declaration": "fn carry_total(unit:&Unit)->i32{"
+    },
+    {
+      "kind": "fn",
+      "name": "carrying_any",
+      "line": 368,
+      "declaration": "fn carrying_any(unit:&Unit)->bool{"
+    },
+    {
+      "kind": "fn",
+      "name": "bank_candidates",
+      "line": 371,
+      "declaration": "fn bank_candidates(view:&GameState,unit:&Unit)->Vec<Candidate>{"
+    },
+    {
+      "kind": "fn",
+      "name": "can_train",
+      "line": 400,
+      "declaration": "fn can_train(view:&GameState,stats:Stats)->bool{"
+    },
+    {
+      "kind": "fn",
+      "name": "ticks_until_fruit",
+      "line": 409,
+      "declaration": "fn ticks_until_fruit(view:&GameState,plant:&Plant)->i32{"
+    },
+    {
+      "kind": "fn",
+      "name": "early_candidates",
+      "line": 432,
+      "declaration": "fn early_candidates(view:&GameState,unit:&Unit,desired:Stats)->Vec<Candidate>{"
+    },
+    {
+      "kind": "fn",
+      "name": "fruit_candidates",
+      "line": 463,
+      "declaration": "fn fruit_candidates(view:&GameState,unit:&Unit,kind:PlantKind,base_score:f64,)->Vec<Candidate>{"
+    },
+    {
+      "kind": "fn",
+      "name": "iron_candidates",
+      "line": 485,
+      "declaration": "fn iron_candidates(view:&GameState,unit:&Unit,base_score:f64)->Vec<Candidate>{"
+    },
+    {
+      "kind": "fn",
+      "name": "predicted_opp_chop",
+      "line": 509,
+      "declaration": "fn predicted_opp_chop(view:&GameState,plant:&Plant)->i32{"
+    },
+    {
+      "kind": "fn",
+      "name": "predict_tree",
+      "line": 522,
+      "declaration": "fn predict_tree(view:&GameState,plant:&Plant,turns:i32)->Option<PredictedTree>{"
+    },
+    {
+      "kind": "fn",
+      "name": "chop_outcome",
+      "line": 556,
+      "declaration": "fn chop_outcome(view:&GameState,plant:&Plant,predicted:PredictedTree,chop_power:i32,)->Option<(i32,i32)>{"
+    },
+    {
+      "kind": "fn",
+      "name": "chop_candidates",
+      "line": 582,
+      "declaration": "fn chop_candidates(view:&GameState,unit:&Unit,type_to_cut:Option<PlantKind>,)->Vec<Candidate>{"
+    },
+    {
+      "kind": "fn",
+      "name": "wait",
+      "line": 638,
+      "declaration": "fn wait()->Candidate{"
+    },
+    {
+      "kind": "fn",
+      "name": "compatible",
+      "line": 643,
+      "declaration": "fn compatible(a:Target,b:Target)->bool{"
+    },
+    {
+      "kind": "fn",
+      "name": "picked_item",
+      "line": 655,
+      "declaration": "fn picked_item(command:&str)->Option<usize>{"
+    },
+    {
+      "kind": "fn",
+      "name": "stock_compatible",
+      "line": 659,
+      "declaration": "fn stock_compatible(a:&Candidate,b:&Candidate,inventory:&[i32;"
+    },
+    {
+      "kind": "fn",
+      "name": "select",
+      "line": 665,
+      "declaration": "fn select(candidates_by_id:BTreeMap<i32,Vec<Candidate>>,inventory:&[i32;"
+    },
+    {
+      "kind": "fn",
+      "name": "move_command",
+      "line": 713,
+      "declaration": "fn move_command(command:&str)->Option<(i32,Cell)>{"
+    },
+    {
+      "kind": "fn",
+      "name": "resolve_move_conflicts",
+      "line": 720,
+      "declaration": "fn resolve_move_conflicts(view:&GameState,commands:&mut[String]){"
+    },
+    {
+      "kind": "fn",
+      "name": "resolve_move_conflicts_with_priority",
+      "line": 723,
+      "declaration": "fn resolve_move_conflicts_with_priority(view:&GameState,commands:&mut[String],priority_ids:&BTreeSet<i32>,){"
+    },
+    {
+      "kind": "fn",
+      "name": "resolve_move_conflicts_with_priority_and_forbidden",
+      "line": 726,
+      "declaration": "fn resolve_move_conflicts_with_priority_and_forbidden(view:&GameState,commands:&mut[String],priority_ids:&BTreeSet<i32>,forbidden_for_non_priority:&BTreeSet<Cell>,){"
+    },
+    {
+      "kind": "fn",
+      "name": "with_opening_policy",
+      "line": 781,
+      "declaration": "pub fn with_opening_policy(opening_policy:YamoOpeningPolicy)->Self{"
+    },
+    {
+      "kind": "fn",
+      "name": "tuned_carry_regeneration_transit_idle_harvest",
+      "line": 786,
+      "declaration": "pub fn tuned_carry_regeneration_transit_idle_harvest()->Self{"
+    },
+    {
+      "kind": "fn",
+      "name": "ensure_opening",
+      "line": 796,
+      "declaration": "fn ensure_opening(&mut self,view:&GameState){"
+    },
+    {
+      "kind": "fn",
+      "name": "collection_eta",
+      "line": 805,
+      "declaration": "fn collection_eta(view:&GameState,item:usize,missing:i32)->i32{"
+    },
+    {
+      "kind": "fn",
+      "name": "opening_objective",
+      "line": 827,
+      "declaration": "fn opening_objective(view:&GameState,stats:Stats)->OpeningObjective{"
+    },
+    {
+      "kind": "fn",
+      "name": "opening_key",
+      "line": 838,
+      "declaration": "fn opening_key(objective:&OpeningObjective,policy:YamoOpeningPolicy,)->(i32,i32,i32,i32,i32){"
+    },
+    {
+      "kind": "fn",
+      "name": "opening_options",
+      "line": 848,
+      "declaration": "fn opening_options(view:&GameState,max_carry_capacity:i32,max_chop_power:i32,)->Vec<OpeningObjective>{"
+    },
+    {
+      "kind": "fn",
+      "name": "choose_second_troll",
+      "line": 865,
+      "declaration": "fn choose_second_troll(view:&GameState,policy:YamoOpeningPolicy)->OpeningObjective{"
+    },
+    {
+      "kind": "fn",
+      "name": "training_affordable",
+      "line": 899,
+      "declaration": "fn training_affordable(view:&GameState,stats:Stats)->bool{"
+    },
+    {
+      "kind": "fn",
+      "name": "strongest_affordable",
+      "line": 907,
+      "declaration": "fn strongest_affordable(view:&GameState,policy:YamoOpeningPolicy,)->Option<OpeningObjective>{"
+    },
+    {
+      "kind": "fn",
+      "name": "enforce_training_deadline",
+      "line": 914,
+      "declaration": "fn enforce_training_deadline(&mut self,view:&GameState){"
+    },
+    {
+      "kind": "fn",
+      "name": "fallback_second_troll",
+      "line": 942,
+      "declaration": "fn fallback_second_troll()->Stats{"
+    },
+    {
+      "kind": "fn",
+      "name": "bank_candidates",
+      "line": 947,
+      "declaration": "fn bank_candidates(view:&GameState,unit:&Unit)->Vec<Candidate>{"
+    },
+    {
+      "kind": "fn",
+      "name": "unique_shack_door",
+      "line": 956,
+      "declaration": "fn unique_shack_door(view:&GameState)->Option<Cell>{"
+    },
+    {
+      "kind": "fn",
+      "name": "forced_move",
+      "line": 960,
+      "declaration": "fn forced_move(unit:&Unit,cell:Cell)->Candidate{"
+    },
+    {
+      "kind": "fn",
+      "name": "carries_committed_fruit",
+      "line": 965,
+      "declaration": "fn carries_committed_fruit(&self,unit:&Unit)->bool{"
+    },
+    {
+      "kind": "fn",
+      "name": "planned_egress",
+      "line": 968,
+      "declaration": "fn planned_egress(view:&GameState,unit:&Unit,options:&[Candidate],forbidden:&BTreeSet<Cell>,)->Option<(Cell,Target)>{"
+    },
+    {
+      "kind": "fn",
+      "name": "force_unique_door_clear",
+      "line": 978,
+      "declaration": "fn force_unique_door_clear(&self,view:&GameState,candidates:&mut BTreeMap<i32,Vec<Candidate>>,){"
+    },
+    {
+      "kind": "fn",
+      "name": "reconcile_regeneration_commitments",
+      "line": 1094,
+      "declaration": "fn reconcile_regeneration_commitments(&mut self,view:&GameState){"
+    },
+    {
+      "kind": "fn",
+      "name": "remember_selected_regeneration",
+      "line": 1112,
+      "declaration": "fn remember_selected_regeneration(&mut self,commands:&[String]){"
+    },
+    {
+      "kind": "fn",
+      "name": "yamo_chop_candidates",
+      "line": 1128,
+      "declaration": "fn yamo_chop_candidates(view:&GameState,unit:&Unit,type_to_cut:Option<PlantKind>,opponent_eta_penalty:i32,)->Vec<Candidate>{"
+    },
+    {
+      "kind": "fn",
+      "name": "main_candidates",
+      "line": 1167,
+      "declaration": "fn main_candidates(view:&GameState,unit:&Unit,type_to_cut:Option<PlantKind>,idle_regeneration:bool,safe_regeneration:bool,opponent_eta_penalty:i32,)->Vec<Candidate>{"
+    },
+    {
+      "kind": "fn",
+      "name": "carried_fruit",
+      "line": 1201,
+      "declaration": "fn carried_fruit(unit:&Unit)->Option<PlantKind>{"
+    },
+    {
+      "kind": "fn",
+      "name": "inventory_fruits",
+      "line": 1204,
+      "declaration": "fn inventory_fruits(view:&GameState)->Vec<PlantKind>{"
+    },
+    {
+      "kind": "fn",
+      "name": "conversion_chop_turns",
+      "line": 1207,
+      "declaration": "fn conversion_chop_turns(view:&GameState,cell:Cell,kind:PlantKind,chop:i32)->i32{"
+    },
+    {
+      "kind": "fn",
+      "name": "endgame_candidates",
+      "line": 1233,
+      "declaration": "fn endgame_candidates(view:&GameState,unit:&Unit,type_to_cut:Option<PlantKind>,safe_regeneration:bool,opponent_eta_penalty:i32,)->Vec<Candidate>{"
+    },
+    {
+      "kind": "fn",
+      "name": "idle_harvest_candidates",
+      "line": 1340,
+      "declaration": "fn idle_harvest_candidates(view:&GameState,unit:&Unit,)->Vec<Candidate>{"
+    },
+    {
+      "kind": "fn",
+      "name": "endgame",
+      "line": 1371,
+      "declaration": "fn endgame(view:&GameState)->bool{"
+    },
+    {
+      "kind": "fn",
+      "name": "commands",
+      "line": 1376,
+      "declaration": "fn commands(&mut self,view:&GameState)->Vec<String>{"
+    },
+    {
+      "kind": "trait",
+      "name": "Bot",
+      "line": 1444,
+      "declaration": "pub trait Bot{"
+    },
+    {
+      "kind": "fn",
+      "name": "commands",
+      "line": 1445,
+      "declaration": "fn commands(&mut self,view:&GameState)->Vec<String>;"
+    },
+    {
+      "kind": "fn",
+      "name": "main",
+      "line": 1458,
+      "declaration": "fn main(){"
+    }
+  ]
+}

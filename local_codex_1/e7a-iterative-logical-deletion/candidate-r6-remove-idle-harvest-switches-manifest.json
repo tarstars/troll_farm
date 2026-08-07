@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 61143,
+    "path": "local_codex_1/e7a-iterative-logical-deletion/candidate-r6-remove-idle-harvest-switches.rs",
+    "removed_from_initial_62278": 1135,
+    "removed_this_round": 185,
+    "sha256": "440bb864fe2c879ac66ee1466585896730173ac0dda6f0105c72dcaf99ef4407"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "delete the fixed-on idle-harvest and fixed-off clock-only policy switches while preserving their simplified endgame/all-WAIT activation condition",
+  "minification": false,
+  "parent": {
+    "bytes": 61328,
+    "path": "local_codex_1/e7a-iterative-logical-deletion/candidate-r5-inline-worker-speed.rs",
+    "sha256": "a8db90e558a89bdbaadd52458cb4897da4fe9d6acc3a061f40992b03ca28524c"
+  },
+  "round": 6,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}

@@ -1,0 +1,128 @@
+{
+  "evidence_boundary": "continued-referee engineering gate on already-consumed official maps; not an Arena predictor",
+  "gates": {
+    "bootstrap_lower_above_minus_2": false,
+    "both_seat_means_nonnegative": false,
+    "catastrophes_not_increased": false,
+    "coverage_at_least_512": true,
+    "five_of_six_family_means_nonnegative": false,
+    "latency_max_below_50ms": true,
+    "latency_p95_at_most_120pct": true,
+    "mean_delta_at_least_minus_0_5": false,
+    "median_worker2_delay_at_most_10": true,
+    "negative_mass_not_increased": false,
+    "six_families": true,
+    "worker2_coverage_at_least_95pct": true,
+    "zero_critical": true,
+    "zero_unclassified": true
+  },
+  "inputs": {
+    "baseline": {
+      "bytes": 62820,
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+      "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+    },
+    "candidate": {
+      "bytes": 32819,
+      "path": "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-no-forced-current-chop.rs",
+      "sha256": "782d7c865fe8ffc24b3dad6924677ee15c7435f0c87886059a8b39a7ced390fc"
+    },
+    "compiler": {
+      "baseline_module_sha256": "ffc92780c2bdf418740f197c22effb20a3ad6d957ea9b0f9bb451cab71294ded",
+      "candidate_module_sha256": "cdfe495181103ae652f780d3acd71147f250539a18089f72783572a76d0ec684",
+      "runner_sha256": "4d30ec25db7055faba9d7f33007ec4cc17f67680d529dbda876025613633d72e",
+      "rust_library_sha256": "1802bd8d69023b2e374d0a9586c33296485456892a9821dc635f5cb6dde0e660"
+    },
+    "panel_tsv": "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-no-forced-current-chop-development-panel.tsv",
+    "runner": "local_codex_1/e7a-half-size-logical-simplification/open_panel_runner.rs",
+    "sacred_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "metrics": {
+    "bootstrap_95_lower": -31.36046511627907,
+    "catastrophes": {
+      "baseline": 19,
+      "candidate": 33
+    },
+    "family_mean_delta": {
+      "compact_gold": -12.662790697674419,
+      "gold_adaptive": -25.302325581395348,
+      "legend_balanced": -25.96511627906977,
+      "mybot": -18.511627906976745,
+      "norx_native_three": -29.232558139534884,
+      "resident": -12.104651162790697
+    },
+    "issues": {
+      "baseline": 18474,
+      "candidate": 18156
+    },
+    "latency": {
+      "baseline": {
+        "maximum_ms": 6.122207,
+        "maximum_ns": 6122207,
+        "p95_ms": 0.390278,
+        "p95_ns": 390278,
+        "samples": 139985
+      },
+      "candidate": {
+        "maximum_ms": 0.712721,
+        "maximum_ns": 712721,
+        "p95_ms": 0.334375,
+        "p95_ns": 334375,
+        "samples": 143338
+      },
+      "candidate_p95_ratio": 0.8567610780008097
+    },
+    "maximum_period2": {
+      "baseline": 244,
+      "candidate": 264
+    },
+    "mean_margin_delta": -20.62984496124031,
+    "mean_opponent_score": {
+      "baseline": 123.25387596899225,
+      "candidate": 122.07558139534883
+    },
+    "mean_score": {
+      "baseline": 200.53488372093022,
+      "candidate": 178.72674418604652
+    },
+    "negative_margin_mass": {
+      "baseline": 4138,
+      "candidate": 7514
+    },
+    "period2_ge6": {
+      "baseline": 115,
+      "candidate": 252
+    },
+    "seat_mean_delta": {
+      "0": -18.4031007751938,
+      "1": -22.856589147286822
+    },
+    "training": {
+      "baseline_games": 516,
+      "candidate_on_baseline_games": 516,
+      "coverage": 1.0,
+      "median_delay": 0.0
+    }
+  },
+  "panel": {
+    "bootstrap_samples": 50000,
+    "maps": 43,
+    "opponents": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot"
+    ],
+    "seats": [
+      0,
+      1
+    ],
+    "start_seed": 9854000,
+    "tasks": 516
+  },
+  "run_stderr": "saved 516 paired tasks in 101.072s",
+  "schema": "troll-farm-e7a-half-size-open-panel-v1",
+  "verdict": "REJECTED_OPEN_PANEL"
+}

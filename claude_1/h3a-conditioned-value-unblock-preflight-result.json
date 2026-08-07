@@ -1,0 +1,291 @@
+{
+  "games": {
+    "897780891": {
+      "activates_by_boundary": true,
+      "activation_turn": 148,
+      "cohort": "catastrophe",
+      "collapse_start": 200,
+      "decision_rows": 300,
+      "first_eligible": {
+        "cell": [
+          8,
+          8
+        ],
+        "eta": 6,
+        "species": "PLUM",
+        "troll_id": 2,
+        "turn": 148
+      },
+      "opponent_tag": "seat0",
+      "seat": 1
+    },
+    "897781216": {
+      "activates_by_boundary": true,
+      "activation_turn": 139,
+      "cohort": "catastrophe",
+      "collapse_start": 150,
+      "decision_rows": 300,
+      "first_eligible": null,
+      "opponent_tag": "seat0",
+      "seat": 1
+    },
+    "897781413": {
+      "activates_by_boundary": true,
+      "activation_turn": 123,
+      "cohort": "catastrophe",
+      "collapse_start": 200,
+      "decision_rows": 300,
+      "first_eligible": {
+        "cell": [
+          15,
+          7
+        ],
+        "eta": 4,
+        "species": "PLUM",
+        "troll_id": 0,
+        "turn": 123
+      },
+      "opponent_tag": "seat1",
+      "seat": 0
+    },
+    "897781650": {
+      "activates_by_boundary": false,
+      "activation_turn": null,
+      "cohort": "matched_win",
+      "collapse_start": null,
+      "decision_rows": 300,
+      "first_eligible": null,
+      "opponent_tag": "seat0",
+      "seat": 1
+    },
+    "897781674": {
+      "activates_by_boundary": false,
+      "activation_turn": 169,
+      "cohort": "matched_win",
+      "collapse_start": null,
+      "decision_rows": 300,
+      "first_eligible": {
+        "cell": [
+          6,
+          2
+        ],
+        "eta": 4,
+        "species": "PLUM",
+        "troll_id": 1,
+        "turn": 169
+      },
+      "opponent_tag": "seat0",
+      "seat": 1
+    },
+    "897781719": {
+      "activates_by_boundary": true,
+      "activation_turn": 120,
+      "cohort": "catastrophe",
+      "collapse_start": 150,
+      "decision_rows": 300,
+      "first_eligible": {
+        "cell": [
+          13,
+          4
+        ],
+        "eta": 3,
+        "species": "LEMON",
+        "troll_id": 0,
+        "turn": 120
+      },
+      "opponent_tag": "seat1",
+      "seat": 0
+    },
+    "897781840": {
+      "activates_by_boundary": true,
+      "activation_turn": 92,
+      "cohort": "catastrophe",
+      "collapse_start": 200,
+      "decision_rows": 300,
+      "first_eligible": {
+        "cell": [
+          6,
+          9
+        ],
+        "eta": 1,
+        "species": "PLUM",
+        "troll_id": 3,
+        "turn": 92
+      },
+      "opponent_tag": "seat0",
+      "seat": 1
+    },
+    "897781987": {
+      "activates_by_boundary": true,
+      "activation_turn": 138,
+      "cohort": "catastrophe",
+      "collapse_start": 250,
+      "decision_rows": 300,
+      "first_eligible": {
+        "cell": [
+          7,
+          3
+        ],
+        "eta": 5,
+        "species": "LEMON",
+        "troll_id": 1,
+        "turn": 138
+      },
+      "opponent_tag": "seat0",
+      "seat": 1
+    },
+    "897782068": {
+      "activates_by_boundary": false,
+      "activation_turn": null,
+      "cohort": "matched_win",
+      "collapse_start": null,
+      "decision_rows": 300,
+      "first_eligible": null,
+      "opponent_tag": "seat1",
+      "seat": 0
+    },
+    "897782076": {
+      "activates_by_boundary": true,
+      "activation_turn": 60,
+      "cohort": "catastrophe",
+      "collapse_start": 100,
+      "decision_rows": 300,
+      "first_eligible": {
+        "cell": [
+          4,
+          3
+        ],
+        "eta": 6,
+        "species": "PLUM",
+        "troll_id": 1,
+        "turn": 60
+      },
+      "opponent_tag": "seat0",
+      "seat": 1
+    },
+    "897782128": {
+      "activates_by_boundary": false,
+      "activation_turn": null,
+      "cohort": "matched_win",
+      "collapse_start": null,
+      "decision_rows": 300,
+      "first_eligible": null,
+      "opponent_tag": "seat1",
+      "seat": 0
+    },
+    "897782201": {
+      "activates_by_boundary": false,
+      "activation_turn": null,
+      "cohort": "matched_win",
+      "collapse_start": null,
+      "decision_rows": 300,
+      "first_eligible": null,
+      "opponent_tag": "seat1",
+      "seat": 0
+    },
+    "897782213": {
+      "activates_by_boundary": false,
+      "activation_turn": 169,
+      "cohort": "catastrophe",
+      "collapse_start": 200,
+      "decision_rows": 300,
+      "first_eligible": {
+        "cell": [
+          12,
+          4
+        ],
+        "eta": 0,
+        "species": "LEMON",
+        "troll_id": 0,
+        "turn": 169
+      },
+      "opponent_tag": "seat1",
+      "seat": 0
+    },
+    "897782246": {
+      "activates_by_boundary": false,
+      "activation_turn": null,
+      "cohort": "matched_win",
+      "collapse_start": null,
+      "decision_rows": 300,
+      "first_eligible": null,
+      "opponent_tag": "seat0",
+      "seat": 1
+    },
+    "897782302": {
+      "activates_by_boundary": true,
+      "activation_turn": 96,
+      "cohort": "catastrophe",
+      "collapse_start": 150,
+      "decision_rows": 300,
+      "first_eligible": {
+        "cell": [
+          15,
+          5
+        ],
+        "eta": 2,
+        "species": "BANANA",
+        "troll_id": 0,
+        "turn": 96
+      },
+      "opponent_tag": "seat1",
+      "seat": 0
+    },
+    "897782366": {
+      "activates_by_boundary": true,
+      "activation_turn": 114,
+      "cohort": "catastrophe",
+      "collapse_start": 200,
+      "decision_rows": 300,
+      "first_eligible": {
+        "cell": [
+          12,
+          2
+        ],
+        "eta": 6,
+        "species": "PLUM",
+        "troll_id": 0,
+        "turn": 114
+      },
+      "opponent_tag": "seat1",
+      "seat": 0
+    },
+    "897782379": {
+      "activates_by_boundary": false,
+      "activation_turn": null,
+      "cohort": "matched_win",
+      "collapse_start": null,
+      "decision_rows": 300,
+      "first_eligible": null,
+      "opponent_tag": "seat1",
+      "seat": 0
+    }
+  },
+  "gates": {
+    "gate1_activation_by_150": {
+      "need": ">=8",
+      "of": 10,
+      "pass": true,
+      "value": 9
+    },
+    "gate2_precedes_collapse": {
+      "need": ">=8",
+      "of": 10,
+      "pass": true,
+      "value": 10
+    },
+    "gate3_false_positive": {
+      "need": "<=20% (<=1 of 7)",
+      "of": 7,
+      "pass": true,
+      "value": 0
+    },
+    "gate4_eligible_after_activation": {
+      "need": ">=6",
+      "of": 10,
+      "pass": true,
+      "value": 9
+    }
+  },
+  "require_fruits": false
+}
