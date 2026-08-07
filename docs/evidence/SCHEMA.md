@@ -1,6 +1,6 @@
 # Decision-evidence pilot schema
 
-Version: `1`
+Version: `2`
 
 ## Authority
 
@@ -19,23 +19,30 @@ records with explicit relations.
 `textual_evidence`, `does_not_prove`, `limitations`, `relations`, `reopening_conditions`,
 `discussions`, `constraint_projection`, and `acceptance`.
 
-Every numeric `decisive_claim` requires:
+Every `source` is a git-pinned coordinate:
 
-- a stable `name` and human `display`;
-- an explicit `population`;
-- an evidence `source.path`;
-- either `source.locator` (`lines N-M`) or `source.json_pointer`;
-- an allowed `evidence_strength`;
-- `binding: true|false`.
+- `commit` — 40-character SHA. Hard error if it does not resolve; warning
+  (`pending integration`) if it resolves but is not yet an ancestor of `origin/main`.
+- `path` — repo-relative path as it existed at `commit`.
+- exactly one of `locator` (`lines N-M`, interpreted at that commit) or `json_pointer`.
+- `quote` — optional verbatim excerpt. Used only for the currency check: if it no longer
+  appears in the *current* file, the validator warns. It never fails the build.
 
-If two populations are compared and differ, the record must either mark the comparison
-`invalid_disclosed` with an explanation or declare a reproducible transformation.
+Line numbers are meaningless without their commit: `docs/CONSTRAINTS.md` is append-heavy and
+every insertion shifts all citations below it. Pinning is what makes a citation permanent.
 
-A ladder-effect claim requires `arena_measured` evidence. Non-Arena estimates must set
-`projection_label: true`.
+## Hypothesis tier
 
-`void-premise` is a first-class status, excluded from closure counts, and requires a
-populated `premise_failure` block.
+`docs/evidence/hypotheses/Q<n>.md` carries a `HYPOTHESIS-JSON` block with six required fields:
+`id`, `question`, `origin` (exact v2 message paths), `positions` (agent + stance),
+`status` (`open` / `investigating` / `resolved` / `void`), and `next_action`.
+
+Entry cost is deliberately low — the 21-field record schema is the closing tax, not the entry
+tax. A `resolved` hypothesis requires `graduated_to`, naming an existing record id; the
+lightweight entry is never deleted, because the trail from question to answer is the product.
+
+`generated/OPEN-QUESTIONS.md` is the backlog view. Like everything in `generated/`, it is
+deterministic and must never be hand-edited.
 
 ## Generated projections
 
