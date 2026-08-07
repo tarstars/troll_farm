@@ -1,0 +1,89 @@
+[
+ {
+  "count": 2,
+  "detector": "D-1",
+  "episodes": [
+   {
+    "cells": [
+     [
+      9,
+      3
+     ],
+     [
+      8,
+      3
+     ]
+    ],
+    "k": 4,
+    "turn_end": 55,
+    "turn_start": 47,
+    "unit": 2
+   },
+   {
+    "cells": [
+     [
+      9,
+      3
+     ],
+     [
+      8,
+      3
+     ]
+    ],
+    "k": 3,
+    "turn_end": 101,
+    "turn_start": 95,
+    "unit": 2
+   }
+  ],
+  "verdict": "FAIL"
+ },
+ {
+  "count": 0,
+  "detector": "D-2",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-3",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-4",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-5",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-6",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-7",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-8",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-9",
+  "episodes": [],
+  "verdict": "PASS"
+ }
+]

@@ -1,0 +1,91 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   22
+  ],
+  "margin": 88,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 88
+ },
+ "class": "forest_dense",
+ "detector_counts": {
+  "D-1": 1,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 0,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [],
+ "map_id": "m007",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   25
+  ],
+  "margin": 100,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 100
+ },
+ "profile": "idle",
+ "seat": 0,
+ "seed": 15485863,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 1,
+   "detector": "D-1",
+   "episodes": [
+    {
+     "cells": [
+      [
+       2,
+       4
+      ],
+      [
+       3,
+       4
+      ]
+     ],
+     "k": 17,
+     "turn_end": 200,
+     "turn_start": 165,
+     "unit": 0
+    }
+   ],
+   "property": "P1"
+  }
+ ]
+}
