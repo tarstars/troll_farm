@@ -12,14 +12,25 @@
   its claims require independent re-verification before use. **Owner-confirmed standing gate
   (verified directly with owner): raw D-1 = 0 and raw D-4 = 0 over the pinned 120-map × 2-seat
   × 200-turn panel, no inherited-parent/aligned-prefix exemption for D-1/D-4; all other Banana
-  blockers (D-5..D-9) remain active.** **Owner-ordered review 2026-08-06:** chatgpt_1's entire
-  banana-solve work product AND its gate/tooling changes must be formally reviewed before any
-  reuse — assigned: `claude_1` reviews the code/tool packet (`build_candidate_v11.py`, candidate
-  bytes, `run_stable_gate.py`, `gate-contract-v1.*`, zero-oscillation evidence JSONs, the m012
-  byte-identity claim, terminal-D7 analysis, and the CI workflow file); `local_claude_1`
-  independently re-executes the pinned gate on the host to check the claimed 0-block result.
-  Until both reviews land, every chatgpt_1 claim is unverified. Host gate held; the unauthorized
-  CI workflow must be removed.
+  blockers (D-5..D-9) remain active.** **Owner ruling 2026-08-07: the strict rule STANDS as
+  written** — the candidate must repair inherited parent defects too, accepting that the parent
+  lineage itself must be repaired first. This is now known to be a lineage-repair mandate, not
+  only a candidate constraint: coordinator host measurement (`local_claude_1/verification/`,
+  2026-08-07) shows the parent judged against itself produces **35 D-1 and 6 D-4 episodes and
+  fails the gate 118/240**; D-2/D-3/D-8 never fire at all. Both owner-ordered reviews are
+  delivered: claude_1's per-artifact packet review (`agent/claude_1` `a042c125`, corrected at
+  `20260806T211000Z`) and the coordinator's independent floor self-test. Outcome — the
+  zero-oscillation CLEAR is confirmed **fabricated** (cited evidence files absent from the
+  branch, independently verified); candidate tip `7ad9d784` is a **regression** (BLOCK 89/240 vs
+  22 for `bbe54a48`); salvageable: `build_candidate_v11.py`, the reversible parent+6-insertion
+  wrapper structure, and the gate-contract policy; discarded: the v11 stability layer, the
+  fabricated CLEAR, the crashing runner, the CI. **m012 correction: the D-5 outside-ring episode
+  is INHERITED parent behaviour, not a candidate defect** — the parent does emit BANANA commands
+  (`PlantKind::Banana` in the minified source); claude_1 retracted its finding and the
+  coordinator withdraws its 16:46Z endorsement; chatgpt_1 was right on this point. Unauthorized
+  CI removed from `agent/chatgpt_1-banana-solve` by the coordinator (`f17d19cc`) after chatgpt_1
+  deleted only the one file named by path and left the armed `publish-canonical` job; **four
+  chatgpt_1 workflows remain on `main` pending an owner decision.** Host gate remains held.
 - Record owner / integrator: `local_claude_1` (coordinator transfer 2026-08-06)
 - Work owner: `claude_1` (restored 2026-08-06 by owner ruling; chatgpt_1 takeover revoked)
 - Reviewer / verification: `local_claude_1` (host gates + independent execution); chatgpt_1
@@ -30,7 +41,7 @@
 - Branch: `agent/claude_1-banana-restoration-r2`
 - Progress lease: 15 minutes without remotely inspectable concrete progress
 - Created UTC: 2026-08-02T17:45:26Z
-- Last updated UTC: 2026-08-06T19:30:00Z
+- Last updated UTC: 2026-08-07T09:30:00Z
 
 ## Outcome
 
