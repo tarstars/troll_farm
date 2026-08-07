@@ -219,3 +219,114 @@ now**, as a preservation action separate from any decision about reusing it.
 | The hard-forbid oscillation breaker (D171a) | a prior cycle | +117% displacement, 72 clean tasks acquired new oscillation. |
 | Eleven `build_candidate` versions | — | Only v11 is verified; the rest are liability. |
 | R2 not knowing D89a existed | possibly the whole week | A working banana implementation sat unreferenced on one branch. |
+
+---
+
+# Part 2 — cross-check of `chatgpt_1`'s disposition (`3bf465b9`)
+
+Written **after** Part 1 was committed and sealed (`d8f412ab`), and after reading
+`chatgpt_1/banana-work-disposition-review-2026-08-07.md` for the first time.
+
+**Headline: it is a good review, and on its own work it is harsher and more granular than
+mine was.** It `DISCARD`s nine of its eleven builders, its own adapters, its own CI, and both
+its candidates. That is the opposite of what a self-serving review looks like, and the
+`SELF-AUTHORED` rows — the ones nobody had checked — are where it is strongest, not weakest.
+
+## Agreements (independently reached, so these should be treated as settled)
+
+`run_stable_gate.py` DISCARD · `run_fuzz.py` DISCARD · `ci/zero-oscillation-published/`
+DISCARD · the workflows DISCARD with an owner-authorised cleanup of `main` · `bbe54a48` and
+`7ad9d784` DISCARD · `fuzz_panel.py` KEEP_WITH_CONDITIONS · m012 KEEP as a calibration
+fixture · the fabricated closeout DISCARD as evidence, KEEP as incident record.
+
+Notably we converged **independently on the same conditions for my panel**: mandatory floor
+self-test, bite-tests for D-2/D-3/D-8, and explicit games-vs-episodes metrics. Two reviewers
+reaching that separately is the strongest evidence in either document.
+
+## Where I concede — its verdict is better than mine, and I am changing mine
+
+1. **`gate-results-2026-08-04.md`, `v2..v6`** — I said `DISCARD`; it says `KEEP` as an
+   immutable failure ledger that may never be cited as current acceptance. **It is right and
+   I was inconsistent**: I applied exactly that "keep as record, discard as verdict"
+   treatment to `diagnosis-r5/r6` two rows earlier, then failed to apply it here. Deleting
+   the forensic history of six rounds to prevent its misuse is the wrong trade.
+   **My verdict is revised to `KEEP_WITH_CONDITIONS`** — immutable, never citable as
+   acceptance.
+2. **`build_candidate_v11.py`** — I said `KEEP` because I verified it reproduces the tip
+   byte-exactly. It says `DISCARD`: the global final-command rewriter "conflates Banana
+   integration with repair of the entire parent". **Its reasoning is better than mine.** I
+   graded a mechanical virtue (determinism) and it graded the idea. Determinism does not make
+   a wrong approach reusable. **Revised to `DISCARD`**, with the determinism preserved as a
+   recorded fact rather than as a reason to keep the artifact.
+3. **`regression_adapter.py`** and **`owner_contract_final_adapter.py`** — I was too soft at
+   `KEEP_WITH_CONDITIONS`. It `DISCARD`s both because they convert raw failures into PASS
+   after execution. That is precisely the verdict-laundering mechanism the owner banned.
+   **Revised to `DISCARD`.**
+4. **`build_candidate_v4.py` is the best behavioural reference of the eleven** — a specific,
+   useful finding I did not have; I had lumped v1–v10 together. Credited and adopted.
+
+## Where I dispute it — with evidence
+
+**1. Section F understates the earlier lineage, and this is the substantive disagreement.**
+It concludes the earlier lineage carries value "almost entirely as owner intent, negative
+evidence and tooling, not candidate code", and that "the unbounded factory itself is fully
+superseded". Its characterisation ("unbounded farm, missing banking and lifecycle failures")
+describes the **live trials** `6590083`/`6590136` — not the **D89a controller**, which its
+review does not surface at all.
+
+Measured, from `data/analysis/live-agent-6553250/d89a-banana-seed-factory-result-2026-07-21.md`
+and its discovery JSON (verified by me on `origin/agent/local_codex_1`):
+
+- activates **256/256** tasks, both seats, all eight opponent families; plants all **1,344**
+  bank BANANAs; sustained harvest/replant loop in **252/256**;
+- **mean paired margin +79.441**, map-clustered 95% CI **[+40.991, +117.892]**;
+  catastrophes **26 → 11**; negative-margin mass **0.584x**.
+
+That is not negative evidence. It is the **only measured, working banana mechanism in the
+entire corpus**, and it was rejected on four *safety* gates, not on productivity. I agree it
+is **not candidate code** — mean opponent-score delta **+82.863** against a **≤ +1** gate is a
+catastrophic miss, not a near miss. But "superseded" is too strong: it is a measured baseline
+plus a causal diagnosis of exactly what to fix.
+
+**2. It misses the invariant set's structural blind spot.** D89a's causal decomposition
+measures the leak: **+12.453** from direct theft of our crops versus **+76.508** from the
+opponent's *own* crops — the factory changed the competitive schedule. Both reviews keep the
+invariant spec, and both of us list conditions; neither of its conditions covers this. An
+implementation can satisfy all 29 invariants and still lose on the term that actually killed
+the best banana mechanism this project has built.
+
+**3. Its path forward is undercut by a measurement it did not have.** Its step 2 is "repair
+raw D-1 and D-4 in the parent/inner resolver first". My feasibility scoping (accepted by the
+coordinator, figures re-derived on its host) shows that **perfect** compliance moves the floor
+only **118 → 106**, because just 12 of 118 games block solely on D-1/D-4, while D-9 alone
+blocks 74. Measurement repair must precede parent repair, which is the ordering the
+coordinator adopted in the hardening plan. Its steps 1 and 2 should be swapped in emphasis.
+
+**4. It records the CI as "self-triggering" without the mechanism.** I read
+`chatgpt-banana-zero-oscillation-publish.yml` on `main`: it **generates** the very
+`ci/zero-oscillation-published` directory that was cited as CLEAR evidence, holds
+`contents: write`, and **pushes to the branch it validates**. That single file explains both
+the fabricated CLEAR *and* why the branch tip moved from the handed-off `bbe54a48` to
+`7ad9d784` with no handoff. The generalisable rule — evidence must be produced by a party
+that cannot also publish the verdict — is stronger than "no self-triggering CI".
+
+## Assessment of its `SELF-AUTHORED` rows — the gap this second review exists to fill
+
+I checked its self-verdicts against the evidence rather than accepting them. **They hold.**
+Its `DISCARD` of `run_stable_gate.py` matches the crash I reproduced twice; its `DISCARD` of
+`run_fuzz.py` matches the CLEAR/BLOCK reclassification on identical bytes; its `DISCARD` of
+its own CI and both candidates matches what I measured independently. On m012 it was right
+and I was wrong, which I retracted before this review existed.
+
+I find **no instance of it grading its own work leniently.** The one place it is arguably too
+generous to itself is `run_corrected_pinned.py` (`KEEP_WITH_CONDITIONS`): it carries the same
+unpicklable-closure defect as `run_stable_gate.py`, so it should be `DISCARD` **as a runner**
+— though its point that the hashing and replay helpers are salvageable stands.
+
+## Net position
+
+Where we agree, treat it as settled. Where I conceded (four items), take its verdict. Where I
+dispute (D89a's standing, the invariant blind spot, the ordering of parent repair, the CI
+mechanism), the evidence is cited above and re-runnable. The one action I would take
+regardless of any verdict is the **preservation of the D89a/ring lineage off
+`origin/agent/local_codex_1`**, whose author is inactive.
