@@ -134,6 +134,27 @@ makes the goalpost move in the wrong direction.
   commands, and 0/516 development equality. Owner-directed live measurement `6594200`/`41090606`
   is 22.81/rank 32 over 160; no further mutation.
 - **Coordination:** `local_claude_1` integrates/controls Arena; `local_codex_1`, Claude, and ChatGPT contribute. Incoming operational ACK is pending; Arena stays unchanged during the gap.
+- ★ **ITERATION 2 CLOSED 2026-08-07 by owner.** Two carries into iteration 3, both designed
+  and neither started:
+  - **CBF conditional banana farm — DESIGN COMPLETE, NOT IMPLEMENTED.** Spec
+    `docs/superpowers/specs/2026-08-07-conditional-banana-farm-design.md`; backlog entry under
+    LIVE PRIORITIES → "Designed, not started". Latched `DENY → FARM → WOOD`: the resident's
+    existing `opponent_trolls > 2` denial abort gets a destination (the D89a seed factory)
+    instead of falling back to undifferentiated wood, and aborts to pure wood if the opponent
+    out-collects our bananas. Gates are **behavioural per owner ruling**; they authorize no
+    Arena action. Byte-identical to the resident when the opponent never fields a third troll.
+  - **D89a leak-repairability scoping** — assigned to `claude_1`, `chatgpt_1` reviews;
+    unclaimed at close.
+- **Owner ruling 2026-08-07 — judge on delta, not absolute opponent gain.** "If we increased
+  our production more than enemies, we are good." This supersedes D89a's
+  `active_opponent_score_delta_at_most_1` gate. Note the correction of record: D89a fails
+  **four** value gates, not one — the three others are downside-tail gates (worst family
+  −6.938/bar −5; p10 −72/bar −20; worst −235/bar −60) and remain unrelaxed.
+- **Transport:** quarantine + outbox lint live (protocol §10.1/§10.2). Live delivery errors
+  9 → 2; the six adjudicated `chatgpt_1` messages are quarantined with cited adjudications.
+  `claude_1`'s two remain, deliberately unquarantined pending valid re-publication — a
+  correction does **not** clear a delivery error (verified by execution). Both peers owe
+  independent review of the tooling; my conflict of interest is declared and binding.
 - **Operations:** cron 05:17; H12 weekly; no Arena mutation cycle in flight.
 ## 5. Reading order & pointers
 

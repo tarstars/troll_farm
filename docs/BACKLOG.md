@@ -386,6 +386,42 @@ continues with construction and rating-dynamics measurement, not waiting.
   submission, or Arena action is authorized by this backlog entry. [owner direction,
   2026-08-01]
 
+### Designed, not started — carried forward (iteration 2 closed 2026-08-07)
+
+- **CBF conditional banana farm — DESIGN COMPLETE, OWNER-SPECIFIED, NOT IMPLEMENTED.**
+  Full spec: `docs/superpowers/specs/2026-08-07-conditional-banana-farm-design.md`. A
+  three-state machine `DENY → FARM → WOOD` with both transitions latched: farm the D89a
+  seed factory once `opponent_trolls > 2` latches (the resident's existing denial abort,
+  which today has no destination and falls back to undifferentiated wood), then abort to
+  pure wood if the opponent out-collects our bananas. Acceptance is **behavioural per owner
+  ruling 2026-08-07** — G1 trains worker two, G2 denies one of lemon/plum, G3 establishes a
+  sustained orchard, G4 aborts on the banana test *and does not fire when it should not* —
+  plus G5 byte-identity on non-triggering games and G6 monotonicity (including that the
+  denial bonus never re-enables after DENY is left; it is gated inline on the live troll
+  count today, §3.0 of the spec).
+  - **Why it is shaped this way:** D89a is the only banana mechanism that ever worked at
+    scale here (+79.441 margin, CI [+40.991,+117.892], 252/256 sustained loop, catastrophes
+    26 → 11) and failed on **four** value gates, not one — worst opponent-family −6.938
+    (bar −5), p10 −72 (bar −20), worst −235 (bar −60), opponent delta +82.863 (bar +1). The
+    last is superseded by the owner's delta ruling. The design does not repair D89a's leak;
+    it bounds exposure by farming only in games already being lost. If the opponent never
+    reaches three trolls the bot is byte-identical to the resident.
+  - **Recorded risk, owner-accepted:** the banana-collection sensor watches theft (+12.453)
+    rather than the dominant leak (+76.508 from the opponent's *own* crops). A farm can pass
+    G4 and still lose the way D89a lost. A margin-based abort on `view.scores` costs the same
+    to implement and is the named variant if G4 passes but the tail does not improve.
+  - **Boundary:** behavioural gates deliver a bot, not a promotion. Mining hit 100% trigger
+    fidelity at −10.76; B3.13 passed every local gate and scored 11.96/rank 111 live. Arena
+    still requires a `QUALIFIED` frozen-protocol verdict and gain above the ±0.5–1 band
+    (`docs/STATE.md` §3). Passing G1–G6 authorizes no submission.
+  - **Reopens nothing:** N6 closed the denial weight ("keep 900"), H4 closed denial as bill
+    prevention (`NO_MATERIAL_DENIABLE_BILL`, strict rate 0.0; 43/73 mandatory batches are
+    IRON), D176a closed oscillation. Supporting audit:
+    `data/analysis/live-agent-6553250/resident-denial-scoring-audit-2026-08-07.md`.
+  - **Next step when resumed:** implementation plan, three stages — inert machine plus its
+    byte-identity and monotonicity checks first (proves the plumbing changes nothing), then
+    graft the farm, then the abort. Not started; no task record, no D-series id, no branch.
+
 ### Operations
 
 - **H9 submission timing** — passive-maturity timing is closed by N1. Future timing is the

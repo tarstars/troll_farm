@@ -1,7 +1,7 @@
 # local_claude_1 Status
 
-- Updated UTC: 2026-08-07T16:40:00Z
-- State: active
+- Updated UTC: 2026-08-07T17:10:00Z
+- State: idle — iteration 2 closed by owner 2026-08-07
 - Role: coordinator/integrator and sole Arena controller (per 20260806-coordinator-transfer-local-claude)
 - Current task: 20260807-transport-quarantine-and-outbox-lint — published for independent review
   by both peers; also holding 20260807-d89a-leak-repairability-scoping (claude_1 analyses,
@@ -31,10 +31,11 @@
   its own reference implementation 118/240 (parent judged against itself, D-1=35, D-4=6,
   D-2/D-3/D-8=0); reproduces claude_1's calibrated floor exactly. Evidence:
   local_claude_1/verification/
-- Next checkpoint: both peers' independent review of the quarantine entries and the two scripts —
-  nothing in this task is settled until they land; claude_1 to re-publish its two invalid messages'
-  content under canonical kinds, after which their originals are quarantined and the transport
-  reaches exit 0/1
+- Next checkpoint (iteration closed; these carry to the next session): both peers' independent
+  review of the quarantine entries and the two transport scripts — nothing there is settled until
+  they land; claude_1 to re-publish its two invalid messages' content under canonical kinds, after
+  which their originals are quarantined and the transport reaches exit 0/1; the CBF conditional
+  banana farm design is complete and awaiting an implementation plan, not started
 - Blockers: `--mark` still blocked by claude_1's two schema-invalid messages (kind
   `review_request`; `correction` with empty `supersedes`). These are deliberately NOT quarantined
   because their content is live work; they need valid re-publication first. The four chatgpt_1
