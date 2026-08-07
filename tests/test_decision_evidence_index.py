@@ -1,5 +1,5 @@
 from __future__ import annotations
-import copy, json, sys
+import copy, json, subprocess, sys
 from pathlib import Path
 import pytest
 
@@ -13,9 +13,24 @@ from cgauto.check_decision_evidence_index import ValidationError, validate_repos
 START = "<!-- DECISION-EVIDENCE-JSON"
 END = "END-DECISION-EVIDENCE-JSON -->"
 
+def git(repo: Path, *args: str) -> str:
+    r = subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True)
+    assert r.returncode == 0, r.stderr
+    return r.stdout
+
+def git_init_and_commit(repo: Path) -> str:
+    """Make `repo` a git repo and commit everything currently in it."""
+    if not (repo / ".git").exists():
+        git(repo, "init", "-q")
+        git(repo, "config", "user.email", "t@example.com")
+        git(repo, "config", "user.name", "t")
+    git(repo, "add", "-A")
+    git(repo, "commit", "-qm", "fixture")
+    return git(repo, "rev-parse", "HEAD").strip()
+
 def base_record():
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "id": "T1",
         "title": "Fixture",
         "kind": "scientific_decision",
@@ -68,7 +83,18 @@ def make_repo(tmp_path: Path, record=None, build_generated=True) -> Path:
         "Fixture value is +1.0 on 4/4 tasks. [T1]\nFixture text.\n"
     )
     (repo / "evidence.json").write_text(json.dumps({"value": 1.0}))
-    write_record(repo, record or base_record())
+    sha = git_init_and_commit(repo)
+    rec = record or base_record()
+    for src in (
+        rec["textual_evidence"][0]["source"],
+        rec["constraint_projection"]["source"],
+        rec["decisive_claims"][0]["source"],
+    ):
+        src.setdefault("commit", sha)
+    pf = rec.get("premise_failure")
+    if isinstance(pf, dict) and isinstance(pf.get("source"), dict):
+        pf["source"].setdefault("commit", sha)
+    write_record(repo, rec)
     if build_generated:
         build(repo)
     return repo
@@ -178,14 +204,94 @@ def test_in_bounds_but_unrelated_constraints_excerpt_fails(tmp_path):
         "path": "docs/CONSTRAINTS.md",
         "locator": "lines 1-1",
     }
-    repo = make_repo(tmp_path, r, build_generated=False)
-    (repo / "docs/CONSTRAINTS.md").write_text(
+    # CONSTRAINTS.md must exist before the fixture commit so the pinned
+    # citation (stamped by make_repo) can resolve it at that commit.
+    (tmp_path / "docs").mkdir(parents=True, exist_ok=True)
+    (tmp_path / "docs/CONSTRAINTS.md").write_text(
         "Unrelated result is +9.0 on 99/99 tasks. [OTHER]\n"
         "Fixture value is +1.0 on 4/4 tasks. [T1]\n"
     )
+    repo = make_repo(tmp_path, r, build_generated=False)
     with pytest.raises(ValidationError, match="does not identify T1|omits content tokens"):
         validate_repository(repo, require_pilot=False, check_generated=False)
 
     r["constraint_projection"]["source"]["locator"] = "lines 2-2"
     write_record(repo, r)
     validate_repository(repo, require_pilot=False, check_generated=False)
+
+
+def test_pinned_locator_survives_later_line_drift(tmp_path):
+    repo = make_repo(tmp_path, build_generated=False)
+    sha = git_init_and_commit(repo)
+    record = base_record()
+    record["schema_version"] = 2
+    record["textual_evidence"][0]["source"] = {
+        "path": "source.md", "commit": sha, "locator": "lines 1-2",
+    }
+    record["constraint_projection"]["source"] = {
+        "path": "source.md", "commit": sha, "locator": "lines 1-2",
+    }
+    record["decisive_claims"][0]["source"] = {
+        "path": "evidence.json", "commit": sha, "json_pointer": "/value",
+    }
+    write_record(repo, record)
+    # Prepend lines so every old line number is wrong in the working tree.
+    (repo / "source.md").write_text(
+        "PREPENDED\nPREPENDED\n" + (repo / "source.md").read_text()
+    )
+    build(repo)
+    validate_repository(repo, require_pilot=False, check_generated=True)
+
+def test_unresolvable_commit_is_hard_error(tmp_path):
+    repo = make_repo(tmp_path, build_generated=False)
+    git_init_and_commit(repo)
+    record = base_record()
+    record["schema_version"] = 2
+    for src in (
+        record["textual_evidence"][0]["source"],
+        record["constraint_projection"]["source"],
+        record["decisive_claims"][0]["source"],
+    ):
+        src["commit"] = "0" * 40
+    write_record(repo, record)
+    build(repo)
+    with pytest.raises(ValidationError, match="does not resolve"):
+        validate_repository(repo, require_pilot=False, check_generated=False)
+
+def test_path_absent_at_pinned_commit_is_hard_error(tmp_path):
+    repo = make_repo(tmp_path, build_generated=False)
+    sha = git_init_and_commit(repo)
+    record = base_record()
+    record["schema_version"] = 2
+    record["textual_evidence"][0]["source"] = {
+        "path": "later.md", "commit": sha, "locator": "lines 1-1",
+    }
+    record["constraint_projection"]["source"] = {
+        "path": "source.md", "commit": sha, "locator": "lines 1-2",
+    }
+    record["decisive_claims"][0]["source"] = {
+        "path": "evidence.json", "commit": sha, "json_pointer": "/value",
+    }
+    (repo / "later.md").write_text("created after the pin\n")
+    write_record(repo, record)
+    build(repo)
+    with pytest.raises(ValidationError, match="absent at commit"):
+        validate_repository(repo, require_pilot=False, check_generated=False)
+
+def test_missing_tokens_at_pinned_commit_is_hard_error(tmp_path):
+    repo = make_repo(tmp_path, build_generated=False)
+    sha = git_init_and_commit(repo)
+    record = base_record()
+    record["schema_version"] = 2
+    # Claim asserts a number the pinned excerpt does not contain.
+    record["textual_evidence"][0]["claim"] = "Fixture text shows +99.9 improvement."
+    record["textual_evidence"][0]["source"] = {
+        "path": "source.md", "commit": sha, "locator": "lines 2-2",
+    }
+    for src in (record["constraint_projection"]["source"],
+                record["decisive_claims"][0]["source"]):
+        src.setdefault("commit", sha)
+    write_record(repo, record)
+    build(repo)
+    with pytest.raises(ValidationError, match="omits content tokens"):
+        validate_repository(repo, require_pilot=False, check_generated=False)

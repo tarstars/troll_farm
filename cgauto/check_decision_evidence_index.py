@@ -9,6 +9,9 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 from cgauto.build_decision_evidence_index import load_records, expected_outputs
+from cgauto.evidence_git import (
+    COMMIT_RE, GitLookupError, commit_resolves, is_ancestor, read_blob, ref_exists,
+)
 
 ALLOWED_STATUS = {"proposed","accepted","authorized","closed","invalidated","diagnosis","void-premise","superseded","declined"}
 ALLOWED_STRENGTH = {
@@ -69,7 +72,18 @@ def resolve_pointer(value: Any, pointer: str) -> Any:
 def validate_source(repo: Path, source: dict[str, Any], context: str) -> Any:
     if not isinstance(source, dict) or not source.get("path"):
         raise ValidationError(f"{context}: source.path required")
-    path = safe_path(repo, source["path"])
+    rel = source["path"]
+    if Path(rel).is_absolute() or ".." in Path(rel).parts:
+        raise ValidationError(f"unsafe repository path: {rel}")
+    commit = source.get("commit")
+    if not commit or not COMMIT_RE.match(commit):
+        raise ValidationError(f"{context}: source.commit must be a 40-character sha")
+    if not commit_resolves(repo, commit):
+        raise ValidationError(f"{context}: commit {commit[:12]} does not resolve")
+    try:
+        text = read_blob(repo, commit, rel)
+    except GitLookupError as exc:
+        raise ValidationError(f"{context}: {exc}") from None
     locator = source.get("locator")
     pointer = source.get("json_pointer")
     if bool(locator) == bool(pointer):
@@ -81,14 +95,13 @@ def validate_source(repo: Path, source: dict[str, Any], context: str) -> Any:
         a, b = map(int, m.groups())
         if a < 1 or b < a:
             raise ValidationError(f"{context}: invalid line range")
-        lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
+        lines = text.splitlines()
         if b > len(lines):
-            raise ValidationError(f"{context}: line range exceeds {source['path']} ({len(lines)})")
-        return "\n".join(lines[a-1:b])
-    if path.suffix.lower() != ".json":
+            raise ValidationError(f"{context}: line range exceeds {rel} ({len(lines)})")
+        return "\n".join(lines[a - 1:b])
+    if Path(rel).suffix.lower() != ".json":
         raise ValidationError(f"{context}: JSON pointer requires .json source")
-    data = json.loads(path.read_text(encoding="utf-8"))
-    return resolve_pointer(data, pointer)
+    return resolve_pointer(json.loads(text), pointer)
 
 def numeric_tokens(text: str) -> list[str]:
     return NUM_RE.findall(text)
@@ -111,8 +124,8 @@ def validate_record(repo: Path, record: dict[str, Any], ids: set[str]) -> None:
     if missing:
         raise ValidationError(f"{record.get('id','<unknown>')}: missing fields {missing}")
     rid = record["id"]
-    if record["schema_version"] != 1:
-        raise ValidationError(f"{rid}: schema_version must be 1")
+    if record["schema_version"] != 2:
+        raise ValidationError(f"{rid}: schema_version must be 2")
     if record["status"] not in ALLOWED_STATUS:
         raise ValidationError(f"{rid}: invalid status")
     if record["primary_evidence_strength"] not in ALLOWED_STRENGTH:
