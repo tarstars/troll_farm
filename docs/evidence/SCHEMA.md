@@ -28,8 +28,25 @@ Every `source` is a git-pinned coordinate:
 - `quote` — optional verbatim excerpt. Used only for the currency check: if it no longer
   appears in the *current* file, the validator warns. It never fails the build.
 
+Hard errors on a source are: unresolvable commit, path absent at the pinned commit, line
+range out of bounds at that commit, and (for locator sources) claimed numeric tokens absent
+from the pinned excerpt. These are build failures.
+
 Line numbers are meaningless without their commit: `docs/CONSTRAINTS.md` is append-heavy and
 every insertion shifts all citations below it. Pinning is what makes a citation permanent.
+
+## Validation rules for claims
+
+If a claim's `compared_population` differs from its `population`, the record must set
+`population_compatibility` to either `invalid_disclosed` (which additionally requires
+`incompatibility_reason`) or `transformed` (which additionally requires `population_transform`).
+
+A record with `claims_ladder_effect` requires either a decisive claim of strength
+`arena_measured`, or `projection_label: true`.
+
+`void-premise` is a first-class status, excluded from closure counts, and requires a populated
+`premise_failure` block containing `false_premise` and `refutation`. Conversely, `premise_failure`
+is only valid on a `void-premise` record.
 
 ## Hypothesis tier
 
