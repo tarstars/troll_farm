@@ -23,6 +23,7 @@ green independent of the candidate's own defects.
 
 from __future__ import annotations
 
+import inspect
 import json
 import sys
 import tempfile
@@ -271,6 +272,230 @@ class TestProperties(unittest.TestCase):
                          [])
 
 
+# ---------------------------------------------------------------------------
+# Synthetic trace builder (real StaticMap/GameState objects via the parser,
+# so world-state predicates see exactly what a live game would expose)
+# ---------------------------------------------------------------------------
+
+OPEN_ROWS = ("0.....",
+             "......",
+             "......")
+# column x=3 is a solid wall: (5,2) is unreachable from the unit at (1,0).
+WALLED_ROWS = ("0..#..",
+               "...#..",
+               "...#..")
+RIPE_LEMON = ("LEMON", 5, 2, 4, 12, 1, 3)      # kind x y size health fruits cd
+
+
+def synth_trace(rows, frames, commands=None):
+    """Build a real td.Trace from per-turn frames.
+
+    frames: [{"inv": [6 ints], "plants": [(kind,x,y,size,health,fruits,cd)],
+              "units": [[id,player,x,y,speed,cap,harvest,chop,*carry6]]}]
+    """
+    parts = ["%d %d" % (len(rows[0]), len(rows))] + list(rows)
+    for f in frames:
+        parts.append(" ".join(str(v) for v in f["inv"]))
+        parts.append(" ".join(str(v) for v in f.get("opp_inv", [0] * 6)))
+        parts.append(str(len(f["plants"])))
+        for p in f["plants"]:
+            parts.append(" ".join(str(v) for v in p))
+        parts.append(str(len(f["units"])))
+        for u in f["units"]:
+            parts.append(" ".join(str(v) for v in u))
+    transcript = "\n".join(parts) + "\n"
+    cmds = commands if commands is not None else ["WAIT"] * len(frames)
+    return td.build_trace(transcript, "\n".join(cmds) + "\n")
+
+
+def stall_trace(T, plants_at, banked_at, carry_at=lambda t: 0,
+                rows=OPEN_ROWS, cell=(1, 0), commands=None):
+    """One own unit (harvest 1 / chop 1) at `cell`; own banked wood and own
+    cargo follow the supplied per-turn functions (the two quantities P4
+    reads), the world its plant function."""
+    frames = []
+    for t in range(1, T + 1):
+        frames.append({
+            "inv": [0, 0, 0, 0, 0, banked_at(t)],
+            "plants": list(plants_at(t)),
+            "units": [[7, 0, cell[0], cell[1], 1, 2, 1, 1,
+                       0, 0, 0, 0, 0, carry_at(t)]],
+        })
+    return synth_trace(rows, frames, commands)
+
+
+class TestRawGate(unittest.TestCase):
+    """Owner ruling 2026-08-06: the gate is RAW/ABSOLUTE. Every detector
+    D-1..D-9 episode blocks, inherited-from-parent or not; P4 liveness has no
+    parent exemption. These tests pin the raw semantics (they FAIL against
+    the pre-repair parent-differential / inherited-report-only code)."""
+
+    _PASS = {"verdict": "PASS", "count": 0, "episodes": []}
+
+    def _passes(self, *names):
+        return [dict(self._PASS, detector=n) for n in names]
+
+    def test_p1_d9_blocks_even_when_parent_reproduces_it(self):
+        # A D-9 episode the PARENT reproduces byte-for-byte on the identical
+        # map. Old code: gate_d9_parent_differential drops it (report-only).
+        # Raw: it blocks.
+        ep = {"unit": 0, "turn": 5, "kind": "BANANA", "command": "HARVEST"}
+        d9_fail = {"detector": "D-9", "verdict": "FAIL", "count": 1,
+                   "episodes": [ep]}
+        results = self._passes("D-1", "D-2", "D-3", "D-4", "D-5", "D-6",
+                               "D-7", "D-8") + [d9_fail]
+        orig_run_all, orig_d9 = fp.td.run_all, fp.td.detect_d9
+        fp.td.run_all = lambda tr, pc=None: [dict(r) for r in results]
+        fp.td.detect_d9 = lambda tr, pc=None: {
+            "detector": "D-9", "verdict": "FAIL", "count": 1,
+            "episodes": [ep]}       # parent reproduces the identical episode
+        try:
+            _, viol, inherited, dropped = fp.eval_p1(None, None, None, False)
+        finally:
+            fp.td.run_all, fp.td.detect_d9 = orig_run_all, orig_d9
+        self.assertTrue(
+            any(v["detector"] == "D-9" for v in viol),
+            "D-9 must block under raw even when the parent reproduces the "
+            "identical episode (no parent-differential exemption)")
+        self.assertEqual(dropped, 0, "no D-9 episode may be dropped under raw")
+
+    def test_p1_d1_blocks_when_parent_also_oscillates(self):
+        # A candidate D-1 episode on a map where the parent ALSO fails D-1.
+        # Old code: downgraded to a report-tier inherited-parent-D1 flag.
+        # Raw: it blocks.
+        ep = {"unit": 0, "turn_start": 2, "turn_end": 10, "k": 4,
+              "cells": [[1, 1], [2, 1]]}
+        d1_fail = {"detector": "D-1", "verdict": "FAIL", "count": 1,
+                   "episodes": [ep]}
+        results = [d1_fail] + self._passes("D-2", "D-3", "D-4", "D-5", "D-6",
+                                           "D-7", "D-8", "D-9")
+        orig_run_all = fp.td.run_all
+        fp.td.run_all = lambda tr, pc=None: [dict(r) for r in results]
+        try:
+            _, viol, inherited, _ = fp.eval_p1(None, None, None, True)
+        finally:
+            fp.td.run_all = orig_run_all
+        self.assertTrue(
+            any(v["detector"] == "D-1" for v in viol),
+            "D-1 must block under raw even when the parent also fails D-1 "
+            "(no inherited-report-only downgrade)")
+        self.assertEqual(inherited, [],
+                         "no inherited-report-only downgrade exists under raw")
+
+    def test_p4_blocks_when_parent_also_stalls(self):
+        # A full-game candidate stall that the parent reproduces (parent also
+        # makes no progress in the window). Old code: exempted as an
+        # inherited WAIT-equilibrium. Raw: it blocks. Work REMAINS all game
+        # (a reachable ripe plant), so the terminal-state calibration must
+        # not excuse it either.
+        tr = stall_trace(10, lambda t: [RIPE_LEMON], lambda t: 0)
+        viol = fp.eval_p4(tr, tr, window=6)
+        self.assertTrue(
+            viol, "P4 must block a stall window even when the parent stalls "
+                  "identically in the same window (raw liveness, no parent "
+                  "exemption)")
+        self.assertEqual(viol[0]["window_start"], 1)
+
+
+class TestP4TerminalCalibration(unittest.TestCase):
+    """P4 terminal-state calibration (ABSOLUTE, no parent reference).
+
+    A stall window is only a liveness failure over the turns in which the
+    referee world still offers the candidate a resource action: a plant
+    reachable by an own unit (to harvest or chop) or cargo still held (to
+    bank/plant). Turns after the world is exhausted for the rest of the game
+    are excused; a stall while work REMAINS still blocks, trailing or not.
+    """
+
+    T = 200
+    WINDOW = 60
+
+    def test_finished_work_then_idle_to_horizon_passes(self):
+        # Bot works until turn 120 (banking every turn), clears the last
+        # plant, and idles to the horizon with empty cargo. The trailing
+        # 120-199 stall is explained by an exhausted world, not by the bot
+        # being stuck -> must PASS. (RED before the calibration.)
+        tr = stall_trace(
+            self.T,
+            lambda t: [] if t > 120 else [RIPE_LEMON],
+            lambda t: min(t, 120))
+        self.assertEqual(fp.stall_windows(fp.progress_turns(tr), tr.T,
+                                          self.WINDOW), [(120, 199)])
+        self.assertEqual(
+            fp.eval_p4(tr, None, self.WINDOW), [],
+            "a trailing stall after the world is exhausted (no reachable "
+            "plant, empty cargo) is not a liveness failure")
+
+    def test_midgame_stall_with_work_remaining_blocks(self):
+        # Stalls turns 40-109 with a reachable ripe plant on the board, then
+        # resumes: a genuine mid-game liveness bug -> must BLOCK.
+        tr = stall_trace(
+            self.T,
+            lambda t: [RIPE_LEMON],
+            lambda t: t if t <= 40 else (40 if t <= 110 else 40 + (t - 110)))
+        viol = fp.eval_p4(tr, None, self.WINDOW)
+        self.assertEqual([(v["window_start"], v["window_end"]) for v in viol],
+                         [(40, 109)],
+                         "a mid-game stall with work remaining must block")
+
+    def test_trailing_stall_with_work_remaining_blocks(self):
+        # Stalls from turn 40 to the horizon while a reachable ripe plant is
+        # still on the board: trailing, but NOT explained by a terminal
+        # world -> must BLOCK (the over-exemption guard).
+        tr = stall_trace(
+            self.T, lambda t: [RIPE_LEMON], lambda t: min(t, 40))
+        viol = fp.eval_p4(tr, None, self.WINDOW)
+        self.assertEqual([(v["window_start"], v["window_end"]) for v in viol],
+                         [(40, 199)],
+                         "a stall running to the horizon still blocks while "
+                         "reachable work remains")
+
+    def test_trailing_stall_with_unbanked_cargo_blocks(self):
+        # Board cleared, but the unit still holds cargo it never banks: work
+        # remains (banking is progress) -> must BLOCK.
+        tr = stall_trace(
+            self.T, lambda t: [], lambda t: min(t, 40), carry_at=lambda t: 1)
+        viol = fp.eval_p4(tr, None, self.WINDOW)
+        self.assertEqual([(v["window_start"], v["window_end"]) for v in viol],
+                         [(40, 199)],
+                         "held cargo is unfinished work even with an empty "
+                         "board")
+
+    def test_only_plant_unreachable_is_terminal(self):
+        # The one remaining plant is walled off from the own unit: the world
+        # offers nothing, so the stall is terminal -> PASS.
+        tr = stall_trace(
+            self.T, lambda t: [RIPE_LEMON], lambda t: min(t, 40),
+            rows=WALLED_ROWS)
+        self.assertEqual(fp.eval_p4(tr, None, self.WINDOW), [],
+                         "a plant no own unit can reach is not work")
+
+    def test_no_parent_reference_in_eval_p4_body(self):
+        # The raw ruling stands: the calibration must be absolute. Only the
+        # (documentary) signature and docstring may name tr_p at all.
+        src = inspect.getsource(fp.eval_p4)
+        self.assertGreaterEqual(src.count('"""'), 2)
+        body = src.split('"""')[2]
+        for token in ("parent", "inherit", "aligned", "tr_p"):
+            self.assertNotIn(
+                token, body,
+                "eval_p4 body must not reference %r (absolute gate)" % token)
+
+    def test_work_remaining_is_a_pure_world_state_predicate(self):
+        ripe = stall_trace(3, lambda t: [RIPE_LEMON], lambda t: 0)
+        empty = stall_trace(3, lambda t: [], lambda t: 0)
+        walled = stall_trace(3, lambda t: [RIPE_LEMON], lambda t: 0,
+                             rows=WALLED_ROWS)
+        carrying = stall_trace(3, lambda t: [], lambda t: 0,
+                               carry_at=lambda t: 1)
+        self.assertTrue(fp.work_remaining(ripe, 1))
+        self.assertFalse(fp.work_remaining(empty, 1))
+        self.assertFalse(fp.work_remaining(walled, 1))
+        self.assertTrue(fp.work_remaining(carrying, 1))
+        self.assertEqual(fp.live_horizon(ripe), 4)      # never terminal
+        self.assertEqual(fp.live_horizon(empty), 1)     # terminal all game
+
+
 class TestExitCodes(unittest.TestCase):
     def run_panel(self, candidate_src: Path, parent_src: Path, tmp: Path,
                   **cfg_overrides) -> tuple[int, dict | None]:
@@ -321,6 +546,33 @@ class TestExitCodes(unittest.TestCase):
                     "%s-s%d" % (g["map_id"], g["seat"]))
                 self.assertTrue((d / "candidate-commands.txt").exists())
                 self.assertTrue((d / "properties.json").exists())
+
+    def test_exit_1_raw_gate_blocks_oscillator_vs_itself(self):
+        # RAW gate acceptance proof: the planted oscillator run against
+        # ITSELF as parent. Under the old mixed rules D-1 was downgraded to
+        # an inherited-parent-D1 flag and the all-stall window was exempted
+        # as an inherited WAIT-equilibrium -> CLEAR. Under raw both block.
+        osc = compiled_bot("oscbot", OSCILLATOR_BOT)
+        with tempfile.TemporaryDirectory() as tmp:
+            # 30-turn games -> use a 10-turn liveness window so a full-game
+            # stall window forms (the default 60 exceeds the game length).
+            code, payload = self.run_panel(osc, osc, Path(tmp),
+                                           liveness_window=10)
+            self.assertEqual(
+                code, fp.EXIT_BLOCK,
+                "raw gate must block a candidate D-1/P4 even when the parent "
+                "oscillates identically")
+            blocked = [g for g in payload["games"] if g["block"]]
+            self.assertTrue(blocked)
+            dets = {v.get("detector") for g in blocked for v in g["violations"]}
+            props = {v["property"] for g in blocked for v in g["violations"]}
+            self.assertIn("D-1", dets, "D-1 must block raw")
+            self.assertIn("P4", props, "P4 stall must block raw")
+            flags = {f["flag"] for g in payload["games"] for f in g["flags"]}
+            self.assertNotIn("inherited-parent-D1", flags,
+                             "the inherited-report-only downgrade is removed")
+            self.assertNotIn("inherited-parent-D9", flags,
+                             "the parent-differential D-9 downgrade is removed")
 
     def test_exit_2_on_missing_config(self):
         with tempfile.TemporaryDirectory() as tmp:

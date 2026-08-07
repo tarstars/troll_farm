@@ -14,18 +14,15 @@ map+opponent, and asserts machine-checkable properties on every candidate
 game:
 
   P1  detectors D-1..D-9 (trace_detectors.run_all, amended D-8 semantics)
-      must report zero episodes.  A D-1 episode is downgraded to a
-      report-tier "inherited-parent-D1" flag when the PARENT trace on the
-      identical map also fails D-1 (known family defect, report only).
-      D-9 episodes are parent-differential (round-6 ROOT-A ruling,
-      2026-08-06, diagnosis-r6 family (a)): an episode counts against the
-      candidate only if it is ABSENT from the parent's own run on the
-      identical map/opponent — the panel already produces that baseline.
-      Episodes the parent reproduces identically (byte-equal funding-phase
-      behavior, the I-18 compliant default) are downgraded to a
-      report-tier "inherited-parent-D9" flag.  This is a PANEL-layer gate
-      only: trace_detectors.detect_d9 is unmodified (the base-detector
-      question goes to the integrator).
+      must report zero episodes.  RAW/ABSOLUTE (owner ruling 2026-08-06):
+      EVERY detector episode blocks, inherited-from-parent or not, on every
+      map.  The two former parent-comparison exemptions are REMOVED — there
+      is no D-1 inherited-report-only downgrade and no D-9
+      parent-differential gate (the round-6 ROOT-A exemption is retired).
+      The parent run is still computed (for the P3 inertness check and the
+      diagnostic report) but never exempts a candidate detector episode.
+      trace_detectors is unmodified (the base-detector questions go to the
+      integrator).
   P2  R-5 class: no full-cargo two-cell alternation >= 6 turns without a
       cargo change (regression_tests.r5_two_worker_full_cargo_banking
       alternation clause).  The R-5 bounded-banking-horizon clause is
@@ -33,16 +30,24 @@ game:
   P3  on orchard-eligible seat views (mirror of SecureOrchardBot's
       initialize gates) the candidate's command stream must byte-equal the
       parent's (dormancy inertness).
-  P4  liveness floor: some progress (own inventory or own-unit cargo
-      change) in every rolling 60-turn window, unless the parent makes no
-      progress in the same window on the identical map (inherited
-      WAIT-equilibrium is not the candidate's defect).
+  P4  liveness floor: RAW (owner ruling 2026-08-06) — some progress (own
+      inventory or own-unit cargo change) in every rolling 60-turn window,
+      with NO parent-relative exemption.  The former "unless the parent also
+      makes no progress in the same window" clause is removed.  ABSOLUTE
+      terminal-state calibration (repair #2): the obligation runs only while
+      the referee world still offers a resource action — an own unit
+      carrying something to bank/plant, or a plant standing on a cell an own
+      unit can walk to (harvest/chop).  Each stall window is trimmed to that
+      live prefix and blocks iff >= 60 LIVE turns remain stalled, so a stall
+      beginning after the world is exhausted is excused while any stall over
+      a non-terminal world — mid-game or running to the sim horizon — blocks.
   P0  protocol liveness: the candidate must emit one command line per turn
       for the whole game (a crash/early-close blocks).
 
 Report-tier findings (flagged, never blocking): margin collapse on
-banana-activated maps (candidate margin < parent margin - threshold),
-inherited-parent D-1 episodes, R-5 horizon misses.
+banana-activated maps (candidate margin < parent margin - threshold) and
+R-5 horizon misses.  (Under the raw gate there are no inherited-parent D-1
+or D-9 report-tier downgrades — those episodes block.)
 
 CLI:
   python3 fuzz_panel.py --config <json> --report <md> --json <out.json>
@@ -711,43 +716,57 @@ def stall_windows(prog: set, T: int, window: int) -> list:
     return runs
 
 
-def gate_d9_parent_differential(result, tr_p, parent_cmds):
-    """ROOT-A panel-layer gate (orchestrator ruling, round 6, 2026-08-06):
-    a D-9 episode counts against the candidate only if it is absent from
-    the parent's run on the identical map/opponent.  The parent baseline is
-    detect_d9 over the parent's own trace/commands (its TRAIN-parity
-    clauses are trivially self-consistent, so the baseline episodes are
-    exactly the parent's own pre-TRAIN banana-attributable commands).
-    Returns (gated_result, dropped_count).  detect_d9 itself is unmodified."""
-    parent_res = td.detect_d9(tr_p, parent_cmds)
-    parent_keys = {json.dumps(e, sort_keys=True)
-                   for e in parent_res["episodes"]}
-    kept = [e for e in result["episodes"]
-            if json.dumps(e, sort_keys=True) not in parent_keys]
-    gated = dict(result)
-    gated["episodes"] = kept
-    gated["count"] = len(kept)
-    gated["verdict"] = "FAIL" if kept else "PASS"
-    return gated, len(result["episodes"]) - len(kept)
+def work_remaining(tr, t) -> bool:
+    """ABSOLUTE terminal-state test on the referee world state S_t: True iff
+    the world still offers the own player a resource action.
+
+    Work remains when (a) any own unit still carries something (it can be
+    banked at the tent, or planted), or (b) some plant is still standing on a
+    cell an own unit can walk to (it can be harvested when it fruits, or
+    chopped for wood).  Nothing else can change the own inventory or an own
+    unit's cargo through a resource action: PLANT needs a carried fruit and
+    HARVEST/CHOP need a reachable plant.  Purely a function of the world state
+    the referee reports (static map + plants + own units) — no parent
+    reference, no command-pattern heuristic."""
+    st = tr.state(t)
+    own = st.own_units()
+    if any(sum(u.carry) for u in own):
+        return True
+    if not st.plants:
+        return False
+    reach = td.bfs_distances(tr.smap.walkable, sorted(u.cell for u in own))
+    return any(p.cell in reach for p in st.plants)
+
+
+def live_horizon(tr) -> int:
+    """First turn of the maximal terminal suffix of the game — the turn from
+    which `work_remaining` is False for the whole rest of the game (tr.T + 1
+    when the world never runs out).  Turns from here on cannot produce
+    progress, so they carry no liveness obligation."""
+    t = tr.T
+    while t >= 1 and not work_remaining(tr, t):
+        t -= 1
+    return t + 1
 
 
 def eval_p1(tr_c, tr_p, parent_cmds, parent_d1_failed: bool):
+    """RAW detector gate (owner ruling 2026-08-06): every FAIL among
+    D-1..D-9 blocks the candidate, inherited-from-parent or not, on every
+    map.  Both former parent-comparison exemptions are REMOVED:
+      * the D-9 parent-differential gate (round-6 ROOT-A) -- a D-9 episode
+        the parent reproduced byte-for-byte used to be downgraded to a
+        report-tier flag; under raw it blocks;
+      * the D-1 inherited-report-only downgrade -- a D-1 episode on a map
+        where the parent also oscillates used to be report-only; under raw
+        it blocks.
+    tr_p and parent_d1_failed are retained only for signature/diagnostic
+    parity and never exempt an episode.  parent_cmds is still forwarded to
+    td.run_all because detect_d9's base semantics consume it (the detector
+    itself is unmodified).  The returned `inherited`/`d9_dropped` are always
+    empty/0 now -- kept so the caller's shape is unchanged."""
     results = td.run_all(tr_c, parent_cmds)
-    violations, inherited = [], []
-    d9_dropped = 0
-    for r in results:
-        if r["verdict"] != "FAIL":
-            continue
-        if r["detector"] == "D-1" and parent_d1_failed:
-            inherited.append(r)
-            continue
-        if r["detector"] == "D-9":
-            r, dropped = gate_d9_parent_differential(r, tr_p, parent_cmds)
-            d9_dropped += dropped
-            if r["verdict"] != "FAIL":
-                continue
-        violations.append(r)
-    return results, violations, inherited, d9_dropped
+    violations = [r for r in results if r["verdict"] == "FAIL"]
+    return results, violations, [], 0
 
 
 def eval_p2(tr_c):
@@ -773,19 +792,41 @@ def eval_p3(orchard_eligible: bool, commands_c: str, commands_p: str):
 
 
 def eval_p4(tr_c, tr_p, window: int):
+    """RAW liveness (owner ruling 2026-08-06) with an ABSOLUTE terminal-state
+    calibration.  The candidate must make progress (own inventory or own-unit
+    cargo change) in every rolling window; every stall window blocks and
+    there is NO parent-relative/inherited/aligned-prefix exemption of any
+    kind (the former 'unless the parent also makes no progress in the same
+    window' clause stays REMOVED; tr_p is accepted for signature/diagnostic
+    parity only and is never consulted).
+
+    Calibration (2026-08-06, repair #2): a stall is a liveness failure only
+    over turns in which the referee's own world state still offers a resource
+    action -- see `work_remaining` / `live_horizon`.  Each stall window is
+    trimmed to that live prefix and blocks only if the trimmed part is still
+    >= `window` turns.  Rationale: a stall that begins after the world is
+    exhausted for the rest of the game (no plant reachable by an own unit and
+    no cargo left to bank) is explained by the game being over, not by the
+    bot being stuck; a stall while work remains -- mid-game or running to the
+    sim horizon -- still blocks."""
     pc = progress_turns(tr_c)
-    pp = progress_turns(tr_p)
+    windows = stall_windows(pc, tr_c.T, window)
+    if not windows:
+        return []
+    horizon = live_horizon(tr_c)
     violations = []
-    for (a, b) in stall_windows(pc, tr_c.T, window):
-        parent_prog = sorted(t for t in pp if a <= t <= b)
-        if parent_prog:
-            violations.append({
-                "window_start": a, "window_end": b,
-                "parent_progress_turns": parent_prog[:10],
-                "why": "candidate makes no progress over turns %d-%d "
-                       "(>= %d turns) while the parent progresses in the "
-                       "same window on the identical map (not an inherited "
-                       "WAIT-equilibrium)" % (a, b, window)})
+    for (a, b) in windows:
+        live_end = min(b, horizon - 1)
+        if live_end - a + 1 < window:
+            continue
+        violations.append({
+            "window_start": a, "window_end": b, "live_end": live_end,
+            "terminal_from": horizon,
+            "why": "candidate makes no own-inventory/own-cargo progress over "
+                   "turns %d-%d while work remains through turn %d (>= %d "
+                   "live turns) [RAW liveness: every stall window over a "
+                   "non-terminal world blocks]"
+                   % (a, b, live_end, window)})
     return violations
 
 
@@ -849,23 +890,11 @@ def run_pair(job):
     for v in p4_viol:
         row["violations"].append({"property": "P4", "detail": v})
 
-    for r in inherited:
-        row["flags"].append({
-            "flag": "inherited-parent-D1",
-            "detail": "candidate D-1 episodes (%d) on a map where the "
-                      "parent also fails D-1 (%d episodes) - known family "
-                      "defect, report only" % (r["count"],
-                                               parent_d1["count"]),
-            "candidate_episodes": r["episodes"][:5],
-            "parent_episodes": parent_d1["episodes"][:5]})
-    if d9_dropped:
-        row["flags"].append({
-            "flag": "inherited-parent-D9",
-            "detail": "%d D-9 episode(s) reproduced identically by the "
-                      "parent on the identical map/opponent - inherited "
-                      "funding-phase behavior (I-18 byte-equal default), "
-                      "report only (ROOT-A panel-layer gate, round-6 "
-                      "ruling 2026-08-06)" % d9_dropped})
+    # RAW gate (owner ruling 2026-08-06): no inherited-parent-D1 /
+    # inherited-parent-D9 downgrades exist any more -- eval_p1 returns those
+    # channels empty and every detector episode is already a blocking P1
+    # violation above.
+    assert not inherited and not d9_dropped
     for v in p2_horizon:
         row["flags"].append({"flag": "r5-horizon", "detail": v["why"],
                              "unit": v["unit"]})
