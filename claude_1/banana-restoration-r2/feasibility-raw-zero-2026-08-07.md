@@ -678,3 +678,87 @@ and the committed `trace_detectors` / `fuzz_panel` modules. Regenerating the arc
 Nothing in `cgauto/`, `rust/`, `claude_1/pipeline/fuzz_panel.py`,
 `claude_1/banana-restoration-r2/trace_detectors.py`, any candidate, or the parent was
 modified by this work. `git status` on those paths is clean.
+
+---
+
+# Fable independent verification stamp (2026-08-07)
+
+I re-ran or re-derived every load-bearing claim below myself rather than accepting the
+investigation's report. Two confirmations, one refinement, one addition that changes the
+strategic picture.
+
+## CONFIRMED — floor arithmetic (re-derived from the committed floor report)
+
+Parsed `claude_1/pipeline/verification/fable-verify-floor-calibrated.md` per `### mNNN seat S`
+section (240 games = 120 maps x 2 seats):
+
+| quantity | value |
+|---|---|
+| blocking games (parses to the report's own figure) | **118** |
+| games blocking **only** on D-1 and/or D-4 | **12** |
+| **floor if D-1 and D-4 were driven to raw zero** | **106** |
+| games in which D-9 blocks | 74 |
+| games in which D-9 is the **sole** blocker | 63 |
+| floor if D-1, D-4 **and** D-9 were all zero | 42 |
+
+## CONFIRMED — the D176a citation is real, and the refinement makes it stronger
+
+`data/analysis/live-agent-6553250/d176a-oscillation-breaker-successor-result-2026-07-29.md`
+line 29 and its JSON (`control_total: 213`, `candidate_total: 825`) carry the figures exactly
+as cited.
+
+**Refinement owed to the record:** the project's own integrator judged that 5-9-turn gate
+**mis-specified**, on the grounds that de-novo oscillation was 0.0%, so +287% short runs is
+the signature of *long runs being fragmented* — "the intervention working as designed" —
+not of manufacture. That judgement is correct **in its own frame and does not rescue
+feasibility here**, for a reason worth stating plainly:
+
+> D176a reduced the >=10-turn task rate 8.50% -> 2.88% by **fragmenting** long oscillations
+> into short ones. D-1 fires on the short bucket. An intervention whose mechanism is
+> fragmentation is a success under a rate-based gate and a **regression under a raw-zero
+> gate** — the same behaviour, scored opposite ways by the two rules.
+
+So the citation is decisive here precisely *because* of what the integrator said, not despite
+it. Separately: D176a left the **worst-case run at 247 turns, unchanged from its control** —
+one 247-turn oscillation the best breaker ever built did not cure. Under raw D-1 = 0 that
+single outlier is fatal on its own.
+
+## ADDITION — the strategic finding: full success on the strict rule does not unblock the gate
+
+This is the number the owner most needs, and it is not in the original brief:
+
+**Driving D-1 and D-4 to raw zero — a perfect result on the standing rule — moves the gate
+from BLOCK 118/240 to BLOCK 106/240. The gate still blocks.** Satisfying the strict rule is
+necessary but nowhere near sufficient. The dominant blocker is **D-9 (74 games, sole blocker
+in 63)**, the detector already established as *candidate-invariant* — it fires 74 games on
+floor, `bbe54a48` and the tip alike, and therefore measures nothing about any candidate.
+Even zeroing D-1, D-4 and D-9 together leaves 42 blocking games.
+
+The practical consequence: the expensive, risky, arena-rating-endangering work of repairing
+the parent's inner policy would buy 12 of 118 blocking games, while the single largest
+blocker is a measurement defect that costs nothing to fix and is already referred to
+`local_codex_1`. **Detector calibration strictly dominates bot repair as the next move**, on
+these numbers.
+
+## Verdicts I endorse, with my own reasoning
+
+- **D-4 — FEASIBLE_WITH_CONDITIONS.** Endorsed. Single root cause, tightly localised
+  (6/6 on 1-door maps, 0/210 elsewhere).
+- **D-1 overall — UNRESOLVED, leaning INFEASIBLE at acceptable cost.** Endorsed, and the
+  logic is the part to keep: a raw-zero rule is **conjunctive over episodes**, so D1-A being
+  feasible does not make D-1 = 0 feasible while D1-B (1 episode) is unlocalised. One
+  unfixed episode is a block.
+- **The rating risk is real and unmeasurable by this gate.** 27 of 41 episodes are assessed
+  benign — "idleness expressed as motion", in 21/35 D-1 episodes the contested tree was the
+  only reachable plant. The gate cannot see arena rating; the orchard ablation already
+  demonstrated on this project that removing behaviour which looked useless made the rating
+  significantly worse. I would not authorise inner-policy surgery on a rated bot to satisfy
+  a gate that stays BLOCK afterwards.
+
+## Recommendation to the owner
+
+Do **not** open inner-policy repair on the parent yet. Fix the measurement first — D-9
+calibration (referred to `local_codex_1`), then re-derive the floor. If the strict rule is
+retained as written, my present read is that raw D-1 = 0 is **not** reachable on this parent
+at a cost proportionate to the 12 games it would unblock, and the honest finding the
+coordinator invited is on the table.
