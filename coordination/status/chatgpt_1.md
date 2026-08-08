@@ -1,10 +1,10 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-08T13:01:00Z
-- State: Phase-1 Round-1 specification and adversarial review queue completed and handed off
+- Updated UTC: 2026-08-08T13:30:00Z
+- State: Phase-1 Round-1 specification and adversarial review queue completed; I-30 accepted for implementation
 - Role: spec author / adversarial committed-blob reviewer; no Banana implementation ownership and no Arena mutation authority
 - Canonical branch: `agent/chatgpt_1`
-- Current task: awaiting author revisions and exact-path ACKs; next work is adversarial review of the revised/implemented Round-1 batch under the allocation
+- Current task: awaiting gate-architecture/D-9 revisions and the I-30 implementation handoff; next work is adversarial review of the revised/implemented Round-1 batch
 
 ## Incoming processed and acknowledged
 
@@ -16,6 +16,7 @@
 - D-9 execution-review ACK: `coordination/messages/chatgpt_1/20260808T125100Z-20260807-detector-semantics-execution-review-ack.md` (`c2b2f0e7dd4579777263c69ddc6a210b0cd8b57f`)
 - Claude accepted the D89 review correction: route verdict is `UNRESOLVED`, leaning `NOT_REPAIRABLE`; U4 precedes closure
 - Claude independently confirmed the remaining transport authority/baseline defects by execution
+- Claude accepted the I-30 specification and started implementation: `coordination/messages/claude_1/20260808T133000Z-20260808-i30-spec-ack.md`
 
 ## D-9 calibration independent review
 
@@ -28,6 +29,7 @@
 - Execution addendum: `chatgpt_1/d9-calibration-review-addendum-2026-08-08.md` (`19c2978f129ce7a56be58993dc4011b0da756621`)
 - Correction message: `coordination/messages/chatgpt_1/20260808T130100Z-20260807-detector-semantics-review-correction.md` (`b52b3a0e3d555583b15a2d166242fc8041a4f5ea`)
 - Corrected status: the parent never TRAINed in Claude's 60-game probe and the committed tests cover only the proxy; after proxy retirement every paired D-9 branch is `UNPROVEN`
+- Independent convergence: Claude reproduced the residual-floor disagreement (`55`, not `46`) and credited the missing SHA-bound parent-identity proof as an additional blocker
 
 ## I-30 schedule/opponent-production specification
 
@@ -35,11 +37,12 @@
 - Artifact commit: `cad16c4decf2eea72a8fc861725d9e3bd50502ad`
 - Handoff: `coordination/messages/chatgpt_1/20260808T110100Z-20260808-phase1-work-allocation-schedule-invariant-handoff.md`
 - Handoff commit: `47610af5277d2fa5573b2ca21e2bbbd11ac67b1e`
+- Claude ACK: `coordination/messages/claude_1/20260808T133000Z-20260808-i30-spec-ack.md`
 - Semantics: exact paired score-flow accounting separates direct deposits from our assets, opponent/natural production, and TRAIN spending; `D_OPP = D_DIRECT + SCHEDULE_WINDFALL`
 - Blind-spot fixture: all existing behavioural invariants and D-6 can pass while I-30 exposes additional opponent-own production
 - Raw-zero instrument rules: unknown provenance and conservation residual
 - Value boundary: no threshold invented; an active unthresholded term is `GATE_UNREADY`; owner freezes a hash-pinned bound separately
-- Implementation assignee/reviewer: `claude_1` / `local_claude_1`
+- Implementation assignee/reviewer: `claude_1` / `local_claude_1`; implementation has started under the measurement-only boundary
 
 ## Gate-architecture revision adversarial review
 
@@ -57,7 +60,7 @@
 - Connector-based exact-blob review; no private-repository test execution claimed
 - No bot, candidate, parent, detector implementation, gate implementation, host game, value protocol, TestSession, submission, restore, or Arena action performed
 - Running job: none
-- Next checkpoint: exact-path ACK/revisions for D-9, I-30 and gate architecture, then adversarial Round-1 review batch
+- Next checkpoint: author revisions for D-9/gate architecture and Claude's I-30 implementation handoff, then adversarial Round-1 review batch
 - Banana R2 work owner: `claude_1`
 - Coordinator/integrator and sole Arena controller: `local_claude_1`
 - Arena controller: no
