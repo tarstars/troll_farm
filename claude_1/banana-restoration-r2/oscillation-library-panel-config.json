@@ -1,0 +1,52 @@
+{
+ "bin_cache_dir": "/tmp/claude-1000/-home-tarstars-prj-troll-farm/3b336b91-cd2f-4655-9aaf-31fd6d3d156f/scratchpad/m3a/bin",
+ "candidate": {
+  "crate": "m3a_floor_candidate",
+  "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "source": "/home/tarstars/prj/troll_farm-claude_1/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs"
+ },
+ "class_mix": {
+  "choke_corridor": 0.25,
+  "forest_dense": 0.08,
+  "forest_sparse": 0.07,
+  "multi_door": 0.1,
+  "open_field": 0.15,
+  "orchard_eligible": 0.1,
+  "single_door_tent": 0.1,
+  "water_diagonal": 0.15
+ },
+ "corpus_version": "c3-train-engine-authority-2026-08-09",
+ "games_dir": "/tmp/claude-1000/-home-tarstars-prj-troll-farm/3b336b91-cd2f-4655-9aaf-31fd6d3d156f/scratchpad/m3a/games",
+ "instrument_version": "fuzz-panel/3-train-engine-authority",
+ "liveness_window": 60,
+ "maps": 120,
+ "margin_collapse_threshold": 100,
+ "max_generation_attempts": 64,
+ "notes": [
+  "CORPUS BUMP c2 -> c3 (TRAIN engine-authority revision, 2026-08-09). The c2 referee derived TRAIN legality from MoisanBot::can_train (rust/src/bin/yamo_orchard_live.rs:836, 'if n >= 2 || TOTAL_TURNS - view.turn <= 20 { return false; }'). That is ONE BOT'S SELF-RESTRAINT. The authority is rust/src/game/engine.rs::apply_train (525-568), which enforces NEITHER the two-worker cap NOR the final-20-turn guard: between the own-unit count at 527 (used only to price the bill at 528) and the spawn at 556-567 the only rejections are affordability (539-541) and an occupied shack (545-547). The c2 referee therefore forbade what the engine permits and would have silently rejected a candidate that trains a third worker. c3 removes both bot-derived restrictions and mirrors engine.rs alone. Permitting a third (and fourth, ...) worker changes many games; results are NOT comparable across the bump.",
+  "CORPUS BUMP c1 -> c2 (referee TRAIN repair, 2026-08-09). The referee now implements TRAIN and MINE and dispatches commands EXHAUSTIVELY: a verb with no handler terminates the run as GATE_UNREADY / unsupported_command instead of being silently discarded. Under c1 the referee silently dropped TRAIN and MINE, so every game in which the bot trained or mined was simulated against a world that never happened -- m040 seat 0 / seat 1 emitted TRAIN on 166 / 182 of 200 turns and still scored CLEAN. Results are NOT comparable across the bump; load_config refuses a config declaring a different version.",
+  "RAW/ABSOLUTE gate (owner ruling 2026-08-06): every detector D-1..D-9 episode blocks, inherited-from-parent or not, on every map, and P4 liveness has no parent exemption. The round-6 ROOT-A D-9 parent-differential gate and the D-1 inherited-report-only downgrade are both REMOVED. The parent run is still computed for the P3 orchard-inertness check (an absolute candidate==parent requirement, kept) and for diagnostics, but never exempts a candidate detector episode. trace_detectors is unmodified.",
+  "P4 ABSOLUTE terminal-state calibration (gate repair #2, 2026-08-06): a stall window blocks only over the turns in which the referee world state still offers the own player a resource action -- i.e. some own unit still carries something to bank/plant, or some plant still stands on a cell an own unit can walk to (harvest/chop) -- so a stall that begins after the world is exhausted for the rest of the game is excused while any stall of >= liveness_window LIVE turns, mid-game or running to the sim horizon, still blocks. The predicate reads only the candidate's own transcript (static map + plants + own units): no parent reference, no all-WAIT command heuristic."
+ ],
+ "opponent_mix": {
+  "chopper_aggressor": 0.3,
+  "harvester": 0.4,
+  "idle": 0.3
+ },
+ "parent": {
+  "crate": "m3a_floor_parent",
+  "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "source": "/home/tarstars/prj/troll_farm-claude_1/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs"
+ },
+ "processes": 8,
+ "seeds": [
+  982451653,
+  15485863,
+  32452843,
+  49979687,
+  67867967,
+  86028121
+ ],
+ "task": "M3a oscillation situation library harvest -- panel floor (parent vs parent)",
+ "turns": 200
+}
