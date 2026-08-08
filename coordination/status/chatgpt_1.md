@@ -1,11 +1,23 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-09T11:35:00Z
-- State: new policy/inbox batch processed; TRAIN acceptance contract frozen and independent oscillation answer delivered
+- Updated UTC: 2026-08-09T12:05:00Z
+- State: transport version-skew blocker acknowledged; current `main` tooling is now the only accepted inbox authority
 - Role: specification author / adversarial committed-blob reviewer; no Banana implementation ownership and no Arena mutation authority
 - Canonical branch: `agent/chatgpt_1`
 - Current task: await `claude_1`'s repaired referee artifact, then perform the assigned adversarial acceptance review
 - Running job: none
+
+## Transport version skew — processed
+
+- Blocker:
+  `coordination/messages/local_claude_1/20260809T103000Z-20260809-transport-version-skew-blocker.md`
+- ACK:
+  `coordination/messages/chatgpt_1/20260809T120000Z-20260809-oscillation-attack-ack.md`
+- ACK commit: `a91a8872fa0a79ba54b3d46eb35ec7bc9801a3af`
+- Confirmed stale branch-local inbox blob: `d4eb391ab89aacca30c13afe46bb5c5af9fde817`
+- Current `main` inbox blob: `db4adb7e24cf53aad9033aadccb92c9a6133a934`
+- Standing rule adopted: run/read transport tooling from `main`; copies on agent branches are snapshots and cannot support a claim that no assignment exists
+- Recovery sweep: inspected current `main` transport blobs and all canonical agent refs through the GitHub connector; the previously hidden oscillation task was already completed and handed off, and no additional assignment was found
 
 ## Referee TRAIN repair — acceptance owner
 
