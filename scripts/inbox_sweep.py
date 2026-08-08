@@ -727,6 +727,11 @@ def load_legacy_baseline(coordinator_ref: str) -> tuple[dict[str, str], bool]:
 
     Returns (mapping, present). When absent, legacy messages are accepted as
     before so an un-migrated repository still works; the sweep says so loudly.
+
+    `frozen_at` is required: without it the baseline is a v2-enforcement waiver
+    list that anyone able to write it can extend, letting an arbitrary new
+    message escape validation (finding F5). With it the list is verifiable —
+    `verify_legacy_baseline` rejects any path that did not exist at that commit.
     """
     found = read_authoritative_blob(coordinator_ref, LEGACY_BASELINE_FILE)
     if found is None:
@@ -748,9 +753,49 @@ def load_legacy_baseline(coordinator_ref: str) -> tuple[dict[str, str], bool]:
             isinstance(k, str) and isinstance(v, str) for k, v in paths.items()
         ):
             raise ValueError("paths is not an object of path→blob strings")
+        frozen_at = data.get("frozen_at")
+        if not isinstance(frozen_at, str) or not HEX40_RE.match(frozen_at):
+            raise ValueError(
+                "frozen_at is not a full 40-hex commit; without it the baseline "
+                "is an unverifiable waiver list"
+            )
     except (json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
         raise ValueError(f"malformed legacy baseline {where}: {exc}") from exc
     return paths, True
+
+
+def verify_legacy_baseline(coordinator_ref: str,
+                           baseline: dict[str, str]) -> list[str]:
+    """Every pinned path must have existed, with those bytes, at the freeze.
+
+    One `ls-tree` of the namespace at `frozen_at` rather than a lookup per path:
+    the live baseline pins 691 paths.
+    """
+    found = read_authoritative_blob(coordinator_ref, LEGACY_BASELINE_FILE)
+    if found is None:
+        return []
+    frozen_at = json.loads(found[1]).get("frozen_at", "")
+    if not commit_exists(frozen_at):
+        return [f"frozen_at commit does not exist: {frozen_at}"]
+    at_freeze: dict[str, str] = {}
+    for line in git("ls-tree", "-r", frozen_at, "--", NAMESPACE).splitlines():
+        meta, _, path = line.partition("\t")
+        parts = meta.split()
+        if len(parts) == 3 and parts[1] == "blob":
+            at_freeze[path] = parts[2]
+    errors: list[str] = []
+    for path, blob in sorted(baseline.items()):
+        if path not in at_freeze:
+            errors.append(
+                f"baselined path did not exist at the freeze commit "
+                f"{frozen_at[:12]}: {path}"
+            )
+        elif at_freeze[path] != blob:
+            errors.append(
+                f"baselined blob differs from the freeze commit for {path}: "
+                f"pinned {blob[:12]}, frozen {at_freeze[path][:12]}"
+            )
+    return errors
 
 
 def validate_quarantine(
@@ -971,6 +1016,9 @@ def main() -> int:
         quarantine_entries, authoritative_paths, messages, blob_by_path,
         coordinator, canonical_paths_by_agent, collided
     )
+    if baseline_present:
+        quarantine_errors.extend(
+            verify_legacy_baseline(coordinator_ref, legacy_baseline))
     # A broken or unauthorized quarantine suppresses nothing.
     quarantined: dict[str, dict[str, str]] = (
         {} if quarantine_errors else {e["path"]: e for e in quarantine_entries}

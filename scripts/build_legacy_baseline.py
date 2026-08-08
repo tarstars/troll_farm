@@ -56,8 +56,21 @@ def main() -> int:
     baseline = collect_legacy(per_path)
     target = root / inbox_sweep.LEGACY_BASELINE_FILE
 
+    # The freeze commit must contain every pinned path, so it has to be an
+    # integrated ref: the paths span all agent branches. `inbox_sweep`
+    # re-verifies each pin against this commit, which is what makes the
+    # baseline a checkable record rather than a waiver list anyone can extend.
+    frozen_at = inbox_sweep.git("rev-parse", f"{inbox_sweep.ROSTER_REF}").strip()
+    missing = [p for p in baseline
+               if not inbox_sweep.path_in_commit(frozen_at, p)]
+    if missing:
+        print(f"{len(missing)} baselined paths absent from {frozen_at[:12]}; "
+              f"first: {missing[0]}", file=sys.stderr)
+        return 2
+
     payload = {
         "schema_version": inbox_sweep.LEGACY_BASELINE_SCHEMA_VERSION,
+        "frozen_at": frozen_at,
         "note": (
             "Frozen at the schema-v2 migration. Exactly these paths are "
             "grandfathered as pre-v2; every other message must declare "

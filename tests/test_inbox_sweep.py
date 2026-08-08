@@ -994,10 +994,14 @@ def test_quarantining_an_ack_must_declare_what_it_reopens(repo):
     assert counts(declared.stdout)["unacknowledged, ack required"] == 1
 
 
-def publish_baseline(repo: TransportRepo, paths: dict[str, str]):
+def publish_baseline(repo: TransportRepo, paths: dict[str, str],
+                     frozen_at: str | None = None):
+    """`frozen_at` defaults to the tip carrying the baselined messages."""
     repo.commit(f"agent/{COORDINATOR}", {
         inbox_sweep.LEGACY_BASELINE_FILE: json.dumps(
-            {"schema_version": 1, "paths": paths}, indent=2
+            {"schema_version": 1,
+             "frozen_at": frozen_at or repo.tips[f"agent/{PEER}"],
+             "paths": paths}, indent=2
         ) + "\n"
     })
     publish_roster(repo)
@@ -1255,6 +1259,43 @@ def test_baselined_legacy_message_is_still_accepted(repo):
     result = repo.sweep("--me", ME)
     assert result.returncode == 1  # valid legacy, merely unacknowledged
     assert counts(result.stdout)["delivery errors"] == 0
+
+
+def test_baseline_cannot_grandfather_a_message_added_after_the_freeze(repo):
+    # F5: the baseline was a v2-enforcement waiver list that required no
+    # adjudication — the coordinator could add any message and it escaped
+    # validation. Pinning `frozen_at` makes the list verifiable: a path that
+    # did not exist at the freeze commit cannot be in it.
+    old = msg_path(PEER, "20260101T000000Z", "task-old", "handoff")
+    freeze = repo.commit(f"agent/{PEER}", {old: legacy_message("task-old")})
+    forgery = msg_path(PEER, "20260729T090000Z", "task-forged", "claim")
+    repo.commit(f"agent/{PEER}", {forgery: legacy_message("task-forged")})
+
+    repo.commit(f"agent/{COORDINATOR}", {
+        inbox_sweep.LEGACY_BASELINE_FILE: json.dumps(
+            {"schema_version": 1, "frozen_at": freeze,
+             "paths": {old: repo.blob_oid(old),
+                       forgery: repo.blob_oid(forgery)}}, indent=2) + "\n"})
+    publish_roster(repo)
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert "did not exist at the freeze commit" in result.stdout
+    assert forgery in result.stdout
+
+
+def test_baseline_without_frozen_at_is_rejected(repo):
+    path = msg_path(PEER, "20260805T100000Z", "task-a", "handoff")
+    repo.commit(f"agent/{PEER}", {path: legacy_message("task-a")})
+    repo.commit(f"agent/{COORDINATOR}", {
+        inbox_sweep.LEGACY_BASELINE_FILE: json.dumps(
+            {"schema_version": 1, "paths": {path: repo.blob_oid(path)}},
+            indent=2) + "\n"})
+    publish_roster(repo)
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert "malformed legacy baseline" in result.stderr
 
 
 def test_baselined_legacy_message_with_changed_bytes_is_rejected(repo):

@@ -1,5 +1,6 @@
 {
   "schema_version": 1,
+  "frozen_at": "23ac5fe827bf9d0adf9f22e4b6699f09274aba40",
   "note": "Frozen at the schema-v2 migration. Exactly these paths are grandfathered as pre-v2; every other message must declare schema_version: 2. Do not regenerate to clear a delivery error.",
   "paths": {
     "coordination/messages/chatgpt_1/20260729T074300Z-20260729-rank-hypotheses-critique-claim.md": "b27d1915c05f84e51a93bd5de1e1c24003b0b117",
