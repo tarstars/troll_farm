@@ -128,6 +128,48 @@ fn main() {
 }
 """
 
+# Planted bot for the r2 revision: trains as often as the ENGINE allows.
+# Every turn it walks each own unit to a private parking cell (so the shack is
+# free, engine.rs:545) and appends a TRAIN.  The floor bot never exercises
+# this -- its own can_train refuses past two workers -- so this bot is the
+# end-to-end evidence that the referee no longer forbids what engine.rs
+# permits.
+TRAINER_BOT = r"""
+use std::io::{BufRead, Write};
+fn main() {
+    let stdin = std::io::stdin();
+    let mut lines = stdin.lock().lines().filter_map(|l| l.ok());
+    let first = match lines.next() { Some(l) => l, None => return };
+    let mut it = first.split_whitespace();
+    let _w: usize = it.next().unwrap().parse().unwrap();
+    let h: usize = it.next().unwrap().parse().unwrap();
+    for _ in 0..h { lines.next(); }
+    loop {
+        if lines.next().is_none() { return; }   // own inventory
+        lines.next();                           // opponent inventory
+        let np: usize = lines.next().unwrap().trim().parse().unwrap();
+        for _ in 0..np { lines.next(); }
+        let nu: usize = lines.next().unwrap().trim().parse().unwrap();
+        let mut mine: Vec<i64> = Vec::new();
+        for _ in 0..nu {
+            let line = lines.next().unwrap();
+            let v: Vec<i64> = line.split_whitespace()
+                .map(|t| t.parse().unwrap()).collect();
+            if v[1] == 0 { mine.push(v[0]); }
+        }
+        mine.sort();
+        let mut cmds: Vec<String> = Vec::new();
+        for (i, id) in mine.iter().enumerate() {
+            cmds.push(format!("MOVE {} {} {}", id,
+                              1 + (i % 10) as i64, 1 + (i / 10) as i64));
+        }
+        cmds.push("TRAIN 1 1 0 1".to_string());
+        println!("{}", cmds.join(";"));
+        std::io::stdout().flush().unwrap();
+    }
+}
+"""
+
 # Planted defect bot: emits a verb the referee does not implement. The
 # exhaustive dispatcher must terminate the run (GATE_UNREADY /
 # unsupported_command) rather than silently discard it.
@@ -183,12 +225,14 @@ FLOOR_BOT_SOURCE = (HERE.parent.parent / "cgauto" / "submissions"
                       ".min.rs")
 
 
-def compiled_binary(name: str, source_path: Path) -> Path:
-    """Compile a real submission once per test process and return the
-    BINARY path (compiled_bot returns the source path for CLI configs)."""
+def compiled_binary(name: str, source_path: Path, source: str = None) -> Path:
+    """Compile a submission (or literal source) once per test process and
+    return the BINARY path (compiled_bot returns the source path for CLI
+    configs)."""
     if name not in _BIN_CACHE:
         binary = _bot_dir() / ("bin-" + name)
-        sh.compile_text(source_path.read_text(), binary, "selftest_" + name)
+        text = source if source is not None else source_path.read_text()
+        sh.compile_text(text, binary, "selftest_" + name)
         _BIN_CACHE[name] = binary
     return _BIN_CACHE[name]
 
@@ -836,6 +880,12 @@ class TestExitCodes(unittest.TestCase):
 TRAIN_ROWS = ("0....1",
               "......",
               "......")
+# Room for a dozen workers to park off the shack.
+TRAINER_ROWS = ("0..........1",
+                "............",
+                "............",
+                "............",
+                "............")
 IRON_ROWS = ("0..+.1",          # '+' at (3,0): iron present, not walkable
              "......",
              "......")
@@ -1008,6 +1058,32 @@ class TestTrainAuthorityIsTheEngine(unittest.TestCase):
         self.assertFalse(
             _reads_the_turn_counter(fp.FuzzReferee.train),
             "engine.rs::apply_train (525-568) never reads game.turn")
+
+    def test_a_real_bot_trains_past_two_workers_closed_loop(self):
+        """End-to-end, through the same compile + binary + referee loop the
+        m040 regression rows use.  MEASURED necessity: on the committed
+        240-game floor the floor bot emits TRAIN in exactly 2 of 240 games,
+        once each (m040 s0 t=35, m040 s1 t=19) -- its own can_train refuses
+        past two workers -- so the floor cannot exercise this at all.  A bot
+        that does ask for more must get more."""
+        binary = compiled_binary("trainerbot", None, TRAINER_BOT)
+        ref = train_referee(rows=TRAINER_ROWS,
+                            inventory=[99, 99, 99, 0, 0, 0],
+                            units=[[0, 0, 1, 0, 1, 2, 1, 1] + [0] * 6,
+                                   [5, 1, 10, 0, 1, 2, 0, 0] + [0] * 6])
+        rt.run_binary_custom(binary, ref, 8)
+        own = ref.own_unit_ids()
+        self.assertGreater(
+            len(own), 2,
+            "a bot that asks for a third worker, can afford it and leaves "
+            "the shack free must get it (engine.rs:525-568 imposes no cap)")
+        for uid in own[1:]:
+            u = ref.units[uid]
+            self.assertEqual((u["speed"], u["cap"], u["harvest"], u["chop"]),
+                             (1, 1, 0, 1))
+        # The bill is the only limit: it grows with n (engine.rs:517-520), so
+        # the run must stop while the inventory is still non-negative.
+        self.assertTrue(all(v >= 0 for v in ref.inv), ref.inv)
 
     def test_the_turn_reader_itself_is_not_vacuous(self):
         """Guard on the guard: `_reads_the_turn_counter` must actually fire

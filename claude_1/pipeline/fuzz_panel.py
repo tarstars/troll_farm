@@ -78,8 +78,14 @@ and MINE were applied as no-ops: the panel measured properties on a world
 that never happened, and its two most pathological games (m040 seat 0 and
 seat 1, which emitted TRAIN on 166/200 and 182/200 turns because the worker
 count never rose) scored CLEAN.  TRAIN and MINE are now implemented and
-conformance-tested against rust/src/bin/yamo_orchard_live.rs; see
-referee-train-repair-2026-08-09.md for the per-rule line citations.  The
+conformance-tested against rust/src/game/engine.rs -- the AUTHORITATIVE game
+engine, and the sole authority for legality.  Revision r2 (2026-08-09) removed
+the bot-derived TRAIN restrictions the first repair had mirrored from
+MoisanBot::can_train (yamo_orchard_live.rs:836, `n >= 2 ||
+TOTAL_TURNS - view.turn <= 20`): engine.rs::apply_train enforces NEITHER, so
+the referee was forbidding what the engine permits and would have silently
+rejected a candidate that trains a third worker.  See
+referee-train-repair-r2-2026-08-09.md for the per-rule line citations.  The
 instrument/corpus version pair (INSTRUMENT_VERSION / CORPUS_VERSION) is
 declared in the config, echoed in every report, and enforced by load_config,
 because results are not comparable across a referee change.
@@ -123,16 +129,16 @@ BIG = 10_000
 # produces, so results are not comparable across instrument versions.  Both
 # strings are declared in the config, asserted by the self-tests and echoed in
 # every report and JSON payload.
-INSTRUMENT_VERSION = "fuzz-panel/2-train"
-CORPUS_VERSION = "c2-train-2026-08-09"
+INSTRUMENT_VERSION = "fuzz-panel/3-train-engine-authority"
+CORPUS_VERSION = "c3-train-engine-authority-2026-08-09"
 
 # --- authoritative engine constants ----------------------------------------
-# Conformance reference: rust/src/bin/yamo_orchard_live.rs (sacred, SHA prefix
-# fff6669b).  Line citations are reproduced in
-# claude_1/pipeline/referee-train-repair-2026-08-09.md.
-TOTAL_TURNS = 300          # yamo_orchard_live.rs:162  rules::TOTAL_TURNS
-WORKER_CAP = 2             # yamo_orchard_live.rs:836  `n >= 2 -> false`
-TRAIN_GUARD_TURNS = 20     # yamo_orchard_live.rs:836  `TOTAL_TURNS - turn <= 20`
+# THE AUTHORITY IS rust/src/game/engine.rs.  Deliberately no WORKER_CAP and no
+# TRAIN_GUARD_TURNS: `MoisanBot::can_train` (yamo_orchard_live.rs:836
+# `if n >= 2 || TOTAL_TURNS - view.turn <= 20 { return false; }`) is one bot's
+# SELF-RESTRAINT, and engine.rs::apply_train (525-568) enforces neither.  A
+# referee that encodes them forbids what the engine permits.  Line citations
+# are reproduced in claude_1/pipeline/referee-train-repair-r2-2026-08-09.md.
 
 MAP_CLASSES = ("open_field", "choke_corridor", "single_door_tent",
                "multi_door", "water_diagonal", "orchard_eligible",
@@ -192,15 +198,18 @@ def unsupported_command(verb: str, raw: str, turn: int) -> UnsupportedCommand:
 
 
 def training_cost(n: int, talents) -> list:
-    """Mirror of rules::training_cost (yamo_orchard_live.rs:196-204).
+    """Mirror of engine.rs::training_cost (rust/src/game/engine.rs:514-522).
 
-        cost[PLUM]  = n + ms   * ms
-        cost[LEMON] = n + cc   * cc
-        cost[APPLE] = n + hp   * hp
-        cost[IRON]  = n + chop * chop
+        let mut cost = [0i32; 6];
+        cost[PLUM]  = n + ms   * ms;      // engine.rs:517
+        cost[LEMON] = n + cc   * cc;      // engine.rs:518
+        cost[APPLE] = n + hp   * hp;      // engine.rs:519
+        cost[IRON]  = n + chop * chop;    // engine.rs:520
 
-    where n is the CURRENT own-unit count.  BANANA and WOOD are never billed
-    (the engine's `pay` slice covers them, but their cost entries stay 0)."""
+    where n is the CURRENT own-unit count (engine.rs:527).  BANANA and WOOD
+    are never written, so their cost entries stay 0: they sit on the `pay`
+    slice (engine.rs:532-536) but the check is `inv[i] < 0` and the deduction
+    is `-= 0`."""
     ms, cc, hp, chop = talents
     cost = [0] * 6
     cost[PLUM] = n + ms * ms
@@ -636,8 +645,15 @@ class FuzzReferee(mbt.Referee):
         # 1-based, exactly like the bot's own counter: `let mut turn = 1;
         # while let Some(view) = read_turn(&mut reader, &map, turn)`
         # (yamo_orchard_live.rs:6017-6023).  Turn t is the state block the
-        # referee emits before applying C_t.
+        # referee emits before applying C_t.  NOTE: no TRAIN rule reads this
+        # -- engine.rs::apply_train (525-568) never touches game.turn.
         self.turn = 1
+        # `game.next_id`: a monotone spawn-id counter (engine.rs:555, 567).
+        # engine.rs contains no unit-removal path at all, so seeding it at
+        # max(id) + 1 over the serialized roster reproduces the engine's
+        # counter exactly; a plain max()+1 at spawn time would not, because
+        # ids are never reused.
+        self.next_id = (max(self.units) + 1) if self.units else 0
 
     def map_header(self):
         return ("%d %d\n" % (len(self.rows[0]), len(self.rows))
@@ -713,61 +729,86 @@ class FuzzReferee(mbt.Referee):
         mbt.WALKABLE = self.walk
 
     # -- TRAIN ------------------------------------------------------------
-    # Every rule below is a mirror of rust/src/bin/yamo_orchard_live.rs (the
-    # authoritative engine, byte-untouchable); the line citations are
-    # reproduced in referee-train-repair-2026-08-09.md.
+    # THE SOLE AUTHORITY IS rust/src/game/engine.rs::apply_train (525-568).
+    # Every rule below quotes the line it mirrors, and NOTHING that
+    # apply_train does not enforce is encoded here.  In particular there is
+    # no worker cap and no final-N-turn guard: those come from
+    # MoisanBot::can_train (yamo_orchard_live.rs:836), which is one bot's
+    # self-restraint.  The bot may still choose not to train; that is the
+    # bot's business.  Full citations in
+    # referee-train-repair-r2-2026-08-09.md.
 
     def own_unit_ids(self):
         return sorted(uid for uid, u in self.units.items()
                       if u["player"] == 0)
 
     def can_train(self, talents):
-        """Mirror of MoisanBot::can_train (yamo_orchard_live.rs:834-844).
+        """The two conditions engine.rs::apply_train rejects on, and only
+        those.
 
-            let n = view.units.iter().filter(|u| u.player == 0).count();
-            if n >= 2 || TOTAL_TURNS - view.turn <= 20 { return false; }
-            let cost = training_cost(n, stats.tuple());
-            let pay_iron = !view.iron.is_empty();
-            inv[PLUM] >= cost[PLUM] && inv[LEMON] >= cost[LEMON]
-                && inv[APPLE] >= cost[APPLE]
-                && (!pay_iron || inv[IRON] >= cost[IRON])
-        """
+            engine.rs:527  let n = game.units.iter()
+                               .filter(|u| u.player == player).count() as i32;
+            engine.rs:528  let cost = training_cost(n, talents);
+            engine.rs:539  if pay.iter().any(|&i| inv[i] < cost[i]) {
+            engine.rs:540      return;
+            engine.rs:544  let shack = game.shacks[p];
+            engine.rs:545  if game.units.iter().any(|u| u.pos() == shack) {
+            engine.rs:546      return;
+
+        `n` is read at 527 and used at 528 to price the bill -- it is never
+        compared to anything.  `game.turn` is not read anywhere in 525-568
+        (`step` alone touches it, engine.rs:805).  Anything else the bot's
+        own `can_train` refuses is the bot's policy, not a rule."""
         n = len(self.own_unit_ids())
-        if n >= WORKER_CAP:
-            return False
-        if TOTAL_TURNS - self.turn <= TRAIN_GUARD_TURNS:
-            return False
         cost = training_cost(n, talents)
         for item in self.train_billed_items():
             if self.inv[item] < cost[item]:
                 return False
+        # engine.rs:545 iterates game.units -- ALL units, both players.
+        if any(u["cell"] == self.tent for u in self.units.values()):
+            return False
         return True
 
     def train_billed_items(self):
-        """PLUM/LEMON/APPLE always; IRON only when the map has iron
-        (`pay_iron = !view.iron.is_empty()`, yamo_orchard_live.rs:840-844 --
-        the engine's Bronze-league iron guard)."""
-        return [PLUM, LEMON, APPLE] + ([IRON] if self.irons else [])
+        """The engine's `pay` slice, engine.rs:531-536:
+
+            // IRON (slot 4) only charged if iron terrain present
+            let pay: &[usize] = if !game.iron.is_empty() {
+                &[0, 1, 2, 3, 4, 5]
+            } else {
+                &[0, 1, 2, 3, 5]
+            };
+
+        BANANA (3) and WOOD (5) stay on the slice even though
+        `training_cost` never writes them (engine.rs:516-521), so both the
+        check at 539 and the deduction at 550-552 are no-ops for them."""
+        if self.irons:
+            return [PLUM, LEMON, APPLE, BANANA, IRON, WOOD]
+        return [PLUM, LEMON, APPLE, BANANA, WOOD]
 
     def train(self, talents) -> bool:
-        """Resolve one own-side TRAIN.  Returns True iff a worker spawned."""
+        """Resolve one own-side TRAIN.  Returns True iff a worker spawned.
+
+            engine.rs:550  for &i in pay {
+            engine.rs:551      game.inventories[p][i] -= cost[i];
+            engine.rs:554  let (ms, cc, hp, chop) = talents;
+            engine.rs:555  let nid = game.next_id;
+            engine.rs:556  game.units.push(Unit {
+            engine.rs:557      id: nid, player,
+            engine.rs:559      x: shack.0, y: shack.1,
+            engine.rs:561      ms, cc, hp, chop,
+            engine.rs:565      carry: [0; 6],
+            engine.rs:567  game.next_id += 1;
+        """
         if not self.can_train(talents):
-            return False
-        # The spawn cell is the own shack; the engine refuses the spawn when
-        # any unit stands on it.  yamo_orchard_live.rs:1564-1571 and
-        # 3604-3619 encode the same fact from the bot's side: when
-        # `train_now && unit.cell == view.shacks[0]` the bot manufactures a
-        # MOVE off the shack for that very turn.
-        if any(u["cell"] == self.tent for u in self.units.values()):
             return False
         n = len(self.own_unit_ids())
         cost = training_cost(n, talents)
         for item in self.train_billed_items():
             self.inv[item] -= cost[item]
         ms, cc, hp, chop = talents
-        # `next_id = next_id.max(values[0] + 1)` over the serialized units
-        # (yamo_orchard_live.rs:485) -- the id the bot itself predicts.
-        nid = max(self.units) + 1 if self.units else 0
+        nid = self.next_id
+        self.next_id += 1
         self.units[nid] = {
             "player": 0, "cell": self.tent, "speed": ms, "cap": cc,
             "harvest": hp, "chop": chop, "carry": [0] * 6,
