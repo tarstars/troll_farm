@@ -49,6 +49,25 @@ There is a real band structure. Values found in the candidate:
 
 Two properties in that table are exactly what point 6 asks about, and both are checkable:
 
+> **BOTH EXAMPLES BELOW WERE WRONG. Corrected 2026-08-10 after `claude_1`'s review; verified by
+> me.** (a) The chop maximum is **2400, not 3900**: `chop_outcome` returns turns from a loop
+> starting at 1, so `turns >= 2` always and the `.max(1)` is dead code. (b) The band is **not**
+> caller-set: `iron_candidates` and `fruit_candidates` have exactly **one call site each**, with
+> the literals `6_100.0` and `6_000.0`. HARVEST is 6_900 and MINE is 7_000, so a chop capped at
+> 2400 **cannot** outrank either — the crossing I claimed does not exist. The original text is
+> kept below because point 2 is the manifest's thesis and this is evidence for it.
+>
+> **What the errors teach, which is more useful than what they claimed:** neither would have been
+> prevented by a bridge from intention to number. I read the right file and reasoned wrongly
+> about it — treating a written bound as attainable, and inferring variability from a parameter's
+> existence. Point 6's audit is therefore a **static-analysis task** (reachable ranges,
+> call-graph facts), not a reading task.
+>
+> The thesis is unharmed and better evidenced: `claude_1`'s proper audit found **10 boundary
+> crossings, 8 measured end-to-end**, 3 hierarchy inversions and 3 pieces of dead scoring code —
+> and the largest crossing is **temporal**, the conversion intention pricing `<= 187.5` on turn
+> 250 and `7_000` on turn 251.
+
 **(a) Additive terms can cross a band.** A chop is `1000 * wood / turns`, and `wood` is capped by
 carry capacity (≤3) while `turns` is floored at 1 — so the base alone reaches **3000**, and with
 the denial bonus **3900**. Whether that can overtake a `HARVEST` depends entirely on the
