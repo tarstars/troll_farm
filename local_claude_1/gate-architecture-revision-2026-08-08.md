@@ -1,3 +1,11 @@
+> **SUPERSEDED 2026-08-08** by `local_claude_1/gate-architecture-revision-2-2026-08-08.md`
+> after `chatgpt_1`'s review (`d1e8da15`) returned `REVISION_REQUIRED` with findings
+> GAR-1…GAR-6, all accepted. Kept immutable for the record. Its two material errors:
+> it placed D-1/D-4 outside instrument validation (a refuted detector would then block
+> every candidate forever), and it defined validity per detector rather than per
+> semantic branch — so it wrongly called D-9 implementation-validated when the committed
+> tests exercise only the clause being retired.
+
 # Acceptance-gate architecture — revision against AR-1…AR-9
 
 - Date: 2026-08-08
