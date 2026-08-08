@@ -96,14 +96,45 @@ QUARANTINE_SCHEMA_VERSION = 2
 QUARANTINE_ENTRY_FIELDS = ("path", "reason", "adjudicated_by", "target_blob")
 LEGACY_BASELINE_FILE = "coordination/legacy-baseline.json"
 LEGACY_BASELINE_SCHEMA_VERSION = 1
-# The coordinator/integrator whose canonical ref carries the quarantine and the
-# frozen legacy baseline. Role transfer MUST update this (protocol §9).
-DEFAULT_COORDINATOR = "local_claude_1"
-COORDINATOR_ENV = "TROLL_FARM_COORDINATOR"
+# Who the coordinator is must itself be authoritative. Reading it from the
+# environment made the authority untrusted input: whoever set the variable
+# designated the quarantine authority, and pointing it at a branch with no
+# quarantine silently suppressed nothing while reporting zero errors. The
+# roster is committed and lives ONLY on the integrated branch, which is the
+# shared root of trust — anyone who can write it can already do anything.
+ROSTER_FILE = "coordination/roster.json"
+ROSTER_REF = REMOTE_PREFIX + "main"
+ROSTER_SCHEMA_VERSION = 1
 
 
-def coordinator_agent() -> str:
-    return os.environ.get(COORDINATOR_ENV) or DEFAULT_COORDINATOR
+def coordinator_agent() -> str | None:
+    """Return the coordinator named by the authoritative roster, or None.
+
+    None means no roster is reachable, in which case quarantine is disabled —
+    fail-safe, because suppressing nothing is always recoverable while
+    suppressing wrongly is not.
+    """
+    found = read_authoritative_blob(ROSTER_REF, ROSTER_FILE)
+    if found is None:
+        return None
+    _, text = found
+    where = f"{ROSTER_REF}:{ROSTER_FILE}"
+    try:
+        data = json.loads(text)
+        if not isinstance(data, dict):
+            raise ValueError("roster is not a JSON object")
+        version = data.get("schema_version")
+        if isinstance(version, bool) or version != ROSTER_SCHEMA_VERSION:
+            raise ValueError(
+                f"schema_version {version!r} is not the supported version "
+                f"{ROSTER_SCHEMA_VERSION}"
+            )
+        coordinator = data["coordinator"]
+        if not isinstance(coordinator, str) or not coordinator.strip():
+            raise ValueError("coordinator is not a non-empty string")
+    except (json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
+        raise ValueError(f"malformed roster {where}: {exc}") from exc
+    return coordinator
 
 
 class GitError(RuntimeError):
@@ -867,14 +898,23 @@ def main() -> int:
 
     # Quarantine (rule 7). Authority is the coordinator's canonical ref, never
     # the worktree: a local file must not be able to change shared inbox truth.
-    coordinator = coordinator_agent()
-    coordinator_ref = f"{REMOTE_PREFIX}agent/{coordinator}"
     try:
-        quarantine_entries, quarantine_blob = load_quarantine(coordinator_ref)
-        legacy_baseline, baseline_present = load_legacy_baseline(coordinator_ref)
+        coordinator = coordinator_agent()
     except ValueError as exc:
         print(str(exc), file=sys.stderr)
         return 2
+    if coordinator is None:
+        coordinator_ref = ""
+        quarantine_entries, quarantine_blob = [], ""
+        legacy_baseline, baseline_present = {}, False
+    else:
+        coordinator_ref = f"{REMOTE_PREFIX}agent/{coordinator}"
+        try:
+            quarantine_entries, quarantine_blob = load_quarantine(coordinator_ref)
+            legacy_baseline, baseline_present = load_legacy_baseline(coordinator_ref)
+        except ValueError as exc:
+            print(str(exc), file=sys.stderr)
+            return 2
     quarantine_errors = validate_quarantine(
         quarantine_entries, authoritative_paths, messages, blob_by_path, coordinator
     )
@@ -1000,12 +1040,20 @@ def main() -> int:
     for path, error in delivery_errors:
         print(f"  {path}: {error}")
 
-    print(
-        f"\nquarantine authority: {coordinator_ref}:{QUARANTINE_FILE} "
-        f"blob {quarantine_blob[:12] or 'absent'}; legacy baseline "
-        + (f"{len(legacy_baseline)} pinned paths" if baseline_present
-           else "ABSENT — legacy messages are not pinned")
-    )
+    if coordinator is None:
+        print(
+            f"\nquarantine authority: NONE — no authoritative roster at "
+            f"{ROSTER_REF}:{ROSTER_FILE}; quarantine is DISABLED and nothing is "
+            "suppressed"
+        )
+    else:
+        print(
+            f"\nquarantine authority: coordinator {coordinator!r} per "
+            f"{ROSTER_REF}:{ROSTER_FILE}; {coordinator_ref}:{QUARANTINE_FILE} "
+            f"blob {quarantine_blob[:12] or 'absent'}; legacy baseline "
+            + (f"{len(legacy_baseline)} pinned paths" if baseline_present
+               else "ABSENT — legacy messages are not pinned")
+        )
     if quarantine_drift:
         print(f"warning: {quarantine_drift}")
 

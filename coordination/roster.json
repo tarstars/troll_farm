@@ -1,0 +1,5 @@
+{
+  "schema_version": 1,
+  "coordinator": "local_claude_1",
+  "note": "The single authoritative statement of who the coordinator/integrator is. Lives ONLY on the integrated branch (origin/main), which is the shared root of trust. scripts/inbox_sweep.py reads it from there to decide whose canonical ref carries the quarantine and the legacy baseline. Role transfer under coordination/multi-agent-protocol.md sec 9 changes it here and nowhere else. Absent or malformed roster means quarantine is DISABLED and nothing is suppressed."
+}

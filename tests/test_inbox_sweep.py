@@ -114,13 +114,18 @@ class TransportRepo:
         full.parent.mkdir(parents=True, exist_ok=True)
         full.write_text(content, encoding="utf-8")
 
-    def sweep(self, *args: str) -> subprocess.CompletedProcess[str]:
+    def sweep(self, *args: str, env_coordinator: str | None = None
+              ) -> subprocess.CompletedProcess[str]:
+        env = dict(os.environ)
+        # Only set to prove the sweep IGNORES it; the authority is the roster.
+        if env_coordinator is not None:
+            env["TROLL_FARM_COORDINATOR"] = env_coordinator
         return subprocess.run(
             [sys.executable, str(SCRIPT), *args],
             cwd=self.work,
             capture_output=True,
             text=True,
-            env=dict(os.environ, TROLL_FARM_COORDINATOR=COORDINATOR),
+            env=env,
         )
 
     def seen_file(self, me: str = ME) -> pathlib.Path:
@@ -832,13 +837,21 @@ def publish_quarantine(
     entries: list[dict],
     raw: str | None = None,
     branch: str | None = None,
+    with_roster: bool = True,
 ):
-    """Quarantine is authoritative only on the coordinator's canonical ref."""
+    """Quarantine is authoritative only on the coordinator's canonical ref.
+
+    The roster is published alongside by default because it is a precondition:
+    without one there is no authority, so a quarantine means nothing. Pass
+    `with_roster=False` to exercise that case.
+    """
     payload = raw if raw is not None else json.dumps(
         {"schema_version": 2, "entries": entries}, indent=2
     ) + "\n"
     repo.commit(branch or f"agent/{COORDINATOR}",
                 {"coordination/quarantine.json": payload})
+    if with_roster:
+        publish_roster(repo)
 
 
 def quarantine_entry(repo: TransportRepo, path: str, adjudicated_by: str,
@@ -851,12 +864,76 @@ def quarantine_entry(repo: TransportRepo, path: str, adjudicated_by: str,
     }
 
 
+def publish_roster(repo: TransportRepo, coordinator: str = COORDINATOR):
+    """The roster names the coordinator, and lives only on origin/main."""
+    repo.commit("main", {
+        inbox_sweep.ROSTER_FILE: json.dumps(
+            {"schema_version": 1, "coordinator": coordinator}, indent=2
+        ) + "\n"
+    })
+
+
+def test_authority_comes_from_the_roster_not_the_environment(repo):
+    # claude_1's finding: resolving the coordinator from an unvalidated env var
+    # let whoever set it designate the quarantine authority.
+    bad = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "finding",
+                     requires_ack=False)
+    adj = publish_adjudication(repo, (bad,))
+    publish_quarantine(repo, [quarantine_entry(repo, bad, adj)])
+    publish_roster(repo)
+
+    clean = repo.sweep("--me", ME)
+    assert clean.returncode == 0
+    assert counts(clean.stdout)["quarantined"] == 1
+
+    attacked = repo.sweep("--me", ME, env_coordinator=THIRD)
+    assert attacked.returncode == 0
+    assert counts(attacked.stdout)["quarantined"] == 1  # env is ignored entirely
+
+
+def test_missing_roster_disables_quarantine_loudly(repo):
+    # Fail safe: with no authoritative roster, nothing is suppressed.
+    bad = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "finding",
+                     requires_ack=False)
+    adj = publish_adjudication(repo, (bad,))
+    publish_quarantine(repo, [quarantine_entry(repo, bad, adj)], with_roster=False)
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert counts(result.stdout)["quarantined"] == 0
+    assert "no authoritative roster" in result.stdout
+
+
+def test_roster_naming_a_different_coordinator_moves_the_authority(repo):
+    # Legitimate role transfer: the roster is the single place it happens.
+    bad = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "finding",
+                     requires_ack=False)
+    adj = publish_adjudication(repo, (bad,))
+    publish_quarantine(repo, [quarantine_entry(repo, bad, adj)])
+    publish_roster(repo, coordinator=THIRD)  # quarantine is not on THIRD's ref
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert counts(result.stdout)["quarantined"] == 0
+
+
+def test_malformed_roster_fails_loudly(repo):
+    publish_v2(repo, PEER, "20260805T100000Z", "task-a", "update",
+               requires_ack=False)
+    repo.commit("main", {inbox_sweep.ROSTER_FILE: "{not json\n"})
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert "malformed roster" in result.stderr
+
+
 def publish_baseline(repo: TransportRepo, paths: dict[str, str]):
     repo.commit(f"agent/{COORDINATOR}", {
         inbox_sweep.LEGACY_BASELINE_FILE: json.dumps(
             {"schema_version": 1, "paths": paths}, indent=2
         ) + "\n"
     })
+    publish_roster(repo)
 
 
 def test_quarantined_message_suppresses_errors_and_recovers_exit(repo):
