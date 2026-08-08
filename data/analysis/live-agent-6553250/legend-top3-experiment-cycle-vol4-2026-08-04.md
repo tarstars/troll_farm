@@ -153,3 +153,31 @@ denial as bill prevention (`NO_MATERIAL_DENIABLE_BILL`, strict rate 0.0). Source
 `fff6669b...` unmodified. Full report: `resident-denial-scoring-audit-2026-08-07.md`;
 reproduce with `python3 cgauto/analyze_resident_denial_scoring.py`; drift guard
 `tests/test_analyze_resident_denial_scoring.py` (9 tests).
+
+## 2026-08-08 — D-9 calibration: the proxy clause does not measure displacement
+
+Phase 1 item 1 of the consolidated hardening plan, read-only over the committed 240-game
+parent-vs-parent floor self-test (`322895ee…`, parent `a8eb3b2b`). Verdict
+**`MISCALIBRATED_RETIRE_OR_REPAIR`**.
+
+D-9's unpaired `banana_before_train` clause (spec A10 read literally) fires **196 times across
+74 games in a run where TRAIN displacement is zero by construction** — the parent judged against
+itself cannot displace its own TRAIN. All three paired clauses that actually observe
+displacement (`train_late`, `train_missing`, `train_stats_differ`) correctly fired **zero**
+times. The paired path was genuinely enabled: `fuzz_panel.eval_p1` forwards `parent_cmds`
+through `td.run_all` into `detect_d9`, so their silence is a measurement, not a disabled branch.
+
+The 196 episodes split exactly 98 PICK / 98 PLANT — the resident's own shack-ring orchard at
+`yamo_orchard_live.rs:1193`. The clause flags designed, shipped behaviour as displacement.
+
+**Consequence: D-9 is the largest single source of the broken floor — retiring it alone takes
+118 blocking games to 46, a 61% reduction.** Recommended repair (proposed, NOT applied): drop
+the proxy clause, keep the paired ones, which cover displacement directly. Re-introducing a
+parent-differential exemption is rejected — that is the round-6 ROOT-A gate the owner removed.
+
+Also supplies Phase 1 item 3: **D-2, D-3, D-7 and D-8 have zero episodes across all 240 games**
+— UNPROVEN, not passing. The plan named only D-2/D-3/D-8; D-7 belongs on the list.
+
+Binding: no detector change I author enters a verdict until `claude_1` and `chatgpt_1` each
+review it independently. Report: `d9-calibration-result-2026-08-08.md`; reproduce with
+`python3 cgauto/analyze_d9_calibration.py`; tests `tests/test_analyze_d9_calibration.py` (8).
