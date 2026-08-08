@@ -6,21 +6,37 @@ Authoritative specification:
   (branch agent/chatgpt_1, artifact_commit cad16c4d), sections 3, 4, 6, 8,
   9 and 11.
 
-Frozen per-pair accounting (spec sec. 6):
+Revised per the spec-author ruling
+  chatgpt_1/i30-d1-d5-spec-ruling-2026-08-08.md (branch agent/chatgpt_1),
+which replaced the spec's gross-only identity. Result schema version 2.
 
-    D_DIRECT   = dDEP_OURS
-    D_SCHEDULE = dDEP_OPP + dDEP_NATURAL
-    D_UNKNOWN  = dDEP_UNKNOWN
-    D_TRAIN    = dTRAIN_SPEND
-    D_OPP      = opponent_terminal_score(candidate) - ...(parent)
+Per class c, the ledger reports GDEP_c (gross deposits), WDR_c (bank
+withdrawals) and NBF_c = GDEP_c - WDR_c (net bank flow), separately. Paired
+candidate-minus-parent quantities:
 
-    SCHEDULE_WINDFALL = D_SCHEDULE - D_TRAIN
-    RESIDUAL = D_OPP - (D_DIRECT + D_SCHEDULE + D_UNKNOWN - D_TRAIN)
+    D_DIRECT_NET   = dNBF_OURS
+    D_SCHEDULE_NET = dNBF_OPP + dNBF_NATURAL
+    D_UNKNOWN_NET  = dNBF_UNKNOWN
+    D_TRAIN        = dTRAIN_SPEND
+    D_OPP          = opponent_terminal_score(candidate) - ...(parent)
 
-Raw-zero instrument requirements: D_UNKNOWN == 0 and RESIDUAL == 0 (and every
-per-run residual == 0). Integers only, no tolerance. Failing either is an
-instrument failure -> GATE_UNREADY, never a candidate PASS and never a
-report-only warning.
+    SCHEDULE_WINDFALL_NET = D_SCHEDULE_NET - D_TRAIN
+    RESIDUAL = D_OPP - (D_DIRECT_NET + D_SCHEDULE_NET + D_UNKNOWN_NET
+                        - D_TRAIN)
+
+Gross production stays a mandatory separate diagnostic and is never
+substituted for the net flows:
+
+    D_DIRECT_GROSS     = dGDEP_OURS
+    D_PRODUCTION_GROSS = dGDEP_OPP + dGDEP_NATURAL
+    D_WDR_c            = dWDR_c
+
+Raw-zero instrument requirements: RESIDUAL == 0 and every per-run residual
+== 0; no unknown score-bearing atom anywhere; and every attribution uniquely
+derivable from the recorded state. Integers only, no tolerance. Failing any
+of them is an instrument failure -> GATE_UNREADY, never a candidate PASS and
+never a report-only warning. Note that `D_UNKNOWN_NET == 0` is NOT evidence
+of complete provenance: unknown deposits and withdrawals can cancel.
 
 No numerical value threshold is chosen here. A bound object must be supplied,
 hash-pinned, and marked owner-frozen; anything else is GATE_UNREADY with the
@@ -38,7 +54,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import i30_ledger as ledger  # noqa: E402
-from i30_ledger import SOURCE_CLASSES, sha256_text  # noqa: E402
+from i30_ledger import SCHEMA_VERSION, SOURCE_CLASSES, sha256_text  # noqa: E402
 
 # spec sec. 8 status model
 NOT_APPLICABLE = "NOT_APPLICABLE"
@@ -69,13 +85,33 @@ OPERATORS = {
     "==": lambda a, b: a == b,
 }
 
-# metric name -> key in the per-pair result
+# metric name -> key in the per-pair result.
+#
+# Ruling D1 change 4: "Make every future bound name the exact metric ... the
+# unqualified `mean_schedule_windfall` name is no longer sufficient." Every
+# name below either carries `_net` / `_gross` or names a quantity to which the
+# distinction does not apply (`mean_d_opp` is a terminal-score delta,
+# `mean_d_train` a spend).
 SUPPORTED_METRICS = {
-    "mean_schedule_windfall": "schedule_windfall",
+    "mean_schedule_windfall_net": "schedule_windfall_net",
     "mean_d_opp": "d_opp",
-    "mean_d_direct": "d_direct",
-    "mean_d_schedule": "d_schedule",
+    "mean_d_train": "d_train",
+    "mean_d_direct_net": "d_direct_net",
+    "mean_d_schedule_net": "d_schedule_net",
+    "mean_d_unknown_net": "d_unknown_net",
+    "mean_d_direct_gross": "d_direct_gross",
+    "mean_production_gross": "d_production_gross",
 }
+
+
+def metric_is_ambiguous(metric):
+    """True for a bound metric name that does not state gross or net.
+
+    `mean_schedule_windfall` is exactly the name the ruling rejects: it reads
+    as a gross production term but resolves to a net one.
+    """
+    return any("%s_%s" % (metric, q) in SUPPORTED_METRICS
+               for q in ("net", "gross"))
 
 
 class Bound:
@@ -111,7 +147,11 @@ class Bound:
         if pinned_sha256 is not None and pinned_sha256 != self.sha256:
             self.invalid_reasons.append("bound_hash_mismatch")
         if self.metric not in SUPPORTED_METRICS:
-            self.invalid_reasons.append("bound_metric_unsupported")
+            if metric_is_ambiguous(self.metric):
+                self.invalid_reasons.append(
+                    "bound_metric_ambiguous_gross_or_net")
+            else:
+                self.invalid_reasons.append("bound_metric_unsupported")
         if self.operator not in OPERATORS:
             self.invalid_reasons.append("bound_operator_unsupported")
 
@@ -136,8 +176,8 @@ class Bound:
                 "bound_spec": dict(self.spec)}
 
 
-def compute_schedule_windfall(d_schedule, d_train):
-    """SCHEDULE_WINDFALL = D_SCHEDULE - D_TRAIN (spec sec. 6).
+def compute_schedule_windfall_net(d_schedule_net, d_train):
+    """SCHEDULE_WINDFALL_NET = D_SCHEDULE_NET - D_TRAIN (ruling D1).
 
     Resolved through the module namespace by `analyze_pair`, so bite-test 15
     can delete the indirect-production calculation and watch the blind-spot
@@ -146,7 +186,7 @@ def compute_schedule_windfall(d_schedule, d_train):
     the mutation would be caught by a neighbouring check instead of by the
     blind-spot assertion itself.
     """
-    return d_schedule - d_train
+    return d_schedule_net - d_train
 
 
 def check_pair_identity(candidate, parent, self_pair=False):
@@ -213,13 +253,24 @@ def analyze_pair(candidate, parent, bound=None, self_pair=False,
     cl = candidate.ledger
     pl = parent.ledger
 
-    d = {c: cl.dep(c) - pl.dep(c) for c in SOURCE_CLASSES}
-    d_direct = d["ours"]
-    d_schedule = d["opponent"] + d["natural"]
-    d_unknown = d["unknown"]
+    d_gdep = {c: cl.gdep[c] - pl.gdep[c] for c in SOURCE_CLASSES}
+    d_wdr = {c: cl.wdr[c] - pl.wdr[c] for c in SOURCE_CLASSES}
+    d_nbf = {c: cl.net_bank_flow(c) - pl.net_bank_flow(c)
+             for c in SOURCE_CLASSES}
+
+    # net bank flow: what actually reached the opponent's terminal score
+    d_direct_net = d_nbf["ours"]
+    d_schedule_net = d_nbf["opponent"] + d_nbf["natural"]
+    d_unknown_net = d_nbf["unknown"]
+    # gross production: whether the candidate expanded opponent production
+    d_direct_gross = d_gdep["ours"]
+    d_production_gross = d_gdep["opponent"] + d_gdep["natural"]
+    d_unknown_gross = d_gdep["unknown"]
+
     d_train = cl.train_spend - pl.train_spend
     d_opp = cl.terminal_score - pl.terminal_score
-    residual = d_opp - (d_direct + d_schedule + d_unknown - d_train)
+    residual = d_opp - (d_direct_net + d_schedule_net + d_unknown_net
+                        - d_train)
 
     identity = check_pair_identity(candidate, parent, self_pair=self_pair)
     activation = detect_activation(candidate, parent)
@@ -229,12 +280,16 @@ def analyze_pair(candidate, parent, bound=None, self_pair=False,
 
     result = {
         "invariant": "I-30",
+        "schema_version": SCHEMA_VERSION,
         "pair_id": pair_id or ("%s|%s" % (candidate.run_id, parent.run_id)),
         "candidate_run_id": candidate.run_id,
         "parent_run_id": parent.run_id,
-        "d_direct": d_direct,
-        "d_schedule": d_schedule,
-        "d_unknown": d_unknown,
+        "d_direct_net": d_direct_net,
+        "d_schedule_net": d_schedule_net,
+        "d_unknown_net": d_unknown_net,
+        "d_direct_gross": d_direct_gross,
+        "d_production_gross": d_production_gross,
+        "d_unknown_gross": d_unknown_gross,
         "d_train": d_train,
         "d_opp": d_opp,
         "residual": residual,
@@ -252,22 +307,33 @@ def analyze_pair(candidate, parent, bound=None, self_pair=False,
         "parent": pl.to_json(),
     }
     for c in SOURCE_CLASSES:
-        result["d_dep_" + c] = d[c]
+        result["d_gdep_" + c] = d_gdep[c]
+        result["d_wdr_" + c] = d_wdr[c]
+        result["d_nbf_" + c] = d_nbf[c]
     for key in ("drop_events", "train_events", "plant_events",
-                "harvest_events", "chop_events", "pick_events"):
+                "harvest_events", "chop_events", "pick_events",
+                "ambiguity_events"):
         result["d_" + key] = cl.counts.get(key, 0) - pl.counts.get(key, 0)
     result.update(activation)
 
-    # SCHEDULE_WINDFALL through the module namespace (see bite-test 15)
-    result["schedule_windfall"] = compute_schedule_windfall(d_schedule,
-                                                            d_train)
+    # SCHEDULE_WINDFALL_NET through the module namespace (see bite-test 15)
+    result["schedule_windfall_net"] = compute_schedule_windfall_net(
+        d_schedule_net, d_train)
 
-    # ---- fail-closed instrument gates (spec sec. 2 / 6) ------------------
+    # ---- fail-closed instrument gates (spec sec. 2 / 6; ruling D5) -------
     unready = []
     if not identity["valid"]:
         unready.append("pair_identity")
-    if d_unknown != 0 or cl.unknown_atoms != 0 or pl.unknown_atoms != 0:
+    # any unproved score-bearing atom, even when unknown deposits and
+    # withdrawals cancel numerically (ruling D1: "`D_UNKNOWN_NET == 0` is not
+    # sufficient evidence of complete provenance")
+    if (d_unknown_net != 0 or d_unknown_gross != 0
+            or cl.unknown_atoms != 0 or pl.unknown_atoms != 0):
         unready.append("unknown_provenance")
+    # and any attribution that was not uniquely derivable from the recorded
+    # state, whatever the arithmetic says (ruling D5)
+    if not cl.identifiable or not pl.identifiable:
+        unready.append("non_identifiable_attribution")
     if residual != 0 or cl.residual != 0 or pl.residual != 0:
         unready.append("conservation_residual")
 
@@ -327,7 +393,7 @@ def _mean(values):
 def aggregate_report(pair_results, bound=None, manifest=None):
     """Spec sec. 9 aggregate contract. No post-hoc exclusion is performed."""
     def summarise(rows, label):
-        wind = [r["schedule_windfall"] for r in rows]
+        wind = [r["schedule_windfall_net"] for r in rows]
         out = {
             "population": label,
             "pairs": len(rows),
@@ -339,41 +405,51 @@ def aggregate_report(pair_results, bound=None, manifest=None):
                 {r["pair_identity"]["candidate_identity"]
                  .get("opponent_source_sha256") for r in rows}),
             "active_games": sum(1 for r in rows if r["banana_active"]),
-            "positive_windfall_games": sum(1 for w in wind if w > 0),
-            "positive_windfall_mass": sum(w for w in wind if w > 0),
-            "worst_schedule_windfall": max(wind) if wind else None,
-            "p10_schedule_windfall": _quantile(wind, 0.10),
-            "p50_schedule_windfall": _quantile(wind, 0.50),
-            "p90_schedule_windfall": _quantile(wind, 0.90),
-            "unknown_source_pairs": sum(1 for r in rows
-                                        if r["d_unknown"] != 0),
+            "positive_windfall_net_games": sum(1 for w in wind if w > 0),
+            "positive_windfall_net_mass": sum(w for w in wind if w > 0),
+            "worst_schedule_windfall_net": max(wind) if wind else None,
+            "p10_schedule_windfall_net": _quantile(wind, 0.10),
+            "p50_schedule_windfall_net": _quantile(wind, 0.50),
+            "p90_schedule_windfall_net": _quantile(wind, 0.90),
+            "unknown_source_pairs": sum(
+                1 for r in rows
+                if r["d_unknown_net"] != 0 or r["d_unknown_gross"] != 0
+                or r["candidate"]["unknown_atoms"]
+                or r["parent"]["unknown_atoms"]),
+            "non_identifiable_pairs": sum(
+                1 for r in rows if not r["candidate"]["identifiable"]
+                or not r["parent"]["identifiable"]),
             "conservation_residual_pairs": sum(1 for r in rows
                                                if r["residual"] != 0),
             "gate_unready_pairs": sum(1 for r in rows
                                       if r["status"] == GATE_UNREADY),
         }
-        for key in ("d_opp", "d_direct", "d_schedule", "d_train",
-                    "schedule_windfall"):
+        for key in ("d_opp", "d_direct_net", "d_schedule_net", "d_train",
+                    "schedule_windfall_net", "d_direct_gross",
+                    "d_production_gross"):
             out["mean_" + key] = _mean([r[key] for r in rows])
         by_seat, by_family, by_map = {}, {}, {}
         for r in rows:
             ident = r["pair_identity"]["candidate_identity"]
             by_seat.setdefault(str(ident.get("seat")), []).append(
-                r["schedule_windfall"])
+                r["schedule_windfall_net"])
             by_family.setdefault(str(ident.get("opponent_source_sha256")),
-                                 []).append(r["schedule_windfall"])
+                                 []).append(r["schedule_windfall_net"])
             by_map.setdefault(str(ident.get("map_sha256")), []).append(
-                r["schedule_windfall"])
-        out["mean_windfall_by_seat"] = {k: _mean(v) for k, v in by_seat.items()}
-        out["mean_windfall_by_opponent_family"] = {k: _mean(v)
-                                                   for k, v in by_family.items()}
-        out["mean_windfall_by_map"] = {k: _mean(v) for k, v in by_map.items()}
+                r["schedule_windfall_net"])
+        out["mean_windfall_net_by_seat"] = {k: _mean(v)
+                                            for k, v in by_seat.items()}
+        out["mean_windfall_net_by_opponent_family"] = {
+            k: _mean(v) for k, v in by_family.items()}
+        out["mean_windfall_net_by_map"] = {k: _mean(v)
+                                           for k, v in by_map.items()}
         return out
 
     rows = list(pair_results)
     active = [r for r in rows if r["banana_active"]]
     report = {
         "invariant": "I-30",
+        "schema_version": SCHEMA_VERSION,
         "all_pairs": summarise(rows, "all_pairs"),
         "banana_active": summarise(active, "banana_active"),
         "event_episodes": sum(r["candidate"]["event_count"]
@@ -400,11 +476,14 @@ def main(argv=None):
 
     bound = Bound(fx.TEST_BOUND_ZERO_WINDFALL)
     pairs = []
-    for name in sorted(n for n in dir(fx) if n.startswith("fixture_")):
-        cand, par = getattr(fx, name)()
+    corpus = [(n, n, ()) for n in sorted(n for n in dir(fx)
+                                         if n.startswith("fixture_"))]
+    corpus += list(fx.PARAMETERISED_VARIANTS)
+    for pair_id, name, fixture_args in corpus:
+        cand, par = getattr(fx, name)(*fixture_args)
         self_pair = name.startswith("fixture_01") or name.startswith("fixture_11")
         pairs.append(analyze_pair(cand, par, bound=bound, self_pair=self_pair,
-                                  pair_id=name))
+                                  pair_id=pair_id))
     report = aggregate_report(pairs, bound=bound, manifest={
         "i30_ledger.py": sha256_text(open(
             os.path.join(os.path.dirname(os.path.abspath(__file__)),

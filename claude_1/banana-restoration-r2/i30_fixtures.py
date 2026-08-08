@@ -641,15 +641,418 @@ def fixture_s1_wood_chop():
 
 
 # --------------------------------------------------------------------------
+# adversarial provenance-identifiability fixtures
+#
+# Required by the spec-author ruling
+#   chatgpt_1/i30-d1-d5-spec-ruling-2026-08-08.md, section "D5 ruling".
+#
+# Each one is constructed so that the OLD deterministic tie-break (FIFO atom
+# order / greedy deposit-before-withdrawal / unit-id ordering) produces a
+# CONFIDENT but non-identifiable source class, while terminal score, total net
+# bank flow and the conservation residual all stay correct. Under the ruling
+# every one of them must instead yield `unknown` and `GATE_UNREADY`:
+#
+#   "A deterministic tie-break is not proof of identifiability."
+# --------------------------------------------------------------------------
+
+def _static_parent(run_id, block, n_turns):
+    """A parent that shares the candidate's exact turn-1 state and does nothing.
+
+    Sharing turn 1 byte-for-byte is what keeps `initial_state_sha256` equal,
+    so the pair identity check passes and the adversarial fixture is judged on
+    provenance alone (spec sec. 3).
+    """
+    return record(run_id, [list(block) for _ in range(n_turns)],
+                  ["WAIT"] * n_turns, bot=PARENT_BOT, claimed=True)
+
+
+def fixture_a1_same_turn_deposit_withdrawal():
+    """Ruling D5 fixture 1: same-resource deposit and withdrawal, zero net.
+
+    Turn 6->7 one opponent unit's BANANA carry falls by one at a bank cell
+    while another opponent unit's BANANA carry rises by one at a bank cell,
+    and the opponent bank inventory is unchanged. Two integer allocations
+    satisfy every observable:
+
+        (deposit 1, withdraw 1)   -- the old tie-break's answer
+        (deposit 0, withdraw 0)   -- one unit lost its cargo, the other
+                                     acquired elsewhere
+
+    The first moves one `ours` atom into the bank and one `natural` atom out;
+    the second moves nothing. Terminal score, net bank flow and residual are
+    identical either way, so no arithmetic check can separate them.
+    """
+    b1 = B([U(0, 0, (6, 5), C(banana=1)), U(9, 1, (6, 4)), U(10, 1, (8, 5))],
+           [], inv1=C(banana=1))
+    ripe = P("BANANA", (6, 5), fruits=1, cooldown=0)
+    bare = P("BANANA", (6, 5), cooldown=0)
+    cand_blocks = [
+        b1,
+        # our unit plants; it is the sole occupant, so the asset is `ours`
+        B([U(0, 0, (6, 5)), U(9, 1, (6, 4)), U(10, 1, (8, 5))], [ripe],
+          inv1=C(banana=1)),
+        B([U(0, 0, (5, 5)), U(9, 1, (6, 5)), U(10, 1, (8, 5))], [ripe],
+          inv1=C(banana=1)),
+        # opponent harvests our banana -> one atom of class `ours`
+        B([U(0, 0, (5, 5)), U(9, 1, (6, 5), C(banana=1)), U(10, 1, (8, 5))],
+          [bare], inv1=C(banana=1)),
+        B([U(0, 0, (5, 5)), U(9, 1, (7, 5), C(banana=1)), U(10, 1, (8, 5))],
+          [bare], inv1=C(banana=1)),
+        B([U(0, 0, (5, 5)), U(9, 1, (7, 6), C(banana=1)), U(10, 1, (8, 5))],
+          [bare], inv1=C(banana=1)),
+        # the ambiguous transition
+        B([U(0, 0, (5, 5)), U(9, 1, (7, 6)), U(10, 1, (8, 5), C(banana=1))],
+          [bare], inv1=C(banana=1)),
+        B([U(0, 0, (5, 5)), U(9, 1, (7, 6)), U(10, 1, (8, 5), C(banana=1))],
+          [bare], inv1=C(banana=1)),
+    ]
+    cand_cmds = [PLANT_BANANA, "MOVE 0 5 5"] + ["WAIT"] * 6
+    cand = record("a1-candidate", cand_blocks, cand_cmds, bot=CANDIDATE_BOT,
+                  claimed=True)
+    return cand, _static_parent("a1-parent", b1, 8)
+
+
+def fixture_a2_multi_source_deposit():
+    """Ruling D5 fixture 2: two depositing units of different classes while a
+    third withdraws.
+
+    Turn 5->6: unit 9 (carrying an `ours` banana) and unit 11 (carrying a
+    `natural` banana) both empty their carry at bank cells while unit 10's
+    carry rises by one banana, and the bank inventory rises by exactly one.
+    Feasible allocations include (deposit 2, withdraw 1) and
+    (deposit 1, withdraw 0) -- and in the second, *which* of the two units
+    deposited is itself undetermined.
+    """
+    nat_ripe = P("BANANA", (5, 6), fruits=1, cooldown=0)
+    nat_bare = P("BANANA", (5, 6), cooldown=0)
+    our_ripe = P("BANANA", (6, 5), fruits=1, cooldown=0)
+    our_bare = P("BANANA", (6, 5), cooldown=0)
+    b1 = B([U(0, 0, (6, 5), C(banana=1)), U(9, 1, (6, 4)), U(10, 1, (8, 5)),
+            U(11, 1, (5, 6))], [nat_ripe], inv1=C(banana=1))
+    cand_blocks = [
+        b1,
+        B([U(0, 0, (6, 5)), U(9, 1, (6, 4)), U(10, 1, (8, 5)),
+           U(11, 1, (5, 6))], [nat_ripe, our_ripe], inv1=C(banana=1)),
+        # unit 11 harvests the map-seeded (natural) banana
+        B([U(0, 0, (5, 5)), U(9, 1, (6, 5)), U(10, 1, (8, 5)),
+           U(11, 1, (5, 6), C(banana=1))], [nat_bare, our_ripe],
+          inv1=C(banana=1)),
+        # unit 9 harvests ours
+        B([U(0, 0, (5, 5)), U(9, 1, (6, 5), C(banana=1)), U(10, 1, (8, 5)),
+           U(11, 1, (6, 6), C(banana=1))], [nat_bare, our_bare],
+          inv1=C(banana=1)),
+        B([U(0, 0, (5, 5)), U(9, 1, (7, 6), C(banana=1)), U(10, 1, (8, 5)),
+           U(11, 1, (8, 7), C(banana=1))], [nat_bare, our_bare],
+          inv1=C(banana=1)),
+        # the ambiguous transition
+        B([U(0, 0, (5, 5)), U(9, 1, (7, 6)), U(10, 1, (8, 5), C(banana=1)),
+           U(11, 1, (8, 7))], [nat_bare, our_bare], inv1=C(banana=2)),
+        B([U(0, 0, (5, 5)), U(9, 1, (7, 6)), U(10, 1, (8, 5), C(banana=1)),
+           U(11, 1, (8, 7))], [nat_bare, our_bare], inv1=C(banana=2)),
+    ]
+    cand_cmds = [PLANT_BANANA, "MOVE 0 5 5"] + ["WAIT"] * 5
+    cand = record("a2-candidate", cand_blocks, cand_cmds, bot=CANDIDATE_BOT,
+                  claimed=True)
+    return cand, _static_parent("a2-parent", b1, 7)
+
+
+def fixture_a2b_deposit_unit_assignment():
+    """Ruling D5 fixture 2b: which of two units deposited is undetermined.
+
+    Turn 5->6 two opponent units at bank cells each empty one banana from
+    their carry, but the bank gains exactly one. The split itself is forced
+    (one deposit, no withdrawal) -- what is not forced is WHICH unit's cargo
+    was banked and which was lost, and the two units carry different source
+    classes. Unit-id order is a tie-break, not an observation.
+    """
+    nat_ripe = P("BANANA", (5, 6), fruits=1, cooldown=0)
+    nat_bare = P("BANANA", (5, 6), cooldown=0)
+    our_ripe = P("BANANA", (6, 5), fruits=1, cooldown=0)
+    our_bare = P("BANANA", (6, 5), cooldown=0)
+    b1 = B([U(0, 0, (6, 5), C(banana=1)), U(9, 1, (6, 4)), U(10, 1, (8, 5)),
+            U(11, 1, (5, 6))], [nat_ripe], inv1=C(banana=1))
+    cand_blocks = [
+        b1,
+        B([U(0, 0, (6, 5)), U(9, 1, (6, 4)), U(10, 1, (8, 5)),
+           U(11, 1, (5, 6))], [nat_ripe, our_ripe], inv1=C(banana=1)),
+        B([U(0, 0, (5, 5)), U(9, 1, (6, 5)), U(10, 1, (8, 5)),
+           U(11, 1, (5, 6), C(banana=1))], [nat_bare, our_ripe],
+          inv1=C(banana=1)),
+        B([U(0, 0, (5, 5)), U(9, 1, (6, 5), C(banana=1)), U(10, 1, (8, 5)),
+           U(11, 1, (6, 6), C(banana=1))], [nat_bare, our_bare],
+          inv1=C(banana=1)),
+        B([U(0, 0, (5, 5)), U(9, 1, (7, 6), C(banana=1)), U(10, 1, (8, 5)),
+           U(11, 1, (8, 7), C(banana=1))], [nat_bare, our_bare],
+          inv1=C(banana=1)),
+        # two carries empty at bank cells, the bank gains one
+        B([U(0, 0, (5, 5)), U(9, 1, (7, 6)), U(10, 1, (8, 5)),
+           U(11, 1, (8, 7))], [nat_bare, our_bare], inv1=C(banana=2)),
+        B([U(0, 0, (5, 5)), U(9, 1, (7, 6)), U(10, 1, (8, 5)),
+           U(11, 1, (8, 7))], [nat_bare, our_bare], inv1=C(banana=2)),
+    ]
+    cand_cmds = [PLANT_BANANA, "MOVE 0 5 5"] + ["WAIT"] * 5
+    cand = record("a2b-candidate", cand_blocks, cand_cmds, bot=CANDIDATE_BOT,
+                  claimed=True)
+    return cand, _static_parent("a2b-parent", b1, 7)
+
+
+def fixture_a6_cancelling_unknown_flow():
+    """Ruling D1: unknown deposits and withdrawals that cancel numerically.
+
+    One untagged score-bearing atom is banked and later withdrawn, so
+    `NBF_unknown` -- and therefore `D_UNKNOWN_NET` -- is exactly zero while an
+    unproved atom certainly crossed the tent threshold. Every allocation here
+    IS uniquely derivable, so the identifiability gate stays silent and only
+    the unknown-provenance gate can fail this pair closed:
+
+      "I-30 still fails closed on any unproved score-bearing atom, even when
+       unknown deposits and withdrawals happen to cancel numerically.
+       `D_UNKNOWN_NET == 0` is not sufficient evidence of complete provenance."
+    """
+    banana = P("BANANA", OWN_DOOR, cooldown=6)
+    b1 = B([U(0, 0, OWN_DOOR, C(banana=1)), U(9, 1, (5, 5))], [])
+    cand_blocks = [
+        b1,
+        # an apple with no asset on the cell and no iron: untagged
+        B([U(0, 0, OWN_DOOR), U(9, 1, (5, 5), C(apple=1))], [banana]),
+        B([U(0, 0, OWN_DOOR), U(9, 1, (8, 5), C(apple=1))], [banana]),
+        B([U(0, 0, OWN_DOOR), U(9, 1, (8, 5))], [banana], inv1=C(apple=1)),
+        B([U(0, 0, OWN_DOOR), U(9, 1, (8, 5), C(apple=1))], [banana]),
+        B([U(0, 0, OWN_DOOR), U(9, 1, (8, 5), C(apple=1))], [banana]),
+    ]
+    cand_cmds = [PLANT_BANANA] + ["WAIT"] * 5
+    cand = record("a6-candidate", cand_blocks, cand_cmds, bot=CANDIDATE_BOT,
+                  claimed=True)
+    return cand, _static_parent("a6-parent", b1, 6)
+
+
+def fixture_a7_seed_and_deposit_at_one_bank_cell():
+    """Control against the identifiability gate FIRING TOO OFTEN.
+
+    Turn 5->6 one opponent unit banks a banana at (8,5) while another
+    opponent unit, also on a bank cell, spends a banana as the seed of a
+    successful own PLANT at (8,7). Two carries fall and the bank rises by
+    one, which LOOKS like the ambiguous case -- but the PLANT explains the
+    second decrease exactly, so the allocation is still unique and the pair
+    must NOT be `unknown`.
+
+    A fail-closed rule that cannot tell this apart from `a2b` would make the
+    instrument useless rather than safe.
+    """
+    our_ripe = P("BANANA", (6, 5), fruits=1, cooldown=0)
+    our_bare = P("BANANA", (6, 5), cooldown=0)
+    seeded = P("BANANA", (8, 7), cooldown=6)
+    b1 = B([U(0, 0, (6, 5), C(banana=1)), U(9, 1, (6, 4)),
+            U(10, 1, (8, 7), C(banana=1))], [])
+    cand_blocks = [
+        b1,
+        B([U(0, 0, (6, 5)), U(9, 1, (6, 4)),
+           U(10, 1, (8, 7), C(banana=1))], [our_ripe]),
+        B([U(0, 0, (5, 5)), U(9, 1, (6, 5)),
+           U(10, 1, (8, 7), C(banana=1))], [our_ripe]),
+        B([U(0, 0, (5, 5)), U(9, 1, (6, 5), C(banana=1)),
+           U(10, 1, (8, 7), C(banana=1))], [our_bare]),
+        B([U(0, 0, (5, 5)), U(9, 1, (8, 5), C(banana=1)),
+           U(10, 1, (8, 7), C(banana=1))], [our_bare]),
+        B([U(0, 0, (5, 5)), U(9, 1, (8, 5)), U(10, 1, (8, 7))],
+          [our_bare, seeded], inv1=C(banana=1)),
+        B([U(0, 0, (5, 5)), U(9, 1, (8, 5)), U(10, 1, (8, 7))],
+          [our_bare, seeded], inv1=C(banana=1)),
+    ]
+    cand_cmds = [PLANT_BANANA, "MOVE 0 5 5"] + ["WAIT"] * 5
+    cand = record("a7-candidate", cand_blocks, cand_cmds, bot=CANDIDATE_BOT,
+                  claimed=True)
+    return cand, _static_parent("a7-parent", b1, 7)
+
+
+def fixture_a3_class_swap(order="ours_first"):
+    """Ruling D5 fixture 3: the indistinguishable-pair / class-swap test.
+
+    One opponent unit ends up carrying exactly two bananas, one of class
+    `ours` and one of class `opponent`, and then banks exactly one of them.
+    The two hidden histories -- "the `ours` atom was banked" and "the
+    `opponent` atom was banked" -- produce the *same* observable transition
+    (carry 2 -> 1, bank +1), the same `D_OPP`, the same net bank flow and the
+    same residual, but require different `D_DIRECT` / `D_SCHEDULE` labels.
+
+    `order` swaps only the acquisition order, i.e. only the FIFO tie-break's
+    answer. Turns 7-9, which contain the ambiguous transition, are byte
+    identical between the two variants.
+    """
+    assert order in ("ours_first", "opponent_first"), order
+    ours_ripe = P("BANANA", (6, 5), fruits=1, cooldown=0)
+    ours_bare = P("BANANA", (6, 5), cooldown=0)
+    opp_ripe = P("BANANA", (6, 4), fruits=1, cooldown=0)
+    opp_bare = P("BANANA", (6, 4), cooldown=0)
+
+    b1 = B([U(0, 0, (6, 5), C(banana=1)), U(9, 1, (6, 4), C(banana=1))], [])
+    # our unit plants at (6,5) (sole occupant -> `ours`); the opponent unit
+    # plants at (6,4) using its own seed (sole occupant -> `opponent`)
+    b2 = B([U(0, 0, (6, 5)), U(9, 1, (6, 4))], [ours_ripe, opp_ripe])
+
+    if order == "ours_first":
+        mid = [
+            B([U(0, 0, (5, 5)), U(9, 1, (6, 5))], [ours_ripe, opp_ripe]),
+            B([U(0, 0, (5, 5)), U(9, 1, (6, 5), C(banana=1))],
+              [ours_bare, opp_ripe]),
+            B([U(0, 0, (5, 5)), U(9, 1, (6, 4), C(banana=1))],
+              [ours_bare, opp_ripe]),
+            B([U(0, 0, (5, 5)), U(9, 1, (6, 4), C(banana=2))],
+              [ours_bare, opp_bare]),
+        ]
+    else:
+        mid = [
+            B([U(0, 0, (5, 5)), U(9, 1, (6, 4))], [ours_ripe, opp_ripe]),
+            B([U(0, 0, (5, 5)), U(9, 1, (6, 4), C(banana=1))],
+              [ours_ripe, opp_bare]),
+            B([U(0, 0, (5, 5)), U(9, 1, (6, 5), C(banana=1))],
+              [ours_ripe, opp_bare]),
+            B([U(0, 0, (5, 5)), U(9, 1, (6, 5), C(banana=2))],
+              [ours_bare, opp_bare]),
+        ]
+
+    tail = [
+        B([U(0, 0, (5, 5)), U(9, 1, (8, 5), C(banana=2))],
+          [ours_bare, opp_bare]),
+        # the ambiguous transition: exactly one of two indistinguishable
+        # bananas is banked
+        B([U(0, 0, (5, 5)), U(9, 1, (8, 5), C(banana=1))],
+          [ours_bare, opp_bare], inv1=C(banana=1)),
+        B([U(0, 0, (5, 5)), U(9, 1, (8, 5), C(banana=1))],
+          [ours_bare, opp_bare], inv1=C(banana=1)),
+    ]
+    cand_blocks = [b1, b2] + mid + tail
+    cand_cmds = [PLANT_BANANA, "MOVE 0 5 5"] + ["WAIT"] * 7
+    cand = record("a3-%s-candidate" % order, cand_blocks, cand_cmds,
+                  bot=CANDIDATE_BOT, claimed=True)
+    return cand, _static_parent("a3-%s-parent" % order, b1, len(cand_blocks))
+
+
+def fixture_a4_dead_cell_acquisition():
+    """Ruling D5 fixture 4: acquisition on a cell a long-dead asset occupied.
+
+    A map-seeded APPLE stands at (7,5) on turn 1 and is gone by turn 2. On
+    turn 3->4 an opponent unit standing on (7,5) gains an apple with no asset
+    present. The provenance registry still remembers a `natural` asset at that
+    cell, so consulting it alone would launder the atom into `natural`.
+    """
+    banana = P("BANANA", OWN_DOOR, cooldown=6)
+    b1 = B([U(0, 0, OWN_DOOR, C(banana=1)), U(9, 1, (6, 5))],
+           [P("APPLE", (7, 5), fruits=1)])
+    cand_blocks = [
+        b1,
+        B([U(0, 0, OWN_DOOR), U(9, 1, (6, 5))], [banana]),
+        B([U(0, 0, OWN_DOOR), U(9, 1, (7, 5))], [banana]),
+        B([U(0, 0, OWN_DOOR), U(9, 1, (7, 5), C(apple=1))], [banana]),
+        B([U(0, 0, OWN_DOOR), U(9, 1, (8, 5), C(apple=1))], [banana]),
+        B([U(0, 0, OWN_DOOR), U(9, 1, (8, 5))], [banana], inv1=C(apple=1)),
+        B([U(0, 0, OWN_DOOR), U(9, 1, (8, 5))], [banana], inv1=C(apple=1)),
+    ]
+    cand_cmds = [PLANT_BANANA] + ["WAIT"] * 6
+    cand = record("a4-candidate", cand_blocks, cand_cmds, bot=CANDIDATE_BOT,
+                  claimed=True)
+    return cand, _static_parent("a4-parent", b1, 7)
+
+
+def fixture_a5_planter_occupancy(mode="mixed"):
+    """Ruling D5 fixture 5: absent or mixed planter occupancy.
+
+    `mixed`  -- a new plant appears on a cell holding one unit of each player,
+                so the creator is not determined.
+    `absent` -- a new plant appears on a cell holding no unit at all.
+
+    Either way the asset class is `unknown`, and so is every fruit the
+    opponent harvests from it and banks.
+    """
+    assert mode in ("mixed", "absent"), mode
+    ripe = P("BANANA", (6, 5), fruits=1, cooldown=0)
+    bare = P("BANANA", (6, 5), cooldown=0)
+    if mode == "mixed":
+        b1 = B([U(0, 0, (6, 5), C(banana=1)), U(9, 1, (6, 5))], [])
+        b2 = B([U(0, 0, (6, 5)), U(9, 1, (6, 5))], [ripe])
+        b3 = B([U(0, 0, (5, 5)), U(9, 1, (6, 5), C(banana=1))], [bare])
+    else:
+        b1 = B([U(0, 0, (6, 5), C(banana=1)), U(9, 1, (6, 4))], [])
+        b2 = B([U(0, 0, (5, 5)), U(9, 1, (6, 4))], [ripe])
+        b3 = B([U(0, 0, (5, 5)), U(9, 1, (6, 5))], [ripe])
+
+    cand_blocks = [b1, b2, b3]
+    if mode == "absent":
+        cand_blocks.append(
+            B([U(0, 0, (5, 5)), U(9, 1, (6, 5), C(banana=1))], [bare]))
+    cand_blocks += [
+        B([U(0, 0, (5, 5)), U(9, 1, (8, 5), C(banana=1))], [bare]),
+        B([U(0, 0, (5, 5)), U(9, 1, (8, 5))], [bare], inv1=C(banana=1)),
+        B([U(0, 0, (5, 5)), U(9, 1, (8, 5))], [bare], inv1=C(banana=1)),
+    ]
+    cand_cmds = [PLANT_BANANA, "MOVE 0 5 5"] + ["WAIT"] * (len(cand_blocks) - 2)
+    cand = record("a5-%s-candidate" % mode, cand_blocks, cand_cmds,
+                  bot=CANDIDATE_BOT, claimed=True)
+    return cand, _static_parent("a5-%s-parent" % mode, b1, len(cand_blocks))
+
+
+def fixture_d1_gross_production_with_offsetting_withdrawal():
+    """Ruling D1 fixture: gross opponent production rises, terminal score does
+    not.
+
+    The opponent plants its own APPLE tree, harvests one apple and banks it
+    (gross opponent production `+1`), then withdraws one apple from the bank
+    on a later turn and is still holding it at the terminal state (net bank
+    flow `0`). Every step is uniquely derivable, so this fixture must NOT be
+    `unknown`: it exists to prove that gross and net outputs cannot be
+    substituted for one another.
+    """
+    banana = P("BANANA", OWN_DOOR, cooldown=6)
+    tree_bare = P("APPLE", (6, 5), cooldown=0)
+    tree_ripe = P("APPLE", (6, 5), fruits=1, cooldown=0)
+    b1 = B([U(0, 0, OWN_DOOR, C(banana=1)), U(9, 1, (6, 5), C(apple=1))], [])
+    cand_blocks = [
+        b1,
+        # our BANANA at the tent door and the opponent's own APPLE tree, each
+        # with a single occupant, so both creators are determined
+        B([U(0, 0, OWN_DOOR), U(9, 1, (6, 5))], [banana, tree_bare]),
+        B([U(0, 0, OWN_DOOR), U(9, 1, (6, 5))], [banana, tree_ripe]),
+        B([U(0, 0, OWN_DOOR), U(9, 1, (6, 5), C(apple=1))],
+          [banana, tree_bare]),
+        B([U(0, 0, OWN_DOOR), U(9, 1, (8, 5), C(apple=1))],
+          [banana, tree_bare]),
+        # gross deposit of one opponent-origin apple
+        B([U(0, 0, OWN_DOOR), U(9, 1, (8, 5))], [banana, tree_bare],
+          inv1=C(apple=1)),
+        # ... and an equal withdrawal on a later turn: terminal score is back
+        # to zero while gross production stayed at +1
+        B([U(0, 0, OWN_DOOR), U(9, 1, (8, 5), C(apple=1))],
+          [banana, tree_bare]),
+        B([U(0, 0, OWN_DOOR), U(9, 1, (8, 5), C(apple=1))],
+          [banana, tree_bare]),
+    ]
+    cand_cmds = [PLANT_BANANA] + ["WAIT"] * 7
+    cand = record("d1-candidate", cand_blocks, cand_cmds, bot=CANDIDATE_BOT,
+                  claimed=True)
+    return cand, _static_parent("d1-parent", b1, 8)
+
+
+# --------------------------------------------------------------------------
 # bound objects (spec sec. 11)
 # --------------------------------------------------------------------------
+
+# Fixture ids for the parameterised fixtures whose non-default variants the
+# bare `dir(fx)` sweep would otherwise miss.
+PARAMETERISED_VARIANTS = (
+    ("fixture_a3_class_swap[opponent_first]", "fixture_a3_class_swap",
+     ("opponent_first",)),
+    ("fixture_a5_planter_occupancy[absent]", "fixture_a5_planter_occupancy",
+     ("absent",)),
+)
+
 
 # NOT an owner decision. `provenance: "test_fixture"` keeps the analyzer from
 # ever emitting PASS from it (see i30_analyzer.analyze_pair).
 TEST_BOUND_ZERO_WINDFALL = {
     "schema_version": 1,
     "population": "banana_active",
-    "metric": "mean_schedule_windfall",
+    # ruling D1 change 4: the metric name states net, not just "windfall"
+    "metric": "mean_schedule_windfall_net",
     "operator": "<=",
     "threshold": 0,
     "family_constraints": [],

@@ -28,29 +28,48 @@ docs/mechanics.md and cgauto/mechanics_rederivation_audit.py):
   training_cost    : n + stat^2 in PLUM/LEMON/APPLE/IRON, BANANA and WOOD
                      free; IRON only charged when the map has iron terrain
 
-Ambiguity resolutions (the spec is authoritative; these fill gaps it leaves,
-and every one of them is restated in i30-implementation-2026-08-08.md):
+Governing ruling (schema version 2):
+  chatgpt_1/i30-d1-d5-spec-ruling-2026-08-08.md (branch agent/chatgpt_1).
+
+  D1. Gross deposits, bank withdrawals and net bank flow are three SEPARATELY
+      named quantities. `dep_*` / `gdep_*` are gross, matching the spec's
+      frozen term; `wdr_*` are withdrawals; `net_bank_flow_*` is the
+      difference and is what the exact conservation identity uses.
+  D5. Every attributed transition must have a unique derivation from the
+      recorded state. Where it does not, the affected atoms become `unknown`
+      and the pair is `GATE_UNREADY`. Determinism is not identifiability:
+      no unit-id ordering, FIFO bank order or other tie-break may turn an
+      observationally non-identifiable allocation into claimed truth.
+
+Ambiguity resolutions (the spec and the ruling are authoritative; these fill
+gaps they leave, and every one is restated in i30-implementation-2026-08-08.md):
 
   R1. Bank withdrawals. `apply_pick` removes score-bearing atoms from the same
-      inventory that `recompute_scores` sums, so spec sec. 6's frozen identity
-      cannot close for any opponent that PICKs unless withdrawals are
-      accounted. DEP_<class> is therefore reported NET of withdrawals of the
-      same class, with the gross deposit and gross withdrawal totals also
-      exposed (`dep_*_gross`, `wdr_*`). No new term is added to the frozen
-      identity.
+      inventory that `recompute_scores` sums, so the spec's original gross-only
+      identity cannot close for any opponent that PICKs. Per ruling D1 the
+      identity uses NET BANK FLOW, and gross deposits and gross withdrawals
+      remain separately reported mandatory diagnostics.
   R2. Initial bank stock and initial unit carry are map-seeded, so they are
       classified `natural` (spec sec. 5.2: "A map-seeded tree or plant is
       natural"). They are identical across an exact pair, so they cancel in
       every paired delta.
-  R3. Indistinguishable atoms of one resource are consumed FIFO by acquisition
-      order (spec sec. 5.1 permits multiset treatment and requires only counts
-      by source class).
-  R4. A plant's creator is the player occupying its cell in the post-state.
-      Mixed occupancy -> `unknown`, never guessed.
-  R5. Deposits and withdrawals of one resource in one turn are separated using
-      the observed inventory delta plus the independently computed TRAIN bill.
-      Whatever cannot be explained shows up in the conservation residual, which
-      fails the gate closed.
+  R3. Indistinguishable atoms of one resource are held as a multiset (spec
+      sec. 5.1). A take of the WHOLE multiset, or of a multiset whose atoms
+      all share one source class, is uniquely determined. A PARTIAL take from
+      a mixed-class multiset is NOT: FIFO would merely be a tie-break, so the
+      whole multiset is relabelled `unknown` and the pair fails closed.
+  R4. A plant's creator is the sole player occupying its cell in the
+      post-state. Absent or mixed occupancy -> `unknown`, never guessed. An
+      asset can only source an acquisition if it actually stood on the unit's
+      cell in the pre-state, so a long-dead asset cannot launder a later atom.
+  R5. Deposits and withdrawals of one resource in one turn are constrained by
+      `budget = inventory_delta + TRAIN_bill`. The feasible withdrawal count
+      is the integer interval [max(0,-budget), min(pick_cand, drop_cand-budget)].
+      A single feasible point is identifiable; two or more are not, and every
+      atom that could have moved -- both bank side and carry side -- is
+      relabelled `unknown`. An EMPTY interval is not an ambiguity but an
+      unexplained observation: nothing is relabelled and the conservation
+      residual reports it.
   R6. TRAIN is derived independently from unit spawns and engine
       `training_cost`, never as the arithmetic remainder -- otherwise the
       conservation residual would be zero by construction and could never bite.
@@ -66,6 +85,15 @@ from collections import deque
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import trace_detectors as td  # noqa: E402  (real transcript/command parser)
+
+# I-30 result/ledger schema version.
+#   1 -- gross-only `DEP_*` (spec sec. 6 as written), then the withdrawal
+#        correction that silently redefined `DEP_*` as net; rejected by the
+#        D1 ruling.
+#   2 -- gross deposits (`gdep_*` / `dep_*`), bank withdrawals (`wdr_*`) and
+#        net bank flow (`net_bank_flow_*`) separately named; identity on net;
+#        non-identifiable attribution fails closed as `unknown` (D5).
+SCHEMA_VERSION = 2
 
 ITEM_NAMES = td.ITEM_NAMES
 PLUM, LEMON, APPLE, BANANA, IRON, WOOD = td.PLUM, td.LEMON, td.APPLE, \
@@ -181,6 +209,53 @@ class RunRecord:
                 for line in self.commands_text.split("\n")][:self.trace.T]
 
 
+# --------------------------------------------------------------------------
+# Identifiability predicates (ruling D5)
+#
+# Each one answers a single question: "is this allocation UNIQUELY determined
+# by the recorded state?" -- never "which allocation shall I pick?". They are
+# module-level and resolved through the module namespace so that a mutation
+# control can revert them to the old unconditional tie-break
+# (`lambda *a: True`) and watch the adversarial fixtures stop failing closed.
+# See test_i30_invariant.TestD5MutationRevertedTieBreakIsCaught.
+# --------------------------------------------------------------------------
+
+def split_is_identifiable(lo, hi):
+    """Is the deposit/withdrawal split of one resource-turn unique?
+
+    `lo`/`hi` bound the feasible withdrawal count. Exactly one feasible
+    integer means one derivation; two or more means the classes that moved
+    are not observable, however deterministically we might choose between
+    them.
+    """
+    return hi <= lo
+
+
+def partial_take_is_identifiable(atoms, n):
+    """Is removing `n` atoms from this multiset class-determined?
+
+    Taking none, or taking all of them, determines the classes removed. So
+    does taking from a multiset whose atoms all carry one source class. Any
+    other partial take would be decided by FIFO order, which the engine does
+    not define and the transcript does not record.
+    """
+    if n <= 0 or n >= len(atoms):
+        return True
+    return len({a["source_class"] for a in atoms}) <= 1
+
+
+def assignment_is_identifiable(total, capacity, contributors):
+    """Is the allocation of `total` across `contributors` units unique?
+
+    With one contributing unit, or when every candidate unit-atom moved
+    (`total == capacity`), or when none did, the assignment is forced.
+    Otherwise which unit's cargo moved is a unit-id tie-break.
+    """
+    if contributors <= 1:
+        return True
+    return total == 0 or total == capacity
+
+
 def _atom(resource, source_class, source_creator, source_asset_id,
           source_event_id, acquired_turn, acquired_verb):
     return {
@@ -196,19 +271,28 @@ def _atom(resource, source_class, source_creator, source_asset_id,
 
 
 class RunLedger:
-    """Per-run opponent accounting (spec sec. 5 / 6)."""
+    """Per-run opponent accounting (spec sec. 5 / 6; ruling D1 / D5).
 
-    def __init__(self, run_id, events, dep_gross, wdr, lost, train_spend,
-                 unknown_atoms, initial_score, terminal_score, terminal_turn,
-                 counts, first_productive_turn, productive_turns,
-                 opp_live_assets, direct_interactions):
+    Three separate quantities per source class, never substituted for one
+    another:
+
+        gdep[c]            gross score-equivalent deposits into the bank
+        wdr[c]             gross score-equivalent withdrawals from the bank
+        net_bank_flow(c)   gdep[c] - wdr[c], the terminal-score contribution
+    """
+
+    def __init__(self, run_id, events, gdep, wdr, lost, train_spend,
+                 unknown_atoms, ambiguities, initial_score, terminal_score,
+                 terminal_turn, counts, first_productive_turn,
+                 productive_turns, opp_live_assets, direct_interactions):
         self.run_id = run_id
         self.events = events
-        self.dep_gross = dict(dep_gross)
+        self.gdep = dict(gdep)
         self.wdr = dict(wdr)
         self.lost = dict(lost)
         self.train_spend = train_spend
         self.unknown_atoms = unknown_atoms
+        self.ambiguities = list(ambiguities)
         self.initial_score = initial_score
         self.terminal_score = terminal_score
         self.terminal_turn = terminal_turn
@@ -218,30 +302,52 @@ class RunLedger:
         self.opp_live_assets = opp_live_assets
         self.direct_interactions = direct_interactions
 
-    # spec sec. 6: DEP_<class>, reported net of same-class bank withdrawals (R1)
-    def dep(self, source_class):
-        return self.dep_gross[source_class] - self.wdr[source_class]
+    def net_bank_flow(self, source_class):
+        """NBF_c = GDEP_c - WDR_c (ruling D1)."""
+        return self.gdep[source_class] - self.wdr[source_class]
 
     @property
-    def dep_total(self):
-        return sum(self.dep(c) for c in SOURCE_CLASSES)
+    def gdep_total(self):
+        return sum(self.gdep[c] for c in SOURCE_CLASSES)
+
+    @property
+    def wdr_total(self):
+        return sum(self.wdr[c] for c in SOURCE_CLASSES)
+
+    @property
+    def net_bank_flow_total(self):
+        return self.gdep_total - self.wdr_total
+
+    @property
+    def identifiable(self):
+        """False iff any transition's provenance was not uniquely derivable."""
+        return not self.ambiguities
 
     @property
     def residual(self):
-        """Per-run conservation residual; must be exactly 0 (spec sec. 6)."""
+        """Per-run conservation residual; must be exactly 0 (spec sec. 6).
+
+        Uses NET bank flow, per ruling D1.
+        """
         return ((self.terminal_score - self.initial_score)
-                - (self.dep_total - self.train_spend))
+                - (self.net_bank_flow_total - self.train_spend))
 
     def to_json(self):
         out = {
+            "schema_version": SCHEMA_VERSION,
             "run_id": self.run_id,
             "initial_score": self.initial_score,
             "terminal_score": self.terminal_score,
             "terminal_turn": self.terminal_turn,
             "train_spend": self.train_spend,
             "unknown_atoms": self.unknown_atoms,
+            "identifiable": self.identifiable,
+            "ambiguity_count": len(self.ambiguities),
+            "ambiguities": [dict(a) for a in self.ambiguities],
             "residual": self.residual,
-            "dep_total": self.dep_total,
+            "gdep_total": self.gdep_total,
+            "wdr_total": self.wdr_total,
+            "net_bank_flow_total": self.net_bank_flow_total,
             "first_productive_turn": self.first_productive_turn,
             "productive_turns": self.productive_turns,
             "opp_live_assets": self.opp_live_assets,
@@ -250,9 +356,12 @@ class RunLedger:
             "event_ids": [e["event_id"] for e in self.events],
         }
         for c in SOURCE_CLASSES:
-            out["dep_" + c] = self.dep(c)
-            out["dep_%s_gross" % c] = self.dep_gross[c]
+            # `dep_*` keeps the spec's frozen term name and its GROSS meaning
+            # (ruling D1 change 1); `gdep_*` says so in the name.
+            out["dep_" + c] = self.gdep[c]
+            out["gdep_" + c] = self.gdep[c]
             out["wdr_" + c] = self.wdr[c]
+            out["net_bank_flow_" + c] = self.net_bank_flow(c)
             out["lost_" + c] = self.lost[c]
         for k, v in self.counts.items():
             out[k] = v
@@ -276,15 +385,16 @@ def build_run_ledger(record):
         events.append(kw)
         return kw["event_id"]
 
-    dep_gross = {c: 0 for c in SOURCE_CLASSES}
+    gdep = {c: 0 for c in SOURCE_CLASSES}
     wdr = {c: 0 for c in SOURCE_CLASSES}
     lost = {c: 0 for c in SOURCE_CLASSES}
     counts = {"plant_events": 0, "harvest_events": 0, "chop_events": 0,
               "pick_events": 0, "drop_events": 0, "train_events": 0,
               "mine_events": 0, "loss_events": 0, "deposit_atoms": 0,
-              "withdraw_atoms": 0}
+              "withdraw_atoms": 0, "ambiguity_events": 0}
     train_spend = 0
     unknown_atoms = [0]
+    ambiguities = []
     direct_interactions = 0
     productive_turns = 0
     first_productive_turn = None
@@ -321,6 +431,55 @@ def build_run_ledger(record):
         unknown_atoms[0] += 1
         return _atom(k, "unknown", "unknown", None, None, turn, verb)
 
+    # ---- fail-closed machinery (ruling D5) --------------------------------
+
+    def record_ambiguity(reason, turn, resource=None, detail=None):
+        """One non-identifiable allocation. Any of these -> GATE_UNREADY."""
+        amb = {"turn": turn, "reason": reason, "resource": resource,
+               "detail": detail}
+        ambiguities.append(amb)
+        counts["ambiguity_events"] += 1
+        emit(kind="AMBIGUITY", turn=turn, reason=reason, resource=resource,
+             detail=detail)
+        return amb
+
+    def poison(atoms):
+        """Relabel a whole multiset `unknown`.
+
+        Used when the recorded state does not determine which atoms of the
+        multiset moved: the classes of the atoms that left AND of the atoms
+        that stayed are equally undetermined, so neither may keep a claimed
+        class.
+        """
+        n = 0
+        for a in atoms:
+            if a["source_class"] != "unknown":
+                a["source_class"] = "unknown"
+                a["source_creator"] = "unknown"
+                a["non_identifiable"] = True
+                unknown_atoms[0] += 1
+                n += 1
+        return n
+
+    def take(slot, k, n, turn, verb):
+        """Remove `n` atoms of kind `k`, failing closed on a mixed partial take.
+
+        FIFO is used only to order an ALREADY identifiable take; where the
+        take is not identifiable the multiset is relabelled `unknown` first,
+        so the order cannot decide anything (ruling D5).
+        """
+        atoms = slot[k]
+        if not partial_take_is_identifiable(list(atoms), n):
+            record_ambiguity("class_composition", turn, ITEM_NAMES[k],
+                             "%d of %d atoms, classes %s"
+                             % (n, len(atoms),
+                                sorted({a["source_class"] for a in atoms})))
+            poison(atoms)
+        out = []
+        for _ in range(n):
+            out.append(atoms.popleft() if atoms else new_unknown(k, turn, verb))
+        return out
+
     for t in range(1, T):
         s0, s1 = tr.state(t), tr.state(t + 1)
         inv_prev = s0.inventories[OPPONENT_PLAYER]
@@ -343,9 +502,10 @@ def build_run_ledger(record):
             turn_productive = True
             for k in range(6):
                 train_bill[k] += cost[k]
-                for _ in range(cost[k]):
-                    if bank[k]:
-                        bank[k].popleft()
+                # the TRAIN bill is class-agnostic for the identity, but the
+                # atoms it consumes still leave the bank, so the take must be
+                # identifiable like any other (ruling D5)
+                take(bank, k, min(cost[k], len(bank[k])), t, "TRAIN")
             emit(kind="TRAIN", turn=t, unit=u.id, cost=list(cost),
                  score=score_of(cost), talents=[u.speed, u.capacity,
                                                 u.harvest_power, u.chop_power],
@@ -378,9 +538,7 @@ def build_run_ledger(record):
             }
             new_plants[p.cell] = (p, who)
 
-        # ---- inventory budget split (R5) ---------------------------------
-        drop_cand = [0] * 6
-        pick_cand = [0] * 6
+        # ---- movers and per-unit carry deltas -----------------------------
         movers = []
         for u0 in sorted((u for u in s0.units if u.player == OPPONENT_PLAYER),
                          key=lambda u: u.id):
@@ -388,24 +546,89 @@ def build_run_ledger(record):
             if u1 is None or u1.player != OPPONENT_PLAYER:
                 movers.append((u0, None, False))
                 continue
-            near = _manhattan(u1.cell, opp_shack) <= 1
-            movers.append((u0, u1, near))
-            if not near:
+            movers.append((u0, u1, _manhattan(u1.cell, opp_shack) <= 1))
+
+        # A successful own PLANT consumes exactly one fruit of the planted
+        # kind from the planter's carry, and the planter is the cell's sole
+        # occupant (otherwise the asset class is already `unknown`). That
+        # decrease is therefore explained and is not a bank-flow candidate.
+        seed_use = {}
+        for (u0, u1, _near) in movers:
+            if u1 is None:
+                continue
+            planted = new_plants.get(u1.cell)
+            if planted is None or planted[1] != OPPONENT_PLAYER:
+                continue
+            if planted[0].kind not in FRUIT_KINDS:
+                continue
+            k = FRUIT_KINDS[planted[0].kind]
+            if u1.carry[k] < u0.carry[k]:
+                seed_use[u0.id] = k
+
+        # ---- inventory budget split (R5, ruling D5) -----------------------
+        drop_by_unit = [dict() for _ in range(6)]
+        pick_by_unit = [dict() for _ in range(6)]
+        for (u0, u1, near) in movers:
+            if u1 is None or not near:
                 continue
             for k in range(6):
                 d = u1.carry[k] - u0.carry[k]
                 if d < 0:
-                    drop_cand[k] += -d
+                    out = -d - (1 if seed_use.get(u0.id) == k else 0)
+                    if out > 0:
+                        drop_by_unit[k][u0.id] = out
                 elif d > 0:
-                    pick_cand[k] += d
+                    pick_by_unit[k][u0.id] = d
 
         deposits = [0] * 6
         withdrawals = [0] * 6
         for k in range(6):
+            drop_cand = sum(drop_by_unit[k].values())
+            pick_cand = sum(pick_by_unit[k].values())
             budget = (inv_next[k] - inv_prev[k]) + train_bill[k]
-            w = min(pick_cand[k], max(0, drop_cand[k] - budget))
+
+            # every feasible withdrawal count w satisfies
+            #   deposits = budget + w,  0 <= w <= pick_cand,
+            #   0 <= budget + w <= drop_cand
+            lo = max(0, -budget)
+            hi = min(pick_cand, drop_cand - budget)
+            w = min(pick_cand, max(0, drop_cand - budget))
             withdrawals[k] = w
-            deposits[k] = max(0, min(drop_cand[k], budget + w))
+            deposits[k] = max(0, min(drop_cand, budget + w))
+
+            if hi < lo:
+                # No allocation explains the observation, so there is nothing
+                # to choose between: this is an unexplained transition, not a
+                # non-identifiable one. The conservation residual reports it.
+                continue
+
+            ambiguous = False
+            if not split_is_identifiable(lo, hi):
+                record_ambiguity("deposit_withdrawal_split", t, ITEM_NAMES[k],
+                                 "feasible withdrawals %d..%d" % (lo, hi))
+                ambiguous = True
+            if not assignment_is_identifiable(deposits[k], drop_cand,
+                                              len(drop_by_unit[k])):
+                record_ambiguity("deposit_unit_assignment", t, ITEM_NAMES[k],
+                                 "%d of %d across %d units"
+                                 % (deposits[k], drop_cand,
+                                    len(drop_by_unit[k])))
+                ambiguous = True
+            if not assignment_is_identifiable(w, pick_cand,
+                                              len(pick_by_unit[k])):
+                record_ambiguity("withdrawal_unit_assignment", t,
+                                 ITEM_NAMES[k],
+                                 "%d of %d across %d units"
+                                 % (w, pick_cand, len(pick_by_unit[k])))
+                ambiguous = True
+
+            if ambiguous:
+                # every atom that could have crossed the tent threshold this
+                # turn, on either side, loses its claimed class
+                poison(bank[k])
+                for uid in set(drop_by_unit[k]) | set(pick_by_unit[k]):
+                    poison(carry.setdefault(
+                        uid, {j: deque() for j in range(6)})[k])
 
         # ---- per-unit atom flow ------------------------------------------
         for (u0, u1, near) in movers:
@@ -413,8 +636,7 @@ def build_run_ledger(record):
             slots = carry.setdefault(uid, {k: deque() for k in range(6)})
             if u1 is None:
                 for k in range(6):
-                    while slots[k]:
-                        a = slots[k].popleft()
+                    for a in take(slots, k, len(slots[k]), t, "LOSS"):
                         lost[a["source_class"]] += SCORE_WEIGHT[k]
                         counts["loss_events"] += 1
                         emit(kind="LOSS", turn=t, unit=uid, reason="unit_gone",
@@ -442,8 +664,7 @@ def build_run_ledger(record):
                     # 1. seed consumed by a successful own PLANT
                     if seed_pending and planted[0].kind in FRUIT_KINDS \
                             and FRUIT_KINDS[planted[0].kind] == k and out > 0:
-                        a = slots[k].popleft() if slots[k] \
-                            else new_unknown(k, t, "SEED")
+                        a = take(slots, k, 1, t, "SEED")[0]
                         assets[cell]["seed_source_class"] = a["source_class"]
                         counts["plant_events"] += 1
                         turn_productive = True
@@ -456,12 +677,10 @@ def build_run_ledger(record):
                              seed_source_class=a["source_class"])
                     # 2. banked
                     if near and out > 0 and deposits[k] > 0:
-                        take = min(out, deposits[k])
-                        deposits[k] -= take
-                        for _ in range(take):
-                            a = slots[k].popleft() if slots[k] \
-                                else new_unknown(k, t, "DROP")
-                            dep_gross[a["source_class"]] += SCORE_WEIGHT[k]
+                        n = min(out, deposits[k])
+                        deposits[k] -= n
+                        for a in take(slots, k, n, t, "DROP"):
+                            gdep[a["source_class"]] += SCORE_WEIGHT[k]
                             bank[k].append(a)
                             counts["deposit_atoms"] += 1
                             emit(kind="DEPOSIT", turn=t, unit=uid,
@@ -478,11 +697,9 @@ def build_run_ledger(record):
                             counts["drop_events"] += 1
                             banked_this_turn = True
                         turn_productive = True
-                        out -= take
+                        out -= n
                     # 3. anything else left the unit without banking
-                    for _ in range(out):
-                        a = slots[k].popleft() if slots[k] \
-                            else new_unknown(k, t, "LOSS")
+                    for a in take(slots, k, out, t, "LOSS"):
                         lost[a["source_class"]] += SCORE_WEIGHT[k]
                         counts["loss_events"] += 1
                         emit(kind="LOSS", turn=t, unit=uid, reason="uncarried",
@@ -493,11 +710,9 @@ def build_run_ledger(record):
                     inn = d
                     # 1. withdrawn from the own bank (apply_pick)
                     if near and withdrawals[k] > 0:
-                        take = min(inn, withdrawals[k])
-                        withdrawals[k] -= take
-                        for _ in range(take):
-                            a = bank[k].popleft() if bank[k] \
-                                else new_unknown(k, t, "PICK")
+                        n = min(inn, withdrawals[k])
+                        withdrawals[k] -= n
+                        for a in take(bank, k, n, t, "PICK"):
                             wdr[a["source_class"]] += SCORE_WEIGHT[k]
                             slots[k].append(a)
                             counts["withdraw_atoms"] += 1
@@ -506,8 +721,8 @@ def build_run_ledger(record):
                                  score=SCORE_WEIGHT[k],
                                  source_class=a["source_class"])
                         # apply_pick moves exactly one item per command
-                        counts["pick_events"] += take
-                        inn -= take
+                        counts["pick_events"] += n
+                        inn -= n
                     # 2. acquired from an asset on the unit's cell
                     for _ in range(inn):
                         if src_asset is not None:
@@ -547,8 +762,9 @@ def build_run_ledger(record):
         if assets.get(p.cell, {}).get("source_class") == "opponent")
 
     return RunLedger(
-        run_id=record.run_id, events=events, dep_gross=dep_gross, wdr=wdr,
+        run_id=record.run_id, events=events, gdep=gdep, wdr=wdr,
         lost=lost, train_spend=train_spend, unknown_atoms=unknown_atoms[0],
+        ambiguities=ambiguities,
         initial_score=score_of(st1.inventories[OPPONENT_PLAYER]),
         terminal_score=score_of(terminal.inventories[OPPONENT_PLAYER]),
         terminal_turn=T, counts=counts,
