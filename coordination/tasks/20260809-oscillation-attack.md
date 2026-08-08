@@ -57,11 +57,22 @@ candidate does not have.
 grounds that it will raise our score; that hypothesis is measured and dead. A *perfect* fix is
 worth about +0.045 margin.
 
-**The justification for this task is different, and it is not score.** Raw D-1 = 0 is an
-owner-standing gate condition. The acceptance gate cannot certify any candidate while the
-reference itself deadlocks for 194 turns. So this is **instrument compliance**: without it,
-nothing we build next can be measured, including the banana work. Phase 2 of the consolidated
-hardening plan turns on it.
+**The justification is the owner's, restated 2026-08-09, and it is not score and not merely
+gate compliance:**
+
+> *Oscillations are our lack of control over the program. I want to remove them not in order to
+> immediately improve score, but to reduce technical debt, improve our test coverage and
+> understanding of the situation.*
+
+**Success is therefore:** the shipped bot cannot enter a 194-turn no-op; a committed regression
+test fails if it ever can again; and we can explain why the design permitted it. Instrument
+compliance (raw D-1 = 0 unblocks the gate, and Phase 2 turns on it) is a welcome by-product, not
+the objective.
+
+This ranking follows and is binding: **an action that satisfies a threshold without increasing
+what we control is a worse answer than one that increases control.** Relaxing the gate condition
+and repairing only a reference build both fall in the first category; I proposed both and have
+withdrawn them.
 
 Any answer that claims score improvement will be rejected on the citation above. An answer that
 says "the cheapest route is to change what we require rather than what the bot does" is
