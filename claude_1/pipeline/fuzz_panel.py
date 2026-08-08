@@ -733,7 +733,8 @@ def post_ct_state(ref):
     Returned as the same td.GameState the transcript parser produces for a
     recorded turn, so every world-state predicate reads it exactly as it
     reads S_1..S_T.  Absolute: one candidate referee, no parent reference."""
-    return td.build_trace(ref.map_header() + ref.turn_text(), "WAIT\n").state(1)
+    text = ref.map_header() + ref.turn_text()
+    return td.build_trace(text, "WAIT\n").state(1)
 
 
 def post_ct_progress(tr, post) -> bool:
