@@ -372,6 +372,27 @@ blob. Existence of a path is never sufficient. Under the first implementation it
 unrelated message authored by the quarantined agent itself authorized suppression of its own
 fabricated closeout.
 
+**Who the coordinator is comes from `coordination/roster.json` on `origin/main`**, never from
+the environment. Reading it from an environment variable made the authority untrusted input:
+whoever set the variable designated the quarantine authority, and pointing it at a branch with
+no quarantine silently suppressed nothing while reporting no error. An absent or malformed
+roster disables quarantine entirely and says so — fail-safe, because suppressing nothing is
+recoverable and suppressing wrongly is not.
+
+**Three further rules, each from a reproduced attack:**
+
+- A **collided path can never be quarantined.** With different bytes on two refs there is no
+  single blob to pin, and the pin was previously skipped in exactly that case — when it matters
+  most.
+- **Quarantining an ACK must declare what it re-opens.** Withdrawing an ACK silently restores
+  every obligation it discharged for its sender. That can be correct — a fabricated ACK should
+  be withdrawn — but the entry must list the restored paths in a `reopens` array, so the agent
+  whose work reappears learns it from the adjudication rather than from a surprise.
+- **Quarantine is a general suppression primitive and nothing checks that the target is truly
+  invalid.** That is by design and is exactly why the authority is narrow, every entry cites a
+  published adjudication, and the whole file is reviewable. Treat adding an entry as an act
+  requiring the same scrutiny as a verdict.
+
 A quarantined message is excluded from delivery validation, newness, and acknowledgement —
 **a quarantined ACK acknowledges nothing** — and is listed in its own `quarantined` section
 instead, so the record is preserved rather than erased. Rules:

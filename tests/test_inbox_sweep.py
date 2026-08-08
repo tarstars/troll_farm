@@ -927,6 +927,70 @@ def test_malformed_roster_fails_loudly(repo):
     assert "malformed roster" in result.stderr
 
 
+# --- claude_1's F7/F8/F4: spec-versus-code gaps in the quarantine contract ---
+
+def test_adjudication_only_on_a_side_branch_is_rejected(repo):
+    # F7: protocol 10.2 requires the adjudication to be on the coordinator's
+    # canonical ref. Being in the coordinator's namespace somewhere is not that.
+    bad = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "finding",
+                     requires_ack=False)
+    adj = msg_path(COORDINATOR, "20260805T105000Z", "task-q", "policy")
+    body = v2_message(adj, kind="policy", task="task-q", sender=COORDINATOR,
+                      to=PEER, extra_fields={"quarantines": json.dumps([bad])})
+    repo.commit(f"agent/{COORDINATOR}-side", {adj: body})  # side branch only
+    publish_quarantine(repo, [
+        {"path": bad, "reason": "r", "adjudicated_by": adj,
+         "target_blob": repo.blob_oid(bad)},
+    ])
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert counts(result.stdout)["quarantined"] == 0
+    assert "not present on the coordinator's canonical ref" in result.stdout
+
+
+def test_blob_pin_is_enforced_even_when_the_path_collides(repo):
+    # F8: the pin was silently skipped exactly when bytes are ambiguous.
+    path = msg_path(PEER, "20260805T100000Z", "task-a", "finding")
+    body = v2_message(path, kind="finding", task="task-a", sender=PEER,
+                      requires_ack=False)
+    repo.commit(f"agent/{PEER}", {path: body})
+    repo.commit(f"agent/{PEER}-side", {path: body + "tampered\n"})
+    adj = publish_adjudication(repo, (path,))
+    publish_quarantine(repo, [
+        {"path": path, "reason": "r", "adjudicated_by": adj,
+         "target_blob": "0" * 40},
+    ])
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+    assert "collides" in result.stdout
+
+
+def test_quarantining_an_ack_must_declare_what_it_reopens(repo):
+    # F4: quarantining an ACK silently re-opens obligations a peer discharged.
+    q = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "question")
+    ack = publish_v2(repo, ME, "20260805T110000Z", "task-a", "ack", to=PEER,
+                     ack_for=(q,))
+    adj = publish_adjudication(repo, (ack,), stamp="20260805T120000Z")
+    publish_quarantine(repo, [
+        quarantine_entry(repo, ack, adj, reason="fabricated verdict"),
+    ])
+
+    undeclared = repo.sweep("--me", ME)
+    assert undeclared.returncode == 2
+    assert "re-opens" in undeclared.stdout
+    assert q in undeclared.stdout
+
+    entry = quarantine_entry(repo, ack, adj, reason="fabricated verdict")
+    entry["reopens"] = [q]
+    publish_quarantine(repo, [entry])
+    declared = repo.sweep("--me", ME)
+    assert declared.returncode == 1  # q is unacknowledged again, as intended
+    assert counts(declared.stdout)["quarantine errors"] == 0
+    assert counts(declared.stdout)["unacknowledged, ack required"] == 1
+
+
 def publish_baseline(repo: TransportRepo, paths: dict[str, str]):
     repo.commit(f"agent/{COORDINATOR}", {
         inbox_sweep.LEGACY_BASELINE_FILE: json.dumps(
@@ -1110,9 +1174,9 @@ def test_quarantined_ack_of_mine_acknowledges_nothing(repo):
     assert clean.returncode == 0
 
     adj = publish_adjudication(repo, (ack,), stamp="20260805T120000Z")
-    publish_quarantine(repo, [
-        quarantine_entry(repo, ack, adj, reason="fabricated verdict"),
-    ])
+    entry = quarantine_entry(repo, ack, adj, reason="fabricated verdict")
+    entry["reopens"] = [q]  # required since F4: the re-opening must be declared
+    publish_quarantine(repo, [entry])
 
     result = repo.sweep("--me", ME)
     assert result.returncode == 1

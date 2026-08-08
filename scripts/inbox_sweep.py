@@ -759,6 +759,8 @@ def validate_quarantine(
     messages: dict[str, "Message"],
     blob_by_path: dict[str, str],
     coordinator: str,
+    canonical_paths_by_agent: dict[str, set[str]] | None = None,
+    collided: set[str] | None = None,
 ) -> list[str]:
     """Return errors for entries that are not properly authorized.
 
@@ -785,17 +787,55 @@ def validate_quarantine(
                 )
         if adjudicator in quarantined_paths:
             errors.append(f"adjudicated_by is itself quarantined: {adjudicator!r}")
-        if path in blob_by_path and entry["target_blob"] != blob_by_path[path]:
+        if collided and path in collided:
+            # The pin was silently skipped exactly when bytes are ambiguous,
+            # which is when it matters most (finding F8). A collided path can
+            # never be quarantined: there is no single blob to pin.
+            errors.append(
+                f"path {path!r} collides across authoritative refs; a collided "
+                "path has no single blob to pin and cannot be quarantined"
+            )
+        elif path in blob_by_path and entry["target_blob"] != blob_by_path[path]:
             errors.append(
                 f"target_blob does not match the message at {path!r}: "
                 f"{entry['target_blob']!r} != {blob_by_path[path]!r}"
             )
+        # Quarantining an ACK withdraws it, which silently re-opens every
+        # obligation it discharged for its sender (finding F4). That may be
+        # correct — a fabricated ACK should be withdrawn — but it must be
+        # declared, not discovered later by the agent whose work reappears.
+        target = messages.get(path)
+        if target is not None and target.kind == "ack":
+            try:
+                discharged = parse_json_list(target.fields.get("ack_for", "[]"))
+            except (ValueError, json.JSONDecodeError):
+                discharged = []
+            declared = entry.get("reopens")
+            declared = declared if isinstance(declared, list) else []
+            undeclared = [p for p in discharged if p not in declared]
+            if undeclared:
+                errors.append(
+                    f"quarantining the ACK {path!r} re-opens obligations it "
+                    "discharged; list them in this entry's `reopens` field: "
+                    + ", ".join(sorted(undeclared))
+                )
         if adjudicator not in authoritative_paths:
             continue
         if sender_of(adjudicator) != coordinator:
             errors.append(
                 f"adjudicated_by is not authored by the coordinator {coordinator!r}: "
                 f"{adjudicator!r}"
+            )
+            continue
+        # Protocol §10.2 requires the adjudication to be a valid v2 message ON
+        # the coordinator's canonical ref. Being in the coordinator's namespace
+        # somewhere is not that: a side branch would do, and code enforced only
+        # the namespace (finding F7).
+        canonical = (canonical_paths_by_agent or {}).get(coordinator, set())
+        if adjudicator not in canonical:
+            errors.append(
+                f"adjudicated_by is not present on the coordinator's canonical "
+                f"ref {REMOTE_PREFIX}agent/{coordinator}: {adjudicator!r}"
             )
             continue
         msg = messages.get(adjudicator)
@@ -896,6 +936,18 @@ def main() -> int:
             path, display_ref(path, refs_for_path, sender_of(path)), body
         )
 
+    # Canonical presence is derived from the single authoritative scan above —
+    # no second per-ref tree lookup.
+    canonical_paths_by_agent: dict[str, set[str]] = {}
+    agent_ref_prefix = REMOTE_PREFIX + "agent/"
+    for path, oids in per_path.items():
+        for refs_for_oid in oids.values():
+            for ref in refs_for_oid:
+                if ref.startswith(agent_ref_prefix):
+                    agent = ref[len(agent_ref_prefix):]
+                    if "/" not in agent:
+                        canonical_paths_by_agent.setdefault(agent, set()).add(path)
+
     # Quarantine (rule 7). Authority is the coordinator's canonical ref, never
     # the worktree: a local file must not be able to change shared inbox truth.
     try:
@@ -916,7 +968,8 @@ def main() -> int:
             print(str(exc), file=sys.stderr)
             return 2
     quarantine_errors = validate_quarantine(
-        quarantine_entries, authoritative_paths, messages, blob_by_path, coordinator
+        quarantine_entries, authoritative_paths, messages, blob_by_path,
+        coordinator, canonical_paths_by_agent, collided
     )
     # A broken or unauthorized quarantine suppresses nothing.
     quarantined: dict[str, dict[str, str]] = (
@@ -940,18 +993,6 @@ def main() -> int:
             "local quarantine differs from the authoritative blob (absent locally); "
             "the authoritative copy governs"
         )
-    # Canonical presence is derived from the single authoritative scan above —
-    # no second per-ref tree lookup.
-    canonical_paths_by_agent: dict[str, set[str]] = {}
-    agent_ref_prefix = REMOTE_PREFIX + "agent/"
-    for path, oids in per_path.items():
-        for refs_for_oid in oids.values():
-            for ref in refs_for_oid:
-                if ref.startswith(agent_ref_prefix):
-                    agent = ref[len(agent_ref_prefix):]
-                    if "/" not in agent:
-                        canonical_paths_by_agent.setdefault(agent, set()).add(path)
-
     my_msgs = [m for m in messages.values() if m.sender == args.me]
     acked_paths, legacy_latest, ack_warnings = collect_my_acks(
         my_msgs, authoritative_paths, canonical_paths_by_agent, remote_ref_names
