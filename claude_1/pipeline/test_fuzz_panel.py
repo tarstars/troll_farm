@@ -23,12 +23,14 @@ green independent of the candidate's own defects.
 
 from __future__ import annotations
 
+import ast
 import contextlib
 import inspect
 import io
 import json
 import sys
 import tempfile
+import textwrap
 import unittest
 from pathlib import Path
 
@@ -936,10 +938,105 @@ class TestTrainingCost(unittest.TestCase):
                 self.assertEqual(cost[5], 0)
 
 
+def _body_ast(fn_or_src):
+    """AST of a function (or of function source text) with the docstring
+    stripped.
+
+    The conformance tests below assert on the CODE, not on the prose: a
+    citation of `engine.rs:527` in a docstring must not be able to satisfy
+    (or fail) a test about whether the rule is implemented.  Comments are
+    gone for free -- the parser drops them."""
+    src = (fn_or_src if isinstance(fn_or_src, str)
+           else inspect.getsource(fn_or_src))
+    tree = ast.parse(textwrap.dedent(src))
+    node = tree.body[0]
+    if (node.body and isinstance(node.body[0], ast.Expr)
+            and isinstance(node.body[0].value, ast.Constant)
+            and isinstance(node.body[0].value.value, str)):
+        node.body = node.body[1:]
+    return node
+
+
+def _reads_the_turn_counter(fn_or_src) -> bool:
+    """True iff the body reads `<something>.turn` or any TOTAL_TURNS-like
+    global.  (A substring test would fire on the `turn` inside `return`.)"""
+    for node in ast.walk(_body_ast(fn_or_src)):
+        if isinstance(node, ast.Attribute) and node.attr == "turn":
+            return True
+        if isinstance(node, ast.Name) and "TURN" in node.id.upper():
+            return True
+    return False
+
+
+class TestTrainAuthorityIsTheEngine(unittest.TestCase):
+    """REVISION r2.  The authority for TRAIN legality is
+    `rust/src/game/engine.rs::apply_train` (lines 525-568), NOT
+    `MoisanBot::can_train` in `rust/src/bin/yamo_orchard_live.rs:834-844`.
+
+    `yamo_orchard_live.rs:836`
+
+        if n >= 2 || TOTAL_TURNS - view.turn <= 20 { return false; }
+
+    is ONE BOT'S SELF-RESTRAINT.  `engine.rs::apply_train` enforces neither
+    condition: between `let n = ...count()` (527) and the spawn (556-567) the
+    only rejections are the affordability check (539-541) and the occupied
+    shack check (545-547).  A referee that forbids what the engine permits
+    would silently reject a candidate that trains a third worker while the
+    real game accepts it -- the same class of defect as the silently
+    discarded verb this work was repairing, pointing the other way."""
+
+    def test_no_bot_derived_worker_cap_constant(self):
+        self.assertFalse(
+            hasattr(fp, "WORKER_CAP"),
+            "engine.rs::apply_train has no worker cap; a WORKER_CAP constant "
+            "in the referee is bot self-restraint smuggled in as a rule")
+
+    def test_no_bot_derived_final_turn_guard_constant(self):
+        self.assertFalse(
+            hasattr(fp, "TRAIN_GUARD_TURNS"),
+            "engine.rs::apply_train has no final-N-turn guard; a "
+            "TRAIN_GUARD_TURNS constant in the referee is bot self-restraint "
+            "smuggled in as a rule")
+
+    def test_can_train_does_not_consult_the_turn_counter(self):
+        self.assertFalse(
+            _reads_the_turn_counter(fp.FuzzReferee.can_train),
+            "engine.rs::apply_train (525-568) never reads game.turn; TRAIN "
+            "legality must not depend on it")
+
+    def test_train_does_not_consult_the_turn_counter(self):
+        self.assertFalse(
+            _reads_the_turn_counter(fp.FuzzReferee.train),
+            "engine.rs::apply_train (525-568) never reads game.turn")
+
+    def test_the_turn_reader_itself_is_not_vacuous(self):
+        """Guard on the guard: `_reads_the_turn_counter` must actually fire
+        on the rule it is meant to forbid (the pre-revision `can_train`
+        body), and must not fire on a body whose only `turn` is inside
+        `return`."""
+        bot_restraint = """
+            def can_train(self, talents):
+                '''yamo_orchard_live.rs:836'''
+                if TOTAL_TURNS - self.turn <= 20:
+                    return False
+                return True
+        """
+        engine_rule = """
+            def can_train(self, talents):
+                '''engine.rs:539-541 -- the turn counter is never read.'''
+                if self.inv[0] < 1:
+                    return False
+                return True
+        """
+        self.assertTrue(_reads_the_turn_counter(bot_restraint))
+        self.assertFalse(_reads_the_turn_counter(engine_rule))
+
+
 class TestTrainApplication(unittest.TestCase):
-    """Requirement 2: TRAIN is implemented and conformance-tested against
-    yamo_orchard_live.rs -- legality, bill, worker cap, spawn stats, spawn
-    cell, turn timing."""
+    """TRAIN is implemented and conformance-tested against
+    `rust/src/game/engine.rs::apply_train` -- legality, bill, spawn stats,
+    spawn cell, occupied-shack handling, turn timing.  Mirror EXACTLY what
+    apply_train enforces and NOTHING it does not."""
 
     def test_legal_train_spawns_a_second_worker_and_charges_the_bill(self):
         ref = train_referee(inventory=[3, 3, 2, 7, 0, 4])
@@ -959,26 +1056,65 @@ class TestTrainApplication(unittest.TestCase):
         # on the map so IRON is not charged.
         self.assertEqual(ref.inv, [1, 1, 1, 7, 0, 4])
 
-    def test_worker_cap_stops_further_training(self):
+    def test_a_third_worker_trains_because_the_engine_has_no_worker_cap(self):
+        """THE BLOCKER.  `engine.rs::apply_train` counts own units only to
+        price the bill --
+
+            engine.rs:527  let n = game.units.iter()
+                               .filter(|u| u.player == player).count() as i32;
+            engine.rs:528  let cost = training_cost(n, talents);
+
+        -- and never compares `n` to anything.  An `n >= 2` TRAIN that is
+        affordable with an available shack MUST succeed."""
         ref = train_referee(inventory=[99, 99, 99, 0, 99, 0])
         ref.apply("TRAIN 1 1 0 1")
         own = ref.own_unit_ids()
         self.assertEqual(len(own), 2)
-        # Vacate the shack first, so the cap -- not the occupied-shack guard
-        # -- is what refuses the third worker (an off-by-one cap survives a
-        # test that leaves the spawned worker standing on the spawn cell).
+        # Vacate the shack, so the occupied-shack guard (engine.rs:545-547) is
+        # not what decides the third worker.
         nid = own[-1]
         ref.apply("MOVE %d 3 0" % nid)
         self.assertNotEqual(ref.units[nid]["cell"], ref.tent)
         self.assertFalse(any(u["cell"] == ref.tent
                              for u in ref.units.values()))
         before = list(ref.inv)
+        self.assertTrue(ref.can_train((1, 1, 0, 1)),
+                        "n == 2 with an affordable bill and a free shack is "
+                        "legal under engine.rs::apply_train")
         ref.apply("TRAIN 1 1 0 1")
-        self.assertEqual(len(ref.own_unit_ids()), 2,
-                         "n >= 2 -> no further TRAIN (yamo:836)")
-        self.assertEqual(ref.inv, before, "a rejected TRAIN charges nothing")
-        self.assertFalse(ref.can_train((1, 1, 0, 1)),
-                         "can_train must be false at the cap")
+        self.assertEqual(len(ref.own_unit_ids()), 3,
+                         "engine.rs::apply_train imposes NO worker cap: the "
+                         "third worker must spawn (yamo_orchard_live.rs:836 "
+                         "`n >= 2` is the BOT's self-restraint, not a rule)")
+        # bill at n == 2, talents (1,1,0,1): PLUM 3, LEMON 3, APPLE 2; no
+        # iron terrain on TRAIN_ROWS so the IRON leg is not charged
+        # (engine.rs:532-536).
+        self.assertEqual(ref.inv, [before[0] - 3, before[1] - 3,
+                                   before[2] - 2, before[3], before[4],
+                                   before[5]],
+                         "the third worker's bill is priced at n == 2")
+        newest = ref.own_unit_ids()[-1]
+        self.assertEqual(ref.units[newest]["cell"], ref.tent)
+
+    def test_the_worker_count_only_prices_the_bill(self):
+        """`n` grows without bound; the bill grows with it (engine.rs:517-520
+        `cost[PLUM] = n + ms * ms`), which is the only thing that ever stops
+        a bot from training."""
+        ref = train_referee(inventory=[99, 99, 99, 0, 99, 0])
+        for expected_n in (1, 2, 3, 4):
+            before = list(ref.inv)
+            nid_before = set(ref.own_unit_ids())
+            ref.apply("TRAIN 0 0 0 0")
+            new = set(ref.own_unit_ids()) - nid_before
+            self.assertEqual(len(new), 1,
+                             "TRAIN #%d must spawn" % expected_n)
+            # cost[i] = n + 0*0 = n for PLUM/LEMON/APPLE
+            self.assertEqual(ref.inv[:3],
+                             [before[0] - expected_n, before[1] - expected_n,
+                              before[2] - expected_n])
+            # vacate the shack for the next one
+            ref.apply("MOVE %d 3 0" % new.pop())
+        self.assertEqual(len(ref.own_unit_ids()), 5)
 
     def test_unaffordable_train_is_rejected_and_charges_nothing(self):
         ref = train_referee(inventory=[2, 2, 0, 0, 0, 0])   # APPLE short by 1
@@ -1007,18 +1143,21 @@ class TestTrainApplication(unittest.TestCase):
         self.assertEqual(len(ref.own_unit_ids()), 2)
         self.assertEqual(ref.inv[4], 0)
 
-    def test_final_twenty_turn_guard(self):
-        # yamo:836  TOTAL_TURNS - view.turn <= 20 -> can_train is false.
-        ref = train_referee(inventory=[9, 9, 9, 0, 9, 0])
-        ref.turn = fp.TOTAL_TURNS - fp.TRAIN_GUARD_TURNS      # 280
-        ref.apply("TRAIN 1 1 0 1")
-        self.assertEqual(len(ref.own_unit_ids()), 1,
-                         "turn 280 of 300 is inside the guard")
-        ref = train_referee(inventory=[9, 9, 9, 0, 9, 0])
-        ref.turn = fp.TOTAL_TURNS - fp.TRAIN_GUARD_TURNS - 1  # 279
-        ref.apply("TRAIN 1 1 0 1")
-        self.assertEqual(len(ref.own_unit_ids()), 2,
-                         "turn 279 of 300 is outside the guard")
+    def test_no_final_turn_guard_the_engine_imposes_none(self):
+        """`engine.rs::apply_train` (525-568) never reads `game.turn`; the
+        turn counter is touched only by `step` itself (engine.rs:805
+        `game.turn += 1`).  A TRAIN inside the final 20 turns -- and on the
+        very last turn -- must succeed if it is affordable with a free
+        shack.  `yamo_orchard_live.rs:836` `TOTAL_TURNS - view.turn <= 20` is
+        the BOT's self-restraint."""
+        for turn in (279, 280, 290, 299, 300, 400):
+            ref = train_referee(inventory=[9, 9, 9, 0, 9, 0])
+            ref.turn = turn
+            ref.apply("TRAIN 1 1 0 1")
+            self.assertEqual(
+                len(ref.own_unit_ids()), 2,
+                "turn %d: engine.rs::apply_train has no turn condition"
+                % turn)
 
     def test_referee_turn_counter_advances_one_per_applied_command_line(self):
         ref = train_referee()
@@ -1028,6 +1167,9 @@ class TestTrainApplication(unittest.TestCase):
         self.assertEqual(ref.turn, 3)
 
     def test_occupied_shack_blocks_the_spawn(self):
+        # engine.rs:544-547
+        #   let shack = game.shacks[p];
+        #   if game.units.iter().any(|u| u.pos() == shack) { return; }
         units = [[0, 0, 0, 0, 1, 2, 1, 1] + [0] * 6,     # standing ON the tent
                  [5, 1, 4, 2, 1, 2, 0, 0] + [0] * 6]
         ref = train_referee(inventory=[9, 9, 9, 0, 9, 0], units=units)
@@ -1035,6 +1177,64 @@ class TestTrainApplication(unittest.TestCase):
         self.assertEqual(len(ref.own_unit_ids()), 1,
                          "the spawn cell must be free")
         self.assertEqual(ref.inv, [9, 9, 9, 0, 9, 0])
+
+    def test_an_opponent_unit_on_the_own_shack_blocks_the_spawn(self):
+        """engine.rs:545 iterates `game.units` -- ALL units, both players --
+        not just the training player's.  An opponent standing on my shack
+        blocks my spawn."""
+        units = [[0, 0, 1, 0, 1, 2, 1, 1] + [0] * 6,
+                 [5, 1, 0, 0, 1, 2, 0, 0] + [0] * 6]   # opponent ON own tent
+        ref = train_referee(inventory=[9, 9, 9, 0, 9, 0], units=units)
+        self.assertEqual(ref.units[5]["cell"], ref.tent)
+        ref.apply("TRAIN 1 1 0 1")
+        self.assertEqual(len(ref.own_unit_ids()), 1,
+                         "any unit on the shack blocks the spawn "
+                         "(engine.rs:545)")
+        self.assertEqual(ref.inv, [9, 9, 9, 0, 9, 0],
+                         "a rejected TRAIN charges nothing (engine.rs:546 "
+                         "returns before the deduction at 550-552)")
+
+    def test_two_trains_on_one_line_the_second_hits_the_fresh_spawn(self):
+        """engine.rs:786-788 applies EVERY parsed TRAIN of a player in turn
+        (`for talents in &a.train { apply_train(game, 0, *talents) }`), and
+        the parser pushes them all (engine.rs:697-706 `continue`s before the
+        per-unit `used` bookkeeping).  The second call then finds the shack
+        occupied by the unit the first call just spawned."""
+        ref = train_referee(inventory=[99, 99, 99, 0, 99, 0])
+        before = list(ref.inv)
+        ref.apply("TRAIN 1 1 0 1;TRAIN 1 1 0 1")
+        self.assertEqual(len(ref.own_unit_ids()), 2,
+                         "exactly one spawn: the second TRAIN finds the "
+                         "shack occupied by the first spawn")
+        self.assertEqual(ref.inv, [before[0] - 2, before[1] - 2,
+                                   before[2] - 1, before[3], before[4],
+                                   before[5]],
+                         "only one bill is charged")
+
+    def test_spawn_id_follows_the_engine_next_id_counter(self):
+        """engine.rs:555/567  `let nid = game.next_id; ... game.next_id += 1;`
+        -- a monotone counter, never reused (engine.rs contains no unit
+        removal at all)."""
+        ref = train_referee(inventory=[99, 99, 99, 0, 99, 0])
+        ref.apply("TRAIN 1 1 0 1")
+        first = ref.own_unit_ids()[-1]
+        self.assertEqual(first, 6, "max(existing id 0, 5) + 1")
+        ref.apply("MOVE %d 3 0" % first)
+        ref.apply("TRAIN 1 1 0 1")
+        self.assertEqual(ref.own_unit_ids()[-1], 7,
+                         "the counter advances; ids are never reused")
+
+    def test_banana_and_wood_are_on_the_pay_slice_but_cost_nothing(self):
+        """engine.rs:532-536 pays over `[0,1,2,3,4,5]` (iron present) or
+        `[0,1,2,3,5]` (no iron) -- BANANA (3) and WOOD (5) are always on the
+        slice, but `training_cost` never writes them (engine.rs:517-520), so
+        the check `inv[i] < cost[i]` is `inv[i] < 0` and the deduction is
+        `-= 0`.  A zero BANANA/WOOD inventory must not block a TRAIN and must
+        not be reduced by one."""
+        ref = train_referee(inventory=[9, 9, 9, 0, 0, 0])
+        ref.apply("TRAIN 1 1 0 1")
+        self.assertEqual(len(ref.own_unit_ids()), 2)
+        self.assertEqual((ref.inv[3], ref.inv[5]), (0, 0))
 
     def test_turn_timing_train_resolves_after_moves_before_drops(self):
         # engine step order ... MOVE, HARVEST, PLANT, CHOP, PICK, TRAIN,
