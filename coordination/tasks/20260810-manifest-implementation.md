@@ -1,0 +1,100 @@
+# 20260810-manifest-implementation: make the bot's intentions legible — four items, allocated
+
+- Status: open — owner-directed 2026-08-10
+- Record owner / integrator: local_claude_1
+- Manifest: `docs/MANIFEST-score-transparency-2026-08-09.md` (annotated with its own corrections)
+- Reviews that shaped this: `chatgpt_1` `20260809T183000Z`, `claude_1` `20260809T223000Z`
+- Base commit: 3b6d6405b6d1
+
+## What the reviews changed before we start
+
+Both peers independently corrected the manifest's premise, and the plan reflects the corrected
+version, not the original:
+
+- **The bot is not "weights on actions."** It is a pipeline — mode selection, candidate
+  generation and filtering, scoring, pair compatibility, forced replacement, post-selection
+  movement rewriting, commitment updates. **Weights are roughly a third of the decision.** A
+  static intention→number table would document that third and leave the eligibility and
+  planner/resolver opacity that caused the oscillation misdiagnoses. **The static bridge is
+  therefore demoted, not deliverable one.**
+- **Deliverable one is the Decision Packet** (`chatgpt_1`'s proposal, adopted).
+- **Point 6's audit is a static-analysis problem, not a reading problem.** Both of the
+  coordinator's worked examples were refuted: the chop maximum is 2400 not 3900 (`turns >= 2`
+  always; the `.max(1)` is dead), and the band is not caller-set (one call site each, literals
+  `6_100.0` / `6_000.0`). Both errors came from reading the right file and reasoning wrongly —
+  treating a written bound as attainable, and inferring variability from a parameter's existence.
+  **Neither would have been prevented by a bridge.** What would: reachable ranges and call-graph
+  facts. That is now a required capability, not a nice-to-have.
+
+## Sequencing — do not disturb the critical path
+
+`20260809-referee-train-repair` r2 is delivered and awaiting `chatgpt_1`'s acceptance review. The
+panel is `GATE_UNREADY` until that lands, and **it outranks everything here.** No item below may
+delay it.
+
+## Items
+
+### M1 — Decision Packet — *deliverable one*
+
+One code-generated, versioned packet explaining a single turn's decision. Per `chatgpt_1`'s
+specification it must expose: modes and candidate generators entered; **every candidate and its
+exclusion reason**; intent, semantic target, predicted landing, priority class and score terms;
+pair compatibility and stock-rejection reasons; the selected pair and its alternatives; the
+command **before and after** resolver rewriting with a typed reason; and realised execution where
+an accepted referee exists.
+
+**Added requirement, from the coordinator's own refuted examples:** each score term must carry
+its **attainable range** given real input bounds, not merely its value. A packet that had shown
+`turns ∈ [2, ∞)` would have prevented the 3900 error outright.
+
+- **Spec: `chatgpt_1`** — it proposed the packet and this needs no execution. **Start only after
+  the TRAIN r2 review is delivered.**
+- **Implement: `claude_1`** — execution, and it owns the pipeline.
+- **Review: `local_claude_1`** (execution) and `chatgpt_1` (conformance to its own spec).
+
+### M2 — Ratify the score-hierarchy audit
+
+`claude_1` has already produced it: 10 boundary crossings (8 measured end-to-end), 3 hierarchy
+inversions, 3 pieces of dead scoring code, a two-tier structure banded above `6_000` and
+unbanded below, and a largest crossing that is **temporal** — conversion priced `<= 187.5` on
+turn 250 and `7_000` on turn 251.
+
+This item is **review and ratification, not new analysis**. Required: `chatgpt_1` adversarially
+reviews it; the coordinator re-verifies a sample by execution; and the **method** is written down
+so the audit is repeatable when the code changes — otherwise it rots exactly like D-6's design
+document did.
+
+- **Author: `claude_1` (done).** **Review: `chatgpt_1` + `local_claude_1`.**
+
+### M3a — Freeze the oscillation situation library
+
+Turn the **34 episodes across 32 games** into inspectable, replayable situations: map, seat,
+unit, turn range, the two cells, the full state at entry, and what the blocking peer was doing.
+Mechanical and independent of everything else.
+
+- **Owner: `claude_1`.** Can start immediately. **Review: `local_claude_1`.**
+
+### M3b — Independent adjudication *(blocked on M1 and M3a)*
+
+For each frozen situation, decide **independently what the best action would have been**, then
+compare with what the combined score actually chose and why.
+
+This is the manifest's most valuable item and the one we have never attempted: it asks whether a
+decision was **correct**, where every check we own today asks only whether it **oscillated**.
+
+- **Owner: split — `chatgpt_1` adjudicates, `claude_1` supplies packets.** The adjudicator must
+  **not** be the agent that built the packet generator, or we are grading our own homework.
+
+## Boundaries
+
+Tooling and analysis only. **No bot, candidate, detector predicate, gate, host value protocol,
+TestSession, submission, or Arena action.** The resident stays `fff6669b`; the candidate stays
+`98628e98`. Any change to `trace_detectors.py` or the acceptance gate is out of scope here and
+belongs to Phase 1.
+
+## Why this ordering
+
+The oscillation exercise produced its decisive finding because one agent measured what the
+*blocking* troll was doing — a question the brief never asked. That was luck arising from
+independence. **M1 exists to make that kind of finding routine rather than lucky**, and M3b is
+the first thing that consumes it.
