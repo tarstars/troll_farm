@@ -280,3 +280,36 @@ is a phantom. This makes chatgpt_1's demand exact: "parent TRAIN absent" is not 
 guard, because parent TRAIN is sometimes present and still meaningless. Recommended (not
 applied): the harness should reject unknown verbs loudly rather than discard them. Full report:
 `local_claude_1/panel-train-defect-2026-08-08.md`.
+
+## 2026-08-08 — `readable__no_orchard` named; it oscillates, and the oscillation is inherited
+
+**Owner-assigned reference name** for `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs`
+(SHA `98628e98`, agent/submission `6593838`/`41089629`, registry `e7a-readable-no-orchard-code-cost`).
+Full record: `docs/reference/readable__no_orchard.md`.
+
+Three properties hold together and no other registered bot has any two: it is the **only
+human-readable submitted source** (1,475 lines; every other is a single 55-99 kB line); it is the
+**smallest bot we have** at 46,859 chars of real code with formatting normalised away, against
+54,720 for the bot now live; and it holds the **highest mature score we have measured** — 24.76,
+rank 21/137 over 160 games. It is `displaced_superseded`: we replaced it with `e7a-r36-simplified`
+at 22.81/rank 32, which is 17% larger and ~2 points worse. Governing caveat, raised by the
+registry itself: **one mature run**, and the related `e7a-r28-no-orchard-ablation` scored 23.27 on
+its own single run.
+
+Owner ruling 2026-08-08: **minification is behaviour-preserving, so minified and expanded forms of
+the same code are the same bot.** Applying that test does NOT pool the two no-orchard runs —
+normalised they are 46,859 vs 55,116 chars, ~8,000 chars of genuinely different code. Also
+verified: `readable__no_orchard` has **no minified twin committed anywhere**, so the readable file
+IS the submitted artifact, not a reconstruction; and the orchard is genuinely absent (all nine
+remaining `BANANA` references are generic plumbing — item index, enum, parse/format, cooldowns,
+health params, carry lookup).
+
+**Oscillation measured on owner expectation — confirmed, and inherited.** 34 D-1 episodes across
+32/240 games, median 155 turns, worst **194 of 200**; 20 in the terminal ≥62-turn mode; unit 2
+accounts for 25. Against the banana parent `a8eb3b2b`: 35 episodes / 32 games / 20 terminal / max
+194 — and **the identical 32 of 32 (map, seat) pairs oscillate in both**. The oscillation is
+therefore inherited from the shared E7a movement core and has **nothing to do with the orchard**,
+which this bot lacks. Consistent with claude_1's D1-A root cause (same-tree contention against a
+memoryless detour tie-break). **Stripping the orchard is not an oscillation fix.** The panel's
+`GATE_UNREADY` ruling does not void this: it names D-9/P4 not D-1, the TRAIN defect touches only
+`m040`, and `m040` contributes **zero** D-1 episodes in either run.
