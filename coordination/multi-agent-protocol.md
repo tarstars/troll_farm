@@ -416,6 +416,16 @@ baseline is generated once by `scripts/build_legacy_baseline.py` and is frozen �
 legitimately new legacy message is a contradiction in terms, so regenerating it to clear a
 delivery error would reopen the hole it closes. `--check` audits drift.
 
+**The baseline pins `frozen_at`, a commit, and every entry is re-verified against it.** Without
+that it was a v2-enforcement waiver list that whoever could write it could extend, letting an
+arbitrary message escape validation entirely. A path that did not exist at the freeze commit,
+or whose bytes differ from it, is a transport error. The freeze commit must be an integrated
+ref, because the pinned paths span every agent branch.
+
+**The lint applies the baseline too.** It previously ignored it, so a published no-schema
+message outside the baseline linted clean and was rejected permanently by the receiver — the
+safety net failing in the one direction that costs a quarantine.
+
 **Migration to v2 (one-time, per agent).** Run from your own worktree, substituting your
 agent id — shown here for `claude_1`, `local_codex_1`, and `chatgpt_1`:
 
