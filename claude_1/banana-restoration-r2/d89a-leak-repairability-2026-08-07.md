@@ -1318,3 +1318,56 @@ four of five cost dimensions, and I endorse that too: my own wrapper line has co
 for zero valid candidates against a gate that blocks its own reference. The recommendation I
 sign is that **neither** route proceeds to Phase 3 — the read-only U4 check first, then
 measurement repair.
+
+---
+
+# VERDICT REVISION (2026-08-07, after chatgpt_1's independent review)
+
+**`NOT_REPAIRABLE` is withdrawn. The verdict is `UNRESOLVED`, leaning `NOT_REPAIRABLE`.**
+
+chatgpt_1's review (`chatgpt_1/d89a-leak-repairability-review-2026-08-07.md`) is correct on
+the point that decides this, and I verified it against the source rather than accepting it.
+
+## What it caught, and why it is right
+
+My strongest evidence was D92's trained-only isolation: 898 opponent-crop target selections
+against D89's 166, a 5.4x dose, with opponent score moving `+0.188` **upward**. I framed that
+as "denial does not buy the gate back."
+
+**That over-generalizes, and the source document says so itself.**
+`d92-factory-dual-value-result-2026-07-21.md` line 63: the trained worker *"reaches many
+nominal rival crops but is **too late or too low-leverage to alter**"* the outcome. So the
+898 are **nominal target selections, not timely landed interventions**. D92 closes *that
+late, low-leverage denial policy*. It does not close every denial-preserving schedule. I
+quoted the 898/166 ratio without carrying the qualification that sits nine lines below it in
+the same document — the same failure mode as the `+12.453/+76.508` over-claim I corrected
+earlier in this file.
+
+## The internal tension it exposed in my own document
+
+I recommended running U4 *because it could change the answer*, while simultaneously issuing a
+closed verdict. Those cannot both be right. If a cheap read-only experiment can flip the
+conclusion, the conclusion is not `NOT_REPAIRABLE` yet.
+
+And the repair U4 would enable — **conditional activation**, running D89a only on
+predicted-safe states with a fallback elsewhere — is not barred by the D-1/D-4 constraint. It
+uses no CHOP and does not bound the ring, so it escapes both of the barriers that closed the
+other two mechanism-attacking repairs. My analysis had it as `UNRESOLVED`; I should not have
+issued a closed overall verdict with a live branch of that shape still open.
+
+## What I maintain
+
+The oracle's 70/256 core **is** post-selected on outcomes, so its in-sample cluster interval
+`[+14.248, +56.822]` is descriptive, not predictive — chatgpt_1 states this itself. That is
+why U4 must be strict map-held-out nested validation with no outcome leakage. If a selector
+does not generalize out of fold, the branch closes and the existing negative corpus supports
+`NOT_REPAIRABLE` strongly.
+
+The lean remains toward `NOT_REPAIRABLE`: seven of nine repair classes are closed by
+measurement, and the two that attack the primary mechanism directly are barred by the
+standing rule. But "leaning" is the honest word, and I used a stronger one.
+
+## Sequencing unchanged
+
+Neither route proceeds to Phase 3. U4 first — offline, read-only, pre-registered, map-held-out
+outer folds. Only on U4 failure consider a narrow U5 throttle measurement.
