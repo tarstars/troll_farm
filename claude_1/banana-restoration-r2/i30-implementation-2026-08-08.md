@@ -5,9 +5,96 @@ Author: `claude_1`
 Execution reviewer: `local_claude_1` (assigned; **this report is not a gate verdict**)
 Task: `20260808-phase1-work-allocation`, item 6
 Branch: `agent/claude_1-banana-restoration-r2`
+**Result schema version: 2** (revision 2, see §0)
 
-Authoritative specification: `chatgpt_1/schedule-opponent-production-invariant-spec-2026-08-08.md`
-on `origin/agent/chatgpt_1`. Everything below is subordinate to that document.
+Authoritative documents, in order of precedence:
+
+1. `chatgpt_1/i30-d1-d5-spec-ruling-2026-08-08.md` on `origin/agent/chatgpt_1` —
+   the spec author's ruling on D1 and D5. **Where the ruling and the specification
+   differ, the ruling governs**, and every such place is named in §0.
+2. `chatgpt_1/schedule-opponent-production-invariant-spec-2026-08-08.md` on the same
+   branch — the original I-30 specification.
+
+Everything below is subordinate to those two documents.
+
+---
+
+## 0. Revision 2 — what the ruling changed
+
+The first implementation (commit `80b77f70`) was ruled **`REVISION_REQUIRED`**. Both
+findings are now implemented, test-first. The schema is versioned so that neither
+change can be read into an older artifact:
+
+| schema version | meaning |
+|---|---|
+| 1 | gross-only `DEP_*` as the spec wrote it, and then the first revision's silent redefinition of `DEP_*` as net — rejected by the ruling |
+| **2** | gross deposits, bank withdrawals and net bank flow separately named; identity on net; non-identifiable attribution fails closed as `unknown` |
+
+### D1 — accepted as a spec correction; schema revised
+
+The ruling accepted that withdrawals must appear in the exact accounting, and rejected
+the way the first revision did it. Implemented:
+
+| ruling requirement | where |
+|---|---|
+| keep `dep_*` / `gdep_*` **gross** | `RunLedger.to_json`; `dep_<c> == gdep_<c>` and both are gross, as the spec's frozen term always meant |
+| explicit `wdr_*` and `net_bank_flow_*` fields | `RunLedger.to_json`, `RunLedger.net_bank_flow` |
+| net semantics machine-visible in the paired names | `d_direct_net`, `d_schedule_net`, `d_unknown_net`, `schedule_windfall_net`; the unqualified names are **removed**, not aliased, and the schema version is bumped |
+| identity on net bank flow | `analyze_pair`: `D_OPP = D_DIRECT_NET + D_SCHEDULE_NET + D_UNKNOWN_NET − D_TRAIN`; `RunLedger.residual` uses `net_bank_flow_total` |
+| gross production a mandatory separate diagnostic | `d_direct_gross`, `d_production_gross`, `d_unknown_gross`, `d_gdep_<c>`, `d_wdr_<c>`, `d_nbf_<c>` |
+| every bound metric name states gross or net | `SUPPORTED_METRICS` + `metric_is_ambiguous`; `mean_schedule_windfall` now yields `bound_metric_ambiguous_gross_or_net` → `GATE_UNREADY` |
+| a fixture where gross production rises and an equal withdrawal leaves score flat | `fixture_d1_gross_production_with_offsetting_withdrawal`: `d_production_gross = +1`, `d_schedule_net = 0`, `d_opp = 0` |
+| `D_UNKNOWN_NET == 0` is not sufficient evidence | the provenance gate also fires on gross unknown mass and on any untagged atom; `fixture_a6_cancelling_unknown_flow` is the bite-test |
+
+`dep_total`, which meant *net* in schema 1, is deleted. `gdep_total`, `wdr_total` and
+`net_bank_flow_total` replace it.
+
+### D5 — shadow ledger permitted, but ambiguity must fail closed
+
+The ruling confirmed that a deterministic shadow ledger is allowed by §5.1 and that
+engine instrumentation was never mandatory, so **D5 as a "shadow ledger vs referee
+ledger" deviation is withdrawn**. What replaced it is a harder requirement: every
+attribution must be *uniquely derivable*, or become `unknown` and force
+`GATE_UNREADY`.
+
+The tie-break is gone as a correctness mechanism. Three named predicates in
+`i30_ledger.py` each answer only *"is this uniquely determined by the recorded
+state?"* — never *"which shall I pick?"*:
+
+| predicate | the ambiguity it refuses to resolve |
+|---|---|
+| `split_is_identifiable(lo, hi)` | more than one feasible (deposit, withdrawal) allocation for one resource in one turn |
+| `partial_take_is_identifiable(atoms, n)` | a partial take from a mixed-class multiset — the old FIFO order |
+| `assignment_is_identifiable(total, capacity, contributors)` | which of several units' cargo actually crossed the threshold — the old unit-id order |
+
+When any of them says "no", **every atom that could have moved** — bank side and carry
+side — is relabelled `unknown`, an `AMBIGUITY` event is emitted, `RunLedger.identifiable`
+becomes false and the pair is `GATE_UNREADY` for `non_identifiable_attribution`. FIFO
+and unit-id order now only *sequence* a take that is already identifiable.
+
+Two deliberate non-triggers, because a rule that fires everywhere is useless rather
+than safe:
+
+- an **infeasible** allocation set (no allocation explains the observation) is not an
+  ambiguity: nothing is relabelled and the conservation residual reports it. This keeps
+  bite-tests 12 and 13 orthogonal.
+- a successful own `PLANT` explains its seed exactly, so the seed decrease is excluded
+  from bank-flow candidates. `fixture_a7_seed_and_deposit_at_one_bank_cell` is the
+  control, and mutation `M11` proves it is load-bearing.
+
+### R4 of the previous report is retracted
+
+The previous §6 R4 said that a simultaneous deposit/withdrawal split "can misattribute a
+class, but the net is still exact, so the identity and the residual remain correct. Not
+exercised by any fixture." The ruling correctly called that a blocking defect. It is now
+both exercised and closed: `fixture_a1_same_turn_deposit_withdrawal` reproduces exactly
+that case, and it is `unknown` + `GATE_UNREADY`.
+
+### Deviations D2–D4 are **not** settled
+
+The ruling was explicitly limited to D1 and D5 and said the other deviations are "not
+accepted by silence". Nothing in this revision relies on them being accepted. They are
+restated unchanged in §6 and listed again in §8 as open.
 
 ---
 
@@ -15,11 +102,13 @@ on `origin/agent/chatgpt_1`. Everything below is subordinate to that document.
 
 | item | result |
 |---|---|
-| mandated bite-tests (spec §10) | **15 of 15 implemented, 15 of 15 passing** |
-| test methods in the module | 23 (22 for the fifteen + 1 supplementary, §7) |
-| conservation identity on fixtures | holds **exactly** on all 12 valid fixtures; violated only by bite-tests 12 and 13, which are built to violate it, and both are `GATE_UNREADY` |
+| mandated bite-tests (spec §10) | **15 of 15 implemented, 15 of 15 passing**, values unchanged from revision 1 — only field names moved |
+| ruling fixtures (D1 + D5) | 9 added: `a1`, `a2`, `a2b`, `a3` (×2 variants), `a4`, `a5` (×2 modes), `a6`, `a7`, `d1` |
+| test methods in the module | **48, all passing** (23 from revision 1 + 25 for the ruling) |
+| mutation controls | **23 of 23 mutations caught**, `i30/mutation-sweep-r2-2026-08-08.txt` |
+| fixture corpus | 25 pairs, aggregate `GATE_UNREADY`, statuses `{NOT_APPLICABLE, FAIL, GATE_UNREADY}` |
 | statuses implemented | `NOT_APPLICABLE`, `UNPROVEN`, `GATE_UNREADY`, `PASS`, `FAIL`, plus the diagnostic sub-status `MEASURED_UNTHRESHOLDED` |
-| `PASS` reachable in this repo? | **no** — no owner-frozen bound exists, so every active fixture is `FAIL` or `GATE_UNREADY`; the aggregate is `GATE_UNREADY` |
+| `PASS` reachable in this repo? | **no** — no bound anywhere carries `provenance == "owner_frozen"`, so every active fixture is `FAIL` or `GATE_UNREADY` and the aggregate is `GATE_UNREADY` |
 | pre-existing suites | `test_trace_detectors` 28 OK; `test_fuzz_panel` + `test_pre_review` 53 OK |
 
 No numerical candidate threshold is proposed, implied or presented as owner-approved
@@ -29,7 +118,7 @@ anywhere in this work.
 
 ## 2. What was implemented
 
-Three new modules plus one test module, all under `claude_1/banana-restoration-r2/`.
+Three modules plus one test module, all under `claude_1/banana-restoration-r2/`.
 Nothing outside that directory was modified. No bot, candidate, parent, detector,
 gate, host game, value protocol, TestSession, submission, restore or Arena file was
 touched; `trace_detectors.py`, `fuzz_panel.py`, every `.min.rs` and everything under
@@ -42,14 +131,20 @@ the **real** production parser (`trace_detectors.TraceParser` / `CommandParser`)
 reconstructs the opponent's score-bearing flow by exact state differencing:
 
 - **asset provenance registry** (§5.2): map-seeded plants are `natural`; a new plant's
-  creator is the player occupying its cell in the post-state; mixed occupancy is
-  `unknown` and is never guessed;
+  creator is the sole player occupying its cell in the post-state; absent or mixed
+  occupancy is `unknown` and is never guessed;
 - **atom carry** with `resource_kind`, `source_event_id`, `source_asset_id`,
-  `source_class`, `source_creator`, `acquired_turn`, `acquired_verb` (§5.1), consumed
-  FIFO;
+  `source_class`, `source_creator`, `acquired_turn`, `acquired_verb` (§5.1), held as a
+  multiset;
 - **deposits / withdrawals / losses / seed consumption / TRAIN bills** (§5.3);
-- aggregates `DEP_OURS`, `DEP_OPP`, `DEP_NATURAL`, `DEP_UNKNOWN`, `TRAIN_SPEND`,
-  terminal score, terminal turn, plus the §6 diagnostics (first productive turn,
+- **identifiability predicates** (ruling D5): `split_is_identifiable`,
+  `partial_take_is_identifiable`, `assignment_is_identifiable`. Where any of them says
+  the allocation is not uniquely derivable, every atom that could have moved is
+  relabelled `unknown`, an `AMBIGUITY` event is emitted and `identifiable` goes false;
+- aggregates, per source class and separately named (ruling D1): `GDEP_c` (gross
+  deposits, also emitted under the spec's frozen name `dep_c`), `WDR_c` (bank
+  withdrawals) and `NBF_c = GDEP_c − WDR_c` (net bank flow), plus `TRAIN_SPEND`,
+  terminal score, terminal turn and the §6 diagnostics (first productive turn,
   productive-turn count, opponent live assets, direct interactions with our assets).
 
 Engine rules were re-derived from source rather than assumed
@@ -75,19 +170,24 @@ per-pair + aggregate JSON.
 Fail-closed order — **instrument gates are evaluated before any bound is consulted**:
 
 1. pair identity invalid or incomplete → `GATE_UNREADY` (`pair_identity`)
-2. `D_UNKNOWN != 0`, or any untagged atom in either run → `GATE_UNREADY`
-   (`unknown_provenance`)
-3. pair residual `!= 0`, or either per-run residual `!= 0` → `GATE_UNREADY`
+2. `D_UNKNOWN_NET != 0`, **or** `D_UNKNOWN_GROSS != 0`, **or** any untagged atom in
+   either run → `GATE_UNREADY` (`unknown_provenance`). The gross clause is what stops
+   cancelling unknown deposits and withdrawals from passing as clean.
+3. either run not `identifiable` → `GATE_UNREADY` (`non_identifiable_attribution`)
+4. pair residual `!= 0`, or either per-run residual `!= 0` → `GATE_UNREADY`
    (`conservation_residual`)
-4. not `banana_active` → `UNPROVEN` if a Banana mechanism is claimed, else
+5. not `banana_active` → `UNPROVEN` if a Banana mechanism is claimed, else
    `NOT_APPLICABLE`
-5. no bound → `GATE_UNREADY` + `MEASURED_UNTHRESHOLDED` (`absent_bound`)
-6. bound malformed / hash-pin mismatch / unsupported metric or operator →
-   `GATE_UNREADY` + `MEASURED_UNTHRESHOLDED`
-7. bound exceeded → `FAIL`
-8. bound satisfied **and** `provenance == "owner_frozen"` → `PASS`
-9. bound satisfied but not owner-frozen → `GATE_UNREADY` + `MEASURED_UNTHRESHOLDED`
-   (`bound_not_owner_frozen`)
+6. no bound → `GATE_UNREADY` + `MEASURED_UNTHRESHOLDED` (`absent_bound`)
+7. bound malformed / hash-pin mismatch / unsupported operator / metric name that does
+   not state gross or net → `GATE_UNREADY` + `MEASURED_UNTHRESHOLDED`
+8. bound exceeded → `FAIL`
+9. bound satisfied **and** `provenance == "owner_frozen"` → `PASS`
+10. bound satisfied but not owner-frozen → `GATE_UNREADY` + `MEASURED_UNTHRESHOLDED`
+    (`bound_not_owner_frozen`)
+
+No such owner-frozen bound exists anywhere in this repo, so step 9 has never been
+reached and `PASS` is unreachable by construction here.
 
 Raw values are preserved in the output at every status, including `GATE_UNREADY`
 (§8). A pair identity mismatch sets `counted_in_denominator: true` and is never
@@ -98,9 +198,13 @@ silently dropped (§3).
 Real 11×9 map, real stdin-protocol transcripts, real command streams. Nothing here is a
 bot, candidate, parent, submission or Arena artifact.
 
-### `test_i30_invariant.py` — the fifteen bite-tests
+### `test_i30_invariant.py` — the fifteen bite-tests plus the ruling's fixtures
 
-All assertions are on exact integers, not on "nonzero" statuses (§10 closing sentence).
+48 tests. All assertions are on exact integers, not on "nonzero" statuses (§10 closing
+sentence). The revision-2 classes are `TestD1SchemaSeparatesGrossWithdrawalAndNet`,
+`TestD1BoundMetricNamesStateGrossOrNet`,
+`TestD5FailsClosedOnNonIdentifiableAttribution`,
+`TestD5MutationRevertedTieBreakIsCaught` and `TestNoPassWithoutAnOwnerFrozenBound`.
 
 ---
 
@@ -110,52 +214,85 @@ All assertions are on exact integers, not on "nonzero" statuses (§10 closing se
 git checkout agent/claude_1-banana-restoration-r2
 cd claude_1/banana-restoration-r2
 
-# the fifteen bite-tests (+1 supplementary): 23 tests, OK
+# the fifteen bite-tests + the ruling's fixtures: 48 tests, OK
 python3 -m unittest test_i30_invariant -v
 
-# regenerate the per-pair + aggregate JSON artifact (byte-deterministic)
-python3 i30_analyzer.py --report i30/i30-fixture-results-2026-08-08.json
+# regenerate the per-pair + aggregate JSON artifact (byte-deterministic,
+# 25 pairs, aggregate GATE_UNREADY)
+python3 i30_analyzer.py --report i30/i30-fixture-results-r2-2026-08-08.json
 
 # pre-existing suites, unchanged
 python3 -m unittest test_trace_detectors                       # 28 tests, OK
 cd ../pipeline && python3 -m unittest test_fuzz_panel test_pre_review   # 53 tests, OK
 ```
 
-Host: `python3` 3.12.3, standard library only, no pytest, no network, no credentials.
-The analyzer is deterministic: re-running the CLI produces a byte-identical JSON.
+Host: `python3` 3.12.3, standard library only, **no pytest**, no network, no
+credentials. The analyzer is deterministic: re-running the CLI produces a
+byte-identical JSON (verified by `diff`).
 
-Recorded RED state: commit `61e30e20`, evidence file
-`i30/red-evidence-2026-08-08.txt` — `Ran 22 tests`, `FAILED (errors=22)`, 44
-`NotImplementedError` frames. Every RED failure was "the ledger/analyzer is missing",
-confirmed not to be an import typo by parsing a fixture transcript through the real
-parser at that commit (`T=4`, tent `(4,3)`, opponent shack `(8,6)`, zero parser notes).
-GREEN is commit `0edb66e0`.
+The mutation sweep of §7 is reproduced by copying the four modules to a scratch
+directory, applying one textual mutation, and re-running `python3 -m unittest
+test_i30_invariant` against the copy. The working tree is never mutated. The exact
+mutation list and its output are in `i30/mutation-sweep-r2-2026-08-08.txt`.
+
+### Recorded RED states
+
+| revision | RED commit | recorded failure | GREEN commit |
+|---|---|---|---|
+| 1 | `61e30e20` | `Ran 22 tests`, `FAILED (errors=22)`, 44 `NotImplementedError` frames — `i30/red-evidence-2026-08-08.txt` | `0edb66e0` |
+| 2 | `ae352521` | `Ran 44 tests`, `FAILED (failures=12, errors=8)` — `i30/red-evidence-r2-2026-08-08.txt` | `5891946d` |
+
+Revision 2's RED failures are behavioural, not import errors: at the RED commit every
+adversarial fixture parses and runs through the real parser and the shadow ledger, and
+the evidence file records the old tie-break's actual answers — `a1` banking one `ours`
+atom and withdrawing one `natural` atom with residual `0` and no unready reason, and
+`a3` moving one unit of mass between `D_DIRECT` and `D_SCHEDULE` (and flipping between
+`FAIL` and not-`FAIL`) purely on acquisition order. The failures are `KeyError` on the
+schema fields the ruling requires and assertion failures where the tie-break attributed
+instead of emitting `unknown`.
 
 ---
 
 ## 4. Input SHA-256
 
-Specification (identical blob at the handoff's declared `artifact_commit`
-`cad16c4decf2eea72a8fc861725d9e3bd50502ad` and at branch head
-`beebff2dc70bb7a742d1e6cb6a94e59bb8873d89`; git blob
-`638e4ca906d09e2128a9de00276a2f125a931d43`):
+Governing inputs, both read from `origin/agent/chatgpt_1` at
+`da115812a274cc103cdaf2d8d3ca11695556ebea`:
 
 ```
+4439b38b7d645aedca36e347387976032331184e582986e38b25985ae641ef5e  chatgpt_1/i30-d1-d5-spec-ruling-2026-08-08.md
 beb34389593c3c8d5690a577f6c528b9b3c3488549f9c6d4902cf7679c45199d  chatgpt_1/schedule-opponent-production-invariant-spec-2026-08-08.md
 ```
 
-New artifacts:
+The specification blob is unchanged from revision 1 (identical at the handoff's declared
+`artifact_commit` `cad16c4decf2eea72a8fc861725d9e3bd50502ad`, at
+`beebff2dc70bb7a742d1e6cb6a94e59bb8873d89`, and now; git blob
+`638e4ca906d09e2128a9de00276a2f125a931d43`).
+
+Revision 2 artifacts (at GREEN commit `5891946d`):
 
 ```
-b393d639f28494191e9162b6d42966f2854aaa01d1c038a867b8cdd5509f74b5  i30_ledger.py
-e94882319a9172e20df936167ac1583927f9e40768ec73c493ffd012397b37eb  i30_analyzer.py
-a34f229252ded664158f181e32c493ed539cb550dc68bdd2f153d3a25744e974  i30_fixtures.py
-0bd29b0cd1e6da6570f1282325034af4d5dfb5f995ceb08b9b7d526edf01ab44  test_i30_invariant.py
+402f3700c1953b0b91ad25ccb431825253a97fa56be7d5852c217cc914706d6b  i30_ledger.py
+cf75551bf21c3bea8d6e6068f2ffb2507ba86b218ff8af4da932b06f768b5bc2  i30_analyzer.py
+3278d1be573bf1e8a2edea09faa8a29e7127dd2975c6f13d4c70b2ce7a99a189  i30_fixtures.py
+72095adf4c0fee42da3b149e4c62dd1778809443d36c94e2ea08a51b362e4ca8  test_i30_invariant.py
+42dd8e4dfe3a8474ae50044c59ffeeb89d72214324e6e37a906bd8ff0cfc596c  i30/i30-fixture-results-r2-2026-08-08.json
+63627423834f05f3a10e27d9861f762f919abb06af6658f8d3ad725084badb98  i30/red-evidence-r2-2026-08-08.txt
+acac624d8bdc882991943811f3e7d47b1dde48ed21194d12abe9a5f7b52f8e0a  i30/mutation-sweep-r2-2026-08-08.txt
+```
+
+Revision 1 artifacts, superseded but retained:
+
+```
+b393d639f28494191e9162b6d42966f2854aaa01d1c038a867b8cdd5509f74b5  i30_ledger.py            (rev 1)
+e94882319a9172e20df936167ac1583927f9e40768ec73c493ffd012397b37eb  i30_analyzer.py          (rev 1)
+a34f229252ded664158f181e32c493ed539cb550dc68bdd2f153d3a25744e974  i30_fixtures.py          (rev 1)
+0bd29b0cd1e6da6570f1282325034af4d5dfb5f995ceb08b9b7d526edf01ab44  test_i30_invariant.py    (rev 1)
 054ffea23486370e7c35b9fc3b1346e941fbb0939e292e0374600d63e7e29086  i30/i30-fixture-results-2026-08-08.json
 c37b4bc2c94b2c9576ddf9bbccc74c2985bc926b994b25aa1ee20bfa8389a668  i30/red-evidence-2026-08-08.txt
 ```
 
-Read-only inputs (unmodified):
+Read-only inputs (byte-unchanged by this revision — `trace_detectors.py` still hashes
+to the value recorded in revision 1):
 
 ```
 59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209  trace_detectors.py
@@ -173,6 +310,15 @@ arithmetic and **must not be cited as a threshold**.
 ---
 
 ## 5. Bite-test → spec section map, with measured values
+
+Every measured value below is unchanged by revision 2. Under schema 1 the paired terms
+were named `D_DIRECT` / `D_SCHEDULE` / `SCHEDULE_WINDFALL` and were *already* net of
+withdrawals; schema 2 renames them `D_DIRECT_NET` / `D_SCHEDULE_NET` /
+`SCHEDULE_WINDFALL_NET` and adds the gross diagnostics beside them. **No expected value
+in the fifteen changed** — read `D_DIRECT` below as `D_DIRECT_NET`, and so on. The one
+assertion that moved is bite-test 7's, from `dep_total` (which meant net) to
+`gdep_total`; its value, "gross deposits are equal", is what §10 clause 7 asked for in
+the first place.
 
 | # | spec §10 clause | spec sections exercised | test class | measured |
 |---|---|---|---|---|
@@ -196,12 +342,34 @@ Bite-tests 12 and 13 are deliberately **orthogonal**: 12 has residual `0` so onl
 provenance gate can fire, and 13 has `D_UNKNOWN = 0` so only the conservation gate can
 fire. Neither can pass by accident on the other's check.
 
-Bite-test 15 detail: `SCHEDULE_WINDFALL` is computed by the module-level
-`compute_schedule_windfall`, whereas the conservation residual is computed from the
+Bite-test 15 detail: `SCHEDULE_WINDFALL_NET` is computed by the module-level
+`compute_schedule_windfall_net`, whereas the conservation residual is computed from the
 ledger aggregates directly. Replacing that one function with `lambda …: 0` therefore
 leaves the residual at `0` and leaves D-6 at `0`, and the blind-spot fixture's own
 assertions are what break. The mutation is caught by the intended logic, not by a
 neighbouring check.
+
+### 5b. Ruling fixtures (revision 2), with measured values
+
+| fixture | ruling clause | measured | verdict |
+|---|---|---|---|
+| `a1_same_turn_deposit_withdrawal` | D5 "simultaneous same-resource deposit and withdrawal … zero net inventory change" | `gdep_unknown=1`, `wdr_unknown=1`, `net_bank_flow_unknown=0`, **`d_unknown_net=0`**, `unknown_atoms=2`, `residual=0`, `d_opp=0` | `GATE_UNREADY` (`non_identifiable_attribution` + `unknown_provenance`) |
+| `a2_multi_source_deposit` | D5 "two depositing units carrying different provenance classes while another unit withdraws" | `gdep_unknown=2`, `wdr_unknown=1`, `gdep_ours=0`, `gdep_natural=0`, `residual=0` | `GATE_UNREADY` |
+| `a2b_deposit_unit_assignment` | D5, unit-id tie-break | deposit count forced at `1`, depositor not: `gdep_unknown=1`, `gdep_ours=0`, `d_opp=+1`, `residual=0` | `GATE_UNREADY` |
+| `a3_class_swap` (`ours_first`, `opponent_first`) | D5 "two allocations with identical state deltas and residuals but different direct/schedule splits" — the indistinguishable-pair test | both variants: `gdep_unknown=1`, `gdep_ours=0`, `gdep_opponent=0`, `d_opp=+1`, `residual=0`, and **identical** `d_direct_net` / `d_schedule_net` / `d_direct_gross` / `d_production_gross` | `GATE_UNREADY` (both) |
+| `a4_dead_cell_acquisition` | D5 "acquisition after a long-dead asset occupied the same cell" | `gdep_natural=0`, `gdep_unknown=1`, `unknown_atoms=1`, `d_unknown_net=+1` | `GATE_UNREADY` (`unknown_provenance`) |
+| `a5_planter_occupancy` (`mixed`, `absent`) | D5 "absent or mixed planter occupancy" | both modes: `gdep_ours=0`, `gdep_opponent=0`, `gdep_unknown=1`, `d_unknown_net=+1` | `GATE_UNREADY` |
+| `a6_cancelling_unknown_flow` | D1 "`D_UNKNOWN_NET == 0` is not sufficient evidence" | `identifiable=True`, `gdep_unknown=1`, `wdr_unknown=1`, `d_unknown_net=0`, **`d_unknown_gross=1`**, `residual=0`, `d_opp=0` | `GATE_UNREADY` (`unknown_provenance` only) |
+| `a7_seed_and_deposit_at_one_bank_cell` | control against over-firing | `identifiable=True`, `plant_events=1`, `gdep_ours=1`, `unknown_atoms=0`, `d_direct_net=+1`, `residual=0` | not unknown, not unready for provenance |
+| `d1_gross_production_with_offsetting_withdrawal` | D1 change 5 | `gdep_opponent=1`, `wdr_opponent=1`, `net_bank_flow_opponent=0`; **`d_production_gross=+1` while `d_schedule_net=0` and `d_opp=0`** | not unknown; gross ≠ net proven |
+
+The `a3` pair is the ruling's "strongest bite-test": the two variants differ only in the
+order in which the opponent acquired two indistinguishable bananas, the ambiguous
+transition is byte-identical between them, and both `D_OPP` and the residual are the
+same. Under the old FIFO tie-break the two histories reported `d_direct_net = +1,
+d_schedule_net = 0` and `d_direct_net = 0, d_schedule_net = +1` respectively — one unit
+of mass moved between direct exploitation and schedule production with no signal at all.
+The shadow ledger now returns `unknown` for both rather than selecting either history.
 
 ---
 
@@ -211,15 +379,13 @@ The spec is authoritative. These are gaps it does not cover, or places I did som
 different. Each is labelled **RESOLUTION** (spec silent, I chose) or **DEVIATION**
 (spec says X, I did Y).
 
-**D1 — DEVIATION: `DEP_*` is net of bank withdrawals, not gross.**
-Spec §6 says all `DEP_*` are "gross". But `apply_pick` moves items *out* of the same
-inventory `recompute_scores` sums, so for any opponent that PICKs from its own tent the
-frozen identity `D_OPP = D_DIRECT + D_SCHEDULE + D_UNKNOWN - D_TRAIN + RESIDUAL` cannot
-close and every such pair would be permanently `GATE_UNREADY`. I therefore report
-`DEP_<class>` **net of same-class withdrawals**, and additionally expose
-`dep_<class>_gross` and `wdr_<class>` so nothing is hidden. No new term was added to
-the frozen identity. Bite-test 9 exercises this path. **If the spec author prefers
-gross, the identity in §6 needs an explicit withdrawal term.** Flagged for review.
+**D1 — RESOLVED BY RULING: withdrawals are a spec correction; the schema is now explicit.**
+Revision 1 reported `DEP_<class>` net of same-class withdrawals. The ruling accepted the
+correction in direction and rejected the schema: "redefining fields named `DEP_*` from
+gross deposits to net bank flow silently changes a frozen term." Schema 2 therefore has
+three separately named quantities per class — `gdep_*` (= `dep_*`, gross), `wdr_*`, and
+`net_bank_flow_*` — the identity runs on net, gross production is a mandatory separate
+diagnostic, and every bound metric name states which it is. Details in §0. **Closed.**
 
 **D2 — DEVIATION: an extra `provenance` field on the bound object.**
 The §11 illustrative schema has no field that distinguishes an owner-frozen bound from
@@ -243,14 +409,21 @@ D-6 = 0 specifically. The 29 invariants are not individually executable offline.
 Marked **UNRESOLVED**: whether nine detectors adequately stand in for 29 invariants is
 a judgement for `chatgpt_1` / `local_claude_1`, not for me.
 
-**D5 — DEVIATION: shadow ledger, not referee instrumentation.**
-§10 requires fixtures to run "through the real parser, referee ledger and analyzer".
-The real parser and the analyzer are used. There is no referee ledger: the offline
-corpus is transcripts, and instrumenting the engine is outside the stated boundary.
-Instead the ledger is a deterministic shadow referee that differences the recorded
-state, which the transcript fully supports (it carries both inventories, every plant
-and every unit's carry vector). **This is a genuine gap versus the spec's wording** and
-should be closed by a referee-side ledger if/when engine edits are in scope.
+**D5 — WITHDRAWN AND REPLACED BY THE RULING'S REQUIREMENT.**
+Revision 1 flagged "shadow ledger, not referee instrumentation" as a gap versus §10's
+wording. The ruling clarified that §5.1 already permits "the referee or a deterministic
+shadow ledger", that §10's phrase meant real game semantics rather than a hand-written
+arithmetic mock, and that **no engine mutation is required**. So this deviation is
+withdrawn.
+
+What the ruling required instead is stricter and is now implemented: a shadow ledger is
+acceptable "only when every attributed transition has a unique derivation from the
+recorded state". Where it does not, the affected atoms become `unknown` and the pair is
+`GATE_UNREADY`. The tie-break is removed as a correctness mechanism — see §0 and §5b.
+
+A referee-side event ledger remains the preferred later host implementation because it
+removes these observational equivalence classes outright rather than failing closed on
+them. That is a future engine-scope change, not a gap in this instrument.
 
 **R1 — RESOLUTION: initial bank stock and initial unit carry are `natural`.**
 The spec does not classify pre-existing stock. §5.2 says map-seeded things are
@@ -259,23 +432,41 @@ tagged `natural`. They are identical across an exact pair and cancel in every pa
 delta. The alternative — tagging them `unknown` — would make every pair
 `GATE_UNREADY` forever.
 
-**R2 — RESOLUTION: FIFO for indistinguishable atoms.**
-§5.1 permits multiset treatment and requires only counts by source class. Atoms of one
-resource are consumed in acquisition order. This matters only for partial consumption
-(a PLANT seed), since DROP always moves the whole carry vector.
+**R2 — REVISED: multiset takes, with FIFO demoted to sequencing only.**
+§5.1 permits multiset treatment and requires only counts by source class. A take of the
+whole multiset, or of a multiset whose atoms all share one class, is uniquely
+determined. A **partial** take from a mixed-class multiset is not: FIFO would merely be
+a tie-break. Revision 2 therefore relabels the whole multiset `unknown` in that case —
+both the atoms that left and the atoms that stayed, since neither is determined — and
+uses FIFO only to sequence an already-identifiable take. `fixture_a3_class_swap` is the
+bite-test; mutations `M2` and `M5` prove it bites.
 
-**R3 — RESOLUTION: a plant's creator is the post-state occupant of its cell.**
+**R3 — RESOLUTION: a plant's creator is the sole post-state occupant of its cell.**
 Mixed or absent occupancy → `unknown`, never inferred from proximity or ownership
 (§5.2 forbids guesswork). Consequence: a PLANT whose planter steps away in the same
-observed transition is unattributable. The supplementary fixture in §7 originally hit
-exactly this and was corrected rather than papered over.
+observed transition is unattributable. Revision 1 marked this "hardening on reasoning
+alone"; `fixture_a5_planter_occupancy` now exercises both the mixed and the absent case,
+and mutation `L11` confirms it bites.
 
-**R4 — RESOLUTION: deposit/withdrawal split within one turn.**
-Per resource per turn, `budget = inventory_delta + TRAIN_bill`; withdrawals and
-deposits are solved from the carry-decrease and carry-increase candidates. When both
-directions occur simultaneously for one resource the split can misattribute a *class*,
-but the *net* is still exact, so the identity and the residual remain correct. Not
-exercised by any fixture.
+**R4 — REVISED: deposit/withdrawal split within one turn (the defect the ruling named).**
+Per resource per turn, `budget = inventory_delta + TRAIN_bill`, and every feasible
+withdrawal count `w` satisfies `deposits = budget + w`, `0 ≤ w ≤ pick_cand`,
+`0 ≤ budget + w ≤ drop_cand`. Revision 1 picked one point of that interval and admitted
+it "can misattribute a class, while the net and conservation residual remain correct".
+The ruling correctly called that blocking, not diagnostic. Revision 2 counts the
+feasible points:
+
+- exactly one → identifiable, use it;
+- two or more → **not** identifiable: record an `AMBIGUITY` event, relabel every atom
+  that could have crossed the threshold (bank side and carry side) `unknown`, and make
+  the pair `GATE_UNREADY`;
+- **zero** → not an ambiguity at all but an unexplained observation: relabel nothing and
+  let the conservation residual report it, which is what keeps bite-tests 12 and 13
+  orthogonal.
+
+The same rule applies to *which unit's* cargo moved when several could have
+(`assignment_is_identifiable`). `fixture_a1`, `fixture_a2` and `fixture_a2b` are the
+bite-tests; mutations `M1`, `M3`, `M4` prove they bite.
 
 **R5 — RESOLUTION (important): TRAIN is derived independently, never as a remainder.**
 TRAIN bills come from opponent unit spawns plus the engine `training_cost` formula. It
@@ -296,47 +487,97 @@ Commands issued on the final recorded turn have no observed effect and are not s
 
 ## 7. Test-quality evidence: mutation sweep
 
-Bite-test 15 only proves that *one* mutation bites. I ran a wider sweep (each mutation
-applied to a scratch copy, then the whole module re-run) to check the fifteen actually
-constrain the implementation:
+A fixture that passes whether or not the fix is present proves nothing. Every mutation
+below is applied to a scratch copy of the four modules, which is then re-run in full.
+Verbatim output: `i30/mutation-sweep-r2-2026-08-08.txt`. **23 of 23 caught.**
 
-| mutation | caught? |
-|---|---|
-| `SCORE_WEIGHT` WOOD `4 → 1` | yes (after adding the §7 fixture — see below) |
-| CHOP wood inherits `natural` instead of the asset's class | yes |
-| opponent-created assets classified `natural` | yes (3 failures) |
-| drop the unknown-provenance gate | yes |
-| drop the conservation-residual gate | yes |
-| drop the pair-identity gate | yes |
-| allow `PASS` without owner freeze | yes |
-| remove bank-withdrawal netting (D1) | yes |
-| TRAIN bill not charged | yes |
-| `SCHEDULE_WINDFALL` drops the `- D_TRAIN` term | yes |
-| acquisition attributable to a long-dead plant | **no — see below** |
+### A — the revision-2 logic
 
-Two findings, both reported rather than hidden:
+| # | mutation | caught by |
+|---|---|---|
+| M1 | `split_is_identifiable` → always `True` (deposit/withdrawal tie-break restored) | `a1`, `a2` |
+| M2 | `partial_take_is_identifiable` → always `True` (FIFO tie-break restored) | `a3` |
+| M3 | `assignment_is_identifiable` → always `True` (unit-id tie-break restored) | `a2b` |
+| M4 | drop the `non_identifiable_attribution` gate from the analyzer | `a1`, `a2`, `a2b`, `a3` |
+| M5 | relabel only the taken atoms instead of the whole multiset | `a3` |
+| M6 | `dep_*` silently redefined as net again | D1 schema test |
+| M7 | per-run identity back on gross instead of net | bite-test 9 withdrawal test, `d1` |
+| M8 | unqualified bound metric name accepted again | bound-metric tests |
+| M9 | gross-unknown clause dropped from the provenance gate | `a6` |
+| M10 | schema version not bumped | schema-version test |
+| M11 | PLANT seed no longer excluded from bank-flow candidates | `a7`, plus the valid-fixture invariance test |
 
-1. **The fifteen mandated bite-tests never deposit WOOD.** The frozen `WOOD=4` weight
-   (§5.1) and the CHOP inheritance rule (§5.2) were therefore live but wholly
-   unexercised: flipping the WOOD weight to `1` passed all fifteen. I added **one
-   supplementary test** — `TestSupplementaryWoodChopCoverage`, explicitly *not* one of
-   the fifteen — in which the opponent fells one natural tree and one of ours and banks
-   both, giving `D_DIRECT=4`, `D_SCHEDULE=4`, `windfall=+4`, `D_OPP=+8`. Both mutations
-   above are now caught. The fifteen are otherwise untouched.
+M11 and M9 are the two that matter most for honesty about *this* revision: M11 shows the
+seed exclusion is load-bearing (without it the gate fires on a perfectly explained
+transition), and M9 shows the gross-unknown clause is not redundant with the
+identifiability gate — `a6` has no ambiguity at all and would otherwise pass.
 
-2. **One hardening is not covered by any test.** The registry is never pruned, so
-   consulting it alone would let a long-dead plant launder a later untagged atom. I
-   require the plant to have actually been present in the pre-state before attributing
-   an acquisition to it. No fixture exercises this, so it is hardening on reasoning
-   alone, not verified behaviour. Marked **UNRESOLVED** for the reviewer.
+Three of these mutations survived the first draft of the adversarial fixtures (M3, M9,
+M11) and one survived it for the wrong reason (M7, because no test asserted a per-run
+residual on a run that actually withdraws). The fixtures `a2b`, `a6` and `a7` and two
+extra assertions were added in response. That sequence is recorded here rather than
+presented as a clean first pass.
+
+### B — controls carried over from revision 1
+
+| # | mutation | caught? |
+|---|---|---|
+| L1 | `SCORE_WEIGHT` WOOD `4 → 1` | yes |
+| L2 | CHOP wood inherits `natural` instead of the asset's class | yes |
+| L3 | opponent-created assets classified `natural` | yes (5 failures) |
+| L4 | drop the unknown-provenance gate | yes |
+| L5 | drop the conservation-residual gate | yes |
+| L6 | drop the pair-identity gate | yes |
+| L7 | allow `PASS` without owner freeze | yes |
+| L8 | TRAIN bill not charged | yes |
+| L9 | `SCHEDULE_WINDFALL_NET` drops the `− D_TRAIN` term | yes |
+| L10 | a long-dead asset may launder a later atom | yes (was **UNRESOLVED** in revision 1; `a4` closes it) |
+| L11 | mixed planter occupancy resolved to `opponent` | yes (was hardening-by-reasoning; `a5` closes it) |
+| L12 | withdrawals ignored entirely (the pre-D1 gross-only identity) | yes (9 failures) |
+
+The revision-1 finding that **the fifteen mandated bite-tests never deposit WOOD** still
+stands: `TestSupplementaryWoodChopCoverage` (explicitly *not* one of the fifteen) is what
+catches L1 and L2, with the opponent felling one natural tree and one of ours for
+`D_DIRECT_NET=4`, `D_SCHEDULE_NET=4`, `windfall_net=+4`, `D_OPP=+8`.
 
 ---
 
 ## 8. UNRESOLVED / not implemented
 
-- **No owner-frozen bound exists**, so `PASS` has never been produced and the `PASS`
-  branch is exercised only by reasoning, not by a fixture. Deliberate: fabricating one
-  would be inventing a threshold.
+Closed by revision 2:
+
+- ~~D1 (net vs gross `DEP_*`)~~ — ruled on; schema 2 separates the three quantities.
+- ~~D5 (shadow ledger vs referee ledger)~~ — ruled not to be a deviation; replaced by
+  the identifiability requirement, which is implemented and mutation-checked.
+- ~~"a long-dead plant could launder a later untagged atom" hardening is untested~~ —
+  `fixture_a4_dead_cell_acquisition`, mutation `L10`.
+- ~~absent/mixed planter occupancy is hardening on reasoning alone~~ —
+  `fixture_a5_planter_occupancy`, mutation `L11`.
+
+Still **UNRESOLVED**:
+
+- **No owner-frozen bound exists.** No object anywhere in this repo carries
+  `provenance == "owner_frozen"`, so `PASS` has never been produced, the `PASS` branch is
+  exercised only by reasoning, and the aggregate over the whole 25-pair corpus is
+  `GATE_UNREADY`. Deliberate: fabricating one would be inventing a threshold. The
+  ruling also warns that a literal `"owner_frozen"` string is **not** proof of owner
+  authorisation — the decision path and blob must be validated separately, and this
+  implementation does not and cannot do that. See D2 below.
+- **D2 (the `provenance` field on the bound object)** and **D3 (`FAIL` emitted from a
+  non-owner-frozen bound)** are unchanged and **not accepted by silence** — the ruling
+  said so explicitly. D3 in particular emits `FAIL` from a fixture-namespace bound; the
+  ruling's wording is that a non-owner test bound "must not be emitted as a real
+  candidate `FAIL` verdict outside a fixture/test namespace". Everything here is inside
+  the fixture namespace, but the analyzer does not itself enforce that boundary. Open
+  for the execution review.
+- **D4 (nine detectors vs 29 behavioural invariants)** is unchanged and open. The only
+  executable set on this host is `trace_detectors.py`'s D-1..D-9; the ruling notes that
+  "nine detectors are not automatically equivalent to all 29 behavioural invariants".
+- **The identifiability rule is sufficient, not proven complete.** Each of the three
+  predicates rules out a specific, enumerated class of non-identifiability
+  (deposit/withdrawal split, mixed-multiset partial take, multi-unit assignment). I have
+  no proof that these exhaust the equivalence classes a transcript admits. A referee-side
+  event ledger would remove the question rather than answer it. Open.
 - **§9 "pre-registered map-cluster 95% interval"** is not implemented. It needs a
   pre-registered cluster definition and a multi-map corpus; the fixture corpus is a
   single map. `aggregate_report` emits per-map means but no interval.
@@ -347,9 +588,10 @@ Two findings, both reported rather than hidden:
   aggregate breakdown, but no fixture varies it.
 - **Opponent families / multi-map / multi-opponent aggregates** are structurally
   implemented but exercised only by a single-family, single-map corpus.
-- **D4 (nine detectors vs 29 invariants)** and **D5 (shadow ledger vs referee ledger)**
-  above are the two substantive gaps versus the spec's wording.
-- Whether **D1 (net vs gross `DEP_*`)** is acceptable is a spec-author decision.
+- **No real-corpus run.** Every fixture is synthetic. The instrument has never been run
+  against a recorded candidate/parent pair, and the rate at which the identifiability
+  gate would fire on real traces is unknown. If it fires often, the instrument is safe
+  but unusable, and that would be an argument for the referee-side ledger.
 
 ---
 
@@ -358,12 +600,25 @@ Two findings, both reported rather than hidden:
 | §12 requirement | where |
 |---|---|
 | source paths and full hashes | §4 above |
-| event schema and per-pair JSON examples | `i30_ledger.py` `_atom` / `RunLedger.to_json`; `i30/i30-fixture-results-2026-08-08.json` |
+| event schema and per-pair JSON examples | `i30_ledger.py` `_atom` / `RunLedger.to_json`; `i30/i30-fixture-results-r2-2026-08-08.json` |
 | all fifteen bite-tests | `test_i30_invariant.py`, mapped in §5 |
 | exact parent-vs-parent result | bite-test 1; `fixture_01_exact_self_pair` in the JSON, all deltas `0` |
-| one synthetic D89-like result, D-6 zero and I-30 positive | bite-test 10; `fixture_10_blind_spot`, D-6 `0`, windfall `+1`, status `FAIL` |
+| one synthetic D89-like result, D-6 zero and I-30 positive | bite-test 10; `fixture_10_blind_spot`, D-6 `0`, `windfall_net +1`, status `FAIL` |
 | explicit `MEASURED_UNTHRESHOLDED -> GATE_UNREADY` | `analyze_pair` steps 5/6/9; bite-test 14 |
 | no numerical candidate threshold presented as owner-approved | §4 and §6 D2/D3 above; the only bound is marked `test_fixture` |
 
+### Ruling's "required next revision" checklist
+
+| ruling item | status |
+|---|---|
+| 1. version the result schema with gross deposits, withdrawals and net bank flows separated | done — schema `2`, §0 |
+| 2. update the identity and bound metric names to the ruling's definitions | done — §0 |
+| 3. make ambiguous shadow-ledger attribution fail closed as unknown | done — §0, §5b |
+| 4. add the adversarial provenance fixtures and mutation controls | done — 9 fixtures, 23/23 mutations caught, §5b and §7 |
+| 5. regenerate the deterministic fixture report | done — `i30/i30-fixture-results-r2-2026-08-08.json`, 25 pairs, byte-identical on re-run |
+| 6. obtain the assigned independent execution review | **not done — this is a handoff, not a verdict** |
+
 Adoption requires the assigned execution review by `local_claude_1`. Nothing in this
-report is an accepted gate verdict.
+report is an accepted gate verdict, and no bot, candidate, parent, detector, gate, host
+game, value protocol, TestSession, submission, restore or Arena action was taken or is
+authorised by it.
