@@ -10,9 +10,13 @@ D-9 ("second-worker TRAIN displacement",
 clause:
 
 * **paired** — `train_late`, `train_missing`, `train_stats_differ`. These compare
-  the candidate's first TRAIN turn and stats tuple against the parent's, so they
-  observe displacement directly. They require `parent_commands`, which
-  `fuzz_panel.eval_p1` forwards through `td.run_all`.
+  the candidate's first TRAIN turn and stats tuple against the parent's. They
+  require `parent_commands`, which `fuzz_panel.eval_p1` forwards through
+  `td.run_all` — but they are additionally guarded by `if p_train is not None`,
+  and **the panel is built so the parent can never TRAIN** (it injects the
+  second worker and grants at most 1 PLUM against a cost of 2). So this whole
+  block never executes here. Their zero episodes are NOT evidence of
+  correctness; see `local_claude_1/d9-inapplicable-2026-08-08.md`.
 * **unpaired proxy** — `banana_before_train` (spec A10, read literally): any
   `PLANT`/`PICK … BANANA` command issued before the candidate's own TRAIN while
   it holds one unit. It never looks at the parent. It assumes banana work before
@@ -82,12 +86,14 @@ def build_report(floor_path: pathlib.Path = DEFAULT_FLOOR) -> dict:
                     verbs[episode["verb"]] += 1
 
     blocking = [i for i, g in enumerate(games) if g.get("block")]
-    # What the floor would be if D-9 were retired: a game still blocks when any
-    # other detector fired in it.
+    # A game still blocks without D-9 if it carries ANY violation whose detector
+    # is not D-9 — including detector-less P-tier violations, of which the floor
+    # has 30 P4 and 4 P2. Counting only `detector_counts` ignores those and
+    # undercounts the remaining floor as 46; the correct figure is 55.
     without_d9 = [
         i for i in blocking
-        if any(c for d, c in (games[i].get("detector_counts") or {}).items()
-               if d != "D-9")
+        if any(v.get("detector") != "D-9"
+               for v in (games[i].get("violations") or []))
     ]
 
     proxy = by_clause.get(PROXY_CLAUSE, 0)

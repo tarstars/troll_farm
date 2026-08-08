@@ -28,6 +28,11 @@ def report():
     return d9.build_report(FLOOR)
 
 
+@pytest.fixture(scope="module")
+def floor_games():
+    return json.loads(FLOOR.read_text(encoding="utf-8"))["games"]
+
+
 def test_floor_run_is_parent_against_itself(report):
     # Displacement is zero by construction only if candidate == parent.
     assert report["is_parent_vs_parent"] is True
@@ -59,8 +64,20 @@ def test_verdict_is_that_the_proxy_does_not_measure_displacement(report):
 def test_d9_is_the_dominant_floor_blocker(report):
     assert report["detector_totals"]["D-9"]["games"] == 74
     assert report["blocking_games"] == 118
-    # Removing D-9 alone would clear a third of the floor.
-    assert report["blocking_games_without_d9"] < report["blocking_games"]
+    # 55, not 46: a game still blocks without D-9 if it carries any non-D-9
+    # violation, INCLUDING detector-less P-tier ones (the floor has 30 P4 and
+    # 4 P2). Counting only `detector_counts` undercounts. claude_1 caught this.
+    assert report["blocking_games_without_d9"] == 55
+
+
+def test_p_tier_violations_without_a_detector_are_counted(report, floor_games):
+    # The regression guard for the 46-vs-55 error: these exist and must count.
+    detectorless = [
+        v for g in floor_games for v in (g.get("violations") or [])
+        if v.get("detector") is None
+    ]
+    assert len(detectorless) == 34
+    assert {v.get("property") for v in detectorless} == {"P4", "P2"}
 
 
 def test_detectors_with_zero_evidence_are_reported_as_unproven(report):

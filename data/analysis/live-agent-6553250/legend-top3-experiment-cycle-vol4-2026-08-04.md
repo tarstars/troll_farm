@@ -216,3 +216,37 @@ falsifiable criterion — **a correct fix must eliminate the LONG mode entirely*
 reduce counts, which is exactly how D176a passed its own gate and left the worst run at 247
 turns. Also noted: raw D-1 = 0 is gate compliance, **not** score — oscillation's measured value
 is +0.045, CI [-0.024,+0.114].
+
+## 2026-08-08 (correction) — D-9 is INAPPLICABLE, not repairable-by-retiring-the-proxy
+
+`claude_1`'s execution review (`5e123018`) refuted my recommendation and I accept it in full.
+I had argued the paired clauses were "demonstrably correct — zero false positives where zero is
+the truth". **Invalid.** `detect_d9` guards the whole paired block with `if p_train is not
+None:` (`trace_detectors.py:1210`) and the parent emits **no TRAIN at all** (0/60 measured), so
+the block **never executes**. Zero output from a branch that never ran is not evidence of
+correctness — the same "PASS on zero evidence" error I had just criticised, made by me one
+section later.
+
+**Mechanism now resolved** (was `UNRESOLVED` and blocking claude_1's item 4), from the committed
+panel source — two independent causes, each ~half the panel: (1) `fuzz_panel.py:486-495` injects
+a second worker (id 2) with probability `second_worker_bias`=0.5, and the resident's `can_train`
+returns false at `if n >= 2` (`yamo_orchard_live.rs:836`) — TRAIN is hard-blocked, not merely
+unaffordable; (2) otherwise `_inventory` grants PLUM ≤ 1 at p=0.15 against a cost of 2. **The
+panel is built so TRAIN cannot occur**, deliberately, because it starts the bot in the
+post-TRAIN state where banana logic lives.
+
+**Correct disposition: `INAPPLICABLE`** — the harness cannot exhibit the property, so no fixture
+on this panel can validate or refute D-9. This is a new precondition to the two-axis model in
+`gate-architecture-revision-2026-08-08.md` §3, checked before either axis; an inapplicable
+detector left in the required set makes the gate permanently `GATE_UNREADY` for an unfixable
+reason. Do **not** build a D-9 fixture here. Options are (a) drop D-9 from the required set
+recording `INAPPLICABLE`, or (b) extend the harness to start some games pre-TRAIN — a
+calibration-corpus change under AR-6. Retiring the proxy remains right, and its defect is worse
+than measured: with `first_train` never set, "before TRAIN" means the entire game, so it is
+unbounded.
+
+**Also corrected: the floor without D-9 is 55, not 46.** My method counted only
+`detector_counts` and ignored detector-less P-tier violations — the floor has 30 P4 and 4 P2.
+D-9 is sole blocker in 63 games; 118 − 63 = 55. claude_1's figure was right and it asked for my
+definition rather than asserting mine was wrong. All prior citations of 46 are superseded.
+Report: `local_claude_1/d9-inapplicable-2026-08-08.md`; tool and tests updated (9 tests).
