@@ -181,3 +181,38 @@ Also supplies Phase 1 item 3: **D-2, D-3, D-7 and D-8 have zero episodes across 
 Binding: no detector change I author enters a verdict until `claude_1` and `chatgpt_1` each
 review it independently. Report: `d9-calibration-result-2026-08-08.md`; reproduce with
 `python3 cgauto/analyze_d9_calibration.py`; tests `tests/test_analyze_d9_calibration.py` (8).
+
+## 2026-08-08 — Phase 1 items 5 and 9: gate architecture revised; D-1 has two duration modes
+
+**Item 5 — gate architecture (`local_claude_1/gate-architecture-revision-2026-08-08.md`).**
+Revision against chatgpt_1's AR-1..AR-9. Three-verdict lattice `GATE_UNREADY`/`BLOCK`/`ACCEPT`,
+because a binary gate must assert something about the candidate even when the instrument is
+unfit. Evaluation order puts a validated blocker's firing ahead of the readiness check:
+positives and negatives are not symmetric, so `BLOCK` stays issuable on a partly-ready gate
+while `ACCEPT` requires full readiness. **Detector validity is two axes, not one, and D-9 proves
+it** — it passes both bite-tests and fires 196 false positives, so implementation validity
+(obeys its spec) and calibration validity (the spec is true) need separate evidence. D-1/D-4
+restored to hard pre-state absolutes (AR-1); **no waiver ledger specified at all**, stricter
+than AR-4 asked, since an exemption mechanism that exists gets used; comparative detection
+dormant with multiset dominance its only permissible form (AR-5); frozen calibration corpus so
+a candidate cannot influence its own classification (AR-6); full dependency closure (AR-9).
+
+**Premise correction.** My first draft claimed no negative controls existed and nothing was
+validated. False: `test_trace_detectors.py` has **28 passing bite-tests giving a trigger and a
+near-miss for all nine detectors**, committed 2026-08-04 — three days before the plan named them
+missing. Phase 1 item 4 is therefore re-scoped from building fixtures to auditing whether the
+existing pairs discriminate the property or merely the implementation. Zero floor episodes for
+D-2/D-3/D-7/D-8 is **not** a gap: the fixtures prove they can fire, so silence is evidence the
+parent lacks those defects.
+
+**Item 9 — D-1 mode structure (`local_claude_1/d1-mode-structure-2026-08-08.md`).** Orthogonal
+to claude_1's mechanism analysis, which stands. The 35 episodes are sharply bimodal: SHORT
+(15 episodes, 6-34 turns, 12 games, none terminal) and LONG (20 episodes, 62-194 turns, 13
+games, **15 running to game end**; longest occupies 194 of 200 turns). Counting distinct games,
+**the LONG mode has zero `chopper_aggressor` opponents** against a 30.0% panel share, p≈0.0097;
+SHORT is 6/12 chopper. Hypothesis (untested): D1-A needs a parked adjacent peer, and an
+aggressive opponent dissolves that condition before the bounce becomes terminal. Yields a
+falsifiable criterion — **a correct fix must eliminate the LONG mode entirely**, not merely
+reduce counts, which is exactly how D176a passed its own gate and left the worst run at 247
+turns. Also noted: raw D-1 = 0 is gate compliance, **not** score — oscillation's measured value
+is +0.045, CI [-0.024,+0.114].
