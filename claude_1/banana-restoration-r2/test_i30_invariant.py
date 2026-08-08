@@ -36,12 +36,12 @@ class TestBite01ExactSelfPair(unittest.TestCase):
         res = an.analyze_pair(cand, par, self_pair=True)
 
         self.assertTrue(res["pair_identity"]["valid"], res["pair_identity"])
-        self.assertEqual(res["d_direct"], 0)
-        self.assertEqual(res["d_schedule"], 0)
-        self.assertEqual(res["d_unknown"], 0)
+        self.assertEqual(res["d_direct_net"], 0)
+        self.assertEqual(res["d_schedule_net"], 0)
+        self.assertEqual(res["d_unknown_net"], 0)
         self.assertEqual(res["d_train"], 0)
         self.assertEqual(res["d_opp"], 0)
-        self.assertEqual(res["schedule_windfall"], 0)
+        self.assertEqual(res["schedule_windfall_net"], 0)
         self.assertEqual(res["residual"], 0)
         self.assertEqual(res["candidate"]["residual"], 0)
         self.assertEqual(res["parent"]["residual"], 0)
@@ -64,8 +64,10 @@ class TestBite02InertCandidate(unittest.TestCase):
 
         self.assertNotEqual(cand.identity["command_stream_sha256"],
                             par.identity["command_stream_sha256"])
-        for key in ("d_direct", "d_schedule", "d_unknown", "d_train", "d_opp",
-                    "schedule_windfall", "residual", "d_terminal_turn"):
+        for key in ("d_direct_net", "d_schedule_net", "d_unknown_net",
+                    "d_direct_gross", "d_production_gross", "d_train",
+                    "d_opp", "schedule_windfall_net", "residual",
+                    "d_terminal_turn"):
             self.assertEqual(res[key], 0, key)
         self.assertEqual(res["candidate"]["dep_natural"], 1)
         self.assertEqual(res["parent"]["dep_natural"], 1)
@@ -82,7 +84,7 @@ class TestBite03NoBananaActivation(unittest.TestCase):
         self.assertEqual(res["status"], an.NOT_APPLICABLE)
         self.assertNotEqual(res["status"], an.PASS)
         self.assertEqual(res["d_opp"], 0)
-        self.assertEqual(res["schedule_windfall"], 0)
+        self.assertEqual(res["schedule_windfall_net"], 0)
         self.assertEqual(res["residual"], 0)
 
     def test_claimed_but_unexercised_mechanism_is_unproven(self):
@@ -98,12 +100,12 @@ class TestBite04DirectTheftOnly(unittest.TestCase):
         cand, par = fx.fixture_04_direct_theft()
         res = an.analyze_pair(cand, par)
 
-        self.assertEqual(res["d_direct"], 1)
-        self.assertEqual(res["d_schedule"], 0)
+        self.assertEqual(res["d_direct_net"], 1)
+        self.assertEqual(res["d_schedule_net"], 0)
         self.assertEqual(res["d_train"], 0)
-        self.assertEqual(res["schedule_windfall"], 0)
+        self.assertEqual(res["schedule_windfall_net"], 0)
         self.assertEqual(res["d_opp"], 1)
-        self.assertEqual(res["d_unknown"], 0)
+        self.assertEqual(res["d_unknown_net"], 0)
         self.assertEqual(res["residual"], 0)
         self.assertTrue(res["banana_active"])
         self.assertGreater(d6_count(cand), 0)
@@ -116,12 +118,12 @@ class TestBite05IndirectProductionOnly(unittest.TestCase):
         cand, par = fx.fixture_05_indirect_only()
         res = an.analyze_pair(cand, par)
 
-        self.assertEqual(res["d_direct"], 0)
-        self.assertEqual(res["d_schedule"], 2)
+        self.assertEqual(res["d_direct_net"], 0)
+        self.assertEqual(res["d_schedule_net"], 2)
         self.assertEqual(res["d_train"], 0)
-        self.assertEqual(res["schedule_windfall"], 2)
+        self.assertEqual(res["schedule_windfall_net"], 2)
         self.assertEqual(res["d_opp"], 2)
-        self.assertEqual(res["d_unknown"], 0)
+        self.assertEqual(res["d_unknown_net"], 0)
         self.assertEqual(res["residual"], 0)
         self.assertEqual(d6_count(cand), 0)
         self.assertEqual(res["candidate"]["dep_opponent"], 3)
@@ -135,11 +137,11 @@ class TestBite06NaturalOpportunity(unittest.TestCase):
         cand, par = fx.fixture_06_natural_opportunity()
         res = an.analyze_pair(cand, par)
 
-        self.assertEqual(res["d_direct"], 0)
-        self.assertEqual(res["d_dep_natural"], 1)
-        self.assertEqual(res["d_dep_opponent"], 0)
-        self.assertEqual(res["d_schedule"], 1)
-        self.assertEqual(res["schedule_windfall"], 1)
+        self.assertEqual(res["d_direct_net"], 0)
+        self.assertEqual(res["d_nbf_natural"], 1)
+        self.assertEqual(res["d_nbf_opponent"], 0)
+        self.assertEqual(res["d_schedule_net"], 1)
+        self.assertEqual(res["schedule_windfall_net"], 1)
         self.assertEqual(res["d_opp"], 1)
         self.assertEqual(res["residual"], 0)
 
@@ -151,12 +153,12 @@ class TestBite07TrainSpendOffset(unittest.TestCase):
         cand, par = fx.fixture_07_train_offset()
         res = an.analyze_pair(cand, par)
 
-        self.assertEqual(res["candidate"]["dep_total"],
-                         res["parent"]["dep_total"])
-        self.assertEqual(res["d_direct"], 0)
-        self.assertEqual(res["d_schedule"], 0)
+        self.assertEqual(res["candidate"]["gdep_total"],
+                         res["parent"]["gdep_total"])
+        self.assertEqual(res["d_direct_net"], 0)
+        self.assertEqual(res["d_schedule_net"], 0)
         self.assertEqual(res["d_train"], 6)
-        self.assertEqual(res["schedule_windfall"], -6)
+        self.assertEqual(res["schedule_windfall_net"], -6)
         self.assertEqual(res["d_opp"], -6)
         self.assertEqual(res["residual"], 0)
         self.assertEqual(res["candidate"]["train_events"], 1)
@@ -182,9 +184,9 @@ class TestBite08MixedCargo(unittest.TestCase):
         self.assertEqual(res["candidate"]["dep_natural"], 1)
         self.assertEqual(res["candidate"]["dep_unknown"], 0)
         self.assertEqual(res["candidate"]["drop_events"], 1)
-        self.assertEqual(res["d_direct"], 1)
-        self.assertEqual(res["d_schedule"], 2)
-        self.assertEqual(res["schedule_windfall"], 2)
+        self.assertEqual(res["d_direct_net"], 1)
+        self.assertEqual(res["d_schedule_net"], 2)
+        self.assertEqual(res["schedule_windfall_net"], 2)
         self.assertEqual(res["d_opp"], 3)
         self.assertEqual(res["residual"], 0)
 
@@ -199,9 +201,9 @@ class TestBite09LongerGameSchedule(unittest.TestCase):
         self.assertEqual(res["candidate"]["terminal_turn"], 12)
         self.assertEqual(res["parent"]["terminal_turn"], 5)
         self.assertEqual(res["d_terminal_turn"], 7)
-        self.assertEqual(res["d_direct"], 0)
-        self.assertEqual(res["d_schedule"], 1)
-        self.assertEqual(res["schedule_windfall"], 1)
+        self.assertEqual(res["d_direct_net"], 0)
+        self.assertEqual(res["d_schedule_net"], 1)
+        self.assertEqual(res["schedule_windfall_net"], 1)
         self.assertEqual(res["d_opp"], 1)
         self.assertEqual(res["residual"], 0)
         # the opponent withdrew its own banked fruit to seed the extra cycle
@@ -223,14 +225,14 @@ class TestBite10BlindSpotFixture(unittest.TestCase):
 
         res = an.analyze_pair(cand, par,
                               bound=an.Bound(fx.TEST_BOUND_ZERO_WINDFALL))
-        self.assertEqual(res["d_direct"], 0)
-        self.assertEqual(res["d_dep_opponent"], 2)
-        self.assertEqual(res["d_dep_natural"], -1)
-        self.assertEqual(res["d_schedule"], 1)
+        self.assertEqual(res["d_direct_net"], 0)
+        self.assertEqual(res["d_nbf_opponent"], 2)
+        self.assertEqual(res["d_nbf_natural"], -1)
+        self.assertEqual(res["d_schedule_net"], 1)
         self.assertEqual(res["d_train"], 0)
-        self.assertEqual(res["schedule_windfall"], 1)
+        self.assertEqual(res["schedule_windfall_net"], 1)
         self.assertEqual(res["d_opp"], 1)
-        self.assertEqual(res["d_unknown"], 0)
+        self.assertEqual(res["d_unknown_net"], 0)
         self.assertEqual(res["residual"], 0)
 
     def test_i30_must_not_return_pass_under_a_bound_excluding_the_windfall(self):
@@ -267,7 +269,7 @@ class TestBite12UntaggedAtom(unittest.TestCase):
 
         self.assertEqual(res["candidate"]["unknown_atoms"], 1)
         self.assertEqual(res["candidate"]["dep_unknown"], 1)
-        self.assertEqual(res["d_unknown"], 1)
+        self.assertEqual(res["d_unknown_net"], 1)
         self.assertEqual(res["residual"], 0)     # isolates the provenance path
         self.assertEqual(res["status"], an.GATE_UNREADY)
         self.assertIn("unknown_provenance", res["unready_reasons"])
@@ -285,7 +287,7 @@ class TestBite13NonzeroResidual(unittest.TestCase):
         self.assertEqual(res["candidate"]["residual"], 1)
         self.assertEqual(res["parent"]["residual"], 0)
         self.assertEqual(res["residual"], 1)
-        self.assertEqual(res["d_unknown"], 0)    # isolates the conservation path
+        self.assertEqual(res["d_unknown_net"], 0)    # isolates the conservation path
         self.assertEqual(res["status"], an.GATE_UNREADY)
         self.assertIn("conservation_residual", res["unready_reasons"])
         # raw values are preserved even when the status is not PASS (sec. 8)
@@ -305,7 +307,7 @@ class TestBite14AbsentBound(unittest.TestCase):
         self.assertNotEqual(res["status"], an.PASS)
         self.assertIn("absent_bound", res["unready_reasons"])
         # raw values survive (sec. 8)
-        self.assertEqual(res["schedule_windfall"], 2)
+        self.assertEqual(res["schedule_windfall_net"], 2)
 
     def test_bound_without_owner_freeze_never_yields_pass(self):
         cand, par = fx.fixture_05_indirect_only()
@@ -339,18 +341,18 @@ class TestBite15MutationBitesTheIndirectTerm(unittest.TestCase):
         bound = an.Bound(fx.TEST_BOUND_ZERO_WINDFALL)
 
         before = an.analyze_pair(cand, par, bound=bound)
-        self.assertEqual(before["schedule_windfall"], 1)
+        self.assertEqual(before["schedule_windfall_net"], 1)
         self.assertEqual(before["status"], an.FAIL)
         self.assertEqual(d6_count(cand), 0)
 
-        original = an.compute_schedule_windfall
+        original = an.compute_schedule_windfall_net
         try:
-            an.compute_schedule_windfall = lambda d_schedule, d_train: 0
+            an.compute_schedule_windfall_net = lambda d_schedule_net, d_train: 0
             after = an.analyze_pair(cand, par, bound=bound)
         finally:
-            an.compute_schedule_windfall = original
+            an.compute_schedule_windfall_net = original
 
-        self.assertEqual(after["schedule_windfall"], 0)
+        self.assertEqual(after["schedule_windfall_net"], 0)
         self.assertNotEqual(after["status"], an.FAIL)
         # the conservation residual is NOT what caught the mutation
         self.assertEqual(after["residual"], 0)
@@ -378,9 +380,9 @@ class TestSupplementaryWoodChopCoverage(unittest.TestCase):
         self.assertEqual(res["candidate"]["chop_events"], 2)
         self.assertEqual(res["candidate"]["dep_natural"], 4)
         self.assertEqual(res["candidate"]["dep_ours"], 4)
-        self.assertEqual(res["d_direct"], 4)
-        self.assertEqual(res["d_schedule"], 4)
-        self.assertEqual(res["schedule_windfall"], 4)
+        self.assertEqual(res["d_direct_net"], 4)
+        self.assertEqual(res["d_schedule_net"], 4)
+        self.assertEqual(res["schedule_windfall_net"], 4)
         self.assertEqual(res["d_opp"], 8)
         self.assertEqual(res["residual"], 0)
 
@@ -427,9 +429,19 @@ class TestD1SchemaSeparatesGrossWithdrawalAndNet(unittest.TestCase):
     def test_run_ledger_exercises_a_real_withdrawal(self):
         # bite-test 9's opponent withdraws one banked natural apple
         run = fx.fixture_09_longer_game()[0].ledger.to_json()
+        self.assertEqual(run["gdep_natural"], 1)
         self.assertEqual(run["wdr_natural"], 1)
-        self.assertEqual(run["gdep_natural"], 2)
-        self.assertEqual(run["net_bank_flow_natural"], 1)
+        self.assertEqual(run["net_bank_flow_natural"], 0)
+        self.assertEqual(run["gdep_opponent"], 2)
+        self.assertEqual(run["wdr_opponent"], 0)
+        self.assertEqual(run["net_bank_flow_opponent"], 2)
+        self.assertEqual(run["gdep_total"], 3)
+        self.assertEqual(run["wdr_total"], 1)
+        self.assertEqual(run["net_bank_flow_total"], 2)
+        # the per-run conservation identity is on NET, so it closes here even
+        # though gross deposits exceed the terminal-score change
+        self.assertEqual(run["terminal_score"] - run["initial_score"], 2)
+        self.assertEqual(run["residual"], 0)
 
     def test_pair_result_exposes_net_and_gross_terms_separately(self):
         cand, par = fx.fixture_09_longer_game()
@@ -493,6 +505,9 @@ class TestD1SchemaSeparatesGrossWithdrawalAndNet(unittest.TestCase):
         self.assertEqual(res["d_opp"], 0)
         self.assertEqual(res["d_unknown_net"], 0)
         self.assertEqual(res["residual"], 0)
+        self.assertEqual(res["candidate"]["residual"], 0)
+        self.assertEqual(res["candidate"]["gdep_total"], 1)
+        self.assertEqual(res["candidate"]["net_bank_flow_total"], 0)
         self.assertNotEqual(res["d_production_gross"], res["d_schedule_net"])
 
 
@@ -581,6 +596,66 @@ class TestD5FailsClosedOnNonIdentifiableAttribution(unittest.TestCase):
         self.assertEqual(run["gdep_unknown"], 2)
         self.assertEqual(run["wdr_unknown"], 1)
         self.assertEqual(res["residual"], 0)
+
+    def test_deposit_unit_assignment_across_two_units_is_unknown(self):
+        cand, par = fx.fixture_a2b_deposit_unit_assignment()
+        res = an.analyze_pair(cand, par,
+                              bound=an.Bound(fx.TEST_BOUND_ZERO_WINDFALL))
+        self.assert_fails_closed(res, "deposit_unit_assignment")
+
+        run = res["candidate"]
+        # the deposit COUNT is forced (one banana); which unit's banana it was
+        # is not, and the two units carry different classes
+        self.assertEqual(run["gdep_ours"], 0)
+        self.assertEqual(run["gdep_natural"], 0)
+        self.assertEqual(run["gdep_unknown"], 1)
+        self.assertEqual(run["net_bank_flow_unknown"], 1)
+        self.assertEqual(res["residual"], 0)
+        self.assertEqual(res["d_opp"], 1)
+
+    def test_cancelling_unknown_deposit_and_withdrawal_still_fails_closed(self):
+        """D_UNKNOWN_NET == 0 is not evidence of complete provenance."""
+        cand, par = fx.fixture_a6_cancelling_unknown_flow()
+        res = an.analyze_pair(cand, par,
+                              bound=an.Bound(fx.TEST_BOUND_ZERO_WINDFALL))
+        run = res["candidate"]
+
+        # nothing here is ambiguous -- every allocation is forced
+        self.assertEqual(run["identifiable"], True, run["ambiguities"])
+        self.assertNotIn("non_identifiable_attribution",
+                         res["unready_reasons"])
+        # ... and the unknown mass cancels exactly
+        self.assertEqual(run["gdep_unknown"], 1)
+        self.assertEqual(run["wdr_unknown"], 1)
+        self.assertEqual(run["net_bank_flow_unknown"], 0)
+        self.assertEqual(res["d_unknown_net"], 0)
+        self.assertEqual(res["d_unknown_gross"], 1)
+        self.assertEqual(res["residual"], 0)
+        self.assertEqual(res["d_opp"], 0)
+        # so only the gross unknown-provenance clause can catch it
+        self.assertEqual(res["status"], an.GATE_UNREADY)
+        self.assertIn("unknown_provenance", res["unready_reasons"])
+
+    def test_a_plant_seed_at_a_bank_cell_does_not_trip_the_gate(self):
+        """The fail-closed rule must not fire on an explained decrease."""
+        cand, par = fx.fixture_a7_seed_and_deposit_at_one_bank_cell()
+        res = an.analyze_pair(cand, par,
+                              bound=an.Bound(fx.TEST_BOUND_ZERO_WINDFALL))
+        run = res["candidate"]
+
+        self.assertEqual(run["identifiable"], True, run["ambiguities"])
+        self.assertEqual(run["plant_events"], 1)
+        self.assertEqual(run["gdep_ours"], 1)
+        self.assertEqual(run["gdep_unknown"], 0)
+        self.assertEqual(run["unknown_atoms"], 0)
+        self.assertEqual(res["d_direct_net"], 1)
+        self.assertEqual(res["d_direct_gross"], 1)
+        self.assertEqual(res["d_schedule_net"], 0)
+        self.assertEqual(res["d_opp"], 1)
+        self.assertEqual(res["residual"], 0)
+        self.assertNotIn("non_identifiable_attribution",
+                         res["unready_reasons"])
+        self.assertNotIn("unknown_provenance", res["unready_reasons"])
 
     def test_class_swap_pair_is_indistinguishable_so_both_are_unknown(self):
         """Two hidden histories, one observable transition, two labels."""
@@ -729,6 +804,22 @@ class TestD5MutationRevertedTieBreakIsCaught(unittest.TestCase):
         self.assertEqual(after["candidate"]["gdep_unknown"], 0)
         self.assertEqual(after["residual"], 0)
 
+    def test_reverted_tie_break_reopens_unit_assignment(self):
+        bound = an.Bound(fx.TEST_BOUND_ZERO_WINDFALL)
+        saved = self._revert_tie_break()
+        try:
+            after = an.analyze_pair(*fx.fixture_a2b_deposit_unit_assignment(),
+                                    bound=bound)
+        finally:
+            self._restore(saved)
+        # unit-id order silently declares the lower-id unit the depositor
+        self.assertEqual(after["candidate"]["gdep_ours"], 1)
+        self.assertEqual(after["candidate"]["gdep_unknown"], 0)
+        self.assertEqual(after["candidate"]["lost_natural"], 1)
+        self.assertEqual(after["d_direct_net"], 1)
+        self.assertEqual(after["d_opp"], 1)
+        self.assertEqual(after["residual"], 0)
+
     def test_the_valid_fixtures_are_unaffected_by_the_hooks(self):
         """The fix must not fire on the fifteen -- otherwise it proves nothing.
 
@@ -739,6 +830,8 @@ class TestD5MutationRevertedTieBreakIsCaught(unittest.TestCase):
                  "fixture_06_natural_opportunity", "fixture_07_train_offset",
                  "fixture_08_mixed_cargo", "fixture_09_longer_game",
                  "fixture_10_blind_spot", "fixture_s1_wood_chop",
+                 "fixture_a6_cancelling_unknown_flow",
+                 "fixture_a7_seed_and_deposit_at_one_bank_cell",
                  "fixture_d1_gross_production_with_offsetting_withdrawal")
         before = {n: an.analyze_pair(*getattr(fx, n)()) for n in names}
         saved = self._revert_tie_break()
