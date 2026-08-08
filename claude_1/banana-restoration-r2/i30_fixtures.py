@@ -599,6 +599,48 @@ def fixture_13_nonzero_residual():
 
 
 # --------------------------------------------------------------------------
+# supplementary coverage fixture -- NOT one of the fifteen mandated
+# bite-tests. The fifteen never deposit WOOD, so without this the frozen
+# WOOD=4 score weight and the CHOP provenance rule of spec sec. 5.2 are live
+# but unexercised code. See i30-implementation-2026-08-08.md.
+# --------------------------------------------------------------------------
+
+def fixture_s1_wood_chop():
+    """Opponent chops one natural tree and one of ours, then banks the wood."""
+    ours_cell = (5, 4)                       # cheby((5,4),(4,3)) == 1
+    banana = P("BANANA", ours_cell, cooldown=6)
+    nat = P("APPLE", (7, 5))
+    own1 = U(1, 0, OWN_DOOR)
+
+    cand_blocks = [
+        B([U(0, 0, ours_cell, C(banana=1)), own1, U(9, 1, (7, 5))], [nat]),
+        # the planter is still standing on the new asset here, which is what
+        # makes its creator provable (spec sec. 5.2 / R4)
+        B([U(0, 0, ours_cell), own1, U(9, 1, (7, 5))], [nat, banana]),
+        # natural tree felled -> WOOD tagged natural
+        B([U(0, 0, (4, 4)), own1, U(9, 1, (7, 5), C(wood=1))], [banana]),
+        B([U(0, 0, (4, 4)), own1, U(9, 1, (6, 5), C(wood=1))], [banana]),
+        B([U(0, 0, (4, 4)), own1, U(9, 1, ours_cell, C(wood=1))], [banana]),
+        # our banana felled -> WOOD tagged ours
+        B([U(0, 0, (4, 4)), own1, U(9, 1, ours_cell, C(wood=2))], []),
+        B([U(0, 0, (4, 4)), own1, U(9, 1, (6, 5), C(wood=2))], []),
+        B([U(0, 0, (4, 4)), own1, U(9, 1, OPP_BANK, C(wood=2))], []),
+        B([U(0, 0, (4, 4)), own1, U(9, 1, OPP_BANK)], [], inv1=C(wood=2)),
+    ]
+    cand_cmds = [PLANT_BANANA, "MOVE 0 4 4"] + ["WAIT"] * 7
+
+    par_blocks = [B([U(0, 0, ours_cell, C(banana=1)), own1, U(9, 1, (7, 5))],
+                    [nat]) for _ in range(9)]
+    par_cmds = ["WAIT"] * 9
+
+    cand = record("s01-candidate", cand_blocks, cand_cmds,
+                  bot=CANDIDATE_BOT, claimed=True)
+    par = record("s01-parent", par_blocks, par_cmds, bot=PARENT_BOT,
+                 claimed=True)
+    return cand, par
+
+
+# --------------------------------------------------------------------------
 # bound objects (spec sec. 11)
 # --------------------------------------------------------------------------
 

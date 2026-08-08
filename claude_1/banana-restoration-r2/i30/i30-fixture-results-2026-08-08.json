@@ -1,23 +1,23 @@
 {
   "aggregate_status": "GATE_UNREADY",
   "all_pairs": {
-    "active_games": 9,
+    "active_games": 10,
     "conservation_residual_pairs": 1,
     "gate_unready_pairs": 5,
     "maps": 1,
-    "mean_d_direct": 0.15384615384615385,
-    "mean_d_opp": 0.38461538461538464,
-    "mean_d_schedule": 0.5384615384615384,
-    "mean_d_train": 0.46153846153846156,
-    "mean_schedule_windfall": 0.07692307692307693,
+    "mean_d_direct": 0.42857142857142855,
+    "mean_d_opp": 0.9285714285714286,
+    "mean_d_schedule": 0.7857142857142857,
+    "mean_d_train": 0.42857142857142855,
+    "mean_schedule_windfall": 0.35714285714285715,
     "mean_windfall_by_map": {
-      "ca6ececc2bf898a970222c726b78c3cce46936276c3886ce97456f59f819f20e": 0.07692307692307693
+      "ca6ececc2bf898a970222c726b78c3cce46936276c3886ce97456f59f819f20e": 0.35714285714285715
     },
     "mean_windfall_by_opponent_family": {
-      "op00000000000000000000000000000000000000000000000000000000000000": 0.07692307692307693
+      "op00000000000000000000000000000000000000000000000000000000000000": 0.35714285714285715
     },
     "mean_windfall_by_seat": {
-      "0": 0.07692307692307693
+      "0": 0.35714285714285715
     },
     "opponent_families": [
       "op00000000000000000000000000000000000000000000000000000000000000"
@@ -25,34 +25,34 @@
     "p10_schedule_windfall": 0,
     "p50_schedule_windfall": 0,
     "p90_schedule_windfall": 2,
-    "pairs": 13,
+    "pairs": 14,
     "population": "all_pairs",
-    "positive_windfall_games": 5,
-    "positive_windfall_mass": 7,
+    "positive_windfall_games": 6,
+    "positive_windfall_mass": 11,
     "seats": [
       0
     ],
     "unknown_source_pairs": 1,
-    "worst_schedule_windfall": 2
+    "worst_schedule_windfall": 4
   },
   "banana_active": {
-    "active_games": 9,
+    "active_games": 10,
     "conservation_residual_pairs": 1,
     "gate_unready_pairs": 4,
     "maps": 1,
-    "mean_d_direct": 0.2222222222222222,
-    "mean_d_opp": 0.5555555555555556,
-    "mean_d_schedule": 0.7777777777777778,
-    "mean_d_train": 0.6666666666666666,
-    "mean_schedule_windfall": 0.1111111111111111,
+    "mean_d_direct": 0.6,
+    "mean_d_opp": 1.3,
+    "mean_d_schedule": 1.1,
+    "mean_d_train": 0.6,
+    "mean_schedule_windfall": 0.5,
     "mean_windfall_by_map": {
-      "ca6ececc2bf898a970222c726b78c3cce46936276c3886ce97456f59f819f20e": 0.1111111111111111
+      "ca6ececc2bf898a970222c726b78c3cce46936276c3886ce97456f59f819f20e": 0.5
     },
     "mean_windfall_by_opponent_family": {
-      "op00000000000000000000000000000000000000000000000000000000000000": 0.1111111111111111
+      "op00000000000000000000000000000000000000000000000000000000000000": 0.5
     },
     "mean_windfall_by_seat": {
-      "0": 0.1111111111111111
+      "0": 0.5
     },
     "opponent_families": [
       "op00000000000000000000000000000000000000000000000000000000000000"
@@ -60,15 +60,15 @@
     "p10_schedule_windfall": 0,
     "p50_schedule_windfall": 1,
     "p90_schedule_windfall": 2,
-    "pairs": 9,
+    "pairs": 10,
     "population": "banana_active",
-    "positive_windfall_games": 5,
-    "positive_windfall_mass": 7,
+    "positive_windfall_games": 6,
+    "positive_windfall_mass": 11,
     "seats": [
       0
     ],
     "unknown_source_pairs": 1,
-    "worst_schedule_windfall": 2
+    "worst_schedule_windfall": 4
   },
   "bound": {
     "bound_invalid_reasons": [],
@@ -90,7 +90,7 @@
     },
     "bound_valid": true
   },
-  "event_episodes": 65,
+  "event_episodes": 69,
   "invariant": "I-30",
   "pairs": [
     {
@@ -2812,12 +2812,224 @@
       "unready_reasons": [
         "conservation_residual"
       ]
+    },
+    {
+      "activation_causes": [
+        "banana_command",
+        "own_banana_event"
+      ],
+      "banana_active": true,
+      "banana_command_delta": [
+        [
+          1,
+          "PLANT 0 BANANA"
+        ]
+      ],
+      "banana_mechanism_claimed": true,
+      "bound": {
+        "bound_invalid_reasons": [],
+        "bound_owner_frozen": false,
+        "bound_pinned_sha256": null,
+        "bound_provenance": "test_fixture",
+        "bound_sha256": "731a0b25f9c98f6eba3f541a624a3c7f3e0d054c3d9f0a964337951aceb18e3f",
+        "bound_spec": {
+          "family_constraints": [],
+          "metric": "mean_schedule_windfall",
+          "operator": "<=",
+          "owner_decision_blob": "0000000000000000000000000000000000000000",
+          "owner_decision_path": "UNRESOLVED/no-owner-decision-exists",
+          "population": "banana_active",
+          "provenance": "test_fixture",
+          "schema_version": 1,
+          "tail_constraints": [],
+          "threshold": 0
+        },
+        "bound_valid": true
+      },
+      "bound_metric_value": 4,
+      "bound_satisfied": false,
+      "candidate": {
+        "chop_events": 2,
+        "dep_natural": 4,
+        "dep_natural_gross": 4,
+        "dep_opponent": 0,
+        "dep_opponent_gross": 0,
+        "dep_ours": 4,
+        "dep_ours_gross": 4,
+        "dep_total": 8,
+        "dep_unknown": 0,
+        "dep_unknown_gross": 0,
+        "deposit_atoms": 2,
+        "direct_interactions": 1,
+        "drop_events": 1,
+        "event_count": 4,
+        "event_ids": [
+          "s01-candidate-e0001",
+          "s01-candidate-e0002",
+          "s01-candidate-e0003",
+          "s01-candidate-e0004"
+        ],
+        "first_productive_turn": 2,
+        "harvest_events": 0,
+        "initial_score": 0,
+        "loss_events": 0,
+        "lost_natural": 0,
+        "lost_opponent": 0,
+        "lost_ours": 0,
+        "lost_unknown": 0,
+        "mine_events": 0,
+        "opp_live_assets": 0,
+        "pick_events": 0,
+        "plant_events": 0,
+        "productive_turns": 3,
+        "residual": 0,
+        "run_id": "s01-candidate",
+        "terminal_score": 8,
+        "terminal_turn": 9,
+        "train_events": 0,
+        "train_spend": 0,
+        "unknown_atoms": 0,
+        "wdr_natural": 0,
+        "wdr_opponent": 0,
+        "wdr_ours": 0,
+        "wdr_unknown": 0,
+        "withdraw_atoms": 0
+      },
+      "candidate_run_id": "s01-candidate",
+      "counted_in_denominator": true,
+      "d_chop_events": 2,
+      "d_dep_natural": 4,
+      "d_dep_opponent": 0,
+      "d_dep_ours": 4,
+      "d_dep_unknown": 0,
+      "d_direct": 4,
+      "d_direct_interactions": 1,
+      "d_drop_events": 1,
+      "d_first_productive_turn": null,
+      "d_harvest_events": 0,
+      "d_opp": 8,
+      "d_opp_live_assets": 0,
+      "d_pick_events": 0,
+      "d_plant_events": 0,
+      "d_productive_turns": 3,
+      "d_schedule": 4,
+      "d_terminal_turn": 0,
+      "d_train": 0,
+      "d_train_events": 0,
+      "d_unknown": 0,
+      "first_divergence_turn": 1,
+      "invariant": "I-30",
+      "own_banana_plant_delta": [
+        [
+          1,
+          0,
+          [
+            5,
+            4
+          ]
+        ]
+      ],
+      "pair_id": "fixture_s1_wood_chop",
+      "pair_identity": {
+        "candidate_identity": {
+          "analyzer_config_sha256": "ac00000000000000000000000000000000000000000000000000000000000000",
+          "bot_binary_sha256": "cb00000000000000000000000000000000000000000000000000000000000000",
+          "bot_source_sha256": "ca00000000000000000000000000000000000000000000000000000000000000",
+          "command_stream_sha256": "d80012b1e789f4d9546d55fb93f5f08392c14c5381704f448f6513146903ef61",
+          "detector_config_sha256": "dc00000000000000000000000000000000000000000000000000000000000000",
+          "engine_sha256": "en00000000000000000000000000000000000000000000000000000000000000",
+          "harness_sha256": "ha00000000000000000000000000000000000000000000000000000000000000",
+          "initial_state_sha256": "cf8ff629e81a12d5afe286774aeef310340e57a94208fe34442307d4a4b06849",
+          "map_sha256": "ca6ececc2bf898a970222c726b78c3cce46936276c3886ce97456f59f819f20e",
+          "opponent_binary_sha256": "ob00000000000000000000000000000000000000000000000000000000000000",
+          "opponent_config_sha256": "oc00000000000000000000000000000000000000000000000000000000000000",
+          "opponent_source_sha256": "op00000000000000000000000000000000000000000000000000000000000000",
+          "rng_seed": 424242,
+          "seat": 0,
+          "termination_rule": "turn_cap_or_no_units",
+          "toolchain_sha256": "tc00000000000000000000000000000000000000000000000000000000000000",
+          "transcript_sha256": "d57dd32d070776878427a5103db35b0056c99987aac2981b4b3352ec38933a95",
+          "turn_cap": 300
+        },
+        "mismatched": [],
+        "missing": [],
+        "parent_identity": {
+          "analyzer_config_sha256": "ac00000000000000000000000000000000000000000000000000000000000000",
+          "bot_binary_sha256": "pb00000000000000000000000000000000000000000000000000000000000000",
+          "bot_source_sha256": "pa00000000000000000000000000000000000000000000000000000000000000",
+          "command_stream_sha256": "b85628da27909afa0033e7c5bc030e0b105cb3769c78a85fd7b880c0f6ac33e4",
+          "detector_config_sha256": "dc00000000000000000000000000000000000000000000000000000000000000",
+          "engine_sha256": "en00000000000000000000000000000000000000000000000000000000000000",
+          "harness_sha256": "ha00000000000000000000000000000000000000000000000000000000000000",
+          "initial_state_sha256": "cf8ff629e81a12d5afe286774aeef310340e57a94208fe34442307d4a4b06849",
+          "map_sha256": "ca6ececc2bf898a970222c726b78c3cce46936276c3886ce97456f59f819f20e",
+          "opponent_binary_sha256": "ob00000000000000000000000000000000000000000000000000000000000000",
+          "opponent_config_sha256": "oc00000000000000000000000000000000000000000000000000000000000000",
+          "opponent_source_sha256": "op00000000000000000000000000000000000000000000000000000000000000",
+          "rng_seed": 424242,
+          "seat": 0,
+          "termination_rule": "turn_cap_or_no_units",
+          "toolchain_sha256": "tc00000000000000000000000000000000000000000000000000000000000000",
+          "transcript_sha256": "2eb2dcfcd7dc2440cf2f72a0476ad70bac834d628c733e219a3fa3a039b51f6b",
+          "turn_cap": 300
+        },
+        "self_pair": false,
+        "valid": true
+      },
+      "parent": {
+        "chop_events": 0,
+        "dep_natural": 0,
+        "dep_natural_gross": 0,
+        "dep_opponent": 0,
+        "dep_opponent_gross": 0,
+        "dep_ours": 0,
+        "dep_ours_gross": 0,
+        "dep_total": 0,
+        "dep_unknown": 0,
+        "dep_unknown_gross": 0,
+        "deposit_atoms": 0,
+        "direct_interactions": 0,
+        "drop_events": 0,
+        "event_count": 0,
+        "event_ids": [],
+        "first_productive_turn": null,
+        "harvest_events": 0,
+        "initial_score": 0,
+        "loss_events": 0,
+        "lost_natural": 0,
+        "lost_opponent": 0,
+        "lost_ours": 0,
+        "lost_unknown": 0,
+        "mine_events": 0,
+        "opp_live_assets": 0,
+        "pick_events": 0,
+        "plant_events": 0,
+        "productive_turns": 0,
+        "residual": 0,
+        "run_id": "s01-parent",
+        "terminal_score": 0,
+        "terminal_turn": 9,
+        "train_events": 0,
+        "train_spend": 0,
+        "unknown_atoms": 0,
+        "wdr_natural": 0,
+        "wdr_opponent": 0,
+        "wdr_ours": 0,
+        "wdr_unknown": 0,
+        "withdraw_atoms": 0
+      },
+      "parent_run_id": "s01-parent",
+      "residual": 0,
+      "schedule_windfall": 4,
+      "status": "FAIL",
+      "sub_status": null,
+      "unready_reasons": []
     }
   ],
   "sha_manifest": {
     "i30_analyzer.py": "e94882319a9172e20df936167ac1583927f9e40768ec73c493ffd012397b37eb",
-    "i30_fixtures.py": "2cbaed0507bda660bd3e77ccc543cc268819689fdecee6aaa6b42eea1e7d1a5b",
-    "i30_ledger.py": "90f64c9d36e9cdd14a9c93d2dd5cb85f2e6a312f9682058a2783310c868dc14f"
+    "i30_fixtures.py": "a34f229252ded664158f181e32c493ed539cb550dc68bdd2f153d3a25744e974",
+    "i30_ledger.py": "b393d639f28494191e9162b6d42966f2854aaa01d1c038a867b8cdd5509f74b5"
   },
   "statuses": [
     "FAIL",

@@ -361,5 +361,29 @@ class TestBite15MutationBitesTheIndirectTerm(unittest.TestCase):
                          an.FAIL)
 
 
+class TestSupplementaryWoodChopCoverage(unittest.TestCase):
+    """NOT one of the fifteen mandated bite-tests.
+
+    The fifteen never deposit WOOD, so the frozen `WOOD=4` score weight
+    (spec sec. 5.1) and the CHOP inheritance rule (spec sec. 5.2, "Wood from
+    CHOP inherits the chopped asset's creator class") would otherwise be live
+    but wholly unexercised. A mutation sweep confirmed that flipping the WOOD
+    weight to 1 survived all fifteen; it does not survive this.
+    """
+
+    def test_chopped_wood_carries_its_asset_class_at_weight_four(self):
+        cand, par = fx.fixture_s1_wood_chop()
+        res = an.analyze_pair(cand, par)
+
+        self.assertEqual(res["candidate"]["chop_events"], 2)
+        self.assertEqual(res["candidate"]["dep_natural"], 4)
+        self.assertEqual(res["candidate"]["dep_ours"], 4)
+        self.assertEqual(res["d_direct"], 4)
+        self.assertEqual(res["d_schedule"], 4)
+        self.assertEqual(res["schedule_windfall"], 4)
+        self.assertEqual(res["d_opp"], 8)
+        self.assertEqual(res["residual"], 0)
+
+
 if __name__ == "__main__":
     unittest.main()

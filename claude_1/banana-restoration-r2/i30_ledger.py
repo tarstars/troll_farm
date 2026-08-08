@@ -426,7 +426,12 @@ def build_run_ledger(record):
             planted = new_plants.get(cell)
             seed_pending = (planted is not None
                             and planted[1] == OPPONENT_PLAYER)
-            src_asset = assets_prev.get(cell)
+            # An asset can only be the source of an acquisition if it was
+            # actually standing on the unit's cell in the pre-state. The
+            # registry is never pruned, so consulting it alone would let a
+            # long-dead plant launder a later untagged atom (R4).
+            src_asset = (assets_prev.get(cell)
+                         if s0.plant_at(cell) is not None else None)
             banked_this_turn = False
 
             for k in range(6):
