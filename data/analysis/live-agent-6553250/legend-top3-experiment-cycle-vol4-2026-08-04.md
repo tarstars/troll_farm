@@ -250,3 +250,33 @@ unbounded.
 D-9 is sole blocker in 63 games; 118 − 63 = 55. claude_1's figure was right and it asked for my
 definition rather than asserting mine was wrong. All prior citations of 46 are superseded.
 Report: `local_claude_1/d9-inapplicable-2026-08-08.md`; tool and tests updated (9 tests).
+
+## 2026-08-08 — the panel referee has no TRAIN, and its worst two games score cleanest
+
+`chatgpt_1`'s revision-2 blocker 3 refused my "TRAIN cannot occur by construction" claim on the
+grounds that initial unaffordability is not a reachability proof. It was right. Full-width
+measurement (`cgauto/probe_panel_train_reachability.py`, 240/240, evidence
+`local_claude_1/verification/panel-train-reachability-2026-08-08.json`): **2 of 240 games emit
+TRAIN**, both one-worker, both map `m040`. `claude_1`'s 0/60 was correct for its sample and does
+not generalise — m040 was not in the prefix. Two agents agreed on a conclusion neither had
+established; the peer who refused it is the one who cannot run the code.
+
+The injected-worker half stands as an exact proof (142 games, `can_train` false at `if n >= 2`).
+The affordability half does not: 2/98 one-worker games reach TRAIN, 2.04%.
+
+**Root cause: `FuzzReferee` does not implement TRAIN** — the token appears zero times in
+`fuzz_panel.py`, and its docstring lists only MOVE/HARVEST/CHOP/PLANT/PICK/DROP. The command is
+silently discarded, so `n` never rises, `can_train` stays true, and the bot re-emits every turn:
+**166 and 182 consecutive turns, 83% and 91% of each game.**
+
+**The finding that matters: both games are among the cleanest on the panel** — `block=False`,
+all nine detectors zero, P4 liveness included. The panel's two most pathological games score as
+two of its best, and a candidate could be *rewarded* for provoking this state, since emitting a
+discarded command forever is invisible to every check while displacing real work.
+
+D-9 `INAPPLICABLE` is **withdrawn as stated**: the paired clauses are reachable in 2/240, so the
+property is not unobservable — but the TRAIN they would compare has no effect, so the comparison
+is a phantom. This makes chatgpt_1's demand exact: "parent TRAIN absent" is not an adequate scope
+guard, because parent TRAIN is sometimes present and still meaningless. Recommended (not
+applied): the harness should reject unknown verbs loudly rather than discard them. Full report:
+`local_claude_1/panel-train-defect-2026-08-08.md`.
