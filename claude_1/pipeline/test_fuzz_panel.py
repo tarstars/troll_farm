@@ -308,6 +308,19 @@ def synth_trace(rows, frames, commands=None):
     return td.build_trace(transcript, "\n".join(cmds) + "\n")
 
 
+def post_state(rows=OPEN_ROWS, banked=0, carry=0, plants=(), cell=(1, 0),
+               opp_inv=None, opp_units=()):
+    """A single referee frame standing for the post-C_T world state (the
+    state after the final turn's commands resolve), in the same shape
+    `stall_trace` produces its per-turn frames."""
+    units = [[7, 0, cell[0], cell[1], 1, 2, 1, 1, 0, 0, 0, 0, 0, carry]]
+    units.extend(list(u) for u in opp_units)
+    frames = [{"inv": [0, 0, 0, 0, 0, banked],
+               "opp_inv": list(opp_inv or [0] * 6),
+               "plants": list(plants), "units": units}]
+    return synth_trace(rows, frames).state(1)
+
+
 def stall_trace(T, plants_at, banked_at, carry_at=lambda t: 0,
                 rows=OPEN_ROWS, cell=(1, 0), commands=None):
     """One own unit (harvest 1 / chop 1) at `cell`; own banked wood and own
@@ -496,6 +509,152 @@ class TestP4TerminalCalibration(unittest.TestCase):
         self.assertEqual(fp.live_horizon(empty), 1)     # terminal all game
 
 
+class TestP4PostCT(unittest.TestCase):
+    """P4 post-C_T referee-state rule (ABSOLUTE, no parent reference).
+
+    The transcript records S_1..S_T, every state being the world BEFORE that
+    turn's commands resolve, so the outcome of the final command set C_T is
+    invisible: the last turn carries no liveness obligation at all today --
+    a do-nothing C_T is never counted as a stalled turn, and a C_T that banks
+    or plants is never counted as progress.  The rule closes both halves with
+    the post-C_T referee state (the world after C_T resolves):
+
+      turn T is a stalled turn  <=>  work remains in S_T (pre-state
+      obligation, unchanged) AND resolving C_T changes neither the own
+      inventory nor any own unit's cargo (post-state outcome).
+
+    Both directions are pinned below: a final turn that completes work must
+    not be counted as a stall, and a final turn that does nothing must be.
+    """
+
+    T = 10
+    WINDOW = 6
+
+    def base(self):
+        """Progress on turns 1-4, then a stall to the horizon: turns 5-9 are
+        five OBSERVABLE stalled turns -- one short of the window -- so the
+        verdict turns entirely on how turn T=10 is counted."""
+        tr = stall_trace(self.T, lambda t: [RIPE_LEMON],
+                         lambda t: min(t, 5))
+        self.assertEqual(fp.progress_turns(tr), {1, 2, 3, 4})
+        self.assertEqual(fp.stall_windows(fp.progress_turns(tr), tr.T,
+                                          self.WINDOW), [])
+        return tr
+
+    def test_idle_final_turn_completes_the_stall_window(self):
+        # C_T resolves to nothing (post state == S_T): turns 5-10 are six
+        # stalled turns over a live world -> BLOCK.
+        tr = self.base()
+        idle = post_state(banked=5, carry=0, plants=[RIPE_LEMON])
+        viol = fp.eval_p4(tr, None, self.WINDOW, idle)
+        self.assertEqual(
+            [(v["window_start"], v["window_end"]) for v in viol],
+            [(5, self.T)],
+            "a final turn whose commands change nothing is a stalled turn "
+            "and must complete the window")
+
+    def test_final_turn_that_banks_is_progress_and_passes(self):
+        # Same game, but C_T banks (own inventory rises): turn T is progress,
+        # so only five stalled turns remain -> PASS.
+        tr = self.base()
+        banked = post_state(banked=6, carry=0, plants=[RIPE_LEMON])
+        self.assertEqual(
+            fp.eval_p4(tr, None, self.WINDOW, banked), [],
+            "work completed by C_T is progress, not a stall")
+
+    def test_final_turn_cargo_change_is_progress_and_passes(self):
+        # Cargo side of the same predicate: C_T harvests/picks up.
+        tr = self.base()
+        picked = post_state(banked=5, carry=1, plants=[RIPE_LEMON])
+        self.assertEqual(fp.eval_p4(tr, None, self.WINDOW, picked), [],
+                         "an own-cargo change at C_T is progress")
+
+    def test_opponent_only_change_at_C_T_is_not_own_progress(self):
+        # Anti-vacuity: the post state moves only for the OPPONENT.  P4 is an
+        # own-progress property, so the window must still close -> BLOCK.
+        tr = self.base()
+        opp = post_state(banked=5, carry=0, plants=[RIPE_LEMON],
+                         opp_inv=[9, 9, 9, 9, 9, 9],
+                         opp_units=[[8, 1, 3, 1, 1, 2, 1, 1,
+                                     1, 1, 1, 1, 1, 1]])
+        viol = fp.eval_p4(tr, None, self.WINDOW, opp)
+        self.assertEqual(
+            [(v["window_start"], v["window_end"]) for v in viol],
+            [(5, self.T)],
+            "opponent inventory/cargo movement at C_T is not own progress")
+
+    def test_terminal_world_at_T_carries_no_final_turn_obligation(self):
+        # The obligation half stays PRE-state: with the world exhausted (no
+        # plant, no cargo) the final turn is not live, so an idle C_T cannot
+        # complete a window -> PASS.
+        tr = stall_trace(self.T, lambda t: [], lambda t: min(t, 5))
+        idle = post_state(banked=5, carry=0, plants=[])
+        self.assertEqual(fp.eval_p4(tr, None, self.WINDOW, idle), [],
+                         "an exhausted world imposes no obligation on the "
+                         "final turn either")
+
+    def test_completing_work_at_C_T_does_not_excuse_a_longer_stall(self):
+        # Over-exemption guard: a 160-turn stall that ends with a final-turn
+        # bank is still a 160-turn stall -> BLOCK.
+        tr = stall_trace(200, lambda t: [RIPE_LEMON], lambda t: min(t, 40))
+        banked = post_state(banked=41, carry=0, plants=[RIPE_LEMON])
+        viol = fp.eval_p4(tr, None, 60, banked)
+        self.assertEqual([(v["window_start"], v["window_end"]) for v in viol],
+                         [(40, 199)],
+                         "post-C_T progress ends the window at T-1; it does "
+                         "not retroactively excuse the stalled turns")
+
+    def test_without_a_post_state_the_final_turn_is_not_counted(self):
+        # Back-compatible call shape: with no post-C_T state the outcome of
+        # C_T is unknown, so turn T carries no obligation (the pre-rule
+        # behaviour, kept for callers that cannot supply the referee state).
+        tr = self.base()
+        self.assertEqual(fp.eval_p4(tr, None, self.WINDOW), [])
+        self.assertEqual(fp.eval_p4(tr, None, self.WINDOW, None), [])
+
+    def test_post_ct_progress_predicate(self):
+        tr = self.base()
+        self.assertFalse(fp.post_ct_progress(
+            tr, post_state(banked=5, carry=0, plants=[RIPE_LEMON])))
+        self.assertTrue(fp.post_ct_progress(
+            tr, post_state(banked=6, carry=0, plants=[RIPE_LEMON])))
+        self.assertTrue(fp.post_ct_progress(
+            tr, post_state(banked=5, carry=2, plants=[RIPE_LEMON])))
+        # plant growth between S_T and the post state is world motion, not
+        # own progress
+        grown = post_state(banked=5, carry=0,
+                           plants=[("LEMON", 5, 2, 4, 12, 2, 3)])
+        self.assertFalse(fp.post_ct_progress(tr, grown))
+
+    def test_stall_windows_last_known_turn(self):
+        # The default (T-1) reproduces the historical behaviour exactly; the
+        # post-C_T caller passes T to make the final turn countable.
+        self.assertEqual(fp.stall_windows({1, 2, 3, 4}, 10, 6), [])
+        self.assertEqual(fp.stall_windows({1, 2, 3, 4}, 10, 6, 10),
+                         [(5, 10)])
+        self.assertEqual(fp.stall_windows({1, 2, 3, 4}, 10, 6, 9),
+                         fp.stall_windows({1, 2, 3, 4}, 10, 6))
+        self.assertEqual(fp.stall_windows(set(), 200, 60, 200), [(1, 200)])
+
+    def test_post_ct_state_reads_the_live_referee(self):
+        # Plumbing: the panel's own referee, after the final command has been
+        # applied, is the authority for the post-C_T world state.
+        # a live FuzzReferee needs both tents on the map
+        rows = ["0....1", "......", "......"]
+        spec = {"rows": rows, "inventory": [0] * 6, "plants": [],
+                "units": [[7, 0, 1, 0, 1, 2, 1, 1, 0, 1, 0, 0, 0, 0]],
+                "profile": "idle"}
+        ref = fp.make_referee(spec)
+        before = fp.post_ct_state(ref)
+        self.assertEqual(list(before.inventories[0]), [0] * 6)
+        self.assertEqual(list(before.own_units()[0].carry),
+                         [0, 1, 0, 0, 0, 0])
+        ref.apply("DROP 7")          # banks the carried LEMON at the door
+        after = fp.post_ct_state(ref)
+        self.assertEqual(list(after.inventories[0]), [0, 1, 0, 0, 0, 0])
+        self.assertEqual(sum(after.own_units()[0].carry), 0)
+
+
 class TestExitCodes(unittest.TestCase):
     def run_panel(self, candidate_src: Path, parent_src: Path, tmp: Path,
                   **cfg_overrides) -> tuple[int, dict | None]:
@@ -573,6 +732,31 @@ class TestExitCodes(unittest.TestCase):
                              "the inherited-report-only downgrade is removed")
             self.assertNotIn("inherited-parent-D9", flags,
                              "the parent-differential D-9 downgrade is removed")
+
+    def test_panel_supplies_the_post_ct_referee_state_to_p4(self):
+        # Plumbing, end to end: every game's P4 evaluation must receive the
+        # post-C_T referee state (a real GameState), never None -- otherwise
+        # the final turn silently keeps its old free pass.
+        wait = compiled_bot("waitbot", WAIT_BOT)
+        seen = []
+        orig = fp.eval_p4
+
+        def spy(tr_c, tr_p, window, post_state=None):
+            seen.append(post_state)
+            return orig(tr_c, tr_p, window, post_state)
+
+        fp.eval_p4 = spy
+        try:
+            with tempfile.TemporaryDirectory() as tmp:
+                self.run_panel(wait, wait, Path(tmp), maps=1, turns=8)
+        finally:
+            fp.eval_p4 = orig
+        self.assertEqual(len(seen), 2, "one P4 evaluation per game")
+        for post in seen:
+            self.assertIsInstance(
+                post, td.GameState,
+                "run_pair must hand P4 the post-C_T referee state")
+            self.assertTrue(post.own_units())
 
     def test_exit_2_on_missing_config(self):
         with tempfile.TemporaryDirectory() as tmp:
