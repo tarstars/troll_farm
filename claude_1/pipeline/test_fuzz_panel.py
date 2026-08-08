@@ -23,7 +23,9 @@ green independent of the candidate's own defects.
 
 from __future__ import annotations
 
+import contextlib
 import inspect
+import io
 import json
 import sys
 import tempfile
@@ -124,21 +126,69 @@ fn main() {
 }
 """
 
+# Planted defect bot: emits a verb the referee does not implement. The
+# exhaustive dispatcher must terminate the run (GATE_UNREADY /
+# unsupported_command) rather than silently discard it.
+BOGUS_VERB_BOT = r"""
+use std::io::{BufRead, Write};
+fn main() {
+    let stdin = std::io::stdin();
+    let mut lines = stdin.lock().lines().filter_map(|l| l.ok());
+    let first = match lines.next() { Some(l) => l, None => return };
+    let mut it = first.split_whitespace();
+    let _w: usize = it.next().unwrap().parse().unwrap();
+    let h: usize = it.next().unwrap().parse().unwrap();
+    for _ in 0..h { lines.next(); }
+    loop {
+        if lines.next().is_none() { return; }
+        lines.next();
+        let np: usize = lines.next().unwrap().trim().parse().unwrap();
+        for _ in 0..np { lines.next(); }
+        let nu: usize = lines.next().unwrap().trim().parse().unwrap();
+        for _ in 0..nu { lines.next(); }
+        println!("TELEPORT 0 1 1");
+        std::io::stdout().flush().unwrap();
+    }
+}
+"""
+
 _BOT_CACHE: dict[str, Path] = {}
+_BIN_CACHE: dict[str, Path] = {}
 _BOT_DIR: tempfile.TemporaryDirectory | None = None
 
 
-def compiled_bot(name: str, source: str) -> Path:
+def _bot_dir() -> Path:
     global _BOT_DIR
+    if _BOT_DIR is None:
+        _BOT_DIR = tempfile.TemporaryDirectory(prefix="fuzz-selftest-")
+    return Path(_BOT_DIR.name)
+
+
+def compiled_bot(name: str, source: str) -> Path:
     if name not in _BOT_CACHE:
-        if _BOT_DIR is None:
-            _BOT_DIR = tempfile.TemporaryDirectory(prefix="fuzz-selftest-")
-        src = Path(_BOT_DIR.name) / (name + ".rs")
+        src = _bot_dir() / (name + ".rs")
         src.write_text(source)
-        binary = Path(_BOT_DIR.name) / name
+        binary = _bot_dir() / name
         sh.compile_text(source, binary, "selftest_" + name)
         _BOT_CACHE[name] = src
     return _BOT_CACHE[name]
+
+
+# The floor bot: the submission the committed panel config runs as parent and
+# the one the two mandatory m040 regression rows are defined against.
+FLOOR_BOT_SOURCE = (HERE.parent.parent / "cgauto" / "submissions"
+                    / "candidate-agent6553250-preseed-orchard-coverage-slim"
+                      ".min.rs")
+
+
+def compiled_binary(name: str, source_path: Path) -> Path:
+    """Compile a real submission once per test process and return the
+    BINARY path (compiled_bot returns the source path for CLI configs)."""
+    if name not in _BIN_CACHE:
+        binary = _bot_dir() / ("bin-" + name)
+        sh.compile_text(source_path.read_text(), binary, "selftest_" + name)
+        _BIN_CACHE[name] = binary
+    return _BIN_CACHE[name]
 
 
 def mini_cfg(**overrides) -> dict:
@@ -771,6 +821,407 @@ class TestExitCodes(unittest.TestCase):
                 wait, wait, Path(tmp),
                 candidate={"source": str(wait), "sha256": "0" * 64})
             self.assertEqual(code, fp.EXIT_ERROR)
+
+
+# ---------------------------------------------------------------------------
+# Referee command dispatch + TRAIN (referee TRAIN repair, 2026-08-09)
+#
+# Conformance reference: rust/src/bin/yamo_orchard_live.rs (authoritative
+# engine, sacred / byte-untouchable).  Every rule asserted below carries its
+# source line in the referee-train-repair-2026-08-09.md report.
+# ---------------------------------------------------------------------------
+
+TRAIN_ROWS = ("0....1",
+              "......",
+              "......")
+IRON_ROWS = ("0..+.1",          # '+' at (3,0): iron present, not walkable
+             "......",
+             "......")
+
+
+def train_referee(rows=TRAIN_ROWS, inventory=(0, 0, 0, 0, 0, 0),
+                  units=None, plants=(), profile="idle"):
+    """A live FuzzReferee on a tiny map: own unit 0 on the tent's door
+    (1,0), opponent unit 5 parked far away (so the spawned worker's id is
+    max(existing)+1 = 6, the engine's read_turn next_id rule)."""
+    if units is None:
+        units = [[0, 0, 1, 0, 1, 2, 1, 1] + [0] * 6,
+                 [5, 1, 4, 2, 1, 2, 0, 0] + [0] * 6]
+    return fp.make_referee({
+        "rows": list(rows), "inventory": list(inventory),
+        "plants": [list(p) for p in plants],
+        "units": [list(u) for u in units], "profile": profile})
+
+
+class TestExhaustiveDispatch(unittest.TestCase):
+    """Requirement 1: the command dispatcher is exhaustive.  An unknown or
+    unimplemented verb terminates the run as GATE_UNREADY /
+    unsupported_command -- there is no silent default branch anywhere.  This
+    is the defect class (silent default) that produced D-9, D-6, the I-30
+    tie-break and this referee."""
+
+    def test_unknown_verb_raises_gate_unready(self):
+        ref = train_referee()
+        with self.assertRaises(fp.UnsupportedCommand) as ctx:
+            ref.apply("TELEPORT 0 1 1")
+        self.assertIn("GATE_UNREADY", str(ctx.exception))
+        self.assertIn("unsupported_command", str(ctx.exception))
+        self.assertIn("TELEPORT", str(ctx.exception))
+
+    def test_unknown_verb_is_a_panel_error_so_it_terminates_the_run(self):
+        # PanelError is the only exception class run_pair does NOT swallow
+        # into a P0 violation, so it propagates to main() -> exit 2.
+        self.assertTrue(issubclass(fp.UnsupportedCommand, fp.PanelError))
+
+    def test_unknown_verb_anywhere_in_a_multi_command_line(self):
+        ref = train_referee()
+        with self.assertRaises(fp.UnsupportedCommand):
+            ref.apply("MOVE 0 2 0;TELEPORT 0 1 1")
+
+    def test_dispatch_table_is_total_over_the_engine_verb_set(self):
+        # Every verb the engine's command parser recognises must have a
+        # handler; nothing may fall through to a default branch.
+        self.assertEqual(fp.ENGINE_COMMANDS - fp.SUPPORTED_COMMANDS, set())
+        self.assertEqual(set(fp.FuzzReferee.VERB_HANDLERS),
+                         set(fp.SUPPORTED_COMMANDS))
+        for verb in ("TRAIN", "MINE", "MOVE", "HARVEST", "CHOP", "PLANT",
+                     "PICK", "DROP", "WAIT", "MSG"):
+            self.assertIn(verb, fp.SUPPORTED_COMMANDS, verb)
+
+    def test_verbs_are_matched_case_insensitively(self):
+        ref = train_referee(inventory=[9, 9, 9, 0, 9, 0])
+        ref.apply("train 1 1 0 1")
+        self.assertEqual(len(ref.own_unit_ids()), 2)
+
+    def test_panel_exits_gate_unready_on_an_unsupported_verb(self):
+        bogus = compiled_bot("bogusverbbot", BOGUS_VERB_BOT)
+        wait = compiled_bot("waitbot", WAIT_BOT)
+        with tempfile.TemporaryDirectory() as tmp:
+            cfg = {
+                "task": "fuzz-selftest-unsupported",
+                "candidate": {"source": str(bogus)},
+                "parent": {"source": str(wait)},
+                "seeds": [11], "maps": 1, "turns": 8, "processes": 1,
+                "class_mix": {"open_field": 1.0},
+                "opponent_mix": {"idle": 1.0},
+            }
+            cfg_path = Path(tmp) / "cfg.json"
+            cfg_path.write_text(json.dumps(cfg))
+            err = io.StringIO()
+            with contextlib.redirect_stderr(err):
+                code = fp.main(["--config", str(cfg_path),
+                                "--report", str(Path(tmp) / "r.md")])
+            self.assertEqual(code, fp.EXIT_ERROR,
+                             "an unsupported verb must terminate the run")
+            self.assertIn("GATE_UNREADY", err.getvalue())
+            self.assertIn("unsupported_command", err.getvalue())
+
+
+class TestTrainingCost(unittest.TestCase):
+    """yamo_orchard_live.rs:196-204  rules::training_cost."""
+
+    def test_bill_matches_the_engine_formula(self):
+        self.assertEqual(fp.training_cost(1, (1, 1, 0, 1)),
+                         [2, 2, 1, 0, 2, 0])
+        self.assertEqual(fp.training_cost(1, (2, 2, 0, 3)),
+                         [5, 5, 1, 0, 10, 0])
+        self.assertEqual(fp.training_cost(2, (3, 3, 3, 3)),
+                         [11, 11, 11, 0, 11, 0])
+
+    def test_banana_and_wood_are_never_billed(self):
+        for n in (0, 1, 2):
+            for t in ((0, 0, 0, 0), (3, 3, 3, 3)):
+                cost = fp.training_cost(n, t)
+                self.assertEqual(cost[3], 0)
+                self.assertEqual(cost[5], 0)
+
+
+class TestTrainApplication(unittest.TestCase):
+    """Requirement 2: TRAIN is implemented and conformance-tested against
+    yamo_orchard_live.rs -- legality, bill, worker cap, spawn stats, spawn
+    cell, turn timing."""
+
+    def test_legal_train_spawns_a_second_worker_and_charges_the_bill(self):
+        ref = train_referee(inventory=[3, 3, 2, 7, 0, 4])
+        self.assertTrue(ref.apply("TRAIN 1 1 0 1") is None)
+        own = ref.own_unit_ids()
+        self.assertEqual(len(own), 2, "a legal TRAIN spawns a second worker")
+        nid = own[-1]
+        self.assertEqual(nid, 6, "spawn id = max(existing id) + 1")
+        new = ref.units[nid]
+        self.assertEqual(new["cell"], ref.tent, "spawn cell is the own shack")
+        self.assertEqual((new["speed"], new["cap"], new["harvest"],
+                          new["chop"]), (1, 1, 0, 1),
+                         "spawn stats are the TRAIN talents")
+        self.assertEqual(new["carry"], [0] * 6)
+        self.assertEqual(new["player"], 0)
+        # bill: n=1, talents (1,1,0,1) -> PLUM 2, LEMON 2, APPLE 1; no iron
+        # on the map so IRON is not charged.
+        self.assertEqual(ref.inv, [1, 1, 1, 7, 0, 4])
+
+    def test_worker_cap_stops_further_training(self):
+        ref = train_referee(inventory=[99, 99, 99, 0, 99, 0])
+        ref.apply("TRAIN 1 1 0 1")
+        own = ref.own_unit_ids()
+        self.assertEqual(len(own), 2)
+        # Vacate the shack first, so the cap -- not the occupied-shack guard
+        # -- is what refuses the third worker (an off-by-one cap survives a
+        # test that leaves the spawned worker standing on the spawn cell).
+        nid = own[-1]
+        ref.apply("MOVE %d 3 0" % nid)
+        self.assertNotEqual(ref.units[nid]["cell"], ref.tent)
+        self.assertFalse(any(u["cell"] == ref.tent
+                             for u in ref.units.values()))
+        before = list(ref.inv)
+        ref.apply("TRAIN 1 1 0 1")
+        self.assertEqual(len(ref.own_unit_ids()), 2,
+                         "n >= 2 -> no further TRAIN (yamo:836)")
+        self.assertEqual(ref.inv, before, "a rejected TRAIN charges nothing")
+        self.assertFalse(ref.can_train((1, 1, 0, 1)),
+                         "can_train must be false at the cap")
+
+    def test_unaffordable_train_is_rejected_and_charges_nothing(self):
+        ref = train_referee(inventory=[2, 2, 0, 0, 0, 0])   # APPLE short by 1
+        ref.apply("TRAIN 1 1 0 1")
+        self.assertEqual(len(ref.own_unit_ids()), 1)
+        self.assertEqual(ref.inv, [2, 2, 0, 0, 0, 0])
+        ref.inv[2] = 1
+        ref.apply("TRAIN 1 1 0 1")
+        self.assertEqual(len(ref.own_unit_ids()), 2,
+                         "exactly-affordable is affordable (>=, not >)")
+
+    def test_iron_is_billed_only_when_the_map_has_iron(self):
+        # No iron on the map: the IRON leg of the bill is not required and
+        # not charged (yamo:840 pay_iron).
+        ref = train_referee(inventory=[9, 9, 9, 0, 0, 0])
+        ref.apply("TRAIN 1 1 0 3")           # IRON leg would be 1 + 9 = 10
+        self.assertEqual(len(ref.own_unit_ids()), 2)
+        self.assertEqual(ref.inv[4], 0)
+        # Iron on the map: the IRON leg is required and charged.
+        ref = train_referee(rows=IRON_ROWS, inventory=[9, 9, 9, 0, 9, 0])
+        ref.apply("TRAIN 1 1 0 3")
+        self.assertEqual(len(ref.own_unit_ids()), 1,
+                         "iron present -> the IRON leg must be paid")
+        ref = train_referee(rows=IRON_ROWS, inventory=[9, 9, 9, 0, 10, 0])
+        ref.apply("TRAIN 1 1 0 3")
+        self.assertEqual(len(ref.own_unit_ids()), 2)
+        self.assertEqual(ref.inv[4], 0)
+
+    def test_final_twenty_turn_guard(self):
+        # yamo:836  TOTAL_TURNS - view.turn <= 20 -> can_train is false.
+        ref = train_referee(inventory=[9, 9, 9, 0, 9, 0])
+        ref.turn = fp.TOTAL_TURNS - fp.TRAIN_GUARD_TURNS      # 280
+        ref.apply("TRAIN 1 1 0 1")
+        self.assertEqual(len(ref.own_unit_ids()), 1,
+                         "turn 280 of 300 is inside the guard")
+        ref = train_referee(inventory=[9, 9, 9, 0, 9, 0])
+        ref.turn = fp.TOTAL_TURNS - fp.TRAIN_GUARD_TURNS - 1  # 279
+        ref.apply("TRAIN 1 1 0 1")
+        self.assertEqual(len(ref.own_unit_ids()), 2,
+                         "turn 279 of 300 is outside the guard")
+
+    def test_referee_turn_counter_advances_one_per_applied_command_line(self):
+        ref = train_referee()
+        self.assertEqual(ref.turn, 1)
+        ref.apply("WAIT")
+        ref.apply("WAIT")
+        self.assertEqual(ref.turn, 3)
+
+    def test_occupied_shack_blocks_the_spawn(self):
+        units = [[0, 0, 0, 0, 1, 2, 1, 1] + [0] * 6,     # standing ON the tent
+                 [5, 1, 4, 2, 1, 2, 0, 0] + [0] * 6]
+        ref = train_referee(inventory=[9, 9, 9, 0, 9, 0], units=units)
+        ref.apply("TRAIN 1 1 0 1")
+        self.assertEqual(len(ref.own_unit_ids()), 1,
+                         "the spawn cell must be free")
+        self.assertEqual(ref.inv, [9, 9, 9, 0, 9, 0])
+
+    def test_turn_timing_train_resolves_after_moves_before_drops(self):
+        # engine step order ... MOVE, HARVEST, PLANT, CHOP, PICK, TRAIN,
+        # DROP, MINE: the same-turn MOVE that vacates the shack (the
+        # yamo clear_cell manoeuvre) must be seen by TRAIN.
+        units = [[0, 0, 0, 0, 1, 2, 1, 1] + [0] * 6,
+                 [5, 1, 4, 2, 1, 2, 0, 0] + [0] * 6]
+        ref = train_referee(inventory=[9, 9, 9, 0, 9, 0], units=units)
+        ref.apply("TRAIN 1 1 0 1;MOVE 0 1 0")
+        self.assertEqual(ref.units[0]["cell"], (1, 0))
+        self.assertEqual(len(ref.own_unit_ids()), 2,
+                         "TRAIN is applied after the same-turn MOVE")
+        # ... and before DROP: the DROP banks only the mover's cargo, and
+        # the spawned worker (empty, on the shack) is unaffected.
+        ref = train_referee(inventory=[9, 9, 9, 0, 9, 0],
+                            units=[[0, 0, 0, 0, 1, 2, 1, 1,
+                                    0, 0, 0, 0, 0, 1],
+                                   [5, 1, 4, 2, 1, 2, 0, 0] + [0] * 6])
+        ref.apply("TRAIN 1 1 0 1;MOVE 0 1 0;DROP 0")
+        self.assertEqual(ref.units[0]["carry"], [0] * 6)
+        self.assertEqual(len(ref.own_unit_ids()), 2)
+
+    def test_a_spawned_worker_can_leave_the_shack(self):
+        # The shack is not a walkable cell, so the mover must mirror the
+        # engine's next_cell, which seeds its BFS at the unit's own cell
+        # regardless of walkability.  Without this a TRAINed worker is
+        # frozen on the shack for the rest of the game.
+        ref = train_referee(inventory=[9, 9, 9, 0, 9, 0])
+        ref.apply("TRAIN 1 1 0 1")
+        nid = ref.own_unit_ids()[-1]
+        self.assertEqual(ref.units[nid]["cell"], ref.tent)
+        ref.apply("MOVE %d 3 0" % nid)
+        self.assertNotEqual(ref.units[nid]["cell"], ref.tent,
+                            "a spawned worker must be able to walk off the "
+                            "shack")
+
+    def test_malformed_train_is_a_no_op_not_a_crash(self):
+        ref = train_referee(inventory=[9, 9, 9, 0, 9, 0])
+        ref.apply("TRAIN 1 1")            # engine: parts.len() >= 5 required
+        self.assertEqual(len(ref.own_unit_ids()), 1)
+        self.assertEqual(ref.inv, [9, 9, 9, 0, 9, 0])
+
+    def test_train_is_visible_in_the_serialized_state(self):
+        ref = train_referee(inventory=[9, 9, 9, 0, 9, 0])
+        ref.apply("TRAIN 2 2 0 1")     # bill 5/5/1, affordable from 9/9/9
+        state = fp.post_ct_state(ref)
+        own = state.own_units()
+        self.assertEqual(len(own), 2)
+        spawned = [u for u in own if u.cell == ref.tent]
+        self.assertEqual(len(spawned), 1)
+
+
+class TestMineApplication(unittest.TestCase):
+    """MINE was silently discarded by exactly the same defect (the referee
+    implemented no handler and the dispatcher had no default branch to
+    complain).  The exhaustive dispatcher forces it to be implemented."""
+
+    def test_mine_yields_iron_when_orthogonally_adjacent(self):
+        # unit at (2,0) is orthogonally adjacent to the iron cell (3,0)
+        units = [[0, 0, 2, 0, 1, 2, 1, 1] + [0] * 6,
+                 [5, 1, 4, 2, 1, 2, 0, 0] + [0] * 6]
+        ref = train_referee(rows=IRON_ROWS, units=units)
+        ref.apply("MINE 0")
+        self.assertEqual(ref.units[0]["carry"][4], 1,
+                         "min(chop=1, free=2) iron mined")
+
+    def test_mine_is_a_no_op_without_adjacency_chop_or_capacity(self):
+        far = [[0, 0, 1, 2, 1, 2, 1, 1] + [0] * 6,
+               [5, 1, 4, 2, 1, 2, 0, 0] + [0] * 6]
+        ref = train_referee(rows=IRON_ROWS, units=far)
+        ref.apply("MINE 0")
+        self.assertEqual(ref.units[0]["carry"][4], 0)
+        nochop = [[0, 0, 2, 0, 1, 2, 1, 0] + [0] * 6,
+                  [5, 1, 4, 2, 1, 2, 0, 0] + [0] * 6]
+        ref = train_referee(rows=IRON_ROWS, units=nochop)
+        ref.apply("MINE 0")
+        self.assertEqual(ref.units[0]["carry"][4], 0)
+        full = [[0, 0, 2, 0, 1, 2, 1, 1, 0, 0, 0, 0, 0, 2],
+                [5, 1, 4, 2, 1, 2, 0, 0] + [0] * 6]
+        ref = train_referee(rows=IRON_ROWS, units=full)
+        ref.apply("MINE 0")
+        self.assertEqual(ref.units[0]["carry"][4], 0)
+
+    def test_mine_is_capped_by_free_capacity(self):
+        units = [[0, 0, 2, 0, 1, 2, 1, 3, 0, 0, 0, 0, 0, 1],
+                 [5, 1, 4, 2, 1, 2, 0, 0] + [0] * 6]
+        ref = train_referee(rows=IRON_ROWS, units=units)
+        ref.apply("MINE 0")
+        self.assertEqual(ref.units[0]["carry"][4], 1,
+                         "min(chop=3, free=1)")
+
+
+class TestCorpusVersion(unittest.TestCase):
+    """Requirement 5: implementing TRAIN changes the referee and therefore
+    the floor, so the corpus/instrument version is bumped in the config and
+    echoed in every report."""
+
+    def test_committed_config_declares_the_bumped_version(self):
+        cfg = json.loads((HERE / "fuzz-panel-config.json").read_text())
+        self.assertIn("corpus_version", cfg)
+        self.assertIn("instrument_version", cfg)
+        self.assertEqual(cfg["corpus_version"], fp.CORPUS_VERSION)
+        self.assertEqual(cfg["instrument_version"], fp.INSTRUMENT_VERSION)
+        self.assertGreaterEqual(int(str(cfg["corpus_version"]).lstrip("c")
+                                    .split("-")[0]), 2)
+
+    def test_every_report_echoes_the_versions(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "r.md"
+            cfg = dict(fp.DEFAULTS)
+            cfg.update({"task": "t", "seeds": [1],
+                        "candidate": {"source": "c.rs"},
+                        "parent": {"source": "p.rs"}})
+            fp.write_report(out, cfg, [], fp.summarize(cfg, [], 0.0), "CLEAR")
+            text = out.read_text()
+            self.assertIn(fp.CORPUS_VERSION, text)
+            self.assertIn(fp.INSTRUMENT_VERSION, text)
+
+
+# ---------------------------------------------------------------------------
+# Requirement 4: the two m040 identities are MANDATORY REGRESSION ROWS.
+#
+# Measured on the pre-repair floor (corpus c1, instrument fuzz-panel/1):
+# m040 seat 0 and seat 1 (class forest_dense, opponent harvester, one own
+# worker) emitted TRAIN on 166 and 182 of 200 turns respectively -- every
+# turn from t=35 and t=19 to the sim horizon -- because the referee silently
+# discarded TRAIN, so the own worker count never rose and can_train stayed
+# true forever.  Both games nevertheless scored CLEAN (D-1..D-9 all zero,
+# block=False), so the panel's two most pathological games were among its
+# best.  These rows must never be removed.
+# ---------------------------------------------------------------------------
+
+class TestM040RegressionRows(unittest.TestCase):
+    MAP_INDEX = 40
+
+    @classmethod
+    def specs(cls):
+        cfg = fp.load_config(HERE / "fuzz-panel-config.json")
+        classes = fp.schedule(cfg["class_mix"], int(cfg["maps"]))
+        profiles = fp.schedule(cfg["opponent_mix"], int(cfg["maps"]))
+        skel, specs = fp.build_skeleton(
+            cls.MAP_INDEX, classes[cls.MAP_INDEX], profiles[cls.MAP_INDEX],
+            cfg)
+        return cfg, skel, specs
+
+    def test_m040_identity_is_pinned(self):
+        cfg, skel, specs = self.specs()
+        self.assertEqual(skel["id"], "m040")
+        self.assertEqual(skel["class"], "forest_dense")
+        self.assertEqual(skel["profile"], "harvester")
+        self.assertIsNone(skel["roster"]["second"],
+                          "both m040 seats are one-worker games")
+        for spec in specs:
+            self.assertEqual(
+                len([u for u in spec["units"] if u[1] == 0]), 1)
+
+    def _run_seat(self, seat):
+        cfg, _, specs = self.specs()
+        binary = compiled_binary("floorbot", FLOOR_BOT_SOURCE)
+        ref = fp.make_referee(specs[seat])
+        _, commands = rt.run_binary_custom(binary, ref, int(cfg["turns"]))
+        trains = [i + 1 for i, line in enumerate(commands.splitlines())
+                  if any(c.strip().upper().startswith("TRAIN")
+                         for c in line.split(";"))]
+        return ref, commands, trains
+
+    def _assert_row_repaired(self, seat):
+        ref, commands, trains = self._run_seat(seat)
+        n_turns = len(commands.splitlines())
+        self.assertGreaterEqual(n_turns, 200)
+        self.assertTrue(trains, "m040 seat %d must still attempt TRAIN "
+                                "(the row would be vacuous otherwise)" % seat)
+        self.assertEqual(
+            len(trains), 1,
+            "m040 seat %d: TRAIN must be emitted once and then stop -- it "
+            "was re-emitted on %d of %d turns before the repair"
+            % (seat, len(trains), n_turns))
+        own = [u for u in ref.units.values() if u["player"] == 0]
+        self.assertEqual(len(own), 2,
+                         "m040 seat %d: the TRAIN must actually spawn the "
+                         "second worker" % seat)
+
+    def test_m040_seat_0_no_longer_re_emits_train_every_turn(self):
+        self._assert_row_repaired(0)
+
+    def test_m040_seat_1_no_longer_re_emits_train_every_turn(self):
+        self._assert_row_repaired(1)
 
 
 if __name__ == "__main__":
