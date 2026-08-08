@@ -1,0 +1,395 @@
+test_command_hashes_are_equal (test_i30_invariant.TestBite01ExactSelfPair.test_command_hashes_are_equal) ... ERROR
+test_every_delta_and_residual_is_zero (test_i30_invariant.TestBite01ExactSelfPair.test_every_delta_and_residual_is_zero) ... ERROR
+test_non_state_changing_diagnostic_moves_nothing (test_i30_invariant.TestBite02InertCandidate.test_non_state_changing_diagnostic_moves_nothing) ... ERROR
+test_claimed_but_unexercised_mechanism_is_unproven (test_i30_invariant.TestBite03NoBananaActivation.test_claimed_but_unexercised_mechanism_is_unproven) ... ERROR
+test_status_is_not_applicable_not_a_fabricated_pass (test_i30_invariant.TestBite03NoBananaActivation.test_status_is_not_applicable_not_a_fabricated_pass) ... ERROR
+test_d_direct_positive_windfall_zero_and_d6_exercises (test_i30_invariant.TestBite04DirectTheftOnly.test_d_direct_positive_windfall_zero_and_d6_exercises) ... ERROR
+test_windfall_positive_while_d6_stays_zero (test_i30_invariant.TestBite05IndirectProductionOnly.test_windfall_positive_while_d6_stays_zero) ... ERROR
+test_uncontested_natural_output_lands_in_d_schedule (test_i30_invariant.TestBite06NaturalOpportunity.test_uncontested_natural_output_lands_in_d_schedule) ... ERROR
+test_train_bill_closes_the_identity_with_the_correct_sign (test_i30_invariant.TestBite07TrainSpendOffset.test_train_bill_closes_the_identity_with_the_correct_sign) ... ERROR
+test_training_cost_matches_the_engine_formula (test_i30_invariant.TestBite07TrainSpendOffset.test_training_cost_matches_the_engine_formula) ... ERROR
+test_each_source_class_in_one_drop_is_counted_exactly_once (test_i30_invariant.TestBite08MixedCargo.test_each_source_class_in_one_drop_is_counted_exactly_once) ... ERROR
+test_terminal_turn_delta_and_windfall_both_expose_it (test_i30_invariant.TestBite09LongerGameSchedule.test_terminal_turn_delta_and_windfall_both_expose_it) ... ERROR
+test_d6_is_zero_but_i30_sees_opponent_own_production (test_i30_invariant.TestBite10BlindSpotFixture.test_d6_is_zero_but_i30_sees_opponent_own_production) ... ERROR
+test_every_behavioural_detector_passes (test_i30_invariant.TestBite10BlindSpotFixture.test_every_behavioural_detector_passes) ... ERROR
+test_i30_must_not_return_pass_under_a_bound_excluding_the_windfall (test_i30_invariant.TestBite10BlindSpotFixture.test_i30_must_not_return_pass_under_a_bound_excluding_the_windfall) ... ERROR
+test_self_pair_hash_mismatch_is_gate_unready (test_i30_invariant.TestBite11PairIdentityMismatch.test_self_pair_hash_mismatch_is_gate_unready) ... ERROR
+test_one_untagged_score_bearing_atom_is_gate_unready (test_i30_invariant.TestBite12UntaggedAtom.test_one_untagged_score_bearing_atom_is_gate_unready) ... ERROR
+test_nonzero_conservation_residual_is_gate_unready (test_i30_invariant.TestBite13NonzeroResidual.test_nonzero_conservation_residual_is_gate_unready) ... ERROR
+test_active_candidate_without_a_bound_is_gate_unready (test_i30_invariant.TestBite14AbsentBound.test_active_candidate_without_a_bound_is_gate_unready) ... ERROR
+test_bound_hash_pin_mismatch_is_gate_unready (test_i30_invariant.TestBite14AbsentBound.test_bound_hash_pin_mismatch_is_gate_unready) ... ERROR
+test_bound_without_owner_freeze_never_yields_pass (test_i30_invariant.TestBite14AbsentBound.test_bound_without_owner_freeze_never_yields_pass) ... ERROR
+test_removing_the_indirect_calculation_reopens_the_blind_spot (test_i30_invariant.TestBite15MutationBitesTheIndirectTerm.test_removing_the_indirect_calculation_reopens_the_blind_spot) ... ERROR
+
+======================================================================
+ERROR: test_command_hashes_are_equal (test_i30_invariant.TestBite01ExactSelfPair.test_command_hashes_are_equal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 51, in test_command_hashes_are_equal
+    cand, par = fx.fixture_01_exact_self_pair()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 168, in fixture_01_exact_self_pair
+    cand = record("bt01-parent-a", blocks, cmds, bot=PARENT_BOT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_every_delta_and_residual_is_zero (test_i30_invariant.TestBite01ExactSelfPair.test_every_delta_and_residual_is_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 35, in test_every_delta_and_residual_is_zero
+    cand, par = fx.fixture_01_exact_self_pair()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 168, in fixture_01_exact_self_pair
+    cand = record("bt01-parent-a", blocks, cmds, bot=PARENT_BOT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_non_state_changing_diagnostic_moves_nothing (test_i30_invariant.TestBite02InertCandidate.test_non_state_changing_diagnostic_moves_nothing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 62, in test_non_state_changing_diagnostic_moves_nothing
+    cand, par = fx.fixture_02_inert_candidate()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 176, in fixture_02_inert_candidate
+    cand = record("bt02-candidate", blocks,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_claimed_but_unexercised_mechanism_is_unproven (test_i30_invariant.TestBite03NoBananaActivation.test_claimed_but_unexercised_mechanism_is_unproven)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 89, in test_claimed_but_unexercised_mechanism_is_unproven
+    cand, par = fx.fixture_03_no_banana_activation()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 197, in fixture_03_no_banana_activation
+    cand = record("bt03-candidate", cand_blocks,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_status_is_not_applicable_not_a_fabricated_pass (test_i30_invariant.TestBite03NoBananaActivation.test_status_is_not_applicable_not_a_fabricated_pass)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 78, in test_status_is_not_applicable_not_a_fabricated_pass
+    cand, par = fx.fixture_03_no_banana_activation()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 197, in fixture_03_no_banana_activation
+    cand = record("bt03-candidate", cand_blocks,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_d_direct_positive_windfall_zero_and_d6_exercises (test_i30_invariant.TestBite04DirectTheftOnly.test_d_direct_positive_windfall_zero_and_d6_exercises)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 98, in test_d_direct_positive_windfall_zero_and_d6_exercises
+    cand, par = fx.fixture_04_direct_theft()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 233, in fixture_04_direct_theft
+    cand = record("bt04-candidate", cand_blocks, cand_cmds,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_windfall_positive_while_d6_stays_zero (test_i30_invariant.TestBite05IndirectProductionOnly.test_windfall_positive_while_d6_stays_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 116, in test_windfall_positive_while_d6_stays_zero
+    cand, par = fx.fixture_05_indirect_only()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 277, in fixture_05_indirect_only
+    cand = record("bt05-candidate", cand_blocks, cand_cmds,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_uncontested_natural_output_lands_in_d_schedule (test_i30_invariant.TestBite06NaturalOpportunity.test_uncontested_natural_output_lands_in_d_schedule)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 135, in test_uncontested_natural_output_lands_in_d_schedule
+    cand, par = fx.fixture_06_natural_opportunity()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 325, in fixture_06_natural_opportunity
+    cand = record("bt06-candidate", cand_blocks, cand_cmds,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_train_bill_closes_the_identity_with_the_correct_sign (test_i30_invariant.TestBite07TrainSpendOffset.test_train_bill_closes_the_identity_with_the_correct_sign)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 151, in test_train_bill_closes_the_identity_with_the_correct_sign
+    cand, par = fx.fixture_07_train_offset()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 377, in fixture_07_train_offset
+    cand = record("bt07-candidate", cand_blocks, cand_cmds,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_training_cost_matches_the_engine_formula (test_i30_invariant.TestBite07TrainSpendOffset.test_training_cost_matches_the_engine_formula)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 167, in test_training_cost_matches_the_engine_formula
+    self.assertEqual(ledger.training_cost(1, (1, 1, 1, 1), False),
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 36, in training_cost
+    raise NotImplementedError("I-30 ledger: training_cost not implemented")
+NotImplementedError: I-30 ledger: training_cost not implemented
+
+======================================================================
+ERROR: test_each_source_class_in_one_drop_is_counted_exactly_once (test_i30_invariant.TestBite08MixedCargo.test_each_source_class_in_one_drop_is_counted_exactly_once)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 177, in test_each_source_class_in_one_drop_is_counted_exactly_once
+    cand, par = fx.fixture_08_mixed_cargo()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 435, in fixture_08_mixed_cargo
+    cand = record("bt08-candidate", cand_blocks, cand_cmds,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_terminal_turn_delta_and_windfall_both_expose_it (test_i30_invariant.TestBite09LongerGameSchedule.test_terminal_turn_delta_and_windfall_both_expose_it)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 196, in test_terminal_turn_delta_and_windfall_both_expose_it
+    cand, par = fx.fixture_09_longer_game()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 486, in fixture_09_longer_game
+    cand = record("bt09-candidate", cand_blocks, cand_cmds,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_d6_is_zero_but_i30_sees_opponent_own_production (test_i30_invariant.TestBite10BlindSpotFixture.test_d6_is_zero_but_i30_sees_opponent_own_production)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 221, in test_d6_is_zero_but_i30_sees_opponent_own_production
+    cand, par = fx.fixture_10_blind_spot()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 536, in fixture_10_blind_spot
+    cand = record("bt10-candidate", cand_blocks, cand_cmds,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_every_behavioural_detector_passes (test_i30_invariant.TestBite10BlindSpotFixture.test_every_behavioural_detector_passes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 215, in test_every_behavioural_detector_passes
+    cand, _ = fx.fixture_10_blind_spot()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 536, in fixture_10_blind_spot
+    cand = record("bt10-candidate", cand_blocks, cand_cmds,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_i30_must_not_return_pass_under_a_bound_excluding_the_windfall (test_i30_invariant.TestBite10BlindSpotFixture.test_i30_must_not_return_pass_under_a_bound_excluding_the_windfall)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 237, in test_i30_must_not_return_pass_under_a_bound_excluding_the_windfall
+    cand, par = fx.fixture_10_blind_spot()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 536, in fixture_10_blind_spot
+    cand = record("bt10-candidate", cand_blocks, cand_cmds,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_self_pair_hash_mismatch_is_gate_unready (test_i30_invariant.TestBite11PairIdentityMismatch.test_self_pair_hash_mismatch_is_gate_unready)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 248, in test_self_pair_hash_mismatch_is_gate_unready
+    cand, par = fx.fixture_11_hash_mismatch_self_pair()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 551, in fixture_11_hash_mismatch_self_pair
+    cand = record("bt11-a", blocks, cmds, bot=PARENT_BOT,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_one_untagged_score_bearing_atom_is_gate_unready (test_i30_invariant.TestBite12UntaggedAtom.test_one_untagged_score_bearing_atom_is_gate_unready)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 264, in test_one_untagged_score_bearing_atom_is_gate_unready
+    cand, par = fx.fixture_12_untagged_atom()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 573, in fixture_12_untagged_atom
+    cand = record("bt12-candidate", cand_blocks, cand_cmds,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_nonzero_conservation_residual_is_gate_unready (test_i30_invariant.TestBite13NonzeroResidual.test_nonzero_conservation_residual_is_gate_unready)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 281, in test_nonzero_conservation_residual_is_gate_unready
+    cand, par = fx.fixture_13_nonzero_residual()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 594, in fixture_13_nonzero_residual
+    cand = record("bt13-candidate", cand_blocks, cand_cmds,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_active_candidate_without_a_bound_is_gate_unready (test_i30_invariant.TestBite14AbsentBound.test_active_candidate_without_a_bound_is_gate_unready)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 299, in test_active_candidate_without_a_bound_is_gate_unready
+    cand, par = fx.fixture_05_indirect_only()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 277, in fixture_05_indirect_only
+    cand = record("bt05-candidate", cand_blocks, cand_cmds,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_bound_hash_pin_mismatch_is_gate_unready (test_i30_invariant.TestBite14AbsentBound.test_bound_hash_pin_mismatch_is_gate_unready)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 320, in test_bound_hash_pin_mismatch_is_gate_unready
+    cand, par = fx.fixture_05_indirect_only()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 277, in fixture_05_indirect_only
+    cand = record("bt05-candidate", cand_blocks, cand_cmds,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_bound_without_owner_freeze_never_yields_pass (test_i30_invariant.TestBite14AbsentBound.test_bound_without_owner_freeze_never_yields_pass)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 311, in test_bound_without_owner_freeze_never_yields_pass
+    cand, par = fx.fixture_05_indirect_only()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 277, in fixture_05_indirect_only
+    cand = record("bt05-candidate", cand_blocks, cand_cmds,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+======================================================================
+ERROR: test_removing_the_indirect_calculation_reopens_the_blind_spot (test_i30_invariant.TestBite15MutationBitesTheIndirectTerm.test_removing_the_indirect_calculation_reopens_the_blind_spot)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 338, in test_removing_the_indirect_calculation_reopens_the_blind_spot
+    cand, par = fx.fixture_10_blind_spot()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 536, in fixture_10_blind_spot
+    cand = record("bt10-candidate", cand_blocks, cand_cmds,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_fixtures.py", line 130, in record
+    return ledger.RunRecord(run_id, transcript_of(blocks),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_ledger.py", line 48, in __init__
+    raise NotImplementedError("I-30 ledger: RunRecord not implemented")
+NotImplementedError: I-30 ledger: RunRecord not implemented
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.012s
+
+FAILED (errors=22)
