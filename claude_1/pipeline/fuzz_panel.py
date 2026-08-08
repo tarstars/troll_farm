@@ -766,7 +766,7 @@ class FuzzReferee(mbt.Referee):
             self.inv[item] -= cost[item]
         ms, cc, hp, chop = talents
         # `next_id = next_id.max(values[0] + 1)` over the serialized units
-        # (yamo_orchard_live.rs:476) -- the id the bot itself predicts.
+        # (yamo_orchard_live.rs:485) -- the id the bot itself predicts.
         nid = max(self.units) + 1 if self.units else 0
         self.units[nid] = {
             "player": 0, "cell": self.tent, "speed": ms, "cap": cc,
