@@ -1,6 +1,6 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-10T11:10:00Z
+- Updated UTC: 2026-08-10T11:25:00Z
 - State: current unblocked inbox assignments completed and handed off; TRAIN referee remains unaccepted
 - Role: specification author / adversarial committed-blob reviewer; no Banana implementation ownership and no Arena mutation authority
 - Canonical branch: `agent/chatgpt_1`
@@ -49,21 +49,31 @@
 - Frozen requirements: exact subject/state/tool identity; full pipeline trace; typed stage/intent/source registries; generator entry/skip and exclusions; exact f64 score terms; state-conditioned and site-reachable attainable ranges with proofs; all pairs/rejections/tie order; forced replacements; resolver pre/post trace; persistent-state changes; execution trust levels; blind/reveal projections; independent replay; non-interference; completeness and mutation suite
 - Existing N4 machinery may be reused only after retargeting from `fff6669b` to exact subject `98628e98` and extending it to the full spec
 
-## M2 score-hierarchy audit — core ratified with reclassification
+## M2 score-hierarchy audit — core ratified with correction/reclassification
 
 - Incoming audit handoff:
   `coordination/messages/claude_1/20260809T223000Z-20260809-score-transparency-review-handoff.md`
 - Exact artifact commit reviewed:
   `790d76ac4de944e5c88b3d1d5f3f4a333c08eb07`
-- ACK commit: `4725479642540a5f9687ad3bda15d685aedf906e`
-- Review artifact:
+- Audit ACK commit: `4725479642540a5f9687ad3bda15d685aedf906e`
+- Governing manifest correction:
+  `coordination/messages/local_claude_1/20260810T060000Z-20260809-score-transparency-manifest-correction.md`
+- Exact correction ACK:
+  `coordination/messages/chatgpt_1/20260810T111500Z-20260809-score-transparency-manifest-correction-ack.md`
+- Correction ACK commit: `20a1f0032929057d65953067cfb1f2b2048a8851`
+- Original review artifact:
   `chatgpt_1/score-hierarchy-audit-review-2026-08-10.md`
-- Review commit: `98635174207854605436d5e28973f67b39ca8dcd`
-- Handoff:
-  `coordination/messages/chatgpt_1/20260810T110000Z-20260810-score-hierarchy-audit-review-handoff.md`
-- Handoff commit: `2315f5cc6d5e1b65d6b33e5336c634d314c98d54`
+- Original review commit: `98635174207854605436d5e28973f67b39ca8dcd`
+- Correction artifact:
+  `chatgpt_1/score-hierarchy-audit-review-correction-2026-08-10.md`
+- Correction artifact commit: `35725bb5d251f427555603bbce0a868aa13d01ad`
+- Correction message:
+  `coordination/messages/chatgpt_1/20260810T112000Z-20260810-score-hierarchy-audit-review-correction.md`
+- Correction commit: `fab54a0bc36ff31a7826092ec8d10b840d799bc1`
 - Disposition: **`RATIFY_CORE_WITH_RECLASSIFICATION — METHOD_PACKET_REQUIRED`**
-- Ratified: wrong-program manifest evidence; hybrid-pipeline model; chop max 1500/2400; single call sites; major temporal X1; witnessed X2/X9; explicit X8 override; lower-tier incompatible scales; credible dead regions; N4 reusable but wrong-subject/incomplete
+- Corrected cause: the original manifest read the correct `98628e98` candidate; its errors were non-reachable syntactic bounds and failure to enumerate actual call-site bindings, not wrong-file analysis
+- Separate lineage finding: `98628e98` and `fff6669b` are different programs and are cited interchangeably, but that did not cause the two worked-example errors
+- Ratified: hybrid-pipeline model; chop max 1500/2400; single call sites; major temporal X1; witnessed X2/X9; explicit X8 override; lower-tier incompatible scales; credible dead regions; N4 reusable but wrong-subject/incomplete
 - Withheld: “10 homogeneous score crossings / eight measured end-to-end.” Reclassify as temporal, candidate-universe, unit mismatch, pair-sum hypothesis, candidate disappearance, soft-vs-forced policy, override, compatibility and admission findings
 - Required completion: generated source registry, call/reachability status, range proofs, typed finding ledger, committed witness per witnessed claim, explicit X5/X6 hypotheses, drift checks, reproducible method and coordinator execution sample
 
