@@ -699,21 +699,55 @@ def progress_turns(tr) -> set:
     return out
 
 
-def stall_windows(prog: set, T: int, window: int) -> list:
+def stall_windows(prog: set, T: int, window: int, last_known: int | None = None
+                  ) -> list:
     """Maximal runs of >= window consecutive progress-free turns in
-    1..T-1."""
+    1..last_known.
+
+    `last_known` is the last turn whose OUTCOME is known.  It defaults to
+    T-1: the transcript records S_1..S_T, so for t <= T-1 the outcome of turn
+    t is read off the recorded transition S_t -> S_{t+1}, while turn T has no
+    recorded successor state.  A caller holding the post-C_T referee state
+    (see `post_ct_state`) knows the outcome of turn T too and passes
+    last_known=T so the final turn can count."""
+    n = T - 1 if last_known is None else last_known
     runs = []
     start = None
-    for t in range(1, T):
+    for t in range(1, n + 1):
         if t in prog:
             if start is not None and t - start >= window:
                 runs.append((start, t - 1))
             start = None
         elif start is None:
             start = t
-    if start is not None and T - start >= window:
-        runs.append((start, T - 1))
+    if start is not None and n + 1 - start >= window:
+        runs.append((start, n))
     return runs
+
+
+def post_ct_state(ref):
+    """The post-C_T referee state: the world AFTER the final turn's commands
+    resolve, read from the panel's own referee once the game loop has applied
+    C_T (and the referee's own end-of-turn growth / opponent step).
+
+    Returned as the same td.GameState the transcript parser produces for a
+    recorded turn, so every world-state predicate reads it exactly as it
+    reads S_1..S_T.  Absolute: one candidate referee, no parent reference."""
+    return td.build_trace(ref.map_header() + ref.turn_text(), "WAIT\n").state(1)
+
+
+def post_ct_progress(tr, post) -> bool:
+    """True iff resolving C_T made own-player progress -- the same predicate
+    `progress_turns` applies to every recorded transition (own inventory or
+    an own unit's cargo changes), applied to the S_T -> post-C_T transition.
+
+    Opponent inventory/cargo motion and plant growth are world motion, not
+    own progress, and are ignored exactly as they are for turns 1..T-1."""
+    st = tr.state(tr.T)
+    if st.inventories[0] != post.inventories[0]:
+        return True
+    return ({u.id: tuple(u.carry) for u in st.own_units()}
+            != {u.id: tuple(u.carry) for u in post.own_units()})
 
 
 def work_remaining(tr, t) -> bool:
@@ -791,7 +825,7 @@ def eval_p3(orchard_eligible: bool, commands_c: str, commands_p: str):
              "candidate": "<trailing bytes differ>", "parent": ""}]
 
 
-def eval_p4(tr_c, tr_p, window: int):
+def eval_p4(tr_c, tr_p, window: int, post_state=None):
     """RAW liveness (owner ruling 2026-08-06) with an ABSOLUTE terminal-state
     calibration.  The candidate must make progress (own inventory or own-unit
     cargo change) in every rolling window; every stall window blocks and
@@ -808,9 +842,38 @@ def eval_p4(tr_c, tr_p, window: int):
     exhausted for the rest of the game (no plant reachable by an own unit and
     no cargo left to bank) is explained by the game being over, not by the
     bot being stuck; a stall while work remains -- mid-game or running to the
-    sim horizon -- still blocks."""
+    sim horizon -- still blocks.
+
+    Post-C_T rule (2026-08-08).  Every recorded state is the world BEFORE
+    that turn's commands resolve, so the outcome of the final command set
+    C_T is absent from the transcript and the last turn used to carry no
+    liveness obligation in either direction: a do-nothing C_T was never
+    counted as a stalled turn and a C_T that banked or planted was never
+    counted as progress.  Given the post-C_T referee state (`post_ct_state`
+    -- the world after C_T resolves) the final turn is judged like any
+    other:
+
+        turn T is a stalled turn  <=>  work remains in S_T (the OBLIGATION
+        is set by the pre-state: only a world that still offers a resource
+        action can demand one) AND resolving C_T changes neither the own
+        inventory nor any own unit's cargo (the OUTCOME is read off the
+        post-state).
+
+    That closes the boundary in both directions -- work completed by C_T is
+    progress and can no longer be scored as a stall; an idle final turn now
+    counts toward the window -- and it never shortens an already-formed
+    window: a stall that has already run >= window live turns still blocks
+    whatever C_T does.  Absolute: the post state is the candidate's own
+    referee world, no parent reference.  post_state=None keeps the pre-rule
+    behaviour for callers that cannot supply it (the outcome of C_T is then
+    unknown, so the final turn carries no obligation)."""
     pc = progress_turns(tr_c)
-    windows = stall_windows(pc, tr_c.T, window)
+    last_known = tr_c.T - 1
+    if post_state is not None:
+        last_known = tr_c.T
+        if post_ct_progress(tr_c, post_state):
+            pc = pc | {tr_c.T}
+    windows = stall_windows(pc, tr_c.T, window, last_known)
     if not windows:
         return []
     horizon = live_horizon(tr_c)
@@ -872,7 +935,10 @@ def run_pair(job):
         tr_c, tr_p, parent_cmds, parent_d1["verdict"] == "FAIL")
     _, p2_alt, p2_horizon = eval_p2(tr_c)
     p3_viol = eval_p3(spec["orchard_eligible"], c_c, c_p)
-    p4_viol = eval_p4(tr_c, tr_p, job["liveness_window"])
+    # ref_c has applied C_T (and its end-of-turn growth / opponent step), so
+    # it IS the post-C_T referee world state P4's final-turn clause needs.
+    p4_viol = eval_p4(tr_c, tr_p, job["liveness_window"],
+                      post_ct_state(ref_c))
 
     margin_c = score(ref_c.inv) - score(ref_c.opp_inv)
     margin_p = score(ref_p.inv) - score(ref_p.opp_inv)
