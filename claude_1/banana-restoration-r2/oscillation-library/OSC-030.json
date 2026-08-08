@@ -1,0 +1,841 @@
+{
+ "classification": {
+  "all_own_peers_at_entry": [
+   {
+    "cell_at_entry": [
+     1,
+     3
+    ],
+    "distinct_cells_in_window": 1,
+    "stats": {
+     "capacity": 2,
+     "chop_power": 1,
+     "harvest_power": 1,
+     "speed": 1
+    },
+    "unit": 0,
+    "wait_fraction_in_window": 1.0
+   }
+  ],
+  "blocker": null,
+  "blocker_state": "NONE",
+  "classifier_version": "m3a-observational/1",
+  "geometry_excerpt": [
+   "#.....",
+   "#..#..",
+   "##o...",
+   "##S...",
+   "###..."
+  ],
+  "geometry_excerpt_legend": "5 rows x 6 cols centred on the stalled anchor unit's cell (origin at row 2, col 2); o anchor, B other own unit, P own unit on a plant, T plant, S own shack, s opponent shack, . walkable, # not. Documentation only.",
+  "geometry_stencil": "-1,0#;0,-1#;0,0o;0,1.;1,0.;",
+  "mechanism": "UNCLASSIFIED",
+  "mechanism_evidence": "P4 liveness stall with no D-1 alternation in the same game: the stationary counterpart of the oscillation population (mechanism analysis 1.6). No mover mechanism is established by the transcript, so no M1/M2/M3 label is asserted."
+ },
+ "completeness": "FULL",
+ "content_sha256": "040b60b6c193101c4bc8bad4c972c82f5dfbc0ac2187fc2faf07d5211a94cd70",
+ "detectors": {
+  "counts": {
+   "D-1": 0,
+   "D-2": 0,
+   "D-3": 0,
+   "D-4": 0,
+   "D-5": 0,
+   "D-6": 0,
+   "D-7": 0,
+   "D-8": 0,
+   "D-9": 2
+  },
+  "d1_episodes": [],
+  "live_horizon": 201,
+  "p4_violations": [
+   {
+    "live_end": 200,
+    "terminal_from": 201,
+    "why": "candidate makes no own-inventory/own-cargo progress over turns 58-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]",
+    "window_end": 200,
+    "window_start": 58
+   }
+  ],
+  "turns_simulated": 200
+ },
+ "id": "OSC-030",
+ "initial_world_state": {
+  "inventories": {
+   "opponent": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "own": [
+    0,
+    0,
+    1,
+    1,
+    0,
+    0
+   ]
+  },
+  "plants": [
+   [
+    "APPLE",
+    8,
+    3,
+    4,
+    5,
+    2,
+    2
+   ]
+  ],
+  "turn": 1,
+  "units": [
+   [
+    0,
+    0,
+    1,
+    3,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    5,
+    1,
+    9,
+    5,
+    1,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ },
+ "kind": "P4_STALL",
+ "multiplicity": {
+  "dedupe_key_sha256": "a62dc6296922f48e05c88b8c9f4a8699799b690fd547d195265d2ab1ec80ffb6",
+  "episodes": 1,
+  "members": [
+   {
+    "game_id": null,
+    "length_turns": 143,
+    "map_id": "m087",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "turn_end": 200,
+    "turn_start": 58,
+    "unit": 0
+   }
+  ],
+  "representative_rule": "longest window; ties broken by (map_id, seat, unit, turn_start)"
+ },
+ "provenance": {
+  "bot_source": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+  "bot_source_sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "corpus_version": "c3-train-engine-authority-2026-08-09",
+  "generation_attempt": 0,
+  "instrument_version": "fuzz-panel/3-train-engine-authority",
+  "map_class": "multi_door",
+  "map_height": 7,
+  "map_id": "m087",
+  "map_width": 12,
+  "note": "candidate and parent are the SAME source (the arena parent judged against itself): this is the panel FLOOR, not a candidate regression.",
+  "opponent_profile": "idle",
+  "panel_config_sha256": "bb9734385fad50b9090a1344cf2b6fcd8f90bb628b4891693b9d709b23678fed",
+  "panel_liveness_window": 60,
+  "panel_maps": 120,
+  "panel_seeds": [
+   982451653,
+   15485863,
+   32452843,
+   49979687,
+   67867967,
+   86028121
+  ],
+  "panel_turns": 200,
+  "seat": 0,
+  "seed": 49979687,
+  "source": "fuzz-panel-floor"
+ },
+ "schema": "troll-farm-oscillation-situation-v1",
+ "static_map_rows": [
+  "............",
+  "..........#.",
+  "..#.........",
+  "#.........#.",
+  "#0......#...",
+  "##........1.",
+  "#......#.#.."
+ ],
+ "unresolved": [
+  "Whether this stall shares a mechanism with the D-1 population is NOT established here. The mechanism analysis section 1.6 argues the terminal oscillation population and the permanently-idle-worker population are the same population seen from opposite ends; that is an argument, not a measurement on this situation. Settled by a goal trace showing what the stalled unit was selecting."
+ ],
+ "window": {
+  "cells": [
+   [
+    1,
+    3
+   ]
+  ],
+  "commands": [
+   {
+    "line": "WAIT",
+    "turn": 58
+   },
+   {
+    "line": "WAIT",
+    "turn": 59
+   },
+   {
+    "line": "WAIT",
+    "turn": 60
+   },
+   {
+    "line": "WAIT",
+    "turn": 61
+   },
+   {
+    "line": "WAIT",
+    "turn": 62
+   },
+   {
+    "line": "WAIT",
+    "turn": 63
+   },
+   {
+    "line": "WAIT",
+    "turn": 64
+   },
+   {
+    "line": "WAIT",
+    "turn": 65
+   },
+   {
+    "line": "WAIT",
+    "turn": 66
+   },
+   {
+    "line": "WAIT",
+    "turn": 67
+   },
+   {
+    "line": "WAIT",
+    "turn": 68
+   },
+   {
+    "line": "WAIT",
+    "turn": 69
+   },
+   {
+    "line": "WAIT",
+    "turn": 70
+   },
+   {
+    "line": "WAIT",
+    "turn": 71
+   },
+   {
+    "line": "WAIT",
+    "turn": 72
+   },
+   {
+    "line": "WAIT",
+    "turn": 73
+   },
+   {
+    "line": "WAIT",
+    "turn": 74
+   },
+   {
+    "line": "WAIT",
+    "turn": 75
+   },
+   {
+    "line": "WAIT",
+    "turn": 76
+   },
+   {
+    "line": "WAIT",
+    "turn": 77
+   },
+   {
+    "line": "WAIT",
+    "turn": 78
+   },
+   {
+    "line": "WAIT",
+    "turn": 79
+   },
+   {
+    "line": "WAIT",
+    "turn": 80
+   },
+   {
+    "line": "WAIT",
+    "turn": 81
+   },
+   {
+    "line": "WAIT",
+    "turn": 82
+   },
+   {
+    "line": "WAIT",
+    "turn": 83
+   },
+   {
+    "line": "WAIT",
+    "turn": 84
+   },
+   {
+    "line": "WAIT",
+    "turn": 85
+   },
+   {
+    "line": "WAIT",
+    "turn": 86
+   },
+   {
+    "line": "WAIT",
+    "turn": 87
+   },
+   {
+    "line": "WAIT",
+    "turn": 88
+   },
+   {
+    "line": "WAIT",
+    "turn": 89
+   },
+   {
+    "line": "WAIT",
+    "turn": 90
+   },
+   {
+    "line": "WAIT",
+    "turn": 91
+   },
+   {
+    "line": "WAIT",
+    "turn": 92
+   },
+   {
+    "line": "WAIT",
+    "turn": 93
+   },
+   {
+    "line": "WAIT",
+    "turn": 94
+   },
+   {
+    "line": "WAIT",
+    "turn": 95
+   },
+   {
+    "line": "WAIT",
+    "turn": 96
+   },
+   {
+    "line": "WAIT",
+    "turn": 97
+   },
+   {
+    "line": "WAIT",
+    "turn": 98
+   },
+   {
+    "line": "WAIT",
+    "turn": 99
+   },
+   {
+    "line": "WAIT",
+    "turn": 100
+   },
+   {
+    "line": "WAIT",
+    "turn": 101
+   },
+   {
+    "line": "WAIT",
+    "turn": 102
+   },
+   {
+    "line": "WAIT",
+    "turn": 103
+   },
+   {
+    "line": "WAIT",
+    "turn": 104
+   },
+   {
+    "line": "WAIT",
+    "turn": 105
+   },
+   {
+    "line": "WAIT",
+    "turn": 106
+   },
+   {
+    "line": "WAIT",
+    "turn": 107
+   },
+   {
+    "line": "WAIT",
+    "turn": 108
+   },
+   {
+    "line": "WAIT",
+    "turn": 109
+   },
+   {
+    "line": "WAIT",
+    "turn": 110
+   },
+   {
+    "line": "WAIT",
+    "turn": 111
+   },
+   {
+    "line": "WAIT",
+    "turn": 112
+   },
+   {
+    "line": "WAIT",
+    "turn": 113
+   },
+   {
+    "line": "WAIT",
+    "turn": 114
+   },
+   {
+    "line": "WAIT",
+    "turn": 115
+   },
+   {
+    "line": "WAIT",
+    "turn": 116
+   },
+   {
+    "line": "WAIT",
+    "turn": 117
+   },
+   {
+    "line": "WAIT",
+    "turn": 118
+   },
+   {
+    "line": "WAIT",
+    "turn": 119
+   },
+   {
+    "line": "WAIT",
+    "turn": 120
+   },
+   {
+    "line": "WAIT",
+    "turn": 121
+   },
+   {
+    "line": "WAIT",
+    "turn": 122
+   },
+   {
+    "line": "WAIT",
+    "turn": 123
+   },
+   {
+    "line": "WAIT",
+    "turn": 124
+   },
+   {
+    "line": "WAIT",
+    "turn": 125
+   },
+   {
+    "line": "WAIT",
+    "turn": 126
+   },
+   {
+    "line": "WAIT",
+    "turn": 127
+   },
+   {
+    "line": "WAIT",
+    "turn": 128
+   },
+   {
+    "line": "WAIT",
+    "turn": 129
+   },
+   {
+    "line": "WAIT",
+    "turn": 130
+   },
+   {
+    "line": "WAIT",
+    "turn": 131
+   },
+   {
+    "line": "WAIT",
+    "turn": 132
+   },
+   {
+    "line": "WAIT",
+    "turn": 133
+   },
+   {
+    "line": "WAIT",
+    "turn": 134
+   },
+   {
+    "line": "WAIT",
+    "turn": 135
+   },
+   {
+    "line": "WAIT",
+    "turn": 136
+   },
+   {
+    "line": "WAIT",
+    "turn": 137
+   },
+   {
+    "line": "WAIT",
+    "turn": 138
+   },
+   {
+    "line": "WAIT",
+    "turn": 139
+   },
+   {
+    "line": "WAIT",
+    "turn": 140
+   },
+   {
+    "line": "WAIT",
+    "turn": 141
+   },
+   {
+    "line": "WAIT",
+    "turn": 142
+   },
+   {
+    "line": "WAIT",
+    "turn": 143
+   },
+   {
+    "line": "WAIT",
+    "turn": 144
+   },
+   {
+    "line": "WAIT",
+    "turn": 145
+   },
+   {
+    "line": "WAIT",
+    "turn": 146
+   },
+   {
+    "line": "WAIT",
+    "turn": 147
+   },
+   {
+    "line": "WAIT",
+    "turn": 148
+   },
+   {
+    "line": "WAIT",
+    "turn": 149
+   },
+   {
+    "line": "WAIT",
+    "turn": 150
+   },
+   {
+    "line": "WAIT",
+    "turn": 151
+   },
+   {
+    "line": "WAIT",
+    "turn": 152
+   },
+   {
+    "line": "WAIT",
+    "turn": 153
+   },
+   {
+    "line": "WAIT",
+    "turn": 154
+   },
+   {
+    "line": "WAIT",
+    "turn": 155
+   },
+   {
+    "line": "WAIT",
+    "turn": 156
+   },
+   {
+    "line": "WAIT",
+    "turn": 157
+   },
+   {
+    "line": "WAIT",
+    "turn": 158
+   },
+   {
+    "line": "WAIT",
+    "turn": 159
+   },
+   {
+    "line": "WAIT",
+    "turn": 160
+   },
+   {
+    "line": "WAIT",
+    "turn": 161
+   },
+   {
+    "line": "WAIT",
+    "turn": 162
+   },
+   {
+    "line": "WAIT",
+    "turn": 163
+   },
+   {
+    "line": "WAIT",
+    "turn": 164
+   },
+   {
+    "line": "WAIT",
+    "turn": 165
+   },
+   {
+    "line": "WAIT",
+    "turn": 166
+   },
+   {
+    "line": "WAIT",
+    "turn": 167
+   },
+   {
+    "line": "WAIT",
+    "turn": 168
+   },
+   {
+    "line": "WAIT",
+    "turn": 169
+   },
+   {
+    "line": "WAIT",
+    "turn": 170
+   },
+   {
+    "line": "WAIT",
+    "turn": 171
+   },
+   {
+    "line": "WAIT",
+    "turn": 172
+   },
+   {
+    "line": "WAIT",
+    "turn": 173
+   },
+   {
+    "line": "WAIT",
+    "turn": 174
+   },
+   {
+    "line": "WAIT",
+    "turn": 175
+   },
+   {
+    "line": "WAIT",
+    "turn": 176
+   },
+   {
+    "line": "WAIT",
+    "turn": 177
+   },
+   {
+    "line": "WAIT",
+    "turn": 178
+   },
+   {
+    "line": "WAIT",
+    "turn": 179
+   },
+   {
+    "line": "WAIT",
+    "turn": 180
+   },
+   {
+    "line": "WAIT",
+    "turn": 181
+   },
+   {
+    "line": "WAIT",
+    "turn": 182
+   },
+   {
+    "line": "WAIT",
+    "turn": 183
+   },
+   {
+    "line": "WAIT",
+    "turn": 184
+   },
+   {
+    "line": "WAIT",
+    "turn": 185
+   },
+   {
+    "line": "WAIT",
+    "turn": 186
+   },
+   {
+    "line": "WAIT",
+    "turn": 187
+   },
+   {
+    "line": "WAIT",
+    "turn": 188
+   },
+   {
+    "line": "WAIT",
+    "turn": 189
+   },
+   {
+    "line": "WAIT",
+    "turn": 190
+   },
+   {
+    "line": "WAIT",
+    "turn": 191
+   },
+   {
+    "line": "WAIT",
+    "turn": 192
+   },
+   {
+    "line": "WAIT",
+    "turn": 193
+   },
+   {
+    "line": "WAIT",
+    "turn": 194
+   },
+   {
+    "line": "WAIT",
+    "turn": 195
+   },
+   {
+    "line": "WAIT",
+    "turn": 196
+   },
+   {
+    "line": "WAIT",
+    "turn": 197
+   },
+   {
+    "line": "WAIT",
+    "turn": 198
+   },
+   {
+    "line": "WAIT",
+    "turn": 199
+   },
+   {
+    "line": "WAIT",
+    "turn": 200
+   }
+  ],
+  "k": null,
+  "length_turns": 143,
+  "turn_end": 200,
+  "turn_start": 58,
+  "unit": 0
+ },
+ "world_state_at_entry": {
+  "inventories": {
+   "opponent": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "own": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    3
+   ]
+  },
+  "plants": [
+   [
+    "APPLE",
+    8,
+    3,
+    4,
+    5,
+    3,
+    0
+   ]
+  ],
+  "turn": 58,
+  "units": [
+   [
+    0,
+    0,
+    1,
+    3,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    5,
+    1,
+    9,
+    5,
+    1,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ }
+}

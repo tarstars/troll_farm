@@ -1,0 +1,328 @@
+{
+ "classification": {
+  "all_own_peers_at_entry": [],
+  "blocker": null,
+  "blocker_state": "NONE",
+  "classifier_version": "m3a-observational/1",
+  "geometry_excerpt": [
+   "#.....",
+   "###...",
+   "#Sox#.",
+   "#.....",
+   "######"
+  ],
+  "geometry_excerpt_legend": "5 rows x 6 cols centred on the first oscillation cell (origin at row 2, col 2); o/x oscillation cells, B blocker, P blocker standing on a plant, T other plant, S own shack, s opponent shack, . walkable, # not. Documentation only.",
+  "geometry_stencil": "-1,-1.;-1,0#;0,-2#;0,-1x;0,0o;0,1#;1,-1.;1,0.;",
+  "mechanism": "M3",
+  "mechanism_evidence": "no other own unit is alive during the window, so the resolver's detour branch cannot fire (Theorem 2); the alternation must come from the goal selector",
+  "shack_door_evidence": {
+   "cells_that_are_opponent_shack_doors": [],
+   "cells_that_are_own_shack_doors": [
+    [
+     1,
+     4
+    ]
+   ],
+   "opponent_shack": [
+    13,
+    2
+   ],
+   "own_shack": [
+    0,
+    4
+   ]
+  }
+ },
+ "completeness": "FULL",
+ "content_sha256": "23a3d8a0687e5071d031ce34ee6458ed1a79316c544f2f4899a48cf7cdd5613b",
+ "detectors": {
+  "counts": {
+   "D-1": 1,
+   "D-2": 0,
+   "D-3": 0,
+   "D-4": 0,
+   "D-5": 0,
+   "D-6": 0,
+   "D-7": 0,
+   "D-8": 0,
+   "D-9": 2
+  },
+  "d1_episodes": [
+   {
+    "cells": [
+     [
+      1,
+      4
+     ],
+     [
+      2,
+      4
+     ]
+    ],
+    "k": 3,
+    "turn_end": 23,
+    "turn_start": 17,
+    "unit": 0
+   }
+  ],
+  "live_horizon": 38,
+  "p4_violations": [],
+  "turns_simulated": 200
+ },
+ "id": "OSC-025",
+ "initial_world_state": {
+  "inventories": {
+   "opponent": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "own": [
+    0,
+    1,
+    0,
+    1,
+    0,
+    0
+   ]
+  },
+  "plants": [
+   [
+    "LEMON",
+    9,
+    1,
+    4,
+    12,
+    2,
+    5
+   ],
+   [
+    "BANANA",
+    11,
+    0,
+    4,
+    6,
+    2,
+    2
+   ],
+   [
+    "LEMON",
+    12,
+    5,
+    4,
+    6,
+    1,
+    6
+   ]
+  ],
+  "turn": 1,
+  "units": [
+   [
+    0,
+    0,
+    0,
+    5,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    5,
+    1,
+    12,
+    2,
+    1,
+    2,
+    0,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ },
+ "kind": "D1_EPISODE",
+ "multiplicity": {
+  "dedupe_key_sha256": "0358a40e6297265158272fce8b967317c4901fcbfdb6503ca623b5280133de31",
+  "episodes": 1,
+  "members": [
+   {
+    "game_id": null,
+    "length_turns": 7,
+    "map_id": "m085",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "turn_end": 23,
+    "turn_start": 17,
+    "unit": 0
+   }
+  ],
+  "representative_rule": "longest window; ties broken by (map_id, seat, unit, turn_start)"
+ },
+ "provenance": {
+  "bot_source": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+  "bot_source_sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "corpus_version": "c3-train-engine-authority-2026-08-09",
+  "generation_attempt": 0,
+  "instrument_version": "fuzz-panel/3-train-engine-authority",
+  "map_class": "orchard_eligible",
+  "map_height": 6,
+  "map_id": "m085",
+  "map_width": 14,
+  "note": "candidate and parent are the SAME source (the arena parent judged against itself): this is the panel FLOOR, not a candidate regression.",
+  "opponent_profile": "chopper_aggressor",
+  "panel_config_sha256": "bb9734385fad50b9090a1344cf2b6fcd8f90bb628b4891693b9d709b23678fed",
+  "panel_liveness_window": 60,
+  "panel_maps": 120,
+  "panel_seeds": [
+   982451653,
+   15485863,
+   32452843,
+   49979687,
+   67867967,
+   86028121
+  ],
+  "panel_turns": 200,
+  "seat": 0,
+  "seed": 15485863,
+  "source": "fuzz-panel-floor"
+ },
+ "schema": "troll-farm-oscillation-situation-v1",
+ "static_map_rows": [
+  ".....#.#......",
+  ".......#......",
+  "........#....1",
+  "#~............",
+  "0..+.#...#....",
+  ".............."
+ ],
+ "unresolved": [
+  "Attribution of this goal two-cycle to the exclusive on-door pricing branch of `endgame_candidates` is INFERRED from the mechanism analysis section 1.3, not measured here: the transcript shows the alternation, not the scores that caused it. Settled by a committed scorer trace for this exact frozen state."
+ ],
+ "window": {
+  "cells": [
+   [
+    1,
+    4
+   ],
+   [
+    2,
+    4
+   ]
+  ],
+  "commands": [
+   {
+    "line": "MOVE 0 2 4",
+    "turn": 17
+   },
+   {
+    "line": "MOVE 0 1 4",
+    "turn": 18
+   },
+   {
+    "line": "MOVE 0 2 4",
+    "turn": 19
+   },
+   {
+    "line": "MOVE 0 1 4",
+    "turn": 20
+   },
+   {
+    "line": "MOVE 0 2 4",
+    "turn": 21
+   },
+   {
+    "line": "MOVE 0 1 4",
+    "turn": 22
+   },
+   {
+    "line": "PICK 0 LEMON",
+    "turn": 23
+   }
+  ],
+  "k": 3,
+  "length_turns": 7,
+  "turn_end": 23,
+  "turn_start": 17,
+  "unit": 0
+ },
+ "world_state_at_entry": {
+  "inventories": {
+   "opponent": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    2
+   ],
+   "own": [
+    0,
+    1,
+    0,
+    0,
+    2,
+    1
+   ]
+  },
+  "plants": [
+   [
+    "LEMON",
+    9,
+    1,
+    4,
+    12,
+    3,
+    0
+   ]
+  ],
+  "turn": 17,
+  "units": [
+   [
+    0,
+    0,
+    1,
+    4,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    5,
+    1,
+    12,
+    3,
+    1,
+    2,
+    0,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2
+   ]
+  ]
+ }
+}

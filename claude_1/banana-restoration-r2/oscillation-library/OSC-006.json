@@ -1,0 +1,467 @@
+{
+ "classification": {
+  "all_own_peers_at_entry": [
+   {
+    "carry_at_entry": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "cell_at_entry": [
+     1,
+     4
+    ],
+    "distinct_cells_in_window": 1,
+    "distinct_cells_to_game_end": 1,
+    "idle_by_analysis_criterion": true,
+    "non_wait_verbs_in_window": [],
+    "orth_adjacent_to_oscillation_cells": true,
+    "plant_on_cell_at_entry": null,
+    "stats": {
+     "capacity": 3,
+     "chop_power": 0,
+     "harvest_power": 1,
+     "speed": 2
+    },
+    "unit": 2,
+    "wait_fraction_in_window": 1.0
+   }
+  ],
+  "blocker": {
+   "carry_at_entry": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "cell_at_entry": [
+    1,
+    4
+   ],
+   "distinct_cells_in_window": 1,
+   "distinct_cells_to_game_end": 1,
+   "idle_by_analysis_criterion": true,
+   "non_wait_verbs_in_window": [],
+   "orth_adjacent_to_oscillation_cells": true,
+   "plant_on_cell_at_entry": null,
+   "stats": {
+    "capacity": 3,
+    "chop_power": 0,
+    "harvest_power": 1,
+    "speed": 2
+   },
+   "unit": 2,
+   "wait_fraction_in_window": 1.0
+  },
+  "blocker_state": "IDLE",
+  "classifier_version": "m3a-observational/1",
+  "geometry_excerpt": [
+   "##....",
+   "##..s.",
+   "##o###",
+   "##xB..",
+   "######"
+  ],
+  "geometry_excerpt_legend": "5 rows x 6 cols centred on the first oscillation cell (origin at row 2, col 2); o/x oscillation cells, B blocker, P blocker standing on a plant, T other plant, S own shack, s opponent shack, . walkable, # not. Documentation only.",
+  "geometry_stencil": "-1,-1#;-1,0#;0,-2#;0,-1x;0,0o;0,1.;1,-1B;1,0#;",
+  "mechanism": "M1",
+  "mechanism_evidence": "peer 2 holds cell (1, 4) for the whole window and is idle -- a stationary unit on the route rather than an idle occupier of the goal cell (wait fraction 1.00, plant on its cell: none)",
+  "shack_door_evidence": {
+   "cells_that_are_opponent_shack_doors": [],
+   "cells_that_are_own_shack_doors": [],
+   "opponent_shack": [
+    2,
+    2
+   ],
+   "own_shack": [
+    9,
+    1
+   ]
+  }
+ },
+ "completeness": "FULL",
+ "content_sha256": "4b86b2274c4aac21ea1923c5ecb7b5e6d27e969cfae64de29b3f243fd66e0bca",
+ "detectors": {
+  "counts": {
+   "D-1": 1,
+   "D-2": 0,
+   "D-3": 0,
+   "D-4": 0,
+   "D-5": 0,
+   "D-6": 0,
+   "D-7": 0,
+   "D-8": 0,
+   "D-9": 0
+  },
+  "d1_episodes": [
+   {
+    "cells": [
+     [
+      0,
+      3
+     ],
+     [
+      0,
+      4
+     ]
+    ],
+    "k": 5,
+    "turn_end": 39,
+    "turn_start": 29,
+    "unit": 0
+   }
+  ],
+  "live_horizon": 65,
+  "p4_violations": [],
+  "turns_simulated": 200
+ },
+ "id": "OSC-006",
+ "initial_world_state": {
+  "inventories": {
+   "opponent": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "own": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  "plants": [
+   [
+    "PLUM",
+    0,
+    0,
+    1,
+    6,
+    0,
+    3
+   ],
+   [
+    "APPLE",
+    4,
+    3,
+    4,
+    20,
+    3,
+    8
+   ],
+   [
+    "PLUM",
+    7,
+    0,
+    4,
+    12,
+    1,
+    7
+   ],
+   [
+    "APPLE",
+    10,
+    2,
+    1,
+    6,
+    0,
+    3
+   ]
+  ],
+  "turn": 1,
+  "units": [
+   [
+    0,
+    0,
+    8,
+    1,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    1,
+    4,
+    2,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    5,
+    1,
+    1,
+    2,
+    1,
+    2,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    6,
+    1,
+    2,
+    1,
+    1,
+    3,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ },
+ "kind": "D1_EPISODE",
+ "multiplicity": {
+  "dedupe_key_sha256": "4c8c9d8a67edfbd14b4ea32d064c95aca5e0b0962656fa0ceb36f327920dff6d",
+  "episodes": 1,
+  "members": [
+   {
+    "game_id": null,
+    "length_turns": 11,
+    "map_id": "m005",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "turn_end": 39,
+    "turn_start": 29,
+    "unit": 0
+   }
+  ],
+  "representative_rule": "longest window; ties broken by (map_id, seat, unit, turn_start)"
+ },
+ "provenance": {
+  "bot_source": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+  "bot_source_sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "corpus_version": "c3-train-engine-authority-2026-08-09",
+  "generation_attempt": 0,
+  "instrument_version": "fuzz-panel/3-train-engine-authority",
+  "map_class": "multi_door",
+  "map_height": 5,
+  "map_id": "m005",
+  "map_width": 11,
+  "note": "candidate and parent are the SAME source (the arena parent judged against itself): this is the panel FLOOR, not a candidate regression.",
+  "opponent_profile": "chopper_aggressor",
+  "panel_config_sha256": "bb9734385fad50b9090a1344cf2b6fcd8f90bb628b4891693b9d709b23678fed",
+  "panel_liveness_window": 60,
+  "panel_maps": 120,
+  "panel_seeds": [
+   982451653,
+   15485863,
+   32452843,
+   49979687,
+   67867967,
+   86028121
+  ],
+  "panel_turns": 200,
+  "seat": 1,
+  "seed": 86028121,
+  "source": "fuzz-panel-floor"
+ },
+ "schema": "troll-farm-oscillation-situation-v1",
+ "static_map_rows": [
+  "...........",
+  ".....#...0.",
+  "..1.#......",
+  ".###.+.....",
+  "......#...."
+ ],
+ "unresolved": [
+  "The goal the bot actually held during the window is NOT observable in the transcript, so the M1 / M2 discriminator (is the blocker's cell the target, or merely on the route?) is INFERRED from the mechanism analysis rather than measured. Settled by an instrumented build that logs the resolver's goal per turn -- out of boundary for M3a, which may not modify any bot -- or by the Decision Packet."
+ ],
+ "window": {
+  "cells": [
+   [
+    0,
+    3
+   ],
+   [
+    0,
+    4
+   ]
+  ],
+  "commands": [
+   {
+    "line": "MOVE 0 0 4;WAIT",
+    "turn": 29
+   },
+   {
+    "line": "MOVE 0 0 3;WAIT",
+    "turn": 30
+   },
+   {
+    "line": "MOVE 0 0 4;WAIT",
+    "turn": 31
+   },
+   {
+    "line": "MOVE 0 0 3;WAIT",
+    "turn": 32
+   },
+   {
+    "line": "MOVE 0 0 4;WAIT",
+    "turn": 33
+   },
+   {
+    "line": "MOVE 0 0 3;WAIT",
+    "turn": 34
+   },
+   {
+    "line": "MOVE 0 0 4;WAIT",
+    "turn": 35
+   },
+   {
+    "line": "MOVE 0 0 3;WAIT",
+    "turn": 36
+   },
+   {
+    "line": "MOVE 0 0 4;WAIT",
+    "turn": 37
+   },
+   {
+    "line": "MOVE 0 0 3;WAIT",
+    "turn": 38
+   },
+   {
+    "line": "MOVE 0 0 2;WAIT",
+    "turn": 39
+   }
+  ],
+  "k": 5,
+  "length_turns": 11,
+  "turn_end": 39,
+  "turn_start": 29,
+  "unit": 0
+ },
+ "world_state_at_entry": {
+  "inventories": {
+   "opponent": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    3
+   ],
+   "own": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    2
+   ]
+  },
+  "plants": [
+   [
+    "APPLE",
+    4,
+    3,
+    4,
+    20,
+    3,
+    0
+   ]
+  ],
+  "turn": 29,
+  "units": [
+   [
+    0,
+    0,
+    0,
+    3,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    1,
+    4,
+    2,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    5,
+    1,
+    0,
+    3,
+    1,
+    2,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    6,
+    1,
+    0,
+    2,
+    1,
+    3,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ }
+}

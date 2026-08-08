@@ -1,0 +1,810 @@
+{
+ "classification": {
+  "all_own_peers_at_entry": [
+   {
+    "carry_at_entry": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "cell_at_entry": [
+     9,
+     4
+    ],
+    "distinct_cells_in_window": 1,
+    "distinct_cells_to_game_end": 1,
+    "idle_by_analysis_criterion": true,
+    "non_wait_verbs_in_window": [],
+    "orth_adjacent_to_oscillation_cells": true,
+    "plant_on_cell_at_entry": [
+     "APPLE",
+     4,
+     12,
+     3,
+     0
+    ],
+    "stats": {
+     "capacity": 2,
+     "chop_power": 1,
+     "harvest_power": 1,
+     "speed": 1
+    },
+    "unit": 0,
+    "wait_fraction_in_window": 1.0
+   }
+  ],
+  "blocker": {
+   "carry_at_entry": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "cell_at_entry": [
+    9,
+    4
+   ],
+   "distinct_cells_in_window": 1,
+   "distinct_cells_to_game_end": 1,
+   "idle_by_analysis_criterion": true,
+   "non_wait_verbs_in_window": [],
+   "orth_adjacent_to_oscillation_cells": true,
+   "plant_on_cell_at_entry": [
+    "APPLE",
+    4,
+    12,
+    3,
+    0
+   ],
+   "stats": {
+    "capacity": 2,
+    "chop_power": 1,
+    "harvest_power": 1,
+    "speed": 1
+   },
+   "unit": 0,
+   "wait_fraction_in_window": 1.0
+  },
+  "blocker_state": "IDLE",
+  "classifier_version": "m3a-observational/1",
+  "geometry_excerpt": [
+   "....##",
+   "..S.##",
+   ".Pox##",
+   "######",
+   "######"
+  ],
+  "geometry_excerpt_legend": "5 rows x 6 cols centred on the first oscillation cell (origin at row 2, col 2); o/x oscillation cells, B blocker, P blocker standing on a plant, T other plant, S own shack, s opponent shack, . walkable, # not. Documentation only.",
+  "geometry_stencil": "-1,-1#;-1,0#;0,-2#;0,-1x;0,0o;0,1P;1,-1.;1,0#;",
+  "mechanism": "M2",
+  "mechanism_evidence": "peer 0 holds cell (9, 4) for the whole window (wait fraction 1.00, 1 distinct cell) standing on a live APPLE -- an idle unit occupying the plant cell, invisible to `compatible` because `WAIT` carries `Target::None`",
+  "shack_door_evidence": {
+   "cells_that_are_opponent_shack_doors": [],
+   "cells_that_are_own_shack_doors": [
+    [
+     10,
+     4
+    ]
+   ],
+   "opponent_shack": [
+    1,
+    1
+   ],
+   "own_shack": [
+    10,
+    3
+   ]
+  }
+ },
+ "completeness": "FULL",
+ "content_sha256": "2dd34afd2a3c8c22a9641d8b74d3a74698fc5ee607819aeeabd8946ef4ec8524",
+ "detectors": {
+  "counts": {
+   "D-1": 2,
+   "D-2": 0,
+   "D-3": 0,
+   "D-4": 0,
+   "D-5": 0,
+   "D-6": 0,
+   "D-7": 0,
+   "D-8": 0,
+   "D-9": 0
+  },
+  "d1_episodes": [
+   {
+    "cells": [
+     [
+      11,
+      4
+     ],
+     [
+      10,
+      4
+     ]
+    ],
+    "k": 36,
+    "turn_end": 100,
+    "turn_start": 27,
+    "unit": 2
+   },
+   {
+    "cells": [
+     [
+      10,
+      4
+     ],
+     [
+      11,
+      4
+     ]
+    ],
+    "k": 47,
+    "turn_end": 200,
+    "turn_start": 106,
+    "unit": 2
+   }
+  ],
+  "live_horizon": 201,
+  "p4_violations": [
+   {
+    "live_end": 99,
+    "terminal_from": 201,
+    "why": "candidate makes no own-inventory/own-cargo progress over turns 26-99 while work remains through turn 99 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]",
+    "window_end": 99,
+    "window_start": 26
+   },
+   {
+    "live_end": 200,
+    "terminal_from": 201,
+    "why": "candidate makes no own-inventory/own-cargo progress over turns 106-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]",
+    "window_end": 200,
+    "window_start": 106
+   }
+  ],
+  "turns_simulated": 200
+ },
+ "id": "OSC-022",
+ "initial_world_state": {
+  "inventories": {
+   "opponent": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "own": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0
+   ]
+  },
+  "plants": [
+   [
+    "PLUM",
+    5,
+    3,
+    4,
+    12,
+    0,
+    5
+   ],
+   [
+    "APPLE",
+    9,
+    4,
+    1,
+    11,
+    0,
+    9
+   ],
+   [
+    "PLUM",
+    11,
+    0,
+    2,
+    3,
+    0,
+    2
+   ]
+  ],
+  "turn": 1,
+  "units": [
+   [
+    0,
+    0,
+    9,
+    3,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    4,
+    2,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    5,
+    1,
+    0,
+    1,
+    1,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ },
+ "kind": "D1_EPISODE",
+ "multiplicity": {
+  "dedupe_key_sha256": "121b6382020fdee8fbbcf31c04de36a4fa303a83b0527ad9c24aba5cbfef58b6",
+  "episodes": 1,
+  "members": [
+   {
+    "game_id": null,
+    "length_turns": 95,
+    "map_id": "m071",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "turn_end": 200,
+    "turn_start": 106,
+    "unit": 2
+   }
+  ],
+  "representative_rule": "longest window; ties broken by (map_id, seat, unit, turn_start)"
+ },
+ "provenance": {
+  "bot_source": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+  "bot_source_sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "corpus_version": "c3-train-engine-authority-2026-08-09",
+  "generation_attempt": 0,
+  "instrument_version": "fuzz-panel/3-train-engine-authority",
+  "map_class": "open_field",
+  "map_height": 5,
+  "map_id": "m071",
+  "map_width": 12,
+  "note": "candidate and parent are the SAME source (the arena parent judged against itself): this is the panel FLOOR, not a candidate regression.",
+  "opponent_profile": "idle",
+  "panel_config_sha256": "bb9734385fad50b9090a1344cf2b6fcd8f90bb628b4891693b9d709b23678fed",
+  "panel_liveness_window": 60,
+  "panel_maps": 120,
+  "panel_seeds": [
+   982451653,
+   15485863,
+   32452843,
+   49979687,
+   67867967,
+   86028121
+  ],
+  "panel_turns": 200,
+  "seat": 1,
+  "seed": 86028121,
+  "source": "fuzz-panel-floor"
+ },
+ "schema": "troll-farm-oscillation-situation-v1",
+ "static_map_rows": [
+  "............",
+  ".1..........",
+  "......#.....",
+  "..........0.",
+  "............"
+ ],
+ "unresolved": [
+  "The goal the bot actually held during the window is NOT observable in the transcript, so the M1 / M2 discriminator (is the blocker's cell the target, or merely on the route?) is INFERRED from the mechanism analysis rather than measured. Settled by an instrumented build that logs the resolver's goal per turn -- out of boundary for M3a, which may not modify any bot -- or by the Decision Packet."
+ ],
+ "window": {
+  "cells": [
+   [
+    10,
+    4
+   ],
+   [
+    11,
+    4
+   ]
+  ],
+  "commands": [
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 106
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 107
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 108
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 109
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 110
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 111
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 112
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 113
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 114
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 115
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 116
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 117
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 118
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 119
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 120
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 121
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 122
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 123
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 124
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 125
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 126
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 127
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 128
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 129
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 130
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 131
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 132
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 133
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 134
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 135
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 136
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 137
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 138
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 139
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 140
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 141
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 142
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 143
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 144
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 145
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 146
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 147
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 148
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 149
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 150
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 151
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 152
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 153
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 154
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 155
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 156
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 157
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 158
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 159
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 160
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 161
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 162
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 163
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 164
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 165
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 166
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 167
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 168
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 169
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 170
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 171
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 172
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 173
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 174
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 175
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 176
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 177
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 178
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 179
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 180
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 181
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 182
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 183
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 184
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 185
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 186
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 187
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 188
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 189
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 190
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 191
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 192
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 193
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 194
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 195
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 196
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 197
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 198
+   },
+   {
+    "line": "WAIT;MOVE 2 10 4",
+    "turn": 199
+   },
+   {
+    "line": "WAIT;MOVE 2 11 4",
+    "turn": 200
+   }
+  ],
+  "k": 47,
+  "length_turns": 95,
+  "turn_end": 200,
+  "turn_start": 106,
+  "unit": 2
+ },
+ "world_state_at_entry": {
+  "inventories": {
+   "opponent": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "own": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    5
+   ]
+  },
+  "plants": [
+   [
+    "APPLE",
+    9,
+    4,
+    4,
+    12,
+    3,
+    0
+   ]
+  ],
+  "turn": 106,
+  "units": [
+   [
+    0,
+    0,
+    9,
+    4,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    10,
+    4,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    5,
+    1,
+    0,
+    1,
+    1,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ }
+}
