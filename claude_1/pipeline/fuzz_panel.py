@@ -64,8 +64,25 @@ Reuses (imports, never modifies): the make_banana_traces referee core
 (command application, growth, dynamic opponents), trace_detectors D-1..D-9,
 regression_tests' R-5 machinery and closed-loop binary runner, and
 semantic_harness's map/protocol/compile helpers.  FuzzReferee below is the
-thin adapter that binds the referee to generated geometry (instance
-walkable set / tent / water) without editing the original module.
+adapter that binds the referee to generated geometry (instance walkable set /
+tent / water / iron) without editing the original module.
+
+Command dispatch (referee TRAIN repair, 2026-08-09).  FuzzReferee.apply owns
+an EXHAUSTIVE dispatcher: every verb is looked up in
+FuzzReferee.VERB_HANDLERS and a verb with no handler raises
+UnsupportedCommand, terminating the whole run as GATE_UNREADY /
+unsupported_command (exit 2).  There is no default branch anywhere.  The
+inherited make_banana_traces dispatcher skipped MSG/WAIT/TRAIN by name and
+let every other verb fall out of the bottom of an if/elif chain, so TRAIN
+and MINE were applied as no-ops: the panel measured properties on a world
+that never happened, and its two most pathological games (m040 seat 0 and
+seat 1, which emitted TRAIN on 166/200 and 182/200 turns because the worker
+count never rose) scored CLEAN.  TRAIN and MINE are now implemented and
+conformance-tested against rust/src/bin/yamo_orchard_live.rs; see
+referee-train-repair-2026-08-09.md for the per-rule line citations.  The
+instrument/corpus version pair (INSTRUMENT_VERSION / CORPUS_VERSION) is
+declared in the config, echoed in every report, and enforced by load_config,
+because results are not comparable across a referee change.
 
 Stdlib only (Python 3.12); rustc via semantic_harness (PATH + ~/.cargo/bin).
 """
@@ -98,8 +115,24 @@ EXIT_CLEAR, EXIT_BLOCK, EXIT_ERROR = 0, 1, 2
 KINDS = ("PLUM", "LEMON", "APPLE", "BANANA")
 ORTH = ((0, 1), (1, 0), (0, -1), (-1, 0))
 DIAG = ((1, 1), (1, -1), (-1, 1), (-1, -1))
-WOOD = 5
+PLUM, LEMON, APPLE, BANANA, IRON, WOOD = 0, 1, 2, 3, 4, 5
 BIG = 10_000
+
+# --- corpus / instrument versioning (requirement 5, 2026-08-09) -------------
+# Implementing TRAIN changes the referee and therefore every game the panel
+# produces, so results are not comparable across instrument versions.  Both
+# strings are declared in the config, asserted by the self-tests and echoed in
+# every report and JSON payload.
+INSTRUMENT_VERSION = "fuzz-panel/2-train"
+CORPUS_VERSION = "c2-train-2026-08-09"
+
+# --- authoritative engine constants ----------------------------------------
+# Conformance reference: rust/src/bin/yamo_orchard_live.rs (sacred, SHA prefix
+# fff6669b).  Line citations are reproduced in
+# claude_1/pipeline/referee-train-repair-2026-08-09.md.
+TOTAL_TURNS = 300          # yamo_orchard_live.rs:162  rules::TOTAL_TURNS
+WORKER_CAP = 2             # yamo_orchard_live.rs:836  `n >= 2 -> false`
+TRAIN_GUARD_TURNS = 20     # yamo_orchard_live.rs:836  `TOTAL_TURNS - turn <= 20`
 
 MAP_CLASSES = ("open_field", "choke_corridor", "single_door_tent",
                "multi_door", "water_diagonal", "orchard_eligible",
@@ -107,6 +140,8 @@ MAP_CLASSES = ("open_field", "choke_corridor", "single_door_tent",
 OPP_PROFILES = ("idle", "harvester", "chopper_aggressor")
 
 DEFAULTS = {
+    "instrument_version": INSTRUMENT_VERSION,
+    "corpus_version": CORPUS_VERSION,
     "maps": 120,
     "turns": 200,
     "processes": 0,               # 0 => min(8, cpu_count)
@@ -125,6 +160,63 @@ DEFAULTS = {
 
 class PanelError(Exception):
     """Config / environment / generation error -> exit 2."""
+
+
+class UnsupportedCommand(PanelError):
+    """GATE_UNREADY / unsupported_command -> exit 2.
+
+    Raised by the referee's exhaustive command dispatcher when a bot emits a
+    verb the referee does not implement.  A referee that silently discards a
+    verb it cannot apply reports a world that never happened, and every
+    property built on that world (detectors, liveness, margins) is measuring
+    a fiction: the two m040 games below emitted TRAIN on 166/200 and 182/200
+    turns and scored CLEAN.  The gate therefore refuses to render ANY verdict
+    rather than render an unsound one.
+
+    Deliberately a PanelError: run_pair converts candidate crashes into P0
+    violations, but a PanelError propagates all the way to main(), so a
+    single unsupported verb on a single turn of a single game terminates the
+    whole run.  Single-argument (message-only) so it survives the
+    multiprocessing pool's pickling of worker exceptions.
+    """
+
+
+def unsupported_command(verb: str, raw: str, turn: int) -> UnsupportedCommand:
+    return UnsupportedCommand(
+        "GATE_UNREADY / unsupported_command: the referee implements no "
+        "handler for verb %r (turn %d, command %r); the panel cannot render "
+        "a verdict on a world it cannot simulate. Implement the verb in "
+        "FuzzReferee.VERB_HANDLERS (with conformance tests against "
+        "rust/src/bin/yamo_orchard_live.rs) or withdraw it from the corpus."
+        % (verb, turn, raw))
+
+
+def training_cost(n: int, talents) -> list:
+    """Mirror of rules::training_cost (yamo_orchard_live.rs:196-204).
+
+        cost[PLUM]  = n + ms   * ms
+        cost[LEMON] = n + cc   * cc
+        cost[APPLE] = n + hp   * hp
+        cost[IRON]  = n + chop * chop
+
+    where n is the CURRENT own-unit count.  BANANA and WOOD are never billed
+    (the engine's `pay` slice covers them, but their cost entries stay 0)."""
+    ms, cc, hp, chop = talents
+    cost = [0] * 6
+    cost[PLUM] = n + ms * ms
+    cost[LEMON] = n + cc * cc
+    cost[APPLE] = n + hp * hp
+    cost[IRON] = n + chop * chop
+    return cost
+
+
+def _int_or_zero(token: str) -> int:
+    """Mirror of the engine parser's `parse().unwrap_or(0)` on TRAIN
+    talents."""
+    try:
+        return int(token)
+    except ValueError:
+        return 0
 
 
 def score(inv) -> int:
@@ -519,13 +611,15 @@ def materialize(skel, seat):
 class FuzzReferee(mbt.Referee):
     """make_banana_traces.Referee bound to generated geometry.
 
-    The inherited command application (MOVE/HARVEST/CHOP/PLANT/PICK/DROP)
-    and growth are reused verbatim; this adapter only (a) supplies the
-    instance walkable set / tent for the module-global lookups the original
-    referee performs (bound before every apply), (b) evaluates water
-    adjacency on the instance map so wet-cell cooldown boosts are real, and
-    (c) steps the deterministic opponent policy after own commands and
-    before growth, exactly like DynamicOpponentReferee."""
+    The inherited command application for MOVE/HARVEST/CHOP/PLANT/PICK/DROP
+    and growth are reused verbatim; this adapter (a) supplies the instance
+    walkable set / tent for the module-global lookups the original referee
+    performs (bound before every apply), (b) evaluates water adjacency on the
+    instance map so wet-cell cooldown boosts are real, (c) steps the
+    deterministic opponent policy after own commands and before growth,
+    exactly like DynamicOpponentReferee, and (d) owns an EXHAUSTIVE command
+    dispatcher (see `apply`) that implements TRAIN and MINE and terminates
+    the run on any verb it does not implement."""
 
     def __init__(self, rows, inventory, plants, units, profile):
         super().__init__(list(inventory), plants, units)
@@ -535,9 +629,15 @@ class FuzzReferee(mbt.Referee):
         self.tent = geo["shacks"][0]
         self.opp_tent = geo["shacks"][1]
         self.waters = set(geo["water"])
+        self.irons = set(geo["iron"])
         self.profile = profile
         self.opp_doors = sorted(c for c in _orth_neighbors(self.opp_tent)
                                 if c in self.walk)
+        # 1-based, exactly like the bot's own counter: `let mut turn = 1;
+        # while let Some(view) = read_turn(&mut reader, &map, turn)`
+        # (yamo_orchard_live.rs:6017-6023).  Turn t is the state block the
+        # referee emits before applying C_t.
+        self.turn = 1
 
     def map_header(self):
         return ("%d %d\n" % (len(self.rows[0]), len(self.rows))
@@ -567,12 +667,34 @@ class FuzzReferee(mbt.Referee):
 
     def step_toward(self, current, target, speed):
         """Same nav::next_cell mirror as Referee.step_toward, evaluated on
-        the instance walkable set (pattern of mbt.CustomMapReferee)."""
+        the instance walkable set (pattern of mbt.CustomMapReferee).
+
+        Extension for a non-walkable source cell (TRAIN repair, 2026-08-09):
+        shack cells are NOT walkable, yet a TRAINed worker spawns on the own
+        shack.  The engine's next_cell seeds its BFS at the unit's own cell
+        regardless of walkability, so such a unit can still step out to a
+        walkable neighbour; the pre-repair mirror returned `current` and the
+        spawned worker was frozen on the shack for the rest of the game.
+        The extension is inert whenever `current` is reachable in the
+        target's BFS (i.e. for every game the pre-repair panel could
+        produce: MEASURED, 0 of 240 games ever placed a unit on a
+        non-walkable cell)."""
         if target == current:
             return current
         dist = self._bfs_from([target])
         if current not in dist:
-            return current
+            options = [n for n in self._nbrs(current) if n in dist]
+            if not options:
+                return current
+            cell = min(options, key=lambda n: (dist[n], n))
+            if dist[cell] + 1 <= speed:
+                return target
+            for _ in range(speed - 1):
+                options = [n for n in self._nbrs(cell) if n in dist]
+                if not options:
+                    break
+                cell = min(options, key=lambda n: (dist[n], n))
+            return cell
         if dist[current] <= speed:
             return target
         cell = current
@@ -590,14 +712,185 @@ class FuzzReferee(mbt.Referee):
         mbt.TENT = self.tent
         mbt.WALKABLE = self.walk
 
+    # -- TRAIN ------------------------------------------------------------
+    # Every rule below is a mirror of rust/src/bin/yamo_orchard_live.rs (the
+    # authoritative engine, byte-untouchable); the line citations are
+    # reproduced in referee-train-repair-2026-08-09.md.
+
+    def own_unit_ids(self):
+        return sorted(uid for uid, u in self.units.items()
+                      if u["player"] == 0)
+
+    def can_train(self, talents):
+        """Mirror of MoisanBot::can_train (yamo_orchard_live.rs:834-844).
+
+            let n = view.units.iter().filter(|u| u.player == 0).count();
+            if n >= 2 || TOTAL_TURNS - view.turn <= 20 { return false; }
+            let cost = training_cost(n, stats.tuple());
+            let pay_iron = !view.iron.is_empty();
+            inv[PLUM] >= cost[PLUM] && inv[LEMON] >= cost[LEMON]
+                && inv[APPLE] >= cost[APPLE]
+                && (!pay_iron || inv[IRON] >= cost[IRON])
+        """
+        n = len(self.own_unit_ids())
+        if n >= WORKER_CAP:
+            return False
+        if TOTAL_TURNS - self.turn <= TRAIN_GUARD_TURNS:
+            return False
+        cost = training_cost(n, talents)
+        for item in self.train_billed_items():
+            if self.inv[item] < cost[item]:
+                return False
+        return True
+
+    def train_billed_items(self):
+        """PLUM/LEMON/APPLE always; IRON only when the map has iron
+        (`pay_iron = !view.iron.is_empty()`, yamo_orchard_live.rs:840-844 --
+        the engine's Bronze-league iron guard)."""
+        return [PLUM, LEMON, APPLE] + ([IRON] if self.irons else [])
+
+    def train(self, talents) -> bool:
+        """Resolve one own-side TRAIN.  Returns True iff a worker spawned."""
+        if not self.can_train(talents):
+            return False
+        # The spawn cell is the own shack; the engine refuses the spawn when
+        # any unit stands on it.  yamo_orchard_live.rs:1564-1571 and
+        # 3604-3619 encode the same fact from the bot's side: when
+        # `train_now && unit.cell == view.shacks[0]` the bot manufactures a
+        # MOVE off the shack for that very turn.
+        if any(u["cell"] == self.tent for u in self.units.values()):
+            return False
+        n = len(self.own_unit_ids())
+        cost = training_cost(n, talents)
+        for item in self.train_billed_items():
+            self.inv[item] -= cost[item]
+        ms, cc, hp, chop = talents
+        # `next_id = next_id.max(values[0] + 1)` over the serialized units
+        # (yamo_orchard_live.rs:476) -- the id the bot itself predicts.
+        nid = max(self.units) + 1 if self.units else 0
+        self.units[nid] = {
+            "player": 0, "cell": self.tent, "speed": ms, "cap": cc,
+            "harvest": hp, "chop": chop, "carry": [0] * 6,
+        }
+        return True
+
+    # -- command handlers -------------------------------------------------
+    # One handler per verb.  There is deliberately NO default branch: an
+    # absent handler raises UnsupportedCommand (GATE_UNREADY).
+
+    def _cmd_noop(self, tok, raw):
+        """MSG / WAIT: no world effect (the engine's parser `continue`s)."""
+
+    def _cmd_delegate(self, tok, raw):
+        """MOVE / HARVEST / CHOP / PLANT / PICK / DROP: the inherited
+        make_banana_traces application, unchanged."""
+        mbt.Referee.apply(self, raw)
+
+    def _cmd_train(self, tok, raw):
+        if len(tok) < 5:               # engine parser: `if parts.len() >= 5`
+            return
+        self.train(tuple(_int_or_zero(t) for t in tok[1:5]))
+
+    def _cmd_mine(self, tok, raw):
+        """MINE <id>: yield iron while orthogonally adjacent to an iron cell.
+
+        Emission gate, yamo_orchard_live.rs:936-944:
+            if view.iron.iter().any(|iron| is_adjacent(*iron, unit.cell))
+                -> "MINE {unit.id}"
+        with is_adjacent = manhattan == 1 (yamo_orchard_live.rs:239-241).
+        The yield (min(chop_power, free_capacity), and nothing without chop
+        power or free capacity) is not stated in the authoritative file; it
+        is taken from the engine's apply_mine (rust/src/game/engine.rs:
+        646-667) and is marked INFERRED in the report."""
+        if len(tok) < 2:
+            return
+        try:
+            uid = int(tok[1])
+        except ValueError:
+            return
+        unit = self.units.get(uid)
+        if unit is None or unit["player"] != 0:
+            return
+        free = unit["cap"] - sum(unit["carry"])
+        if unit["chop"] <= 0 or free <= 0:
+            return
+        cell = unit["cell"]
+        if not any(abs(cell[0] - i[0]) + abs(cell[1] - i[1]) == 1
+                   for i in self.irons):
+            return
+        unit["carry"][IRON] += min(unit["chop"], free)
+
+    VERB_HANDLERS = {
+        "MSG": _cmd_noop,
+        "WAIT": _cmd_noop,
+        "MOVE": _cmd_delegate,
+        "HARVEST": _cmd_delegate,
+        "CHOP": _cmd_delegate,
+        "PLANT": _cmd_delegate,
+        "PICK": _cmd_delegate,
+        "DROP": _cmd_delegate,
+        "TRAIN": _cmd_train,
+        "MINE": _cmd_mine,
+    }
+
+    # Engine command-priority position of TRAIN: "MOVE, HARVEST, PLANT,
+    # CHOP, PICK, TRAIN, DROP, MINE".  Only TRAIN's position is enforced
+    # here (see `_ordered`), so command lines without a TRAIN are applied in
+    # exactly the emission order the pre-repair referee used.
+    _POST_TRAIN_VERBS = ("DROP", "MINE")
+
+    @staticmethod
+    def _verb(raw):
+        return raw.split(None, 1)[0].upper()
+
+    @classmethod
+    def _ordered(cls, raws):
+        """TRAIN resolves after MOVE/HARVEST/PLANT/CHOP/PICK and before
+        DROP/MINE.  This matters: the bot emits TRAIN FIRST on the line and
+        relies on the same turn's MOVE to vacate the shack, so applying a
+        TRAIN in emission order would always hit the occupied-shack guard."""
+        trains = [r for r in raws if cls._verb(r) == "TRAIN"]
+        if not trains:
+            return raws
+        rest = [r for r in raws if cls._verb(r) != "TRAIN"]
+        cut = next((i for i, r in enumerate(rest)
+                    if cls._verb(r) in cls._POST_TRAIN_VERBS), len(rest))
+        return rest[:cut] + trains + rest[cut:]
+
     def apply(self, command_line):
+        """EXHAUSTIVE command dispatch (requirement 1, 2026-08-09).
+
+        Every verb is routed through VERB_HANDLERS.  A verb with no handler
+        raises UnsupportedCommand and terminates the whole run as
+        GATE_UNREADY / unsupported_command.  There is no default branch: the
+        pre-repair dispatcher inherited from make_banana_traces skipped
+        MSG/WAIT/TRAIN by name and let every other unknown verb fall out of
+        the bottom of an if/elif chain, which is how TRAIN (and MINE) were
+        applied as no-ops for the whole life of the panel."""
         saved = (mbt.TENT, mbt.WALKABLE)
         self._bind()
         try:
-            mbt.Referee.apply(self, command_line)
+            raws = [r.strip() for r in command_line.split(";")]
+            raws = [r for r in raws if r]
+            for raw in self._ordered(raws):
+                verb = self._verb(raw)
+                handler = self.VERB_HANDLERS.get(verb)
+                if handler is None:
+                    raise unsupported_command(verb, raw, self.turn)
+                handler(self, raw.split(), raw)
             OPP_POLICIES[self.profile](self)
+            self.turn += 1
         finally:
             mbt.TENT, mbt.WALKABLE = saved
+
+
+# The verbs the referee implements, and the verbs the game's own command
+# parser recognises.  The self-tests assert ENGINE_COMMANDS <=
+# SUPPORTED_COMMANDS, so adding a verb to the protocol without adding a
+# referee handler is a test failure rather than a silent no-op.
+SUPPORTED_COMMANDS = frozenset(FuzzReferee.VERB_HANDLERS)
+ENGINE_COMMANDS = frozenset({"MSG", "WAIT", "TRAIN", "MOVE", "HARVEST",
+                             "DROP", "CHOP", "MINE", "PLANT", "PICK"})
 
 
 def _opp_ids(ref):
@@ -1020,6 +1313,14 @@ def load_config(path: Path) -> dict:
     unknown = set(cfg["opponent_mix"]) - set(OPP_PROFILES)
     if unknown:
         raise PanelError("unknown opponent profiles: %s" % sorted(unknown))
+    for key, current in (("instrument_version", INSTRUMENT_VERSION),
+                         ("corpus_version", CORPUS_VERSION)):
+        if cfg[key] != current:
+            raise PanelError(
+                "%s mismatch: config declares %r, this panel is %r. Results "
+                "are not comparable across instrument versions -- rerun the "
+                "corpus rather than compare across the bump."
+                % (key, cfg[key], current))
     return cfg
 
 
@@ -1135,6 +1436,12 @@ def write_report(path: Path, cfg, rows, stats, verdict):
     lines = []
     lines.append("# fuzz panel report - %s" % cfg.get("task", "<unnamed>"))
     lines.append("")
+    lines.append("- instrument: `%s`  |  corpus: `%s`"
+                 % (cfg.get("instrument_version", INSTRUMENT_VERSION),
+                    cfg.get("corpus_version", CORPUS_VERSION)))
+    lines.append("- supported commands: %s (an unimplemented verb "
+                 "terminates the run as GATE_UNREADY / unsupported_command)"
+                 % " ".join(sorted(SUPPORTED_COMMANDS)))
     lines.append("- candidate: `%s` (sha256 %s)"
                  % (cfg["candidate"]["source"],
                     cfg["candidate"].get("sha256", "?")))
@@ -1236,6 +1543,9 @@ def run_panel(cfg, report_path: Path, json_path: Path | None,
         json_path.parent.mkdir(parents=True, exist_ok=True)
         json_path.write_text(json.dumps(
             {"task": cfg.get("task"), "verdict": verdict, "stats": stats,
+             "instrument_version": cfg.get("instrument_version",
+                                           INSTRUMENT_VERSION),
+             "corpus_version": cfg.get("corpus_version", CORPUS_VERSION),
              "games": slim}, indent=1, sort_keys=True) + "\n")
     print("fuzz_panel: %s (%d games, %d blocking, %d flagged, %.1f s; "
           "report: %s)"

@@ -962,12 +962,23 @@ class TestTrainApplication(unittest.TestCase):
     def test_worker_cap_stops_further_training(self):
         ref = train_referee(inventory=[99, 99, 99, 0, 99, 0])
         ref.apply("TRAIN 1 1 0 1")
-        self.assertEqual(len(ref.own_unit_ids()), 2)
+        own = ref.own_unit_ids()
+        self.assertEqual(len(own), 2)
+        # Vacate the shack first, so the cap -- not the occupied-shack guard
+        # -- is what refuses the third worker (an off-by-one cap survives a
+        # test that leaves the spawned worker standing on the spawn cell).
+        nid = own[-1]
+        ref.apply("MOVE %d 3 0" % nid)
+        self.assertNotEqual(ref.units[nid]["cell"], ref.tent)
+        self.assertFalse(any(u["cell"] == ref.tent
+                             for u in ref.units.values()))
         before = list(ref.inv)
         ref.apply("TRAIN 1 1 0 1")
         self.assertEqual(len(ref.own_unit_ids()), 2,
                          "n >= 2 -> no further TRAIN (yamo:836)")
         self.assertEqual(ref.inv, before, "a rejected TRAIN charges nothing")
+        self.assertFalse(ref.can_train((1, 1, 0, 1)),
+                         "can_train must be false at the cap")
 
     def test_unaffordable_train_is_rejected_and_charges_nothing(self):
         ref = train_referee(inventory=[2, 2, 0, 0, 0, 0])   # APPLE short by 1
@@ -1068,7 +1079,7 @@ class TestTrainApplication(unittest.TestCase):
 
     def test_train_is_visible_in_the_serialized_state(self):
         ref = train_referee(inventory=[9, 9, 9, 0, 9, 0])
-        ref.apply("TRAIN 2 3 0 1")
+        ref.apply("TRAIN 2 2 0 1")     # bill 5/5/1, affordable from 9/9/9
         state = fp.post_ct_state(ref)
         own = state.own_units()
         self.assertEqual(len(own), 2)
