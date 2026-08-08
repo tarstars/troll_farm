@@ -109,20 +109,40 @@ def published_bodies(per_path: dict[str, dict[str, list[str]]], path: str) -> li
     return [inbox_sweep.git("cat-file", "blob", oid) for oid in per_path[path]]
 
 
+def current_branch() -> str:
+    """Branch HEAD points at, or "" when detached.
+
+    `symbolic-ref`, not `rev-parse --abbrev-ref`: the latter fails outright on
+    an unborn branch, which is exactly the state a fresh agent worktree is in
+    before its first commit — precisely when this warning is most useful.
+    """
+    out = inbox_sweep.run_git("symbolic-ref", "--short", "HEAD")
+    return out.stdout.strip() if out.returncode == 0 else ""
+
+
 def lint_message(
     path: str,
     text: str,
     authoritative_paths: set[str],
     remote_ref_names: set[str],
     published: bool,
+    legacy_baseline: dict[str, str] | None = None,
+    baseline_present: bool = False,
 ) -> list[str]:
     msg = inbox_sweep.Message(path, "worktree", text)
     if not msg.is_v2:
-        # Transport rule 5 grandfathers legacy messages indefinitely, so this
-        # binds new messages only — a published legacy message stays valid.
-        return [] if published else [
-            "missing `schema_version: 2` front matter; new messages must be schema v2"
-        ]
+        # Transport rule 5 grandfathers legacy messages, but only the exact
+        # paths pinned in the frozen baseline. The lint ignored the baseline
+        # entirely, so a NEW no-schema message linted clean and then became a
+        # permanent delivery error at the receiver (finding F9a).
+        if not published:
+            return ["missing `schema_version: 2` front matter; new messages "
+                    "must be schema v2"]
+        if baseline_present and path not in (legacy_baseline or {}):
+            return ["legacy message not in the frozen legacy baseline; messages "
+                    "published after the v2 migration must declare "
+                    "schema_version: 2"]
+        return []
     return inbox_sweep.validate_v2(
         msg, authoritative_paths, {}, remote_ref_names, require_canonical=False
     )
@@ -166,10 +186,42 @@ def main() -> int:
     authoritative_paths = set(per_path)
     remote_ref_names = set(refs)
 
+    # The frozen legacy baseline lives on the coordinator's canonical ref; the
+    # lint must apply it or it clears messages the sweep permanently rejects.
+    legacy_baseline: dict[str, str] = {}
+    baseline_present = False
+    try:
+        coordinator = inbox_sweep.coordinator_agent()
+        if coordinator:
+            legacy_baseline, baseline_present = inbox_sweep.load_legacy_baseline(
+                f"{inbox_sweep.REMOTE_PREFIX}agent/{coordinator}")
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
+
     tree = staged_namespace(args.me) if args.staged else worktree_namespace(root, args.me)
     source = "index (staged)" if args.staged else "worktree"
     errors: list[tuple[str, str]] = []
     linted = 0
+
+    # A v2 message is delivered only from `agent/<sender>`. The lint cannot check
+    # that for an unpublished message — but it CAN check that publishing from
+    # HERE would satisfy it. Three of the six real quarantine entries exist
+    # because messages were published to task branches (finding F9b).
+    # Only when something is actually unpublished: with everything already on a
+    # remote ref there is nothing to publish from the wrong branch, and firing
+    # then would make diagnostic lints of a peer's namespace noisy.
+    branch = current_branch()
+    canonical_branch = f"agent/{args.me}"
+    unpublished = [p for p in tree
+                   if p not in authoritative_paths and classify(p) == "message"]
+    if unpublished and branch and branch != canonical_branch:
+        errors.append((
+            f"{inbox_sweep.NAMESPACE}{args.me}",
+            f"HEAD is {branch!r}, not your canonical branch {canonical_branch!r}; "
+            "a message published from here is not delivered and becomes a "
+            "permanent delivery error only the coordinator can clear",
+        ))
     for path, text in sorted(tree.items()):
         kind = classify(path)
         if kind == "allowed":
@@ -206,7 +258,8 @@ def main() -> int:
         errors.extend(
             (path, error)
             for error in lint_message(
-                path, text, authoritative_paths, remote_ref_names, published
+                path, text, authoritative_paths, remote_ref_names, published,
+                legacy_baseline, baseline_present
             )
         )
 

@@ -13,6 +13,7 @@ import sys
 
 import pytest
 
+from scripts import inbox_sweep
 from tests.test_inbox_sweep import (
     ME,
     PEER,
@@ -310,6 +311,70 @@ def test_lint_reports_an_immutable_path_collision(repo):
     result = lint(repo, ME, "--all")
     assert result.returncode == 2
     assert "immutable-path collision" in result.stdout
+
+
+# --- claude_1's F9: lint must reproduce the sweep's verdicts ---
+
+def test_new_legacy_message_is_caught_by_lint_not_only_by_the_sweep(repo):
+    # F9a: lint ignored the frozen legacy baseline entirely, so a new no-schema
+    # message linted clean and then became a permanent delivery error.
+    old = msg_path(ME, "20260101T000000Z", "task-old", "handoff")
+    repo.commit(f"agent/{ME}", {old: legacy_message("task-old", to=PEER)})
+    repo.commit(f"agent/{inbox_sweep_coordinator()}", {
+        inbox_sweep.LEGACY_BASELINE_FILE: json.dumps(
+            {"schema_version": 1, "frozen_at": repo.tips[f"agent/{ME}"],
+             "paths": {old: repo.blob_oid(old)}}, indent=2) + "\n"})
+    repo.commit("main", {inbox_sweep.ROSTER_FILE: json.dumps(
+        {"schema_version": 1, "coordinator": inbox_sweep_coordinator()}) + "\n"})
+
+    # The real gap: a no-schema message that is ALREADY published and outside
+    # the baseline. An unpublished one is caught by the schema check; this one
+    # linted clean with --all while the sweep rejected it permanently.
+    forgery = msg_path(ME, "20260729T090000Z", "task-forged", "claim")
+    body = legacy_message("task-forged", to=PEER)
+    repo.commit(f"agent/{ME}", {forgery: body})
+    repo.write_worktree(forgery, body)
+
+    result = lint(repo, ME, "--all")
+    assert result.returncode == 2
+    assert "not in the frozen legacy baseline" in result.stdout
+    assert forgery in result.stdout
+
+
+def test_lint_warns_when_head_is_not_my_canonical_branch(repo):
+    # F9b: the repository's actual failure mode. A structurally perfect message
+    # published from a task branch is clean to lint and a permanent delivery
+    # error to the sweep. Lint must say so at the moment a sender runs it.
+    repo._git("checkout", "-q", "-b", f"agent/{ME}-taskwork")
+    stage(repo, ME, "claim", to=PEER)
+
+    result = lint(repo)
+    assert result.returncode == 2
+    assert "canonical branch" in result.stdout
+    assert f"agent/{ME}-taskwork" in result.stdout
+
+
+def test_lint_is_quiet_on_the_canonical_branch(repo):
+    stage(repo, ME, "claim", to=PEER)  # fixture HEAD is already agent/ME
+
+    result = lint(repo)
+    assert result.returncode == 0
+
+
+def test_branch_warning_does_not_fire_when_nothing_is_unpublished(repo):
+    # Linting a peer's namespace from my worktree is diagnostic, not a
+    # pre-publish check: everything there is already on a remote ref.
+    publish_v2(repo, PEER, "20260805T100000Z", "task-a", "update",
+               to=ME, requires_ack=False)
+    repo._git("checkout", "-q", "-b", f"agent/{ME}-taskwork")
+
+    result = lint(repo, PEER, "--all")
+    assert result.returncode == 0
+    assert "canonical branch" not in result.stdout
+
+
+def inbox_sweep_coordinator():
+    return "local_claude_1"
 
 
 def test_valid_handoff_with_pushed_artifact_passes(repo):

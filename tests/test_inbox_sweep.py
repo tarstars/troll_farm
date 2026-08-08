@@ -46,6 +46,9 @@ class TransportRepo:
         )
         self._git("config", "user.name", "test")
         self._git("config", "user.email", "test@example.invalid")
+        # A real agent worktree sits on its own canonical branch; the outbox
+        # lint checks that, so the fixture must reflect it.
+        self._git("checkout", "-q", "-b", f"agent/{ME}")
         self.tips: dict[str, str] = {}
 
     def _git(self, *args: str, env: dict | None = None) -> str:
