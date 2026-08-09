@@ -1,0 +1,1026 @@
+#!/usr/bin/env python3
+"""Tests for score_hierarchy_check.
+
+Run:  python3 -m unittest claude_1.banana-restoration-r2.test_score_hierarchy_check
+or:   cd claude_1/banana-restoration-r2 && python3 -m unittest test_score_hierarchy_check -v
+
+The integration tests against the real subject blob are skipped when the repository
+is not reachable, so the unit tests remain runnable anywhere.
+"""
+
+from __future__ import annotations
+
+import json
+import math
+import subprocess
+import sys
+import unittest
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+import score_hierarchy_check as shc  # noqa: E402
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+SUBJECT_REF = "origin/main:cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs"
+SUBJECT_SHA = "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29"
+LEDGER = Path(__file__).resolve().parent / "score-hierarchy-ledger.json"
+
+
+def _subject_source() -> str | None:
+    try:
+        return shc.read_from_git(REPO_ROOT, SUBJECT_REF).decode()
+    except (FileNotFoundError, OSError, subprocess.SubprocessError):
+        return None
+
+
+SUBJECT_SRC = _subject_source()
+
+
+# ---------------------------------------------------------------------------
+
+
+class TestBlanking(unittest.TestCase):
+    def test_preserves_length_and_lines(self):
+        src = 'let a = 1; // score: 999\nlet b = "score: 7";\n'
+        out = shc.blank_comments_and_strings(src)
+        self.assertEqual(len(out), len(src))
+        self.assertEqual(out.count("\n"), src.count("\n"))
+
+    def test_line_comment_body_removed(self):
+        out = shc.blank_comments_and_strings("x; // score: 999\ny;")
+        self.assertNotIn("score", out)
+        self.assertTrue(out.startswith("x; //"))
+
+    def test_nested_block_comment(self):
+        out = shc.blank_comments_and_strings("a /* outer /* score = 1 */ still */ b")
+        self.assertNotIn("score", out)
+        self.assertIn("a ", out)
+        self.assertIn(" b", out)
+
+    def test_string_with_escape(self):
+        out = shc.blank_comments_and_strings(r'let s = "a\" score = 2"; z;')
+        self.assertNotIn("score", out)
+        self.assertIn("z;", out)
+
+    def test_raw_string(self):
+        out = shc.blank_comments_and_strings('let s = r#"score = 3"#; z;')
+        self.assertNotIn("score", out)
+        self.assertIn("z;", out)
+
+    def test_lifetime_not_treated_as_char_literal(self):
+        src = "fn f<'a>(x: &'a str) -> &'a str { x }  let c = 'q'; score = 1;"
+        out = shc.blank_comments_and_strings(src)
+        # the lifetime must not swallow the rest of the line
+        self.assertIn("score = 1;", out)
+        self.assertIn("&'a str", out)
+
+
+class TestCensus(unittest.TestCase):
+    def test_matches_all_four_operators(self):
+        src = "Candidate{score:1.0}\nlet score = 2.0;\nscore += 3.0;\nscore -= 4.0;\n"
+        sites = shc.census(src)
+        self.assertEqual([s.op for s in sites], [":", "=", "+=", "-="])
+        self.assertEqual([s.line for s in sites], [1, 2, 3, 4])
+
+    def test_ignores_prefixed_identifiers(self):
+        src = "base_score: 1.0\nconversion_score = 2.0\nlet x = a.score == b.score;\n"
+        self.assertEqual(shc.census(src), [])
+
+    def test_field_access_is_a_site(self):
+        # `.score =` is a genuine mutation site and must be caught (cf. R:1283).
+        sites = shc.census("current.score = 10_000.0;")
+        self.assertEqual(len(sites), 1)
+        self.assertEqual(sites[0].op, "=")
+
+    def test_ignores_comments_and_strings(self):
+        src = '// score = 1\nlet s = "score = 2";\nscore = 3;\n'
+        sites = shc.census(src)
+        self.assertEqual([s.line for s in sites], [3])
+
+    def test_fingerprint_is_line_number_independent(self):
+        a = shc.census("score = 1.0;")[0]
+        b = shc.census("\n\nscore  =  1.0;")[0]
+        self.assertEqual(a.fingerprint(), b.fingerprint())
+        self.assertNotEqual(a.line, b.line)
+
+
+class TestCensusDiff(unittest.TestCase):
+    def setUp(self):
+        self.frozen = [s.as_dict() for s in shc.census("score = 1.0;\nscore = 2.0;\n")]
+
+    def test_no_drift(self):
+        cur = shc.census("score = 1.0;\nscore = 2.0;\n")
+        d = shc.census_diff(cur, self.frozen)
+        self.assertEqual(d, {"added": [], "removed": [], "moved": []})
+
+    def test_added(self):
+        cur = shc.census("score = 1.0;\nscore = 2.0;\nscore = 3.0;\n")
+        d = shc.census_diff(cur, self.frozen)
+        self.assertEqual(len(d["added"]), 1)
+        self.assertEqual(d["removed"], [])
+
+    def test_removed(self):
+        cur = shc.census("score = 1.0;\n")
+        d = shc.census_diff(cur, self.frozen)
+        self.assertEqual(len(d["removed"]), 1)
+
+    def test_pure_move_reported_separately(self):
+        cur = shc.census("\nscore = 1.0;\nscore = 2.0;\n")
+        d = shc.census_diff(cur, self.frozen)
+        self.assertEqual(d["added"], [])
+        self.assertEqual(d["removed"], [])
+        self.assertEqual(len(d["moved"]), 2)
+
+
+class TestCallSites(unittest.TestCase):
+    def test_single_call_with_literal(self):
+        src = (
+            "fn iron_candidates(v:&G,u:&U,base_score:f64)->Vec<C>{ }\n"
+            "out.extend(Self::iron_candidates(view,unit,6_100.0));\n"
+        )
+        rep = shc.call_sites(src, "iron_candidates")
+        self.assertEqual(rep.definitions, [1])
+        self.assertEqual([c.line for c in rep.calls], [2])
+        self.assertEqual(rep.calls[0].literal_args, {2: "6_100.0"})
+        self.assertTrue(rep.sound)
+        self.assertEqual(rep.status, "OK")
+
+    def test_bare_use_makes_it_inconclusive(self):
+        src = "fn f(){}\nlet g = f;\nf();\n"
+        rep = shc.call_sites(src, "f")
+        self.assertEqual(rep.bare_uses, [2])
+        self.assertFalse(rep.sound)
+        self.assertEqual(rep.status, "INCONCLUSIVE")
+
+    def test_nested_arguments_split_correctly(self):
+        src = "fn f(){}\nf(g(1,2), 3.0, h(a,(b,c)));\n"
+        rep = shc.call_sites(src, "f")
+        self.assertEqual(rep.calls[0].args, ["g(1,2)", "3.0", "h(a,(b,c))"])
+        self.assertEqual(rep.calls[0].literal_args, {1: "3.0"})
+
+    def test_occurrence_in_comment_ignored(self):
+        src = "fn f(){}\n// f(1.0);\nf(2.0);\n"
+        rep = shc.call_sites(src, "f")
+        self.assertEqual([c.line for c in rep.calls], [3])
+        self.assertEqual(rep.bare_uses, [])
+
+    def test_prefixed_identifier_not_matched(self):
+        src = "fn f(){}\nmy_f(1.0);\nf_two(2.0);\n"
+        rep = shc.call_sites(src, "f")
+        self.assertEqual(rep.calls, [])
+        self.assertEqual(rep.bare_uses, [])
+
+    def test_literal_forms(self):
+        src = "fn f(){}\nf(6_000.0, 42, 1e3, 7f64, x)\n"
+        rep = shc.call_sites(src, "f")
+        self.assertEqual(
+            rep.calls[0].literal_args, {0: "6_000.0", 1: "42", 2: "1e3", 3: "7f64"}
+        )
+
+
+class TestInterval(unittest.TestCase):
+    def test_parse_open_closed(self):
+        i = shc.Interval.parse("(0, 2400]")
+        self.assertEqual((i.lo, i.hi, i.lo_closed, i.hi_closed), (0.0, 2400.0, False, True))
+        j = shc.Interval.parse("[2, inf)")
+        self.assertEqual((j.lo, j.hi, j.lo_closed, j.hi_closed), (2.0, math.inf, True, False))
+
+    def test_infinite_endpoint_is_open(self):
+        self.assertFalse(shc.Interval.parse("[2, inf]").hi_closed)
+
+    def test_add_sub(self):
+        a = shc.Interval(1, 2)
+        b = shc.Interval(10, 20)
+        self.assertTrue((a + b).approx_equal(shc.Interval(11, 22)))
+        self.assertTrue((a - b).approx_equal(shc.Interval(-19, -8)))
+
+    def test_mul_signs(self):
+        a = shc.Interval(-2, 3)
+        b = shc.Interval(-5, 7)
+        self.assertTrue((a * b).approx_equal(shc.Interval(-15, 21)))
+
+    def test_reciprocal_of_unbounded(self):
+        r = shc.Interval.parse("[2, inf)").reciprocal()
+        self.assertTrue(r.approx_equal(shc.Interval(0.0, 0.5, False, True)))
+
+    def test_reciprocal_spanning_zero_raises(self):
+        with self.assertRaises(shc.IntervalError):
+            shc.Interval(-1, 1).reciprocal()
+
+    def test_division_openness_propagates(self):
+        # 1000*[1,3] / [2,inf)  ==  (0, 1500]
+        got = shc.Interval(1000, 3000) / shc.Interval.parse("[2, inf)")
+        self.assertTrue(got.approx_equal(shc.Interval(0.0, 1500.0, False, True)))
+
+    def test_imax_of_two_intervals(self):
+        got = shc.Interval(0, 100).imax(shc.Interval(0, 83))
+        self.assertTrue(got.approx_equal(shc.Interval(0, 100)))
+
+    def test_clamp_low_dead_and_live(self):
+        self.assertTrue(shc.Interval.parse("[2, inf)").clamp_low_is_dead(1))
+        self.assertFalse(shc.Interval.parse("[0, 100]").clamp_low_is_dead(1))
+        self.assertFalse(shc.Interval.parse("[-83, 100]").clamp_low_is_dead(0))
+
+    def test_clamp_low_is_identity_when_dead(self):
+        i = shc.Interval.parse("[2, inf)")
+        self.assertTrue(i.clamp_low(1).approx_equal(i))
+
+    def test_clamp_low_raises_floor_when_live(self):
+        i = shc.Interval(-5, 10)
+        self.assertTrue(i.clamp_low(0).approx_equal(shc.Interval(0, 10)))
+
+    def test_empty_interval_rejected(self):
+        with self.assertRaises(shc.IntervalError):
+            shc.Interval(5, 4)
+
+
+# ---------------------------------------------------------------------------
+# Correction 5 (chatgpt_1 review B5): interval multiplication endpoint closure.
+#
+# The defect: ``Interval.__mul__`` closed a product endpoint only when EVERY
+# attaining corner was closed (``all``).  An endpoint of a product is attained,
+# and therefore included, when ANY attaining corner is included (``any``).  The
+# same defect let a zero-width OPEN interval -- the empty set -- be constructed.
+#
+# Every test in this class FAILS under the pre-correction ``all`` implementation
+# and is the mutation pin required by the revision task.
+# ---------------------------------------------------------------------------
+
+
+class TestIntervalMultiplicationEndpointClosure(unittest.TestCase):
+    def test_lower_endpoint_closed_when_any_corner_attains_it_closed(self):
+        # [0, 1] * (0, 1] == [0, 1].  0 is attained at the closed corner
+        # (lo=0, hi=1) -> 0*1 = 0, so the lower endpoint is IN the product.
+        # `all` marks it open because the corner (0, 0) is open.
+        got = shc.Interval(0, 1, True, True) * shc.Interval(0, 1, False, True)
+        self.assertTrue(got.approx_equal(shc.Interval(0, 1, True, True)), str(got))
+
+    def test_upper_endpoint_closed_when_any_corner_attains_it_closed(self):
+        # [-1, 0] * [-1, 0) : corners (1, closed), (0, open), (0, closed), (0, open).
+        # hi = 1 closed; lo = 0 is attained closed at (0 * -1).
+        got = shc.Interval(-1, 0, True, True) * shc.Interval(-1, 0, True, False)
+        self.assertTrue(got.approx_equal(shc.Interval(0, 1, True, True)), str(got))
+
+    def test_zero_point_times_open_interval_is_the_closed_point_zero(self):
+        # The empty-interval half of B5: `all` yields (0, 0), an EMPTY set that
+        # the constructor silently accepted, instead of the point {0}.
+        got = shc.Interval.point(0) * shc.Interval(0, 1, False, True)
+        self.assertTrue(got.approx_equal(shc.Interval.point(0)), str(got))
+
+    def test_open_zero_endpoint_stays_open_when_no_corner_attains_it_closed(self):
+        # Guard against over-correcting: (0, 1] * (0, 1] == (0, 1].
+        got = shc.Interval(0, 1, False, True) * shc.Interval(0, 1, False, True)
+        self.assertTrue(got.approx_equal(shc.Interval(0, 1, False, True)), str(got))
+
+    def test_infinite_endpoint_product_stays_open(self):
+        got = shc.Interval.parse("[2, inf)") * shc.Interval(1, 2, True, True)
+        self.assertTrue(got.approx_equal(shc.Interval(2, math.inf, True, False)), str(got))
+
+    def test_negative_span_product_closure(self):
+        # [-2, 3] * (-5, 7]: lo = -10 attained only at the open corner (-5),
+        # hi = 21 attained at a closed corner.
+        got = shc.Interval(-2, 3, True, True) * shc.Interval(-5, 7, False, True)
+        self.assertTrue(got.approx_equal(shc.Interval(-15, 21, False, True)), str(got))
+
+
+class TestZeroWidthIntervalRejection(unittest.TestCase):
+    def test_zero_width_open_open_is_empty_and_rejected(self):
+        with self.assertRaises(shc.IntervalError):
+            shc.Interval(0, 0, False, False)
+
+    def test_zero_width_half_open_is_empty_and_rejected(self):
+        with self.assertRaises(shc.IntervalError):
+            shc.Interval(3, 3, True, False)
+        with self.assertRaises(shc.IntervalError):
+            shc.Interval(3, 3, False, True)
+
+    def test_zero_width_open_interval_from_parse_is_rejected(self):
+        with self.assertRaises(shc.IntervalError):
+            shc.Interval.parse("(0, 0)")
+
+    def test_zero_width_closed_interval_is_a_legal_point(self):
+        self.assertTrue(shc.Interval(0, 0, True, True).approx_equal(shc.Interval.point(0)))
+
+
+class TestEvalExpr(unittest.TestCase):
+    def test_unbound_variable_raises(self):
+        with self.assertRaises(shc.IntervalError):
+            shc.eval_expr(["+", "x", 1], {})
+
+    def test_substitute_inlines_derived(self):
+        expr = shc.substitute(["/", 1000, "turns"], {"turns": ["max", ["+", "a", 1], 1]})
+        self.assertEqual(expr, ["/", 1000, ["max", ["+", "a", 1], 1]])
+
+    def test_variable_occurrence_counting(self):
+        self.assertEqual(shc._vars_in(["-", "b", ["+", "t", ["max", "t", 0]]]),
+                         ["b", "t", "t"])
+
+
+class TestRangeModel(unittest.TestCase):
+    CHOP = {
+        "id": "T-CHOP",
+        "site": "R:611",
+        "expr": ["+", ["/", ["*", 1000, "wood"], "turns"],
+                 ["/", 900, ["+", 1, "opponent_distance"]]],
+        "attainable": "(0, 2400]",
+        "derived": [{"name": "turns",
+                     "expr": ["max", ["+", "travel_turns", "chop_turns", "return_turns", 1], 1]}],
+        "inputs": {
+            "travel_turns": {"range": "[0, inf)"},
+            "chop_turns": {"range": "[1, 100]"},
+            "return_turns": {"range": "[0, inf)"},
+            "wood": {"range": "[1, 3]"},
+            "opponent_distance": {"range": "[0, inf)"},
+        },
+        "clamps": [{"site": "R:611", "op": "max", "bound": 1, "expect": "DEAD",
+                    "operand": ["+", "travel_turns", "chop_turns", "return_turns", 1]}],
+    }
+
+    def test_reproduces_2400_and_proves_clamp_dead(self):
+        r = shc.range_model_report(self.CHOP)
+        self.assertEqual(r["computed"], "(0, 2400]")
+        self.assertTrue(r["agrees"])
+        self.assertEqual(r["precision"], "NO_REPEATED_VARIABLE_INTERVAL_EVAL")
+        self.assertEqual(r["clamps"][0]["verdict"], "DEAD")
+        self.assertEqual(r["clamps"][0]["operand_range"], "[2, inf)")
+
+    def test_dropping_the_producer_invariant_reproduces_the_manifest_error(self):
+        """Regression test for the exact error the method exists to prevent.
+
+        If ``chop_turns >= 1`` is NOT propagated (i.e. the auditor reads the
+        syntactic ``.max(1)`` floor as attainable), ``turns`` becomes ``[1, inf)``
+        and the computed bound inflates to the original manifest's ``3900``.
+
+        Note what does NOT change: the clamp is reported DEAD either way, because
+        the ``+ 1`` literal alone already forces ``turns >= 1``.  Clamp-deadness is
+        therefore NOT the discriminator -- the propagated operand interval is.
+        """
+        bad = json.loads(json.dumps(self.CHOP))
+        bad["inputs"]["chop_turns"]["range"] = "[0, 100]"
+        bad.pop("attainable")
+        r = shc.range_model_report(bad)
+        self.assertEqual(r["computed"], "(0, 3900]")
+        self.assertEqual(r["clamps"][0]["operand_range"], "[1, inf)")
+        self.assertEqual(r["clamps"][0]["verdict"], "DEAD")
+
+    def test_clamp_deadness_alone_is_not_the_discriminator(self):
+        good = shc.range_model_report(self.CHOP)
+        self.assertEqual(good["clamps"][0]["verdict"], "DEAD")
+        self.assertEqual(good["clamps"][0]["operand_range"], "[2, inf)")
+        self.assertEqual(good["computed"], "(0, 2400]")
+
+    def test_mismatched_claim_fails(self):
+        bad = json.loads(json.dumps(self.CHOP))
+        bad["attainable"] = "(0, 3900]"
+        self.assertFalse(shc.range_model_report(bad)["agrees"])
+
+    def test_repeated_variable_is_flagged_over_approx(self):
+        model = {
+            "id": "T-FRUIT-NAIVE",
+            "expr": ["-", 6000, ["+", "travel", ["max", ["-", "ticks", "travel"], 0]]],
+            "inputs": {"travel": {"range": "[0, 83]"}, "ticks": {"range": "[0, 100]"}},
+        }
+        r = shc.range_model_report(model)
+        self.assertEqual(r["precision"], "REPEATED_VARIABLE_OVER_APPROX")
+        self.assertEqual(r["computed"], "[5817, 6000]")
+
+    def test_single_occurrence_rewrite_is_tighter(self):
+        model = {
+            "id": "T-FRUIT-EXACT",
+            "expr": ["-", 6000, ["max", "ticks", "travel"]],
+            "inputs": {"travel": {"range": "[0, 83]"}, "ticks": {"range": "[0, 100]"}},
+        }
+        r = shc.range_model_report(model)
+        self.assertEqual(r["precision"], "NO_REPEATED_VARIABLE_INTERVAL_EVAL")
+        self.assertEqual(r["computed"], "[5900, 6000]")
+
+
+# ---------------------------------------------------------------------------
+# Correction 4 (chatgpt_1 review B4): `EXACT` is a lie by vocabulary.
+#
+# The machine status meant only "no variable token repeats in the expanded
+# expression".  It did NOT mean the computed interval is the exact attainable
+# set: inputs may be panel assumptions, variables may be correlated by state,
+# integrality may remove endpoints, and the site may be unreachable.
+# ---------------------------------------------------------------------------
+
+
+class TestPrecisionVocabulary(unittest.TestCase):
+    SINGLE = {
+        "id": "T-SINGLE",
+        "expr": ["-", 6000, ["max", "ticks", "travel"]],
+        "inputs": {"travel": {"range": "[0, 83]", "method": "panel-bounded assumption"},
+                   "ticks": {"range": "[0, 100]", "method": "producer-invariant"}},
+    }
+    REPEATED = {
+        "id": "T-REPEATED",
+        "expr": ["-", 6000, ["+", "travel", ["max", ["-", "ticks", "travel"], 0]]],
+        "inputs": {"travel": {"range": "[0, 83]", "method": "producer-invariant"},
+                   "ticks": {"range": "[0, 100]", "method": "producer-invariant"}},
+    }
+
+    def test_single_occurrence_status_is_not_named_exact(self):
+        r = shc.range_model_report(self.SINGLE)
+        self.assertEqual(r["precision"], "NO_REPEATED_VARIABLE_INTERVAL_EVAL")
+
+    def test_repeated_variable_status_is_renamed(self):
+        r = shc.range_model_report(self.REPEATED)
+        self.assertEqual(r["precision"], "REPEATED_VARIABLE_OVER_APPROX")
+
+    def test_the_token_EXACT_appears_nowhere_in_a_range_report(self):
+        for model in (self.SINGLE, self.REPEATED):
+            blob = json.dumps(shc.range_model_report(model))
+            self.assertNotIn("EXACT", blob, model["id"])
+
+    def test_report_separates_scope_assumption_reachability_and_witness(self):
+        r = shc.range_model_report(self.SINGLE)
+        for key in ("bound_scope", "assumption_status",
+                    "reachability_status", "endpoint_witnessed"):
+            self.assertIn(key, r)
+
+    def test_bound_scope_states_upper_sound_lower_unwitnessed(self):
+        r = shc.range_model_report(self.SINGLE)
+        self.assertEqual(r["bound_scope"], "UPPER_BOUND_SOUND__LOWER_NOT_PROVED_ATTAINABLE")
+
+    def test_assumption_status_flags_a_panel_bounded_input(self):
+        r = shc.range_model_report(self.SINGLE)
+        self.assertEqual(r["assumption_status"], "ASSUMPTION_DEPENDENT")
+        self.assertIn("travel", r["assumption_inputs"])
+
+    def test_assumption_status_clean_when_every_method_is_a_proof_method(self):
+        r = shc.range_model_report(self.REPEATED)
+        self.assertEqual(r["assumption_status"], "CITED_PROOF_METHODS_ONLY")
+        self.assertEqual(r["assumption_inputs"], [])
+
+    def test_an_unresolved_dependency_in_the_assumption_text_is_flagged(self):
+        # chatgpt_1 B4 names RM-1 specifically: its `wood` bound holds only while
+        # the shipped preset caps carry capacity at 3, and the ledger says so in
+        # words.  The machine output must carry it too.
+        model = dict(self.REPEATED)
+        model["inputs"] = {
+            "travel": {"range": "[0, 83]", "method": "guard + preset",
+                       "assumption": "UNRESOLVED for a roster shipping capacity > 3"},
+            "ticks": {"range": "[0, 100]", "method": "producer-invariant"},
+        }
+        r = shc.range_model_report(model)
+        self.assertEqual(r["assumption_status"], "ASSUMPTION_DEPENDENT")
+        self.assertEqual(r["assumption_inputs"], ["travel"])
+
+    def test_reachability_and_witness_default_to_unproved(self):
+        r = shc.range_model_report(self.SINGLE)
+        self.assertEqual(r["reachability_status"], "UNPROVED")
+        self.assertEqual(r["endpoint_witnessed"], "NONE")
+
+    def test_ledger_may_declare_reachability_and_witness_explicitly(self):
+        model = dict(self.SINGLE, reachability_status="SITE_GUARD_CHAIN_CITED",
+                     endpoint_witnessed="UPPER")
+        r = shc.range_model_report(model)
+        self.assertEqual(r["reachability_status"], "SITE_GUARD_CHAIN_CITED")
+        self.assertEqual(r["endpoint_witnessed"], "UPPER")
+
+
+# ---------------------------------------------------------------------------
+# Correction 6 (chatgpt_1 review B6): textual call-site evidence must not be
+# labelled reachability evidence.
+# ---------------------------------------------------------------------------
+
+
+class TestCallSiteVerdictVocabulary(unittest.TestCase):
+    SRC = "fn f(v:&G,b:f64){}\nlet c = Candidate{score:1.0};\nf(view, 6_000.0);\n"
+
+    def _ledger(self, claim="one textual call site"):
+        return {
+            "subject": {"path": "x.rs", "sha256": shc.sha256_bytes(self.SRC.encode())},
+            "census": [s.as_dict() for s in shc.census(self.SRC)],
+            "bindings": [{"fn": "f", "arg_index": 1, "expect_calls": [3],
+                          "expect_literal_args": ["6_000.0"], "claim": claim}],
+            "range_models": [],
+            "intentions": [], "witnesses": [], "findings": [], "dead_regions": [],
+            "priority": {"declared": False, "relation": [], "note": "n/a in fixture"},
+        }
+
+    def test_one_call_literal_verdict_says_textual(self):
+        led = self._ledger()
+        rep = shc.run(led, self.SRC, led["subject"]["sha256"], None)
+        self.assertEqual(rep["checks"]["bindings"][0]["verdict"],
+                         "ONE_TEXTUAL_CALL_SITE_LITERAL_BINDING")
+
+    def test_multiple_call_verdict_says_textual(self):
+        led = self._ledger()
+        src = self.SRC + "f(view, 3_400.0);\n"
+        rep = shc.run(led, src, led["subject"]["sha256"], None)
+        self.assertEqual(rep["checks"]["bindings"][0]["verdict"],
+                         "MULTIPLE_TEXTUAL_CALL_SITES")
+
+    def test_binding_carries_an_explicit_unproved_reachability_status(self):
+        led = self._ledger()
+        rep = shc.run(led, self.SRC, led["subject"]["sha256"], None)
+        self.assertEqual(rep["checks"]["bindings"][0]["reachability_status"], "UNPROVED")
+
+    def test_validate_ledger_rejects_a_binding_claim_asserting_reachability(self):
+        led = self._ledger(claim="one reachable call site, base_score bound to 6_000.0")
+        problems = shc.validate_ledger(led)
+        self.assertTrue(any("reachab" in p.lower() for p in problems), problems)
+
+    def test_validate_ledger_accepts_a_textual_claim(self):
+        led = self._ledger()
+        problems = [p for p in shc.validate_ledger(led) if "reachab" in p.lower()]
+        self.assertEqual(problems, [])
+
+    def test_a_reachability_asserting_ledger_fails_the_run(self):
+        led = self._ledger(claim="one reachable call site")
+        rep = shc.run(led, self.SRC, led["subject"]["sha256"], None)
+        self.assertFalse(rep["ok"])
+
+    def test_generic_argument_over_split_fails_closed_on_arity(self):
+        # Non-blocking review note 3: the splitter does not balance Rust angle
+        # brackets, so a generic argument over-splits.  That must surface as a
+        # ledger arity/expectation MISMATCH, never as a silent wrong answer.
+        src = "fn f(v:&G,b:f64){}\nf(Vec::<A,B>::new(), 6_000.0);\n"
+        rep = shc.call_sites(src, "f")
+        self.assertGreater(len(rep.calls[0].args), 2)
+        led = self._ledger()
+        led["bindings"][0]["expect_calls"] = [2]
+        out = shc.run(led, src, shc.sha256_bytes(src.encode()), None)
+        self.assertFalse(out["checks"]["bindings"][0]["agrees"])
+
+
+# ---------------------------------------------------------------------------
+# Correction 7 (chatgpt_1 review B7): drift coverage omits filter, compatibility,
+# replacement and resolver nodes.  The score-token census can stay green while
+# X5, X6, X8, X9 and X10 silently change, because none of those findings lives in
+# a line containing the token `score`.
+# ---------------------------------------------------------------------------
+
+
+class TestFunctionBodySpan(unittest.TestCase):
+    SRC = (
+        "fn alpha(a:i32)->bool{\n"
+        "    if a==0{ return true; }\n"
+        "    false\n"
+        "}\n"
+        "fn beta(b:&[i32; 6])->i32{ b[0] }\n"
+        "trait T{ fn alpha(a:i32)->bool; }\n"
+        "fn alpha(a:i32)->bool{ true }\n"
+    )
+
+    def test_finds_body_span_of_a_named_fn(self):
+        span = shc.fn_body_span(self.SRC, "beta")
+        self.assertEqual(span["def_line"], 5)
+        self.assertEqual(span["end_line"], 5)
+
+    def test_multiline_body_span(self):
+        span = shc.fn_body_span(self.SRC, "alpha", def_line=1)
+        self.assertEqual((span["def_line"], span["end_line"]), (1, 4))
+
+    def test_declaration_without_a_body_is_not_a_definition(self):
+        # The trait declaration at line 6 has no body; it must not be returned
+        # and must not shadow the real definitions.
+        lines = [s["def_line"] for s in shc.fn_body_spans(self.SRC, "alpha")]
+        self.assertEqual(lines, [1, 7])
+
+    def test_duplicate_names_require_an_explicit_def_line(self):
+        with self.assertRaises(shc.AnchorError):
+            shc.fn_body_span(self.SRC, "alpha")
+        self.assertEqual(shc.fn_body_span(self.SRC, "alpha", def_line=7)["end_line"], 7)
+
+    def test_unknown_name_fails_closed(self):
+        with self.assertRaises(shc.AnchorError):
+            shc.fn_body_span(self.SRC, "gamma")
+
+    def test_semicolon_inside_an_array_type_does_not_end_the_signature(self):
+        span = shc.fn_body_span(self.SRC, "beta")
+        self.assertIn("b[0]", span["text"])
+
+    def test_fingerprint_is_line_number_independent(self):
+        a = shc.fn_body_span(self.SRC, "beta")["fingerprint"]
+        b = shc.fn_body_span("\n\n" + self.SRC, "beta")["fingerprint"]
+        self.assertEqual(a, b)
+
+    def test_fingerprint_changes_when_the_body_changes(self):
+        a = shc.fn_body_span(self.SRC, "beta")["fingerprint"]
+        b = shc.fn_body_span(self.SRC.replace("b[0]", "b[1]"), "beta")["fingerprint"]
+        self.assertNotEqual(a, b)
+
+
+class TestPipelineAnchorDrift(unittest.TestCase):
+    SRC = (
+        "fn compatible(a:T,b:T)->bool{ if a==T::None{ return true; } a!=b }\n"
+        "fn select(c:Vec<C>)->Vec<String>{ c.pop() }\n"
+        "let x = Candidate{score:1.0};\n"
+    )
+
+    def _anchors(self, src):
+        return [
+            {"id": "PN-compatible", "fn": "compatible", "kind": "compatibility",
+             "findings": ["X9"],
+             "fingerprint": shc.fn_body_span(src, "compatible")["fingerprint"]},
+            {"id": "PN-select", "fn": "select", "kind": "arbitration",
+             "findings": ["X5"],
+             "fingerprint": shc.fn_body_span(src, "select")["fingerprint"]},
+        ]
+
+    def test_no_drift_when_nothing_moved(self):
+        rep = shc.pipeline_anchor_report(self.SRC, self._anchors(self.SRC))
+        self.assertTrue(rep["ok"])
+        self.assertEqual(rep["invalidated_findings"], [])
+
+    def test_a_changed_node_body_invalidates_exactly_its_findings(self):
+        frozen = self._anchors(self.SRC)
+        moved = self.SRC.replace("return true;", "return false;")
+        rep = shc.pipeline_anchor_report(moved, frozen)
+        self.assertFalse(rep["ok"])
+        self.assertEqual(rep["invalidated_findings"], ["X9"])
+
+    def test_a_pure_line_shift_is_not_drift(self):
+        frozen = self._anchors(self.SRC)
+        rep = shc.pipeline_anchor_report("\n// nothing\n" + self.SRC, frozen)
+        self.assertTrue(rep["ok"], rep)
+
+    def test_a_vanished_node_fails_closed(self):
+        frozen = self._anchors(self.SRC)
+        gone = "\n".join(self.SRC.splitlines()[1:])
+        rep = shc.pipeline_anchor_report(gone, frozen)
+        self.assertFalse(rep["ok"])
+        self.assertEqual(rep["entries"][0]["status"], "MISSING")
+        self.assertIn("X9", rep["invalidated_findings"])
+
+    def test_the_score_token_census_alone_would_have_stayed_green(self):
+        # The point of B7: the compatibility node holds no `score` token, so the
+        # existing census cannot see it change.
+        moved = self.SRC.replace("return true;", "return false;")
+        self.assertEqual(
+            shc.census_diff(shc.census(moved), [s.as_dict() for s in shc.census(self.SRC)]),
+            {"added": [], "removed": [], "moved": []},
+        )
+        self.assertFalse(shc.pipeline_anchor_report(moved, self._anchors(self.SRC))["ok"])
+
+
+class TestRunDriver(unittest.TestCase):
+    SRC = "fn f(v:&G,b:f64){}\nlet c = Candidate{score:1.0};\nf(view, 6_000.0);\n"
+
+    def _ledger(self, src: str) -> dict:
+        # A ledger without the typed sections is now itself a failure: the
+        # method packet claims they are frozen here (chatgpt_1 B1).
+        return {
+            "subject": {"path": "x.rs", "sha256": shc.sha256_bytes(src.encode())},
+            "census": [s.as_dict() for s in shc.census(src)],
+            "bindings": [{"fn": "f", "arg_index": 1, "expect_calls": [3],
+                          "expect_literal_args": ["6_000.0"]}],
+            "range_models": [],
+            "intentions": [], "witnesses": [], "findings": [], "dead_regions": [],
+            "priority": {"declared": False, "relation": [], "note": "n/a in fixture"},
+        }
+
+    def test_an_untyped_ledger_fails_the_run(self):
+        led = self._ledger(self.SRC)
+        for section in ("intentions", "priority", "findings", "witnesses", "dead_regions"):
+            stripped = {k: v for k, v in led.items() if k != section}
+            rep = shc.run(stripped, self.SRC, led["subject"]["sha256"], None)
+            self.assertFalse(rep["ok"], section)
+
+    def test_clean_run_passes(self):
+        led = self._ledger(self.SRC)
+        rep = shc.run(led, self.SRC, shc.sha256_bytes(self.SRC.encode()), None)
+        self.assertTrue(rep["ok"])
+        self.assertEqual(rep["checks"]["bindings"][0]["verdict"],
+                         "ONE_TEXTUAL_CALL_SITE_LITERAL_BINDING")
+
+    def test_sha_divergence_fails(self):
+        led = self._ledger(self.SRC)
+        rep = shc.run(led, self.SRC, "deadbeef", None)
+        self.assertFalse(rep["ok"])
+        self.assertFalse(rep["checks"]["identity"]["match"])
+
+    def test_new_score_site_fails_census(self):
+        led = self._ledger(self.SRC)
+        moved = self.SRC + "let d = Candidate{score:2.0};\n"
+        rep = shc.run(led, moved, led["subject"]["sha256"], None)
+        self.assertFalse(rep["ok"])
+        self.assertEqual(len(rep["checks"]["census"]["diff"]["added"]), 1)
+
+    def test_second_call_site_fails_binding(self):
+        led = self._ledger(self.SRC)
+        moved = self.SRC + "f(view, 3_400.0);\n"
+        rep = shc.run(led, moved, led["subject"]["sha256"], None)
+        self.assertFalse(rep["ok"])
+        self.assertEqual(rep["checks"]["bindings"][0]["verdict"], "MULTIPLE_TEXTUAL_CALL_SITES")
+
+    def test_format_report_does_not_crash(self):
+        led = self._ledger(self.SRC)
+        rep = shc.run(led, self.SRC, shc.sha256_bytes(self.SRC.encode()), None)
+        self.assertIn("overall: PASS", shc.format_report(rep))
+
+
+# ---------------------------------------------------------------------------
+# Correction 1 (B1): the typed finding ledger must actually exist, and the
+# report's counts must be GENERATED from it rather than maintained in prose.
+# Correction 2 (B2): `AX = 0` is a statement about the ten known findings only.
+# Correction 3 (B3): STATE_WITNESSED requires a committed exact-subject witness.
+# ---------------------------------------------------------------------------
+
+
+def _minimal_typed_ledger(**over):
+    led = {
+        "subject": {"path": "x.rs", "sha256": "aa" * 32},
+        "census": [],
+        "pipeline_anchors": [],
+        "bindings": [],
+        "range_models": [],
+        "intentions": [{"id": "A", "sites": ["R:1"]}, {"id": "B", "sites": ["R:2"]}],
+        "priority": {"declared": False, "relation": [], "note": "none declared"},
+        "witnesses": [],
+        "dead_regions": [{"id": "ZX-1", "site": "R:1", "reason": "x", "citation": "R:1"}],
+        "findings": [
+            {"id": "Y1", "class": "TX", "rule": 5, "reason": "clock branch",
+             "citations": ["R:1"], "evidence_state": "SOURCE_PROVED",
+             "rule_answers": {"dead_or_no_value_change": False,
+                              "label_absent_by_control_flow": False,
+                              "post_scoring_stage": False,
+                              "two_sites_one_intention_goal": False,
+                              "clock_branch": True,
+                              "own_position_or_null_progress_branch": False,
+                              "accumulation_within_one_expression": False,
+                              "incommensurable_units_or_scale": False}},
+        ],
+    }
+    led.update(over)
+    return led
+
+
+class TestClassificationOrder(unittest.TestCase):
+    ALL_FALSE = {k: False for k, _ in shc.CLASSIFICATION_ORDER} if hasattr(
+        shc, "CLASSIFICATION_ORDER") else {}
+
+    def _answers(self, **true_keys):
+        a = {k: False for k, _ in shc.CLASSIFICATION_ORDER}
+        a.update({k: True for k in true_keys})
+        return a
+
+    def test_first_match_wins_even_when_several_predicates_hold(self):
+        # X8-shaped: both "label absent by control flow" (rule 2) and
+        # "two sites, one intention" (rule 4) hold.  Rule 2 must win.
+        cls, rule = shc.classify_finding(
+            self._answers(label_absent_by_control_flow=True,
+                          two_sites_one_intention_goal=True))
+        self.assertEqual((cls, rule), ("MX", 2))
+
+    def test_dead_code_outranks_everything(self):
+        cls, rule = shc.classify_finding(
+            self._answers(dead_or_no_value_change=True, clock_branch=True))
+        self.assertEqual((cls, rule), ("ZX", 1))
+
+    def test_arithmetic_crossing_is_rule_seven(self):
+        cls, rule = shc.classify_finding(
+            self._answers(accumulation_within_one_expression=True))
+        self.assertEqual((cls, rule), ("AX", 7))
+
+    def test_no_predicate_is_an_observation_not_a_crossing(self):
+        cls, rule = shc.classify_finding(self._answers())
+        self.assertEqual((cls, rule), ("OBSERVATION", 9))
+
+    def test_a_missing_predicate_answer_fails_closed(self):
+        answers = self._answers(clock_branch=True)
+        answers.pop("post_scoring_stage")
+        with self.assertRaises(shc.LedgerError):
+            shc.classify_finding(answers)
+
+
+class TestTypedLedgerValidation(unittest.TestCase):
+    def test_a_wellformed_typed_ledger_has_no_problems(self):
+        self.assertEqual(shc.validate_ledger(_minimal_typed_ledger()), [])
+
+    def test_a_declared_class_contradicting_the_rule_order_is_rejected(self):
+        led = _minimal_typed_ledger()
+        led["findings"][0]["class"] = "AX"
+        problems = shc.validate_ledger(led)
+        self.assertTrue(any("class" in p for p in problems), problems)
+
+    def test_missing_typed_sections_are_rejected(self):
+        for section in ("intentions", "priority", "findings", "witnesses", "dead_regions"):
+            led = _minimal_typed_ledger()
+            del led[section]
+            self.assertTrue(
+                any(section in p for p in shc.validate_ledger(led)), section)
+
+    def test_state_witnessed_without_a_witness_record_is_rejected(self):
+        led = _minimal_typed_ledger()
+        led["findings"][0]["evidence_state"] = "STATE_WITNESSED"
+        problems = shc.validate_ledger(led)
+        self.assertTrue(any("witness" in p.lower() for p in problems), problems)
+
+    def test_a_witness_pinned_to_a_different_subject_sha_is_rejected(self):
+        led = _minimal_typed_ledger()
+        led["findings"][0]["evidence_state"] = "STATE_WITNESSED"
+        led["findings"][0]["witness_id"] = "W1"
+        led["witnesses"] = [{"id": "W1", "subject_sha256": "bb" * 32,
+                             "path": "p", "sha256": "cc" * 32,
+                             "candidate_identity": "?", "extraction_method": "?"}]
+        problems = shc.validate_ledger(led)
+        self.assertTrue(any("subject" in p.lower() for p in problems), problems)
+
+    def test_an_unknown_evidence_state_is_rejected(self):
+        led = _minimal_typed_ledger()
+        led["findings"][0]["evidence_state"] = "MEASURED_END_TO_END"
+        self.assertTrue(any("evidence_state" in p for p in shc.validate_ledger(led)))
+
+    def test_a_priority_claim_without_a_declared_relation_is_rejected(self):
+        led = _minimal_typed_ledger()
+        led["priority"] = {"declared": True, "relation": [], "note": ""}
+        self.assertTrue(any("priority" in p for p in shc.validate_ledger(led)))
+
+
+class TestGeneratedSummary(unittest.TestCase):
+    def test_counts_are_derived_from_the_findings(self):
+        s = shc.generated_summary(_minimal_typed_ledger())
+        self.assertEqual(s["findings_total"], 1)
+        self.assertEqual(s["class_counts"]["TX"], 1)
+        self.assertEqual(s["class_counts"]["AX"], 0)
+        self.assertEqual(s["dead_region_count"], 1)
+
+    def test_known_ax_findings_and_global_ax_status_are_separate_fields(self):
+        s = shc.generated_summary(_minimal_typed_ledger())
+        self.assertEqual(s["known_ax_findings"], 0)
+        self.assertEqual(s["global_ax_status"], "UNRESOLVED")
+
+    def test_global_ax_status_stays_unresolved_even_with_an_ax_finding(self):
+        # The global question is about DISCOVERY, not about the label counts.
+        led = _minimal_typed_ledger()
+        led["findings"][0]["class"] = "AX"
+        led["findings"][0]["rule"] = 7
+        led["findings"][0]["rule_answers"]["clock_branch"] = False
+        led["findings"][0]["rule_answers"]["accumulation_within_one_expression"] = True
+        s = shc.generated_summary(led)
+        self.assertEqual(s["known_ax_findings"], 1)
+        self.assertEqual(s["global_ax_status"], "UNRESOLVED")
+
+    def test_the_generated_block_is_deterministic(self):
+        led = _minimal_typed_ledger()
+        self.assertEqual(shc.format_generated_block(shc.generated_summary(led)),
+                         shc.format_generated_block(shc.generated_summary(led)))
+
+    def test_the_generated_block_names_the_global_ax_status(self):
+        block = shc.format_generated_block(shc.generated_summary(_minimal_typed_ledger()))
+        self.assertIn("GLOBAL_AX_STATUS = UNRESOLVED", block)
+        self.assertIn("KNOWN_AX_FINDINGS = 0", block)
+
+
+@unittest.skipUnless(SUBJECT_SRC is not None, "subject blob not reachable via git")
+class TestRealLedgerIsTyped(unittest.TestCase):
+    def setUp(self):
+        self.led = json.loads(LEDGER.read_text())
+
+    def test_the_real_ledger_validates(self):
+        self.assertEqual(shc.validate_ledger(self.led), [])
+
+    def test_it_freezes_eleven_intentions(self):
+        self.assertEqual(len(self.led["intentions"]), 11)
+
+    def test_it_freezes_x1_to_x10(self):
+        self.assertEqual([f["id"] for f in self.led["findings"]],
+                         [f"X{n}" for n in range(1, 11)])
+
+    def test_every_finding_carries_citations_and_a_rule(self):
+        for f in self.led["findings"]:
+            self.assertTrue(f["citations"], f["id"])
+            self.assertIn("rule", f, f["id"])
+            self.assertIn("reason", f, f["id"])
+
+    def test_the_priority_relation_is_declared_absent_not_assumed(self):
+        self.assertFalse(self.led["priority"]["declared"])
+        self.assertEqual(self.led["priority"]["relation"], [])
+
+    def test_no_finding_is_state_witnessed_because_no_witness_is_committed(self):
+        # chatgpt_1 B3: X2 and X9 had no exact-98628e98 witness packet.
+        self.assertEqual(self.led["witnesses"], [])
+        states = {f["id"]: f["evidence_state"] for f in self.led["findings"]}
+        self.assertEqual(states["X2"], "SOURCE_PROVED")
+        self.assertEqual(states["X9"], "SOURCE_PROVED")
+        for fid, st in states.items():
+            self.assertNotEqual(st, "STATE_WITNESSED", fid)
+
+    def test_x2_and_x9_record_what_would_promote_them(self):
+        for fid in ("X2", "X9"):
+            f = next(x for x in self.led["findings"] if x["id"] == fid)
+            self.assertIn("demoted_from", f)
+            self.assertIn("promotion_requires", f)
+
+    def test_the_generated_counts_match_the_ratified_table(self):
+        s = shc.generated_summary(self.led)
+        self.assertEqual(s["findings_total"], 10)
+        self.assertEqual(s["class_counts"],
+                         {"AX": 0, "TX": 1, "SX": 2, "UX": 1, "MX": 3, "BX": 2,
+                          "DX": 1, "ZX": 0, "OBSERVATION": 0})
+        self.assertEqual(s["dead_region_count"], 3)
+        self.assertEqual(s["evidence_counts"]["SOURCE_PROVED"], 8)
+        self.assertEqual(s["evidence_counts"]["REACHABILITY_HYPOTHESIS"], 2)
+        self.assertEqual(s["global_ax_status"], "UNRESOLVED")
+
+
+class TestReportAgreesWithTheLedger(unittest.TestCase):
+    """chatgpt_1 B1: hand-editing the report without changing the ledger must fail."""
+
+    REPORT = Path(__file__).resolve().parent / "score-hierarchy-audit-method-2026-08-10.md"
+    BEGIN = "<!-- BEGIN GENERATED: score-hierarchy-ledger.json -->"
+    END = "<!-- END GENERATED -->"
+
+    def _embedded(self):
+        text = self.REPORT.read_text()
+        self.assertIn(self.BEGIN, text)
+        self.assertIn(self.END, text)
+        return text.split(self.BEGIN, 1)[1].split(self.END, 1)[0].strip("\n")
+
+    def test_the_reports_generated_block_is_exactly_what_the_ledger_generates(self):
+        led = json.loads(LEDGER.read_text())
+        expected = shc.format_generated_block(shc.generated_summary(led)).strip("\n")
+        self.assertEqual(self._embedded(), expected)
+
+    def test_the_report_no_longer_claims_ax_zero_answers_the_owner_question(self):
+        # The claim chatgpt_1 B2 struck out.  The report may still QUOTE it in
+        # order to retract it -- the revision task requires disagreements and
+        # corrections to be visible rather than silently reworded -- so the test
+        # is that every occurrence sits in a paragraph that also retracts it,
+        # and that there is at most one.  A bare re-assertion fails.
+        claim = "it is the answer to the owner's point 6"
+        paragraphs = [p for p in self.REPORT.read_text().split("\n\n") if claim in p]
+        self.assertLessEqual(len(paragraphs), 1, "the retracted claim appears more than once")
+        for p in paragraphs:
+            self.assertIn("does not follow", p,
+                          "the retracted claim is restated without its retraction")
+
+    def test_the_report_states_the_global_ax_status_as_unresolved(self):
+        self.assertIn("GLOBAL_AX_STATUS = UNRESOLVED", self.REPORT.read_text())
+
+    def test_the_report_does_not_call_x2_or_x9_state_witnessed(self):
+        text = self.REPORT.read_text()
+        for stale in ("`STATE_WITNESSED` (`m085-s0`)", "`STATE_WITNESSED` (`m014-s1`)",
+                      "Two are `STATE_WITNESSED`"):
+            self.assertNotIn(stale, text)
+
+    def test_the_report_does_not_use_the_retired_precision_word(self):
+        text = self.REPORT.read_text()
+        self.assertNotIn("[EXACT]", text)
+        self.assertNotIn("[OVER_APPROX]", text)
+
+
+@unittest.skipUnless(SUBJECT_SRC is not None, "subject blob not reachable via git")
+class TestAgainstRealSubject(unittest.TestCase):
+    def test_subject_sha(self):
+        self.assertEqual(shc.sha256_bytes(SUBJECT_SRC.encode()), SUBJECT_SHA)
+
+    def test_ledger_passes_end_to_end(self):
+        led = json.loads(LEDGER.read_text())
+        rep = shc.run(led, SUBJECT_SRC, SUBJECT_SHA, None)
+        self.assertTrue(rep["ok"], shc.format_report(rep))
+
+    def test_band_parameter_bindings(self):
+        fruit = shc.call_sites(SUBJECT_SRC, "fruit_candidates")
+        iron = shc.call_sites(SUBJECT_SRC, "iron_candidates")
+        self.assertTrue(fruit.sound and iron.sound)
+        self.assertEqual([c.line for c in fruit.calls], [455])
+        self.assertEqual([c.line for c in iron.calls], [448])
+        self.assertEqual(fruit.calls[0].literal_args[3], "6_000.0")
+        self.assertEqual(iron.calls[0].literal_args[2], "6_100.0")
+
+    def test_chop_clamp_is_dead(self):
+        led = json.loads(LEDGER.read_text())
+        rm1 = next(m for m in led["range_models"] if m["id"] == "RM-1")
+        r = shc.range_model_report(rm1)
+        self.assertEqual(r["computed"], "(0, 2400]")
+        self.assertEqual(r["clamps"][0]["verdict"], "DEAD")
+
+    def test_census_has_no_drift(self):
+        led = json.loads(LEDGER.read_text())
+        diff = shc.census_diff(shc.census(SUBJECT_SRC), led["census"])
+        self.assertEqual(diff, {"added": [], "removed": [], "moved": []})
+
+    def test_pipeline_anchors_have_no_drift(self):
+        led = json.loads(LEDGER.read_text())
+        rep = shc.pipeline_anchor_report(SUBJECT_SRC, led["pipeline_anchors"])
+        self.assertTrue(rep["ok"], json.dumps(rep, indent=2))
+
+    def test_pipeline_anchors_cover_the_four_omitted_node_kinds(self):
+        # chatgpt_1 B7 names them: filters, compatibility, replacement, resolver.
+        led = json.loads(LEDGER.read_text())
+        kinds = {a["kind"] for a in led["pipeline_anchors"]}
+        for kind in ("filter", "compatibility", "replacement", "resolver",
+                     "admission", "arbitration"):
+            self.assertIn(kind, kinds)
+
+    def test_every_ratified_finding_is_covered_by_a_pipeline_anchor(self):
+        led = json.loads(LEDGER.read_text())
+        covered = {f for a in led["pipeline_anchors"] for f in a["findings"]}
+        for n in range(1, 11):
+            self.assertIn(f"X{n}", covered)
+
+    def test_pipeline_anchor_line_numbers_match_the_pinned_subject(self):
+        led = json.loads(LEDGER.read_text())
+        for a in led["pipeline_anchors"]:
+            span = shc.fn_body_span(SUBJECT_SRC, a["fn"], def_line=a.get("def_line"))
+            self.assertEqual(span["def_line"], a["def_line"], a["id"])
+            self.assertEqual(span["end_line"], a["end_line"], a["id"])
+
+
+if __name__ == "__main__":
+    unittest.main()

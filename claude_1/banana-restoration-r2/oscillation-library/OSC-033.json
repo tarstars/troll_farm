@@ -1,0 +1,168 @@
+{
+ "classification": {
+  "all_own_peers_at_entry": [],
+  "blocker": {
+   "blocker_state_note": "recorded WORKING because the committed result states the occupant chopped on turns [55, 56, 57] and resumed CHOP on turn 68 -- the episode is bounded by the blocker's own work. Its cell mobility over the rest of the game is not committed.",
+   "cell_at_entry": [
+    19,
+    6
+   ],
+   "distinct_cells_in_window": 1,
+   "distinct_cells_to_game_end": "UNKNOWN_NOT_COMMITTED",
+   "idle_by_analysis_criterion": true,
+   "non_wait_verbs_in_window": [],
+   "orth_adjacent_to_oscillation_cells": true,
+   "plant_on_cell_at_entry": [
+    "LEMON"
+   ],
+   "stats_raw": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "unit": 1,
+   "wait_fraction_in_window": 1.0
+  },
+  "blocker_state": "WORKING",
+  "classifier_version": "m3a-documentary/1",
+  "geometry_stencil": "UNAVAILABLE_NO_COMMITTED_MAP",
+  "mechanism": "M2",
+  "mechanism_evidence": "the committed result records unit 1 full of wood standing on live LEMON (19, 6) emitting 10 consecutive WAITs (turns 58-67) while unit 2 is assigned that same tree on every one of those turns and alternates between (18, 5) and (18, 6) -- the idle on-target occupant that `compatible` cannot see"
+ },
+ "completeness": "PARTIAL",
+ "content_sha256": "d64500c47fa71b99e9d1532209f77d09a9fc488555ec0b7c0234f9067ab9c9d0",
+ "detectors": {
+  "counts": {},
+  "d1_episodes": [],
+  "live_horizon": null,
+  "note": "D-1's predicate needs >= 7 alternating states; the committed record states 8 ping-pong states, so this episode meets the D-1 length threshold, but the detector was not run on it (no committed transcript).",
+  "p4_violations": [],
+  "turns_simulated": 300
+ },
+ "id": "OSC-033",
+ "initial_world_state": null,
+ "kind": "REAL_CORPUS",
+ "multiplicity": {
+  "dedupe_key_sha256": "278778f4bc1dd1cad5ff3cc0a3a313694caa4179a681dbd0666dd82c1d6ed9b7",
+  "episodes": 1,
+  "members": [
+   {
+    "game_id": 897556967,
+    "length_turns": 8,
+    "map_id": null,
+    "seat": 1,
+    "source": "real-corpus",
+    "turn_end": 68,
+    "turn_start": 61,
+    "unit": 2
+   }
+  ],
+  "representative_rule": "longest window; ties broken by (map_id, seat, unit, turn_start)"
+ },
+ "provenance": {
+  "bot_source": "cgauto/submissions/candidate-agent6585739-owner-tent-banker-commitment-slim.min.rs",
+  "bot_source_sha256": "f26e3781e972006cb2698420bba3474f1a038708225beeb562f3ab2242593e4a",
+  "corpus_version": "arena-live-agent-6553250",
+  "evidence_file": "data/analysis/live-agent-6553250/elost-same-tree-occupancy-deadlock-result-2026-07-31.json",
+  "evidence_sha256": "ac5263ba96087ee397cbacaf0515e9048c8293c5373c7d771a698ad6def03b1c",
+  "game_id": 897556967,
+  "instrument_version": "cgauto/analyze_elost_same_tree_deadlock.py",
+  "opponent_profile": "Elost",
+  "raw_game_path": "data/external/elost-same-tree-occupancy-deadlock/game-897556967.json",
+  "raw_game_sha256": "7d2531710ecf7a3d6e71de923476e717272c6e65582cbb454d9c11d0d29f1b31",
+  "seat": 1,
+  "source": "real-corpus",
+  "trajectory_path": "data/external/elost-same-tree-occupancy-deadlock/trajectory-897556967.jsonl",
+  "trajectory_sha256": "2a809f316e03471cc9f8e54fdd1ae9410bde3abe9f3819b82677973d78ea7ec6",
+  "turns": 300
+ },
+ "schema": "troll-farm-oscillation-situation-v1",
+ "static_map_rows": null,
+ "unresolved": [
+  "Whether trace_detectors.detect_d1 would in fact report this episode: settled by committing data/external/elost-same-tree-occupancy-deadlock/trajectory-897556967.jsonl (sha256 2a809f316e03471cc9f8e54fdd1ae9410bde3abe9f3819b82677973d78ea7ec6) and running the detector over it.",
+  "The literal world state at turn 61: settled by the same file."
+ ],
+ "window": {
+  "cells": [
+   [
+    18,
+    5
+   ],
+   [
+    18,
+    6
+   ]
+  ],
+  "commands": [
+   {
+    "line": "CHOP 1;CHOP 2",
+    "turn": 55
+   },
+   {
+    "line": "CHOP 1;CHOP 2",
+    "turn": 56
+   },
+   {
+    "line": "CHOP 1;CHOP 2",
+    "turn": 57
+   },
+   {
+    "line": "WAIT;MOVE 2 19 6",
+    "turn": 58
+   },
+   {
+    "line": "WAIT;MOVE 2 19 6",
+    "turn": 59
+   },
+   {
+    "line": "WAIT;MOVE 2 19 6",
+    "turn": 60
+   },
+   {
+    "line": "WAIT;MOVE 2 19 6",
+    "turn": 61
+   },
+   {
+    "line": "WAIT;MOVE 2 19 6",
+    "turn": 62
+   },
+   {
+    "line": "WAIT;MOVE 2 19 6",
+    "turn": 63
+   },
+   {
+    "line": "WAIT;MOVE 2 19 6",
+    "turn": 64
+   },
+   {
+    "line": "WAIT;MOVE 2 19 6",
+    "turn": 65
+   },
+   {
+    "line": "WAIT;MOVE 2 19 6",
+    "turn": 66
+   },
+   {
+    "line": "WAIT;MOVE 2 19 6",
+    "turn": 67
+   },
+   {
+    "line": "CHOP 1;MOVE 2 12 5",
+    "turn": 68
+   },
+   {
+    "line": "MOVE 1 12 5;MOVE 2 11 6",
+    "turn": 69
+   }
+  ],
+  "commands_note": "PRE-collision-resolution commands as committed by the analyzer; not the resolved command stream.",
+  "k": null,
+  "length_turns": 8,
+  "turn_end": 68,
+  "turn_start": 61,
+  "unit": 2
+ },
+ "world_state_absent_reason": "the raw game and trajectory (data/external/elost-same-tree-occupancy-deadlock/game-897556967.json, data/external/elost-same-tree-occupancy-deadlock/trajectory-897556967.jsonl) are under data/external, which is git-ignored (.gitignore:15) and not present in this checkout. No world state is invented.",
+ "world_state_at_entry": null
+}

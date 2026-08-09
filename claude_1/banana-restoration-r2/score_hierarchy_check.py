@@ -1,0 +1,1513 @@
+#!/usr/bin/env python3
+"""Re-runnable checks for the score-hierarchy audit (item M2).
+
+This module implements the *mechanical* parts of the audit method described in
+``score-hierarchy-audit-method-2026-08-10.md``.  It deliberately implements only
+what can be made sound with the Python 3.12 standard library and no Rust parser:
+
+  1. ``identity``   -- artefact pinning (SHA-256) and subject/companion divergence.
+  2. ``census``     -- score-site *drift detection* against a frozen ledger.
+                       This is a change detector, NOT a discovery tool: it cannot
+                       prove the inventory complete.  See the method packet, S2.
+  2b.``anchors``    -- structured drift detection over whole pipeline-node bodies
+                       (filter / compatibility / replacement / resolver /
+                       admission / arbitration), because five of the ten findings
+                       never touch a line carrying the token ``score``.
+  3. ``bindings``   -- call-site enumeration for a named inherent function, with a
+                       mechanically checked soundness side-condition (no bare uses
+                       of the identifier, i.e. no function-pointer aliasing).
+  4. ``ranges``     -- interval arithmetic over a *human-supplied, cited* range
+                       model, plus clamp-deadness proofs.  The tool does the
+                       arithmetic; the ledger supplies the input bounds and the
+                       file:line citation and proof method for each one.
+  4b.``ledger``     -- schema and vocabulary validation of the ledger itself, and
+                       generation of every published count from the typed
+                       intention / priority / finding / witness / dead-region
+                       sections.  The classification ORDER is applied
+                       mechanically to the human's recorded rule answers.
+
+What is NOT implemented, because it cannot be made sound here: deriving input
+bounds from the Rust source, control-flow reachability, co-reachability of two
+candidates in one candidate set, and the eight classifier PREDICATES themselves.
+Those are manual procedures in the method packet (S2.1, S3.1, S4.3).  Do not add
+a regex that pretends otherwise.
+
+Two things this tool will never say, by construction:
+  * that a call site is REACHABLE -- it enumerates textual occurrences;
+  * that a computed interval is the EXACT ATTAINABLE range -- it reports a
+    repeated-variable status, a bound scope, an assumption status, a reachability
+    status and an endpoint-witness status, separately.
+And one constant it always emits: ``GLOBAL_AX_STATUS = UNRESOLVED``.  Zero
+arithmetic crossings among the ten known findings is not the same claim as no
+arithmetic crossing in the program, and no ledger edit may promote it.
+
+Usage:
+    python3 score_hierarchy_check.py --ledger score-hierarchy-ledger.json \\
+        [--subject PATH | --git-ref REF:PATH] [--repo DIR] [--json]
+        [--emit-generated]
+
+Exit status: 0 = every enabled check passed; 1 = drift or failure; 2 = usage.
+"""
+
+from __future__ import annotations
+
+import argparse
+import dataclasses
+import hashlib
+import json
+import math
+import re
+import subprocess
+import sys
+from pathlib import Path
+from typing import Any
+
+# ---------------------------------------------------------------------------
+# 0. Source acquisition and pinning
+# ---------------------------------------------------------------------------
+
+
+def sha256_bytes(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def read_from_git(repo: Path, ref_path: str) -> bytes:
+    """Read a blob as ``git show <ref>:<path>``.  Read-only."""
+    proc = subprocess.run(
+        ["git", "-C", str(repo), "show", ref_path],
+        capture_output=True,
+        check=False,
+    )
+    if proc.returncode != 0:
+        raise FileNotFoundError(
+            f"git show {ref_path} failed in {repo}: {proc.stderr.decode(errors='replace').strip()}"
+        )
+    return proc.stdout
+
+
+# ---------------------------------------------------------------------------
+# 1. Lexical preprocessing: blank comments and literal contents in place
+# ---------------------------------------------------------------------------
+
+
+def blank_comments_and_strings(src: str) -> str:
+    """Return ``src`` with comment bodies and string/char literal bodies replaced
+    by spaces, preserving length and every newline (so offsets and line numbers
+    are unchanged).
+
+    Handles: ``//`` line comments, ``/* */`` block comments (nested, per Rust),
+    ``"..."`` with backslash escapes, raw strings ``r"..."`` / ``r#"..."#``,
+    byte-string prefixes ``b`` / ``br``, and char literals -- distinguishing
+    ``'a'`` from a lifetime ``'a`` by lookahead.
+
+    This is lexical, not syntactic.  It is sound for the purpose it is used for
+    (removing text that must not be searched); it does not parse Rust.
+    """
+    out = list(src)
+    i = 0
+    n = len(src)
+
+    def blank(start: int, end: int) -> None:
+        for k in range(start, min(end, n)):
+            if out[k] != "\n":
+                out[k] = " "
+
+    while i < n:
+        c = src[i]
+        # line comment
+        if c == "/" and i + 1 < n and src[i + 1] == "/":
+            j = src.find("\n", i)
+            j = n if j == -1 else j
+            blank(i + 2, j)
+            i = j
+            continue
+        # block comment (nested)
+        if c == "/" and i + 1 < n and src[i + 1] == "*":
+            depth = 1
+            j = i + 2
+            while j < n and depth:
+                if src.startswith("/*", j):
+                    depth += 1
+                    j += 2
+                elif src.startswith("*/", j):
+                    depth -= 1
+                    j += 2
+                else:
+                    j += 1
+            blank(i + 2, j - 2 if depth == 0 else n)
+            i = j
+            continue
+        # raw string, possibly byte-prefixed
+        m = re.match(r'(?:b?r)(#*)"', src[i : i + 8])
+        if m and (i == 0 or not (src[i - 1].isalnum() or src[i - 1] == "_")):
+            hashes = m.group(1)
+            body = i + m.end()
+            close = src.find('"' + hashes, body)
+            end = n if close == -1 else close
+            blank(body, end)
+            i = (end + 1 + len(hashes)) if close != -1 else n
+            continue
+        # ordinary / byte string
+        if c == '"':
+            j = i + 1
+            while j < n:
+                if src[j] == "\\":
+                    j += 2
+                    continue
+                if src[j] == '"':
+                    break
+                j += 1
+            blank(i + 1, j)
+            i = min(j + 1, n)
+            continue
+        # char literal vs lifetime
+        if c == "'":
+            if i + 1 < n and src[i + 1] == "\\":
+                j = i + 2
+                while j < n and src[j] != "'":
+                    j += 1
+                blank(i + 1, j)
+                i = min(j + 1, n)
+                continue
+            if i + 2 < n and src[i + 2] == "'":
+                blank(i + 1, i + 2)
+                i = i + 3
+                continue
+            i += 1  # lifetime, leave alone
+            continue
+        i += 1
+    return "".join(out)
+
+
+# ---------------------------------------------------------------------------
+# 2. Score-site census (drift detector)
+# ---------------------------------------------------------------------------
+
+SCORE_SITE_RE = re.compile(r"(?<![A-Za-z0-9_])score\s*(:|\+=|-=|=(?!=))")
+
+
+@dataclasses.dataclass(frozen=True)
+class ScoreSite:
+    line: int
+    op: str
+    # Whitespace-normalised RAW source line.  NOT the blanked text: the search
+    # runs over comment/string-blanked text, but the fingerprint is taken over
+    # the raw line, so an edit inside a format! string on a scoring line reports
+    # drift.  Conservative in the safe direction; documented because the first
+    # draft's comment claimed the fingerprinted text was blanked, and it is not
+    # (chatgpt_1 review, non-blocking note 1).
+    text: str
+
+    def fingerprint(self) -> str:
+        return sha256_bytes(f"{self.op}|{self.text}".encode())[:16]
+
+    def as_dict(self) -> dict[str, Any]:
+        return {
+            "line": self.line,
+            "op": self.op,
+            "text": self.text,
+            "fingerprint": self.fingerprint(),
+        }
+
+
+def census(src: str) -> list[ScoreSite]:
+    """Enumerate textual score-assignment sites.
+
+    SOUNDNESS: this is an *under*-approximation of the true set of score-producing
+    expressions.  A score can be produced without the token ``score`` appearing on
+    the line (e.g. by mutating a ``Candidate`` through a helper).  Its only sound
+    use is comparison against a frozen, manually ratified ledger: an empty diff
+    means nothing this pattern can see has moved.  A non-empty diff means the
+    manual inventory (method packet S2.1) must be redone for the listed lines.
+    """
+    clean = blank_comments_and_strings(src)
+    lines = clean.splitlines()
+    raw_lines = src.splitlines()
+    sites: list[ScoreSite] = []
+    for idx, line in enumerate(lines, start=1):
+        for m in SCORE_SITE_RE.finditer(line):
+            op = m.group(1)
+            text = re.sub(r"\s+", "", raw_lines[idx - 1])
+            sites.append(ScoreSite(line=idx, op=op, text=text))
+    return sites
+
+
+def census_diff(
+    current: list[ScoreSite], frozen: list[dict[str, Any]]
+) -> dict[str, list[Any]]:
+    """Compare a census against a frozen ledger by fingerprint (line-insensitive)
+    and by line (to report pure moves)."""
+    cur_by_fp: dict[str, list[ScoreSite]] = {}
+    for s in current:
+        cur_by_fp.setdefault(s.fingerprint(), []).append(s)
+    frz_by_fp: dict[str, list[dict[str, Any]]] = {}
+    for f in frozen:
+        frz_by_fp.setdefault(f["fingerprint"], []).append(f)
+
+    added, removed, moved = [], [], []
+    for fp, sites in cur_by_fp.items():
+        if fp not in frz_by_fp:
+            added.extend(s.as_dict() for s in sites)
+        else:
+            frozen_lines = sorted(f["line"] for f in frz_by_fp[fp])
+            current_lines = sorted(s.line for s in sites)
+            if len(frozen_lines) != len(current_lines):
+                if len(current_lines) > len(frozen_lines):
+                    added.extend(
+                        s.as_dict() for s in sites[: len(current_lines) - len(frozen_lines)]
+                    )
+                else:
+                    removed.extend(frz_by_fp[fp][: len(frozen_lines) - len(current_lines)])
+            elif frozen_lines != current_lines:
+                moved.append({"fingerprint": fp, "was": frozen_lines, "now": current_lines})
+    for fp, entries in frz_by_fp.items():
+        if fp not in cur_by_fp:
+            removed.extend(entries)
+    return {"added": added, "removed": removed, "moved": moved}
+
+
+# ---------------------------------------------------------------------------
+# 2b. Pipeline-node anchors (structured drift detection beyond `score` tokens)
+#
+# The score-token census (S2.2) only sees lines carrying the token ``score``.
+# Five of the ten ratified findings do not live on such a line at all: they live
+# in the compatibility filter, the pair-sum arbitrator, the admission filters,
+# the forced-replacement writer and the move resolver.  Those nodes could be
+# rewritten while the census stayed green -- chatgpt_1 review B7.
+#
+# An anchor freezes a whole *function body*, located by name (and, where a name
+# is defined more than once, by its definition line).  Body extraction is
+# brace-balanced over the comment/string-blanked text, so it is structural
+# rather than line-based, and the fingerprint is line-number independent: a pure
+# code move is not drift, an edit inside the body is.
+#
+# The fingerprint is taken over the RAW body text with whitespace removed, not
+# over the blanked text.  That is deliberately conservative: a changed
+# ``format!("DROP {}")`` command string is a real semantic change to a
+# replacement node and must not be invisible.  The price is that a purely
+# cosmetic string edit also reports drift.  Conservative direction; stated.
+# ---------------------------------------------------------------------------
+
+
+class AnchorError(ValueError):
+    pass
+
+
+def _line_index(text: str) -> list[int]:
+    starts = [0]
+    for m in re.finditer(r"\n", text):
+        starts.append(m.end())
+    return starts
+
+
+def _line_of(starts: list[int], off: int) -> int:
+    lo, hi = 0, len(starts) - 1
+    while lo < hi:
+        mid = (lo + hi + 1) // 2
+        if starts[mid] <= off:
+            lo = mid
+        else:
+            hi = mid - 1
+    return lo + 1
+
+
+def fn_body_spans(src: str, name: str) -> list[dict[str, Any]]:
+    """Every *definition with a body* of the inherent function ``name``.
+
+    A trait declaration (``fn f(..);``) has no body and is skipped: it is not a
+    node whose behaviour can drift.
+    """
+    clean = blank_comments_and_strings(src)
+    starts = _line_index(clean)
+    out: list[dict[str, Any]] = []
+
+    for m in re.finditer(rf"\bfn\s+{re.escape(name)}(?![A-Za-z0-9_])", clean):
+        i, n = m.end(), len(clean)
+        paren = bracket = 0
+        body_open = -1
+        while i < n:
+            c = clean[i]
+            if c == "(":
+                paren += 1
+            elif c == ")":
+                paren -= 1
+            elif c == "[":
+                bracket += 1
+            elif c == "]":
+                bracket -= 1
+            elif paren == 0 and bracket == 0:
+                if c == "{":
+                    body_open = i
+                    break
+                if c == ";":
+                    break  # declaration without a body
+            i += 1
+        if body_open < 0:
+            continue
+
+        depth, j = 0, body_open
+        while j < n:
+            if clean[j] == "{":
+                depth += 1
+            elif clean[j] == "}":
+                depth -= 1
+                if depth == 0:
+                    break
+            j += 1
+        if depth != 0:
+            raise AnchorError(f"unbalanced body braces for fn {name!r}")
+
+        raw = src[body_open : j + 1]
+        out.append(
+            {
+                "fn": name,
+                "def_line": _line_of(starts, m.start()),
+                "end_line": _line_of(starts, j),
+                "text": raw,
+                "fingerprint": sha256_bytes(re.sub(r"\s+", "", raw).encode())[:16],
+            }
+        )
+    return out
+
+
+def fn_body_span(src: str, name: str, def_line: int | None = None) -> dict[str, Any]:
+    """The single body of ``name``, or the one starting at ``def_line``.
+
+    Fails closed: an unknown name, or an ambiguous name with no ``def_line``, is
+    an error rather than a guess.  ``bank_candidates`` is defined twice in the
+    subject (``R:371`` and ``R:947``) and the two are different nodes.
+    """
+    spans = fn_body_spans(src, name)
+    if not spans:
+        raise AnchorError(f"no definition with a body found for fn {name!r}")
+    if def_line is None:
+        if len(spans) > 1:
+            raise AnchorError(
+                f"fn {name!r} is defined {len(spans)} times "
+                f"(lines {[s['def_line'] for s in spans]}); an anchor must name def_line"
+            )
+        return spans[0]
+    for s in spans:
+        if s["def_line"] == def_line:
+            return s
+    raise AnchorError(
+        f"fn {name!r} has no definition at line {def_line} "
+        f"(found {[s['def_line'] for s in spans]})"
+    )
+
+
+def pipeline_anchor_report(
+    src: str, anchors: list[dict[str, Any]]
+) -> dict[str, Any]:
+    """Check each frozen pipeline-node anchor against the current source.
+
+    A node whose fingerprint moved, or which has vanished, INVALIDATES every
+    finding listed in its ``findings`` field: those records must be re-derived
+    before they may be restated.  This is the mechanism chatgpt_1 B7 requires.
+    """
+    entries: list[dict[str, Any]] = []
+    invalidated: list[str] = []
+    for spec in anchors:
+        entry: dict[str, Any] = {
+            "id": spec.get("id"),
+            "fn": spec.get("fn"),
+            "kind": spec.get("kind"),
+            "findings": list(spec.get("findings", [])),
+            "expected_fingerprint": spec.get("fingerprint"),
+        }
+        try:
+            span = fn_body_span(src, spec["fn"], spec.get("def_line"))
+        except AnchorError as exc:
+            entry.update(status="MISSING", detail=str(exc), actual_fingerprint=None)
+            entries.append(entry)
+            invalidated.extend(entry["findings"])
+            continue
+        entry["actual_fingerprint"] = span["fingerprint"]
+        entry["def_line"] = span["def_line"]
+        entry["end_line"] = span["end_line"]
+        if span["fingerprint"] == spec.get("fingerprint"):
+            entry["status"] = "UNCHANGED"
+        else:
+            entry["status"] = "DRIFTED"
+            invalidated.extend(entry["findings"])
+        entries.append(entry)
+
+    return {
+        "entries": entries,
+        "ok": all(e["status"] == "UNCHANGED" for e in entries),
+        "invalidated_findings": sorted(set(invalidated)),
+        "coverage": sorted({e["kind"] for e in entries if e["kind"]}),
+    }
+
+
+# ---------------------------------------------------------------------------
+# 3. Call-site binding enumeration
+# ---------------------------------------------------------------------------
+
+
+@dataclasses.dataclass
+class CallSite:
+    line: int
+    args: list[str]
+    literal_args: dict[int, str]
+
+
+@dataclasses.dataclass
+class BindingReport:
+    name: str
+    definitions: list[int]
+    calls: list[CallSite]
+    bare_uses: list[int]
+
+    @property
+    def sound(self) -> bool:
+        """The enumeration is sound only if the identifier never appears except as
+        a definition or immediately before ``(``.  A bare use means the function
+        may be taken as a value (function pointer / closure capture), in which
+        case textual call sites do not bound the real call set."""
+        return not self.bare_uses
+
+    @property
+    def status(self) -> str:
+        if not self.sound:
+            return "INCONCLUSIVE"
+        return "OK"
+
+    def as_dict(self) -> dict[str, Any]:
+        return {
+            "name": self.name,
+            "definitions": self.definitions,
+            "calls": [
+                {"line": c.line, "args": c.args, "literal_args": c.literal_args}
+                for c in self.calls
+            ],
+            "bare_uses": self.bare_uses,
+            "status": self.status,
+        }
+
+
+NUMERIC_LITERAL_RE = re.compile(
+    r"^[+-]?(?:\d[\d_]*\.?[\d_]*(?:[eE][+-]?\d+)?|\.\d[\d_]*)(?:f32|f64|i32|i64|u32|u64|usize|isize)?$"
+)
+
+
+def _split_args(src: str, open_paren: int) -> tuple[list[str], int]:
+    """Split the argument list of a call whose ``(`` is at ``open_paren``.
+
+    Balances ``()``, ``[]``, ``{}`` and ``<>`` is deliberately NOT balanced (Rust
+    turbofish is rare here and ``<`` is ambiguous); commas inside angle brackets
+    would therefore over-split.  The ledger records the arity it expects, so an
+    arity mismatch surfaces as a failure rather than a silent wrong answer.
+    """
+    depth = 0
+    args: list[str] = []
+    cur: list[str] = []
+    i = open_paren
+    n = len(src)
+    while i < n:
+        c = src[i]
+        if c in "([{":
+            depth += 1
+            if depth == 1:
+                i += 1
+                continue
+        elif c in ")]}":
+            depth -= 1
+            if depth == 0:
+                arg = "".join(cur).strip()
+                if arg:
+                    args.append(arg)
+                return args, i
+        if depth == 1 and c == ",":
+            args.append("".join(cur).strip())
+            cur = []
+            i += 1
+            continue
+        cur.append(c)
+        i += 1
+    raise ValueError("unbalanced call parentheses")
+
+
+def call_sites(src: str, name: str) -> BindingReport:
+    """Enumerate definitions, calls and bare uses of an inherent function ``name``.
+
+    Side conditions (stated, not proved by this tool): no macro-generated calls,
+    no trait-object dispatch to this name, no ``use ... as name`` renaming.  The
+    subject is a single-file bot with inherent impls only; the method packet S3.1
+    tells the auditor how to re-confirm this by hand when the code moves.
+    """
+    clean = blank_comments_and_strings(src)
+    line_starts = [0]
+    for m in re.finditer(r"\n", clean):
+        line_starts.append(m.end())
+
+    def line_of(off: int) -> int:
+        lo, hi = 0, len(line_starts) - 1
+        while lo < hi:
+            mid = (lo + hi + 1) // 2
+            if line_starts[mid] <= off:
+                lo = mid
+            else:
+                hi = mid - 1
+        return lo + 1
+
+    definitions: list[int] = []
+    calls: list[CallSite] = []
+    bare: list[int] = []
+
+    for m in re.finditer(rf"(?<![A-Za-z0-9_]){re.escape(name)}(?![A-Za-z0-9_])", clean):
+        start, end = m.start(), m.end()
+        before = clean[max(0, start - 40) : start]
+        if re.search(r"\bfn\s+$", before):
+            definitions.append(line_of(start))
+            continue
+        rest = clean[end:]
+        stripped = rest.lstrip()
+        if stripped.startswith("("):
+            open_paren = end + (len(rest) - len(stripped))
+            try:
+                args, _ = _split_args(clean, open_paren)
+            except ValueError:
+                bare.append(line_of(start))
+                continue
+            literal = {
+                i: a for i, a in enumerate(args) if NUMERIC_LITERAL_RE.match(a)
+            }
+            calls.append(CallSite(line=line_of(start), args=args, literal_args=literal))
+        else:
+            bare.append(line_of(start))
+
+    return BindingReport(
+        name=name, definitions=definitions, calls=calls, bare_uses=bare
+    )
+
+
+# ---------------------------------------------------------------------------
+# 4. Interval arithmetic over a cited range model
+# ---------------------------------------------------------------------------
+
+
+class IntervalError(ValueError):
+    pass
+
+
+@dataclasses.dataclass(frozen=True)
+class Interval:
+    """A possibly-open real interval.  Infinite endpoints are always open."""
+
+    lo: float
+    hi: float
+    lo_closed: bool = True
+    hi_closed: bool = True
+
+    def __post_init__(self) -> None:
+        if self.lo > self.hi:
+            raise IntervalError(f"empty interval [{self.lo}, {self.hi}]")
+        if math.isinf(self.lo):
+            object.__setattr__(self, "lo_closed", False)
+        if math.isinf(self.hi):
+            object.__setattr__(self, "hi_closed", False)
+        # A zero-width interval is the single point {lo}.  It is non-empty only
+        # if that point is included, i.e. both endpoints are closed.  Accepting
+        # `(x, x)` / `[x, x)` silently admitted the EMPTY SET as a value and let
+        # a wrong product endpoint closure hide (chatgpt_1 review B5).
+        if self.lo == self.hi and not (self.lo_closed and self.hi_closed):
+            raise IntervalError(
+                f"empty zero-width interval "
+                f"{'[' if self.lo_closed else '('}{self.lo}, "
+                f"{self.hi}{']' if self.hi_closed else ')'}"
+            )
+
+    # -- construction --------------------------------------------------
+    @staticmethod
+    def point(x: float) -> "Interval":
+        return Interval(x, x, True, True)
+
+    @staticmethod
+    def parse(spec: Any) -> "Interval":
+        """Parse ``"(0, 2400]"``, ``"[2, inf)"``, ``[lo, hi]`` or a bare number."""
+        if isinstance(spec, (int, float)):
+            return Interval.point(float(spec))
+        if isinstance(spec, list) and len(spec) == 2:
+            return Interval(float(spec[0]), float(spec[1]))
+        if not isinstance(spec, str):
+            raise IntervalError(f"unparseable interval {spec!r}")
+        s = spec.strip()
+        m = re.match(r"^([\[\(])\s*([^,]+)\s*,\s*([^\]\)]+)\s*([\]\)])$", s)
+        if not m:
+            raise IntervalError(f"unparseable interval {spec!r}")
+
+        def num(t: str) -> float:
+            t = t.strip().replace("_", "")
+            if t in ("inf", "+inf", "infinity"):
+                return math.inf
+            if t in ("-inf", "-infinity"):
+                return -math.inf
+            return float(t)
+
+        return Interval(num(m.group(2)), num(m.group(3)), m.group(1) == "[", m.group(4) == "]")
+
+    def __str__(self) -> str:
+        def f(x: float) -> str:
+            if math.isinf(x):
+                return "inf" if x > 0 else "-inf"
+            return f"{x:.12g}"
+
+        return (
+            f"{'[' if self.lo_closed else '('}{f(self.lo)}, "
+            f"{f(self.hi)}{']' if self.hi_closed else ')'}"
+        )
+
+    def approx_equal(self, other: "Interval", tol: float = 1e-9) -> bool:
+        def close(a: float, b: float) -> bool:
+            if math.isinf(a) or math.isinf(b):
+                return a == b
+            return abs(a - b) <= tol * max(1.0, abs(a), abs(b))
+
+        return (
+            close(self.lo, other.lo)
+            and close(self.hi, other.hi)
+            and self.lo_closed == other.lo_closed
+            and self.hi_closed == other.hi_closed
+        )
+
+    # -- arithmetic ----------------------------------------------------
+    def __add__(self, o: "Interval") -> "Interval":
+        return Interval(
+            self.lo + o.lo,
+            self.hi + o.hi,
+            self.lo_closed and o.lo_closed,
+            self.hi_closed and o.hi_closed,
+        )
+
+    def __neg__(self) -> "Interval":
+        return Interval(-self.hi, -self.lo, self.hi_closed, self.lo_closed)
+
+    def __sub__(self, o: "Interval") -> "Interval":
+        return self + (-o)
+
+    def __mul__(self, o: "Interval") -> "Interval":
+        corners = []
+        for a, ac in ((self.lo, self.lo_closed), (self.hi, self.hi_closed)):
+            for b, bc in ((o.lo, o.lo_closed), (o.hi, o.hi_closed)):
+                if math.isinf(a) and b == 0 or math.isinf(b) and a == 0:
+                    raise IntervalError("0 * inf in interval product; refine the model")
+                corners.append((a * b, ac and bc))
+        lo = min(c[0] for c in corners)
+        hi = max(c[0] for c in corners)
+        # An endpoint of the product is ATTAINED, and therefore included, as soon
+        # as ONE attaining corner is included.  The previous `all` required every
+        # attaining corner to be closed, which wrongly opened endpoints such as
+        # the 0 of `[0, 1] * (0, 1]` (attained closed at 0*1) and could yield the
+        # empty `(0, 0)`.  chatgpt_1 review B5.
+        lo_closed = any(c[1] for c in corners if c[0] == lo)
+        hi_closed = any(c[1] for c in corners if c[0] == hi)
+        return Interval(lo, hi, lo_closed, hi_closed)
+
+    def reciprocal(self) -> "Interval":
+        if self.lo <= 0 <= self.hi:
+            raise IntervalError(f"reciprocal of {self} spans 0; refine the model")
+        lo = 0.0 if math.isinf(self.hi) else 1.0 / self.hi
+        hi = 0.0 if math.isinf(self.lo) else 1.0 / self.lo
+        lo_closed = False if math.isinf(self.hi) else self.hi_closed
+        hi_closed = False if math.isinf(self.lo) else self.lo_closed
+        return Interval(lo, hi, lo_closed, hi_closed)
+
+    def __truediv__(self, o: "Interval") -> "Interval":
+        return self * o.reciprocal()
+
+    def imax(self, o: "Interval") -> "Interval":
+        """Range of ``max(x, y)`` for independent ``x in self``, ``y in o``.
+
+        Also serves Rust's ``a.max(k)`` when ``o`` is a point interval.
+        """
+        if self.lo > o.lo:
+            lo, lo_closed = self.lo, self.lo_closed
+        elif o.lo > self.lo:
+            lo, lo_closed = o.lo, o.lo_closed
+        else:
+            lo, lo_closed = self.lo, (self.lo_closed and o.lo_closed)
+        if self.hi > o.hi:
+            hi, hi_closed = self.hi, self.hi_closed
+        elif o.hi > self.hi:
+            hi, hi_closed = o.hi, o.hi_closed
+        else:
+            hi, hi_closed = self.hi, (self.hi_closed or o.hi_closed)
+        return Interval(lo, hi, lo_closed, hi_closed)
+
+    def imin(self, o: "Interval") -> "Interval":
+        return (-((-self).imax(-o)))
+
+    def clamp_low(self, k: float) -> "Interval":
+        """Rust ``.max(k)``."""
+        return self.imax(Interval.point(k))
+
+    def clamp_high(self, k: float) -> "Interval":
+        """Rust ``.min(k)``."""
+        return self.imin(Interval.point(k))
+
+    def clamp_low_is_dead(self, k: float) -> bool:
+        """``.max(k)`` is provably a no-op iff every attainable value is >= k."""
+        return self.lo >= k
+
+    def clamp_high_is_dead(self, k: float) -> bool:
+        return self.hi <= k
+
+
+_OPS = {"+", "-", "*", "/", "max", "min"}
+
+
+def _vars_in(expr: Any) -> list[str]:
+    if isinstance(expr, str):
+        return [expr]
+    if isinstance(expr, (int, float)):
+        return []
+    if isinstance(expr, list) and expr:
+        out: list[str] = []
+        for sub in expr[1:]:
+            out.extend(_vars_in(sub))
+        return out
+    raise IntervalError(f"malformed expression node {expr!r}")
+
+
+def eval_expr(expr: Any, env: dict[str, Interval]) -> Interval:
+    """Evaluate a prefix-list expression over intervals.
+
+    ``["+", a, b]``, ``["-", a, b]``, ``["*", a, b]``, ``["/", a, b]``,
+    ``["max", a, k]`` (Rust ``a.max(k)``), ``["min", a, k]``.  Leaves are variable
+    names (looked up in ``env``) or numeric constants.
+    """
+    if isinstance(expr, (int, float)):
+        return Interval.point(float(expr))
+    if isinstance(expr, str):
+        if expr not in env:
+            raise IntervalError(f"unbound variable {expr!r}")
+        return env[expr]
+    if not isinstance(expr, list) or not expr or expr[0] not in _OPS:
+        raise IntervalError(f"malformed expression {expr!r}")
+    op = expr[0]
+    if op in ("max", "min"):
+        if len(expr) != 3:
+            raise IntervalError(f"{op} takes exactly 2 operands: {expr!r}")
+        a = eval_expr(expr[1], env)
+        b = eval_expr(expr[2], env)
+        return a.imax(b) if op == "max" else a.imin(b)
+    if len(expr) < 3:
+        raise IntervalError(f"{op} takes at least 2 operands: {expr!r}")
+    acc = eval_expr(expr[1], env)
+    for sub in expr[2:]:
+        rhs = eval_expr(sub, env)
+        acc = {"+": Interval.__add__, "-": Interval.__sub__,
+               "*": Interval.__mul__, "/": Interval.__truediv__}[op](acc, rhs)
+    return acc
+
+
+def substitute(expr: Any, defs: dict[str, Any]) -> Any:
+    """Inline ``derived`` definitions so that precision accounting (repeated-variable
+    detection) is performed on the fully expanded, leaf-variable expression."""
+    if isinstance(expr, str) and expr in defs:
+        return substitute(defs[expr], defs)
+    if isinstance(expr, list):
+        return [expr[0]] + [substitute(sub, defs) for sub in expr[1:]]
+    return expr
+
+
+# The two possible outcomes of the repeated-variable test.  These names are
+# deliberately literal.  The old names were `EXACT` / `OVER_APPROX`, and `EXACT`
+# was a lie by vocabulary (chatgpt_1 review B4): the test excludes ONE source of
+# interval imprecision -- a variable token occurring twice -- and says nothing
+# about whether the computed interval is the exact ATTAINABLE set.  The inputs
+# may be panel assumptions, the variables may be correlated through shared
+# state, integrality may remove endpoints, and the site may be unreachable.
+# Those four things are reported separately, below.
+PRECISION_NO_REPEAT = "NO_REPEATED_VARIABLE_INTERVAL_EVAL"
+PRECISION_REPEAT = "REPEATED_VARIABLE_OVER_APPROX"
+
+# Bound scope.  Interval arithmetic over the real relaxation of integer
+# variables is a sound OVER-approximation, so an upper bound is a real upper
+# bound and a lower bound is not proved attained without a witness (S2.1).
+BOUND_SCOPE = "UPPER_BOUND_SOUND__LOWER_NOT_PROVED_ATTAINABLE"
+
+# An input bound whose `method` names an assumption rather than a proof, or
+# whose `assumption` text itself declares an UNRESOLVED dependency.  RM-1 is the
+# case chatgpt_1's B4 names: its `wood` bound holds only while the shipped
+# preset caps carry capacity at 3, and the ledger says so in words.  That must
+# reach the machine output, not only the prose.
+_ASSUMPTION_METHOD_RE = re.compile(r"assum", re.IGNORECASE)
+_UNRESOLVED_RE = re.compile(r"\bUNRESOLVED\b")
+
+
+def _is_assumption_bound(spec: dict[str, Any]) -> bool:
+    return bool(
+        _ASSUMPTION_METHOD_RE.search(str(spec.get("method", "")))
+        or _UNRESOLVED_RE.search(str(spec.get("assumption", "")))
+    )
+
+
+def range_model_report(model: dict[str, Any]) -> dict[str, Any]:
+    """Evaluate one ledger range model and compare with its claimed interval."""
+    env = {
+        name: Interval.parse(spec["range"])
+        for name, spec in model.get("inputs", {}).items()
+    }
+    defs = {d["name"]: d["expr"] for d in model.get("derived", [])}
+    model = dict(model)
+    model["expr"] = substitute(model["expr"], defs)
+    model["clamps"] = [
+        {**c, "operand": substitute(c["operand"], defs)} for c in model.get("clamps", [])
+    ]
+    used = _vars_in(model["expr"])
+    no_repeat = len(used) == len(set(used))
+    result = eval_expr(model["expr"], env)
+    claimed = Interval.parse(model["attainable"]) if "attainable" in model else None
+    ok = claimed is None or result.approx_equal(claimed)
+
+    # Which input bounds are assumptions rather than proofs (S2.1 method names)?
+    assumption_inputs = sorted(
+        name
+        for name, spec in model.get("inputs", {}).items()
+        if _is_assumption_bound(spec)
+    )
+
+    out: dict[str, Any] = {
+        "id": model.get("id"),
+        "site": model.get("site"),
+        "computed": str(result),
+        "claimed": str(claimed) if claimed else None,
+        "agrees": ok,
+        # ONLY a statement about repeated variable tokens.  Not a claim of
+        # exactness.  See the constants above and the method packet S2.4.
+        "precision": PRECISION_NO_REPEAT if no_repeat else PRECISION_REPEAT,
+        # Reported separately so that no single word can imply all four.
+        "bound_scope": BOUND_SCOPE,
+        "assumption_status": (
+            "ASSUMPTION_DEPENDENT" if assumption_inputs else "CITED_PROOF_METHODS_ONLY"
+        ),
+        "assumption_inputs": assumption_inputs,
+        # The ledger may state something stronger, but never by default: this
+        # tool cannot decide whether the site executes (S7.1).
+        "reachability_status": model.get("reachability_status", "UNPROVED"),
+        # Which computed endpoint, if any, has a committed attaining witness.
+        "endpoint_witnessed": model.get("endpoint_witnessed", "NONE"),
+        "unbound_vars": sorted(set(used) - set(env)),
+    }
+    for clamp in model.get("clamps", []):
+        operand = eval_expr(clamp["operand"], env)
+        k = float(clamp["bound"])
+        dead = (
+            operand.clamp_low_is_dead(k)
+            if clamp["op"] == "max"
+            else operand.clamp_high_is_dead(k)
+        )
+        verdict = "DEAD" if dead else "NOT_PROVED_DEAD"
+        out.setdefault("clamps", []).append(
+            {
+                "site": clamp.get("site"),
+                "op": clamp["op"],
+                "bound": k,
+                "operand_range": str(operand),
+                "verdict": verdict,
+                "claimed": clamp.get("expect"),
+                "agrees": clamp.get("expect") in (None, verdict),
+            }
+        )
+        if clamp.get("expect") not in (None, verdict):
+            out["agrees"] = False
+    return out
+
+
+# ---------------------------------------------------------------------------
+# 5. Driver
+# ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
+# 4b. Typed finding ledger: classification, evidence, generated counts
+#
+# chatgpt_1 review B1: the first draft's method said intentions, the priority
+# relation, the X1-X10 records, evidence states and witnesses were "frozen in the
+# ledger".  They were not -- the JSON ended after census/bindings/range_models,
+# and the S4.4 table and its counts were prose maintained by hand next to a tool
+# that could not see them.  That is the drift mode M2 exists to remove.
+#
+# What is mechanical here and what is not.  The eight classifier tests of S4.3
+# are semantic questions about the subject; a regex cannot answer them and this
+# module does not pretend to.  What the ledger records is the human's ANSWER to
+# each predicate, per finding, with citations.  What the checker does is apply
+# the fixed first-match order to those answers and verify that the declared class
+# is the one the order produces.  That makes the ORDER mechanical and auditable
+# -- the thing that made X8 arguable as either MX or DX -- without pretending the
+# predicates are.
+# ---------------------------------------------------------------------------
+
+
+class LedgerError(ValueError):
+    pass
+
+
+# S4.3, in order.  First match wins.  Do not reorder without re-deriving every
+# finding: the order is load-bearing, not presentational.
+CLASSIFICATION_ORDER: list[tuple[str, str]] = [
+    ("dead_or_no_value_change", "ZX"),               # rule 1
+    ("label_absent_by_control_flow", "MX"),          # rule 2
+    ("post_scoring_stage", "BX"),                    # rule 3
+    ("two_sites_one_intention_goal", "DX"),          # rule 4
+    ("clock_branch", "TX"),                          # rule 5
+    ("own_position_or_null_progress_branch", "SX"),  # rule 6
+    ("accumulation_within_one_expression", "AX"),    # rule 7
+    ("incommensurable_units_or_scale", "UX"),        # rule 8
+]
+
+CLASS_CODES = [c for _, c in CLASSIFICATION_ORDER] + ["OBSERVATION"]
+
+# S5, the evidence ladder.  "MEASURED end-to-end" is deliberately absent: it
+# conflated source deduction with observation and is retired.
+EVIDENCE_STATES = {
+    "SOURCE_PROVED",
+    "STATE_WITNESSED",
+    "CORPUS_MEASURED",
+    "REACHABILITY_HYPOTHESIS",
+}
+
+# Non-exclusive markers a finding may additionally carry.
+EVIDENCE_FLAGS = {"OWNER_POLICY_QUESTION"}
+
+
+def classify_finding(rule_answers: dict[str, Any]) -> tuple[str, int]:
+    """Apply S4.3 in order and return ``(class_code, rule_number)``.
+
+    Fails closed on a missing predicate answer: an unanswered rule is not a
+    "no", it is an incomplete record.
+    """
+    missing = [k for k, _ in CLASSIFICATION_ORDER if k not in rule_answers]
+    if missing:
+        raise LedgerError(f"rule_answers is missing predicates {missing}")
+    for i, (key, code) in enumerate(CLASSIFICATION_ORDER, start=1):
+        if rule_answers[key]:
+            return code, i
+    return "OBSERVATION", 9
+
+
+def generated_summary(ledger: dict[str, Any]) -> dict[str, Any]:
+    """Derive every published count from the typed ledger.
+
+    Nothing in the S4.4 tables may be maintained by hand: the report embeds the
+    block rendered from this summary, and a test compares the two byte for byte.
+    """
+    findings = ledger.get("findings", [])
+    class_counts = {c: 0 for c in CLASS_CODES}
+    class_ids: dict[str, list[str]] = {c: [] for c in CLASS_CODES}
+    evidence_counts: dict[str, int] = {}
+    flags: dict[str, list[str]] = {}
+
+    for f in findings:
+        code, _rule = classify_finding(f["rule_answers"])
+        class_counts[code] += 1
+        class_ids[code].append(f["id"])
+        state = f.get("evidence_state", "UNSET")
+        evidence_counts[state] = evidence_counts.get(state, 0) + 1
+        for flag in f.get("evidence_flags", []):
+            flags.setdefault(flag, []).append(f["id"])
+
+    return {
+        "subject_sha256": ledger.get("subject", {}).get("sha256"),
+        "ledger_version": ledger.get("ledger_version"),
+        "intention_count": len(ledger.get("intentions", [])),
+        "priority_declared": bool(ledger.get("priority", {}).get("declared")),
+        "findings_total": len(findings),
+        "class_counts": class_counts,
+        "class_ids": class_ids,
+        "evidence_counts": dict(sorted(evidence_counts.items())),
+        "evidence_flags": {k: sorted(v) for k, v in sorted(flags.items())},
+        "dead_region_count": len(ledger.get("dead_regions", [])),
+        "dead_region_ids": [d["id"] for d in ledger.get("dead_regions", [])],
+        "witness_count": len(ledger.get("witnesses", [])),
+        "pipeline_anchor_count": len(ledger.get("pipeline_anchors", [])),
+        "score_census_count": len(ledger.get("census", [])),
+        # --- the two AX facts, which are NOT the same fact (chatgpt_1 B2) ---
+        "known_ax_findings": class_counts["AX"],
+        # This is a constant, not a computation, and that is the point: the
+        # global question cannot be answered by counting labels on a preselected
+        # set.  It is settled only by an exhaustive scoring-site registry plus
+        # co-reachable candidate packets (M1/item B).  The checker will never
+        # emit anything else, so no future ledger edit can quietly promote it.
+        "global_ax_status": "UNRESOLVED",
+        "global_ax_reason": (
+            "site discovery is an under-approximating token census plus a "
+            "hand-maintained node list; only a subset of scoring expressions has "
+            "a range model; co-reachability is unproved"
+        ),
+    }
+
+
+def format_generated_block(summary: dict[str, Any]) -> str:
+    """Render the summary as the markdown block the report must embed verbatim."""
+    s = summary
+    lines = [
+        "```",
+        "GENERATED FROM score-hierarchy-ledger.json BY score_hierarchy_check.py",
+        f"  ledger_version        {s['ledger_version']}",
+        f"  subject_sha256        {s['subject_sha256']}",
+        "",
+        f"  intentions frozen     {s['intention_count']}",
+        f"  priority declared     {'yes' if s['priority_declared'] else 'NO'}"
+        f"{'' if s['priority_declared'] else '  (no crossing may be claimed between incomparable intentions)'}",
+        f"  score census sites    {s['score_census_count']}",
+        f"  pipeline node anchors {s['pipeline_anchor_count']}",
+        f"  committed witnesses   {s['witness_count']}",
+        "",
+        f"  pipeline findings     {s['findings_total']}",
+    ]
+    for code, _ in [(c, None) for c in CLASS_CODES]:
+        n = s["class_counts"][code]
+        ids = ", ".join(s["class_ids"][code]) or "--"
+        lines.append(f"    {code:11} {n}   {ids}")
+    lines.append("")
+    lines.append(f"  dead scoring regions  {s['dead_region_count']}   "
+                 + (", ".join(s["dead_region_ids"]) or "--"))
+    lines.append("")
+    lines.append("  evidence states")
+    for state, n in s["evidence_counts"].items():
+        lines.append(f"    {state:24} {n}")
+    for flag, ids in s["evidence_flags"].items():
+        lines.append(f"    +{flag:23} {', '.join(ids)}")
+    lines.append("")
+    lines.append(f"  KNOWN_AX_FINDINGS = {s['known_ax_findings']}")
+    lines.append(f"  GLOBAL_AX_STATUS = {s['global_ax_status']}")
+    lines.append(f"    because {s['global_ax_reason']}")
+    lines.append("```")
+    return "\n".join(lines)
+
+
+# Words the ledger may not use to describe a *textual* call-site result.  The
+# checker cannot establish that a call site executes, so no ledger claim may say
+# it does.  chatgpt_1 review B6.  Reachability is expressed only through the
+# dedicated `reachability_status` field, whose vocabulary is fixed.
+_REACHABILITY_WORD_RE = re.compile(r"reachab", re.IGNORECASE)
+
+REACHABILITY_STATES = {
+    "UNPROVED",              # the honest default everywhere in this packet
+    "SITE_GUARD_CHAIN_CITED",  # a human exhibited the admitting guard chain
+    "STATE_WITNESSED",       # a committed exact-subject witness packet exists
+}
+
+
+def validate_ledger(ledger: dict[str, Any]) -> list[str]:
+    """Schema/vocabulary validation of the ledger itself.
+
+    Returns a list of human-readable problems; empty means the ledger is
+    well-formed.  This is where the ledger is stopped from *saying* more than
+    the checker can *establish* -- the failure mode that produced the
+    ``one reachable call site`` claim.
+    """
+    problems: list[str] = []
+
+    for i, spec in enumerate(ledger.get("bindings", [])):
+        where = f"bindings[{i}] ({spec.get('fn')!r})"
+        for field in ("claim", "note"):
+            text = str(spec.get(field, ""))
+            if _REACHABILITY_WORD_RE.search(text):
+                problems.append(
+                    f"{where}: {field} asserts reachability, which this checker cannot "
+                    f"establish -- it enumerates TEXTUAL call sites only. Say "
+                    f"'textual call site' and carry reachability in "
+                    f"'reachability_status'. Offending text: {text!r}"
+                )
+        state = spec.get("reachability_status", "UNPROVED")
+        if state not in REACHABILITY_STATES:
+            problems.append(
+                f"{where}: reachability_status {state!r} is not one of "
+                f"{sorted(REACHABILITY_STATES)}"
+            )
+
+    for i, model in enumerate(ledger.get("range_models", [])):
+        where = f"range_models[{i}] ({model.get('id')!r})"
+        state = model.get("reachability_status", "UNPROVED")
+        if state not in REACHABILITY_STATES:
+            problems.append(
+                f"{where}: reachability_status {state!r} is not one of "
+                f"{sorted(REACHABILITY_STATES)}"
+            )
+
+    # --- typed finding ledger (chatgpt_1 B1) ---
+    for section in ("intentions", "priority", "findings", "witnesses", "dead_regions"):
+        if section not in ledger:
+            problems.append(
+                f"ledger is missing the typed section {section!r}; the method packet "
+                f"claims it is frozen here, so either add it or stop claiming it"
+            )
+
+    priority = ledger.get("priority")
+    if isinstance(priority, dict):
+        if priority.get("declared") and not priority.get("relation"):
+            problems.append(
+                "priority.declared is true but priority.relation is empty; a declared "
+                "priority relation must be enumerable or no crossing may be claimed"
+            )
+        if not priority.get("declared") and not priority.get("note"):
+            problems.append(
+                "priority is undeclared and carries no note; record why, so that the "
+                "absence is a decision rather than an omission"
+            )
+
+    witnesses = {w["id"]: w for w in ledger.get("witnesses", []) if "id" in w}
+    subject_sha = ledger.get("subject", {}).get("sha256")
+
+    for i, w in enumerate(ledger.get("witnesses", [])):
+        where = f"witnesses[{i}] ({w.get('id')!r})"
+        for field in ("id", "subject_sha256", "path", "sha256",
+                      "candidate_identity", "extraction_method"):
+            if not w.get(field):
+                problems.append(f"{where}: missing required witness field {field!r}")
+        if w.get("subject_sha256") and w["subject_sha256"] != subject_sha:
+            problems.append(
+                f"{where}: witness subject_sha256 {w['subject_sha256']} is not the "
+                f"pinned subject {subject_sha}; a transcript from a different "
+                f"candidate identity is not a witness for this subject"
+            )
+
+    seen_ids: set[str] = set()
+    for i, f in enumerate(ledger.get("findings", [])):
+        where = f"findings[{i}] ({f.get('id')!r})"
+        fid = f.get("id")
+        if not fid:
+            problems.append(f"{where}: missing id")
+        elif fid in seen_ids:
+            problems.append(f"{where}: duplicate finding id {fid!r}")
+        else:
+            seen_ids.add(fid)
+
+        if not f.get("citations"):
+            problems.append(f"{where}: no citations; every finding needs R: lines")
+        if not f.get("reason"):
+            problems.append(f"{where}: no reason")
+
+        try:
+            derived, rule = classify_finding(f.get("rule_answers", {}))
+        except LedgerError as exc:
+            problems.append(f"{where}: {exc}")
+        else:
+            if f.get("class") != derived:
+                problems.append(
+                    f"{where}: declared class {f.get('class')!r} but the S4.3 "
+                    f"first-match order derives {derived!r} (rule {rule}) from the "
+                    f"recorded rule_answers"
+                )
+            if f.get("rule") != rule:
+                problems.append(
+                    f"{where}: declared rule {f.get('rule')!r} but the first matching "
+                    f"rule is {rule}"
+                )
+
+        state = f.get("evidence_state")
+        if state not in EVIDENCE_STATES:
+            problems.append(
+                f"{where}: evidence_state {state!r} is not one of "
+                f"{sorted(EVIDENCE_STATES)}"
+            )
+        for flag in f.get("evidence_flags", []):
+            if flag not in EVIDENCE_FLAGS:
+                problems.append(f"{where}: unknown evidence flag {flag!r}")
+
+        # chatgpt_1 B3: STATE_WITNESSED is a claim about a committed artefact.
+        if state == "STATE_WITNESSED":
+            wid = f.get("witness_id")
+            if not wid:
+                problems.append(
+                    f"{where}: evidence_state STATE_WITNESSED without witness_id; a "
+                    f"report citation to an episode name is not a witness packet"
+                )
+            elif wid not in witnesses:
+                problems.append(
+                    f"{where}: witness_id {wid!r} has no record in ledger.witnesses"
+                )
+            elif witnesses[wid].get("subject_sha256") != subject_sha:
+                problems.append(
+                    f"{where}: witness {wid!r} is pinned to a different subject sha"
+                )
+
+    return problems
+
+
+def run(ledger: dict[str, Any], subject_src: str, subject_sha: str,
+        companion_sha: str | None) -> dict[str, Any]:
+    report: dict[str, Any] = {"checks": {}, "ok": True}
+
+    # --- ledger vocabulary/schema validation ---
+    problems = validate_ledger(ledger)
+    report["checks"]["ledger_validation"] = {
+        "problems": problems,
+        "ok": not problems,
+    }
+    if problems:
+        report["ok"] = False
+
+    # --- identity ---
+    subj = ledger["subject"]
+    identity = {
+        "subject_path": subj["path"],
+        "subject_ref": subj.get("git_ref"),
+        "expected_sha256": subj["sha256"],
+        "actual_sha256": subject_sha,
+        "match": subject_sha == subj["sha256"],
+    }
+    comp = ledger.get("companion")
+    if comp is not None:
+        identity["companion_path"] = comp["path"]
+        identity["companion_expected_sha256"] = comp["sha256"]
+        identity["companion_actual_sha256"] = companion_sha
+        identity["companion_match"] = (
+            companion_sha is None or companion_sha == comp["sha256"]
+        )
+        identity["divergence_note"] = comp.get("note")
+    report["checks"]["identity"] = identity
+    if not identity["match"]:
+        report["ok"] = False
+    if comp is not None and identity.get("companion_match") is False:
+        report["ok"] = False
+
+    # --- census drift ---
+    sites = census(subject_src)
+    diff = census_diff(sites, ledger.get("census", []))
+    census_ok = not (diff["added"] or diff["removed"] or diff["moved"])
+    report["checks"]["census"] = {
+        "site_count": len(sites),
+        "frozen_count": len(ledger.get("census", [])),
+        "diff": diff,
+        "ok": census_ok,
+        "soundness": "UNDER_APPROXIMATION -- drift detector only, not a discovery tool",
+    }
+    if not census_ok:
+        report["ok"] = False
+
+    # --- pipeline-node anchor drift (beyond `score` tokens) ---
+    anchors = ledger.get("pipeline_anchors", [])
+    anchor_rep = pipeline_anchor_report(subject_src, anchors)
+    anchor_rep["frozen_count"] = len(anchors)
+    report["checks"]["pipeline_anchors"] = anchor_rep
+    if not anchor_rep["ok"]:
+        report["ok"] = False
+
+    # --- call-site bindings ---
+    bindings = []
+    for spec in ledger.get("bindings", []):
+        rep = call_sites(subject_src, spec["fn"])
+        d = rep.as_dict()
+        expected_calls = spec.get("expect_calls")
+        expected_lits = spec.get("expect_literal_args")
+        d["expected_call_lines"] = expected_calls
+        d["expected_literal_args"] = expected_lits
+        agrees = rep.sound
+        if expected_calls is not None:
+            agrees = agrees and sorted(c.line for c in rep.calls) == sorted(expected_calls)
+        if expected_lits is not None:
+            got = [c.literal_args.get(int(spec.get("arg_index", 0))) for c in rep.calls]
+            agrees = agrees and sorted(x for x in got if x) == sorted(expected_lits)
+        d["agrees"] = agrees
+        # The verdict names say TEXTUAL, because that is all this check
+        # establishes: one occurrence of the identifier immediately before `(`,
+        # under the bare-use side condition.  Whether the guard chain above that
+        # occurrence can hold is a control-flow question this tool cannot answer
+        # (S7.1), so reachability is carried as its own field and is never
+        # implied by the verdict.  chatgpt_1 review B6.
+        if not rep.sound:
+            d["verdict"] = "INCONCLUSIVE"
+        elif len(rep.calls) == 1:
+            idx = int(spec["arg_index"]) if "arg_index" in spec else None
+            bound = idx is not None and idx in rep.calls[0].literal_args
+            d["verdict"] = (
+                "ONE_TEXTUAL_CALL_SITE_LITERAL_BINDING"
+                if bound
+                else "ONE_TEXTUAL_CALL_SITE"
+            )
+        else:
+            d["verdict"] = "MULTIPLE_TEXTUAL_CALL_SITES"
+        d["reachability_status"] = spec.get("reachability_status", "UNPROVED")
+        expected_verdict = spec.get("expect_verdict")
+        if expected_verdict is not None and expected_verdict != d["verdict"]:
+            d["agrees"] = False
+            agrees = False
+        d["expected_verdict"] = expected_verdict
+        bindings.append(d)
+        if not agrees:
+            report["ok"] = False
+    report["checks"]["bindings"] = bindings
+
+    # --- range models ---
+    ranges = []
+    for model in ledger.get("range_models", []):
+        r = range_model_report(model)
+        ranges.append(r)
+        if not r["agrees"]:
+            report["ok"] = False
+    report["checks"]["ranges"] = ranges
+
+    # --- generated classification / evidence / AX summary ---
+    if "findings" in ledger:
+        try:
+            report["generated"] = generated_summary(ledger)
+        except LedgerError as exc:
+            report["generated"] = {"error": str(exc)}
+            report["ok"] = False
+
+    return report
+
+
+def format_report(report: dict[str, Any]) -> str:
+    lines: list[str] = []
+    val = report["checks"].get("ledger_validation")
+    if val is not None:
+        lines.append("== ledger validation ==")
+        if val["ok"]:
+            lines.append("  no schema/vocabulary problems")
+        for p in val["problems"]:
+            lines.append(f"  PROBLEM {p}")
+    ident = report["checks"]["identity"]
+    lines.append("== identity ==")
+    lines.append(
+        f"  subject {ident['subject_path']}\n"
+        f"    expected {ident['expected_sha256']}\n"
+        f"    actual   {ident['actual_sha256']}   "
+        f"{'MATCH' if ident['match'] else 'DIVERGED'}"
+    )
+    if "companion_path" in ident:
+        lines.append(
+            f"  companion {ident['companion_path']}: "
+            + (
+                "not checked"
+                if ident["companion_actual_sha256"] is None
+                else ("MATCH" if ident["companion_match"] else "DIVERGED")
+            )
+        )
+        if ident.get("divergence_note"):
+            lines.append(f"    note: {ident['divergence_note']}")
+
+    c = report["checks"]["census"]
+    lines.append("== census (drift detector) ==")
+    lines.append(f"  {c['site_count']} sites now, {c['frozen_count']} frozen -> "
+                 f"{'NO DRIFT' if c['ok'] else 'DRIFT'}")
+    for kind in ("added", "removed", "moved"):
+        for item in c["diff"][kind]:
+            lines.append(f"    {kind.upper():8} {item}")
+
+    pa = report["checks"].get("pipeline_anchors")
+    if pa is not None:
+        lines.append("== pipeline-node anchors (structured drift detector) ==")
+        lines.append(
+            f"  {pa['frozen_count']} nodes frozen, kinds {pa['coverage']} -> "
+            f"{'NO DRIFT' if pa['ok'] else 'DRIFT'}"
+        )
+        for e in pa["entries"]:
+            if e["status"] != "UNCHANGED":
+                lines.append(
+                    f"    {e['status']:9} {e['id']} {e['fn']} ({e['kind']}) "
+                    f"invalidates {e['findings']}"
+                )
+        if pa["invalidated_findings"]:
+            lines.append(f"    INVALIDATED FINDINGS: {pa['invalidated_findings']}")
+
+    lines.append("== call-site bindings ==")
+    for b in report["checks"]["bindings"]:
+        lines.append(
+            f"  {b['name']}: def@{b['definitions']} calls@"
+            f"{[x['line'] for x in b['calls']]} bare@{b['bare_uses']} "
+            f"-> {b['verdict']} ({'ok' if b['agrees'] else 'MISMATCH'})"
+        )
+        lines.append(f"      reachability_status: {b['reachability_status']}")
+        for call in b["calls"]:
+            if call["literal_args"]:
+                lines.append(f"      line {call['line']} literals {call['literal_args']}")
+
+    lines.append("== computed range bounds ==")
+    for r in report["checks"]["ranges"]:
+        lines.append(
+            f"  {r['id']} ({r['site']}): computed {r['computed']} "
+            f"claimed {r['claimed']} "
+            f"{'ok' if r['agrees'] else 'MISMATCH'}"
+        )
+        lines.append(
+            f"      precision {r['precision']}; scope {r['bound_scope']}; "
+            f"assumptions {r['assumption_status']}"
+            + (f" {r['assumption_inputs']}" if r["assumption_inputs"] else "")
+            + f"; reachability {r['reachability_status']}; "
+            f"endpoint_witnessed {r['endpoint_witnessed']}"
+        )
+        for cl in r.get("clamps", []):
+            lines.append(
+                f"      clamp .{cl['op']}({cl['bound']:g}) at {cl['site']}: "
+                f"operand {cl['operand_range']} -> {cl['verdict']} "
+                f"{'ok' if cl['agrees'] else 'MISMATCH'}"
+            )
+
+    gen = report.get("generated")
+    if gen is not None:
+        lines.append("== generated classification summary ==")
+        if "error" in gen:
+            lines.append(f"  ERROR {gen['error']}")
+        else:
+            lines.append(format_generated_block(gen))
+
+    # Subject validity and companion-instrument validity are separate verdicts
+    # (chatgpt_1 non-blocking note 2): a diverged companion invalidates any
+    # instrument anchored to it, not a finding about the subject.
+    comp_ok = ident.get("companion_match", True)
+    lines.append(
+        f"== verdicts: subject {'PASS' if report['ok'] and ident['match'] else 'FAIL'}"
+        f" | companion-anchored instruments {'PASS' if comp_ok else 'FAIL (re-anchor N4)'} =="
+    )
+    lines.append(f"== overall: {'PASS' if report['ok'] else 'FAIL'} ==")
+    return "\n".join(lines)
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--ledger", required=True, type=Path)
+    ap.add_argument("--subject", type=Path, help="path to the subject .rs file")
+    ap.add_argument(
+        "--git-ref",
+        help="read the subject as 'git show <ref>:<path>' (default: the ledger's own)",
+    )
+    ap.add_argument("--repo", type=Path, default=Path("."), help="git repo root")
+    ap.add_argument("--json", action="store_true")
+    ap.add_argument(
+        "--emit-generated",
+        action="store_true",
+        help="print only the generated classification block that the method packet embeds",
+    )
+    args = ap.parse_args(argv)
+
+    ledger = json.loads(args.ledger.read_text())
+
+    if args.emit_generated:
+        print(format_generated_block(generated_summary(ledger)))
+        return 0
+
+    if args.subject:
+        data = args.subject.read_bytes()
+    else:
+        ref = args.git_ref or ledger["subject"]["git_ref"]
+        try:
+            data = read_from_git(args.repo, ref)
+        except FileNotFoundError as exc:
+            print(f"error: {exc}", file=sys.stderr)
+            return 2
+    subject_sha = sha256_bytes(data)
+    src = data.decode("utf-8", errors="replace")
+
+    companion_sha = None
+    comp = ledger.get("companion")
+    if comp is not None:
+        cpath = args.repo / comp["path"]
+        if cpath.exists():
+            companion_sha = sha256_bytes(cpath.read_bytes())
+
+    report = run(ledger, src, subject_sha, companion_sha)
+    if args.json:
+        print(json.dumps(report, indent=2, sort_keys=True))
+    else:
+        print(format_report(report))
+    return 0 if report["ok"] else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

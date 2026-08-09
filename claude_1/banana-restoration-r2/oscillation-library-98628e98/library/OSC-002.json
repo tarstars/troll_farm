@@ -1,0 +1,1146 @@
+{
+ "classification": {
+  "all_own_peers_at_entry": [
+   {
+    "carry_at_entry": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "cell_at_entry": [
+     8,
+     4
+    ],
+    "distinct_cells_in_window": 1,
+    "distinct_cells_to_game_end": 1,
+    "idle_by_analysis_criterion": true,
+    "non_wait_verbs_in_window": [],
+    "orth_adjacent_to_oscillation_cells": true,
+    "plant_on_cell_at_entry": null,
+    "stats": {
+     "capacity": 2,
+     "chop_power": 1,
+     "harvest_power": 1,
+     "speed": 1
+    },
+    "unit": 0,
+    "wait_fraction_in_window": 1.0
+   }
+  ],
+  "blocker": {
+   "carry_at_entry": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "cell_at_entry": [
+    8,
+    4
+   ],
+   "distinct_cells_in_window": 1,
+   "distinct_cells_to_game_end": 1,
+   "idle_by_analysis_criterion": true,
+   "non_wait_verbs_in_window": [],
+   "orth_adjacent_to_oscillation_cells": true,
+   "plant_on_cell_at_entry": null,
+   "stats": {
+    "capacity": 2,
+    "chop_power": 1,
+    "harvest_power": 1,
+    "speed": 1
+   },
+   "unit": 0,
+   "wait_fraction_in_window": 1.0
+  },
+  "blocker_state": "IDLE",
+  "classifier_version": "m3a-observational/1",
+  "geometry_excerpt": [
+   "######",
+   "##xS##",
+   ".Bo.##",
+   "######",
+   "######"
+  ],
+  "geometry_excerpt_legend": "5 rows x 6 cols centred on the first oscillation cell (origin at row 2, col 2); o/x oscillation cells, B blocker, P blocker standing on a plant, T other plant, S own shack, s opponent shack, . walkable, # not. Documentation only.",
+  "geometry_stencil": "-1,-1#;-1,0.;0,-2#;0,-1x;0,0o;0,1#;1,-1#;1,0B;",
+  "mechanism": "M1",
+  "mechanism_evidence": "peer 0 holds cell (8, 4) for the whole window and is idle -- a stationary unit on the route rather than an idle occupier of the goal cell (wait fraction 1.00, plant on its cell: none)",
+  "shack_door_evidence": {
+   "cells_that_are_opponent_shack_doors": [],
+   "cells_that_are_own_shack_doors": [
+    [
+     9,
+     3
+    ]
+   ],
+   "opponent_shack": [
+    1,
+    3
+   ],
+   "own_shack": [
+    10,
+    3
+   ]
+  }
+ },
+ "completeness": "FULL",
+ "content_sha256": "9fdce9632ba1e8bf47930b5f18742aba82069b7a03fb5fcef25091f92406b811",
+ "detectors": {
+  "counts": {
+   "D-1": 1,
+   "D-2": 0,
+   "D-3": 0,
+   "D-4": 0,
+   "D-5": 0,
+   "D-6": 0,
+   "D-7": 0,
+   "D-8": 0,
+   "D-9": 0
+  },
+  "d1_episodes": [
+   {
+    "cells": [
+     [
+      9,
+      4
+     ],
+     [
+      9,
+      3
+     ]
+    ],
+    "k": 94,
+    "turn_end": 200,
+    "turn_start": 12,
+    "unit": 2
+   }
+  ],
+  "live_horizon": 201,
+  "p4_violations": [
+   {
+    "live_end": 200,
+    "terminal_from": 201,
+    "why": "candidate makes no own-inventory/own-cargo progress over turns 11-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]",
+    "window_end": 200,
+    "window_start": 11
+   }
+  ],
+  "turns_simulated": 200
+ },
+ "id": "OSC-002",
+ "initial_world_state": {
+  "inventories": {
+   "opponent": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "own": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  "plants": [
+   [
+    "BANANA",
+    2,
+    4,
+    4,
+    6,
+    0,
+    52
+   ],
+   [
+    "PLUM",
+    9,
+    3,
+    3,
+    2,
+    0,
+    0
+   ]
+  ],
+  "turn": 1,
+  "units": [
+   [
+    0,
+    0,
+    9,
+    3,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    1,
+    4,
+    1,
+    3,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    3
+   ],
+   [
+    5,
+    1,
+    1,
+    4,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ },
+ "kind": "D1_EPISODE",
+ "multiplicity": {
+  "dedupe_key_sha256": "1e732c6d2ce5fa3a1746a440d21c9c7965e44817822ba7d93628b8666c569dc6",
+  "episodes": 1,
+  "members": [
+   {
+    "game_id": null,
+    "length_turns": 189,
+    "map_id": "m059",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "turn_end": 200,
+    "turn_start": 12,
+    "unit": 2
+   }
+  ],
+  "representative_rule": "longest window; ties broken by (map_id, seat, unit, turn_start)"
+ },
+ "provenance": {
+  "bot_source": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+  "bot_source_git_ref": "origin/main:cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+  "bot_source_sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+  "corpus_version": "c5-two-player-phase-merged-2026-08-11",
+  "generation_attempt": 0,
+  "instrument_version": "fuzz-panel/5-two-player-phase-merged-referee",
+  "map_class": "choke_corridor",
+  "map_height": 7,
+  "map_id": "m059",
+  "map_width": 12,
+  "note": "candidate and parent are the SAME source -- the M3a SUBJECT `readable__no_orchard` (origin/main:cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs, sha256 98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29) judged against itself. This is the panel FLOOR for the subject, not a candidate regression, and not the parent lineage `a8eb3b2b...`.",
+  "opponent_profile": "harvester",
+  "panel_config_sha256": "eca5cb32e8fc5daa61dd69d0753f9a3962eff5cbce10cf12e8410ba36c903fe5",
+  "panel_liveness_window": 60,
+  "panel_maps": 120,
+  "panel_seeds": [
+   982451653,
+   15485863,
+   32452843,
+   49979687,
+   67867967,
+   86028121
+  ],
+  "panel_turns": 200,
+  "seat": 1,
+  "seed": 86028121,
+  "source": "fuzz-panel-floor",
+  "subject": "readable__no_orchard"
+ },
+ "schema": "troll-farm-oscillation-situation-v1",
+ "static_map_rows": [
+  "############",
+  "############",
+  "############",
+  "#1.######.0#",
+  "#..........#",
+  "############",
+  "############"
+ ],
+ "unresolved": [
+  "The goal the bot actually held during the window is NOT observable in the transcript, so the M1 / M2 discriminator (is the blocker's cell the target, or merely on the route?) is INFERRED from the mechanism analysis rather than measured. Settled by an instrumented build that logs the resolver's goal per turn -- out of boundary for M3a, which may not modify any bot -- or by the Decision Packet."
+ ],
+ "window": {
+  "cells": [
+   [
+    9,
+    4
+   ],
+   [
+    9,
+    3
+   ]
+  ],
+  "commands": [
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 12
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 13
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 14
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 15
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 16
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 17
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 18
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 19
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 20
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 21
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 22
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 23
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 24
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 25
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 26
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 27
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 28
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 29
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 30
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 31
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 32
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 33
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 34
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 35
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 36
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 37
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 38
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 39
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 40
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 41
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 42
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 43
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 44
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 45
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 46
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 47
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 48
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 49
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 50
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 51
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 52
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 53
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 54
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 55
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 56
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 57
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 58
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 59
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 60
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 61
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 62
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 63
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 64
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 65
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 66
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 67
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 68
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 69
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 70
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 71
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 72
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 73
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 74
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 75
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 76
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 77
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 78
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 79
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 80
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 81
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 82
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 83
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 84
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 85
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 86
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 87
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 88
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 89
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 90
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 91
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 92
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 93
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 94
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 95
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 96
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 97
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 98
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 99
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 100
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 101
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 102
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 103
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 104
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 105
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 106
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 107
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 108
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 109
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 110
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 111
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 112
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 113
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 114
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 115
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 116
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 117
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 118
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 119
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 120
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 121
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 122
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 123
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 124
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 125
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 126
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 127
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 128
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 129
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 130
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 131
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 132
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 133
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 134
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 135
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 136
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 137
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 138
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 139
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 140
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 141
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 142
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 143
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 144
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 145
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 146
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 147
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 148
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 149
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 150
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 151
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 152
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 153
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 154
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 155
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 156
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 157
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 158
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 159
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 160
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 161
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 162
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 163
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 164
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 165
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 166
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 167
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 168
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 169
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 170
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 171
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 172
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 173
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 174
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 175
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 176
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 177
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 178
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 179
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 180
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 181
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 182
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 183
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 184
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 185
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 186
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 187
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 188
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 189
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 190
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 191
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 192
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 193
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 194
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 195
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 196
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 197
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 198
+   },
+   {
+    "line": "WAIT;MOVE 2 9 4",
+    "turn": 199
+   },
+   {
+    "line": "WAIT;MOVE 2 9 3",
+    "turn": 200
+   }
+  ],
+  "k": 94,
+  "length_turns": 189,
+  "turn_end": 200,
+  "turn_start": 12,
+  "unit": 2
+ },
+ "world_state_at_entry": {
+  "inventories": {
+   "opponent": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "own": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    5
+   ]
+  },
+  "plants": [
+   [
+    "BANANA",
+    2,
+    4,
+    4,
+    6,
+    0,
+    41
+   ]
+  ],
+  "turn": 12,
+  "units": [
+   [
+    0,
+    0,
+    8,
+    4,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    9,
+    4,
+    1,
+    3,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    5,
+    1,
+    1,
+    4,
+    2,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ }
+}

@@ -1,0 +1,177 @@
+# GREEN evidence -- I-30 revision 3
+# date: 2026-08-09  python: Python 3.12.3
+# cwd: claude_1/banana-restoration-r2
+
+$ python3 -m unittest test_i30_invariant -v
+test_command_hashes_are_equal (test_i30_invariant.TestBite01ExactSelfPair.test_command_hashes_are_equal) ... ok
+test_every_delta_and_residual_is_zero (test_i30_invariant.TestBite01ExactSelfPair.test_every_delta_and_residual_is_zero) ... ok
+test_non_state_changing_diagnostic_moves_nothing (test_i30_invariant.TestBite02InertCandidate.test_non_state_changing_diagnostic_moves_nothing) ... ok
+test_claimed_but_unexercised_mechanism_is_unproven (test_i30_invariant.TestBite03NoBananaActivation.test_claimed_but_unexercised_mechanism_is_unproven) ... ok
+test_status_is_not_applicable_not_a_fabricated_pass (test_i30_invariant.TestBite03NoBananaActivation.test_status_is_not_applicable_not_a_fabricated_pass) ... ok
+test_d_direct_positive_windfall_zero_and_d6_exercises (test_i30_invariant.TestBite04DirectTheftOnly.test_d_direct_positive_windfall_zero_and_d6_exercises) ... ok
+test_windfall_positive_while_d6_stays_zero (test_i30_invariant.TestBite05IndirectProductionOnly.test_windfall_positive_while_d6_stays_zero) ... ok
+test_uncontested_natural_output_lands_in_d_schedule (test_i30_invariant.TestBite06NaturalOpportunity.test_uncontested_natural_output_lands_in_d_schedule) ... ok
+test_train_bill_closes_the_identity_with_the_correct_sign (test_i30_invariant.TestBite07TrainSpendOffset.test_train_bill_closes_the_identity_with_the_correct_sign) ... ok
+test_training_cost_matches_the_engine_formula (test_i30_invariant.TestBite07TrainSpendOffset.test_training_cost_matches_the_engine_formula) ... ok
+test_each_source_class_in_one_drop_is_counted_exactly_once (test_i30_invariant.TestBite08MixedCargo.test_each_source_class_in_one_drop_is_counted_exactly_once) ... ok
+test_terminal_turn_delta_and_windfall_both_expose_it (test_i30_invariant.TestBite09LongerGameSchedule.test_terminal_turn_delta_and_windfall_both_expose_it) ... ok
+test_d6_is_zero_but_i30_sees_opponent_own_production (test_i30_invariant.TestBite10BlindSpotFixture.test_d6_is_zero_but_i30_sees_opponent_own_production) ... ok
+test_every_behavioural_detector_passes (test_i30_invariant.TestBite10BlindSpotFixture.test_every_behavioural_detector_passes) ... ok
+test_i30_must_not_return_pass_under_a_bound_excluding_the_windfall (test_i30_invariant.TestBite10BlindSpotFixture.test_i30_must_not_return_pass_under_a_bound_excluding_the_windfall)
+REVISION 3 (review I30R2-1/2): the verdict is the AGGREGATE's. ... ok
+test_self_pair_hash_mismatch_is_gate_unready (test_i30_invariant.TestBite11PairIdentityMismatch.test_self_pair_hash_mismatch_is_gate_unready) ... ok
+test_one_untagged_score_bearing_atom_is_gate_unready (test_i30_invariant.TestBite12UntaggedAtom.test_one_untagged_score_bearing_atom_is_gate_unready) ... ok
+test_nonzero_conservation_residual_is_gate_unready (test_i30_invariant.TestBite13NonzeroResidual.test_nonzero_conservation_residual_is_gate_unready) ... ok
+test_active_candidate_without_a_bound_is_gate_unready (test_i30_invariant.TestBite14AbsentBound.test_active_candidate_without_a_bound_is_gate_unready) ... ok
+test_bound_hash_pin_mismatch_is_gate_unready (test_i30_invariant.TestBite14AbsentBound.test_bound_hash_pin_mismatch_is_gate_unready) ... ok
+test_bound_without_a_verified_owner_decision_never_yields_pass (test_i30_invariant.TestBite14AbsentBound.test_bound_without_a_verified_owner_decision_never_yields_pass) ... ok
+test_removing_the_indirect_calculation_reopens_the_blind_spot (test_i30_invariant.TestBite15MutationBitesTheIndirectTerm.test_removing_the_indirect_calculation_reopens_the_blind_spot) ... ok
+test_an_ambiguous_metric_makes_the_aggregate_gate_unready (test_i30_invariant.TestD1BoundMetricNamesStateGrossOrNet.test_an_ambiguous_metric_makes_the_aggregate_gate_unready)
+REVISION 3: a bound is consumed by the aggregate, not the pair. ... ok
+test_qualified_metric_names_are_accepted (test_i30_invariant.TestD1BoundMetricNamesStateGrossOrNet.test_qualified_metric_names_are_accepted) ... ok
+test_the_fixture_bound_uses_a_qualified_name (test_i30_invariant.TestD1BoundMetricNamesStateGrossOrNet.test_the_fixture_bound_uses_a_qualified_name) ... ok
+test_unqualified_metric_names_are_rejected (test_i30_invariant.TestD1BoundMetricNamesStateGrossOrNet.test_unqualified_metric_names_are_rejected) ... ok
+test_gross_production_is_a_separate_mandatory_diagnostic (test_i30_invariant.TestD1SchemaSeparatesGrossWithdrawalAndNet.test_gross_production_is_a_separate_mandatory_diagnostic)
+Gross production rises while an equal withdrawal keeps score flat. ... ok
+test_pair_result_exposes_net_and_gross_terms_separately (test_i30_invariant.TestD1SchemaSeparatesGrossWithdrawalAndNet.test_pair_result_exposes_net_and_gross_terms_separately) ... ok
+test_result_schema_is_versioned_and_bumped (test_i30_invariant.TestD1SchemaSeparatesGrossWithdrawalAndNet.test_result_schema_is_versioned_and_bumped) ... ok
+test_run_ledger_exercises_a_real_withdrawal (test_i30_invariant.TestD1SchemaSeparatesGrossWithdrawalAndNet.test_run_ledger_exercises_a_real_withdrawal) ... ok
+test_run_ledger_names_gross_withdrawal_and_net_separately (test_i30_invariant.TestD1SchemaSeparatesGrossWithdrawalAndNet.test_run_ledger_names_gross_withdrawal_and_net_separately) ... ok
+test_the_exact_identity_uses_net_bank_flow (test_i30_invariant.TestD1SchemaSeparatesGrossWithdrawalAndNet.test_the_exact_identity_uses_net_bank_flow) ... ok
+test_a_plant_seed_at_a_bank_cell_does_not_trip_the_gate (test_i30_invariant.TestD5FailsClosedOnNonIdentifiableAttribution.test_a_plant_seed_at_a_bank_cell_does_not_trip_the_gate)
+The fail-closed rule must not fire on an explained decrease. ... ok
+test_absent_or_mixed_planter_occupancy_is_unknown (test_i30_invariant.TestD5FailsClosedOnNonIdentifiableAttribution.test_absent_or_mixed_planter_occupancy_is_unknown) ... ok
+test_acquisition_on_a_dead_asset_cell_is_unknown (test_i30_invariant.TestD5FailsClosedOnNonIdentifiableAttribution.test_acquisition_on_a_dead_asset_cell_is_unknown) ... ok
+test_cancelling_unknown_deposit_and_withdrawal_still_fails_closed (test_i30_invariant.TestD5FailsClosedOnNonIdentifiableAttribution.test_cancelling_unknown_deposit_and_withdrawal_still_fails_closed)
+D_UNKNOWN_NET == 0 is not evidence of complete provenance. ... ok
+test_class_swap_pair_is_indistinguishable_so_both_are_unknown (test_i30_invariant.TestD5FailsClosedOnNonIdentifiableAttribution.test_class_swap_pair_is_indistinguishable_so_both_are_unknown)
+Two hidden histories, one observable transition, two labels. ... ok
+test_deposit_unit_assignment_across_two_units_is_unknown (test_i30_invariant.TestD5FailsClosedOnNonIdentifiableAttribution.test_deposit_unit_assignment_across_two_units_is_unknown) ... ok
+test_multi_source_deposit_with_concurrent_withdrawal_is_unknown (test_i30_invariant.TestD5FailsClosedOnNonIdentifiableAttribution.test_multi_source_deposit_with_concurrent_withdrawal_is_unknown) ... ok
+test_same_turn_deposit_and_withdrawal_is_unknown (test_i30_invariant.TestD5FailsClosedOnNonIdentifiableAttribution.test_same_turn_deposit_and_withdrawal_is_unknown) ... ok
+test_reverted_tie_break_reopens_multi_source_attribution (test_i30_invariant.TestD5MutationRevertedTieBreakIsCaught.test_reverted_tie_break_reopens_multi_source_attribution) ... ok
+test_reverted_tie_break_reopens_same_turn_misattribution (test_i30_invariant.TestD5MutationRevertedTieBreakIsCaught.test_reverted_tie_break_reopens_same_turn_misattribution) ... ok
+test_reverted_tie_break_reopens_the_class_swap (test_i30_invariant.TestD5MutationRevertedTieBreakIsCaught.test_reverted_tie_break_reopens_the_class_swap) ... ok
+test_reverted_tie_break_reopens_unit_assignment (test_i30_invariant.TestD5MutationRevertedTieBreakIsCaught.test_reverted_tie_break_reopens_unit_assignment) ... ok
+test_the_identifiability_hooks_exist (test_i30_invariant.TestD5MutationRevertedTieBreakIsCaught.test_the_identifiability_hooks_exist) ... ok
+test_the_valid_fixtures_are_unaffected_by_the_hooks (test_i30_invariant.TestD5MutationRevertedTieBreakIsCaught.test_the_valid_fixtures_are_unaffected_by_the_hooks)
+The fix must not fire on the fifteen -- otherwise it proves nothing. ... ok
+test_no_fixture_in_the_corpus_can_produce_pass (test_i30_invariant.TestNoPassWithoutAVerifiedOwnerDecision.test_no_fixture_in_the_corpus_can_produce_pass) ... ok
+test_the_production_corpus_is_gate_unready_end_to_end (test_i30_invariant.TestNoPassWithoutAVerifiedOwnerDecision.test_the_production_corpus_is_gate_unready_end_to_end)
+MEASURED: the shipped `main()` path, with the PRODUCTION authority. ... ok
+test_every_mutation_declares_an_exact_preimage_and_replacement (test_i30_invariant.TestR3D10MutationRunnerIsReproducible.test_every_mutation_declares_an_exact_preimage_and_replacement) ... ok
+test_every_preimage_occurs_exactly_once_in_its_target (test_i30_invariant.TestR3D10MutationRunnerIsReproducible.test_every_preimage_occurs_exactly_once_in_its_target) ... ok
+test_the_manifest_pins_the_sha_of_every_mutated_file (test_i30_invariant.TestR3D10MutationRunnerIsReproducible.test_the_manifest_pins_the_sha_of_every_mutated_file) ... ok
+test_the_runner_and_the_patch_manifest_are_committed (test_i30_invariant.TestR3D10MutationRunnerIsReproducible.test_the_runner_and_the_patch_manifest_are_committed) ... ok
+test_a_per_pair_metric_name_may_not_masquerade_as_a_mean (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_a_per_pair_metric_name_may_not_masquerade_as_a_mean) ... ok
+test_a_stale_bound_schema_version_is_rejected (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_a_stale_bound_schema_version_is_rejected) ... ok
+test_an_unsupported_population_is_rejected_before_evaluation (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_an_unsupported_population_is_rejected_before_evaluation) ... ok
+test_analyze_pair_emits_no_value_verdict_at_all (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_analyze_pair_emits_no_value_verdict_at_all) ... ok
+test_analyze_pair_refuses_a_bound_argument (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_analyze_pair_refuses_a_bound_argument) ... ok
+test_the_metric_is_the_exact_population_mean (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_the_metric_is_the_exact_population_mean) ... ok
+test_the_population_named_by_the_bound_selects_the_rows (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_the_population_named_by_the_bound_selects_the_rows) ... ok
+test_a_failed_pair_row_propagates_to_aggregate_fail (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_a_failed_pair_row_propagates_to_aggregate_fail) ... ok
+test_a_satisfied_owner_bound_is_pass (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_a_satisfied_owner_bound_is_pass) ... ok
+test_an_empty_corpus_is_gate_unready (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_an_empty_corpus_is_gate_unready) ... ok
+test_an_exceeded_owner_bound_is_exactly_fail (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_an_exceeded_owner_bound_is_exactly_fail) ... ok
+test_one_unready_row_dominates_a_violated_bound (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_one_unready_row_dominates_a_violated_bound) ... ok
+test_the_old_blocking_only_rule_can_no_longer_pass_a_failed_corpus (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_the_old_blocking_only_rule_can_no_longer_pass_a_failed_corpus) ... ok
+test_an_unowned_bound_never_produces_a_production_fail (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_an_unowned_bound_never_produces_a_production_fail)
+The still-open D2/D3 deviation: an unratified threshold may not ... ok
+test_no_production_owner_decision_exists (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_no_production_owner_decision_exists)
+MEASURED: the production authority resolves nothing, so the ... ok
+test_the_blob_must_be_the_bytes_at_the_pinned_path (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_blob_must_be_the_bytes_at_the_pinned_path) ... ok
+test_the_decision_must_be_authored_by_the_authority (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_be_authored_by_the_authority) ... ok
+test_the_decision_must_pin_the_exact_bound_sha (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_pin_the_exact_bound_sha) ... ok
+test_the_decision_must_predate_the_observation (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_predate_the_observation) ... ok
+test_the_git_ref_authority_resolves_a_real_frozen_blob (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_git_ref_authority_resolves_a_real_frozen_blob)
+MEASURED: the authority really reads a blob from a pinned ref. ... ok
+test_the_self_declared_string_is_rejected_outright (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_self_declared_string_is_rejected_outright) ... ok
+test_without_an_authority_nothing_is_owner_frozen (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_without_an_authority_nothing_is_owner_frozen) ... ok
+test_a_second_ambiguous_fixture_reports_its_own_interval (test_i30_invariant.TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_a_second_ambiguous_fixture_reports_its_own_interval) ... ok
+test_class_only_ambiguity_keeps_the_gross_counts_exact (test_i30_invariant.TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_class_only_ambiguity_keeps_the_gross_counts_exact)
+The class swap is undetermined in CLASS, not in COUNT. ... ok
+test_net_bank_flow_stays_exact_under_the_same_ambiguity (test_i30_invariant.TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_net_bank_flow_stays_exact_under_the_same_ambiguity) ... ok
+test_pair_gross_deltas_are_null_when_either_side_is_ambiguous (test_i30_invariant.TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_pair_gross_deltas_are_null_when_either_side_is_ambiguous) ... ok
+test_the_aggregate_refuses_to_mean_a_non_identifiable_point (test_i30_invariant.TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_the_aggregate_refuses_to_mean_a_non_identifiable_point) ... ok
+test_the_ambiguous_split_reports_null_totals_and_the_interval (test_i30_invariant.TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_the_ambiguous_split_reports_null_totals_and_the_interval) ... ok
+test_baseline_is_its_own_source_class (test_i30_invariant.TestR3D5BaselineStockIsNotProduction.test_baseline_is_its_own_source_class) ... ok
+test_baseline_net_stays_inside_the_exact_identity (test_i30_invariant.TestR3D5BaselineStockIsNotProduction.test_baseline_net_stays_inside_the_exact_identity) ... ok
+test_initial_bank_and_carry_atoms_are_baseline_not_natural (test_i30_invariant.TestR3D5BaselineStockIsNotProduction.test_initial_bank_and_carry_atoms_are_baseline_not_natural) ... ok
+test_schedule_net_excludes_baseline (test_i30_invariant.TestR3D5BaselineStockIsNotProduction.test_schedule_net_excludes_baseline) ... ok
+test_withdrawing_and_redepositing_baseline_stock_is_zero_production (test_i30_invariant.TestR3D5BaselineStockIsNotProduction.test_withdrawing_and_redepositing_baseline_stock_is_zero_production) ... ok
+test_derived_and_externally_pinned_identity_are_separated (test_i30_invariant.TestR3D6ContentIdentityIsDerivedNotTrusted.test_derived_and_externally_pinned_identity_are_separated) ... ok
+test_derived_hashes_are_never_overridden_by_the_caller (test_i30_invariant.TestR3D6ContentIdentityIsDerivedNotTrusted.test_derived_hashes_are_never_overridden_by_the_caller) ... ok
+test_the_pair_check_compares_derived_content_not_declarations (test_i30_invariant.TestR3D6ContentIdentityIsDerivedNotTrusted.test_the_pair_check_compares_derived_content_not_declarations) ... ok
+test_two_different_worlds_declaring_one_hash_are_gate_unready (test_i30_invariant.TestR3D6ContentIdentityIsDerivedNotTrusted.test_two_different_worlds_declaring_one_hash_are_gate_unready) ... ok
+test_a_claimed_telemetry_mechanism_without_telemetry_is_unready (test_i30_invariant.TestR3D7ActivationCoversEveryFrozenCause.test_a_claimed_telemetry_mechanism_without_telemetry_is_unready) ... ok
+test_an_unrelated_command_divergence_is_not_activation (test_i30_invariant.TestR3D7ActivationCoversEveryFrozenCause.test_an_unrelated_command_divergence_is_not_activation) ... ok
+test_each_frozen_cause_has_an_activating_fixture (test_i30_invariant.TestR3D7ActivationCoversEveryFrozenCause.test_each_frozen_cause_has_an_activating_fixture) ... ok
+test_state_events_not_command_strings_carry_the_evidence (test_i30_invariant.TestR3D7ActivationCoversEveryFrozenCause.test_state_events_not_command_strings_carry_the_evidence) ... ok
+test_the_contract_enumerates_every_frozen_cause (test_i30_invariant.TestR3D7ActivationCoversEveryFrozenCause.test_the_contract_enumerates_every_frozen_cause) ... ok
+test_a_record_without_an_execution_block_is_unready (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_a_record_without_an_execution_block_is_unready) ... ok
+test_an_unsupported_command_event_is_rejected (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_an_unsupported_command_event_is_rejected) ... ok
+test_the_discarded_train_trace_is_rejected (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_the_discarded_train_trace_is_rejected)
+The m040 class: 182 emitted TRAIN commands, zero spawns, and a ... ok
+test_the_execution_flag_is_the_harness_declaration_not_an_inference (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_the_execution_flag_is_the_harness_declaration_not_an_inference) ... ok
+test_the_gate_runs_before_any_ledger_analysis (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_the_gate_runs_before_any_ledger_analysis) ... ok
+test_the_referee_and_engine_identity_must_match_across_the_pair (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_the_referee_and_engine_identity_must_match_across_the_pair) ... ok
+test_each_pair_binds_its_raw_ledger_hash (test_i30_invariant.TestR3D9ProvenanceClosureAndRawLedgers.test_each_pair_binds_its_raw_ledger_hash) ... ok
+test_raw_ledgers_are_written_with_immutable_paths_and_shas (test_i30_invariant.TestR3D9ProvenanceClosureAndRawLedgers.test_raw_ledgers_are_written_with_immutable_paths_and_shas) ... ok
+test_the_aggregate_binds_every_per_pair_result_hash (test_i30_invariant.TestR3D9ProvenanceClosureAndRawLedgers.test_the_aggregate_binds_every_per_pair_result_hash) ... ok
+test_the_manifest_closes_over_every_input_class (test_i30_invariant.TestR3D9ProvenanceClosureAndRawLedgers.test_the_manifest_closes_over_every_input_class) ... ok
+test_chopped_wood_carries_its_asset_class_at_weight_four (test_i30_invariant.TestSupplementaryWoodChopCoverage.test_chopped_wood_carries_its_asset_class_at_weight_four) ... ok
+
+----------------------------------------------------------------------
+Ran 105 tests in 0.490s
+
+OK
+
+$ python3 -m unittest test_trace_detectors
+----------------------------------------------------------------------
+Ran 28 tests in 0.015s
+
+OK
+
+$ python3 -m unittest test_oscillation_library test_score_hierarchy_check   # pre-existing suites in this directory, unmodified
+----------------------------------------------------------------------
+Ran 215 tests in 6.164s
+
+OK (skipped=2)
+
+$ python3 i30/i30_mutation_runner.py --out i30/mutation-sweep-r3-2026-08-09.json --text i30/mutation-sweep-r3-2026-08-09.txt
+I-30 revision-3 mutation sweep
+manifest: i30/mutation-manifest-r3-2026-08-09.json (sha256 8530be388e24ff640343edaac7199e1d6767785f3a49611784f9d5183ac21c4a)
+runner  : i30/i30_mutation_runner.py (sha256 59cfc93ac5c2afdee435613fb87b62ce006d037030205b5ff7c0b5051d17122f)
+python  : 3.12.3
+control : GREEN (0 failing)
+
+id             defect verdict    by-own  expected catcher
+M-D1-population I30R2-1 CAUGHT     yes     TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_the_population_named_by_the_bound_selects_the_rows
+M-D1-mean      I30R2-1 CAUGHT     yes     TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_the_metric_is_the_exact_population_mean
+M-D2-pairfail  I30R2-2 CAUGHT     yes     TestR3D2AggregateVerdictPrecedence.test_a_failed_pair_row_propagates_to_aggregate_fail
+M-D2-empty     I30R2-2 CAUGHT     yes     TestR3D2AggregateVerdictPrecedence.test_an_empty_corpus_is_gate_unready
+M-D3-boundsha  I30R2-3 CAUGHT     yes     TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_pin_the_exact_bound_sha
+M-D3-frozenfirst I30R2-3 CAUGHT     yes     TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_predate_the_observation
+M-D3-selfdecl  I30R2-3 CAUGHT     yes     TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_self_declared_string_is_rejected_outright
+M-D3-blob      I30R2-3 CAUGHT     yes     TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_blob_must_be_the_bytes_at_the_pinned_path
+M-D4-nullgross I30R2-4 CAUGHT     yes     TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_the_ambiguous_split_reports_null_totals_and_the_interval
+M-D4-flag      I30R2-4 CAUGHT     yes     TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_a_second_ambiguous_fixture_reports_its_own_interval
+M-D5-bankclass I30R2-5 CAUGHT     yes     TestR3D5BaselineStockIsNotProduction.test_initial_bank_and_carry_atoms_are_baseline_not_natural
+M-D5-schedcls  I30R2-5 CAUGHT     yes     TestR3D5BaselineStockIsNotProduction.test_withdrawing_and_redepositing_baseline_stock_is_zero_production
+M-D6-setdefault I30R2-6 CAUGHT     yes     TestR3D6ContentIdentityIsDerivedNotTrusted.test_derived_hashes_are_never_overridden_by_the_caller
+M-D6-pincheck  I30R2-6 CAUGHT     yes     TestR3D6ContentIdentityIsDerivedNotTrusted.test_two_different_worlds_declaring_one_hash_are_gate_unready
+M-D7-harvest   I30R2-7 CAUGHT     yes     TestR3D7ActivationCoversEveryFrozenCause.test_each_frozen_cause_has_an_activating_fixture
+M-D7-telemetry I30R2-7 CAUGHT     yes     TestR3D7ActivationCoversEveryFrozenCause.test_a_claimed_telemetry_mechanism_without_telemetry_is_unready
+M-D7-banking   I30R2-7 CAUGHT     yes     TestR3D7ActivationCoversEveryFrozenCause.test_each_frozen_cause_has_an_activating_fixture
+M-D8-counts    I30R2-8 CAUGHT     yes     TestR3D8CommandExecutionValidityGate.test_the_discarded_train_trace_is_rejected
+M-D8-manifest  I30R2-8 CAUGHT     yes     TestR3D8CommandExecutionValidityGate.test_the_discarded_train_trace_is_rejected
+M-D8-gate      I30R2-8 CAUGHT     yes     TestR3D8CommandExecutionValidityGate.test_a_record_without_an_execution_block_is_unready
+M-D9-ruling    I30R2-9 CAUGHT     yes     TestR3D9ProvenanceClosureAndRawLedgers.test_the_manifest_closes_over_every_input_class
+M-D9-ledgersha I30R2-9 CAUGHT     yes     TestR3D9ProvenanceClosureAndRawLedgers.test_each_pair_binds_its_raw_ledger_hash
+
+caught 22/22; caught by their own expected test 22/22
+
+This is descriptive of THIS chosen mutation set. It is not a
+completeness proof for the identifiability rules, the
+activation contract or the execution gate.
