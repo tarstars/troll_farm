@@ -102,19 +102,38 @@ makes the goalpost move in the wrong direction.
     NOT passed frozen gates (i.e. experimenting on the live ladder); any action that would
     abandon a matured score with no qualified candidate in hand; more than one submission
     cycle in flight; anything that could forfeit the ladder slot.
-  - **Replacement discipline the integrator applies in place of the owner's gate** — since
-    the permission bottleneck is gone, the *evidence* bottleneck is stated explicitly:
-    (i) a QUALIFIED verdict from a frozen protocol is required; (ii) expected gain must
-    exceed the arena's own noise band (±0.5–1) on its own or bundled with others to exceed
-    it, because below that a submission buys an unmeasurable result at a measured cost;
-    (iii) the promotion runbook runs in full, no shortcuts; (iv) the owner is told before a
-    cycle starts and again when it terminates; (v) every submission id and terminal
-    response is logged to the ledger.
+  - ★★ **OWNER RULING 2026-08-12 — THE NOISE-BAND GATE IS REMOVED. Do not gate candidates on
+    beating the noise band.** *"Noise of measurement is 2 and we should conduct more
+    experiments to narrow the error band. We shouldn't gate candidates. This way we starve our
+    channel which gives precious information — new candidates on the platform."* The ladder is
+    an **information channel, not just a scoreboard**: gating on a band we cannot yet measure
+    suppresses the very observations that would measure it. Submissions are now the cheap
+    instrument, not the scarce resource.
+  - **Replacement discipline, as amended by that ruling:** (i) a QUALIFIED verdict from a
+    frozen protocol is still required — this ruling removes the *magnitude* bar, not the
+    correctness bar; **(ii) REMOVED** — expected gain no longer needs to exceed ±0.5–1, and a
+    sub-band candidate is a legitimate submission because it contributes a run to the variance
+    estimate even when its own effect is unresolvable; (iii) the promotion runbook runs in
+    full, no shortcuts; (iv) the owner is told before a cycle starts and again when it
+    terminates; (v) every submission id and terminal response is logged to the ledger.
+  - **What replaces the magnitude bar: throughput and design.** Since one observation is worth
+    little and n observations are worth a lot, the binding constraint is now cycle time and
+    allocation, not candidate strength. Measured 2026-08-12: **a full 160-game mature read
+    takes ~2 hours**, not days. Prefer **interleaved A/B/A/B ordering** over blocked runs, so
+    that ladder drift is not confounded with our own run-to-run variance — the two are
+    inseparable in the single pair we have.
   - **Unchanged:** mutations remain serialized through the **single arena controller**
-    (now `local_claude_1` by owner reassignment — see the note in this section). No peer agent or subagent may submit. The no-churn evidence still binds
-    the judgment even though it no longer binds the permission.
-- Never churn submissions: fresh reads sit 3–4 points below matured ones; every failed
-  trial costs days of standing.
+    (now `local_claude_1` by owner reassignment — see the note in this section). No peer agent
+    or subagent may submit. One cycle in flight at a time — that is a ladder-slot constraint,
+    not an evidence one, so higher throughput means *shorter cycles*, never parallel ones.
+- **B0.3 no-churn — SUBSTANTIALLY WEAKENED 2026-08-12, by measurement.** The rule read: "fresh
+  reads sit 3–4 points below matured ones; every failed trial costs days of standing." The
+  first clause holds. **The second does not, at current ladder rates:** the 2026-08-12 cycle
+  went from submission to a settled 160-game read in **~2 hours** (21 games at +15 min, 127 at
+  +1 h 35 m, 160 at +1 h 55 m). The "days" figure dates from the B0.1 regime when the score was
+  source-side frozen and the resident drew 6 battles in 4 days. A mature observation is now
+  cheap. What remains true: never *abandon* a run before it matures, since a half-matured read
+  is the expensive kind of worthless.
 - Sealed, do not open: maps `9,844,200–9,844,215`; the official-map holdout; the 11
   sealed D164 field games; D170's confirmation block `9,852,000–063` (unused, preserved).
 - Substrate rule (D158/D161): controllers use the exact Yamo/Orchard resident fallback
