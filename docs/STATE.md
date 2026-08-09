@@ -5,7 +5,14 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 
 ## 1. Live identity
 
-### ★★★ ARENA RUN SETTLED — 2026-08-12. Live bot is `readable__no_orchard`; owner decides keep/restore.
+### ★★★ CYCLE CLOSED — OWNER DECIDED **KEEP** 2026-08-12. Resident is `readable__no_orchard`.
+
+**Owner ruling: "keep readable__no_orchard".** No Arena action was taken to execute it — the
+source was already live, so KEEP is a no-op mutation-wise. `6604529` / `41113243` is now the
+**resident**, not a candidate under trial, and `2caac7c6…` is retired as a restore target for
+this cycle. `cgauto/api_submit.py`'s default fallback source still points at the old
+`2caac7c6…` E7a — **it now disagrees with the resident; fix it before the next cycle relies on
+it.** Any future restore-to-resident means `98628e98…`.
 
 **Terminal read: 160/160, score 22.46, rank 35/139, 89W/3T/68L, 24 catastrophes (15.0%),
 negative mass 6,790, `identity_clean=True`, `signals=0`.** No restore trigger ever fired.
@@ -16,7 +23,7 @@ draw, not this source's level. This also puts the ±0.5–1 arena noise band in 
 it is understated or the ladder moved between runs; one pair cannot separate those) — treat any
 promotion argument resting on a sub-2-point mature delta as unsupported until it is separated.
 At 22.46/rank 35/139 the live bot matches the displaced bot's 22.7/rank 35/139 standing, inside
-noise: the cycle neither gained nor cost ground. **Keep/restore is the owner's call.**
+noise: the cycle neither gained nor cost ground — which is why KEEP costs nothing either.
 
 | field | value |
 |---|---|
@@ -25,12 +32,12 @@ noise: the cycle neither gained nor cost ground. **Keep/restore is the owner's c
 | SHA-256 | `98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29` |
 | purpose | **second mature observation** to settle `SINGLE_MATURE_RUN` against its prior 24.76 — **DONE, settled at 22.46** |
 | last read | **terminal, 160 games, 22.46, rank 35/139, `identity_clean=True`, `signals=0`** |
-| **restore target if aborted** | `candidate-agent6553250-e7a-r36-simplified.min.rs`, SHA `2caac7c6…` (agent `6594200` / submission `41090606`) |
+| disposition | **KEPT by owner ruling 2026-08-12 — this is the resident** |
+| restore-to-resident source | `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs`, SHA `98628e98…` |
 
-**Restore only on unambiguous source/identity/runtime failure — never on a weak score.** None
-occurred. The terminal checkpoint is taken; nothing further is pending on this run. **Submitting
-anything else is now unblocked, subject to the §3 evidence discipline — but see the noise-band
-caveat above before pricing any candidate's expected gain.**
+The terminal checkpoint is taken and the cycle is closed. **Submitting a new candidate is
+unblocked, subject to the §3 evidence discipline — but see the noise-band caveat above before
+pricing any candidate's expected gain.**
 
 Task record: `coordination/tasks/20260812-readable-no-orchard-rerun-arena.md` (full execution
 log). Evidence: `data/analysis/live-agent-6553250/readable-no-orchard-rerun-20260812/`.

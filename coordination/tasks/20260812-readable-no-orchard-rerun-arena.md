@@ -176,4 +176,14 @@ settled at 22.81/rank 32/137 and had eroded to 22.7/rank 35/139 at the pre-mutat
 gained nor cost material ground.
 
 No restore trigger fired at any point: source exact on the platform, identity clean, zero runtime
-signals throughout. **The keep/restore decision is the owner's.**
+signals throughout.
+
+## Disposition — TASK CLOSED
+
+**Owner ruling 2026-08-12: "keep readable__no_orchard".** KEEP required no Arena mutation (the
+source was already live), so no submission call was made to execute it. `6604529` / `41113243`,
+SHA `98628e98…`, is now the **resident**; `2caac7c6…` is retired as this cycle's restore target.
+
+Follow-up this creates, recorded in `docs/STATE.md` §1: `cgauto/api_submit.py`'s default fallback
+source still points at `2caac7c6…` and therefore no longer matches the resident. Fix before any
+future cycle depends on that default.
