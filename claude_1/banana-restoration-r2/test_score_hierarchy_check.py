@@ -235,6 +235,74 @@ class TestInterval(unittest.TestCase):
             shc.Interval(5, 4)
 
 
+# ---------------------------------------------------------------------------
+# Correction 5 (chatgpt_1 review B5): interval multiplication endpoint closure.
+#
+# The defect: ``Interval.__mul__`` closed a product endpoint only when EVERY
+# attaining corner was closed (``all``).  An endpoint of a product is attained,
+# and therefore included, when ANY attaining corner is included (``any``).  The
+# same defect let a zero-width OPEN interval -- the empty set -- be constructed.
+#
+# Every test in this class FAILS under the pre-correction ``all`` implementation
+# and is the mutation pin required by the revision task.
+# ---------------------------------------------------------------------------
+
+
+class TestIntervalMultiplicationEndpointClosure(unittest.TestCase):
+    def test_lower_endpoint_closed_when_any_corner_attains_it_closed(self):
+        # [0, 1] * (0, 1] == [0, 1].  0 is attained at the closed corner
+        # (lo=0, hi=1) -> 0*1 = 0, so the lower endpoint is IN the product.
+        # `all` marks it open because the corner (0, 0) is open.
+        got = shc.Interval(0, 1, True, True) * shc.Interval(0, 1, False, True)
+        self.assertTrue(got.approx_equal(shc.Interval(0, 1, True, True)), str(got))
+
+    def test_upper_endpoint_closed_when_any_corner_attains_it_closed(self):
+        # [-1, 0] * [-1, 0) : corners (1, closed), (0, open), (0, closed), (0, open).
+        # hi = 1 closed; lo = 0 is attained closed at (0 * -1).
+        got = shc.Interval(-1, 0, True, True) * shc.Interval(-1, 0, True, False)
+        self.assertTrue(got.approx_equal(shc.Interval(0, 1, True, True)), str(got))
+
+    def test_zero_point_times_open_interval_is_the_closed_point_zero(self):
+        # The empty-interval half of B5: `all` yields (0, 0), an EMPTY set that
+        # the constructor silently accepted, instead of the point {0}.
+        got = shc.Interval.point(0) * shc.Interval(0, 1, False, True)
+        self.assertTrue(got.approx_equal(shc.Interval.point(0)), str(got))
+
+    def test_open_zero_endpoint_stays_open_when_no_corner_attains_it_closed(self):
+        # Guard against over-correcting: (0, 1] * (0, 1] == (0, 1].
+        got = shc.Interval(0, 1, False, True) * shc.Interval(0, 1, False, True)
+        self.assertTrue(got.approx_equal(shc.Interval(0, 1, False, True)), str(got))
+
+    def test_infinite_endpoint_product_stays_open(self):
+        got = shc.Interval.parse("[2, inf)") * shc.Interval(1, 2, True, True)
+        self.assertTrue(got.approx_equal(shc.Interval(2, math.inf, True, False)), str(got))
+
+    def test_negative_span_product_closure(self):
+        # [-2, 3] * (-5, 7]: lo = -10 attained only at the open corner (-5),
+        # hi = 21 attained at a closed corner.
+        got = shc.Interval(-2, 3, True, True) * shc.Interval(-5, 7, False, True)
+        self.assertTrue(got.approx_equal(shc.Interval(-15, 21, False, True)), str(got))
+
+
+class TestZeroWidthIntervalRejection(unittest.TestCase):
+    def test_zero_width_open_open_is_empty_and_rejected(self):
+        with self.assertRaises(shc.IntervalError):
+            shc.Interval(0, 0, False, False)
+
+    def test_zero_width_half_open_is_empty_and_rejected(self):
+        with self.assertRaises(shc.IntervalError):
+            shc.Interval(3, 3, True, False)
+        with self.assertRaises(shc.IntervalError):
+            shc.Interval(3, 3, False, True)
+
+    def test_zero_width_open_interval_from_parse_is_rejected(self):
+        with self.assertRaises(shc.IntervalError):
+            shc.Interval.parse("(0, 0)")
+
+    def test_zero_width_closed_interval_is_a_legal_point(self):
+        self.assertTrue(shc.Interval(0, 0, True, True).approx_equal(shc.Interval.point(0)))
+
+
 class TestEvalExpr(unittest.TestCase):
     def test_unbound_variable_raises(self):
         with self.assertRaises(shc.IntervalError):
@@ -273,7 +341,7 @@ class TestRangeModel(unittest.TestCase):
         r = shc.range_model_report(self.CHOP)
         self.assertEqual(r["computed"], "(0, 2400]")
         self.assertTrue(r["agrees"])
-        self.assertEqual(r["precision"], "EXACT")
+        self.assertEqual(r["precision"], "NO_REPEATED_VARIABLE_INTERVAL_EVAL")
         self.assertEqual(r["clamps"][0]["verdict"], "DEAD")
         self.assertEqual(r["clamps"][0]["operand_range"], "[2, inf)")
 
@@ -314,18 +382,152 @@ class TestRangeModel(unittest.TestCase):
             "inputs": {"travel": {"range": "[0, 83]"}, "ticks": {"range": "[0, 100]"}},
         }
         r = shc.range_model_report(model)
-        self.assertEqual(r["precision"], "OVER_APPROX")
+        self.assertEqual(r["precision"], "REPEATED_VARIABLE_OVER_APPROX")
         self.assertEqual(r["computed"], "[5817, 6000]")
 
-    def test_single_occurrence_rewrite_is_exact_and_tighter(self):
+    def test_single_occurrence_rewrite_is_tighter(self):
         model = {
             "id": "T-FRUIT-EXACT",
             "expr": ["-", 6000, ["max", "ticks", "travel"]],
             "inputs": {"travel": {"range": "[0, 83]"}, "ticks": {"range": "[0, 100]"}},
         }
         r = shc.range_model_report(model)
-        self.assertEqual(r["precision"], "EXACT")
+        self.assertEqual(r["precision"], "NO_REPEATED_VARIABLE_INTERVAL_EVAL")
         self.assertEqual(r["computed"], "[5900, 6000]")
+
+
+# ---------------------------------------------------------------------------
+# Correction 4 (chatgpt_1 review B4): `EXACT` is a lie by vocabulary.
+#
+# The machine status meant only "no variable token repeats in the expanded
+# expression".  It did NOT mean the computed interval is the exact attainable
+# set: inputs may be panel assumptions, variables may be correlated by state,
+# integrality may remove endpoints, and the site may be unreachable.
+# ---------------------------------------------------------------------------
+
+
+class TestPrecisionVocabulary(unittest.TestCase):
+    SINGLE = {
+        "id": "T-SINGLE",
+        "expr": ["-", 6000, ["max", "ticks", "travel"]],
+        "inputs": {"travel": {"range": "[0, 83]", "method": "panel-bounded assumption"},
+                   "ticks": {"range": "[0, 100]", "method": "producer-invariant"}},
+    }
+    REPEATED = {
+        "id": "T-REPEATED",
+        "expr": ["-", 6000, ["+", "travel", ["max", ["-", "ticks", "travel"], 0]]],
+        "inputs": {"travel": {"range": "[0, 83]", "method": "producer-invariant"},
+                   "ticks": {"range": "[0, 100]", "method": "producer-invariant"}},
+    }
+
+    def test_single_occurrence_status_is_not_named_exact(self):
+        r = shc.range_model_report(self.SINGLE)
+        self.assertEqual(r["precision"], "NO_REPEATED_VARIABLE_INTERVAL_EVAL")
+
+    def test_repeated_variable_status_is_renamed(self):
+        r = shc.range_model_report(self.REPEATED)
+        self.assertEqual(r["precision"], "REPEATED_VARIABLE_OVER_APPROX")
+
+    def test_the_token_EXACT_appears_nowhere_in_a_range_report(self):
+        for model in (self.SINGLE, self.REPEATED):
+            blob = json.dumps(shc.range_model_report(model))
+            self.assertNotIn("EXACT", blob, model["id"])
+
+    def test_report_separates_scope_assumption_reachability_and_witness(self):
+        r = shc.range_model_report(self.SINGLE)
+        for key in ("bound_scope", "assumption_status",
+                    "reachability_status", "endpoint_witnessed"):
+            self.assertIn(key, r)
+
+    def test_bound_scope_states_upper_sound_lower_unwitnessed(self):
+        r = shc.range_model_report(self.SINGLE)
+        self.assertEqual(r["bound_scope"], "UPPER_BOUND_SOUND__LOWER_NOT_PROVED_ATTAINABLE")
+
+    def test_assumption_status_flags_a_panel_bounded_input(self):
+        r = shc.range_model_report(self.SINGLE)
+        self.assertEqual(r["assumption_status"], "ASSUMPTION_DEPENDENT")
+        self.assertIn("travel", r["assumption_inputs"])
+
+    def test_assumption_status_clean_when_every_method_is_a_proof_method(self):
+        r = shc.range_model_report(self.REPEATED)
+        self.assertEqual(r["assumption_status"], "CITED_PROOF_METHODS_ONLY")
+        self.assertEqual(r["assumption_inputs"], [])
+
+    def test_reachability_and_witness_default_to_unproved(self):
+        r = shc.range_model_report(self.SINGLE)
+        self.assertEqual(r["reachability_status"], "UNPROVED")
+        self.assertEqual(r["endpoint_witnessed"], "NONE")
+
+    def test_ledger_may_declare_reachability_and_witness_explicitly(self):
+        model = dict(self.SINGLE, reachability_status="SITE_GUARD_CHAIN_CITED",
+                     endpoint_witnessed="UPPER")
+        r = shc.range_model_report(model)
+        self.assertEqual(r["reachability_status"], "SITE_GUARD_CHAIN_CITED")
+        self.assertEqual(r["endpoint_witnessed"], "UPPER")
+
+
+# ---------------------------------------------------------------------------
+# Correction 6 (chatgpt_1 review B6): textual call-site evidence must not be
+# labelled reachability evidence.
+# ---------------------------------------------------------------------------
+
+
+class TestCallSiteVerdictVocabulary(unittest.TestCase):
+    SRC = "fn f(v:&G,b:f64){}\nlet c = Candidate{score:1.0};\nf(view, 6_000.0);\n"
+
+    def _ledger(self, claim="one textual call site"):
+        return {
+            "subject": {"path": "x.rs", "sha256": shc.sha256_bytes(self.SRC.encode())},
+            "census": [s.as_dict() for s in shc.census(self.SRC)],
+            "bindings": [{"fn": "f", "arg_index": 1, "expect_calls": [3],
+                          "expect_literal_args": ["6_000.0"], "claim": claim}],
+            "range_models": [],
+        }
+
+    def test_one_call_literal_verdict_says_textual(self):
+        led = self._ledger()
+        rep = shc.run(led, self.SRC, led["subject"]["sha256"], None)
+        self.assertEqual(rep["checks"]["bindings"][0]["verdict"],
+                         "ONE_TEXTUAL_CALL_SITE_LITERAL_BINDING")
+
+    def test_multiple_call_verdict_says_textual(self):
+        led = self._ledger()
+        src = self.SRC + "f(view, 3_400.0);\n"
+        rep = shc.run(led, src, led["subject"]["sha256"], None)
+        self.assertEqual(rep["checks"]["bindings"][0]["verdict"],
+                         "MULTIPLE_TEXTUAL_CALL_SITES")
+
+    def test_binding_carries_an_explicit_unproved_reachability_status(self):
+        led = self._ledger()
+        rep = shc.run(led, self.SRC, led["subject"]["sha256"], None)
+        self.assertEqual(rep["checks"]["bindings"][0]["reachability_status"], "UNPROVED")
+
+    def test_validate_ledger_rejects_a_binding_claim_asserting_reachability(self):
+        led = self._ledger(claim="one reachable call site, base_score bound to 6_000.0")
+        problems = shc.validate_ledger(led)
+        self.assertTrue(any("reachab" in p.lower() for p in problems), problems)
+
+    def test_validate_ledger_accepts_a_textual_claim(self):
+        led = self._ledger()
+        problems = [p for p in shc.validate_ledger(led) if "reachab" in p.lower()]
+        self.assertEqual(problems, [])
+
+    def test_a_reachability_asserting_ledger_fails_the_run(self):
+        led = self._ledger(claim="one reachable call site")
+        rep = shc.run(led, self.SRC, led["subject"]["sha256"], None)
+        self.assertFalse(rep["ok"])
+
+    def test_generic_argument_over_split_fails_closed_on_arity(self):
+        # Non-blocking review note 3: the splitter does not balance Rust angle
+        # brackets, so a generic argument over-splits.  That must surface as a
+        # ledger arity/expectation MISMATCH, never as a silent wrong answer.
+        src = "fn f(v:&G,b:f64){}\nf(Vec::<A,B>::new(), 6_000.0);\n"
+        rep = shc.call_sites(src, "f")
+        self.assertGreater(len(rep.calls[0].args), 2)
+        led = self._ledger()
+        led["bindings"][0]["expect_calls"] = [2]
+        out = shc.run(led, src, shc.sha256_bytes(src.encode()), None)
+        self.assertFalse(out["checks"]["bindings"][0]["agrees"])
 
 
 class TestRunDriver(unittest.TestCase):
@@ -345,7 +547,7 @@ class TestRunDriver(unittest.TestCase):
         rep = shc.run(led, self.SRC, shc.sha256_bytes(self.SRC.encode()), None)
         self.assertTrue(rep["ok"])
         self.assertEqual(rep["checks"]["bindings"][0]["verdict"],
-                         "SINGLE_CALL_SITE_LITERAL_BINDING")
+                         "ONE_TEXTUAL_CALL_SITE_LITERAL_BINDING")
 
     def test_sha_divergence_fails(self):
         led = self._ledger(self.SRC)
@@ -365,7 +567,7 @@ class TestRunDriver(unittest.TestCase):
         moved = self.SRC + "f(view, 3_400.0);\n"
         rep = shc.run(led, moved, led["subject"]["sha256"], None)
         self.assertFalse(rep["ok"])
-        self.assertEqual(rep["checks"]["bindings"][0]["verdict"], "MULTI_CALL_SITE")
+        self.assertEqual(rep["checks"]["bindings"][0]["verdict"], "MULTIPLE_TEXTUAL_CALL_SITES")
 
     def test_format_report_does_not_crash(self):
         led = self._ledger(self.SRC)
