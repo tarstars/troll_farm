@@ -72,8 +72,14 @@ would restore the wrong bot.** Use the restore target in the table above.
 - **No-orchard terminal-rejected:** 23.27/rank 34 versus E7a 25.3/rank 12. Exact E7a restore
   `6592131`/`41086057` is source-exact and complete at 23.56/rank 32; cycle closed.
 - Rank bar: 1. delineate 31.02, 2. norxondor_gorgonax 29.67, 3. MSz 28.26.
-- Corpus: **10,470 games** / 513 agents, zero parse failures. The restore's exact 162-game
-  queue is also a sanitized 5.8 MB Git LFS corpus; the 05:17 cron remains unchanged.
+- Corpus: **14,930 games / 582 agents / 279 names, zero parse failures** — verified 2026-08-12
+  against `data/processed/stats.json`, `games.jsonl` (14,930 rows) and the raw store (14,930
+  files); raw and parsed agree exactly, nothing is behind. The prior 10,470/513 figure was stale
+  because the 05:17 cron regenerates `stats.json` in the working tree and nobody had committed
+  it. **`data/processed/corpus_manifest.json` is separately stale** (generated 2026-07-15,
+  covering 1,302 files) — it is a per-file digest index, not a count, so it does not affect
+  analyses that read `games.jsonl`; regenerate it before relying on its hashes. The restore's
+  exact 162-game queue is also a sanitized 5.8 MB Git LFS corpus; the cron remains unchanged.
 
 ## 2. Goal (RE-SCOPED 2026-07-30 by owner decision)
 
