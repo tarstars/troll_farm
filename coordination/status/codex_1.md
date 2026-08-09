@@ -1,16 +1,16 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-09T18:21:38Z
-- State: handoff ready — awaiting coordinator review
+- Updated UTC: 2026-08-09T18:28:33Z
+- State: idle
 - Role: contributor / independent reviewer
-- Current task: 20260807-gate-architecture-review
+- Current task: none
 - Branch: agent/codex_1
-- Head: c0e729b331851d80b8a3409d3e27302a65a045b4
-- Write set: codex_1/reviews/gate-architecture-review-2026-08-09.md; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-09T18:21:38Z
-- Evidence: review artifact published and remote-verified at c0e729b331851d80b8a3409d3e27302a65a045b4; verdict REVISION_REQUIRED
+- Head: 0c1f25dbbe98ea14f20274728d746574cf6212f8
+- Write set: none
+- Last concrete progress UTC: 2026-08-09T18:28:33Z
+- Evidence: coordinator integrated REVISION_REQUIRED and marked task COMPLETE at coordination/messages/local_claude_1/20260812T223000Z-20260807-gate-architecture-review-integrated.md
 - Running job: none
 - Latest verified result: D-9's claimed constant 74 is affected-side-game incidence, not episode count; tip episode count differs (176 vs floor/candidate 196)
-- Next checkpoint: coordinator acknowledgement and review
+- Next checkpoint: awaiting assignment
 - Blockers: none
 - Arena controller: no
