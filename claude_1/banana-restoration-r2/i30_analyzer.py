@@ -194,6 +194,11 @@ class OwnerAuthority:
     module may declare a decision.
     """
 
+    #: Can this authority place a decision at an immutable point in history?
+    #: A `False` here means chronology can only be taken on the caller's word,
+    #: which is acceptable for fixtures and never for production.
+    anchored = False
+
     def __init__(self, loader, ref, authority_id):
         self._loader = loader
         self.ref = ref
@@ -205,13 +210,30 @@ class OwnerAuthority:
         except Exception:
             return None
 
+    def decision_commit(self, path):
+        """The immutable commit that introduced `path`, or None."""
+        return None
+
+    def is_ancestor(self, commit, descendant):
+        """Did `commit` exist in the history `descendant` was made from?"""
+        return None
+
     def to_json(self):
         return {"authority_ref": self.ref, "authority_id": self.authority_id,
-                "authority_kind": type(self).__name__}
+                "authority_kind": type(self).__name__,
+                "anchored": self.anchored}
 
 
 class GitRefAuthority(OwnerAuthority):
-    """The owner decision must be a blob committed on a named git ref."""
+    """The owner decision must be a blob committed on a named git ref.
+
+    The ref itself is a *moving* pointer, so resolving a blob through it says
+    nothing about when the decision existed (`chatgpt_1`, I-30 revision 3,
+    trust-root blocker 2).  This class therefore also locates the immutable
+    commit that introduced the decision, which is what chronology is judged on.
+    """
+
+    anchored = True
 
     def __init__(self, repo_root, ref, authority_id):
         self.repo_root = repo_root
@@ -225,6 +247,35 @@ class GitRefAuthority(OwnerAuthority):
             return proc.stdout
 
         OwnerAuthority.__init__(self, loader, ref, authority_id)
+
+    def _git(self, *args):
+        return subprocess.run(["git", *args], cwd=self.repo_root,
+                              stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+    def decision_commit(self, path):
+        """The commit that last introduced `path` on this ref, or None."""
+        if not path:
+            return None
+        proc = self._git("log", "-1", "--format=%H", self.ref, "--", path)
+        if proc.returncode != 0:
+            return None
+        commit = proc.stdout.decode("utf-8", "replace").strip()
+        return commit or None
+
+    def is_ancestor(self, commit, descendant):
+        """True/False, or None when either object is unknown to this repo.
+
+        Ancestry, not committer dates: a date in a Git object is metadata the
+        author writes and can set to anything, whereas an ancestor edge cannot
+        be forged without rewriting the descendant itself.
+        """
+        if not commit or not descendant:
+            return None
+        for obj in (commit, descendant):
+            if self._git("cat-file", "-e", obj + "^{commit}").returncode != 0:
+                return None
+        return self._git("merge-base", "--is-ancestor",
+                         commit, descendant).returncode == 0
 
 
 class MappingAuthority(OwnerAuthority):
@@ -241,17 +292,29 @@ def production_authority(repo_root):
                            PRODUCTION_AUTHORITY_ID)
 
 
-def verify_owner_decision(bound, authority, observed_utc):
+def verify_owner_decision(bound, authority, observed_utc,
+                          observation_anchor=None):
     """Structurally verify that an owner froze exactly this bound, first.
 
     Every clause is a separate named reason so a reviewer can see which link
     of the chain is missing rather than a bare boolean.
+
+    `observation_anchor` is an immutable commit id identifying the state the
+    results were observed from.  On an *anchored* authority the chronology
+    clause is decided by Git ancestry between the decision's commit and that
+    anchor.  The previous clause compared two caller-supplied timestamp
+    strings, so the party being checked chose both sides of the comparison and
+    could always make a bound look frozen-first (`chatgpt_1`, I-30 revision 3,
+    trust-root blocker 2).
     """
     out = {"verified": False, "reasons": [], "decision": None,
            "authority": authority.to_json() if authority is not None else None,
            "decision_path": (bound.spec.get("owner_decision_path")
                              if bound is not None else None),
-           "observed_utc": observed_utc}
+           "observed_utc": observed_utc,
+           "observation_anchor": observation_anchor,
+           "decision_commit": None,
+           "chronology_basis": None}
     reasons = out["reasons"]
 
     if bound is None:
@@ -283,10 +346,33 @@ def verify_owner_decision(bound, authority, observed_utc):
         reasons.append("owner_decision_invariant_mismatch")
     if decision.get("authority") != authority.authority_id:
         reasons.append("owner_decision_authority_mismatch")
+    # ---- chronology ----------------------------------------------------
+    # A bound chosen after the results were seen is not a bound.  How that is
+    # established depends on whether the authority can place the decision in
+    # immutable history at all.
     frozen = decision.get("frozen_utc")
-    if not frozen or not observed_utc or str(frozen) > str(observed_utc):
-        # a bound chosen after the results were seen is not a bound
-        reasons.append("owner_decision_not_frozen_before_observation")
+    if authority.anchored:
+        out["chronology_basis"] = "git_ancestry"
+        commit = authority.decision_commit(path)
+        out["decision_commit"] = commit
+        if not commit:
+            reasons.append("owner_decision_commit_unresolved")
+        elif not observation_anchor:
+            # Refusing to fall back to the timestamps is the point: an
+            # unanchored production run must not be able to reach `verified`.
+            reasons.append("observation_anchor_absent")
+        else:
+            ancestor = authority.is_ancestor(commit, observation_anchor)
+            if ancestor is None:
+                reasons.append("observation_anchor_unresolved")
+            elif not ancestor:
+                reasons.append("owner_decision_not_ancestor_of_observation")
+    else:
+        # Fixtures and tests only.  Recorded explicitly so a reader can never
+        # mistake a fixture verdict for a production one.
+        out["chronology_basis"] = "declared_timestamps_unanchored"
+        if not frozen or not observed_utc or str(frozen) > str(observed_utc):
+            reasons.append("owner_decision_not_frozen_before_observation")
 
     out["verified"] = not reasons
     return out
@@ -810,7 +896,8 @@ def provenance_manifest(repo_root):
 
 
 def aggregate_report(pair_results, bound=None, manifest=None, authority=None,
-                     observed_utc=None, raw_ledger_index=None):
+                     observed_utc=None, raw_ledger_index=None,
+                     observation_anchor=None):
     """Spec sec. 9 aggregate contract, and the ONLY place a verdict is made.
 
     No post-hoc exclusion is performed: every row counts in the denominator.
@@ -878,7 +965,8 @@ def aggregate_report(pair_results, bound=None, manifest=None, authority=None,
 
     rows = list(pair_results)
     active = [r for r in rows if r["banana_active"]]
-    owner = verify_owner_decision(bound, authority, observed_utc)
+    owner = verify_owner_decision(bound, authority, observed_utc,
+                                  observation_anchor=observation_anchor)
     selected = bound.select(rows) if (bound is not None and bound.valid) else []
     evaluation = (bound.evaluate(selected) if (bound is not None
                                                and bound.valid)
@@ -902,6 +990,7 @@ def aggregate_report(pair_results, bound=None, manifest=None, authority=None,
         "bound_evaluation": evaluation,
         "owner_decision": owner,
         "observed_utc": observed_utc,
+        "observation_anchor": observation_anchor,
         "sha_manifest": dict(manifest or {}),
         "raw_ledger_index": dict(raw_ledger_index or {}),
         "pair_result_sha256": {
@@ -970,6 +1059,11 @@ def main(argv=None):
     ap.add_argument("--ledger-dir", default=None,
                     help="directory for the raw per-run ledgers (I30R2-9)")
     ap.add_argument("--observed-utc", default=fx.OBSERVED_UTC)
+    ap.add_argument(
+        "--observation-anchor", default=None,
+        help="immutable commit id the results were observed from; an anchored "
+             "authority decides chronology by Git ancestry against it, and "
+             "refuses to verify without it")
     args = ap.parse_args(argv)
 
     bound = Bound(fx.TEST_BOUND_WINDFALL)
@@ -1005,7 +1099,8 @@ def main(argv=None):
         # the production authority: no owner decision exists, so the corpus
         # can only be GATE_UNREADY
         authority=production_authority(repo_root),
-        observed_utc=args.observed_utc, raw_ledger_index=raw_index)
+        observed_utc=args.observed_utc, raw_ledger_index=raw_index,
+        observation_anchor=args.observation_anchor)
     with open(args.report, "w", encoding="utf-8") as fh:
         json.dump(report, fh, indent=2, sort_keys=True)
         fh.write("\n")
