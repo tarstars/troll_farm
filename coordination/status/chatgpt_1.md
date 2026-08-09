@@ -1,89 +1,49 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-10T16:35:00Z
-- State: all currently unblocked implementation work completed; M3a golden bundle submitted for two-lens external review
-- Role: specification author / adversarial committed-blob reviewer; no Banana implementation ownership and no Arena mutation authority
+- Updated UTC: 2026-08-09T07:27:00Z
+- State: all currently unblocked inbox assignments processed and handed off
+- Role: specification author / committed-blob reviewer; no bot implementation or Arena authority
 - Canonical branch: `agent/chatgpt_1`
-- Current task: await M3a toolchain reviews; M3b adjudication remains blocked on accepted M1 and an owner-selected/reviewed M3a substrate
+- Current task: awaiting revised artifacts and external execution evidence
 - Running job: none
 
-## M3a golden bundle — scripts are first-class reviewed toolchain members
+## Transport
 
-- Owner ruling adopted: the generated JSON is the golden **data**; the extractor, bundle verifier and mutation tests are the trusted golden **toolchain** and cannot change independently
-- Extractor:
-  `chatgpt_1/m3a_extract_from_panel.py`
-- Golden data:
-  `chatgpt_1/m3a-d1-situation-library-2026-08-10.json`
-- Exact bundle verifier:
-  `chatgpt_1/m3a_verify_golden_set.py`, commit `8e0bf07f472d8c6b700da9c6bcf3163d6c689bf6`
-- Mutation/regeneration tests:
-  `chatgpt_1/test_m3a_golden_set.py`, commit `0b25f37602cf25f90490389856b15e6baa117189`
-- Golden manifest:
-  `chatgpt_1/m3a-golden-set-manifest-2026-08-10.json`, commit `578c05951c649c7b7b3fa656341d11049f746d87`
-- Review contract:
-  `chatgpt_1/m3a-golden-bundle-review-contract-2026-08-10.md`, artifact commit `8d9f182e20c67fdecf2aa050283c1c27e141139b`
-- External review handoff:
-  `coordination/messages/chatgpt_1/20260810T163000Z-20260810-m3a-golden-bundle-review-handoff.md`, commit `40fa36f0af83f3796f91c5e81cfa76c97f467144`
-- Required reviewers:
-  `local_claude_1` for second-machine execution/integration; `claude_1` for cross-implementation line-by-line method review
-- Required evidence: byte-exact regeneration; verifier `VERIFIED`; tests pass without skips; deletion, duplication, window edit, non-D1 source drift and output drift all caught
-- Renewal rule: any source/script/test/output byte change requires a new manifest version, regenerated output/hashes and the same reviews; changing only expected counts/hashes is forbidden
-- Self-acceptance: **none** — authored through the GitHub connector; repository execution is explicitly delegated to external review
+- Current `main` transport blobs were synchronized to the canonical branch at commit `99eff6670235ecd6b12ca33b8b382d96faa288c2`.
+- Dual-format ACK commit: `128b38778b31b9687884696fd698adb76eef3311`.
 
-## M3a second extraction — completed with contamination disclosure
+## TRAIN referee r3
 
-- Policy:
-  `coordination/messages/local_claude_1/20260810T150000Z-20260810-m3a-independent-replication-policy.md`
-- Exact ACK:
-  `coordination/messages/chatgpt_1/20260810T153000Z-20260810-m3a-independent-replication-ack.md`
-- ACK commit: `e24bee8f951b2e17422d7f13da81dd547284b554`
-- Independence status: **not blind** — Claude's handoff headline had been read before this assignment existed; disclosed before extraction
-- Extractor commit: `647a93d7688607de3b8d96cb732d693a68b88090`
-- Frozen base-panel ledger commit: `bf5756a23396f7b711655b4c32b2577b6fa542aa`
-- Replication report commit: `f7be614e1f3ecdaa76e523bbab450143ae23a98b`
-- Reconciliation commit: `6798134f136a095dcc871419b3cd4cf5feb80d40`
-- Original handoff commit: `a566fc8371967782186288cff531f978c09d52e7`
-- Base-panel result: **34 D-1 episodes / 32 game situations; 20 episodes / 19 situations have >=62 states**
-- Frozen ledger digest:
-  `8e05b8aeb9fa90449819558f2c638a358f9c8667c35ea28d2fc2788b02fffc5d`
-- Idle-blocker result: **`UNRESOLVED_FROM_BASE_PANEL`** — the source JSON contains no peer identity, commands or entry-state trace
-- Reconciliation: Claude's 47 is `36 D-1 + 10 P4-only stalls + 1 real-corpus partial`, from a different slim bot/c3 run and a different geometry/mechanism dedupe; `47-34 = 2+10+1`
-- Owner decision required before M3b: use the original `98628e98` 34-episode subject or explicitly adopt Claude's broader mixed-source c3 library; do not mix subject and evidence
-- Cure status: idle-yield remains a strong single-extraction hypothesis, not an independently replicated fact
+- Reviewed artifact: `acf05b18c4a840f01d9dacbe1a0b1cc497324692`.
+- ACK: `9249283e959aa8563eb3039c14a289cdcd153f22`.
+- Review: `chatgpt_1/referee-train-repair-r3-review-2026-08-09.md` at `07a37c0b02ac04ccf718d9251eedc3f0721dd8d1`.
+- Handoff: `084c200cfc69b473f0da3830949a6fcf71311e9f`.
+- Disposition: **`DISPATCH_LAYER_ACCEPTED — PANEL_REVISION_REQUIRED`**.
+- Panel remains **`GATE_UNREADY`** pending independent execution, opponent-transition repair or scope reduction, parent fail-closed handling, durable exact error evidence, and a committed parent-versus-parent floor packet.
 
-## TRAIN referee repair r2 — reviewed, not accepted
+## M2 hierarchy method
 
-- Reviewed artifact: `67de90ddc35eea04b24dac2acac2a182b23a13e1`
-- Review:
-  `chatgpt_1/referee-train-repair-r2-review-2026-08-10.md`
-- Review commit: `d6bdaedd71a2d481b951934d41f0ac29b4375bf9`
-- Handoff commit: `a9ef72722f72f1c962399f2df5604f35f78f7807`
-- Verdict: **`REVISION_REQUIRED — NOT ACCEPTED`**; panel remains `GATE_UNREADY`
-- Remaining blockers: malformed TRAIN fails open; complete phase order and first-command-per-unit parsing absent; incomplete timing matrix; no independent full-state differential; no per-row execution/TRAIN/spawn provenance; version keys fail open; weak m040 packet; scratch-only evidence; no coordinator execution-review handoff
-- P4, D-9 calibration, gate revision 3, D-4 and candidate verdicts remain parked
+- Reviewed artifact: `129974c34ed983737b63d131adc436bf2e142aa9`.
+- ACK: `f5776ca453ebdbc82f303ff91b9dcc81ee073972`.
+- Review: `chatgpt_1/score-hierarchy-method-packet-review-2026-08-09.md` at `ed7ab8f118f33217d8c48ed1a1036394cecc5e12`.
+- Handoff: `f2b58eea9938e438e96d543205341bec6fafbfdb`.
+- Disposition: **`METHOD_CORE_ACCEPTED — REVISION_REQUIRED`**.
+- Required: typed finding/witness ledger, corrected interval endpoint logic, narrower AX headline, exact-subject witnesses, full-pipeline drift anchors, and independent execution.
 
-## M1 Decision Packet — specification delivered
+## M3a and golden bundle
 
-- Spec:
-  `chatgpt_1/decision-packet-spec-2026-08-10.md`
-- Spec commit: `593c995f7640775f32344431d74cbc3bd4881c8b`
-- Handoff commit: `6cabf57d717aa676c2004f5158f823463152a666`
-- Implementation owner: `claude_1`; execution review: `local_claude_1`; spec-conformance review: `chatgpt_1`
-- Status: awaiting implementation
+- Exact-subject result: **34 D-1 episodes / 32 source-game situations; 20 episodes are terminal-length**.
+- Wrong-subject correction ACK: `028ae3385b254682dae470df6de6a23b6dd1b78c`.
+- Golden execution review ACK: `11399a3a909a75604a8f281a1e695b3ae26c1929`.
+- Exact source panel added to the canonical ref at `3eb0b25169a8d3178e972ba08fa6cd2f9fc4e476`.
+- Golden bundle still requires an exact regenerated JSON blob and manifest renewal; repair request: `be54866611a4cc7e40674eac9e3c912630c92a78`.
+- Broken LFS probe deletion is prepared at `6f39118d1c60e905489035c0b13e66637c893127` on branch `agent/chatgpt_1-remove-broken-lfs-probe-20260811`.
 
-## M2 score-hierarchy audit — core ratified with correction
+## M1 / M3b
 
-- Corrected disposition: **`RATIFY_CORE_WITH_RECLASSIFICATION — METHOD_PACKET_REQUIRED`**
-- Original review commit: `98635174207854605436d5e28973f67b39ca8dcd`
-- Correction artifact commit: `35725bb5d251f427555603bbce0a868aa13d01ad`
-- Correction handoff commit: `fab54a0bc36ff31a7826092ec8d10b840d799bc1`
-- Required completion: generated source registry, reachable-range/call-site proofs, typed finding ledger, committed witnesses, X5/X6 hypothesis labels, drift checks and coordinator execution sample
+- M1 Decision Packet specification is delivered; implementation is pending.
+- M3b independent adjudication remains blocked on accepted M1 tooling and a reviewed exact-subject M3a substrate.
 
-## Standing boundaries
+## Boundaries
 
-- Current `main` transport tooling is authoritative; agent-branch copies are snapshots.
-- Connector-based exact-blob analysis; no private-repository execution claimed.
-- No bot, candidate, parent, detector, referee implementation, gate implementation, host game, value protocol, TestSession, submission, restore or Arena action performed.
-- Banana R2 work owner: `claude_1`.
-- Coordinator/integrator and sole Arena controller: `local_claude_1`.
-- Arena controller: no.
+- No bot, candidate, detector, gate, host run, TestSession, submission, restore, or Arena state was changed.
