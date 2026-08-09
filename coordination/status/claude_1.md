@@ -1,38 +1,33 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-08T22:00:00Z
-- State: Phase 1 measurement repair; three items delivered, three queued
-- Role: contributor; **execution reviewer** on every artifact (coordinator = `local_claude_1`; `chatgpt_1` = adversarial/committed-blob reviewer)
-- Branch: agent/claude_1-banana-restoration-r2; canonical agent/claude_1; worktree /home/tarstars/prj/troll_farm-claude_1
-- Write set: claude_1/**, my message namespace, this status file. NOT trace_detectors.py (detector semantics = local_claude_1 since 2026-08-08)
+- Updated UTC: 2026-08-11T23:59:00Z
+- State: all deliverables with reviewers; nothing unblocked on my side
+- Role: contributor + **execution reviewer** on every artifact (coordinator, integrator, arena controller AND detector-semantics owner = `local_claude_1`; `chatgpt_1` = adversarial/committed-blob reviewer)
+- Branch: agent/claude_1-banana-restoration-r2; canonical agent/claude_1
+- **Read `claude_1/SESSION-FINDINGS-2026-08-07-to-11.md` before acting.** It carries the programme state, the measured findings, and the error patterns.
 
-## Where the programme actually stands
+## Blocking state
 
-- **The gate blocks its own reference: 118/240.** Perfect raw D-1/D-4 compliance moves it only to **106** (12 of 118 games block solely on D-1/D-4). Measurement repair precedes bot repair — the owner-adopted ordering, driven by my feasibility scoping.
-- **Strict rule STANDS** (owner, reaffirmed 08-07): raw `D-1 == 0`, `D-4 == 0`, no exemption. Consequence accepted: the parent lineage must be repaired.
-- **D-9 is `INAPPLICABLE`** — not unproven. The panel is *built* so the parent can never TRAIN: second worker injected at bias 0.5 → `can_train` false at `yamo_orchard_live.rs:836` (`n >= 2 || TOTAL_TURNS - turn <= 20`); otherwise PLUM granted at 1 vs cost 2. Do not build a fixture for its paired clauses.
-- **D-6 enforces a retired predicate.** `founding_safety_oracle` (design F4 replacement) is called by **zero detectors**; `detect_d6` still uses arrival-order. Any verdict citing D-6 is unsound; its 9 floor games must not be quoted.
-- **Bite-test suite pins ~a third of its behaviour.** Mutation sweep: 64 mutants, 20 caught / 44 survived. 0 of 9 pairs establish truth validity; exactly one independent truth label exists (`founding_safety_oracle`, unused).
-- **D89a** (banana seed factory, +79.44 margin, CI [+40.99,+117.89]) is real and was never Arena-tested. My `NOT_REPAIRABLE` was **withdrawn** → `UNRESOLVED, leaning NOT_REPAIRABLE` after chatgpt_1 showed D92's 898 selections were nominal, not landed. Next step is U4, read-only, map-held-out.
-- Lineage preservation: the D89a/ring work exists **only on `origin/agent/local_codex_1`** (author inactive). Mirroring requested.
+- **The panel is `GATE_UNREADY`** and gates the programme. TRAIN referee repair **r4 delivered**, awaiting `chatgpt_1` acceptance + `local_claude_1` execution review (B1). r1/r2 `NOT ACCEPTED`; r3 dispatch-layer accepted only.
+- **Parked behind acceptance:** P4 post-`C_T`, D-4 repair (Round 2, serialises — touches the parent), gate revision 3, D-9 calibration, all candidate verdicts. Do not restart without checking the ruling.
+- Instrument `fuzz-panel/5` · corpus `c5-two-player-phase-merged-2026-08-11`. **Floor (parent vs itself) = 118/240. Candidate run (banana `eac2eb36` vs parent) = 121/240.** Different quantities; `run_identity` is now machine-checked.
 
-## My Phase 1 items
+## Delivered, with reviewers
 
-- DELIVERED: item 4 detector bite-test audit (`f9b102c1`); item 6 I-30 + revision 2 (`258818cb`, schema v2, 48/48, aggregate `GATE_UNREADY`, zero PASS); D-9 calibration execution review; gate architecture revision-2 execution review (**`PARTIAL` — design commitments cannot be execution-reviewed until code lands**).
-- QUEUED: **item 3** P4 liveness post-`C_T` referee-state rule (32 games); **item 8** D-4 repair (single-door bank serialisation, 6/6 on 1-door maps, 0/210 elsewhere); **item 7** exit floor self-test on two machines (with `local_claude_1`); completion of the item-5 execution review once implemented.
-- I-30 open: never run against a real recorded pair, so the `unknown`/`GATE_UNREADY` firing rate is unknown — if high, the instrument is safe but unusable and the referee-side ledger returns. Identifiability rule sufficient for 3 enumerated ambiguity classes, **not proven complete**. D2–D4 deviations open, unrelied-upon.
+TRAIN r4 (+ artifact-commit correction) · M2 score-hierarchy method packet rev 2 · I-30 rev 3 · bite-test audit revision · `oscillation-library-98628e98` (34 situations, correct subject) · oscillation attack answer.
 
-## Standing lessons that keep recurring
+## Owed when unparked
 
-- **A mechanism that cannot fail is not a check.** D-9 (clause never runs), D-6 (retired predicate), my own I-30 tie-break (reproducible, not identifiable) — three instances, one day.
-- Bite-tests measure detector-vs-spec; the floor measures detector-vs-parent; **neither measures detector-vs-truth**. Independent oracles are a third requirement.
-- **Re-derive, never repeat**, any figure crossing a document boundary — my `+12.453/+76.508` over-claim propagated into the CBF spec and BACKLOG before being caught.
-- Read a prose figure to the end of its paragraph before citing it (the D92 "898 selections" qualification sat 9 lines below).
-- State the unit: games vs episodes (74/196, 32/35, 63/68) produced three "contradictions" that were all the same measurement.
+M1 Decision Packet implementation (spec frozen by `chatgpt_1` against `98628e98`; behind r4 acceptance) · M3b adjudication (needs M1 + valid M3a) · P4 re-do on c5 evidence · D-4 repair · gate revision 3 execution review. **With the owner:** the D89a label; whether to fund a fresh 512-row corpus for U4.
+
+## Do not cite
+
+The `+12.453/+76.508` D89a split (`UNRESOLVED`, TSVs never committed) · `oscillation-library/` as M3a (it is parent lineage `a8eb3b2b`) · D-9 as `INAPPLICABLE` or "196 false positives" (now `INSTRUMENT_UNSUPPORTED / GATE_UNREADY`) · D-6 as falsified (it is a `CONTRACT AUTHORITY: CONFLICT`) · any floor figure for the ~10 of 17 rules lacking a corpus witness.
 
 ## Transport
 
-- **`ack_for` is INERT unless `type: ack`.** I broke this three times in two days (in a `handoff`, and twice in a `correction`); proposed a lint rule to error on it. Always publish a separate `type: ack`.
-- Run `python3 scripts/lint_outbox.py --me claude_1 --fetch` before every publish. `pytest` is NOT installed — use `python3 -m unittest`.
-- Quarantine enforcement exists on **1 of 55 refs**; my canonical branch carries neither `quarantine.json` nor `legacy-baseline.json`, so my sweep ignores quarantine. Five sweep versions live — verify which you are running.
-- Arena controller: NO. Sacred: `rust/src/bin/yamo_orchard_live.rs` (fff6669b). No CI anywhere.
+**Dual-format MANDATORY** (v2 front matter + legacy `- To:` bullets) — a peer was blind to v2 for ten days. **`ack_for` is inert unless `type: ack`** (I broke this 4x). **Gate publishes on `lint_outbox.py` EXIT STATUS**, not on grepping its output. `pytest` absent — use `python3 -m unittest`. Push before citing: *unpushed is unsent*, and a stale remote-tracking ref makes `git merge` a silent no-op. Never `git add -A` — agents share this tree.
+
+## Standing constraints
+
+Arena controller: **NO**. `rust/src/bin/yamo_orchard_live.rs` (`fff6669b`) byte-untouchable; `engine.rs` (`7c240abf`) is the authority, not any bot's self-restraint. `trace_detectors.py` is `local_claude_1`'s. No CI anywhere.
