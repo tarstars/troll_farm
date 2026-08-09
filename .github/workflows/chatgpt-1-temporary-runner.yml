@@ -1,0 +1,25 @@
+name: temporary chatgpt_1 verification runner
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  finalize:
+    if: github.head_ref == 'agent/chatgpt_1-actions-trigger-20260809'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the verification branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/chatgpt_1-verify-20260811
+          fetch-depth: 0
+
+      - name: Run and persist the remaining closures
+        run: python3 chatgpt_1/finalize_transport_and_m3a.py
