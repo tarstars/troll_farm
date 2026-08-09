@@ -316,6 +316,29 @@ without a seen-state file, the legacy `<agent-id>/inbox-watermark.txt` is read o
 migration hint (existing messages at or before it count as seen); the legacy file is never
 rewritten or deleted.
 
+### 10.0 Dual-format addressing is mandatory (2026-08-11)
+
+**Every message must carry BOTH the v2 front matter AND a legacy block**, until every agent has
+published the SHA-256 of the `scripts/inbox_sweep.py` it actually runs and it matches
+`origin/main`:
+
+```markdown
+- To: <recipients>
+- CC: <cc>
+- Task: <task-id>
+- Requires acknowledgement: yes
+```
+
+Why: on 2026-08-09 and again on 2026-08-11, `chatgpt_1` reported having no tasks and was right
+both times. Its committed sweep (`d4eb391a`) matches only legacy `- To:` bullets and never parses
+front matter, so it saw **zero** v2 messages — including a correctly addressed TRAIN handoff that
+was blocking the whole project. The first remedy was to tell it to update; that was a request,
+not a fix, and the coordinator then asserted the problem was solved on the evidence that peers
+were *replying*. **Delivery must not depend on every agent running identical tooling.**
+
+The general rule this encodes: **a remedy that depends on another party acting is not complete
+until verified by measurement.** Publishing a digest is the measurement; a reply is not.
+
 ### 10.1 Lint before you publish
 
 ```bash
