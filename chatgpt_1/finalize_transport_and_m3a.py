@@ -12,7 +12,6 @@ from __future__ import annotations
 import difflib
 import hashlib
 import json
-import os
 import subprocess
 import sys
 from pathlib import Path
@@ -26,6 +25,7 @@ VERIFIER = REPO / "chatgpt_1/m3a_verify_golden_set.py"
 TESTS = REPO / "chatgpt_1/test_m3a_golden_set.py"
 EXTRACTOR = REPO / "chatgpt_1/m3a_extract_from_panel.py"
 VERIFY_BRANCH = "agent/chatgpt_1-verify-20260811"
+BUNDLE_ARTIFACT_PATHS: list[str] = []
 
 
 def run(*args: str, check: bool = False) -> subprocess.CompletedProcess[str]:
@@ -54,7 +54,38 @@ def write(name: str, text: str) -> None:
     (OUT / name).write_text(text, encoding="utf-8")
 
 
+def materialize_missing_member(relative_path: str) -> str | None:
+    """Vendor an absent pinned member byte-for-byte from an authoritative ref."""
+    target = REPO / relative_path
+    if target.is_file():
+        return None
+
+    refs_result = run(
+        "git", "for-each-ref", "--format=%(refname)", "refs/remotes/origin"
+    )
+    refs = ["refs/remotes/origin/main"] + [
+        line.strip()
+        for line in refs_result.stdout.splitlines()
+        if line.strip() and line.strip() != "refs/remotes/origin/main"
+    ]
+    for ref in refs:
+        result = subprocess.run(
+            ["git", "show", f"{ref}:{relative_path}"],
+            cwd=REPO,
+            capture_output=True,
+        )
+        if result.returncode == 0:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(result.stdout)
+            return ref
+    raise RuntimeError(
+        f"missing manifest member on every authoritative remote ref: {relative_path}"
+    )
+
+
 def renew_bundle() -> tuple[int, int]:
+    global BUNDLE_ARTIFACT_PATHS
+
     regenerated = OUT / "m3a-d1-situation-library-regenerated.json"
     extract = run(
         sys.executable,
@@ -122,12 +153,18 @@ def renew_bundle() -> tuple[int, int]:
         "python3 chatgpt_1/m3a_verify_golden_set.py --manifest "
         "chatgpt_1/m3a-golden-set-manifest-v2-2026-08-09.json"
     )
+
+    BUNDLE_ARTIFACT_PATHS = [artifact["path"] for artifact in manifest["artifacts"]]
+    vendored: dict[str, str] = {}
     for artifact in manifest["artifacts"]:
+        source_ref = materialize_missing_member(artifact["path"])
+        if source_ref:
+            vendored[artifact["path"]] = source_ref
         path = REPO / artifact["path"]
-        if not path.is_file():
-            raise RuntimeError(f"missing manifest member: {artifact['path']}")
         artifact["git_blob_sha1"] = git_blob_sha1(path)
         artifact["sha256"] = sha256(path)
+    manifest["renewal"]["vendored_missing_members_from"] = vendored
+
     NEW_MANIFEST.write_text(
         json.dumps(manifest, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
@@ -157,6 +194,7 @@ def renew_bundle() -> tuple[int, int]:
                 f"golden_git_blob={git_blob_sha1(GOLDEN)}",
                 f"manifest_sha256={sha256(NEW_MANIFEST)}",
                 f"manifest_git_blob={git_blob_sha1(NEW_MANIFEST)}",
+                f"vendored_members={json.dumps(vendored, sort_keys=True)}",
                 "",
             ]
         ),
@@ -241,9 +279,11 @@ def commit_and_push() -> str:
         "chatgpt_1/m3a-golden-bundle-renewal-2026-08-09.md",
         "chatgpt_1/transport-verification-2026-08-09.md",
         "chatgpt_1/verification",
+        *BUNDLE_ARTIFACT_PATHS,
     ]
+    paths = list(dict.fromkeys(paths))
     run("git", "add", "--", *paths, check=True)
-    commit = run(
+    run(
         "git",
         "commit",
         "-m",
