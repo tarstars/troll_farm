@@ -1,0 +1,562 @@
+{
+  "_comment": [
+    "Frozen ledger for the score-hierarchy audit method packet (item M2).",
+    "Companion document: score-hierarchy-audit-method-2026-08-10.md.",
+    "Every 'range' and every 'assumption' below is a HUMAN claim with a citation and a",
+    "proof method. The checker does arithmetic and drift detection only; it does not",
+    "derive bounds from Rust source and must never be described as if it did.",
+    "Citations: R:n = line n of the subject (sha256 98628e98...)."
+  ],
+  "ledger_version": "1.0.0",
+  "created_utc": "2026-08-10T00:00:00Z",
+  "subject": {
+    "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+    "git_ref": "origin/main:cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+    "sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+    "role": "AUTHORITATIVE for every question about what the shipped candidate scores",
+    "line_count": 1475
+  },
+  "companion": {
+    "path": "rust/src/bin/yamo_orchard_live.rs",
+    "sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "role": "AUTHORITATIVE only for questions about the dev-side sacred resident; NOT a source of evidence about the subject",
+    "note": "Different program from the subject. Routinely cited interchangeably in project documents. Any claim carrying a Y: citation is out of scope for a subject-level finding."
+  },
+  "rules_authority": {
+    "path": "rust/src/game/engine.rs",
+    "sha256": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+    "role": "AUTHORITATIVE for what the engine does with an emitted command"
+  },
+  "census": [
+    {
+      "line": 319,
+      "op": ":",
+      "text": "command:String,score:f64,target:Target,",
+      "fingerprint": "b51e3a6d5c307fc2"
+    },
+    {
+      "line": 382,
+      "op": ":",
+      "text": ",score:ifat_drop{",
+      "fingerprint": "c92252d500f664a4"
+    },
+    {
+      "line": 394,
+      "op": ":",
+      "text": "command:format!(\"MOVE{}{}{}\",unit.id,view.shacks[0].0,view.shacks[0].1),score:7_000.0,target:Target::Shack,",
+      "fingerprint": "d19d8c551674ed5f"
+    },
+    {
+      "line": 467,
+      "op": ":",
+      "text": "command:format!(\"HARVEST{}\",unit.id),score:base_score+900.0,target:Target::Tree(unit.cell),",
+      "fingerprint": "268706c4399e5788"
+    },
+    {
+      "line": 479,
+      "op": ":",
+      "text": "command:format!(\"MOVE{}{}{}\",unit.id,plant.cell.0,plant.cell.1),score:base_score-(travel+wait)asf64,target:Target::Tree(plant.cell),",
+      "fingerprint": "6174baec2069c9ab"
+    },
+    {
+      "line": 489,
+      "op": ":",
+      "text": "command:format!(\"MINE{}\",unit.id),score:base_score+900.0,target:Target::Cell(unit.cell),",
+      "fingerprint": "9d7bba8fee8bb746"
+    },
+    {
+      "line": 501,
+      "op": ":",
+      "text": "command:format!(\"MOVE{}{}{}\",unit.id,cell.0,cell.1),score:base_score-*dasf64,target:Target::Cell(cell),",
+      "fingerprint": "1c6c3490ad7d15a0"
+    },
+    {
+      "line": 619,
+      "op": "=",
+      "text": "letmutscore=1000.0*woodasf64/turnsasf64;",
+      "fingerprint": "ed40e7ed39348dba"
+    },
+    {
+      "line": 622,
+      "op": "+=",
+      "text": "score+=900.0/(1+opponent_distance)asf64;",
+      "fingerprint": "a2797d6719f2552a"
+    },
+    {
+      "line": 640,
+      "op": ":",
+      "text": "command:\"WAIT\".to_string(),score:0.0,target:Target::None,",
+      "fingerprint": "cb56e9cd8b5ed03b"
+    },
+    {
+      "line": 683,
+      "op": "=",
+      "text": "letscore=a.score+b.score;",
+      "fingerprint": "88726cd81d8582b8"
+    },
+    {
+      "line": 962,
+      "op": ":",
+      "text": "command:format!(\"MOVE{}{}{}\",unit.id,cell.0,cell.1),score:20_000.0,target:Target::Cell(cell),",
+      "fingerprint": "6ba8b3dc5f6d68e4"
+    },
+    {
+      "line": 987,
+      "op": ":",
+      "text": "command:format!(\"DROP{}\",blocker.id),score:20_000.0,target:Target::Cell(door),",
+      "fingerprint": "c370c9ba4d7629ad"
+    },
+    {
+      "line": 1059,
+      "op": ":",
+      "text": "command:format!(\"DROP{}\",blocker.id),score:20_000.0,target:Target::Cell(door),",
+      "fingerprint": "c370c9ba4d7629ad"
+    },
+    {
+      "line": 1163,
+      "op": "-=",
+      "text": "candidate.score-=opponent_eta_penaltyasf64*risk;",
+      "fingerprint": "34e5d37a9efc8307"
+    },
+    {
+      "line": 1180,
+      "op": ":",
+      "text": "command:format!(\"PICK{}{}\",unit.id,kind.as_str()),score:7500.0-priorityasf64,target:Target::Cell(unit.cell),",
+      "fingerprint": "f8f6529771903532"
+    },
+    {
+      "line": 1261,
+      "op": ":",
+      "text": ",score:ifat_target{",
+      "fingerprint": "c5cd864d5d596fd9"
+    },
+    {
+      "line": 1283,
+      "op": "=",
+      "text": "current.score=10_000.0;",
+      "fingerprint": "63f0f679d61b1173"
+    },
+    {
+      "line": 1299,
+      "op": ":",
+      "text": "command:format!(\"PICK{}{}\",unit.id,kind.as_str()),score:conversion_score,target:Target::Cell(unit.cell),",
+      "fingerprint": "24ea433d4ef4a898"
+    },
+    {
+      "line": 1331,
+      "op": ":",
+      "text": "command:format!(\"MOVE{}{}{}\",unit.id,cell.0,cell.1),score:conversion_score,target:Target::Cell(*cell),",
+      "fingerprint": "707a4250e171c60b"
+    },
+    {
+      "line": 1365,
+      "op": ":",
+      "text": ",score:1.0/trip.max(1)asf64,target:Target::Tree(plant.cell),",
+      "fingerprint": "c460d6c48625c3bd"
+    },
+    {
+      "line": 1422,
+      "op": ":",
+      "text": "command:format!(\"MOVE{}{}{}\",unit.id,cell.0,cell.1),score:6_500.0,target:Target::Cell(cell),",
+      "fingerprint": "e85035c65412f241"
+    }
+  ],
+  "bindings": [
+    {
+      "fn": "fruit_candidates",
+      "arg_index": 3,
+      "expect_calls": [
+        455
+      ],
+      "expect_literal_args": [
+        "6_000.0"
+      ],
+      "claim": "one reachable call site, base_score bound to the literal 6_000.0",
+      "evidence_state": "SOURCE_PROVED"
+    },
+    {
+      "fn": "iron_candidates",
+      "arg_index": 2,
+      "expect_calls": [
+        448
+      ],
+      "expect_literal_args": [
+        "6_100.0"
+      ],
+      "claim": "one reachable call site, base_score bound to the literal 6_100.0",
+      "evidence_state": "SOURCE_PROVED"
+    },
+    {
+      "fn": "chop_outcome",
+      "expect_calls": [
+        607
+      ],
+      "claim": "single call site; the producer of chop_turns for the RM-1 range model",
+      "evidence_state": "SOURCE_PROVED"
+    },
+    {
+      "fn": "ticks_until_fruit",
+      "expect_calls": [
+        477,
+        821
+      ],
+      "claim": "two call sites; only R:477 feeds a score expression (RM-2)",
+      "evidence_state": "SOURCE_PROVED"
+    }
+  ],
+  "range_models": [
+    {
+      "id": "RM-1",
+      "site": "R:611,R:615-623 (S16 HARVEST-WOOD, chop / move-to-tree)",
+      "note": "Worked example A of the method packet. Reproduces the corrected chop bound (1500 base / 2400 with the absolute denial term). NOTE: the .max(1) clamp is reported DEAD whether or not chop_turns>=1 is propagated, because the `+1` literal alone forces the operand >= 1. Clamp-deadness is therefore NOT what catches the original manifest error; the propagated attainable interval of `turns` ([2,inf) vs [1,inf), giving 2400 vs 3900) is. See the packet, S2.5.",
+      "expr": [
+        "+",
+        [
+          "/",
+          [
+            "*",
+            1000,
+            "wood"
+          ],
+          "turns"
+        ],
+        [
+          "/",
+          900,
+          [
+            "+",
+            1,
+            "opponent_distance"
+          ]
+        ]
+      ],
+      "attainable": "(0, 2400]",
+      "inputs": {
+        "travel_turns": {
+          "range": "[0, inf)",
+          "citation": "R:595",
+          "method": "producer-invariant",
+          "assumption": "ceil_div(BFS distance, movement_speed) >= 0"
+        },
+        "chop_turns": {
+          "range": "[1, 100]",
+          "citation": "R:566-570 via the single call site R:607",
+          "method": "producer-invariant by loop-bound enumeration",
+          "assumption": "chop_outcome returns Some((turns,_)) only at R:569, inside `for turns in 1..=100` (R:566); every other path returns None and R:607 `let Some(..) else { continue }` discards it. THIS IS THE PRODUCER INVARIANT THE ORIGINAL MANIFEST FAILED TO PROPAGATE."
+        },
+        "return_turns": {
+          "range": "[0, inf)",
+          "citation": "R:603-606",
+          "method": "producer-invariant",
+          "assumption": "ceil_div of a BFS distance or of a Manhattan fallback; both >= 0"
+        },
+        "wood": {
+          "range": "[1, 3]",
+          "citation": "R:615-617",
+          "method": "guard + preset",
+          "assumption": "wood = final_size.min(free_capacity); `if wood<=0 { continue }` gives >=1; carry_capacity <= 3 from the shipped preset TUNED_CARRY max_carry_capacity:3 (R:327) and clamp(1,3) at R:850. UNRESOLVED for an initial roster shipping capacity > 3: then wood <= 4 (tree size cap, R:576) and the base bound rises to 2000."
+        },
+        "opponent_distance": {
+          "range": "[0, inf)",
+          "citation": "R:621",
+          "method": "producer-invariant",
+          "assumption": "manhattan(plant.cell, view.shacks[1]) >= 0; the value 0 requires a tree standing on the enemy shack cell."
+        }
+      },
+      "clamps": [
+        {
+          "site": "R:611",
+          "op": "max",
+          "bound": 1,
+          "expect": "DEAD",
+          "operand": [
+            "+",
+            "travel_turns",
+            "chop_turns",
+            "return_turns",
+            1
+          ],
+          "reading": "`.max(1)` cannot change a value whose attainable interval starts at 2"
+        }
+      ],
+      "derived": [
+        {
+          "name": "turns",
+          "expr": [
+            "max",
+            [
+              "+",
+              "travel_turns",
+              "chop_turns",
+              "return_turns",
+              1
+            ],
+            1
+          ],
+          "citation": "R:611",
+          "method": "producer-invariant propagation; expanded inline so the checker sees leaf variables"
+        }
+      ]
+    },
+    {
+      "id": "RM-1r",
+      "site": "R:615-623, realistic variant (opponent_distance >= 1)",
+      "note": "Same model with the enemy shack not itself a tree cell. Reproduces the audit's <= 1950.",
+      "expr": [
+        "+",
+        [
+          "/",
+          [
+            "*",
+            1000,
+            "wood"
+          ],
+          "turns"
+        ],
+        [
+          "/",
+          900,
+          [
+            "+",
+            1,
+            "opponent_distance"
+          ]
+        ]
+      ],
+      "attainable": "(0, 1950]",
+      "inputs": {
+        "travel_turns": {
+          "range": "[0, inf)",
+          "citation": "R:595",
+          "method": "producer-invariant",
+          "assumption": "ceil_div(BFS distance, movement_speed) >= 0"
+        },
+        "chop_turns": {
+          "range": "[1, 100]",
+          "citation": "R:566-570 via the single call site R:607",
+          "method": "producer-invariant by loop-bound enumeration",
+          "assumption": "chop_outcome returns Some((turns,_)) only at R:569, inside `for turns in 1..=100` (R:566); every other path returns None and R:607 `let Some(..) else { continue }` discards it. THIS IS THE PRODUCER INVARIANT THE ORIGINAL MANIFEST FAILED TO PROPAGATE."
+        },
+        "return_turns": {
+          "range": "[0, inf)",
+          "citation": "R:603-606",
+          "method": "producer-invariant",
+          "assumption": "ceil_div of a BFS distance or of a Manhattan fallback; both >= 0"
+        },
+        "wood": {
+          "range": "[1, 3]",
+          "citation": "R:615-617",
+          "method": "guard + preset",
+          "assumption": "wood = final_size.min(free_capacity); `if wood<=0 { continue }` gives >=1; carry_capacity <= 3 from the shipped preset TUNED_CARRY max_carry_capacity:3 (R:327) and clamp(1,3) at R:850. UNRESOLVED for an initial roster shipping capacity > 3: then wood <= 4 (tree size cap, R:576) and the base bound rises to 2000."
+        },
+        "opponent_distance": {
+          "range": "[1, inf)",
+          "citation": "R:621",
+          "method": "assumption (stated, not proved): no tree occupies the enemy shack cell"
+        }
+      },
+      "derived": [
+        {
+          "name": "turns",
+          "expr": [
+            "max",
+            [
+              "+",
+              "travel_turns",
+              "chop_turns",
+              "return_turns",
+              1
+            ],
+            1
+          ],
+          "citation": "R:611",
+          "method": "producer-invariant propagation; expanded inline so the checker sees leaf variables"
+        }
+      ]
+    },
+    {
+      "id": "RM-2n",
+      "site": "R:479 (S15 EQUIP, MOVE toward a fruit tree) -- NAIVE form",
+      "note": "Worked example B, step 1. `travel` occurs twice, so interval arithmetic loses precision; the checker labels this OVER_APPROX. The computed lower end 5817 is NOT proved attainable.",
+      "expr": [
+        "-",
+        "base_score",
+        [
+          "+",
+          "travel",
+          [
+            "max",
+            [
+              "-",
+              "ticks_until_fruit",
+              "travel"
+            ],
+            0
+          ]
+        ]
+      ],
+      "attainable": "[5817, 6000]",
+      "inputs": {
+        "base_score": {
+          "range": "[6000, 6000]",
+          "citation": "R:455",
+          "method": "call-graph binding (see bindings/fruit_candidates)"
+        },
+        "travel": {
+          "range": "[0, 83]",
+          "citation": "R:476",
+          "method": "panel-bounded assumption: corpus maps are <= 14x6 (fuzz/failures/m085-s0/candidate-transcript.txt:1-6), so a BFS distance is <= 83 cells and movement_speed >= 1"
+        },
+        "ticks_until_fruit": {
+          "range": "[0, 100]",
+          "citation": "R:409-431",
+          "method": "producer-invariant by loop-bound enumeration: returns 0 at R:411, or `turns` from `for turns in 1..=100` (R:416) at R:426, or the literal 100 at R:430"
+        }
+      },
+      "clamps": [
+        {
+          "site": "R:477",
+          "op": "max",
+          "bound": 0,
+          "expect": "NOT_PROVED_DEAD",
+          "operand": [
+            "-",
+            "ticks_until_fruit",
+            "travel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RM-2x",
+      "site": "R:479 (S15) -- SINGLE-OCCURRENCE rewrite",
+      "note": "Worked example B, step 2. travel + max(ticks - travel, 0) == max(ticks, travel), so each variable occurs once and the checker reports EXACT. Both forms refute a closed 6000 lower boundary for the upper tier (chatgpt_1 review C3).",
+      "expr": [
+        "-",
+        "base_score",
+        [
+          "max",
+          "ticks_until_fruit",
+          "travel"
+        ]
+      ],
+      "attainable": "[5900, 6000]",
+      "inputs": {
+        "base_score": {
+          "range": "[6000, 6000]",
+          "citation": "R:455",
+          "method": "call-graph binding"
+        },
+        "travel": {
+          "range": "[0, 83]",
+          "citation": "R:476",
+          "method": "panel-bounded assumption"
+        },
+        "ticks_until_fruit": {
+          "range": "[0, 100]",
+          "citation": "R:409-431",
+          "method": "producer-invariant by loop-bound enumeration: returns 0 at R:411, or `turns` from `for turns in 1..=100` (R:416) at R:426, or the literal 100 at R:430"
+        }
+      }
+    },
+    {
+      "id": "RM-3",
+      "site": "R:501 (S13 EQUIP, MOVE toward iron)",
+      "note": "Companion to RM-2x. Penalty is in RAW CELLS, not turns (X4). Included so the two EQUIP site ranges are re-derivable side by side after the code moves.",
+      "expr": [
+        "-",
+        "base_score",
+        "d"
+      ],
+      "attainable": "[6017, 6100]",
+      "inputs": {
+        "base_score": {
+          "range": "[6100, 6100]",
+          "citation": "R:448",
+          "method": "call-graph binding (see bindings/iron_candidates)"
+        },
+        "d": {
+          "range": "[0, 83]",
+          "citation": "R:493-499",
+          "method": "panel-bounded assumption; raw BFS cell count, NOT divided by movement_speed"
+        }
+      }
+    },
+    {
+      "id": "RM-A1a",
+      "status": "APPENDIX_ONLY -- not part of the ratified M2 finding count",
+      "site": "R:1295 (S17 CONVERT PICK, turn <= 250), normal branch",
+      "note": "Appendix B of the method packet. conversion_turns from the loop branch of conversion_chop_turns (R:1216-1229).",
+      "expr": [
+        "-",
+        [
+          "/",
+          750,
+          [
+            "+",
+            "conversion_turns",
+            3
+          ]
+        ],
+        [
+          "/",
+          "priority",
+          100
+        ]
+      ],
+      "inputs": {
+        "conversion_turns": {
+          "range": "[1, 100]",
+          "citation": "R:1217-1220",
+          "method": "producer-invariant by loop-bound enumeration",
+          "assumption": "the `for turns in 1..=100` branch (R:1217) returns turns in [1,100] at R:1220"
+        },
+        "priority": {
+          "range": "[0, 3]",
+          "citation": "R:1287 with producer R:1203-1205",
+          "method": "producer-invariant by literal enumeration",
+          "assumption": "priority is the enumerate() index over inventory_fruits(view), which is built by filtering a 4-element array literal [BANANA, PLUM, LEMON, APPLE], so 0 <= priority <= 3."
+        }
+      },
+      "attainable": "[7.25155339806, 187.5]"
+    },
+    {
+      "id": "RM-A1b",
+      "status": "APPENDIX_ONLY -- not part of the ratified M2 finding count",
+      "site": "R:1295 (S17 CONVERT PICK, turn <= 250), sentinel branch",
+      "note": "Appendix B. conversion_chop_turns also returns the SENTINEL 10_000 at R:1208 (chop<=0) and at R:1230 (loop exhausted). The audit's stated floor of 7.28 for this site assumed the loop branch only. REACHABILITY OF THE SENTINEL AT THIS SITE IS UNRESOLVED -- this is a range-model observation, not a new finding.",
+      "expr": [
+        "-",
+        [
+          "/",
+          750,
+          [
+            "+",
+            "conversion_turns",
+            3
+          ]
+        ],
+        [
+          "/",
+          "priority",
+          100
+        ]
+      ],
+      "inputs": {
+        "conversion_turns": {
+          "range": "[10000, 10000]",
+          "citation": "R:1208-1209, R:1231",
+          "method": "literal return values",
+          "assumption": "sentinel branch taken when chop power <= 0 or the tree survives 100 chop turns"
+        },
+        "priority": {
+          "range": "[0, 3]",
+          "citation": "R:1287 with producer R:1203-1205",
+          "method": "producer-invariant by literal enumeration",
+          "assumption": "priority is the enumerate() index over inventory_fruits(view), which is built by filtering a 4-element array literal [BANANA, PLUM, LEMON, APPLE], so 0 <= priority <= 3."
+        }
+      },
+      "attainable": "[0.044977506748, 0.074977506748]"
+    }
+  ]
+}
