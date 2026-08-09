@@ -46,6 +46,13 @@
       "field_size": 137,
       "first_seen": "2026-08-03",
       "last_seen": "2026-08-04"
+    },
+    {
+      "era_id": "legend-139",
+      "label": "Legend division, 139-agent field",
+      "field_size": 139,
+      "first_seen": "2026-08-12",
+      "last_seen": "2026-08-12"
     }
   ],
   "sources": [
@@ -802,6 +809,29 @@
         "data/analysis/live-agent-6553250/e7a-r36-arena-execution-2026-08-04.md"
       ],
       "notes": "Behavior-exact to E7a on frozen gates; do not interpret the cold initial score as a complexity value."
+    },
+    {
+      "submission_id": 41113243,
+      "agent_id": 6604529,
+      "source_id": "e7a-readable-no-orchard-code-cost",
+      "source_attribution_confidence": "hash_verified_on_platform",
+      "deployed_at": "2026-08-12T16:10:00Z",
+      "era_id": "legend-139",
+      "deployment_purpose": "same_source_capacity_control",
+      "comparison_basis": "same_source_repeat",
+      "authority": "owner_directed_override",
+      "parent_submission_id": 41089629,
+      "replaced_by_submission_id": null,
+      "task_id": "20260812-readable-no-orchard-rerun-arena",
+      "protocol_id": null,
+      "disposition": "retained",
+      "disposition_rationale": "Second mature observation of the byte-identical source, taken to settle SINGLE_MATURE_RUN against the prior 24.76. Settled at 22.46/rank 35 over 160 games; owner ruled KEEP 2026-08-12. The 2.30-point spread between two mature runs of one hash is the primary result.",
+      "provenance": [
+        "coordination/tasks/20260812-readable-no-orchard-rerun-arena.md",
+        "data/analysis/live-agent-6553250/readable-no-orchard-rerun-20260812/submit.json",
+        "data/analysis/live-agent-6553250/readable-no-orchard-rerun-20260812/checkpoint-terminal.json"
+      ],
+      "notes": "Recovered source on the platform matched 98628e98 exactly; identity clean and zero runtime signals throughout."
     }
   ],
   "checkpoint_inputs": [
@@ -1211,6 +1241,17 @@
       "sha256": "0f4765143c9a43be9dfe78fa031a63111eb5f4a29565007d1a110ad8772a189b",
       "expect_agent_id": 6594200,
       "expect_submission_id": 41090606,
+      "observation_scope": "submission_scoped",
+      "observed_at_override": null,
+      "observed_at_override_evidence": null,
+      "is_terminal_audit": true
+    },
+    {
+      "observation_id": "obs-41113243-terminal160",
+      "path": "data/analysis/live-agent-6553250/readable-no-orchard-rerun-20260812/checkpoint-terminal.json",
+      "sha256": "8ef2c5f27a14a08168bec331bc46ab4a04381d4f4607bec813055d6cd5fda903",
+      "expect_agent_id": 6604529,
+      "expect_submission_id": 41113243,
       "observation_scope": "submission_scoped",
       "observed_at_override": null,
       "observed_at_override_evidence": null,

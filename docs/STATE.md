@@ -19,9 +19,12 @@ negative mass 6,790, `identity_clean=True`, `signals=0`.** No restore trigger ev
 
 **The result: the same source scored 24.76 last run and 22.46 this run — a 2.30-point spread
 between two mature 160-game observations of one byte-identical bot.** 24.76 was a favourable
-draw, not this source's level. This also puts the ±0.5–1 arena noise band in §3 in doubt (either
-it is understated or the ladder moved between runs; one pair cannot separate those) — treat any
-promotion argument resting on a sub-2-point mature delta as unsupported until it is separated.
+draw, not this source's level; the registry now carries both runs at median 23.61.
+**Correction 2026-08-12:** I initially read that spread as evidence the ±0.5–1 noise band was
+understated. Measurement says otherwise — pooled within-source SD across 4 repeated families is
+**0.957**, CI [0.658, 1.747] (§3). The band was about right; 2.30 is a wide draw from it. What
+does hold, and is now quantified rather than asserted: a sub-1-point mature delta is
+unresolvable at one run per arm, because the difference SD there is 1.353.
 At 22.46/rank 35/139 the live bot matches the displaced bot's 22.7/rank 35/139 standing, inside
 noise: the cycle neither gained nor cost ground — which is why KEEP costs nothing either.
 
@@ -120,8 +123,20 @@ makes the goalpost move in the wrong direction.
     little and n observations are worth a lot, the binding constraint is now cycle time and
     allocation, not candidate strength. Measured 2026-08-12: **a full 160-game mature read
     takes ~2 hours**, not days. Prefer **interleaved A/B/A/B ordering** over blocked runs, so
-    that ladder drift is not confounded with our own run-to-run variance — the two are
-    inseparable in the single pair we have.
+    that ladder drift is not confounded with our own run-to-run variance.
+  - ★ **THE NOISE BAND IS NOW MEASURED, AND MY EARLIER CLAIM THAT IT WAS UNDERSTATED WAS WRONG.**
+    `python3 cgauto/arena_noise_band.py` pools every source family in the registry with repeated
+    mature runs: **4 families, 13 observations, 9 d.o.f., pooled within-source SD = 0.957 score
+    points, 95% CI [0.658, 1.747].** The ±0.5–1 band was approximately right as a 1σ statement.
+    The 2.30 spread that prompted the ruling is a ~1.7-SD draw of a two-run difference — wide,
+    not anomalous, and I over-read it because a single pair carries almost no information about
+    a variance. That is the same error the registry's `SINGLE_MATURE_RUN` warning exists to
+    prevent, committed while reasoning *about* run-to-run variance.
+    **The owner's ruling stands and is strengthened, not weakened:** at σ ≈ 0.96 the SD of an
+    A-minus-B difference at one run per arm is **1.353**, so a +1.0 effect is invisible at n=1
+    and needs **8 runs per arm** to reach SE 0.5 (~32 h of ladder time). Gating candidates on
+    beating a band we can only cross with repetition is exactly backwards. Re-run the estimator
+    after every new mature observation; it is cheap and the CI is still wide.
   - **Unchanged:** mutations remain serialized through the **single arena controller**
     (now `local_claude_1` by owner reassignment — see the note in this section). No peer agent
     or subagent may submit. One cycle in flight at a time — that is a ladder-slot constraint,
