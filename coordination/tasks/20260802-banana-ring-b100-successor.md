@@ -1,10 +1,10 @@
 # 20260802-banana-ring-b100-successor: replace the unbounded factory with the gate-aware tent ring
 
-- Status: **DORMANT / CUSTODY TRANSFERRED 2026-08-12.** Proposed only; never implemented, and its
+- Status: **DORMANT / CUSTODY TRANSFERRED 2026-08-12.** Proposed only; never implemented, and
   record owner `chatgpt_1` is out of reach. Custody passes to the coordinator so the record is not
-  orphaned. **This is custody, not revival** — no work is assigned and none should start. The
-  bounded ring it proposes is the same lineage as the implementation-invalid ring trial
-  `6590136`/`41081465`; disposition belongs to `20260807-banana-disposition-review-*`.
+  orphaned. **Custody, not revival** — no work is assigned and none should start. The bounded ring
+  it proposes is the same lineage as the implementation-invalid ring trial `6590136`/`41081465`;
+  disposition belongs to `20260807-banana-disposition-review-*`.
 - Record owner: **local_claude_1** (custody, from `chatgpt_1`)
 - Work owner: unassigned — do not assign without an owner decision
 - Reviewer: unassigned

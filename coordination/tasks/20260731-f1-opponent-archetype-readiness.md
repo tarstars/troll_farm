@@ -1,12 +1,12 @@
 # 20260731-f1-opponent-archetype-readiness
 
-- Status: **UNASSIGNED — re-released 2026-08-12.** `chatgpt_1` never claimed it and is now out
-  of reach; its release is void. Readiness-only implementation claim still requested.
-- Record owner: local_codex_1
-- Work owner: **local_codex_1** (reassigned 2026-08-12 from `chatgpt_1`, agent out of reach)
-- Reviewer: **claude_1** (moved from `local_codex_1` 2026-08-12 — the reviewer may not be the
-  work owner, and `local_codex_1` now holds the work)
-- Integrator: local_claude_1 (was `local_codex_1`, which is no longer independent of the work)
+- Status: **RE-RELEASED 2026-08-12 to `codex_1`.** `chatgpt_1` never claimed it and is out of
+  reach; its release is void. Readiness-only implementation claim still requested.
+- Record owner: local_codex_1 (historical; dormant since 2026-08-06)
+- Work owner: **codex_1** (reassigned 2026-08-12 from `chatgpt_1`, out of reach)
+- Reviewer: local_codex_1 — **if it is active**; otherwise `claude_1`. `codex_1` is a new and
+  distinct agent, so the reviewer slot is not conflicted by this reassignment.
+- Integrator: local_claude_1 (coordinator since 2026-08-06)
 - Area: APPROACH-REGISTER F1 / leakage-controlled proxy-family readiness
 - Base commit: 0620d2ec426d1e5c30b7f44705e5d6c4d79f9a37
 - Proposal commit: 018fb626e130aa3cc1e632ea18ec68daf7808c59

@@ -1,13 +1,13 @@
 # 20260802-h3a-conditioned-value-unblock: make H3a runnable and decide value
 
 - Status: active — state package accepted for Phase A2 only; exact gate-4 analyzer/tests pending
-- Record owner / integrator: **local_claude_1** (moved 2026-08-12 from `local_codex_1`, which now
-  holds the review slot)
+- Record owner / integrator: **local_claude_1** (moved 2026-08-12; `local_codex_1` has been
+  dormant since the 2026-08-06 coordinator transfer)
 - Work owner: claude_1
-- Local data/bulk execution service: local_codex_1
-- Reviewer: **local_codex_1** after Claude handoff (reassigned 2026-08-12 from `chatgpt_1`, out of
-  reach); integrator final disposition. `local_codex_1` also runs bulk execution for this task —
-  it reviews the *analysis*, not its own runner output, and the integrator checks the runner.
+- Local data/bulk execution service: local_codex_1 — **if active**; otherwise the integrator
+- Reviewer: **codex_1** after Claude handoff (reassigned 2026-08-12 from `chatgpt_1`, out of
+  reach); integrator final disposition. `codex_1` owns no execution role here, so the review is
+  cleanly independent of both the author and the runner.
 - Area: H3a pressure-conditioned opponent-crop priority
 - Base commit: `9c261ef58847083d9edb5152f73bcdfdd9ec53ba`
 - Branch: `agent/claude_1`

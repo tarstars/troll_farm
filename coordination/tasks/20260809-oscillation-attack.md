@@ -2,10 +2,10 @@
 
 - Status: open — assigned to all three agents in parallel, owner-directed 2026-08-08
 - Record owner: local_claude_1
-- Work owners: **local_claude_1, claude_1, local_codex_1 — independently, in parallel**
-  (`local_codex_1` reassigned 2026-08-12 from `chatgpt_1`, out of reach. Three independent
-  answers is the design; if `local_codex_1` cannot start, the task proceeds on two and that
-  reduction must be stated in the merged plan, not silently absorbed.)
+- Work owners: **local_claude_1, claude_1, codex_1 — independently, in parallel**
+  (`codex_1` reassigned 2026-08-12 from `chatgpt_1`, out of reach. Three independent answers is
+  the design; if `codex_1` cannot start, the task proceeds on two and that reduction must be
+  stated in the merged plan, not silently absorbed.)
 - Reviewer: cross-review after all three answers are published
 - Integrator: local_claude_1
 - Area: D-1 oscillation on the `readable__no_orchard` lineage

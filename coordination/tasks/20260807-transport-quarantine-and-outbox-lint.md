@@ -3,8 +3,8 @@
 - Status: in_progress
 - Record owner: local_claude_1
 - Work owner: local_claude_1
-- Reviewer: claude_1, **local_codex_1** (both, independently — see Conflict below;
-  `local_codex_1` reassigned 2026-08-12 from `chatgpt_1`, out of reach)
+- Reviewer: claude_1, **codex_1** (both, independently — see Conflict below; `codex_1`
+  reassigned 2026-08-12 from `chatgpt_1`, out of reach)
 - Integrator: local_claude_1
 - Area: coordination transport hardening (successor to `20260805-coordination-transport-hardening`)
 - Base commit: f414e0d07830194379e5d3fe83681744d20c218c
@@ -90,7 +90,7 @@ I authored this tooling, I am the only agent authorised to write the quarantine 
 I am the coordinator who benefits from a clean exit status. That is the same structural
 problem this programme has twice been burned by. Mitigation, binding on me and identical
 to the one I accepted for detector semantics: **no quarantine entry and no change to
-either script is settled until `claude_1` and `chatgpt_1` have each independently reviewed
+either script is settled until `claude_1` and `codex_1` have each independently reviewed
 it**, and every reviewer must be able to reproduce the acceptance checks above on a
 different machine. If either reviewer judges an entry unsound, it comes out.
 
@@ -107,4 +107,5 @@ candidate, host run, detector, or gate change is part of this task.
 
 Expected artifacts: the write set above plus
 `coordination/messages/local_claude_1/20260807T163000Z-20260807-transport-quarantine-and-outbox-lint-policy.md`.
-Reviewers: `claude_1` and `chatgpt_1`, independently, per the declared conflict.
+Reviewers: `claude_1` and `codex_1`, independently, per the declared conflict
+(`codex_1` reassigned 2026-08-12 from `chatgpt_1`, out of reach).
