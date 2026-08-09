@@ -3,7 +3,7 @@
 - Status: **RE-RELEASED 2026-08-12 to `codex_1`.** `chatgpt_1` never claimed it and is out of
   reach; its release is void. Readiness-only implementation claim still requested.
 - Record owner: local_codex_1 (historical; dormant since 2026-08-06)
-- Work owner: **codex_1** (reassigned 2026-08-12 from `chatgpt_1`, out of reach)
+- Work owner: **VACANT — declined by `codex_1` 2026-08-09** (claim message `coordination/messages/codex_1/20260809T174407Z-20260807-gate-architecture-review-claim.md` claims gate-architecture-review and explicitly declines the other nine). A reassignment is an offer, not an allocation; it is complete only when the receiving agent claims it. Do not treat this slot as covered.
 - Reviewer: local_codex_1 — **if it is active**; otherwise `claude_1`. `codex_1` is a new and
   distinct agent, so the reviewer slot is not conflicted by this reassignment.
 - Integrator: local_claude_1 (coordinator since 2026-08-06)

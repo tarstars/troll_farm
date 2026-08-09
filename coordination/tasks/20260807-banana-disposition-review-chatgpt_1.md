@@ -3,14 +3,15 @@
 - Status: assigned — owner-directed 2026-08-07; **reassigned to `codex_1` 2026-08-12**
   (`chatgpt_1` out of reach); runs **after** `20260807-gate-architecture-review`
 - Record owner / integrator: `local_claude_1`
-- Work owner (reviewer): **`codex_1`** (reassigned 2026-08-12 from `chatgpt_1`)
+- Work owner (reviewer): **VACANT — declined by `codex_1` 2026-08-09** (claim message `coordination/messages/codex_1/20260809T174407Z-20260807-gate-architecture-review-claim.md` claims gate-architecture-review and explicitly declines the other nine). A reassignment is an offer, not an allocation; it is complete only when the receiving agent claims it. Do not treat this slot as covered.
 - Paired independent review: **`20260807-banana-disposition-review-claude_1`** (same corpus,
   no contact between reviewers before both handoffs land). The original pairing named a
-  `local_codex_1` review that was never delivered and was replaced by the `claude_1` one; the two
-  independent reviewers are therefore `codex_1` and `claude_1`.
+  `local_codex_1` review that was never delivered and was replaced by the `claude_1` one. With the
+  second slot vacant, **only `claude_1`'s review exists — the paired-independence design is not
+  currently satisfied**, and any disposition drawn from a single review must say so.
 - Area: retrospective disposition of the banana programme
 - Base commit: `3bc4abc558d03d7e8768e535ec8dfdab6c48c2ee` (canonical `agent/local_claude_1`)
-- Branch: **`agent/codex_1`** (canonical — task branches cannot satisfy a v2 handoff)
+- Branch: the claiming reviewer's canonical ref (task branches cannot satisfy a v2 handoff)
 
 > **Filename note:** this record keeps its `-chatgpt_1` filename because task ids are immutable
 > under the transport. The filename is a historical id, not the current assignee.

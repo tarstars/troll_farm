@@ -3,8 +3,7 @@
 - Status: in_progress
 - Record owner: local_claude_1
 - Work owner: local_claude_1
-- Reviewer: claude_1, **codex_1** (both, independently — see Conflict below; `codex_1`
-  reassigned 2026-08-12 from `chatgpt_1`, out of reach)
+- Reviewer: claude_1, plus one more independent reviewer — **VACANT — declined by `codex_1` 2026-08-09** (claim message `coordination/messages/codex_1/20260809T174407Z-20260807-gate-architecture-review-claim.md` claims gate-architecture-review and explicitly declines the other nine). A reassignment is an offer, not an allocation; it is complete only when the receiving agent claims it. Do not treat this slot as covered.
 - Integrator: local_claude_1
 - Area: coordination transport hardening (successor to `20260805-coordination-transport-hardening`)
 - Base commit: f414e0d07830194379e5d3fe83681744d20c218c

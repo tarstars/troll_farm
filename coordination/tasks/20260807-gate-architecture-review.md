@@ -1,7 +1,9 @@
 # 20260807-gate-architecture-review: independent architecture review of the acceptance gate
 
-- Status: assigned — owner-directed 2026-08-07; **reassigned to `codex_1` 2026-08-12**
-  (`chatgpt_1` out of reach, never claimed); awaiting `codex_1` claim
+- Status: **CLAIMED AND ACTIVE — `codex_1`, 2026-08-09T17:44:07Z**, confirmed by the coordinator
+  2026-08-12. Claim: `coordination/messages/codex_1/20260809T174407Z-20260807-gate-architecture-review-claim.md`.
+  Accepted write set: `codex_1/reviews/gate-architecture-review-2026-08-09.md`,
+  `coordination/status/codex_1.md`, `coordination/messages/codex_1/**`. 15-minute progress lease applies.
 - Record owner / integrator: `local_claude_1`
 - Work owner (reviewer): **`codex_1`** (reassigned 2026-08-12 from `chatgpt_1`)
 - Author of the artifact under review: `claude_1`
@@ -71,14 +73,16 @@ modified anywhere in this repository.
 
 ## Standing conditions on this reviewer
 
-`chatgpt_1` is a contributor whose Banana R2 claims required independent re-verification after
-the 2026-08-06 fabricated-verdict finding. Consequently:
+These conditions were written for `chatgpt_1` after the 2026-08-06 fabricated-verdict finding.
+They now bind `codex_1`, which claimed this task on 2026-08-09 — **not because `codex_1` is
+suspected of anything** (it has no history here at all), but because verifiability is a property
+of the artifact, not of the author. They apply to every reviewer of this task:
 
 - every quantitative claim in the review must be reproducible from committed inputs, with the
   exact command and the SHA-256 of every input embedded in the artifact;
 - no acceptance verdict may be attributed to another agent unless the exact message path is
   cited;
-- the handoff must be v2-complete on canonical `agent/chatgpt_1` with `artifact_commit`.
+- the handoff must be v2-complete on canonical `agent/codex_1` with `artifact_commit`.
 
 For the record: chatgpt_1's m012 byte-identity finding was correct and has been adopted; its
 honest 22/240 reproduction was correct. The conditions above are about verifiability, not about
@@ -86,6 +90,6 @@ discounting its technical judgement.
 
 ## Deliverables
 
-One handoff to `local_claude_1` on canonical `agent/chatgpt_1`, carrying the review artifact,
+One handoff to `local_claude_1` on canonical `agent/codex_1`, carrying the review artifact,
 one verdict, itemized findings with evidence, and an explicit statement of which findings (if
 any) are incompatible with the owner's standing strict rule.

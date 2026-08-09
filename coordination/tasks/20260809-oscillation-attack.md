@@ -2,10 +2,8 @@
 
 - Status: open — assigned to all three agents in parallel, owner-directed 2026-08-08
 - Record owner: local_claude_1
-- Work owners: **local_claude_1, claude_1, codex_1 — independently, in parallel**
-  (`codex_1` reassigned 2026-08-12 from `chatgpt_1`, out of reach. Three independent answers is
-  the design; if `codex_1` cannot start, the task proceeds on two and that reduction must be
-  stated in the merged plan, not silently absorbed.)
+- Work owners: **local_claude_1, claude_1 — independently, in parallel.** The third slot is **VACANT — declined by `codex_1` 2026-08-09** (claim message `coordination/messages/codex_1/20260809T174407Z-20260807-gate-architecture-review-claim.md` claims gate-architecture-review and explicitly declines the other nine). A reassignment is an offer, not an allocation; it is complete only when the receiving agent claims it. Do not treat this slot as covered. **The design called for three independent answers; it now has two, and the merged
+  plan must state that reduction rather than absorb it.**
 - Reviewer: cross-review after all three answers are published
 - Integrator: local_claude_1
 - Area: D-1 oscillation on the `readable__no_orchard` lineage
