@@ -48,10 +48,18 @@ jobs:
             'caught_by_expected': 21,
             'caught_only_by_other_detector': 0,
             'live_survivors': 30,
-            'unwitnessed': 13,
+            'unwitnessed': 15,
           }
           for k,v in expected.items():
               assert fresh['totals'][k] == v, (k, fresh['totals'][k], v)
+          unwitnessed_survivors=sum(
+              1 for row in fresh['mutants']
+              if row.get('status') == 'OK'
+              and not row.get('excluded_from_totals')
+              and not row.get('caught')
+              and row.get('liveness') == 'UNWITNESSED'
+          )
+          assert unwitnessed_survivors == 13, unwitnessed_survivors
           assert fresh['per_detector'] == committed['per_detector']
           stable=('id','detector','file','intent','excluded_from_totals','matches',
                   'status','caught','caught_by_expected','caught_only_by_other_detector',
@@ -61,5 +69,6 @@ jobs:
           assert rows(fresh) == rows(committed)
           assert fresh['excluded_entries'] == committed['excluded_entries']
           print('totals=', fresh['totals'])
+          print('unwitnessed_survivors=', unwitnessed_survivors)
           print('per_detector=', fresh['per_detector'])
           PY
