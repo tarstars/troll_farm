@@ -30,11 +30,19 @@ git checkout origin/main -- scripts/inbox_sweep.py scripts/lint_outbox.py
 sha256sum scripts/inbox_sweep.py scripts/lint_outbox.py
 ```
 
-Expected as of 2026-08-11:
+Expected as of 2026-08-11. **These are content SHA-256 values — the output of `sha256sum` — NOT
+Git blob IDs.** This project pins many things by Git blob (`target_blob` in quarantine entries,
+the golden-set manifest), so both are given here; either check resolves, but do not compare one
+against the other. They are different algorithms over different inputs and can never agree.
 
 ```text
+content SHA-256 (sha256sum)                                       file
 0f78bf38f32cdd805e29ebfa5591f4f4a55e5a288cd85541df022a452e235515  scripts/inbox_sweep.py
 f3c47b70d4f99647eed917876a675a1c28fe5e7236e609455d367a34f6af045d  scripts/lint_outbox.py
+
+Git blob id (git rev-parse origin/main:<path>)                    file
+db4adb7e24cf53aad9033aadccb92c9a6133a934                          scripts/inbox_sweep.py
+172779076bcd6f2c3282322701bf0a498ee652c4                          scripts/lint_outbox.py
 ```
 
 If they differ, take `main`'s copies — `main` is authoritative for tooling, **your branch's copy
