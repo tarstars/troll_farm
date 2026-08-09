@@ -23,11 +23,11 @@ jobs:
         run: |
           cd claude_1/banana-restoration-r2
           python3 -m unittest test_trace_detectors -v
-          cd bitetest-audit
-          python3 -m unittest probes -v
-          python3 probes.py --json /tmp/probe-results.json
-          cmp /tmp/probe-results.json results/probe-results.json
-          python3 probe_corpus.py --counts
+          PYTHONPATH=.:bitetest-audit python3 -m unittest probes -v
+          PYTHONPATH=.:bitetest-audit python3 bitetest-audit/probes.py \
+            --json /tmp/probe-results.json
+          cmp /tmp/probe-results.json bitetest-audit/results/probe-results.json
+          PYTHONPATH=. python3 bitetest-audit/probe_corpus.py --counts
       - name: Reproduce the complete mutation experiment
         run: |
           cd claude_1/banana-restoration-r2
