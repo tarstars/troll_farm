@@ -72,7 +72,15 @@ Turn the **34 episodes across 32 games** into inspectable, replayable situations
 unit, turn range, the two cells, the full state at entry, and what the blocking peer was doing.
 Mechanical and independent of everything else.
 
-- **Owner: `claude_1`.** Can start immediately. **Review: `local_claude_1`.**
+- **Owner: `claude_1`** — **DELIVERED** 2026-08-10, library `5858d351…`, 33 situations /
+  47 episodes, 40/40 tests. Produced the finding that changed the cure: all 20 terminal episodes
+  have an **IDLE** blocker, and none with a working blocker reaches 62 turns.
+- **Owner: `chatgpt_1` — INDEPENDENT SECOND IMPLEMENTATION**, assigned 2026-08-10. Two
+  extractions of the same panel already disagree — mine counts **34** episodes / 32 situations,
+  `claude_1`'s counts **47** / 33 — a 38% gap nobody has explained, and M3b would inherit
+  whichever is right. It must also independently test the idle-blocker finding, which now
+  redirects the entire repair and rests on one unreplicated extraction. Committed artifacts only;
+  no execution required. **Must not read `claude_1`'s library before publishing its own.**
 
 ### M3b — Independent adjudication *(blocked on M1 and M3a)*
 
