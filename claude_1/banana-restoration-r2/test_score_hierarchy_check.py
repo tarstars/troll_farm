@@ -544,6 +544,117 @@ class TestCallSiteVerdictVocabulary(unittest.TestCase):
         self.assertFalse(out["checks"]["bindings"][0]["agrees"])
 
 
+# ---------------------------------------------------------------------------
+# Correction 7 (chatgpt_1 review B7): drift coverage omits filter, compatibility,
+# replacement and resolver nodes.  The score-token census can stay green while
+# X5, X6, X8, X9 and X10 silently change, because none of those findings lives in
+# a line containing the token `score`.
+# ---------------------------------------------------------------------------
+
+
+class TestFunctionBodySpan(unittest.TestCase):
+    SRC = (
+        "fn alpha(a:i32)->bool{\n"
+        "    if a==0{ return true; }\n"
+        "    false\n"
+        "}\n"
+        "fn beta(b:&[i32; 6])->i32{ b[0] }\n"
+        "trait T{ fn alpha(a:i32)->bool; }\n"
+        "fn alpha(a:i32)->bool{ true }\n"
+    )
+
+    def test_finds_body_span_of_a_named_fn(self):
+        span = shc.fn_body_span(self.SRC, "beta")
+        self.assertEqual(span["def_line"], 5)
+        self.assertEqual(span["end_line"], 5)
+
+    def test_multiline_body_span(self):
+        span = shc.fn_body_span(self.SRC, "alpha", def_line=1)
+        self.assertEqual((span["def_line"], span["end_line"]), (1, 4))
+
+    def test_declaration_without_a_body_is_not_a_definition(self):
+        # The trait declaration at line 6 has no body; it must not be returned
+        # and must not shadow the real definitions.
+        lines = [s["def_line"] for s in shc.fn_body_spans(self.SRC, "alpha")]
+        self.assertEqual(lines, [1, 7])
+
+    def test_duplicate_names_require_an_explicit_def_line(self):
+        with self.assertRaises(shc.AnchorError):
+            shc.fn_body_span(self.SRC, "alpha")
+        self.assertEqual(shc.fn_body_span(self.SRC, "alpha", def_line=7)["end_line"], 7)
+
+    def test_unknown_name_fails_closed(self):
+        with self.assertRaises(shc.AnchorError):
+            shc.fn_body_span(self.SRC, "gamma")
+
+    def test_semicolon_inside_an_array_type_does_not_end_the_signature(self):
+        span = shc.fn_body_span(self.SRC, "beta")
+        self.assertIn("b[0]", span["text"])
+
+    def test_fingerprint_is_line_number_independent(self):
+        a = shc.fn_body_span(self.SRC, "beta")["fingerprint"]
+        b = shc.fn_body_span("\n\n" + self.SRC, "beta")["fingerprint"]
+        self.assertEqual(a, b)
+
+    def test_fingerprint_changes_when_the_body_changes(self):
+        a = shc.fn_body_span(self.SRC, "beta")["fingerprint"]
+        b = shc.fn_body_span(self.SRC.replace("b[0]", "b[1]"), "beta")["fingerprint"]
+        self.assertNotEqual(a, b)
+
+
+class TestPipelineAnchorDrift(unittest.TestCase):
+    SRC = (
+        "fn compatible(a:T,b:T)->bool{ if a==T::None{ return true; } a!=b }\n"
+        "fn select(c:Vec<C>)->Vec<String>{ c.pop() }\n"
+        "let x = Candidate{score:1.0};\n"
+    )
+
+    def _anchors(self, src):
+        return [
+            {"id": "PN-compatible", "fn": "compatible", "kind": "compatibility",
+             "findings": ["X9"],
+             "fingerprint": shc.fn_body_span(src, "compatible")["fingerprint"]},
+            {"id": "PN-select", "fn": "select", "kind": "arbitration",
+             "findings": ["X5"],
+             "fingerprint": shc.fn_body_span(src, "select")["fingerprint"]},
+        ]
+
+    def test_no_drift_when_nothing_moved(self):
+        rep = shc.pipeline_anchor_report(self.SRC, self._anchors(self.SRC))
+        self.assertTrue(rep["ok"])
+        self.assertEqual(rep["invalidated_findings"], [])
+
+    def test_a_changed_node_body_invalidates_exactly_its_findings(self):
+        frozen = self._anchors(self.SRC)
+        moved = self.SRC.replace("return true;", "return false;")
+        rep = shc.pipeline_anchor_report(moved, frozen)
+        self.assertFalse(rep["ok"])
+        self.assertEqual(rep["invalidated_findings"], ["X9"])
+
+    def test_a_pure_line_shift_is_not_drift(self):
+        frozen = self._anchors(self.SRC)
+        rep = shc.pipeline_anchor_report("\n// nothing\n" + self.SRC, frozen)
+        self.assertTrue(rep["ok"], rep)
+
+    def test_a_vanished_node_fails_closed(self):
+        frozen = self._anchors(self.SRC)
+        gone = "\n".join(self.SRC.splitlines()[1:])
+        rep = shc.pipeline_anchor_report(gone, frozen)
+        self.assertFalse(rep["ok"])
+        self.assertEqual(rep["entries"][0]["status"], "MISSING")
+        self.assertIn("X9", rep["invalidated_findings"])
+
+    def test_the_score_token_census_alone_would_have_stayed_green(self):
+        # The point of B7: the compatibility node holds no `score` token, so the
+        # existing census cannot see it change.
+        moved = self.SRC.replace("return true;", "return false;")
+        self.assertEqual(
+            shc.census_diff(shc.census(moved), [s.as_dict() for s in shc.census(self.SRC)]),
+            {"added": [], "removed": [], "moved": []},
+        )
+        self.assertFalse(shc.pipeline_anchor_report(moved, self._anchors(self.SRC))["ok"])
+
+
 class TestRunDriver(unittest.TestCase):
     SRC = "fn f(v:&G,b:f64){}\nlet c = Candidate{score:1.0};\nf(view, 6_000.0);\n"
 
@@ -619,6 +730,32 @@ class TestAgainstRealSubject(unittest.TestCase):
         led = json.loads(LEDGER.read_text())
         diff = shc.census_diff(shc.census(SUBJECT_SRC), led["census"])
         self.assertEqual(diff, {"added": [], "removed": [], "moved": []})
+
+    def test_pipeline_anchors_have_no_drift(self):
+        led = json.loads(LEDGER.read_text())
+        rep = shc.pipeline_anchor_report(SUBJECT_SRC, led["pipeline_anchors"])
+        self.assertTrue(rep["ok"], json.dumps(rep, indent=2))
+
+    def test_pipeline_anchors_cover_the_four_omitted_node_kinds(self):
+        # chatgpt_1 B7 names them: filters, compatibility, replacement, resolver.
+        led = json.loads(LEDGER.read_text())
+        kinds = {a["kind"] for a in led["pipeline_anchors"]}
+        for kind in ("filter", "compatibility", "replacement", "resolver",
+                     "admission", "arbitration"):
+            self.assertIn(kind, kinds)
+
+    def test_every_ratified_finding_is_covered_by_a_pipeline_anchor(self):
+        led = json.loads(LEDGER.read_text())
+        covered = {f for a in led["pipeline_anchors"] for f in a["findings"]}
+        for n in range(1, 11):
+            self.assertIn(f"X{n}", covered)
+
+    def test_pipeline_anchor_line_numbers_match_the_pinned_subject(self):
+        led = json.loads(LEDGER.read_text())
+        for a in led["pipeline_anchors"]:
+            span = shc.fn_body_span(SUBJECT_SRC, a["fn"], def_line=a.get("def_line"))
+            self.assertEqual(span["def_line"], a["def_line"], a["id"])
+            self.assertEqual(span["end_line"], a["end_line"], a["id"])
 
 
 if __name__ == "__main__":
