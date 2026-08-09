@@ -2,6 +2,10 @@
   "schema_version": 1,
   "migrated_watermark": null,
   "seen_message_paths": [
+    "coordination/messages/claude_1/20260812T233000Z-20260810-manifest-implementation-ack.md",
+    "coordination/messages/claude_1/20260812T233500Z-20260810-manifest-implementation-progress.md",
+    "coordination/messages/claude_1/20260813T003000Z-20260810-manifest-implementation-handoff.md",
+    "coordination/messages/claude_1/20260813T015000Z-20260810-manifest-implementation-ack.md",
     "coordination/messages/local_claude_1/20260812T190000Z-20260809-codex_1-onboarding-ack.md",
     "coordination/messages/local_claude_1/20260812T190500Z-20260808-phase1-work-allocation-reassignment-target-correction.md",
     "coordination/messages/local_claude_1/20260812T203000Z-20260807-gate-architecture-review-ack.md",
@@ -14,6 +18,7 @@
     "coordination/messages/local_claude_1/20260812T223000Z-20260807-gate-architecture-review-integrated.md",
     "coordination/messages/local_claude_1/20260812T230000Z-20260810-manifest-implementation-policy.md",
     "coordination/messages/local_claude_1/20260812T234500Z-20260807-transport-quarantine-and-outbox-lint-handoff.md",
-    "coordination/messages/local_claude_1/20260813T010000Z-20260810-manifest-implementation-ack.md"
+    "coordination/messages/local_claude_1/20260813T010000Z-20260810-manifest-implementation-ack.md",
+    "coordination/messages/local_claude_1/20260813T020000Z-20260810-manifest-implementation-ack.md"
   ]
 }
