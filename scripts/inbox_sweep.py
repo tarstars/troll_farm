@@ -459,6 +459,15 @@ def validate_v2(
         errors.append("v2 ack has an empty ack_for array")
     if msg.kind == "correction" and not lists.get("supersedes", []) and "supersedes" in lists:
         errors.append("v2 correction has an empty supersedes array")
+    # NOTE (2026-08-12): `ack_for` on a non-`ack` kind is deliberately NOT an
+    # error.  It used to be inert -- collect_my_acks skipped every kind but
+    # `ack`, so a handoff or policy naming ack_for acknowledged nothing while
+    # looking to its author exactly like an acknowledgement.  Rejecting it was
+    # tried and reverted: 33 already-published immutable messages carry the
+    # pattern, mostly `handoff`s that ack the request they answer, and an
+    # invalid published message can never be cleared.  The fix went the other
+    # way -- collect_my_acks now honours ack_for on every kind -- so the
+    # declaration means what its authors always intended.
 
     # Canonical presence: a v2 message is delivered only from the sender's
     # canonical branch refs/remotes/origin/agent/<from>.
@@ -547,7 +556,15 @@ def collect_my_acks(
     legacy_latest: dict[str, str] = {}
     warnings: list[str] = []
     for msg in my_messages:
-        if msg.kind != "ack":
+        # Any kind may discharge an acknowledgement by naming exact paths in
+        # `ack_for`, not only kind `ack`.  Restricting it to `ack` made the
+        # declaration silently inert everywhere else: a `handoff` that acks the
+        # request it answers, or a `policy` that acks the question it rules on,
+        # left its targets ack-required forever while the author believed they
+        # were discharged, and the lint could not see it either.  33 published
+        # messages already use the pattern.  `ack` still MUST carry a non-empty
+        # ack_for (validate_v2); the difference is only that others MAY.
+        if msg.kind != "ack" and not parse_json_list(msg.fields.get("ack_for", "[]")):
             continue
         if msg.is_v2:
             errors = validate_v2(

@@ -2,11 +2,11 @@
   "schema_version": "arena-submission-history/1",
   "generator": "cgauto/submission_history.py",
   "manifest_path": "data/analysis/arena-submission-history-inputs.json",
-  "manifest_sha256": "a77bc675e0eaed0d4196f5afaa37c8c27ac2e79cfa59e26c754b826889d9eb18",
+  "manifest_sha256": "3265d1a8e74b030cd01854dfeb9283825037285f1d84eb8139c06b89369c8bc1",
   "counts": {
     "sources": 15,
-    "submissions": 25,
-    "observations": 48,
+    "submissions": 26,
+    "observations": 49,
     "unresolved": 5
   },
   "eras": [
@@ -51,6 +51,13 @@
       "field_size": 137,
       "first_seen": "2026-08-03",
       "last_seen": "2026-08-04"
+    },
+    {
+      "era_id": "legend-139",
+      "label": "Legend division, 139-agent field",
+      "field_size": 139,
+      "first_seen": "2026-08-12",
+      "last_seen": "2026-08-12"
     }
   ],
   "sources": [
@@ -846,6 +853,30 @@
         "data/analysis/live-agent-6553250/e7a-r36-arena-execution-2026-08-04.md"
       ],
       "notes": "Behavior-exact to E7a on frozen gates; do not interpret the cold initial score as a complexity value."
+    },
+    {
+      "record_id": "submission-41113243",
+      "submission_id": 41113243,
+      "agent_id": 6604529,
+      "source_id": "e7a-readable-no-orchard-code-cost",
+      "source_attribution_confidence": "hash_verified_on_platform",
+      "deployed_at": "2026-08-12T16:10:00Z",
+      "era_id": "legend-139",
+      "deployment_purpose": "same_source_capacity_control",
+      "comparison_basis": "same_source_repeat",
+      "authority": "owner_directed_override",
+      "parent_submission_id": 41089629,
+      "replaced_by_submission_id": null,
+      "task_id": "20260812-readable-no-orchard-rerun-arena",
+      "protocol_id": null,
+      "disposition": "retained",
+      "disposition_rationale": "Second mature observation of the byte-identical source, taken to settle SINGLE_MATURE_RUN against the prior 24.76. Settled at 22.46/rank 35 over 160 games; owner ruled KEEP 2026-08-12. The 2.30-point spread between two mature runs of one hash is the primary result.",
+      "provenance": [
+        "coordination/tasks/20260812-readable-no-orchard-rerun-arena.md",
+        "data/analysis/live-agent-6553250/readable-no-orchard-rerun-20260812/submit.json",
+        "data/analysis/live-agent-6553250/readable-no-orchard-rerun-20260812/checkpoint-terminal.json"
+      ],
+      "notes": "Recovered source on the platform matched 98628e98 exactly; identity clean and zero runtime signals throughout."
     }
   ],
   "observations": [
@@ -2346,6 +2377,37 @@
       "evidence_kind": "checkpoint_json",
       "evidence_path": "data/analysis/live-agent-6553250/r36-simplified-settled-checkpoint-2026-08-04.json",
       "evidence_sha256": "0f4765143c9a43be9dfe78fa031a63111eb5f4a29565007d1a110ad8772a189b",
+      "evidence_quote": null
+    },
+    {
+      "observation_id": "obs-41113243-terminal160",
+      "submission_id": 41113243,
+      "record_id": null,
+      "agent_id": 6604529,
+      "observed_at": "2026-08-09T16:07:30.594189+00:00",
+      "observed_at_precision": "exact",
+      "observation_scope": "submission_scoped",
+      "games_finished": 160,
+      "games_pending": 0,
+      "score": 22.46,
+      "rank": 35,
+      "field_size": 139,
+      "division_index": 5,
+      "wins": 89,
+      "ties": 3,
+      "losses": 68,
+      "mean_margin": -1.75,
+      "catastrophic_losses": 24,
+      "catastrophic_rate": 0.15,
+      "negative_margin_mass": 6790.0,
+      "runtime_faults": 0,
+      "identity_faults": 0,
+      "is_terminal_audit": true,
+      "evidence_maturity": "terminal",
+      "maturity_source": "sample_rule",
+      "evidence_kind": "checkpoint_json",
+      "evidence_path": "data/analysis/live-agent-6553250/readable-no-orchard-rerun-20260812/checkpoint-terminal.json",
+      "evidence_sha256": "8ef2c5f27a14a08168bec331bc46ab4a04381d4f4607bec813055d6cd5fda903",
       "evidence_quote": null
     }
   ],

@@ -1,10 +1,12 @@
 # 20260802-h3a-conditioned-value-unblock: make H3a runnable and decide value
 
 - Status: active — state package accepted for Phase A2 only; exact gate-4 analyzer/tests pending
-- Record owner / integrator: local_codex_1
+- Record owner / integrator: **local_claude_1** (moved 2026-08-12; `local_codex_1` has been
+  dormant since the 2026-08-06 coordinator transfer)
 - Work owner: claude_1
-- Local data/bulk execution service: local_codex_1
-- Reviewer: chatgpt_1 after Claude handoff; integrator final disposition
+- Local data/bulk execution service: local_codex_1 — **if active**; otherwise the integrator
+- Reviewer: **VACANT — declined by `codex_1` 2026-08-09** (claim message `coordination/messages/codex_1/20260809T174407Z-20260807-gate-architecture-review-claim.md` claims gate-architecture-review and explicitly declines the other nine). A reassignment is an offer, not an allocation; it is complete only when the receiving agent claims it. Do not treat this slot as covered. Integrator final disposition stands. **This is the top-priority
+  route and it now has no independent reviewer — escalated to the owner 2026-08-12.**
 - Area: H3a pressure-conditioned opponent-crop priority
 - Base commit: `9c261ef58847083d9edb5152f73bcdfdd9ec53ba`
 - Branch: `agent/claude_1`

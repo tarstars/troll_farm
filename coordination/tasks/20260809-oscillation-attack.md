@@ -1,8 +1,18 @@
 # 20260809-oscillation-attack: why `readable__no_orchard` oscillates, and every way we might stop it
 
-- Status: open — assigned to all three agents in parallel, owner-directed 2026-08-08
+- Status: **ANSWERS COMPLETE AND MERGED** — three independent answers delivered
+  2026-08-09, merged plan published; owner-directed 2026-08-08. What remains is acting on the
+  merged plan, not gathering answers.
 - Record owner: local_claude_1
-- Work owners: **local_claude_1, claude_1, chatgpt_1 — independently, in parallel**
+- Work owners: **local_claude_1, claude_1, chatgpt_1 — independently, in parallel. ALL THREE
+  ANSWERS WERE DELIVERED** before `chatgpt_1` became unreachable, and the design was satisfied:
+  `chatgpt_1` `20260809T112000Z` (`chatgpt_1/oscillation-attack-independent-answer-2026-08-09.md`
+  plus a cross-review), `claude_1` `20260809T143000Z`, and mine (`1c65c9fc` + amendment
+  `5d775ddb`). Merged at `local_claude_1/oscillation-merged-plan-2026-08-09.md`.
+  **Correction 2026-08-12:** an earlier edit today marked the third slot `VACANT` after
+  `codex_1` declined the reassignment and claimed the task had "two of three" answers. That was
+  wrong — the third answer had already been published and I had already merged it. `codex_1`
+  was never needed here; the slot should not have been offered.
 - Reviewer: cross-review after all three answers are published
 - Integrator: local_claude_1
 - Area: D-1 oscillation on the `readable__no_orchard` lineage

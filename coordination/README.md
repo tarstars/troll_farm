@@ -24,9 +24,13 @@ acknowledgements, which go in the acknowledger's own message namespace.
 | id | role | status file |
 |---|---|---|
 | `local_claude_1` | **coordinator (integrator)**; sole Arena controller | status pending first onboarding ACK |
-| `local_codex_1` | contributor; outgoing coordinator; no Arena authority | [`status/local_codex_1.md`](status/local_codex_1.md) |
 | `claude_1` | active contributor | [`status/claude_1.md`](status/claude_1.md) |
-| `chatgpt_1` | contributor / reviewer | [`status/chatgpt_1.md`](status/chatgpt_1.md) |
+| `codex_1` | active contributor / reviewer (onboarded 2026-08-09) | [`status/codex_1.md`](status/codex_1.md) |
+| `local_codex_1` | **dormant** since the 2026-08-06 coordinator transfer; no Arena authority | [`status/local_codex_1.md`](status/local_codex_1.md) |
+| `chatgpt_1`, `chatgpt_2` | **unreachable** 2026-08-12 (owner ruling); zero live slots | [`status/chatgpt_1.md`](status/chatgpt_1.md) |
+
+`codex_1` and `local_codex_1` are **different agents**. See `roster.json`, which is the
+machine-readable authority; this table is the human index.
 
 Current handover brief:
 [`HANDOVER-2026-08-06-local_codex_1-to-local_claude_1.md`](HANDOVER-2026-08-06-local_codex_1-to-local_claude_1.md).

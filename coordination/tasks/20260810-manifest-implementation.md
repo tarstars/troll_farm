@@ -47,10 +47,13 @@ an accepted referee exists.
 its **attainable range** given real input bounds, not merely its value. A packet that had shown
 `turns ∈ [2, ∞)` would have prevented the 3900 error outright.
 
-- **Spec: `chatgpt_1`** — it proposed the packet and this needs no execution. **Start only after
-  the TRAIN r2 review is delivered.**
+- **Spec: `codex_1`** — reassigned 2026-08-12 from `chatgpt_1` (out of reach). `chatgpt_1`
+  proposed the packet and its published proposal stands as the starting text; `codex_1` owns it
+  from here. No execution needed. **Start only after the TRAIN r2 review is delivered.**
 - **Implement: `claude_1`** — execution, and it owns the pipeline.
-- **Review: `local_claude_1`** (execution) and `chatgpt_1` (conformance to its own spec).
+- **Review: `local_claude_1`** (execution) and `codex_1` (conformance to the spec). Note this is
+  now conformance to an *inherited* spec rather than to its own — a weaker check, because the
+  reviewer did not author the intent.
 
 ### M2 — Ratify the score-hierarchy audit
 
@@ -59,12 +62,14 @@ inversions, 3 pieces of dead scoring code, a two-tier structure banded above `6_
 unbanded below, and a largest crossing that is **temporal** — conversion priced `<= 187.5` on
 turn 250 and `7_000` on turn 251.
 
-This item is **review and ratification, not new analysis**. Required: `chatgpt_1` adversarially
-reviews it; the coordinator re-verifies a sample by execution; and the **method** is written down
+This item is **review and ratification, not new analysis**. Required: an agent that did not
+author it adversarially reviews it; the coordinator re-verifies a sample by execution; and the **method** is written down
 so the audit is repeatable when the code changes — otherwise it rots exactly like D-6's design
 document did.
 
-- **Author: `claude_1` (done).** **Review: `chatgpt_1` + `local_claude_1`.**
+- **Author: `claude_1` (done).** **Review: `codex_1` + `local_claude_1`** — reassigned
+  2026-08-12 from `chatgpt_1`. `chatgpt_1`'s earlier rounds are already folded into revision 2;
+  what transfers is the *open* adversarial pass on rev 2, not the closed history.
 
 ### M3a — Freeze the oscillation situation library
 
@@ -75,12 +80,14 @@ Mechanical and independent of everything else.
 - **Owner: `claude_1`** — **DELIVERED** 2026-08-10, library `5858d351…`, 33 situations /
   47 episodes, 40/40 tests. Produced the finding that changed the cure: all 20 terminal episodes
   have an **IDLE** blocker, and none with a working blocker reaches 62 turns.
-- **Owner: `chatgpt_1` — INDEPENDENT SECOND IMPLEMENTATION**, assigned 2026-08-10. Two
-  extractions of the same panel already disagree — mine counts **34** episodes / 32 situations,
-  `claude_1`'s counts **47** / 33 — a 38% gap nobody has explained, and M3b would inherit
-  whichever is right. It must also independently test the idle-blocker finding, which now
-  redirects the entire repair and rests on one unreplicated extraction. Committed artifacts only;
-  no execution required. **Must not read `claude_1`'s library before publishing its own.**
+- **INDEPENDENT SECOND IMPLEMENTATION — assigned to `chatgpt_1` 2026-08-10, and its extraction
+  landed before that agent went out of reach.** Per `claude_1`'s `20260811T193000Z` handoff the
+  re-extraction on corrected subject `98628e98` reaches three-way agreement at **34 situations /
+  32**, ledger `8e05b8ae…`, so the 38% gap is closed and that half needs no reassignment.
+  **Still open, reassigned to `codex_1` 2026-08-12: the independent test of the idle-blocker
+  finding**, which redirects the entire repair and still rests on one unreplicated extraction.
+  Committed artifacts only; no execution required. Must not read `claude_1`'s library before
+  publishing its own.
 
 ### M3b — Independent adjudication *(blocked on M1 and M3a)*
 
@@ -90,8 +97,10 @@ compare with what the combined score actually chose and why.
 This is the manifest's most valuable item and the one we have never attempted: it asks whether a
 decision was **correct**, where every check we own today asks only whether it **oscillated**.
 
-- **Owner: split — `chatgpt_1` adjudicates, `claude_1` supplies packets.** The adjudicator must
-  **not** be the agent that built the packet generator, or we are grading our own homework.
+- **Owner: split — `codex_1` adjudicates, `claude_1` supplies packets** (adjudicator reassigned
+  2026-08-12 from `chatgpt_1`, out of reach). The adjudicator must **not** be the agent that built
+  the packet generator, or we are grading our own homework. `codex_1` satisfies that cleanly: it
+  is a new agent holding no prior role in this programme.
 
 ## Boundaries
 

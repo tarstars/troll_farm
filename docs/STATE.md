@@ -5,24 +5,47 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 
 ## 1. Live identity
 
-### ★★★ AN ARENA RUN IS IN FLIGHT — READ BEFORE ANY ARENA ACTION
+### ★★★ CYCLE CLOSED — OWNER DECIDED **KEEP** 2026-08-12. Resident is `readable__no_orchard`.
 
-**`readable__no_orchard` is LIVE and MATURING as of 2026-08-12.** Owner-authorised
-("I authorize arena publishing"). Do **not** submit anything else until it settles.
+**Owner ruling: "keep readable__no_orchard".** No Arena action was taken to execute it — the
+source was already live, so KEEP is a no-op mutation-wise. `6604529` / `41113243` is now the
+**resident**, not a candidate under trial, and `2caac7c6…` is retired as a restore target for
+this cycle. Any future restore-to-resident means `98628e98…`.
+**`cgauto/api_submit.py` is fixed, and the hazard was worse than I first reported.** I said its
+default pointed at `2caac7c6…`; it actually pointed at `a8eb3b2b…`
+(`preseed-orchard-coverage-slim`, written 2026-07-17) — three residents stale. An argument-less
+or mistyped run would have silently replaced the live bot with a July source and forfeited a
+matured score. **There is now no default at all:** the script exits 2 with a usage gate naming
+the current resident. No programmatic caller relied on the default; real submissions go through
+`api_submit_once.py`, which requires an explicit path and its expected SHA-256.
+
+**Terminal read: 160/160, score 22.46, rank 35/139, 89W/3T/68L, 24 catastrophes (15.0%),
+negative mass 6,790, `identity_clean=True`, `signals=0`.** No restore trigger ever fired.
+
+**The result: the same source scored 24.76 last run and 22.46 this run — a 2.30-point spread
+between two mature 160-game observations of one byte-identical bot.** 24.76 was a favourable
+draw, not this source's level; the registry now carries both runs at median 23.61.
+**Correction 2026-08-12:** I initially read that spread as evidence the ±0.5–1 noise band was
+understated. Measurement says otherwise — pooled within-source SD across 4 repeated families is
+**0.957**, CI [0.658, 1.747] (§3). The band was about right; 2.30 is a wide draw from it. What
+does hold, and is now quantified rather than asserted: a sub-1-point mature delta is
+unresolvable at one run per arm, because the difference SD there is 1.353.
+At 22.46/rank 35/139 the live bot matches the displaced bot's 22.7/rank 35/139 standing, inside
+noise: the cycle neither gained nor cost ground — which is why KEEP costs nothing either.
 
 | field | value |
 |---|---|
 | live agent / submission | **`6604529` / `41113243`** |
 | source | `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs` |
 | SHA-256 | `98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29` |
-| purpose | **second mature observation** to settle `SINGLE_MATURE_RUN` against its prior 24.76 |
-| last read | 21 games, score 18.63, rank 83/139, `identity_clean=True`, `signals=0` |
-| **restore target if aborted** | `candidate-agent6553250-e7a-r36-simplified.min.rs`, SHA `2caac7c6…` (agent `6594200` / submission `41090606`) |
+| purpose | **second mature observation** to settle `SINGLE_MATURE_RUN` against its prior 24.76 — **DONE, settled at 22.46** |
+| last read | **terminal, 160 games, 22.46, rank 35/139, `identity_clean=True`, `signals=0`** |
+| disposition | **KEPT by owner ruling 2026-08-12 — this is the resident** |
+| restore-to-resident source | `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs`, SHA `98628e98…` |
 
-**Restore only on unambiguous source/identity/runtime failure — never on a weak score.** Cold
-reads sit far below matured ones; 18.63 at 21 games is the normal trajectory and means nothing.
-Next action is the terminal ~160-game checkpoint compared against 24.76. **The keep/restore
-decision after that read is the owner's.**
+The terminal checkpoint is taken and the cycle is closed. **Submitting a new candidate is
+unblocked, subject to the §3 evidence discipline — but see the noise-band caveat above before
+pricing any candidate's expected gain.**
 
 Task record: `coordination/tasks/20260812-readable-no-orchard-rerun-arena.md` (full execution
 log). Evidence: `data/analysis/live-agent-6553250/readable-no-orchard-rerun-20260812/`.
@@ -49,8 +72,14 @@ would restore the wrong bot.** Use the restore target in the table above.
 - **No-orchard terminal-rejected:** 23.27/rank 34 versus E7a 25.3/rank 12. Exact E7a restore
   `6592131`/`41086057` is source-exact and complete at 23.56/rank 32; cycle closed.
 - Rank bar: 1. delineate 31.02, 2. norxondor_gorgonax 29.67, 3. MSz 28.26.
-- Corpus: **10,470 games** / 513 agents, zero parse failures. The restore's exact 162-game
-  queue is also a sanitized 5.8 MB Git LFS corpus; the 05:17 cron remains unchanged.
+- Corpus: **14,930 games / 582 agents / 279 names, zero parse failures** — verified 2026-08-12
+  against `data/processed/stats.json`, `games.jsonl` (14,930 rows) and the raw store (14,930
+  files); raw and parsed agree exactly, nothing is behind. The prior 10,470/513 figure was stale
+  because the 05:17 cron regenerates `stats.json` in the working tree and nobody had committed
+  it. **`data/processed/corpus_manifest.json` is separately stale** (generated 2026-07-15,
+  covering 1,302 files) — it is a per-file digest index, not a count, so it does not affect
+  analyses that read `games.jsonl`; regenerate it before relying on its hashes. The restore's
+  exact 162-game queue is also a sanitized 5.8 MB Git LFS corpus; the cron remains unchanged.
 
 ## 2. Goal (RE-SCOPED 2026-07-30 by owner decision)
 
@@ -87,19 +116,50 @@ makes the goalpost move in the wrong direction.
     NOT passed frozen gates (i.e. experimenting on the live ladder); any action that would
     abandon a matured score with no qualified candidate in hand; more than one submission
     cycle in flight; anything that could forfeit the ladder slot.
-  - **Replacement discipline the integrator applies in place of the owner's gate** — since
-    the permission bottleneck is gone, the *evidence* bottleneck is stated explicitly:
-    (i) a QUALIFIED verdict from a frozen protocol is required; (ii) expected gain must
-    exceed the arena's own noise band (±0.5–1) on its own or bundled with others to exceed
-    it, because below that a submission buys an unmeasurable result at a measured cost;
-    (iii) the promotion runbook runs in full, no shortcuts; (iv) the owner is told before a
-    cycle starts and again when it terminates; (v) every submission id and terminal
-    response is logged to the ledger.
+  - ★★ **OWNER RULING 2026-08-12 — THE NOISE-BAND GATE IS REMOVED. Do not gate candidates on
+    beating the noise band.** *"Noise of measurement is 2 and we should conduct more
+    experiments to narrow the error band. We shouldn't gate candidates. This way we starve our
+    channel which gives precious information — new candidates on the platform."* The ladder is
+    an **information channel, not just a scoreboard**: gating on a band we cannot yet measure
+    suppresses the very observations that would measure it. Submissions are now the cheap
+    instrument, not the scarce resource.
+  - **Replacement discipline, as amended by that ruling:** (i) a QUALIFIED verdict from a
+    frozen protocol is still required — this ruling removes the *magnitude* bar, not the
+    correctness bar; **(ii) REMOVED** — expected gain no longer needs to exceed ±0.5–1, and a
+    sub-band candidate is a legitimate submission because it contributes a run to the variance
+    estimate even when its own effect is unresolvable; (iii) the promotion runbook runs in
+    full, no shortcuts; (iv) the owner is told before a cycle starts and again when it
+    terminates; (v) every submission id and terminal response is logged to the ledger.
+  - **What replaces the magnitude bar: throughput and design.** Since one observation is worth
+    little and n observations are worth a lot, the binding constraint is now cycle time and
+    allocation, not candidate strength. Measured 2026-08-12: **a full 160-game mature read
+    takes ~2 hours**, not days. Prefer **interleaved A/B/A/B ordering** over blocked runs, so
+    that ladder drift is not confounded with our own run-to-run variance.
+  - ★ **THE NOISE BAND IS NOW MEASURED, AND MY EARLIER CLAIM THAT IT WAS UNDERSTATED WAS WRONG.**
+    `python3 cgauto/arena_noise_band.py` pools every source family in the registry with repeated
+    mature runs: **4 families, 13 observations, 9 d.o.f., pooled within-source SD = 0.957 score
+    points, 95% CI [0.658, 1.747].** The ±0.5–1 band was approximately right as a 1σ statement.
+    The 2.30 spread that prompted the ruling is a ~1.7-SD draw of a two-run difference — wide,
+    not anomalous, and I over-read it because a single pair carries almost no information about
+    a variance. That is the same error the registry's `SINGLE_MATURE_RUN` warning exists to
+    prevent, committed while reasoning *about* run-to-run variance.
+    **The owner's ruling stands and is strengthened, not weakened:** at σ ≈ 0.96 the SD of an
+    A-minus-B difference at one run per arm is **1.353**, so a +1.0 effect is invisible at n=1
+    and needs **8 runs per arm** to reach SE 0.5 (~32 h of ladder time). Gating candidates on
+    beating a band we can only cross with repetition is exactly backwards. Re-run the estimator
+    after every new mature observation; it is cheap and the CI is still wide.
   - **Unchanged:** mutations remain serialized through the **single arena controller**
-    (now `local_claude_1` by owner reassignment — see the note in this section). No peer agent or subagent may submit. The no-churn evidence still binds
-    the judgment even though it no longer binds the permission.
-- Never churn submissions: fresh reads sit 3–4 points below matured ones; every failed
-  trial costs days of standing.
+    (now `local_claude_1` by owner reassignment — see the note in this section). No peer agent
+    or subagent may submit. One cycle in flight at a time — that is a ladder-slot constraint,
+    not an evidence one, so higher throughput means *shorter cycles*, never parallel ones.
+- **B0.3 no-churn — SUBSTANTIALLY WEAKENED 2026-08-12, by measurement.** The rule read: "fresh
+  reads sit 3–4 points below matured ones; every failed trial costs days of standing." The
+  first clause holds. **The second does not, at current ladder rates:** the 2026-08-12 cycle
+  went from submission to a settled 160-game read in **~2 hours** (21 games at +15 min, 127 at
+  +1 h 35 m, 160 at +1 h 55 m). The "days" figure dates from the B0.1 regime when the score was
+  source-side frozen and the resident drew 6 battles in 4 days. A mature observation is now
+  cheap. What remains true: never *abandon* a run before it matures, since a half-matured read
+  is the expensive kind of worthless.
 - Sealed, do not open: maps `9,844,200–9,844,215`; the official-map holdout; the 11
   sealed D164 field games; D170's confirmation block `9,852,000–063` (unused, preserved).
 - Substrate rule (D158/D161): controllers use the exact Yamo/Orchard resident fallback
