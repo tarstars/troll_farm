@@ -15,6 +15,8 @@ Run: python3 -m unittest test_i30_invariant -v
 
 from __future__ import annotations
 
+import json
+import os
 import unittest
 
 import i30_analyzer as an
@@ -866,6 +868,570 @@ class TestNoPassWithoutAnOwnerFrozenBound(unittest.TestCase):
         report = an.aggregate_report(results, bound=bound)
         self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
 
+
+# ==========================================================================
+# Revision 3 -- the ten blocking machine-contract defects of
+#   chatgpt_1/i30-revision-2-review-2026-08-08.md
+#   (sha256 2be671a34a24010d00d5f7fb8c1ce3953bffe6475bee86d05e32e2fed61abdbc,
+#    blob at origin/agent/chatgpt_1)
+#
+# One RED class per defect. Each class fails BEFORE the revision-3
+# implementation and passes after it; the recorded failing output is
+# i30/red-evidence-r3-2026-08-09.txt.
+# ==========================================================================
+
+REVIEW = "chatgpt_1/i30-revision-2-review-2026-08-08.md"
+
+
+def _rows(*names):
+    """Analyzed rows for fixture names, with no bound anywhere (defect 1)."""
+    out = []
+    for name in names:
+        cand, par = getattr(fx, name)()
+        out.append(an.analyze_pair(cand, par, pair_id=name))
+    return out
+
+
+class TestR3D1BoundsAreEvaluatedOverTheirPopulation(unittest.TestCase):
+    """I30R2-1: `mean_*` must be a population mean, evaluated once."""
+
+    def test_analyze_pair_emits_no_value_verdict_at_all(self):
+        cand, par = fx.fixture_05_indirect_only()
+        res = an.analyze_pair(cand, par)
+        # a pair is an accounting/evaluability row, never a value verdict
+        self.assertEqual(res["status"], an.MEASURED, res.get("unready_reasons"))
+        for gone in ("bound", "bound_metric_value", "bound_satisfied",
+                     "sub_status"):
+            self.assertNotIn(gone, res,
+                             "%s: %r is an aggregate concern" % (REVIEW, gone))
+
+    def test_analyze_pair_refuses_a_bound_argument(self):
+        cand, par = fx.fixture_05_indirect_only()
+        with self.assertRaises(TypeError):
+            an.analyze_pair(cand, par, bound=an.Bound(fx.TEST_BOUND_WINDFALL))
+
+    def test_the_population_named_by_the_bound_selects_the_rows(self):
+        rows = _rows("fixture_03_no_banana_activation",
+                     "fixture_05_indirect_only")
+        for population, expected in (("all_pairs", 2), ("banana_active", 1)):
+            spec = dict(fx.TEST_BOUND_WINDFALL, population=population)
+            report = an.aggregate_report(rows, bound=an.Bound(spec))
+            ev = report["bound_evaluation"]
+            self.assertEqual(ev["population"], population)
+            self.assertEqual(ev["population_pairs"], expected, population)
+
+    def test_the_metric_is_the_exact_population_mean(self):
+        # windfall_net: fixture_05 == 2, fixture_06 == 1 -> mean 3/2
+        rows = _rows("fixture_05_indirect_only",
+                     "fixture_06_natural_opportunity")
+        report = an.aggregate_report(
+            rows, bound=an.Bound(dict(fx.TEST_BOUND_WINDFALL,
+                                      population="all_pairs")))
+        ev = report["bound_evaluation"]
+        self.assertEqual(ev["metric"], "mean_schedule_windfall_net")
+        self.assertEqual(ev["metric_value_exact"], "3/2")
+        self.assertEqual(ev["metric_numerator"], 3)
+        self.assertEqual(ev["metric_denominator"], 2)
+        # ... and it is NOT any single pair's value
+        self.assertNotIn(ev["metric_value_exact"], ("2", "1"))
+
+    def test_an_unsupported_population_is_rejected_before_evaluation(self):
+        bound = an.Bound(dict(fx.TEST_BOUND_WINDFALL, population="whatever"))
+        self.assertFalse(bound.valid)
+        self.assertIn("bound_population_unsupported", bound.invalid_reasons)
+
+    def test_a_stale_bound_schema_version_is_rejected(self):
+        bound = an.Bound(dict(fx.TEST_BOUND_WINDFALL, schema_version=1))
+        self.assertFalse(bound.valid)
+        self.assertIn("bound_schema_version_unsupported", bound.invalid_reasons)
+
+    def test_a_per_pair_metric_name_may_not_masquerade_as_a_mean(self):
+        # `max_per_pair_*` is a separate, separately named family
+        self.assertIn("max_per_pair_schedule_windfall_net",
+                      an.SUPPORTED_METRICS)
+        self.assertEqual(an.SUPPORTED_METRICS[
+            "max_per_pair_schedule_windfall_net"]["reducer"], "max")
+        self.assertEqual(an.SUPPORTED_METRICS[
+            "mean_schedule_windfall_net"]["reducer"], "mean")
+
+
+class TestR3D2AggregateVerdictPrecedence(unittest.TestCase):
+    """I30R2-2: `FAIL` and the empty corpus must never become `PASS`."""
+
+    def test_an_empty_corpus_is_gate_unready(self):
+        report = an.aggregate_report(
+            [], bound=fx.owner_verified_bound(), authority=fx.test_authority(),
+            observed_utc=fx.OBSERVED_UTC)
+        self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
+        self.assertIn("population_empty", report["aggregate_unready_reasons"])
+
+    def test_a_failed_pair_row_propagates_to_aggregate_fail(self):
+        rows = _rows("fixture_05_indirect_only")
+        rows[0]["status"] = an.FAIL          # a pair-level hard limit
+        report = an.aggregate_report(
+            rows, bound=fx.owner_verified_bound(),
+            authority=fx.test_authority(), observed_utc=fx.OBSERVED_UTC)
+        self.assertEqual(report["aggregate_status"], an.FAIL)
+        self.assertEqual(report["aggregate_fail_reasons"], ["pair_fail"])
+
+    def test_an_exceeded_owner_bound_is_exactly_fail(self):
+        # every pair instrument-valid, one value condition violated
+        rows = _rows("fixture_05_indirect_only")
+        report = an.aggregate_report(
+            rows, bound=fx.owner_verified_bound(),
+            authority=fx.test_authority(), observed_utc=fx.OBSERVED_UTC)
+        self.assertEqual([r["status"] for r in rows], [an.MEASURED])
+        self.assertEqual(report["aggregate_status"], an.FAIL)
+        self.assertIn("bound_exceeded", report["aggregate_fail_reasons"])
+
+    def test_a_satisfied_owner_bound_is_pass(self):
+        rows = _rows("fixture_05_indirect_only")
+        report = an.aggregate_report(
+            rows, bound=fx.owner_verified_bound(threshold=100),
+            authority=fx.test_authority(), observed_utc=fx.OBSERVED_UTC)
+        self.assertEqual(report["aggregate_status"], an.PASS)
+
+    def test_one_unready_row_dominates_a_violated_bound(self):
+        rows = _rows("fixture_05_indirect_only", "fixture_13_nonzero_residual")
+        self.assertEqual(rows[1]["status"], an.GATE_UNREADY)
+        report = an.aggregate_report(
+            rows, bound=fx.owner_verified_bound(),
+            authority=fx.test_authority(), observed_utc=fx.OBSERVED_UTC)
+        self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
+        self.assertIn("pair_gate_unready", report["aggregate_unready_reasons"])
+
+    def test_the_old_blocking_only_rule_can_no_longer_pass_a_failed_corpus(self):
+        rows = _rows("fixture_05_indirect_only")
+        rows[0]["status"] = an.FAIL
+        report = an.aggregate_report(
+            rows, bound=fx.owner_verified_bound(threshold=100),
+            authority=fx.test_authority(), observed_utc=fx.OBSERVED_UTC)
+        self.assertNotEqual(report["aggregate_status"], an.PASS)
+        self.assertEqual(report["aggregate_status"], an.FAIL)
+
+
+class TestR3D3OwnerFreezeIsVerifiedNotDeclared(unittest.TestCase):
+    """I30R2-3: a string may not manufacture authority."""
+
+    def _report(self, bound, authority=None, observed_utc=None):
+        return an.aggregate_report(_rows("fixture_05_indirect_only"),
+                                   bound=bound, authority=authority,
+                                   observed_utc=observed_utc)
+
+    def test_the_self_declared_string_is_rejected_outright(self):
+        bound = an.Bound(dict(fx.TEST_BOUND_WINDFALL,
+                              provenance="owner_frozen"))
+        self.assertFalse(bound.valid)
+        self.assertIn("self_declared_owner_provenance_rejected",
+                      bound.invalid_reasons)
+        report = self._report(bound, fx.test_authority(), fx.OBSERVED_UTC)
+        self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
+
+    def test_without_an_authority_nothing_is_owner_frozen(self):
+        report = self._report(fx.owner_verified_bound())
+        self.assertFalse(report["owner_decision"]["verified"])
+        self.assertIn("owner_authority_absent",
+                      report["owner_decision"]["reasons"])
+        self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
+
+    def test_the_blob_must_be_the_bytes_at_the_pinned_path(self):
+        authority = fx.test_authority(corrupt=True)
+        report = self._report(fx.owner_verified_bound(), authority,
+                              fx.OBSERVED_UTC)
+        self.assertIn("owner_decision_blob_mismatch",
+                      report["owner_decision"]["reasons"])
+        self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
+
+    def test_the_decision_must_pin_the_exact_bound_sha(self):
+        # same authority, but the bound was edited after the decision
+        bound = fx.owner_verified_bound(threshold=7)
+        report = self._report(bound, fx.test_authority(), fx.OBSERVED_UTC)
+        self.assertIn("owner_decision_bound_sha_mismatch",
+                      report["owner_decision"]["reasons"])
+        self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
+
+    def test_the_decision_must_predate_the_observation(self):
+        report = self._report(fx.owner_verified_bound(), fx.test_authority(),
+                              observed_utc="2020-01-01T00:00:00Z")
+        self.assertIn("owner_decision_not_frozen_before_observation",
+                      report["owner_decision"]["reasons"])
+        self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
+
+    def test_the_decision_must_be_authored_by_the_authority(self):
+        authority = fx.test_authority(authority_id="somebody-else")
+        report = self._report(fx.owner_verified_bound(), authority,
+                              fx.OBSERVED_UTC)
+        self.assertIn("owner_decision_authority_mismatch",
+                      report["owner_decision"]["reasons"])
+
+    def test_an_unowned_bound_never_produces_a_production_fail(self):
+        """The still-open D2/D3 deviation: an unratified threshold may not
+        block a candidate."""
+        report = self._report(an.Bound(fx.TEST_BOUND_WINDFALL))   # test_fixture
+        self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
+        self.assertEqual(report["aggregate_sub_status"],
+                         an.MEASURED_UNTHRESHOLDED)
+        self.assertNotEqual(report["aggregate_status"], an.FAIL)
+        # the arithmetic is still reported, explicitly as non-production
+        self.assertEqual(report["unratified_bound_evaluation"]["status"],
+                         an.NON_PRODUCTION_MEASUREMENT)
+        self.assertFalse(
+            report["unratified_bound_evaluation"]["bound_satisfied"])
+
+    def test_the_git_ref_authority_resolves_a_real_frozen_blob(self):
+        """MEASURED: the authority really reads a blob from a pinned ref."""
+        authority = an.GitRefAuthority(fx.REPO_ROOT,
+                                       "origin/agent/chatgpt_1", "chatgpt_1")
+        blob = authority.resolve(REVIEW)
+        self.assertIsNotNone(blob, "the review blob must resolve")
+        self.assertEqual(
+            ledger.sha256_bytes(blob),
+            "2be671a34a24010d00d5f7fb8c1ce3953bffe6475bee86d05e32e2fed61abdbc")
+        self.assertIsNone(authority.resolve("no/such/path.json"))
+
+    def test_no_production_owner_decision_exists(self):
+        """MEASURED: the production authority resolves nothing, so the
+        production aggregate can only be GATE_UNREADY."""
+        authority = an.production_authority(fx.REPO_ROOT)
+        self.assertIsNone(authority.resolve(an.PRODUCTION_DECISION_PATH))
+        report = self._report(fx.owner_verified_bound(), authority,
+                              fx.OBSERVED_UTC)
+        self.assertIn("owner_decision_unresolved",
+                      report["owner_decision"]["reasons"])
+        self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
+
+
+class TestR3D4AmbiguousGrossIsAnIntervalNotAPoint(unittest.TestCase):
+    """I30R2-4: a deterministic endpoint of an interval is still a tie-break."""
+
+    def test_the_ambiguous_split_reports_null_totals_and_the_interval(self):
+        cand, _ = fx.fixture_a1_same_turn_deposit_withdrawal()
+        run = cand.ledger.to_json()
+        self.assertFalse(run["gross_identifiable"])
+        self.assertIsNone(run["gdep_total"])
+        self.assertIsNone(run["wdr_total"])
+        self.assertEqual(run["gdep_total_interval"], [0, 1])
+        self.assertEqual(run["wdr_total_interval"], [0, 1])
+        for c in ledger.SOURCE_CLASSES:
+            self.assertIsNone(run["gdep_" + c], c)
+            self.assertIsNone(run["wdr_" + c], c)
+            self.assertIsNone(run["dep_" + c], c)
+
+    def test_net_bank_flow_stays_exact_under_the_same_ambiguity(self):
+        cand, _ = fx.fixture_a1_same_turn_deposit_withdrawal()
+        run = cand.ledger.to_json()
+        self.assertEqual(run["net_bank_flow_total"], 0)
+        self.assertEqual(run["residual"], 0)
+        for c in ledger.SOURCE_CLASSES:
+            self.assertIsInstance(run["net_bank_flow_" + c], int, c)
+
+    def test_a_second_ambiguous_fixture_reports_its_own_interval(self):
+        cand, _ = fx.fixture_a2_multi_source_deposit()
+        run = cand.ledger.to_json()
+        self.assertEqual(run["gdep_total_interval"], [1, 2])
+        self.assertEqual(run["wdr_total_interval"], [0, 1])
+        self.assertEqual(run["net_bank_flow_total"], 1)
+        self.assertIsNone(run["gdep_total"])
+
+    def test_pair_gross_deltas_are_null_when_either_side_is_ambiguous(self):
+        cand, par = fx.fixture_a1_same_turn_deposit_withdrawal()
+        res = an.analyze_pair(cand, par)
+        for key in ("d_direct_gross", "d_production_gross", "d_unknown_gross"):
+            self.assertIsNone(res[key], key)
+        self.assertEqual(res["d_production_gross_interval"], [-1, 0])
+        self.assertEqual(res["status"], an.GATE_UNREADY)
+
+    def test_the_aggregate_refuses_to_mean_a_non_identifiable_point(self):
+        rows = _rows("fixture_a1_same_turn_deposit_withdrawal")
+        report = an.aggregate_report(
+            rows, bound=fx.owner_verified_bound(
+                metric="mean_production_gross"),
+            authority=fx.test_authority(), observed_utc=fx.OBSERVED_UTC)
+        self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
+        self.assertIsNone(report["bound_evaluation"]["metric_value_exact"])
+        self.assertIn("metric_not_identifiable",
+                      report["bound_evaluation"]["reasons"])
+
+    def test_class_only_ambiguity_keeps_the_gross_counts_exact(self):
+        """The class swap is undetermined in CLASS, not in COUNT."""
+        cand, _ = fx.fixture_a3_class_swap("ours_first")
+        run = cand.ledger.to_json()
+        self.assertTrue(run["gross_identifiable"])
+        self.assertEqual(run["gdep_total"], 1)
+        self.assertEqual(run["gdep_unknown"], 1)
+        self.assertEqual(run["gdep_ours"], 0)
+        self.assertEqual(run["gdep_total_interval"], [1, 1])
+
+
+class TestR3D5BaselineStockIsNotProduction(unittest.TestCase):
+    """I30R2-5: recycled initial stock may not masquerade as production."""
+
+    def test_baseline_is_its_own_source_class(self):
+        self.assertIn("baseline", ledger.SOURCE_CLASSES)
+        self.assertNotIn("baseline", ledger.PRODUCTION_CLASSES)
+
+    def test_initial_bank_and_carry_atoms_are_baseline_not_natural(self):
+        cand, _ = fx.fixture_baseline_stock_recycling()
+        run = cand.ledger.to_json()
+        self.assertEqual(run["gdep_baseline"], 1)
+        self.assertEqual(run["wdr_baseline"], 1)
+        self.assertEqual(run["gdep_natural"], 0)
+        self.assertEqual(run["gdep_opponent"], 0)
+
+    def test_withdrawing_and_redepositing_baseline_stock_is_zero_production(self):
+        cand, par = fx.fixture_baseline_stock_recycling()
+        res = an.analyze_pair(cand, par)
+        self.assertEqual(res["d_production_gross"], 0,
+                         "%s: bank cycling is not production" % REVIEW)
+        self.assertEqual(res["d_direct_gross"], 0)
+        self.assertEqual(res["d_gdep_baseline"], 1)
+        self.assertEqual(res["d_opp"], 0)
+
+    def test_baseline_net_stays_inside_the_exact_identity(self):
+        cand, par = fx.fixture_baseline_stock_recycling()
+        res = an.analyze_pair(cand, par)
+        self.assertEqual(
+            res["d_opp"],
+            res["d_direct_net"] + res["d_schedule_net"] + res["d_baseline_net"]
+            + res["d_unknown_net"] - res["d_train"])
+        self.assertEqual(res["residual"], 0)
+
+    def test_schedule_net_excludes_baseline(self):
+        cand, par = fx.fixture_baseline_stock_recycling()
+        res = an.analyze_pair(cand, par)
+        self.assertEqual(res["d_schedule_net"], 0)
+        self.assertEqual(res["schedule_windfall_net"], 0)
+
+
+class TestR3D6ContentIdentityIsDerivedNotTrusted(unittest.TestCase):
+    """I30R2-6: `setdefault` let a caller declare a false world."""
+
+    def test_derived_hashes_are_never_overridden_by_the_caller(self):
+        cand, _ = fx.fixture_01_exact_self_pair()
+        lied = ledger.RunRecord(
+            "liar", cand.transcript_text, cand.commands_text,
+            identity=dict(cand.identity, map_sha256="f" * 64),
+            execution=fx.execution_block(cand.commands_text))
+        self.assertNotEqual(lied.identity["map_sha256"], "f" * 64)
+        self.assertEqual(lied.identity["map_sha256"],
+                         lied.derived_identity["map_sha256"])
+        self.assertIn("map_sha256", lied.identity_pin_mismatches)
+
+    def test_derived_and_externally_pinned_identity_are_separated(self):
+        cand, _ = fx.fixture_01_exact_self_pair()
+        self.assertEqual(sorted(cand.derived_identity),
+                         ["command_stream_sha256", "initial_state_sha256",
+                          "map_sha256", "transcript_sha256"])
+        self.assertIn("engine_sha256", cand.pinned_identity)
+        self.assertNotIn("engine_sha256", cand.derived_identity)
+
+    def test_two_different_worlds_declaring_one_hash_are_gate_unready(self):
+        cand, par = fx.fixture_lying_identity_pair()
+        # both callers assert the same map/transcript hashes ...
+        self.assertEqual(par.identity_pin_mismatches, [])
+        self.assertNotEqual(cand.transcript_text, par.transcript_text)
+        res = an.analyze_pair(cand, par, self_pair=True)
+        self.assertEqual(res["status"], an.GATE_UNREADY)
+        self.assertIn("identity_pin_mismatch", res["unready_reasons"])
+        self.assertIn("transcript_sha256", cand.identity_pin_mismatches)
+
+    def test_the_pair_check_compares_derived_content_not_declarations(self):
+        cand, par = fx.fixture_lying_identity_pair()
+        res = an.analyze_pair(cand, par, self_pair=True)
+        self.assertFalse(res["pair_identity"]["valid"])
+        self.assertIn("transcript_sha256", res["pair_identity"]["mismatched"])
+
+
+class TestR3D7ActivationCoversEveryFrozenCause(unittest.TestCase):
+    """I30R2-7: an incomplete detector may not fabricate NOT_APPLICABLE."""
+
+    def test_the_contract_enumerates_every_frozen_cause(self):
+        self.assertEqual(sorted(an.ACTIVATION_CAUSES),
+                         sorted(["banana_command", "own_banana_plant",
+                                 "banana_harvest", "banana_chop",
+                                 "banana_banking", "controller_state",
+                                 "integration_seam"]))
+        self.assertGreaterEqual(an.ACTIVATION_CONTRACT_VERSION, 2)
+
+    def test_each_cause_has_a_fixture_that_activates_on_it_alone(self):
+        for cause, name in fx.ACTIVATION_CAUSE_FIXTURES.items():
+            cand, par = getattr(fx, name)()
+            act = an.detect_activation(cand, par)
+            self.assertTrue(act["banana_active"], cause)
+            self.assertIn(cause, act["activation_causes"], cause)
+
+    def test_state_events_not_command_strings_carry_the_evidence(self):
+        cand, par = getattr(fx, fx.ACTIVATION_CAUSE_FIXTURES["banana_harvest"])()
+        act = an.detect_activation(cand, par)
+        self.assertEqual(act["banana_command_delta"], [])
+        self.assertTrue(act["banana_harvest_delta"])
+
+    def test_an_unrelated_command_divergence_is_not_activation(self):
+        cand, par = fx.fixture_03_no_banana_activation()
+        act = an.detect_activation(cand, par)
+        self.assertEqual(act["activation_causes"], [])
+        self.assertIsNotNone(act["first_divergence_turn"])
+        self.assertEqual(an.analyze_pair(cand, par)["status"],
+                         an.NOT_APPLICABLE)
+
+    def test_a_claimed_telemetry_mechanism_without_telemetry_is_unready(self):
+        cand, par = fx.fixture_claimed_controller_state_without_telemetry()
+        res = an.analyze_pair(cand, par)
+        self.assertEqual(res["status"], an.GATE_UNREADY)
+        self.assertIn("activation_telemetry_unbound", res["unready_reasons"])
+        self.assertNotEqual(res["status"], an.NOT_APPLICABLE)
+
+
+class TestR3D8CommandExecutionValidityGate(unittest.TestCase):
+    """I30R2-8: the panel referee silently discarded TRAIN and MINE."""
+
+    def test_a_record_without_an_execution_block_is_unready(self):
+        cand, par = fx.fixture_05_indirect_only()
+        bare = ledger.RunRecord("bare", cand.transcript_text,
+                                cand.commands_text, identity=cand.identity)
+        self.assertFalse(bare.execution.valid)
+        self.assertIn("execution_validity_absent", bare.execution.reasons)
+        res = an.analyze_pair(bare, par)
+        self.assertEqual(res["status"], an.GATE_UNREADY)
+        self.assertIn("input_execution_validity", res["unready_reasons"])
+
+    def test_the_discarded_train_trace_is_rejected(self):
+        """The m040 class: 182 emitted TRAIN commands, zero spawns, and a
+        referee whose verb manifest never implemented TRAIN."""
+        cand, par = fx.fixture_m040_discarded_train()
+        self.assertGreaterEqual(
+            cand.execution.to_json()["commands_emitted"]
+            - cand.execution.to_json()["commands_executed"], 1)
+        res = an.analyze_pair(cand, par)
+        self.assertEqual(res["status"], an.GATE_UNREADY)
+        self.assertIn("input_execution_validity", res["unready_reasons"])
+        self.assertIn("commands_emitted_not_all_executed",
+                      res["candidate_execution"]["reasons"])
+        self.assertIn("verb_outside_referee_manifest",
+                      res["candidate_execution"]["reasons"])
+
+    def test_the_gate_runs_before_any_ledger_analysis(self):
+        cand, par = fx.fixture_m040_discarded_train()
+        res = an.analyze_pair(cand, par)
+        self.assertIsNone(res["candidate"])
+        self.assertIsNone(res["schedule_windfall_net"])
+        self.assertTrue(res["counted_in_denominator"])
+
+    def test_an_unsupported_command_event_is_rejected(self):
+        cand, par = fx.fixture_unsupported_command_event()
+        res = an.analyze_pair(cand, par)
+        self.assertEqual(res["status"], an.GATE_UNREADY)
+        self.assertIn("unsupported_command_events",
+                      res["candidate_execution"]["reasons"])
+
+    def test_the_referee_and_engine_identity_must_match_across_the_pair(self):
+        cand, par = fx.fixture_referee_version_skew()
+        res = an.analyze_pair(cand, par)
+        self.assertEqual(res["status"], an.GATE_UNREADY)
+        self.assertIn("referee_sha256", res["pair_identity"]["mismatched"])
+
+    def test_the_execution_flag_is_the_harness_declaration_not_an_inference(self):
+        block = fx.execution_block("WAIT\n")
+        for field in ("execution_status", "commands_emitted",
+                      "commands_executed", "unsupported_command_events",
+                      "malformed_command_events", "verb_manifest",
+                      "verb_manifest_sha256", "referee_sha256",
+                      "engine_sha256", "instrument_version",
+                      "corpus_version"):
+            self.assertIn(field, block, field)
+
+
+class TestR3D9ProvenanceClosureAndRawLedgers(unittest.TestCase):
+    """I30R2-9: a reviewer must be able to reproduce an attribution."""
+
+    def test_the_manifest_closes_over_every_input_class(self):
+        manifest = an.provenance_manifest(fx.REPO_ROOT)
+        for key in ("i30_ledger.py", "i30_analyzer.py", "i30_fixtures.py",
+                    "test_i30_invariant.py", "trace_detectors.py",
+                    "spec:chatgpt_1/schedule-opponent-production-invariant"
+                    "-spec-2026-08-08.md",
+                    "ruling:chatgpt_1/i30-d1-d5-spec-ruling-2026-08-08.md",
+                    "review:" + REVIEW,
+                    "engine:rust/src/game/engine.rs",
+                    "python_version", "platform", "command_protocol_sha256"):
+            self.assertIn(key, manifest, key)
+        self.assertEqual(
+            manifest["ruling:chatgpt_1/i30-d1-d5-spec-ruling-2026-08-08.md"],
+            "4439b38b7d645aedca36e347387976032331184e582986e38b25985ae641ef5e")
+        self.assertEqual(manifest["engine:rust/src/game/engine.rs"],
+                         "7c240abfcfdf678993960fe73440735a19f934596c9651bdf"
+                         "915e2902f78fb05")
+
+    def test_each_pair_binds_its_raw_ledger_hash(self):
+        rows = _rows("fixture_05_indirect_only")
+        self.assertEqual(rows[0]["candidate_ledger_sha256"],
+                         ledger.sha256_text(ledger.canonical_json(
+                             rows[0]["candidate"])))
+        self.assertIn("parent_ledger_sha256", rows[0])
+
+    def test_the_aggregate_binds_every_per_pair_result_hash(self):
+        rows = _rows("fixture_05_indirect_only",
+                     "fixture_06_natural_opportunity")
+        report = an.aggregate_report(rows)
+        self.assertEqual(len(report["pair_result_sha256"]), 2)
+        for row in rows:
+            self.assertIn(row["pair_id"], report["pair_result_sha256"])
+
+    def test_raw_ledgers_are_written_with_immutable_paths_and_shas(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            report = an.main(["--report", os.path.join(tmp, "r.json"),
+                              "--ledger-dir", os.path.join(tmp, "ledgers")])
+            self.assertEqual(report, 0)
+            with open(os.path.join(tmp, "r.json")) as fh:
+                out = json.load(fh)
+        entries = out["raw_ledger_index"]
+        self.assertTrue(entries)
+        for run_id, entry in entries.items():
+            self.assertTrue(entry["path"].endswith(".json"), run_id)
+            self.assertEqual(len(entry["sha256"]), 64, run_id)
+
+
+class TestR3D10MutationRunnerIsReproducible(unittest.TestCase):
+    """I30R2-10: a text report is not an executable mutation experiment."""
+
+    RUNNER = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "i30", "i30_mutation_runner.py")
+    MANIFEST = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                            "i30", "mutation-manifest-r3-2026-08-09.json")
+
+    def test_the_runner_and_the_patch_manifest_are_committed(self):
+        self.assertTrue(os.path.exists(self.RUNNER), self.RUNNER)
+        self.assertTrue(os.path.exists(self.MANIFEST), self.MANIFEST)
+
+    def test_every_mutation_declares_an_exact_preimage_and_replacement(self):
+        with open(self.MANIFEST) as fh:
+            manifest = json.load(fh)
+        self.assertGreaterEqual(len(manifest["mutations"]), 10)
+        for m in manifest["mutations"]:
+            for field in ("id", "defect", "target", "preimage", "replacement",
+                          "expected_catcher"):
+                self.assertIn(field, m, m.get("id"))
+            self.assertNotEqual(m["preimage"], m["replacement"], m["id"])
+
+    def test_every_preimage_occurs_exactly_once_in_its_target(self):
+        with open(self.MANIFEST) as fh:
+            manifest = json.load(fh)
+        here = os.path.dirname(os.path.abspath(__file__))
+        for m in manifest["mutations"]:
+            with open(os.path.join(here, m["target"])) as fh:
+                text = fh.read()
+            self.assertEqual(text.count(m["preimage"]), 1,
+                             "%s: preimage must be unique in %s"
+                             % (m["id"], m["target"]))
+
+    def test_the_manifest_pins_the_sha_of_every_mutated_file(self):
+        with open(self.MANIFEST) as fh:
+            manifest = json.load(fh)
+        here = os.path.dirname(os.path.abspath(__file__))
+        for target, sha in manifest["target_sha256"].items():
+            with open(os.path.join(here, target), "rb") as fh:
+                self.assertEqual(ledger.sha256_bytes(fh.read()), sha, target)
 
 if __name__ == "__main__":
     unittest.main()

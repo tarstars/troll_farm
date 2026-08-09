@@ -1,0 +1,617 @@
+test_command_hashes_are_equal (test_i30_invariant.TestBite01ExactSelfPair.test_command_hashes_are_equal) ... ok
+test_every_delta_and_residual_is_zero (test_i30_invariant.TestBite01ExactSelfPair.test_every_delta_and_residual_is_zero) ... ok
+test_non_state_changing_diagnostic_moves_nothing (test_i30_invariant.TestBite02InertCandidate.test_non_state_changing_diagnostic_moves_nothing) ... ok
+test_claimed_but_unexercised_mechanism_is_unproven (test_i30_invariant.TestBite03NoBananaActivation.test_claimed_but_unexercised_mechanism_is_unproven) ... ok
+test_status_is_not_applicable_not_a_fabricated_pass (test_i30_invariant.TestBite03NoBananaActivation.test_status_is_not_applicable_not_a_fabricated_pass) ... ok
+test_d_direct_positive_windfall_zero_and_d6_exercises (test_i30_invariant.TestBite04DirectTheftOnly.test_d_direct_positive_windfall_zero_and_d6_exercises) ... ok
+test_windfall_positive_while_d6_stays_zero (test_i30_invariant.TestBite05IndirectProductionOnly.test_windfall_positive_while_d6_stays_zero) ... ok
+test_uncontested_natural_output_lands_in_d_schedule (test_i30_invariant.TestBite06NaturalOpportunity.test_uncontested_natural_output_lands_in_d_schedule) ... ok
+test_train_bill_closes_the_identity_with_the_correct_sign (test_i30_invariant.TestBite07TrainSpendOffset.test_train_bill_closes_the_identity_with_the_correct_sign) ... ok
+test_training_cost_matches_the_engine_formula (test_i30_invariant.TestBite07TrainSpendOffset.test_training_cost_matches_the_engine_formula) ... ok
+test_each_source_class_in_one_drop_is_counted_exactly_once (test_i30_invariant.TestBite08MixedCargo.test_each_source_class_in_one_drop_is_counted_exactly_once) ... ok
+test_terminal_turn_delta_and_windfall_both_expose_it (test_i30_invariant.TestBite09LongerGameSchedule.test_terminal_turn_delta_and_windfall_both_expose_it) ... ok
+test_d6_is_zero_but_i30_sees_opponent_own_production (test_i30_invariant.TestBite10BlindSpotFixture.test_d6_is_zero_but_i30_sees_opponent_own_production) ... ok
+test_every_behavioural_detector_passes (test_i30_invariant.TestBite10BlindSpotFixture.test_every_behavioural_detector_passes) ... ok
+test_i30_must_not_return_pass_under_a_bound_excluding_the_windfall (test_i30_invariant.TestBite10BlindSpotFixture.test_i30_must_not_return_pass_under_a_bound_excluding_the_windfall) ... ok
+test_self_pair_hash_mismatch_is_gate_unready (test_i30_invariant.TestBite11PairIdentityMismatch.test_self_pair_hash_mismatch_is_gate_unready) ... ok
+test_one_untagged_score_bearing_atom_is_gate_unready (test_i30_invariant.TestBite12UntaggedAtom.test_one_untagged_score_bearing_atom_is_gate_unready) ... ok
+test_nonzero_conservation_residual_is_gate_unready (test_i30_invariant.TestBite13NonzeroResidual.test_nonzero_conservation_residual_is_gate_unready) ... ok
+test_active_candidate_without_a_bound_is_gate_unready (test_i30_invariant.TestBite14AbsentBound.test_active_candidate_without_a_bound_is_gate_unready) ... ok
+test_bound_hash_pin_mismatch_is_gate_unready (test_i30_invariant.TestBite14AbsentBound.test_bound_hash_pin_mismatch_is_gate_unready) ... ok
+test_bound_without_owner_freeze_never_yields_pass (test_i30_invariant.TestBite14AbsentBound.test_bound_without_owner_freeze_never_yields_pass) ... ok
+test_removing_the_indirect_calculation_reopens_the_blind_spot (test_i30_invariant.TestBite15MutationBitesTheIndirectTerm.test_removing_the_indirect_calculation_reopens_the_blind_spot) ... ok
+test_an_ambiguous_metric_makes_the_pair_gate_unready (test_i30_invariant.TestD1BoundMetricNamesStateGrossOrNet.test_an_ambiguous_metric_makes_the_pair_gate_unready) ... ok
+test_qualified_metric_names_are_accepted (test_i30_invariant.TestD1BoundMetricNamesStateGrossOrNet.test_qualified_metric_names_are_accepted) ... ok
+test_the_fixture_bound_uses_a_qualified_name (test_i30_invariant.TestD1BoundMetricNamesStateGrossOrNet.test_the_fixture_bound_uses_a_qualified_name) ... ok
+test_unqualified_metric_names_are_rejected (test_i30_invariant.TestD1BoundMetricNamesStateGrossOrNet.test_unqualified_metric_names_are_rejected) ... ok
+test_gross_production_is_a_separate_mandatory_diagnostic (test_i30_invariant.TestD1SchemaSeparatesGrossWithdrawalAndNet.test_gross_production_is_a_separate_mandatory_diagnostic)
+Gross production rises while an equal withdrawal keeps score flat. ... ok
+test_pair_result_exposes_net_and_gross_terms_separately (test_i30_invariant.TestD1SchemaSeparatesGrossWithdrawalAndNet.test_pair_result_exposes_net_and_gross_terms_separately) ... ok
+test_result_schema_is_versioned_and_bumped (test_i30_invariant.TestD1SchemaSeparatesGrossWithdrawalAndNet.test_result_schema_is_versioned_and_bumped) ... ok
+test_run_ledger_exercises_a_real_withdrawal (test_i30_invariant.TestD1SchemaSeparatesGrossWithdrawalAndNet.test_run_ledger_exercises_a_real_withdrawal) ... ok
+test_run_ledger_names_gross_withdrawal_and_net_separately (test_i30_invariant.TestD1SchemaSeparatesGrossWithdrawalAndNet.test_run_ledger_names_gross_withdrawal_and_net_separately) ... ok
+test_the_exact_identity_uses_net_bank_flow (test_i30_invariant.TestD1SchemaSeparatesGrossWithdrawalAndNet.test_the_exact_identity_uses_net_bank_flow) ... ok
+test_a_plant_seed_at_a_bank_cell_does_not_trip_the_gate (test_i30_invariant.TestD5FailsClosedOnNonIdentifiableAttribution.test_a_plant_seed_at_a_bank_cell_does_not_trip_the_gate)
+The fail-closed rule must not fire on an explained decrease. ... ok
+test_absent_or_mixed_planter_occupancy_is_unknown (test_i30_invariant.TestD5FailsClosedOnNonIdentifiableAttribution.test_absent_or_mixed_planter_occupancy_is_unknown) ... ok
+test_acquisition_on_a_dead_asset_cell_is_unknown (test_i30_invariant.TestD5FailsClosedOnNonIdentifiableAttribution.test_acquisition_on_a_dead_asset_cell_is_unknown) ... ok
+test_cancelling_unknown_deposit_and_withdrawal_still_fails_closed (test_i30_invariant.TestD5FailsClosedOnNonIdentifiableAttribution.test_cancelling_unknown_deposit_and_withdrawal_still_fails_closed)
+D_UNKNOWN_NET == 0 is not evidence of complete provenance. ... ok
+test_class_swap_pair_is_indistinguishable_so_both_are_unknown (test_i30_invariant.TestD5FailsClosedOnNonIdentifiableAttribution.test_class_swap_pair_is_indistinguishable_so_both_are_unknown)
+Two hidden histories, one observable transition, two labels. ... ok
+test_deposit_unit_assignment_across_two_units_is_unknown (test_i30_invariant.TestD5FailsClosedOnNonIdentifiableAttribution.test_deposit_unit_assignment_across_two_units_is_unknown) ... ok
+test_multi_source_deposit_with_concurrent_withdrawal_is_unknown (test_i30_invariant.TestD5FailsClosedOnNonIdentifiableAttribution.test_multi_source_deposit_with_concurrent_withdrawal_is_unknown) ... ok
+test_same_turn_deposit_and_withdrawal_is_unknown (test_i30_invariant.TestD5FailsClosedOnNonIdentifiableAttribution.test_same_turn_deposit_and_withdrawal_is_unknown) ... ok
+test_reverted_tie_break_reopens_multi_source_attribution (test_i30_invariant.TestD5MutationRevertedTieBreakIsCaught.test_reverted_tie_break_reopens_multi_source_attribution) ... ok
+test_reverted_tie_break_reopens_same_turn_misattribution (test_i30_invariant.TestD5MutationRevertedTieBreakIsCaught.test_reverted_tie_break_reopens_same_turn_misattribution) ... ok
+test_reverted_tie_break_reopens_the_class_swap (test_i30_invariant.TestD5MutationRevertedTieBreakIsCaught.test_reverted_tie_break_reopens_the_class_swap) ... ok
+test_reverted_tie_break_reopens_unit_assignment (test_i30_invariant.TestD5MutationRevertedTieBreakIsCaught.test_reverted_tie_break_reopens_unit_assignment) ... ok
+test_the_identifiability_hooks_exist (test_i30_invariant.TestD5MutationRevertedTieBreakIsCaught.test_the_identifiability_hooks_exist) ... ok
+test_the_valid_fixtures_are_unaffected_by_the_hooks (test_i30_invariant.TestD5MutationRevertedTieBreakIsCaught.test_the_valid_fixtures_are_unaffected_by_the_hooks)
+The fix must not fire on the fifteen -- otherwise it proves nothing. ... ok
+test_no_fixture_in_the_corpus_can_produce_pass (test_i30_invariant.TestNoPassWithoutAnOwnerFrozenBound.test_no_fixture_in_the_corpus_can_produce_pass) ... ok
+test_every_mutation_declares_an_exact_preimage_and_replacement (test_i30_invariant.TestR3D10MutationRunnerIsReproducible.test_every_mutation_declares_an_exact_preimage_and_replacement) ... ERROR
+test_every_preimage_occurs_exactly_once_in_its_target (test_i30_invariant.TestR3D10MutationRunnerIsReproducible.test_every_preimage_occurs_exactly_once_in_its_target) ... ERROR
+test_the_manifest_pins_the_sha_of_every_mutated_file (test_i30_invariant.TestR3D10MutationRunnerIsReproducible.test_the_manifest_pins_the_sha_of_every_mutated_file) ... ERROR
+test_the_runner_and_the_patch_manifest_are_committed (test_i30_invariant.TestR3D10MutationRunnerIsReproducible.test_the_runner_and_the_patch_manifest_are_committed) ... FAIL
+test_a_per_pair_metric_name_may_not_masquerade_as_a_mean (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_a_per_pair_metric_name_may_not_masquerade_as_a_mean) ... FAIL
+test_a_stale_bound_schema_version_is_rejected (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_a_stale_bound_schema_version_is_rejected) ... ERROR
+test_an_unsupported_population_is_rejected_before_evaluation (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_an_unsupported_population_is_rejected_before_evaluation) ... ERROR
+test_analyze_pair_emits_no_value_verdict_at_all (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_analyze_pair_emits_no_value_verdict_at_all) ... ERROR
+test_analyze_pair_refuses_a_bound_argument (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_analyze_pair_refuses_a_bound_argument) ... ERROR
+test_the_metric_is_the_exact_population_mean (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_the_metric_is_the_exact_population_mean) ... ERROR
+test_the_population_named_by_the_bound_selects_the_rows (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_the_population_named_by_the_bound_selects_the_rows) ... ERROR
+test_a_failed_pair_row_propagates_to_aggregate_fail (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_a_failed_pair_row_propagates_to_aggregate_fail) ... ERROR
+test_a_satisfied_owner_bound_is_pass (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_a_satisfied_owner_bound_is_pass) ... ERROR
+test_an_empty_corpus_is_gate_unready (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_an_empty_corpus_is_gate_unready) ... ERROR
+test_an_exceeded_owner_bound_is_exactly_fail (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_an_exceeded_owner_bound_is_exactly_fail) ... ERROR
+test_one_unready_row_dominates_a_violated_bound (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_one_unready_row_dominates_a_violated_bound) ... ERROR
+test_the_old_blocking_only_rule_can_no_longer_pass_a_failed_corpus (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_the_old_blocking_only_rule_can_no_longer_pass_a_failed_corpus) ... ERROR
+test_an_unowned_bound_never_produces_a_production_fail (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_an_unowned_bound_never_produces_a_production_fail)
+The still-open D2/D3 deviation: an unratified threshold may not ... ERROR
+test_no_production_owner_decision_exists (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_no_production_owner_decision_exists)
+MEASURED: the production authority resolves nothing, so the ... ERROR
+test_the_blob_must_be_the_bytes_at_the_pinned_path (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_blob_must_be_the_bytes_at_the_pinned_path) ... ERROR
+test_the_decision_must_be_authored_by_the_authority (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_be_authored_by_the_authority) ... ERROR
+test_the_decision_must_pin_the_exact_bound_sha (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_pin_the_exact_bound_sha) ... ERROR
+test_the_decision_must_predate_the_observation (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_predate_the_observation) ... ERROR
+test_the_git_ref_authority_resolves_a_real_frozen_blob (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_git_ref_authority_resolves_a_real_frozen_blob)
+MEASURED: the authority really reads a blob from a pinned ref. ... ERROR
+test_the_self_declared_string_is_rejected_outright (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_self_declared_string_is_rejected_outright) ... ERROR
+test_without_an_authority_nothing_is_owner_frozen (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_without_an_authority_nothing_is_owner_frozen) ... ERROR
+test_a_second_ambiguous_fixture_reports_its_own_interval (test_i30_invariant.TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_a_second_ambiguous_fixture_reports_its_own_interval) ... ERROR
+test_class_only_ambiguity_keeps_the_gross_counts_exact (test_i30_invariant.TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_class_only_ambiguity_keeps_the_gross_counts_exact)
+The class swap is undetermined in CLASS, not in COUNT. ... ERROR
+test_net_bank_flow_stays_exact_under_the_same_ambiguity (test_i30_invariant.TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_net_bank_flow_stays_exact_under_the_same_ambiguity) ... ok
+test_pair_gross_deltas_are_null_when_either_side_is_ambiguous (test_i30_invariant.TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_pair_gross_deltas_are_null_when_either_side_is_ambiguous) ... FAIL
+test_the_aggregate_refuses_to_mean_a_non_identifiable_point (test_i30_invariant.TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_the_aggregate_refuses_to_mean_a_non_identifiable_point) ... ERROR
+test_the_ambiguous_split_reports_null_totals_and_the_interval (test_i30_invariant.TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_the_ambiguous_split_reports_null_totals_and_the_interval) ... ERROR
+test_baseline_is_its_own_source_class (test_i30_invariant.TestR3D5BaselineStockIsNotProduction.test_baseline_is_its_own_source_class) ... FAIL
+test_baseline_net_stays_inside_the_exact_identity (test_i30_invariant.TestR3D5BaselineStockIsNotProduction.test_baseline_net_stays_inside_the_exact_identity) ... ERROR
+test_initial_bank_and_carry_atoms_are_baseline_not_natural (test_i30_invariant.TestR3D5BaselineStockIsNotProduction.test_initial_bank_and_carry_atoms_are_baseline_not_natural) ... ERROR
+test_schedule_net_excludes_baseline (test_i30_invariant.TestR3D5BaselineStockIsNotProduction.test_schedule_net_excludes_baseline) ... ERROR
+test_withdrawing_and_redepositing_baseline_stock_is_zero_production (test_i30_invariant.TestR3D5BaselineStockIsNotProduction.test_withdrawing_and_redepositing_baseline_stock_is_zero_production) ... ERROR
+test_derived_and_externally_pinned_identity_are_separated (test_i30_invariant.TestR3D6ContentIdentityIsDerivedNotTrusted.test_derived_and_externally_pinned_identity_are_separated) ... ERROR
+test_derived_hashes_are_never_overridden_by_the_caller (test_i30_invariant.TestR3D6ContentIdentityIsDerivedNotTrusted.test_derived_hashes_are_never_overridden_by_the_caller) ... ERROR
+test_the_pair_check_compares_derived_content_not_declarations (test_i30_invariant.TestR3D6ContentIdentityIsDerivedNotTrusted.test_the_pair_check_compares_derived_content_not_declarations) ... ERROR
+test_two_different_worlds_declaring_one_hash_are_gate_unready (test_i30_invariant.TestR3D6ContentIdentityIsDerivedNotTrusted.test_two_different_worlds_declaring_one_hash_are_gate_unready) ... ERROR
+test_a_claimed_telemetry_mechanism_without_telemetry_is_unready (test_i30_invariant.TestR3D7ActivationCoversEveryFrozenCause.test_a_claimed_telemetry_mechanism_without_telemetry_is_unready) ... ERROR
+test_an_unrelated_command_divergence_is_not_activation (test_i30_invariant.TestR3D7ActivationCoversEveryFrozenCause.test_an_unrelated_command_divergence_is_not_activation) ... ok
+test_each_cause_has_a_fixture_that_activates_on_it_alone (test_i30_invariant.TestR3D7ActivationCoversEveryFrozenCause.test_each_cause_has_a_fixture_that_activates_on_it_alone) ... ERROR
+test_state_events_not_command_strings_carry_the_evidence (test_i30_invariant.TestR3D7ActivationCoversEveryFrozenCause.test_state_events_not_command_strings_carry_the_evidence) ... ERROR
+test_the_contract_enumerates_every_frozen_cause (test_i30_invariant.TestR3D7ActivationCoversEveryFrozenCause.test_the_contract_enumerates_every_frozen_cause) ... ERROR
+test_a_record_without_an_execution_block_is_unready (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_a_record_without_an_execution_block_is_unready) ... ERROR
+test_an_unsupported_command_event_is_rejected (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_an_unsupported_command_event_is_rejected) ... ERROR
+test_the_discarded_train_trace_is_rejected (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_the_discarded_train_trace_is_rejected)
+The m040 class: 182 emitted TRAIN commands, zero spawns, and a ... ERROR
+test_the_execution_flag_is_the_harness_declaration_not_an_inference (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_the_execution_flag_is_the_harness_declaration_not_an_inference) ... ERROR
+test_the_gate_runs_before_any_ledger_analysis (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_the_gate_runs_before_any_ledger_analysis) ... ERROR
+test_the_referee_and_engine_identity_must_match_across_the_pair (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_the_referee_and_engine_identity_must_match_across_the_pair) ... ERROR
+test_each_pair_binds_its_raw_ledger_hash (test_i30_invariant.TestR3D9ProvenanceClosureAndRawLedgers.test_each_pair_binds_its_raw_ledger_hash) ... ERROR
+test_raw_ledgers_are_written_with_immutable_paths_and_shas (test_i30_invariant.TestR3D9ProvenanceClosureAndRawLedgers.test_raw_ledgers_are_written_with_immutable_paths_and_shas) ... usage: python3 -m unittest [-h] --report REPORT
+python3 -m unittest: error: unrecognized arguments: --ledger-dir /tmp/tmp4lu2l0oq/ledgers
+ERROR
+test_the_aggregate_binds_every_per_pair_result_hash (test_i30_invariant.TestR3D9ProvenanceClosureAndRawLedgers.test_the_aggregate_binds_every_per_pair_result_hash) ... ERROR
+test_the_manifest_closes_over_every_input_class (test_i30_invariant.TestR3D9ProvenanceClosureAndRawLedgers.test_the_manifest_closes_over_every_input_class) ... ERROR
+test_chopped_wood_carries_its_asset_class_at_weight_four (test_i30_invariant.TestSupplementaryWoodChopCoverage.test_chopped_wood_carries_its_asset_class_at_weight_four) ... ok
+
+======================================================================
+ERROR: test_every_mutation_declares_an_exact_preimage_and_replacement (test_i30_invariant.TestR3D10MutationRunnerIsReproducible.test_every_mutation_declares_an_exact_preimage_and_replacement)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1408, in test_every_mutation_declares_an_exact_preimage_and_replacement
+    with open(self.MANIFEST) as fh:
+         ^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30/mutation-manifest-r3-2026-08-09.json'
+
+======================================================================
+ERROR: test_every_preimage_occurs_exactly_once_in_its_target (test_i30_invariant.TestR3D10MutationRunnerIsReproducible.test_every_preimage_occurs_exactly_once_in_its_target)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1418, in test_every_preimage_occurs_exactly_once_in_its_target
+    with open(self.MANIFEST) as fh:
+         ^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30/mutation-manifest-r3-2026-08-09.json'
+
+======================================================================
+ERROR: test_the_manifest_pins_the_sha_of_every_mutated_file (test_i30_invariant.TestR3D10MutationRunnerIsReproducible.test_the_manifest_pins_the_sha_of_every_mutated_file)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1429, in test_the_manifest_pins_the_sha_of_every_mutated_file
+    with open(self.MANIFEST) as fh:
+         ^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30/mutation-manifest-r3-2026-08-09.json'
+
+======================================================================
+ERROR: test_a_stale_bound_schema_version_is_rejected (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_a_stale_bound_schema_version_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 944, in test_a_stale_bound_schema_version_is_rejected
+    bound = an.Bound(dict(fx.TEST_BOUND_WINDFALL, schema_version=1))
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'TEST_BOUND_WINDFALL'. Did you mean: 'TEST_BOUND_ZERO_WINDFALL'?
+
+======================================================================
+ERROR: test_an_unsupported_population_is_rejected_before_evaluation (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_an_unsupported_population_is_rejected_before_evaluation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 939, in test_an_unsupported_population_is_rejected_before_evaluation
+    bound = an.Bound(dict(fx.TEST_BOUND_WINDFALL, population="whatever"))
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'TEST_BOUND_WINDFALL'. Did you mean: 'TEST_BOUND_ZERO_WINDFALL'?
+
+======================================================================
+ERROR: test_analyze_pair_emits_no_value_verdict_at_all (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_analyze_pair_emits_no_value_verdict_at_all)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 902, in test_analyze_pair_emits_no_value_verdict_at_all
+    self.assertEqual(res["status"], an.MEASURED, res.get("unready_reasons"))
+                                    ^^^^^^^^^^^
+AttributeError: module 'i30_analyzer' has no attribute 'MEASURED'
+
+======================================================================
+ERROR: test_analyze_pair_refuses_a_bound_argument (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_analyze_pair_refuses_a_bound_argument)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 911, in test_analyze_pair_refuses_a_bound_argument
+    an.analyze_pair(cand, par, bound=an.Bound(fx.TEST_BOUND_WINDFALL))
+                                              ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'TEST_BOUND_WINDFALL'. Did you mean: 'TEST_BOUND_ZERO_WINDFALL'?
+
+======================================================================
+ERROR: test_the_metric_is_the_exact_population_mean (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_the_metric_is_the_exact_population_mean)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 928, in test_the_metric_is_the_exact_population_mean
+    rows, bound=an.Bound(dict(fx.TEST_BOUND_WINDFALL,
+                              ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'TEST_BOUND_WINDFALL'. Did you mean: 'TEST_BOUND_ZERO_WINDFALL'?
+
+======================================================================
+ERROR: test_the_population_named_by_the_bound_selects_the_rows (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_the_population_named_by_the_bound_selects_the_rows)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 917, in test_the_population_named_by_the_bound_selects_the_rows
+    spec = dict(fx.TEST_BOUND_WINDFALL, population=population)
+                ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'TEST_BOUND_WINDFALL'. Did you mean: 'TEST_BOUND_ZERO_WINDFALL'?
+
+======================================================================
+ERROR: test_a_failed_pair_row_propagates_to_aggregate_fail (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_a_failed_pair_row_propagates_to_aggregate_fail)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 972, in test_a_failed_pair_row_propagates_to_aggregate_fail
+    rows, bound=fx.owner_verified_bound(),
+                ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'owner_verified_bound'
+
+======================================================================
+ERROR: test_a_satisfied_owner_bound_is_pass (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_a_satisfied_owner_bound_is_pass)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 990, in test_a_satisfied_owner_bound_is_pass
+    rows, bound=fx.owner_verified_bound(threshold=100),
+                ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'owner_verified_bound'
+
+======================================================================
+ERROR: test_an_empty_corpus_is_gate_unready (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_an_empty_corpus_is_gate_unready)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 963, in test_an_empty_corpus_is_gate_unready
+    [], bound=fx.owner_verified_bound(), authority=fx.test_authority(),
+              ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'owner_verified_bound'
+
+======================================================================
+ERROR: test_an_exceeded_owner_bound_is_exactly_fail (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_an_exceeded_owner_bound_is_exactly_fail)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 981, in test_an_exceeded_owner_bound_is_exactly_fail
+    rows, bound=fx.owner_verified_bound(),
+                ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'owner_verified_bound'
+
+======================================================================
+ERROR: test_one_unready_row_dominates_a_violated_bound (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_one_unready_row_dominates_a_violated_bound)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 998, in test_one_unready_row_dominates_a_violated_bound
+    rows, bound=fx.owner_verified_bound(),
+                ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'owner_verified_bound'
+
+======================================================================
+ERROR: test_the_old_blocking_only_rule_can_no_longer_pass_a_failed_corpus (test_i30_invariant.TestR3D2AggregateVerdictPrecedence.test_the_old_blocking_only_rule_can_no_longer_pass_a_failed_corpus)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1007, in test_the_old_blocking_only_rule_can_no_longer_pass_a_failed_corpus
+    rows, bound=fx.owner_verified_bound(threshold=100),
+                ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'owner_verified_bound'
+
+======================================================================
+ERROR: test_an_unowned_bound_never_produces_a_production_fail (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_an_unowned_bound_never_produces_a_production_fail)
+The still-open D2/D3 deviation: an unratified threshold may not
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1070, in test_an_unowned_bound_never_produces_a_production_fail
+    report = self._report(an.Bound(fx.TEST_BOUND_WINDFALL))   # test_fixture
+                                   ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'TEST_BOUND_WINDFALL'. Did you mean: 'TEST_BOUND_ZERO_WINDFALL'?
+
+======================================================================
+ERROR: test_no_production_owner_decision_exists (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_no_production_owner_decision_exists)
+MEASURED: the production authority resolves nothing, so the
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1095, in test_no_production_owner_decision_exists
+    authority = an.production_authority(fx.REPO_ROOT)
+                ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_analyzer' has no attribute 'production_authority'
+
+======================================================================
+ERROR: test_the_blob_must_be_the_bytes_at_the_pinned_path (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_blob_must_be_the_bytes_at_the_pinned_path)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1038, in test_the_blob_must_be_the_bytes_at_the_pinned_path
+    authority = fx.test_authority(corrupt=True)
+                ^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'test_authority'
+
+======================================================================
+ERROR: test_the_decision_must_be_authored_by_the_authority (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_be_authored_by_the_authority)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1061, in test_the_decision_must_be_authored_by_the_authority
+    authority = fx.test_authority(authority_id="somebody-else")
+                ^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'test_authority'
+
+======================================================================
+ERROR: test_the_decision_must_pin_the_exact_bound_sha (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_pin_the_exact_bound_sha)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1047, in test_the_decision_must_pin_the_exact_bound_sha
+    bound = fx.owner_verified_bound(threshold=7)
+            ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'owner_verified_bound'
+
+======================================================================
+ERROR: test_the_decision_must_predate_the_observation (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_predate_the_observation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1054, in test_the_decision_must_predate_the_observation
+    report = self._report(fx.owner_verified_bound(), fx.test_authority(),
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'owner_verified_bound'
+
+======================================================================
+ERROR: test_the_git_ref_authority_resolves_a_real_frozen_blob (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_git_ref_authority_resolves_a_real_frozen_blob)
+MEASURED: the authority really reads a blob from a pinned ref.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1083, in test_the_git_ref_authority_resolves_a_real_frozen_blob
+    authority = an.GitRefAuthority(fx.REPO_ROOT,
+                ^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_analyzer' has no attribute 'GitRefAuthority'
+
+======================================================================
+ERROR: test_the_self_declared_string_is_rejected_outright (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_self_declared_string_is_rejected_outright)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1022, in test_the_self_declared_string_is_rejected_outright
+    bound = an.Bound(dict(fx.TEST_BOUND_WINDFALL,
+                          ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'TEST_BOUND_WINDFALL'. Did you mean: 'TEST_BOUND_ZERO_WINDFALL'?
+
+======================================================================
+ERROR: test_without_an_authority_nothing_is_owner_frozen (test_i30_invariant.TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_without_an_authority_nothing_is_owner_frozen)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1031, in test_without_an_authority_nothing_is_owner_frozen
+    report = self._report(fx.owner_verified_bound())
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'owner_verified_bound'
+
+======================================================================
+ERROR: test_a_second_ambiguous_fixture_reports_its_own_interval (test_i30_invariant.TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_a_second_ambiguous_fixture_reports_its_own_interval)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1131, in test_a_second_ambiguous_fixture_reports_its_own_interval
+    self.assertEqual(run["gdep_total_interval"], [1, 2])
+                     ~~~^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'gdep_total_interval'
+
+======================================================================
+ERROR: test_class_only_ambiguity_keeps_the_gross_counts_exact (test_i30_invariant.TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_class_only_ambiguity_keeps_the_gross_counts_exact)
+The class swap is undetermined in CLASS, not in COUNT.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1159, in test_class_only_ambiguity_keeps_the_gross_counts_exact
+    self.assertTrue(run["gross_identifiable"])
+                    ~~~^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'gross_identifiable'
+
+======================================================================
+ERROR: test_the_aggregate_refuses_to_mean_a_non_identifiable_point (test_i30_invariant.TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_the_aggregate_refuses_to_mean_a_non_identifiable_point)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1147, in test_the_aggregate_refuses_to_mean_a_non_identifiable_point
+    rows, bound=fx.owner_verified_bound(
+                ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'owner_verified_bound'
+
+======================================================================
+ERROR: test_the_ambiguous_split_reports_null_totals_and_the_interval (test_i30_invariant.TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_the_ambiguous_split_reports_null_totals_and_the_interval)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1110, in test_the_ambiguous_split_reports_null_totals_and_the_interval
+    self.assertFalse(run["gross_identifiable"])
+                     ~~~^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'gross_identifiable'
+
+======================================================================
+ERROR: test_baseline_net_stays_inside_the_exact_identity (test_i30_invariant.TestR3D5BaselineStockIsNotProduction.test_baseline_net_stays_inside_the_exact_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1191, in test_baseline_net_stays_inside_the_exact_identity
+    cand, par = fx.fixture_baseline_stock_recycling()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'fixture_baseline_stock_recycling'
+
+======================================================================
+ERROR: test_initial_bank_and_carry_atoms_are_baseline_not_natural (test_i30_invariant.TestR3D5BaselineStockIsNotProduction.test_initial_bank_and_carry_atoms_are_baseline_not_natural)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1174, in test_initial_bank_and_carry_atoms_are_baseline_not_natural
+    cand, _ = fx.fixture_baseline_stock_recycling()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'fixture_baseline_stock_recycling'
+
+======================================================================
+ERROR: test_schedule_net_excludes_baseline (test_i30_invariant.TestR3D5BaselineStockIsNotProduction.test_schedule_net_excludes_baseline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1200, in test_schedule_net_excludes_baseline
+    cand, par = fx.fixture_baseline_stock_recycling()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'fixture_baseline_stock_recycling'
+
+======================================================================
+ERROR: test_withdrawing_and_redepositing_baseline_stock_is_zero_production (test_i30_invariant.TestR3D5BaselineStockIsNotProduction.test_withdrawing_and_redepositing_baseline_stock_is_zero_production)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1182, in test_withdrawing_and_redepositing_baseline_stock_is_zero_production
+    cand, par = fx.fixture_baseline_stock_recycling()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'fixture_baseline_stock_recycling'
+
+======================================================================
+ERROR: test_derived_and_externally_pinned_identity_are_separated (test_i30_invariant.TestR3D6ContentIdentityIsDerivedNotTrusted.test_derived_and_externally_pinned_identity_are_separated)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1222, in test_derived_and_externally_pinned_identity_are_separated
+    self.assertEqual(sorted(cand.derived_identity),
+                            ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RunRecord' object has no attribute 'derived_identity'
+
+======================================================================
+ERROR: test_derived_hashes_are_never_overridden_by_the_caller (test_i30_invariant.TestR3D6ContentIdentityIsDerivedNotTrusted.test_derived_hashes_are_never_overridden_by_the_caller)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1214, in test_derived_hashes_are_never_overridden_by_the_caller
+    execution=fx.execution_block(cand.commands_text))
+              ^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'execution_block'
+
+======================================================================
+ERROR: test_the_pair_check_compares_derived_content_not_declarations (test_i30_invariant.TestR3D6ContentIdentityIsDerivedNotTrusted.test_the_pair_check_compares_derived_content_not_declarations)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1239, in test_the_pair_check_compares_derived_content_not_declarations
+    cand, par = fx.fixture_lying_identity_pair()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'fixture_lying_identity_pair'
+
+======================================================================
+ERROR: test_two_different_worlds_declaring_one_hash_are_gate_unready (test_i30_invariant.TestR3D6ContentIdentityIsDerivedNotTrusted.test_two_different_worlds_declaring_one_hash_are_gate_unready)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1229, in test_two_different_worlds_declaring_one_hash_are_gate_unready
+    cand, par = fx.fixture_lying_identity_pair()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'fixture_lying_identity_pair'
+
+======================================================================
+ERROR: test_a_claimed_telemetry_mechanism_without_telemetry_is_unready (test_i30_invariant.TestR3D7ActivationCoversEveryFrozenCause.test_a_claimed_telemetry_mechanism_without_telemetry_is_unready)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1278, in test_a_claimed_telemetry_mechanism_without_telemetry_is_unready
+    cand, par = fx.fixture_claimed_controller_state_without_telemetry()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'fixture_claimed_controller_state_without_telemetry'
+
+======================================================================
+ERROR: test_each_cause_has_a_fixture_that_activates_on_it_alone (test_i30_invariant.TestR3D7ActivationCoversEveryFrozenCause.test_each_cause_has_a_fixture_that_activates_on_it_alone)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1257, in test_each_cause_has_a_fixture_that_activates_on_it_alone
+    for cause, name in fx.ACTIVATION_CAUSE_FIXTURES.items():
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'ACTIVATION_CAUSE_FIXTURES'
+
+======================================================================
+ERROR: test_state_events_not_command_strings_carry_the_evidence (test_i30_invariant.TestR3D7ActivationCoversEveryFrozenCause.test_state_events_not_command_strings_carry_the_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1264, in test_state_events_not_command_strings_carry_the_evidence
+    cand, par = getattr(fx, fx.ACTIVATION_CAUSE_FIXTURES["banana_harvest"])()
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'ACTIVATION_CAUSE_FIXTURES'
+
+======================================================================
+ERROR: test_the_contract_enumerates_every_frozen_cause (test_i30_invariant.TestR3D7ActivationCoversEveryFrozenCause.test_the_contract_enumerates_every_frozen_cause)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1249, in test_the_contract_enumerates_every_frozen_cause
+    self.assertEqual(sorted(an.ACTIVATION_CAUSES),
+                            ^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_analyzer' has no attribute 'ACTIVATION_CAUSES'
+
+======================================================================
+ERROR: test_a_record_without_an_execution_block_is_unready (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_a_record_without_an_execution_block_is_unready)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1292, in test_a_record_without_an_execution_block_is_unready
+    self.assertFalse(bare.execution.valid)
+                     ^^^^^^^^^^^^^^
+AttributeError: 'RunRecord' object has no attribute 'execution'
+
+======================================================================
+ERROR: test_an_unsupported_command_event_is_rejected (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_an_unsupported_command_event_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1321, in test_an_unsupported_command_event_is_rejected
+    cand, par = fx.fixture_unsupported_command_event()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'fixture_unsupported_command_event'
+
+======================================================================
+ERROR: test_the_discarded_train_trace_is_rejected (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_the_discarded_train_trace_is_rejected)
+The m040 class: 182 emitted TRAIN commands, zero spawns, and a
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1301, in test_the_discarded_train_trace_is_rejected
+    cand, par = fx.fixture_m040_discarded_train()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'fixture_m040_discarded_train'
+
+======================================================================
+ERROR: test_the_execution_flag_is_the_harness_declaration_not_an_inference (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_the_execution_flag_is_the_harness_declaration_not_an_inference)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1334, in test_the_execution_flag_is_the_harness_declaration_not_an_inference
+    block = fx.execution_block("WAIT\n")
+            ^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'execution_block'
+
+======================================================================
+ERROR: test_the_gate_runs_before_any_ledger_analysis (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_the_gate_runs_before_any_ledger_analysis)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1314, in test_the_gate_runs_before_any_ledger_analysis
+    cand, par = fx.fixture_m040_discarded_train()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'fixture_m040_discarded_train'
+
+======================================================================
+ERROR: test_the_referee_and_engine_identity_must_match_across_the_pair (test_i30_invariant.TestR3D8CommandExecutionValidityGate.test_the_referee_and_engine_identity_must_match_across_the_pair)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1328, in test_the_referee_and_engine_identity_must_match_across_the_pair
+    cand, par = fx.fixture_referee_version_skew()
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_fixtures' has no attribute 'fixture_referee_version_skew'
+
+======================================================================
+ERROR: test_each_pair_binds_its_raw_ledger_hash (test_i30_invariant.TestR3D9ProvenanceClosureAndRawLedgers.test_each_pair_binds_its_raw_ledger_hash)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1367, in test_each_pair_binds_its_raw_ledger_hash
+    self.assertEqual(rows[0]["candidate_ledger_sha256"],
+                     ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'candidate_ledger_sha256'
+
+======================================================================
+ERROR: test_raw_ledgers_are_written_with_immutable_paths_and_shas (test_i30_invariant.TestR3D9ProvenanceClosureAndRawLedgers.test_raw_ledgers_are_written_with_immutable_paths_and_shas)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1383, in test_raw_ledgers_are_written_with_immutable_paths_and_shas
+    report = an.main(["--report", os.path.join(tmp, "r.json"),
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30_analyzer.py", line 475, in main
+    args = ap.parse_args(argv)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/argparse.py", line 1911, in parse_args
+    self.error(msg % ' '.join(argv))
+  File "/usr/lib/python3.12/argparse.py", line 2677, in error
+    self.exit(2, _('%(prog)s: error: %(message)s\n') % args)
+  File "/usr/lib/python3.12/argparse.py", line 2664, in exit
+    _sys.exit(status)
+SystemExit: 2
+
+======================================================================
+ERROR: test_the_aggregate_binds_every_per_pair_result_hash (test_i30_invariant.TestR3D9ProvenanceClosureAndRawLedgers.test_the_aggregate_binds_every_per_pair_result_hash)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1376, in test_the_aggregate_binds_every_per_pair_result_hash
+    self.assertEqual(len(report["pair_result_sha256"]), 2)
+                         ~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'pair_result_sha256'
+
+======================================================================
+ERROR: test_the_manifest_closes_over_every_input_class (test_i30_invariant.TestR3D9ProvenanceClosureAndRawLedgers.test_the_manifest_closes_over_every_input_class)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1348, in test_the_manifest_closes_over_every_input_class
+    manifest = an.provenance_manifest(fx.REPO_ROOT)
+               ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'i30_analyzer' has no attribute 'provenance_manifest'
+
+======================================================================
+FAIL: test_the_runner_and_the_patch_manifest_are_committed (test_i30_invariant.TestR3D10MutationRunnerIsReproducible.test_the_runner_and_the_patch_manifest_are_committed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1404, in test_the_runner_and_the_patch_manifest_are_committed
+    self.assertTrue(os.path.exists(self.RUNNER), self.RUNNER)
+AssertionError: False is not true : /home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/i30/i30_mutation_runner.py
+
+======================================================================
+FAIL: test_a_per_pair_metric_name_may_not_masquerade_as_a_mean (test_i30_invariant.TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_a_per_pair_metric_name_may_not_masquerade_as_a_mean)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 950, in test_a_per_pair_metric_name_may_not_masquerade_as_a_mean
+    self.assertIn("max_per_pair_schedule_windfall_net",
+AssertionError: 'max_per_pair_schedule_windfall_net' not found in {'mean_schedule_windfall_net': 'schedule_windfall_net', 'mean_d_opp': 'd_opp', 'mean_d_train': 'd_train', 'mean_d_direct_net': 'd_direct_net', 'mean_d_schedule_net': 'd_schedule_net', 'mean_d_unknown_net': 'd_unknown_net', 'mean_d_direct_gross': 'd_direct_gross', 'mean_production_gross': 'd_production_gross'}
+
+======================================================================
+FAIL: test_pair_gross_deltas_are_null_when_either_side_is_ambiguous (test_i30_invariant.TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_pair_gross_deltas_are_null_when_either_side_is_ambiguous)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1140, in test_pair_gross_deltas_are_null_when_either_side_is_ambiguous
+    self.assertIsNone(res[key], key)
+AssertionError: 0 is not None : d_direct_gross
+
+======================================================================
+FAIL: test_baseline_is_its_own_source_class (test_i30_invariant.TestR3D5BaselineStockIsNotProduction.test_baseline_is_its_own_source_class)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/test_i30_invariant.py", line 1170, in test_baseline_is_its_own_source_class
+    self.assertIn("baseline", ledger.SOURCE_CLASSES)
+AssertionError: 'baseline' not found in ('ours', 'opponent', 'natural', 'unknown')
+
+----------------------------------------------------------------------
+Ran 104 tests in 0.248s
+
+FAILED (failures=4, errors=50)
