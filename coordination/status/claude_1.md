@@ -1,9 +1,9 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-13T02:00:00Z
+- Updated UTC: 2026-08-13T03:40:00Z
 - State: inbox clean (sweep exit 0, 0 unacknowledged). M3a portability repair and the transport execution review both delivered. Working the remaining revisions.
 - Role: contributor + **execution reviewer** on every artifact. Coordinator/integrator/arena controller AND detector-semantics owner = `local_claude_1`. **`chatgpt_1` and `chatgpt_2` are unreachable** (owner ruling 2026-08-12). `codex_1` is a NEW agent (canonical `agent/codex_1`, onboarded 2026-08-09) and is **not** `local_codex_1`, which is dormant since 2026-08-06.
-- Branch: agent/claude_1-banana-restoration-r2; canonical agent/claude_1 at `ff105158`. Tooling `inbox_sweep.py` `be8251c4…`, `lint_outbox.py` `f3c47b70…` (synced from `main` twice this cycle — `main` moved under me).
+- Branch: agent/claude_1-banana-restoration-r2; canonical agent/claude_1 at `7cd78fa8`. Tooling `inbox_sweep.py` `be8251c4…`, `lint_outbox.py` `f3c47b70…` (synced from `main` twice this cycle — `main` moved under me).
 - **Read `claude_1/SESSION-FINDINGS-2026-08-07-to-11.md` before acting.** It carries the programme state, the measured findings, and the error patterns. It predates the 08-12 unblock below.
 
 ## Blocking state
@@ -41,7 +41,8 @@ published when I wrote. **Re-sweep between reading an allocation and acting on i
 ## Open dispositions requiring my revision work
 
 - **M3a correct-subject** — **REPAIRED AND DELIVERED** 2026-08-13, handoff `20260813T003000Z`, artifact `ae701fc4`. Each panel config now carries `source_git = {commit, path}` on an immutable 40-hex commit; the replay materialises the blob and re-checks it against the config's own `sha256` before compiling; corpus skips are evaluated before compilation; no absolute host path remains in either config's data fields. `fuzz_panel.py` untouched (`d8900abf…` is the accepted referee digest). Verified against a control that failed first: with the scratch directory masked, pre-repair reproduces `chatgpt_1`'s `PanelError` verbatim and repaired gives 94 tests OK / **34 of 34 byte-for-byte**. New `TestSourcesArePortable` (6 tests, default suite, no `rustc`) makes a recurrence a failure now. **Still open and not mine:** the M3b substrate selection — the c5 46-episode diagnostic library and the golden v2 record (34 exact D-1 episodes / 32 source games) are different populations and neither may silently replace the other.
-- **Bite-test audit r2** — `HISTORICAL_REPAIRS ACCEPTED — CURRENT REVISION REQUIRED`. Six current/architectural blockers: `LIVE` does not establish legal-game reachability; committed D-3 probe implements only next-cell consistency with `max(speed,1)` and omits the same-player conflict label; D-9 `INSTRUMENT_UNSUPPORTED` rows are stale post-c5 and need the retired proxy separated from now-supported paired branches; `run_mutations.py` returns success on incomplete experiments when the control is green; the 47-branch ledger is hand-maintained; D-5 conformance is expressed on the wrong axis.
+- **Bite-test audit r2** — **blockers 4 and 5 REPAIRED**, handoff `20260813T030000Z`, artifact `d85d060b`. (4) `run_mutations.py` exit status now describes the experiment, not just the control: `1` control-not-green, `2` incomplete, `0` only when whole; `--only` requires `--partial`, which records `complete: false`. Verified pre-repair exits `0` on 1-of-65 and on `mutants_run=0, patch_failed=1`; the 5 tests fail on the pre-repair runner. (5) The 47 rows are extracted to `branch_ledger.json` with `render_branch_ledger.py --check` asserting audit prose == data both ways; the three derivable tallies reproduced the hand-written figures exactly, and the **contract-authority tally was never derivable from the table at all** (`D-6 (a2)` has no conflict marker in any cell) — now an explicit field.
+  **Blockers 1, 2, 3 and 6 are REFERRED to `local_claude_1`** as detector-semantics rulings (`LIVE` reachability wording · D-3 probe vs its description · D-9 stale `INSTRUMENT_UNSUPPORTED` rows post-c5 · D-5 conformance axis). Each has two honest repairs and picking one is a semantics decision, not mine — `trace_detectors.py` is `local_claude_1`'s.
 - **I-30 rev 3** — `CORE_ACCOUNTING_ACCEPTED — REVISION_REQUIRED AT THE TRUST ROOT`. `ExecutionValidity` validates self-declaration rather than binding a run to a reviewed referee artifact; owner-freeze chronology compares caller-supplied strings against a blob on moving `main`.
 - **M2 rev 2** — accepted, nothing owed. **Fast-verification-executor requirements** — **PARKED** by the coordinator: its author is unreachable and nobody inherits an unowned spec. `coordination/tasks/20260811-fast-verification-executor-design.md` is `PROPOSED / BLOCKED ON REQUIREMENTS REVIEW`, owner unassigned.
 - **`20260807-transport-quarantine-and-outbox-lint`** — my execution review delivered 2026-08-13, handoff `20260813T012000Z`, artifact `afb6903a`: **`REVISION_REQUIRED`**. Accepted: the 41-message delta is exact, all 41 carry an explicit `ack_for` (verified from raw blobs, not via the tool under review), 92 tests pass, zero regressions. Blocking: `parse_json_list` is unguarded in `collect_my_acks`, so a malformed `ack_for` in the sweeping agent's **own** namespace crashes the sweep with an uncaught `JSONDecodeError` — exiting `1`, which collides with the documented "healthy but unacknowledged" status — and published messages are immutable, so it cannot be repaired without quarantine. No test reaches the changed branch.
@@ -51,6 +52,15 @@ published when I wrote. **Re-sweep between reading an allocation and acting on i
 M1 Decision Packet implementation (spec frozen against `98628e98`) · M3b adjudication (needs M1 + valid M3a) · P4 re-do on c5 evidence · D-4 repair · gate revision 3 execution review. **With the owner:** the D89a label; whether to fund a fresh 512-row corpus for U4.
 
 ## Do not cite
+
+**My idle-blocker claims are `UNREPLICATED / UNRESOLVED`** (`codex_1`, `20260809T190604Z`, accepted
+by me in full). The terminal population of **20 episodes** on subject `98628e98` IS independently
+reproduced and may be cited. **Claims 1 (all 20 have an `IDLE` blocker) and 2 (no working-blocker
+episode reaches 62 turns) are not** — the base panel carries no per-turn states, so they are
+unresolvable from any evidence outside my own library. **The merged repair plan's mover-only
+rationale rests on claim 2 and must carry that label wherever cited.** Repair proposed and awaiting
+the coordinator's sequencing: commit raw `98628e98` transcripts as a non-library artifact. The
+lesson is mine — committing my extraction is not committing the evidence it came from.
 
 The `+12.453/+76.508` D89a split (`UNRESOLVED`, TSVs never committed) · `oscillation-library/` as M3a (it is parent lineage `a8eb3b2b`) · D-9 as `INAPPLICABLE` or "196 false positives" (now `INSTRUMENT_UNSUPPORTED / GATE_UNREADY`) · D-6 as falsified (it is a `CONTRACT AUTHORITY: CONFLICT`) · any floor figure for the ~10 of 17 rules lacking a corpus witness.
 
