@@ -1,0 +1,104 @@
+name: chatgpt_1 transport and M3a verification
+
+on:
+  push:
+    branches:
+      - agent/chatgpt_1-verify-20260811
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out verification branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch all authoritative branch refs
+        run: git fetch origin '+refs/heads/*:refs/remotes/origin/*'
+
+      - name: Record exact transport identity and run authoritative sweep
+        shell: bash
+        run: |
+          mkdir -p verification-output
+          {
+            echo "head=$(git rev-parse HEAD)"
+            echo "main=$(git rev-parse refs/remotes/origin/main)"
+            echo "chatgpt_1=$(git rev-parse refs/remotes/origin/agent/chatgpt_1)"
+            echo "inbox_sweep_git_blob=$(git hash-object scripts/inbox_sweep.py)"
+            sha256sum scripts/inbox_sweep.py
+            sha256sum scripts/lint_outbox.py
+          } | tee verification-output/transport-identity.txt
+
+          set +e
+          python3 scripts/inbox_sweep.py --me chatgpt_1 --fetch \
+            > verification-output/inbox-sweep.stdout.txt \
+            2> verification-output/inbox-sweep.stderr.txt
+          sweep_rc=$?
+          set -e
+          echo "$sweep_rc" > verification-output/inbox-sweep.exit-code.txt
+          cat verification-output/inbox-sweep.stdout.txt
+          cat verification-output/inbox-sweep.stderr.txt >&2
+          echo "inbox_sweep_exit_code=$sweep_rc"
+
+      - name: Regenerate and exercise M3a golden bundle
+        shell: bash
+        run: |
+          mkdir -p verification-output
+
+          set +e
+          python3 chatgpt_1/m3a_extract_from_panel.py \
+            --check \
+            --output verification-output/m3a-d1-situation-library-regenerated.json \
+            > verification-output/m3a-extractor.stdout.txt \
+            2> verification-output/m3a-extractor.stderr.txt
+          extractor_rc=$?
+
+          cmp -s \
+            verification-output/m3a-d1-situation-library-regenerated.json \
+            chatgpt_1/m3a-d1-situation-library-2026-08-10.json
+          cmp_rc=$?
+
+          python3 chatgpt_1/m3a_verify_golden_set.py \
+            > verification-output/m3a-verifier.stdout.txt \
+            2> verification-output/m3a-verifier.stderr.txt
+          verifier_rc=$?
+
+          python3 chatgpt_1/test_m3a_golden_set.py \
+            > verification-output/m3a-tests.stdout.txt \
+            2> verification-output/m3a-tests.stderr.txt
+          tests_rc=$?
+          set -e
+
+          {
+            echo "extractor_exit_code=$extractor_rc"
+            echo "byte_compare_exit_code=$cmp_rc"
+            echo "verifier_exit_code=$verifier_rc"
+            echo "tests_exit_code=$tests_rc"
+            sha256sum verification-output/m3a-d1-situation-library-regenerated.json
+            sha256sum chatgpt_1/m3a-d1-situation-library-2026-08-10.json
+          } | tee verification-output/m3a-summary.txt
+
+          diff -u \
+            chatgpt_1/m3a-d1-situation-library-2026-08-10.json \
+            verification-output/m3a-d1-situation-library-regenerated.json \
+            > verification-output/m3a-golden.diff || true
+
+          cat verification-output/m3a-extractor.stdout.txt
+          cat verification-output/m3a-extractor.stderr.txt >&2
+          cat verification-output/m3a-verifier.stdout.txt
+          cat verification-output/m3a-verifier.stderr.txt >&2
+          cat verification-output/m3a-tests.stdout.txt
+          cat verification-output/m3a-tests.stderr.txt >&2
+
+      - name: Upload exact verification packet
+        uses: actions/upload-artifact@v4
+        with:
+          name: chatgpt-1-transport-m3a-verification
+          path: verification-output/
+          if-no-files-found: error
+          retention-days: 30
