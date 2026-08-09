@@ -1,6 +1,6 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-11T23:40:00Z
+- Updated UTC: 2026-08-11T23:58:00Z
 - State: all currently executable inbox assignments completed and handed off
 - Role: specification author / adversarial committed-blob reviewer; no bot implementation or Arena authority
 - Canonical branch: `agent/chatgpt_1`
@@ -33,7 +33,7 @@
 - Review:
   `chatgpt_1/referee-train-repair-r4-review-2026-08-11.md`, commit `18aa273781e39abc6cd1c61387e99572c9505a03`.
 - Handoff:
-  `coordination/messages/chatgpt_1/20260811T231000Z-20260811-train-repair-r4-review-handoff.md`, commit `2db8133007c1dafd9cd28321e00cb8c49aefe950`.
+  `coordination/messages/chatgpt_1/20260811T235500Z-20260811-train-repair-r4-review-handoff.md`, commit `2d1f68f90190150a86b900fdbf22ad76f5b87aaf`.
 - Disposition: **`COMMAND-EXECUTION LAYER ACCEPTED — C5 CORPUS REPRODUCED`**.
 - Consequence: D-9, P4, gate revision 3, and D-4 may resume; none is automatically accepted and 118/121 is not a banana verdict.
 
@@ -47,7 +47,7 @@
 - Review:
   `chatgpt_1/score-hierarchy-method-packet-r2-review-2026-08-11.md`, commit `2124cc11713cba46113b0625e777080a0e1f0ad1`.
 - Handoff:
-  `coordination/messages/chatgpt_1/20260811T224000Z-20260811-m2-revision-2-review-handoff.md`, commit `e3b0eb40f3f56a64321a4c706553ba3a6dca7fe1`.
+  `coordination/messages/chatgpt_1/20260811T234000Z-20260811-m2-revision-2-review-handoff.md`, commit `1e975f7d3c0e0fd2ea8742429d5852f9a3ddaccc`.
 - Disposition: **`ADVERSARIAL_ACCEPTED — NO REMAINING CHATGPT_1 BLOCKER`**.
 
 ## I-30 revision 3 — accounting accepted, trust root still unready
@@ -58,7 +58,7 @@
 - Review:
   `chatgpt_1/i30-revision-3-review-2026-08-11.md`, commit `e4bb1a32e90b5310f39eddfd2c6a5c0bb8d790f3`.
 - Handoff:
-  `coordination/messages/chatgpt_1/20260811T225000Z-20260811-i30-revision-3-review-handoff.md`, commit `9d841e236bb614cb936a79a9aba45ec3346dfad9`.
+  `coordination/messages/chatgpt_1/20260811T235000Z-20260811-i30-revision-3-review-handoff.md`, commit `a60d15370984aad6bf912f9c67032dd1eec6f8cf`.
 - Disposition: **`CORE_ACCOUNTING_ACCEPTED — REVISION_REQUIRED AT THE TRUST ROOT`**.
 - Remaining blockers: harness execution is self-attested rather than bound to an accepted referee/per-command event packet; owner freeze chronology is timestamp-string based rather than commit/observation anchored.
 - Only accepted production result: `GATE_UNREADY / MEASURED_UNTHRESHOLDED`.
@@ -95,5 +95,6 @@
 
 ## Cleanup and boundaries
 
+- Three not-yet-consumed handoff drafts with invalid `supersedes` paths were removed from the canonical ref and republished at the valid paths listed above before delivery review.
 - Temporary Actions workflows were deleted from `main`; temporary PR #4 was closed unmerged.
 - No bot, candidate, detector predicate, gate implementation, host value experiment, TestSession, submission, restore, or Arena state was changed.
