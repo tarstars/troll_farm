@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import ast
 import contextlib
+import hashlib
 import inspect
 import io
 import json
@@ -1726,7 +1727,7 @@ class Case:
     """One (state, command line) pair, in the panel's own spec vocabulary."""
 
     def __init__(self, name, rows, inventory, units, plants=(), line="",
-                 next_id=None, opp_inventory=(0, 0, 0, 0, 0, 0)):
+                 next_id=None, opp_inventory=(0, 0, 0, 0, 0, 0), line1=""):
         self.name = name
         self.rows = list(rows)
         self.inventory = list(inventory)
@@ -1734,6 +1735,11 @@ class Case:
         self.units = [list(u) for u in units]
         self.plants = [list(p) for p in plants]
         self.line = line
+        # r4 / review B2: the OPPONENT's command line for the same turn.
+        # `engine.rs::step` takes two streams and merges them phase by phase;
+        # a panel that drives player 1 with a direct post-phase simulator is
+        # producing a world transition `step` cannot produce.
+        self.line1 = line1
         self.next_id = (max(u[0] for u in units) + 1 if next_id is None
                         else next_id)
 
@@ -1744,6 +1750,9 @@ class Case:
 
     def fragments(self):
         return [f.strip() for f in self.line.split(";") if f.strip()]
+
+    def fragments1(self):
+        return [f.strip() for f in self.line1.split(";") if f.strip()]
 
 
 def snapshot_from_referee(ref) -> dict:
@@ -1778,6 +1787,8 @@ def snapshot_from_rust(case: Case) -> dict:
         lines.append("PLANT " + " ".join(str(v) for v in p))
     for frag in case.fragments():
         lines.append("CMD0 " + frag)
+    for frag in case.fragments1():
+        lines.append("CMD1 " + frag)
     proc = subprocess.run([str(rust_oracle_binary())], input="\n".join(lines),
                           capture_output=True, text=True)
     if proc.returncode != 0:
@@ -1824,7 +1835,7 @@ def snapshot_from_sim(case: Case) -> dict:
                 for p in case.plants],
         scores=[0, 0], turn=1, next_id=case.next_id,
         iron=set(geo["iron"]), water=set(geo["water"]))
-    sim_engine.step(game, case.fragments(), [])
+    sim_engine.step(game, case.fragments(), case.fragments1())
     return {
         "inv0": list(game.inventories[0]), "inv1": list(game.inventories[1]),
         "score": list(game.scores), "turn": game.turn,
@@ -2630,6 +2641,620 @@ class TestMutationDefinitionsAreCommitted(unittest.TestCase):
                 self.assertNotEqual(mut["old"], mut["new"])
                 self.assertTrue(mut["blocker"])
                 self.assertTrue(mut["pinned_by"])
+
+
+# ===========================================================================
+# r4 revision -- against chatgpt_1/referee-train-repair-r3-review-2026-08-09.md
+#
+#   B2  active opponents still use a second informal simulator
+#   B3  parent protocol failure fails open at aggregate level
+#   B4  the durable error packet does not retain exact raw output
+#   B5  the corrected floor is still not a committed reproducible packet
+#   B6  the corpus version cannot be adopted while B2-B5 remain
+#   C-O1 / C-C4-C5  the two authoritative contract corrections
+# ===========================================================================
+
+# A bot whose stdout line carries leading blanks, empty fragments, an
+# unsupported verb and a malformed TRAIN -- i.e. exactly the bytes review B4
+# says the durable packet must be able to reconstruct.
+RAW_EVIDENCE_BOT = r"""
+use std::io::{BufRead, Write};
+fn main() {
+    let stdin = std::io::stdin();
+    let mut lines = stdin.lock().lines().filter_map(|l| l.ok());
+    let first = match lines.next() { Some(l) => l, None => return };
+    let mut it = first.split_whitespace();
+    let _w: usize = it.next().unwrap().parse().unwrap();
+    let h: usize = it.next().unwrap().parse().unwrap();
+    for _ in 0..h { lines.next(); }
+    loop {
+        if lines.next().is_none() { return; }
+        lines.next();
+        let np: usize = lines.next().unwrap().trim().parse().unwrap();
+        for _ in 0..np { lines.next(); }
+        let nu: usize = lines.next().unwrap().trim().parse().unwrap();
+        for _ in 0..nu { lines.next(); }
+        println!("  MOVE 0 1 1 ;; FLY 0 ; TRAIN 1 1 1 ;");
+        std::io::stdout().flush().unwrap();
+    }
+}
+"""
+
+OPP_ROWS = ("0....1",
+            "......",
+            "......")
+
+
+def opp_referee(profile, opp_unit, plants=(), inventory=(0,) * 6,
+                own_unit=(0, 0, 1, 0, 1, 2, 1, 1, 0, 0, 0, 0, 0, 0)):
+    return fp.make_referee({
+        "rows": list(OPP_ROWS), "inventory": list(inventory),
+        "plants": [list(p) for p in plants],
+        "units": [list(own_unit), list(opp_unit)], "profile": profile})
+
+
+class TestOpponentIsAPhaseMergedCommandStream(unittest.TestCase):
+    """Review B2.
+
+    `engine.rs::step` (755-806) takes TWO command streams and merges them
+    phase by phase.  Until r4 the panel applied the candidate's eight phases
+    and then called `OPP_POLICIES[self.profile](self)`, a direct
+    mini-simulator that moved, harvested, chopped and banked opponent units
+    itself.  That produces a world transition `step` cannot produce, so every
+    opponent-sensitive property (detectors, margins, P4) was measured against
+    a fiction."""
+
+    def test_the_opponent_policies_emit_command_lines(self):
+        for profile in fp.OPP_PROFILES:
+            with self.subTest(profile=profile):
+                ref = opp_referee(
+                    profile, [5, 1, 4, 2, 1, 2, 1, 1] + [0] * 6,
+                    plants=[("PLUM", 4, 1, 2, 4, 3, 5)])
+                line = fp.opponent_command_line(ref)
+                self.assertIsInstance(
+                    line, str,
+                    "an opponent policy must PRODUCE COMMANDS, not mutate "
+                    "the world")
+
+    def test_the_generated_opponent_line_is_well_formed(self):
+        for profile in fp.OPP_PROFILES:
+            with self.subTest(profile=profile):
+                ref = opp_referee(
+                    profile, [5, 1, 4, 2, 1, 2, 1, 1] + [0] * 6,
+                    plants=[("PLUM", 4, 1, 2, 4, 3, 5)])
+                parsed = fp.FuzzReferee.parse_commands(
+                    fp.opponent_command_line(ref), ref.turn)
+                self.assertEqual(parsed.errors, [],
+                                 "the panel's own opponent line must pass "
+                                 "its own trust boundary")
+
+    def test_no_direct_opponent_simulator_remains(self):
+        src = (HERE / "fuzz_panel.py").read_text()
+        self.assertNotIn("OPP_POLICIES[self.profile](self)", src)
+        for gone in ("def _act_harvest(", "def _act_chop("):
+            self.assertNotIn(gone, src,
+                             "%s is a second, informal applier" % gone)
+
+    def test_execute_merges_two_parsed_streams(self):
+        sig = inspect.signature(fp.FuzzReferee._execute)
+        self.assertIn("opp", sig.parameters,
+                      "_execute must take BOTH players' parsed streams and "
+                      "merge them phase by phase (engine.rs:760-801)")
+
+    def test_opponent_cannot_move_and_act_in_the_same_turn(self):
+        """engine.rs:717-720 -- one non-TRAIN command per unit per turn.  The
+        direct simulator stepped the unit AND harvested on arrival."""
+        ref = opp_referee("harvester", [5, 1, 4, 2, 1, 4, 1, 1] + [0] * 6,
+                          plants=[("PLUM", 4, 1, 2, 4, 3, 5)])
+        ref.apply("WAIT")
+        self.assertEqual(ref.units[5]["cell"], (4, 1), "it moved")
+        self.assertEqual(ref.plants[(4, 1)]["fruits"], 3,
+                         "and could NOT also harvest in the same turn")
+        ref.apply("WAIT")
+        self.assertEqual(ref.plants[(4, 1)]["fruits"], 2)
+
+    def test_opponent_harvest_goes_through_the_engine_applier(self):
+        """engine.rs::apply_harvest is multi-round (`for i in 1..=3`): a
+        troll with hp 2 takes TWO fruits.  The retired `_act_harvest` took
+        exactly one, whatever the harvest power."""
+        ref = opp_referee("harvester", [5, 1, 4, 1, 1, 4, 2, 1] + [0] * 6,
+                          plants=[("PLUM", 4, 1, 2, 4, 3, 5)])
+        ref.apply("WAIT")
+        self.assertEqual(ref.plants[(4, 1)]["fruits"], 1)
+        self.assertEqual(ref.units[5]["carry"][fp.PLUM], 2)
+
+    def test_the_opponent_stream_is_retained_on_the_referee(self):
+        ref = opp_referee("harvester", [5, 1, 4, 2, 1, 4, 1, 1] + [0] * 6,
+                          plants=[("PLUM", 4, 1, 2, 4, 3, 5)])
+        ref.apply("WAIT")
+        self.assertEqual(ref.opponent_commands, ["MOVE 5 4 1"])
+
+
+# --- B2, strongest leg: two-player differential against engine.rs ----------
+
+TWO_PLAYER_CASES = [
+    Case("tp_move_contention_same_cell", D_ROWS, RICH,
+         [_u(0, 0, 3, 2), _u(1, 1, 5, 2)],
+         line="MOVE 0 4 2", line1="MOVE 1 4 2"),
+    Case("tp_both_players_train", D_ROWS, RICH,
+         [_u(0, 0, 3, 2), _u(1, 1, 5, 2)],
+         line="TRAIN 1 1 1 1", line1="TRAIN 2 1 1 1",
+         opp_inventory=RICH),
+    Case("tp_opponent_shack_occupied_blocks_only_that_player", D_ROWS, RICH,
+         [_u(0, 0, 3, 2), _u(1, 1, 7, 1)],
+         line="TRAIN 1 1 1 1", line1="TRAIN 1 1 1 1",
+         opp_inventory=RICH),
+    Case("tp_both_command_the_same_unit", D_ROWS, RICH,
+         [_u(0, 0, 2, 2), _u(1, 1, 5, 2)],
+         line="MOVE 1 2 2", line1="MOVE 1 6 2"),
+    Case("tp_both_chop_one_tree", D_ROWS, RICH,
+         [_u(0, 0, 4, 2, chop=2, cap=6), _u(1, 1, 4, 2, chop=3, cap=6)],
+         plants=[["PLUM", 4, 2, 3, 4, 0, 5]],
+         line="CHOP 0", line1="CHOP 1"),
+    Case("tp_both_harvest_one_plant", D_ROWS, RICH,
+         [_u(0, 0, 4, 2, harvest=1, cap=4),
+          _u(1, 1, 4, 2, harvest=2, cap=4)],
+         plants=[["PLUM", 4, 2, 3, 4, 3, 5]],
+         line="HARVEST 0", line1="HARVEST 1"),
+    Case("tp_pick_and_drop_in_one_turn", D_ROWS, RICH,
+         [_u(0, 0, 2, 1, cap=4), _u(1, 1, 6, 1, cap=4, carry=(0, 0, 2, 0,
+                                                             0, 0))],
+         line="PICK 0 PLUM", line1="DROP 1", opp_inventory=[0] * 6),
+    Case("tp_mixed_plant_on_one_cell_cancels", D_ROWS, [0] * 6,
+         [_u(0, 0, 4, 2, carry=(1, 0, 0, 0, 0, 0)),
+          _u(1, 1, 4, 2, carry=(0, 1, 0, 0, 0, 0))],
+         line="PLANT 0 PLUM", line1="PLANT 1 LEMON"),
+    Case("tp_same_plant_on_one_cell_merges", D_ROWS, [0] * 6,
+         [_u(0, 0, 4, 2, carry=(1, 0, 0, 0, 0, 0)),
+          _u(1, 1, 4, 2, carry=(1, 0, 0, 0, 0, 0))],
+         line="PLANT 0 PLUM", line1="PLANT 1 PLUM"),
+    Case("tp_both_mine_the_same_iron", D_IRON, RICH,
+         [_u(0, 0, 3, 2, chop=2, cap=6), _u(1, 1, 5, 1, chop=3, cap=6)],
+         line="MINE 0", line1="MINE 1"),
+]
+
+
+class TestDifferentialTwoPlayer(unittest.TestCase):
+    """Review B2, the non-circular leg: a merged two-player turn must match
+    `engine::step(&mut g, &c0, &c1)` compiled from the authority's own
+    bytes."""
+
+    def _run_referee(self, case):
+        ref = fp.make_referee(case.spec())
+        ref.apply_two(case.line, case.line1)
+        ref.grow()
+        return ref
+
+    def test_rust_authority_agrees_on_every_two_player_case(self):
+        for case in TWO_PLAYER_CASES:
+            with self.subTest(case=case.name):
+                self.assertEqual(snapshot_from_referee(self._run_referee(case)),
+                                 snapshot_from_rust(case))
+
+    def test_sim_mirror_agrees_on_every_two_player_case(self):
+        for case in TWO_PLAYER_CASES:
+            if case.name in SIM_LEG_DEFECTS:
+                continue
+            with self.subTest(case=case.name):
+                self.assertEqual(snapshot_from_referee(self._run_referee(case)),
+                                 snapshot_from_sim(case))
+
+    def test_the_two_player_oracle_is_not_vacuous(self):
+        case = TWO_PLAYER_CASES[0]
+        broken = snapshot_from_referee(self._run_referee(case))
+        broken["units"][0][2] += 1
+        self.assertNotEqual(broken, snapshot_from_rust(case))
+
+    def test_every_two_player_case_actually_commands_player_one(self):
+        for case in TWO_PLAYER_CASES:
+            with self.subTest(case=case.name):
+                self.assertTrue(case.fragments1())
+
+    def test_a_generated_opponent_line_is_engine_conformant(self):
+        """End to end: the line the panel's own policy generates, executed
+        as player 1's stream through the authority."""
+        ref = opp_referee("harvester", [5, 1, 4, 2, 1, 4, 1, 1] + [0] * 6,
+                          plants=[("PLUM", 4, 1, 2, 4, 3, 5)])
+        line1 = fp.opponent_command_line(ref)
+        case = Case("generated_opponent_line", OPP_ROWS, [0] * 6,
+                    [_u(0, 0, 1, 0, cap=2), _u(5, 1, 4, 2, cap=4)],
+                    plants=[["PLUM", 4, 1, 2, 4, 3, 5]],
+                    line="WAIT", line1=line1)
+        ref2 = fp.make_referee(case.spec(profile="idle"))
+        ref2.apply_two(case.line, case.line1)
+        ref2.grow()
+        self.assertEqual(snapshot_from_referee(ref2), snapshot_from_rust(case))
+
+
+# --- B3: parent protocol failure must fail closed --------------------------
+
+class TestParentExecutionFailsClosed(unittest.TestCase):
+    """Review B3.  `aggregate_verdict` consumed only the CANDIDATE's
+    `execution_status`, so a malformed or unsupported PARENT command left the
+    aggregate at CLEAR/BLOCK while P3 and every diagnostic comparison
+    consumed an invalid parent trace."""
+
+    def test_aggregate_is_unready_when_only_the_parent_failed(self):
+        self.assertEqual(
+            fp.aggregate_verdict([{"execution_status": fp.EXECUTION_OK,
+                                   "parent_execution_status":
+                                       fp.ERROR_UNSUPPORTED_VERB,
+                                   "block": False}]),
+            "GATE_UNREADY")
+
+    def test_aggregate_is_unready_for_a_malformed_parent_command(self):
+        self.assertEqual(
+            fp.aggregate_verdict([{"execution_status": fp.EXECUTION_OK,
+                                   "parent_execution_status":
+                                       fp.ERROR_MALFORMED,
+                                   "block": True}]),
+            "GATE_UNREADY")
+
+    def _run(self, candidate, parent, tmp):
+        cfg = {
+            "task": "fuzz-selftest-parent-fail-closed",
+            "instrument_version": fp.INSTRUMENT_VERSION,
+            "corpus_version": fp.CORPUS_VERSION,
+            "run_identity": "candidate",
+            "candidate": {"source": str(candidate)},
+            "parent": {"source": str(parent)},
+            "seeds": [11], "maps": 1, "turns": 8, "processes": 1,
+            "class_mix": {"open_field": 1.0},
+            "opponent_mix": {"idle": 1.0},
+        }
+        cfg_path = Path(tmp) / "cfg.json"
+        cfg_path.write_text(json.dumps(cfg))
+        out = Path(tmp) / "r.json"
+        code = fp.main(["--config", str(cfg_path), "--report",
+                        str(Path(tmp) / "r.md"), "--json", str(out)])
+        return code, json.loads(out.read_text())
+
+    def test_unsupported_parent_command_makes_the_run_gate_unready(self):
+        wait = compiled_bot("waitbot", WAIT_BOT)
+        bogus = compiled_bot("bogusverbbot", BOGUS_VERB_BOT)
+        with tempfile.TemporaryDirectory() as tmp:
+            code, payload = self._run(wait, bogus, tmp)
+        self.assertEqual(code, fp.EXIT_ERROR)
+        self.assertEqual(payload["verdict"], "GATE_UNREADY")
+        self.assertEqual(len(payload["games"]), 2, "both seats retained")
+        for row in payload["games"]:
+            self.assertEqual(row["execution_status"], fp.EXECUTION_OK)
+            self.assertEqual(row["parent_execution_status"],
+                             fp.ERROR_UNSUPPORTED_VERB)
+            self.assertTrue(row["parent_command_errors"],
+                            "the parent's error ledger must be RETAINED on "
+                            "the durable row")
+            self.assertEqual(row["parent_command_errors"][0]["verb"],
+                             "TELEPORT")
+
+    def test_malformed_parent_command_makes_the_run_gate_unready(self):
+        wait = compiled_bot("waitbot", WAIT_BOT)
+        raw = compiled_bot("rawevidencebot", RAW_EVIDENCE_BOT)
+        with tempfile.TemporaryDirectory() as tmp:
+            code, payload = self._run(wait, raw, tmp)
+        self.assertEqual(code, fp.EXIT_ERROR)
+        self.assertEqual(payload["verdict"], "GATE_UNREADY")
+        for row in payload["games"]:
+            self.assertNotEqual(row["parent_execution_status"],
+                                fp.EXECUTION_OK)
+            kinds = {e["kind"] for e in row["parent_command_errors"]}
+            self.assertIn(fp.ERROR_MALFORMED, kinds)
+
+    def test_the_parent_ledger_is_complete_on_the_row(self):
+        wait = compiled_bot("waitbot", WAIT_BOT)
+        bogus = compiled_bot("bogusverbbot", BOGUS_VERB_BOT)
+        with tempfile.TemporaryDirectory() as tmp:
+            _, payload = self._run(wait, bogus, tmp)
+        for row in payload["games"]:
+            for key in ("parent_execution_status", "parent_command_errors",
+                        "parent_command_error_counts", "parent_train_events",
+                        "parent_command_error_total"):
+                self.assertIn(key, row)
+            self.assertEqual(
+                row["parent_command_error_total"],
+                sum(row["parent_command_error_counts"].values()))
+
+    def test_the_summary_counts_parent_invalid_rows(self):
+        wait = compiled_bot("waitbot", WAIT_BOT)
+        bogus = compiled_bot("bogusverbbot", BOGUS_VERB_BOT)
+        with tempfile.TemporaryDirectory() as tmp:
+            _, payload = self._run(wait, bogus, tmp)
+        self.assertEqual(payload["stats"]["parent_instrument_invalid_games"],
+                         2)
+        self.assertEqual(payload["stats"]["gate_unready_games"], 2)
+
+
+# --- B4: the durable packet must retain the exact raw output ---------------
+
+class TestDurableRawCommandEvidence(unittest.TestCase):
+    """Review B4.  `parse_commands` stripped every fragment before recording
+    `raw`, so leading/trailing bytes, empty-fragment placement and fragment
+    offsets were lost, and the retained list was capped at 50 while the full
+    stream lived only in `artifacts`, which the JSON packet drops."""
+
+    LINE = "  MOVE 0 1 1 ;; FLY 0 ; TRAIN 1 1 1 ;"
+
+    def test_every_error_carries_an_exact_span_into_the_original_line(self):
+        parsed = fp.FuzzReferee.parse_commands(self.LINE, turn=3)
+        self.assertEqual(len(parsed.errors), 2)
+        for err in parsed.errors:
+            start, end = err["span"]
+            self.assertEqual(self.LINE[start:end], err["raw"],
+                             "the span must reproduce the raw fragment "
+                             "byte for byte")
+
+    def test_the_raw_fragment_is_verbatim_and_the_normalization_separate(self):
+        parsed = fp.FuzzReferee.parse_commands(self.LINE, turn=3)
+        by_verb = {e["verb"]: e for e in parsed.errors}
+        self.assertEqual(by_verb["FLY"]["raw"], " FLY 0 ")
+        self.assertEqual(by_verb["FLY"]["normalized"], "FLY 0")
+
+    def test_every_error_names_the_line_it_came_from(self):
+        ref = train_referee()
+        ref.apply(self.LINE)
+        digest = hashlib.sha256(self.LINE.encode("utf-8")).hexdigest()
+        for err in ref.command_errors:
+            self.assertEqual(err["line_sha256"], digest)
+            self.assertEqual(err["line_length"], len(self.LINE))
+
+    def test_the_verbatim_line_is_retained_for_every_offending_turn(self):
+        ref = train_referee()
+        ref.apply(self.LINE)
+        ref.apply("WAIT")
+        ref.apply(self.LINE)
+        self.assertEqual([e["turn"] for e in ref.error_lines], [1, 3])
+        for entry in ref.error_lines:
+            self.assertEqual(entry["line"], self.LINE)
+            self.assertEqual(entry["length"], len(self.LINE))
+
+    def test_the_error_stream_is_not_capped(self):
+        n = 3 * 50
+        line = ";".join("FLY %d" % i for i in range(n))
+        ref = train_referee()
+        ref.apply(line)
+        self.assertEqual(ref.command_error_total, n)
+        self.assertEqual(len(ref.command_errors), n,
+                         "a capped ledger cannot reconstruct every "
+                         "offending command from the durable packet")
+
+    def test_the_durable_row_can_reconstruct_every_offending_command(self):
+        raw = compiled_bot("rawevidencebot", RAW_EVIDENCE_BOT)
+        wait = compiled_bot("waitbot", WAIT_BOT)
+        with tempfile.TemporaryDirectory() as tmp:
+            cfg = {
+                "task": "fuzz-selftest-raw-evidence",
+                "instrument_version": fp.INSTRUMENT_VERSION,
+                "corpus_version": fp.CORPUS_VERSION,
+                "run_identity": "candidate",
+                "candidate": {"source": str(raw)},
+                "parent": {"source": str(wait)},
+                "seeds": [11], "maps": 1, "turns": 4, "processes": 1,
+                "class_mix": {"open_field": 1.0},
+                "opponent_mix": {"idle": 1.0},
+            }
+            cfg_path = Path(tmp) / "cfg.json"
+            cfg_path.write_text(json.dumps(cfg))
+            out = Path(tmp) / "r.json"
+            fp.main(["--config", str(cfg_path), "--report",
+                     str(Path(tmp) / "r.md"), "--json", str(out)])
+            payload = json.loads(out.read_text())
+        for row in payload["games"]:
+            lines = {e["turn"]: e["line"] for e in row["error_lines"]}
+            self.assertTrue(lines)
+            self.assertEqual(row["command_error_total"],
+                             len(row["command_errors"]))
+            for err in row["command_errors"]:
+                line = lines[err["turn"]]
+                start, end = err["span"]
+                self.assertEqual(line[start:end], err["raw"])
+                self.assertEqual(
+                    hashlib.sha256(line.encode("utf-8")).hexdigest(),
+                    err["line_sha256"])
+
+
+# --- B5: the run identity is declared and machine-checked ------------------
+
+FLOOR_CONFIG = HERE / "fuzz-panel-floor-config.json"
+CANDIDATE_CONFIG = HERE / "fuzz-panel-config.json"
+
+
+class TestRunIdentityIsMachineChecked(unittest.TestCase):
+    """Review B5 + owner instruction: a floor claim made from a candidate
+    config must be IMPOSSIBLE, not merely discouraged.  Every config declares
+    `run_identity`; `floor` requires candidate.source and parent.source to be
+    the same bytes, `candidate` requires them to differ, and the identity is
+    carried into the report, the JSON packet and every row."""
+
+    def test_the_committed_candidate_config_declares_a_candidate_run(self):
+        cfg = json.loads(CANDIDATE_CONFIG.read_text())
+        self.assertEqual(cfg["run_identity"], "candidate")
+        self.assertNotEqual(cfg["candidate"]["sha256"],
+                            cfg["parent"]["sha256"])
+
+    def test_a_committed_floor_config_exists_and_is_parent_versus_itself(self):
+        self.assertTrue(FLOOR_CONFIG.exists(),
+                        "the floor needs its OWN committed config: reusing "
+                        "the candidate config under the label 'floor' is the "
+                        "defect review B5 blocks on")
+        cfg = json.loads(FLOOR_CONFIG.read_text())
+        self.assertEqual(cfg["run_identity"], "floor")
+        self.assertEqual(cfg["candidate"]["sha256"], cfg["parent"]["sha256"])
+        self.assertEqual(
+            fp.sha256_path(fp.resolve(fp.load_config(FLOOR_CONFIG),
+                                      cfg["candidate"]["source"])),
+            fp.sha256_path(fp.resolve(fp.load_config(FLOOR_CONFIG),
+                                      cfg["parent"]["source"])))
+
+    def test_both_committed_configs_load(self):
+        for path, identity in ((CANDIDATE_CONFIG, "candidate"),
+                               (FLOOR_CONFIG, "floor")):
+            with self.subTest(config=path.name):
+                self.assertEqual(fp.load_config(path)["run_identity"],
+                                 identity)
+
+    def _write(self, tmp, **over):
+        wait = compiled_bot("waitbot", WAIT_BOT)
+        osc = compiled_bot("oscbot", OSCILLATOR_BOT)
+        cfg = {
+            "task": "run-identity",
+            "instrument_version": fp.INSTRUMENT_VERSION,
+            "corpus_version": fp.CORPUS_VERSION,
+            "run_identity": "candidate",
+            "candidate": {"source": str(osc)},
+            "parent": {"source": str(wait)},
+            "seeds": [11], "maps": 1, "turns": 4, "processes": 1,
+            "class_mix": {"open_field": 1.0}, "opponent_mix": {"idle": 1.0},
+        }
+        cfg.update(over)
+        p = Path(tmp) / "cfg.json"
+        p.write_text(json.dumps(cfg))
+        return p
+
+    def test_a_missing_run_identity_is_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p = self._write(tmp)
+            cfg = json.loads(p.read_text())
+            cfg.pop("run_identity")
+            p.write_text(json.dumps(cfg))
+            with self.assertRaises(fp.PanelError) as ctx:
+                fp.load_config(p)
+        self.assertIn("run_identity", str(ctx.exception))
+
+    def test_a_floor_claim_over_two_different_bots_is_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p = self._write(tmp, run_identity="floor")
+            with self.assertRaises(fp.PanelError) as ctx:
+                fp.load_config(p)
+        self.assertIn("floor", str(ctx.exception))
+
+    def test_a_candidate_claim_over_one_bot_against_itself_is_rejected(self):
+        wait = compiled_bot("waitbot", WAIT_BOT)
+        with tempfile.TemporaryDirectory() as tmp:
+            p = self._write(tmp, run_identity="candidate",
+                            candidate={"source": str(wait)},
+                            parent={"source": str(wait)})
+            with self.assertRaises(fp.PanelError) as ctx:
+                fp.load_config(p)
+        self.assertIn("floor", str(ctx.exception))
+
+    def test_an_unknown_run_identity_is_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p = self._write(tmp, run_identity="baseline")
+            with self.assertRaises(fp.PanelError):
+                fp.load_config(p)
+
+    def test_the_identity_reaches_the_report_the_packet_and_every_row(self):
+        wait = compiled_bot("waitbot", WAIT_BOT)
+        with tempfile.TemporaryDirectory() as tmp:
+            p = self._write(tmp, run_identity="floor",
+                            candidate={"source": str(wait)},
+                            parent={"source": str(wait)})
+            report = Path(tmp) / "r.md"
+            out = Path(tmp) / "r.json"
+            fp.main(["--config", str(p), "--report", str(report),
+                     "--json", str(out)])
+            payload = json.loads(out.read_text())
+            text = report.read_text()
+        self.assertEqual(payload["run_identity"], "floor")
+        self.assertIn("floor", text.lower())
+        for row in payload["games"]:
+            self.assertEqual(row["run_identity"], "floor")
+            self.assertEqual(row["provenance"]["run_identity"], "floor")
+
+
+# --- the two authoritative contract corrections ---------------------------
+
+class TestCorrectedContractClauses(unittest.TestCase):
+    """chatgpt_1's r3 review withdraws two clauses of its own frozen
+    contract; the corrected rules are authoritative and pinned here.
+
+    C-O1: PICK cannot fund TRAIN -- `engine.rs::apply_pick` (438-458) moves
+    stock OUT of the bank, so it can only STARVE the bill; DROP (796) is
+    after TRAIN (786) and cannot fund it either.
+
+    C-C4/C5: textual-order invariance holds only when no unit has two
+    non-TRAIN commands; when it does, `engine.rs:717-720` makes textual order
+    choose the survivor."""
+
+    def test_pick_can_only_starve_a_train_never_fund_it(self):
+        base = dict(inventory=[2, 2, 2, 0, 2, 0])
+        for line in ("PICK 0 PLUM;TRAIN 1 1 1 1", "TRAIN 1 1 1 1;PICK 0 PLUM"):
+            with self.subTest(line=line):
+                ref = train_referee(**base)
+                ref.apply(line)
+                self.assertEqual(
+                    len(ref.own_unit_ids()), 1,
+                    "PICK resolves BEFORE TRAIN in both textual orders and "
+                    "removes the last PLUM from the bank")
+
+    def test_no_pick_makes_the_same_bill_affordable(self):
+        ref = train_referee(inventory=[2, 2, 2, 0, 2, 0])
+        ref.apply("TRAIN 1 1 1 1")
+        self.assertEqual(len(ref.own_unit_ids()), 2)
+
+    def test_drop_cannot_fund_a_same_turn_train_either(self):
+        ref = train_referee(inventory=[1, 1, 1, 0, 1, 0],
+                            units=[[0, 0, 1, 0, 1, 4, 1, 1, 1, 1, 1, 0, 1, 0],
+                                   [5, 1, 4, 2, 1, 2, 0, 0] + [0] * 6])
+        ref.apply("DROP 0;TRAIN 1 1 1 1")
+        self.assertEqual(len(ref.own_unit_ids()), 1)
+        self.assertEqual(ref.inv, [2, 2, 2, 0, 2, 0])
+
+    def test_textual_order_is_invariant_without_duplicate_unit_commands(self):
+        units = [_u(0, 0, 2, 2, cap=6, carry=(1, 0, 0, 0, 0, 0)),
+                 _u(2, 0, 5, 2, cap=6), _u(1, 1, 6, 1)]
+        a = Case("inv_a", D_ROWS, RICH, units,
+                 line="PLANT 0 PLUM;MOVE 2 3 2;TRAIN 1 1 1 1")
+        b = Case("inv_b", D_ROWS, RICH, units,
+                 line="TRAIN 1 1 1 1;MOVE 2 3 2;PLANT 0 PLUM")
+        snaps = []
+        for case in (a, b):
+            ref = fp.make_referee(case.spec())
+            ref.apply(case.line)
+            ref.grow()
+            snaps.append(snapshot_from_referee(ref))
+        self.assertEqual(snaps[0], snaps[1])
+
+    def test_with_a_duplicate_unit_command_textual_order_decides(self):
+        units = [_u(0, 0, 2, 2, cap=6, carry=(1, 0, 0, 0, 0, 0)),
+                 _u(1, 1, 6, 1)]
+        snaps = []
+        for line in ("PLANT 0 PLUM;MOVE 0 5 2", "MOVE 0 5 2;PLANT 0 PLUM"):
+            case = Case("dup", D_ROWS, RICH, units, line=line)
+            ref = fp.make_referee(case.spec())
+            ref.apply(case.line)
+            ref.grow()
+            snaps.append(snapshot_from_referee(ref))
+        self.assertNotEqual(
+            snaps[0], snaps[1],
+            "engine.rs:717-720 makes the FIRST command win, so with a "
+            "duplicate the textual order is load-bearing -- invariance must "
+            "NOT be asserted here")
+        for case, snap in zip(
+                (Case("dup_a", D_ROWS, RICH, units,
+                      line="PLANT 0 PLUM;MOVE 0 5 2"),
+                 Case("dup_b", D_ROWS, RICH, units,
+                      line="MOVE 0 5 2;PLANT 0 PLUM")), snaps):
+            with self.subTest(case=case.name):
+                self.assertEqual(snap, snapshot_from_rust(case))
+
+
+# --- B6: the corpus/instrument version must be bumped for r4 ---------------
+
+class TestR4CorpusBump(unittest.TestCase):
+
+    def test_the_instrument_and_corpus_are_the_r4_identity(self):
+        self.assertIn("5", fp.INSTRUMENT_VERSION.split("/")[1][:2])
+        self.assertTrue(fp.CORPUS_VERSION.startswith("c5"),
+                        "B2-B5 change the trust envelope: c4 results cannot "
+                        "enter calibration")
+
+    def test_the_c4_corpus_is_retired_as_machine_readable_evidence(self):
+        cfg = json.loads(CANDIDATE_CONFIG.read_text())
+        retired = {r["corpus_version"] for r in cfg["instrument_invalid_rows"]}
+        self.assertTrue(any(v.startswith("c4") for v in retired))
+        for row in cfg["instrument_invalid_rows"]:
+            self.assertFalse(row["eligible_for_calibration"])
 
 
 if __name__ == "__main__":
