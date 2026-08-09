@@ -121,15 +121,27 @@ class TestBite05IndirectProductionOnly(unittest.TestCase):
         res = an.analyze_pair(cand, par)
 
         self.assertEqual(res["d_direct_net"], 0)
-        self.assertEqual(res["d_schedule_net"], 2)
         self.assertEqual(res["d_train"], 0)
-        self.assertEqual(res["schedule_windfall_net"], 2)
         self.assertEqual(res["d_opp"], 2)
         self.assertEqual(res["d_unknown_net"], 0)
         self.assertEqual(res["residual"], 0)
         self.assertEqual(d6_count(cand), 0)
         self.assertEqual(res["candidate"]["dep_opponent"], 3)
-        self.assertEqual(res["parent"]["dep_natural"], 1)
+        # REVISION 3 (review I30R2-5). The parent's single banked apple came
+        # out of the opponent's OPENING CARRY, so it is `baseline`, not
+        # `natural`: revision 2 counted the opponent's own endowment as
+        # natural production and netted it against the candidate's three
+        # genuinely produced apples.
+        self.assertEqual(res["parent"]["dep_baseline"], 1)
+        self.assertEqual(res["parent"]["dep_natural"], 0)
+        self.assertEqual(res["d_baseline_net"], -1)
+        self.assertEqual(res["d_schedule_net"], 3)
+        self.assertEqual(res["schedule_windfall_net"], 3)
+        # ... and the exact identity still closes over all five classes
+        self.assertEqual(res["d_opp"],
+                         res["d_direct_net"] + res["d_schedule_net"]
+                         + res["d_baseline_net"] + res["d_unknown_net"]
+                         - res["d_train"])
 
 
 class TestBite06NaturalOpportunity(unittest.TestCase):
@@ -225,8 +237,7 @@ class TestBite10BlindSpotFixture(unittest.TestCase):
         cand, par = fx.fixture_10_blind_spot()
         self.assertEqual(d6_count(cand), 0)
 
-        res = an.analyze_pair(cand, par,
-                              bound=an.Bound(fx.TEST_BOUND_ZERO_WINDFALL))
+        res = an.analyze_pair(cand, par)
         self.assertEqual(res["d_direct_net"], 0)
         self.assertEqual(res["d_nbf_opponent"], 2)
         self.assertEqual(res["d_nbf_natural"], -1)
@@ -238,11 +249,23 @@ class TestBite10BlindSpotFixture(unittest.TestCase):
         self.assertEqual(res["residual"], 0)
 
     def test_i30_must_not_return_pass_under_a_bound_excluding_the_windfall(self):
+        """REVISION 3 (review I30R2-1/2): the verdict is the AGGREGATE's.
+
+        A pair is not a population, so the pair row is `MEASURED` and it is the
+        aggregate -- over the population the bound names, with a verified
+        owner decision -- that renders FAIL.
+        """
         cand, par = fx.fixture_10_blind_spot()
-        res = an.analyze_pair(cand, par,
-                              bound=an.Bound(fx.TEST_BOUND_ZERO_WINDFALL))
-        self.assertNotEqual(res["status"], an.PASS)
-        self.assertEqual(res["status"], an.FAIL)
+        res = an.analyze_pair(cand, par, pair_id="bt10")
+        self.assertEqual(res["status"], an.MEASURED)
+        self.assertNotIn("bound", res)
+
+        report = an.aggregate_report(
+            [res], bound=fx.owner_verified_bound(),
+            authority=fx.test_authority(), observed_utc=fx.OBSERVED_UTC)
+        self.assertNotEqual(report["aggregate_status"], an.PASS)
+        self.assertEqual(report["aggregate_status"], an.FAIL)
+        self.assertEqual(report["bound_evaluation"]["metric_value_exact"], "1")
 
 
 class TestBite11PairIdentityMismatch(unittest.TestCase):
@@ -250,8 +273,7 @@ class TestBite11PairIdentityMismatch(unittest.TestCase):
 
     def test_self_pair_hash_mismatch_is_gate_unready(self):
         cand, par = fx.fixture_11_hash_mismatch_self_pair()
-        res = an.analyze_pair(cand, par, self_pair=True,
-                              bound=an.Bound(fx.TEST_BOUND_ZERO_WINDFALL))
+        res = an.analyze_pair(cand, par, self_pair=True)
 
         self.assertEqual(res["status"], an.GATE_UNREADY)
         self.assertFalse(res["pair_identity"]["valid"])
@@ -266,8 +288,7 @@ class TestBite12UntaggedAtom(unittest.TestCase):
 
     def test_one_untagged_score_bearing_atom_is_gate_unready(self):
         cand, par = fx.fixture_12_untagged_atom()
-        res = an.analyze_pair(cand, par,
-                              bound=an.Bound(fx.TEST_BOUND_ZERO_WINDFALL))
+        res = an.analyze_pair(cand, par)
 
         self.assertEqual(res["candidate"]["unknown_atoms"], 1)
         self.assertEqual(res["candidate"]["dep_unknown"], 1)
@@ -283,8 +304,7 @@ class TestBite13NonzeroResidual(unittest.TestCase):
 
     def test_nonzero_conservation_residual_is_gate_unready(self):
         cand, par = fx.fixture_13_nonzero_residual()
-        res = an.analyze_pair(cand, par,
-                              bound=an.Bound(fx.TEST_BOUND_ZERO_WINDFALL))
+        res = an.analyze_pair(cand, par)
 
         self.assertEqual(res["candidate"]["residual"], 1)
         self.assertEqual(res["parent"]["residual"], 0)
@@ -297,36 +317,46 @@ class TestBite13NonzeroResidual(unittest.TestCase):
 
 
 class TestBite14AbsentBound(unittest.TestCase):
-    """Spec sec. 10 fail-closed control 14 / sec. 8 / sec. 11."""
+    """Spec sec. 10 fail-closed control 14 / sec. 8 / sec. 11.
+
+    REVISION 3: every clause of this control moved to the aggregate, which is
+    where a bound is now consumed (review I30R2-1).
+    """
+
+    def _report(self, **kw):
+        cand, par = fx.fixture_05_indirect_only()
+        row = an.analyze_pair(cand, par, pair_id="bt14")
+        self.assertEqual(row["status"], an.MEASURED)
+        return row, an.aggregate_report([row], observed_utc=fx.OBSERVED_UTC,
+                                        **kw)
 
     def test_active_candidate_without_a_bound_is_gate_unready(self):
-        cand, par = fx.fixture_05_indirect_only()
-        res = an.analyze_pair(cand, par, bound=None)
+        row, report = self._report(bound=None)
 
-        self.assertTrue(res["banana_active"])
-        self.assertEqual(res["sub_status"], an.MEASURED_UNTHRESHOLDED)
-        self.assertEqual(res["status"], an.GATE_UNREADY)
-        self.assertNotEqual(res["status"], an.PASS)
-        self.assertIn("absent_bound", res["unready_reasons"])
+        self.assertTrue(row["banana_active"])
+        self.assertEqual(report["aggregate_sub_status"],
+                         an.MEASURED_UNTHRESHOLDED)
+        self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
+        self.assertIn("absent_bound", report["aggregate_unready_reasons"])
         # raw values survive (sec. 8)
-        self.assertEqual(res["schedule_windfall_net"], 2)
+        self.assertEqual(row["schedule_windfall_net"], 3)
 
-    def test_bound_without_owner_freeze_never_yields_pass(self):
-        cand, par = fx.fixture_05_indirect_only()
-        loose = dict(fx.TEST_BOUND_ZERO_WINDFALL)
-        loose["threshold"] = 100          # satisfied by windfall == 2
-        res = an.analyze_pair(cand, par, bound=an.Bound(loose))
-        self.assertNotEqual(res["status"], an.PASS)
-        self.assertEqual(res["status"], an.GATE_UNREADY)
-        self.assertIn("bound_not_owner_frozen", res["unready_reasons"])
+    def test_bound_without_a_verified_owner_decision_never_yields_pass(self):
+        loose = dict(fx.TEST_BOUND_WINDFALL)
+        loose["threshold"] = 100          # satisfied by windfall == 3
+        _row, report = self._report(bound=an.Bound(loose),
+                                    authority=fx.test_authority())
+        self.assertNotEqual(report["aggregate_status"], an.PASS)
+        self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
+        self.assertIn("bound_not_owner_verified",
+                      report["aggregate_unready_reasons"])
 
     def test_bound_hash_pin_mismatch_is_gate_unready(self):
-        cand, par = fx.fixture_05_indirect_only()
-        bound = an.Bound(fx.TEST_BOUND_ZERO_WINDFALL,
-                         pinned_sha256="f" * 64)
-        res = an.analyze_pair(cand, par, bound=bound)
-        self.assertEqual(res["status"], an.GATE_UNREADY)
-        self.assertIn("bound_hash_mismatch", res["unready_reasons"])
+        bound = an.Bound(fx.TEST_BOUND_WINDFALL, pinned_sha256="f" * 64)
+        _row, report = self._report(bound=bound)
+        self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
+        self.assertIn("bound_hash_mismatch",
+                      report["aggregate_unready_reasons"])
 
 
 class TestBite15MutationBitesTheIndirectTerm(unittest.TestCase):
@@ -338,31 +368,37 @@ class TestBite15MutationBitesTheIndirectTerm(unittest.TestCase):
     to the I-30 schedule term alone.
     """
 
+    def _verdict(self, cand, par):
+        row = an.analyze_pair(cand, par, pair_id="bt15")
+        report = an.aggregate_report(
+            [row], bound=fx.owner_verified_bound(),
+            authority=fx.test_authority(), observed_utc=fx.OBSERVED_UTC)
+        return row, report["aggregate_status"]
+
     def test_removing_the_indirect_calculation_reopens_the_blind_spot(self):
         cand, par = fx.fixture_10_blind_spot()
-        bound = an.Bound(fx.TEST_BOUND_ZERO_WINDFALL)
 
-        before = an.analyze_pair(cand, par, bound=bound)
+        before, verdict = self._verdict(cand, par)
         self.assertEqual(before["schedule_windfall_net"], 1)
-        self.assertEqual(before["status"], an.FAIL)
+        self.assertEqual(verdict, an.FAIL)
         self.assertEqual(d6_count(cand), 0)
 
         original = an.compute_schedule_windfall_net
         try:
             an.compute_schedule_windfall_net = lambda d_schedule_net, d_train: 0
-            after = an.analyze_pair(cand, par, bound=bound)
+            after, mutated_verdict = self._verdict(cand, par)
         finally:
             an.compute_schedule_windfall_net = original
 
         self.assertEqual(after["schedule_windfall_net"], 0)
-        self.assertNotEqual(after["status"], an.FAIL)
+        self.assertNotEqual(mutated_verdict, an.FAIL)
+        self.assertEqual(mutated_verdict, an.PASS)
         # the conservation residual is NOT what caught the mutation
         self.assertEqual(after["residual"], 0)
         # the neighbouring detector is unmoved
         self.assertEqual(d6_count(cand), 0)
         # and the un-mutated analyzer is restored
-        self.assertEqual(an.analyze_pair(cand, par, bound=bound)["status"],
-                         an.FAIL)
+        self.assertEqual(self._verdict(cand, par)[1], an.FAIL)
 
 
 class TestSupplementaryWoodChopCoverage(unittest.TestCase):
@@ -473,7 +509,8 @@ class TestD1SchemaSeparatesGrossWithdrawalAndNet(unittest.TestCase):
             self.assertEqual(
                 res["d_opp"],
                 res["d_direct_net"] + res["d_schedule_net"]
-                + res["d_unknown_net"] - res["d_train"], name)
+                + res["d_baseline_net"] + res["d_unknown_net"]
+                - res["d_train"], name)
             self.assertEqual(res["residual"], 0, name)
 
     def test_result_schema_is_versioned_and_bumped(self):
@@ -517,7 +554,7 @@ class TestD1BoundMetricNamesStateGrossOrNet(unittest.TestCase):
     """Ruling D1 change 4: the unqualified name is no longer sufficient."""
 
     def _bound(self, metric):
-        spec = dict(fx.TEST_BOUND_ZERO_WINDFALL)
+        spec = dict(fx.TEST_BOUND_WINDFALL)
         spec["metric"] = metric
         return an.Bound(spec)
 
@@ -542,13 +579,16 @@ class TestD1BoundMetricNamesStateGrossOrNet(unittest.TestCase):
         self.assertEqual(fx.TEST_BOUND_ZERO_WINDFALL["metric"],
                          "mean_schedule_windfall_net")
 
-    def test_an_ambiguous_metric_makes_the_pair_gate_unready(self):
+    def test_an_ambiguous_metric_makes_the_aggregate_gate_unready(self):
+        """REVISION 3: a bound is consumed by the aggregate, not the pair."""
         cand, par = fx.fixture_05_indirect_only()
-        res = an.analyze_pair(cand, par,
-                              bound=self._bound("mean_schedule_windfall"))
-        self.assertEqual(res["status"], an.GATE_UNREADY)
+        row = an.analyze_pair(cand, par, pair_id="d1-ambiguous-metric")
+        report = an.aggregate_report(
+            [row], bound=self._bound("mean_schedule_windfall"),
+            authority=fx.test_authority(), observed_utc=fx.OBSERVED_UTC)
+        self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
         self.assertIn("bound_metric_ambiguous_gross_or_net",
-                      res["unready_reasons"])
+                      report["aggregate_unready_reasons"])
 
 
 class TestD5FailsClosedOnNonIdentifiableAttribution(unittest.TestCase):
@@ -565,18 +605,23 @@ class TestD5FailsClosedOnNonIdentifiableAttribution(unittest.TestCase):
 
     def test_same_turn_deposit_and_withdrawal_is_unknown(self):
         cand, par = fx.fixture_a1_same_turn_deposit_withdrawal()
-        res = an.analyze_pair(cand, par,
-                              bound=an.Bound(fx.TEST_BOUND_ZERO_WINDFALL))
+        res = an.analyze_pair(cand, par)
         self.assert_fails_closed(res, "deposit_withdrawal_split")
 
         run = res["candidate"]
-        # the old tie-break banked one `ours` atom and withdrew one `natural`
-        # atom; neither claim is derivable, so both atoms are `unknown`
-        self.assertEqual(run["gdep_ours"], 0)
-        self.assertEqual(run["wdr_natural"], 0)
-        self.assertEqual(run["gdep_unknown"], 1)
-        self.assertEqual(run["wdr_unknown"], 1)
-        # ... and the unknown mass cancels exactly, so the ruling's
+        # the old tie-break banked one `ours` atom and withdrew one `baseline`
+        # atom. REVISION 3 (review I30R2-4): the split itself is not
+        # identifiable, so the gross COUNTS are unobservable -- they are
+        # `None` with a feasible interval, not a chosen endpoint.
+        self.assertFalse(run["gross_identifiable"])
+        for c in ledger.SOURCE_CLASSES:
+            self.assertIsNone(run["gdep_" + c], c)
+            self.assertIsNone(run["wdr_" + c], c)
+        self.assertEqual(run["gdep_total_interval"], [0, 1])
+        self.assertEqual(run["wdr_total_interval"], [0, 1])
+        self.assertEqual(run["gdep_interval_ours"], [0, 1])
+        self.assertEqual(run["wdr_interval_baseline"], [0, 1])
+        # ... while the unknown mass cancels exactly, so the ruling's
         # "D_UNKNOWN_NET == 0 is not sufficient evidence" clause is what
         # carries the fail-closed signal here
         self.assertEqual(run["net_bank_flow_unknown"], 0)
@@ -588,21 +633,24 @@ class TestD5FailsClosedOnNonIdentifiableAttribution(unittest.TestCase):
 
     def test_multi_source_deposit_with_concurrent_withdrawal_is_unknown(self):
         cand, par = fx.fixture_a2_multi_source_deposit()
-        res = an.analyze_pair(cand, par,
-                              bound=an.Bound(fx.TEST_BOUND_ZERO_WINDFALL))
+        res = an.analyze_pair(cand, par)
         self.assert_fails_closed(res, "deposit_withdrawal_split")
 
         run = res["candidate"]
-        self.assertEqual(run["gdep_ours"], 0)
-        self.assertEqual(run["gdep_natural"], 0)
-        self.assertEqual(run["gdep_unknown"], 2)
-        self.assertEqual(run["wdr_unknown"], 1)
+        # REVISION 3: two feasible splits (deposit 1 / deposit 2), so the
+        # gross counts are an interval and every gross class term is `None`
+        self.assertFalse(run["gross_identifiable"])
+        self.assertIsNone(run["gdep_ours"])
+        self.assertIsNone(run["gdep_natural"])
+        self.assertIsNone(run["gdep_unknown"])
+        self.assertEqual(run["gdep_total_interval"], [1, 2])
+        self.assertEqual(run["wdr_total_interval"], [0, 1])
+        self.assertEqual(run["net_bank_flow_total"], 1)
         self.assertEqual(res["residual"], 0)
 
     def test_deposit_unit_assignment_across_two_units_is_unknown(self):
         cand, par = fx.fixture_a2b_deposit_unit_assignment()
-        res = an.analyze_pair(cand, par,
-                              bound=an.Bound(fx.TEST_BOUND_ZERO_WINDFALL))
+        res = an.analyze_pair(cand, par)
         self.assert_fails_closed(res, "deposit_unit_assignment")
 
         run = res["candidate"]
@@ -618,8 +666,7 @@ class TestD5FailsClosedOnNonIdentifiableAttribution(unittest.TestCase):
     def test_cancelling_unknown_deposit_and_withdrawal_still_fails_closed(self):
         """D_UNKNOWN_NET == 0 is not evidence of complete provenance."""
         cand, par = fx.fixture_a6_cancelling_unknown_flow()
-        res = an.analyze_pair(cand, par,
-                              bound=an.Bound(fx.TEST_BOUND_ZERO_WINDFALL))
+        res = an.analyze_pair(cand, par)
         run = res["candidate"]
 
         # nothing here is ambiguous -- every allocation is forced
@@ -641,8 +688,7 @@ class TestD5FailsClosedOnNonIdentifiableAttribution(unittest.TestCase):
     def test_a_plant_seed_at_a_bank_cell_does_not_trip_the_gate(self):
         """The fail-closed rule must not fire on an explained decrease."""
         cand, par = fx.fixture_a7_seed_and_deposit_at_one_bank_cell()
-        res = an.analyze_pair(cand, par,
-                              bound=an.Bound(fx.TEST_BOUND_ZERO_WINDFALL))
+        res = an.analyze_pair(cand, par)
         run = res["candidate"]
 
         self.assertEqual(run["identifiable"], True, run["ambiguities"])
@@ -664,8 +710,7 @@ class TestD5FailsClosedOnNonIdentifiableAttribution(unittest.TestCase):
         results = {}
         for order in ("ours_first", "opponent_first"):
             cand, par = fx.fixture_a3_class_swap(order)
-            results[order] = an.analyze_pair(
-                cand, par, bound=an.Bound(fx.TEST_BOUND_ZERO_WINDFALL))
+            results[order] = an.analyze_pair(cand, par)
 
         a, b = results["ours_first"], results["opponent_first"]
         # the ambiguous transition is literally the same transcript text
@@ -690,8 +735,7 @@ class TestD5FailsClosedOnNonIdentifiableAttribution(unittest.TestCase):
 
     def test_acquisition_on_a_dead_asset_cell_is_unknown(self):
         cand, par = fx.fixture_a4_dead_cell_acquisition()
-        res = an.analyze_pair(cand, par,
-                              bound=an.Bound(fx.TEST_BOUND_ZERO_WINDFALL))
+        res = an.analyze_pair(cand, par)
         run = res["candidate"]
         self.assertEqual(run["gdep_natural"], 0,
                          "a dead asset must not launder a later atom")
@@ -704,8 +748,7 @@ class TestD5FailsClosedOnNonIdentifiableAttribution(unittest.TestCase):
     def test_absent_or_mixed_planter_occupancy_is_unknown(self):
         for mode in ("mixed", "absent"):
             cand, par = fx.fixture_a5_planter_occupancy(mode)
-            res = an.analyze_pair(cand, par,
-                                  bound=an.Bound(fx.TEST_BOUND_ZERO_WINDFALL))
+            res = an.analyze_pair(cand, par)
             run = res["candidate"]
             self.assertEqual(run["gdep_ours"], 0, mode)
             self.assertEqual(run["gdep_opponent"], 0, mode)
@@ -746,23 +789,27 @@ class TestD5MutationRevertedTieBreakIsCaught(unittest.TestCase):
             setattr(ledger, name, fn)
 
     def test_reverted_tie_break_reopens_same_turn_misattribution(self):
-        bound = an.Bound(fx.TEST_BOUND_ZERO_WINDFALL)
-        before = an.analyze_pair(*fx.fixture_a1_same_turn_deposit_withdrawal(),
-                                 bound=bound)
+        before = an.analyze_pair(
+            *fx.fixture_a1_same_turn_deposit_withdrawal())
         self.assertEqual(before["status"], an.GATE_UNREADY)
 
         saved = self._revert_tie_break()
         try:
             after = an.analyze_pair(
-                *fx.fixture_a1_same_turn_deposit_withdrawal(), bound=bound)
+                *fx.fixture_a1_same_turn_deposit_withdrawal())
         finally:
             self._restore(saved)
 
-        # the old behaviour: a confident, unprovable split
+        # the old behaviour: a confident, unprovable split. The withdrawn
+        # atom is the opponent's OPENING BANK STOCK, so revision 3 charges it
+        # to `baseline` where revision 2 charged it to `natural`
+        # (review I30R2-5).
         self.assertEqual(after["candidate"]["gdep_ours"], 1)
-        self.assertEqual(after["candidate"]["wdr_natural"], 1)
+        self.assertEqual(after["candidate"]["wdr_baseline"], 1)
+        self.assertEqual(after["candidate"]["wdr_natural"], 0)
         self.assertEqual(after["d_direct_net"], 1)
-        self.assertEqual(after["d_schedule_net"], -1)
+        self.assertEqual(after["d_baseline_net"], -1)
+        self.assertEqual(after["d_schedule_net"], 0)
         # with terminal score, net flow and residual all still correct
         self.assertEqual(after["d_opp"], 0)
         self.assertEqual(after["residual"], 0)
@@ -770,17 +817,15 @@ class TestD5MutationRevertedTieBreakIsCaught(unittest.TestCase):
                          after["unready_reasons"])
         # and the fix is restored
         self.assertEqual(
-            an.analyze_pair(*fx.fixture_a1_same_turn_deposit_withdrawal(),
-                            bound=bound)["status"], an.GATE_UNREADY)
+            an.analyze_pair(
+                *fx.fixture_a1_same_turn_deposit_withdrawal())["status"],
+            an.GATE_UNREADY)
 
     def test_reverted_tie_break_reopens_the_class_swap(self):
-        bound = an.Bound(fx.TEST_BOUND_ZERO_WINDFALL)
         saved = self._revert_tie_break()
         try:
-            a = an.analyze_pair(*fx.fixture_a3_class_swap("ours_first"),
-                                bound=bound)
-            b = an.analyze_pair(*fx.fixture_a3_class_swap("opponent_first"),
-                                bound=bound)
+            a = an.analyze_pair(*fx.fixture_a3_class_swap("ours_first"))
+            b = an.analyze_pair(*fx.fixture_a3_class_swap("opponent_first"))
         finally:
             self._restore(saved)
 
@@ -794,11 +839,9 @@ class TestD5MutationRevertedTieBreakIsCaught(unittest.TestCase):
         self.assertEqual(b["d_schedule_net"], 1)
 
     def test_reverted_tie_break_reopens_multi_source_attribution(self):
-        bound = an.Bound(fx.TEST_BOUND_ZERO_WINDFALL)
         saved = self._revert_tie_break()
         try:
-            after = an.analyze_pair(*fx.fixture_a2_multi_source_deposit(),
-                                    bound=bound)
+            after = an.analyze_pair(*fx.fixture_a2_multi_source_deposit())
         finally:
             self._restore(saved)
         self.assertEqual(after["candidate"]["gdep_ours"], 1)
@@ -807,11 +850,10 @@ class TestD5MutationRevertedTieBreakIsCaught(unittest.TestCase):
         self.assertEqual(after["residual"], 0)
 
     def test_reverted_tie_break_reopens_unit_assignment(self):
-        bound = an.Bound(fx.TEST_BOUND_ZERO_WINDFALL)
         saved = self._revert_tie_break()
         try:
-            after = an.analyze_pair(*fx.fixture_a2b_deposit_unit_assignment(),
-                                    bound=bound)
+            after = an.analyze_pair(
+                *fx.fixture_a2b_deposit_unit_assignment())
         finally:
             self._restore(saved)
         # unit-id order silently declares the lower-id unit the depositor
@@ -850,23 +892,51 @@ class TestD5MutationRevertedTieBreakIsCaught(unittest.TestCase):
             self.assertEqual(before[n]["candidate"]["identifiable"], True, n)
 
 
-class TestNoPassWithoutAnOwnerFrozenBound(unittest.TestCase):
-    """Ruling: no PASS may be emitted without `provenance == owner_frozen`."""
+class TestNoPassWithoutAVerifiedOwnerDecision(unittest.TestCase):
+    """No PASS may be emitted without an owner decision that VERIFIES.
+
+    Revision 3 (review I30R2-3): the decision is a blob on a pinned ref that
+    names the bound and predates the observation, not a string in the bound.
+    """
 
     def test_no_fixture_in_the_corpus_can_produce_pass(self):
-        bound = an.Bound(fx.TEST_BOUND_ZERO_WINDFALL)
-        self.assertNotEqual(bound.provenance, "owner_frozen")
+        bound = an.Bound(fx.TEST_BOUND_WINDFALL)
         results = []
         for name in sorted(n for n in dir(fx) if n.startswith("fixture_")):
             cand, par = getattr(fx, name)()
-            res = an.analyze_pair(cand, par, bound=bound,
+            res = an.analyze_pair(cand, par,
                                   self_pair=name.startswith(("fixture_01",
                                                              "fixture_11")),
                                   pair_id=name)
             self.assertNotEqual(res["status"], an.PASS, name)
+            self.assertNotEqual(res["status"], an.FAIL, name)
             results.append(res)
-        report = an.aggregate_report(results, bound=bound)
+        report = an.aggregate_report(results, bound=bound,
+                                     observed_utc=fx.OBSERVED_UTC)
         self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
+        self.assertEqual(report["aggregate_sub_status"],
+                         an.MEASURED_UNTHRESHOLDED)
+
+    def test_the_production_corpus_is_gate_unready_end_to_end(self):
+        """MEASURED: the shipped `main()` path, with the PRODUCTION authority.
+
+        No owner decision exists on the authoritative ref, so the corpus this
+        implementation actually emits can only be GATE_UNREADY.
+        """
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            report_path = os.path.join(tmp, "report.json")
+            self.assertEqual(
+                an.main(["--report", report_path,
+                         "--ledger-dir", os.path.join(tmp, "ledgers")]), 0)
+            with open(report_path) as fh:
+                report = json.load(fh)
+        self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
+        self.assertFalse(report["owner_decision"]["verified"])
+        self.assertIn("owner_decision_unresolved",
+                      report["owner_decision"]["reasons"])
+        self.assertNotIn(an.PASS, report["statuses"])
+        self.assertNotIn(an.FAIL, report["statuses"])
 
 
 # ==========================================================================
@@ -921,9 +991,8 @@ class TestR3D1BoundsAreEvaluatedOverTheirPopulation(unittest.TestCase):
             self.assertEqual(ev["population_pairs"], expected, population)
 
     def test_the_metric_is_the_exact_population_mean(self):
-        # windfall_net: fixture_05 == 2, fixture_06 == 1 -> mean 3/2
-        rows = _rows("fixture_05_indirect_only",
-                     "fixture_06_natural_opportunity")
+        # windfall_net: fixture_05 == 3, fixture_04 == 0 -> mean 3/2
+        rows = _rows("fixture_05_indirect_only", "fixture_04_direct_theft")
         report = an.aggregate_report(
             rows, bound=an.Bound(dict(fx.TEST_BOUND_WINDFALL,
                                       population="all_pairs")))
@@ -933,7 +1002,7 @@ class TestR3D1BoundsAreEvaluatedOverTheirPopulation(unittest.TestCase):
         self.assertEqual(ev["metric_numerator"], 3)
         self.assertEqual(ev["metric_denominator"], 2)
         # ... and it is NOT any single pair's value
-        self.assertNotIn(ev["metric_value_exact"], ("2", "1"))
+        self.assertNotIn(ev["metric_value_exact"], ("3", "0"))
 
     def test_an_unsupported_population_is_rejected_before_evaluation(self):
         bound = an.Bound(dict(fx.TEST_BOUND_WINDFALL, population="whatever"))
@@ -968,8 +1037,9 @@ class TestR3D2AggregateVerdictPrecedence(unittest.TestCase):
     def test_a_failed_pair_row_propagates_to_aggregate_fail(self):
         rows = _rows("fixture_05_indirect_only")
         rows[0]["status"] = an.FAIL          # a pair-level hard limit
+        # threshold 100 is SATISFIED, so only the pair row can fail the corpus
         report = an.aggregate_report(
-            rows, bound=fx.owner_verified_bound(),
+            rows, bound=fx.owner_verified_bound(threshold=100),
             authority=fx.test_authority(), observed_utc=fx.OBSERVED_UTC)
         self.assertEqual(report["aggregate_status"], an.FAIL)
         self.assertEqual(report["aggregate_fail_reasons"], ["pair_fail"])
@@ -1043,8 +1113,9 @@ class TestR3D3OwnerFreezeIsVerifiedNotDeclared(unittest.TestCase):
         self.assertEqual(report["aggregate_status"], an.GATE_UNREADY)
 
     def test_the_decision_must_pin_the_exact_bound_sha(self):
-        # same authority, but the bound was edited after the decision
-        bound = fx.owner_verified_bound(threshold=7)
+        # same authority, same decision pointer, but the bound was EDITED
+        # after the decision was frozen
+        bound = fx.tampered_bound(threshold=7)
         report = self._report(bound, fx.test_authority(), fx.OBSERVED_UTC)
         self.assertIn("owner_decision_bound_sha_mismatch",
                       report["owner_decision"]["reasons"])
@@ -1138,7 +1209,11 @@ class TestR3D4AmbiguousGrossIsAnIntervalNotAPoint(unittest.TestCase):
         res = an.analyze_pair(cand, par)
         for key in ("d_direct_gross", "d_production_gross", "d_unknown_gross"):
             self.assertIsNone(res[key], key)
-        self.assertEqual(res["d_production_gross_interval"], [-1, 0])
+        # the parent is static and neither feasible split moves an
+        # opponent- or natural-classed atom, so PRODUCTION gross is exactly
+        # zero on both sides even though the totals are not identifiable
+        self.assertEqual(res["d_production_gross_interval"], [0, 0])
+        self.assertEqual(res["d_direct_gross_interval"], [0, 1])
         self.assertEqual(res["status"], an.GATE_UNREADY)
 
     def test_the_aggregate_refuses_to_mean_a_non_identifiable_point(self):
@@ -1253,7 +1328,7 @@ class TestR3D7ActivationCoversEveryFrozenCause(unittest.TestCase):
                                  "integration_seam"]))
         self.assertGreaterEqual(an.ACTIVATION_CONTRACT_VERSION, 2)
 
-    def test_each_cause_has_a_fixture_that_activates_on_it_alone(self):
+    def test_each_frozen_cause_has_an_activating_fixture(self):
         for cause, name in fx.ACTIVATION_CAUSE_FIXTURES.items():
             cand, par = getattr(fx, name)()
             act = an.detect_activation(cand, par)
@@ -1419,11 +1494,12 @@ class TestR3D10MutationRunnerIsReproducible(unittest.TestCase):
             manifest = json.load(fh)
         here = os.path.dirname(os.path.abspath(__file__))
         for m in manifest["mutations"]:
-            with open(os.path.join(here, m["target"])) as fh:
-                text = fh.read()
-            self.assertEqual(text.count(m["preimage"]), 1,
-                             "%s: preimage must be unique in %s"
-                             % (m["id"], m["target"]))
+            for patch in [m] + list(m.get("extra_patches", [])):
+                with open(os.path.join(here, patch["target"])) as fh:
+                    text = fh.read()
+                self.assertEqual(text.count(patch["preimage"]), 1,
+                                 "%s: preimage must be unique in %s"
+                                 % (m["id"], patch["target"]))
 
     def test_the_manifest_pins_the_sha_of_every_mutated_file(self):
         with open(self.MANIFEST) as fh:

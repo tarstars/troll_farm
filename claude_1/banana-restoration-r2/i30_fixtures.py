@@ -122,14 +122,66 @@ def transcript_of(blocks):
     return "\n".join(body) + "\n"
 
 
+# --------------------------------------------------------------------------
+# Harness command-execution declaration (review I30R2-8)
+#
+# These fixtures stand in for the REPAIRED referee (`fuzz-panel/2-train`),
+# which implements TRAIN and MINE and retains an `unsupported_verb` error
+# instead of silently discarding a verb. `fixture_m040_discarded_train`
+# reproduces the PRE-repair declaration and must be rejected.
+# --------------------------------------------------------------------------
+
+REPAIRED_VERB_MANIFEST = ("MOVE", "PLANT", "PICK", "DROP", "HARVEST", "CHOP",
+                          "TRAIN", "MINE", "MSG", "WAIT")
+# the pre-repair dispatcher: TRAIN sat in a skip list and MINE fell out of the
+# bottom of the if/elif chain (claude_1/pipeline/referee-train-repair-*.md)
+PRE_REPAIR_VERB_MANIFEST = ("MOVE", "PLANT", "PICK", "DROP", "HARVEST",
+                            "CHOP", "MSG", "WAIT")
+REFEREE_SHA256 = "re" + "0" * 62
+PRE_REPAIR_REFEREE_SHA256 = "r1" + "0" * 62
+ENGINE_SHA256 = "en" + "0" * 62
+
+
+def count_commands(commands_text):
+    return sum(1 for line in commands_text.split("\n")
+               for frag in line.split(";") if frag.strip())
+
+
+def execution_block(commands_text, **overrides):
+    """A complete, valid harness execution-validity declaration."""
+    manifest = overrides.pop("verb_manifest", REPAIRED_VERB_MANIFEST)
+    emitted = count_commands(commands_text)
+    block = {
+        "execution_status": ledger.EXECUTION_OK,
+        "commands_emitted": emitted,
+        "commands_executed": emitted,
+        "unsupported_command_events": 0,
+        "malformed_command_events": 0,
+        "verb_manifest": list(manifest),
+        "verb_manifest_sha256": ledger.verb_manifest_sha256(manifest),
+        "referee_sha256": REFEREE_SHA256,
+        "engine_sha256": ENGINE_SHA256,
+        "instrument_version": "i30-fixture-referee/2-train",
+        "corpus_version": "i30-fixtures-r3-2026-08-09",
+    }
+    block.update(overrides)
+    return block
+
+
 def record(run_id, blocks, cmd_lines, bot=None, claimed=False,
-           identity_overrides=None):
+           identity_overrides=None, execution=None, claimed_mechanisms=(),
+           activation_telemetry=None):
     ident = dict(BASE_IDENTITY)
     ident.update(bot or CANDIDATE_BOT)
     ident.update(identity_overrides or {})
-    return ledger.RunRecord(run_id, transcript_of(blocks),
-                            "\n".join(cmd_lines) + "\n", identity=ident,
-                            banana_mechanism_claimed=claimed)
+    commands_text = "\n".join(cmd_lines) + "\n"
+    return ledger.RunRecord(
+        run_id, transcript_of(blocks), commands_text, identity=ident,
+        banana_mechanism_claimed=claimed,
+        claimed_mechanisms=claimed_mechanisms,
+        activation_telemetry=activation_telemetry,
+        execution=(execution_block(commands_text) if execution is None
+                   else execution))
 
 
 def _pad(blocks, cmds, n, filler_cmd="WAIT"):
@@ -1032,6 +1084,218 @@ def fixture_d1_gross_production_with_offsetting_withdrawal():
     return cand, _static_parent("d1-parent", b1, 8)
 
 
+# ==========================================================================
+# Revision-3 fixtures -- one per blocking defect of
+# chatgpt_1/i30-revision-2-review-2026-08-08.md
+# ==========================================================================
+
+def fixture_baseline_stock_recycling():
+    """I30R2-5: the opponent recycles its OPENING BANK STOCK through the bank.
+
+    The opponent starts holding one banana in its shack. The candidate's
+    banana presence makes it withdraw that banana on one turn and re-deposit
+    it on the next. Terminal score is unchanged and nothing was produced, so
+    `D_PRODUCTION_GROSS` must stay exactly 0 -- revision 2 labelled the
+    opening stock `natural` and reported a gross production of +1.
+
+    Every step is uniquely derivable: on the withdrawal turn no unit drops
+    (`drop_cand == 0`) and on the deposit turn none picks (`pick_cand == 0`),
+    so each feasible withdrawal interval holds exactly one integer.
+    """
+    banana = P("BANANA", OWN_DOOR, cooldown=6)
+    own0 = U(0, 0, OWN_DOOR)
+    seed0 = U(0, 0, OWN_DOOR, C(banana=1))
+    b1 = B([seed0, U(9, 1, OPP_BANK)], [], inv1=C(banana=1))
+    cand_blocks = [
+        b1,
+        # our banana is planted; the opponent withdraws its opening banana
+        B([own0, U(9, 1, OPP_BANK, C(banana=1))], [banana]),
+        # ... and banks it again, unchanged
+        B([own0, U(9, 1, OPP_BANK)], [banana], inv1=C(banana=1)),
+        B([own0, U(9, 1, OPP_BANK)], [banana], inv1=C(banana=1)),
+    ]
+    cand_cmds = [PLANT_BANANA] + ["WAIT"] * 3
+    cand = record("baseline-candidate", cand_blocks, cand_cmds,
+                  bot=CANDIDATE_BOT, claimed=True)
+    return cand, _static_parent("baseline-parent", b1, 4)
+
+
+def fixture_lying_identity_pair():
+    """I30R2-6: two different worlds, one declared identity.
+
+    Both callers declare the PARENT's map/initial-state/transcript/command
+    hashes. Revision 2's `setdefault` adopted the declaration, so the pair
+    passed `check_pair_identity()` as an exact self-pair while the transcripts
+    differed. The hashes are now derived from the bytes and the declaration is
+    only a pin to check.
+    """
+    par_blocks = _quiet_blocks()
+    cand_blocks = [list(b) for b in par_blocks]
+    # one different observed state: the opponent never banks its apple
+    cand_blocks[-1] = B([U(0, 0, OWN_DOOR), U(9, 1, (8, 5))],
+                        [P("APPLE", (7, 5))])
+    cmds = ["WAIT"] * 4
+    par = record("lie-parent", par_blocks, cmds, bot=PARENT_BOT)
+    cand = record("lie-candidate", cand_blocks, cmds, bot=PARENT_BOT,
+                  identity_overrides=dict(par.derived_identity))
+    return cand, par
+
+
+def fixture_m040_discarded_train():
+    """I30R2-8: the m040 signature -- emitted TRAIN, no spawn, no error.
+
+    The pre-repair panel referee parsed `TRAIN` and dropped it on the floor.
+    I-30 derives TRAIN spend from observed spawns, so this transcript is
+    internally consistent: no spawn, no spend, residual zero. Only the
+    harness's own execution declaration can expose it, and this one exposes it
+    twice over -- the referee's verb manifest never implemented TRAIN, and the
+    executed count is short of the emitted count.
+    """
+    banana = P("BANANA", OWN_DOOR, cooldown=6)
+    own0 = U(0, 0, OWN_DOOR)
+    seed0 = U(0, 0, OWN_DOOR, C(banana=1))
+    b1 = B([seed0, U(9, 1, OPP_BANK)])
+    cand_blocks = [b1] + [B([own0, U(9, 1, OPP_BANK)], [banana])
+                          for _ in range(3)]
+    cand_cmds = [PLANT_BANANA] + ["TRAIN 1 1 1 1"] * 3
+    commands_text = "\n".join(cand_cmds) + "\n"
+    cand = record(
+        "m040-candidate", cand_blocks, cand_cmds, bot=CANDIDATE_BOT,
+        claimed=True,
+        execution=execution_block(
+            commands_text,
+            verb_manifest=PRE_REPAIR_VERB_MANIFEST,
+            # the referee reported success: the discard was silent
+            execution_status=ledger.EXECUTION_OK,
+            commands_executed=count_commands(commands_text) - 3,
+            referee_sha256=PRE_REPAIR_REFEREE_SHA256,
+            instrument_version="i30-fixture-referee/1"))
+    return cand, _static_parent("m040-parent", b1, 4)
+
+
+def fixture_unsupported_command_event():
+    """I30R2-8: the REPAIRED referee's retained `unsupported_verb` error."""
+    banana = P("BANANA", OWN_DOOR, cooldown=6)
+    own0 = U(0, 0, OWN_DOOR)
+    seed0 = U(0, 0, OWN_DOOR, C(banana=1))
+    b1 = B([seed0, U(9, 1, OPP_BANK)])
+    blocks = [b1] + [B([own0, U(9, 1, OPP_BANK)], [banana]) for _ in range(2)]
+    cmds = [PLANT_BANANA, "WAIT", "WAIT"]
+    cand = record("unsupported-candidate", blocks, cmds, bot=CANDIDATE_BOT,
+                  claimed=True,
+                  execution=execution_block(
+                      "\n".join(cmds) + "\n",
+                      execution_status="unsupported_verb",
+                      unsupported_command_events=1))
+    return cand, _static_parent("unsupported-parent", b1, 3)
+
+
+def fixture_referee_version_skew():
+    """I30R2-8: the two sides of the pair were executed by different referees."""
+    banana = P("BANANA", OWN_DOOR, cooldown=6)
+    own0 = U(0, 0, OWN_DOOR)
+    seed0 = U(0, 0, OWN_DOOR, C(banana=1))
+    b1 = B([seed0, U(9, 1, OPP_BANK)])
+    blocks = [b1] + [B([own0, U(9, 1, OPP_BANK)], [banana]) for _ in range(2)]
+    cmds = [PLANT_BANANA, "WAIT", "WAIT"]
+    cand = record("skew-candidate", blocks, cmds, bot=CANDIDATE_BOT,
+                  claimed=True)
+    par_cmds = ["WAIT"] * 3
+    par = record("skew-parent", [list(b1) for _ in range(3)], par_cmds,
+                 bot=PARENT_BOT, claimed=True,
+                 execution=execution_block(
+                     "\n".join(par_cmds) + "\n",
+                     referee_sha256=PRE_REPAIR_REFEREE_SHA256))
+    return cand, par
+
+
+# --- I30R2-7: one fixture per frozen activation cause ----------------------
+
+def _banana_asset_pair(run_prefix, cand_blocks, n_turns, cmds=None):
+    b1 = cand_blocks[0]
+    cmds = cmds or ["WAIT"] * len(cand_blocks)
+    cand = record("%s-candidate" % run_prefix, cand_blocks, cmds,
+                  bot=CANDIDATE_BOT, claimed=True)
+    return cand, _static_parent("%s-parent" % run_prefix, b1, n_turns)
+
+
+def fixture_activation_banana_harvest():
+    """A candidate that changes only HARVEST timing emits no new command."""
+    ripe = P("BANANA", (6, 5), fruits=1, cooldown=0)
+    bare = P("BANANA", (6, 5), cooldown=0)
+    own = U(0, 0, OWN_DOOR)
+    blocks = [
+        B([own, U(9, 1, (6, 5))], [ripe]),
+        B([own, U(9, 1, (6, 5), C(banana=1))], [bare]),
+        B([own, U(9, 1, (6, 5), C(banana=1))], [bare]),
+    ]
+    return _banana_asset_pair("act-harvest", blocks, 3)
+
+
+def fixture_activation_banana_chop():
+    """A candidate that chops an EXISTING banana plants nothing."""
+    big = P("BANANA", (6, 5), size=2, health=3, cooldown=0)
+    small = P("BANANA", (6, 5), size=1, health=3, cooldown=0)
+    own = U(0, 0, OWN_DOOR)
+    blocks = [
+        B([own, U(9, 1, (6, 5))], [big]),
+        B([own, U(9, 1, (6, 5), C(wood=1))], [small]),
+        B([own, U(9, 1, (6, 5), C(wood=1))], [small]),
+    ]
+    return _banana_asset_pair("act-chop", blocks, 3)
+
+
+def fixture_activation_controller_state():
+    """Entering a Banana controller state without planting anything."""
+    blocks = _quiet_blocks()
+    cmds = ["WAIT"] * 4
+    cand = record("act-ctrl-candidate", blocks, cmds, bot=CANDIDATE_BOT,
+                  claimed=True, claimed_mechanisms=("controller_state",),
+                  activation_telemetry={"controller_states":
+                                        [[2, "BANANA_RING_HOLD"]]})
+    par = record("act-ctrl-parent", blocks, cmds, bot=PARENT_BOT,
+                 activation_telemetry={"controller_states": []})
+    return cand, par
+
+
+def fixture_activation_integration_seam():
+    """A declared integration-seam divergence."""
+    blocks = _quiet_blocks()
+    cmds = ["WAIT"] * 4
+    cand = record("act-seam-candidate", blocks, cmds, bot=CANDIDATE_BOT,
+                  claimed=True, claimed_mechanisms=("integration_seam",),
+                  activation_telemetry={"seam_signature": "banana-seam-v2"})
+    par = record("act-seam-parent", blocks, cmds, bot=PARENT_BOT,
+                 activation_telemetry={"seam_signature": "banana-seam-v1"})
+    return cand, par
+
+
+def fixture_claimed_controller_state_without_telemetry():
+    """A claimed telemetry mechanism with no telemetry bound to it.
+
+    Revision 2 would answer NOT_APPLICABLE, which is exactly the fabricated
+    negative the review forbids.
+    """
+    blocks = _quiet_blocks()
+    cmds = ["WAIT"] * 4
+    cand = record("act-unbound-candidate", blocks, cmds, bot=CANDIDATE_BOT,
+                  claimed=True, claimed_mechanisms=("controller_state",))
+    par = record("act-unbound-parent", blocks, cmds, bot=PARENT_BOT)
+    return cand, par
+
+
+# cause -> the fixture that exercises it (review I30R2-7 requires one each)
+ACTIVATION_CAUSE_FIXTURES = {
+    "banana_command": "fixture_04_direct_theft",
+    "own_banana_plant": "fixture_04_direct_theft",
+    "banana_harvest": "fixture_activation_banana_harvest",
+    "banana_chop": "fixture_activation_banana_chop",
+    "banana_banking": "fixture_baseline_stock_recycling",
+    "controller_state": "fixture_activation_controller_state",
+    "integration_seam": "fixture_activation_integration_seam",
+}
+
+
 # --------------------------------------------------------------------------
 # bound objects (spec sec. 11)
 # --------------------------------------------------------------------------
@@ -1046,10 +1310,12 @@ PARAMETERISED_VARIANTS = (
 )
 
 
-# NOT an owner decision. `provenance: "test_fixture"` keeps the analyzer from
-# ever emitting PASS from it (see i30_analyzer.analyze_pair).
-TEST_BOUND_ZERO_WINDFALL = {
-    "schema_version": 1,
+# NOT an owner decision. No `OwnerAuthority` can resolve
+# `owner_decision_path`, so this object can never produce a PASS and -- since
+# revision 3 -- can never produce a production FAIL either: it is measured and
+# reported as NON_PRODUCTION_MEASUREMENT (review I30R2-3).
+TEST_BOUND_WINDFALL = {
+    "schema_version": ledger.SCHEMA_VERSION,
     "population": "banana_active",
     # ruling D1 change 4: the metric name states net, not just "windfall"
     "metric": "mean_schedule_windfall_net",
@@ -1058,6 +1324,103 @@ TEST_BOUND_ZERO_WINDFALL = {
     "family_constraints": [],
     "tail_constraints": [],
     "owner_decision_path": "UNRESOLVED/no-owner-decision-exists",
-    "owner_decision_blob": "0" * 40,
+    "owner_decision_blob": "0" * 64,
     "provenance": "test_fixture",
 }
+# revision-2 name, kept so the r2 bite-tests still address the same object
+TEST_BOUND_ZERO_WINDFALL = TEST_BOUND_WINDFALL
+
+# `I30_REPO_ROOT` lets the mutation runner point a scratch copy of these
+# modules at the real repository, whose git refs are an INPUT to the
+# provenance manifest and to the owner authority.
+REPO_ROOT = os.environ.get("I30_REPO_ROOT") or os.path.abspath(
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+
+# The instant the fixture corpus was observed. An owner decision frozen after
+# this instant is not a bound (review I30R2-3).
+OBSERVED_UTC = "2026-08-09T00:00:00Z"
+TEST_AUTHORITY_ID = "i30-test-owner"
+TEST_AUTHORITY_REF = "refs/i30-test/owner-decisions"
+TEST_DECISION_PREFIX = "coordination/decisions/i30-test-bound-"
+TEST_DECISION_FROZEN_UTC = "2026-08-08T12:00:00Z"
+
+_OWNER_FIELDS = ("owner_decision_path", "owner_decision_blob")
+
+
+def _bound_body_sha(spec):
+    """sha256 over the bound MINUS its own decision pointer.
+
+    The decision names the body and the body names the decision, so one of the
+    two links must be over a projection; the decision pointer is the natural
+    one to drop.
+    """
+    body = {k: v for k, v in spec.items() if k not in _OWNER_FIELDS}
+    return ledger.sha256_text(ledger.canonical_json(body))
+
+
+def _decision_bytes(body_sha, authority_id=TEST_AUTHORITY_ID,
+                    frozen_utc=TEST_DECISION_FROZEN_UTC):
+    return (ledger.canonical_json({
+        "decision_id": "i30-test-bound-%s" % body_sha[:12],
+        "invariant": "I-30",
+        "authority": authority_id,
+        "bound_body_sha256": body_sha,
+        "frozen_utc": frozen_utc,
+        "statement": "TEST authority only. Not an owner decision on the real "
+                     "I-30 bound; it exists so the verification chain itself "
+                     "can be exercised.",
+    }) + "\n").encode("utf-8")
+
+
+def owner_verified_bound(**overrides):
+    """A bound that a (test) authority really did freeze, first.
+
+    Used to prove that the aggregate CAN reach PASS and FAIL once the chain is
+    complete -- the production authority resolves nothing, so the real corpus
+    stays GATE_UNREADY.
+    """
+    import i30_analyzer as an
+
+    spec = dict(TEST_BOUND_WINDFALL)
+    spec.update(overrides)
+    spec["provenance"] = "owner_decision_ref"
+    body_sha = _bound_body_sha(spec)
+    spec["owner_decision_path"] = TEST_DECISION_PREFIX + body_sha + ".json"
+    spec["owner_decision_blob"] = ledger.sha256_bytes(
+        _decision_bytes(body_sha))
+    return an.Bound(spec)
+
+
+def tampered_bound(**overrides):
+    """A bound EDITED after its decision was frozen.
+
+    The decision pointer still resolves and the blob still matches; what no
+    longer matches is the bound the owner actually named.
+    """
+    import i30_analyzer as an
+
+    original = owner_verified_bound()
+    spec = dict(original.spec)
+    spec.update(overrides)          # decision pointer deliberately untouched
+    return an.Bound(spec)
+
+
+def test_authority(corrupt=False, authority_id=TEST_AUTHORITY_ID,
+                   frozen_utc=TEST_DECISION_FROZEN_UTC):
+    """An `OwnerAuthority` standing in for a real owner ref.
+
+    It serves the decision for whichever bound body is asked for, so a test
+    can vary the bound without hand-maintaining blobs. `corrupt=True` serves
+    bytes that are not the ones the bound pinned.
+    """
+    import i30_analyzer as an
+
+    def loader(path):
+        if not path or not path.startswith(TEST_DECISION_PREFIX):
+            return None
+        body_sha = path[len(TEST_DECISION_PREFIX):-len(".json")]
+        blob = _decision_bytes(body_sha, authority_id=TEST_AUTHORITY_ID,
+                               frozen_utc=frozen_utc)
+        return blob + b"tampered\n" if corrupt else blob
+
+    return an.OwnerAuthority(loader, TEST_AUTHORITY_REF, authority_id)

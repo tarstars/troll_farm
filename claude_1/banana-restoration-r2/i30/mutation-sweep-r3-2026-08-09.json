@@ -1,0 +1,413 @@
+{
+  "caught": 22,
+  "caught_by_expected_catcher": 22,
+  "control": {
+    "failing": [],
+    "green": true,
+    "returncode": 0,
+    "tests_run": 101
+  },
+  "manifest": "i30/mutation-manifest-r3-2026-08-09.json",
+  "manifest_sha256": "8530be388e24ff640343edaac7199e1d6767785f3a49611784f9d5183ac21c4a",
+  "mutations_run": 22,
+  "python_version": "3.12.3",
+  "results": [
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-1",
+      "expected_catcher": "TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_the_population_named_by_the_bound_selects_the_rows",
+      "failing_count": 1,
+      "failing_tests": [
+        "TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_the_population_named_by_the_bound_selects_the_rows"
+      ],
+      "id": "M-D1-population",
+      "mutated_sha256": {
+        "i30_analyzer.py": "fcffb12895864ad748baff93cb101b913e630768d841b34384095a195df141dd"
+      },
+      "patches": 1,
+      "target": "i30_analyzer.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-1",
+      "expected_catcher": "TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_the_metric_is_the_exact_population_mean",
+      "failing_count": 1,
+      "failing_tests": [
+        "TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_the_metric_is_the_exact_population_mean"
+      ],
+      "id": "M-D1-mean",
+      "mutated_sha256": {
+        "i30_analyzer.py": "76d9a332f3e8fac4955d060c3394110549c86191e592e085ff62bc290df69a9e"
+      },
+      "patches": 1,
+      "target": "i30_analyzer.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-2",
+      "expected_catcher": "TestR3D2AggregateVerdictPrecedence.test_a_failed_pair_row_propagates_to_aggregate_fail",
+      "failing_count": 2,
+      "failing_tests": [
+        "TestR3D2AggregateVerdictPrecedence.test_a_failed_pair_row_propagates_to_aggregate_fail",
+        "TestR3D2AggregateVerdictPrecedence.test_the_old_blocking_only_rule_can_no_longer_pass_a_failed_corpus"
+      ],
+      "id": "M-D2-pairfail",
+      "mutated_sha256": {
+        "i30_analyzer.py": "4f77212375b0c2352d1e9f036761bcc2c76fad34bb6d0b79eb8e8920e21e27f1"
+      },
+      "patches": 1,
+      "target": "i30_analyzer.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-2",
+      "expected_catcher": "TestR3D2AggregateVerdictPrecedence.test_an_empty_corpus_is_gate_unready",
+      "failing_count": 1,
+      "failing_tests": [
+        "TestR3D2AggregateVerdictPrecedence.test_an_empty_corpus_is_gate_unready"
+      ],
+      "id": "M-D2-empty",
+      "mutated_sha256": {
+        "i30_analyzer.py": "f577edffcd58f939e958d7baab948e6a60518ab3931a4a5491d9394620e4cc2b"
+      },
+      "patches": 2,
+      "target": "i30_analyzer.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-3",
+      "expected_catcher": "TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_pin_the_exact_bound_sha",
+      "failing_count": 1,
+      "failing_tests": [
+        "TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_pin_the_exact_bound_sha"
+      ],
+      "id": "M-D3-boundsha",
+      "mutated_sha256": {
+        "i30_analyzer.py": "2fa9f06e625a1920e64df320926098198b755bc9bbd2887041a1f7fe7ee159dc"
+      },
+      "patches": 1,
+      "target": "i30_analyzer.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-3",
+      "expected_catcher": "TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_predate_the_observation",
+      "failing_count": 1,
+      "failing_tests": [
+        "TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_predate_the_observation"
+      ],
+      "id": "M-D3-frozenfirst",
+      "mutated_sha256": {
+        "i30_analyzer.py": "e5d5b063265bc6b9cefc4d737e9799975ce90a6f2cc1c350b3de557ae3d679b8"
+      },
+      "patches": 1,
+      "target": "i30_analyzer.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-3",
+      "expected_catcher": "TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_self_declared_string_is_rejected_outright",
+      "failing_count": 1,
+      "failing_tests": [
+        "TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_self_declared_string_is_rejected_outright"
+      ],
+      "id": "M-D3-selfdecl",
+      "mutated_sha256": {
+        "i30_analyzer.py": "6255febeac57925f94e1e6b97d024715104ad846d202f5794d8e317b2ac1706d"
+      },
+      "patches": 1,
+      "target": "i30_analyzer.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-3",
+      "expected_catcher": "TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_blob_must_be_the_bytes_at_the_pinned_path",
+      "failing_count": 1,
+      "failing_tests": [
+        "TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_blob_must_be_the_bytes_at_the_pinned_path"
+      ],
+      "id": "M-D3-blob",
+      "mutated_sha256": {
+        "i30_analyzer.py": "67bf78c4274c1948cadab206ea7188a50f93716624883817bb1f17873868f719"
+      },
+      "patches": 1,
+      "target": "i30_analyzer.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-4",
+      "expected_catcher": "TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_the_ambiguous_split_reports_null_totals_and_the_interval",
+      "failing_count": 5,
+      "failing_tests": [
+        "TestD5FailsClosedOnNonIdentifiableAttribution.test_multi_source_deposit_with_concurrent_withdrawal_is_unknown",
+        "TestD5FailsClosedOnNonIdentifiableAttribution.test_same_turn_deposit_and_withdrawal_is_unknown",
+        "TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_pair_gross_deltas_are_null_when_either_side_is_ambiguous",
+        "TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_the_aggregate_refuses_to_mean_a_non_identifiable_point",
+        "TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_the_ambiguous_split_reports_null_totals_and_the_interval"
+      ],
+      "id": "M-D4-nullgross",
+      "mutated_sha256": {
+        "i30_ledger.py": "fd20ce5941008737c0b3a70acbe411256422869a6bc7f17e579469fa4daf4a9c"
+      },
+      "patches": 1,
+      "target": "i30_ledger.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-4",
+      "expected_catcher": "TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_a_second_ambiguous_fixture_reports_its_own_interval",
+      "failing_count": 6,
+      "failing_tests": [
+        "TestD5FailsClosedOnNonIdentifiableAttribution.test_multi_source_deposit_with_concurrent_withdrawal_is_unknown",
+        "TestD5FailsClosedOnNonIdentifiableAttribution.test_same_turn_deposit_and_withdrawal_is_unknown",
+        "TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_a_second_ambiguous_fixture_reports_its_own_interval",
+        "TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_pair_gross_deltas_are_null_when_either_side_is_ambiguous",
+        "TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_the_aggregate_refuses_to_mean_a_non_identifiable_point",
+        "TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_the_ambiguous_split_reports_null_totals_and_the_interval"
+      ],
+      "id": "M-D4-flag",
+      "mutated_sha256": {
+        "i30_ledger.py": "e0b9e5a07ac610ab561078d1377c5e5c14c76702ae83bfecd1ff1ed036497318"
+      },
+      "patches": 1,
+      "target": "i30_ledger.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-5",
+      "expected_catcher": "TestR3D5BaselineStockIsNotProduction.test_initial_bank_and_carry_atoms_are_baseline_not_natural",
+      "failing_count": 4,
+      "failing_tests": [
+        "TestD5FailsClosedOnNonIdentifiableAttribution.test_same_turn_deposit_and_withdrawal_is_unknown",
+        "TestD5MutationRevertedTieBreakIsCaught.test_reverted_tie_break_reopens_same_turn_misattribution",
+        "TestR3D5BaselineStockIsNotProduction.test_initial_bank_and_carry_atoms_are_baseline_not_natural",
+        "TestR3D5BaselineStockIsNotProduction.test_withdrawing_and_redepositing_baseline_stock_is_zero_production"
+      ],
+      "id": "M-D5-bankclass",
+      "mutated_sha256": {
+        "i30_ledger.py": "fe655de3375bbe5bc1edccb11f66b926a75d14ce27a377be7b7cbaa2b23aeeba"
+      },
+      "patches": 1,
+      "target": "i30_ledger.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-5",
+      "expected_catcher": "TestR3D5BaselineStockIsNotProduction.test_withdrawing_and_redepositing_baseline_stock_is_zero_production",
+      "failing_count": 12,
+      "failing_tests": [
+        "TestBite05IndirectProductionOnly.test_windfall_positive_while_d6_stays_zero",
+        "TestBite14AbsentBound.test_active_candidate_without_a_bound_is_gate_unready",
+        "TestBite14AbsentBound.test_bound_hash_pin_mismatch_is_gate_unready",
+        "TestBite14AbsentBound.test_bound_without_a_verified_owner_decision_never_yields_pass",
+        "TestD1SchemaSeparatesGrossWithdrawalAndNet.test_the_exact_identity_uses_net_bank_flow",
+        "TestD5MutationRevertedTieBreakIsCaught.test_reverted_tie_break_reopens_multi_source_attribution",
+        "TestD5MutationRevertedTieBreakIsCaught.test_reverted_tie_break_reopens_same_turn_misattribution",
+        "TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_analyze_pair_emits_no_value_verdict_at_all",
+        "TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_the_metric_is_the_exact_population_mean",
+        "TestR3D2AggregateVerdictPrecedence.test_a_satisfied_owner_bound_is_pass",
+        "TestR3D2AggregateVerdictPrecedence.test_an_exceeded_owner_bound_is_exactly_fail",
+        "TestR3D5BaselineStockIsNotProduction.test_withdrawing_and_redepositing_baseline_stock_is_zero_production"
+      ],
+      "id": "M-D5-schedcls",
+      "mutated_sha256": {
+        "i30_ledger.py": "6f8bb6a09e73532a89373fc910a174e4f8c74cbe2d72aa144526627635105c26"
+      },
+      "patches": 1,
+      "target": "i30_ledger.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-6",
+      "expected_catcher": "TestR3D6ContentIdentityIsDerivedNotTrusted.test_derived_hashes_are_never_overridden_by_the_caller",
+      "failing_count": 2,
+      "failing_tests": [
+        "TestR3D6ContentIdentityIsDerivedNotTrusted.test_derived_hashes_are_never_overridden_by_the_caller",
+        "TestR3D6ContentIdentityIsDerivedNotTrusted.test_the_pair_check_compares_derived_content_not_declarations"
+      ],
+      "id": "M-D6-setdefault",
+      "mutated_sha256": {
+        "i30_ledger.py": "7959fad7ed5311d830e7859bded64916f0c3e00a81e45b2b4b2c35c1f851ee6a"
+      },
+      "patches": 1,
+      "target": "i30_ledger.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-6",
+      "expected_catcher": "TestR3D6ContentIdentityIsDerivedNotTrusted.test_two_different_worlds_declaring_one_hash_are_gate_unready",
+      "failing_count": 2,
+      "failing_tests": [
+        "TestR3D6ContentIdentityIsDerivedNotTrusted.test_derived_hashes_are_never_overridden_by_the_caller",
+        "TestR3D6ContentIdentityIsDerivedNotTrusted.test_two_different_worlds_declaring_one_hash_are_gate_unready"
+      ],
+      "id": "M-D6-pincheck",
+      "mutated_sha256": {
+        "i30_ledger.py": "90a6bfae68397791deae6f324d53af04fb627e4084dcc6cb14054b8a24f35425"
+      },
+      "patches": 1,
+      "target": "i30_ledger.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-7",
+      "expected_catcher": "TestR3D7ActivationCoversEveryFrozenCause.test_each_frozen_cause_has_an_activating_fixture",
+      "failing_count": 1,
+      "failing_tests": [
+        "TestR3D7ActivationCoversEveryFrozenCause.test_each_frozen_cause_has_an_activating_fixture"
+      ],
+      "id": "M-D7-harvest",
+      "mutated_sha256": {
+        "i30_analyzer.py": "325e2cc676d36be6be9b922aa96f87dfca193145d062f8d61e74dddaf12d0f90"
+      },
+      "patches": 1,
+      "target": "i30_analyzer.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-7",
+      "expected_catcher": "TestR3D7ActivationCoversEveryFrozenCause.test_a_claimed_telemetry_mechanism_without_telemetry_is_unready",
+      "failing_count": 1,
+      "failing_tests": [
+        "TestR3D7ActivationCoversEveryFrozenCause.test_a_claimed_telemetry_mechanism_without_telemetry_is_unready"
+      ],
+      "id": "M-D7-telemetry",
+      "mutated_sha256": {
+        "i30_analyzer.py": "2524fda3fe5d69de9958441a90fe3e2a5cc8b51a38ade0ae4ec7e57b527267a5"
+      },
+      "patches": 1,
+      "target": "i30_analyzer.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-7",
+      "expected_catcher": "TestR3D7ActivationCoversEveryFrozenCause.test_each_frozen_cause_has_an_activating_fixture",
+      "failing_count": 1,
+      "failing_tests": [
+        "TestR3D7ActivationCoversEveryFrozenCause.test_each_frozen_cause_has_an_activating_fixture"
+      ],
+      "id": "M-D7-banking",
+      "mutated_sha256": {
+        "i30_analyzer.py": "12d75e73d824a66d2584cc52c5bf59f8b7ee0aebcd0919b97ec8d966df3a6baf"
+      },
+      "patches": 1,
+      "target": "i30_analyzer.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-8",
+      "expected_catcher": "TestR3D8CommandExecutionValidityGate.test_the_discarded_train_trace_is_rejected",
+      "failing_count": 1,
+      "failing_tests": [
+        "TestR3D8CommandExecutionValidityGate.test_the_discarded_train_trace_is_rejected"
+      ],
+      "id": "M-D8-counts",
+      "mutated_sha256": {
+        "i30_ledger.py": "e964b7af085be82d60eefb26947f7d5b89070328e058527be2f60b6131135f2d"
+      },
+      "patches": 1,
+      "target": "i30_ledger.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-8",
+      "expected_catcher": "TestR3D8CommandExecutionValidityGate.test_the_discarded_train_trace_is_rejected",
+      "failing_count": 1,
+      "failing_tests": [
+        "TestR3D8CommandExecutionValidityGate.test_the_discarded_train_trace_is_rejected"
+      ],
+      "id": "M-D8-manifest",
+      "mutated_sha256": {
+        "i30_ledger.py": "bc31144b57fca62ef34309bc9061a0c9f2728707d3603d497b6ddcd6b9158cd3"
+      },
+      "patches": 1,
+      "target": "i30_ledger.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-8",
+      "expected_catcher": "TestR3D8CommandExecutionValidityGate.test_a_record_without_an_execution_block_is_unready",
+      "failing_count": 4,
+      "failing_tests": [
+        "TestR3D8CommandExecutionValidityGate.test_a_record_without_an_execution_block_is_unready",
+        "TestR3D8CommandExecutionValidityGate.test_an_unsupported_command_event_is_rejected",
+        "TestR3D8CommandExecutionValidityGate.test_the_discarded_train_trace_is_rejected",
+        "TestR3D8CommandExecutionValidityGate.test_the_gate_runs_before_any_ledger_analysis"
+      ],
+      "id": "M-D8-gate",
+      "mutated_sha256": {
+        "i30_analyzer.py": "0a6a0d15fa95c8b1e94b6cc2063384df3ade95365ee2c28e4d30669d2e13e446"
+      },
+      "patches": 1,
+      "target": "i30_analyzer.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-9",
+      "expected_catcher": "TestR3D9ProvenanceClosureAndRawLedgers.test_the_manifest_closes_over_every_input_class",
+      "failing_count": 1,
+      "failing_tests": [
+        "TestR3D9ProvenanceClosureAndRawLedgers.test_the_manifest_closes_over_every_input_class"
+      ],
+      "id": "M-D9-ruling",
+      "mutated_sha256": {
+        "i30_analyzer.py": "2c7f59931b4f182e5f1222578ed253bc9e8cae346f87fe05bcd9ca99ebaa3e8b"
+      },
+      "patches": 1,
+      "target": "i30_analyzer.py",
+      "verdict": "CAUGHT"
+    },
+    {
+      "caught_by_expected": true,
+      "defect": "I30R2-9",
+      "expected_catcher": "TestR3D9ProvenanceClosureAndRawLedgers.test_each_pair_binds_its_raw_ledger_hash",
+      "failing_count": 1,
+      "failing_tests": [
+        "TestR3D9ProvenanceClosureAndRawLedgers.test_each_pair_binds_its_raw_ledger_hash"
+      ],
+      "id": "M-D9-ledgersha",
+      "mutated_sha256": {
+        "i30_analyzer.py": "5c68de67f06891fafb22f169a8c58f17a479582e36816f8a62843274df6dd6b6"
+      },
+      "patches": 1,
+      "target": "i30_analyzer.py",
+      "verdict": "CAUGHT"
+    }
+  ],
+  "runner_sha256": "59cfc93ac5c2afdee435613fb87b62ce006d037030205b5ff7c0b5051d17122f",
+  "survived": 0,
+  "target_pins": [
+    {
+      "actual_sha256": "6b8a23217d4d6dbdd059a9c3257ed511f71eda811a2dafc8c7f910e4a2a374ec",
+      "matches": true,
+      "pinned_sha256": "6b8a23217d4d6dbdd059a9c3257ed511f71eda811a2dafc8c7f910e4a2a374ec",
+      "target": "i30_analyzer.py"
+    },
+    {
+      "actual_sha256": "f658e7204a28e33b70255348eeadbb2f0582bfdd157318521b5bd153d7ec44e6",
+      "matches": true,
+      "pinned_sha256": "f658e7204a28e33b70255348eeadbb2f0582bfdd157318521b5bd153d7ec44e6",
+      "target": "i30_ledger.py"
+    }
+  ]
+}
