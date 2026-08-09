@@ -44,6 +44,7 @@ A mechanical checker **was** implementable, but only for part of the method. It 
 |---|---|---|
 | artefact pinning, subject/companion divergence | **yes, sound** | SHA-256 |
 | score-site census | **yes, but only as a drift detector** | it is a token scan; it can miss a scoring site that never writes the token `score` on its line. Sound only against a frozen ledger (S2.2) |
+| pipeline-node anchors (filter / compatibility / replacement / resolver / admission / arbitration) | **yes, as a drift detector over whole function bodies** | brace-balanced body extraction, fingerprinted structurally so a pure code move is not drift. Covers the nodes the token census cannot see; per-node, not per-program (S2.2b) |
 | call-site enumeration + literal binding | **yes, sound under a checked side-condition** | the tool refuses to conclude when the identifier appears anywhere except as a definition or immediately before `(` (S3) |
 | interval arithmetic over declared bounds; clamp-deadness | **yes, sound** | ordinary interval arithmetic. It reports a *bound*, never an "exact range": the repeated-variable status, the bound scope, the assumption status, the reachability status and the endpoint-witness status are four separate fields (S2.4) |
 | **deriving the input bounds from Rust source** | **no** | needs a Rust parser + dataflow. Manual, cited, ledgered (S2.1) |
@@ -190,6 +191,51 @@ The census counts token occurrences. It is a *drift detector*: an empty diff mea
 pattern can see has moved; a non-empty diff names the lines whose manual inventory must be redone.
 Reporting the census count as the inventory count would be exactly the class of error this packet
 exists to prevent.
+
+One further honesty point about the fingerprint (`chatgpt_1`, non-blocking note 1): the *search*
+runs over comment- and string-blanked text, but the *fingerprint* is taken over the raw line. An
+edit inside a `format!` string on a scoring line therefore reports drift. That is conservative in
+the safe direction — a changed emitted command **is** a semantic change — but the first draft's
+code comment described the fingerprinted text as blanked, which was wrong and is corrected.
+
+### S2.2b Pipeline-node anchors — the coverage the census does not have
+
+MEASURED, and this is `chatgpt_1`'s B7. The census sees only lines carrying the token `score`.
+**Five of the ten findings do not live on such a line at all**: X5 (pair-sum arbitration), X6
+(BANK admission filter), X8 (endgame overwrite), X9 (`compatible` on `Target::None`) and X10
+(idle-harvest admission). The subject could be rewritten in any of those places and the census
+would stay green.
+
+Executable statement of the problem, in the test suite:
+`test_the_score_token_census_alone_would_have_stayed_green` edits `compatible` so that it returns
+`false` instead of `true` on `Target::None` — the exact mechanism of X9 — and asserts that
+`census_diff` is **empty** while the anchor check **fails**.
+
+The ledger therefore carries a second frozen inventory, `pipeline_anchors`: **28 nodes** across
+seven kinds (`filter`, `compatibility`, `replacement`, `resolver`, `admission`, `arbitration`,
+`scoring`). Each entry pins a whole function body, located structurally by name **and definition
+line** — `bank_candidates` is defined twice (`R:371` and `R:947`) and the two are different nodes,
+so a name alone is ambiguous and the tool refuses to guess. The body is extracted by
+brace-balancing the blanked text and fingerprinted over the whitespace-stripped raw body, so a
+pure code move is not drift and an edit inside the body is.
+
+Each anchor lists the findings it carries. **Drift in a node invalidates exactly those findings**:
+
+```
+== pipeline-node anchors (structured drift detector) ==
+  28 nodes frozen, kinds ['admission', 'arbitration', 'compatibility', 'filter',
+                          'replacement', 'resolver', 'scoring'] -> NO DRIFT
+```
+
+and, on a node that moved, the run fails with e.g.
+`DRIFTED PN-07 compatible (compatibility) invalidates ['X5', 'X9']`.
+
+**The limit, stated.** This is coverage *of the nodes listed*, not of the program. A load-bearing
+node that nobody added to the ledger is not covered, and adding one is a manual step (S6, step 5).
+The claim this packet makes is therefore bounded: *every one of the ten ratified findings and all
+three dead regions is carried by at least one frozen node anchor* — pinned by
+`test_every_ratified_finding_is_covered_by_a_pipeline_anchor` — **not** that every decision node in
+the subject is frozen.
 
 ### S2.3 Worked example A — the chop bound, and the `.max(1)` error
 
@@ -603,9 +649,11 @@ python3 claude_1/banana-restoration-r2/score_hierarchy_check.py \
 echo $?     # 0 = no drift
 ```
 
-Its four sections are S1 (identity), S2.2 (census drift), S3 (bindings), S2 (ranges). Read the
-census diff first: `added`/`removed` name the lines whose manual inventory must be redone;
-`moved` means the same expression changed line number and only citations need updating.
+Its sections are ledger validation, S1 (identity), S2.2 (census drift), S2.2b (pipeline-node
+anchors), S3 (bindings), S2 (ranges). Read the census diff first: `added`/`removed` name the lines
+whose manual inventory must be redone; `moved` means the same expression changed line number and
+only citations need updating. Then read `INVALIDATED FINDINGS` from the anchor section: those
+records may not be restated until they are re-derived.
 
 **3. Run the checker's own tests.**
 
@@ -619,9 +667,12 @@ Do this **before** trusting step 2 on a moved file.
 **4. Redo the manual inventory for every drifted line** (S2.2). For each: `R:` citation,
 normalised text, intention label. Update `census` and the labels in the ledger.
 
-**5. Redo S3 for every parameterised scoring generator.** Add a `bindings` entry per generator; a
-generator that has gained a second call site changes from `SINGLE_CALL_SITE_LITERAL_BINDING` to
-`MULTI_CALL_SITE` and its dependent range models must be split, one per binding.
+**5. Redo S3 for every parameterised scoring generator, and re-anchor every pipeline node.** Add a
+`bindings` entry per generator; a generator that has gained a second call site changes from
+`ONE_TEXTUAL_CALL_SITE_LITERAL_BINDING` to `MULTIPLE_TEXTUAL_CALL_SITES` and its dependent range
+models must be split, one per binding. For `pipeline_anchors`: re-derive every finding the drifted
+nodes carried, and **add an anchor for any decision node a new or amended finding cites** — anchor
+coverage is a manual list (S2.2b) and this is the step that maintains it.
 
 **6. Redo S2 for every drifted site.** Re-establish each leaf bound with citation and method. Do
 not carry a bound forward across a code move without re-reading its producer — the producer is
@@ -685,10 +736,17 @@ Generalise the limit: **arithmetic bounds checking is blind to any discontinuity
 discriminating input is not an argument of the arithmetic.** Time (`X1`), own position (`X2`,
 `X3`), and candidate-set membership (`X6`, `X8`, `X10`) are all such inputs. That is six of the ten.
 
-### S7.4 The census can miss a scoring site
+### S7.4 The census can miss a scoring site, and the anchors can miss a node
 
-It is a token scan (S2.2). A score written through a helper, a builder, or a macro would not
-appear. Its guarantee is one-directional: no drift means nothing *it can see* moved.
+The census is a token scan (S2.2). A score written through a helper, a builder, or a macro would
+not appear. Its guarantee is one-directional: no drift means nothing *it can see* moved.
+
+The pipeline anchors (S2.2b) close the specific gap `chatgpt_1` B7 named — filter, compatibility,
+replacement and resolver nodes — but they have the same shape of limit one level up: they cover
+**28 named nodes**, chosen by hand because a finding cites them. A new decision node, or an
+existing one nobody listed, is invisible to them. Anchor coverage is a claim about a list, and the
+list is manual. What the anchors do guarantee is that none of X1–X10 or the three dead regions can
+change silently, because each is tied to at least one frozen body.
 
 ### S7.5 The bindings check has unproved side conditions
 
@@ -760,10 +818,12 @@ mismatched range claim — because a checker that only ever passes is not eviden
 
 **Coverage of `chatgpt_1`'s ten method-packet requirements:** 1 → S1; 2 → S2.2 (with its stated
 limit); 3 → S3; 4 → S2; 5 → S4; 6 → S5 (the standard; the witness packets themselves are item B and
-do not exist yet — stated, not claimed); 7 → S4.4 + S5; 8 → S2.2 census drift, **partial**: it
-covers scoring sites, not filter/compatibility/replacement/resolver sites, which have no frozen
-fingerprints yet and would need the same treatment; 9 → S6 step 2; 10 → the checker's default
-text report.
+do not exist yet — stated, not claimed); 7 → S4.4 + S5; 8 → S2.2 census drift **plus S2.2b
+pipeline-node anchors**: 28 frozen function bodies across `filter`, `compatibility`,
+`replacement`, `resolver`, `admission`, `arbitration` and `scoring` kinds, with drift invalidating
+the findings each node carries. This was `partial` in the first draft and is the substance of
+`chatgpt_1` B7; it is now closed **for the listed nodes**, which is a bounded claim (S7.4);
+9 → S6 step 2; 10 → the checker's default text report.
 
 ---
 

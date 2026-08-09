@@ -161,6 +161,362 @@
       "fingerprint": "e85035c65412f241"
     }
   ],
+  "pipeline_anchors_comment": [
+    "Correction 7 / chatgpt_1 review B7. The `census` above only sees lines carrying the",
+    "token `score`. Five of the ten findings (X5, X6, X8, X9, X10) do not live on such a",
+    "line, so the census could stay green while they changed. Each anchor below freezes a",
+    "whole function body, located structurally by name + definition line and fingerprinted",
+    "over the whitespace-stripped RAW body text. Drift in a node INVALIDATES every finding",
+    "listed in its `findings` field: that record must be re-derived before it is restated.",
+    "Coverage is per-node, not per-program: a load-bearing node not listed here is not",
+    "covered, and adding one is a manual step (method packet S6 step 5)."
+  ],
+  "pipeline_anchors": [
+    {
+      "id": "PN-01",
+      "fn": "fruit_candidates",
+      "def_line": 463,
+      "end_line": 484,
+      "kind": "scoring",
+      "role": "EQUIP-FRUIT scoring generator; source of the RM-2 site R:479",
+      "findings": [
+        "X4"
+      ],
+      "fingerprint": "59c6cda203208553"
+    },
+    {
+      "id": "PN-02",
+      "fn": "iron_candidates",
+      "def_line": 485,
+      "end_line": 508,
+      "kind": "scoring",
+      "role": "EQUIP-IRON scoring generator; source of the RM-3 site R:501 (raw cells)",
+      "findings": [
+        "X4"
+      ],
+      "fingerprint": "28158387ace12420"
+    },
+    {
+      "id": "PN-03",
+      "fn": "ticks_until_fruit",
+      "def_line": 409,
+      "end_line": 431,
+      "kind": "scoring",
+      "role": "producer of the ticks_until_fruit leaf bound used by RM-2",
+      "findings": [
+        "X4"
+      ],
+      "fingerprint": "a08a48de2d6a571b"
+    },
+    {
+      "id": "PN-04",
+      "fn": "chop_outcome",
+      "def_line": 556,
+      "end_line": 581,
+      "kind": "scoring",
+      "role": "producer of the chop_turns invariant that RM-1 propagates",
+      "findings": [],
+      "fingerprint": "01faae7c21e68f87"
+    },
+    {
+      "id": "PN-05",
+      "fn": "chop_candidates",
+      "def_line": 582,
+      "end_line": 637,
+      "kind": "scoring",
+      "role": "HARVEST-WOOD scoring site R:611/R:615-623; holds the dead .max(1)",
+      "findings": [
+        "ZX-1"
+      ],
+      "fingerprint": "c36ee7fd3b38e5a8"
+    },
+    {
+      "id": "PN-06",
+      "fn": "wait",
+      "def_line": 638,
+      "end_line": 642,
+      "kind": "arbitration",
+      "role": "the Target::None fallback candidate that makes `compatible` return true",
+      "findings": [
+        "X5",
+        "X9"
+      ],
+      "fingerprint": "9df056700ccd0fe4"
+    },
+    {
+      "id": "PN-07",
+      "fn": "compatible",
+      "def_line": 643,
+      "end_line": 654,
+      "kind": "compatibility",
+      "role": "the only cross-unit target constraint; returns true on Target::None",
+      "findings": [
+        "X5",
+        "X9"
+      ],
+      "fingerprint": "0f9d9dfc559e9d31"
+    },
+    {
+      "id": "PN-08",
+      "fn": "picked_item",
+      "def_line": 655,
+      "end_line": 658,
+      "kind": "filter",
+      "role": "command-text filter feeding stock_compatible and the fallback path",
+      "findings": [
+        "X5"
+      ],
+      "fingerprint": "a3f33807959ca3d7"
+    },
+    {
+      "id": "PN-09",
+      "fn": "stock_compatible",
+      "def_line": 659,
+      "end_line": 664,
+      "kind": "compatibility",
+      "role": "inventory-side pair constraint",
+      "findings": [
+        "X5"
+      ],
+      "fingerprint": "47f1bd68abd835c0"
+    },
+    {
+      "id": "PN-10",
+      "fn": "select",
+      "def_line": 665,
+      "end_line": 712,
+      "kind": "arbitration",
+      "role": "pair-sum arbitrator (R:683) and the >=3-unit greedy branch (R:694-711)",
+      "findings": [
+        "X5",
+        "X9",
+        "ZX-2"
+      ],
+      "fingerprint": "3ec1a429e758d21a"
+    },
+    {
+      "id": "PN-11",
+      "fn": "move_command",
+      "def_line": 713,
+      "end_line": 719,
+      "kind": "resolver",
+      "role": "command parser used by the move resolver and by planned_egress",
+      "findings": [
+        "X5"
+      ],
+      "fingerprint": "0198d6ce9318aa58"
+    },
+    {
+      "id": "PN-12",
+      "fn": "resolve_move_conflicts",
+      "def_line": 720,
+      "end_line": 722,
+      "kind": "resolver",
+      "role": "post-selection move rewriting entry point",
+      "findings": [
+        "X5"
+      ],
+      "fingerprint": "230b3b7a314f1b94"
+    },
+    {
+      "id": "PN-13",
+      "fn": "resolve_move_conflicts_with_priority",
+      "def_line": 723,
+      "end_line": 725,
+      "kind": "resolver",
+      "role": "post-selection move rewriting, priority form",
+      "findings": [
+        "X5"
+      ],
+      "fingerprint": "78170a542b426b5f"
+    },
+    {
+      "id": "PN-14",
+      "fn": "resolve_move_conflicts_with_priority_and_forbidden",
+      "def_line": 726,
+      "end_line": 778,
+      "kind": "resolver",
+      "role": "post-selection move rewriting body; can realise an outcome no score expressed",
+      "findings": [
+        "X5"
+      ],
+      "fingerprint": "d7969d5f85b9be1f"
+    },
+    {
+      "id": "PN-15",
+      "fn": "bank_candidates",
+      "def_line": 371,
+      "end_line": 399,
+      "kind": "admission",
+      "role": "MoisanBot BANK generator whose non-empty result the YamoBot filter can empty",
+      "findings": [
+        "X6"
+      ],
+      "fingerprint": "7c5d87670ecdde96"
+    },
+    {
+      "id": "PN-16",
+      "fn": "bank_candidates",
+      "def_line": 947,
+      "end_line": 955,
+      "kind": "filter",
+      "role": "YamoBot BANK filter (R:947-955): the admission suppression of X6",
+      "findings": [
+        "X6"
+      ],
+      "fingerprint": "4790e654b1682862"
+    },
+    {
+      "id": "PN-17",
+      "fn": "unique_shack_door",
+      "def_line": 956,
+      "end_line": 959,
+      "kind": "replacement",
+      "role": "door predicate gating the forced-replacement path",
+      "findings": [
+        "X2",
+        "X7"
+      ],
+      "fingerprint": "0642c980c26821b0"
+    },
+    {
+      "id": "PN-18",
+      "fn": "forced_move",
+      "def_line": 960,
+      "end_line": 964,
+      "kind": "replacement",
+      "role": "forced 20_000 MOVE candidate (R:962)",
+      "findings": [
+        "X7"
+      ],
+      "fingerprint": "383a4505a28ca639"
+    },
+    {
+      "id": "PN-19",
+      "fn": "planned_egress",
+      "def_line": 968,
+      "end_line": 977,
+      "kind": "replacement",
+      "role": "egress chooser used by the forced-replacement path",
+      "findings": [
+        "X7"
+      ],
+      "fingerprint": "7ca255f22f3bf3af"
+    },
+    {
+      "id": "PN-20",
+      "fn": "force_unique_door_clear",
+      "def_line": 978,
+      "end_line": 1093,
+      "kind": "replacement",
+      "role": "forced list replacement at 20_000 (R:987, R:1059); the DX half of X7",
+      "findings": [
+        "X7"
+      ],
+      "fingerprint": "cf3f3ec5ff30d71b"
+    },
+    {
+      "id": "PN-21",
+      "fn": "yamo_chop_candidates",
+      "def_line": 1128,
+      "end_line": 1166,
+      "kind": "scoring",
+      "role": "holds the opponent_eta_penalty subtraction R:1163",
+      "findings": [
+        "ZX-3"
+      ],
+      "fingerprint": "b4ca64277d31456f"
+    },
+    {
+      "id": "PN-22",
+      "fn": "main_candidates",
+      "def_line": 1167,
+      "end_line": 1200,
+      "kind": "admission",
+      "role": "non-endgame candidate assembly",
+      "findings": [
+        "X10"
+      ],
+      "fingerprint": "a2819fcf9df474e3"
+    },
+    {
+      "id": "PN-23",
+      "fn": "inventory_fruits",
+      "def_line": 1204,
+      "end_line": 1206,
+      "kind": "filter",
+      "role": "producer of the priority index used by the CONVERT sites",
+      "findings": [
+        "X1"
+      ],
+      "fingerprint": "e3a021568debe980"
+    },
+    {
+      "id": "PN-24",
+      "fn": "conversion_chop_turns",
+      "def_line": 1207,
+      "end_line": 1232,
+      "kind": "scoring",
+      "role": "producer of conversion_turns, incl. the 10_000 sentinel (Appendix B)",
+      "findings": [
+        "X1"
+      ],
+      "fingerprint": "8c0238b1227d113e"
+    },
+    {
+      "id": "PN-25",
+      "fn": "endgame_candidates",
+      "def_line": 1233,
+      "end_line": 1339,
+      "kind": "scoring",
+      "role": "holds R:1261-1265 (X3), R:1282-1286 (X8), R:1290-1303 (X2) and the turn>250 branch R:1291-1327 (X1)",
+      "findings": [
+        "X1",
+        "X2",
+        "X3",
+        "X8"
+      ],
+      "fingerprint": "726f636c1159a9fa"
+    },
+    {
+      "id": "PN-26",
+      "fn": "idle_harvest_candidates",
+      "def_line": 1340,
+      "end_line": 1370,
+      "kind": "admission",
+      "role": "the IDLE-HARVEST generator gated by R:1413",
+      "findings": [
+        "X10"
+      ],
+      "fingerprint": "2d06e82888a04aa6"
+    },
+    {
+      "id": "PN-27",
+      "fn": "endgame",
+      "def_line": 1371,
+      "end_line": 1373,
+      "kind": "admission",
+      "role": "the clock predicate selecting the endgame branch",
+      "findings": [
+        "X1",
+        "X10"
+      ],
+      "fingerprint": "db6f2c7a139addd3"
+    },
+    {
+      "id": "PN-28",
+      "fn": "commands",
+      "def_line": 1376,
+      "end_line": 1440,
+      "kind": "admission",
+      "role": "driver: idle-harvest admission R:1413, CLEAR-FOR-TRAIN soft 6_500 R:1422, door-clear and resolver calls",
+      "findings": [
+        "X7",
+        "X10"
+      ],
+      "fingerprint": "a8857c8cb88e99c5"
+    }
+  ],
   "bindings": [
     {
       "fn": "fruit_candidates",

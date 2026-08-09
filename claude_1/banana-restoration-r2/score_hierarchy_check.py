@@ -170,7 +170,13 @@ SCORE_SITE_RE = re.compile(r"(?<![A-Za-z0-9_])score\s*(:|\+=|-=|=(?!=))")
 class ScoreSite:
     line: int
     op: str
-    text: str  # whitespace-normalised, comment/string-blanked source line
+    # Whitespace-normalised RAW source line.  NOT the blanked text: the search
+    # runs over comment/string-blanked text, but the fingerprint is taken over
+    # the raw line, so an edit inside a format! string on a scoring line reports
+    # drift.  Conservative in the safe direction; documented because the first
+    # draft's comment claimed the fingerprinted text was blanked, and it is not
+    # (chatgpt_1 review, non-blocking note 1).
+    text: str
 
     def fingerprint(self) -> str:
         return sha256_bytes(f"{self.op}|{self.text}".encode())[:16]
@@ -238,6 +244,180 @@ def census_diff(
         if fp not in cur_by_fp:
             removed.extend(entries)
     return {"added": added, "removed": removed, "moved": moved}
+
+
+# ---------------------------------------------------------------------------
+# 2b. Pipeline-node anchors (structured drift detection beyond `score` tokens)
+#
+# The score-token census (S2.2) only sees lines carrying the token ``score``.
+# Five of the ten ratified findings do not live on such a line at all: they live
+# in the compatibility filter, the pair-sum arbitrator, the admission filters,
+# the forced-replacement writer and the move resolver.  Those nodes could be
+# rewritten while the census stayed green -- chatgpt_1 review B7.
+#
+# An anchor freezes a whole *function body*, located by name (and, where a name
+# is defined more than once, by its definition line).  Body extraction is
+# brace-balanced over the comment/string-blanked text, so it is structural
+# rather than line-based, and the fingerprint is line-number independent: a pure
+# code move is not drift, an edit inside the body is.
+#
+# The fingerprint is taken over the RAW body text with whitespace removed, not
+# over the blanked text.  That is deliberately conservative: a changed
+# ``format!("DROP {}")`` command string is a real semantic change to a
+# replacement node and must not be invisible.  The price is that a purely
+# cosmetic string edit also reports drift.  Conservative direction; stated.
+# ---------------------------------------------------------------------------
+
+
+class AnchorError(ValueError):
+    pass
+
+
+def _line_index(text: str) -> list[int]:
+    starts = [0]
+    for m in re.finditer(r"\n", text):
+        starts.append(m.end())
+    return starts
+
+
+def _line_of(starts: list[int], off: int) -> int:
+    lo, hi = 0, len(starts) - 1
+    while lo < hi:
+        mid = (lo + hi + 1) // 2
+        if starts[mid] <= off:
+            lo = mid
+        else:
+            hi = mid - 1
+    return lo + 1
+
+
+def fn_body_spans(src: str, name: str) -> list[dict[str, Any]]:
+    """Every *definition with a body* of the inherent function ``name``.
+
+    A trait declaration (``fn f(..);``) has no body and is skipped: it is not a
+    node whose behaviour can drift.
+    """
+    clean = blank_comments_and_strings(src)
+    starts = _line_index(clean)
+    out: list[dict[str, Any]] = []
+
+    for m in re.finditer(rf"\bfn\s+{re.escape(name)}(?![A-Za-z0-9_])", clean):
+        i, n = m.end(), len(clean)
+        paren = bracket = 0
+        body_open = -1
+        while i < n:
+            c = clean[i]
+            if c == "(":
+                paren += 1
+            elif c == ")":
+                paren -= 1
+            elif c == "[":
+                bracket += 1
+            elif c == "]":
+                bracket -= 1
+            elif paren == 0 and bracket == 0:
+                if c == "{":
+                    body_open = i
+                    break
+                if c == ";":
+                    break  # declaration without a body
+            i += 1
+        if body_open < 0:
+            continue
+
+        depth, j = 0, body_open
+        while j < n:
+            if clean[j] == "{":
+                depth += 1
+            elif clean[j] == "}":
+                depth -= 1
+                if depth == 0:
+                    break
+            j += 1
+        if depth != 0:
+            raise AnchorError(f"unbalanced body braces for fn {name!r}")
+
+        raw = src[body_open : j + 1]
+        out.append(
+            {
+                "fn": name,
+                "def_line": _line_of(starts, m.start()),
+                "end_line": _line_of(starts, j),
+                "text": raw,
+                "fingerprint": sha256_bytes(re.sub(r"\s+", "", raw).encode())[:16],
+            }
+        )
+    return out
+
+
+def fn_body_span(src: str, name: str, def_line: int | None = None) -> dict[str, Any]:
+    """The single body of ``name``, or the one starting at ``def_line``.
+
+    Fails closed: an unknown name, or an ambiguous name with no ``def_line``, is
+    an error rather than a guess.  ``bank_candidates`` is defined twice in the
+    subject (``R:371`` and ``R:947``) and the two are different nodes.
+    """
+    spans = fn_body_spans(src, name)
+    if not spans:
+        raise AnchorError(f"no definition with a body found for fn {name!r}")
+    if def_line is None:
+        if len(spans) > 1:
+            raise AnchorError(
+                f"fn {name!r} is defined {len(spans)} times "
+                f"(lines {[s['def_line'] for s in spans]}); an anchor must name def_line"
+            )
+        return spans[0]
+    for s in spans:
+        if s["def_line"] == def_line:
+            return s
+    raise AnchorError(
+        f"fn {name!r} has no definition at line {def_line} "
+        f"(found {[s['def_line'] for s in spans]})"
+    )
+
+
+def pipeline_anchor_report(
+    src: str, anchors: list[dict[str, Any]]
+) -> dict[str, Any]:
+    """Check each frozen pipeline-node anchor against the current source.
+
+    A node whose fingerprint moved, or which has vanished, INVALIDATES every
+    finding listed in its ``findings`` field: those records must be re-derived
+    before they may be restated.  This is the mechanism chatgpt_1 B7 requires.
+    """
+    entries: list[dict[str, Any]] = []
+    invalidated: list[str] = []
+    for spec in anchors:
+        entry: dict[str, Any] = {
+            "id": spec.get("id"),
+            "fn": spec.get("fn"),
+            "kind": spec.get("kind"),
+            "findings": list(spec.get("findings", [])),
+            "expected_fingerprint": spec.get("fingerprint"),
+        }
+        try:
+            span = fn_body_span(src, spec["fn"], spec.get("def_line"))
+        except AnchorError as exc:
+            entry.update(status="MISSING", detail=str(exc), actual_fingerprint=None)
+            entries.append(entry)
+            invalidated.extend(entry["findings"])
+            continue
+        entry["actual_fingerprint"] = span["fingerprint"]
+        entry["def_line"] = span["def_line"]
+        entry["end_line"] = span["end_line"]
+        if span["fingerprint"] == spec.get("fingerprint"):
+            entry["status"] = "UNCHANGED"
+        else:
+            entry["status"] = "DRIFTED"
+            invalidated.extend(entry["findings"])
+        entries.append(entry)
+
+    return {
+        "entries": entries,
+        "ok": all(e["status"] == "UNCHANGED" for e in entries),
+        "invalidated_findings": sorted(set(invalidated)),
+        "coverage": sorted({e["kind"] for e in entries if e["kind"]}),
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -825,6 +1005,14 @@ def run(ledger: dict[str, Any], subject_src: str, subject_sha: str,
     if not census_ok:
         report["ok"] = False
 
+    # --- pipeline-node anchor drift (beyond `score` tokens) ---
+    anchors = ledger.get("pipeline_anchors", [])
+    anchor_rep = pipeline_anchor_report(subject_src, anchors)
+    anchor_rep["frozen_count"] = len(anchors)
+    report["checks"]["pipeline_anchors"] = anchor_rep
+    if not anchor_rep["ok"]:
+        report["ok"] = False
+
     # --- call-site bindings ---
     bindings = []
     for spec in ledger.get("bindings", []):
@@ -918,6 +1106,22 @@ def format_report(report: dict[str, Any]) -> str:
     for kind in ("added", "removed", "moved"):
         for item in c["diff"][kind]:
             lines.append(f"    {kind.upper():8} {item}")
+
+    pa = report["checks"].get("pipeline_anchors")
+    if pa is not None:
+        lines.append("== pipeline-node anchors (structured drift detector) ==")
+        lines.append(
+            f"  {pa['frozen_count']} nodes frozen, kinds {pa['coverage']} -> "
+            f"{'NO DRIFT' if pa['ok'] else 'DRIFT'}"
+        )
+        for e in pa["entries"]:
+            if e["status"] != "UNCHANGED":
+                lines.append(
+                    f"    {e['status']:9} {e['id']} {e['fn']} ({e['kind']}) "
+                    f"invalidates {e['findings']}"
+                )
+        if pa["invalidated_findings"]:
+            lines.append(f"    INVALIDATED FINDINGS: {pa['invalidated_findings']}")
 
     lines.append("== call-site bindings ==")
     for b in report["checks"]["bindings"]:
