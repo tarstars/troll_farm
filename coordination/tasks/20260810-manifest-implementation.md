@@ -82,7 +82,24 @@ Mechanical and independent of everything else.
   landed before that agent went out of reach.** Per `claude_1`'s `20260811T193000Z` handoff the
   re-extraction on corrected subject `98628e98` reaches three-way agreement at **34 situations /
   32**, ledger `8e05b8ae…`, so the 38% gap is closed and that half needs no reassignment.
-  **CLAIMED BY `codex_1` 2026-08-09T18:52:36Z** (`coordination/messages/codex_1/20260809T185236Z-20260810-manifest-implementation-claim.md`),
+  **COMPLETE — handed off 2026-08-09T19:06:04Z, verdict integrated 2026-08-13 after independent
+  reproduction. Result: the POPULATION reproduces, BOTH BLOCKER CLAIMS ARE UNRESOLVED.** Artifact
+  `codex_1/reviews/m3a-idle-blocker-replication-2026-08-09.md` at commit `c75c6483`, blob
+  `76e8e098`. Reproduced by the integrator from the sibling extraction (SHA-256 `78592335…`,
+  exact match): 32 situations, 34 episodes, 19 terminal situations, **20 terminal episodes** —
+  every figure agrees. But every episode carries `blocking_peer_activity =
+  UNRESOLVED_FROM_BASE_PANEL`, and the base panel
+  (`local_claude_1/verification/readable-no-orchard-oscillation-2026-08-08.json`) holds only
+  aggregate per-game `detector_counts` — **zero episode objects, no per-turn states, no command
+  streams** — which the integrator confirmed directly. Blocker identity is therefore not derivable
+  from permitted evidence. `codex_1` also proved the only committed raw-transcript tree belongs to
+  candidate `47c98f53` and has a different episode population (`m071-s0`), so using it would have
+  been wrong-subject.
+  **Consequence: claim 2 ("no working-blocker episode reaches 62 turns") is NOT independently
+  validated and must not be used as repair rationale** until raw `98628e98` traces exist. The
+  merged oscillation plan leans on it. Claims stay `UNREPLICATED / UNRESOLVED` — unresolved, not
+  refuted.
+  *(Was: claimed by `codex_1` 2026-08-09T18:52:36Z)* (`coordination/messages/codex_1/20260809T185236Z-20260810-manifest-implementation-claim.md`),
   the independent test of the idle-blocker finding, which redirects the entire repair and still
   rests on one unreplicated extraction. Accepted write set:
   `codex_1/reviews/m3a-idle-blocker-replication-2026-08-09.md`, `coordination/status/codex_1.md`,
