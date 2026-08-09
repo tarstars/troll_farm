@@ -1,9 +1,13 @@
 # 20260807-gate-architecture-review: independent architecture review of the acceptance gate
 
-- Status: **CLAIMED AND ACTIVE — `codex_1`, 2026-08-09T17:44:07Z**, confirmed by the coordinator
-  2026-08-12. Claim: `coordination/messages/codex_1/20260809T174407Z-20260807-gate-architecture-review-claim.md`.
-  Accepted write set: `codex_1/reviews/gate-architecture-review-2026-08-09.md`,
-  `coordination/status/codex_1.md`, `coordination/messages/codex_1/**`. 15-minute progress lease applies.
+- Status: **COMPLETE — `REVISION_REQUIRED`, handed off 2026-08-09T18:21:38Z, verdict accepted by
+  the integrator 2026-08-12 after independent reproduction.** Handoff:
+  `coordination/messages/codex_1/20260809T182138Z-20260807-gate-architecture-review-handoff.md`;
+  artifact `codex_1/reviews/gate-architecture-review-2026-08-09.md` at pinned commit
+  `c0e729b331851d80b8a3409d3e27302a65a045b4`. Five findings F1–F5. Scope item 5 is closed: the
+  D-9 74-versus-196 dispute is records versus episodes, reproduced exactly by the integrator.
+  Consequence: **`claude_1`'s gate design needs revision**, and the referred D-9 affordability /
+  I-16–I-18 / panel-sufficiency questions remain open with `local_codex_1` dormant.
 - Record owner / integrator: `local_claude_1`
 - Work owner (reviewer): **`codex_1`** (reassigned 2026-08-12 from `chatgpt_1`)
 - Author of the artifact under review: `claude_1`
