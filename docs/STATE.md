@@ -188,6 +188,19 @@ makes the goalpost move in the wrong direction.
   allowlist (TQ-5); and the lint reproduces immutable-path collisions (TQ-6). 128 tests pass.
   Live delivery errors 9 → 2; a correction does **not** clear a delivery error (verified by
   execution), so quarantine remains the only repair.
+  **UPDATE 2026-08-12 — transport is now CLEAN and the mechanism has been peer-attacked.**
+  `claude_1` ran an independent execution review (15 attacks, 6 reproducing) and `chatgpt_1`
+  formally requested adjudication, releasing the hold. Three further blobs quarantined
+  (`47aae1a6…`, `69e9a66c…`, `ffe97634…`), each verified by the coordinator to have a valid
+  replacement, so no content was lost. Sweep now reports **delivery errors 0, quarantine
+  errors 0, quarantined 9, immutable-path collisions 0** — the first clean sweep in this
+  programme. TQ-2 proved itself by rejecting *my own* unauthorized adjudication (missing
+  `quarantines` array) and failing closed to `quarantined 0` rather than partially applying.
+  Two open tool facts: `scripts/lint_outbox.py` is **absent** from `agent/claude_1`, which
+  explains its recurring delivery errors; and the two tool SHA-256 values in `chatgpt_1`'s
+  `20260811T232000Z` blocker match **no blob in the entire history** of either file, including
+  the blob cited beside them — its blob ids were all correct, its execution-derived digests
+  are not. Answers requested from both.
 - **Operations:** cron 05:17; H12 weekly; no Arena mutation cycle in flight.
 ## 4b. Context-flush handover, 2026-08-12
 
@@ -197,10 +210,29 @@ digests, both live programmes, owner decisions outstanding, hazards, and my own 
 calibration. Every figure in it was re-verified against the repository at the time of writing.
 
 Two facts from it that belong here: **TRAIN r4 is ACCEPTED** (first panel run with zero
-`GATE_UNREADY`; floor 118/240) **but NOT INTEGRATED** — `main` still carries the pre-r4 panel,
-and integrating needs the full branch-integration runbook. And **`readable__no_orchard`
-(`98628e98…`, 24.76/rank 21) is the best bot we have measured and is not the one running**
-(live is `2caac7c6…` at 22.81/rank 32), on a single mature run.
+`GATE_UNREADY`; floor 118/240) and **`readable__no_orchard` (`98628e98…`, 24.76/rank 21) is the
+best bot we have measured and is not the one running** (live is `2caac7c6…` at 22.81/rank 32),
+on a single mature run.
+
+**★ SUPERSEDED 2026-08-12 — the gate IS now integrated.** The handover says r4 is "NOT
+INTEGRATED"; that was true when written and is no longer. `main` = `session-2026-07-01` =
+`agent/local_claude_1`, and `main:claude_1/pipeline/fuzz_panel.py` is `d8900abf31dd030d…` with
+33 TRAIN references. Nine branches merged, `abgate-selfplay-gate` deliberately unmerged;
+sacred `fff6669b…`, live `2caac7c6…`, readable `98628e98…` and banana parent `a8eb3b2b…` all
+verified intact; zero changes under `rust/`, `sim/`, `cgauto/`; one agent-authored CI file
+stripped. **Also correct the handover's size figure:** it claims the integration spanned
+"2,104 files, +193,920 / −729,616". The measured divergence was **251 files, +231,176 / −127**,
+touching only `claude_1/` and `coordination/`. The single conflict was `scripts/lint_outbox.py`,
+both sides byte-identical to the pinned `f3c47b70…`.
+
+**B1 is closed.** The r4 §8 packet was executed independently in a second checkout:
+163 + 24 tests OK, 16/16 mutations caught, floor BLOCK 118/240 and candidate BLOCK 121/240 with
+zero `GATE_UNREADY`, deterministic across two runs, and both packets **row-identical** to the
+committed `evidence-r4` packets. Record:
+`local_claude_1/verification/train-r4-independent-execution-review-2026-08-12.md`.
+`118/240` may now be cited as the floor — **with r4 §9's restriction attached**: TRAIN is
+witnessed in only 2 games and 10 of 17 repaired rules have no corpus witness, so the floor is
+not evidence for those; they are pinned by unit tests, the differential and the mutation drive.
 
 ## 5. Reading order & pointers
 
