@@ -137,6 +137,10 @@ def main(argv=None):
     ap.add_argument("--only", default=None,
                     help="comma-separated mutant ids")
     ap.add_argument("--allow-drift", action="store_true")
+    ap.add_argument(
+        "--partial", action="store_true",
+        help="acknowledge that this is deliberately not a whole-manifest run; "
+             "without it, a subset or any structurally failed mutant exits 2")
     args = ap.parse_args(argv)
 
     with open(args.manifest, encoding="utf-8") as fh:
@@ -253,8 +257,56 @@ def main(argv=None):
         if r["liveness"] == "LIVE" and not r["caught"]:
             d["live_survivors"] += 1
 
+    # ---- completeness --------------------------------------------------
+    # The runner used to `return 0 if control_green else 1`, so an experiment
+    # in which most mutants never patched, never compiled, or never produced a
+    # probe still reported success as long as the unmutated control was green
+    # (chatgpt_1 bite-test audit r2, blocker 4).  The totals already carried
+    # the evidence; nothing consulted it.  A partial experiment is a legitimate
+    # thing to run and an illegitimate thing to report as whole, so it is now
+    # explicit rather than silent.
+    patch_failed_n = sum(1 for r in results if r.get("status") == "PATCH_FAILED")
+    compile_failed_n = sum(1 for r in results if r.get("status") == "COMPILE_FAILED")
+    probe_error_n = sum(1 for r in results if r.get("liveness") == "PROBE_ERROR")
+    declared_total = len(manifest["mutants"])
+    attempted = len(results)
+    subset_run = wanted is not None
+    structural_failures = patch_failed_n + compile_failed_n + probe_error_n
+    complete = (not subset_run
+                and attempted == declared_total
+                and structural_failures == 0
+                and not drift)
+    reasons = []
+    if subset_run:
+        reasons.append("--only selected %d of %d manifest entries"
+                       % (attempted, declared_total))
+    if attempted != declared_total and not subset_run:
+        reasons.append("attempted %d of %d manifest entries"
+                       % (attempted, declared_total))
+    if patch_failed_n:
+        reasons.append("%d mutant(s) failed to patch" % patch_failed_n)
+    if compile_failed_n:
+        reasons.append("%d mutant(s) failed to compile" % compile_failed_n)
+    if probe_error_n:
+        reasons.append("%d mutant(s) produced no probe digest, so their "
+                       "liveness is unknown" % probe_error_n)
+    if drift:
+        reasons.append("pinned-source drift was overridden with --allow-drift")
+
     doc = {
-        "schema": "detector-mutation-results/1",
+        "schema": "detector-mutation-results/2",
+        "completeness": {
+            "complete": complete,
+            "acknowledged_partial": bool(args.partial),
+            "manifest_entries": declared_total,
+            "attempted": attempted,
+            "subset_run": subset_run,
+            "patch_failed": patch_failed_n,
+            "compile_failed": compile_failed_n,
+            "probe_error": probe_error_n,
+            "drift_overridden": bool(drift),
+            "reasons": reasons,
+        },
         "manifest_sha256": sha256_file(args.manifest),
         "runner_sha256": sha256_file(os.path.abspath(__file__)),
         "probe_corpus_sha256": sha256_file(PROBE),
@@ -307,7 +359,28 @@ def main(argv=None):
         "survived=%d  live=%d  unwitnessed=%d\nwrote %s\n" % (
             control_green, len(ok), caught_n, expected_n, len(ok) - caught_n,
             live_n, doc["totals"]["unwitnessed"], args.out))
-    return 0 if control_green else 1
+
+    # Exit status, in severity order.  A green control over a broken experiment
+    # is the failure mode being closed here: it is not a success, and it must
+    # not be reportable as one by anything gating on exit status.
+    if not control_green:
+        sys.stderr.write(
+            "INCONCLUSIVE: the unmutated control is not green, so no mutant "
+            "result means anything.\n")
+        return 1
+    if not complete:
+        if args.partial:
+            sys.stderr.write(
+                "PARTIAL (acknowledged with --partial): %s\n"
+                "These totals describe a subset and must not be published as a "
+                "whole-manifest result.\n" % "; ".join(reasons))
+            return 0
+        sys.stderr.write(
+            "INCOMPLETE: %s\n"
+            "Exiting 2. Re-run whole, or pass --partial to state on the record "
+            "that this is a subset.\n" % "; ".join(reasons))
+        return 2
+    return 0
 
 
 if __name__ == "__main__":
