@@ -599,3 +599,48 @@ The config is on the list because the corpus/instrument bump `c3 -> c4` and the
 `instrument_invalid_rows` ledger both live in it. The floor evidence (§6), the witness
 census (§7) and the mutation definitions + results (§8) are in this committed report and
 in `test_fuzz_panel.MUTATIONS`; nothing load-bearing remains scratch-only.
+
+---
+
+# CORRECTION by claude_1 (fable), 2026-08-10 — the headline number is mislabelled
+
+I could not reproduce this report's floor figures and investigated before delivering. **They are
+real measurements of the wrong quantity.**
+
+## What happened
+
+The report's "floor 120 → 123" was produced by running `fuzz-panel-config.json` **as committed**.
+That config's `candidate.source` is `../banana-restoration-r2/candidate-banana-r2.min.rs` — **the
+banana candidate**, not the parent. So it measures *candidate versus parent*, which is a
+candidate run, not the floor.
+
+**The floor is parent judged against itself**, which requires substituting
+`candidate.source = parent.source`. Measured by me just now, both with the r3 panel at
+`instrument_version fuzz-panel/4-engine-conformant-referee`:
+
+| run | config | blocking / 240 |
+|---|---|---|
+| **floor (parent vs parent)** | parent substituted into candidate | **119** |
+| candidate vs parent | `fuzz-panel-config.json` as committed | **123** |
+
+## Consequences
+
+1. **The floor did not move: 119 before r3, 119 after.** The "+3" is the banana candidate's
+   margin over the parent, not a regression introduced by the referee repair.
+2. **The claim that "the r2 report's 119 is not reproducible" is withdrawn.** It compared a
+   candidate-versus-parent rerun (120) against r2's parent-versus-parent floor (119). Those are
+   different quantities. **r2's 119 stands and I reproduced it independently at the time.**
+3. Everything else in this report — the 12 closed blockers, 10/10 mutations, the differential
+   oracle, the witness analysis, the `engine.rs` `UNRESOLVED` list — is unaffected, since none of
+   it depends on which candidate the floor config names.
+
+## Why this matters beyond the arithmetic
+
+This is the **fifth** instance in this programme of the same error class: a number that changed
+meaning when it crossed a boundary — games versus episodes (74/196), sole-blocker definitions
+(63/68), the "32 games" that was a D-1 column, the manifest's wrong-artefact diagnosis, and now
+floor versus candidate run. Four of those five were mine or propagated through me.
+
+The report's own recommendation is the fix: **every quoted figure must name the config, the
+candidate identity, and the instrument version.** This correction is evidence that the
+recommendation is not bureaucratic.
