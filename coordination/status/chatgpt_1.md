@@ -1,96 +1,66 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-10T11:25:00Z
-- State: current unblocked inbox assignments completed and handed off; TRAIN referee remains unaccepted
+- Updated UTC: 2026-08-10T16:05:00Z
+- State: all currently unblocked assignments completed and handed off; awaiting M3a substrate decision, M1 implementation and referee r3
 - Role: specification author / adversarial committed-blob reviewer; no Banana implementation ownership and no Arena mutation authority
 - Canonical branch: `agent/chatgpt_1`
-- Current task: M3b independent adjudication is blocked on accepted M1 implementation and M3a situation library; otherwise awaiting revisions/ACKs
+- Current task: M3b adjudication blocked on accepted M1 and an owner-selected/reviewed M3a substrate
 - Running job: none
+
+## M3a second extraction — completed with contamination disclosure
+
+- Policy:
+  `coordination/messages/local_claude_1/20260810T150000Z-20260810-m3a-independent-replication-policy.md`
+- Exact ACK:
+  `coordination/messages/chatgpt_1/20260810T153000Z-20260810-m3a-independent-replication-ack.md`
+- ACK commit: `e24bee8f951b2e17422d7f13da81dd547284b554`
+- Independence status: **not blind** — Claude's handoff headline had been read before this assignment existed; disclosed before extraction
+- Extractor:
+  `chatgpt_1/m3a_extract_from_panel.py`, commit `647a93d7688607de3b8d96cb732d693a68b88090`
+- Frozen base-panel ledger:
+  `chatgpt_1/m3a-d1-situation-library-2026-08-10.json`, commit `bf5756a23396f7b711655b4c32b2577b6fa542aa`
+- Replication report:
+  `chatgpt_1/m3a-independent-replication-2026-08-10.md`, commit `f7be614e1f3ecdaa76e523bbab450143ae23a98b`
+- Reconciliation:
+  `chatgpt_1/m3a-count-reconciliation-2026-08-10.md`, commit `6798134f136a095dcc871419b3cd4cf5feb80d40`
+- Handoff:
+  `coordination/messages/chatgpt_1/20260810T160000Z-20260810-m3a-independent-replication-handoff.md`
+- Handoff commit: `a566fc8371967782186288cff531f978c09d52e7`
+- Base-panel result: **34 D-1 episodes / 32 game situations; 20 episodes / 19 situations have >=62 states**
+- Frozen ledger digest:
+  `8e05b8aeb9fa90449819558f2c638a358f9c8667c35ea28d2fc2788b02fffc5d`
+- Idle-blocker result: **`UNRESOLVED_FROM_BASE_PANEL`** — the source JSON contains no peer identity, commands or entry-state trace
+- Reconciliation: Claude's 47 is `36 D-1 + 10 P4-only stalls + 1 real-corpus partial`, from a different slim bot/c3 run and a different geometry/mechanism dedupe; `47-34 = 2+10+1`
+- Owner decision required before M3b: use the original `98628e98` 34-episode subject or explicitly adopt Claude's broader mixed-source c3 library; do not mix subject and evidence
+- Cure status: idle-yield remains a strong single-extraction hypothesis, not an independently replicated fact
 
 ## TRAIN referee repair r2 — reviewed, not accepted
 
-- Incoming r2 handoff:
-  `coordination/messages/claude_1/20260809T193000Z-20260809-train-repair-r2-handoff.md`
-- Exact artifact commit reviewed:
-  `67de90ddc35eea04b24dac2acac2a182b23a13e1`
-- ACK:
-  `coordination/messages/chatgpt_1/20260810T083500Z-20260809-train-repair-r2-ack.md`
-- ACK commit: `2c0e4722abaefdc56b9bf9f3c039f73083d3411d`
-- Review artifact:
+- Reviewed artifact: `67de90ddc35eea04b24dac2acac2a182b23a13e1`
+- Review:
   `chatgpt_1/referee-train-repair-r2-review-2026-08-10.md`
 - Review commit: `d6bdaedd71a2d481b951934d41f0ac29b4375bf9`
-- Handoff:
-  `coordination/messages/chatgpt_1/20260810T090000Z-20260809-train-repair-r2-review-handoff.md`
 - Handoff commit: `a9ef72722f72f1c962399f2df5604f35f78f7807`
 - Verdict: **`REVISION_REQUIRED — NOT ACCEPTED`**; panel remains `GATE_UNREADY`
-- Accepted: engine-authoritative TRAIN with no bot cap/late guard; positive >2-worker witnesses; monotone next-id state; honest missing-corpus-witness result; cap/guard mutations
-- Remaining blockers: malformed TRAIN fails open; complete phase order absent; first non-TRAIN command per unit absent; timing matrix incomplete; no independent full-state differential; no per-row execution/TRAIN/spawn provenance; unsupported row not retained; version keys fail open; weak m040 packet; scratch-only evidence and omitted config; no coordinator execution-review handoff
-- Parked until acceptance: P4, D-9 calibration, gate architecture revision 3, D-4 and candidate verdicts
+- Remaining blockers: malformed TRAIN fails open; complete phase order and first-command-per-unit parsing absent; incomplete timing matrix; no independent full-state differential; no per-row execution/TRAIN/spawn provenance; version keys fail open; weak m040 packet; scratch-only evidence; no coordinator execution-review handoff
+- P4, D-9 calibration, gate revision 3, D-4 and candidate verdicts remain parked
 
-## Manifest implementation allocation
+## M1 Decision Packet — specification delivered
 
-- Policy:
-  `coordination/messages/local_claude_1/20260810T080000Z-20260810-manifest-implementation-policy.md`
-- Allocation ACK:
-  `coordination/messages/chatgpt_1/20260810T083000Z-20260810-manifest-implementation-ack.md`
-- ACK commit: `e0b6ae2289b59ac9a900d321dea5ba28ee992e7c`
-- Claimed work: M1 spec, M2 adversarial review, M3b independent adjudication after prerequisites
-- Boundary: tooling/analysis only; no behavior, detector, gate, host-value, TestSession, submission or Arena action
-
-## M1 Decision Packet specification — delivered
-
-- Specification:
+- Spec:
   `chatgpt_1/decision-packet-spec-2026-08-10.md`
 - Spec commit: `593c995f7640775f32344431d74cbc3bd4881c8b`
-- Handoff:
-  `coordination/messages/chatgpt_1/20260810T100000Z-20260810-decision-packet-spec-handoff.md`
 - Handoff commit: `6cabf57d717aa676c2004f5158f823463152a666`
-- Implementation owner: `claude_1`; execution review: `local_claude_1`; spec conformance review: `chatgpt_1`
-- Frozen requirements: exact subject/state/tool identity; full pipeline trace; typed stage/intent/source registries; generator entry/skip and exclusions; exact f64 score terms; state-conditioned and site-reachable attainable ranges with proofs; all pairs/rejections/tie order; forced replacements; resolver pre/post trace; persistent-state changes; execution trust levels; blind/reveal projections; independent replay; non-interference; completeness and mutation suite
-- Existing N4 machinery may be reused only after retargeting from `fff6669b` to exact subject `98628e98` and extending it to the full spec
+- Implementation owner: `claude_1`; execution review: `local_claude_1`; spec-conformance review: `chatgpt_1`
+- Status: awaiting implementation
 
-## M2 score-hierarchy audit — core ratified with correction/reclassification
+## M2 score-hierarchy audit — core ratified with correction
 
-- Incoming audit handoff:
-  `coordination/messages/claude_1/20260809T223000Z-20260809-score-transparency-review-handoff.md`
-- Exact artifact commit reviewed:
-  `790d76ac4de944e5c88b3d1d5f3f4a333c08eb07`
-- Audit ACK commit: `4725479642540a5f9687ad3bda15d685aedf906e`
-- Governing manifest correction:
-  `coordination/messages/local_claude_1/20260810T060000Z-20260809-score-transparency-manifest-correction.md`
-- Exact correction ACK:
-  `coordination/messages/chatgpt_1/20260810T111500Z-20260809-score-transparency-manifest-correction-ack.md`
-- Correction ACK commit: `20a1f0032929057d65953067cfb1f2b2048a8851`
-- Original review artifact:
-  `chatgpt_1/score-hierarchy-audit-review-2026-08-10.md`
+- Corrected disposition: **`RATIFY_CORE_WITH_RECLASSIFICATION — METHOD_PACKET_REQUIRED`**
 - Original review commit: `98635174207854605436d5e28973f67b39ca8dcd`
-- Correction artifact:
-  `chatgpt_1/score-hierarchy-audit-review-correction-2026-08-10.md`
 - Correction artifact commit: `35725bb5d251f427555603bbce0a868aa13d01ad`
-- Correction message:
-  `coordination/messages/chatgpt_1/20260810T112000Z-20260810-score-hierarchy-audit-review-correction.md`
-- Correction commit: `fab54a0bc36ff31a7826092ec8d10b840d799bc1`
-- Disposition: **`RATIFY_CORE_WITH_RECLASSIFICATION — METHOD_PACKET_REQUIRED`**
-- Corrected cause: the original manifest read the correct `98628e98` candidate; its errors were non-reachable syntactic bounds and failure to enumerate actual call-site bindings, not wrong-file analysis
-- Separate lineage finding: `98628e98` and `fff6669b` are different programs and are cited interchangeably, but that did not cause the two worked-example errors
-- Ratified: hybrid-pipeline model; chop max 1500/2400; single call sites; major temporal X1; witnessed X2/X9; explicit X8 override; lower-tier incompatible scales; credible dead regions; N4 reusable but wrong-subject/incomplete
-- Withheld: “10 homogeneous score crossings / eight measured end-to-end.” Reclassify as temporal, candidate-universe, unit mismatch, pair-sum hypothesis, candidate disappearance, soft-vs-forced policy, override, compatibility and admission findings
-- Required completion: generated source registry, call/reachability status, range proofs, typed finding ledger, committed witness per witnessed claim, explicit X5/X6 hypotheses, drift checks, reproducible method and coordinator execution sample
-
-## M3b independent adjudication — blocked
-
-- Owner: `chatgpt_1`, deliberately separate from packet implementer
-- Prerequisites: accepted M1 Decision Packet implementation and reviewed M3a frozen situation library
-- Method boundary: adjudication uses blind situation projections before bot scores/selection are revealed
-- `m040-s1` execution remains provisional until referee acceptance
-
-## Previously completed foundations
-
-- Score-transparency manifest review:
-  `chatgpt_1/score-transparency-manifest-review-2026-08-09.md`, commit `7c7a7c3b309b228312c6fbb7dbe32b3197260534`
-- Oscillation cross-review:
-  `chatgpt_1/oscillation-cross-review-2026-08-09.md`, commit `5b854aea48a1d24a5e204c0fc501f02367306d05`
-- Coordinator merged oscillation plan: commit `7c3ab802143e497d4f64ec250ec4ab6eea8ade7b`
+- Correction handoff commit: `fab54a0bc36ff31a7826092ec8d10b840d799bc1`
+- Required completion: generated source registry, reachable-range/call-site proofs, typed finding ledger, committed witnesses, X5/X6 hypothesis labels, drift checks and coordinator execution sample
 
 ## Standing boundaries
 
