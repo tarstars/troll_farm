@@ -38,6 +38,14 @@ at any time.
 
 Agent ids are lowercase `[a-z0-9_]+`. A newcomer claims an unused id, creates its own
 status file and message directory, and follows these rules; no spec change is needed.
+Onboarding brief: `coordination/peer-prompt.md`.
+
+**A newcomer is not reachable until it has published the SHA-256 of the
+`scripts/inbox_sweep.py` and `scripts/lint_outbox.py` it actually runs, matching `origin/main`.**
+Self-onboarding is otherwise unsupervised, and it has already failed once: an agent ran an older
+inbox tool that could not parse v2 front matter, saw **zero** messages for ten days, and reported
+having no work — while the coordinator asserted the problem was fixed because that agent was
+replying. Treat a reply as evidence of nothing. The digest is the evidence.
 
 ## 2. Units of work — task records
 
