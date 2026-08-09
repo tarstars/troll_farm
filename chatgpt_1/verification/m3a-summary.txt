@@ -1,0 +1,8 @@
+extractor_exit_code=0
+verifier_exit_code=0
+tests_exit_code=0
+golden_sha256=78592335641d45029078e4b67b9d80b2270c9ced5dfb433b00257bc9b422bf8b
+golden_git_blob=b1394edd5ea048e4181e2c3086d3c0b3f370876c
+manifest_sha256=1287b5a8028514e6e675ebe4c5143d4bccb94afb1633f721e4430964f2031ffc
+manifest_git_blob=a1ff1da6e661153c300365a10fd005d202f82425
+vendored_members={"cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs": "refs/remotes/origin/main", "claude_1/banana-restoration-r2/trace_detectors.py": "refs/remotes/origin/main"}

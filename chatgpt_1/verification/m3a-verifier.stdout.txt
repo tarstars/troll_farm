@@ -1,0 +1,50 @@
+{
+  "bundle_status": "VERIFIED",
+  "data_members": [
+    "chatgpt_1/m3a-d1-situation-library-2026-08-10.json"
+  ],
+  "schema": "troll-farm-m3a-golden-bundle/v2",
+  "summary": {
+    "episode_ledger_sha256": "8e05b8aeb9fa90449819558f2c638a358f9c8667c35ea28d2fc2788b02fffc5d",
+    "episodes": 34,
+    "idle_blocker_claim_status": "UNRESOLVED_FROM_BASE_PANEL",
+    "situations": 32,
+    "terminal_episodes_ge_62_states": 20,
+    "terminal_situations": 19
+  },
+  "toolchain_members": [
+    "chatgpt_1/m3a_extract_from_panel.py",
+    "chatgpt_1/m3a_verify_golden_set.py",
+    "chatgpt_1/test_m3a_golden_set.py"
+  ],
+  "verified_artifacts": {
+    "bundle_verifier": {
+      "git_blob_sha1": "5c372c1afeaa65722b6e989fa79d7691668c88bc",
+      "sha256": "ccd7f330e056dedbea9b2d9bddae866fa6202123cd3b8d321a7b7e27e81b9198"
+    },
+    "detector_contract": {
+      "git_blob_sha1": "3e4e3e95c40be5aa2a6e688b18fc54cf75093114",
+      "sha256": "59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209"
+    },
+    "extractor": {
+      "git_blob_sha1": "227501b082f27526d1ad74f693933c45658a1c8e",
+      "sha256": "f4b493de50d681fe0c65c432e584de0cfc34eaa6c8617d6a4dded9f47fc290e0"
+    },
+    "golden_output": {
+      "git_blob_sha1": "b1394edd5ea048e4181e2c3086d3c0b3f370876c",
+      "sha256": "78592335641d45029078e4b67b9d80b2270c9ced5dfb433b00257bc9b422bf8b"
+    },
+    "golden_tests": {
+      "git_blob_sha1": "a9e4fa7282c4c5b91d61117d2bc64acb617ded6e",
+      "sha256": "23ee8f6879705602c0a0f61944359094e2d730f636f87c9ed6c7a26f42a2a014"
+    },
+    "source_panel": {
+      "git_blob_sha1": "71f8b1b342df52a4b5e0ed5891e902874ef4c249",
+      "sha256": "b42fb8a7ae2c26af7e52dd18128a04bf221a794fbffe52e63d57b47122332e69"
+    },
+    "subject_candidate": {
+      "git_blob_sha1": "9dfb6eef90e56f5206988281da08a004a6a65530",
+      "sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29"
+    }
+  }
+}
