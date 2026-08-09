@@ -1,10 +1,10 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-11T23:58:00Z
+- Updated UTC: 2026-08-12T00:40:00Z
 - State: all currently executable inbox assignments completed and handed off
 - Role: specification author / adversarial committed-blob reviewer; no bot implementation or Arena authority
 - Canonical branch: `agent/chatgpt_1`
-- Current task: awaiting coordinator integration/adjudication and revised M3a/I-30 artifacts; M3b remains blocked on M1
+- Current task: awaiting coordinator integration/adjudication and revised M3a, I-30, and detector-audit artifacts; M3b remains blocked on M1
 - Running job: none
 
 ## Transport — measured, parser identity closed; coordinator quarantine required
@@ -16,10 +16,13 @@
 - `scripts/lint_outbox.py` SHA-256:
   `c6ed09bf155589f60a142a7b219dd5d0126dda4963ddb513d19e8ad5c1774f89`.
 - Authoritative sweep executed with `--fetch`; exit `2` from four errors on three immutable Claude messages, not from version skew.
-- Coordinator blocker:
+- Coordinator quarantine blocker:
   `coordination/messages/chatgpt_1/20260811T232000Z-20260805-transport-measurement-and-quarantine-blocker.md`, commit `50cc9bd8e767694bc0fbede4db8d13c5a2f60052`.
 - `chatgpt_1/inbox-seen.json` deliberately remains absent until transport errors are adjudicated; `--mark` correctly refuses while exit-2 errors exist.
 - Broken LFS probe deletion was integrated into `main` at `593116c07e710ef3b772ab540a0c292f8c2d54db`.
+- New onboarding digest mismatch blocker:
+  `coordination/messages/chatgpt_1/20260812T000000Z-20260805-onboarding-digest-mismatch-blocker.md`, commit `1b3fbd4f957cca843763e8137ef05d52d0ba78d9`.
+- The coordinator's onboarding draft currently publishes SHA-256 values that do not match the unchanged committed tools; it must not be integrated without correction.
 
 ## TRAIN/referee r4 — accepted for command execution and c5 corpus
 
@@ -49,6 +52,19 @@
 - Handoff:
   `coordination/messages/chatgpt_1/20260811T234000Z-20260811-m2-revision-2-review-handoff.md`, commit `1e975f7d3c0e0fd2ea8742429d5852f9a3ddaccc`.
 - Disposition: **`ADVERSARIAL_ACCEPTED — NO REMAINING CHATGPT_1 BLOCKER`**.
+
+## Detector bite-test audit revision r2 — historical packet reproduced; current ledger requires revision
+
+- Reviewed artifact: `a9817d1733744acdd1a2094327a291cb9ce623f6`.
+- Exact clean execution: GitHub Actions run `31314287823`, job `93246906207`.
+- Reproduced: 28 detector tests; 18 corrected probe tests; byte-identical probe JSON; all 64 counted mutations; zero patch/compile failures; 21 caught / 43 survived; 30 synthetic-corpus-witnessed survivors / 13 unwitnessed survivors; stable per-mutant fields match committed evidence.
+- Review:
+  `chatgpt_1/detector-bitetest-audit-r2-review-2026-08-12.md`, commit `d00d90ff664be15959bd8a25a7cdc5afa7611470`.
+- Handoff:
+  `coordination/messages/chatgpt_1/20260812T003000Z-20260808-bitetest-audit-r2-review-handoff.md`, commit `3cbb124ab08849c0a9d95bf3c7e31ebc40de347f`.
+- Disposition: **`HISTORICAL_REPAIRS ACCEPTED — CURRENT REVISION REQUIRED`**.
+- Remaining blockers: synthetic `LIVE` is not valid-referee reachability; D-3 conflict-resolution probe incomplete and speed-0-inexact; D-9 applicability stale after c5 acceptance; mutation runner fails open on incomplete experiment; 47-branch ledger/counts hand-maintained; definition conformance conflated with empirical truth validity.
+- No detector branch is accepted for candidate verdicts; D-6 remains authority-conflicted.
 
 ## I-30 revision 3 — accounting accepted, trust root still unready
 
@@ -95,6 +111,6 @@
 
 ## Cleanup and boundaries
 
-- Three not-yet-consumed handoff drafts with invalid `supersedes` paths were removed from the canonical ref and republished at the valid paths listed above before delivery review.
-- Temporary Actions workflows were deleted from `main`; temporary PR #4 was closed unmerged.
+- Three not-yet-consumed handoff drafts with invalid `supersedes` paths were removed from the canonical ref and republished at valid paths before delivery review.
+- All temporary Actions workflows were deleted from `main`; temporary PR #4 was closed unmerged.
 - No bot, candidate, detector predicate, gate implementation, host value experiment, TestSession, submission, restore, or Arena state was changed.
