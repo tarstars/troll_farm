@@ -1,11 +1,30 @@
 #!/usr/bin/env python3
-"""Loader and integrity check for the frozen oscillation situation library.
+"""Loader and integrity check for the frozen oscillation situation libraries.
 
-The library (`oscillation-library/`) is the deliverable of manifest item M3a:
-the enumerated, frozen set of situations in which oscillation was observed.
-Each situation is one JSON file of literal data -- map rows, plants, units of
-both players, inventories, the observed command window -- copied verbatim out
-of a referee transcript, so it survives a change to the map generator.
+A library is an enumerated, frozen set of situations in which oscillation was
+observed.  Each situation is one JSON file of literal data -- map rows, plants,
+units of both players, inventories, the observed command window -- copied
+verbatim out of a referee transcript, so it survives a change to the map
+generator.
+
+**There are two trees, and which bot each was harvested from is the whole
+point of the distinction.**
+
+  `oscillation-library-98628e98/library/`  -- the **M3a subject**,
+      `readable__no_orchard` = `cgauto/submissions/submitted-agent6593838-
+      readable-no-orchard.rs`, SHA-256 `98628e98dce4a33b4f24308be311159592
+      7b2ea8469c94a8d781cc85d41fbc29`, judged against itself at
+      `run_identity: floor`.  **This is the M3a deliverable.**
+
+  `oscillation-library/`  -- the **parent lineage**,
+      `candidate-agent6553250-preseed-orchard-coverage-slim.min.rs`, SHA-256
+      `a8eb3b2b...`, a DIFFERENT PROGRAM.  It was published as M3a in error;
+      its `index.json` now carries a `subject_note` recording that.  It is
+      retained as a parent-lineage comparison artefact and **must not be
+      cited as M3a**.
+
+`SUBJECT_DIR` and `PARENT_LINEAGE_DIR` name them.  `DEFAULT_DIR` is the
+subject, so an unqualified load returns the M3a deliverable.
 
 **Freeze means frozen.**  Every file carries `content_sha256`, the SHA-256 of
 its own canonical payload with that field removed.  `index.json` repeats every
@@ -35,7 +54,19 @@ from pathlib import Path
 SCHEMA_SITUATION = "troll-farm-oscillation-situation-v1"
 SCHEMA_INDEX = "troll-farm-oscillation-library-index-v1"
 
-DEFAULT_DIR = Path(__file__).resolve().parent / "oscillation-library"
+_HERE = Path(__file__).resolve().parent
+
+# The M3a subject: `readable__no_orchard`, judged against itself.
+SUBJECT_DIR = _HERE / "oscillation-library-98628e98" / "library"
+SUBJECT_SHA256 = ("98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85"
+                  "d41fbc29")
+
+# The parent lineage.  A DIFFERENT PROGRAM; retained for comparison only.
+PARENT_LINEAGE_DIR = _HERE / "oscillation-library"
+PARENT_LINEAGE_SHA256 = ("a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dad"
+                         "bded047b884e55")
+
+DEFAULT_DIR = SUBJECT_DIR
 
 MECHANISMS = ("M1", "M2", "M3", "UNCLASSIFIED")
 BLOCKER_STATES = ("IDLE", "WORKING", "NONE")
