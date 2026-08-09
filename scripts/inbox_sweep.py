@@ -34,6 +34,18 @@ Transport rules implemented here:
    (atomic, deterministic writes). A missing seen-state file falls back once to the
    legacy `<agent-id>/inbox-watermark.txt` as a migration hint; the legacy file is
    never rewritten or deleted. Marking seen never acknowledges anything.
+7. `coordination/quarantine.json` records coordinator adjudications of immutable
+   messages that are permanently invalid (schema violations, fabricated verdicts)
+   and that their sender will not repair. A valid quarantine entry names an exact
+   message path, a reason, and an `adjudicated_by` message that exists on the
+   authoritative remote refs. Quarantined messages are excluded from delivery
+   validation, newness, and acknowledgement (a quarantined ACK acknowledges
+   nothing) and are listed in their own `quarantined` section instead. The file
+   itself is validated strictly: a malformed file or an entry whose path or
+   adjudication is unknown is a transport error (exit 2) and suppresses nothing.
+   Immutable-path collisions are never suppressed by quarantine. Only the
+   coordinator/integrator may modify the quarantine file, and every entry must
+   cite a published adjudication message.
 
 Usage:
     python3 scripts/inbox_sweep.py --me claude_1                    # report
@@ -79,6 +91,50 @@ YAML_FIELD_RE = re.compile(
 )
 HEX40_RE = re.compile(r"^[0-9a-f]{40}$")
 SEEN_STATE_SCHEMA_VERSION = 1
+QUARANTINE_FILE = "coordination/quarantine.json"
+QUARANTINE_SCHEMA_VERSION = 2
+QUARANTINE_ENTRY_FIELDS = ("path", "reason", "adjudicated_by", "target_blob")
+LEGACY_BASELINE_FILE = "coordination/legacy-baseline.json"
+LEGACY_BASELINE_SCHEMA_VERSION = 1
+# Who the coordinator is must itself be authoritative. Reading it from the
+# environment made the authority untrusted input: whoever set the variable
+# designated the quarantine authority, and pointing it at a branch with no
+# quarantine silently suppressed nothing while reporting zero errors. The
+# roster is committed and lives ONLY on the integrated branch, which is the
+# shared root of trust — anyone who can write it can already do anything.
+ROSTER_FILE = "coordination/roster.json"
+ROSTER_REF = REMOTE_PREFIX + "main"
+ROSTER_SCHEMA_VERSION = 1
+
+
+def coordinator_agent() -> str | None:
+    """Return the coordinator named by the authoritative roster, or None.
+
+    None means no roster is reachable, in which case quarantine is disabled —
+    fail-safe, because suppressing nothing is always recoverable while
+    suppressing wrongly is not.
+    """
+    found = read_authoritative_blob(ROSTER_REF, ROSTER_FILE)
+    if found is None:
+        return None
+    _, text = found
+    where = f"{ROSTER_REF}:{ROSTER_FILE}"
+    try:
+        data = json.loads(text)
+        if not isinstance(data, dict):
+            raise ValueError("roster is not a JSON object")
+        version = data.get("schema_version")
+        if isinstance(version, bool) or version != ROSTER_SCHEMA_VERSION:
+            raise ValueError(
+                f"schema_version {version!r} is not the supported version "
+                f"{ROSTER_SCHEMA_VERSION}"
+            )
+        coordinator = data["coordinator"]
+        if not isinstance(coordinator, str) or not coordinator.strip():
+            raise ValueError("coordinator is not a non-empty string")
+    except (json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
+        raise ValueError(f"malformed roster {where}: {exc}") from exc
+    return coordinator
 
 
 class GitError(RuntimeError):
@@ -349,8 +405,14 @@ def validate_v2(
     authoritative_paths: set[str],
     canonical_paths_by_agent: dict[str, set[str]],
     remote_ref_names: set[str],
+    require_canonical: bool = True,
 ) -> list[str]:
-    """Return a list of human-readable validation errors for a v2 message."""
+    """Return a list of human-readable validation errors for a v2 message.
+
+    `require_canonical=False` skips the canonical-branch presence check for a
+    message that is not published yet (`scripts/lint_outbox.py`); every other
+    rule is identical, so the sender sees exactly what the receiver will.
+    """
     errors: list[str] = []
     if msg.schema_error:
         errors.append(msg.schema_error)
@@ -400,11 +462,12 @@ def validate_v2(
 
     # Canonical presence: a v2 message is delivered only from the sender's
     # canonical branch refs/remotes/origin/agent/<from>.
-    canonical = canonical_paths_by_agent.get(msg.sender, set())
-    if msg.path not in canonical:
-        errors.append(
-            f"message not present on canonical {REMOTE_PREFIX}agent/{msg.sender}"
-        )
+    if require_canonical:
+        canonical = canonical_paths_by_agent.get(msg.sender, set())
+        if msg.path not in canonical:
+            errors.append(
+                f"message not present on canonical {REMOTE_PREFIX}agent/{msg.sender}"
+            )
 
     if msg.kind == "handoff":
         errors.extend(validate_v2_handoff(msg, remote_ref_names))
@@ -608,6 +671,238 @@ def write_seen_state(
 
 
 # ---------------------------------------------------------------------------
+# Quarantine (rule 7: coordinator-adjudicated permanently-invalid messages)
+# ---------------------------------------------------------------------------
+
+def read_authoritative_blob(ref: str, path: str) -> tuple[str, str] | None:
+    """Return (blob_oid, text) for `path` at `ref`, or None if absent."""
+    probe = run_git("rev-parse", f"{ref}:{path}")
+    if probe.returncode != 0:
+        return None
+    oid = probe.stdout.strip()
+    return oid, git("cat-file", "blob", oid)
+
+
+def load_quarantine(coordinator_ref: str) -> tuple[list[dict[str, str]], str]:
+    """Load the quarantine blob from the coordinator's canonical ref (rule 7).
+
+    Returns (entries, blob_oid). The worktree copy is never authoritative; the
+    caller compares it for drift and reports, but never uses it. Reading shared
+    inbox truth from a mutable local file was finding TQ-1.
+    """
+    found = read_authoritative_blob(coordinator_ref, QUARANTINE_FILE)
+    if found is None:
+        return [], ""
+    oid, text = found
+    where = f"{coordinator_ref}:{QUARANTINE_FILE}"
+    try:
+        data = json.loads(text)
+        if not isinstance(data, dict):
+            raise ValueError("quarantine is not a JSON object")
+        version = data.get("schema_version")
+        if isinstance(version, bool) or version != QUARANTINE_SCHEMA_VERSION:
+            raise ValueError(
+                f"schema_version {version!r} is not the supported version "
+                f"{QUARANTINE_SCHEMA_VERSION}"
+            )
+        entries = data["entries"]
+        if not isinstance(entries, list):
+            raise ValueError("entries is not a list")
+        for i, entry in enumerate(entries):
+            if not isinstance(entry, dict):
+                raise ValueError(f"entry {i} is not an object")
+            for field in QUARANTINE_ENTRY_FIELDS:
+                value = entry.get(field)
+                if not isinstance(value, str) or not value.strip():
+                    raise ValueError(
+                        f"entry {i} field {field!r} is not a non-empty string"
+                    )
+    except (json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
+        raise ValueError(f"malformed quarantine file {where}: {exc}") from exc
+    return entries, oid
+
+
+def load_legacy_baseline(coordinator_ref: str) -> tuple[dict[str, str], bool]:
+    """Frozen path→blob map of messages grandfathered as pre-v2 (rule 5).
+
+    Returns (mapping, present). When absent, legacy messages are accepted as
+    before so an un-migrated repository still works; the sweep says so loudly.
+
+    `frozen_at` is required: without it the baseline is a v2-enforcement waiver
+    list that anyone able to write it can extend, letting an arbitrary new
+    message escape validation (finding F5). With it the list is verifiable —
+    `verify_legacy_baseline` rejects any path that did not exist at that commit.
+    """
+    found = read_authoritative_blob(coordinator_ref, LEGACY_BASELINE_FILE)
+    if found is None:
+        return {}, False
+    _, text = found
+    where = f"{coordinator_ref}:{LEGACY_BASELINE_FILE}"
+    try:
+        data = json.loads(text)
+        if not isinstance(data, dict):
+            raise ValueError("baseline is not a JSON object")
+        version = data.get("schema_version")
+        if isinstance(version, bool) or version != LEGACY_BASELINE_SCHEMA_VERSION:
+            raise ValueError(
+                f"schema_version {version!r} is not the supported version "
+                f"{LEGACY_BASELINE_SCHEMA_VERSION}"
+            )
+        paths = data["paths"]
+        if not isinstance(paths, dict) or not all(
+            isinstance(k, str) and isinstance(v, str) for k, v in paths.items()
+        ):
+            raise ValueError("paths is not an object of path→blob strings")
+        frozen_at = data.get("frozen_at")
+        if not isinstance(frozen_at, str) or not HEX40_RE.match(frozen_at):
+            raise ValueError(
+                "frozen_at is not a full 40-hex commit; without it the baseline "
+                "is an unverifiable waiver list"
+            )
+    except (json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
+        raise ValueError(f"malformed legacy baseline {where}: {exc}") from exc
+    return paths, True
+
+
+def verify_legacy_baseline(coordinator_ref: str,
+                           baseline: dict[str, str]) -> list[str]:
+    """Every pinned path must have existed, with those bytes, at the freeze.
+
+    One `ls-tree` of the namespace at `frozen_at` rather than a lookup per path:
+    the live baseline pins 691 paths.
+    """
+    found = read_authoritative_blob(coordinator_ref, LEGACY_BASELINE_FILE)
+    if found is None:
+        return []
+    frozen_at = json.loads(found[1]).get("frozen_at", "")
+    if not commit_exists(frozen_at):
+        return [f"frozen_at commit does not exist: {frozen_at}"]
+    at_freeze: dict[str, str] = {}
+    for line in git("ls-tree", "-r", frozen_at, "--", NAMESPACE).splitlines():
+        meta, _, path = line.partition("\t")
+        parts = meta.split()
+        if len(parts) == 3 and parts[1] == "blob":
+            at_freeze[path] = parts[2]
+    errors: list[str] = []
+    for path, blob in sorted(baseline.items()):
+        if path not in at_freeze:
+            errors.append(
+                f"baselined path did not exist at the freeze commit "
+                f"{frozen_at[:12]}: {path}"
+            )
+        elif at_freeze[path] != blob:
+            errors.append(
+                f"baselined blob differs from the freeze commit for {path}: "
+                f"pinned {blob[:12]}, frozen {at_freeze[path][:12]}"
+            )
+    return errors
+
+
+def validate_quarantine(
+    entries: list[dict[str, str]],
+    authoritative_paths: set[str],
+    messages: dict[str, "Message"],
+    blob_by_path: dict[str, str],
+    coordinator: str,
+    canonical_paths_by_agent: dict[str, set[str]] | None = None,
+    collided: set[str] | None = None,
+) -> list[str]:
+    """Return errors for entries that are not properly authorized.
+
+    An adjudication must be a valid v2 message authored by the coordinator, on
+    the coordinator's own canonical branch, that machine-names the exact target
+    in its `quarantines` array. Existence of a path is never sufficient — that
+    was finding TQ-2, under which any unrelated message (including one authored
+    by the quarantined agent itself) authorized suppression.
+    """
+    errors: list[str] = []
+    quarantined_paths = {entry["path"] for entry in entries}
+    seen: set[str] = set()
+    for entry in entries:
+        path, adjudicator = entry["path"], entry["adjudicated_by"]
+        if path in seen:
+            errors.append(f"duplicate quarantine path: {path!r}")
+        seen.add(path)
+        for label, target in (("path", path), ("adjudicated_by", adjudicator)):
+            if not target.startswith(NAMESPACE):
+                errors.append(f"{label} is not a message path: {target!r}")
+            elif target not in authoritative_paths:
+                errors.append(
+                    f"{label} not found on any authoritative remote ref: {target!r}"
+                )
+        if adjudicator in quarantined_paths:
+            errors.append(f"adjudicated_by is itself quarantined: {adjudicator!r}")
+        if collided and path in collided:
+            # The pin was silently skipped exactly when bytes are ambiguous,
+            # which is when it matters most (finding F8). A collided path can
+            # never be quarantined: there is no single blob to pin.
+            errors.append(
+                f"path {path!r} collides across authoritative refs; a collided "
+                "path has no single blob to pin and cannot be quarantined"
+            )
+        elif path in blob_by_path and entry["target_blob"] != blob_by_path[path]:
+            errors.append(
+                f"target_blob does not match the message at {path!r}: "
+                f"{entry['target_blob']!r} != {blob_by_path[path]!r}"
+            )
+        # Quarantining an ACK withdraws it, which silently re-opens every
+        # obligation it discharged for its sender (finding F4). That may be
+        # correct — a fabricated ACK should be withdrawn — but it must be
+        # declared, not discovered later by the agent whose work reappears.
+        target = messages.get(path)
+        if target is not None and target.kind == "ack":
+            try:
+                discharged = parse_json_list(target.fields.get("ack_for", "[]"))
+            except (ValueError, json.JSONDecodeError):
+                discharged = []
+            declared = entry.get("reopens")
+            declared = declared if isinstance(declared, list) else []
+            undeclared = [p for p in discharged if p not in declared]
+            if undeclared:
+                errors.append(
+                    f"quarantining the ACK {path!r} re-opens obligations it "
+                    "discharged; list them in this entry's `reopens` field: "
+                    + ", ".join(sorted(undeclared))
+                )
+        if adjudicator not in authoritative_paths:
+            continue
+        if sender_of(adjudicator) != coordinator:
+            errors.append(
+                f"adjudicated_by is not authored by the coordinator {coordinator!r}: "
+                f"{adjudicator!r}"
+            )
+            continue
+        # Protocol §10.2 requires the adjudication to be a valid v2 message ON
+        # the coordinator's canonical ref. Being in the coordinator's namespace
+        # somewhere is not that: a side branch would do, and code enforced only
+        # the namespace (finding F7).
+        canonical = (canonical_paths_by_agent or {}).get(coordinator, set())
+        if adjudicator not in canonical:
+            errors.append(
+                f"adjudicated_by is not present on the coordinator's canonical "
+                f"ref {REMOTE_PREFIX}agent/{coordinator}: {adjudicator!r}"
+            )
+            continue
+        msg = messages.get(adjudicator)
+        if msg is None or not msg.is_v2:
+            errors.append(f"adjudicated_by is not a valid v2 message: {adjudicator!r}")
+            continue
+        try:
+            named = parse_json_list(msg.fields.get("quarantines", "[]"))
+        except (ValueError, json.JSONDecodeError) as exc:
+            errors.append(
+                f"adjudicated_by has an unparseable quarantines array: {exc}"
+            )
+            continue
+        if path not in named:
+            errors.append(
+                f"adjudicated_by {adjudicator!r} does not name {path!r} in its "
+                "quarantines array"
+            )
+    return errors
+
+
+# ---------------------------------------------------------------------------
 # Main sweep
 # ---------------------------------------------------------------------------
 
@@ -669,19 +964,23 @@ def main() -> int:
         if len(per_path[path]) > 1:
             collisions.append((path, per_path[path]))
     collided = {path for path, _ in collisions}
+    authoritative_paths = set(per_path)
 
-    # Materialize authoritative messages (one body per unique path).
+    # Materialize authoritative messages (one body per unique path). This runs
+    # before quarantine because an adjudication is itself a message that must be
+    # parsed and validated before it can authorize anything.
     messages: dict[str, Message] = {}
+    blob_by_path: dict[str, str] = {}
     for path in sorted(per_path):
         if path in collided:
             continue
         (oid, refs_for_path), = per_path[path].items()
+        blob_by_path[path] = oid
         body = git("cat-file", "blob", oid)
         messages[path] = Message(
             path, display_ref(path, refs_for_path, sender_of(path)), body
         )
 
-    authoritative_paths = set(messages) | collided
     # Canonical presence is derived from the single authoritative scan above —
     # no second per-ref tree lookup.
     canonical_paths_by_agent: dict[str, set[str]] = {}
@@ -694,6 +993,54 @@ def main() -> int:
                     if "/" not in agent:
                         canonical_paths_by_agent.setdefault(agent, set()).add(path)
 
+    # Quarantine (rule 7). Authority is the coordinator's canonical ref, never
+    # the worktree: a local file must not be able to change shared inbox truth.
+    try:
+        coordinator = coordinator_agent()
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
+    if coordinator is None:
+        coordinator_ref = ""
+        quarantine_entries, quarantine_blob = [], ""
+        legacy_baseline, baseline_present = {}, False
+    else:
+        coordinator_ref = f"{REMOTE_PREFIX}agent/{coordinator}"
+        try:
+            quarantine_entries, quarantine_blob = load_quarantine(coordinator_ref)
+            legacy_baseline, baseline_present = load_legacy_baseline(coordinator_ref)
+        except ValueError as exc:
+            print(str(exc), file=sys.stderr)
+            return 2
+    quarantine_errors = validate_quarantine(
+        quarantine_entries, authoritative_paths, messages, blob_by_path,
+        coordinator, canonical_paths_by_agent, collided
+    )
+    if baseline_present:
+        quarantine_errors.extend(
+            verify_legacy_baseline(coordinator_ref, legacy_baseline))
+    # A broken or unauthorized quarantine suppresses nothing.
+    quarantined: dict[str, dict[str, str]] = (
+        {} if quarantine_errors else {e["path"]: e for e in quarantine_entries}
+    )
+    for path in quarantined:
+        messages.pop(path, None)
+
+    local_quarantine = root / QUARANTINE_FILE
+    quarantine_drift = ""
+    if local_quarantine.exists():
+        local_oid = run_git("hash-object", str(local_quarantine))
+        if local_oid.returncode == 0 and local_oid.stdout.strip() != quarantine_blob:
+            quarantine_drift = (
+                f"local quarantine differs from the authoritative blob "
+                f"({local_oid.stdout.strip()[:12] or 'none'} vs "
+                f"{quarantine_blob[:12] or 'none'}); the authoritative copy governs"
+            )
+    elif quarantine_blob:
+        quarantine_drift = (
+            "local quarantine differs from the authoritative blob (absent locally); "
+            "the authoritative copy governs"
+        )
     my_msgs = [m for m in messages.values() if m.sender == args.me]
     acked_paths, legacy_latest, ack_warnings = collect_my_acks(
         my_msgs, authoritative_paths, canonical_paths_by_agent, remote_ref_names
@@ -713,6 +1060,24 @@ def main() -> int:
                 msg, authoritative_paths, canonical_paths_by_agent, remote_ref_names
             ):
                 delivery_errors.append((msg.path, error))
+        elif baseline_present:
+            # Rule 5 grandfathers historical legacy messages, but only the exact
+            # pinned ones: otherwise a sender bypasses v2 entirely by omitting
+            # `schema_version`, and a backdated filename defeats a date cutoff
+            # (finding TQ-3).
+            pinned = legacy_baseline.get(msg.path)
+            if pinned is None:
+                delivery_errors.append((
+                    msg.path,
+                    "legacy message not in the frozen legacy baseline; messages "
+                    "published after the v2 migration must declare schema_version: 2",
+                ))
+            elif pinned != blob_by_path.get(msg.path, ""):
+                delivery_errors.append((
+                    msg.path,
+                    f"legacy baseline blob mismatch: pinned {pinned[:12]} but found "
+                    f"{blob_by_path.get(msg.path, '')[:12]}",
+                ))
 
     try:
         seen_paths, migrated_watermark, seen_source = load_seen_state(
@@ -764,6 +1129,32 @@ def main() -> int:
     for path, error in delivery_errors:
         print(f"  {path}: {error}")
 
+    if coordinator is None:
+        print(
+            f"\nquarantine authority: NONE — no authoritative roster at "
+            f"{ROSTER_REF}:{ROSTER_FILE}; quarantine is DISABLED and nothing is "
+            "suppressed"
+        )
+    else:
+        print(
+            f"\nquarantine authority: coordinator {coordinator!r} per "
+            f"{ROSTER_REF}:{ROSTER_FILE}; {coordinator_ref}:{QUARANTINE_FILE} "
+            f"blob {quarantine_blob[:12] or 'absent'}; legacy baseline "
+            + (f"{len(legacy_baseline)} pinned paths" if baseline_present
+               else "ABSENT — legacy messages are not pinned")
+        )
+    if quarantine_drift:
+        print(f"warning: {quarantine_drift}")
+
+    print(f"\nquarantine errors ({len(quarantine_errors)}):")
+    for error in quarantine_errors:
+        print(f"  {QUARANTINE_FILE}: {error}")
+
+    print(f"\nquarantined ({len(quarantined)}):")
+    for path in sorted(quarantined):
+        entry = quarantined[path]
+        print(f"  {path}: {entry['reason']}   [{entry['adjudicated_by']}]")
+
     for warning in ack_warnings:
         print(f"\nwarning: {warning}")
 
@@ -791,7 +1182,7 @@ def main() -> int:
         for path, src in unique:
             print(f"  {path}   [{src}]")
 
-    transport_broken = bool(collisions or delivery_errors)
+    transport_broken = bool(collisions or delivery_errors or quarantine_errors)
 
     if args.mark:
         if transport_broken:
