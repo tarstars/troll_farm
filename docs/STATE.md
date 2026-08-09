@@ -5,24 +5,32 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 
 ## 1. Live identity
 
-### ★★★ AN ARENA RUN IS IN FLIGHT — READ BEFORE ANY ARENA ACTION
+### ★★★ ARENA RUN SETTLED — 2026-08-12. Live bot is `readable__no_orchard`; owner decides keep/restore.
 
-**`readable__no_orchard` is LIVE and MATURING as of 2026-08-12.** Owner-authorised
-("I authorize arena publishing"). Do **not** submit anything else until it settles.
+**Terminal read: 160/160, score 22.46, rank 35/139, 89W/3T/68L, 24 catastrophes (15.0%),
+negative mass 6,790, `identity_clean=True`, `signals=0`.** No restore trigger ever fired.
+
+**The result: the same source scored 24.76 last run and 22.46 this run — a 2.30-point spread
+between two mature 160-game observations of one byte-identical bot.** 24.76 was a favourable
+draw, not this source's level. This also puts the ±0.5–1 arena noise band in §3 in doubt (either
+it is understated or the ladder moved between runs; one pair cannot separate those) — treat any
+promotion argument resting on a sub-2-point mature delta as unsupported until it is separated.
+At 22.46/rank 35/139 the live bot matches the displaced bot's 22.7/rank 35/139 standing, inside
+noise: the cycle neither gained nor cost ground. **Keep/restore is the owner's call.**
 
 | field | value |
 |---|---|
 | live agent / submission | **`6604529` / `41113243`** |
 | source | `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs` |
 | SHA-256 | `98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29` |
-| purpose | **second mature observation** to settle `SINGLE_MATURE_RUN` against its prior 24.76 |
-| last read | 21 games, score 18.63, rank 83/139, `identity_clean=True`, `signals=0` |
+| purpose | **second mature observation** to settle `SINGLE_MATURE_RUN` against its prior 24.76 — **DONE, settled at 22.46** |
+| last read | **terminal, 160 games, 22.46, rank 35/139, `identity_clean=True`, `signals=0`** |
 | **restore target if aborted** | `candidate-agent6553250-e7a-r36-simplified.min.rs`, SHA `2caac7c6…` (agent `6594200` / submission `41090606`) |
 
-**Restore only on unambiguous source/identity/runtime failure — never on a weak score.** Cold
-reads sit far below matured ones; 18.63 at 21 games is the normal trajectory and means nothing.
-Next action is the terminal ~160-game checkpoint compared against 24.76. **The keep/restore
-decision after that read is the owner's.**
+**Restore only on unambiguous source/identity/runtime failure — never on a weak score.** None
+occurred. The terminal checkpoint is taken; nothing further is pending on this run. **Submitting
+anything else is now unblocked, subject to the §3 evidence discipline — but see the noise-band
+caveat above before pricing any candidate's expected gain.**
 
 Task record: `coordination/tasks/20260812-readable-no-orchard-rerun-arena.md` (full execution
 log). Evidence: `data/analysis/live-agent-6553250/readable-no-orchard-rerun-20260812/`.

@@ -128,6 +128,13 @@ external storage.
 | 2026-08-12T16:12Z | `recover_live_source.py --expected-sha256 98628e98…` | **exact match**, 75,634 B — platform holds our source |
 | 2026-08-12T16:14Z | agent-id discovery via `findLastBattlesByTestSessionHandle` | **agent 6604529 / submission 41113243** |
 | 2026-08-12T16:25Z | initial health checkpoint | `games=21 score=18.63 rank=83/139 catastrophic=3 (14.3%) negative_mass=605` **signals=0 identity_clean=True** |
+| 2026-08-12T15:55Z¹ | progress checkpoint, 127 games | `score=22.46 rank=36/139 catastrophic=19 (15.0%) negative_mass=5045` **signals=0 identity_clean=True** |
+| 2026-08-12T16:07Z¹ | **terminal checkpoint, 160/160 finished, 0 pending** | `score=22.46 rank=35/139 89W/3T/68L mean_margin −1.75 catastrophic=24 (15.0%) negative_mass=6790` **signals=0 identity_clean=True**; `checkpoint-terminal.json` |
+
+¹ The checkpoint packets' own `observed_at` reads `2026-08-09T…Z` (host clock); the surrounding
+log uses the coordination-branch date convention, which runs three days ahead of the host. Both
+are recorded as written — do not silently reconcile them. Elapsed submit → terminal is ~1 h 55 m
+on a single monotonic clock.
 
 ## New live identity
 
@@ -141,12 +148,32 @@ external storage.
 
 ## Status of the observation
 
-**Maturing.** 21 of ~160 games. The cold trajectory so far is 12.7 → 18.63, which is ordinary
-for a fresh submission and carries no information about the mature level; cold reads sit well
-below matured ones and this task does not judge on them.
+**COMPLETE — second mature observation obtained. `SINGLE_MATURE_RUN` is settled, and it settles
+against the level, not for it.**
 
-Health gates that *do* apply at this stage all pass: identity clean, zero runtime signals, exact
-source on the platform. **No restore trigger is present.**
+| observation | agent / submission | games | score | rank |
+|---|---|---|---|---|
+| first mature run | `6593838` / `41089629` | 160 | **24.76** | 21 |
+| second mature run (this) | `6604529` / `41113243` | 160 | **22.46** | 35/139 |
 
-Next: terminal submission-scoped checkpoint at ~160 games, compared against the prior 24.76.
-The keep/restore decision after that read is the owner's.
+Same source, SHA `98628e98…`, byte-identical, both runs identity-clean with zero runtime signals.
+**Spread across two mature observations of one source: 2.30 points.**
+
+Against the task's frozen decision rules: not within ±0.5 of 24.76 (not corroborated), and not
+"near 23.3" either — it lands 0.81 *below* the related no-orchard ablation's 23.27. So the third
+rule applies: report the spread honestly. **24.76 was a favourable draw and must stop being
+treated as this source's level, let alone as our ceiling.**
+
+The consequence is bigger than this candidate. The replacement discipline in `docs/STATE.md` §3
+prices the arena's own noise band at **±0.5–1**. Two mature 160-game reads of an identical source
+differ by **2.30**. Either that band is badly understated, or the ladder moved under us between
+the runs — this single pair cannot separate those. Until it is separated, no promotion decision
+resting on a sub-2-point mature delta is safe, which is most of them.
+
+Standing context, for the keep/restore decision: the displaced bot (`6594200`, E7a r36 simplified)
+settled at 22.81/rank 32/137 and had eroded to 22.7/rank 35/139 at the pre-mutation read. At
+22.46/rank 35/139 the live bot is at **the same standing, inside noise** — this cycle neither
+gained nor cost material ground.
+
+No restore trigger fired at any point: source exact on the platform, identity clean, zero runtime
+signals throughout. **The keep/restore decision is the owner's.**
