@@ -17,7 +17,7 @@ from types import ModuleType
 from typing import Any
 
 REPO = Path(__file__).resolve().parents[1]
-DEFAULT_MANIFEST = REPO / "chatgpt_1/m3a-golden-set-manifest-2026-08-10.json"
+DEFAULT_MANIFEST = REPO / "chatgpt_1/m3a-golden-set-manifest-v2-2026-08-09.json"
 
 
 class GoldenSetError(RuntimeError):
@@ -77,7 +77,7 @@ def verify_artifact(repo: Path, artifact: dict[str, Any]) -> dict[str, str]:
 
 def verify_bundle(manifest_path: Path = DEFAULT_MANIFEST, repo: Path = REPO) -> dict[str, Any]:
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    if manifest.get("schema") != "troll-farm-m3a-golden-bundle/v1":
+    if manifest.get("schema") != "troll-farm-m3a-golden-bundle/v2":
         raise GoldenSetError(f"unsupported manifest schema: {manifest.get('schema')!r}")
 
     artifacts = manifest.get("artifacts")

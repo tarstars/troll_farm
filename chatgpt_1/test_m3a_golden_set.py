@@ -12,7 +12,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 EXTRACTOR_PATH = REPO / "chatgpt_1/m3a_extract_from_panel.py"
 VERIFIER_PATH = REPO / "chatgpt_1/m3a_verify_golden_set.py"
-MANIFEST_PATH = REPO / "chatgpt_1/m3a-golden-set-manifest-2026-08-10.json"
+MANIFEST_PATH = REPO / "chatgpt_1/m3a-golden-set-manifest-v2-2026-08-09.json"
 
 
 def load_module(path: Path, name: str):
