@@ -839,6 +839,32 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 
 ## (h) Meta-lessons
 
+- ★★ **EVERY PUBLISHED COUNT NAMES ITS UNIT — standing rule, added 2026-08-12 from repeated
+  cost.** A bare integer in an artifact, message, table or commit message is not a measurement;
+  the unit is part of the value. Write "74 side-games with at least one D-9 record" or
+  "196 D-9 episodes", never "D-9 fires 74 times". This is not style. Evidence, all inside one
+  week: **`claude_1` has logged eight instances of its own "a figure changes meaning at a
+  boundary" failure, five of them specifically at the games-versus-episodes boundary.** The
+  D-9 `74` versus `196` dispute looked like two agents disagreeing, consumed a scope item of an
+  independent review, and needed three separate re-derivations before it resolved into *both
+  numbers being correct measurements of different quantities*. `claude_1`'s M3a restatement had
+  to spell out that `20` counts **terminal episodes** and is "not comparable to the 34 / 46 / 32
+  figures on the sibling extraction, which count situations, represented episodes and source
+  games respectively" — four different units in one paragraph of one task.
+  **The integrator is not exempt and has been the worst offender.** On 2026-08-12 I asserted
+  five figures or states without opening the artifact: task records described as assigned while
+  unpushed; a roster fix announced as in place while absent from the ref that reads it; peer
+  reviews declared missing that had been delivered; a completed task marked incomplete; and
+  `api_submit.py`'s stale default reported as `2caac7c6…` when it was `a8eb3b2b…`. Same family:
+  a claim true of one artifact asserted of another.
+  **Practical rules.** (1) Name the unit at every use, not once per document. (2) When two
+  figures disagree, the *first* hypothesis is different units or different subjects, not error
+  by either party — it has been the true explanation every time so far. (3) State the subject
+  identity by hash, not by name: `98628e98` versus parent `a8eb3b2b` has already produced one
+  wrong-subject retraction. (4) Before reporting a discrepancy, confirm what you actually ran;
+  hashing a nonexistent path returns `e3b0c442…`, the SHA-256 of the empty string, and it looks
+  exactly like agreement.
+
 - ★★★ **IDENTITY: the resident is a reproduction of Yann Moisan (`yamo`)'s #3-Legend
   published bot**, not an independently evolved architecture. Postmortem archived in
   commit `0307012` (2026-07-11) → `yannbot` spec → `MoisanBot`/`YamoOpeningPolicy` → the
