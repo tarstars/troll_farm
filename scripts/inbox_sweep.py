@@ -69,6 +69,7 @@ import re
 import subprocess
 import sys
 import tempfile
+import traceback
 from collections.abc import Iterable
 
 NAMESPACE = "coordination/messages/"
@@ -564,8 +565,23 @@ def collect_my_acks(
         # were discharged, and the lint could not see it either.  33 published
         # messages already use the pattern.  `ack` still MUST carry a non-empty
         # ack_for (validate_v2); the difference is only that others MAY.
-        if msg.kind != "ack" and not parse_json_list(msg.fields.get("ack_for", "[]")):
-            continue
+        # Guarded, because parse_json_list RAISES on malformed input and this
+        # walks my OWN namespace: an unguarded call let one bad `ack_for` of
+        # mine crash my own sweep, and published messages are immutable, so I
+        # could not repair it (claude_1 execution review, 2026-08-13).  A
+        # malformed declaration must acknowledge nothing and say so, exactly as
+        # validate_v2 already treats the same field.
+        if msg.kind != "ack":
+            try:
+                declared = parse_json_list(msg.fields.get("ack_for", "[]"))
+            except (ValueError, json.JSONDecodeError) as exc:
+                warnings.append(
+                    f"my v2 {msg.kind} {msg.path} has a malformed ack_for and "
+                    f"acknowledges nothing: {exc}"
+                )
+                continue
+            if not declared:
+                continue
         if msg.is_v2:
             errors = validate_v2(
                 msg, authoritative_paths, canonical_paths_by_agent, remote_ref_names
@@ -1220,4 +1236,21 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    # Exit 1 is defined by this protocol as "healthy inbox, unacknowledged
+    # ack-required messages present", so an uncaught traceback -- which Python
+    # also exits 1 -- is indistinguishable from a normal result to anything
+    # gating on exit status, which this project mandates.  Any unexpected
+    # failure is exit 2, the same status every other hard error here uses
+    # (claude_1 execution review, 2026-08-13).
+    try:
+        sys.exit(main())
+    except SystemExit:
+        raise
+    except BaseException:
+        traceback.print_exc()
+        print(
+            "\nsweep FAILED with an unexpected error (exit 2). This is not "
+            "'you have mail' -- no inbox state above should be trusted.",
+            file=sys.stderr,
+        )
+        sys.exit(2)

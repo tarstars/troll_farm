@@ -716,6 +716,31 @@ def test_malformed_json_list_fields_fail(repo):
     assert "supersedes is not a single-line JSON array" in result.stdout
 
 
+def test_my_own_malformed_ack_for_does_not_crash_the_sweep(repo):
+    """A malformed ack_for in MY namespace must fail soft, not kill the sweep.
+
+    Regression for the 2026-08-13 execution review. Honouring ack_for on every
+    kind made collect_my_acks parse my own non-ack messages, and the parse was
+    unguarded -- so one bad declaration of my own raised JSONDecodeError and
+    took the whole sweep down. Messages are immutable, so I could not repair
+    it: my inbox stayed unreadable until the coordinator quarantined it.
+
+    test_malformed_json_list_fields_fail covers the same field but publishes as
+    PEER, which routes through the guarded validate_v2 path and never touches
+    this branch. 92 tests passed across the change that introduced the crash.
+    """
+    mine = msg_path(ME, "20260805T110000Z", "task-a", "handoff")
+    body = v2_message(mine, kind="handoff", task="task-a", sender=ME,
+                      requires_ack=False,
+                      overrides={"ack_for": "not-a-json-array"})
+    repo.commit(f"agent/{ME}", {mine: body})
+
+    result = repo.sweep("--me", ME)
+    assert "Traceback" not in result.stderr
+    assert result.returncode in (0, 1, 2)
+    assert "malformed ack_for and acknowledges nothing" in result.stdout
+
+
 def test_empty_ack_for_on_ack_and_empty_supersedes_on_correction_fail(repo):
     publish_v2(repo, PEER, "20260805T100000Z", "task-a", "ack",
                requires_ack=False)  # empty ack_for
