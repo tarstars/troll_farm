@@ -700,6 +700,248 @@ class TestRunDriver(unittest.TestCase):
         self.assertIn("overall: PASS", shc.format_report(rep))
 
 
+# ---------------------------------------------------------------------------
+# Correction 1 (B1): the typed finding ledger must actually exist, and the
+# report's counts must be GENERATED from it rather than maintained in prose.
+# Correction 2 (B2): `AX = 0` is a statement about the ten known findings only.
+# Correction 3 (B3): STATE_WITNESSED requires a committed exact-subject witness.
+# ---------------------------------------------------------------------------
+
+
+def _minimal_typed_ledger(**over):
+    led = {
+        "subject": {"path": "x.rs", "sha256": "aa" * 32},
+        "census": [],
+        "pipeline_anchors": [],
+        "bindings": [],
+        "range_models": [],
+        "intentions": [{"id": "A", "sites": ["R:1"]}, {"id": "B", "sites": ["R:2"]}],
+        "priority": {"declared": False, "relation": [], "note": "none declared"},
+        "witnesses": [],
+        "dead_regions": [{"id": "ZX-1", "site": "R:1", "reason": "x", "citation": "R:1"}],
+        "findings": [
+            {"id": "Y1", "class": "TX", "rule": 5, "reason": "clock branch",
+             "citations": ["R:1"], "evidence_state": "SOURCE_PROVED",
+             "rule_answers": {"dead_or_no_value_change": False,
+                              "label_absent_by_control_flow": False,
+                              "post_scoring_stage": False,
+                              "two_sites_one_intention_goal": False,
+                              "clock_branch": True,
+                              "own_position_or_null_progress_branch": False,
+                              "accumulation_within_one_expression": False,
+                              "incommensurable_units_or_scale": False}},
+        ],
+    }
+    led.update(over)
+    return led
+
+
+class TestClassificationOrder(unittest.TestCase):
+    ALL_FALSE = {k: False for k, _ in shc.CLASSIFICATION_ORDER} if hasattr(
+        shc, "CLASSIFICATION_ORDER") else {}
+
+    def _answers(self, **true_keys):
+        a = {k: False for k, _ in shc.CLASSIFICATION_ORDER}
+        a.update({k: True for k in true_keys})
+        return a
+
+    def test_first_match_wins_even_when_several_predicates_hold(self):
+        # X8-shaped: both "label absent by control flow" (rule 2) and
+        # "two sites, one intention" (rule 4) hold.  Rule 2 must win.
+        cls, rule = shc.classify_finding(
+            self._answers(label_absent_by_control_flow=True,
+                          two_sites_one_intention_goal=True))
+        self.assertEqual((cls, rule), ("MX", 2))
+
+    def test_dead_code_outranks_everything(self):
+        cls, rule = shc.classify_finding(
+            self._answers(dead_or_no_value_change=True, clock_branch=True))
+        self.assertEqual((cls, rule), ("ZX", 1))
+
+    def test_arithmetic_crossing_is_rule_seven(self):
+        cls, rule = shc.classify_finding(
+            self._answers(accumulation_within_one_expression=True))
+        self.assertEqual((cls, rule), ("AX", 7))
+
+    def test_no_predicate_is_an_observation_not_a_crossing(self):
+        cls, rule = shc.classify_finding(self._answers())
+        self.assertEqual((cls, rule), ("OBSERVATION", 9))
+
+    def test_a_missing_predicate_answer_fails_closed(self):
+        answers = self._answers(clock_branch=True)
+        answers.pop("post_scoring_stage")
+        with self.assertRaises(shc.LedgerError):
+            shc.classify_finding(answers)
+
+
+class TestTypedLedgerValidation(unittest.TestCase):
+    def test_a_wellformed_typed_ledger_has_no_problems(self):
+        self.assertEqual(shc.validate_ledger(_minimal_typed_ledger()), [])
+
+    def test_a_declared_class_contradicting_the_rule_order_is_rejected(self):
+        led = _minimal_typed_ledger()
+        led["findings"][0]["class"] = "AX"
+        problems = shc.validate_ledger(led)
+        self.assertTrue(any("class" in p for p in problems), problems)
+
+    def test_missing_typed_sections_are_rejected(self):
+        for section in ("intentions", "priority", "findings", "witnesses", "dead_regions"):
+            led = _minimal_typed_ledger()
+            del led[section]
+            self.assertTrue(
+                any(section in p for p in shc.validate_ledger(led)), section)
+
+    def test_state_witnessed_without_a_witness_record_is_rejected(self):
+        led = _minimal_typed_ledger()
+        led["findings"][0]["evidence_state"] = "STATE_WITNESSED"
+        problems = shc.validate_ledger(led)
+        self.assertTrue(any("witness" in p.lower() for p in problems), problems)
+
+    def test_a_witness_pinned_to_a_different_subject_sha_is_rejected(self):
+        led = _minimal_typed_ledger()
+        led["findings"][0]["evidence_state"] = "STATE_WITNESSED"
+        led["findings"][0]["witness_id"] = "W1"
+        led["witnesses"] = [{"id": "W1", "subject_sha256": "bb" * 32,
+                             "path": "p", "sha256": "cc" * 32,
+                             "candidate_identity": "?", "extraction_method": "?"}]
+        problems = shc.validate_ledger(led)
+        self.assertTrue(any("subject" in p.lower() for p in problems), problems)
+
+    def test_an_unknown_evidence_state_is_rejected(self):
+        led = _minimal_typed_ledger()
+        led["findings"][0]["evidence_state"] = "MEASURED_END_TO_END"
+        self.assertTrue(any("evidence_state" in p for p in shc.validate_ledger(led)))
+
+    def test_a_priority_claim_without_a_declared_relation_is_rejected(self):
+        led = _minimal_typed_ledger()
+        led["priority"] = {"declared": True, "relation": [], "note": ""}
+        self.assertTrue(any("priority" in p for p in shc.validate_ledger(led)))
+
+
+class TestGeneratedSummary(unittest.TestCase):
+    def test_counts_are_derived_from_the_findings(self):
+        s = shc.generated_summary(_minimal_typed_ledger())
+        self.assertEqual(s["findings_total"], 1)
+        self.assertEqual(s["class_counts"]["TX"], 1)
+        self.assertEqual(s["class_counts"]["AX"], 0)
+        self.assertEqual(s["dead_region_count"], 1)
+
+    def test_known_ax_findings_and_global_ax_status_are_separate_fields(self):
+        s = shc.generated_summary(_minimal_typed_ledger())
+        self.assertEqual(s["known_ax_findings"], 0)
+        self.assertEqual(s["global_ax_status"], "UNRESOLVED")
+
+    def test_global_ax_status_stays_unresolved_even_with_an_ax_finding(self):
+        # The global question is about DISCOVERY, not about the label counts.
+        led = _minimal_typed_ledger()
+        led["findings"][0]["class"] = "AX"
+        led["findings"][0]["rule"] = 7
+        led["findings"][0]["rule_answers"]["clock_branch"] = False
+        led["findings"][0]["rule_answers"]["accumulation_within_one_expression"] = True
+        s = shc.generated_summary(led)
+        self.assertEqual(s["known_ax_findings"], 1)
+        self.assertEqual(s["global_ax_status"], "UNRESOLVED")
+
+    def test_the_generated_block_is_deterministic(self):
+        led = _minimal_typed_ledger()
+        self.assertEqual(shc.format_generated_block(shc.generated_summary(led)),
+                         shc.format_generated_block(shc.generated_summary(led)))
+
+    def test_the_generated_block_names_the_global_ax_status(self):
+        block = shc.format_generated_block(shc.generated_summary(_minimal_typed_ledger()))
+        self.assertIn("GLOBAL_AX_STATUS = UNRESOLVED", block)
+        self.assertIn("KNOWN_AX_FINDINGS = 0", block)
+
+
+@unittest.skipUnless(SUBJECT_SRC is not None, "subject blob not reachable via git")
+class TestRealLedgerIsTyped(unittest.TestCase):
+    def setUp(self):
+        self.led = json.loads(LEDGER.read_text())
+
+    def test_the_real_ledger_validates(self):
+        self.assertEqual(shc.validate_ledger(self.led), [])
+
+    def test_it_freezes_eleven_intentions(self):
+        self.assertEqual(len(self.led["intentions"]), 11)
+
+    def test_it_freezes_x1_to_x10(self):
+        self.assertEqual([f["id"] for f in self.led["findings"]],
+                         [f"X{n}" for n in range(1, 11)])
+
+    def test_every_finding_carries_citations_and_a_rule(self):
+        for f in self.led["findings"]:
+            self.assertTrue(f["citations"], f["id"])
+            self.assertIn("rule", f, f["id"])
+            self.assertIn("reason", f, f["id"])
+
+    def test_the_priority_relation_is_declared_absent_not_assumed(self):
+        self.assertFalse(self.led["priority"]["declared"])
+        self.assertEqual(self.led["priority"]["relation"], [])
+
+    def test_no_finding_is_state_witnessed_because_no_witness_is_committed(self):
+        # chatgpt_1 B3: X2 and X9 had no exact-98628e98 witness packet.
+        self.assertEqual(self.led["witnesses"], [])
+        states = {f["id"]: f["evidence_state"] for f in self.led["findings"]}
+        self.assertEqual(states["X2"], "SOURCE_PROVED")
+        self.assertEqual(states["X9"], "SOURCE_PROVED")
+        for fid, st in states.items():
+            self.assertNotEqual(st, "STATE_WITNESSED", fid)
+
+    def test_x2_and_x9_record_what_would_promote_them(self):
+        for fid in ("X2", "X9"):
+            f = next(x for x in self.led["findings"] if x["id"] == fid)
+            self.assertIn("demoted_from", f)
+            self.assertIn("promotion_requires", f)
+
+    def test_the_generated_counts_match_the_ratified_table(self):
+        s = shc.generated_summary(self.led)
+        self.assertEqual(s["findings_total"], 10)
+        self.assertEqual(s["class_counts"],
+                         {"AX": 0, "TX": 1, "SX": 2, "UX": 1, "MX": 3, "BX": 2,
+                          "DX": 1, "ZX": 0, "OBSERVATION": 0})
+        self.assertEqual(s["dead_region_count"], 3)
+        self.assertEqual(s["evidence_counts"]["SOURCE_PROVED"], 8)
+        self.assertEqual(s["evidence_counts"]["REACHABILITY_HYPOTHESIS"], 2)
+        self.assertEqual(s["global_ax_status"], "UNRESOLVED")
+
+
+class TestReportAgreesWithTheLedger(unittest.TestCase):
+    """chatgpt_1 B1: hand-editing the report without changing the ledger must fail."""
+
+    REPORT = Path(__file__).resolve().parent / "score-hierarchy-audit-method-2026-08-10.md"
+    BEGIN = "<!-- BEGIN GENERATED: score-hierarchy-ledger.json -->"
+    END = "<!-- END GENERATED -->"
+
+    def _embedded(self):
+        text = self.REPORT.read_text()
+        self.assertIn(self.BEGIN, text)
+        self.assertIn(self.END, text)
+        return text.split(self.BEGIN, 1)[1].split(self.END, 1)[0].strip("\n")
+
+    def test_the_reports_generated_block_is_exactly_what_the_ledger_generates(self):
+        led = json.loads(LEDGER.read_text())
+        expected = shc.format_generated_block(shc.generated_summary(led)).strip("\n")
+        self.assertEqual(self._embedded(), expected)
+
+    def test_the_report_no_longer_claims_ax_zero_answers_the_owner_question(self):
+        text = self.REPORT.read_text()
+        self.assertNotIn("it is the answer to the owner's point 6", text)
+
+    def test_the_report_states_the_global_ax_status_as_unresolved(self):
+        self.assertIn("GLOBAL_AX_STATUS = UNRESOLVED", self.REPORT.read_text())
+
+    def test_the_report_does_not_call_x2_or_x9_state_witnessed(self):
+        text = self.REPORT.read_text()
+        for stale in ("`STATE_WITNESSED` (`m085-s0`)", "`STATE_WITNESSED` (`m014-s1`)",
+                      "Two are `STATE_WITNESSED`"):
+            self.assertNotIn(stale, text)
+
+    def test_the_report_does_not_use_the_retired_precision_word(self):
+        text = self.REPORT.read_text()
+        self.assertNotIn("[EXACT]", text)
+        self.assertNotIn("[OVER_APPROX]", text)
+
+
 @unittest.skipUnless(SUBJECT_SRC is not None, "subject blob not reachable via git")
 class TestAgainstRealSubject(unittest.TestCase):
     def test_subject_sha(self):
