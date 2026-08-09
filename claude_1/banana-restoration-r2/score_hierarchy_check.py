@@ -5,26 +5,46 @@ This module implements the *mechanical* parts of the audit method described in
 ``score-hierarchy-audit-method-2026-08-10.md``.  It deliberately implements only
 what can be made sound with the Python 3.12 standard library and no Rust parser:
 
-  1. ``identity``  -- artefact pinning (SHA-256) and subject/companion divergence.
-  2. ``census``    -- score-site *drift detection* against a frozen ledger.
-                      This is a change detector, NOT a discovery tool: it cannot
-                      prove the inventory complete.  See the method packet, S2.
-  3. ``bindings``  -- call-site enumeration for a named inherent function, with a
-                      mechanically checked soundness side-condition (no bare uses
-                      of the identifier, i.e. no function-pointer aliasing).
-  4. ``ranges``    -- interval arithmetic over a *human-supplied, cited* range
-                      model, plus clamp-deadness proofs.  The tool does the
-                      arithmetic; the ledger supplies the input bounds and the
-                      file:line citation and proof method for each one.
+  1. ``identity``   -- artefact pinning (SHA-256) and subject/companion divergence.
+  2. ``census``     -- score-site *drift detection* against a frozen ledger.
+                       This is a change detector, NOT a discovery tool: it cannot
+                       prove the inventory complete.  See the method packet, S2.
+  2b.``anchors``    -- structured drift detection over whole pipeline-node bodies
+                       (filter / compatibility / replacement / resolver /
+                       admission / arbitration), because five of the ten findings
+                       never touch a line carrying the token ``score``.
+  3. ``bindings``   -- call-site enumeration for a named inherent function, with a
+                       mechanically checked soundness side-condition (no bare uses
+                       of the identifier, i.e. no function-pointer aliasing).
+  4. ``ranges``     -- interval arithmetic over a *human-supplied, cited* range
+                       model, plus clamp-deadness proofs.  The tool does the
+                       arithmetic; the ledger supplies the input bounds and the
+                       file:line citation and proof method for each one.
+  4b.``ledger``     -- schema and vocabulary validation of the ledger itself, and
+                       generation of every published count from the typed
+                       intention / priority / finding / witness / dead-region
+                       sections.  The classification ORDER is applied
+                       mechanically to the human's recorded rule answers.
 
 What is NOT implemented, because it cannot be made sound here: deriving input
 bounds from the Rust source, control-flow reachability, co-reachability of two
-candidates in one candidate set.  Those are manual procedures in the method
-packet (S2.1, S3.1, S4.4).  Do not add a regex that pretends otherwise.
+candidates in one candidate set, and the eight classifier PREDICATES themselves.
+Those are manual procedures in the method packet (S2.1, S3.1, S4.3).  Do not add
+a regex that pretends otherwise.
+
+Two things this tool will never say, by construction:
+  * that a call site is REACHABLE -- it enumerates textual occurrences;
+  * that a computed interval is the EXACT ATTAINABLE range -- it reports a
+    repeated-variable status, a bound scope, an assumption status, a reachability
+    status and an endpoint-witness status, separately.
+And one constant it always emits: ``GLOBAL_AX_STATUS = UNRESOLVED``.  Zero
+arithmetic crossings among the ten known findings is not the same claim as no
+arithmetic crossing in the program, and no ledger edit may promote it.
 
 Usage:
     python3 score_hierarchy_check.py --ledger score-hierarchy-ledger.json \\
         [--subject PATH | --git-ref REF:PATH] [--repo DIR] [--json]
+        [--emit-generated]
 
 Exit status: 0 = every enabled check passed; 1 = drift or failure; 2 = usage.
 """
@@ -901,6 +921,164 @@ def range_model_report(model: dict[str, Any]) -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 
 
+# ---------------------------------------------------------------------------
+# 4b. Typed finding ledger: classification, evidence, generated counts
+#
+# chatgpt_1 review B1: the first draft's method said intentions, the priority
+# relation, the X1-X10 records, evidence states and witnesses were "frozen in the
+# ledger".  They were not -- the JSON ended after census/bindings/range_models,
+# and the S4.4 table and its counts were prose maintained by hand next to a tool
+# that could not see them.  That is the drift mode M2 exists to remove.
+#
+# What is mechanical here and what is not.  The eight classifier tests of S4.3
+# are semantic questions about the subject; a regex cannot answer them and this
+# module does not pretend to.  What the ledger records is the human's ANSWER to
+# each predicate, per finding, with citations.  What the checker does is apply
+# the fixed first-match order to those answers and verify that the declared class
+# is the one the order produces.  That makes the ORDER mechanical and auditable
+# -- the thing that made X8 arguable as either MX or DX -- without pretending the
+# predicates are.
+# ---------------------------------------------------------------------------
+
+
+class LedgerError(ValueError):
+    pass
+
+
+# S4.3, in order.  First match wins.  Do not reorder without re-deriving every
+# finding: the order is load-bearing, not presentational.
+CLASSIFICATION_ORDER: list[tuple[str, str]] = [
+    ("dead_or_no_value_change", "ZX"),               # rule 1
+    ("label_absent_by_control_flow", "MX"),          # rule 2
+    ("post_scoring_stage", "BX"),                    # rule 3
+    ("two_sites_one_intention_goal", "DX"),          # rule 4
+    ("clock_branch", "TX"),                          # rule 5
+    ("own_position_or_null_progress_branch", "SX"),  # rule 6
+    ("accumulation_within_one_expression", "AX"),    # rule 7
+    ("incommensurable_units_or_scale", "UX"),        # rule 8
+]
+
+CLASS_CODES = [c for _, c in CLASSIFICATION_ORDER] + ["OBSERVATION"]
+
+# S5, the evidence ladder.  "MEASURED end-to-end" is deliberately absent: it
+# conflated source deduction with observation and is retired.
+EVIDENCE_STATES = {
+    "SOURCE_PROVED",
+    "STATE_WITNESSED",
+    "CORPUS_MEASURED",
+    "REACHABILITY_HYPOTHESIS",
+}
+
+# Non-exclusive markers a finding may additionally carry.
+EVIDENCE_FLAGS = {"OWNER_POLICY_QUESTION"}
+
+
+def classify_finding(rule_answers: dict[str, Any]) -> tuple[str, int]:
+    """Apply S4.3 in order and return ``(class_code, rule_number)``.
+
+    Fails closed on a missing predicate answer: an unanswered rule is not a
+    "no", it is an incomplete record.
+    """
+    missing = [k for k, _ in CLASSIFICATION_ORDER if k not in rule_answers]
+    if missing:
+        raise LedgerError(f"rule_answers is missing predicates {missing}")
+    for i, (key, code) in enumerate(CLASSIFICATION_ORDER, start=1):
+        if rule_answers[key]:
+            return code, i
+    return "OBSERVATION", 9
+
+
+def generated_summary(ledger: dict[str, Any]) -> dict[str, Any]:
+    """Derive every published count from the typed ledger.
+
+    Nothing in the S4.4 tables may be maintained by hand: the report embeds the
+    block rendered from this summary, and a test compares the two byte for byte.
+    """
+    findings = ledger.get("findings", [])
+    class_counts = {c: 0 for c in CLASS_CODES}
+    class_ids: dict[str, list[str]] = {c: [] for c in CLASS_CODES}
+    evidence_counts: dict[str, int] = {}
+    flags: dict[str, list[str]] = {}
+
+    for f in findings:
+        code, _rule = classify_finding(f["rule_answers"])
+        class_counts[code] += 1
+        class_ids[code].append(f["id"])
+        state = f.get("evidence_state", "UNSET")
+        evidence_counts[state] = evidence_counts.get(state, 0) + 1
+        for flag in f.get("evidence_flags", []):
+            flags.setdefault(flag, []).append(f["id"])
+
+    return {
+        "subject_sha256": ledger.get("subject", {}).get("sha256"),
+        "ledger_version": ledger.get("ledger_version"),
+        "intention_count": len(ledger.get("intentions", [])),
+        "priority_declared": bool(ledger.get("priority", {}).get("declared")),
+        "findings_total": len(findings),
+        "class_counts": class_counts,
+        "class_ids": class_ids,
+        "evidence_counts": dict(sorted(evidence_counts.items())),
+        "evidence_flags": {k: sorted(v) for k, v in sorted(flags.items())},
+        "dead_region_count": len(ledger.get("dead_regions", [])),
+        "dead_region_ids": [d["id"] for d in ledger.get("dead_regions", [])],
+        "witness_count": len(ledger.get("witnesses", [])),
+        "pipeline_anchor_count": len(ledger.get("pipeline_anchors", [])),
+        "score_census_count": len(ledger.get("census", [])),
+        # --- the two AX facts, which are NOT the same fact (chatgpt_1 B2) ---
+        "known_ax_findings": class_counts["AX"],
+        # This is a constant, not a computation, and that is the point: the
+        # global question cannot be answered by counting labels on a preselected
+        # set.  It is settled only by an exhaustive scoring-site registry plus
+        # co-reachable candidate packets (M1/item B).  The checker will never
+        # emit anything else, so no future ledger edit can quietly promote it.
+        "global_ax_status": "UNRESOLVED",
+        "global_ax_reason": (
+            "site discovery is an under-approximating token census plus a "
+            "hand-maintained node list; only a subset of scoring expressions has "
+            "a range model; co-reachability is unproved"
+        ),
+    }
+
+
+def format_generated_block(summary: dict[str, Any]) -> str:
+    """Render the summary as the markdown block the report must embed verbatim."""
+    s = summary
+    lines = [
+        "```",
+        "GENERATED FROM score-hierarchy-ledger.json BY score_hierarchy_check.py",
+        f"  ledger_version        {s['ledger_version']}",
+        f"  subject_sha256        {s['subject_sha256']}",
+        "",
+        f"  intentions frozen     {s['intention_count']}",
+        f"  priority declared     {'yes' if s['priority_declared'] else 'NO'}"
+        f"{'' if s['priority_declared'] else '  (no crossing may be claimed between incomparable intentions)'}",
+        f"  score census sites    {s['score_census_count']}",
+        f"  pipeline node anchors {s['pipeline_anchor_count']}",
+        f"  committed witnesses   {s['witness_count']}",
+        "",
+        f"  pipeline findings     {s['findings_total']}",
+    ]
+    for code, _ in [(c, None) for c in CLASS_CODES]:
+        n = s["class_counts"][code]
+        ids = ", ".join(s["class_ids"][code]) or "--"
+        lines.append(f"    {code:11} {n}   {ids}")
+    lines.append("")
+    lines.append(f"  dead scoring regions  {s['dead_region_count']}   "
+                 + (", ".join(s["dead_region_ids"]) or "--"))
+    lines.append("")
+    lines.append("  evidence states")
+    for state, n in s["evidence_counts"].items():
+        lines.append(f"    {state:24} {n}")
+    for flag, ids in s["evidence_flags"].items():
+        lines.append(f"    +{flag:23} {', '.join(ids)}")
+    lines.append("")
+    lines.append(f"  KNOWN_AX_FINDINGS = {s['known_ax_findings']}")
+    lines.append(f"  GLOBAL_AX_STATUS = {s['global_ax_status']}")
+    lines.append(f"    because {s['global_ax_reason']}")
+    lines.append("```")
+    return "\n".join(lines)
+
+
 # Words the ledger may not use to describe a *textual* call-site result.  The
 # checker cannot establish that a call site executes, so no ledger claim may say
 # it does.  chatgpt_1 review B6.  Reachability is expressed only through the
@@ -950,6 +1128,103 @@ def validate_ledger(ledger: dict[str, Any]) -> list[str]:
                 f"{where}: reachability_status {state!r} is not one of "
                 f"{sorted(REACHABILITY_STATES)}"
             )
+
+    # --- typed finding ledger (chatgpt_1 B1) ---
+    for section in ("intentions", "priority", "findings", "witnesses", "dead_regions"):
+        if section not in ledger:
+            problems.append(
+                f"ledger is missing the typed section {section!r}; the method packet "
+                f"claims it is frozen here, so either add it or stop claiming it"
+            )
+
+    priority = ledger.get("priority")
+    if isinstance(priority, dict):
+        if priority.get("declared") and not priority.get("relation"):
+            problems.append(
+                "priority.declared is true but priority.relation is empty; a declared "
+                "priority relation must be enumerable or no crossing may be claimed"
+            )
+        if not priority.get("declared") and not priority.get("note"):
+            problems.append(
+                "priority is undeclared and carries no note; record why, so that the "
+                "absence is a decision rather than an omission"
+            )
+
+    witnesses = {w["id"]: w for w in ledger.get("witnesses", []) if "id" in w}
+    subject_sha = ledger.get("subject", {}).get("sha256")
+
+    for i, w in enumerate(ledger.get("witnesses", [])):
+        where = f"witnesses[{i}] ({w.get('id')!r})"
+        for field in ("id", "subject_sha256", "path", "sha256",
+                      "candidate_identity", "extraction_method"):
+            if not w.get(field):
+                problems.append(f"{where}: missing required witness field {field!r}")
+        if w.get("subject_sha256") and w["subject_sha256"] != subject_sha:
+            problems.append(
+                f"{where}: witness subject_sha256 {w['subject_sha256']} is not the "
+                f"pinned subject {subject_sha}; a transcript from a different "
+                f"candidate identity is not a witness for this subject"
+            )
+
+    seen_ids: set[str] = set()
+    for i, f in enumerate(ledger.get("findings", [])):
+        where = f"findings[{i}] ({f.get('id')!r})"
+        fid = f.get("id")
+        if not fid:
+            problems.append(f"{where}: missing id")
+        elif fid in seen_ids:
+            problems.append(f"{where}: duplicate finding id {fid!r}")
+        else:
+            seen_ids.add(fid)
+
+        if not f.get("citations"):
+            problems.append(f"{where}: no citations; every finding needs R: lines")
+        if not f.get("reason"):
+            problems.append(f"{where}: no reason")
+
+        try:
+            derived, rule = classify_finding(f.get("rule_answers", {}))
+        except LedgerError as exc:
+            problems.append(f"{where}: {exc}")
+        else:
+            if f.get("class") != derived:
+                problems.append(
+                    f"{where}: declared class {f.get('class')!r} but the S4.3 "
+                    f"first-match order derives {derived!r} (rule {rule}) from the "
+                    f"recorded rule_answers"
+                )
+            if f.get("rule") != rule:
+                problems.append(
+                    f"{where}: declared rule {f.get('rule')!r} but the first matching "
+                    f"rule is {rule}"
+                )
+
+        state = f.get("evidence_state")
+        if state not in EVIDENCE_STATES:
+            problems.append(
+                f"{where}: evidence_state {state!r} is not one of "
+                f"{sorted(EVIDENCE_STATES)}"
+            )
+        for flag in f.get("evidence_flags", []):
+            if flag not in EVIDENCE_FLAGS:
+                problems.append(f"{where}: unknown evidence flag {flag!r}")
+
+        # chatgpt_1 B3: STATE_WITNESSED is a claim about a committed artefact.
+        if state == "STATE_WITNESSED":
+            wid = f.get("witness_id")
+            if not wid:
+                problems.append(
+                    f"{where}: evidence_state STATE_WITNESSED without witness_id; a "
+                    f"report citation to an episode name is not a witness packet"
+                )
+            elif wid not in witnesses:
+                problems.append(
+                    f"{where}: witness_id {wid!r} has no record in ledger.witnesses"
+                )
+            elif witnesses[wid].get("subject_sha256") != subject_sha:
+                problems.append(
+                    f"{where}: witness {wid!r} is pinned to a different subject sha"
+                )
 
     return problems
 
@@ -1067,6 +1342,14 @@ def run(ledger: dict[str, Any], subject_src: str, subject_sha: str,
             report["ok"] = False
     report["checks"]["ranges"] = ranges
 
+    # --- generated classification / evidence / AX summary ---
+    if "findings" in ledger:
+        try:
+            report["generated"] = generated_summary(ledger)
+        except LedgerError as exc:
+            report["generated"] = {"error": str(exc)}
+            report["ok"] = False
+
     return report
 
 
@@ -1156,6 +1439,22 @@ def format_report(report: dict[str, Any]) -> str:
                 f"{'ok' if cl['agrees'] else 'MISMATCH'}"
             )
 
+    gen = report.get("generated")
+    if gen is not None:
+        lines.append("== generated classification summary ==")
+        if "error" in gen:
+            lines.append(f"  ERROR {gen['error']}")
+        else:
+            lines.append(format_generated_block(gen))
+
+    # Subject validity and companion-instrument validity are separate verdicts
+    # (chatgpt_1 non-blocking note 2): a diverged companion invalidates any
+    # instrument anchored to it, not a finding about the subject.
+    comp_ok = ident.get("companion_match", True)
+    lines.append(
+        f"== verdicts: subject {'PASS' if report['ok'] and ident['match'] else 'FAIL'}"
+        f" | companion-anchored instruments {'PASS' if comp_ok else 'FAIL (re-anchor N4)'} =="
+    )
     lines.append(f"== overall: {'PASS' if report['ok'] else 'FAIL'} ==")
     return "\n".join(lines)
 
@@ -1170,9 +1469,18 @@ def main(argv: list[str] | None = None) -> int:
     )
     ap.add_argument("--repo", type=Path, default=Path("."), help="git repo root")
     ap.add_argument("--json", action="store_true")
+    ap.add_argument(
+        "--emit-generated",
+        action="store_true",
+        help="print only the generated classification block that the method packet embeds",
+    )
     args = ap.parse_args(argv)
 
     ledger = json.loads(args.ledger.read_text())
+
+    if args.emit_generated:
+        print(format_generated_block(generated_summary(ledger)))
+        return 0
 
     if args.subject:
         data = args.subject.read_bytes()

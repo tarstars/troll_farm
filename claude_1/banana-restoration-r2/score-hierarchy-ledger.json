@@ -7,7 +7,7 @@
     "derive bounds from Rust source and must never be described as if it did.",
     "Citations: R:n = line n of the subject (sha256 98628e98...)."
   ],
-  "ledger_version": "1.0.0",
+  "ledger_version": "2.0.0",
   "created_utc": "2026-08-10T00:00:00Z",
   "subject": {
     "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
@@ -182,7 +182,11 @@
       "findings": [
         "X4"
       ],
-      "fingerprint": "59c6cda203208553"
+      "fingerprint": "59c6cda203208553",
+      "range_models": [
+        "RM-2n",
+        "RM-2x"
+      ]
     },
     {
       "id": "PN-02",
@@ -194,7 +198,10 @@
       "findings": [
         "X4"
       ],
-      "fingerprint": "28158387ace12420"
+      "fingerprint": "28158387ace12420",
+      "range_models": [
+        "RM-3"
+      ]
     },
     {
       "id": "PN-03",
@@ -206,7 +213,11 @@
       "findings": [
         "X4"
       ],
-      "fingerprint": "a08a48de2d6a571b"
+      "fingerprint": "a08a48de2d6a571b",
+      "range_models": [
+        "RM-2n",
+        "RM-2x"
+      ]
     },
     {
       "id": "PN-04",
@@ -216,7 +227,11 @@
       "kind": "scoring",
       "role": "producer of the chop_turns invariant that RM-1 propagates",
       "findings": [],
-      "fingerprint": "01faae7c21e68f87"
+      "fingerprint": "01faae7c21e68f87",
+      "range_models": [
+        "RM-1",
+        "RM-1r"
+      ]
     },
     {
       "id": "PN-05",
@@ -228,7 +243,11 @@
       "findings": [
         "ZX-1"
       ],
-      "fingerprint": "c36ee7fd3b38e5a8"
+      "fingerprint": "c36ee7fd3b38e5a8",
+      "range_models": [
+        "RM-1",
+        "RM-1r"
+      ]
     },
     {
       "id": "PN-06",
@@ -241,7 +260,8 @@
         "X5",
         "X9"
       ],
-      "fingerprint": "9df056700ccd0fe4"
+      "fingerprint": "9df056700ccd0fe4",
+      "range_models": []
     },
     {
       "id": "PN-07",
@@ -254,7 +274,8 @@
         "X5",
         "X9"
       ],
-      "fingerprint": "0f9d9dfc559e9d31"
+      "fingerprint": "0f9d9dfc559e9d31",
+      "range_models": []
     },
     {
       "id": "PN-08",
@@ -266,7 +287,8 @@
       "findings": [
         "X5"
       ],
-      "fingerprint": "a3f33807959ca3d7"
+      "fingerprint": "a3f33807959ca3d7",
+      "range_models": []
     },
     {
       "id": "PN-09",
@@ -278,7 +300,8 @@
       "findings": [
         "X5"
       ],
-      "fingerprint": "47f1bd68abd835c0"
+      "fingerprint": "47f1bd68abd835c0",
+      "range_models": []
     },
     {
       "id": "PN-10",
@@ -292,7 +315,8 @@
         "X9",
         "ZX-2"
       ],
-      "fingerprint": "3ec1a429e758d21a"
+      "fingerprint": "3ec1a429e758d21a",
+      "range_models": []
     },
     {
       "id": "PN-11",
@@ -304,7 +328,8 @@
       "findings": [
         "X5"
       ],
-      "fingerprint": "0198d6ce9318aa58"
+      "fingerprint": "0198d6ce9318aa58",
+      "range_models": []
     },
     {
       "id": "PN-12",
@@ -316,7 +341,8 @@
       "findings": [
         "X5"
       ],
-      "fingerprint": "230b3b7a314f1b94"
+      "fingerprint": "230b3b7a314f1b94",
+      "range_models": []
     },
     {
       "id": "PN-13",
@@ -328,7 +354,8 @@
       "findings": [
         "X5"
       ],
-      "fingerprint": "78170a542b426b5f"
+      "fingerprint": "78170a542b426b5f",
+      "range_models": []
     },
     {
       "id": "PN-14",
@@ -340,7 +367,8 @@
       "findings": [
         "X5"
       ],
-      "fingerprint": "d7969d5f85b9be1f"
+      "fingerprint": "d7969d5f85b9be1f",
+      "range_models": []
     },
     {
       "id": "PN-15",
@@ -352,7 +380,8 @@
       "findings": [
         "X6"
       ],
-      "fingerprint": "7c5d87670ecdde96"
+      "fingerprint": "7c5d87670ecdde96",
+      "range_models": []
     },
     {
       "id": "PN-16",
@@ -364,7 +393,8 @@
       "findings": [
         "X6"
       ],
-      "fingerprint": "4790e654b1682862"
+      "fingerprint": "4790e654b1682862",
+      "range_models": []
     },
     {
       "id": "PN-17",
@@ -374,10 +404,10 @@
       "kind": "replacement",
       "role": "door predicate gating the forced-replacement path",
       "findings": [
-        "X2",
         "X7"
       ],
-      "fingerprint": "0642c980c26821b0"
+      "fingerprint": "0642c980c26821b0",
+      "range_models": []
     },
     {
       "id": "PN-18",
@@ -389,7 +419,8 @@
       "findings": [
         "X7"
       ],
-      "fingerprint": "383a4505a28ca639"
+      "fingerprint": "383a4505a28ca639",
+      "range_models": []
     },
     {
       "id": "PN-19",
@@ -401,7 +432,8 @@
       "findings": [
         "X7"
       ],
-      "fingerprint": "7ca255f22f3bf3af"
+      "fingerprint": "7ca255f22f3bf3af",
+      "range_models": []
     },
     {
       "id": "PN-20",
@@ -413,7 +445,8 @@
       "findings": [
         "X7"
       ],
-      "fingerprint": "cf3f3ec5ff30d71b"
+      "fingerprint": "cf3f3ec5ff30d71b",
+      "range_models": []
     },
     {
       "id": "PN-21",
@@ -423,9 +456,11 @@
       "kind": "scoring",
       "role": "holds the opponent_eta_penalty subtraction R:1163",
       "findings": [
+        "X8",
         "ZX-3"
       ],
-      "fingerprint": "b4ca64277d31456f"
+      "fingerprint": "b4ca64277d31456f",
+      "range_models": []
     },
     {
       "id": "PN-22",
@@ -437,7 +472,8 @@
       "findings": [
         "X10"
       ],
-      "fingerprint": "a2819fcf9df474e3"
+      "fingerprint": "a2819fcf9df474e3",
+      "range_models": []
     },
     {
       "id": "PN-23",
@@ -449,7 +485,8 @@
       "findings": [
         "X1"
       ],
-      "fingerprint": "e3a021568debe980"
+      "fingerprint": "e3a021568debe980",
+      "range_models": []
     },
     {
       "id": "PN-24",
@@ -459,9 +496,14 @@
       "kind": "scoring",
       "role": "producer of conversion_turns, incl. the 10_000 sentinel (Appendix B)",
       "findings": [
-        "X1"
+        "X1",
+        "X2"
       ],
-      "fingerprint": "8c0238b1227d113e"
+      "fingerprint": "8c0238b1227d113e",
+      "range_models": [
+        "RM-A1a",
+        "RM-A1b"
+      ]
     },
     {
       "id": "PN-25",
@@ -476,7 +518,11 @@
         "X3",
         "X8"
       ],
-      "fingerprint": "726f636c1159a9fa"
+      "fingerprint": "726f636c1159a9fa",
+      "range_models": [
+        "RM-A1a",
+        "RM-A1b"
+      ]
     },
     {
       "id": "PN-26",
@@ -488,7 +534,8 @@
       "findings": [
         "X10"
       ],
-      "fingerprint": "2d06e82888a04aa6"
+      "fingerprint": "2d06e82888a04aa6",
+      "range_models": []
     },
     {
       "id": "PN-27",
@@ -498,10 +545,10 @@
       "kind": "admission",
       "role": "the clock predicate selecting the endgame branch",
       "findings": [
-        "X1",
-        "X10"
+        "X1"
       ],
-      "fingerprint": "db6f2c7a139addd3"
+      "fingerprint": "db6f2c7a139addd3",
+      "range_models": []
     },
     {
       "id": "PN-28",
@@ -514,7 +561,8 @@
         "X7",
         "X10"
       ],
-      "fingerprint": "a8857c8cb88e99c5"
+      "fingerprint": "a8857c8cb88e99c5",
+      "range_models": []
     }
   ],
   "bindings": [
@@ -939,6 +987,438 @@
       "attainable": "[0.044977506748, 0.074977506748]",
       "reachability_status": "UNPROVED",
       "endpoint_witnessed": "NONE"
+    }
+  ],
+  "intentions_comment": [
+    "Frozen intention registry (method packet S4.1). ELEVEN labels -- the audit's prose said nine",
+    "and then listed eleven (chatgpt_1 C5). Assignment of a site to a label is a HUMAN judgement,",
+    "frozen here so two auditors agree by reading the same ledger rather than by judging alike.",
+    "Disagreement is resolved by amending this section and re-running, never by re-arguing in prose."
+  ],
+  "intentions": [
+    {
+      "id": "UNBLOCK",
+      "sites": [
+        "R:1059"
+      ],
+      "gloss": "clear a unit off the unique shack door by forced DROP"
+    },
+    {
+      "id": "COMMIT-CHOP",
+      "sites": [
+        "R:1163",
+        "R:1283"
+      ],
+      "gloss": "keep chopping the committed tree"
+    },
+    {
+      "id": "REGENERATE",
+      "sites": [
+        "R:1180"
+      ],
+      "gloss": "PICK a fruit to replant the orchard"
+    },
+    {
+      "id": "BANK",
+      "sites": [
+        "R:382",
+        "R:394"
+      ],
+      "gloss": "deposit carried goods at the shack"
+    },
+    {
+      "id": "SEED",
+      "sites": [
+        "R:1261-1265"
+      ],
+      "gloss": "PLANT a fruit at a shack-adjacent cell"
+    },
+    {
+      "id": "CONVERT",
+      "sites": [
+        "R:1291-1295",
+        "R:1299",
+        "R:1323-1327",
+        "R:1331"
+      ],
+      "gloss": "endgame PICK/MOVE that converts inventory into score"
+    },
+    {
+      "id": "EQUIP",
+      "sites": [
+        "R:467",
+        "R:479",
+        "R:489",
+        "R:501"
+      ],
+      "gloss": "acquire the material a unit is missing",
+      "sub_goals": [
+        "EQUIP-FRUIT (R:467, R:479)",
+        "EQUIP-IRON (R:489, R:501)"
+      ]
+    },
+    {
+      "id": "CLEAR-FOR-TRAIN",
+      "sites": [
+        "R:962",
+        "R:987",
+        "R:1422"
+      ],
+      "gloss": "vacate the shack cell so a TRAIN can be issued"
+    },
+    {
+      "id": "HARVEST-WOOD",
+      "sites": [
+        "R:619",
+        "R:622"
+      ],
+      "gloss": "chop a tree for wood and return it"
+    },
+    {
+      "id": "IDLE-HARVEST",
+      "sites": [
+        "R:1365"
+      ],
+      "gloss": "harvest fruit when there is nothing else to do"
+    },
+    {
+      "id": "NOTHING",
+      "sites": [
+        "R:640"
+      ],
+      "gloss": "the WAIT fallback candidate"
+    }
+  ],
+  "priority": {
+    "declared": false,
+    "relation": [],
+    "note": "NO priority relation over the eleven intentions is declared by the subject, by the audit, or by the owner. Consequence, and it is load-bearing: any two intentions are INCOMPARABLE, so no claim of the form 'J outranks I' is admissible from this ledger. Every finding below is therefore a statement about mechanism and range, not about a violated ordering. Declaring a relation is an owner action, not an agent action."
+  },
+  "witnesses_comment": [
+    "EMPTY, and that is the finding (chatgpt_1 B3). A STATE_WITNESSED label requires a committed",
+    "packet pinned to the exact subject 98628e98: literal input state, the FULL candidate surface at",
+    "that state, the selection result, the candidate identity, the extraction method and a content",
+    "hash. No such packet exists for this subject. The episode names cited by the audit (m085-s0,",
+    "m014-s1) are saved transcripts of different candidate identities. X2 and X9 are therefore",
+    "DEMOTED to SOURCE_PROVED here. validate_ledger() fails the run if any finding claims",
+    "STATE_WITNESSED without a witness record whose subject_sha256 is the pinned subject."
+  ],
+  "witnesses": [],
+  "findings_comment": [
+    "Typed X1-X10 records (method packet S4.4). `rule_answers` are the HUMAN answers to the eight",
+    "S4.3 predicates; the checker applies the fixed first-match order to them and REJECTS the ledger",
+    "if the declared `class`/`rule` is not what that order produces. The order is thus mechanical and",
+    "auditable; the predicates are not, and nothing here pretends otherwise.",
+    "`anchors` names the frozen pipeline nodes (see pipeline_anchors) whose drift invalidates the record."
+  ],
+  "findings": [
+    {
+      "id": "X1",
+      "class": "TX",
+      "rule": 5,
+      "reason": "rule 5 -- one intention (CONVERT) priced by two branches of a clock test: `view.turn>250` at R:1291 and R:1323 selects 7_000-priority / 6_000-priority-travel against the pre-250 750/(turns+3) form, whose modelled range is (0, 187.5]",
+      "citations": [
+        "R:1291-1295",
+        "R:1323-1327"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": false,
+        "post_scoring_stage": false,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": true,
+        "own_position_or_null_progress_branch": false,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "SOURCE_PROVED",
+      "anchors": [
+        "PN-23",
+        "PN-24",
+        "PN-25",
+        "PN-27"
+      ]
+    },
+    {
+      "id": "X2",
+      "class": "SX",
+      "rule": 6,
+      "reason": "rule 6 -- the same CONVERT label is priced by two branches selected on the agent's own position: the R:1290 on-door branch prices only `unit.cell`, the R:1303 off-door branch prices every shack-start cell. Rule 2 does not fire: the label is present in both branches, so this is a target-set restriction, not an admission suppression",
+      "citations": [
+        "R:1290",
+        "R:1298-1301",
+        "R:1303-1334"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": false,
+        "post_scoring_stage": false,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": true,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "SOURCE_PROVED",
+      "demoted_from": "STATE_WITNESSED",
+      "promotion_requires": "a committed exact-98628e98 witness packet: literal input state, full candidate surface at that state, the selection result, the candidate identity and the SHA of the tool that produced them. The earlier `m085-s0` citation is a saved transcript of a different candidate identity and is not admissible (chatgpt_1 B3)",
+      "anchors": [
+        "PN-24",
+        "PN-25"
+      ]
+    },
+    {
+      "id": "X3",
+      "class": "SX",
+      "rule": 6,
+      "reason": "rule 6 -- one SEED site R:1261-1265 branching on `at_target = unit.cell == *cell`: 9_000 in place versus 8_000 - dist when moving",
+      "citations": [
+        "R:1253",
+        "R:1261-1265"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": false,
+        "post_scoring_stage": false,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": true,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "SOURCE_PROVED",
+      "anchors": [
+        "PN-25"
+      ]
+    },
+    {
+      "id": "X4",
+      "class": "UX",
+      "rule": 8,
+      "reason": "rule 4 does not fire (EQUIP-IRON and EQUIP-FRUIT are different goals) and rule 7 does not fire (no accumulation within one expression); rule 8 -- R:501 subtracts a RAW BFS cell count while R:479 subtracts turns, so two sites of neighbouring bands are denominated in different units with no declared separator",
+      "citations": [
+        "R:479",
+        "R:493-499",
+        "R:501"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": false,
+        "post_scoring_stage": false,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": false,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": true
+      },
+      "evidence_state": "SOURCE_PROVED",
+      "anchors": [
+        "PN-01",
+        "PN-02",
+        "PN-03"
+      ]
+    },
+    {
+      "id": "X5",
+      "class": "BX",
+      "rule": 3,
+      "reason": "rule 3 -- the discontinuity is in the post-scoring stage: `select` maximises a.score + b.score over compatible pairs at R:683, so a pair of two mid-priced candidates can beat a pair containing the highest-priced one",
+      "citations": [
+        "R:675-692",
+        "R:683"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": false,
+        "post_scoring_stage": true,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": false,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "REACHABILITY_HYPOTHESIS",
+      "anchors": [
+        "PN-06",
+        "PN-07",
+        "PN-08",
+        "PN-09",
+        "PN-10",
+        "PN-11",
+        "PN-12",
+        "PN-13",
+        "PN-14"
+      ]
+    },
+    {
+      "id": "X6",
+      "class": "MX",
+      "rule": 2,
+      "reason": "rule 2 -- the BANK label can be absent from the candidate set entirely: the YamoBot filter at R:947-955 can empty a set that MoisanBot::bank_candidates guaranteed non-empty",
+      "citations": [
+        "R:371-399",
+        "R:947-955"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": true,
+        "post_scoring_stage": false,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": false,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "REACHABILITY_HYPOTHESIS",
+      "anchors": [
+        "PN-15",
+        "PN-16"
+      ]
+    },
+    {
+      "id": "X7",
+      "class": "DX",
+      "rule": 4,
+      "reason": "rule 4 -- one intention-and-goal, CLEAR-FOR-TRAIN, is priced at two distinct sites by two different mechanisms: a soft 6_500 candidate appended at R:1422 and a forced 20_000 whole-list replacement at R:962/R:987. Rule 2 does not fire because the label is present on both paths",
+      "citations": [
+        "R:962",
+        "R:987",
+        "R:1419-1425"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": false,
+        "post_scoring_stage": false,
+        "two_sites_one_intention_goal": true,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": false,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "SOURCE_PROVED",
+      "note": "the separate claim that the forced 20_000 outranks six other intentions is REACHABILITY_HYPOTHESIS and is not asserted here (chatgpt_1 C7)",
+      "anchors": [
+        "PN-17",
+        "PN-18",
+        "PN-19",
+        "PN-20",
+        "PN-28"
+      ]
+    },
+    {
+      "id": "X8",
+      "class": "MX",
+      "rule": 2,
+      "reason": "rule 2 -- R:1282-1286 overwrites the CHOP candidate's score to 10_000 and returns immediately, so every other intention label is absent from the candidate set for that unit on that turn",
+      "citations": [
+        "R:1281-1286"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": true,
+        "post_scoring_stage": false,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": false,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "SOURCE_PROVED",
+      "evidence_flags": [
+        "OWNER_POLICY_QUESTION"
+      ],
+      "anchors": [
+        "PN-21",
+        "PN-25"
+      ]
+    },
+    {
+      "id": "X9",
+      "class": "BX",
+      "rule": 3,
+      "reason": "rule 3 -- the post-scoring compatibility filter R:643-646 returns true whenever either target is Target::None, so the only cross-unit constraint vanishes for WAIT-targeted candidates",
+      "citations": [
+        "R:638-642",
+        "R:643-646"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": false,
+        "post_scoring_stage": true,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": false,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "SOURCE_PROVED",
+      "demoted_from": "STATE_WITNESSED",
+      "promotion_requires": "a committed exact-98628e98 witness packet as for X2; the earlier `m014-s1` citation is a saved transcript of a different candidate identity and is not admissible (chatgpt_1 B3)",
+      "anchors": [
+        "PN-06",
+        "PN-07",
+        "PN-10"
+      ]
+    },
+    {
+      "id": "X10",
+      "class": "MX",
+      "rule": 2,
+      "reason": "rule 2 -- R:1413 admits the IDLE-HARVEST label only when every already-built candidate has Target::None, so the label is absent by control flow in every other state",
+      "citations": [
+        "R:1413-1415",
+        "R:1340-1370"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": true,
+        "post_scoring_stage": false,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": false,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "SOURCE_PROVED",
+      "anchors": [
+        "PN-22",
+        "PN-26",
+        "PN-28"
+      ]
+    }
+  ],
+  "dead_regions_comment": [
+    "Counted SEPARATELY from crossings (S4.2, class ZX). Two of the three are preset- or",
+    "roster-conditional and say so; neither is promoted beyond the strength the audit gave it."
+  ],
+  "dead_regions": [
+    {
+      "id": "ZX-1",
+      "site": "R:611",
+      "citation": "R:611",
+      "reason": "`.max(1)` cannot change a value whose attainable interval starts at 2; the `+1` literal alone already forces the operand >= 1",
+      "evidence_state": "SOURCE_PROVED",
+      "derived_by": "range model RM-1 clamp check",
+      "anchor": "PN-05"
+    },
+    {
+      "id": "ZX-2",
+      "site": "R:694-711",
+      "citation": "R:665-712",
+      "reason": "the greedy fallback branch of `select` is entered only when the candidate map holds three or more unit ids",
+      "evidence_state": "REACHABILITY_HYPOTHESIS",
+      "derived_by": "audit S-select; NOT re-derived in this method packet",
+      "note": "UNRESOLVED: deadness depends on the shipped roster size, which this packet does not establish. Carried at the audit's own strength, not promoted.",
+      "anchor": "PN-10"
+    },
+    {
+      "id": "ZX-3",
+      "site": "R:1163",
+      "citation": "R:1130,R:1163",
+      "reason": "`yamo_chop_candidates` returns before the penalty loop when `opponent_eta_penalty <= 0` (R:1130), so the subtraction at R:1163 cannot change any score under a preset that leaves the penalty at 0",
+      "evidence_state": "SOURCE_PROVED",
+      "note": "UNRESOLVED for any preset shipping opponent_eta_penalty > 0; the deadness is preset-conditional, not unconditional.",
+      "anchor": "PN-21"
     }
   ]
 }

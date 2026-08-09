@@ -496,6 +496,8 @@ class TestCallSiteVerdictVocabulary(unittest.TestCase):
             "bindings": [{"fn": "f", "arg_index": 1, "expect_calls": [3],
                           "expect_literal_args": ["6_000.0"], "claim": claim}],
             "range_models": [],
+            "intentions": [], "witnesses": [], "findings": [], "dead_regions": [],
+            "priority": {"declared": False, "relation": [], "note": "n/a in fixture"},
         }
 
     def test_one_call_literal_verdict_says_textual(self):
@@ -659,13 +661,24 @@ class TestRunDriver(unittest.TestCase):
     SRC = "fn f(v:&G,b:f64){}\nlet c = Candidate{score:1.0};\nf(view, 6_000.0);\n"
 
     def _ledger(self, src: str) -> dict:
+        # A ledger without the typed sections is now itself a failure: the
+        # method packet claims they are frozen here (chatgpt_1 B1).
         return {
             "subject": {"path": "x.rs", "sha256": shc.sha256_bytes(src.encode())},
             "census": [s.as_dict() for s in shc.census(src)],
             "bindings": [{"fn": "f", "arg_index": 1, "expect_calls": [3],
                           "expect_literal_args": ["6_000.0"]}],
             "range_models": [],
+            "intentions": [], "witnesses": [], "findings": [], "dead_regions": [],
+            "priority": {"declared": False, "relation": [], "note": "n/a in fixture"},
         }
+
+    def test_an_untyped_ledger_fails_the_run(self):
+        led = self._ledger(self.SRC)
+        for section in ("intentions", "priority", "findings", "witnesses", "dead_regions"):
+            stripped = {k: v for k, v in led.items() if k != section}
+            rep = shc.run(stripped, self.SRC, led["subject"]["sha256"], None)
+            self.assertFalse(rep["ok"], section)
 
     def test_clean_run_passes(self):
         led = self._ledger(self.SRC)
@@ -924,8 +937,17 @@ class TestReportAgreesWithTheLedger(unittest.TestCase):
         self.assertEqual(self._embedded(), expected)
 
     def test_the_report_no_longer_claims_ax_zero_answers_the_owner_question(self):
-        text = self.REPORT.read_text()
-        self.assertNotIn("it is the answer to the owner's point 6", text)
+        # The claim chatgpt_1 B2 struck out.  The report may still QUOTE it in
+        # order to retract it -- the revision task requires disagreements and
+        # corrections to be visible rather than silently reworded -- so the test
+        # is that every occurrence sits in a paragraph that also retracts it,
+        # and that there is at most one.  A bare re-assertion fails.
+        claim = "it is the answer to the owner's point 6"
+        paragraphs = [p for p in self.REPORT.read_text().split("\n\n") if claim in p]
+        self.assertLessEqual(len(paragraphs), 1, "the retracted claim appears more than once")
+        for p in paragraphs:
+            self.assertIn("does not follow", p,
+                          "the retracted claim is restated without its retraction")
 
     def test_the_report_states_the_global_ax_status_as_unresolved(self):
         self.assertIn("GLOBAL_AX_STATUS = UNRESOLVED", self.REPORT.read_text())
