@@ -1,8 +1,20 @@
 #!/usr/bin/env python3
-"""Tests for the frozen oscillation situation library (manifest item M3a).
+"""Tests for the frozen oscillation situation libraries (manifest item M3a).
 
 Run:  python3 -m unittest test_oscillation_library -v
       (python3.12 stdlib only; no pytest)
+
+**Two trees are under test, and telling them apart is the point.**
+
+  `oscillation-library-98628e98/library/` -- the M3a SUBJECT,
+      `readable__no_orchard` (`98628e98...`) judged against itself.  This is
+      the deliverable.  `TestSubject*` covers it.
+
+  `oscillation-library/` -- the PARENT lineage (`a8eb3b2b...`), a different
+      program, published as M3a in error and retained only for comparison.
+      The original `Test*` classes still cover it unchanged, and
+      `TestParentLineageIsLabelled` asserts its index says what it is so it
+      can never be cited as M3a again.
 
 Four obligations, from the item:
 
@@ -30,14 +42,26 @@ from pathlib import Path
 import oscillation_library as ol
 
 HERE = Path(__file__).resolve().parent
+
+# The parent lineage (a8eb3b2b) -- NOT the M3a subject.
 LIB = HERE / "oscillation-library"
+PARENT_PANEL_CONFIG = HERE / "oscillation-library-panel-config.json"
+
+# The M3a subject (98628e98), judged against itself.
+SUBJECT_TREE = HERE / "oscillation-library-98628e98"
+SUBJECT_LIB = SUBJECT_TREE / "library"
+SUBJECT_PANEL_CONFIG = SUBJECT_TREE / "panel-config.json"
 
 
 class LibraryTestBase(unittest.TestCase):
+    #: which tree this class tests.  Subclasses override to retarget the whole
+    #: inherited suite at the other library.
+    LIB = LIB
+
     @classmethod
     def setUpClass(cls):
-        cls.situations = ol.load_library(LIB)
-        cls.index = ol.load_index(LIB)
+        cls.situations = ol.load_library(cls.LIB)
+        cls.index = ol.load_index(cls.LIB)
 
     def situation(self, **criteria):
         hits = ol.find(self.situations, **criteria)
@@ -141,10 +165,13 @@ class TestIntegrityFailsClosed(unittest.TestCase):
     """Each test really mutates a scratch copy of the library and shows the
     loader refusing it.  Nothing here asserts a property in the abstract."""
 
+    #: which tree the mutation demonstrations run against.
+    LIB = LIB
+
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp(prefix="osclib-"))
         self.dir = self.tmp / "oscillation-library"
-        shutil.copytree(LIB, self.dir)
+        shutil.copytree(self.LIB, self.dir)
         self.addCleanup(shutil.rmtree, self.tmp, ignore_errors=True)
         self.target = sorted(self.dir.glob("OSC-*.json"))[0]
 
@@ -431,7 +458,7 @@ class TestNamedCases(LibraryTestBase):
 class TestIndex(LibraryTestBase):
 
     def test_index_count_equals_file_count(self):
-        files = sorted(p.name for p in LIB.glob("*.json")
+        files = sorted(p.name for p in self.LIB.glob("*.json")
                        if p.name != "index.json")
         self.assertEqual(self.index["situation_count"], len(files))
         self.assertEqual(len(self.index["situations"]), len(files))
@@ -442,7 +469,7 @@ class TestIndex(LibraryTestBase):
         self.assertEqual(len(ids), len(set(ids)))
         for e in self.index["situations"]:
             self.assertEqual(e["file"], "%s.json" % e["id"])
-            self.assertTrue((LIB / e["file"]).exists())
+            self.assertTrue((self.LIB / e["file"]).exists())
 
     def test_index_histograms_agree_with_the_situations(self):
         self.assertEqual(self.index["mechanism_histogram"],
@@ -549,6 +576,9 @@ class TestFrozenStatesReplay(LibraryTestBase):
     The result of running it is recorded in the report.
     """
 
+    #: the panel config whose `candidate` is the bot that produced this tree.
+    PANEL_CONFIG = PARENT_PANEL_CONFIG
+
     @unittest.skipUnless(os.environ.get("OSC_LIB_REPLAY"),
                          "set OSC_LIB_REPLAY=1 (needs rustc + a bot build)")
     def test_every_full_situation_reproduces_its_command_window(self):
@@ -559,14 +589,22 @@ class TestFrozenStatesReplay(LibraryTestBase):
 
         workdir = Path(tempfile.mkdtemp(prefix="osclib-bot-"))
         self.addCleanup(shutil.rmtree, workdir, ignore_errors=True)
-        cfg = json.loads(
-            (HERE / "oscillation-library-panel-config.json").read_text())
-        cfg["config_dir"] = HERE
+        cfg = json.loads(self.PANEL_CONFIG.read_text())
+        cfg["config_dir"] = self.PANEL_CONFIG.parent
         binary = fp.compile_bot(cfg, "candidate", workdir)
 
-        checked = 0
+        checked = skipped = 0
         for s in self.situations:
             if s["completeness"] != "FULL":
+                continue
+            # A frozen situation replays byte-for-byte only under the referee
+            # that produced it.  `make_referee` is always the CURRENT panel, so
+            # a situation frozen under an earlier corpus is not expected to
+            # reproduce and is not silently counted as if it had: the corpus
+            # bump changes the world transition, which is the whole reason the
+            # panel refuses cross-version comparison.
+            if s["provenance"]["corpus_version"] != fp.CORPUS_VERSION:
+                skipped += 1
                 continue
             init = s["initial_world_state"]
             spec = {
@@ -587,7 +625,285 @@ class TestFrozenStatesReplay(LibraryTestBase):
                                  "%s: turn %d diverges from the freeze"
                                  % (s["id"], entry["turn"]))
             checked += 1
+        if checked == 0:
+            self.skipTest(
+                "every FULL situation in %s was frozen under a corpus other "
+                "than the running panel's %s (%d skipped); replay is not "
+                "meaningful across a corpus bump"
+                % (self.LIB.name, fp.CORPUS_VERSION, skipped))
+        print("\n  replay: %s -- %d/%d FULL situations reproduce their frozen "
+              "command window byte-for-byte (%d skipped: older corpus)"
+              % (self.LIB.name, checked, checked + skipped, skipped))
+
+
+# ===========================================================================
+# The M3a SUBJECT library -- `readable__no_orchard` (98628e98) vs itself.
+#
+# The whole inherited suite is re-run against it by overriding `LIB`, so the
+# subject tree gets the same round-trip, fail-closed-mutation, index and
+# no-best-action guarantees the parent tree got -- not a weaker copy of them.
+# ===========================================================================
+
+class TestSubjectRoundTrip(TestRoundTrip):
+    LIB = SUBJECT_LIB
+
+
+class TestSubjectIndex(TestIndex):
+    LIB = SUBJECT_LIB
+
+
+class TestSubjectNoBestActionRecorded(TestNoBestActionRecorded):
+    LIB = SUBJECT_LIB
+
+
+class TestSubjectIntegrityFailsClosed(TestIntegrityFailsClosed):
+    LIB = SUBJECT_LIB
+
+
+class TestSubjectReplay(TestFrozenStatesReplay):
+    LIB = SUBJECT_LIB
+    PANEL_CONFIG = SUBJECT_PANEL_CONFIG
+
+
+class TestSubjectIdentity(LibraryTestBase):
+    """The defect this tree exists to correct was an IDENTITY defect: the
+    published library named `readable__no_orchard` as its subject and
+    contained not one situation from it.  These tests make that class of
+    error a test failure rather than a reading error."""
+
+    LIB = SUBJECT_LIB
+
+    def test_every_situation_was_produced_by_the_subject_bot(self):
+        for s in self.situations:
+            self.assertEqual(s["provenance"]["bot_source_sha256"],
+                             ol.SUBJECT_SHA256,
+                             "%s was not produced by the M3a subject" % s["id"])
+
+    def test_no_situation_came_from_the_parent_or_any_other_bot(self):
+        """The parent digest, and the third bot that produced the parent
+        tree's REAL_CORPUS record, must appear nowhere in this library."""
+        others = (ol.PARENT_LINEAGE_SHA256,
+                  "f26e3781e972006cb2698420bba3474f1a038708225beeb562f3ab"
+                  "2242593e4a")
+        for s in self.situations:
+            blob = json.dumps(s)
+            for digest in others:
+                self.assertNotIn(digest, blob,
+                                 "%s references foreign bot %s"
+                                 % (s["id"], digest[:16]))
+
+    def test_the_index_declares_the_subject_and_the_floor_identity(self):
+        subject = self.index["subject"]
+        self.assertEqual(subject["sha256"], ol.SUBJECT_SHA256)
+        self.assertEqual(subject["name"], "readable__no_orchard")
+        self.assertEqual(subject["run_identity"], "floor")
+        self.assertIn("submitted-agent6593838-readable-no-orchard.rs",
+                      subject["path"])
+        note = self.index["subject_note"]
+        self.assertIn(ol.SUBJECT_SHA256, note)
+        self.assertIn(ol.PARENT_LINEAGE_SHA256, note)
+
+    def test_the_panel_config_is_a_floor_run_of_the_subject_against_itself(self):
+        cfg = json.loads(SUBJECT_PANEL_CONFIG.read_text())
+        self.assertEqual(cfg["run_identity"], "floor")
+        self.assertEqual(cfg["candidate"]["sha256"], ol.SUBJECT_SHA256)
+        self.assertEqual(cfg["parent"]["sha256"], ol.SUBJECT_SHA256)
+        self.assertEqual(cfg["candidate"]["source"], cfg["parent"]["source"])
+        self.assertNotEqual(cfg["candidate"]["crate"], cfg["parent"]["crate"])
+
+    def test_no_real_corpus_record_is_present(self):
+        """The parent tree's one REAL_CORPUS situation came from a third bot.
+        A subject-declared library may not contain it."""
+        self.assertEqual(ol.find(self.situations, kind="REAL_CORPUS"), [])
+        for s in self.situations:
+            self.assertEqual(s["completeness"], "FULL")
+
+
+class TestSubjectNamedCases(LibraryTestBase):
+    """The four cases named by `oscillation-attack-claude_1-2026-08-09.md`
+    -- which was itself written about `98628e98` -- must land on the subject.
+    Windows may differ from the parent tree's by a few turns: that tree ran
+    corpus c3 and this one runs c5."""
+
+    LIB = SUBJECT_LIB
+
+    def episode_of(self, map_id, seat, unit, turn_start):
+        for s in self.situations:
+            for m in s["multiplicity"]["members"]:
+                if (m.get("map_id") == map_id and m.get("seat") == seat
+                        and m.get("unit") == unit
+                        and m.get("turn_start") == turn_start):
+                    return s, m
+        self.fail("no frozen situation contains episode %s s%d u%d @t%d"
+                  % (map_id, seat, unit, turn_start))
+
+    def test_m110_seat1_is_M1_with_an_idle_blocker(self):
+        s, m = self.episode_of("m110", 1, 0, 6)
+        self.assertEqual(s["classification"]["mechanism"], "M1")
+        self.assertEqual(s["classification"]["blocker_state"], "IDLE")
+        self.assertEqual([m["turn_start"], m["turn_end"]], [6, 200])
+        self.assertEqual(m["length_turns"], 195)
+        b = s["classification"]["blocker"]
+        self.assertEqual(b["unit"], 2)
+        self.assertEqual(b["cell_at_entry"], [4, 2])
+        self.assertEqual(b["distinct_cells_in_window"], 1)
+        self.assertIsNone(b["plant_on_cell_at_entry"])
+
+    def test_m040_seat1_is_M1_with_a_working_blocker(self):
+        s, m = self.episode_of("m040", 1, 0, 80)
+        self.assertEqual(s["classification"]["mechanism"], "M1")
+        self.assertEqual(s["classification"]["blocker_state"], "WORKING")
+        self.assertEqual([m["turn_start"], m["turn_end"]], [80, 86])
+        b = s["classification"]["blocker"]
+        self.assertIn("CHOP", b["non_wait_verbs_in_window"])
+        self.assertFalse(b["idle_by_analysis_criterion"])
+
+    def test_m014_seat1_is_M2_an_idle_peer_on_the_target_plant(self):
+        s, m = self.episode_of("m014", 1, 2, 7)
+        self.assertEqual(s["classification"]["mechanism"], "M2")
+        self.assertEqual(s["classification"]["blocker_state"], "IDLE")
+        b = s["classification"]["blocker"]
+        self.assertIsNotNone(b["plant_on_cell_at_entry"])
+        self.assertTrue(b["idle_by_analysis_criterion"])
+
+    def test_m085_seat0_is_M3_a_scorer_cycle_with_one_own_unit(self):
+        s, m = self.episode_of("m085", 0, 0, 17)
+        self.assertEqual(s["classification"]["mechanism"], "M3")
+        self.assertEqual(s["classification"]["blocker_state"], "NONE")
+        self.assertIsNone(s["classification"]["blocker"])
+        self.assertEqual(s["classification"]["all_own_peers_at_entry"], [])
+
+    def test_the_two_named_cases_differ_exactly_in_the_blocker(self):
+        long_s, long_m = self.episode_of("m110", 1, 0, 6)
+        short_s, short_m = self.episode_of("m040", 1, 0, 80)
+        self.assertEqual(long_s["classification"]["mechanism"],
+                         short_s["classification"]["mechanism"])
+        self.assertNotEqual(long_s["classification"]["blocker_state"],
+                            short_s["classification"]["blocker_state"])
+        self.assertGreater(long_m["length_turns"],
+                           25 * short_m["length_turns"])
+
+
+class TestSubjectIdleBlockerCrossTab(LibraryTestBase):
+    """The headline of the parent-lineage report -- *every* terminal
+    (>= 62 turn) D-1 episode has an idle blocker, and no episode with a
+    working blocker or no blocker reaches 62 -- re-tested on the SUBJECT.
+
+    It is asserted as a test, not narrated, so a re-harvest that changes the
+    answer fails here rather than silently contradicting the report.
+    `blocker_state` is part of the dedupe key, so every member of a group was
+    independently measured to the same state and the episode-level tabulation
+    is sound."""
+
+    LIB = SUBJECT_LIB
+    TERMINAL_TURNS = 62
+
+    def cross_tab(self):
+        tab = {}
+        for s in self.situations:
+            if s["kind"] != "D1_EPISODE":
+                continue
+            state = s["classification"]["blocker_state"]
+            for m in s["multiplicity"]["members"]:
+                key = (state, m["length_turns"] >= self.TERMINAL_TURNS)
+                tab[key] = tab.get(key, 0) + 1
+        return tab
+
+    def test_all_terminal_episodes_have_an_idle_blocker(self):
+        tab = self.cross_tab()
+        self.assertEqual(tab.get(("WORKING", True), 0), 0)
+        self.assertEqual(tab.get(("NONE", True), 0), 0)
+        self.assertGreater(tab.get(("IDLE", True), 0), 0)
+
+    def test_the_measured_cross_tab_is_exactly_as_reported(self):
+        self.assertEqual(self.cross_tab(), {
+            ("IDLE", True): 20, ("IDLE", False): 2,
+            ("WORKING", False): 8, ("NONE", False): 8,
+        })
+
+    def test_the_evidence_for_idleness_is_carried_per_situation(self):
+        """Names the fields that settle the claim.  chatgpt_1's base panel
+        carries none of them; this library carries all of them."""
+        for s in self.situations:
+            if s["kind"] != "D1_EPISODE":
+                continue
+            b = s["classification"]["blocker"]
+            if b is None:
+                self.assertEqual(s["classification"]["blocker_state"], "NONE")
+                continue
+            for field in ("unit", "cell_at_entry", "wait_fraction_in_window",
+                          "distinct_cells_in_window",
+                          "non_wait_verbs_in_window",
+                          "idle_by_analysis_criterion"):
+                self.assertIn(field, b, "%s blocker lacks %s" % (s["id"], field))
+            self.assertEqual(
+                b["idle_by_analysis_criterion"],
+                bool(b["wait_fraction_in_window"] >= 0.95
+                     and b["distinct_cells_in_window"] == 1))
+            self.assertEqual(
+                s["classification"]["blocker_state"],
+                "IDLE" if b["idle_by_analysis_criterion"] else "WORKING")
+
+    def test_the_blocker_wait_fraction_is_rederivable_from_the_frozen_window(self):
+        """Not a stored opinion: recompute it from the verbatim command lines
+        the situation itself carries, and require agreement."""
+        checked = 0
+        for s in self.situations:
+            if s["kind"] != "D1_EPISODE":
+                continue
+            b = s["classification"]["blocker"]
+            if b is None:
+                continue
+            lines = s["window"]["commands"]
+            self.assertTrue(lines, "%s carries no command window" % s["id"])
+            acting = 0
+            for entry in lines:
+                for frag in entry["line"].split(";"):
+                    parts = frag.strip().split()
+                    if (len(parts) > 1 and parts[0] != "WAIT"
+                            and parts[1] == str(b["unit"])):
+                        acting += 1
+                        break
+            self.assertAlmostEqual(1.0 - acting / len(lines),
+                                   b["wait_fraction_in_window"], delta=0.02,
+                                   msg="%s: stored wait fraction does not "
+                                       "match its own command window" % s["id"])
+            checked += 1
         self.assertGreater(checked, 0)
+
+
+class TestParentLineageIsLabelled(unittest.TestCase):
+    """The old tree stays, but it must say what it is.  Without this, the
+    identity defect is one careless citation away from recurring."""
+
+    def test_the_parent_index_records_that_it_is_not_the_m3a_subject(self):
+        index = ol.load_index(LIB)
+        note = index["subject_note"]
+        self.assertIn(ol.PARENT_LINEAGE_SHA256, note)
+        self.assertIn(ol.SUBJECT_SHA256, note)
+        self.assertIn("MUST NOT BE CITED AS M3a", note)
+        self.assertFalse(index["subject"]["is_m3a_subject"])
+        self.assertEqual(index["subject"]["sha256"], ol.PARENT_LINEAGE_SHA256)
+        self.assertEqual(index["subject"]["m3a_subject_is"]["sha256"],
+                         ol.SUBJECT_SHA256)
+
+    def test_labelling_the_parent_tree_did_not_alter_any_situation(self):
+        """The marker is an index field only.  `library_sha256` is computed
+        over the (id, content_sha256) pairs, so this proves no situation file
+        was touched."""
+        index = ol.load_index(LIB)
+        self.assertEqual(index["library_sha256"],
+                         ol.library_sha256(index["situations"]))
+        self.assertEqual(
+            index["library_sha256"],
+            "5858d35122973f017374ed2136aa2855e8e2ace68114b1e8e6f52759e0136c61")
+        self.assertEqual(len(ol.load_library(LIB)), 33)
+
+    def test_the_two_libraries_are_distinct_trees(self):
+        self.assertNotEqual(ol.load_index(LIB)["library_sha256"],
+                            ol.load_index(SUBJECT_LIB)["library_sha256"])
+        self.assertEqual(ol.DEFAULT_DIR, SUBJECT_LIB,
+                         "an unqualified load must return the M3a subject")
 
 
 if __name__ == "__main__":

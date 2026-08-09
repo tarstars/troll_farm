@@ -1,0 +1,697 @@
+{
+ "classification": {
+  "all_own_peers_at_entry": [
+   {
+    "cell_at_entry": [
+     2,
+     3
+    ],
+    "distinct_cells_in_window": 1,
+    "stats": {
+     "capacity": 2,
+     "chop_power": 1,
+     "harvest_power": 1,
+     "speed": 1
+    },
+    "unit": 0,
+    "wait_fraction_in_window": 1.0
+   },
+   {
+    "cell_at_entry": [
+     1,
+     3
+    ],
+    "distinct_cells_in_window": 1,
+    "stats": {
+     "capacity": 2,
+     "chop_power": 1,
+     "harvest_power": 1,
+     "speed": 2
+    },
+    "unit": 2,
+    "wait_fraction_in_window": 1.0
+   }
+  ],
+  "blocker": null,
+  "blocker_state": "NONE",
+  "classifier_version": "m3a-observational/1",
+  "geometry_excerpt": [
+   "######",
+   "#S.###",
+   "#Bo...",
+   "######",
+   "######"
+  ],
+  "geometry_excerpt_legend": "5 rows x 6 cols centred on the stalled anchor unit's cell (origin at row 2, col 2); o anchor, B other own unit, P own unit on a plant, T plant, S own shack, s opponent shack, . walkable, # not. Documentation only.",
+  "geometry_stencil": "-1,0#;0,-1.;0,0o;0,1B;1,0.;",
+  "mechanism": "UNCLASSIFIED",
+  "mechanism_evidence": "P4 liveness stall with no D-1 alternation in the same game: the stationary counterpart of the oscillation population (mechanism analysis 1.6). No mover mechanism is established by the transcript, so no M1/M2/M3 label is asserted."
+ },
+ "completeness": "FULL",
+ "content_sha256": "67343bb5e9f5a19d38b53911beea42674f1660405cce58112e4f007ceb410f43",
+ "detectors": {
+  "counts": {
+   "D-1": 0,
+   "D-2": 0,
+   "D-3": 0,
+   "D-4": 0,
+   "D-5": 0,
+   "D-6": 0,
+   "D-7": 0,
+   "D-8": 0,
+   "D-9": 0
+  },
+  "d1_episodes": [],
+  "live_horizon": 110,
+  "p4_violations": [
+   {
+    "live_end": 99,
+    "terminal_from": 110,
+    "why": "candidate makes no own-inventory/own-cargo progress over turns 6-99 while work remains through turn 99 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]",
+    "window_end": 99,
+    "window_start": 6
+   }
+  ],
+  "turns_simulated": 200
+ },
+ "id": "OSC-034",
+ "initial_world_state": {
+  "inventories": {
+   "opponent": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "own": [
+    0,
+    0,
+    0,
+    2,
+    0,
+    0
+   ]
+  },
+  "plants": [
+   [
+    "BANANA",
+    2,
+    3,
+    4,
+    6,
+    0,
+    36
+   ]
+  ],
+  "turn": 1,
+  "units": [
+   [
+    0,
+    0,
+    1,
+    3,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    8,
+    3,
+    2,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2
+   ],
+   [
+    5,
+    1,
+    12,
+    3,
+    2,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ },
+ "kind": "P4_STALL",
+ "multiplicity": {
+  "dedupe_key_sha256": "0f167148c0d4099c7a853f69c4636dd16569d877476f8578d0d769812a43c728",
+  "episodes": 1,
+  "members": [
+   {
+    "game_id": null,
+    "length_turns": 94,
+    "map_id": "m100",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "turn_end": 99,
+    "turn_start": 6,
+    "unit": 0
+   }
+  ],
+  "representative_rule": "longest window; ties broken by (map_id, seat, unit, turn_start)"
+ },
+ "provenance": {
+  "bot_source": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+  "bot_source_git_ref": "origin/main:cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+  "bot_source_sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+  "corpus_version": "c5-two-player-phase-merged-2026-08-11",
+  "generation_attempt": 0,
+  "instrument_version": "fuzz-panel/5-two-player-phase-merged-referee",
+  "map_class": "choke_corridor",
+  "map_height": 6,
+  "map_id": "m100",
+  "map_width": 14,
+  "note": "candidate and parent are the SAME source -- the M3a SUBJECT `readable__no_orchard` (origin/main:cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs, sha256 98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29) judged against itself. This is the panel FLOOR for the subject, not a candidate regression, and not the parent lineage `a8eb3b2b...`.",
+  "opponent_profile": "harvester",
+  "panel_config_sha256": "eca5cb32e8fc5daa61dd69d0753f9a3962eff5cbce10cf12e8410ba36c903fe5",
+  "panel_liveness_window": 60,
+  "panel_maps": 120,
+  "panel_seeds": [
+   982451653,
+   15485863,
+   32452843,
+   49979687,
+   67867967,
+   86028121
+  ],
+  "panel_turns": 200,
+  "seat": 0,
+  "seed": 67867967,
+  "source": "fuzz-panel-floor",
+  "subject": "readable__no_orchard"
+ },
+ "schema": "troll-farm-oscillation-situation-v1",
+ "static_map_rows": [
+  "##############",
+  "##############",
+  "#0.###########",
+  "#............1",
+  "##############",
+  "##############"
+ ],
+ "unresolved": [
+  "Whether this stall shares a mechanism with the D-1 population is NOT established here. The mechanism analysis section 1.6 argues the terminal oscillation population and the permanently-idle-worker population are the same population seen from opposite ends; that is an argument, not a measurement on this situation. Settled by a goal trace showing what the stalled unit was selecting."
+ ],
+ "window": {
+  "cells": [
+   [
+    2,
+    3
+   ],
+   [
+    1,
+    3
+   ]
+  ],
+  "commands": [
+   {
+    "line": "WAIT;WAIT",
+    "turn": 6
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 7
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 8
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 9
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 10
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 11
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 12
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 13
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 14
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 15
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 16
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 17
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 18
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 19
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 20
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 21
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 22
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 23
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 24
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 25
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 26
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 27
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 28
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 29
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 30
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 31
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 32
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 33
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 34
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 35
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 36
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 37
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 38
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 39
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 40
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 41
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 42
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 43
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 44
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 45
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 46
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 47
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 48
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 49
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 50
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 51
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 52
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 53
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 54
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 55
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 56
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 57
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 58
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 59
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 60
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 61
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 62
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 63
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 64
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 65
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 66
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 67
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 68
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 69
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 70
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 71
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 72
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 73
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 74
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 75
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 76
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 77
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 78
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 79
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 80
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 81
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 82
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 83
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 84
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 85
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 86
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 87
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 88
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 89
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 90
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 91
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 92
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 93
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 94
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 95
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 96
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 97
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 98
+   },
+   {
+    "line": "WAIT;WAIT",
+    "turn": 99
+   }
+  ],
+  "k": null,
+  "length_turns": 94,
+  "turn_end": 99,
+  "turn_start": 6,
+  "unit": 0
+ },
+ "world_state_at_entry": {
+  "inventories": {
+   "opponent": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "own": [
+    0,
+    0,
+    0,
+    2,
+    0,
+    2
+   ]
+  },
+  "plants": [
+   [
+    "BANANA",
+    2,
+    3,
+    4,
+    2,
+    0,
+    31
+   ]
+  ],
+  "turn": 6,
+  "units": [
+   [
+    0,
+    0,
+    2,
+    3,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    1,
+    3,
+    2,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    5,
+    1,
+    12,
+    3,
+    2,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ }
+}
