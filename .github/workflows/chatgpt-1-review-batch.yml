@@ -1,0 +1,114 @@
+name: temporary chatgpt_1 review batch
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  m2:
+    if: github.head_ref == 'agent/chatgpt_1-actions-trigger-20260809'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 76e226107b851cba916e5dd5a01a03821fa46427
+          fetch-depth: 0
+          lfs: false
+      - run: git fetch origin '+refs/heads/*:refs/remotes/origin/*'
+      - name: M2 checker and tests
+        run: |
+          cd claude_1/banana-restoration-r2
+          python3 -m unittest test_score_hierarchy_check -v
+          python3 score_hierarchy_check.py \
+            --ledger score-hierarchy-ledger.json --repo ../..
+
+  m3a:
+    if: github.head_ref == 'agent/chatgpt_1-actions-trigger-20260809'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: d5c57f797fbd722e0c92d9af7f341763c30b4f0c
+          fetch-depth: 0
+          lfs: false
+      - run: git fetch origin '+refs/heads/*:refs/remotes/origin/*'
+      - name: Correct-subject library integrity and replay
+        env:
+          OSC_LIB_REPLAY: '1'
+        run: |
+          export PATH=$HOME/.cargo/bin:$PATH
+          cd claude_1/banana-restoration-r2
+          python3 oscillation_library.py \
+            --dir oscillation-library-98628e98/library
+          python3 -m unittest test_oscillation_library -v
+
+  i30:
+    if: github.head_ref == 'agent/chatgpt_1-actions-trigger-20260809'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: b7b11b86ba4d3c8430d0781d09430cd08192546c
+          fetch-depth: 0
+          lfs: false
+      - run: git fetch origin '+refs/heads/*:refs/remotes/origin/*'
+      - name: I-30 tests, report, and mutations
+        run: |
+          cd claude_1/banana-restoration-r2
+          python3 -m unittest test_i30_invariant -v
+          python3 i30_analyzer.py --report /tmp/i30-review.json
+          python3 i30/i30_mutation_runner.py \
+            --out /tmp/i30-mutations.json \
+            --text /tmp/i30-mutations.txt
+          python3 -m unittest test_trace_detectors -v
+          python3 - <<'PY'
+          import json
+          p=json.load(open('/tmp/i30-review.json'))
+          print('aggregate_status=',p.get('aggregate',{}).get('status'))
+          print('aggregate_sub_status=',p.get('aggregate',{}).get('sub_status'))
+          print('pair_count=',len(p.get('pairs',[])))
+          m=json.load(open('/tmp/i30-mutations.json'))
+          print('mutation_summary=',m.get('summary'))
+          PY
+
+  r4:
+    if: github.head_ref == 'agent/chatgpt_1-actions-trigger-20260809'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dbcc01c949774863094c338968391b8cb82fa2b9
+          fetch-depth: 0
+          lfs: false
+      - run: git fetch origin '+refs/heads/*:refs/remotes/origin/*'
+      - name: R4 unit, differential, mutation, and corpus reproduction
+        run: |
+          export PATH=$HOME/.cargo/bin:$PATH
+          cd claude_1/pipeline
+          python3 -m unittest test_fuzz_panel -v
+          python3 -m unittest test_pre_review -v
+          python3 mutation_drive.py
+          python3 fuzz_panel.py --config fuzz-panel-floor-config.json \
+            --report /tmp/floor.md --json /tmp/floor.json || test $? = 1
+          python3 fuzz_panel.py --config fuzz-panel-config.json \
+            --report /tmp/candidate.md --json /tmp/candidate.json || test $? = 1
+          python3 - <<'PY'
+          import json
+          floor=json.load(open('/tmp/floor.json'))
+          cand=json.load(open('/tmp/candidate.json'))
+          assert floor['run_identity']=='floor', floor.get('run_identity')
+          assert cand['run_identity']=='candidate', cand.get('run_identity')
+          assert floor['stats']['blocking_games']==118, floor['stats']
+          assert cand['stats']['blocking_games']==121, cand['stats']
+          assert floor['verdict']=='BLOCK'
+          assert cand['verdict']=='BLOCK'
+          print('floor_blocking=', floor['stats']['blocking_games'])
+          print('candidate_blocking=', cand['stats']['blocking_games'])
+          print('floor_referee_sha256=', floor['referee_sha256'])
+          print('candidate_referee_sha256=', cand['referee_sha256'])
+          PY
