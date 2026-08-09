@@ -1,0 +1,35 @@
+I-30 revision-3 mutation sweep
+manifest: i30/mutation-manifest-r3-2026-08-09.json (sha256 8530be388e24ff640343edaac7199e1d6767785f3a49611784f9d5183ac21c4a)
+runner  : i30/i30_mutation_runner.py (sha256 59cfc93ac5c2afdee435613fb87b62ce006d037030205b5ff7c0b5051d17122f)
+python  : 3.12.3
+control : GREEN (0 failing)
+
+id             defect verdict    by-own  expected catcher
+M-D1-population I30R2-1 CAUGHT     yes     TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_the_population_named_by_the_bound_selects_the_rows
+M-D1-mean      I30R2-1 CAUGHT     yes     TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_the_metric_is_the_exact_population_mean
+M-D2-pairfail  I30R2-2 CAUGHT     yes     TestR3D2AggregateVerdictPrecedence.test_a_failed_pair_row_propagates_to_aggregate_fail
+M-D2-empty     I30R2-2 CAUGHT     yes     TestR3D2AggregateVerdictPrecedence.test_an_empty_corpus_is_gate_unready
+M-D3-boundsha  I30R2-3 CAUGHT     yes     TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_pin_the_exact_bound_sha
+M-D3-frozenfirst I30R2-3 CAUGHT     yes     TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_predate_the_observation
+M-D3-selfdecl  I30R2-3 CAUGHT     yes     TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_self_declared_string_is_rejected_outright
+M-D3-blob      I30R2-3 CAUGHT     yes     TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_blob_must_be_the_bytes_at_the_pinned_path
+M-D4-nullgross I30R2-4 CAUGHT     yes     TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_the_ambiguous_split_reports_null_totals_and_the_interval
+M-D4-flag      I30R2-4 CAUGHT     yes     TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_a_second_ambiguous_fixture_reports_its_own_interval
+M-D5-bankclass I30R2-5 CAUGHT     yes     TestR3D5BaselineStockIsNotProduction.test_initial_bank_and_carry_atoms_are_baseline_not_natural
+M-D5-schedcls  I30R2-5 CAUGHT     yes     TestR3D5BaselineStockIsNotProduction.test_withdrawing_and_redepositing_baseline_stock_is_zero_production
+M-D6-setdefault I30R2-6 CAUGHT     yes     TestR3D6ContentIdentityIsDerivedNotTrusted.test_derived_hashes_are_never_overridden_by_the_caller
+M-D6-pincheck  I30R2-6 CAUGHT     yes     TestR3D6ContentIdentityIsDerivedNotTrusted.test_two_different_worlds_declaring_one_hash_are_gate_unready
+M-D7-harvest   I30R2-7 CAUGHT     yes     TestR3D7ActivationCoversEveryFrozenCause.test_each_frozen_cause_has_an_activating_fixture
+M-D7-telemetry I30R2-7 CAUGHT     yes     TestR3D7ActivationCoversEveryFrozenCause.test_a_claimed_telemetry_mechanism_without_telemetry_is_unready
+M-D7-banking   I30R2-7 CAUGHT     yes     TestR3D7ActivationCoversEveryFrozenCause.test_each_frozen_cause_has_an_activating_fixture
+M-D8-counts    I30R2-8 CAUGHT     yes     TestR3D8CommandExecutionValidityGate.test_the_discarded_train_trace_is_rejected
+M-D8-manifest  I30R2-8 CAUGHT     yes     TestR3D8CommandExecutionValidityGate.test_the_discarded_train_trace_is_rejected
+M-D8-gate      I30R2-8 CAUGHT     yes     TestR3D8CommandExecutionValidityGate.test_a_record_without_an_execution_block_is_unready
+M-D9-ruling    I30R2-9 CAUGHT     yes     TestR3D9ProvenanceClosureAndRawLedgers.test_the_manifest_closes_over_every_input_class
+M-D9-ledgersha I30R2-9 CAUGHT     yes     TestR3D9ProvenanceClosureAndRawLedgers.test_each_pair_binds_its_raw_ledger_hash
+
+caught 22/22; caught by their own expected test 22/22
+
+This is descriptive of THIS chosen mutation set. It is not a
+completeness proof for the identifiability rules, the
+activation contract or the execution gate.

@@ -5,7 +5,8 @@ Author: `claude_1`
 Execution reviewer: `local_claude_1` (assigned; **this report is not a gate verdict**)
 Task: `20260808-phase1-work-allocation`, item 6
 Branch: `agent/claude_1-banana-restoration-r2`
-**Result schema version: 2** (revision 2, see §0)
+**Result schema version: 3** (revision 3, see §0R3; revision 2 is §0 and is
+retained verbatim so the two contracts can be diffed)
 
 Authoritative documents, in order of precedence:
 
@@ -15,7 +16,318 @@ Authoritative documents, in order of precedence:
 2. `chatgpt_1/schedule-opponent-production-invariant-spec-2026-08-08.md` on the same
    branch — the original I-30 specification.
 
-Everything below is subordinate to those two documents.
+3. `chatgpt_1/i30-revision-2-review-2026-08-08.md` on the same branch — the spec
+   author's review of revision 2, verdict `REVISION_REQUIRED` with ten blocking
+   machine-contract defects. **Revision 3 exists to close them, and where this report
+   and the review differ, the review governs.**
+
+Everything below is subordinate to those three documents.
+
+> **Reading order.** §0R3 and §1R3–§8R3 are revision 3 and supersede the corresponding
+> revision-2 sections wherever they disagree. §0–§9 are revision 2, kept verbatim as
+> the record of what the review examined.
+
+---
+
+## 0R3. Revision 3 — the ten blocking review defects
+
+Date: 2026-08-09 · Author: `claude_1` · **Result schema version: 3**
+
+Reviewed and rejected: `chatgpt_1/i30-revision-2-review-2026-08-08.md`
+(blob at `origin/agent/chatgpt_1`, sha256
+`2be671a34a24010d00d5f7fb8c1ce3953bffe6475bee86d05e32e2fed61abdbc`), verdict
+`REVISION_REQUIRED`, ten blocking machine-contract defects. **The review governs.**
+
+Everything the review accepted is preserved and still asserted by tests: separately
+named `gdep_*` / `wdr_*` / `net_bank_flow_*`; the exact identity on net bank flow;
+ambiguous class attribution becoming `unknown` → `GATE_UNREADY`; the class-swap
+(`a3`, both orders) and same-turn (`a1`) adversarial fixtures.
+
+Every claim below is **MEASURED** (a command was run; it is in §3R3) or **INFERRED**
+(reasoning from source read) or **UNRESOLVED**.
+
+### The single most important structural change
+
+Revision 2 evaluated the bound inside `analyze_pair`. Revision 3 splits the two
+levels absolutely, and this is what closes defects 1, 2 and 3 together:
+
+```
+analyze_pair()      ONE pair. Accounting and evaluability only.
+                    Statuses: GATE_UNREADY | NOT_APPLICABLE | UNPROVEN | MEASURED.
+                    It has NO `bound` parameter at all -- passing one is a TypeError.
+                    It can emit neither PASS nor a value FAIL.
+
+aggregate_report()  Selects the population the bound NAMES, computes the exact
+                    metric over it as a `Fraction`, verifies owner authority
+                    against an `OwnerAuthority`, and is the ONLY producer of a
+                    verdict.
+```
+
+**The new aggregate precedence rule**, evaluated strictly in this order:
+
+| order | condition | verdict |
+|---|---|---|
+| 1 | any pair `GATE_UNREADY`, or any run's command execution invalid | `GATE_UNREADY` |
+| 2 | bound absent, invalid, or not owner-**verified** | `GATE_UNREADY` + `MEASURED_UNTHRESHOLDED` |
+| 3 | population empty or the metric not identifiable | `GATE_UNREADY` |
+| 4 | any pair-level hard-limit `FAIL` row | `FAIL` |
+| 5 | owner-verified aggregate bound exceeded | `FAIL` |
+| 6 | otherwise | `PASS` |
+
+Steps 4 and 5 accumulate into `aggregate_fail_reasons`, so a corpus that both
+contains a failed row and exceeds the bound reports both. Step 1 dominates 4 and 5:
+a corpus with one unready row cannot render a value verdict at all.
+
+### Defect-by-defect
+
+| # | review defect | closed by | mutation |
+|---|---|---|---|
+| 1 | `mean_*` evaluated per pair; `Bound.population` unused | `POPULATIONS` is a frozen dict the aggregate selects with; `SUPPORTED_METRICS[name]["reducer"]` names `mean` or `max`; per-pair limits live under their own `max_per_pair_*` names; the metric is a `Fraction`, never a float | `M-D1-population`, `M-D1-mean` — **CAUGHT by their own tests** |
+| 2 | aggregate ignores `FAIL`; can `PASS` an empty corpus | the precedence table above; one consolidated `population_empty` guard | `M-D2-pairfail`, `M-D2-empty` — **CAUGHT** |
+| 3 | `owner_frozen` self-declared | see below | `M-D3-selfdecl`, `M-D3-blob`, `M-D3-boundsha`, `M-D3-frozenfirst` — **CAUGHT** |
+| 4 | ambiguous split still emits exact gross totals | see below | `M-D4-nullgross`, `M-D4-flag` — **CAUGHT** |
+| 5 | initial stock labelled `natural` | new `baseline` source class, excluded from `SCHEDULE_CLASSES` and so from `D_PRODUCTION_GROSS`, retained in the exact identity as `D_BASELINE_NET` | `M-D5-bankclass`, `M-D5-schedcls` — **CAUGHT** |
+| 6 | caller hashes override derived identity via `setdefault` | `RunRecord.derived_identity` is always computed; `pinned_identity` holds only what a transcript cannot prove; `identity` is their union with derived winning; disagreement → `identity_pin_mismatches` → `GATE_UNREADY`. `transcript_sha256` joined `PAIR_VARIABLE_FIELDS`, so a declared self-pair over two different transcripts is caught | `M-D6-setdefault`, `M-D6-pincheck` — **CAUGHT** |
+| 7 | activation misses HARVEST/CHOP/banking/controller/seam | `ACTIVATION_CONTRACT_VERSION = 2` with seven enumerated causes, six of them read off **successful state events** rather than command strings; a claimed telemetry mechanism with no telemetry bound is `GATE_UNREADY`, never `NOT_APPLICABLE` | `M-D7-harvest`, `M-D7-banking`, `M-D7-telemetry` — **CAUGHT** |
+| 8 | no proof the referee executed every emitted command | see below | `M-D8-counts`, `M-D8-manifest`, `M-D8-gate` — **CAUGHT** |
+| 9 | provenance closure and raw ledgers incomplete | `provenance_manifest()` closes over the five python modules, the spec/ruling/**review** blobs read from `origin/agent/chatgpt_1`, `rust/src/game/engine.rs`, the interpreter version, the platform and the command-protocol verb set; every pair carries `candidate_ledger_sha256`/`parent_ledger_sha256`; the aggregate carries `pair_result_sha256` per pair and a `raw_ledger_index` of immutable path + sha for all 66 raw ledgers | `M-D9-ruling`, `M-D9-ledgersha` — **CAUGHT** |
+| 10 | mutation output committed but not the runner | `i30/i30_mutation_runner.py` + `i30/mutation-manifest-r3-2026-08-09.json` | the machinery itself; see §7R3 |
+
+### Defect 3 — how `owner_frozen` became verifiable
+
+`Bound` no longer has an `owner_frozen` attribute at all. `{"provenance": "owner_frozen"}`
+is now an **invalid bound**: it adds `self_declared_owner_provenance_rejected`, and an
+invalid bound can decide nothing. Authority is a separate object and a separate verdict:
+
+```
+OwnerAuthority(loader, ref, authority_id)      # a blob source pinned to ONE ref
+GitRefAuthority(repo_root, ref, authority_id)  # `git cat-file blob <ref>:<path>`
+verify_owner_decision(bound, authority, observed_utc) -> {"verified": bool, "reasons": [...]}
+```
+
+`verified` requires **all** of:
+
+1. an authority exists (`owner_authority_absent` otherwise — the fail-closed default,
+   so a caller that passes no authority can never reach `PASS`);
+2. `owner_decision_path` resolves **on that pinned ref** (`owner_decision_unresolved`);
+3. `sha256(blob) == bound.owner_decision_blob` (`owner_decision_blob_mismatch`);
+4. the decision parses and names `invariant == "I-30"`;
+5. `decision.bound_body_sha256 == bound.body_sha256`, the sha over the bound **minus its
+   own decision pointer** — the pointer is the one link that must be over a projection,
+   because the decision names the bound and the bound names the decision. Editing any
+   operative field (metric, operator, threshold, population, schema version) changes it
+   (`owner_decision_bound_sha_mismatch`);
+6. `decision.authority == authority.authority_id` (`owner_decision_authority_mismatch`);
+7. `frozen_utc <= observed_utc`, both present — a bound chosen after the results were
+   observed is not a bound (`owner_decision_not_frozen_before_observation`).
+
+**An unratified bound can no longer emit a production `FAIL`.** The review's second
+authority error is closed: arithmetic from a bound nobody ratified is published under
+`unratified_bound_evaluation` with the explicit status `NON_PRODUCTION_MEASUREMENT`,
+and the aggregate stays `GATE_UNREADY / MEASURED_UNTHRESHOLDED`.
+
+**MEASURED — the aggregate is still `GATE_UNREADY`.** The production authority is
+`GitRefAuthority(repo_root, "refs/remotes/origin/main", "user")` and the production
+decision path is `coordination/decisions/i30-bound-decision.json`. It resolves to
+nothing:
+
+```
+$ python3 i30_analyzer.py --report i30/i30-fixture-results-r3-2026-08-09.json
+$ python3 -c '...'
+aggregate_status: GATE_UNREADY
+aggregate_sub_status: MEASURED_UNTHRESHOLDED
+aggregate_unready_reasons: ['pair_gate_unready', 'input_execution_validity',
+                            'bound_not_owner_verified', 'metric_not_identifiable']
+owner_decision.verified: False   reasons: ['owner_decision_unresolved']
+statuses: ['GATE_UNREADY', 'MEASURED', 'NOT_APPLICABLE']   # no PASS, no FAIL
+```
+
+No threshold was invented. `TEST_BOUND_WINDFALL` still points at
+`UNRESOLVED/no-owner-decision-exists`.
+
+`PASS` and `FAIL` are proven **reachable** only through `fx.test_authority()`, an
+explicitly labelled test stand-in that serves decisions under
+`coordination/decisions/i30-test-bound-<body-sha>.json` on the fictional ref
+`refs/i30-test/owner-decisions`. Nothing in the shipped `main()` path can consult it.
+
+### Defect 4 — intervals instead of a chosen endpoint
+
+Within a resource-turn the feasible withdrawal count is an integer interval
+`[lo, hi]`, and `deposits(w) = budget + w`, `withdrawals(w) = w`. Both are monotone in
+`w`, so the feasible gross interval's ends sit at `w = lo` and `w = hi`. **Net bank
+flow does not depend on `w` at all** — that is why it stays exact.
+
+| the split is | gross totals | per-class gross | net | classes |
+|---|---|---|---|---|
+| identifiable (`lo == hi`) | exact | exact | exact | as derived |
+| **not** identifiable (`lo < hi`) | **`None`** + `gdep_total_interval` / `wdr_total_interval` | **`None`** + `gdep_interval_<class>` / `wdr_interval_<class>` | exact | `unknown` |
+| class-only ambiguous (unit assignment, mixed multiset) | exact | exact | exact | `unknown` (the accepted D5 output) plus a per-class feasible interval |
+
+The per-class intervals are over the **true, pre-relabelling** classes: relabelling to
+`unknown` is a reporting convention and does not make a chosen count true. The pair
+propagates `None` (`_sub` returns `None` if either side is `None`) rather than
+inventing a point, and `Bound.evaluate` refuses to reduce a population containing any
+`None` (`metric_not_identifiable` → `GATE_UNREADY`).
+
+MEASURED, `fixture_a1_same_turn_deposit_withdrawal` candidate:
+`gdep_total = None`, `gdep_total_interval = [0, 1]`, `wdr_total_interval = [0, 1]`,
+`gdep_interval_ours = [0, 1]`, `wdr_interval_baseline = [0, 1]`,
+`net_bank_flow_total = 0`, `residual = 0`.
+`fixture_a2_multi_source_deposit`: `gdep_total_interval = [1, 2]`,
+`wdr_total_interval = [0, 1]`, `net_bank_flow_total = 1`.
+`fixture_a3_class_swap` (class-only): `gross_identifiable = True`,
+`gdep_total = 1`, `gdep_unknown = 1`.
+
+### Defect 8 — the input execution gate
+
+`ExecutionValidity` is a **harness declaration** that I-30 validates and never infers.
+It runs **before any ledger is built**: on a rejected pair, `result["candidate"]`,
+`result["parent"]` and every derived quantity including `schedule_windfall_net` are
+`None`, and `counted_in_denominator` stays `True`.
+
+Required fields: `execution_status`, `commands_emitted`, `commands_executed`,
+`unsupported_command_events`, `malformed_command_events`, `verb_manifest`,
+`verb_manifest_sha256`, `referee_sha256`, `engine_sha256`, `instrument_version`,
+`corpus_version`. Rejection reasons: `execution_validity_absent` (the fail-closed
+default — a record with no declaration is unready), `execution_validity_incomplete`,
+`execution_status_not_ok`, `unsupported_command_events`, `malformed_command_events`,
+`commands_emitted_not_all_executed`, `verb_manifest_absent`,
+`verb_manifest_sha_mismatch`, `verb_outside_referee_manifest`,
+`execution_provenance_incomplete`. `referee_sha256`, `verb_manifest_sha256`,
+`instrument_version` and `corpus_version` also joined `SHARED_IDENTITY_FIELDS`, so a
+pair whose two sides were executed by different referees is `GATE_UNREADY`.
+
+`verb_outside_referee_manifest` is derived independently: I-30 tokenizes the command
+bytes itself and requires every verb present to be in the referee's declared manifest.
+
+**Does the gate reject a discarded-command trace? MEASURED: yes.**
+`fixture_m040_discarded_train` reproduces the m040 signature exactly — `TRAIN`
+emitted on three of four turns, zero unit spawns, `execution_status == "ok"` (the
+discard was *silent*), the pre-repair verb manifest without `TRAIN`, and
+`commands_executed == commands_emitted - 3`. It is caught twice over:
+
+```
+status                        GATE_UNREADY
+unready_reasons               ['input_execution_validity']
+candidate_execution.reasons   ['commands_emitted_not_all_executed',
+                               'verb_outside_referee_manifest']
+candidate                     None      # no ledger was ever built
+schedule_windfall_net         None
+```
+
+The verb-manifest clause is the one that matters most: it rejects the trace **even if
+the harness had lied about the counts**, because the pre-repair referee cannot
+truthfully declare a manifest containing `TRAIN`.
+
+The two real `m040` traces named by the review as mandatory negative controls are
+**UNRESOLVED**: they live in another agent's `claude_1/pipeline/` tree, which is under
+external acceptance review and out of bounds for this task. The fixture reproduces
+their signature from the repair report's measured numbers; it is not the same bytes.
+
+### 1R3. Status summary (revision 3)
+
+| item | result |
+|---|---|
+| review defects closed | **9 of 10 fully; 1 partial** (defect 8 — the gate is implemented and proven, but the two real `m040` traces are out of bounds; see above) |
+| disputed | **none** — every defect is accepted as stated |
+| test methods | **105, all passing** (48 from revision 2, updated where the contract moved, + 56 new revision-3 tests + 1 end-to-end production-corpus test) |
+| RED evidence | 54 of the 56 new tests failed against revision 2, recorded verbatim in `i30/red-evidence-r3-2026-08-09.txt`, committed before the fix |
+| mutation experiment | **22 of 22 caught, 22 of 22 by their own expected test**, control green, runner + exact patch manifest committed |
+| fixture corpus | 35 pairs, aggregate **`GATE_UNREADY`**, sub-status `MEASURED_UNTHRESHOLDED`, statuses `{GATE_UNREADY, MEASURED, NOT_APPLICABLE}` |
+| `PASS` reachable in this repo? | **no.** No owner decision resolves on the production ref. `PASS`/`FAIL` are demonstrated only under an explicitly labelled test authority |
+| pre-existing suites | `test_trace_detectors` 28 OK; `test_oscillation_library` + `test_score_hierarchy_check` 215 OK (2 skipped) — all unmodified |
+
+Two of the 56 new tests already held against revision 2 and are recorded as such:
+net bank flow was already exact under an ambiguous split, and the unrelated-command
+divergence already did not activate.
+
+### 3R3. Exact commands to reproduce (revision 3)
+
+All from `claude_1/banana-restoration-r2/`, python 3.12.3, no third-party packages:
+
+```bash
+# 105 tests, OK
+python3 -m unittest test_i30_invariant -v
+
+# the fixture corpus + raw ledgers; aggregate GATE_UNREADY under the
+# PRODUCTION owner authority (which resolves nothing)
+python3 i30_analyzer.py --report i30/i30-fixture-results-r3-2026-08-09.json
+
+# the mutation experiment: control + 22 mutations, each in its own scratch tree
+python3 i30/i30_mutation_runner.py \
+    --out  i30/mutation-sweep-r3-2026-08-09.json \
+    --text i30/mutation-sweep-r3-2026-08-09.txt
+
+# untouched neighbours
+python3 -m unittest test_trace_detectors
+python3 -m unittest test_oscillation_library test_score_hierarchy_check
+```
+
+### 4R3. Input SHA-256 (revision 3)
+
+| file | sha256 |
+|---|---|
+| `i30_ledger.py` | `f658e7204a28e33b70255348eeadbb2f0582bfdd157318521b5bd153d7ec44e6` |
+| `i30_analyzer.py` | `6b8a23217d4d6dbdd059a9c3257ed511f71eda811a2dafc8c7f910e4a2a374ec` |
+| `i30_fixtures.py` | `dbaa7b7118d277b3380528bd7370ad75e20b125f188c155d83f0aff67f03599c` |
+| `test_i30_invariant.py` | `16578581f7d1628f37973bf81597262ae07b3916c6f6fc70f0c201cfede1112d` |
+| `i30/i30_mutation_runner.py` | `59cfc93ac5c2afdee435613fb87b62ce006d037030205b5ff7c0b5051d17122f` |
+| `i30/mutation-manifest-r3-2026-08-09.json` | `8530be388e24ff640343edaac7199e1d6767785f3a49611784f9d5183ac21c4a` |
+| `i30/i30-fixture-results-r3-2026-08-09.json` | `e87fdaadc0ab2352878f117b1623734a66ce8bd47e4eeb932a97faf63ac18157` |
+| `i30/mutation-sweep-r3-2026-08-09.json` | `418bbf46b037ef6c6d100737dad0f6db6d81a6f123bd93021f5ab11fedcb7955` |
+| `i30/red-evidence-r3-2026-08-09.txt` | `d4120df04a5f199f2ba2c495c8e62129fe5e31471447fe8e4f7796d284f5ce05` |
+| `i30/green-evidence-r3-2026-08-09.txt` | `73ec335fb12622859a2b24106c916e0635663b969cd24933b12e96ef5afafb70` |
+| `trace_detectors.py` (imported read-only, **byte-unchanged**) | `59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209` |
+| `rust/src/game/engine.rs` (read-only reference) | `7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05` |
+| review blob, `origin/agent/chatgpt_1` | `2be671a34a24010d00d5f7fb8c1ce3953bffe6475bee86d05e32e2fed61abdbc` |
+| ruling blob, `origin/agent/chatgpt_1` | `4439b38b7d645aedca36e347387976032331184e582986e38b25985ae641ef5e` |
+| spec blob, `origin/agent/chatgpt_1` | `beb34389593c3c8d5690a577f6c528b9b3c3488549f9c6d4902cf7679c45199d` |
+
+The last three are re-derived by `provenance_manifest()` on every run, so a stale spec
+or ruling changes the artifact.
+
+### 7R3. Mutation experiment (defect 10)
+
+`i30/i30_mutation_runner.py` is the experiment; the text file is only its printout.
+Per mutation it (1) asserts the target's pinned sha256 and that the `preimage` occurs
+**exactly once** so the patch is unambiguous, (2) copies every python module to a
+fresh scratch tree, (3) applies the exact substitution(s), (4) runs the suite, (5)
+records `CAUGHT`/`SURVIVED`, the exact failing test ids, and whether the declared
+`expected_catcher` was among them.
+
+Two deliberate design points:
+
+- **`caught_by_expected` is reported separately from `caught`.** A mutation caught by
+  a neighbouring assertion proves the suite is sensitive, not that the defect's own
+  test bites. Revision 3 is 22/22 on both.
+- **An unmutated control runs first** and must be green; a red control invalidates
+  every row. (It caught a real problem while this was being built: a scratch tree has
+  no git refs, so the repository root is now injected as `I30_REPO_ROOT`.)
+- `TestR3D10MutationRunnerIsReproducible` is deselected **inside the scratch tree
+  only**, because it pins the sha of the very files a mutation edits and would
+  therefore flag every mutation.
+- `M-D2-empty` carries `extra_patches`: the empty-population guard is deliberately
+  defence-in-depth, and removing one copy alone is masked by the other. A masked
+  mutation measures nothing, so both go at once.
+
+**The 23/23 figure from revision 2 is superseded, not carried forward.** The
+revision-3 set is 22 mutations chosen one-to-three per review defect. It is
+**descriptive of that chosen set**: it is still not a completeness proof for the
+identifiability rules, the activation contract or the execution gate.
+
+### 8R3. UNRESOLVED after revision 3
+
+- the two real `m040` traces as negative controls for the input gate — they are in
+  another agent's tree, under external acceptance review (defect 8, partial);
+- no owner decision on the I-30 bound exists anywhere, so no candidate verdict may be
+  cited from this instrument under any circumstances;
+- completeness of the identifiability predicates is still unproven (the review said so
+  and revision 3 does not change it);
+- the nine-detector proxy still does not prove all 29 invariants; no adopted real-pair
+  execution or map-cluster interval exists; seat/family/multi-map aggregate paths
+  remain structural;
+- `GitRefAuthority` shells out to `git cat-file`; it proves a blob is on a ref, not
+  that the ref itself is authentic. A signed-object check is not implemented.
 
 ---
 

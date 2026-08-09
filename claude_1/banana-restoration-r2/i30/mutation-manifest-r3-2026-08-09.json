@@ -1,0 +1,218 @@
+{
+  "schema": "i30-mutation-manifest/1",
+  "created_utc": "2026-08-09T00:00:00Z",
+  "review": "chatgpt_1/i30-revision-2-review-2026-08-08.md",
+  "note": "Each entry is an EXACT one-string substitution. The runner asserts the preimage occurs exactly once before applying it, so no patch is ambiguous. `expected_catcher` is the test that must fail: a mutation caught only by a neighbouring assertion is reported separately and is not a closed defect.",
+  "runner": "i30/i30_mutation_runner.py",
+  "target_sha256": {
+    "i30_analyzer.py": "6b8a23217d4d6dbdd059a9c3257ed511f71eda811a2dafc8c7f910e4a2a374ec",
+    "i30_ledger.py": "f658e7204a28e33b70255348eeadbb2f0582bfdd157318521b5bd153d7ec44e6"
+  },
+  "mutations": [
+    {
+      "id": "M-D1-population",
+      "defect": "I30R2-1",
+      "target": "i30_analyzer.py",
+      "preimage": "        return POPULATIONS[self.population](rows)",
+      "replacement": "        return list(rows)",
+      "expected_catcher": "TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_the_population_named_by_the_bound_selects_the_rows",
+      "rationale": "ignore the population the bound names, exactly as revision 2 did"
+    },
+    {
+      "id": "M-D1-mean",
+      "defect": "I30R2-1",
+      "target": "i30_analyzer.py",
+      "preimage": "    return Fraction(sum(values), len(values))",
+      "replacement": "    return Fraction(values[0])",
+      "expected_catcher": "TestR3D1BoundsAreEvaluatedOverTheirPopulation.test_the_metric_is_the_exact_population_mean",
+      "rationale": "make `mean_*` mean one pair's value again"
+    },
+    {
+      "id": "M-D2-pairfail",
+      "defect": "I30R2-2",
+      "target": "i30_analyzer.py",
+      "preimage": "    if any(r[\"status\"] == FAIL for r in rows):",
+      "replacement": "    if False and any(r[\"status\"] == FAIL for r in rows):",
+      "expected_catcher": "TestR3D2AggregateVerdictPrecedence.test_a_failed_pair_row_propagates_to_aggregate_fail",
+      "rationale": "revision 2's `blocking` set ignored FAIL rows"
+    },
+    {
+      "id": "M-D2-empty",
+      "defect": "I30R2-2",
+      "target": "i30_analyzer.py",
+      "preimage": "    if (not rows) or (bound is not None and bound.valid and not selected):",
+      "replacement": "    if False:",
+      "extra_patches": [
+        {
+          "target": "i30_analyzer.py",
+          "preimage": "            out[\"reasons\"].append(\"population_empty\")",
+          "replacement": "            pass"
+        }
+      ],
+      "expected_catcher": "TestR3D2AggregateVerdictPrecedence.test_an_empty_corpus_is_gate_unready",
+      "rationale": "let an empty corpus reach PASS. Both copies of the guard go at once: singly, each is masked by the other, and a masked mutation measures nothing"
+    },
+    {
+      "id": "M-D3-boundsha",
+      "defect": "I30R2-3",
+      "target": "i30_analyzer.py",
+      "preimage": "    if decision.get(\"bound_body_sha256\") != bound.body_sha256:",
+      "replacement": "    if False:",
+      "expected_catcher": "TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_pin_the_exact_bound_sha",
+      "rationale": "accept a decision that names a different bound"
+    },
+    {
+      "id": "M-D3-frozenfirst",
+      "defect": "I30R2-3",
+      "target": "i30_analyzer.py",
+      "preimage": "    if not frozen or not observed_utc or str(frozen) > str(observed_utc):",
+      "replacement": "    if False:",
+      "expected_catcher": "TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_decision_must_predate_the_observation",
+      "rationale": "allow a bound chosen after the results were seen"
+    },
+    {
+      "id": "M-D3-selfdecl",
+      "defect": "I30R2-3",
+      "target": "i30_analyzer.py",
+      "preimage": "        if self.provenance == \"owner_frozen\":",
+      "replacement": "        if False:",
+      "expected_catcher": "TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_self_declared_string_is_rejected_outright",
+      "rationale": "restore revision 2's self-attested provenance string"
+    },
+    {
+      "id": "M-D3-blob",
+      "defect": "I30R2-3",
+      "target": "i30_analyzer.py",
+      "preimage": "    if sha256_bytes(blob) != bound.spec.get(\"owner_decision_blob\"):",
+      "replacement": "    if False:",
+      "expected_catcher": "TestR3D3OwnerFreezeIsVerifiedNotDeclared.test_the_blob_must_be_the_bytes_at_the_pinned_path",
+      "rationale": "accept any bytes at the decision path"
+    },
+    {
+      "id": "M-D4-nullgross",
+      "defect": "I30R2-4",
+      "target": "i30_ledger.py",
+      "preimage": "        if not self.gross_identifiable:\n            return None\n        return self.gdep[source_class]",
+      "replacement": "        return self.gdep[source_class]",
+      "expected_catcher": "TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_the_ambiguous_split_reports_null_totals_and_the_interval",
+      "rationale": "publish revision 2's chosen `w = hi` endpoint as exact"
+    },
+    {
+      "id": "M-D4-flag",
+      "defect": "I30R2-4",
+      "target": "i30_ledger.py",
+      "preimage": "            if not split_is_identifiable(lo, hi):\n                gross_identifiable[0] = False",
+      "replacement": "            if False:\n                gross_identifiable[0] = False",
+      "expected_catcher": "TestR3D4AmbiguousGrossIsAnIntervalNotAPoint.test_a_second_ambiguous_fixture_reports_its_own_interval",
+      "rationale": "never mark the gross counts non-identifiable"
+    },
+    {
+      "id": "M-D5-bankclass",
+      "defect": "I30R2-5",
+      "target": "i30_ledger.py",
+      "preimage": "            bank[k].append(_atom(k, BASELINE_CLASS, BASELINE_CLASS,",
+      "replacement": "            bank[k].append(_atom(k, \"natural\", \"natural\",",
+      "expected_catcher": "TestR3D5BaselineStockIsNotProduction.test_initial_bank_and_carry_atoms_are_baseline_not_natural",
+      "rationale": "revision 2 labelled the opening bank stock `natural`"
+    },
+    {
+      "id": "M-D5-schedcls",
+      "defect": "I30R2-5",
+      "target": "i30_ledger.py",
+      "preimage": "SCHEDULE_CLASSES = (\"opponent\", \"natural\")",
+      "replacement": "SCHEDULE_CLASSES = (\"opponent\", \"natural\", \"baseline\")",
+      "expected_catcher": "TestR3D5BaselineStockIsNotProduction.test_withdrawing_and_redepositing_baseline_stock_is_zero_production",
+      "rationale": "fold the opening endowment back into gross production"
+    },
+    {
+      "id": "M-D6-setdefault",
+      "defect": "I30R2-6",
+      "target": "i30_ledger.py",
+      "preimage": "        ident.update(self.derived_identity)     # derived always wins",
+      "replacement": "        ident.update({k: v for k, v in self.derived_identity.items()\n                      if k not in supplied})",
+      "expected_catcher": "TestR3D6ContentIdentityIsDerivedNotTrusted.test_derived_hashes_are_never_overridden_by_the_caller",
+      "rationale": "restore revision 2's `setdefault` trust of the caller"
+    },
+    {
+      "id": "M-D6-pincheck",
+      "defect": "I30R2-6",
+      "target": "i30_ledger.py",
+      "preimage": "        self.identity_pin_mismatches = sorted(\n            f for f in DERIVED_IDENTITY_FIELDS\n            if f in supplied and supplied[f] != self.derived_identity[f])",
+      "replacement": "        self.identity_pin_mismatches = []",
+      "expected_catcher": "TestR3D6ContentIdentityIsDerivedNotTrusted.test_two_different_worlds_declaring_one_hash_are_gate_unready",
+      "rationale": "stop validating supplied hashes against the bytes"
+    },
+    {
+      "id": "M-D7-harvest",
+      "defect": "I30R2-7",
+      "target": "i30_analyzer.py",
+      "preimage": "    if harvest_delta:\n        causes.append(\"banana_harvest\")",
+      "replacement": "    if False:\n        causes.append(\"banana_harvest\")",
+      "expected_catcher": "TestR3D7ActivationCoversEveryFrozenCause.test_each_frozen_cause_has_an_activating_fixture",
+      "rationale": "revision 2 saw no HARVEST activation at all"
+    },
+    {
+      "id": "M-D7-telemetry",
+      "defect": "I30R2-7",
+      "target": "i30_analyzer.py",
+      "preimage": "    if activation[\"unbound_telemetry_claims\"]:",
+      "replacement": "    if False:",
+      "expected_catcher": "TestR3D7ActivationCoversEveryFrozenCause.test_a_claimed_telemetry_mechanism_without_telemetry_is_unready",
+      "rationale": "answer a claimed controller-state mechanism with NOT_APPLICABLE"
+    },
+    {
+      "id": "M-D7-banking",
+      "defect": "I30R2-7",
+      "target": "i30_analyzer.py",
+      "preimage": "    if bank_delta:\n        causes.append(\"banana_banking\")",
+      "replacement": "    if False:\n        causes.append(\"banana_banking\")",
+      "expected_catcher": "TestR3D7ActivationCoversEveryFrozenCause.test_each_frozen_cause_has_an_activating_fixture",
+      "rationale": "revision 2 saw no changed banking outcome"
+    },
+    {
+      "id": "M-D8-counts",
+      "defect": "I30R2-8",
+      "target": "i30_ledger.py",
+      "preimage": "            if executed != emitted:",
+      "replacement": "            if False:",
+      "expected_catcher": "TestR3D8CommandExecutionValidityGate.test_the_discarded_train_trace_is_rejected",
+      "rationale": "stop noticing commands the referee never applied"
+    },
+    {
+      "id": "M-D8-manifest",
+      "defect": "I30R2-8",
+      "target": "i30_ledger.py",
+      "preimage": "            outside = sorted(v for v in self.stream_verbs if v not in declared)",
+      "replacement": "            outside = []",
+      "expected_catcher": "TestR3D8CommandExecutionValidityGate.test_the_discarded_train_trace_is_rejected",
+      "rationale": "accept verbs the referee never implemented"
+    },
+    {
+      "id": "M-D8-gate",
+      "defect": "I30R2-8",
+      "target": "i30_analyzer.py",
+      "preimage": "    if not candidate.execution.valid or not parent.execution.valid:",
+      "replacement": "    if False:",
+      "expected_catcher": "TestR3D8CommandExecutionValidityGate.test_a_record_without_an_execution_block_is_unready",
+      "rationale": "remove the input gate entirely (the revision-2 state)"
+    },
+    {
+      "id": "M-D9-ruling",
+      "defect": "I30R2-9",
+      "target": "i30_analyzer.py",
+      "preimage": "    manifest[\"ruling:\" + RULING_PATH] = _git_blob_sha(repo_root, SPEC_REF,\n                                                      RULING_PATH)",
+      "replacement": "    pass",
+      "expected_catcher": "TestR3D9ProvenanceClosureAndRawLedgers.test_the_manifest_closes_over_every_input_class",
+      "rationale": "revision 2's manifest hashed only three modules"
+    },
+    {
+      "id": "M-D9-ledgersha",
+      "defect": "I30R2-9",
+      "target": "i30_analyzer.py",
+      "preimage": "    result[\"candidate_ledger_sha256\"] = sha256_text(canonical_json(\n        result[\"candidate\"]))",
+      "replacement": "    result[\"candidate_ledger_sha256\"] = \"0\" * 64",
+      "expected_catcher": "TestR3D9ProvenanceClosureAndRawLedgers.test_each_pair_binds_its_raw_ledger_hash",
+      "rationale": "unbind the pair result from its raw ledger"
+    }
+  ]
+}
