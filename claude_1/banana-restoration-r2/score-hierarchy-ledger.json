@@ -171,8 +171,11 @@
       "expect_literal_args": [
         "6_000.0"
       ],
-      "claim": "one reachable call site, base_score bound to the literal 6_000.0",
-      "evidence_state": "SOURCE_PROVED"
+      "claim": "one TEXTUAL call site under the bare-use side condition; at that occurrence base_score is bound to the literal 6_000.0",
+      "evidence_state": "SOURCE_PROVED",
+      "expect_verdict": "ONE_TEXTUAL_CALL_SITE_LITERAL_BINDING",
+      "reachability_status": "UNPROVED",
+      "reachability_note": "Whether the guard chain above this occurrence can hold is a control-flow question this checker cannot decide (method packet S7.1). SOURCE_PROVED here means the binding exists in the pinned source, NOT that the site executes."
     },
     {
       "fn": "iron_candidates",
@@ -183,16 +186,22 @@
       "expect_literal_args": [
         "6_100.0"
       ],
-      "claim": "one reachable call site, base_score bound to the literal 6_100.0",
-      "evidence_state": "SOURCE_PROVED"
+      "claim": "one TEXTUAL call site under the bare-use side condition; at that occurrence base_score is bound to the literal 6_100.0",
+      "evidence_state": "SOURCE_PROVED",
+      "expect_verdict": "ONE_TEXTUAL_CALL_SITE_LITERAL_BINDING",
+      "reachability_status": "UNPROVED",
+      "reachability_note": "Whether the guard chain above this occurrence can hold is a control-flow question this checker cannot decide (method packet S7.1). SOURCE_PROVED here means the binding exists in the pinned source, NOT that the site executes."
     },
     {
       "fn": "chop_outcome",
       "expect_calls": [
         607
       ],
-      "claim": "single call site; the producer of chop_turns for the RM-1 range model",
-      "evidence_state": "SOURCE_PROVED"
+      "claim": "one TEXTUAL call site; the textual producer of chop_turns for the RM-1 range model",
+      "evidence_state": "SOURCE_PROVED",
+      "expect_verdict": "ONE_TEXTUAL_CALL_SITE",
+      "reachability_status": "UNPROVED",
+      "reachability_note": "Whether the guard chain above this occurrence can hold is a control-flow question this checker cannot decide (method packet S7.1). SOURCE_PROVED here means the binding exists in the pinned source, NOT that the site executes."
     },
     {
       "fn": "ticks_until_fruit",
@@ -200,8 +209,11 @@
         477,
         821
       ],
-      "claim": "two call sites; only R:477 feeds a score expression (RM-2)",
-      "evidence_state": "SOURCE_PROVED"
+      "claim": "two TEXTUAL call sites; only the occurrence at R:477 feeds a score expression (RM-2); which of the two executes is not established here",
+      "evidence_state": "SOURCE_PROVED",
+      "expect_verdict": "MULTIPLE_TEXTUAL_CALL_SITES",
+      "reachability_status": "UNPROVED",
+      "reachability_note": "Whether the guard chain above this occurrence can hold is a control-flow question this checker cannot decide (method packet S7.1). SOURCE_PROVED here means the binding exists in the pinned source, NOT that the site executes."
     }
   ],
   "range_models": [
@@ -296,7 +308,9 @@
           "citation": "R:611",
           "method": "producer-invariant propagation; expanded inline so the checker sees leaf variables"
         }
-      ]
+      ],
+      "reachability_status": "UNPROVED",
+      "endpoint_witnessed": "NONE"
     },
     {
       "id": "RM-1r",
@@ -372,7 +386,9 @@
           "citation": "R:611",
           "method": "producer-invariant propagation; expanded inline so the checker sees leaf variables"
         }
-      ]
+      ],
+      "reachability_status": "UNPROVED",
+      "endpoint_witnessed": "NONE"
     },
     {
       "id": "RM-2n",
@@ -425,7 +441,9 @@
             "travel"
           ]
         }
-      ]
+      ],
+      "reachability_status": "UNPROVED",
+      "endpoint_witnessed": "NONE"
     },
     {
       "id": "RM-2x",
@@ -457,7 +475,9 @@
           "citation": "R:409-431",
           "method": "producer-invariant by loop-bound enumeration: returns 0 at R:411, or `turns` from `for turns in 1..=100` (R:416) at R:426, or the literal 100 at R:430"
         }
-      }
+      },
+      "reachability_status": "UNPROVED",
+      "endpoint_witnessed": "NONE"
     },
     {
       "id": "RM-3",
@@ -480,7 +500,9 @@
           "citation": "R:493-499",
           "method": "panel-bounded assumption; raw BFS cell count, NOT divided by movement_speed"
         }
-      }
+      },
+      "reachability_status": "UNPROVED",
+      "endpoint_witnessed": "NONE"
     },
     {
       "id": "RM-A1a",
@@ -518,7 +540,9 @@
           "assumption": "priority is the enumerate() index over inventory_fruits(view), which is built by filtering a 4-element array literal [BANANA, PLUM, LEMON, APPLE], so 0 <= priority <= 3."
         }
       },
-      "attainable": "[7.25155339806, 187.5]"
+      "attainable": "[7.25155339806, 187.5]",
+      "reachability_status": "UNPROVED",
+      "endpoint_witnessed": "NONE"
     },
     {
       "id": "RM-A1b",
@@ -556,7 +580,9 @@
           "assumption": "priority is the enumerate() index over inventory_fruits(view), which is built by filtering a 4-element array literal [BANANA, PLUM, LEMON, APPLE], so 0 <= priority <= 3."
         }
       },
-      "attainable": "[0.044977506748, 0.074977506748]"
+      "attainable": "[0.044977506748, 0.074977506748]",
+      "reachability_status": "UNPROVED",
+      "endpoint_witnessed": "NONE"
     }
   ]
 }

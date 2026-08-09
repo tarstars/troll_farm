@@ -45,7 +45,7 @@ A mechanical checker **was** implementable, but only for part of the method. It 
 | artefact pinning, subject/companion divergence | **yes, sound** | SHA-256 |
 | score-site census | **yes, but only as a drift detector** | it is a token scan; it can miss a scoring site that never writes the token `score` on its line. Sound only against a frozen ledger (S2.2) |
 | call-site enumeration + literal binding | **yes, sound under a checked side-condition** | the tool refuses to conclude when the identifier appears anywhere except as a definition or immediately before `(` (S3) |
-| interval arithmetic over declared bounds; clamp-deadness | **yes, sound** | ordinary interval arithmetic; exactness is reported per model (S2.4) |
+| interval arithmetic over declared bounds; clamp-deadness | **yes, sound** | ordinary interval arithmetic. It reports a *bound*, never an "exact range": the repeated-variable status, the bound scope, the assumption status, the reachability status and the endpoint-witness status are four separate fields (S2.4) |
 | **deriving the input bounds from Rust source** | **no** | needs a Rust parser + dataflow. Manual, cited, ledgered (S2.1) |
 | **control-flow reachability of a branch** | **no** | manual (S2.6, S5) |
 | **co-reachability of two candidates in one candidate set** | **no** | needs an executable candidate dump; that is item B/M1, not this packet (S7.2) |
@@ -149,10 +149,25 @@ For each scoring site `S`:
 4. **Write the bound as an interval with explicit open/closed endpoints**, `inf` permitted.
 5. **Record it in the ledger** with `citation`, `method`, and `assumption`.
 6. **Let the tool do the arithmetic.** Never do it in your head; that is where 3000/3900 came from.
-7. **Read the precision label.** `EXACT` means every leaf variable occurs once in the expanded
-   expression. `OVER_APPROX` means a variable repeats and the computed interval is a superset of
-   the attainable set — a *bound*, not a *range*. If you need the exact range, rewrite the
-   expression to single-occurrence form (worked in S2.4) and re-run.
+7. **Read the four status fields — and do not read any of them as "this is the exact range".**
+   The tool emits:
+   - `precision`: `NO_REPEATED_VARIABLE_INTERVAL_EVAL` (no leaf variable token occurs twice in the
+     expanded expression) or `REPEATED_VARIABLE_OVER_APPROX` (one does, so the computed interval
+     is a strict superset of the attainable set). **This is a statement about variable tokens and
+     nothing else.** It was called `EXACT` in the first draft of this packet; that name was a lie
+     by vocabulary (`chatgpt_1` B4) and is retired. If you need a tighter interval, rewrite the
+     expression to single-occurrence form (worked in S2.4) and re-run.
+   - `bound_scope`: always `UPPER_BOUND_SOUND__LOWER_NOT_PROVED_ATTAINABLE`, because interval
+     arithmetic over the real relaxation is a sound over-approximation in one direction only.
+   - `assumption_status`: `ASSUMPTION_DEPENDENT` if any input bound's `method` names an assumption
+     or its `assumption` text declares an `UNRESOLVED` dependency, else `CITED_PROOF_METHODS_ONLY`.
+     The dependent inputs are listed by name.
+   - `reachability_status`: `UNPROVED` unless the ledger declares otherwise. This tool never
+     upgrades it (S7.1).
+   - `endpoint_witnessed`: `NONE` unless a committed exact-subject witness attains an endpoint.
+
+   An **exact attainable range** would require all five to be favourable at once, plus integrality
+   and correlation arguments. No model in this packet claims one.
 
 **What the interval does and does not prove.** Interval arithmetic over the real relaxation of
 integer variables is a sound *over*-approximation. Therefore:
@@ -211,10 +226,18 @@ The load-bearing row is `chop_turns`. `chop_outcome` returns `Some((turns, size)
 Result (`RM-1`, reproduced by the checker):
 
 ```
-RM-1: computed (0, 2400]  claimed (0, 2400]  [EXACT]
-      clamp .max(1) at R:611: operand [2, inf) -> DEAD
-RM-1r (opponent_distance >= 1): computed (0, 1950]  [EXACT]
+RM-1:  computed (0, 2400]  claimed (0, 2400]  [NO_REPEATED_VARIABLE_INTERVAL_EVAL]
+       assumptions ASSUMPTION_DEPENDENT ['wood']; reachability UNPROVED; endpoint_witnessed NONE
+       clamp .max(1) at R:611: operand [2, inf) -> DEAD
+RM-1r (opponent_distance >= 1): computed (0, 1950]  [NO_REPEATED_VARIABLE_INTERVAL_EVAL]
+       assumptions ASSUMPTION_DEPENDENT ['opponent_distance', 'wood']
 ```
+
+`2400` is an **upper bound under stated assumptions**, not a proved attainable maximum
+(`chatgpt_1` B4): it holds while the shipped preset caps carry capacity at 3 — the ledger's own
+`wood` entry says the bound rises to 2000 above that — and it permits `opponent_distance = 0`,
+which requires a tree standing on the enemy shack cell and may be unreachable in legal engine
+states. Both facts are now in the machine output, not only in this prose.
 
 **Two things a reader must take from this, and the second is the important one.**
 
@@ -257,11 +280,11 @@ Leaves: `base_score`, `travel`, `ticks_until_fruit`.
 Naive form — the expression as written:
 
 ```
-RM-2n: computed [5817, 6000]  [OVER_APPROX]
+RM-2n: computed [5817, 6000]  [REPEATED_VARIABLE_OVER_APPROX]
        clamp .max(0) at R:477: operand [-83, 100] -> NOT_PROVED_DEAD
 ```
 
-`OVER_APPROX` because `travel` occurs twice. `5817` is a **bound**, not an attained value. (Note
+`REPEATED_VARIABLE_OVER_APPROX` because `travel` occurs twice. `5817` is a **bound**, not an attained value. (Note
 the contrast with S2.3: the same syntactic shape `.max(k)`, one dead, one live, distinguished
 mechanically by the operand interval.)
 
@@ -269,14 +292,20 @@ Rewrite to single-occurrence form. Algebraically,
 `travel + max(ticks - travel, 0) == max(ticks, travel)`:
 
 ```
-RM-2x: computed [5900, 6000]  [EXACT]
+RM-2x: computed [5900, 6000]  [NO_REPEATED_VARIABLE_INTERVAL_EVAL]
+       assumptions ASSUMPTION_DEPENDENT ['travel']; endpoint_witnessed NONE
 ```
+
+Note what the rewrite did and did not buy. It removed the repeated-variable loss. It did **not**
+make `[5900, 6000]` an exact attainable range: `travel <= 83` is a panel-bounded assumption, and
+no endpoint has a witness.
 
 Compare the iron site `R:501`, `base_score - *d` with `base_score = 6100` (S3) and `d` in raw BFS
 cells:
 
 ```
-RM-3:  computed [6017, 6100]  [EXACT]
+RM-3:  computed [6017, 6100]  [NO_REPEATED_VARIABLE_INTERVAL_EVAL]
+       assumptions ASSUMPTION_DEPENDENT ['d']
 ```
 
 **What this establishes, mechanically:** the fruit-equipment site attains values **below 6000**
@@ -291,8 +320,9 @@ tier endpoints.
 - **A leaf with no honest bound.** Then write `[-inf, inf)` and let the result be useless. Do not
   invent a bound to make the table tidy.
 - **Correlated leaves.** Interval arithmetic assumes independence *between* declared variables.
-  `ticks_until_fruit` and `travel` both depend on `plant`; the `EXACT` label means "no
-  repeated-variable loss", not "no modelling assumption". Record correlation in the model's `note`.
+  `ticks_until_fruit` and `travel` both depend on `plant`; `NO_REPEATED_VARIABLE_INTERVAL_EVAL`
+  means "no repeated-variable loss", not "no modelling assumption" and not "exact range". Record
+  correlation in the model's `note`.
 - **Branch unions.** An `if/else` scoring site is two models, not one (see `RM-A1a`/`RM-A1b`). Do
   not model a branch condition as an interval.
 - **Integers.** The real relaxation is a superset. Fine for upper bounds; never claim an endpoint
@@ -326,12 +356,18 @@ the procedure that would have caught the band error.
 5. For each call, split the argument list by balanced-paren scanning (not by comma-splitting) and
    classify the argument at the parameter's index as a numeric literal or not.
 6. Report the verdict:
-   - `SINGLE_CALL_SITE_LITERAL_BINDING` — one call, the parameter is a literal. **The parameter is
-     not variable.** Its interval is a point, usable as a leaf bound in S2.
-   - `SINGLE_CALL_SITE` — one call, argument non-literal. Recurse into the argument.
-   - `MULTI_CALL_SITE` — genuinely parameterised; the parameter's interval is the union of the
-     bindings and the site must be modelled once per binding.
+   - `ONE_TEXTUAL_CALL_SITE_LITERAL_BINDING` — one *textual* call, the parameter is a literal at
+     that occurrence. **The parameter is not variable.** Its interval is a point, usable as a leaf
+     bound in S2.
+   - `ONE_TEXTUAL_CALL_SITE` — one textual call, argument non-literal. Recurse into the argument.
+   - `MULTIPLE_TEXTUAL_CALL_SITES` — genuinely parameterised; the parameter's interval is the union
+     of the bindings and the site must be modelled once per binding.
    - `INCONCLUSIVE` — see step 4.
+
+   Every verdict name says **textual** on purpose (`chatgpt_1` B6). None of them asserts that the
+   occurrence executes. Each binding additionally carries `reachability_status`, which this tool
+   only ever emits as `UNPROVED`; the checker *rejects a ledger* whose binding `claim` or `note`
+   uses the word "reachable" at all, so the mislabelling cannot recur silently.
 
 **Stated side conditions, not proved by the tool** (re-confirm by hand when the code moves): no
 macro-generated calls; no trait-object dispatch to the name; no `use … as` renaming. The subject is
@@ -346,9 +382,11 @@ therefore emits scores into different bands depending on who called it." The pro
 $ python3 claude_1/banana-restoration-r2/score_hierarchy_check.py \
       --ledger claude_1/banana-restoration-r2/score-hierarchy-ledger.json --repo .
 == call-site bindings ==
-  fruit_candidates: def@[463] calls@[455] bare@[] -> SINGLE_CALL_SITE_LITERAL_BINDING (ok)
+  fruit_candidates: def@[463] calls@[455] bare@[] -> ONE_TEXTUAL_CALL_SITE_LITERAL_BINDING (ok)
+      reachability_status: UNPROVED
       line 455 literals {3: '6_000.0'}
-  iron_candidates:  def@[485] calls@[448] bare@[] -> SINGLE_CALL_SITE_LITERAL_BINDING (ok)
+  iron_candidates:  def@[485] calls@[448] bare@[] -> ONE_TEXTUAL_CALL_SITE_LITERAL_BINDING (ok)
+      reachability_status: UNPROVED
       line 448 literals {2: '6_100.0'}
 ```
 
@@ -358,15 +396,21 @@ parameter is bound to a literal at the single call site. **The band is not varia
 constant four lines from its use.** The opacity is latent, not actual. This is `chatgpt_1`'s A3 and
 the coordinator's error (2), reproduced by command.
 
-Contrast, from the same run: `ticks_until_fruit: def@[409] calls@[477, 821] -> MULTI_CALL_SITE`.
+Contrast, from the same run:
+`ticks_until_fruit: def@[409] calls@[477, 821] -> MULTIPLE_TEXTUAL_CALL_SITES`.
 Two call sites; only `R:477` feeds a scoring expression, and *that* narrowing is a manual reading
 step the tool does not perform. It reports the call set; you decide which calls matter.
 
 ### S3.3 What this procedure cannot tell you
 
-That a call site is **reachable**. `SINGLE_CALL_SITE` means one *textual* call; whether the guard
-above it can hold is a control-flow question (S7.1). The procedure bounds variability from above,
-which is all the band question needed.
+That a call site is **reachable**. `ONE_TEXTUAL_CALL_SITE` means one *textual* occurrence of the
+identifier immediately before `(`; whether the guard above it can hold is a control-flow question
+(S7.1). The procedure bounds variability from above, which is all the band question needed.
+
+This is not a pedantic distinction. The first draft of the ledger recorded "one **reachable** call
+site" for `fruit_candidates` and `iron_candidates` — a claim the checker cannot make and does not
+make (`chatgpt_1` B6). It now reads "one TEXTUAL call site under the bare-use side condition", and
+`validate_ledger` fails the whole run if any binding claim reintroduces the word.
 
 ---
 

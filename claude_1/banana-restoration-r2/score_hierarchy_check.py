@@ -407,6 +407,16 @@ class Interval:
             object.__setattr__(self, "lo_closed", False)
         if math.isinf(self.hi):
             object.__setattr__(self, "hi_closed", False)
+        # A zero-width interval is the single point {lo}.  It is non-empty only
+        # if that point is included, i.e. both endpoints are closed.  Accepting
+        # `(x, x)` / `[x, x)` silently admitted the EMPTY SET as a value and let
+        # a wrong product endpoint closure hide (chatgpt_1 review B5).
+        if self.lo == self.hi and not (self.lo_closed and self.hi_closed):
+            raise IntervalError(
+                f"empty zero-width interval "
+                f"{'[' if self.lo_closed else '('}{self.lo}, "
+                f"{self.hi}{']' if self.hi_closed else ')'}"
+            )
 
     # -- construction --------------------------------------------------
     @staticmethod
@@ -485,8 +495,13 @@ class Interval:
                 corners.append((a * b, ac and bc))
         lo = min(c[0] for c in corners)
         hi = max(c[0] for c in corners)
-        lo_closed = all(c[1] for c in corners if c[0] == lo)
-        hi_closed = all(c[1] for c in corners if c[0] == hi)
+        # An endpoint of the product is ATTAINED, and therefore included, as soon
+        # as ONE attaining corner is included.  The previous `all` required every
+        # attaining corner to be closed, which wrongly opened endpoints such as
+        # the 0 of `[0, 1] * (0, 1]` (attained closed at 0*1) and could yield the
+        # empty `(0, 0)`.  chatgpt_1 review B5.
+        lo_closed = any(c[1] for c in corners if c[0] == lo)
+        hi_closed = any(c[1] for c in corners if c[0] == hi)
         return Interval(lo, hi, lo_closed, hi_closed)
 
     def reciprocal(self) -> "Interval":
@@ -597,6 +612,38 @@ def substitute(expr: Any, defs: dict[str, Any]) -> Any:
     return expr
 
 
+# The two possible outcomes of the repeated-variable test.  These names are
+# deliberately literal.  The old names were `EXACT` / `OVER_APPROX`, and `EXACT`
+# was a lie by vocabulary (chatgpt_1 review B4): the test excludes ONE source of
+# interval imprecision -- a variable token occurring twice -- and says nothing
+# about whether the computed interval is the exact ATTAINABLE set.  The inputs
+# may be panel assumptions, the variables may be correlated through shared
+# state, integrality may remove endpoints, and the site may be unreachable.
+# Those four things are reported separately, below.
+PRECISION_NO_REPEAT = "NO_REPEATED_VARIABLE_INTERVAL_EVAL"
+PRECISION_REPEAT = "REPEATED_VARIABLE_OVER_APPROX"
+
+# Bound scope.  Interval arithmetic over the real relaxation of integer
+# variables is a sound OVER-approximation, so an upper bound is a real upper
+# bound and a lower bound is not proved attained without a witness (S2.1).
+BOUND_SCOPE = "UPPER_BOUND_SOUND__LOWER_NOT_PROVED_ATTAINABLE"
+
+# An input bound whose `method` names an assumption rather than a proof, or
+# whose `assumption` text itself declares an UNRESOLVED dependency.  RM-1 is the
+# case chatgpt_1's B4 names: its `wood` bound holds only while the shipped
+# preset caps carry capacity at 3, and the ledger says so in words.  That must
+# reach the machine output, not only the prose.
+_ASSUMPTION_METHOD_RE = re.compile(r"assum", re.IGNORECASE)
+_UNRESOLVED_RE = re.compile(r"\bUNRESOLVED\b")
+
+
+def _is_assumption_bound(spec: dict[str, Any]) -> bool:
+    return bool(
+        _ASSUMPTION_METHOD_RE.search(str(spec.get("method", "")))
+        or _UNRESOLVED_RE.search(str(spec.get("assumption", "")))
+    )
+
+
 def range_model_report(model: dict[str, Any]) -> dict[str, Any]:
     """Evaluate one ledger range model and compare with its claimed interval."""
     env = {
@@ -610,19 +657,38 @@ def range_model_report(model: dict[str, Any]) -> dict[str, Any]:
         {**c, "operand": substitute(c["operand"], defs)} for c in model.get("clamps", [])
     ]
     used = _vars_in(model["expr"])
-    exact = len(used) == len(set(used))
+    no_repeat = len(used) == len(set(used))
     result = eval_expr(model["expr"], env)
     claimed = Interval.parse(model["attainable"]) if "attainable" in model else None
     ok = claimed is None or result.approx_equal(claimed)
+
+    # Which input bounds are assumptions rather than proofs (S2.1 method names)?
+    assumption_inputs = sorted(
+        name
+        for name, spec in model.get("inputs", {}).items()
+        if _is_assumption_bound(spec)
+    )
+
     out: dict[str, Any] = {
         "id": model.get("id"),
         "site": model.get("site"),
         "computed": str(result),
         "claimed": str(claimed) if claimed else None,
         "agrees": ok,
-        # Interval arithmetic is exact only when every variable occurs once;
-        # otherwise it is a sound OVER-approximation of the attainable set.
-        "precision": "EXACT" if exact else "OVER_APPROX",
+        # ONLY a statement about repeated variable tokens.  Not a claim of
+        # exactness.  See the constants above and the method packet S2.4.
+        "precision": PRECISION_NO_REPEAT if no_repeat else PRECISION_REPEAT,
+        # Reported separately so that no single word can imply all four.
+        "bound_scope": BOUND_SCOPE,
+        "assumption_status": (
+            "ASSUMPTION_DEPENDENT" if assumption_inputs else "CITED_PROOF_METHODS_ONLY"
+        ),
+        "assumption_inputs": assumption_inputs,
+        # The ledger may state something stronger, but never by default: this
+        # tool cannot decide whether the site executes (S7.1).
+        "reachability_status": model.get("reachability_status", "UNPROVED"),
+        # Which computed endpoint, if any, has a committed attaining witness.
+        "endpoint_witnessed": model.get("endpoint_witnessed", "NONE"),
         "unbound_vars": sorted(set(used) - set(env)),
     }
     for clamp in model.get("clamps", []):
@@ -655,9 +721,71 @@ def range_model_report(model: dict[str, Any]) -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 
 
+# Words the ledger may not use to describe a *textual* call-site result.  The
+# checker cannot establish that a call site executes, so no ledger claim may say
+# it does.  chatgpt_1 review B6.  Reachability is expressed only through the
+# dedicated `reachability_status` field, whose vocabulary is fixed.
+_REACHABILITY_WORD_RE = re.compile(r"reachab", re.IGNORECASE)
+
+REACHABILITY_STATES = {
+    "UNPROVED",              # the honest default everywhere in this packet
+    "SITE_GUARD_CHAIN_CITED",  # a human exhibited the admitting guard chain
+    "STATE_WITNESSED",       # a committed exact-subject witness packet exists
+}
+
+
+def validate_ledger(ledger: dict[str, Any]) -> list[str]:
+    """Schema/vocabulary validation of the ledger itself.
+
+    Returns a list of human-readable problems; empty means the ledger is
+    well-formed.  This is where the ledger is stopped from *saying* more than
+    the checker can *establish* -- the failure mode that produced the
+    ``one reachable call site`` claim.
+    """
+    problems: list[str] = []
+
+    for i, spec in enumerate(ledger.get("bindings", [])):
+        where = f"bindings[{i}] ({spec.get('fn')!r})"
+        for field in ("claim", "note"):
+            text = str(spec.get(field, ""))
+            if _REACHABILITY_WORD_RE.search(text):
+                problems.append(
+                    f"{where}: {field} asserts reachability, which this checker cannot "
+                    f"establish -- it enumerates TEXTUAL call sites only. Say "
+                    f"'textual call site' and carry reachability in "
+                    f"'reachability_status'. Offending text: {text!r}"
+                )
+        state = spec.get("reachability_status", "UNPROVED")
+        if state not in REACHABILITY_STATES:
+            problems.append(
+                f"{where}: reachability_status {state!r} is not one of "
+                f"{sorted(REACHABILITY_STATES)}"
+            )
+
+    for i, model in enumerate(ledger.get("range_models", [])):
+        where = f"range_models[{i}] ({model.get('id')!r})"
+        state = model.get("reachability_status", "UNPROVED")
+        if state not in REACHABILITY_STATES:
+            problems.append(
+                f"{where}: reachability_status {state!r} is not one of "
+                f"{sorted(REACHABILITY_STATES)}"
+            )
+
+    return problems
+
+
 def run(ledger: dict[str, Any], subject_src: str, subject_sha: str,
         companion_sha: str | None) -> dict[str, Any]:
     report: dict[str, Any] = {"checks": {}, "ok": True}
+
+    # --- ledger vocabulary/schema validation ---
+    problems = validate_ledger(ledger)
+    report["checks"]["ledger_validation"] = {
+        "problems": problems,
+        "ok": not problems,
+    }
+    if problems:
+        report["ok"] = False
 
     # --- identity ---
     subj = ledger["subject"]
@@ -713,16 +841,30 @@ def run(ledger: dict[str, Any], subject_src: str, subject_sha: str,
             got = [c.literal_args.get(int(spec.get("arg_index", 0))) for c in rep.calls]
             agrees = agrees and sorted(x for x in got if x) == sorted(expected_lits)
         d["agrees"] = agrees
+        # The verdict names say TEXTUAL, because that is all this check
+        # establishes: one occurrence of the identifier immediately before `(`,
+        # under the bare-use side condition.  Whether the guard chain above that
+        # occurrence can hold is a control-flow question this tool cannot answer
+        # (S7.1), so reachability is carried as its own field and is never
+        # implied by the verdict.  chatgpt_1 review B6.
         if not rep.sound:
             d["verdict"] = "INCONCLUSIVE"
         elif len(rep.calls) == 1:
             idx = int(spec["arg_index"]) if "arg_index" in spec else None
             bound = idx is not None and idx in rep.calls[0].literal_args
             d["verdict"] = (
-                "SINGLE_CALL_SITE_LITERAL_BINDING" if bound else "SINGLE_CALL_SITE"
+                "ONE_TEXTUAL_CALL_SITE_LITERAL_BINDING"
+                if bound
+                else "ONE_TEXTUAL_CALL_SITE"
             )
         else:
-            d["verdict"] = "MULTI_CALL_SITE"
+            d["verdict"] = "MULTIPLE_TEXTUAL_CALL_SITES"
+        d["reachability_status"] = spec.get("reachability_status", "UNPROVED")
+        expected_verdict = spec.get("expect_verdict")
+        if expected_verdict is not None and expected_verdict != d["verdict"]:
+            d["agrees"] = False
+            agrees = False
+        d["expected_verdict"] = expected_verdict
         bindings.append(d)
         if not agrees:
             report["ok"] = False
@@ -742,6 +884,13 @@ def run(ledger: dict[str, Any], subject_src: str, subject_sha: str,
 
 def format_report(report: dict[str, Any]) -> str:
     lines: list[str] = []
+    val = report["checks"].get("ledger_validation")
+    if val is not None:
+        lines.append("== ledger validation ==")
+        if val["ok"]:
+            lines.append("  no schema/vocabulary problems")
+        for p in val["problems"]:
+            lines.append(f"  PROBLEM {p}")
     ident = report["checks"]["identity"]
     lines.append("== identity ==")
     lines.append(
@@ -777,16 +926,24 @@ def format_report(report: dict[str, Any]) -> str:
             f"{[x['line'] for x in b['calls']]} bare@{b['bare_uses']} "
             f"-> {b['verdict']} ({'ok' if b['agrees'] else 'MISMATCH'})"
         )
+        lines.append(f"      reachability_status: {b['reachability_status']}")
         for call in b["calls"]:
             if call["literal_args"]:
                 lines.append(f"      line {call['line']} literals {call['literal_args']}")
 
-    lines.append("== attainable ranges ==")
+    lines.append("== computed range bounds ==")
     for r in report["checks"]["ranges"]:
         lines.append(
             f"  {r['id']} ({r['site']}): computed {r['computed']} "
-            f"claimed {r['claimed']} [{r['precision']}] "
+            f"claimed {r['claimed']} "
             f"{'ok' if r['agrees'] else 'MISMATCH'}"
+        )
+        lines.append(
+            f"      precision {r['precision']}; scope {r['bound_scope']}; "
+            f"assumptions {r['assumption_status']}"
+            + (f" {r['assumption_inputs']}" if r["assumption_inputs"] else "")
+            + f"; reachability {r['reachability_status']}; "
+            f"endpoint_witnessed {r['endpoint_witnessed']}"
         )
         for cl in r.get("clamps", []):
             lines.append(

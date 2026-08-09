@@ -453,6 +453,20 @@ class TestPrecisionVocabulary(unittest.TestCase):
         self.assertEqual(r["assumption_status"], "CITED_PROOF_METHODS_ONLY")
         self.assertEqual(r["assumption_inputs"], [])
 
+    def test_an_unresolved_dependency_in_the_assumption_text_is_flagged(self):
+        # chatgpt_1 B4 names RM-1 specifically: its `wood` bound holds only while
+        # the shipped preset caps carry capacity at 3, and the ledger says so in
+        # words.  The machine output must carry it too.
+        model = dict(self.REPEATED)
+        model["inputs"] = {
+            "travel": {"range": "[0, 83]", "method": "guard + preset",
+                       "assumption": "UNRESOLVED for a roster shipping capacity > 3"},
+            "ticks": {"range": "[0, 100]", "method": "producer-invariant"},
+        }
+        r = shc.range_model_report(model)
+        self.assertEqual(r["assumption_status"], "ASSUMPTION_DEPENDENT")
+        self.assertEqual(r["assumption_inputs"], ["travel"])
+
     def test_reachability_and_witness_default_to_unproved(self):
         r = shc.range_model_report(self.SINGLE)
         self.assertEqual(r["reachability_status"], "UNPROVED")
