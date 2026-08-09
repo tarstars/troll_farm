@@ -1,0 +1,55 @@
+# WITNESS CENSUS -- fuzz panel r4 (corpus c5)
+# date_utc: 2026-08-09T09:51:38Z
+# cmd: python3 witness_scan.py --config <config>
+
+## candidate run (fuzz-panel-config.json)
+
+witness census: c5-two-player-phase-merged-2026-08-11 (candidate run, 240 games)
+
+| witnessed situation | occurrences | games (of 240) |
+|---|---|---|
+| `c4_phase_order_line` | 255 | 69 |
+| `c5_duplicate_unit_command` | 0 | 0 |
+| `candidate_commands_an_opponent_unit` | 0 | 0 |
+| `chop_snapshot_protected_a_fresh_tree` | 0 | 0 |
+| `cross_player_move_same_target` | 141 | 70 |
+| `drop_from_the_shack_cell_itself` | 0 | 0 |
+| `multi_round_harvest` | 0 | 0 |
+| `o2_multiple_train_on_one_line` | 0 | 0 |
+| `opponent_CHOP` | 1163 | 71 |
+| `opponent_DROP` | 750 | 136 |
+| `opponent_HARVEST` | 1600 | 74 |
+| `opponent_MOVE` | 9535 | 147 |
+| `opponent_commanded_turn` | 11329 | 148 |
+| `pick_from_the_shack_cell_itself` | 0 | 0 |
+| `speed_zero_move` | 0 | 0 |
+| `successful_train` | 2 | 2 |
+| `train_emitted_line` | 2 | 2 |
+| `trust_boundary_malformed_command` | 0 | 0 |
+| `trust_boundary_unsupported_verb` | 0 | 0 |
+
+## floor run (fuzz-panel-floor-config.json)
+
+witness census: c5-two-player-phase-merged-2026-08-11 (floor run, 240 games)
+
+| witnessed situation | occurrences | games (of 240) |
+|---|---|---|
+| `c4_phase_order_line` | 241 | 76 |
+| `c5_duplicate_unit_command` | 0 | 0 |
+| `candidate_commands_an_opponent_unit` | 0 | 0 |
+| `chop_snapshot_protected_a_fresh_tree` | 0 | 0 |
+| `cross_player_move_same_target` | 114 | 69 |
+| `drop_from_the_shack_cell_itself` | 0 | 0 |
+| `multi_round_harvest` | 0 | 0 |
+| `o2_multiple_train_on_one_line` | 0 | 0 |
+| `opponent_CHOP` | 1077 | 71 |
+| `opponent_DROP` | 655 | 125 |
+| `opponent_HARVEST` | 1392 | 70 |
+| `opponent_MOVE` | 7650 | 144 |
+| `opponent_commanded_turn` | 9192 | 146 |
+| `pick_from_the_shack_cell_itself` | 0 | 0 |
+| `speed_zero_move` | 0 | 0 |
+| `successful_train` | 2 | 2 |
+| `train_emitted_line` | 2 | 2 |
+| `trust_boundary_malformed_command` | 0 | 0 |
+| `trust_boundary_unsupported_verb` | 0 | 0 |
