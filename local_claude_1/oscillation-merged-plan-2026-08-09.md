@@ -65,6 +65,15 @@ undiagnosed problem and are a free diagnostic set.
 
 ## The merged plan
 
+> **CORRECTED 2026-08-10 by M3a.** The principle below said the blocker is *productively
+> working*. It is not. `claude_1`'s frozen situation library measures that **all 20 terminal
+> episodes have an IDLE blocker, and no episode with a working blocker ever reaches 62 turns.**
+> That is compatible with the earlier "30/34 peer stands on a plant" — standing on a plant is a
+> *position*, being idle is an *activity* — but it changes the cure. The load-bearing fix is an
+> **idle-yield rule**: make the stationary idle unit move, rather than making the blocked unit
+> re-target around an obstacle we wrongly assumed was busy. Step 3 below is demoted from
+> load-bearing to supporting; an idle-yield rule is added ahead of it.
+
 **Principle, from combining `claude_1`'s 20/20 with `chatgpt_1`'s interface argument: because the
 blocker is stationary and productively working, the moving unit must _re-target_, not _re-route_.**
 No amount of cleverness in the mover helps when the obstacle will never leave.
