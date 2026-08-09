@@ -1,14 +1,46 @@
 # STATE — Troll Farm (single entry point)
 
-Last updated: 2026-08-06. This file is live state, not a record — the ledger volumes are
+Last updated: **2026-08-12**. This file is live state, not a record — the ledger volumes are
 the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 
 ## 1. Live identity
 
+### ★★★ AN ARENA RUN IS IN FLIGHT — READ BEFORE ANY ARENA ACTION
+
+**`readable__no_orchard` is LIVE and MATURING as of 2026-08-12.** Owner-authorised
+("I authorize arena publishing"). Do **not** submit anything else until it settles.
+
+| field | value |
+|---|---|
+| live agent / submission | **`6604529` / `41113243`** |
+| source | `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs` |
+| SHA-256 | `98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29` |
+| purpose | **second mature observation** to settle `SINGLE_MATURE_RUN` against its prior 24.76 |
+| last read | 21 games, score 18.63, rank 83/139, `identity_clean=True`, `signals=0` |
+| **restore target if aborted** | `candidate-agent6553250-e7a-r36-simplified.min.rs`, SHA `2caac7c6…` (agent `6594200` / submission `41090606`) |
+
+**Restore only on unambiguous source/identity/runtime failure — never on a weak score.** Cold
+reads sit far below matured ones; 18.63 at 21 games is the normal trajectory and means nothing.
+Next action is the terminal ~160-game checkpoint compared against 24.76. **The keep/restore
+decision after that read is the owner's.**
+
+Task record: `coordination/tasks/20260812-readable-no-orchard-rerun-arena.md` (full execution
+log). Evidence: `data/analysis/live-agent-6553250/readable-no-orchard-rerun-20260812/`.
+
+⚠ **`docs/PROMOTION-RUNBOOK.md` MUST NOT be followed for this run.** Its authorization gate is
+scoped to candidate D171a only, and its §1 "fixed identities" are stale — it names resident
+`a8eb3b2b…` / agent `6561795`, which has not been live for weeks. **Following its abort path
+would restore the wrong bot.** Use the restore target in the table above.
+
+### Displaced resident (was live until 2026-08-12)
+
 - Player `tass`, Legend practice ladder (contest ended 2026-05-25 — no deadline).
-- Live round-36 simplified E7a `6594200`/`41090606`: exact 55,799-byte source
+- Round-36 simplified E7a `6594200`/`41090606`: exact 55,799-byte source
   `cgauto/submissions/candidate-agent6553250-e7a-r36-simplified.min.rs`, SHA `2caac7c6...`;
-  settled 22.81/rank 32/137 over 160, 93W/2T/65L, identity/runtime clean.
+  settled 22.81/rank 32/137 over 160, 93W/2T/65L, identity/runtime clean. **Its standing had
+  already eroded to 22.7 / rank 35 of 139 by the 2026-08-12 pre-mutation read** — Legend grew
+  from 137 to 139 and we slipped three places. 22.81/32/137 is the settled-checkpoint figure;
+  22.7/35/139 was current standing. Both are real; do not conflate them.
 - `cgauto/api_submit.py` default remains the exact fallback source; do not change casually.
 - Pre-mutation orchard `6592744`/`41087983`: 22.88/rank 32 over 160, exact and healthy.
 - **Arena cycle complete:** round 36 passed 0/516 equality, was accepted once, recovered exact,
