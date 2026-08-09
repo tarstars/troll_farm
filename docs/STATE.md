@@ -189,6 +189,19 @@ makes the goalpost move in the wrong direction.
   Live delivery errors 9 → 2; a correction does **not** clear a delivery error (verified by
   execution), so quarantine remains the only repair.
 - **Operations:** cron 05:17; H12 weekly; no Arena mutation cycle in flight.
+## 4b. Context-flush handover, 2026-08-12
+
+**`coordination/HANDOVER-2026-08-12-local_claude_1.md`** is the verified operational snapshot:
+identity and start ritual, the gate's repair status, transport state, roster and per-agent tool
+digests, both live programmes, owner decisions outstanding, hazards, and my own error record for
+calibration. Every figure in it was re-verified against the repository at the time of writing.
+
+Two facts from it that belong here: **TRAIN r4 is ACCEPTED** (first panel run with zero
+`GATE_UNREADY`; floor 118/240) **but NOT INTEGRATED** — `main` still carries the pre-r4 panel,
+and integrating needs the full branch-integration runbook. And **`readable__no_orchard`
+(`98628e98…`, 24.76/rank 21) is the best bot we have measured and is not the one running**
+(live is `2caac7c6…` at 22.81/rank 32), on a single mature run.
+
 ## 5. Reading order & pointers
 
 1. This file.
