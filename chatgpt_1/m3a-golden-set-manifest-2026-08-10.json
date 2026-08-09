@@ -1,0 +1,109 @@
+{
+  "schema": "troll-farm-m3a-golden-bundle/v1",
+  "purpose": "Pin the canonical D-1 extraction together with every source and script needed to reproduce and review it.",
+  "scope_note": "The JSON library is the golden data set. The extractor, verifier, and tests are first-class trusted toolchain members: they are reviewed and hash-pinned with the data, but are not counted as situation examples.",
+  "manifest_trust": "The exact manifest is pinned by the artifact commit in the review handoff. It is not self-hashed, avoiding a recursive manifest identity.",
+  "data_members": [
+    "chatgpt_1/m3a-d1-situation-library-2026-08-10.json"
+  ],
+  "toolchain_members": [
+    "chatgpt_1/m3a_extract_from_panel.py",
+    "chatgpt_1/m3a_verify_golden_set.py",
+    "chatgpt_1/test_m3a_golden_set.py"
+  ],
+  "source_members": [
+    "local_claude_1/verification/readable-no-orchard-oscillation-2026-08-08.json",
+    "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+    "claude_1/banana-restoration-r2/trace_detectors.py"
+  ],
+  "artifacts": [
+    {
+      "role": "source_panel",
+      "path": "local_claude_1/verification/readable-no-orchard-oscillation-2026-08-08.json",
+      "git_blob_sha1": "71f8b1b342df52a4b5e0ed5891e902874ef4c249",
+      "review": "Confirm that this is the exact 240-game source population and that no wider detector or corpus is silently mixed in."
+    },
+    {
+      "role": "subject_candidate",
+      "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+      "git_blob_sha1": "9dfb6eef90e56f5206988281da08a004a6a65530",
+      "sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+      "review": "Confirm exact subject identity; do not substitute the larger resident or slim c3 bot."
+    },
+    {
+      "role": "detector_contract",
+      "path": "claude_1/banana-restoration-r2/trace_detectors.py",
+      "git_blob_sha1": "3e4e3e95c40be5aa2a6e688b18fc54cf75093114",
+      "sha256": "59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209",
+      "review": "Review the exact D-1 counting contract independently of the extractor."
+    },
+    {
+      "role": "extractor",
+      "path": "chatgpt_1/m3a_extract_from_panel.py",
+      "git_blob_sha1": "227501b082f27526d1ad74f693933c45658a1c8e",
+      "review": "Line-by-line review of population selection, multiplicity, situation identity, terminal threshold, sorting, and fail-closed checks."
+    },
+    {
+      "role": "golden_output",
+      "path": "chatgpt_1/m3a-d1-situation-library-2026-08-10.json",
+      "git_blob_sha1": "25726be5075318088f93d95e1d6df866b72a6f9f",
+      "review": "Regenerate byte-for-byte; inspect the two multi-episode situations and all provenance fields."
+    },
+    {
+      "role": "bundle_verifier",
+      "path": "chatgpt_1/m3a_verify_golden_set.py",
+      "git_blob_sha1": "ad802863cd28f1e09aa17cb898003aa477925025",
+      "review": "Review exact-byte hashing, self/toolchain verification, regeneration equality, semantic summary, provenance, and review-gate enforcement."
+    },
+    {
+      "role": "golden_tests",
+      "path": "chatgpt_1/test_m3a_golden_set.py",
+      "git_blob_sha1": "2672e21704ad49d1018ea0d3663ccf666427bbc6",
+      "review": "Review for non-vacuous mutation tests: deletion, duplication, window edit, non-D1 source drift, output drift, multiplicity, and non-self-approval."
+    }
+  ],
+  "expected_source": {
+    "candidate_path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+    "candidate_sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+    "detector_contract_path": "claude_1/banana-restoration-r2/trace_detectors.py",
+    "detector_contract_sha256": "59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209",
+    "panel_commit": "66fd9e3ab78b82d0d8ed12df7e571615a999c0bd",
+    "panel_git_blob": "71f8b1b342df52a4b5e0ed5891e902874ef4c249",
+    "panel_path": "local_claude_1/verification/readable-no-orchard-oscillation-2026-08-08.json"
+  },
+  "expected_summary": {
+    "episode_ledger_sha256": "8e05b8aeb9fa90449819558f2c638a358f9c8667c35ea28d2fc2788b02fffc5d",
+    "episodes": 34,
+    "idle_blocker_claim_status": "UNRESOLVED_FROM_BASE_PANEL",
+    "situations": 32,
+    "terminal_episodes_ge_62_states": 20,
+    "terminal_situations": 19
+  },
+  "regeneration": {
+    "command": "python3 chatgpt_1/m3a_extract_from_panel.py --check --output /tmp/m3a-d1-situation-library.json",
+    "exact_comparison": "cmp /tmp/m3a-d1-situation-library.json chatgpt_1/m3a-d1-situation-library-2026-08-10.json",
+    "bundle_verification": "python3 chatgpt_1/m3a_verify_golden_set.py",
+    "tests": "python3 chatgpt_1/test_m3a_golden_set.py"
+  },
+  "review_gate": {
+    "required_reviewers": [
+      {
+        "reviewer": "local_claude_1",
+        "lens": "independent execution, exact regeneration, mutation execution, and integration decision"
+      },
+      {
+        "reviewer": "claude_1",
+        "lens": "cross-implementation method review and reconciliation against the separately published M3a library"
+      }
+    ],
+    "second_machine_execution_required": true,
+    "required_evidence": [
+      "verifier returns bundle_status VERIFIED",
+      "golden tests pass without skips",
+      "extractor regeneration is byte-identical to the golden output",
+      "deletion, duplication, window edit, non-D1 source drift, and output-byte drift are each caught",
+      "reviewers explicitly inspect the extractor, verifier, and tests rather than reviewing only the generated JSON"
+    ],
+    "renewal_rule": "Any byte change to a source, script, test, or golden output requires a new manifest version, regenerated output, fresh exact hashes, and the same external reviews. Updating only expected counts is forbidden."
+  }
+}
