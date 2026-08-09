@@ -1,10 +1,10 @@
 # 20260812-readable-no-orchard-rerun-arena: second mature observation of `readable__no_orchard`
 
-- Status: in_progress — pre-mutation record published; submission pending
+- Status: in_progress — SUBMITTED and maturing; identity/runtime clean at 21 games
 - Priority: direct owner assignment
 - Record owner / work owner / Arena controller: `local_claude_1`
 - Created UTC: 2026-08-12T16:00:00Z
-- Last updated UTC: 2026-08-12T16:00:00Z
+- Last updated UTC: 2026-08-12T16:25:00Z
 
 ## Objective and authority
 
@@ -116,3 +116,37 @@ The keep/restore decision after a clean mature read is the **owner's**, not this
 Excluded: all bot sources except read-only access to the exact candidate; the protected
 `rust/src/bin/yamo_orchard_live.rs` (`fff6669b…`); raw games; the 05:17 cron; sealed map ranges;
 external storage.
+
+## Execution log
+
+| UTC | action | result |
+|---|---|---|
+| 2026-08-12T16:00Z | read-only preflight, `recover_live_source.py` | live recovered exact `2caac7c6…`, 55,799 B |
+| 2026-08-12T16:00Z | baseline `cg_rank.py --top 3` | `rank 35/139 score 22.7 agentId=6594200`; battles listed 200 |
+| 2026-08-12T16:05Z | pre-mutation record committed and pushed (`cfab35bc`) | no mutation made |
+| 2026-08-12T16:10Z | **`api_submit_once.py` — ONE mutation call** | `accepted=true ambiguous=false http=200` **submission_id 41113243** |
+| 2026-08-12T16:12Z | `recover_live_source.py --expected-sha256 98628e98…` | **exact match**, 75,634 B — platform holds our source |
+| 2026-08-12T16:14Z | agent-id discovery via `findLastBattlesByTestSessionHandle` | **agent 6604529 / submission 41113243** |
+| 2026-08-12T16:25Z | initial health checkpoint | `games=21 score=18.63 rank=83/139 catastrophic=3 (14.3%) negative_mass=605` **signals=0 identity_clean=True** |
+
+## New live identity
+
+| field | value |
+|---|---|
+| agent | `6604529` |
+| submission | `41113243` |
+| source | `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs` |
+| SHA-256 | `98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29` |
+| displaced | agent `6594200` / submission `41090606` (`2caac7c6…`) |
+
+## Status of the observation
+
+**Maturing.** 21 of ~160 games. The cold trajectory so far is 12.7 → 18.63, which is ordinary
+for a fresh submission and carries no information about the mature level; cold reads sit well
+below matured ones and this task does not judge on them.
+
+Health gates that *do* apply at this stage all pass: identity clean, zero runtime signals, exact
+source on the platform. **No restore trigger is present.**
+
+Next: terminal submission-scoped checkpoint at ~160 games, compared against the prior 24.76.
+The keep/restore decision after that read is the owner's.
