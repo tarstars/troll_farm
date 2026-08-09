@@ -60,7 +60,10 @@ collapsed distinct conclusions. This revision separates five axes:
   (a live mutation of the branch survives) / `NO_FIXTURE`.
 - **calibration validity** — does the detector agree with the parent lineage?
 - **truth validity** — is the predicate the right world-state property?
-  `VALIDATED_BY_DEFINITION` / `UNRESOLVED` / `GATE_UNREADY`.
+  `UNRESOLVED` / `GATE_UNREADY`.  (`VALIDATED_BY_DEFINITION` was retired from this
+  axis on 2026-08-13: a spec stipulating a property dissolves the question this axis
+  asks rather than answering it.  The real claim is recorded separately as
+  **definitional conformance** — `IDENTICAL_TO_SPEC` / `NOT_APPLICABLE`.)
 
 `FALSIFIED` is used **nowhere** in this revision. Nothing in the repository
 currently has the authority to falsify a detector predicate; §4 explains why.
@@ -583,7 +586,7 @@ only).
 | D-4 (c) commitment start: MOVE-to-door (`:787`) | A5 | both triggers | PINNED (by construction) | APPLICABLE | UNRESOLVED |
 | D-4 (d) commitment start: I-21 full capacity (`:785`) | SPEC I-21, A5 | none; **D4-M5 SURVIVED, LIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
 | D-4 (e) commitment start: DROP-at-door (`:789`) | A5 | none; D4-M6 SURVIVED, UNWITNESSED | NO_FIXTURE | APPLICABLE | UNRESOLVED |
-| D-5 (a) I-12 Ring geometry (`:846`) | SPEC I-12 | trigger `:259`, near-miss `:275`; D5-M1, D5-M6 both CAUGHT, LIVE | PINNED (two-sided) | APPLICABLE | **VALIDATED_BY_DEFINITION** — I-12 *is* the geometric definition |
+| D-5 (a) I-12 Ring geometry (`:846`) | SPEC I-12 | trigger `:259`, near-miss `:275`; D5-M1, D5-M6 both CAUGHT, LIVE | PINNED (two-sided) | APPLICABLE | `UNRESOLVED` — I-12 is the spec's own geometric definition; implementation conformance is `PINNED`, but a spec asserting a property does not validate that the property is the right world-state property to detect (ruling 2026-08-13). Definitional conformance: `IDENTICAL_TO_SPEC` |
 | D-5 (b) I-13 cumulative bound (`:850`) | SPEC I-13 | none; **D5-M4 SURVIVED, LIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
 | D-5 (c) I-13 concurrent bound (`:876`) | SPEC I-13 | none; D5-M5 SURVIVED, UNWITNESSED | NO_FIXTURE | APPLICABLE | UNRESOLVED |
 | D-5 (d) I-5 orthogonal cutoff (`:861-863`) | SPEC I-5 | trigger `:266` at turn 299/300; D5-M2, D5-M3 SURVIVED, UNWITNESSED | UNPINNED — value irrelevant at turn 299 | APPLICABLE | UNRESOLVED — no payoff oracle; §7.3 |
@@ -621,7 +624,8 @@ only).
 | applicability | 43 `APPLICABLE`, 4 `INSTRUMENT_UNSUPPORTED` (all D-9) |
 | contract authority | 45 `SETTLED`, 2 `CONFLICT` (D-6 (a1), D-6 (a2)) |
 | implementation validity | 11 `PINNED`, 5 `PARTIAL`, 9 `UNPINNED`, 22 `NO_FIXTURE` |
-| truth validity | 1 `VALIDATED_BY_DEFINITION` (D-5 Ring geometry), 6 `GATE_UNREADY` (D-6 (a1), D-6 (a2), D-9 (a)–(d)), 40 `UNRESOLVED` |
+| truth validity | 6 `GATE_UNREADY` (D-6 (a1), D-6 (a2), D-9 (a)–(d)), 41 `UNRESOLVED` |
+| definitional conformance | 1 `IDENTICAL_TO_SPEC` (D-5 (a) I-12 Ring geometry), 46 `NOT_APPLICABLE` |
 
 **22 of 47 branches — nearly half the detector surface — have no fixture at
 all.** That, not the kill rate, is the load-bearing measurement in this audit.
@@ -799,7 +803,7 @@ Replaces the 2026-08-08 §3 table. `FALSIFIED` does not appear.
 | **D-2** | APPLICABLE | SETTLED | UNPROVEN — 2/6 caught; door-cell and net-zero conjuncts both deletable (D2-M4, D2-M5, both LIVE) | UNPROVEN — zero episodes over the floor corpus is consistent with both correctness and incapacity | UNRESOLVED |
 | **D-3** | APPLICABLE | SETTLED | UNPROVEN — 3/4 caught; clause (a) and its destination proxy are pinned, clause (b) has no fixture (D3-M3, LIVE) | UNPROVEN — zero floor episodes; A4 states the true `target(u,t)` telemetry does not exist | UNRESOLVED — repaired probe available (§7.1), not yet run on refereed transcripts |
 | **D-4** | APPLICABLE | SETTLED | UNPROVEN — 2/6 caught; the I-21 commitment start is deletable (D4-M5, LIVE); equality semantics unpinned (D4-M3, LIVE) | UNPROVEN — zero floor episodes | UNRESOLVED |
-| **D-5** | APPLICABLE | SETTLED | **PINNED for the I-12 Ring-geometry clause only** (D5-M1, D5-M6 both caught). UNPROVEN elsewhere: I-13 bounds and all four I-5 cutoff constants survive | UNPROVEN — fires on the parent lineage by design (2/4 packet games) | **VALIDATED_BY_DEFINITION** for Ring geometry only. UNRESOLVED for cutoffs — no payoff oracle exists (§7.3) |
+| **D-5** | APPLICABLE | SETTLED | **PINNED for the I-12 Ring-geometry clause only** (D5-M1, D5-M6 both caught). UNPROVEN elsewhere: I-13 bounds and all four I-5 cutoff constants survive | UNPROVEN — fires on the parent lineage by design (2/4 packet games) | `UNRESOLVED` throughout. Ring geometry is `IDENTICAL_TO_SPEC` on the separate definitional-conformance axis, which is not truth validity; cutoffs UNRESOLVED — no payoff oracle exists (§7.3) |
 | **D-6** | APPLICABLE | **CONFLICT** (SPEC `:383-390` vs DESIGN F4 `:1170`) | UNPROVEN — 2/9 caught; clauses (a1) and (b) each deletable; `opp_x` bound pinned only to `[2,6]`; ETA formula unpinned | UNPROVEN — fires on the parent lineage by design (1/4 packet games) | **GATE_UNREADY** pending a ratified predicate and an independently validated oracle (§4.5) |
 | **D-7** | APPLICABLE | SETTLED | UNPROVEN — **1/8 caught**, weakest in the suite; **all seven survivors LIVE**; both conjuncts of the banking test independently deletable because the near-miss varies both at once | UNPROVEN — zero floor episodes | UNRESOLVED |
 | **D-8** | APPLICABLE | SETTLED (SPEC Revision 2026-08-05, ratified) | UNPROVEN (best of the suite) — 6/11 caught, incl. the arrival-vs-ripeness concept (D8-M6); growth-aware chop arithmetic (D8-M9, LIVE) and the travel half of the deadline survive | UNPROVEN — zero floor episodes | UNRESOLVED — circular: `detect_d8` calls the oracle its spec names (`:1121`); `asset_survival_oracle` is non-circular but degenerate on fixtures with `cp=0` |

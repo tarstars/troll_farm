@@ -13,7 +13,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-1",
@@ -26,7 +27,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-1",
@@ -39,7 +41,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-1",
@@ -52,7 +55,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-1",
@@ -65,7 +69,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-2",
@@ -78,7 +83,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-2",
@@ -91,7 +97,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-2",
@@ -104,7 +111,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-2",
@@ -117,7 +125,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-3",
@@ -130,7 +139,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-3",
@@ -143,7 +153,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED \u2014 proxy fidelity untested; \u00a77.1",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-3",
@@ -156,7 +167,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-4",
@@ -169,7 +181,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-4",
@@ -182,7 +195,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-4",
@@ -195,7 +209,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-4",
@@ -208,7 +223,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-4",
@@ -221,7 +237,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-5",
@@ -232,9 +249,10 @@
    "impl_validity_note": "PINNED (two-sided)",
    "applicability": "APPLICABLE",
    "applicability_note": "APPLICABLE",
-   "truth_validity": "VALIDATED_BY_DEFINITION",
-   "truth_validity_note": "**VALIDATED_BY_DEFINITION** \u2014 I-12 *is* the geometric definition",
-   "contract_authority": "SETTLED"
+   "truth_validity": "UNRESOLVED",
+   "truth_validity_note": "UNRESOLVED \u2014 I-12 is the spec's own geometric definition; implementation conformance is PINNED, but a spec asserting a property does not validate that the property is the right world-state property to detect.",
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "IDENTICAL_TO_SPEC"
   },
   {
    "detector": "D-5",
@@ -247,7 +265,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-5",
@@ -260,7 +279,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-5",
@@ -273,7 +293,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED \u2014 no payoff oracle; \u00a77.3",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-5",
@@ -286,7 +307,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-5",
@@ -299,7 +321,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-6",
@@ -312,7 +335,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "GATE_UNREADY",
    "truth_validity_note": "**GATE_UNREADY \u2014 CONTRACT AUTHORITY: CONFLICT** (\u00a74)",
-   "contract_authority": "CONFLICT"
+   "contract_authority": "CONFLICT",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-6",
@@ -325,7 +349,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "GATE_UNREADY",
    "truth_validity_note": "GATE_UNREADY (\u00a74)",
-   "contract_authority": "CONFLICT"
+   "contract_authority": "CONFLICT",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-6",
@@ -338,7 +363,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-6",
@@ -351,7 +377,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-7",
@@ -364,7 +391,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-7",
@@ -377,7 +405,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-7",
@@ -390,7 +419,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-7",
@@ -403,7 +433,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-7",
@@ -416,7 +447,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-7",
@@ -429,7 +461,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-7",
@@ -442,7 +475,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-7",
@@ -455,7 +489,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-8",
@@ -468,7 +503,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-8",
@@ -481,7 +517,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-8",
@@ -494,7 +531,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-8",
@@ -507,7 +545,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED \u2014 circular: `detect_d8` calls the oracle its own spec names (`:1121`)",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-8",
@@ -520,7 +559,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-8",
@@ -533,7 +573,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-8",
@@ -546,7 +587,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-8",
@@ -559,7 +601,8 @@
    "applicability_note": "APPLICABLE",
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-9",
@@ -572,7 +615,8 @@
    "applicability_note": "**INSTRUMENT_UNSUPPORTED** (proxy retired, RULING \u00a73)",
    "truth_validity": "GATE_UNREADY",
    "truth_validity_note": "GATE_UNREADY (\u00a76)",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-9",
@@ -585,7 +629,8 @@
    "applicability_note": "**INSTRUMENT_UNSUPPORTED** (RULING \u00a73)",
    "truth_validity": "GATE_UNREADY",
    "truth_validity_note": "GATE_UNREADY",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-9",
@@ -598,7 +643,8 @@
    "applicability_note": "**INSTRUMENT_UNSUPPORTED**",
    "truth_validity": "GATE_UNREADY",
    "truth_validity_note": "GATE_UNREADY",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   },
   {
    "detector": "D-9",
@@ -611,12 +657,14 @@
    "applicability_note": "**INSTRUMENT_UNSUPPORTED**",
    "truth_validity": "GATE_UNREADY",
    "truth_validity_note": "GATE_UNREADY",
-   "contract_authority": "SETTLED"
+   "contract_authority": "SETTLED",
+   "definitional_conformance": "NOT_APPLICABLE"
   }
  ],
  "notes": [
   "Extracted 2026-08-13 from detector-bitetest-audit-2026-08-08.md section 3, against chatgpt_1 bite-test audit r2 blocker 5: the 47-branch ledger and its headline counts were hand-maintained rather than generated. The four tallies the audit publishes are now derived from this file by render_branch_ledger.py, and a test asserts the audit's prose equals the derived figures.",
   "The impl/applicability/truth tallies reproduced the audit's hand-written figures EXACTLY (11/5/9/22, 43/4, 1/6/40), so the published numbers were correct -- they were simply not derived from anything.",
-  "contract_authority is NOT recoverable from any column of the section 3 table: D-6 (a2) carries no conflict marker in any cell, yet the audit counts it as one of the two CONFLICT rows. That tally claimed to be 'counted from the table above' and could not be. It is now an explicit per-row field, seeded from the audit's own enumeration of the two conflicting rows, so it is at least stated rather than inferred."
+  "contract_authority is NOT recoverable from any column of the section 3 table: D-6 (a2) carries no conflict marker in any cell, yet the audit counts it as one of the two CONFLICT rows. That tally claimed to be 'counted from the table above' and could not be. It is now an explicit per-row field, seeded from the audit's own enumeration of the two conflicting rows, so it is at least stated rather than inferred.",
+  "BLOCKER 6 RULING (local_claude_1 20260813T043000Z). VALIDATED_BY_DEFINITION is removed from the truth-validity vocabulary, which becomes UNRESOLVED / GATE_UNREADY. It is not a weaker grade of truth validation; it is a different claim wearing the same word. The axis asks whether the predicate is the right world-state property, and a spec stipulating a property dissolves that question rather than answering it. The real and useful claim moves to a distinct per-row field, definitional_conformance. This also removes the contradiction between section 11's tally and section 12's 'No branch in this table is currently adoptable as truth-validated', and section 12 is the sentence that gates candidate acceptance."
  ]
 }

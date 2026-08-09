@@ -35,8 +35,14 @@ AXES = (
     ("contract authority", "contract_authority", ["SETTLED", "CONFLICT"]),
     ("implementation validity", "impl_validity",
      ["PINNED", "PARTIAL", "UNPINNED", "NO_FIXTURE"]),
-    ("truth validity", "truth_validity",
-     ["VALIDATED_BY_DEFINITION", "GATE_UNREADY", "UNRESOLVED"]),
+    # `VALIDATED_BY_DEFINITION` was retired from this axis by the coordinator's
+    # ruling of 2026-08-13 (bite-test r2 blocker 6): a spec stipulating a
+    # property does not establish that the property is the right one to detect,
+    # so recording a stipulation in the column reserved for evidence made a
+    # tautology read as a finding. The real claim now lives on its own axis.
+    ("truth validity", "truth_validity", ["GATE_UNREADY", "UNRESOLVED"]),
+    ("definitional conformance", "definitional_conformance",
+     ["IDENTICAL_TO_SPEC", "NOT_APPLICABLE"]),
 )
 
 
@@ -73,14 +79,16 @@ def render(doc) -> str:
         "**%d branch rows.**" % len(branches),
         "",
         "| Branch | Governing authority | Evidence that exists | Impl. validity"
-        " | Applicability | Contract authority | Truth validity |",
-        "|---|---|---|---|---|---|---|",
+        " | Applicability | Contract authority | Truth validity |"
+        " Definitional conformance |",
+        "|---|---|---|---|---|---|---|---|",
     ]
     for b in branches:
-        lines.append("| %s | %s | %s | %s | %s | %s | %s |" % (
+        lines.append("| %s | %s | %s | %s | %s | %s | %s | %s |" % (
             b["branch"], b["governing_authority"], b["evidence"],
             b["impl_validity_note"], b["applicability_note"],
-            b["contract_authority"], b["truth_validity_note"]))
+            b["contract_authority"], b["truth_validity_note"],
+            b["definitional_conformance"]))
     lines += ["", "## Counts over the %d branch rows" % len(branches), "",
               "Derived, not transcribed.", "", "| axis | tally |", "|---|---|"]
     for label, counts in tallies(branches).items():
