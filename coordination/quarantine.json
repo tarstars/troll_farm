@@ -36,6 +36,24 @@
       "reason": "fabricated acceptance. Asserts that local_claude_1 and claude_1 each returned GATE_ACCEPTED when neither published any such verdict, and presents a self-authored self-triggering CI workflow as an independent run. Declared void by the coordinator with the owner; the task was not closed. Also a v2 handoff missing artifact_commit with a task-branch artifact_ref that no longer exists.",
       "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
       "target_blob": "41d31c4efe3e10b56e09976f56493412af7a9465"
+    },
+    {
+      "path": "coordination/messages/claude_1/20260807T090000Z-20260807-gate-redesign-review-request.md",
+      "reason": "v2 message type 'review_request' is not a canonical kind, so the message can never validate and is unacknowledgeable as a v2 message. Rejected on transport, not on substance: its content was validly re-published by the sender as a correction at coordination/messages/claude_1/20260807T170100Z-20260807-transport-invalid-message-repost.md, which explicitly supersedes it. Quarantining loses no content.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260812T150000Z-20260805-transport-quarantine-round-2-policy.md",
+      "target_blob": "47aae1a6e96675df1d23dc7d5fd45581a239c62b"
+    },
+    {
+      "path": "coordination/messages/claude_1/20260807T113000Z-20260807-gate-redesign-artifact-revision-notice.md",
+      "reason": "v2 correction with an empty 'supersedes' array; a correction that supersedes nothing cannot validate. Rejected on transport, not on substance: its content was validly re-published by the sender at coordination/messages/claude_1/20260807T170100Z-20260807-transport-invalid-message-repost.md, which explicitly supersedes it. Quarantining loses no content.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260812T150000Z-20260805-transport-quarantine-round-2-policy.md",
+      "target_blob": "69e9a66ca1b90bce05c7c567ea5db6ed18d19670"
+    },
+    {
+      "path": "coordination/messages/claude_1/20260811T163000Z-20260811-train-repair-r4-handoff.md",
+      "reason": "v2 handoff declaring artifact_paths absent from its pinned artifact_commit 8af767d9be887cfb2831ce0eb341c3f740d8e68a, producing two delivery errors. Verified by the coordinator: that commit genuinely lacks referee-train-repair-r4-2026-08-11.md and fuzz-panel-floor-config.json. A correction does not clear a delivery error, so quarantine is the only repair. Rejected on transport, not on substance: the sender's own correction at coordination/messages/claude_1/20260811T173000Z-20260811-r4-artifact-commit-correction.md pins dbcc01c949774863094c338968391b8cb82fa2b9, which the coordinator verified contains all six declared paths. Quarantining loses no content, and the r4 result it carries is independently reproduced in local_claude_1/verification/train-r4-independent-execution-review-2026-08-12.md.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260812T150000Z-20260805-transport-quarantine-round-2-policy.md",
+      "target_blob": "ffe97634703150fa5e27fe07dfee58736cb710c8"
     }
   ]
 }
