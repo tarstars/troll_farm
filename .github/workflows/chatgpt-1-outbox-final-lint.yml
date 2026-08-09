@@ -1,0 +1,71 @@
+name: temporary chatgpt_1 final outbox lint
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  lint-current-outbox:
+    if: github.head_ref == 'agent/chatgpt_1-actions-trigger-20260809'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/chatgpt_1
+          fetch-depth: 0
+          lfs: false
+      - run: git fetch origin '+refs/heads/*:refs/remotes/origin/*'
+      - name: Validate all 2026-08-11 chatgpt_1 messages with receiver rules
+        run: |
+          python3 - <<'PY'
+          import pathlib
+          import sys
+          sys.path.insert(0, str(pathlib.Path('scripts').resolve()))
+          import inbox_sweep as s
+
+          refs, per_path = s.scan_authoritative()
+          remote_ref_names = set(refs)
+          collided = {path for path, oids in per_path.items() if len(oids) > 1}
+          if collided:
+              raise SystemExit('immutable collisions: ' + ', '.join(sorted(collided)))
+          authoritative_paths = set(per_path)
+          messages = {}
+          canonical = {}
+          agent_prefix = s.REMOTE_PREFIX + 'agent/'
+          for path, oids in per_path.items():
+              (oid, refs_for_path), = oids.items()
+              body = s.git('cat-file', 'blob', oid)
+              messages[path] = s.Message(path, s.display_ref(path, refs_for_path, s.sender_of(path)), body)
+              for ref in refs_for_path:
+                  if ref.startswith(agent_prefix):
+                      agent = ref[len(agent_prefix):]
+                      if '/' not in agent:
+                          canonical.setdefault(agent, set()).add(path)
+
+          prefix = 'coordination/messages/chatgpt_1/20260811T'
+          targets = sorted(path for path in messages if path.startswith(prefix))
+          if not targets:
+              raise SystemExit('no current chatgpt_1 messages found')
+          errors = []
+          for path in targets:
+              msg = messages[path]
+              if not msg.is_v2:
+                  errors.append((path, 'not schema v2'))
+                  continue
+              for error in s.validate_v2(
+                  msg, authoritative_paths, canonical, remote_ref_names
+              ):
+                  errors.append((path, error))
+          print('validated_current_messages=', len(targets))
+          for path in targets:
+              print('OK', path)
+          if errors:
+              for path, error in errors:
+                  print('ERROR', path, error)
+              raise SystemExit(1)
+          PY
