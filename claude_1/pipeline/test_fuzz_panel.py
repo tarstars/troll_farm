@@ -761,6 +761,10 @@ class TestExitCodes(unittest.TestCase):
             # config or load_config fails closed.
             "instrument_version": fp.INSTRUMENT_VERSION,
             "corpus_version": fp.CORPUS_VERSION,
+            # review B5: one bot against itself IS the floor, two bots are a
+            # candidate run, and load_config refuses a mislabelled config.
+            "run_identity": ("floor" if candidate_src == parent_src
+                             else "candidate"),
             "candidate": {"source": str(candidate_src)},
             "parent": {"source": str(parent_src)},
             "seeds": [11], "maps": 2, "turns": 30, "processes": 1,
@@ -966,6 +970,7 @@ class TestExhaustiveDispatch(unittest.TestCase):
                 "task": "fuzz-selftest-unsupported",
                 "instrument_version": fp.INSTRUMENT_VERSION,
                 "corpus_version": fp.CORPUS_VERSION,
+                "run_identity": "candidate",
                 "candidate": {"source": str(bogus)},
                 "parent": {"source": str(wait)},
                 "seeds": [11], "maps": 1, "turns": 8, "processes": 1,
@@ -1745,6 +1750,7 @@ class Case:
 
     def spec(self, profile="idle"):
         return {"rows": self.rows, "inventory": list(self.inventory),
+                "opp_inventory": list(self.opp_inventory),
                 "plants": [list(p) for p in self.plants],
                 "units": [list(u) for u in self.units], "profile": profile}
 
@@ -2084,10 +2090,14 @@ class TestPhaseOrder(unittest.TestCase):
         calls = [a for a in _attrs_in_source_order(
             _body_ast(fp.FuzzReferee._execute))
             if a.startswith(("_apply_", "_train_"))]
+        # `_train_one` appears twice: engine.rs:786-791 runs the candidate's
+        # TRAIN entries as player 0 and the opponent's as player 1, sharing
+        # one `next_id`.  Every other phase takes the MERGED bucket.
         self.assertEqual(
             calls,
             ["_apply_moves", "_apply_harvest", "_apply_plant", "_apply_chop",
-             "_apply_pick", "_train_one", "_apply_drop", "_apply_mine"])
+             "_apply_pick", "_train_one", "_train_one", "_apply_drop",
+             "_apply_mine"])
 
     def test_drop_never_funds_a_same_turn_train(self):
         ref = train_referee(inventory=[1, 1, 1, 0, 1, 0],
@@ -2275,6 +2285,7 @@ class TestUnsupportedVerbRetainsTheRow(unittest.TestCase):
                 "task": "fuzz-selftest-unsupported",
                 "instrument_version": fp.INSTRUMENT_VERSION,
                 "corpus_version": fp.CORPUS_VERSION,
+                "run_identity": "candidate",
                 "candidate": {"source": str(bogus)},
                 "parent": {"source": str(wait)},
                 "seeds": [11], "maps": 1, "turns": 8, "processes": 1,
@@ -2311,6 +2322,8 @@ class TestRowProvenance(unittest.TestCase):
                 "task": "fuzz-selftest-provenance",
                 "instrument_version": fp.INSTRUMENT_VERSION,
                 "corpus_version": fp.CORPUS_VERSION,
+                # one bot against itself IS a floor run (review B5).
+                "run_identity": "floor",
                 "candidate": {"source": str(wait)},
                 "parent": {"source": str(wait)},
                 "seeds": [11], "maps": 1, "turns": 8, "processes": 1,
@@ -2326,7 +2339,10 @@ class TestRowProvenance(unittest.TestCase):
             self.assertEqual(payload["referee_sha256"], fp.referee_sha256())
             for row in payload["games"]:
                 for key in ("execution_status", "command_errors",
-                            "train_events", "spawns", "provenance"):
+                            "command_error_total", "error_lines",
+                            "train_events", "spawns", "run_identity",
+                            "parent_execution_status",
+                            "parent_command_errors", "provenance"):
                     self.assertIn(key, row)
                 prov = row["provenance"]
                 self.assertEqual(prov["referee_sha256"], fp.referee_sha256())
@@ -2371,6 +2387,7 @@ class TestVersionDeclarationFailsClosed(unittest.TestCase):
             "task": "t",
             "instrument_version": fp.INSTRUMENT_VERSION,
             "corpus_version": fp.CORPUS_VERSION,
+            "run_identity": "candidate",
             "candidate": {"source": "c.rs"}, "parent": {"source": "p.rs"},
             "seeds": [1], "maps": 1, "turns": 4,
         }
@@ -2379,6 +2396,10 @@ class TestVersionDeclarationFailsClosed(unittest.TestCase):
 
     def _load(self, cfg):
         with tempfile.TemporaryDirectory() as tmp:
+            # review B5: the identity check reads the two sources' bytes, so
+            # they have to exist and differ for a `candidate` declaration.
+            (Path(tmp) / "c.rs").write_text("// candidate\n")
+            (Path(tmp) / "p.rs").write_text("// parent\n")
             p = Path(tmp) / "cfg.json"
             p.write_text(json.dumps(cfg))
             return fp.load_config(p)
@@ -2406,11 +2427,15 @@ class TestVersionDeclarationFailsClosed(unittest.TestCase):
         self.assertEqual(self._load(self._cfg())["corpus_version"],
                          fp.CORPUS_VERSION)
 
-    def test_the_committed_config_declares_the_r3_bump(self):
-        cfg = json.loads((HERE / "fuzz-panel-config.json").read_text())
-        self.assertEqual(cfg["corpus_version"], fp.CORPUS_VERSION)
-        self.assertEqual(cfg["instrument_version"], fp.INSTRUMENT_VERSION)
-        self.assertIn("c4", cfg["corpus_version"])
+    def test_the_committed_configs_declare_the_r4_bump(self):
+        for name in ("fuzz-panel-config.json",
+                     "fuzz-panel-floor-config.json"):
+            with self.subTest(config=name):
+                cfg = json.loads((HERE / name).read_text())
+                self.assertEqual(cfg["corpus_version"], fp.CORPUS_VERSION)
+                self.assertEqual(cfg["instrument_version"],
+                                 fp.INSTRUMENT_VERSION)
+                self.assertIn("c5", cfg["corpus_version"])
 
 
 # --- blocker 12-F: no silent upstream dispatcher ---------------------------
@@ -2448,12 +2473,21 @@ M040_FLOOR_BOT_SHA256 = (
 
 # MEASURED under corpus c4 (see referee-train-repair-r3-2026-08-10.md §7) and
 # pinned byte-for-byte.  These are the two mandatory rows of contract §7.
+# r4 RE-MEASUREMENT (corpus bump c4 -> c5).  m040 runs the `harvester`
+# opponent profile, and B2 changes what that opponent can do in a turn: it
+# can no longer step onto a plant AND harvest it in the same turn, because
+# its intent is now a command line subject to engine.rs:717-720.  It
+# therefore strips the shared map more slowly, the floor bot banks its bill
+# sooner, and seat 0's single TRAIN moves from turn 35 (c4) to turn 33 (c5).
+# Every other clause of the six-part packet is byte-identical in both
+# corpora, and seat 1 is unchanged at turn 19.  Nothing here was chosen; it
+# was measured after the repair and is recorded with its c4 predecessor.
 M040_EXPECTED = {
-    0: {"train_turn": 35, "unit_id": 6, "talents": [1, 1, 0, 1],
+    0: {"train_turn": 33, "unit_id": 6, "talents": [1, 1, 0, 1],
         "cell": [1, 2], "cost": [2, 2, 1, 0, 2, 0],
         "inventory_after": [0, 0, 0, 2, 0, 0],
         "serialized_unit_row": "6 0 1 2 1 1 0 1 0 0 0 0 0 0",
-        "train_emissions": [35]},
+        "train_emissions": [33]},
     1: {"train_turn": 19, "unit_id": 6, "talents": [1, 1, 0, 1],
         "cell": [9, 1], "cost": [2, 2, 1, 0, 2, 0],
         "inventory_after": [0, 0, 0, 2, 0, 0],
@@ -2476,7 +2510,7 @@ MUTATIONS = [
     {"id": "M2-textual-order-executor",
      "blocker": "2 (C4 full phase order)",
      "pinned_by": "TestPhaseOrder / TestDifferentialFullState",
-     "old": "        self._apply_pick(parsed.pick)",
+     "old": "        self._apply_pick(list(parsed.pick) + list(opp.pick))",
      "new": "        pass  # mutated: PICK dropped from the phase order"},
     {"id": "M3-no-per-unit-dedup",
      "blocker": "3 (C5 first non-TRAIN per unit)",
@@ -2487,10 +2521,10 @@ MUTATIONS = [
     {"id": "M4-drop-funds-train",
      "blocker": "4 (O1 same-turn matrix)",
      "pinned_by": "TestPhaseOrder.test_drop_never_funds_a_same_turn_train",
-     "old": "        self._apply_drop(parsed.drop)\n"
-            "        self._apply_mine(parsed.mine)",
-     "new": "        self._apply_mine(parsed.mine)\n"
-            "        self._apply_drop(parsed.drop)"},
+     "old": "        self._apply_drop(list(parsed.drop) + list(opp.drop))\n"
+            "        self._apply_mine(list(parsed.mine) + list(opp.mine))",
+     "new": "        self._apply_mine(list(parsed.mine) + list(opp.mine))\n"
+            "        self._apply_drop(list(parsed.drop) + list(opp.drop))"},
     {"id": "M5-next-cell-ignores-speed",
      "blocker": "5 (differential oracle) + the zero-speed shack divergence",
      "pinned_by": "TestDifferentialFullState / "
@@ -2502,9 +2536,9 @@ MUTATIONS = [
     {"id": "M6-drop-the-provenance",
      "blocker": "6 (per-row provenance)",
      "pinned_by": "TestRowProvenance",
-     "old": "        \"parent_execution_status\": EXECUTION_OK,\n"
-            "        \"provenance\": provenance(),",
-     "new": "        \"parent_execution_status\": EXECUTION_OK,\n"
+     "old": "        \"run_identity\": job.get(\"run_identity\"),\n"
+            "        \"provenance\": provenance(job.get(\"run_identity\")),",
+     "new": "        \"run_identity\": job.get(\"run_identity\"),\n"
             "        \"provenance\": {},"},
     {"id": "M7-unsupported-verb-aborts",
      "blocker": "7 (row retention)",
@@ -2531,15 +2565,62 @@ MUTATIONS = [
     {"id": "M10-reinstate-the-bot-worker-cap",
      "blocker": "12 / r2 regression guard (no invented worker cap)",
      "pinned_by": "TestTrainAuthorityIsTheEngine",
-     "old": "        n = len(self.own_unit_ids())\n"
+     "old": "        n = len(self.own_unit_ids(player))\n"
             "        cost = training_cost(n, talents)\n"
+            "        inv = self._inv_of(player)\n"
             "        for item in self.train_billed_items():\n"
-            "            if self.inv[item] < cost[item]:",
-     "new": "        n = len(self.own_unit_ids())\n"
+            "            if inv[item] < cost[item]:",
+     "new": "        n = len(self.own_unit_ids(player))\n"
             "        if n >= 2:\n            return \"worker_cap\"\n"
             "        cost = training_cost(n, talents)\n"
+            "        inv = self._inv_of(player)\n"
             "        for item in self.train_billed_items():\n"
-            "            if self.inv[item] < cost[item]:"},
+            "            if inv[item] < cost[item]:"},
+    # --- r4 blockers -----------------------------------------------------
+    {"id": "M11-opponent-stream-ignored",
+     "blocker": "B2 (one phase-merged two-player transition)",
+     "pinned_by": "TestDifferentialTwoPlayer / "
+                  "TestOpponentIsAPhaseMergedCommandStream",
+     "old": "        moves = dict(parsed.moves)\n"
+            "        moves.update(opp.moves)",
+     "new": "        moves = dict(parsed.moves)"},
+    {"id": "M12-train-ignores-the-player",
+     "blocker": "B2 (apply_train is per player, engine.rs:786-791)",
+     "pinned_by": "TestDifferentialTwoPlayer",
+     "old": "        self.units[nid] = {\n"
+            "            \"player\": player, \"cell\": self.shacks[player],"
+            " \"speed\": ms,",
+     "new": "        self.units[nid] = {\n"
+            "            \"player\": 0, \"cell\": self.shacks[0],"
+            " \"speed\": ms,"},
+    {"id": "M13-parent-failure-fails-open",
+     "blocker": "B3 (parent execution dominates the aggregate)",
+     "pinned_by": "TestParentExecutionFailsClosed",
+     "old": "    return (row.get(\"execution_status\", EXECUTION_OK) "
+            "!= EXECUTION_OK\n"
+            "            or row.get(\"parent_execution_status\",\n"
+            "                       EXECUTION_OK) != EXECUTION_OK)",
+     "new": "    return row.get(\"execution_status\", EXECUTION_OK) "
+            "!= EXECUTION_OK"},
+    {"id": "M14-raw-fragment-stripped-again",
+     "blocker": "B4 (verbatim bytes + exact span)",
+     "pinned_by": "TestDurableRawCommandEvidence",
+     "old": "        for start, end, raw in cls.split_fragments(command_line):"
+            "\n            norm = \" \".join(raw.split())",
+     "new": "        for start, end, raw in cls.split_fragments(command_line):"
+            "\n            raw = raw.strip()"
+            "\n            norm = \" \".join(raw.split())"},
+    {"id": "M15-error-stream-recapped",
+     "blocker": "B4 (the retained stream is uncapped)",
+     "pinned_by": "TestDurableRawCommandEvidence",
+     "old": "            self.command_errors.append(err)",
+     "new": "            if len(self.command_errors) < 50:\n"
+            "                self.command_errors.append(err)"},
+    {"id": "M16-floor-claim-unchecked",
+     "blocker": "B5 (run identity is machine-checked)",
+     "pinned_by": "TestRunIdentityIsMachineChecked",
+     "old": "    if identity == RUN_IDENTITY_FLOOR and not same:",
+     "new": "    if False:"},
 ]
 
 
