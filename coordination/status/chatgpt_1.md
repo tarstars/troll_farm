@@ -1,49 +1,99 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-09T07:27:00Z
-- State: all currently unblocked inbox assignments processed and handed off
-- Role: specification author / committed-blob reviewer; no bot implementation or Arena authority
+- Updated UTC: 2026-08-11T23:40:00Z
+- State: all currently executable inbox assignments completed and handed off
+- Role: specification author / adversarial committed-blob reviewer; no bot implementation or Arena authority
 - Canonical branch: `agent/chatgpt_1`
-- Current task: awaiting revised artifacts and external execution evidence
+- Current task: awaiting coordinator integration/adjudication and revised M3a/I-30 artifacts; M3b remains blocked on M1
 - Running job: none
 
-## Transport
+## Transport — measured, parser identity closed; coordinator quarantine required
 
-- Current `main` transport blobs were synchronized to the canonical branch at commit `99eff6670235ecd6b12ca33b8b382d96faa288c2`.
-- Dual-format ACK commit: `128b38778b31b9687884696fd698adb76eef3311`.
+- Exact GitHub Actions measurement committed under `chatgpt_1/verification/`.
+- `scripts/inbox_sweep.py` Git blob: `db4adb7e24cf53aad9033aadccb92c9a6133a934`.
+- `scripts/inbox_sweep.py` SHA-256:
+  `5a199bb40a8ecd7211694ec301c8fd2ba0521f34bd9352601208fb961c093c3a`.
+- `scripts/lint_outbox.py` SHA-256:
+  `c6ed09bf155589f60a142a7b219dd5d0126dda4963ddb513d19e8ad5c1774f89`.
+- Authoritative sweep executed with `--fetch`; exit `2` from four errors on three immutable Claude messages, not from version skew.
+- Coordinator blocker:
+  `coordination/messages/chatgpt_1/20260811T232000Z-20260805-transport-measurement-and-quarantine-blocker.md`, commit `50cc9bd8e767694bc0fbede4db8d13c5a2f60052`.
+- `chatgpt_1/inbox-seen.json` deliberately remains absent until transport errors are adjudicated; `--mark` correctly refuses while exit-2 errors exist.
+- Broken LFS probe deletion was integrated into `main` at `593116c07e710ef3b772ab540a0c292f8c2d54db`.
 
-## TRAIN referee r3
+## TRAIN/referee r4 — accepted for command execution and c5 corpus
 
-- Reviewed artifact: `acf05b18c4a840f01d9dacbe1a0b1cc497324692`.
-- ACK: `9249283e959aa8563eb3039c14a289cdcd153f22`.
-- Review: `chatgpt_1/referee-train-repair-r3-review-2026-08-09.md` at `07a37c0b02ac04ccf718d9251eedc3f0721dd8d1`.
-- Handoff: `084c200cfc69b473f0da3830949a6fcf71311e9f`.
-- Disposition: **`DISPATCH_LAYER_ACCEPTED — PANEL_REVISION_REQUIRED`**.
-- Panel remains **`GATE_UNREADY`** pending independent execution, opponent-transition repair or scope reduction, parent fail-closed handling, durable exact error evidence, and a committed parent-versus-parent floor packet.
+- Reviewed artifact: corrected commit `dbcc01c949774863094c338968391b8cb82fa2b9`.
+- Exact clean execution: GitHub Actions run `31312779361`, job `93243086580`.
+- Measured: 163 panel tests + 24 pre-review tests pass; 16/16 mutations caught.
+- Reproduced c5 floor: `118/240 BLOCK`, zero gate-unready.
+- Reproduced c5 candidate: `121/240 BLOCK`, zero gate-unready.
+- Referee SHA-256:
+  `d8900abf31dd030d07096e9a063365aa0e1f58b85a1613d02b07d3935c523a6a`.
+- Review:
+  `chatgpt_1/referee-train-repair-r4-review-2026-08-11.md`, commit `18aa273781e39abc6cd1c61387e99572c9505a03`.
+- Handoff:
+  `coordination/messages/chatgpt_1/20260811T231000Z-20260811-train-repair-r4-review-handoff.md`, commit `2db8133007c1dafd9cd28321e00cb8c49aefe950`.
+- Disposition: **`COMMAND-EXECUTION LAYER ACCEPTED — C5 CORPUS REPRODUCED`**.
+- Consequence: D-9, P4, gate revision 3, and D-4 may resume; none is automatically accepted and 118/121 is not a banana verdict.
 
-## M2 hierarchy method
+## M2 hierarchy method revision 2 — accepted
 
-- Reviewed artifact: `129974c34ed983737b63d131adc436bf2e142aa9`.
-- ACK: `f5776ca453ebdbc82f303ff91b9dcc81ee073972`.
-- Review: `chatgpt_1/score-hierarchy-method-packet-review-2026-08-09.md` at `ed7ab8f118f33217d8c48ed1a1036394cecc5e12`.
-- Handoff: `f2b58eea9938e438e96d543205341bec6fafbfdb`.
-- Disposition: **`METHOD_CORE_ACCEPTED — REVISION_REQUIRED`**.
-- Required: typed finding/witness ledger, corrected interval endpoint logic, narrower AX headline, exact-subject witnesses, full-pipeline drift anchors, and independent execution.
+- Reviewed artifact: `76e226107b851cba916e5dd5a01a03821fa46427`.
+- Exact clean execution: GitHub Actions run `31312779361`, job `93243086594`.
+- 127 tests and the complete checker pass.
+- Accepted machine boundary:
+  `KNOWN_AX_FINDINGS = 0`, `GLOBAL_AX_STATUS = UNRESOLVED`, zero `STATE_WITNESSED` findings.
+- Review:
+  `chatgpt_1/score-hierarchy-method-packet-r2-review-2026-08-11.md`, commit `2124cc11713cba46113b0625e777080a0e1f0ad1`.
+- Handoff:
+  `coordination/messages/chatgpt_1/20260811T224000Z-20260811-m2-revision-2-review-handoff.md`, commit `e3b0eb40f3f56a64321a4c706553ba3a6dca7fe1`.
+- Disposition: **`ADVERSARIAL_ACCEPTED — NO REMAINING CHATGPT_1 BLOCKER`**.
 
-## M3a and golden bundle
+## I-30 revision 3 — accounting accepted, trust root still unready
 
-- Exact-subject result: **34 D-1 episodes / 32 source-game situations; 20 episodes are terminal-length**.
-- Wrong-subject correction ACK: `028ae3385b254682dae470df6de6a23b6dd1b78c`.
-- Golden execution review ACK: `11399a3a909a75604a8f281a1e695b3ae26c1929`.
-- Exact source panel added to the canonical ref at `3eb0b25169a8d3178e972ba08fa6cd2f9fc4e476`.
-- Golden bundle still requires an exact regenerated JSON blob and manifest renewal; repair request: `be54866611a4cc7e40674eac9e3c912630c92a78`.
-- Broken LFS probe deletion is prepared at `6f39118d1c60e905489035c0b13e66637c893127` on branch `agent/chatgpt_1-remove-broken-lfs-probe-20260811`.
+- Reviewed artifact: `b7b11b86ba4d3c8430d0781d09430cd08192546c`.
+- Exact clean execution: GitHub Actions run `31312779361`, job `93243086607`.
+- 105 I-30 tests pass; 22/22 mutations caught by declared expected tests; 28 detector tests remain green.
+- Review:
+  `chatgpt_1/i30-revision-3-review-2026-08-11.md`, commit `e4bb1a32e90b5310f39eddfd2c6a5c0bb8d790f3`.
+- Handoff:
+  `coordination/messages/chatgpt_1/20260811T225000Z-20260811-i30-revision-3-review-handoff.md`, commit `9d841e236bb614cb936a79a9aba45ec3346dfad9`.
+- Disposition: **`CORE_ACCOUNTING_ACCEPTED — REVISION_REQUIRED AT THE TRUST ROOT`**.
+- Remaining blockers: harness execution is self-attested rather than bound to an accepted referee/per-command event packet; owner freeze chronology is timestamp-string based rather than commit/observation anchored.
+- Only accepted production result: `GATE_UNREADY / MEASURED_UNTHRESHOLDED`.
+
+## M3a base-panel golden v2 — renewed and green, external adoption reviews requested
+
+- Original-population result remains: **34 exact D-1 episodes / 32 source-game situations / 20 terminal-length episodes**.
+- Golden JSON SHA-256:
+  `774a1d337ebab8ecec5652d5c8d113c0c9c6f6fc9ef77258ffcf7438a961f911`.
+- Manifest v2 SHA-256:
+  `577b913b6abdc76e6b1b05a019b92157266209825d5b2d53610b692dea5d1742`.
+- GitHub Actions regeneration, exact compare, verifier, and ten mutation/regeneration tests all exit 0.
+- Review handoff:
+  `coordination/messages/chatgpt_1/20260811T233000Z-20260810-m3a-golden-bundle-v2-review-handoff.md`, commit `90761a4555c9d10c8e80c6edeebad00b6f0c2236`.
+- Status: submitted for fresh `local_claude_1` execution and `claude_1` cross-implementation review; not self-accepted.
+
+## M3a correct-subject c5 diagnostic library — revision required
+
+- Reviewed artifact: `d5c57f797fbd722e0c92d9af7f341763c30b4f0c`.
+- Loader/integrity result: 34 deduplicated situations / 46 represented episodes, correct subject and internally consistent cross-tab.
+- Exact clean execution: GitHub Actions run `31312779361`, job `93243086613`.
+- With `OSC_LIB_REPLAY=1`, both replay suites fail because committed configs use author-local `/home/tarstars/...` and `/tmp/claude-1000/...` source paths.
+- Review:
+  `chatgpt_1/m3a-correct-subject-library-review-2026-08-11.md`, commit `9a4bf9bec0f09c021f0465f8b455f5cbf7f53a08`.
+- Handoff:
+  `coordination/messages/chatgpt_1/20260811T230000Z-20260811-m3a-correct-subject-review-handoff.md`, commit `28a75b5e5f71f6f3a0c6f670e912d7b029fcb513`.
+- Disposition: **`REVISION_REQUIRED — DATA INTERNALLY CONSISTENT, SOURCE REPLAY NOT PORTABLE`**.
+- Dataset boundary: the c5 46-episode diagnostic library is separate from the renewed base-panel 34-D1 golden set; coordinator must name the M3b substrate explicitly.
 
 ## M1 / M3b
 
-- M1 Decision Packet specification is delivered; implementation is pending.
-- M3b independent adjudication remains blocked on accepted M1 tooling and a reviewed exact-subject M3a substrate.
+- M1 Decision Packet specification is delivered; implementation has not been handed off.
+- M3b independent adjudication remains blocked on accepted M1 tooling and an explicitly selected, reviewed M3a substrate.
 
-## Boundaries
+## Cleanup and boundaries
 
-- No bot, candidate, detector, gate, host run, TestSession, submission, restore, or Arena state was changed.
+- Temporary Actions workflows were deleted from `main`; temporary PR #4 was closed unmerged.
+- No bot, candidate, detector predicate, gate implementation, host value experiment, TestSession, submission, restore, or Arena state was changed.
