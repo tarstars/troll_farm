@@ -1,11 +1,34 @@
 # chatgpt_1 Status
 
-- Updated UTC: 2026-08-10T16:05:00Z
-- State: all currently unblocked assignments completed and handed off; awaiting M3a substrate decision, M1 implementation and referee r3
+- Updated UTC: 2026-08-10T16:35:00Z
+- State: all currently unblocked implementation work completed; M3a golden bundle submitted for two-lens external review
 - Role: specification author / adversarial committed-blob reviewer; no Banana implementation ownership and no Arena mutation authority
 - Canonical branch: `agent/chatgpt_1`
-- Current task: M3b adjudication blocked on accepted M1 and an owner-selected/reviewed M3a substrate
+- Current task: await M3a toolchain reviews; M3b adjudication remains blocked on accepted M1 and an owner-selected/reviewed M3a substrate
 - Running job: none
+
+## M3a golden bundle — scripts are first-class reviewed toolchain members
+
+- Owner ruling adopted: the generated JSON is the golden **data**; the extractor, bundle verifier and mutation tests are the trusted golden **toolchain** and cannot change independently
+- Extractor:
+  `chatgpt_1/m3a_extract_from_panel.py`
+- Golden data:
+  `chatgpt_1/m3a-d1-situation-library-2026-08-10.json`
+- Exact bundle verifier:
+  `chatgpt_1/m3a_verify_golden_set.py`, commit `8e0bf07f472d8c6b700da9c6bcf3163d6c689bf6`
+- Mutation/regeneration tests:
+  `chatgpt_1/test_m3a_golden_set.py`, commit `0b25f37602cf25f90490389856b15e6baa117189`
+- Golden manifest:
+  `chatgpt_1/m3a-golden-set-manifest-2026-08-10.json`, commit `578c05951c649c7b7b3fa656341d11049f746d87`
+- Review contract:
+  `chatgpt_1/m3a-golden-bundle-review-contract-2026-08-10.md`, artifact commit `8d9f182e20c67fdecf2aa050283c1c27e141139b`
+- External review handoff:
+  `coordination/messages/chatgpt_1/20260810T163000Z-20260810-m3a-golden-bundle-review-handoff.md`, commit `40fa36f0af83f3796f91c5e81cfa76c97f467144`
+- Required reviewers:
+  `local_claude_1` for second-machine execution/integration; `claude_1` for cross-implementation line-by-line method review
+- Required evidence: byte-exact regeneration; verifier `VERIFIED`; tests pass without skips; deletion, duplication, window edit, non-D1 source drift and output drift all caught
+- Renewal rule: any source/script/test/output byte change requires a new manifest version, regenerated output/hashes and the same reviews; changing only expected counts/hashes is forbidden
+- Self-acceptance: **none** — authored through the GitHub connector; repository execution is explicitly delegated to external review
 
 ## M3a second extraction — completed with contamination disclosure
 
@@ -15,17 +38,11 @@
   `coordination/messages/chatgpt_1/20260810T153000Z-20260810-m3a-independent-replication-ack.md`
 - ACK commit: `e24bee8f951b2e17422d7f13da81dd547284b554`
 - Independence status: **not blind** — Claude's handoff headline had been read before this assignment existed; disclosed before extraction
-- Extractor:
-  `chatgpt_1/m3a_extract_from_panel.py`, commit `647a93d7688607de3b8d96cb732d693a68b88090`
-- Frozen base-panel ledger:
-  `chatgpt_1/m3a-d1-situation-library-2026-08-10.json`, commit `bf5756a23396f7b711655b4c32b2577b6fa542aa`
-- Replication report:
-  `chatgpt_1/m3a-independent-replication-2026-08-10.md`, commit `f7be614e1f3ecdaa76e523bbab450143ae23a98b`
-- Reconciliation:
-  `chatgpt_1/m3a-count-reconciliation-2026-08-10.md`, commit `6798134f136a095dcc871419b3cd4cf5feb80d40`
-- Handoff:
-  `coordination/messages/chatgpt_1/20260810T160000Z-20260810-m3a-independent-replication-handoff.md`
-- Handoff commit: `a566fc8371967782186288cff531f978c09d52e7`
+- Extractor commit: `647a93d7688607de3b8d96cb732d693a68b88090`
+- Frozen base-panel ledger commit: `bf5756a23396f7b711655b4c32b2577b6fa542aa`
+- Replication report commit: `f7be614e1f3ecdaa76e523bbab450143ae23a98b`
+- Reconciliation commit: `6798134f136a095dcc871419b3cd4cf5feb80d40`
+- Original handoff commit: `a566fc8371967782186288cff531f978c09d52e7`
 - Base-panel result: **34 D-1 episodes / 32 game situations; 20 episodes / 19 situations have >=62 states**
 - Frozen ledger digest:
   `8e05b8aeb9fa90449819558f2c638a358f9c8667c35ea28d2fc2788b02fffc5d`
