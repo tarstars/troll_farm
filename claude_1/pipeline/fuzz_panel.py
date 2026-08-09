@@ -67,28 +67,48 @@ semantic_harness's map/protocol/compile helpers.  FuzzReferee below is the
 adapter that binds the referee to generated geometry (instance walkable set /
 tent / water / iron) without editing the original module.
 
-Command dispatch (referee TRAIN repair, 2026-08-09).  FuzzReferee.apply owns
-an EXHAUSTIVE dispatcher: every verb is looked up in
-FuzzReferee.VERB_HANDLERS and a verb with no handler raises
-UnsupportedCommand, terminating the whole run as GATE_UNREADY /
-unsupported_command (exit 2).  There is no default branch anywhere.  The
-inherited make_banana_traces dispatcher skipped MSG/WAIT/TRAIN by name and
-let every other verb fall out of the bottom of an if/elif chain, so TRAIN
-and MINE were applied as no-ops: the panel measured properties on a world
-that never happened, and its two most pathological games (m040 seat 0 and
-seat 1, which emitted TRAIN on 166/200 and 182/200 turns because the worker
-count never rose) scored CLEAN.  TRAIN and MINE are now implemented and
-conformance-tested against rust/src/game/engine.rs -- the AUTHORITATIVE game
-engine, and the sole authority for legality.  Revision r2 (2026-08-09) removed
-the bot-derived TRAIN restrictions the first repair had mirrored from
-MoisanBot::can_train (yamo_orchard_live.rs:836, `n >= 2 ||
-TOTAL_TURNS - view.turn <= 20`): engine.rs::apply_train enforces NEITHER, so
-the referee was forbidding what the engine permits and would have silently
-rejected a candidate that trains a third worker.  See
-referee-train-repair-r2-2026-08-09.md for the per-rule line citations.  The
-instrument/corpus version pair (INSTRUMENT_VERSION / CORPUS_VERSION) is
-declared in the config, echoed in every report, and enforced by load_config,
-because results are not comparable across a referee change.
+COMMAND EXECUTION (revision r3, 2026-08-10, corpus c4).  The referee no
+longer contains a second, informal command language.  `FuzzReferee.apply`
+
+  1. PARSES the complete line before any mutation
+     (`parse_commands`, a pure classmethod mirroring
+     `engine.rs::parse_cmds` 683-748, including the per-unit `used` rule at
+     717-720 that keeps only the FIRST non-TRAIN command for a unit while
+     retaining every TRAIN in parse order);
+  2. RETAINS every trust-boundary error -- an unimplemented verb or a
+     malformed body is a structured record carrying the raw bytes and the
+     turn, the row stays in the denominator, and the aggregate becomes
+     GATE_UNREADY (exit 2) with the report and JSON packet still published;
+  3. EXECUTES the eight engine phases in engine order,
+     MOVE -> HARVEST -> PLANT -> CHOP -> PICK -> TRAIN -> DROP -> MINE
+     (`engine.rs::step` 755-806), one applier per phase, each written from
+     and citing `rust/src/game/engine.rs`.
+
+Nothing is delegated to `make_banana_traces.Referee.apply` any more.  That
+inherited dispatcher was a sequential if/elif fragment executor with a silent
+fall-through bottom: TRAIN and MINE fell out of it for the whole life of the
+panel, so the panel measured properties on a world that never happened and
+its two most pathological games (m040 seats 0/1, which emitted TRAIN on
+166/200 and 182/200 turns because the worker count never rose) scored CLEAN.
+
+History of the repair: r1 implemented TRAIN but copied `MoisanBot::can_train`
+(`yamo_orchard_live.rs:836`, `n >= 2 || TOTAL_TURNS - view.turn <= 20`) into
+referee law -- that is one bot's self-restraint and `engine.rs::apply_train`
+enforces neither.  r2 removed it but still executed raw fragments in textual
+order with only TRAIN repositioned.  r3 replaces the executor.  Per-rule line
+citations: referee-train-repair-r3-2026-08-10.md.
+
+Conformance is checked DIFFERENTIALLY, not by assertion alone: the self-tests
+pull `rust/src/game/engine.rs` and `state.rs` byte-for-byte into a throwaway
+crate with `#[path]`, run `engine::step` on the same state and command line,
+and compare the complete post-turn state (both inventories, every unit field,
+next_id, plants/growth, score, turn).  `sim/engine.py` is a second,
+independently authored leg.  Neither shares code with this file.
+
+The instrument/corpus version pair (INSTRUMENT_VERSION / CORPUS_VERSION) must
+be declared in the RAW config -- a missing declaration fails closed rather
+than inheriting the running panel's identity -- and every report and JSON
+packet echoes both plus the referee and engine.rs sha256.
 
 Stdlib only (Python 3.12); rustc via semantic_harness (PATH + ~/.cargo/bin).
 """
@@ -129,8 +149,43 @@ BIG = 10_000
 # produces, so results are not comparable across instrument versions.  Both
 # strings are declared in the config, asserted by the self-tests and echoed in
 # every report and JSON payload.
-INSTRUMENT_VERSION = "fuzz-panel/3-train-engine-authority"
-CORPUS_VERSION = "c3-train-engine-authority-2026-08-09"
+INSTRUMENT_VERSION = "fuzz-panel/4-engine-conformant-referee"
+CORPUS_VERSION = "c4-engine-conformant-referee-2026-08-10"
+
+# --- authoritative engine constants (rust/src/game/engine.rs) --------------
+# engine.rs:6-15
+ITEM_INDEX = {"PLUM": 0, "LEMON": 1, "APPLE": 2, "BANANA": 3,
+              "IRON": 4, "WOOD": 5}
+PLANTABLE_KINDS = ("PLUM", "LEMON", "APPLE", "BANANA")
+MAX_SIZE, MAX_FRUITS, WOOD_POINTS = 4, 3, 4
+# engine.rs:29-37 plant_cooldown / 39-47 water_boost / 53-60 tree_health_params
+PLANT_COOLDOWN = {"PLUM": 8, "LEMON": 8, "APPLE": 9, "BANANA": 6}
+WATER_BOOST = {"PLUM": 5, "LEMON": 5, "APPLE": 7, "BANANA": 2}
+TREE_HEALTH_BASE = {"PLUM": 4, "LEMON": 4, "APPLE": 8, "BANANA": 2}
+TREE_HEALTH_SLOPE = {"PLUM": 2, "LEMON": 2, "APPLE": 3, "BANANA": 1}
+
+# engine.rs:752-754 (`step` doc comment) and engine.rs:762-801 (the calls).
+# This is the COMPLETE turn order, not just TRAIN's position: two command
+# lines carrying the same command multiset in different textual order must
+# produce the same post-state (frozen contract C4).
+PHASE_ORDER = ("MOVE", "HARVEST", "PLANT", "CHOP", "PICK", "TRAIN",
+               "DROP", "MINE")
+
+# --- trust-boundary error kinds (frozen contract C2 / C3) ------------------
+# DELIBERATE DIVERGENCE FROM engine.rs.  `engine.rs::parse_cmds` (683-748) is
+# permissive: it accepts `TRAIN` with >= 5 tokens, coerces unparsable talents
+# with `parse().unwrap_or(0)` and drops short commands silently.  That is
+# right for a referee reading its own trusted replays and wrong for an
+# instrument reading a candidate bot's stdout: a malformed emitted command is
+# an instrument/protocol error whose RAW BYTES are the evidence.  A
+# fabricated command also fabricates state -- coercing a non-integer movement
+# talent to 0 spawns a speed-0 worker on the non-walkable shack, which
+# `engine.rs::next_cell` (99-144) can never move.
+ERROR_UNSUPPORTED_VERB = "unsupported_verb"
+ERROR_MALFORMED = "malformed_command"
+EXECUTION_OK = "ok"
+# Per-game cap on RETAINED raw errors (the counts are always complete).
+MAX_RETAINED_ERRORS = 50
 
 # --- authoritative engine constants ----------------------------------------
 # THE AUTHORITY IS rust/src/game/engine.rs.  Deliberately no WORKER_CAP and no
@@ -145,9 +200,12 @@ MAP_CLASSES = ("open_field", "choke_corridor", "single_door_tent",
                "forest_dense", "forest_sparse")
 OPP_PROFILES = ("idle", "harvester", "chopper_aggressor")
 
+# NOTE (review B7): `instrument_version` / `corpus_version` are deliberately
+# ABSENT here.  While they were members of DEFAULTS, `cfg.update(raw)` re-
+# supplied them for any config that omitted them, so the equality check in
+# load_config could never fail and a config with no declared corpus silently
+# inherited the current identity.  They must now be present in the RAW JSON.
 DEFAULTS = {
-    "instrument_version": INSTRUMENT_VERSION,
-    "corpus_version": CORPUS_VERSION,
     "maps": 120,
     "turns": 200,
     "processes": 0,               # 0 => min(8, cpu_count)
@@ -169,7 +227,19 @@ class PanelError(Exception):
 
 
 class UnsupportedCommand(PanelError):
-    """GATE_UNREADY / unsupported_command -> exit 2.
+    """GATE_UNREADY / unsupported_command.
+
+    RETAINED, NO LONGER RAISED BY THE REFEREE (revision r3, review B6/B7).
+    Raising this out of a worker aborted the aggregate before any row was
+    written, so the affected row vanished from the denominator -- the packet
+    could not distinguish "every command executed" from "the process ended
+    before publishing evidence".  An unsupported verb is now a retained
+    `unsupported_verb` error on the row, the report and the JSON packet are
+    still published with every affected row, and the process still exits 2.
+    The class stays for the mutation control (`MUTATIONS` M7) and for callers
+    that want to fail hard.
+
+    Historical note:
 
     Raised by the referee's exhaustive command dispatcher when a bot emits a
     verb the referee does not implement.  A referee that silently discards a
@@ -188,13 +258,73 @@ class UnsupportedCommand(PanelError):
 
 
 def unsupported_command(verb: str, raw: str, turn: int) -> UnsupportedCommand:
-    return UnsupportedCommand(
-        "GATE_UNREADY / unsupported_command: the referee implements no "
-        "handler for verb %r (turn %d, command %r); the panel cannot render "
-        "a verdict on a world it cannot simulate. Implement the verb in "
-        "FuzzReferee.VERB_HANDLERS (with conformance tests against "
-        "rust/src/bin/yamo_orchard_live.rs) or withdraw it from the corpus."
-        % (verb, turn, raw))
+    return UnsupportedCommand(unsupported_reason(verb, raw, turn))
+
+
+def unsupported_reason(verb: str, raw: str, turn: int) -> str:
+    return ("GATE_UNREADY / unsupported_command: the referee implements no "
+            "handler for verb %r (turn %d, command %r); the panel cannot "
+            "render a verdict on a world it cannot simulate. Implement the "
+            "verb in FuzzReferee.VERB_HANDLERS (with conformance tests "
+            "against rust/src/game/engine.rs, the sole authority) or "
+            "withdraw it from the corpus."
+            % (verb, turn, raw))
+
+
+class _Malformed(Exception):
+    """Internal: a fragment that fails the trust boundary (contract C3)."""
+
+
+def command_error(kind: str, verb: str, raw: str, turn: int,
+                  reason: str) -> dict:
+    """One RETAINED, JSON-serialisable trust-boundary error.
+
+    Contract §8: 'A row with incomplete command execution is counted in the
+    denominator and makes the aggregate gate unready. It is never silently
+    dropped and never reported as a clean game.'  The raw bytes are the
+    evidence, so they are carried verbatim."""
+    return {"kind": kind, "verb": verb, "raw": raw, "turn": int(turn),
+            "reason": reason}
+
+
+_HASH_CACHE: dict = {}
+
+
+def referee_sha256() -> str:
+    """sha256 of THIS file -- the pinned referee implementation hash the
+    frozen contract (§8) requires in every result packet."""
+    if "referee" not in _HASH_CACHE:
+        _HASH_CACHE["referee"] = sha256_path(Path(__file__).resolve())
+    return _HASH_CACHE["referee"]
+
+
+def engine_sha256() -> str:
+    """sha256 of the AUTHORITY, rust/src/game/engine.rs.  A referee result
+    that cannot name the engine revision it conforms to is not evidence."""
+    if "engine" not in _HASH_CACHE:
+        path = HERE.parent.parent / "rust" / "src" / "game" / "engine.rs"
+        _HASH_CACHE["engine"] = (sha256_path(path) if path.exists()
+                                 else "unavailable")
+    return _HASH_CACHE["engine"]
+
+
+def provenance() -> dict:
+    return {"instrument_version": INSTRUMENT_VERSION,
+            "corpus_version": CORPUS_VERSION,
+            "referee_sha256": referee_sha256(),
+            "engine_sha256": engine_sha256(),
+            "engine_authority": "rust/src/game/engine.rs",
+            "phase_order": list(PHASE_ORDER)}
+
+
+def aggregate_verdict(rows) -> str:
+    """GATE_UNREADY dominates: a corpus containing even one row whose command
+    execution was incomplete cannot render BLOCK or CLEAR, because the
+    properties of the other rows were measured by the same instrument."""
+    if any(r.get("execution_status", EXECUTION_OK) != EXECUTION_OK
+           for r in rows):
+        return "GATE_UNREADY"
+    return "BLOCK" if any(r.get("block") for r in rows) else "CLEAR"
 
 
 def training_cost(n: int, talents) -> list:
@@ -217,15 +347,6 @@ def training_cost(n: int, talents) -> list:
     cost[APPLE] = n + hp * hp
     cost[IRON] = n + chop * chop
     return cost
-
-
-def _int_or_zero(token: str) -> int:
-    """Mirror of the engine parser's `parse().unwrap_or(0)` on TRAIN
-    talents."""
-    try:
-        return int(token)
-    except ValueError:
-        return 0
 
 
 def score(inv) -> int:
@@ -279,6 +400,11 @@ def _rows(grid):
 
 def _in(w, h, cell):
     return 0 <= cell[0] < w and 0 <= cell[1] < h
+
+
+def _manhattan(a, b):
+    """engine.rs::manhattan (94-96)."""
+    return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
 
 def _orth_neighbors(cell):
@@ -617,6 +743,33 @@ def materialize(skel, seat):
 # Referee adapter (thin adapter over the make_banana_traces referee core)
 # ---------------------------------------------------------------------------
 
+class ParsedCommands:
+    """The result of parsing one command line, in engine phase buckets.
+
+    Mirrors `engine.rs::ParsedCmds` (671-681) field for field, plus the
+    RETAINED trust-boundary errors the frozen contract requires (there is no
+    such thing in the engine, which trusts its input)."""
+
+    __slots__ = ("moves", "harvest", "plant", "chop", "pick", "train",
+                 "drop", "mine", "errors", "used")
+
+    def __init__(self):
+        self.moves = {}
+        self.harvest = []
+        self.plant = []
+        self.chop = []
+        self.pick = []
+        self.train = []
+        self.drop = []
+        self.mine = []
+        self.errors = []
+        self.used = set()
+
+    def total(self) -> int:
+        return (len(self.moves) + len(self.harvest) + len(self.plant)
+                + len(self.chop) + len(self.pick) + len(self.train)
+                + len(self.drop) + len(self.mine))
+
 class FuzzReferee(mbt.Referee):
     """make_banana_traces.Referee bound to generated geometry.
 
@@ -654,6 +807,26 @@ class FuzzReferee(mbt.Referee):
         # counter exactly; a plain max()+1 at spawn time would not, because
         # ids are never reused.
         self.next_id = (max(self.units) + 1) if self.units else 0
+        self.shacks = (self.tent, self.opp_tent)
+        # --- retained command-execution provenance (contract §8) ----------
+        self.command_errors = []       # bounded, raw bytes kept verbatim
+        self.error_counts = {}         # complete counts per error kind
+        self.train_events = []         # every TRAIN entry, accepted or not
+        self._bfs_cache = {}
+
+    @property
+    def execution_status(self) -> str:
+        """`ok` iff every emitted command reached an implemented verb with a
+        well-formed body.  Anything else makes the row -- and therefore the
+        aggregate -- GATE_UNREADY, and the row still counts in the
+        denominator."""
+        for kind in (ERROR_UNSUPPORTED_VERB, ERROR_MALFORMED):
+            if self.error_counts.get(kind):
+                return kind
+        return EXECUTION_OK
+
+    def spawn_events(self) -> list:
+        return [dict(e) for e in self.train_events if e["spawned"]]
 
     def map_header(self):
         return ("%d %d\n" % (len(self.rows[0]), len(self.rows))
@@ -666,6 +839,14 @@ class FuzzReferee(mbt.Referee):
         return [n for n in _orth_neighbors(cell) if n in self.walk]
 
     def _bfs_from(self, sources):
+        """engine.rs::bfs_distances (72-92).  Sources are seeded at 0
+        UNCONDITIONALLY (line 75-80) -- a non-walkable source such as a shack
+        cell is in the map -- and expansion is restricted to walkable cells
+        (line 85).  Memoised: the walkable set is fixed for a game."""
+        key = frozenset(sources)
+        hit = self._bfs_cache.get(key)
+        if hit is not None:
+            return hit
         from collections import deque
         dist = {}
         queue = deque()
@@ -679,54 +860,66 @@ class FuzzReferee(mbt.Referee):
                 if n not in dist:
                     dist[n] = dist[cell] + 1
                     queue.append(n)
+        self._bfs_cache[key] = dist
         return dist
 
-    def step_toward(self, current, target, speed):
-        """Same nav::next_cell mirror as Referee.step_toward, evaluated on
-        the instance walkable set (pattern of mbt.CustomMapReferee).
+    def next_cell(self, current, target, speed):
+        """engine.rs::next_cell (99-144), mirrored line by line.
 
-        Extension for a non-walkable source cell (TRAIN repair, 2026-08-09):
-        shack cells are NOT walkable, yet a TRAINed worker spawns on the own
-        shack.  The engine's next_cell seeds its BFS at the unit's own cell
-        regardless of walkability, so such a unit can still step out to a
-        walkable neighbour; the pre-repair mirror returned `current` and the
-        spawned worker was frozen on the shack for the rest of the game.
-        The extension is inert whenever `current` is reachable in the
-        target's BFS (i.e. for every game the pre-repair panel could
-        produce: MEASURED, 0 of 240 games ever placed a unit on a
-        non-walkable cell)."""
-        if target == current:
-            return current
-        dist = self._bfs_from([target])
-        if current not in dist:
-            options = [n for n in self._nbrs(current) if n in dist]
-            if not options:
-                return current
-            cell = min(options, key=lambda n: (dist[n], n))
-            if dist[cell] + 1 <= speed:
-                return target
-            for _ in range(speed - 1):
-                options = [n for n in self._nbrs(cell) if n in dist]
-                if not options:
-                    break
-                cell = min(options, key=lambda n: (dist[n], n))
-            return cell
-        if dist[current] <= speed:
+            let src = bfs_distances(walkable, &[current]);            // 100
+            if let Some(&d) = src.get(&target) { if d <= speed {...}} // 103-107
+            let tdist = if !src.contains_key(&target) { ... }         // 110-123
+            let in_range = src.iter()
+                .filter(|(c, d)| **d <= speed && tdist.contains_key(*c))  // 126-130
+            if in_range.is_empty() { return current; }                // 132-134
+            let best_dist = in_range.iter().map(|c| tdist[c]).min()   // 136
+            in_range.filter(tdist == best).min()                      // 138-143
+
+        The r2 mirror carried a hand-written special case for a non-walkable
+        source cell that stepped to a walkable neighbour BEFORE applying the
+        speed loop, so a speed-0 worker standing on the (non-walkable) shack
+        could move one cell.  The engine cannot do that: with `speed == 0`
+        the only member of `in_range` is the source itself.  That divergence
+        is now gone because the special case is gone -- this is the engine's
+        own selection rule and nothing else."""
+        src = self._bfs_from([current])
+        d = src.get(target)
+        if d is not None and d <= speed:
             return target
-        cell = current
-        for _ in range(speed):
-            options = [n for n in self._nbrs(cell) if n in dist]
-            if not options:
-                break
-            cell = min(options, key=lambda n: (dist[n], n))
-        return cell
+        if target not in src:
+            if not src:
+                return current
+            best = min(_manhattan(target, c) for c in src)
+            goals = tuple(sorted(c for c in src
+                                 if _manhattan(target, c) == best))
+            tdist = self._bfs_from(goals)
+        else:
+            tdist = self._bfs_from([target])
+        in_range = [c for c, dd in src.items()
+                    if dd <= speed and c in tdist]
+        if not in_range:
+            return current
+        best_dist = min(tdist[c] for c in in_range)
+        return min(c for c in in_range if tdist[c] == best_dist)
 
-    def _bind(self):
-        # The inherited apply() resolves PICK/DROP door adjacency against
-        # the module-level TENT and movement against WALKABLE; bind them to
-        # this instance's geometry for the duration of the call.
-        mbt.TENT = self.tent
-        mbt.WALKABLE = self.walk
+    def step_toward(self, current, target, speed):
+        """Retained name (the opponent policies call it); the engine's own
+        selection rule is the only implementation."""
+        return self.next_cell(current, target, speed)
+
+    def _near_shack(self, unit) -> bool:
+        """engine.rs::near_shack (205-208)
+
+            let (sx, sy) = game.shacks[unit.player as usize];
+            (unit.x - sx).abs() + (unit.y - sy).abs() <= 1
+
+        `<= 1`, so a unit standing ON its own shack cell qualifies.  The
+        inherited make_banana_traces referee used `== 1` and therefore
+        refused PICK/DROP from the shack cell itself."""
+        return _manhattan(unit["cell"], self.shacks[unit["player"]]) <= 1
+
+    def _inv_of(self, player):
+        return self.inv if player == 0 else self.opp_inv
 
     # -- TRAIN ------------------------------------------------------------
     # THE SOLE AUTHORITY IS rust/src/game/engine.rs::apply_train (525-568).
@@ -744,7 +937,8 @@ class FuzzReferee(mbt.Referee):
 
     def can_train(self, talents):
         """The two conditions engine.rs::apply_train rejects on, and only
-        those.
+        those.  Returns None when the TRAIN is legal, otherwise the reason
+        string that goes into the retained event ledger.
 
             engine.rs:527  let n = game.units.iter()
                                .filter(|u| u.player == player).count() as i32;
@@ -763,11 +957,11 @@ class FuzzReferee(mbt.Referee):
         cost = training_cost(n, talents)
         for item in self.train_billed_items():
             if self.inv[item] < cost[item]:
-                return False
+                return "unaffordable"
         # engine.rs:545 iterates game.units -- ALL units, both players.
         if any(u["cell"] == self.tent for u in self.units.values()):
-            return False
-        return True
+            return "shack_occupied"
+        return None
 
     def train_billed_items(self):
         """The engine's `pay` slice, engine.rs:531-536:
@@ -800,7 +994,7 @@ class FuzzReferee(mbt.Referee):
             engine.rs:565      carry: [0; 6],
             engine.rs:567  game.next_id += 1;
         """
-        if not self.can_train(talents):
+        if self.can_train(talents) is not None:
             return False
         n = len(self.own_unit_ids())
         cost = training_cost(n, talents)
@@ -815,114 +1009,422 @@ class FuzzReferee(mbt.Referee):
         }
         return True
 
-    # -- command handlers -------------------------------------------------
-    # One handler per verb.  There is deliberately NO default branch: an
-    # absent handler raises UnsupportedCommand (GATE_UNREADY).
+    def _train_one(self, talents):
+        """Phase 6.  Wraps `train` with the retained provenance event the
+        frozen contract (§8) requires: turn, talents, bill, roster size the
+        bill was priced at, spawn identity and the inventory either side."""
+        n = len(self.own_unit_ids())
+        cost = training_cost(n, talents)
+        reason = self.can_train(talents)
+        nid = self.next_id
+        before = list(self.inv)
+        spawned = self.train(talents)
+        event = {
+            "turn": self.turn,
+            "talents": list(talents),
+            "cost": list(cost),
+            "roster_before": n,
+            "spawned": bool(spawned),
+            "reason": reason,
+            "inventory_before": before,
+            "inventory_after": list(self.inv),
+            "unit_id": nid if spawned else None,
+            "cell": list(self.units[nid]["cell"]) if spawned else None,
+            "carry": list(self.units[nid]["carry"]) if spawned else None,
+        }
+        self.train_events.append(event)
+        return spawned
 
-    def _cmd_noop(self, tok, raw):
-        """MSG / WAIT: no world effect (the engine's parser `continue`s)."""
-
-    def _cmd_delegate(self, tok, raw):
-        """MOVE / HARVEST / CHOP / PLANT / PICK / DROP: the inherited
-        make_banana_traces application, unchanged."""
-        mbt.Referee.apply(self, raw)
-
-    def _cmd_train(self, tok, raw):
-        if len(tok) < 5:               # engine parser: `if parts.len() >= 5`
-            return
-        self.train(tuple(_int_or_zero(t) for t in tok[1:5]))
-
-    def _cmd_mine(self, tok, raw):
-        """MINE <id>: yield iron while orthogonally adjacent to an iron cell.
-
-        Emission gate, yamo_orchard_live.rs:936-944:
-            if view.iron.iter().any(|iron| is_adjacent(*iron, unit.cell))
-                -> "MINE {unit.id}"
-        with is_adjacent = manhattan == 1 (yamo_orchard_live.rs:239-241).
-        The yield (min(chop_power, free_capacity), and nothing without chop
-        power or free capacity) is not stated in the authoritative file; it
-        is taken from the engine's apply_mine (rust/src/game/engine.rs:
-        646-667) and is marked INFERRED in the report."""
-        if len(tok) < 2:
-            return
-        try:
-            uid = int(tok[1])
-        except ValueError:
-            return
-        unit = self.units.get(uid)
-        if unit is None or unit["player"] != 0:
-            return
-        free = unit["cap"] - sum(unit["carry"])
-        if unit["chop"] <= 0 or free <= 0:
-            return
-        cell = unit["cell"]
-        if not any(abs(cell[0] - i[0]) + abs(cell[1] - i[1]) == 1
-                   for i in self.irons):
-            return
-        unit["carry"][IRON] += min(unit["chop"], free)
+    # -- trust-boundary parser (contract C1/C2/C3/C5/C6) ------------------
+    # PARSE THE COMPLETE LINE BEFORE ANY MUTATION.  The r2 referee executed
+    # raw fragments one at a time, which made both the per-unit `used` rule
+    # and the phase order impossible to express.
 
     VERB_HANDLERS = {
-        "MSG": _cmd_noop,
-        "WAIT": _cmd_noop,
-        "MOVE": _cmd_delegate,
-        "HARVEST": _cmd_delegate,
-        "CHOP": _cmd_delegate,
-        "PLANT": _cmd_delegate,
-        "PICK": _cmd_delegate,
-        "DROP": _cmd_delegate,
-        "TRAIN": _cmd_train,
-        "MINE": _cmd_mine,
+        # verb -> the phase bucket it feeds (None = no world effect).
+        # engine.rs::parse_cmds (683-748).  There is deliberately NO default
+        # branch: a verb absent from this table is a retained
+        # `unsupported_verb` error, never a silent skip.
+        "MSG": None, "WAIT": None,
+        "MOVE": "moves", "HARVEST": "harvest", "PLANT": "plant",
+        "CHOP": "chop", "PICK": "pick", "TRAIN": "train",
+        "DROP": "drop", "MINE": "mine",
     }
 
-    # Engine command-priority position of TRAIN: "MOVE, HARVEST, PLANT,
-    # CHOP, PICK, TRAIN, DROP, MINE".  Only TRAIN's position is enforced
-    # here (see `_ordered`), so command lines without a TRAIN are applied in
-    # exactly the emission order the pre-repair referee used.
-    _POST_TRAIN_VERBS = ("DROP", "MINE")
+    # Exact token counts (verb included).  engine.rs is permissive here
+    # (`parts.len() >= 4` etc., 724/735/740); the panel trust boundary is
+    # not -- see contract C3 and the ERROR_MALFORMED note above.
+    VERB_ARITY = {"MOVE": 4, "HARVEST": 2, "CHOP": 2, "DROP": 2, "MINE": 2,
+                  "PLANT": 3, "PICK": 3}
 
     @staticmethod
-    def _verb(raw):
-        return raw.split(None, 1)[0].upper()
+    def _int(token, what):
+        try:
+            return int(token)
+        except ValueError:
+            raise _Malformed("%s is not an integer: %r" % (what, token))
 
     @classmethod
-    def _ordered(cls, raws):
-        """TRAIN resolves after MOVE/HARVEST/PLANT/CHOP/PICK and before
-        DROP/MINE.  This matters: the bot emits TRAIN FIRST on the line and
-        relies on the same turn's MOVE to vacate the shack, so applying a
-        TRAIN in emission order would always hit the occupied-shack guard."""
-        trains = [r for r in raws if cls._verb(r) == "TRAIN"]
-        if not trains:
-            return raws
-        rest = [r for r in raws if cls._verb(r) != "TRAIN"]
-        cut = next((i for i, r in enumerate(rest)
-                    if cls._verb(r) in cls._POST_TRAIN_VERBS), len(rest))
-        return rest[:cut] + trains + rest[cut:]
+    def _parse_fragment(cls, tok):
+        """One fragment -> (verb, payload).  Raises `_Malformed`."""
+        verb = tok[0].upper()
+        if verb == "MSG":
+            # engine.rs:696 `"MSG" | "WAIT" => continue` -- MSG carries free
+            # text, so its body is unconstrained.
+            return "MSG", None
+        if verb == "WAIT":
+            if len(tok) != 1:
+                raise _Malformed("WAIT takes no arguments, got %d"
+                                 % (len(tok) - 1))
+            return "WAIT", None
+        if verb == "TRAIN":
+            if len(tok) != 5:
+                raise _Malformed(
+                    "TRAIN takes exactly four talent fields; got %d. "
+                    "engine.rs:698 accepts `parts.len() >= 5` and silently "
+                    "drops shorter lines, and engine.rs:699-702 coerces "
+                    "unparsable talents with `parse().unwrap_or(0)`; at the "
+                    "panel trust boundary (contract C3) a malformed emitted "
+                    "command is an instrument error, not a fabricated "
+                    "command" % (len(tok) - 1))
+            return "TRAIN", tuple(cls._int(t, "talent") for t in tok[1:5])
+        arity = cls.VERB_ARITY[verb]
+        if len(tok) != arity:
+            raise _Malformed("%s takes exactly %d argument(s), got %d"
+                             % (verb, arity - 1, len(tok) - 1))
+        uid = cls._int(tok[1], "unit id")
+        if verb == "MOVE":
+            return verb, (uid, (cls._int(tok[2], "target x"),
+                                cls._int(tok[3], "target y")))
+        if verb in ("HARVEST", "CHOP", "DROP", "MINE"):
+            return verb, (uid, None)
+        item = tok[2].upper()
+        # engine.rs::item_index (17-27) PANICS on an unknown item name, and
+        # tree_health (53-60) panics on a non-tree PLANT type.  Fail closed.
+        allowed = PLANTABLE_KINDS if verb == "PLANT" else tuple(ITEM_INDEX)
+        if item not in allowed:
+            raise _Malformed("%s: %r is not one of %s"
+                             % (verb, tok[2], " ".join(allowed)))
+        return verb, (uid, item)
+
+    @classmethod
+    def parse_commands(cls, command_line, turn=0):
+        """engine.rs::parse_cmds (683-748), plus the C3 trust boundary.
+
+        Two engine rules that the r2 fragment executor could not express:
+
+          * engine.rs:717-720
+                if used.contains(&uid) { continue; }
+                used.insert(uid);
+            only the FIRST non-TRAIN command for a unit survives;
+          * engine.rs:697-706 TRAIN `continue`s before a uid is parsed, so
+            TRAIN is not unit-scoped and every entry is kept in parse order.
+
+        Pure: it is a classmethod and touches no referee state, which is
+        what 'parse before mutate' has to mean."""
+        p = ParsedCommands()
+        used = p.used
+        for raw in [f.strip() for f in command_line.split(";")]:
+            if not raw:
+                continue                       # engine.rs:689 empty fragment
+            tok = raw.split()
+            verb = tok[0].upper()
+            if verb not in cls.VERB_HANDLERS:
+                p.errors.append(command_error(
+                    ERROR_UNSUPPORTED_VERB, verb, raw, turn,
+                    unsupported_reason(verb, raw, turn)))
+                continue
+            try:
+                verb, payload = cls._parse_fragment(tok)
+            except _Malformed as exc:
+                p.errors.append(command_error(
+                    ERROR_MALFORMED, verb, raw, turn, str(exc)))
+                continue
+            bucket = cls.VERB_HANDLERS[verb]
+            if bucket is None:
+                continue
+            if bucket == "train":
+                p.train.append(payload)
+                continue
+            uid, extra = payload
+            if uid in used:
+                continue
+            used.add(uid)
+            if bucket == "moves":
+                p.moves[uid] = extra
+            elif extra is None:
+                getattr(p, bucket).append(uid)
+            else:
+                getattr(p, bucket).append((uid, extra))
+        return p
+
+    # -- phase appliers (engine.rs, one function each) ---------------------
+
+    def _apply_moves(self, intents):
+        """engine.rs::apply_moves (213-357).  Per-player resolution: highest
+        id wins a contested cell (264 `movers.sort_by(|a, b| b.cmp(a))`),
+        circular swaps are resolved as a cycle (321-350), and a deadlock is
+        broken by forcing one move (352-355).  The intent map is global
+        (engine.rs:760-762 merges both players), so a command naming a unit
+        of the other player resolves in that player's pass."""
+        for player in (0, 1):
+            ids = sorted(uid for uid, u in self.units.items()
+                         if u["player"] == player)
+            pos = {uid: self.units[uid]["cell"] for uid in ids}
+            target = {}
+            for uid in ids:
+                if uid in intents:
+                    target[uid] = self.next_cell(
+                        pos[uid], intents[uid], self.units[uid]["speed"])
+                else:
+                    target[uid] = pos[uid]
+            occupied = {pos[uid] for uid in ids}
+            movers = sorted((uid for uid in ids if target[uid] != pos[uid]),
+                            reverse=True)
+            progress, resolve_blocking = True, False
+            while progress:
+                progress = False
+                freq = {}
+                for uid in movers:
+                    freq[target[uid]] = freq.get(target[uid], 0) + 1
+                to_remove = []
+                for uid in movers:
+                    cell = target[uid]
+                    cur = self.units[uid]["cell"]
+                    if ((resolve_blocking or freq[cell] == 1)
+                            and cell not in occupied):
+                        occupied.discard(cur)
+                        occupied.add(cell)
+                        self.units[uid]["cell"] = cell
+                        to_remove.append(uid)
+                        progress = True
+                        resolve_blocking = False
+                if to_remove:
+                    movers = [u for u in movers if u not in to_remove]
+                if progress:
+                    continue
+                mover_pos = {self.units[uid]["cell"]: uid for uid in movers}
+                swap_resolved = False
+                for start in movers:
+                    path = [start]
+                    while True:
+                        nxt = mover_pos.get(target[path[-1]])
+                        if nxt is None:
+                            break
+                        if nxt == path[0]:
+                            for uid in path:
+                                self.units[uid]["cell"] = target[uid]
+                            movers = [u for u in movers if u not in path]
+                            progress = swap_resolved = True
+                            break
+                        if nxt in path:
+                            break
+                        path.append(nxt)
+                    if swap_resolved:
+                        break
+                if not swap_resolved and not resolve_blocking:
+                    resolve_blocking = True
+                    progress = True
+
+    def _apply_harvest(self, uids):
+        """engine.rs::apply_harvest (361-412).  MULTI-ROUND: for i in 1..=3
+        every troll with `hp >= i` and free capacity takes one fruit (389-
+        410), and the last fruit can be duplicated because the decrement is
+        guarded by `if plant.fruits > 0` (405-407).  The inherited
+        make_banana_traces referee took at most one fruit per unit per turn
+        regardless of harvest power."""
+        cells = {}
+        for uid in uids:
+            u = self.units.get(uid)
+            if u is None:
+                continue
+            plant = self.plants.get(u["cell"])
+            if plant is not None and plant["fruits"] > 0:
+                cells.setdefault(u["cell"], []).append(uid)
+        for cell, troll_ids in cells.items():
+            plant = self.plants.get(cell)
+            if plant is None:
+                continue
+            idx = ITEM_INDEX[plant["kind"]]
+            for i in range(1, MAX_FRUITS + 1):
+                if plant["fruits"] == 0:
+                    break
+                for uid in troll_ids:
+                    u = self.units[uid]
+                    if u["harvest"] >= i and sum(u["carry"]) < u["cap"]:
+                        u["carry"][idx] += 1
+                        if plant["fruits"] > 0:
+                            plant["fruits"] -= 1
+
+    def _apply_plant(self, entries):
+        """engine.rs::apply_plant (461-511).  Requires a walkable cell (473),
+        an empty cell (476) and a seed in carry (479).  Same-cell intents
+        resolve simultaneously: same-type merges into ONE tree while every
+        planter still spends a seed, mixed types cancel (490-499).  The new
+        tree is size 0, health `tree_health(t, 0)`, cooldown 0 (501-509) --
+        the same turn's growth tick then takes it to size 1."""
+        intents = {}
+        for uid, kind in entries:
+            u = self.units.get(uid)
+            if u is None:
+                continue
+            pos = u["cell"]
+            if pos not in self.walk or pos in self.plants:
+                continue
+            idx = ITEM_INDEX[kind]
+            if u["carry"][idx] <= 0:
+                continue
+            intents.setdefault(pos, []).append((uid, kind, idx))
+        for pos in sorted(intents):                 # engine.rs:462 BTreeMap
+            entries_ = intents[pos]
+            if len({e[1] for e in entries_}) != 1:
+                continue
+            for uid, _, idx in entries_:
+                self.units[uid]["carry"][idx] -= 1
+            kind = entries_[0][1]
+            self.plants[pos] = {"kind": kind, "size": 0,
+                                "health": TREE_HEALTH_BASE[kind],
+                                "fruits": 0, "cd": 0}
+
+    def _apply_chop(self, uids, allowed_cells):
+        """engine.rs::apply_chop_on_cells (576-643).  `allowed_cells` is the
+        plant-cell snapshot taken BEFORE the plant phase (engine.rs:770), so
+        a tree planted this turn cannot be felled this turn.  Damage is
+        floored at 0 (608) and the wood loop hands one log per chopper per
+        round, so the last log can duplicate (614-632)."""
+        cells = {}
+        for uid in uids:
+            u = self.units.get(uid)
+            if u is None or u["chop"] == 0:
+                continue
+            pos = u["cell"]
+            if pos in allowed_cells and pos in self.plants:
+                cells.setdefault(pos, []).append(uid)
+        dead = []
+        for cell, choppers in cells.items():
+            plant = self.plants.get(cell)
+            if plant is None:
+                continue
+            for uid in choppers:
+                plant["health"] = max(plant["health"]
+                                      - self.units[uid]["chop"], 0)
+            if plant["health"] <= 0:
+                size = plant["size"]
+                remaining = size
+                i = 0
+                while i < size and remaining > 0:
+                    for uid in choppers:
+                        u = self.units[uid]
+                        if u["cap"] - sum(u["carry"]) > 0:
+                            u["carry"][WOOD] += 1
+                            remaining -= 1
+                    i += 1
+                dead.append(cell)
+        for cell in dead:
+            self.plants.pop(cell, None)
+
+    def _apply_pick(self, entries):
+        """engine.rs::apply_pick (438-458).  Near-shack (`<= 1`, so the shack
+        cell itself counts), free capacity, and the item must be in stock."""
+        for uid, kind in entries:
+            u = self.units.get(uid)
+            if u is None or not self._near_shack(u):
+                continue
+            if u["cap"] - sum(u["carry"]) <= 0:
+                continue
+            idx = ITEM_INDEX[kind]
+            inv = self._inv_of(u["player"])
+            if inv[idx] > 0:
+                inv[idx] -= 1
+                u["carry"][idx] += 1
+
+    def _apply_drop(self, uids):
+        """engine.rs::apply_drop (415-435).  Banks the WHOLE carry."""
+        for uid in uids:
+            u = self.units.get(uid)
+            if u is None or not self._near_shack(u):
+                continue
+            inv = self._inv_of(u["player"])
+            for i in range(6):
+                inv[i] += u["carry"][i]
+            u["carry"] = [0] * 6
+
+    def _apply_mine(self, uids):
+        """engine.rs::apply_mine (646-667): `chop == 0 || free <= 0` skips,
+        orthogonal adjacency to an iron cell yields `min(chop, free)`."""
+        for uid in uids:
+            u = self.units.get(uid)
+            if u is None:
+                continue
+            free = u["cap"] - sum(u["carry"])
+            if u["chop"] == 0 or free <= 0:
+                continue
+            cell = u["cell"]
+            if any(_manhattan(cell, i) == 1 for i in self.irons):
+                u["carry"][IRON] += min(u["chop"], free)
+
+    def _execute(self, parsed):
+        """engine.rs::step (755-806), phases 1..8 in engine order.
+
+            apply_moves   762      apply_pick    783
+            apply_harvest 767      apply_train   786-791
+            apply_plant   773      apply_drop    796
+            apply_chop    778      apply_mine    801
+
+        The choppable-cell snapshot is taken at engine.rs:770, i.e. BEFORE
+        the plant phase."""
+        self._apply_moves(parsed.moves)
+        self._apply_harvest(parsed.harvest)
+        choppable = set(self.plants)
+        self._apply_plant(parsed.plant)
+        self._apply_chop(parsed.chop, choppable)
+        self._apply_pick(parsed.pick)
+        for talents in parsed.train:
+            self._train_one(talents)
+        self._apply_drop(parsed.drop)
+        self._apply_mine(parsed.mine)
+
+    def grow(self):
+        """engine.rs::tick_plants (149-189).  Identical to the inherited
+        version except for the `health > 0` guard at engine.rs:156, which the
+        inherited referee omits."""
+        for cell, plant in self.plants.items():
+            if plant["cd"] > 0:
+                plant["cd"] -= 1
+            if plant["cd"] == 0 and plant["health"] > 0:
+                if plant["size"] < MAX_SIZE:
+                    plant["size"] += 1
+                    plant["health"] += TREE_HEALTH_SLOPE[plant["kind"]]
+                    plant["cd"] = self.effective_cd(plant["kind"], cell)
+                elif plant["fruits"] < MAX_FRUITS:
+                    plant["fruits"] += 1
+                    plant["cd"] = self.effective_cd(plant["kind"], cell)
+
+    def effective_cd(self, kind, cell):
+        """engine.rs:164-173 / 176-185."""
+        cd = PLANT_COOLDOWN[kind]
+        return cd - WATER_BOOST[kind] if self.near_water(cell) else cd
 
     def apply(self, command_line):
-        """EXHAUSTIVE command dispatch (requirement 1, 2026-08-09).
+        """Parse the WHOLE line, retain every trust-boundary error, then run
+        the eight engine phases in engine order.
 
-        Every verb is routed through VERB_HANDLERS.  A verb with no handler
-        raises UnsupportedCommand and terminates the whole run as
-        GATE_UNREADY / unsupported_command.  There is no default branch: the
-        pre-repair dispatcher inherited from make_banana_traces skipped
-        MSG/WAIT/TRAIN by name and let every other unknown verb fall out of
-        the bottom of an if/elif chain, which is how TRAIN (and MINE) were
-        applied as no-ops for the whole life of the panel."""
-        saved = (mbt.TENT, mbt.WALKABLE)
-        self._bind()
-        try:
-            raws = [r.strip() for r in command_line.split(";")]
-            raws = [r for r in raws if r]
-            for raw in self._ordered(raws):
-                verb = self._verb(raw)
-                handler = self.VERB_HANDLERS.get(verb)
-                if handler is None:
-                    raise unsupported_command(verb, raw, self.turn)
-                handler(self, raw.split(), raw)
-            OPP_POLICIES[self.profile](self)
-            self.turn += 1
-        finally:
-            mbt.TENT, mbt.WALKABLE = saved
+        No fragment is ever handed to `make_banana_traces.Referee.apply`.
+        That inherited dispatcher is a sequential if/elif chain with a silent
+        fall-through bottom -- the original defect (TRAIN and MINE fell out
+        of it for the whole life of the panel, and m040 seats 0/1 emitted
+        TRAIN on 166 and 182 of 200 turns while scoring CLEAN).  Keeping a
+        delegation path to it would keep a second, informal command language
+        inside the panel, which the frozen contract (§1) forbids."""
+        parsed = self.parse_commands(command_line, self.turn)
+        for err in parsed.errors:
+            self.error_counts[err["kind"]] = self.error_counts.get(
+                err["kind"], 0) + 1
+            if len(self.command_errors) < MAX_RETAINED_ERRORS:
+                self.command_errors.append(err)
+        self._execute(parsed)
+        OPP_POLICIES[self.profile](self)
+        self.turn += 1
 
 
 # The verbs the referee implements, and the verbs the game's own command
@@ -1232,6 +1734,23 @@ def eval_p4(tr_c, tr_p, window: int, post_state=None):
 # Per-game job
 # ---------------------------------------------------------------------------
 
+def _record_execution(row, ref):
+    """Copy the referee's retained command-execution ledger onto the row.
+
+    Contract §8 / review B6: the packet must be able to distinguish 'every
+    command executed' from 'the process ended before publishing evidence'.
+    An `unsupported_command` used to raise out of the worker and abort the
+    aggregate before any row existed, so the affected row vanished from the
+    denominator entirely."""
+    row["execution_status"] = ref.execution_status
+    row["command_errors"] = list(ref.command_errors)
+    row["command_error_counts"] = dict(ref.error_counts)
+    row["train_events"] = list(ref.train_events)
+    row["spawns"] = ref.spawn_events()
+    row["successful_train_turns"] = [e["turn"] for e in row["spawns"]]
+    return row
+
+
 def run_pair(job):
     """One (map, seat): candidate + parent closed-loop games on the
     identical spec, then all properties. Pure function of the job dict."""
@@ -1243,6 +1762,12 @@ def run_pair(job):
         "seed": spec["seed"], "attempt": spec["attempt"],
         "orchard_eligible": spec["orchard_eligible"],
         "violations": [], "flags": [],
+        # contract §8 -- present on EVERY row, including aborted ones.
+        "execution_status": EXECUTION_OK,
+        "command_errors": [], "command_error_counts": {},
+        "train_events": [], "spawns": [],
+        "parent_execution_status": EXECUTION_OK,
+        "provenance": provenance(),
     }
     try:
         ref_c = make_referee(spec)
@@ -1255,12 +1780,14 @@ def run_pair(job):
                     "detector_counts": {}, "candidate": None,
                     "parent": None, "artifacts": {}})
         return row
+    _record_execution(row, ref_c)
     try:
         ref_p = make_referee(spec)
         t_p, c_p = rt.run_binary_custom(Path(job["parent"]), ref_p, turns)
     except (RuntimeError, OSError) as exc:
         raise PanelError("parent crashed on %s seat %d: %s"
                          % (spec["map_id"], spec["seat"], exc))
+    row["parent_execution_status"] = ref_p.execution_status
     tr_c = td.build_trace(t_c, c_c)
     tr_p = td.build_trace(t_p, c_p)
     parent_cmds = td.CommandParser().parse(c_p)
@@ -1354,8 +1881,17 @@ def load_config(path: Path) -> dict:
     unknown = set(cfg["opponent_mix"]) - set(OPP_PROFILES)
     if unknown:
         raise PanelError("unknown opponent profiles: %s" % sorted(unknown))
+    # FAIL CLOSED (review B7).  The keys must be present in the RAW json --
+    # not merged in from DEFAULTS -- or a config that declares no corpus at
+    # all silently inherits the current identity and passes.
     for key, current in (("instrument_version", INSTRUMENT_VERSION),
                          ("corpus_version", CORPUS_VERSION)):
+        if key not in raw:
+            raise PanelError(
+                "config does not declare %s. Every config must state the "
+                "corpus/instrument identity its results belong to; a missing "
+                "declaration must never inherit the running panel's identity "
+                "(this panel is %r)." % (key, current))
         if cfg[key] != current:
             raise PanelError(
                 "%s mismatch: config declares %r, this panel is %r. Results "
@@ -1463,6 +1999,21 @@ def summarize(cfg, rows, wall_time):
             and not any(v["property"] == "P3" for v in r["violations"])),
         "blocking_games": sum(1 for r in rows if r["block"]),
         "flagged_games": sum(1 for r in rows if r["flags"]),
+        # contract §8: rows with incomplete command execution stay in the
+        # denominator and are reported, never dropped.
+        "clean_games": sum(1 for r in rows if not r["block"]),
+        "instrument_invalid_games": sum(
+            1 for r in rows
+            if r.get("execution_status", EXECUTION_OK) != EXECUTION_OK),
+        "unsupported_command_games": sum(
+            1 for r in rows
+            if r.get("execution_status") == ERROR_UNSUPPORTED_VERB),
+        "malformed_command_games": sum(
+            1 for r in rows if r.get("execution_status") == ERROR_MALFORMED),
+        "games_with_a_successful_train": sum(
+            1 for r in rows if r.get("spawns")),
+        "successful_train_events": sum(
+            len(r.get("spawns", [])) for r in rows),
         "wall_time_seconds": round(wall_time, 2),
     }
     for r in rows:
@@ -1480,8 +2031,13 @@ def write_report(path: Path, cfg, rows, stats, verdict):
     lines.append("- instrument: `%s`  |  corpus: `%s`"
                  % (cfg.get("instrument_version", INSTRUMENT_VERSION),
                     cfg.get("corpus_version", CORPUS_VERSION)))
-    lines.append("- supported commands: %s (an unimplemented verb "
-                 "terminates the run as GATE_UNREADY / unsupported_command)"
+    lines.append("- referee sha256: `%s`  |  engine.rs sha256: `%s`"
+                 % (referee_sha256(), engine_sha256()))
+    lines.append("- phase order: %s (rust/src/game/engine.rs:755-806)"
+                 % " -> ".join(PHASE_ORDER))
+    lines.append("- supported commands: %s (an unimplemented verb is a "
+                 "retained `unsupported_verb` error: the row stays in the "
+                 "denominator and the aggregate is GATE_UNREADY)"
                  % " ".join(sorted(SUPPORTED_COMMANDS)))
     lines.append("- candidate: `%s` (sha256 %s)"
                  % (cfg["candidate"]["source"],
@@ -1501,11 +2057,28 @@ def write_report(path: Path, cfg, rows, stats, verdict):
     lines.append("")
     lines.append("| metric | value |")
     lines.append("|---|---|")
-    for k in ("games", "banana_activated_games", "orchard_eligible_games",
-              "orchard_inertness_checks_passed", "blocking_games",
-              "flagged_games"):
+    for k in ("games", "clean_games", "banana_activated_games",
+              "orchard_eligible_games", "orchard_inertness_checks_passed",
+              "blocking_games", "flagged_games", "instrument_invalid_games",
+              "unsupported_command_games", "malformed_command_games",
+              "games_with_a_successful_train", "successful_train_events"):
         lines.append("| %s | %s |" % (k, stats[k]))
     lines.append("")
+    invalid = [r for r in rows
+               if r.get("execution_status", EXECUTION_OK) != EXECUTION_OK]
+    if invalid:
+        lines.append("## Instrument-invalid rows (GATE_UNREADY, retained "
+                     "in the denominator)")
+        lines.append("")
+        lines.append("| map | seat | status | first raw command |")
+        lines.append("|---|---|---|---|")
+        for r in invalid:
+            first = (r["command_errors"][0]["raw"]
+                     if r["command_errors"] else "?")
+            lines.append("| %s | %d | %s | `%s` |"
+                         % (r["map_id"], r["seat"], r["execution_status"],
+                            first))
+        lines.append("")
     lines.append("| class | games |")
     lines.append("|---|---|")
     for k, v in sorted(stats["by_class"].items()):
@@ -1573,7 +2146,7 @@ def run_panel(cfg, report_path: Path, json_path: Path | None,
     write_games_archive(cfg, rows)
 
     stats = summarize(cfg, rows, wall_time)
-    verdict = "BLOCK" if any(r["block"] for r in rows) else "CLEAR"
+    verdict = aggregate_verdict(rows)
     write_report(report_path, cfg, rows, stats, verdict)
     if json_path is not None:
         slim = []
@@ -1587,11 +2160,20 @@ def run_panel(cfg, report_path: Path, json_path: Path | None,
              "instrument_version": cfg.get("instrument_version",
                                            INSTRUMENT_VERSION),
              "corpus_version": cfg.get("corpus_version", CORPUS_VERSION),
+             "referee_sha256": referee_sha256(),
+             "engine_sha256": engine_sha256(),
+             "provenance": provenance(),
              "games": slim}, indent=1, sort_keys=True) + "\n")
-    print("fuzz_panel: %s (%d games, %d blocking, %d flagged, %.1f s; "
-          "report: %s)"
+    print("fuzz_panel: %s (%d games, %d blocking, %d flagged, %d "
+          "instrument-invalid, %.1f s; report: %s)"
           % (verdict, stats["games"], stats["blocking_games"],
-             stats["flagged_games"], wall_time, report_path))
+             stats["flagged_games"], stats["instrument_invalid_games"],
+             wall_time, report_path))
+    # GATE_UNREADY is an instrument failure, not a candidate verdict: the
+    # evidence packet IS published (every affected row retained) and the
+    # process still exits 2 so no caller can mistake it for a verdict.
+    if verdict == "GATE_UNREADY":
+        return EXIT_ERROR
     return EXIT_CLEAR if verdict == "CLEAR" else EXIT_BLOCK
 
 

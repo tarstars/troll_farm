@@ -1021,6 +1021,22 @@ def _body_ast(fn_or_src):
     return node
 
 
+def _attrs_in_source_order(node) -> list:
+    """Attribute names in SOURCE order.  `ast.walk` is breadth-first, so it
+    cannot answer an ordering question."""
+    out = []
+
+    def visit(n):
+        if isinstance(n, ast.Attribute):
+            out.append(n.attr)
+        for child in ast.iter_child_nodes(n):
+            visit(child)
+
+    for stmt in (node.body if hasattr(node, "body") else []):
+        visit(stmt)
+    return out
+
+
 def _reads_the_turn_counter(fn_or_src) -> bool:
     """True iff the body reads `<something>.turn` or any TOTAL_TURNS-like
     global.  (A substring test would fire on the `turn` inside `return`.)"""
@@ -1163,12 +1179,14 @@ class TestTrainApplication(unittest.TestCase):
         # Vacate the shack, so the occupied-shack guard (engine.rs:545-547) is
         # not what decides the third worker.
         nid = own[-1]
-        ref.apply("MOVE %d 3 0" % nid)
+        # (1,0) is held by unit 0 and engine.rs::apply_moves (289) refuses an
+        # occupied cell, so the fresh worker leaves via the other door.
+        ref.apply("MOVE %d 0 1" % nid)
         self.assertNotEqual(ref.units[nid]["cell"], ref.tent)
         self.assertFalse(any(u["cell"] == ref.tent
                              for u in ref.units.values()))
         before = list(ref.inv)
-        self.assertTrue(ref.can_train((1, 1, 0, 1)),
+        self.assertIsNone(ref.can_train((1, 1, 0, 1)),
                         "n == 2 with an affordable bill and a free shack is "
                         "legal under engine.rs::apply_train")
         ref.apply("TRAIN 1 1 0 1")
@@ -1190,20 +1208,31 @@ class TestTrainApplication(unittest.TestCase):
         """`n` grows without bound; the bill grows with it (engine.rs:517-520
         `cost[PLUM] = n + ms * ms`), which is the only thing that ever stops
         a bot from training."""
-        ref = train_referee(inventory=[99, 99, 99, 0, 99, 0])
+        # The talents must include ms >= 1: the r2 mirror let a speed-0
+        # worker step off the non-walkable shack, which engine.rs::next_cell
+        # (126-134) cannot do, so `TRAIN 0 0 0 0` would wedge the shack
+        # forever.  ms = 1 costs one extra PLUM (engine.rs:517).
+        ref = train_referee(rows=TRAINER_ROWS,
+                            inventory=[99, 99, 99, 0, 99, 0],
+                            units=[[0, 0, 5, 4, 1, 2, 1, 1] + [0] * 6,
+                                   [5, 1, 10, 0, 1, 2, 0, 0] + [0] * 6])
         for expected_n in (1, 2, 3, 4):
             before = list(ref.inv)
             nid_before = set(ref.own_unit_ids())
-            ref.apply("TRAIN 0 0 0 0")
+            ref.apply("TRAIN 1 0 0 0")
             new = set(ref.own_unit_ids()) - nid_before
             self.assertEqual(len(new), 1,
                              "TRAIN #%d must spawn" % expected_n)
-            # cost[i] = n + 0*0 = n for PLUM/LEMON/APPLE
+            nid = new.pop()
+            # cost[PLUM] = n + 1, cost[LEMON] = cost[APPLE] = n
             self.assertEqual(ref.inv[:3],
-                             [before[0] - expected_n, before[1] - expected_n,
+                             [before[0] - expected_n - 1,
+                              before[1] - expected_n,
                               before[2] - expected_n])
-            # vacate the shack for the next one
-            ref.apply("MOVE %d 3 0" % new.pop())
+            # walk the fresh worker off the shack and out of the way
+            for _ in range(6):
+                ref.apply("MOVE %d %d 4" % (nid, expected_n))
+            self.assertNotEqual(ref.units[nid]["cell"], ref.tent)
         self.assertEqual(len(ref.own_unit_ids()), 5)
 
     def test_unaffordable_train_is_rejected_and_charges_nothing(self):
@@ -1309,7 +1338,7 @@ class TestTrainApplication(unittest.TestCase):
         ref.apply("TRAIN 1 1 0 1")
         first = ref.own_unit_ids()[-1]
         self.assertEqual(first, 6, "max(existing id 0, 5) + 1")
-        ref.apply("MOVE %d 3 0" % first)
+        ref.apply("MOVE %d 0 1" % first)
         ref.apply("TRAIN 1 1 0 1")
         self.assertEqual(ref.own_unit_ids()[-1], 7,
                          "the counter advances; ids are never reused")
@@ -1339,13 +1368,20 @@ class TestTrainApplication(unittest.TestCase):
                          "TRAIN is applied after the same-turn MOVE")
         # ... and before DROP: the DROP banks only the mover's cargo, and
         # the spawned worker (empty, on the shack) is unaffected.
+        # engine.rs:717-720 gives a unit ONE non-TRAIN command per turn, so
+        # the banking unit must not be the mover.
         ref = train_referee(inventory=[9, 9, 9, 0, 9, 0],
                             units=[[0, 0, 0, 0, 1, 2, 1, 1,
                                     0, 0, 0, 0, 0, 1],
+                                   [1, 0, 0, 1, 1, 2, 1, 1,
+                                    0, 0, 0, 0, 0, 1],
                                    [5, 1, 4, 2, 1, 2, 0, 0] + [0] * 6])
-        ref.apply("TRAIN 1 1 0 1;MOVE 0 1 0;DROP 0")
-        self.assertEqual(ref.units[0]["carry"], [0] * 6)
-        self.assertEqual(len(ref.own_unit_ids()), 2)
+        ref.apply("TRAIN 1 1 0 1;MOVE 0 1 0;DROP 1")
+        self.assertEqual(ref.units[1]["carry"], [0] * 6,
+                         "DROP runs after TRAIN, but it still runs")
+        self.assertEqual(ref.units[0]["carry"][5], 1,
+                         "unit 0 spent its single command on MOVE")
+        self.assertEqual(len(ref.own_unit_ids()), 3)
 
     def test_a_spawned_worker_can_leave_the_shack(self):
         # The shack is not a walkable cell, so the mover must mirror the
@@ -1356,7 +1392,7 @@ class TestTrainApplication(unittest.TestCase):
         ref.apply("TRAIN 1 1 0 1")
         nid = ref.own_unit_ids()[-1]
         self.assertEqual(ref.units[nid]["cell"], ref.tent)
-        ref.apply("MOVE %d 3 0" % nid)
+        ref.apply("MOVE %d 0 1" % nid)
         self.assertNotEqual(ref.units[nid]["cell"], ref.tent,
                             "a spawned worker must be able to walk off the "
                             "shack")
@@ -1910,6 +1946,18 @@ DIFFERENTIAL_CASES = [
          [_u(0, 0, 2, 1), _u(9, 1, 7, 1)], line="MSG hello there;WAIT"),
 ]
 
+# Leg B (`sim/engine.py`) is DEFECTIVE relative to the authority on these
+# cases and is excluded from them.  Found by this differential, reported, not
+# fixed here (sim/ is outside this task's boundary):
+#
+#   sim/engine.py:115  `best = min(target_dist[c] for c in in_range)`
+#   has no counterpart to engine.rs:132-134
+#       if in_range.is_empty() { return current; }
+#   so a speed-0 unit standing on a non-walkable cell (a shack -- exactly
+#   where TRAIN puts a fresh worker) raises `ValueError: min() iterable
+#   argument is empty` instead of standing still.
+SIM_LEG_DEFECTS = ("zero_speed_unit_on_the_shack_cannot_move",)
+
 PERMUTATION_GROUPS = [
     # identical command multisets, different textual order (contract C4)
     ("move_and_train", D_IRON, RICH, [_u(0, 0, 1, 1), _u(9, 1, 7, 1)],
@@ -1917,9 +1965,13 @@ PERMUTATION_GROUPS = [
     ("drop_and_train", D_ROWS, [1, 1, 1, 0, 0, 0],
      [_u(0, 0, 2, 1, carry=[1, 1, 1, 0, 0, 0]), _u(9, 1, 7, 1)],
      ["DROP 0;TRAIN 1 1 1 1", "TRAIN 1 1 1 1;DROP 0"]),
+    # NOTE: permutation invariance (C4) is bounded by C5 -- engine.rs:717-720
+    # makes textual order decide WHICH of two commands for the SAME unit
+    # survives, so the multiset must not repeat a unit.
     ("mine_and_drop", D_IRON, [0] * 6,
-     [_u(0, 0, 3, 1, cap=6, carry=[0, 0, 0, 0, 1, 0]), _u(9, 1, 7, 1)],
-     ["MINE 0;DROP 0", "DROP 0;MINE 0"]),
+     [_u(0, 0, 3, 1, cap=6, carry=[0, 0, 0, 0, 1, 0]),
+      _u(1, 0, 2, 1, cap=6, carry=[0, 0, 0, 0, 1, 0]), _u(9, 1, 7, 1)],
+     ["MINE 0;DROP 1", "DROP 1;MINE 0"]),
     ("pick_and_train", D_ROWS, [2, 2, 2, 0, 0, 0],
      [_u(0, 0, 2, 1), _u(9, 1, 7, 1)],
      ["PICK 0 PLUM;TRAIN 1 1 1 1", "TRAIN 1 1 1 1;PICK 0 PLUM"]),
@@ -1947,6 +1999,8 @@ class TestDifferentialFullState(unittest.TestCase):
 
     def test_sim_engine_mirror_agrees_on_every_case(self):
         for case in DIFFERENTIAL_CASES:
+            if case.name in SIM_LEG_DEFECTS:
+                continue
             with self.subTest(case=case.name):
                 ref = self._run_referee(case)
                 self.assertEqual(snapshot_from_referee(ref),
@@ -1955,9 +2009,28 @@ class TestDifferentialFullState(unittest.TestCase):
     def test_the_two_oracles_agree_with_each_other(self):
         # If leg A and leg B ever disagree, neither may be used as an oracle.
         for case in DIFFERENTIAL_CASES:
+            if case.name in SIM_LEG_DEFECTS:
+                continue
             with self.subTest(case=case.name):
                 self.assertEqual(snapshot_from_rust(case),
                                  snapshot_from_sim(case))
+
+    def test_the_sim_leg_defects_are_real_and_named(self):
+        """Leg B is excluded from exactly the cases named in
+        `SIM_LEG_DEFECTS`, and the exclusion is not a convenience: each one
+        must still FAIL against leg B, for the documented reason.  A silent
+        exclusion list is how an oracle stops being an oracle."""
+        self.assertTrue(SIM_LEG_DEFECTS)
+        by_name = {c.name: c for c in DIFFERENTIAL_CASES}
+        for name in SIM_LEG_DEFECTS:
+            with self.subTest(case=name):
+                self.assertIn(name, by_name)
+                with self.assertRaises(ValueError):
+                    snapshot_from_sim(by_name[name])
+                # leg A -- the authority itself -- handles it correctly.
+                ref = self._run_referee(by_name[name])
+                self.assertEqual(snapshot_from_referee(ref),
+                                 snapshot_from_rust(by_name[name]))
 
     def test_the_oracle_is_not_vacuous(self):
         # A deliberately wrong post-state must be REJECTED by the oracle, so
@@ -1997,16 +2070,13 @@ class TestPhaseOrder(unittest.TestCase):
     def test_execute_calls_the_phases_in_that_order(self):
         # AST-level: the phase appliers must appear in `_execute` in engine
         # order.  Prose in a docstring cannot satisfy this.
-        body = _body_ast(fp.FuzzReferee._execute)
-        calls = []
-        for node in ast.walk(body):
-            if isinstance(node, ast.Attribute) and node.attr.startswith(
-                    ("_apply_", "_train_")):
-                calls.append(node.attr)
-        order = [c for c in ["_apply_moves", "_apply_harvest", "_apply_plant",
-                             "_apply_chop", "_apply_pick", "_train_one",
-                             "_apply_drop", "_apply_mine"] if c in calls]
-        self.assertEqual(calls, order)
+        calls = [a for a in _attrs_in_source_order(
+            _body_ast(fp.FuzzReferee._execute))
+            if a.startswith(("_apply_", "_train_"))]
+        self.assertEqual(
+            calls,
+            ["_apply_moves", "_apply_harvest", "_apply_plant", "_apply_chop",
+             "_apply_pick", "_train_one", "_apply_drop", "_apply_mine"])
 
     def test_drop_never_funds_a_same_turn_train(self):
         ref = train_referee(inventory=[1, 1, 1, 0, 1, 0],
@@ -2032,14 +2102,25 @@ class TestPhaseOrder(unittest.TestCase):
         self.assertEqual(len(starved.own_unit_ids()), 1)
 
     def test_mine_resolves_after_drop(self):
+        # (1,0) is adjacent to BOTH the shack (0,0) and the iron cell (2,0),
+        # so one unit can bank and mine in the same turn.  engine.rs:717-720
+        # allows a unit only ONE non-TRAIN command per turn, so the DROP and
+        # the MINE must come from different units -- both stand on cells
+        # adjacent to the shack and the iron.
+        rows = ("0.+..1", "......", "......")
         ref = train_referee(
-            rows=IRON_ROWS, inventory=[0] * 6,
-            units=[[0, 0, 2, 0, 1, 6, 1, 2] + [0, 0, 0, 0, 3, 0],
+            rows=rows, inventory=[0] * 6,
+            units=[[0, 0, 1, 0, 1, 6, 1, 2] + [0, 0, 0, 0, 3, 0],
+                   [1, 0, 0, 1, 1, 6, 1, 2] + [0, 0, 0, 0, 4, 0],
                    [5, 1, 4, 2, 1, 2, 0, 0] + [0] * 6])
-        ref.apply("MINE 0;DROP 0")
-        self.assertEqual(ref.inv[fp.IRON], 3, "DROP banked the pre-MINE iron")
-        self.assertEqual(ref.units[0]["carry"][fp.IRON], 2,
-                         "MINE ran after DROP and refilled the carry")
+        ref.apply("MINE 0;DROP 1")
+        self.assertEqual(ref.inv[fp.IRON], 4,
+                         "DROP banked unit 1's pre-MINE iron")
+        self.assertEqual(ref.units[0]["carry"][fp.IRON], 5,
+                         "MINE ran and added min(chop=2, free=3) = 2")
+        self.assertEqual(ref.units[1]["carry"][fp.IRON], 0,
+                         "unit 1 dropped; MINE ran AFTER DROP so a unit that "
+                         "only dropped stays empty")
 
 
 # --- blocker 3 / contract C5: first non-TRAIN command per unit -------------
@@ -2253,7 +2334,7 @@ class TestRowProvenance(unittest.TestCase):
         self.assertTrue(ev["spawned"])
         self.assertEqual(ev["cost"], fp.training_cost(1, (2, 1, 1, 1)))
         self.assertEqual(ev["unit_id"], 6)
-        self.assertEqual(ev["cell"], [1, 0])
+        self.assertEqual(ev["cell"], [0, 0])   # the own shack
         self.assertEqual(ev["carry"], [0] * 6)
         json.dumps(ref.train_events)
 
@@ -2357,12 +2438,16 @@ M040_FLOOR_BOT_SHA256 = (
 # MEASURED under corpus c4 (see referee-train-repair-r3-2026-08-10.md §7) and
 # pinned byte-for-byte.  These are the two mandatory rows of contract §7.
 M040_EXPECTED = {
-    0: {"train_turn": None, "unit_id": None, "talents": None, "cell": None,
-        "cost": None, "inventory_after": None, "serialized_unit_row": None,
-        "train_emissions": None},
-    1: {"train_turn": None, "unit_id": None, "talents": None, "cell": None,
-        "cost": None, "inventory_after": None, "serialized_unit_row": None,
-        "train_emissions": None},
+    0: {"train_turn": 35, "unit_id": 6, "talents": [1, 1, 0, 1],
+        "cell": [1, 2], "cost": [2, 2, 1, 0, 2, 0],
+        "inventory_after": [0, 0, 0, 2, 0, 0],
+        "serialized_unit_row": "6 0 1 2 1 1 0 1 0 0 0 0 0 0",
+        "train_emissions": [35]},
+    1: {"train_turn": 19, "unit_id": 6, "talents": [1, 1, 0, 1],
+        "cell": [9, 1], "cost": [2, 2, 1, 0, 2, 0],
+        "inventory_after": [0, 0, 0, 2, 0, 0],
+        "serialized_unit_row": "6 0 9 1 1 1 0 1 0 0 0 0 0 0",
+        "train_emissions": [19]},
 }
 
 # --- committed mutation definitions (review B9) ----------------------------
@@ -2374,8 +2459,9 @@ MUTATIONS = [
     {"id": "M1-malformed-train-coerced",
      "blocker": "1 (C3 strict TRAIN parsing)",
      "pinned_by": "TestMalformedCommandsAreRetainedErrors",
-     "old": "        if len(tok) != 5:\n            raise _Malformed(",
-     "new": "        if False:\n            raise _Malformed("},
+     "old": "            if len(tok) != 5:\n                raise "
+            "_Malformed(",
+     "new": "            if False:\n                raise _Malformed("},
     {"id": "M2-textual-order-executor",
      "blocker": "2 (C4 full phase order)",
      "pinned_by": "TestPhaseOrder / TestDifferentialFullState",
@@ -2405,8 +2491,10 @@ MUTATIONS = [
     {"id": "M6-drop-the-provenance",
      "blocker": "6 (per-row provenance)",
      "pinned_by": "TestRowProvenance",
-     "old": "        \"provenance\": provenance(),",
-     "new": "        \"provenance\": {},"},
+     "old": "        \"parent_execution_status\": EXECUTION_OK,\n"
+            "        \"provenance\": provenance(),",
+     "new": "        \"parent_execution_status\": EXECUTION_OK,\n"
+            "        \"provenance\": {},"},
     {"id": "M7-unsupported-verb-aborts",
      "blocker": "7 (row retention)",
      "pinned_by": "TestUnsupportedVerbRetainsTheRow",
@@ -2434,11 +2522,13 @@ MUTATIONS = [
      "pinned_by": "TestTrainAuthorityIsTheEngine",
      "old": "        n = len(self.own_unit_ids())\n"
             "        cost = training_cost(n, talents)\n"
-            "        for item in self.train_billed_items():",
+            "        for item in self.train_billed_items():\n"
+            "            if self.inv[item] < cost[item]:",
      "new": "        n = len(self.own_unit_ids())\n"
-            "        if n >= 2:\n            return False\n"
+            "        if n >= 2:\n            return \"worker_cap\"\n"
             "        cost = training_cost(n, talents)\n"
-            "        for item in self.train_billed_items():"},
+            "        for item in self.train_billed_items():\n"
+            "            if self.inv[item] < cost[item]:"},
 ]
 
 
@@ -2519,9 +2609,21 @@ class TestMutationDefinitionsAreCommitted(unittest.TestCase):
     an exact byte edit of `fuzz_panel.py`; the report records caught/survived
     per blocker."""
 
+    def test_every_mutant_is_valid_python(self):
+        # A mutant that does not compile proves nothing -- it "fails" for the
+        # wrong reason and, if the driver only greps for FAIL:/ERROR: lines,
+        # can even look like a SURVIVOR.  (Measured: the first draft of M1
+        # had the wrong indentation and did exactly that.)
+        src = (HERE / "fuzz_panel.py").read_text()
+        for mut in MUTATIONS:
+            with self.subTest(mutation=mut["id"]):
+                mutant = src.replace(mut["old"], mut["new"])
+                self.assertNotEqual(mutant, src)
+                compile(mutant, "mutant-%s.py" % mut["id"], "exec")
+
     def test_every_mutation_anchor_still_exists_exactly_once(self):
         src = (HERE / "fuzz_panel.py").read_text()
-        for mut in fp.MUTATIONS if hasattr(fp, "MUTATIONS") else MUTATIONS:
+        for mut in MUTATIONS:
             with self.subTest(mutation=mut["id"]):
                 self.assertEqual(src.count(mut["old"]), 1,
                                  "anchor rotted: %s" % mut["id"])
