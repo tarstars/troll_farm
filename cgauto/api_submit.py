@@ -8,8 +8,25 @@ from pathlib import Path
 
 PUZZLE = "spring-challenge-2026-troll-farm"
 USERID = 1302251
-SOURCE = Path(sys.argv[1] if len(sys.argv) > 1 else
-              "/home/tarstars/prj/troll_farm/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs")
+
+# There is deliberately NO default source. Until 2026-08-12 an argument-less run
+# silently submitted candidate-agent6553250-preseed-orchard-coverage-slim.min.rs
+# (a8eb3b2b…, written 2026-07-17) — by then three residents stale. A mistyped or
+# argument-less invocation would have replaced the live bot with a July source and
+# forfeited a matured score, which is not recoverable by editing anything here.
+# Submission is irreversible and outward-facing: it must be stated, never assumed.
+if len(sys.argv) < 2:
+    print(
+        "USAGE GATE: api_submit.py <path-to-.rs>\n"
+        "  No default source. Name the source you mean to submit.\n"
+        "  Current resident (docs/STATE.md §1): 98628e98…\n"
+        "    cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs\n"
+        "  Programmatic callers should use api_submit_once.py, which requires an\n"
+        "  explicit path AND its expected SHA-256."
+    )
+    sys.exit(2)
+
+SOURCE = Path(sys.argv[1])
 LANG = {".go": "Go", ".rs": "Rust"}.get(SOURCE.suffix)
 if LANG is None:
     print(f"LANGUAGE GATE: unsupported extension {SOURCE.suffix!r}"); sys.exit(2)

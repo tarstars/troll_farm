@@ -10,9 +10,14 @@ the record. Hard budget: 150 lines. Rewrite it whenever facts change.
 **Owner ruling: "keep readable__no_orchard".** No Arena action was taken to execute it — the
 source was already live, so KEEP is a no-op mutation-wise. `6604529` / `41113243` is now the
 **resident**, not a candidate under trial, and `2caac7c6…` is retired as a restore target for
-this cycle. `cgauto/api_submit.py`'s default fallback source still points at the old
-`2caac7c6…` E7a — **it now disagrees with the resident; fix it before the next cycle relies on
-it.** Any future restore-to-resident means `98628e98…`.
+this cycle. Any future restore-to-resident means `98628e98…`.
+**`cgauto/api_submit.py` is fixed, and the hazard was worse than I first reported.** I said its
+default pointed at `2caac7c6…`; it actually pointed at `a8eb3b2b…`
+(`preseed-orchard-coverage-slim`, written 2026-07-17) — three residents stale. An argument-less
+or mistyped run would have silently replaced the live bot with a July source and forfeited a
+matured score. **There is now no default at all:** the script exits 2 with a usage gate naming
+the current resident. No programmatic caller relied on the default; real submissions go through
+`api_submit_once.py`, which requires an explicit path and its expected SHA-256.
 
 **Terminal read: 160/160, score 22.46, rank 35/139, 89W/3T/68L, 24 catastrophes (15.0%),
 negative mass 6,790, `identity_clean=True`, `signals=0`.** No restore trigger ever fired.
