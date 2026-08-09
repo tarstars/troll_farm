@@ -1,9 +1,9 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-12T20:15:00Z
-- State: inbox clean (sweep exit 0, 0 unacknowledged); tooling repaired; **queue idle by choice — all four of my open dispositions have no named reviewer**
+- Updated UTC: 2026-08-13T02:00:00Z
+- State: inbox clean (sweep exit 0, 0 unacknowledged). M3a portability repair and the transport execution review both delivered. Working the remaining revisions.
 - Role: contributor + **execution reviewer** on every artifact. Coordinator/integrator/arena controller AND detector-semantics owner = `local_claude_1`. **`chatgpt_1` and `chatgpt_2` are unreachable** (owner ruling 2026-08-12). `codex_1` is a NEW agent (canonical `agent/codex_1`, onboarded 2026-08-09) and is **not** `local_codex_1`, which is dormant since 2026-08-06.
-- Branch: agent/claude_1-banana-restoration-r2; canonical agent/claude_1 at `44c677b7`
+- Branch: agent/claude_1-banana-restoration-r2; canonical agent/claude_1 at `ff105158`. Tooling `inbox_sweep.py` `be8251c4…`, `lint_outbox.py` `f3c47b70…` (synced from `main` twice this cycle — `main` moved under me).
 - **Read `claude_1/SESSION-FINDINGS-2026-08-07-to-11.md` before acting.** It carries the programme state, the measured findings, and the error patterns. It predates the 08-12 unblock below.
 
 ## Blocking state
@@ -12,28 +12,39 @@
 - **This does NOT authorize verdicts.** `chatgpt_1` holds I-30 at `GATE_UNREADY / MEASURED_UNTHRESHOLDED` and states plainly: **no detector branch is authorized for candidate acceptance, and no I-30 PASS, FAIL, threshold or candidate verdict is accepted.** Do not read the r4 acceptance as a gate opening.
 - Instrument `fuzz-panel/5` · corpus `c5-two-player-phase-merged-2026-08-11`. **Floor (parent vs itself) = 118/240. Candidate run (banana `eac2eb36` vs parent) = 121/240.** Different quantities; `run_identity` is machine-checked. `118/240` is quotable **only** with r4's binding restriction attached: TRAIN is witnessed in 2 games (1 spawn each), and 10 of 17 repaired rules have no corpus witness — those are pinned by unit tests, the two-oracle differential and the mutation drive, never by the floor.
 
-## Reviewer vacuum — read this before starting anything
+## Reviewers — resolved, and degraded on purpose
 
-`chatgpt_1` held the review slot on every disposition below. Its ten live slots were reassigned to
-`codex_1` on 2026-08-12, **and `codex_1` claimed one and declined nine** — including M1, M2, M3a
-and M3b. It took only `20260807-gate-architecture-review`.
+`chatgpt_1` held every review slot below and is unreachable. `codex_1` claimed
+`20260807-gate-architecture-review` and the M3a idle-blocker replication, and declined the rest.
+`local_claude_1` ruled (`20260812T211000Z`, superseding `20260812T204000Z`): **three of the four
+reviews had already been delivered before `chatgpt_1` went dark**, so the vacancy is the *re-review
+of my repairs*, not of my current work — I am not blocked.
 
-**Result: all four dispositions below have no named reviewer.** I withdrew my plan to start with
-M3a (correction `20260812T200500Z` supersedes question `20260812T194000Z`): publishing a detector
-repair with no independent reviewer makes me author and sole execution check on my own work, which
-is exactly what the r4 cycle refused when it declined to close its own B1. **Do not start these
-until a reviewer is named.** Nine slots await replanning.
+Standing terms of that ruling, all still in force:
 
-Cause worth remembering: I treated the reassignment table as a settled allocation. It was an
-*offer* — a reassignment is not complete until the receiving agent claims it, and the decline was
-already published when I wrote. Re-sweep between reading an allocation and acting on it.
+- **I do not review my own repairs.** Not negotiable, and it is why I am not the check on anything
+  below that I author.
+- Anything `local_claude_1` reviews alone is labelled **`SINGLE_REVIEWER_DEGRADED`**; it is the
+  coordinator, so it adds a second look, not a second opinion.
+- **Nothing closes as fully `ACCEPTED` under a single reviewer without the owner's sign-off.**
+- Every `chatgpt_1` disposition is **`RECORDED / UNREPLICATED`** until reproduced by execution here
+  — they rest on self-run Actions jobs by the reviewing agent, the same evidence class as the
+  quarantined 2026-08-06 fabrication.
+- `local_claude_1` **cannot** review `20260807-transport-quarantine-and-outbox-lint` (it authored
+  it), so that task still needs a second reviewer; I am one of the two required and the other slot
+  is unfilled.
+
+Worth remembering: I once treated a reassignment table as a settled allocation. It was an *offer* —
+a reassignment is not complete until the receiving agent claims it, and the decline was already
+published when I wrote. **Re-sweep between reading an allocation and acting on it.**
 
 ## Open dispositions requiring my revision work
 
-- **M3a correct-subject** — `REVISION_REQUIRED — DATA INTERNALLY CONSISTENT, SOURCE REPLAY NOT PORTABLE`. 34 situations / 46 episodes verify; both replay suites fail on a clean runner because committed configs point at `/home/tarstars/…` and `/tmp/claude-1000/…`. Repair: materialize source from its pinned Git ref into a temp dir, verify SHA, evaluate historical corpus skips before compilation, rerun replay on a fresh checkout. Separately: the c5 46-episode diagnostic library is **not** the same population as the golden v2 record (34 exact D-1 episodes / 32 source games) — the coordinator must select and version the M3b substrate explicitly.
+- **M3a correct-subject** — **REPAIRED AND DELIVERED** 2026-08-13, handoff `20260813T003000Z`, artifact `ae701fc4`. Each panel config now carries `source_git = {commit, path}` on an immutable 40-hex commit; the replay materialises the blob and re-checks it against the config's own `sha256` before compiling; corpus skips are evaluated before compilation; no absolute host path remains in either config's data fields. `fuzz_panel.py` untouched (`d8900abf…` is the accepted referee digest). Verified against a control that failed first: with the scratch directory masked, pre-repair reproduces `chatgpt_1`'s `PanelError` verbatim and repaired gives 94 tests OK / **34 of 34 byte-for-byte**. New `TestSourcesArePortable` (6 tests, default suite, no `rustc`) makes a recurrence a failure now. **Still open and not mine:** the M3b substrate selection — the c5 46-episode diagnostic library and the golden v2 record (34 exact D-1 episodes / 32 source games) are different populations and neither may silently replace the other.
 - **Bite-test audit r2** — `HISTORICAL_REPAIRS ACCEPTED — CURRENT REVISION REQUIRED`. Six current/architectural blockers: `LIVE` does not establish legal-game reachability; committed D-3 probe implements only next-cell consistency with `max(speed,1)` and omits the same-player conflict label; D-9 `INSTRUMENT_UNSUPPORTED` rows are stale post-c5 and need the retired proxy separated from now-supported paired branches; `run_mutations.py` returns success on incomplete experiments when the control is green; the 47-branch ledger is hand-maintained; D-5 conformance is expressed on the wrong axis.
 - **I-30 rev 3** — `CORE_ACCOUNTING_ACCEPTED — REVISION_REQUIRED AT THE TRUST ROOT`. `ExecutionValidity` validates self-declaration rather than binding a run to a reviewed referee artifact; owner-freeze chronology compares caller-supplied strings against a blob on moving `main`.
-- **M2 rev 2** — accepted. **Fast-verification-executor requirements** — review requested.
+- **M2 rev 2** — accepted, nothing owed. **Fast-verification-executor requirements** — **PARKED** by the coordinator: its author is unreachable and nobody inherits an unowned spec. `coordination/tasks/20260811-fast-verification-executor-design.md` is `PROPOSED / BLOCKED ON REQUIREMENTS REVIEW`, owner unassigned.
+- **`20260807-transport-quarantine-and-outbox-lint`** — my execution review delivered 2026-08-13, handoff `20260813T012000Z`, artifact `afb6903a`: **`REVISION_REQUIRED`**. Accepted: the 41-message delta is exact, all 41 carry an explicit `ack_for` (verified from raw blobs, not via the tool under review), 92 tests pass, zero regressions. Blocking: `parse_json_list` is unguarded in `collect_my_acks`, so a malformed `ack_for` in the sweeping agent's **own** namespace crashes the sweep with an uncaught `JSONDecodeError` — exiting `1`, which collides with the documented "healthy but unacknowledged" status — and published messages are immutable, so it cannot be repaired without quarantine. No test reaches the changed branch.
 
 ## Owed, now unparked by r4
 
@@ -45,20 +56,30 @@ The `+12.453/+76.508` D89a split (`UNRESOLVED`, TSVs never committed) · `oscill
 
 ## Transport
 
-**Dual-format MANDATORY** (v2 front matter + legacy `- To:` bullets) — a peer was blind to v2 for ten days. **`ack_for` is inert unless `type: ack`** (I broke this 4x). **Gate publishes on `lint_outbox.py` EXIT STATUS**, not on grepping its output. `pytest` absent — use `python3 -m unittest`. Push before citing: *unpushed is unsent*, and a stale remote-tracking ref makes `git merge` a silent no-op. Never `git add -A` — agents share this tree.
+**Dual-format MANDATORY** (v2 front matter + legacy `- To:` bullets) — a peer was blind to v2 for ten days. **Gate publishes on `lint_outbox.py` EXIT STATUS**, not on grepping its output. Push before citing: *unpushed is unsent*, and a stale remote-tracking ref makes `git merge` a silent no-op. Never `git add -A` — agents share this tree.
 
-**Tooling is repaired as of `6c7e6650`.** `scripts/lint_outbox.py` had been **absent from this branch entirely** — the publish gate did not exist where I was publishing from, which is the mechanical cause of all three of my quarantined messages. `scripts/inbox_sweep.py` was stale at `12b27e9c…`. Current, matching `main`: `inbox_sweep.py` `0f78bf38…`, `lint_outbox.py` `f3c47b70…`. **Verify your tool digest before trusting a sweep** — the stale copy reported 56 unacknowledged against the current tool's 16 and printed no quarantine section at all, with nothing on screen to signal it was the old one.
+**`ack_for` is no longer inert on non-`ack` kinds** (changed 2026-08-12, `f9fc1810`). It used to count only on `type: ack` — I broke that 4x — and now any kind may discharge by naming exact paths. `ack` must still carry a non-empty `ack_for`. **Prefer a separate `ack` anyway:** a busy handoff acking four questions in its front matter is easy for a reader to miss.
+
+**`pytest` is absent from the host but the transport suite requires it** — `tests/test_inbox_sweep.py` does `import pytest`, so `python3 -m unittest` cannot run it. Use `uvx pytest tests/…` (92 pass). The old "use `python3 -m unittest`" guidance holds only for suites that do not import pytest.
+
+**Tooling: `inbox_sweep.py` `be8251c4…`, `lint_outbox.py` `f3c47b70…`, both matching `main`.** `lint_outbox.py` had been **absent from this branch entirely** — the publish gate did not exist where I was publishing from, which is the mechanical cause of all three of my quarantined messages.
+
+**Verify your tool digest against `origin/main` before trusting any sweep — every time, not once.** I went stale twice in one cycle: first at `12b27e9c…`, which reported **56** unacknowledged against the true **16** and printed no quarantine section at all; then again the same day when `main` moved to `be8251c4…` under me, so a handoff I had genuinely acknowledged still showed as outstanding. Nothing on screen announces a stale tool. Re-check after every `main` movement.
 
 **Three of my messages are quarantined** (`20260807T090000Z` non-canonical type, `20260807T113000Z` correction with empty `supersedes`, `20260811T163000Z` handoff pinning a commit lacking two of its own paths). All rejected on transport, not substance; all have verified replacements; no content lost.
 
-**Open blocker I raised (`20260812T193500Z`):** the roster naming `codex_1` active and
-`local_codex_1` dormant exists only on `origin/session-2026-07-01`, six commits ahead of
-`origin/main`. Both `roster.json`'s own note and `inbox_sweep.py` (`ROSTER_REF =
-refs/remotes/origin/main`) treat `main` as the sole authoritative location, so the advisory written
-to prevent a repeat of the `codex_1`/`local_codex_1` mix-up **cannot be read by an agent following
-the documented procedure**. Repair: land `coordination/roster.json` on `main`. Also: `main`,
-`session-2026-07-01` and `agent/local_claude_1` were asserted equal in the B1 closure and have
-since diverged.
+**Roster blocker (`20260812T193500Z`) — RAISED AND CLOSED.** The roster naming `codex_1` sat only on
+`origin/session-2026-07-01` while both `roster.json`'s own note and `inbox_sweep.py`
+(`ROSTER_REF = refs/remotes/origin/main`) treat `main` as the sole authoritative location. Upheld in
+full by `local_claude_1`, which reproduced it and fast-forwarded `cff2398c..db0574cf`. Verified:
+`origin/main:coordination/roster.json` now carries `unreachable: [chatgpt_1, chatgpt_2]` and
+`dormant: [local_codex_1]`. Coordination commits now go to both refs in one action.
+
+**Live pattern to watch — state reaching a ref ahead of the process governing it.** Four instances
+this cycle: task records committed but unpushed; the roster on an unread ref; a withdrawal stated in
+an `ack`, which carries no `supersedes` and so retires nothing; and `f9fc1810`, whose own commit
+subject says *PENDING REVIEW*, already an ancestor of `origin/main`. *Integrated* and *accepted*
+are not the same event.
 
 **Watermark deliberately NOT advanced.** 141 messages remain `new (unseen)`. Protocol forbids blanket-marking a backlog by timestamp: actionable messages are acknowledged by exact path (done — 16 of 16, sweep exit 0), and the rest need a pushed legacy-backlog audit before `--mark`. That audit is outstanding.
 
