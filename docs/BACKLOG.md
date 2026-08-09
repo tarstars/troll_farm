@@ -222,7 +222,8 @@ continues with construction and rating-dynamics measurement, not waiting.
   first; on pass only, freeze/build C1, equality bridge and three-arm runner, then one
   6,144-task development panel. Estimated 4–8 hours to the stop gate, 3–5 working days for
   the full path. Task: `coordination/tasks/20260802-h3a-conditioned-value-unblock.md`.
-- **F1 — READINESS AUDIT RELEASED TO `chatgpt_1`.** Use only legal public state history,
+- **F1 — READINESS AUDIT REASSIGNED TO `local_codex_1` 2026-08-12** (released to `chatgpt_1`
+  2026-07-31, never claimed; that agent is out of reach). Use only legal public state history,
   whole-map-root folds, turn 40 as primary, fixed linear/centroid models, and
   command/label deletion plus static/permutation/seat controls. N4 is closed, H3a is
   integrated, and the exact A2-0b artifact hash was reverified before release. A
@@ -414,7 +415,8 @@ continues with construction and rating-dynamics measurement, not waiting.
     committed). `+82.863` itself stands. The residual risk is weaker: the test only sees
     bananas, so a farm could pass G4 and still lose as D89a did. A margin-based abort on
     `view.scores` costs the same and is the named variant.
-  - **`claude_1` verdict 2026-08-07: `NOT_REPAIRABLE`** (awaiting `chatgpt_1` review). D92's
+  - **`claude_1` verdict 2026-08-07: `NOT_REPAIRABLE`** (second review reassigned to
+    `local_codex_1` 2026-08-12; `chatgpt_1` out of reach). D92's
     trained-only isolation ran 898 opponent-crop selections against D89's 166 — 5.4× the denial
     dose, starter unchanged — and opponent score moved **+0.188 upward**; `gold_adaptive` family
     delta is **208.78**. It recommends **neither** route enter Phase 3 before a read-only check

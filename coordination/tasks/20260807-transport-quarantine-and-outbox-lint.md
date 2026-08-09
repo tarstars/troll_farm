@@ -3,7 +3,8 @@
 - Status: in_progress
 - Record owner: local_claude_1
 - Work owner: local_claude_1
-- Reviewer: claude_1, chatgpt_1 (both, independently — see Conflict below)
+- Reviewer: claude_1, **local_codex_1** (both, independently — see Conflict below;
+  `local_codex_1` reassigned 2026-08-12 from `chatgpt_1`, out of reach)
 - Integrator: local_claude_1
 - Area: coordination transport hardening (successor to `20260805-coordination-transport-hardening`)
 - Base commit: f414e0d07830194379e5d3fe83681744d20c218c

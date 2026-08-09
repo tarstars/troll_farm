@@ -1,13 +1,19 @@
 # 20260807-banana-disposition-review-chatgpt_1: keep/discard review of the whole banana effort
 
-- Status: assigned — owner-directed 2026-08-07; runs **after** `20260807-gate-architecture-review`
+- Status: assigned — owner-directed 2026-08-07; **reassigned to `local_codex_1` 2026-08-12**
+  (`chatgpt_1` out of reach); runs **after** `20260807-gate-architecture-review`
 - Record owner / integrator: `local_claude_1`
-- Work owner (reviewer): `chatgpt_1`
-- Paired independent review: `20260807-banana-disposition-review-local_codex_1` (same corpus,
-  no contact between reviewers before both handoffs land)
+- Work owner (reviewer): **`local_codex_1`** (reassigned 2026-08-12 from `chatgpt_1`)
+- Paired independent review: **`20260807-banana-disposition-review-claude_1`** (same corpus,
+  no contact between reviewers before both handoffs land). The original pairing named a
+  `local_codex_1` review that was never delivered and was replaced by the `claude_1` one; with
+  this reassignment the two independent reviewers are `local_codex_1` and `claude_1`.
 - Area: retrospective disposition of the banana programme
 - Base commit: `3bc4abc558d03d7e8768e535ec8dfdab6c48c2ee` (canonical `agent/local_claude_1`)
-- Branch: `agent/chatgpt_1` (canonical — task branches cannot satisfy a v2 handoff)
+- Branch: **`agent/local_codex_1`** (canonical — task branches cannot satisfy a v2 handoff)
+
+> **Filename note:** this record keeps its `-chatgpt_1` filename because message and task ids are
+> immutable under the transport. The filename is a historical id, not the current assignee.
 - Progress lease: 15 minutes without remotely inspectable concrete progress
 - Created UTC: 2026-08-07T10:05:00Z
 - Last updated UTC: 2026-08-07T10:05:00Z

@@ -1,10 +1,15 @@
 # 20260802-banana-factory-b100-restoration: publish and qualify a guarded banana-factory restoration
 
-- Status: proposed — protocol packet published; implementation awaits integrator write-set and range allocation
-- Record owner: chatgpt_1
-- Work owner: unassigned
+- Status: **DORMANT / CUSTODY TRANSFERRED 2026-08-12.** Proposed only; the protocol packet was
+  published but never implemented, and its record owner `chatgpt_1` is out of reach. Custody
+  passes to the coordinator so the record is not orphaned. **This is custody, not revival** — no
+  work is assigned and none should start. Its subject matter is superseded by the CBF conditional
+  banana farm design and by `claude_1`'s `NOT_REPAIRABLE` verdict on the D89a leak; disposition
+  belongs to `20260807-banana-disposition-review-*`.
+- Record owner: **local_claude_1** (custody, from `chatgpt_1`)
+- Work owner: unassigned — do not assign without an owner decision
 - Reviewer: unassigned
-- Integrator: local_codex_1
+- Integrator: local_claude_1 (was `local_codex_1`, no longer the coordinator)
 - Area: banana planting restoration on current opponent-crop b100/e6 resident
 - Base commit: 8e95a966d618c538829b184ad71a1539a76d2e29
 - Branch: agent/chatgpt_1-banana-factory-restoration

@@ -1,13 +1,16 @@
 # 20260807-gate-architecture-review: independent architecture review of the acceptance gate
 
-- Status: assigned — owner-directed 2026-08-07; awaiting chatgpt_1 claim
+- Status: assigned — owner-directed 2026-08-07; **reassigned to `local_codex_1` 2026-08-12**
+  (`chatgpt_1` out of reach, never claimed); awaiting `local_codex_1` claim
 - Record owner / integrator: `local_claude_1`
-- Work owner (reviewer): `chatgpt_1`
+- Work owner (reviewer): **`local_codex_1`** (reassigned 2026-08-12 from `chatgpt_1`)
 - Author of the artifact under review: `claude_1`
-- Referred detector-semantics question: `local_codex_1` (see Scope, item 4)
+- Referred detector-semantics question: `local_codex_1` (see Scope, item 4) — **note: now the
+  same agent as the reviewer; the referral is no longer an independent second opinion, so the
+  integrator takes item 4's disposition rather than the reviewer**
 - Area: acceptance-gate architecture / measurement validity
 - Base commit: `3ca092abba353b4dd07b63e85f6d25deb9852d0d` (canonical `agent/claude_1`)
-- Branch: `agent/chatgpt_1` (canonical — task branches cannot satisfy a v2 handoff)
+- Branch: **`agent/local_codex_1`** (canonical — task branches cannot satisfy a v2 handoff)
 - Progress lease: 15 minutes without remotely inspectable concrete progress
 - Created UTC: 2026-08-07T09:35:00Z
 - Last updated UTC: 2026-08-07T09:35:00Z
