@@ -839,6 +839,52 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 
 ## (h) Meta-lessons
 
+- ★★★ **LABEL DISCIPLINE — every status label names its AXIS and its EVIDENCE CLASS.**
+  Owner-directed 2026-08-10 after four label failures in one week. A label is a claim; a claim
+  that does not say what backs it is how all four happened.
+
+  **The failures being fixed.** (1) `LIVE` claimed legal-game reachability its synthetic corpus
+  could not witness → renamed `PROBE_SENSITIVE`. (2) `VALIDATED_BY_DEFINITION` recorded a *spec
+  stipulation* in the column reserved for *evidence about the world*, and made the audit
+  contradict its own safety sentence → retired. (3) `INSTRUMENT_UNSUPPORTED` on D-9 (b)–(d) was
+  true of the bite-test harness and false of the production panel, and one label covering two
+  instruments hid that three blocking clauses run untested. (4) "no data" is currently spelled
+  **five** different ways — `NO_FIXTURE`, `INSTRUMENT_UNSUPPORTED`, `UNWITNESSED`,
+  `NO_WITNESSED_POPULATION`, `UNRESOLVED` — with nothing saying which is which.
+
+  **Rule 1 — one axis per label, and the axis is part of the name.** The four axes are
+  *contract authority* (do the specs agree?), *implementation validity* (is the code pinned by
+  tests?), *applicability* (can this instrument run it?), *truth validity* (is the predicate the
+  right property?). A value may appear on exactly one axis. `UNRESOLVED` currently appears as a
+  truth-validity value and colloquially everywhere else; only the former is legal.
+
+  **Rule 2 — every label carries an evidence class**, from this closed set:
+  `MEASURED` (instrument executed on real referee data) · `CONSTRUCTED` (executed on synthetic
+  or fixture data) · `STIPULATED` (asserted by spec or owner ruling; no observation) ·
+  `REPORTED` (another agent's claim, not reproduced here) · `ABSENT` (no evidence exists).
+  Written `STATUS/EVIDENCE`, e.g. `PINNED/CONSTRUCTED`, `NO_POPULATION/MEASURED`.
+  A `STIPULATED` label may **never** be tallied alongside `MEASURED` ones — that was failure (2).
+
+  **Rule 3 — "no data" must say WHY**, because the three cases have different remedies:
+  `ABSENT/NO_INSTRUMENT` the tool cannot produce it (build the tool) ·
+  `ABSENT/NO_FIXTURE` the tool could but no input exists (build the input) ·
+  `NO_POPULATION/MEASURED` the tool ran and nothing occurred (**a finding, not a gap** — and it
+  must carry the corpus bound, e.g. "720 referee games, 3 corpora", because zero observed is
+  never "cannot occur").
+
+  **Rule 4 — a label naming an instrument names WHICH instrument.** Failure (3) was one label
+  spanning the bite-test harness and the production panel.
+
+  **Rule 5 — labels invented mid-flight get registered here.** Mine from 2026-08-12/13 were not:
+  `RECORDED/UNREPLICATED` → now `REPORTED`; `STRUCTURALLY_VERIFIED / RUNTIME_REPORTED` → split
+  into per-claim `MEASURED` and `REPORTED`; `SINGLE_REVIEWER_DEGRADED` is **not** a label at all
+  but a review-process note, and stays out of every status column.
+
+  **Migration is not urgent and must not be silent.** Existing labels stay valid until a row is
+  touched for another reason; re-tallying wholesale would repeat failure (2) at scale. Any
+  retally runs through `render_branch_ledger.py --check`, never by hand.
+  [owner-directed; D-9; LIVE→PROBE_SENSITIVE; VALIDATED_BY_DEFINITION retirement]
+
 - ★★★ **OWNER RULE 2026-08-10, STRICT AND BINDING: NO BANANA MANIPULATION BEFORE THE SECOND
   TROLL IS TRAINED.** Owner wording: *"For now I want to set strict rule 'no banana manipulation
   before train the second troll'."* Threshold **0**, no exemption, no affordability trade.
