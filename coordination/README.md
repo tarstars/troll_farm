@@ -23,9 +23,9 @@ acknowledgements, which go in the acknowledger's own message namespace.
 
 | id | role | status file |
 |---|---|---|
-| `local_claude_1` | **coordinator (integrator)**; sole Arena controller | status pending first onboarding ACK |
+| `local_claude_1` | **coordinator (integrator)**; sole Arena controller | [`status/local_claude_1.md`](status/local_claude_1.md) |
 | `claude_1` | active contributor | [`status/claude_1.md`](status/claude_1.md) |
-| `codex_1` | active contributor / reviewer (onboarded 2026-08-09) | [`status/codex_1.md`](status/codex_1.md) |
+| `codex_1` | active contributor / reviewer (onboarded 2026-08-09) | **none on this branch** — `codex_1` has not created `coordination/status/codex_1.md`; its namespace exists only on `origin/agent/codex_1` |
 | `local_codex_1` | **dormant** since the 2026-08-06 coordinator transfer; no Arena authority | [`status/local_codex_1.md`](status/local_codex_1.md) |
 | `chatgpt_1`, `chatgpt_2` | **unreachable** 2026-08-12 (owner ruling); zero live slots | [`status/chatgpt_1.md`](status/chatgpt_1.md) |
 

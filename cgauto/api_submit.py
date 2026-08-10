@@ -66,7 +66,15 @@ handle = json.loads(body)["handle"] if st == 200 else None
 if not handle:
     sys.exit(1)
 
-# 2) try known submit endpoints/shapes until one is accepted
+# 2) probe known submit endpoint shapes, stopping at the first non-definitive answer.
+#
+# AMBIGUITY GATE. This loop used to advance on *any* non-200, including a timeout.
+# call() returns st=None when the request never completed, so a submission the server
+# had already accepted would be re-sent up to three more times from a single run —
+# multiple irreversible ladder mutations from one invocation. Protocol
+# coordination/multi-agent-protocol.md sec 6: "Never automatically retry an ambiguous
+# submission." Only a definitive 4xx ("that endpoint shape does not exist, nothing was
+# submitted") is safe to advance past; None and 5xx are ambiguous and must stop.
 attempts = [
     ("TestSession", "submit", [handle, {"code": CODE, "programmingLanguageId": LANG}, None]),
     ("TestSession", "submit", [handle, {"code": CODE, "programmingLanguageId": LANG}]),
@@ -79,5 +87,14 @@ for svc, m, payload in attempts:
     if st == 200:
         print("SUBMIT-OK via", svc, m)
         sys.exit(0)
+    if st is None or st >= 500:
+        print(
+            f"AMBIGUOUS: {svc}/{m} returned {st}. The submission may or may not have\n"
+            f"  been accepted. NOT trying the remaining {len(attempts) - attempts.index((svc, m, payload)) - 1}"
+            f" endpoint shape(s) — retrying could submit twice.\n"
+            "  Check the ladder before doing anything else. Use api_submit_once.py, which\n"
+            "  makes exactly one mutation call and reports ambiguity as data."
+        )
+        sys.exit(4)
 print("no submit endpoint accepted")
 sys.exit(3)

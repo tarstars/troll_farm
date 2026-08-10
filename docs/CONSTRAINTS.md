@@ -831,6 +831,15 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 - Fresh submissions read 3–4 points below matured ones; a failed same-code A/A (16.1 → 19.9
   vs prior 26.3) proves the artifact. Never churn submissions; require capacity A/A before
   candidate trials. [vol 1 07-16 arena section; archive/legend/session-handoff-2026-07-16.md]
+  **[no-churn clause SUBSTANTIALLY WEAKENED — see `docs/STATE.md` §3 B0.3]** The
+  fresh-vs-matured gap stands; the operational prohibition does not. A mature 160-game
+  read costs ~2 h at current ladder rates, not days of standing, so "never churn" is no
+  longer a binding cost argument. The A/A capacity requirement also no longer applies as
+  written — the per-candidate gate was lifted by the owner 2026-07-30 and the noise-band
+  gate removed by owner ruling. Read STATE §3 before quoting this bullet as a live rule.
+  *Marked 2026-08-10 during hygiene cleanup: the weakening was recorded only in STATE, so
+  this bullet still read as binding to anyone following the reading order in
+  `coordination/peer-prompt.md` §1, which reaches CONSTRAINTS before STATE's standing rules.*
 - Verdicts are deltas against a same-window control, never absolute levels or cross-hour
   comparisons. [archive/bronze-to-gold/arena-queue.md, measurement policy v2]
 - Field evidence comes from authorized passive replay collection with immutable snapshots,
