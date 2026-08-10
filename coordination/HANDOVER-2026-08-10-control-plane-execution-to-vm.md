@@ -53,11 +53,20 @@ subagent-driven development and now continues on the VM.
    and seed a fresh ledger whose first line names the plan file, then copy the
    Progress state above into it). Without the plugin: execute each task's steps
    exactly as written, in order, TDD included, with a review pass after each.
-4. Identity: continue as **`local_claude_1`** — the roster
-   (`coordination/roster.json` on `origin/main`) is unchanged and the id is not tied
-   to a host. Task 6 publishes from the canonical branch; create the worktree first:
-   `git worktree add ../troll_farm-local_claude_1 agent/local_claude_1` and follow the
-   task's steps from there.
+4. Identity — **superseded same day by owner delegation to `claude_1`.** The owner
+   chose to hand execution to `claude_1`, already resident on the VM, rather than a new
+   session impersonating `local_claude_1`. Scope of the grant, stated by the owner via
+   the delegation prompt: **for this plan only, `claude_1` commits directly to
+   `session-2026-07-01` and keeps `main` equal and pushed** — an explicit owner
+   exception to trunk ownership while the integrator's host is off. Roles are otherwise
+   unchanged: `claude_1` is not the coordinator, has no Arena authority, and never
+   writes another agent's namespace or branch. **Task 6 is adapted accordingly:** the
+   amnesty policy publishes from `coordination/messages/claude_1/` on `agent/claude_1`
+   (with `from: claude_1` and a matching `message_id`), citing the owner-approved spec
+   §6; the rest of the task's steps apply unchanged. Before publishing, refresh tooling
+   in the agent worktree with `git checkout origin/main -- scripts/inbox_sweep.py
+   scripts/lint_outbox.py` (do not commit the scripts) — `agent/claude_1`'s own copies
+   are stale and its branch historically lacked the lint entirely.
 5. The plan's Global Constraints hold verbatim on the VM (venv pytest invocation,
    exact-path staging, commit trailer, push-and-sync `main` after every task).
 
