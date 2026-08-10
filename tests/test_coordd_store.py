@@ -21,3 +21,18 @@ def test_init_creates_schema_in_wal_mode(tmp_path):
             "artifacts", "reviews", "meta"} <= tables
     assert con.execute("PRAGMA journal_mode").fetchone()[0] == "wal"
     con.close()
+
+
+def test_register_compatible_and_incompatible(tmp_path):
+    store = mkstore(tmp_path)
+    ok = store.register("claude_1", role="contributor", tool_digest="abc",
+                        protocol_version=coordd.Store.PROTOCOL_VERSION)
+    assert ok == {"agent": "claude_1", "compatible": True}
+    old = store.register("chatgpt_1", protocol_version=0)
+    assert old["compatible"] is False
+
+
+def test_register_is_upsert(tmp_path):
+    store = mkstore(tmp_path)
+    store.register("claude_1", protocol_version=0)
+    assert store.register("claude_1", protocol_version=1)["compatible"] is True

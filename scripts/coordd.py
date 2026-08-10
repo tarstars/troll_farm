@@ -102,3 +102,20 @@ class Store:
         con = sqlite3.connect(self.db_path, timeout=10)
         con.row_factory = sqlite3.Row
         return con
+
+    def register(self, agent, role="contributor", tool_digest=None,
+                 protocol_version=1, capabilities=()):
+        compatible = int(protocol_version == self.PROTOCOL_VERSION)
+        with self._tx() as con:
+            con.execute(
+                "INSERT INTO agents(id, role, tool_digest, protocol_version,"
+                " capabilities, last_seen, compatible)"
+                " VALUES(?,?,?,?,?,?,?)"
+                " ON CONFLICT(id) DO UPDATE SET role=excluded.role,"
+                " tool_digest=excluded.tool_digest,"
+                " protocol_version=excluded.protocol_version,"
+                " capabilities=excluded.capabilities,"
+                " last_seen=excluded.last_seen, compatible=excluded.compatible",
+                (agent, role, tool_digest, protocol_version,
+                 json.dumps(list(capabilities)), self._now_iso(), compatible))
+        return {"agent": agent, "compatible": bool(compatible)}
