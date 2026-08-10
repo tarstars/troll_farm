@@ -62,6 +62,7 @@ ack-required messages in the current selection; 2 transport/schema/delivery erro
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import pathlib
@@ -716,6 +717,43 @@ def read_authoritative_blob(ref: str, path: str) -> tuple[str, str] | None:
     return oid, git("cat-file", "blob", oid)
 
 
+def tool_drift() -> str | None:
+    """Report if the running sweep differs from the authoritative copy.
+
+    A sweep that is itself stale reports confidently wrong inbox state, and it
+    is the one error the sweep cannot otherwise surface: every other check it
+    performs is only as current as the code performing it.  This bit twice in
+    one cycle -- `claude_1` synced `scripts/` from `main`, published the digest,
+    and was stale again within the day because `main` moved under it; the prior
+    occurrence nearly reported 56 unacknowledged messages against a true 16, and
+    the second silently dropped an acknowledgement it had genuinely made.
+
+    Suggested by `claude_1` (2026-08-13) and it costs one blob read, since
+    `origin/main` is already consulted for the roster.
+
+    Returns None when the tool matches, or when the comparison cannot be made --
+    absent ref, unreadable blob, running from stdin.  Never fatal: a tool that
+    refused to run because it could not verify itself would be worse than one
+    that runs and says so.
+    """
+    try:
+        mine = pathlib.Path(__file__).read_bytes()
+    except (OSError, NameError):
+        return None
+    found = read_authoritative_blob(ROSTER_REF, "scripts/inbox_sweep.py")
+    if found is None:
+        return None
+    _, authoritative = found
+    mine_digest = hashlib.sha256(mine).hexdigest()
+    theirs_digest = hashlib.sha256(authoritative.encode()).hexdigest()
+    if mine_digest == theirs_digest:
+        return None
+    return (
+        f"running {mine_digest[:8]}…, {ROSTER_REF} has {theirs_digest[:8]}… — "
+        "THIS SWEEP MAY BE WRONG. Sync scripts/ before trusting anything below."
+    )
+
+
 def load_quarantine(coordinator_ref: str) -> tuple[list[dict[str, str]], str]:
     """Load the quarantine blob from the coordinator's canonical ref (rule 7).
 
@@ -1144,6 +1182,9 @@ def main() -> int:
         f"({len(messages) - v2_count} legacy, {v2_count} v2)"
     )
     print(f"seen-state: {seen_source}")
+    drift = tool_drift()
+    if drift:
+        print(f"\n*** TOOL DRIFT: {drift}\n")
     if args.task or args.sender:
         print(
             "filters: "
