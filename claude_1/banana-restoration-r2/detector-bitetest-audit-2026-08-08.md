@@ -61,6 +61,20 @@ collapsed distinct conclusions. This revision separates five axes:
 - **calibration validity** — does the detector agree with the parent lineage?
 - **truth validity** — is the predicate the right world-state property?
 
+
+> **D-3 — what the probe measures, and what it does not (ruling 2026-08-13).** The committed
+> probe compares the realized landing against `engine.rs::next_cell` on the exact pre-state:
+> it measures **single-turn movement resolution against the referee mirror**. D-3's own
+> predicate is **same-target / occupied-cell contention persisting for ≥ 2 consecutive turns** —
+> a planning defect the conflict resolver does not dissolve. These are different predicates and
+> neither is a weaker form of the other, so **no D-3 branch is probe-covered on this probe's
+> strength**, and no coverage or kill-rate figure may count it as exercising D-3. The
+> same-player conflict-resolution label this audit previously described **is not implemented and
+> will not be**: D-3 has **zero witnessed episodes across 720 referee games in 3 corpora**, so a
+> probe for it would report zero forever and read as coverage. **That is a statement about this
+> corpus; it is NOT "the predicate cannot fire."** `max(speed, 1)` is replaced by the engine's
+> own `d <= speed`, which has no floor.
+
 > **`PROBE_SENSITIVE` (renamed from `LIVE`, ruling 2026-08-13).** A mutation labelled
 > `PROBE_SENSITIVE` **changes probe output on generated traces; it does NOT establish
 > legal-game reachability under the referee.** The probe corpus is not referee-produced, so it

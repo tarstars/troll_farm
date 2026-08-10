@@ -14,7 +14,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-1",
@@ -28,7 +29,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-1",
@@ -42,7 +44,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-1",
@@ -56,7 +59,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-1",
@@ -70,7 +74,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-2",
@@ -84,7 +89,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-2",
@@ -98,7 +104,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-2",
@@ -112,7 +119,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-2",
@@ -126,13 +134,14 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-3",
    "branch": "D-3 (a) shared MOVE target, run `>=2` (`:715`)",
    "governing_authority": "SPEC D-3, I-23",
-   "evidence": "pair `:184`/`:193`; D3-M1, D3-M2 CAUGHT",
+   "evidence": "pair `:184`/`:193`; D3-M1, D3-M2 CAUGHT \u00b7 NO_WITNESSED_POPULATION (720 referee games, 3 corpora) \u2014 zero D-3 episodes observed in any referee-produced corpus. **This is a statement about this corpus; it is NOT 'the predicate cannot fire.'**",
    "impl_validity": "PINNED",
    "impl_validity_note": "PINNED (two-sided)",
    "applicability": "APPLICABLE",
@@ -140,13 +149,14 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NO_WITNESSED_POPULATION"
   },
   {
    "detector": "D-3",
    "branch": "D-3 (a') destination-identity proxy (`:702`)",
    "governing_authority": "A4",
-   "evidence": "D3-M4 CAUGHT, PROBE_SENSITIVE (`D3-M4-RETIRED` inert, excluded)",
+   "evidence": "D3-M4 CAUGHT, PROBE_SENSITIVE (`D3-M4-RETIRED` inert, excluded) \u00b7 NO_WITNESSED_POPULATION (720 referee games, 3 corpora) \u2014 zero D-3 episodes observed in any referee-produced corpus. **This is a statement about this corpus; it is NOT 'the predicate cannot fire.'**",
    "impl_validity": "PINNED",
    "impl_validity_note": "PINNED",
    "applicability": "APPLICABLE",
@@ -154,13 +164,14 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED \u2014 proxy fidelity untested; \u00a77.1",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NO_WITNESSED_POPULATION"
   },
   {
    "detector": "D-3",
    "branch": "D-3 (b) landing on stationary working peer (`:723-753`)",
    "governing_authority": "SPEC D-3",
-   "evidence": "none; **D3-M3 SURVIVED, PROBE_SENSITIVE**",
+   "evidence": "none; **D3-M3 SURVIVED, PROBE_SENSITIVE** \u00b7 NO_WITNESSED_POPULATION (720 referee games, 3 corpora) \u2014 zero D-3 episodes observed in any referee-produced corpus. **This is a statement about this corpus; it is NOT 'the predicate cannot fire.'**",
    "impl_validity": "NO_FIXTURE",
    "impl_validity_note": "NO_FIXTURE",
    "applicability": "APPLICABLE",
@@ -168,7 +179,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NO_WITNESSED_POPULATION"
   },
   {
    "detector": "D-4",
@@ -182,7 +194,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-4",
@@ -196,7 +209,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-4",
@@ -210,7 +224,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-4",
@@ -224,7 +239,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-4",
@@ -238,7 +254,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-5",
@@ -252,7 +269,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED \u2014 I-12 is the spec's own geometric definition; implementation conformance is PINNED, but a spec asserting a property does not validate that the property is the right world-state property to detect.",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "IDENTICAL_TO_SPEC"
+   "definitional_conformance": "IDENTICAL_TO_SPEC",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-5",
@@ -266,7 +284,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-5",
@@ -280,7 +299,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-5",
@@ -294,7 +314,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED \u2014 no payoff oracle; \u00a77.3",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-5",
@@ -308,7 +329,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-5",
@@ -322,7 +344,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-6",
@@ -336,7 +359,8 @@
    "truth_validity": "GATE_UNREADY",
    "truth_validity_note": "**GATE_UNREADY \u2014 CONTRACT AUTHORITY: CONFLICT** (\u00a74)",
    "contract_authority": "CONFLICT",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-6",
@@ -350,7 +374,8 @@
    "truth_validity": "GATE_UNREADY",
    "truth_validity_note": "GATE_UNREADY (\u00a74)",
    "contract_authority": "CONFLICT",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-6",
@@ -364,7 +389,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-6",
@@ -378,7 +404,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-7",
@@ -392,7 +419,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-7",
@@ -406,7 +434,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-7",
@@ -420,7 +449,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-7",
@@ -434,7 +464,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-7",
@@ -448,7 +479,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-7",
@@ -462,7 +494,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-7",
@@ -476,7 +509,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-7",
@@ -490,7 +524,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-8",
@@ -504,7 +539,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-8",
@@ -518,7 +554,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-8",
@@ -532,7 +569,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-8",
@@ -546,7 +584,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED \u2014 circular: `detect_d8` calls the oracle its own spec names (`:1121`)",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-8",
@@ -560,7 +599,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-8",
@@ -574,7 +614,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-8",
@@ -588,7 +629,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-8",
@@ -602,7 +644,8 @@
    "truth_validity": "UNRESOLVED",
    "truth_validity_note": "UNRESOLVED",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-9",
@@ -616,7 +659,8 @@
    "truth_validity": "GATE_UNREADY",
    "truth_validity_note": "GATE_UNREADY (\u00a76)",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-9",
@@ -630,7 +674,8 @@
    "truth_validity": "GATE_UNREADY",
    "truth_validity_note": "GATE_UNREADY",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-9",
@@ -644,7 +689,8 @@
    "truth_validity": "GATE_UNREADY",
    "truth_validity_note": "GATE_UNREADY",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   },
   {
    "detector": "D-9",
@@ -658,7 +704,8 @@
    "truth_validity": "GATE_UNREADY",
    "truth_validity_note": "GATE_UNREADY",
    "contract_authority": "SETTLED",
-   "definitional_conformance": "NOT_APPLICABLE"
+   "definitional_conformance": "NOT_APPLICABLE",
+   "witnessed_population": "NOT_ASSESSED"
   }
  ],
  "notes": [
@@ -666,6 +713,7 @@
   "The impl/applicability/truth tallies reproduced the audit's hand-written figures EXACTLY (11/5/9/22, 43/4, 1/6/40), so the published numbers were correct -- they were simply not derived from anything.",
   "contract_authority is NOT recoverable from any column of the section 3 table: D-6 (a2) carries no conflict marker in any cell, yet the audit counts it as one of the two CONFLICT rows. That tally claimed to be 'counted from the table above' and could not be. It is now an explicit per-row field, seeded from the audit's own enumeration of the two conflicting rows, so it is at least stated rather than inferred.",
   "BLOCKER 6 RULING (local_claude_1 20260813T043000Z). VALIDATED_BY_DEFINITION is removed from the truth-validity vocabulary, which becomes UNRESOLVED / GATE_UNREADY. It is not a weaker grade of truth validation; it is a different claim wearing the same word. The axis asks whether the predicate is the right world-state property, and a spec stipulating a property dissolves that question rather than answering it. The real and useful claim moves to a distinct per-row field, definitional_conformance. This also removes the contradiction between section 11's tally and section 12's 'No branch in this table is currently adoptable as truth-validated', and section 12 is the sentence that gates candidate acceptance.",
-  "BLOCKER 1 RULING (local_claude_1 20260813T040000Z). LIVE is renamed PROBE_SENSITIVE throughout, with the limit stated at every publication point: it changes probe output on generated traces and does NOT establish legal-game reachability. The enumeration required before the rename is bitetest-audit/live-label-disposition-audit-2026-08-13.md; no accepted disposition's conclusion depended on the reachability reading, because the label never entered a verdict column."
+  "BLOCKER 1 RULING (local_claude_1 20260813T040000Z). LIVE is renamed PROBE_SENSITIVE throughout, with the limit stated at every publication point: it changes probe output on generated traces and does NOT establish legal-game reachability. The enumeration required before the rename is bitetest-audit/live-label-disposition-audit-2026-08-13.md; no accepted disposition's conclusion depended on the reachability reading, because the label never entered a verdict column.",
+  "BLOCKER 2 RULING (local_claude_1 20260813T050000Z, closed 20260813T070000Z). The D-3 probe measures single-turn movement resolution against the referee mirror; D-3's own predicate is same-target/occupied-cell contention persisting >= 2 turns. Different predicates, so NO D-3 branch is probe-covered on this probe's strength and no coverage or kill-rate figure may count it as exercising D-3. No contention label is implemented: D-3 has zero witnessed episodes across 720 referee games in 3 corpora, so a probe for it would report zero forever and read as coverage. BINDING WORDING: zero observed episodes is a statement about this corpus and is NOT 'the predicate cannot fire.' max(speed,1) is replaced by the engine's own `d <= speed`."
  ]
 }
