@@ -213,3 +213,49 @@ def test_restart_preserves_everything(tmp_path):
     reopened = coordd.Store(db_path=store.db_path)      # fresh instance, same file
     assert reopened.tasks(state="claimed")[0]["owner"] == "a1"
     reopened.heartbeat("a1", "t1", gen)                 # lease+generation survived
+
+
+def test_create_task_duplicate_id_raises_conflict(tmp_path):
+    import pytest
+    store = mkstore(tmp_path)
+    store.create_task("dup1", "first")
+    with pytest.raises(coordd.Conflict):
+        store.create_task("dup1", "second")
+    # the failed insert must not have touched the original row
+    assert store.tasks()[0]["title"] == "first"
+
+
+def test_render_status_escapes_task_id(tmp_path):
+    store = mkstore(tmp_path)
+    store.create_task("t<script>x", "demo")
+    out = store.render_status()
+    assert "<script>" not in out
+    assert "&lt;script&gt;" in out
+
+
+class _NoRow:
+    def fetchone(self):
+        return None
+
+
+class _FlakyConnection:
+    """Stands in for a real sqlite3 connection (which is an immutable C type
+    and cannot be monkeypatched) to force the IntegrityError branch of
+    Store._event without needing an actual UNIQUE-constraint collision."""
+    def execute(self, sql, params=()):
+        if sql.startswith("INSERT INTO events"):
+            raise sqlite3.IntegrityError("simulated non-idempotency-key failure")
+        if sql.startswith("SELECT seq FROM events WHERE idempotency_key"):
+            return _NoRow()
+        raise AssertionError(f"unexpected query in test double: {sql}")
+
+
+def test_event_integrity_error_with_none_key_reraises(tmp_path):
+    """Defensive branch: an IntegrityError unrelated to idempotency-key collision
+    (idempotency_key is None, so it cannot be the UNIQUE-constraint duplicate the
+    except-clause was written for) must propagate, not crash on `row[0]` when the
+    `WHERE idempotency_key=NULL` recovery lookup matches nothing."""
+    import pytest
+    store = mkstore(tmp_path)
+    with pytest.raises(sqlite3.IntegrityError):
+        store._event(_FlakyConnection(), "note", "a1", None, {}, None)

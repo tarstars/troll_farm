@@ -52,3 +52,48 @@ def test_missing_path_and_bad_commit_rejected(tmp_path, repo):
         store.register_handoff("a1", "t1", gen, "agent/a1", "f" * 40, ["result.md"])
     con = coordd.sqlite3.connect(store.db_path)
     assert con.execute("SELECT COUNT(*) FROM artifacts").fetchone()[0] == 0
+
+
+def _with_origin(rdir):
+    # a remote named "origin" (pointing at the repo itself is enough) makes
+    # register_handoff's `git fetch` guard fire.
+    subprocess.run(["git", "-C", str(rdir), "remote", "add", "origin", str(rdir)],
+                   check=True, capture_output=True)
+
+
+def test_handoff_fetch_has_a_timeout(tmp_path, repo, monkeypatch):
+    rdir, commit = repo
+    _with_origin(rdir)
+    store, gen = _store(tmp_path, rdir)
+
+    orig_run = coordd.subprocess.run
+    calls = []
+
+    def spy_run(cmd, **kwargs):
+        if "fetch" in cmd:
+            calls.append(kwargs)
+        return orig_run(cmd, **kwargs)
+
+    monkeypatch.setattr(coordd.subprocess, "run", spy_run)
+    store.register_handoff("a1", "t1", gen, "agent/a1", commit, ["result.md"])
+    assert calls, "expected a `git fetch` subprocess call"
+    assert calls[0].get("timeout") == 60
+
+
+def test_handoff_survives_fetch_timeout(tmp_path, repo, monkeypatch):
+    rdir, commit = repo
+    _with_origin(rdir)
+    store, gen = _store(tmp_path, rdir)
+
+    orig_run = coordd.subprocess.run
+
+    def flaky_run(cmd, **kwargs):
+        if "fetch" in cmd:
+            raise subprocess.TimeoutExpired(cmd=cmd, timeout=kwargs.get("timeout", 60))
+        return orig_run(cmd, **kwargs)
+
+    monkeypatch.setattr(coordd.subprocess, "run", flaky_run)
+    # must not raise: fetch timeout falls back to verifying against the
+    # existing clone state instead of failing the handoff outright.
+    got = store.register_handoff("a1", "t1", gen, "agent/a1", commit, ["result.md"])
+    assert got["verified"] is True

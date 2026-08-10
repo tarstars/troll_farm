@@ -64,3 +64,46 @@ def test_status_page_lists_live_tasks(server):
                                  headers={"Authorization": "Bearer sekret"})
     html = urllib.request.urlopen(req).read().decode()
     assert "t-status" in html and "a1" in html
+
+
+def test_duplicate_task_id_returns_409_not_dropped_connection(server):
+    _call(server, "/task", {"task_id": "dup1", "title": "first"})
+    with pytest.raises(urllib.error.HTTPError) as e:
+        _call(server, "/task", {"task_id": "dup1", "title": "second"})
+    assert e.value.code == 409
+    body = json.loads(e.value.read())
+    assert "error" in body
+
+
+def test_reviews_missing_task_id_returns_400(server):
+    with pytest.raises(urllib.error.HTTPError) as e:
+        _call(server, "/reviews")
+    assert e.value.code == 400
+    body = json.loads(e.value.read())
+    assert "error" in body
+
+
+def test_events_non_numeric_since_returns_400(server):
+    with pytest.raises(urllib.error.HTTPError) as e:
+        _call(server, "/events?since=abc")
+    assert e.value.code == 400
+    body = json.loads(e.value.read())
+    assert "error" in body
+
+
+def test_make_server_rejects_empty_token(tmp_path):
+    store = coordd.Store(db_path=str(tmp_path / "empty-token.sqlite3"))
+    with pytest.raises(ValueError):
+        coordd.make_server(store, token="")
+    with pytest.raises(ValueError):
+        coordd.make_server(store, token="   ")
+
+
+def test_cli_serve_exits_clearly_on_empty_token(tmp_path, capsys):
+    db = tmp_path / "cli.sqlite3"
+    token_file = tmp_path / "token"
+    token_file.write_text("   \n")
+    rc = coordd._cli(["serve", "--db", str(db), "--token-file", str(token_file)])
+    assert rc == 1
+    captured = capsys.readouterr()
+    assert "refusing to start" in (captured.err + captured.out)

@@ -8,6 +8,8 @@ import argparse
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+import html
+import hmac
 import json
 import sqlite3
 import subprocess
@@ -128,10 +130,13 @@ class Store:
     def create_task(self, task_id, title, priority=2):
         now = self._now_iso()
         with self._tx() as con:
-            con.execute(
-                "INSERT INTO tasks(id, title, state, priority, created, updated)"
-                " VALUES(?,?,?,?,?,?)",
-                (task_id, title, "open", priority, now, now))
+            try:
+                con.execute(
+                    "INSERT INTO tasks(id, title, state, priority, created,"
+                    " updated) VALUES(?,?,?,?,?,?)",
+                    (task_id, title, "open", priority, now, now))
+            except sqlite3.IntegrityError:
+                raise Conflict(f"task {task_id!r} already exists")
         return {"task_id": task_id, "state": "open"}
 
     def set_state(self, task_id, state, actor):
@@ -249,6 +254,14 @@ class Store:
                  json.dumps(payload or {}), idempotency_key))
             return cur.lastrowid
         except sqlite3.IntegrityError:
+            if idempotency_key is None:
+                # Not the UNIQUE(idempotency_key) collision this branch exists
+                # for — SQLite treats every NULL as distinct, so a NULL key
+                # can never violate that constraint. Whatever failed, the
+                # `WHERE idempotency_key=NULL` lookup below would always miss
+                # (SQL NULL never equals NULL), so surface the real error
+                # instead of crashing on `row[0]` with row=None.
+                raise
             row = con.execute("SELECT seq FROM events WHERE idempotency_key=?",
                               (idempotency_key,)).fetchone()
             return row[0]
@@ -311,8 +324,15 @@ class Store:
         if not self.repo_dir:
             raise CoordError("server has no repo_dir configured for verification")
         if self._git_ok("remote", "get-url", "origin"):
-            subprocess.run(["git", "-C", self.repo_dir, "fetch", "--all",
-                            "--prune", "--quiet"], capture_output=True)
+            try:
+                subprocess.run(["git", "-C", self.repo_dir, "fetch", "--all",
+                                "--prune", "--quiet"], capture_output=True,
+                               timeout=60)
+            except subprocess.TimeoutExpired:
+                # Proceed without the fetch; verification below runs against
+                # whatever the existing clone already has rather than failing
+                # the handoff on a slow/unreachable remote alone.
+                pass
         if not self._git_ok("cat-file", "-e", f"{commit_hex}^{{commit}}"):
             raise Unverifiable(f"commit {commit_hex} not present")
         full_ref = next(
@@ -352,12 +372,13 @@ class Store:
         finally:
             con.close()
         rows = "".join(
-            f"<tr><td>{t['id']}</td><td>{t['state']}</td><td>{t['owner'] or ''}"
-            f"</td><td>{t['expires'] or ''}</td></tr>" for t in tasks)
+            f"<tr><td>{html.escape(t['id'])}</td><td>{html.escape(t['state'])}"
+            f"</td><td>{html.escape(t['owner'] or '')}</td>"
+            f"<td>{html.escape(t['expires'] or '')}</td></tr>" for t in tasks)
         arows = "".join(
-            f"<tr><td>{a['id']}</td><td>{a['role']}</td>"
+            f"<tr><td>{html.escape(a['id'])}</td><td>{html.escape(a['role'])}</td>"
             f"<td>{'yes' if a['compatible'] else 'NO'}</td>"
-            f"<td>{a['last_seen']}</td></tr>" for a in agents)
+            f"<td>{html.escape(a['last_seen'])}</td></tr>" for a in agents)
         return ("<html><body><h1>coordd</h1>"
                 f"<p>server time {self._now_iso()}</p>"
                 "<h2>live tasks</h2><table border=1>"
@@ -406,6 +427,9 @@ POST_ROUTES = {
 
 
 def make_server(store, token, host="127.0.0.1", port=7077):
+    if not token or not token.strip():
+        raise ValueError("coordd: refusing to start with an empty/blank token")
+
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *a):
             pass
@@ -419,51 +443,67 @@ def make_server(store, token, host="127.0.0.1", port=7077):
             self.wfile.write(body)
 
         def _authed(self):
-            return self.headers.get("Authorization") == f"Bearer {token}"
+            got = self.headers.get("Authorization")
+            if got is None:
+                return False
+            return hmac.compare_digest(got, f"Bearer {token}")
 
         def do_GET(self):
-            url = urlparse(self.path)
-            q = {k: v[0] for k, v in parse_qs(url.query).items()}
-            if url.path == "/health":
-                return self._send(200, {"ok": True, "time": store._now_iso()})
-            if not self._authed():
-                return self._send(401, {"error": "bad token"})
-            if url.path == "/tasks":
-                return self._send(200, store.tasks(state=q.get("state")))
-            if url.path == "/events":
-                return self._send(200, store.events(since=int(q.get("since", 0))))
-            if url.path == "/reviews":
-                return self._send(200, store.reviews(q["task_id"]))
-            if url.path == "/status":
-                body = store.render_status().encode()
-                self.send_response(200)
-                self.send_header("Content-Type", "text/html")
-                self.send_header("Content-Length", str(len(body)))
-                self.end_headers()
-                self.wfile.write(body)
-                return
-            return self._send(404, {"error": f"no route {url.path}"})
+            try:
+                url = urlparse(self.path)
+                q = {k: v[0] for k, v in parse_qs(url.query).items()}
+                if url.path == "/health":
+                    return self._send(200, {"ok": True, "time": store._now_iso()})
+                if not self._authed():
+                    return self._send(401, {"error": "bad token"})
+                if url.path == "/tasks":
+                    return self._send(200, store.tasks(state=q.get("state")))
+                if url.path == "/events":
+                    try:
+                        since = int(q.get("since", 0))
+                    except ValueError as e:
+                        return self._send(400, {"error": f"bad since: {e}"})
+                    return self._send(200, store.events(since=since))
+                if url.path == "/reviews":
+                    if "task_id" not in q:
+                        return self._send(
+                            400, {"error": "missing required query param: task_id"})
+                    return self._send(200, store.reviews(q["task_id"]))
+                if url.path == "/status":
+                    body = store.render_status().encode()
+                    self.send_response(200)
+                    self.send_header("Content-Type", "text/html")
+                    self.send_header("Content-Length", str(len(body)))
+                    self.end_headers()
+                    self.wfile.write(body)
+                    return
+                return self._send(404, {"error": f"no route {url.path}"})
+            except Exception as e:
+                return self._send(500, {"error": f"internal: {e}"})
 
         def do_POST(self):
-            if not self._authed():
-                return self._send(401, {"error": "bad token"})
-            route = POST_ROUTES.get(urlparse(self.path).path)
-            if route is None:
-                return self._send(404, {"error": f"no route {self.path}"})
-            method, required, optional = route
             try:
-                n = int(self.headers.get("Content-Length", 0))
-                payload = json.loads(self.rfile.read(n) or b"{}")
-                missing = [k for k in required if k not in payload]
-                if missing:
-                    raise CoordError(f"missing fields: {missing}")
-                kwargs = {k: payload[k] for k in required + optional
-                          if k in payload}
-                return self._send(200, getattr(store, method)(**kwargs))
-            except CoordError as e:
-                return self._send(e.status, {"error": str(e)})
-            except (json.JSONDecodeError, TypeError, ValueError) as e:
-                return self._send(400, {"error": str(e)})
+                if not self._authed():
+                    return self._send(401, {"error": "bad token"})
+                route = POST_ROUTES.get(urlparse(self.path).path)
+                if route is None:
+                    return self._send(404, {"error": f"no route {self.path}"})
+                method, required, optional = route
+                try:
+                    n = int(self.headers.get("Content-Length", 0))
+                    payload = json.loads(self.rfile.read(n) or b"{}")
+                    missing = [k for k in required if k not in payload]
+                    if missing:
+                        raise CoordError(f"missing fields: {missing}")
+                    kwargs = {k: payload[k] for k in required + optional
+                              if k in payload}
+                    return self._send(200, getattr(store, method)(**kwargs))
+                except CoordError as e:
+                    return self._send(e.status, {"error": str(e)})
+                except (json.JSONDecodeError, TypeError, ValueError) as e:
+                    return self._send(400, {"error": str(e)})
+            except Exception as e:
+                return self._send(500, {"error": f"internal: {e}"})
 
     return ThreadingHTTPServer((host, port), Handler)
 
@@ -487,7 +527,11 @@ def _cli(argv=None):
     if a.cmd == "serve":
         token = open(a.token_file).read().strip()
         store = Store(db_path=a.db, repo_dir=a.repo)
-        srv = make_server(store, token, host=a.host, port=a.port)
+        try:
+            srv = make_server(store, token, host=a.host, port=a.port)
+        except ValueError as e:
+            print(f"coordd: refusing to start: {e}", file=sys.stderr)
+            return 1
         print(f"coordd serving on {a.host}:{srv.server_address[1]} db={a.db}")
         srv.serve_forever()
     if a.cmd == "export-audit":

@@ -2,6 +2,7 @@
 [Unit]
 Description=SSH tunnel to coordd on the Yandex Cloud VM
 After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=simple

@@ -12,19 +12,21 @@ sudo mkdir -p /opt/troll_farm /etc/coordd
 sudo git clone git@github.com:tarstars/troll_farm.git /opt/troll_farm   # or update an existing clone
 sudo -u coordd git clone --mirror git@github.com:tarstars/troll_farm.git /var/lib/coordd/repo.git
 openssl rand -hex 32 | sudo tee /etc/coordd/token >/dev/null
+sudo chown coordd: /etc/coordd/token
 sudo chmod 600 /etc/coordd/token
 sudo cp /opt/troll_farm/deploy/coordd.service /etc/systemd/system/
 sudo systemctl daemon-reload && sudo systemctl enable --now coordd
 curl -s http://127.0.0.1:7077/health   # {"ok": true, ...}
 ```
 
-Agents on the VM read the token from `/etc/coordd/token` into `~/.coordd/token`
-(per agent user) and use `COORDD_URL=http://127.0.0.1:7077`.
+Agents on the VM copy the token via `sudo cat /etc/coordd/token > ~/.coordd/token`
+(per agent user) — the file is owned by `coordd` and mode 600, so an unprivileged
+agent user cannot read it directly — and use `COORDD_URL=http://127.0.0.1:7077`.
 
 ## On project_host (local agents)
 
 ```bash
-mkdir -p ~/.coordd && scp VM_ALIAS:/etc/coordd/token ~/.coordd/token && chmod 600 ~/.coordd/token
+mkdir -p ~/.coordd && ssh VM_ALIAS sudo cat /etc/coordd/token > ~/.coordd/token && chmod 600 ~/.coordd/token
 mkdir -p ~/.config/systemd/user
 cp deploy/coordd-tunnel.service ~/.config/systemd/user/   # edit VM_ALIAS first
 systemctl --user daemon-reload && systemctl --user enable --now coordd-tunnel

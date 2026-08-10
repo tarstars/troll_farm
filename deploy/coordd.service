@@ -2,6 +2,7 @@
 [Unit]
 Description=coordd coordination control plane (Troll Farm)
 After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=simple
