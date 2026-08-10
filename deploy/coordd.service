@@ -1,0 +1,18 @@
+# deploy/coordd.service — install on the Yandex Cloud VM at /etc/systemd/system/
+[Unit]
+Description=coordd coordination control plane (Troll Farm)
+After=network-online.target
+
+[Service]
+Type=simple
+User=coordd
+ExecStart=/usr/bin/python3 /opt/troll_farm/scripts/coordd.py serve \
+  --db /var/lib/coordd/coordd.sqlite3 \
+  --repo /var/lib/coordd/repo.git \
+  --token-file /etc/coordd/token \
+  --host 127.0.0.1 --port 7077
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
