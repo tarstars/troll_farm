@@ -8,6 +8,7 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
 import json
 import sqlite3
+import subprocess
 
 TASK_STATES = ("open", "claimed", "review", "blocked", "done", "dropped")
 
@@ -295,3 +296,40 @@ class Store:
                 "SELECT * FROM reviews WHERE task_id=? ORDER BY id", (task_id,))]
         finally:
             con.close()
+
+    def _git_ok(self, *args):
+        r = subprocess.run(["git", "-C", self.repo_dir, *args],
+                           capture_output=True, text=True)
+        return r.returncode == 0
+
+    def register_handoff(self, agent, task_id, generation, git_ref, commit_hex,
+                         paths):
+        if not self.repo_dir:
+            raise CoordError("server has no repo_dir configured for verification")
+        if self._git_ok("remote", "get-url", "origin"):
+            subprocess.run(["git", "-C", self.repo_dir, "fetch", "--all",
+                            "--prune", "--quiet"], capture_output=True)
+        if not self._git_ok("cat-file", "-e", f"{commit_hex}^{{commit}}"):
+            raise Unverifiable(f"commit {commit_hex} not present")
+        full_ref = next(
+            (r for r in (f"refs/remotes/origin/{git_ref}", git_ref)
+             if self._git_ok("rev-parse", "--verify", "--quiet", r)), None)
+        if full_ref is None:
+            raise Unverifiable(f"ref {git_ref!r} not found")
+        if not self._git_ok("merge-base", "--is-ancestor", commit_hex, full_ref):
+            raise Unverifiable(f"{commit_hex} not reachable from {full_ref}")
+        missing = [p for p in paths
+                   if not self._git_ok("cat-file", "-e", f"{commit_hex}:{p}")]
+        if missing:
+            raise Unverifiable(f"paths absent at {commit_hex[:12]}: {missing}")
+        with self._tx() as con:
+            self._require_lease(con, agent, task_id, generation)
+            cur = con.execute(
+                "INSERT INTO artifacts(task_id, generation, git_ref, commit_hex,"
+                " paths, verified, server_time) VALUES(?,?,?,?,?,1,?)",
+                (task_id, generation, git_ref, commit_hex, json.dumps(list(paths)),
+                 self._now_iso()))
+            self._event(con, "handoff", agent, task_id,
+                        {"commit": commit_hex, "paths": list(paths),
+                         "generation": generation})
+            return {"verified": True, "artifact_id": cur.lastrowid}
