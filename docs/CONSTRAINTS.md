@@ -931,6 +931,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   gates passing** — and it is still worth only **+0.045 overall margin (CI [−0.024,+0.114],
   ≈0.005 rating)**. A working version of this fix does not justify a promotion cycle. Do not
   reopen. [D176a; D171a]
+  *(Reproducibility note, 2026-08-10: the code behind this closure —
+  `rust/src/bin/d176a_oscillation_breaker_panel.rs` (`6fcbaef3`) and
+  `cgauto/analyze_d176a_oscillation_breaker.py` (`874f027c`) — sat UNTRACKED from 2026-07-29
+  until 2026-08-10. For twelve days the strongest closure in this document rested on evidence
+  only the authoring worktree could regenerate, which made it unfalsifiable in practice: nobody
+  else could re-run it to disagree. Now committed. The verdict is unchanged; what changed is
+  that it can be contradicted.)*
 - ~~**No renewable resource base exists on these maps — for ANY cohort.**~~
   **[OVERTURNED 2026-07-30 by the completed A2 Phase 0a analysis — the integrator drew this
   from partial output before the audit finished. See the corrected bullet below.]** The
