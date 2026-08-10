@@ -62,6 +62,7 @@ ack-required messages in the current selection; 2 transport/schema/delivery erro
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import pathlib
@@ -69,6 +70,7 @@ import re
 import subprocess
 import sys
 import tempfile
+import traceback
 from collections.abc import Iterable
 
 NAMESPACE = "coordination/messages/"
@@ -564,8 +566,23 @@ def collect_my_acks(
         # were discharged, and the lint could not see it either.  33 published
         # messages already use the pattern.  `ack` still MUST carry a non-empty
         # ack_for (validate_v2); the difference is only that others MAY.
-        if msg.kind != "ack" and not parse_json_list(msg.fields.get("ack_for", "[]")):
-            continue
+        # Guarded, because parse_json_list RAISES on malformed input and this
+        # walks my OWN namespace: an unguarded call let one bad `ack_for` of
+        # mine crash my own sweep, and published messages are immutable, so I
+        # could not repair it (claude_1 execution review, 2026-08-13).  A
+        # malformed declaration must acknowledge nothing and say so, exactly as
+        # validate_v2 already treats the same field.
+        if msg.kind != "ack":
+            try:
+                declared = parse_json_list(msg.fields.get("ack_for", "[]"))
+            except (ValueError, json.JSONDecodeError) as exc:
+                warnings.append(
+                    f"my v2 {msg.kind} {msg.path} has a malformed ack_for and "
+                    f"acknowledges nothing: {exc}"
+                )
+                continue
+            if not declared:
+                continue
         if msg.is_v2:
             errors = validate_v2(
                 msg, authoritative_paths, canonical_paths_by_agent, remote_ref_names
@@ -698,6 +715,43 @@ def read_authoritative_blob(ref: str, path: str) -> tuple[str, str] | None:
         return None
     oid = probe.stdout.strip()
     return oid, git("cat-file", "blob", oid)
+
+
+def tool_drift() -> str | None:
+    """Report if the running sweep differs from the authoritative copy.
+
+    A sweep that is itself stale reports confidently wrong inbox state, and it
+    is the one error the sweep cannot otherwise surface: every other check it
+    performs is only as current as the code performing it.  This bit twice in
+    one cycle -- `claude_1` synced `scripts/` from `main`, published the digest,
+    and was stale again within the day because `main` moved under it; the prior
+    occurrence nearly reported 56 unacknowledged messages against a true 16, and
+    the second silently dropped an acknowledgement it had genuinely made.
+
+    Suggested by `claude_1` (2026-08-13) and it costs one blob read, since
+    `origin/main` is already consulted for the roster.
+
+    Returns None when the tool matches, or when the comparison cannot be made --
+    absent ref, unreadable blob, running from stdin.  Never fatal: a tool that
+    refused to run because it could not verify itself would be worse than one
+    that runs and says so.
+    """
+    try:
+        mine = pathlib.Path(__file__).read_bytes()
+    except (OSError, NameError):
+        return None
+    found = read_authoritative_blob(ROSTER_REF, "scripts/inbox_sweep.py")
+    if found is None:
+        return None
+    _, authoritative = found
+    mine_digest = hashlib.sha256(mine).hexdigest()
+    theirs_digest = hashlib.sha256(authoritative.encode()).hexdigest()
+    if mine_digest == theirs_digest:
+        return None
+    return (
+        f"running {mine_digest[:8]}…, {ROSTER_REF} has {theirs_digest[:8]}… — "
+        "THIS SWEEP MAY BE WRONG. Sync scripts/ before trusting anything below."
+    )
 
 
 def load_quarantine(coordinator_ref: str) -> tuple[list[dict[str, str]], str]:
@@ -1128,6 +1182,9 @@ def main() -> int:
         f"({len(messages) - v2_count} legacy, {v2_count} v2)"
     )
     print(f"seen-state: {seen_source}")
+    drift = tool_drift()
+    if drift:
+        print(f"\n*** TOOL DRIFT: {drift}\n")
     if args.task or args.sender:
         print(
             "filters: "
@@ -1220,4 +1277,21 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    # Exit 1 is defined by this protocol as "healthy inbox, unacknowledged
+    # ack-required messages present", so an uncaught traceback -- which Python
+    # also exits 1 -- is indistinguishable from a normal result to anything
+    # gating on exit status, which this project mandates.  Any unexpected
+    # failure is exit 2, the same status every other hard error here uses
+    # (claude_1 execution review, 2026-08-13).
+    try:
+        sys.exit(main())
+    except SystemExit:
+        raise
+    except BaseException:
+        traceback.print_exc()
+        print(
+            "\nsweep FAILED with an unexpected error (exit 2). This is not "
+            "'you have mail' -- no inbox state above should be trusted.",
+            file=sys.stderr,
+        )
+        sys.exit(2)
