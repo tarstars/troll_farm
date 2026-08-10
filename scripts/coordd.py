@@ -4,11 +4,15 @@
 Store = all semantics over SQLite (WAL). HTTP layer and CLI modes are added in
 later tasks of the same plan; keep them thin — semantics live here so they are
 testable without a socket."""
+import argparse
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import sqlite3
 import subprocess
+import sys
+from urllib.parse import urlparse, parse_qs
 
 TASK_STATES = ("open", "claimed", "review", "blocked", "done", "dropped")
 
@@ -333,3 +337,101 @@ class Store:
                         {"commit": commit_hex, "paths": list(paths),
                          "generation": generation})
             return {"verified": True, "artifact_id": cur.lastrowid}
+
+
+POST_ROUTES = {
+    "/register": ("register", ["agent"], ["role", "tool_digest",
+                                          "protocol_version", "capabilities"]),
+    "/task": ("create_task", ["task_id", "title"], ["priority"]),
+    "/task_state": ("set_state", ["task_id", "state", "actor"], []),
+    "/claim": ("claim", ["agent", "task_id", "prefixes"], ["idempotency_key"]),
+    "/heartbeat": ("heartbeat", ["agent", "task_id", "generation"], []),
+    "/release": ("release", ["agent", "task_id", "generation", "outcome"], []),
+    "/event": ("add_event", ["actor", "type_"], ["task_id", "payload",
+                                                 "idempotency_key"]),
+    "/ack": ("ack", ["agent", "event_seq"], []),
+    "/handoff": ("register_handoff", ["agent", "task_id", "generation",
+                                      "git_ref", "commit_hex", "paths"], []),
+    "/review": ("add_review", ["task_id", "reviewer", "verdict"],
+                ["evidence", "artifact_generation"]),
+}
+
+
+def make_server(store, token, host="127.0.0.1", port=7077):
+    class Handler(BaseHTTPRequestHandler):
+        def log_message(self, *a):
+            pass
+
+        def _send(self, code, obj):
+            body = json.dumps(obj).encode()
+            self.send_response(code)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+
+        def _authed(self):
+            return self.headers.get("Authorization") == f"Bearer {token}"
+
+        def do_GET(self):
+            url = urlparse(self.path)
+            q = {k: v[0] for k, v in parse_qs(url.query).items()}
+            if url.path == "/health":
+                return self._send(200, {"ok": True, "time": store._now_iso()})
+            if not self._authed():
+                return self._send(401, {"error": "bad token"})
+            if url.path == "/tasks":
+                return self._send(200, store.tasks(state=q.get("state")))
+            if url.path == "/events":
+                return self._send(200, store.events(since=int(q.get("since", 0))))
+            if url.path == "/reviews":
+                return self._send(200, store.reviews(q["task_id"]))
+            if url.path == "/status":
+                return self._send(200, {"error": "dashboard added in Task 14"})
+            return self._send(404, {"error": f"no route {url.path}"})
+
+        def do_POST(self):
+            if not self._authed():
+                return self._send(401, {"error": "bad token"})
+            route = POST_ROUTES.get(urlparse(self.path).path)
+            if route is None:
+                return self._send(404, {"error": f"no route {self.path}"})
+            method, required, optional = route
+            try:
+                n = int(self.headers.get("Content-Length", 0))
+                payload = json.loads(self.rfile.read(n) or b"{}")
+                missing = [k for k in required if k not in payload]
+                if missing:
+                    raise CoordError(f"missing fields: {missing}")
+                kwargs = {k: payload[k] for k in required + optional
+                          if k in payload}
+                return self._send(200, getattr(store, method)(**kwargs))
+            except CoordError as e:
+                return self._send(e.status, {"error": str(e)})
+            except (json.JSONDecodeError, TypeError, ValueError) as e:
+                return self._send(400, {"error": str(e)})
+
+    return ThreadingHTTPServer((host, port), Handler)
+
+
+def _cli(argv=None):
+    ap = argparse.ArgumentParser(prog="coordd")
+    sub = ap.add_subparsers(dest="cmd", required=True)
+    s = sub.add_parser("serve")
+    s.add_argument("--db", required=True)
+    s.add_argument("--repo", default=None)
+    s.add_argument("--token-file", required=True)
+    s.add_argument("--host", default="127.0.0.1")
+    s.add_argument("--port", type=int, default=7077)
+    a = ap.parse_args(argv)
+    if a.cmd == "serve":
+        token = open(a.token_file).read().strip()
+        store = Store(db_path=a.db, repo_dir=a.repo)
+        srv = make_server(store, token, host=a.host, port=a.port)
+        print(f"coordd serving on {a.host}:{srv.server_address[1]} db={a.db}")
+        srv.serve_forever()
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(_cli())
