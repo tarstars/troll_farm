@@ -10,7 +10,8 @@ ledgers unless archaeology is explicitly required.
 - If more than one writing agent is active, the protocol in
   `coordination/multi-agent-protocol.md` is in force. Read it before writing anything.
 - One worktree and `agent/<id>` branch per writing agent; never share a worktree. One
-  integrator; one arena controller (both `claude_1` by default).
+  integrator; one arena controller (both `local_claude_1` since the 2026-08-06 owner
+  reassignment — `coordination/roster.json` on `origin/main` is the authority, not this line).
 - Four artifacts: task records (`coordination/tasks/`), status snapshots
   (`coordination/status/<id>.md`), immutable typed messages
   (`coordination/messages/<sender>/YYYYMMDDTHHMMSSZ-<task-id>-<kind>.md`), and handoffs.
