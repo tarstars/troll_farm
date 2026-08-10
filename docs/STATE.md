@@ -191,6 +191,19 @@ makes the goalpost move in the wrong direction.
 
 ## 4. Open thread
 
+★★★ **SESSION CLOSE 2026-08-10 — read
+`coordination/HANDOVER-2026-08-10-local_claude_1-session-close.md` first.** It carries one
+**half-done action**: a quarantine whose adjudication is published but whose entry is not, leaving
+`delivery errors (1)` in both peers' sweeps. The handover gives the exact resume step and the
+failed first attempt not to repeat.
+
+Session headlines: σ measured at **1.098** (CI [0.707, 2.418]) and re-submission proven to draw an
+independent sample, both from committed data; four owner rulings recorded; bite-test blockers
+1/2/4/5/6 closed; the gate-architecture review integrated; D176a's twelve-day-unreproducible
+closure committed; and a new P0 task `20260810-guards-that-cannot-fail` after seven instances in
+one week of a check that passes regardless of what it checks.
+
+
 - ★★★ **N1 DONE — PARTIAL / IMMATERIAL:** at score 21.47 and age 10.36d, estimated
   remaining uplift is −0.1612, CI [−0.7525,+0.4567], projected mature score 21.3088.
   The upper bound is only 0.0433 below the frozen cutoff, so do not claim negative aging;
