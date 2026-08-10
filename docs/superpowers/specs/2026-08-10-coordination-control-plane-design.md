@@ -31,7 +31,7 @@ rules requiring memory are not.
 |---|---|
 | What is happening now? | `coordd`, a transactional coordination service |
 | What happened, and what is the evidence? | Git commits, branches, and audit exports |
-| May it become official? | CI checks plus the single integrator merging to `main` |
+| May it become official? | The single integrator merging to `main` after the local check suite passes |
 
 Nothing is hand-mirrored between homes. Anything that describes live state (dashboard,
 roster views, "who is doing what") is a query against `coordd`, never a maintained file.
@@ -44,8 +44,9 @@ retained on the review's explicit recommendation ("the project can retain its ex
 single-integrator rule"), because the trust model differs: long-running LLM agents with
 one documented fabricated acceptance, a byte-sacred source, hash-locked experiment
 records, and a single Arena slot make a human-controlled integration gate load-bearing
-rather than overhead. Today that rule is convention only (`main` is unprotected, no CI);
-P3 is what makes it enforced.
+rather than overhead. Today that rule is convention only (`main` is unprotected); this
+iteration keeps enforcement local (owner ruling 2026-08-10: no CI for now) — P3 turns the
+integrator's pre-merge ritual into one command instead.
 
 ## 3. The service
 
@@ -125,7 +126,8 @@ exit marker — its most recent run failed on a TLS timeout and nothing noticed)
 **Docs policy.** Budgets enforced by tests that fail: `docs/STATE.md` ≤ 150 lines
 (currently 360 against its own stated budget), new protocol ≤ 1 page. The roster,
 onboarding prompt (`peer-prompt.md`), and environments table are **generated** from one
-machine-readable config committed to the repo; CI fails when generated files drift. The
+machine-readable config committed to the repo; a test in the standard pytest suite fails
+when generated files drift, so any local test run catches it. The
 current hand-maintained triples (AGENTS.md vs roster.json vs ENVIRONMENTS.md) disagree
 today about who the integrator is and which agents exist; generation makes that class
 unrepresentable. `docs/CONSTRAINTS.md` stays append-only prose but gains a generated
@@ -148,8 +150,11 @@ compared while git remains authoritative.
 `coordination/messages/` is frozen with a final README pointer; dual-format and the
 legacy baseline retire. Requires the acceptance tests below to pass first.
 
-**P3 — harden.** Protect `main` (required checks + integrator approval); CI runs doc
-budgets, generated-doc drift, artifact-pin validation, and a fresh-clone test.
+**P3 — harden, locally.** The integrator's pre-merge ritual becomes one command
+(`coordctl check`): doc budgets, generated-doc drift, artifact-pin validation, and the
+test suite — wired as a local git pre-push hook on the project host so it cannot be
+skipped by habit. GitHub-side branch protection and CI are deliberately deferred to a
+later iteration.
 
 **Acceptance tests before P2 (each must be loud or impossible):** twenty simultaneous
 claims produce exactly one owner; non-overlapping write sets proceed concurrently while
@@ -171,7 +176,8 @@ the single controller exactly as today; the service tracks the cycle as an ordin
 
 ## 8. Non-goals
 
-No history rewriting; no deletion of archives or negative results; no change to Arena
+No CI in this iteration (owner ruling 2026-08-10) — all checks run locally; no history
+rewriting; no deletion of archives or negative results; no change to Arena
 authorization, the frozen-experiment discipline, sealed data ranges, the byte-sacred
 resident source, or the storage/YT policies; no attempt to migrate the 924 historical
 messages into the database — they are history, and history stays in git.
