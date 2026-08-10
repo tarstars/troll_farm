@@ -53,3 +53,14 @@ def test_register_claim_conflict_flow(server):
                                  "prefixes": ["docs/x"]})
     assert e.value.code == 409
     assert _call(server, "/tasks?state=claimed")[0]["id"] == "t1"
+
+
+def test_status_page_lists_live_tasks(server):
+    _call(server, "/register", {"agent": "a1", "protocol_version": 1})
+    _call(server, "/task", {"task_id": "t-status", "title": "visible"})
+    _call(server, "/claim", {"agent": "a1", "task_id": "t-status",
+                             "prefixes": ["docs/x"]})
+    req = urllib.request.Request(server + "/status",
+                                 headers={"Authorization": "Bearer sekret"})
+    html = urllib.request.urlopen(req).read().decode()
+    assert "t-status" in html and "a1" in html

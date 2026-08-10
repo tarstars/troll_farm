@@ -191,3 +191,25 @@ def test_reviews_roundtrip(tmp_path):
                      evidence="claude_1/x.md", artifact_generation=2)
     got = store.reviews("t1")
     assert got[0]["verdict"] == "REVISION_REQUIRED" and got[0]["reviewer"] == "codex_1"
+
+
+def test_export_audit_idempotent(tmp_path):
+    store = mkstore(tmp_path)
+    _reg(store, "a1")
+    store.add_event("a1", "note", payload={"n": 1})
+    out = tmp_path / "audit.jsonl"
+    assert store.export_audit(str(out)) == 1
+    assert store.export_audit(str(out)) == 0          # cursor advanced
+    store.add_event("a1", "note", payload={"n": 2})
+    assert store.export_audit(str(out)) == 1
+    assert len(out.read_text().splitlines()) == 2
+
+
+def test_restart_preserves_everything(tmp_path):
+    store = mkstore(tmp_path)
+    _reg(store, "a1")
+    store.create_task("t1", "demo")
+    gen = store.claim("a1", "t1", ["docs/x"])["generation"]
+    reopened = coordd.Store(db_path=store.db_path)      # fresh instance, same file
+    assert reopened.tasks(state="claimed")[0]["owner"] == "a1"
+    reopened.heartbeat("a1", "t1", gen)                 # lease+generation survived

@@ -338,6 +338,54 @@ class Store:
                          "generation": generation})
             return {"verified": True, "artifact_id": cur.lastrowid}
 
+    def render_status(self):
+        con = self._read()
+        try:
+            tasks = con.execute(
+                "SELECT t.id, t.state, t.priority, t.owner, l.expires"
+                " FROM tasks t LEFT JOIN leases l ON l.task_id = t.id"
+                " WHERE t.state NOT IN ('done','dropped')"
+                " ORDER BY t.priority, t.id").fetchall()
+            agents = con.execute(
+                "SELECT id, role, compatible, last_seen FROM agents"
+                " ORDER BY id").fetchall()
+        finally:
+            con.close()
+        rows = "".join(
+            f"<tr><td>{t['id']}</td><td>{t['state']}</td><td>{t['owner'] or ''}"
+            f"</td><td>{t['expires'] or ''}</td></tr>" for t in tasks)
+        arows = "".join(
+            f"<tr><td>{a['id']}</td><td>{a['role']}</td>"
+            f"<td>{'yes' if a['compatible'] else 'NO'}</td>"
+            f"<td>{a['last_seen']}</td></tr>" for a in agents)
+        return ("<html><body><h1>coordd</h1>"
+                f"<p>server time {self._now_iso()}</p>"
+                "<h2>live tasks</h2><table border=1>"
+                "<tr><th>task</th><th>state</th><th>owner</th><th>lease expires"
+                f"</th></tr>{rows}</table>"
+                "<h2>agents</h2><table border=1>"
+                "<tr><th>agent</th><th>role</th><th>compatible</th><th>last seen"
+                f"</th></tr>{arows}</table></body></html>")
+
+    def export_audit(self, out_path):
+        with self._tx() as con:
+            row = con.execute("SELECT value FROM meta WHERE key='audit_cursor'"
+                              ).fetchone()
+            cursor = int(row[0]) if row else 0
+            rows = con.execute(
+                "SELECT seq, server_time, type, actor, task_id, payload"
+                " FROM events WHERE seq > ? ORDER BY seq", (cursor,)).fetchall()
+            if rows:
+                with open(out_path, "a", encoding="utf-8") as f:
+                    for seq, st, ty, actor, task_id, payload in rows:
+                        f.write(json.dumps(
+                            {"seq": seq, "server_time": st, "type": ty,
+                             "actor": actor, "task_id": task_id,
+                             "payload": json.loads(payload)}) + "\n")
+                con.execute("INSERT OR REPLACE INTO meta VALUES('audit_cursor',?)",
+                            (str(rows[-1][0]),))
+            return len(rows)
+
 
 POST_ROUTES = {
     "/register": ("register", ["agent"], ["role", "tool_digest",
@@ -387,7 +435,13 @@ def make_server(store, token, host="127.0.0.1", port=7077):
             if url.path == "/reviews":
                 return self._send(200, store.reviews(q["task_id"]))
             if url.path == "/status":
-                return self._send(200, {"error": "dashboard added in Task 14"})
+                body = store.render_status().encode()
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html")
+                self.send_header("Content-Length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+                return
             return self._send(404, {"error": f"no route {url.path}"})
 
         def do_POST(self):
@@ -423,6 +477,12 @@ def _cli(argv=None):
     s.add_argument("--token-file", required=True)
     s.add_argument("--host", default="127.0.0.1")
     s.add_argument("--port", type=int, default=7077)
+    e = sub.add_parser("export-audit")
+    e.add_argument("--db", required=True)
+    e.add_argument("--out", required=True)
+    d = sub.add_parser("dump")
+    d.add_argument("--db", required=True)
+    d.add_argument("--out", required=True)
     a = ap.parse_args(argv)
     if a.cmd == "serve":
         token = open(a.token_file).read().strip()
@@ -430,6 +490,17 @@ def _cli(argv=None):
         srv = make_server(store, token, host=a.host, port=a.port)
         print(f"coordd serving on {a.host}:{srv.server_address[1]} db={a.db}")
         srv.serve_forever()
+    if a.cmd == "export-audit":
+        n = Store(db_path=a.db).export_audit(a.out)
+        print(f"exported {n} event(s) to {a.out}")
+        return 0
+    if a.cmd == "dump":
+        src = sqlite3.connect(a.db)
+        dst = sqlite3.connect(a.out)
+        src.backup(dst)
+        dst.close(); src.close()
+        print(f"dumped {a.db} -> {a.out}")
+        return 0
     return 0
 
 
