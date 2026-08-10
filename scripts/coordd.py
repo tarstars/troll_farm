@@ -197,6 +197,44 @@ class Store:
                         idempotency_key)
         return {"task_id": task_id, "generation": gen, "expires": expires}
 
+    RELEASE_OUTCOMES = ("open", "review", "blocked", "done", "dropped")
+
+    def _require_lease(self, con, agent, task_id, generation):
+        row = con.execute(
+            "SELECT owner, generation, expires FROM leases WHERE task_id=?",
+            (task_id,)).fetchone()
+        if row is None:
+            raise Conflict(f"no lease on {task_id!r}")
+        owner, gen, expires = row
+        if owner != agent or gen != generation:
+            raise Conflict(f"stale generation for {task_id!r}: lease is"
+                           f" {owner}@gen{gen}, caller {agent}@gen{generation}")
+        if expires <= self._now_iso():
+            raise Conflict(f"lease on {task_id!r} expired at {expires}")
+
+    def heartbeat(self, agent, task_id, generation):
+        now = self._now_iso()
+        with self._tx() as con:
+            self._require_lease(con, agent, task_id, generation)
+            expires = (self._now() + timedelta(seconds=self.LEASE_TTL)) \
+                .strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+            con.execute("UPDATE leases SET expires=?, last_heartbeat=?"
+                        " WHERE task_id=?", (expires, now, task_id))
+        return {"expires": expires}
+
+    def release(self, agent, task_id, generation, outcome):
+        if outcome not in self.RELEASE_OUTCOMES:
+            raise CoordError(f"outcome {outcome!r} not in {self.RELEASE_OUTCOMES}")
+        with self._tx() as con:
+            self._require_lease(con, agent, task_id, generation)
+            con.execute("DELETE FROM leases WHERE task_id=?", (task_id,))
+            owner = None if outcome in ("open", "dropped") else agent
+            con.execute("UPDATE tasks SET state=?, owner=?, updated=? WHERE id=?",
+                        (outcome, owner, self._now_iso(), task_id))
+            self._event(con, "release", agent, task_id,
+                        {"generation": generation, "outcome": outcome})
+        return {"task_id": task_id, "state": outcome}
+
     def _event(self, con, type_, actor, task_id, payload, idempotency_key=None):
         try:
             cur = con.execute(

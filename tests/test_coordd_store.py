@@ -101,3 +101,61 @@ def test_twenty_simultaneous_claims_one_owner(tmp_path):
     for t in threads: t.start()
     for t in threads: t.join()
     assert len(wins) == 1 and len(errs) == 19
+
+
+from datetime import timedelta
+
+
+class Clock:
+    def __init__(self):
+        self.t = datetime(2026, 8, 10, 12, 0, 0, tzinfo=timezone.utc)
+    def __call__(self):
+        return self.t
+    def advance(self, seconds):
+        self.t += timedelta(seconds=seconds)
+
+
+def test_heartbeat_extends_and_fences(tmp_path):
+    import pytest
+    clock = Clock()
+    store = mkstore(tmp_path, now=clock)
+    _reg(store, "a1")
+    store.create_task("t1", "demo")
+    gen = store.claim("a1", "t1", ["docs/x"])["generation"]
+    clock.advance(600)
+    exp1 = store.heartbeat("a1", "t1", gen)["expires"]
+    assert exp1 > clock().strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+    with pytest.raises(coordd.Conflict):
+        store.heartbeat("a1", "t1", gen + 5)      # stale/foreign generation
+    with pytest.raises(coordd.Conflict):
+        store.heartbeat("a2", "t1", gen)          # not the owner
+
+
+def test_expired_lease_takeover_rejects_stale_owner(tmp_path):
+    import pytest
+    clock = Clock()
+    store = mkstore(tmp_path, now=clock)
+    _reg(store, "a1", "a2")
+    store.create_task("t1", "demo")
+    g1 = store.claim("a1", "t1", ["docs/x"])["generation"]
+    clock.advance(coordd.Store.LEASE_TTL + 1)
+    g2 = store.claim("a2", "t1", ["docs/x"])["generation"]   # takeover
+    assert g2 == g1 + 1
+    with pytest.raises(coordd.Conflict):
+        store.heartbeat("a1", "t1", g1)                       # fenced out
+    with pytest.raises(coordd.Conflict):
+        store.release("a1", "t1", g1, "done")                 # fenced out
+
+
+def test_release_clears_lease_and_sets_state(tmp_path):
+    import pytest
+    store = mkstore(tmp_path)
+    _reg(store, "a1")
+    store.create_task("t1", "demo")
+    gen = store.claim("a1", "t1", ["docs/x"])["generation"]
+    with pytest.raises(coordd.CoordError):
+        store.release("a1", "t1", gen, "claimed")             # invalid outcome
+    store.release("a1", "t1", gen, "review")
+    assert store.tasks(state="review")[0]["id"] == "t1"
+    _reg(store, "a2")
+    store.claim("a2", "t1", ["docs/x"])                       # lease is free again
