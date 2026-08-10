@@ -30,7 +30,7 @@ WHAT IS MEASURED, per mutant
                         Reported separately because "some other detector's
                         test happened to notice" is not evidence that the
                         detector's own trigger/near-miss pair discriminates.
-  liveness            : LIVE if the mutation changes the pristine digest of
+  liveness            : PROBE_SENSITIVE if the mutation changes the pristine digest of
                         the mutated detector over the independent probe
                         corpus (``probe_corpus.py``); UNWITNESSED if it does
                         not.  An UNWITNESSED survivor is NOT evidence that the
@@ -220,8 +220,8 @@ def main(argv=None):
             changed = sorted(k for k in control_probe
                              if not k.startswith("_")
                              and control_probe[k] != probe.get(k))
-            liveness = "LIVE" if det in changed else (
-                "LIVE_OTHER" if changed else "UNWITNESSED")
+            liveness = "PROBE_SENSITIVE" if det in changed else (
+                "PROBE_SENSITIVE_OTHER" if changed else "UNWITNESSED")
 
         row.update({
             "status": "OK",
@@ -244,18 +244,18 @@ def main(argv=None):
     excluded = [r for r in results if r.get("excluded_from_totals")]
     caught_n = sum(1 for r in ok if r["caught"])
     expected_n = sum(1 for r in ok if r["caught_by_expected"])
-    live_n = sum(1 for r in ok if r["liveness"] == "LIVE")
+    live_n = sum(1 for r in ok if r["liveness"] == "PROBE_SENSITIVE")
     per_det = {}
     for r in ok:
         d = per_det.setdefault(r["detector"], {
             "mutants": 0, "caught": 0, "caught_by_expected": 0,
-            "live": 0, "live_survivors": 0})
+            "probe_sensitive": 0, "probe_sensitive_survivors": 0})
         d["mutants"] += 1
         d["caught"] += int(r["caught"])
         d["caught_by_expected"] += int(r["caught_by_expected"])
-        d["live"] += int(r["liveness"] == "LIVE")
-        if r["liveness"] == "LIVE" and not r["caught"]:
-            d["live_survivors"] += 1
+        d["probe_sensitive"] += int(r["liveness"] == "PROBE_SENSITIVE")
+        if r["liveness"] == "PROBE_SENSITIVE" and not r["caught"]:
+            d["probe_sensitive_survivors"] += 1
 
     # ---- completeness --------------------------------------------------
     # The runner used to `return 0 if control_green else 1`, so an experiment
@@ -294,7 +294,7 @@ def main(argv=None):
         reasons.append("pinned-source drift was overridden with --allow-drift")
 
     doc = {
-        "schema": "detector-mutation-results/2",
+        "schema": "detector-mutation-results/3",
         "completeness": {
             "complete": complete,
             "acknowledged_partial": bool(args.partial),
@@ -337,9 +337,9 @@ def main(argv=None):
             "survived": len(ok) - caught_n,
             "caught_by_expected": expected_n,
             "caught_only_by_other_detector": caught_n - expected_n,
-            "live": live_n,
-            "live_survivors": sum(1 for r in ok
-                                  if r["liveness"] == "LIVE"
+            "probe_sensitive": live_n,
+            "probe_sensitive_survivors": sum(1 for r in ok
+                                  if r["liveness"] == "PROBE_SENSITIVE"
                                   and not r["caught"]),
             "unwitnessed": sum(1 for r in ok
                                if r["liveness"] == "UNWITNESSED"),

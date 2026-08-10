@@ -1,7 +1,19 @@
 {
- "schema": "detector-mutation-results/1",
+ "schema": "detector-mutation-results/3",
+ "completeness": {
+  "complete": true,
+  "acknowledged_partial": false,
+  "manifest_entries": 65,
+  "attempted": 65,
+  "subset_run": false,
+  "patch_failed": 0,
+  "compile_failed": 0,
+  "probe_error": 0,
+  "drift_overridden": false,
+  "reasons": []
+ },
  "manifest_sha256": "e9d0c130c447667e3e374ba32f7b640112194b547a64ef123721d41bcfcdca22",
- "runner_sha256": "c69247450ed4f35b2bcb102e3b678a1426d6c67a6cfa976b4204f13720297fe0",
+ "runner_sha256": "2df817f2b85ac6d14216fea58085fee38d43b4539b22342d87b8fa2aa359309f",
  "probe_corpus_sha256": "9afe7f3cf3cb073158e67226ddbed31a750cda19900fc031853195cb8b0f3ddb",
  "python": "3.12.3",
  "pinned_sources": {
@@ -15,14 +27,14 @@
   "test_trace_detectors.py": "b7ab897b1411f38cee61fedc4313ac72ed6ecd54ba5f794651f398a59d9e0079"
  },
  "pinned_source_drift": {},
- "workroot": "/tmp/bitetest-mutation-p4l03nhu",
+ "workroot": "/tmp/bitetest-mutation-ooipfr1y",
  "control": {
   "green": true,
   "suite": {
    "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
    "returncode": 0,
-   "seconds": 0.099,
-   "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+   "seconds": 0.113,
+   "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.019s\n\nOK\n"
   },
   "probe_digests": {
    "ALL": "eb313446a3f6cbd469a261278b2562f687c3c0aff77fcb50db1b6516ed2d2c11",
@@ -57,8 +69,8 @@
   "survived": 43,
   "caught_by_expected": 21,
   "caught_only_by_other_detector": 0,
-  "live": 49,
-  "live_survivors": 30,
+  "probe_sensitive": 49,
+  "probe_sensitive_survivors": 30,
   "unwitnessed": 15,
   "kill_rate_caught": 0.3281,
   "kill_rate_caught_by_expected": 0.3281
@@ -68,64 +80,64 @@
    "mutants": 8,
    "caught": 2,
    "caught_by_expected": 2,
-   "live": 6,
-   "live_survivors": 4
+   "probe_sensitive": 6,
+   "probe_sensitive_survivors": 4
   },
   "D-2": {
    "mutants": 6,
    "caught": 2,
    "caught_by_expected": 2,
-   "live": 4,
-   "live_survivors": 2
+   "probe_sensitive": 4,
+   "probe_sensitive_survivors": 2
   },
   "D-3": {
    "mutants": 4,
    "caught": 3,
    "caught_by_expected": 3,
-   "live": 4,
-   "live_survivors": 1
+   "probe_sensitive": 4,
+   "probe_sensitive_survivors": 1
   },
   "D-4": {
    "mutants": 6,
    "caught": 2,
    "caught_by_expected": 2,
-   "live": 5,
-   "live_survivors": 3
+   "probe_sensitive": 5,
+   "probe_sensitive_survivors": 3
   },
   "D-5": {
    "mutants": 8,
    "caught": 2,
    "caught_by_expected": 2,
-   "live": 4,
-   "live_survivors": 2
+   "probe_sensitive": 4,
+   "probe_sensitive_survivors": 2
   },
   "D-6": {
    "mutants": 9,
    "caught": 2,
    "caught_by_expected": 2,
-   "live": 8,
-   "live_survivors": 6
+   "probe_sensitive": 8,
+   "probe_sensitive_survivors": 6
   },
   "D-7": {
    "mutants": 8,
    "caught": 1,
    "caught_by_expected": 1,
-   "live": 8,
-   "live_survivors": 7
+   "probe_sensitive": 8,
+   "probe_sensitive_survivors": 7
   },
   "D-8": {
    "mutants": 11,
    "caught": 6,
    "caught_by_expected": 6,
-   "live": 6,
-   "live_survivors": 2
+   "probe_sensitive": 6,
+   "probe_sensitive_survivors": 2
   },
   "D-9": {
    "mutants": 4,
    "caught": 1,
    "caught_by_expected": 1,
-   "live": 4,
-   "live_survivors": 3
+   "probe_sensitive": 4,
+   "probe_sensitive_survivors": 3
   }
  },
  "mutants": [
@@ -141,7 +153,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-1"
@@ -149,15 +161,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.089,
-    "output_tail": "FF..........................\n======================================================================\nFAIL: test_near_miss_progress_event_inside (test_trace_detectors.TestD1.test_near_miss_progress_event_inside)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D1-M1/test_trace_detectors.py\", line 134, in test_near_miss_progress_event_inside\n    self.assertEqual(verdict(td.detect_d1(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 2) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 2)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_near_miss_short_window_k2 (test_trace_detectors.TestD1.test_near_miss_short_window_k2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D1-M1/test_trace_detectors.py\", line 139, in test_near_miss_short_window_k2\n    self.assertEqual(verdict(td.detect_d1(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=2)\n"
+    "seconds": 0.092,
+    "output_tail": "FF..........................\n======================================================================\nFAIL: test_near_miss_progress_event_inside (test_trace_detectors.TestD1.test_near_miss_progress_event_inside)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D1-M1/test_trace_detectors.py\", line 134, in test_near_miss_progress_event_inside\n    self.assertEqual(verdict(td.detect_d1(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 2) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 2)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_near_miss_short_window_k2 (test_trace_detectors.TestD1.test_near_miss_short_window_k2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D1-M1/test_trace_detectors.py\", line 139, in test_near_miss_short_window_k2\n    self.assertEqual(verdict(td.detect_d1(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nFAILED (failures=2)\n"
    },
    "focused": {
     "TestD1": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD1",
      "returncode": 1,
-     "seconds": 0.063,
-     "output_tail": "FF.\n======================================================================\nFAIL: test_near_miss_progress_event_inside (test_trace_detectors.TestD1.test_near_miss_progress_event_inside)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D1-M1/test_trace_detectors.py\", line 134, in test_near_miss_progress_event_inside\n    self.assertEqual(verdict(td.detect_d1(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 2) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 2)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_near_miss_short_window_k2 (test_trace_detectors.TestD1.test_near_miss_short_window_k2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D1-M1/test_trace_detectors.py\", line 139, in test_near_miss_short_window_k2\n    self.assertEqual(verdict(td.detect_d1(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 3 tests in 0.003s\n\nFAILED (failures=2)\n"
+     "seconds": 0.068,
+     "output_tail": "FF.\n======================================================================\nFAIL: test_near_miss_progress_event_inside (test_trace_detectors.TestD1.test_near_miss_progress_event_inside)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D1-M1/test_trace_detectors.py\", line 134, in test_near_miss_progress_event_inside\n    self.assertEqual(verdict(td.detect_d1(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 2) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 2)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_near_miss_short_window_k2 (test_trace_detectors.TestD1.test_near_miss_short_window_k2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D1-M1/test_trace_detectors.py\", line 139, in test_near_miss_short_window_k2\n    self.assertEqual(verdict(td.detect_d1(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 3 tests in 0.003s\n\nFAILED (failures=2)\n"
     }
    },
    "probe_run_returncode": 0
@@ -174,7 +186,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-1"
@@ -182,15 +194,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.086,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.092,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nOK\n"
    },
    "focused": {
     "TestD1": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD1",
      "returncode": 0,
-     "seconds": 0.062,
-     "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.002s\n\nOK\n"
+     "seconds": 0.067,
+     "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.003s\n\nOK\n"
     }
    },
    "probe_run_returncode": 0
@@ -207,7 +219,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-1"
@@ -215,15 +227,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.086,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.1,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nOK\n"
    },
    "focused": {
     "TestD1": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD1",
      "returncode": 0,
-     "seconds": 0.061,
-     "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.002s\n\nOK\n"
+     "seconds": 0.069,
+     "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.003s\n\nOK\n"
     }
    },
    "probe_run_returncode": 0
@@ -240,7 +252,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-1"
@@ -248,14 +260,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.086,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.092,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nOK\n"
    },
    "focused": {
     "TestD1": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD1",
      "returncode": 0,
-     "seconds": 0.062,
+     "seconds": 0.067,
      "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.002s\n\nOK\n"
     }
    },
@@ -273,7 +285,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-1"
@@ -281,15 +293,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.088,
-    "output_tail": "F...........................\n======================================================================\nFAIL: test_near_miss_progress_event_inside (test_trace_detectors.TestD1.test_near_miss_progress_event_inside)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D1-M3/test_trace_detectors.py\", line 134, in test_near_miss_progress_event_inside\n    self.assertEqual(verdict(td.detect_d1(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=1)\n"
+    "seconds": 0.102,
+    "output_tail": "F...........................\n======================================================================\nFAIL: test_near_miss_progress_event_inside (test_trace_detectors.TestD1.test_near_miss_progress_event_inside)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D1-M3/test_trace_detectors.py\", line 134, in test_near_miss_progress_event_inside\n    self.assertEqual(verdict(td.detect_d1(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 28 tests in 0.020s\n\nFAILED (failures=1)\n"
    },
    "focused": {
     "TestD1": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD1",
      "returncode": 1,
-     "seconds": 0.063,
-     "output_tail": "F..\n======================================================================\nFAIL: test_near_miss_progress_event_inside (test_trace_detectors.TestD1.test_near_miss_progress_event_inside)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D1-M3/test_trace_detectors.py\", line 134, in test_near_miss_progress_event_inside\n    self.assertEqual(verdict(td.detect_d1(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 3 tests in 0.003s\n\nFAILED (failures=1)\n"
+     "seconds": 0.106,
+     "output_tail": "F..\n======================================================================\nFAIL: test_near_miss_progress_event_inside (test_trace_detectors.TestD1.test_near_miss_progress_event_inside)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D1-M3/test_trace_detectors.py\", line 134, in test_near_miss_progress_event_inside\n    self.assertEqual(verdict(td.detect_d1(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 3 tests in 0.004s\n\nFAILED (failures=1)\n"
     }
    },
    "probe_run_returncode": 0
@@ -311,15 +323,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.086,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.094,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.019s\n\nOK\n"
    },
    "focused": {
     "TestD1": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD1",
      "returncode": 0,
-     "seconds": 0.065,
-     "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.003s\n\nOK\n"
+     "seconds": 0.068,
+     "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.002s\n\nOK\n"
     }
    },
    "probe_run_returncode": 0
@@ -341,14 +353,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.087,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.092,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nOK\n"
    },
    "focused": {
     "TestD1": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD1",
      "returncode": 0,
-     "seconds": 0.063,
+     "seconds": 0.066,
      "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.002s\n\nOK\n"
     }
    },
@@ -366,7 +378,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-1"
@@ -374,15 +386,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.086,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.098,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.018s\n\nOK\n"
    },
    "focused": {
     "TestD1": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD1",
      "returncode": 0,
-     "seconds": 0.063,
-     "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.002s\n\nOK\n"
+     "seconds": 0.067,
+     "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.003s\n\nOK\n"
     }
    },
    "probe_run_returncode": 0
@@ -399,7 +411,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-2"
@@ -407,15 +419,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.086,
-    "output_tail": "....F.......................\n======================================================================\nFAIL: test_trigger_two_zero_net_cycles (test_trace_detectors.TestD2.test_trigger_two_zero_net_cycles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D2-M1/test_trace_detectors.py\", line 158, in test_trigger_two_zero_net_cycles\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=1)\n"
+    "seconds": 0.095,
+    "output_tail": "....F.......................\n======================================================================\nFAIL: test_trigger_two_zero_net_cycles (test_trace_detectors.TestD2.test_trigger_two_zero_net_cycles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D2-M1/test_trace_detectors.py\", line 158, in test_trigger_two_zero_net_cycles\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.018s\n\nFAILED (failures=1)\n"
    },
    "focused": {
     "TestD2": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD2",
      "returncode": 1,
-     "seconds": 0.062,
-     "output_tail": ".F\n======================================================================\nFAIL: test_trigger_two_zero_net_cycles (test_trace_detectors.TestD2.test_trigger_two_zero_net_cycles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D2-M1/test_trace_detectors.py\", line 158, in test_trigger_two_zero_net_cycles\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nFAILED (failures=1)\n"
+     "seconds": 0.066,
+     "output_tail": ".F\n======================================================================\nFAIL: test_trigger_two_zero_net_cycles (test_trace_detectors.TestD2.test_trigger_two_zero_net_cycles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D2-M1/test_trace_detectors.py\", line 158, in test_trigger_two_zero_net_cycles\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nFAILED (failures=1)\n"
     }
    },
    "probe_run_returncode": 0
@@ -437,14 +449,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.088,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.094,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nOK\n"
    },
    "focused": {
     "TestD2": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD2",
      "returncode": 0,
-     "seconds": 0.062,
+     "seconds": 0.067,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -467,14 +479,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.085,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.089,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nOK\n"
    },
    "focused": {
     "TestD2": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD2",
      "returncode": 0,
-     "seconds": 0.061,
+     "seconds": 0.065,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -492,7 +504,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-2"
@@ -500,15 +512,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.087,
-    "output_tail": "...FF.......................\n======================================================================\nFAIL: test_near_miss_single_pair_is_legit_seed_abort (test_trace_detectors.TestD2.test_near_miss_single_pair_is_legit_seed_abort)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D2-M3/test_trace_detectors.py\", line 167, in test_near_miss_single_pair_is_legit_seed_abort\n    self.assertEqual(verdict(td.detect_d2(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_trigger_two_zero_net_cycles (test_trace_detectors.TestD2.test_trigger_two_zero_net_cycles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D2-M3/test_trace_detectors.py\", line 161, in test_trigger_two_zero_net_cycles\n    self.assertEqual((ep[\"turn_start\"], ep[\"turn_end\"]), (1, 4))\nAssertionError: Tuples differ: (1, 2) != (1, 4)\n\nFirst differing element 1:\n2\n4\n\n- (1, 2)\n?     ^\n\n+ (1, 4)\n?     ^\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=2)\n"
+    "seconds": 0.1,
+    "output_tail": "...FF.......................\n======================================================================\nFAIL: test_near_miss_single_pair_is_legit_seed_abort (test_trace_detectors.TestD2.test_near_miss_single_pair_is_legit_seed_abort)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D2-M3/test_trace_detectors.py\", line 167, in test_near_miss_single_pair_is_legit_seed_abort\n    self.assertEqual(verdict(td.detect_d2(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_trigger_two_zero_net_cycles (test_trace_detectors.TestD2.test_trigger_two_zero_net_cycles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D2-M3/test_trace_detectors.py\", line 161, in test_trigger_two_zero_net_cycles\n    self.assertEqual((ep[\"turn_start\"], ep[\"turn_end\"]), (1, 4))\nAssertionError: Tuples differ: (1, 2) != (1, 4)\n\nFirst differing element 1:\n2\n4\n\n- (1, 2)\n?     ^\n\n+ (1, 4)\n?     ^\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.021s\n\nFAILED (failures=2)\n"
    },
    "focused": {
     "TestD2": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD2",
      "returncode": 1,
-     "seconds": 0.061,
-     "output_tail": "FF\n======================================================================\nFAIL: test_near_miss_single_pair_is_legit_seed_abort (test_trace_detectors.TestD2.test_near_miss_single_pair_is_legit_seed_abort)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D2-M3/test_trace_detectors.py\", line 167, in test_near_miss_single_pair_is_legit_seed_abort\n    self.assertEqual(verdict(td.detect_d2(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_trigger_two_zero_net_cycles (test_trace_detectors.TestD2.test_trigger_two_zero_net_cycles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D2-M3/test_trace_detectors.py\", line 161, in test_trigger_two_zero_net_cycles\n    self.assertEqual((ep[\"turn_start\"], ep[\"turn_end\"]), (1, 4))\nAssertionError: Tuples differ: (1, 2) != (1, 4)\n\nFirst differing element 1:\n2\n4\n\n- (1, 2)\n?     ^\n\n+ (1, 4)\n?     ^\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.002s\n\nFAILED (failures=2)\n"
+     "seconds": 0.068,
+     "output_tail": "FF\n======================================================================\nFAIL: test_near_miss_single_pair_is_legit_seed_abort (test_trace_detectors.TestD2.test_near_miss_single_pair_is_legit_seed_abort)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D2-M3/test_trace_detectors.py\", line 167, in test_near_miss_single_pair_is_legit_seed_abort\n    self.assertEqual(verdict(td.detect_d2(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_trigger_two_zero_net_cycles (test_trace_detectors.TestD2.test_trigger_two_zero_net_cycles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D2-M3/test_trace_detectors.py\", line 161, in test_trigger_two_zero_net_cycles\n    self.assertEqual((ep[\"turn_start\"], ep[\"turn_end\"]), (1, 4))\nAssertionError: Tuples differ: (1, 2) != (1, 4)\n\nFirst differing element 1:\n2\n4\n\n- (1, 2)\n?     ^\n\n+ (1, 4)\n?     ^\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.003s\n\nFAILED (failures=2)\n"
     }
    },
    "probe_run_returncode": 0
@@ -525,7 +537,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-2"
@@ -533,14 +545,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.088,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.093,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nOK\n"
    },
    "focused": {
     "TestD2": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD2",
      "returncode": 0,
-     "seconds": 0.063,
+     "seconds": 0.065,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -558,7 +570,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-2"
@@ -566,14 +578,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.087,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.09,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nOK\n"
    },
    "focused": {
     "TestD2": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD2",
      "returncode": 0,
-     "seconds": 0.062,
+     "seconds": 0.067,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -591,7 +603,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-3"
@@ -599,15 +611,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.09,
-    "output_tail": ".....F......................\n======================================================================\nFAIL: test_near_miss_one_turn_transient (test_trace_detectors.TestD3.test_near_miss_one_turn_transient)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D3-M1/test_trace_detectors.py\", line 197, in test_near_miss_one_turn_transient\n    self.assertEqual(verdict(td.detect_d3(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=1)\n"
+    "seconds": 0.092,
+    "output_tail": ".....F......................\n======================================================================\nFAIL: test_near_miss_one_turn_transient (test_trace_detectors.TestD3.test_near_miss_one_turn_transient)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D3-M1/test_trace_detectors.py\", line 197, in test_near_miss_one_turn_transient\n    self.assertEqual(verdict(td.detect_d3(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=1)\n"
    },
    "focused": {
     "TestD3": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD3",
      "returncode": 1,
-     "seconds": 0.064,
-     "output_tail": "F.\n======================================================================\nFAIL: test_near_miss_one_turn_transient (test_trace_detectors.TestD3.test_near_miss_one_turn_transient)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D3-M1/test_trace_detectors.py\", line 197, in test_near_miss_one_turn_transient\n    self.assertEqual(verdict(td.detect_d3(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 2 tests in 0.002s\n\nFAILED (failures=1)\n"
+     "seconds": 0.067,
+     "output_tail": "F.\n======================================================================\nFAIL: test_near_miss_one_turn_transient (test_trace_detectors.TestD3.test_near_miss_one_turn_transient)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D3-M1/test_trace_detectors.py\", line 197, in test_near_miss_one_turn_transient\n    self.assertEqual(verdict(td.detect_d3(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 2 tests in 0.002s\n\nFAILED (failures=1)\n"
     }
    },
    "probe_run_returncode": 0
@@ -624,7 +636,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-3"
@@ -632,15 +644,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.089,
-    "output_tail": "......F.....................\n======================================================================\nFAIL: test_trigger_shared_move_target_2_turns (test_trace_detectors.TestD3.test_trigger_shared_move_target_2_turns)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D3-M2/test_trace_detectors.py\", line 188, in test_trigger_shared_move_target_2_turns\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=1)\n"
+    "seconds": 0.097,
+    "output_tail": "......F.....................\n======================================================================\nFAIL: test_trigger_shared_move_target_2_turns (test_trace_detectors.TestD3.test_trigger_shared_move_target_2_turns)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D3-M2/test_trace_detectors.py\", line 188, in test_trigger_shared_move_target_2_turns\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.018s\n\nFAILED (failures=1)\n"
    },
    "focused": {
     "TestD3": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD3",
      "returncode": 1,
-     "seconds": 0.062,
-     "output_tail": ".F\n======================================================================\nFAIL: test_trigger_shared_move_target_2_turns (test_trace_detectors.TestD3.test_trigger_shared_move_target_2_turns)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D3-M2/test_trace_detectors.py\", line 188, in test_trigger_shared_move_target_2_turns\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nFAILED (failures=1)\n"
+     "seconds": 0.064,
+     "output_tail": ".F\n======================================================================\nFAIL: test_trigger_shared_move_target_2_turns (test_trace_detectors.TestD3.test_trigger_shared_move_target_2_turns)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D3-M2/test_trace_detectors.py\", line 188, in test_trigger_shared_move_target_2_turns\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nFAILED (failures=1)\n"
     }
    },
    "probe_run_returncode": 0
@@ -657,7 +669,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-3"
@@ -665,14 +677,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.089,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nOK\n"
+    "seconds": 0.101,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.023s\n\nOK\n"
    },
    "focused": {
     "TestD3": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD3",
      "returncode": 0,
-     "seconds": 0.062,
+     "seconds": 0.067,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -690,7 +702,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-3"
@@ -698,15 +710,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.088,
-    "output_tail": ".....FF.....................\n======================================================================\nFAIL: test_near_miss_one_turn_transient (test_trace_detectors.TestD3.test_near_miss_one_turn_transient)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D3-M4/test_trace_detectors.py\", line 197, in test_near_miss_one_turn_transient\n    self.assertEqual(verdict(td.detect_d3(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_trigger_shared_move_target_2_turns (test_trace_detectors.TestD3.test_trigger_shared_move_target_2_turns)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D3-M4/test_trace_detectors.py\", line 191, in test_trigger_shared_move_target_2_turns\n    self.assertEqual((ep[\"turn_start\"], ep[\"turn_end\"]), (1, 2))\nAssertionError: Tuples differ: (1, 3) != (1, 2)\n\nFirst differing element 1:\n3\n2\n\n- (1, 3)\n?     ^\n\n+ (1, 2)\n?     ^\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=2)\n"
+    "seconds": 0.093,
+    "output_tail": ".....FF.....................\n======================================================================\nFAIL: test_near_miss_one_turn_transient (test_trace_detectors.TestD3.test_near_miss_one_turn_transient)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D3-M4/test_trace_detectors.py\", line 197, in test_near_miss_one_turn_transient\n    self.assertEqual(verdict(td.detect_d3(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_trigger_shared_move_target_2_turns (test_trace_detectors.TestD3.test_trigger_shared_move_target_2_turns)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D3-M4/test_trace_detectors.py\", line 191, in test_trigger_shared_move_target_2_turns\n    self.assertEqual((ep[\"turn_start\"], ep[\"turn_end\"]), (1, 2))\nAssertionError: Tuples differ: (1, 3) != (1, 2)\n\nFirst differing element 1:\n3\n2\n\n- (1, 3)\n?     ^\n\n+ (1, 2)\n?     ^\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nFAILED (failures=2)\n"
    },
    "focused": {
     "TestD3": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD3",
      "returncode": 1,
-     "seconds": 0.063,
-     "output_tail": "FF\n======================================================================\nFAIL: test_near_miss_one_turn_transient (test_trace_detectors.TestD3.test_near_miss_one_turn_transient)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D3-M4/test_trace_detectors.py\", line 197, in test_near_miss_one_turn_transient\n    self.assertEqual(verdict(td.detect_d3(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_trigger_shared_move_target_2_turns (test_trace_detectors.TestD3.test_trigger_shared_move_target_2_turns)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D3-M4/test_trace_detectors.py\", line 191, in test_trigger_shared_move_target_2_turns\n    self.assertEqual((ep[\"turn_start\"], ep[\"turn_end\"]), (1, 2))\nAssertionError: Tuples differ: (1, 3) != (1, 2)\n\nFirst differing element 1:\n3\n2\n\n- (1, 3)\n?     ^\n\n+ (1, 2)\n?     ^\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.003s\n\nFAILED (failures=2)\n"
+     "seconds": 0.067,
+     "output_tail": "FF\n======================================================================\nFAIL: test_near_miss_one_turn_transient (test_trace_detectors.TestD3.test_near_miss_one_turn_transient)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D3-M4/test_trace_detectors.py\", line 197, in test_near_miss_one_turn_transient\n    self.assertEqual(verdict(td.detect_d3(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_trigger_shared_move_target_2_turns (test_trace_detectors.TestD3.test_trigger_shared_move_target_2_turns)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D3-M4/test_trace_detectors.py\", line 191, in test_trigger_shared_move_target_2_turns\n    self.assertEqual((ep[\"turn_start\"], ep[\"turn_end\"]), (1, 2))\nAssertionError: Tuples differ: (1, 3) != (1, 2)\n\nFirst differing element 1:\n3\n2\n\n- (1, 3)\n?     ^\n\n+ (1, 2)\n?     ^\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.003s\n\nFAILED (failures=2)\n"
     }
    },
    "probe_run_returncode": 0
@@ -723,7 +735,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-4"
@@ -731,15 +743,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.091,
-    "output_tail": "........F...................\n======================================================================\nFAIL: test_near_miss_single_stall_is_tolerated (test_trace_detectors.TestD4.test_near_miss_single_stall_is_tolerated)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D4-M1/test_trace_detectors.py\", line 243, in test_near_miss_single_stall_is_tolerated\n    self.assertEqual(verdict(td.detect_d4(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=1)\n"
+    "seconds": 0.096,
+    "output_tail": "........F...................\n======================================================================\nFAIL: test_near_miss_single_stall_is_tolerated (test_trace_detectors.TestD4.test_near_miss_single_stall_is_tolerated)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D4-M1/test_trace_detectors.py\", line 243, in test_near_miss_single_stall_is_tolerated\n    self.assertEqual(verdict(td.detect_d4(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nFAILED (failures=1)\n"
    },
    "focused": {
     "TestD4": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD4",
      "returncode": 1,
-     "seconds": 0.064,
-     "output_tail": ".F..\n======================================================================\nFAIL: test_near_miss_single_stall_is_tolerated (test_trace_detectors.TestD4.test_near_miss_single_stall_is_tolerated)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D4-M1/test_trace_detectors.py\", line 243, in test_near_miss_single_stall_is_tolerated\n    self.assertEqual(verdict(td.detect_d4(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 4 tests in 0.003s\n\nFAILED (failures=1)\n"
+     "seconds": 0.075,
+     "output_tail": ".F..\n======================================================================\nFAIL: test_near_miss_single_stall_is_tolerated (test_trace_detectors.TestD4.test_near_miss_single_stall_is_tolerated)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D4-M1/test_trace_detectors.py\", line 243, in test_near_miss_single_stall_is_tolerated\n    self.assertEqual(verdict(td.detect_d4(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 4 tests in 0.003s\n\nFAILED (failures=1)\n"
     }
    },
    "probe_run_returncode": 0
@@ -756,7 +768,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-4"
@@ -764,14 +776,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.09,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.095,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nOK\n"
    },
    "focused": {
     "TestD4": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD4",
      "returncode": 0,
-     "seconds": 0.065,
+     "seconds": 0.067,
      "output_tail": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nOK\n"
     }
    },
@@ -789,7 +801,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-4"
@@ -797,14 +809,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.087,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.105,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.019s\n\nOK\n"
    },
    "focused": {
     "TestD4": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD4",
      "returncode": 0,
-     "seconds": 0.063,
+     "seconds": 0.066,
      "output_tail": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nOK\n"
     }
    },
@@ -822,7 +834,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-4"
@@ -830,15 +842,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.093,
-    "output_tail": ".........F..................\n======================================================================\nFAIL: test_trigger_non_bank_verb_during_commitment (test_trace_detectors.TestD4.test_trigger_non_bank_verb_during_commitment)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D4-M4/test_trace_detectors.py\", line 217, in test_trigger_non_bank_verb_during_commitment\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nFAILED (failures=1)\n"
+    "seconds": 0.125,
+    "output_tail": ".........F..................\n======================================================================\nFAIL: test_trigger_non_bank_verb_during_commitment (test_trace_detectors.TestD4.test_trigger_non_bank_verb_during_commitment)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D4-M4/test_trace_detectors.py\", line 217, in test_trigger_non_bank_verb_during_commitment\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.027s\n\nFAILED (failures=1)\n"
    },
    "focused": {
     "TestD4": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD4",
      "returncode": 1,
-     "seconds": 0.067,
-     "output_tail": "..F.\n======================================================================\nFAIL: test_trigger_non_bank_verb_during_commitment (test_trace_detectors.TestD4.test_trigger_non_bank_verb_during_commitment)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D4-M4/test_trace_detectors.py\", line 217, in test_trigger_non_bank_verb_during_commitment\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.003s\n\nFAILED (failures=1)\n"
+     "seconds": 0.094,
+     "output_tail": "..F.\n======================================================================\nFAIL: test_trigger_non_bank_verb_during_commitment (test_trace_detectors.TestD4.test_trigger_non_bank_verb_during_commitment)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D4-M4/test_trace_detectors.py\", line 217, in test_trigger_non_bank_verb_during_commitment\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 4 tests in 0.004s\n\nFAILED (failures=1)\n"
     }
    },
    "probe_run_returncode": 0
@@ -855,7 +867,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-4"
@@ -863,14 +875,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.089,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nOK\n"
+    "seconds": 0.106,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.019s\n\nOK\n"
    },
    "focused": {
     "TestD4": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD4",
      "returncode": 0,
-     "seconds": 0.064,
+     "seconds": 0.073,
      "output_tail": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nOK\n"
     }
    },
@@ -893,15 +905,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.089,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.115,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.021s\n\nOK\n"
    },
    "focused": {
     "TestD4": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD4",
      "returncode": 0,
-     "seconds": 0.064,
-     "output_tail": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nOK\n"
+     "seconds": 0.076,
+     "output_tail": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.002s\n\nOK\n"
     }
    },
    "probe_run_returncode": 0
@@ -918,7 +930,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-5"
@@ -926,15 +938,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.094,
-    "output_tail": "...........F.F..............\n======================================================================\nFAIL: test_near_miss_early_ring_plant (test_trace_detectors.TestD5.test_near_miss_early_ring_plant)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D5-M1/test_trace_detectors.py\", line 277, in test_near_miss_early_ring_plant\n    self.assertEqual(verdict(td.detect_d5(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_trigger_plant_outside_ring (test_trace_detectors.TestD5.test_trigger_plant_outside_ring)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D5-M1/test_trace_detectors.py\", line 262, in test_trigger_plant_outside_ring\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nFAILED (failures=2)\n"
+    "seconds": 0.105,
+    "output_tail": "...........F.F..............\n======================================================================\nFAIL: test_near_miss_early_ring_plant (test_trace_detectors.TestD5.test_near_miss_early_ring_plant)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D5-M1/test_trace_detectors.py\", line 277, in test_near_miss_early_ring_plant\n    self.assertEqual(verdict(td.detect_d5(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_trigger_plant_outside_ring (test_trace_detectors.TestD5.test_trigger_plant_outside_ring)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D5-M1/test_trace_detectors.py\", line 262, in test_trigger_plant_outside_ring\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.018s\n\nFAILED (failures=2)\n"
    },
    "focused": {
     "TestD5": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD5",
      "returncode": 1,
-     "seconds": 0.071,
-     "output_tail": "F.F\n======================================================================\nFAIL: test_near_miss_early_ring_plant (test_trace_detectors.TestD5.test_near_miss_early_ring_plant)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D5-M1/test_trace_detectors.py\", line 277, in test_near_miss_early_ring_plant\n    self.assertEqual(verdict(td.detect_d5(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_trigger_plant_outside_ring (test_trace_detectors.TestD5.test_trigger_plant_outside_ring)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D5-M1/test_trace_detectors.py\", line 262, in test_trigger_plant_outside_ring\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 3 tests in 0.009s\n\nFAILED (failures=2)\n"
+     "seconds": 0.085,
+     "output_tail": "F.F\n======================================================================\nFAIL: test_near_miss_early_ring_plant (test_trace_detectors.TestD5.test_near_miss_early_ring_plant)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D5-M1/test_trace_detectors.py\", line 277, in test_near_miss_early_ring_plant\n    self.assertEqual(verdict(td.detect_d5(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_trigger_plant_outside_ring (test_trace_detectors.TestD5.test_trigger_plant_outside_ring)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D5-M1/test_trace_detectors.py\", line 262, in test_trigger_plant_outside_ring\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 3 tests in 0.011s\n\nFAILED (failures=2)\n"
     }
    },
    "probe_run_returncode": 0
@@ -951,7 +963,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-5"
@@ -959,15 +971,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.091,
-    "output_tail": "...........F................\n======================================================================\nFAIL: test_near_miss_early_ring_plant (test_trace_detectors.TestD5.test_near_miss_early_ring_plant)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D5-M6/test_trace_detectors.py\", line 277, in test_near_miss_early_ring_plant\n    self.assertEqual(verdict(td.detect_d5(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=1)\n"
+    "seconds": 0.112,
+    "output_tail": "...........F................\n======================================================================\nFAIL: test_near_miss_early_ring_plant (test_trace_detectors.TestD5.test_near_miss_early_ring_plant)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D5-M6/test_trace_detectors.py\", line 277, in test_near_miss_early_ring_plant\n    self.assertEqual(verdict(td.detect_d5(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 28 tests in 0.023s\n\nFAILED (failures=1)\n"
    },
    "focused": {
     "TestD5": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD5",
      "returncode": 1,
-     "seconds": 0.072,
-     "output_tail": "F..\n======================================================================\nFAIL: test_near_miss_early_ring_plant (test_trace_detectors.TestD5.test_near_miss_early_ring_plant)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D5-M6/test_trace_detectors.py\", line 277, in test_near_miss_early_ring_plant\n    self.assertEqual(verdict(td.detect_d5(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 3 tests in 0.009s\n\nFAILED (failures=1)\n"
+     "seconds": 0.075,
+     "output_tail": "F..\n======================================================================\nFAIL: test_near_miss_early_ring_plant (test_trace_detectors.TestD5.test_near_miss_early_ring_plant)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D5-M6/test_trace_detectors.py\", line 277, in test_near_miss_early_ring_plant\n    self.assertEqual(verdict(td.detect_d5(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 3 tests in 0.009s\n\nFAILED (failures=1)\n"
     }
    },
    "probe_run_returncode": 0
@@ -989,15 +1001,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.089,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.118,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nOK\n"
    },
    "focused": {
     "TestD5": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD5",
      "returncode": 0,
-     "seconds": 0.07,
-     "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.008s\n\nOK\n"
+     "seconds": 0.094,
+     "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.010s\n\nOK\n"
     }
    },
    "probe_run_returncode": 0
@@ -1019,14 +1031,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.087,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.092,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nOK\n"
    },
    "focused": {
     "TestD5": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD5",
      "returncode": 0,
-     "seconds": 0.069,
+     "seconds": 0.077,
      "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.008s\n\nOK\n"
     }
    },
@@ -1044,7 +1056,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-5"
@@ -1052,14 +1064,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.089,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.102,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.018s\n\nOK\n"
    },
    "focused": {
     "TestD5": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD5",
      "returncode": 0,
-     "seconds": 0.069,
+     "seconds": 0.073,
      "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.008s\n\nOK\n"
     }
    },
@@ -1077,7 +1089,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-5"
@@ -1085,14 +1097,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.087,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.096,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.018s\n\nOK\n"
    },
    "focused": {
     "TestD5": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD5",
      "returncode": 0,
-     "seconds": 0.069,
+     "seconds": 0.076,
      "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.008s\n\nOK\n"
     }
    },
@@ -1115,14 +1127,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.086,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.092,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nOK\n"
    },
    "focused": {
     "TestD5": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD5",
      "returncode": 0,
-     "seconds": 0.069,
+     "seconds": 0.075,
      "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.008s\n\nOK\n"
     }
    },
@@ -1145,15 +1157,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.088,
+    "seconds": 0.094,
     "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nOK\n"
    },
    "focused": {
     "TestD5": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD5",
      "returncode": 0,
-     "seconds": 0.07,
-     "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.008s\n\nOK\n"
+     "seconds": 0.076,
+     "output_tail": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.011s\n\nOK\n"
     }
    },
    "probe_run_returncode": 0
@@ -1170,7 +1182,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-6"
@@ -1178,15 +1190,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.089,
-    "output_tail": "...............F............\n======================================================================\nFAIL: test_trigger_opponent_chopper_within_2 (test_trace_detectors.TestD6.test_trigger_opponent_chopper_within_2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D6-M1/test_trace_detectors.py\", line 299, in test_trigger_opponent_chopper_within_2\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=1)\n"
+    "seconds": 0.091,
+    "output_tail": "...............F............\n======================================================================\nFAIL: test_trigger_opponent_chopper_within_2 (test_trace_detectors.TestD6.test_trigger_opponent_chopper_within_2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D6-M1/test_trace_detectors.py\", line 299, in test_trigger_opponent_chopper_within_2\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nFAILED (failures=1)\n"
    },
    "focused": {
     "TestD6": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD6",
      "returncode": 1,
-     "seconds": 0.063,
-     "output_tail": ".F\n======================================================================\nFAIL: test_trigger_opponent_chopper_within_2 (test_trace_detectors.TestD6.test_trigger_opponent_chopper_within_2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D6-M1/test_trace_detectors.py\", line 299, in test_trigger_opponent_chopper_within_2\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nFAILED (failures=1)\n"
+     "seconds": 0.065,
+     "output_tail": ".F\n======================================================================\nFAIL: test_trigger_opponent_chopper_within_2 (test_trace_detectors.TestD6.test_trigger_opponent_chopper_within_2)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D6-M1/test_trace_detectors.py\", line 299, in test_trigger_opponent_chopper_within_2\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nFAILED (failures=1)\n"
     }
    },
    "probe_run_returncode": 0
@@ -1203,7 +1215,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-6"
@@ -1211,14 +1223,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.086,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.104,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.018s\n\nOK\n"
    },
    "focused": {
     "TestD6": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD6",
      "returncode": 0,
-     "seconds": 0.061,
+     "seconds": 0.065,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -1236,7 +1248,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-6"
@@ -1244,14 +1256,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.088,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.096,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nOK\n"
    },
    "focused": {
     "TestD6": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD6",
      "returncode": 0,
-     "seconds": 0.062,
+     "seconds": 0.073,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -1269,7 +1281,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-6"
@@ -1277,15 +1289,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.089,
-    "output_tail": "..............F.............\n======================================================================\nFAIL: test_near_miss_opponent_far_away (test_trace_detectors.TestD6.test_near_miss_opponent_far_away)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D6-M9/test_trace_detectors.py\", line 304, in test_near_miss_opponent_far_away\n    self.assertEqual(verdict(td.detect_d6(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=1)\n"
+    "seconds": 0.101,
+    "output_tail": "..............F.............\n======================================================================\nFAIL: test_near_miss_opponent_far_away (test_trace_detectors.TestD6.test_near_miss_opponent_far_away)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D6-M9/test_trace_detectors.py\", line 304, in test_near_miss_opponent_far_away\n    self.assertEqual(verdict(td.detect_d6(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 28 tests in 0.019s\n\nFAILED (failures=1)\n"
    },
    "focused": {
     "TestD6": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD6",
      "returncode": 1,
-     "seconds": 0.063,
-     "output_tail": "F.\n======================================================================\nFAIL: test_near_miss_opponent_far_away (test_trace_detectors.TestD6.test_near_miss_opponent_far_away)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D6-M9/test_trace_detectors.py\", line 304, in test_near_miss_opponent_far_away\n    self.assertEqual(verdict(td.detect_d6(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 2 tests in 0.002s\n\nFAILED (failures=1)\n"
+     "seconds": 0.067,
+     "output_tail": "F.\n======================================================================\nFAIL: test_near_miss_opponent_far_away (test_trace_detectors.TestD6.test_near_miss_opponent_far_away)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D6-M9/test_trace_detectors.py\", line 304, in test_near_miss_opponent_far_away\n    self.assertEqual(verdict(td.detect_d6(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 2 tests in 0.002s\n\nFAILED (failures=1)\n"
     }
    },
    "probe_run_returncode": 0
@@ -1302,7 +1314,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-6"
@@ -1310,14 +1322,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.086,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.102,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.019s\n\nOK\n"
    },
    "focused": {
     "TestD6": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD6",
      "returncode": 0,
-     "seconds": 0.064,
+     "seconds": 0.066,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -1335,7 +1347,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-6"
@@ -1343,14 +1355,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.088,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.095,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nOK\n"
    },
    "focused": {
     "TestD6": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD6",
      "returncode": 0,
-     "seconds": 0.062,
+     "seconds": 0.065,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -1373,14 +1385,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.089,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.096,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nOK\n"
    },
    "focused": {
     "TestD6": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD6",
      "returncode": 0,
-     "seconds": 0.064,
+     "seconds": 0.083,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -1398,7 +1410,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-6"
@@ -1406,14 +1418,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.091,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.093,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nOK\n"
    },
    "focused": {
     "TestD6": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD6",
      "returncode": 0,
-     "seconds": 0.064,
+     "seconds": 0.065,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -1431,7 +1443,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-6"
@@ -1439,14 +1451,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.086,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.117,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.020s\n\nOK\n"
    },
    "focused": {
     "TestD6": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD6",
      "returncode": 0,
-     "seconds": 0.063,
+     "seconds": 0.065,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -1464,7 +1476,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-7"
@@ -1472,14 +1484,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.089,
+    "seconds": 0.098,
     "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
    },
    "focused": {
     "TestD7": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD7",
      "returncode": 0,
-     "seconds": 0.067,
+     "seconds": 0.069,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -1497,7 +1509,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-7"
@@ -1505,14 +1517,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.09,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nOK\n"
+    "seconds": 0.094,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nOK\n"
    },
    "focused": {
     "TestD7": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD7",
      "returncode": 0,
-     "seconds": 0.064,
+     "seconds": 0.068,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -1530,7 +1542,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-7"
@@ -1538,14 +1550,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.093,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nOK\n"
+    "seconds": 0.094,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nOK\n"
    },
    "focused": {
     "TestD7": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD7",
      "returncode": 0,
-     "seconds": 0.068,
+     "seconds": 0.069,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -1563,7 +1575,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-7"
@@ -1571,14 +1583,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.089,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.093,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nOK\n"
    },
    "focused": {
     "TestD7": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD7",
      "returncode": 0,
-     "seconds": 0.063,
+     "seconds": 0.066,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -1596,7 +1608,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-7"
@@ -1604,14 +1616,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.099,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.018s\n\nOK\n"
+    "seconds": 0.105,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.024s\n\nOK\n"
    },
    "focused": {
     "TestD7": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD7",
      "returncode": 0,
-     "seconds": 0.063,
+     "seconds": 0.07,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -1629,7 +1641,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-7"
@@ -1637,14 +1649,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.088,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.094,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nOK\n"
    },
    "focused": {
     "TestD7": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD7",
      "returncode": 0,
-     "seconds": 0.062,
+     "seconds": 0.067,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -1662,7 +1674,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-7"
@@ -1670,14 +1682,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.092,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.108,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.019s\n\nOK\n"
    },
    "focused": {
     "TestD7": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD7",
      "returncode": 0,
-     "seconds": 0.062,
+     "seconds": 0.068,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -1695,7 +1707,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-7"
@@ -1703,15 +1715,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.091,
-    "output_tail": ".................F..........\n======================================================================\nFAIL: test_trigger_dropped_outside_door_is_lost (test_trace_detectors.TestD7.test_trigger_dropped_outside_door_is_lost)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D7-M7/test_trace_detectors.py\", line 326, in test_trigger_dropped_outside_door_is_lost\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=1)\n"
+    "seconds": 0.095,
+    "output_tail": ".................F..........\n======================================================================\nFAIL: test_trigger_dropped_outside_door_is_lost (test_trace_detectors.TestD7.test_trigger_dropped_outside_door_is_lost)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D7-M7/test_trace_detectors.py\", line 326, in test_trigger_dropped_outside_door_is_lost\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nFAILED (failures=1)\n"
    },
    "focused": {
     "TestD7": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD7",
      "returncode": 1,
-     "seconds": 0.063,
-     "output_tail": ".F\n======================================================================\nFAIL: test_trigger_dropped_outside_door_is_lost (test_trace_detectors.TestD7.test_trigger_dropped_outside_door_is_lost)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D7-M7/test_trace_detectors.py\", line 326, in test_trigger_dropped_outside_door_is_lost\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nFAILED (failures=1)\n"
+     "seconds": 0.068,
+     "output_tail": ".F\n======================================================================\nFAIL: test_trigger_dropped_outside_door_is_lost (test_trace_detectors.TestD7.test_trigger_dropped_outside_door_is_lost)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D7-M7/test_trace_detectors.py\", line 326, in test_trigger_dropped_outside_door_is_lost\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nFAILED (failures=1)\n"
     }
    },
    "probe_run_returncode": 0
@@ -1728,7 +1740,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-8"
@@ -1736,21 +1748,21 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.091,
-    "output_tail": "---\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M1/test_trace_detectors.py\", line 359, in test_near_miss_orthogonal_wood_slot_chop_is_legal\n    self.assertEqual(verdict(td.detect_d8(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_trigger_chop_diagonal_mother (test_trace_detectors.TestD8.test_trigger_chop_diagonal_mother)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M1/test_trace_detectors.py\", line 350, in test_trigger_chop_diagonal_mother\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n======================================================================\nFAIL: test_flagged_discretionary_owned_chop (test_trace_detectors.TestD8Amended.test_flagged_discretionary_owned_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M1/test_trace_detectors.py\", line 428, in test_flagged_discretionary_owned_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n======================================================================\nFAIL: test_flagged_flip_but_infeasible_chop (test_trace_detectors.TestD8Amended.test_flagged_flip_but_infeasible_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M1/test_trace_detectors.py\", line 454, in test_flagged_flip_but_infeasible_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=4)\n"
+    "seconds": 0.097,
+    "output_tail": "---\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M1/test_trace_detectors.py\", line 359, in test_near_miss_orthogonal_wood_slot_chop_is_legal\n    self.assertEqual(verdict(td.detect_d8(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_trigger_chop_diagonal_mother (test_trace_detectors.TestD8.test_trigger_chop_diagonal_mother)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M1/test_trace_detectors.py\", line 350, in test_trigger_chop_diagonal_mother\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n======================================================================\nFAIL: test_flagged_discretionary_owned_chop (test_trace_detectors.TestD8Amended.test_flagged_discretionary_owned_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M1/test_trace_detectors.py\", line 428, in test_flagged_discretionary_owned_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n======================================================================\nFAIL: test_flagged_flip_but_infeasible_chop (test_trace_detectors.TestD8Amended.test_flagged_flip_but_infeasible_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M1/test_trace_detectors.py\", line 454, in test_flagged_flip_but_infeasible_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nFAILED (failures=4)\n"
    },
    "focused": {
     "TestD8": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8",
      "returncode": 1,
-     "seconds": 0.065,
-     "output_tail": "FF\n======================================================================\nFAIL: test_near_miss_orthogonal_wood_slot_chop_is_legal (test_trace_detectors.TestD8.test_near_miss_orthogonal_wood_slot_chop_is_legal)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M1/test_trace_detectors.py\", line 359, in test_near_miss_orthogonal_wood_slot_chop_is_legal\n    self.assertEqual(verdict(td.detect_d8(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_trigger_chop_diagonal_mother (test_trace_detectors.TestD8.test_trigger_chop_diagonal_mother)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M1/test_trace_detectors.py\", line 350, in test_trigger_chop_diagonal_mother\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.003s\n\nFAILED (failures=2)\n"
+     "seconds": 0.073,
+     "output_tail": "FF\n======================================================================\nFAIL: test_near_miss_orthogonal_wood_slot_chop_is_legal (test_trace_detectors.TestD8.test_near_miss_orthogonal_wood_slot_chop_is_legal)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M1/test_trace_detectors.py\", line 359, in test_near_miss_orthogonal_wood_slot_chop_is_legal\n    self.assertEqual(verdict(td.detect_d8(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 1) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 1)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_trigger_chop_diagonal_mother (test_trace_detectors.TestD8.test_trigger_chop_diagonal_mother)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M1/test_trace_detectors.py\", line 350, in test_trigger_chop_diagonal_mother\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.003s\n\nFAILED (failures=2)\n"
     },
     "TestD8Amended": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8Amended",
      "returncode": 1,
-     "seconds": 0.065,
-     "output_tail": "..FF.\n======================================================================\nFAIL: test_flagged_discretionary_owned_chop (test_trace_detectors.TestD8Amended.test_flagged_discretionary_owned_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M1/test_trace_detectors.py\", line 428, in test_flagged_discretionary_owned_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n======================================================================\nFAIL: test_flagged_flip_but_infeasible_chop (test_trace_detectors.TestD8Amended.test_flagged_flip_but_infeasible_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M1/test_trace_detectors.py\", line 454, in test_flagged_flip_but_infeasible_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.003s\n\nFAILED (failures=2)\n"
+     "seconds": 0.066,
+     "output_tail": "..FF.\n======================================================================\nFAIL: test_flagged_discretionary_owned_chop (test_trace_detectors.TestD8Amended.test_flagged_discretionary_owned_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M1/test_trace_detectors.py\", line 428, in test_flagged_discretionary_owned_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n======================================================================\nFAIL: test_flagged_flip_but_infeasible_chop (test_trace_detectors.TestD8Amended.test_flagged_flip_but_infeasible_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M1/test_trace_detectors.py\", line 454, in test_flagged_flip_but_infeasible_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.003s\n\nFAILED (failures=2)\n"
     }
    },
    "probe_run_returncode": 0
@@ -1772,21 +1784,21 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.087,
-    "output_tail": "....................FF.F....\n======================================================================\nFAIL: test_exempt_arrival_is_not_loss (test_trace_detectors.TestD8Amended.test_exempt_arrival_is_not_loss)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M2/test_trace_detectors.py\", line 478, in test_exempt_arrival_is_not_loss\n    self.assertEqual(verdict(td.detect_d8(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 3) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 3)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_exempt_flip_then_feasible_conversion (test_trace_detectors.TestD8Amended.test_exempt_flip_then_feasible_conversion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M2/test_trace_detectors.py\", line 413, in test_exempt_flip_then_feasible_conversion\n    self.assertEqual(verdict(td.detect_d8(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 3) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 3)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_flagged_flip_but_infeasible_chop (test_trace_detectors.TestD8Amended.test_flagged_flip_but_infeasible_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M2/test_trace_detectors.py\", line 457, in test_flagged_flip_but_infeasible_chop\n    self.assertEqual(ep[\"reason\"], \"flip_but_infeasible\")\nAssertionError: 'discretionary_owned' != 'flip_but_infeasible'\n- discretionary_owned\n+ flip_but_infeasible\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=3)\n"
+    "seconds": 0.091,
+    "output_tail": "....................FF.F....\n======================================================================\nFAIL: test_exempt_arrival_is_not_loss (test_trace_detectors.TestD8Amended.test_exempt_arrival_is_not_loss)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M2/test_trace_detectors.py\", line 478, in test_exempt_arrival_is_not_loss\n    self.assertEqual(verdict(td.detect_d8(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 3) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 3)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_exempt_flip_then_feasible_conversion (test_trace_detectors.TestD8Amended.test_exempt_flip_then_feasible_conversion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M2/test_trace_detectors.py\", line 413, in test_exempt_flip_then_feasible_conversion\n    self.assertEqual(verdict(td.detect_d8(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 3) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 3)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_flagged_flip_but_infeasible_chop (test_trace_detectors.TestD8Amended.test_flagged_flip_but_infeasible_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M2/test_trace_detectors.py\", line 457, in test_flagged_flip_but_infeasible_chop\n    self.assertEqual(ep[\"reason\"], \"flip_but_infeasible\")\nAssertionError: 'discretionary_owned' != 'flip_but_infeasible'\n- discretionary_owned\n+ flip_but_infeasible\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nFAILED (failures=3)\n"
    },
    "focused": {
     "TestD8": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8",
      "returncode": 0,
-     "seconds": 0.061,
+     "seconds": 0.066,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     },
     "TestD8Amended": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8Amended",
      "returncode": 1,
-     "seconds": 0.064,
-     "output_tail": "FF.F.\n======================================================================\nFAIL: test_exempt_arrival_is_not_loss (test_trace_detectors.TestD8Amended.test_exempt_arrival_is_not_loss)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M2/test_trace_detectors.py\", line 478, in test_exempt_arrival_is_not_loss\n    self.assertEqual(verdict(td.detect_d8(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 3) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 3)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_exempt_flip_then_feasible_conversion (test_trace_detectors.TestD8Amended.test_exempt_flip_then_feasible_conversion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M2/test_trace_detectors.py\", line 413, in test_exempt_flip_then_feasible_conversion\n    self.assertEqual(verdict(td.detect_d8(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 3) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 3)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_flagged_flip_but_infeasible_chop (test_trace_detectors.TestD8Amended.test_flagged_flip_but_infeasible_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M2/test_trace_detectors.py\", line 457, in test_flagged_flip_but_infeasible_chop\n    self.assertEqual(ep[\"reason\"], \"flip_but_infeasible\")\nAssertionError: 'discretionary_owned' != 'flip_but_infeasible'\n- discretionary_owned\n+ flip_but_infeasible\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nFAILED (failures=3)\n"
+     "seconds": 0.071,
+     "output_tail": "FF.F.\n======================================================================\nFAIL: test_exempt_arrival_is_not_loss (test_trace_detectors.TestD8Amended.test_exempt_arrival_is_not_loss)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M2/test_trace_detectors.py\", line 478, in test_exempt_arrival_is_not_loss\n    self.assertEqual(verdict(td.detect_d8(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 3) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 3)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_exempt_flip_then_feasible_conversion (test_trace_detectors.TestD8Amended.test_exempt_flip_then_feasible_conversion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M2/test_trace_detectors.py\", line 413, in test_exempt_flip_then_feasible_conversion\n    self.assertEqual(verdict(td.detect_d8(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 3) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 3)\n+ ('PASS', 0)\n\n======================================================================\nFAIL: test_flagged_flip_but_infeasible_chop (test_trace_detectors.TestD8Amended.test_flagged_flip_but_infeasible_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M2/test_trace_detectors.py\", line 457, in test_flagged_flip_but_infeasible_chop\n    self.assertEqual(ep[\"reason\"], \"flip_but_infeasible\")\nAssertionError: 'discretionary_owned' != 'flip_but_infeasible'\n- discretionary_owned\n+ flip_but_infeasible\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.006s\n\nFAILED (failures=3)\n"
     }
    },
    "probe_run_returncode": 0
@@ -1808,21 +1820,21 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.095,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.105,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nOK\n"
    },
    "focused": {
     "TestD8": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8",
      "returncode": 0,
-     "seconds": 0.061,
+     "seconds": 0.068,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     },
     "TestD8Amended": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8Amended",
      "returncode": 0,
-     "seconds": 0.063,
-     "output_tail": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.003s\n\nOK\n"
+     "seconds": 0.071,
+     "output_tail": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nOK\n"
     }
    },
    "probe_run_returncode": 0
@@ -1844,21 +1856,21 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.086,
-    "output_tail": ".......................F....\n======================================================================\nFAIL: test_flagged_flip_but_infeasible_chop (test_trace_detectors.TestD8Amended.test_flagged_flip_but_infeasible_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M4/test_trace_detectors.py\", line 454, in test_flagged_flip_but_infeasible_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=1)\n"
+    "seconds": 0.099,
+    "output_tail": ".......................F....\n======================================================================\nFAIL: test_flagged_flip_but_infeasible_chop (test_trace_detectors.TestD8Amended.test_flagged_flip_but_infeasible_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M4/test_trace_detectors.py\", line 454, in test_flagged_flip_but_infeasible_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.018s\n\nFAILED (failures=1)\n"
    },
    "focused": {
     "TestD8": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8",
      "returncode": 0,
-     "seconds": 0.062,
+     "seconds": 0.072,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     },
     "TestD8Amended": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8Amended",
      "returncode": 1,
-     "seconds": 0.066,
-     "output_tail": "...F.\n======================================================================\nFAIL: test_flagged_flip_but_infeasible_chop (test_trace_detectors.TestD8Amended.test_flagged_flip_but_infeasible_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M4/test_trace_detectors.py\", line 454, in test_flagged_flip_but_infeasible_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nFAILED (failures=1)\n"
+     "seconds": 0.069,
+     "output_tail": "...F.\n======================================================================\nFAIL: test_flagged_flip_but_infeasible_chop (test_trace_detectors.TestD8Amended.test_flagged_flip_but_infeasible_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M4/test_trace_detectors.py\", line 454, in test_flagged_flip_but_infeasible_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nFAILED (failures=1)\n"
     }
    },
    "probe_run_returncode": 0
@@ -1875,7 +1887,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-8"
@@ -1883,21 +1895,21 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.088,
-    "output_tail": "...................F..F.....\n======================================================================\nFAIL: test_trigger_chop_diagonal_mother (test_trace_detectors.TestD8.test_trigger_chop_diagonal_mother)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M5/test_trace_detectors.py\", line 350, in test_trigger_chop_diagonal_mother\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n======================================================================\nFAIL: test_flagged_discretionary_owned_chop (test_trace_detectors.TestD8Amended.test_flagged_discretionary_owned_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M5/test_trace_detectors.py\", line 428, in test_flagged_discretionary_owned_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=2)\n"
+    "seconds": 0.097,
+    "output_tail": "...................F..F.....\n======================================================================\nFAIL: test_trigger_chop_diagonal_mother (test_trace_detectors.TestD8.test_trigger_chop_diagonal_mother)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M5/test_trace_detectors.py\", line 350, in test_trigger_chop_diagonal_mother\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n======================================================================\nFAIL: test_flagged_discretionary_owned_chop (test_trace_detectors.TestD8Amended.test_flagged_discretionary_owned_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M5/test_trace_detectors.py\", line 428, in test_flagged_discretionary_owned_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nFAILED (failures=2)\n"
    },
    "focused": {
     "TestD8": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8",
      "returncode": 1,
-     "seconds": 0.062,
-     "output_tail": ".F\n======================================================================\nFAIL: test_trigger_chop_diagonal_mother (test_trace_detectors.TestD8.test_trigger_chop_diagonal_mother)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M5/test_trace_detectors.py\", line 350, in test_trigger_chop_diagonal_mother\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nFAILED (failures=1)\n"
+     "seconds": 0.068,
+     "output_tail": ".F\n======================================================================\nFAIL: test_trigger_chop_diagonal_mother (test_trace_detectors.TestD8.test_trigger_chop_diagonal_mother)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M5/test_trace_detectors.py\", line 350, in test_trigger_chop_diagonal_mother\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nFAILED (failures=1)\n"
     },
     "TestD8Amended": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8Amended",
      "returncode": 1,
-     "seconds": 0.064,
-     "output_tail": "..F..\n======================================================================\nFAIL: test_flagged_discretionary_owned_chop (test_trace_detectors.TestD8Amended.test_flagged_discretionary_owned_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M5/test_trace_detectors.py\", line 428, in test_flagged_discretionary_owned_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nFAILED (failures=1)\n"
+     "seconds": 0.073,
+     "output_tail": "..F..\n======================================================================\nFAIL: test_flagged_discretionary_owned_chop (test_trace_detectors.TestD8Amended.test_flagged_discretionary_owned_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M5/test_trace_detectors.py\", line 428, in test_flagged_discretionary_owned_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nFAILED (failures=1)\n"
     }
    },
    "probe_run_returncode": 0
@@ -1914,7 +1926,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-8"
@@ -1922,8 +1934,8 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.1,
-    "output_tail": "....................F.......\n======================================================================\nFAIL: test_exempt_arrival_is_not_loss (test_trace_detectors.TestD8Amended.test_exempt_arrival_is_not_loss)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M6/test_trace_detectors.py\", line 478, in test_exempt_arrival_is_not_loss\n    self.assertEqual(verdict(td.detect_d8(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 3) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 3)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=1)\n"
+    "seconds": 0.103,
+    "output_tail": "....................F.......\n======================================================================\nFAIL: test_exempt_arrival_is_not_loss (test_trace_detectors.TestD8Amended.test_exempt_arrival_is_not_loss)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M6/test_trace_detectors.py\", line 478, in test_exempt_arrival_is_not_loss\n    self.assertEqual(verdict(td.detect_d8(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 3) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 3)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=1)\n"
    },
    "focused": {
     "TestD8": {
@@ -1935,8 +1947,8 @@
     "TestD8Amended": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8Amended",
      "returncode": 1,
-     "seconds": 0.064,
-     "output_tail": "F....\n======================================================================\nFAIL: test_exempt_arrival_is_not_loss (test_trace_detectors.TestD8Amended.test_exempt_arrival_is_not_loss)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M6/test_trace_detectors.py\", line 478, in test_exempt_arrival_is_not_loss\n    self.assertEqual(verdict(td.detect_d8(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 3) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 3)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nFAILED (failures=1)\n"
+     "seconds": 0.07,
+     "output_tail": "F....\n======================================================================\nFAIL: test_exempt_arrival_is_not_loss (test_trace_detectors.TestD8Amended.test_exempt_arrival_is_not_loss)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M6/test_trace_detectors.py\", line 478, in test_exempt_arrival_is_not_loss\n    self.assertEqual(verdict(td.detect_d8(tr)), (\"PASS\", 0))\nAssertionError: Tuples differ: ('FAIL', 3) != ('PASS', 0)\n\nFirst differing element 0:\n'FAIL'\n'PASS'\n\n- ('FAIL', 3)\n+ ('PASS', 0)\n\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nFAILED (failures=1)\n"
     }
    },
    "probe_run_returncode": 0
@@ -1958,20 +1970,20 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.097,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.103,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nOK\n"
    },
    "focused": {
     "TestD8": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8",
      "returncode": 0,
-     "seconds": 0.063,
+     "seconds": 0.068,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     },
     "TestD8Amended": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8Amended",
      "returncode": 0,
-     "seconds": 0.065,
+     "seconds": 0.066,
      "output_tail": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.003s\n\nOK\n"
     }
    },
@@ -1994,20 +2006,20 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.089,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nOK\n"
+    "seconds": 0.09,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nOK\n"
    },
    "focused": {
     "TestD8": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8",
      "returncode": 0,
-     "seconds": 0.063,
+     "seconds": 0.066,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     },
     "TestD8Amended": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8Amended",
      "returncode": 0,
-     "seconds": 0.064,
+     "seconds": 0.073,
      "output_tail": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.003s\n\nOK\n"
     }
    },
@@ -2025,7 +2037,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-8"
@@ -2033,7 +2045,7 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.094,
+    "seconds": 0.098,
     "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
    },
    "focused": {
@@ -2046,8 +2058,8 @@
     "TestD8Amended": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8Amended",
      "returncode": 0,
-     "seconds": 0.072,
-     "output_tail": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.005s\n\nOK\n"
+     "seconds": 0.068,
+     "output_tail": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.003s\n\nOK\n"
     }
    },
    "probe_run_returncode": 0
@@ -2064,7 +2076,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-8"
@@ -2072,21 +2084,21 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.094,
-    "output_tail": "...................F..FF....\n======================================================================\nFAIL: test_trigger_chop_diagonal_mother (test_trace_detectors.TestD8.test_trigger_chop_diagonal_mother)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M10/test_trace_detectors.py\", line 350, in test_trigger_chop_diagonal_mother\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n======================================================================\nFAIL: test_flagged_discretionary_owned_chop (test_trace_detectors.TestD8Amended.test_flagged_discretionary_owned_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M10/test_trace_detectors.py\", line 428, in test_flagged_discretionary_owned_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n======================================================================\nFAIL: test_flagged_flip_but_infeasible_chop (test_trace_detectors.TestD8Amended.test_flagged_flip_but_infeasible_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M10/test_trace_detectors.py\", line 454, in test_flagged_flip_but_infeasible_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=3)\n"
+    "seconds": 0.092,
+    "output_tail": "...................F..FF....\n======================================================================\nFAIL: test_trigger_chop_diagonal_mother (test_trace_detectors.TestD8.test_trigger_chop_diagonal_mother)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M10/test_trace_detectors.py\", line 350, in test_trigger_chop_diagonal_mother\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n======================================================================\nFAIL: test_flagged_discretionary_owned_chop (test_trace_detectors.TestD8Amended.test_flagged_discretionary_owned_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M10/test_trace_detectors.py\", line 428, in test_flagged_discretionary_owned_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n======================================================================\nFAIL: test_flagged_flip_but_infeasible_chop (test_trace_detectors.TestD8Amended.test_flagged_flip_but_infeasible_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M10/test_trace_detectors.py\", line 454, in test_flagged_flip_but_infeasible_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.018s\n\nFAILED (failures=3)\n"
    },
    "focused": {
     "TestD8": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8",
      "returncode": 1,
-     "seconds": 0.066,
-     "output_tail": ".F\n======================================================================\nFAIL: test_trigger_chop_diagonal_mother (test_trace_detectors.TestD8.test_trigger_chop_diagonal_mother)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M10/test_trace_detectors.py\", line 350, in test_trigger_chop_diagonal_mother\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nFAILED (failures=1)\n"
+     "seconds": 0.063,
+     "output_tail": ".F\n======================================================================\nFAIL: test_trigger_chop_diagonal_mother (test_trace_detectors.TestD8.test_trigger_chop_diagonal_mother)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M10/test_trace_detectors.py\", line 350, in test_trigger_chop_diagonal_mother\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nFAILED (failures=1)\n"
     },
     "TestD8Amended": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8Amended",
      "returncode": 1,
-     "seconds": 0.068,
-     "output_tail": "..FF.\n======================================================================\nFAIL: test_flagged_discretionary_owned_chop (test_trace_detectors.TestD8Amended.test_flagged_discretionary_owned_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M10/test_trace_detectors.py\", line 428, in test_flagged_discretionary_owned_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n======================================================================\nFAIL: test_flagged_flip_but_infeasible_chop (test_trace_detectors.TestD8Amended.test_flagged_flip_but_infeasible_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D8-M10/test_trace_detectors.py\", line 454, in test_flagged_flip_but_infeasible_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nFAILED (failures=2)\n"
+     "seconds": 0.089,
+     "output_tail": "..FF.\n======================================================================\nFAIL: test_flagged_discretionary_owned_chop (test_trace_detectors.TestD8Amended.test_flagged_discretionary_owned_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M10/test_trace_detectors.py\", line 428, in test_flagged_discretionary_owned_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n======================================================================\nFAIL: test_flagged_flip_but_infeasible_chop (test_trace_detectors.TestD8Amended.test_flagged_flip_but_infeasible_chop)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D8-M10/test_trace_detectors.py\", line 454, in test_flagged_flip_but_infeasible_chop\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nFAILED (failures=2)\n"
     }
    },
    "probe_run_returncode": 0
@@ -2103,7 +2115,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-8"
@@ -2111,20 +2123,20 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.087,
+    "seconds": 0.089,
     "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
    },
    "focused": {
     "TestD8": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8",
      "returncode": 0,
-     "seconds": 0.065,
+     "seconds": 0.066,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     },
     "TestD8Amended": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD8Amended",
      "returncode": 0,
-     "seconds": 0.066,
+     "seconds": 0.067,
      "output_tail": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.003s\n\nOK\n"
     }
    },
@@ -2142,7 +2154,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-9"
@@ -2150,14 +2162,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.088,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.092,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nOK\n"
    },
    "focused": {
     "TestD9": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD9",
      "returncode": 0,
-     "seconds": 0.062,
+     "seconds": 0.069,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -2175,7 +2187,7 @@
    "caught": true,
    "caught_by_expected": true,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-9"
@@ -2183,15 +2195,15 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 1,
-    "seconds": 0.09,
-    "output_tail": "..........................F.\n======================================================================\nFAIL: test_trigger_banana_command_before_train_single_worker (test_trace_detectors.TestD9.test_trigger_banana_command_before_train_single_worker)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D9-M4/test_trace_detectors.py\", line 492, in test_trigger_banana_command_before_train_single_worker\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=1)\n"
+    "seconds": 0.089,
+    "output_tail": "..........................F.\n======================================================================\nFAIL: test_trigger_banana_command_before_train_single_worker (test_trace_detectors.TestD9.test_trigger_banana_command_before_train_single_worker)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D9-M4/test_trace_detectors.py\", line 492, in test_trigger_banana_command_before_train_single_worker\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 28 tests in 0.016s\n\nFAILED (failures=1)\n"
    },
    "focused": {
     "TestD9": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD9",
      "returncode": 1,
-     "seconds": 0.063,
-     "output_tail": ".F\n======================================================================\nFAIL: test_trigger_banana_command_before_train_single_worker (test_trace_detectors.TestD9.test_trigger_banana_command_before_train_single_worker)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-p4l03nhu/D9-M4/test_trace_detectors.py\", line 492, in test_trigger_banana_command_before_train_single_worker\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nFAILED (failures=1)\n"
+     "seconds": 0.066,
+     "output_tail": ".F\n======================================================================\nFAIL: test_trigger_banana_command_before_train_single_worker (test_trace_detectors.TestD9.test_trigger_banana_command_before_train_single_worker)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/tmp/bitetest-mutation-ooipfr1y/D9-M4/test_trace_detectors.py\", line 492, in test_trigger_banana_command_before_train_single_worker\n    self.assertEqual(res[\"verdict\"], \"FAIL\")\nAssertionError: 'PASS' != 'FAIL'\n- PASS\n+ FAIL\n\n\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nFAILED (failures=1)\n"
     }
    },
    "probe_run_returncode": 0
@@ -2208,7 +2220,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-9"
@@ -2216,14 +2228,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.089,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.1,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nOK\n"
    },
    "focused": {
     "TestD9": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD9",
      "returncode": 0,
-     "seconds": 0.061,
+     "seconds": 0.065,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -2241,7 +2253,7 @@
    "caught": false,
    "caught_by_expected": false,
    "caught_only_by_other_detector": false,
-   "liveness": "LIVE",
+   "liveness": "PROBE_SENSITIVE",
    "probe_changed_detectors": [
     "ALL",
     "D-9"
@@ -2249,14 +2261,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.088,
-    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
+    "seconds": 0.091,
+    "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.017s\n\nOK\n"
    },
    "focused": {
     "TestD9": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD9",
      "returncode": 0,
-     "seconds": 0.062,
+     "seconds": 0.065,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },
@@ -2280,14 +2292,14 @@
    "full_suite": {
     "cmd": "/usr/bin/python3 -m unittest test_trace_detectors",
     "returncode": 0,
-    "seconds": 0.09,
+    "seconds": 0.092,
     "output_tail": "............................\n----------------------------------------------------------------------\nRan 28 tests in 0.015s\n\nOK\n"
    },
    "focused": {
     "TestD3": {
      "cmd": "/usr/bin/python3 -m unittest test_trace_detectors.TestD3",
      "returncode": 0,
-     "seconds": 0.063,
+     "seconds": 0.069,
      "output_tail": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.001s\n\nOK\n"
     }
    },

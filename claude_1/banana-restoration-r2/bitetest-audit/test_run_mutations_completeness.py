@@ -108,7 +108,7 @@ class RunnerCompleteness(unittest.TestCase):
             with self.subTest(corrupt=corrupt):
                 _, doc = self._run(_one_mutant_manifest(corrupt=corrupt))
                 self.assertIn("completeness", doc)
-                self.assertEqual(doc["schema"], "detector-mutation-results/2")
+                self.assertEqual(doc["schema"], "detector-mutation-results/3")
                 for key in ("complete", "manifest_entries", "attempted",
                             "patch_failed", "compile_failed", "probe_error",
                             "drift_overridden", "reasons"):

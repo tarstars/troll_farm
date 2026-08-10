@@ -53,33 +53,36 @@ def main(argv=None):
     out.append("")
     out.append("Totals: **%d mutants run, %d caught, %d survived** "
                "(kill rate %.1f %%). `caught_by_expected` = %d; caught only "
-               "by another detector's tests = %d. Liveness: %d LIVE, "
-               "%d UNWITNESSED; LIVE survivors = %d.\n"
+               "by another detector's tests = %d. Liveness: %d PROBE_SENSITIVE, "
+               "%d UNWITNESSED; PROBE_SENSITIVE survivors = %d.\n"
                % (t["mutants_run"], t["caught"], t["survived"],
                   100.0 * t["kill_rate_caught"], t["caught_by_expected"],
-                  t["caught_only_by_other_detector"], t["live"],
-                  t["unwitnessed"], t["live_survivors"]))
+                  t["caught_only_by_other_detector"], t["probe_sensitive"],
+                  t["unwitnessed"], t["probe_sensitive_survivors"]))
 
     out.append("## Per detector\n")
     out.append("| Det | mutants | caught | caught_by_expected | survived | "
-               "LIVE survivors | kill rate |")
+               "PROBE_SENSITIVE survivors | kill rate |")
     out.append("|---|---|---|---|---|---|---|")
     for d in DETS:
         p = doc["per_detector"][d]
         out.append("| %s | %d | %d | %d | %d | %d | %.0f %% |"
                    % (d, p["mutants"], p["caught"], p["caught_by_expected"],
-                      p["mutants"] - p["caught"], p["live_survivors"],
+                      p["mutants"] - p["caught"], p["probe_sensitive_survivors"],
                       100.0 * p["caught"] / p["mutants"]))
     out.append("| **all** | **%d** | **%d** | **%d** | **%d** | **%d** | "
                "**%.1f %%** |"
                % (t["mutants_run"], t["caught"], t["caught_by_expected"],
-                  t["survived"], t["live_survivors"],
+                  t["survived"], t["probe_sensitive_survivors"],
                   100.0 * t["kill_rate_caught"]))
     out.append("")
 
     out.append("## Full ledger\n")
     out.append("`result` = CAUGHT / SURVIVED against the full 28-test suite. "
-               "`liveness` = LIVE if the patch changes the mutated detector's "
+               "`liveness` = PROBE_SENSITIVE if the patch changes the mutated detector's "
+               "probe digest. PROBE_SENSITIVE means the mutation changes probe "
+               "output on GENERATED traces; it does NOT establish legal-game "
+               "reachability under the referee. "
                "digest over the independent probe corpus, UNWITNESSED if the "
                "corpus cannot witness any behavioural change (such a "
                "survivor is *not* evidence that the suite is weak).\n")
