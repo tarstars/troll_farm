@@ -1,7 +1,8 @@
 # 20260810-arena-noise-band-measurement: measure the ladder's run-to-run noise, and separate our variance from the ladder's drift
 
 - Status: **PROPOSED — needs an owner decision before any Arena action.** No submission is
-  authorized by this record.
+  authorized by this record. **Question 1 is now answered (2026-08-10) at zero Arena cost;
+  questions 2–4 remain.**
 - Record owner: local_claude_1
 - Work owner: unassigned
 - Reviewer: unassigned (must not be the work owner)
@@ -42,11 +43,11 @@ SD of an A-minus-B difference at n=1 per arm     1.552
 were second checkpoints of a single deployment. Same run measured twice is not two samples —
 their difference is within-run maturation, not re-submission noise. n 13→10, σ 0.957→1.098.)*
 
-So the historical ±0.5–1 band was approximately right as a 1σ statement, and the integrator's
-initial reading of a single 24.76/22.46 pair as evidence the band was understated was **wrong** —
-2.30 is a ~1.7-SD draw, wide but unremarkable. That correction is recorded in `docs/STATE.md` §1.
+So the historical ±0.5–1 band was understated as a 1σ figure, but only modestly. The integrator's
+initial reading of a single 24.76/22.46 pair as proof the band was badly wrong was still an
+over-read: 2.30 is a ~1.5-SD draw, wide but unremarkable. Both corrections are in `docs/STATE.md` §1.
 
-**What is not known, and is the actual question.** The 13 observations are opportunistic: different
+**What is not known, and is the actual question.** The 10 deployments are opportunistic: different
 sources, different eras, different field sizes (legend-131 through legend-139), collected as a
 by-product of other work. They cannot separate three things:
 
@@ -64,7 +65,7 @@ Measured 2026-08-12: a full 160-game mature read completes in **~2 hours** (21 g
 127 at +1h35m, 160 at +1h55m). The "days of standing" figure in B0.3 dates from the B0.1
 frozen-score regime and no longer holds; `docs/STATE.md` §3 records that weakening.
 
-At σ ≈ 0.957, resolving an A-versus-B difference needs:
+At σ ≈ 1.098, resolving an A-versus-B difference needs:
 
 | target SE of the difference | runs per arm | total runs | sequential ladder time |
 |---|---:|---:|---:|
@@ -97,7 +98,7 @@ observations to it does not resolve the confound.
    have been asked of the registry before it was written up as a reason to spend 8 hours.*
 2. **Does re-submitting churn our standing?** B0.3's "never churn" is weakened but not repealed.
    Each cycle displaces a matured score with a cold one for ~2 hours.
-3. **How many runs is the owner willing to spend?** 4 runs buys SE 1.0; 16 buys SE 0.5.
+3. **How many runs is the owner willing to spend?** 6 runs buys SE 1.0; 20 buys SE 0.5.
 4. **Does the era denominator need normalising** when the field grows mid-measurement?
 
 ## Exclusive write set
@@ -140,6 +141,7 @@ slot. That is a separate owner decision, and question 1 above should be answered
 ## Why this is worth an owner decision rather than quiet execution
 
 Every closed experiment in `docs/BACKLOG.md` was judged against a gate expressed in score points —
-±0.5, ≥+1.0, ≥+2. If σ is ~0.96, a single mature read cannot resolve any of those thresholds, and
-several historical accept/reject calls were made on differences smaller than the noise. This task
+±0.5, ≥+1.0, ≥+2. At σ ≈ 1.10 a single mature read cannot resolve any of those thresholds — the
+difference SD at one run per arm is 1.55 — and several historical accept/reject calls were made on
+differences smaller than the noise. This task
 does not reopen them. It determines whether future ones can be made at all.

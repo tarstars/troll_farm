@@ -120,19 +120,22 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
   `coordination/tasks/20260810-arena-noise-band-measurement.md`. The owner removed the
   noise-band gate on candidates 2026-08-12, which makes measurement throughput the binding
   constraint and σ the number every promotion argument rests on. Already measured from existing
-  data by `cgauto/arena_noise_band.py`: **pooled within-source SD 0.957, CI [0.658, 1.747]**,
-  4 families / 13 mature observations. So the historical ±0.5–1 band was about right, and the
-  integrator's first reading of the 24.76/22.46 pair as "the band is understated" was wrong —
-  corrected in `docs/STATE.md` §1. **What is still unknown is the decision-relevant part:** all
+  data by `cgauto/arena_noise_band.py`: **pooled within-source SD 1.098, CI [0.707, 2.418]**,
+  4 families / **10 deployments** (corrected 2026-08-10 from a first pass that counted 13
+  observation rows, three being second checkpoints of one run — a unit error in the tool written
+  to quantify unit errors). The ±0.5–1 band was understated, modestly. **Question 1 answered at
+  zero Arena cost: 10 distinct deployments of 4 byte-identical sources produced zero duplicate
+  scores, so the platform does not seed from the source hash and re-submission draws a real
+  sample.** **What is still unknown is the decision-relevant part:** all
   13 observations are *blocked in time*, so within-source variance and ladder drift are
   permanently confounded and no number of additional blocked runs separates them. Only
   interleaved A/B/A/B does. A mature read now costs **~2 h**, not days. At σ ≈ 0.96 an A-vs-B
-  difference needs 8 runs per arm for SE 0.5. **Blocking question before spending anything:
+  difference needs 10 runs per arm for SE 0.5. **Blocking question before spending anything:
   does re-submitting an identical source draw an independent sample, or does the platform seed
   from the source hash?** If the latter, Phase 1 measures nothing. No Arena action authorized.
   **Consequence for everything below:** every closed experiment here was judged against a gate
-  in score points (±0.5, ≥+1.0, ≥+2). At σ ≈ 0.96 a single mature read cannot resolve any of
-  them. This does not reopen past calls; it determines whether future ones are decidable.
+  in score points (±0.5, ≥+1.0, ≥+2). At σ ≈ 1.10 a single mature read cannot resolve any of
+  them (difference SD 1.55 at n=1 per arm). This does not reopen past calls; it determines whether future ones are decidable.
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
