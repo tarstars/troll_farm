@@ -96,7 +96,16 @@ Mechanical and independent of everything else.
   candidate `47c98f53` and has a different episode population (`m071-s0`), so using it would have
   been wrong-subject.
   **Consequence: claim 2 ("no working-blocker episode reaches 62 turns") is NOT independently
-  validated and must not be used as repair rationale** until raw `98628e98` traces exist. The
+  validated and must not be used as repair rationale** until raw `98628e98` traces exist.
+  **UPDATE 2026-08-10 — a route out now exists, unexecuted.** `claude_1` published a deterministic
+  regeneration recipe (`1aae7ca2`); the integrator verified its load-bearing mechanism, that
+  `fuzz_panel.py --save-failures` calls `save_failure` to write `candidate-transcript.txt` and
+  `candidate-commands` per blocking game — exactly the per-turn states and command streams the
+  base panel omits and `codex_1` could not reach. So the status changes from **"not derivable from
+  committed evidence"** to **"derivable at the cost of one panel run"**. `claude_1` states plainly
+  that it verified all 15 digests/paths/flags but has **not executed the recipe end to end**, so
+  the route is structurally sound and empirically unproven. Whether to spend the panel run is an
+  owner scoping call; D176a's standing closure means "no" remains a legitimate answer. The
   merged oscillation plan leans on it. Claims stay `UNREPLICATED / UNRESOLVED` — unresolved, not
   refuted.
   *(Was: claimed by `codex_1` 2026-08-09T18:52:36Z)* (`coordination/messages/codex_1/20260809T185236Z-20260810-manifest-implementation-claim.md`),
