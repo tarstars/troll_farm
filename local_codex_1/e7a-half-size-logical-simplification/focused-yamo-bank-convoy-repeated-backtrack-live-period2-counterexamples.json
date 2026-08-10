@@ -1,0 +1,314 @@
+{
+  "candidate": {
+    "bytes": 31335,
+    "path": "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-bank-convoy-repeated-backtrack.rs",
+    "sha256": "d3c32e9da82d43901404e20c47b7370ff288d4dad3fcad6fdc32d2185a596f9f"
+  },
+  "evidence_boundary": "teacher-forced liveness regression on official states; candidate commands do not determine next states; not a counterfactual value estimate",
+  "gates": {
+    "all_25_counterexamples": true,
+    "no_candidate_period2_ge6": false,
+    "required_game_present": true,
+    "zero_candidate_stderr": true,
+    "zero_unknown_diff_updates": true
+  },
+  "metrics": {
+    "candidate_games_period2_ge6": 9,
+    "candidate_maximum_period2": 29,
+    "observed_live_maximum_period2": 127
+  },
+  "quality": {
+    "command_lines": 7234,
+    "games_fetched": 25,
+    "stderr_bytes": 0,
+    "unknown_diff_updates": 0
+  },
+  "rows": [
+    {
+      "candidate_command_lines": 262,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 3,
+      "game_id": 897829892,
+      "observed_live_period2": 8,
+      "opponent": "a76a44",
+      "seat": 0,
+      "turns": 262,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 6,
+      "game_id": 897829998,
+      "observed_live_period2": 10,
+      "opponent": "VINCE_MX",
+      "seat": 1,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 4,
+      "game_id": 897830203,
+      "observed_live_period2": 39,
+      "opponent": "FredericBautista",
+      "seat": 1,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 4,
+      "game_id": 897830380,
+      "observed_live_period2": 15,
+      "opponent": "mikmak",
+      "seat": 1,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 4,
+      "game_id": 897830573,
+      "observed_live_period2": 8,
+      "opponent": "Pech1",
+      "seat": 0,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 119,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 17,
+      "game_id": 897830964,
+      "observed_live_period2": 16,
+      "opponent": "khanh-alice",
+      "seat": 1,
+      "turns": 119,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 8,
+      "game_id": 897831441,
+      "observed_live_period2": 7,
+      "opponent": "wala",
+      "seat": 1,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 3,
+      "game_id": 897831471,
+      "observed_live_period2": 53,
+      "opponent": "putibuzu",
+      "seat": 1,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 4,
+      "game_id": 897831896,
+      "observed_live_period2": 12,
+      "opponent": "XSpace",
+      "seat": 0,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 3,
+      "game_id": 897831950,
+      "observed_live_period2": 10,
+      "opponent": "gaha",
+      "seat": 1,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 16,
+      "game_id": 897832002,
+      "observed_live_period2": 15,
+      "opponent": "skotz",
+      "seat": 1,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 29,
+      "game_id": 897832054,
+      "observed_live_period2": 37,
+      "opponent": "viewlagoon",
+      "seat": 0,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 286,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 3,
+      "game_id": 897832286,
+      "observed_live_period2": 127,
+      "opponent": "Stounate",
+      "seat": 0,
+      "turns": 286,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 3,
+      "game_id": 897832355,
+      "observed_live_period2": 8,
+      "opponent": "Astrobytes",
+      "seat": 1,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 3,
+      "game_id": 897832823,
+      "observed_live_period2": 43,
+      "opponent": "delineate",
+      "seat": 1,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 18,
+      "game_id": 897833014,
+      "observed_live_period2": 18,
+      "opponent": "Stounate",
+      "seat": 0,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 7,
+      "game_id": 897833045,
+      "observed_live_period2": 9,
+      "opponent": "viewlagoon",
+      "seat": 1,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 2,
+      "game_id": 897833067,
+      "observed_live_period2": 6,
+      "opponent": "MSz",
+      "seat": 0,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 3,
+      "game_id": 897833408,
+      "observed_live_period2": 8,
+      "opponent": "skotz",
+      "seat": 1,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 4,
+      "game_id": 897833474,
+      "observed_live_period2": 11,
+      "opponent": "Bubaptik",
+      "seat": 0,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 267,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 7,
+      "game_id": 897833558,
+      "observed_live_period2": 86,
+      "opponent": "yaichi",
+      "seat": 1,
+      "turns": 267,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 3,
+      "game_id": 897833625,
+      "observed_live_period2": 84,
+      "opponent": "yaichi",
+      "seat": 1,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 4,
+      "game_id": 897833740,
+      "observed_live_period2": 44,
+      "opponent": "laconic_pixel",
+      "seat": 0,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 8,
+      "game_id": 897833923,
+      "observed_live_period2": 35,
+      "opponent": "laconic_pixel",
+      "seat": 0,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    },
+    {
+      "candidate_command_lines": 300,
+      "candidate_stderr_bytes": 0,
+      "candidate_teacher_forced_period2": 3,
+      "game_id": 897834266,
+      "observed_live_period2": 13,
+      "opponent": "gaha",
+      "seat": 0,
+      "turns": 300,
+      "unknown_diff_updates": 0
+    }
+  ],
+  "schema": "troll-farm-e7a-half-size-live-period2-counterexamples-v1",
+  "selection": {
+    "agent_id": 6590141,
+    "audit_path": "data/analysis/live-agent-6553250/top15-public-battle-audit-2026-08-02.json",
+    "audit_sha256": "8c29f433982fa9df05e16203bccdc15f290bae36ff5801084e862a882547af5a",
+    "games": 25,
+    "observed_period2_minimum": 6,
+    "required_game": 897832286,
+    "submission_id": 41081503
+  },
+  "verdict": "LIVE_PERIOD2_PACKET_FAIL"
+}

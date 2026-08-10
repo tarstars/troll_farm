@@ -1,0 +1,95 @@
+{
+  "candidate": {
+    "bytes": 31343,
+    "path": "local_codex_1/e7a-half-size-logical-simplification/integrated-half-r28.rs",
+    "sha256": "cc7ac7aefa37c642f8f9ff3aa6fb32bb8a412ff7c144627d20ccc929ed573e98"
+  },
+  "fixture_count": 10,
+  "fixtures": {
+    "banking_commitment": {
+      "commands": [
+        [
+          "MOVE 0 4 0"
+        ],
+        [
+          "MOVE 0 2 0"
+        ],
+        [
+          "DROP 0"
+        ]
+      ],
+      "door": [
+        1,
+        0
+      ]
+    },
+    "endgame_deadline": {
+      "turn_295": [
+        "PICK 0 BANANA"
+      ],
+      "turn_296": [
+        "WAIT"
+      ]
+    },
+    "focus": [
+      {
+        "expected": "PLUM",
+        "fixture": "near_tie_below",
+        "observed": "PLUM"
+      },
+      {
+        "expected": "PLUM",
+        "fixture": "near_tie_boundary",
+        "observed": "PLUM"
+      },
+      {
+        "expected": "LEMON",
+        "fixture": "lemon_clear",
+        "observed": "LEMON"
+      },
+      {
+        "expected": "PLUM",
+        "fixture": "parent_plum",
+        "observed": "PLUM"
+      }
+    ],
+    "landing_conflict": {
+      "commands": [
+        "MOVE 0 1 1",
+        "WAIT"
+      ],
+      "landings": [
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "same_target": {
+      "active_workers": 1,
+      "commands": [
+        "WAIT",
+        "MOVE 1 5 0"
+      ]
+    },
+    "training_bill": {
+      "trained": "TRAIN 2 1 0 2",
+      "turn_one": [
+        "MOVE 0 2 0"
+      ],
+      "turn_two": [
+        "TRAIN 2 1 0 2",
+        "MOVE 0 2 0"
+      ]
+    },
+    "training_fallback": {
+      "command": "TRAIN 1 1 0 1",
+      "turn": 35
+    }
+  },
+  "malformed_commands": 0,
+  "sacred_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+  "schema": "troll-farm-e7a-half-size-semantic-fixtures/1",
+  "unexpected_stderr_bytes": 0,
+  "verdict": "SEMANTIC_FIXTURES_PASS"
+}

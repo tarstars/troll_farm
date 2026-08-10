@@ -8,8 +8,8 @@ This is a beginner-first manual for the exact readable program currently submitt
 CodinGame Troll Farm arena as agent `6593838`, submission `41089629`.
 
 **Subject:** `e7a-without-orchard-readable.rs`<br>
-**Exact SHA-256:** `98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29`<br>
-**Size:** 75,634 bytes · 1,475 physical lines · 1,470 code lines
+**Exact SHA-256:** `18f379024c8366ca90469be684e11d0a4362fd7c8e932ecac90e2a0be6565cf4`<br>
+**Size:** 88,593 bytes · 1,921 physical lines · 1,916 code lines
 
 No Rust knowledge is assumed. Start at Chapter 1 and read in order; experienced programmers can
 jump to Part III, “The algorithm.”
@@ -25,7 +25,7 @@ This manual unfolds it in layers. First you learn the game vocabulary. Then you 
 features the program actually uses. Finally, you trace a full turn from standard input to the
 semicolon-separated command line sent to the referee.
 
-Every source reference has the form **L341–356**, meaning lines 341 through 356 of the exact
+Every source reference has the form **L453–474**, meaning lines 453 through 474 of the exact
 readable source named on the title page. “The bot” always means that exact source. Historical
 features—especially the removed secure apple-orchard wrapper—are clearly marked as absent.
 
@@ -133,15 +133,17 @@ future games, and never physically blocks an enemy unit—enemy and friendly uni
 
 ## 3. Reading the file without fear
 
-The source is a mechanically expanded version of a compact CodinGame submission. Its line breaks
-are intentionally regular, not idiomatic `rustfmt` output. Read the braces and types, not the odd
-placement of semicolons. The whole file has three large pieces:
+The source is a mechanically expanded version of a compact CodinGame submission: a generator adds
+whitespace back to the exact token stream, so the layout is close to idiomatic Rust but is produced
+by rule rather than by `rustfmt`. Arithmetic, borrows and generics stay tight (`n+ms*ms`, `&mut`),
+and very long expressions wrap at commas, method-chain dots or boolean operators. The whole file
+has three large pieces:
 
 | Lines | Module | Responsibility |
 |---:|---|---|
-| L6–295 | `game` | data types, rules, pathfinding, and text input |
-| L296–1447 | `bot` | candidate generation, scoring, coordination, persistent policy state |
-| L1448–1475 | crate root / `main` | buffered input/output and the turn loop |
+| L6–377 | `game` | data types, rules, pathfinding, and text input |
+| L378–1896 | `bot` | candidate generation, scoring, coordination, persistent policy state |
+| L1897–1921 | crate root / `main` | buffered input/output and the turn loop |
 
 ## 4. Values, variables, and basic types
 
@@ -249,7 +251,7 @@ The final `commands.join(";")` creates the exact semicolon-separated line expect
 
 ## 12. The complete turn pipeline
 
-The main policy entry is `YamoBot::commands` at L1376. Its order is the application architecture:
+The main policy entry is `YamoBot::commands` at L1793. Its order is the application architecture:
 
 1. remove completed or stale regeneration commitments;
 2. initialize the permanent tree-type focus and desired second-troll specification;
@@ -270,12 +272,12 @@ The remaining chapters expand every step.
 
 The application is not connected to a game engine through a library. CodinGame starts it as a
 process, writes text to standard input, and reads one line of text from standard output every turn.
-The `game::protocol` module at L189–293 is the adapter between that text and typed Rust values.
+The `game::protocol` module at L241–375 is the adapter between that text and typed Rust values.
 
 ### 13.1 Static input, read once
 
-`read_static_map` reads `width height` and then exactly `height` rows (L207–217). Each character is
-interpreted by `parse_static_map` (L218–244):
+`read_static_map` reads `width height` and then exactly `height` rows (L265–275). Each character is
+interpreted by `parse_static_map` (L276–301):
 
 | Character | Meaning | Stored where |
 |---|---|---|
@@ -292,7 +294,7 @@ can therefore expand from the shack to a grass neighbor.
 
 ### 13.2 Dynamic input, read every turn
 
-`read_turn` at L245–292 reads, in order:
+`read_turn` at L302–374 reads, in order:
 
 1. two inventory lines, each with six integers;
 2. a tree count and seven fields per tree;
@@ -319,26 +321,26 @@ but it also means malformed referee input would terminate the bot rather than pr
 
 | Type/field | Lines | Meaning | Used by policy? |
 |---|---:|---|---|
-| `Cell = (i32,i32)` | L9 | `(x,y)` coordinate | everywhere |
-| `Stock = [i32;6]` | L17–18 | fixed resource vector | opening, scoring, banking |
-| `PlantKind` | L19–38 | four fruit/tree species | parsing and all tree logic |
-| `Stats` | L39–46 | four troll skills | training and action timing |
-| `Unit` | L47–57 | id, owner, cell, stats, cargo | candidate generation |
-| `Plant` | L58–60 | species, cell, growth and health state | forecasts and targets |
-| `GameState.walkable` | L61–66 | all grass cells | BFS and legal destinations |
-| `GameState.shacks` | L62–63 | our and enemy bases | banking and denial geometry |
-| `GameState.inventories` | L63–64 | banked resources | affordability and score |
-| `GameState.scores` | L64–65 | derived bank scores | endgame trigger |
-| `GameState.turn` | L65 | 1-based turn number | deadlines and time budget |
-| `GameState.next_id` | L65 | max seen id plus one | parsed but unused by policy |
-| `GameState.iron/water` | L65 | static terrain sets | mining and tree cooldown |
+| `Cell = (i32, i32)` | L9 | `(x,y)` coordinate | everywhere |
+| `Stock = [i32; 6]` | L17 | fixed resource vector | opening, scoring, banking |
+| `PlantKind` | L18–48 | four fruit/tree species | parsing and all tree logic |
+| `Stats` | L49–60 | four troll skills | training and action timing |
+| `Unit` | L61–72 | id, owner, cell, stats, cargo | candidate generation |
+| `Plant` | L73–81 | species, cell, growth and health state | forecasts and targets |
+| `GameState.walkable` | L86 | all grass cells | BFS and legal destinations |
+| `GameState.shacks` | L87 | our and enemy bases | banking and denial geometry |
+| `GameState.inventories` | L88 | banked resources | affordability and score |
+| `GameState.scores` | L91 | derived bank scores | endgame trigger |
+| `GameState.turn` | L92 | 1-based turn number | deadlines and time budget |
+| `GameState.next_id` | L93 | max seen id plus one | parsed but unused by policy |
+| `GameState.iron/water` | L94–95 | static terrain sets | mining and tree cooldown |
 
-`GameState::plant_at` and `GameState::unit` are small linear searches (L67–74). They return
+`GameState::plant_at` and `GameState::unit` are small linear searches (L97–104). They return
 `Option`, forcing callers to handle “not found.”
 
 ### 13.4 Score is recomputed locally
 
-`rules::score` at L120–122 calculates
+`rules::score` at L155–157 calculates
 
 ```text
 PLUM + LEMON + APPLE + BANANA + 4 × WOOD
@@ -350,8 +352,8 @@ trusting a separate score field.
 
 ## 14. Navigation: BFS, speeds, and waypoints
 
-Manhattan distance is cheap geometry: `|x₁-x₂| + |y₁-y₂|` (L137–139). It ignores rocks and water.
-Real travel uses breadth-first search over `walkable` cells (L147–166).
+Manhattan distance is cheap geometry: `|x₁-x₂| + |y₁-y₂|` (L176–178). It ignores rocks and water.
+Real travel uses breadth-first search over `walkable` cells (L185–204).
 
 ### 14.1 Breadth-first search in plain language
 
@@ -365,7 +367,7 @@ cell has at most four edges.
 ### 14.2 `next_cell` predicts one MOVE
 
 The command `MOVE id tx ty` names a final target, but a troll may move only its speed this turn.
-`next_cell` at L167–187 predicts the landing cell:
+`next_cell` at L205–239 predicts the landing cell:
 
 1. BFS from the current cell.
 2. If the target is reachable within `speed`, land exactly on it.
@@ -386,13 +388,13 @@ A BFS distance counts cells traveled. Turns are usually
 ceil(distance / movement_speed)
 ```
 
-implemented by `ceil_div` at L357–364. A distance of 5 takes 5 turns at speed 1, 3 turns at speed
+implemented by `ceil_div` at L475–481. A distance of 5 takes 5 turns at speed 1, 3 turns at speed
 2, and 2 turns at speed 3. The function returns the sentinel `10_000` if the divisor is invalid.
 
 ## 15. Memory: what survives between turns
 
-`GameState` is replaced every turn. `YamoBot`, constructed once at L1467, stores the policy memory.
-The full field list is at L334–336.
+`GameState` is replaced every turn. `YamoBot`, constructed once at L1913, stores the policy memory.
+The full field list is at L431–447.
 
 | Field | Active initial value | Purpose |
 |---|---|---|
@@ -412,18 +414,18 @@ The full field list is at L334–336.
 | `regeneration_commitments` | empty map | troll id → species selected by `PICK` |
 | `opponent_eta_penalty` | `0` | opponent-arrival risk adjustment is compiled but inactive |
 
-The constructor first creates a feature-off base at L781–785, then
-`tuned_carry_regeneration_transit_idle_harvest` enables the five refinements at L786–795. Reading
+The constructor first creates a feature-off base at L972–990, then
+`tuned_carry_regeneration_transit_idle_harvest` enables the five refinements at L991–1000. Reading
 both functions is essential: a field present in the struct is not necessarily active.
 
 ## 16. Opening: choose and fund the second troll
 
 The bot is architecturally capped at two trolls. `can_train` returns false when `n >= 2` before
-checking money (L400–408). The opening's only purpose is therefore to create troll number two.
+checking money (L517–528). The opening's only purpose is therefore to create troll number two.
 
 ### 16.1 Training cost
 
-With `n` existing trolls and requested skills `(ms, cc, hp, chop)`, L110–119 computes:
+With `n` existing trolls and requested skills `(ms, cc, hp, chop)`, L146–154 computes:
 
 ```text
 PLUM  = n + ms²
@@ -437,11 +439,11 @@ IRON 10. BANANA and WOOD are never training currency.
 
 Every generated second-troll option has `hp=0`. Thus APPLE costs only `n=1`, normally covered by
 the random starting inventory. Opening ETA deliberately estimates PLUM, LEMON, and—if the map has
-iron—IRON, but not APPLE (L827–833).
+iron—IRON, but not APPLE (L1044–1057).
 
 ### 16.2 Twenty-seven possible specifications
 
-`opening_options` at L848–864 enumerates:
+`opening_options` at L1087–1105 enumerates:
 
 ```text
 movement_speed = 1..3
@@ -454,7 +456,7 @@ That is `3 × 3 × 3 = 27` options. Policy clamps prevent accidental values outs
 
 ### 16.3 Crude time-to-bill estimator
 
-`collection_eta` at L805–826 starts distances from our shack doors. For each missing unit:
+`collection_eta` at L1010–1043 starts distances from our shack doors. For each missing unit:
 
 - iron estimate = `missing × (2 × distance + 2)` to the nearest reachable cell beside iron;
 - fruit estimate = the same round-trip term plus any ripening wait at the best matching tree.
@@ -462,13 +464,13 @@ That is `3 × 3 × 3 = 27` options. Policy clamps prevent accidental values outs
 This is intentionally simple. It does not pack several units into one high-capacity trip and does
 not simulate competition. It is a ranking estimate, not an exact future schedule.
 
-`ticks_until_fruit` at L409–431 simulates cooldown and growth for at most 100 turns. Existing fruit
+`ticks_until_fruit` at L529–550 simulates cooldown and growth for at most 100 turns. Existing fruit
 has wait zero. Otherwise the tree grows until size 4 and then reaches its next fruit-production
 tick, using water-adjusted cooldown.
 
 ### 16.4 Select the strongest quick option
 
-`choose_second_troll` at L865–898 first finds options with estimated ETA at most 15. It ranks them
+`choose_second_troll` at L1106–1157 first finds options with estimated ETA at most 15. It ranks them
 by total `ms+cc+chop`, then lower ETA, then—under the active policy—higher chop, carry, movement.
 If no option meets the horizon it falls back to `(1,1,0,1)`.
 
@@ -479,7 +481,7 @@ carry and movement.
 
 ### 16.5 Opening resource actions
 
-Before troll two exists, `early_candidates` at L432–462 does this for the original troll:
+Before troll two exists, `early_candidates` at L551–582 does this for the original troll:
 
 1. always include WAIT;
 2. if carrying anything or full, route to a shack door and DROP;
@@ -489,13 +491,13 @@ Before troll two exists, `early_candidates` at L432–462 does this for the orig
 6. if no resource action was generated, fall back to ordinary chopping.
 
 `fruit_candidates` prefers HARVEST on the current ripe tree at `base+900`; every other living
-matching tree gets a MOVE scored `base - travel - wait` (L463–484). `iron_candidates` similarly
-scores adjacent MINE at `base+900` and approach moves at `base-distance` (L485–508).
+matching tree gets a MOVE scored `base - travel - wait` (L583–612). `iron_candidates` similarly
+scores adjacent MINE at `base+900` and approach moves at `base-distance` (L613–638).
 
 ### 16.6 Training now, deadline downgrade, or abandonment
 
-`training_affordable` checks exact bank inventory and the two-troll cap (L899–906). At or after
-turn 35, `enforce_training_deadline` acts if the chosen spec is still unaffordable (L914–941):
+`training_affordable` checks exact bank inventory and the two-troll cap (L1158–1168). At or after
+turn 35, `enforce_training_deadline` acts if the chosen spec is still unaffordable (L1180–1215):
 
 - if the policy required a preferred class, switch to the strongest affordable preferred option;
 - under the active non-required policy, switch to the strongest affordable option of any class;
@@ -503,11 +505,11 @@ turn 35, `enforce_training_deadline` acts if the chosen spec is still unaffordab
 
 `can_train` adds one more guard: it refuses training in the final 20 turns. When training is legal,
 the driver emits `TRAIN ms cc hp chop` and ensures a troll currently on the shack also receives a
-MOVE option so MOVE resolves before TRAIN (L1380–1389 and L1416–1425).
+MOVE option so MOVE resolves before TRAIN (L1797–1809 and L1860–1874).
 
 ## 17. Candidate architecture: command, score, reservation
 
-A `Candidate` at L318–320 has exactly three fields:
+A `Candidate` at L397–400 has exactly three fields:
 
 ```rust
 struct Candidate {
@@ -521,7 +523,7 @@ The command is executable text. The score permits comparison across job types. T
 sent to the referee; it is an internal reservation used to prevent two friendly trolls from being
 assigned the same place.
 
-`Target` variants at L315–317 distinguish no reservation, the abstract shack, a particular bank
+`Target` variants at L393–396 distinguish no reservation, the abstract shack, a particular bank
 door, a general cell, and a tree cell. Most incompatibility ultimately reduces to “same cell.”
 
 ### 17.1 The priority bands
@@ -547,14 +549,14 @@ normal tree throughput; WAIT loses whenever useful work has positive score.
 
 ### 17.2 Banking cargo
 
-`MoisanBot::bank_candidates` at L371–399 BFSes from the troll to every walkable shack door.
+`MoisanBot::bank_candidates` at L488–516 BFSes from the troll to every walkable shack door.
 
 - Already at the door: `DROP id`, score 8000.
 - Else: `MOVE id doorX doorY`, score `7000 - travelTurns`.
 - If there is no reachable door candidate: MOVE toward the unwalkable shack, relying on
   `next_cell`'s unreachable-target behavior to park nearby.
 
-The Yamo wrapper at L947–955 removes a bank door currently occupied by another friendly troll,
+The Yamo wrapper at L1221–1229 removes a bank door currently occupied by another friendly troll,
 unless the action is not a move to that occupied door.
 
 ## 18. Tree prediction and wood-throughput scoring
@@ -571,7 +573,7 @@ per turn, not the largest tree and not the nearest tree in isolation.
 
 ### 18.1 Predict enemy damage before arrival
 
-`predicted_opp_chop` at L509–521 sums chop power of enemy trolls currently on the tree. If none is
+`predicted_opp_chop` at L639–654 sums chop power of enemy trolls currently on the tree. If none is
 present but health is below the expected full health for that kind and size, it assumes one point
 of enemy chop per future turn. Otherwise it predicts zero.
 
@@ -579,7 +581,7 @@ This is a small opponent model. It does not forecast enemy movement, target chan
 
 ### 18.2 Simulate the tree until our arrival
 
-`predict_tree` at L522–555 loops once per travel turn:
+`predict_tree` at L655–686 loops once per travel turn:
 
 1. subtract predicted enemy chop and reject the tree if health reaches zero;
 2. decrement cooldown;
@@ -591,7 +593,7 @@ Only size, health, and cooldown are returned because the chopping calculation do
 
 ### 18.3 Simulate our chopping
 
-`chop_outcome` at L556–581 repeatedly subtracts our chop power. If the tree survives a turn and its
+`chop_outcome` at L687–716 repeatedly subtracts our chop power. If the tree survives a turn and its
 cooldown reaches zero while size is below four, it grows and gains the species-specific health
 slope. The result is `(chopTurns, finalSize)`. A tree that cannot be killed within 100 simulated
 turns is rejected.
@@ -601,7 +603,7 @@ tree die sooner, so the forecast is not a full joint combat simulator.
 
 ### 18.4 Build each chop candidate
 
-`chop_candidates` at L582–637 rejects a troll with no chop power or no free capacity. For every
+`chop_candidates` at L717–782 rejects a troll with no chop power or no free capacity. For every
 living reachable tree it then:
 
 1. computes travel turns by BFS distance and movement speed;
@@ -633,7 +635,7 @@ which equal-scored candidate survives later selection.
 
 ## 19. PLUM/LEMON focus and denial bonus
 
-`focus_type` at L341–356 runs once. It BFSes from our shack doors and sums distances to all LEMON
+`focus_type` at L453–474 runs once. It BFSes from our shack doors and sums distances to all LEMON
 trees and all PLUM trees. An unreachable tree contributes the sentinel 10,000.
 
 The exact branch is subtler than “choose the closer species”:
@@ -647,7 +649,7 @@ else:                                    choose PLUM
 Therefore LEMON is selected only when its total distance is more than eight better. A tie or small
 LEMON advantage still selects PLUM.
 
-For a focus-kind tree, while the opponent has at most two trolls, L620–623 adds:
+For a focus-kind tree, while the opponent has at most two trolls, L768–771 adds:
 
 ```text
 900 / (1 + ManhattanDistance(tree, opponentShack))
@@ -657,18 +659,18 @@ So a focus tree on the enemy door gets +900; distance 2 gets +300; distance 8 ge
 rewards removing training-currency trees near the enemy. It does not explicitly estimate whether
 the enemy can harvest and replant the fruit before removal.
 
-`yamo_chop_candidates` at L1128–1166 can additionally subtract risk when an enemy chopper reaches a
+`yamo_chop_candidates` at L1476–1517 can additionally subtract risk when an enemy chopper reaches a
 tree no later than us. In this exact live constructor `opponent_eta_penalty=0`, so the function
 returns immediately and that adjustment is inactive.
 
 ## 20. Two-troll coordination
 
 Independent greedy choices would often send both trolls to the same tree or door. `select` at
-L665–712 treats the pair as one tiny optimization problem.
+L811–865 treats the pair as one tiny optimization problem.
 
 ### 20.1 Spatial compatibility
 
-`compatible` at L643–654 permits any pair involving `Target::None`. Otherwise two targets are
+`compatible` at L788–799 permits any pair involving `Target::None`. Otherwise two targets are
 incompatible when they refer to the same cell. This keeps two trolls off the same tree, general
 cell, or shack door. The abstract `Target::Shack` also conflicts with another identical abstract
 shack target.
@@ -676,7 +678,7 @@ shack target.
 ### 20.2 Inventory compatibility
 
 `picked_item` recognizes `PICK id ITEM` text. If both candidates PICK the same resource, they are
-compatible only when at least two units exist in the shack inventory (L655–664). This is a small
+compatible only when at least two units exist in the shack inventory (L800–810). This is a small
 transactional reservation: two trolls cannot both spend the last single seed.
 
 ### 20.3 Exact pair maximization
@@ -713,7 +715,7 @@ trolls from claiming the same physical resource.
 
 Candidate compatibility prevents shared final targets, but two different destinations can still
 produce the same one-turn landing cell. `resolve_move_conflicts_with_priority_and_forbidden` at
-L726–779 repairs the actual projected moves.
+L886–970 repairs the actual projected moves.
 
 ### 21.1 Projection
 
@@ -747,7 +749,7 @@ limitation; this source keeps the original behavior.
 ## 22. The unique-door traffic coordinator
 
 Some maps have exactly one walkable cell beside our shack. With two trolls, that door is both an
-exit for a newly trained troll and the only DROP location. `force_unique_door_clear` at L978–1093
+exit for a newly trained troll and the only DROP location. `force_unique_door_clear` at L1266–1441
 rewrites candidate lists before pair selection.
 
 It first does nothing unless `unique_shack_door` finds exactly one door. The remaining branches
@@ -772,7 +774,7 @@ for the high-value bottleneck immediately around a one-door shack.
 
 ## 23. Normal mode, regeneration, and persistent intent
 
-`main_candidates` at L1167–1200 is the ordinary post-training scheduler. It always starts with
+`main_candidates` at L1518–1574 is the ordinary post-training scheduler. It always starts with
 WAIT, then applies a sequence of guards whose order is the policy:
 
 1. If safe regeneration is active and the troll carries fruit, return only banking candidates.
@@ -784,7 +786,7 @@ WAIT, then applies a sequence of guards whose order is the policy:
    the global endgame trigger is false.
 7. If no chop exists but cargo exists, bank it; otherwise append the chops.
 
-The sparse-map seed condition at L1177–1184 requires all of:
+The sparse-map seed condition at L1534–1550 requires all of:
 
 - safe/persistent regeneration active;
 - empty cargo;
@@ -798,10 +800,10 @@ It adds `PICK` in inventory priority BANANA, PLUM, LEMON, APPLE with scores just
 ### 23.1 Why a selected seed needs memory
 
 Without memory, the next turn's greedy ranking might tell a seed-carrying troll to bank the fruit
-again or start unrelated work. `remember_selected_regeneration` at L1112–1127 parses every selected
+again or start unrelated work. `remember_selected_regeneration` at L1459–1475 parses every selected
 `PICK id KIND` and records `id → kind`.
 
-On later turns `reconcile_regeneration_commitments` at L1094–1111 keeps that entry while any of
+On later turns `reconcile_regeneration_commitments` at L1442–1458 keeps that entry while any of
 these is true:
 
 - the troll still carries the chosen fruit;
@@ -809,12 +811,12 @@ these is true:
 - the troll stands on a living tree of that chosen species.
 
 Otherwise the entry is removed. A committed troll is routed directly through
-`endgame_candidates` by L1396–1399, which supplies the sequence plant → chop → bank. This is a
+`endgame_candidates` by L1819–1828, which supplies the sequence plant → chop → bank. This is a
 small persistent job state, not a general planner.
 
 ## 24. Endgame and fruit-to-wood conversion
 
-`endgame` at L1371–1373 is true when either:
+`endgame` at L1787–1790 is true when either:
 
 ```text
 turn > 250
@@ -827,14 +829,14 @@ The first trigger is unconditional, so late play always enters this policy even 
 
 ### 24.1 If the troll carries fruit
 
-`endgame_candidates` at L1233–1276 scans every empty reachable grass cell not occupied by another
+`endgame_candidates` at L1617–1675 scans every empty reachable grass cell not occupied by another
 friendly troll. For each it estimates whether the complete conversion can finish before turn 300:
 
 ```text
 travel to cell + 1 PLANT + chop planted tree + return to door + 1 DROP
 ```
 
-`conversion_chop_turns` at L1207–1232 simulates a newly planted size-1 tree while it is being
+`conversion_chop_turns` at L1588–1616 simulates a newly planted size-1 tree while it is being
 chopped. The tree may grow and gain health during chopping. If the full transaction fits:
 
 - already on the chosen cell → `PLANT`, score 9000;
@@ -846,12 +848,12 @@ trees are not considered that turn. If no conversion fits, it banks the fruit in
 ### 24.2 If the troll carries nonfruit cargo
 
 Any remaining cargo—normally WOOD or IRON—causes an immediate return of banking candidates
-(L1277–1280). The job is not allowed to drift into another tree target before depositing.
+(L1676–1679). The job is not allowed to drift into another tree target before depositing.
 
 ### 24.3 If the troll is already chopping
 
 With empty cargo, the function generates normal chop candidates. If one command is `CHOP id` on
-the current cell, its score is raised to 10,000 and returned immediately (L1281–1286). Continuing
+the current cell, its score is raised to 10,000 and returned immediately (L1680–1692). Continuing
 an in-progress tree beats leaving to start conversion elsewhere.
 
 ### 24.4 Pick a banked seed for conversion
@@ -887,7 +889,7 @@ usually aimed at turning one banked point into size-dependent WOOD before time e
 
 ## 25. Idle harvesting: a deliberately weak fallback
 
-`idle_harvest_candidates` at L1340–1370 is available only to a troll with empty cargo and positive
+`idle_harvest_candidates` at L1752–1786 is available only to a troll with empty cargo and positive
 harvest power. In this bot that is normally the original troll; the trained troll has harvest zero.
 
 A candidate tree must be alive, ripe, reachable, returnable, and finish harvest plus bank before
@@ -895,12 +897,12 @@ turn 300. If an empty enemy troll is already on the tree, the candidate is skipp
 is also already there. Score is only `1 / completeTripTurns`.
 
 The driver adds these candidates only in endgame and only when the existing candidate list contains
-nothing except Target::None/WAIT (L1413–1415). This makes harvesting a work-conservation fallback,
+nothing except Target::None/WAIT (L1855–1859). This makes harvesting a work-conservation fallback,
 not a rival to chopping or conversion. It cannot implement a renewable fruit economy by itself.
 
 ## 26. Exact driver truth table
 
-The per-troll routing at L1395–1411 is easiest to understand as a priority table. The first matching
+The per-troll routing at L1818–1854 is easiest to understand as a priority table. The first matching
 row wins:
 
 | Condition | Candidate generator |
@@ -958,7 +960,7 @@ commands(view):
 
 ## 27. Output protocol and command lifecycle
 
-The `Bot` trait at L1443–1446 requires one method returning `Vec<String>`. `main` at L1458–1475
+The `Bot` trait at L1893–1895 requires one method returning `Vec<String>`. `main` at L1905–1921
 constructs buffered stdin/stdout locks, reads the static map, constructs the active Yamo bot, and
 loops from turn 1 until input ends.
 
@@ -1152,7 +1154,7 @@ three observable completion conditions rather than a large enum of explicit phas
 
 ## 35. Expressions return values
 
-Rust blocks can be expressions. In `effective_cooldown` (L102–109), the final expression has no
+Rust blocks can be expressions. In `effective_cooldown` (L139–145), the final expression has no
 semicolon and becomes the return value:
 
 ```rust
@@ -1190,7 +1192,7 @@ This means the happy path requires `Some`; a dead-before-arrival tree skips to t
 
 ## 37. Borrowing through iterator layers
 
-Consider L1240–1245, which iterates a `BTreeSet<Cell>` and then filters it. `iter()` yields
+Consider L1632–1643, which iterates a `BTreeSet<Cell>` and then filters it. `iter()` yields
 `&Cell`. `filter` receives a reference to that iterator item, so its closure argument can become
 `&&Cell`; hence `**cell` when passing an owned `(i32,i32)` to `plant_at`. The compiler is tracking
 references precisely. It is not copying the map or allocating extra cells.
@@ -1313,7 +1315,7 @@ sha256sum \
 Expected:
 
 ```text
-98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29
+18f379024c8366ca90469be684e11d0a4362fd7c8e932ecac90e2a0be6565cf4
 ```
 
 The manual builder performs the same check and refuses to render against a different file:
@@ -1492,12 +1494,12 @@ readable parent that included the secure apple-orchard layer:
 
 | Form | Code lines | Compact characters |
 |---|---:|---:|
-| exact E7a with orchard | 1,845 | 62,820 |
-| activation disabled, code retained | 1,839 | 62,581 |
-| physically stripped, this manual's subject | 1,470 | 47,807 |
+| exact E7a with orchard | 2,502 | 62,820 |
+| activation disabled, code retained | 2,495 | 62,581 |
+| physically stripped, this manual's subject | 1,916 | 47,807 |
 
-The removed 375 readable lines were 12 lines of orchard types/state, 242 helper/strategy lines,
-108 per-turn wrapper lines, and 13 reservation/import/main-wiring lines. Generic APPLE parsing,
+The removed 586 readable lines were 25 lines of orchard types/state, 402 helper/strategy lines,
+117 per-turn wrapper lines, and 42 reservation/import/main-wiring lines. Generic APPLE parsing,
 harvesting, chopping, cargo, planting, and denial remain because the base policy uses them.
 
 Live measurements found blanket orchard removal weaker in an earlier run. This manual describes
@@ -1550,83 +1552,83 @@ yamo_chop_candidates
 |---|---:|---|
 | `Cell`, `Stock`, item constants | L9 | coordinate and six-resource representation |
 | `PlantKind::{parse,as_str,item_index}` | L19 | typed species and protocol/resource conversion |
-| `Stats::tuple` | L39 | four-skill record and training-cost tuple |
-| `Unit::{total_carried,free_capacity}` | L47 | troll snapshot and cargo helpers |
-| `Plant` | L58 | dynamic tree snapshot |
-| `GameState::{plant_at,unit}` | L61 | full turn snapshot and lookup helpers |
-| `plant_cooldown`, `water_boost` | L83 | species timing constants |
-| `tree_health_params`, `tree_health` | L93 | species health model |
-| `effective_cooldown` | L102 | water-adjusted cooldown |
-| `training_cost` | L110 | nonlinear bill formula |
-| `score`, `rules::item_index` | L120 | bank scoring and command-item parsing |
-| `manhattan`, `ortho_neighbors`, `is_adjacent` | L137 | elementary grid geometry |
-| `bfs_distances` | L147 | exact walkable shortest paths |
-| `next_cell` | L167 | one-turn landing prediction |
-| `StaticMap` | L197 | immutable map data |
-| `read_line` | L201 | CR/LF-safe line read |
-| `read_static_map`, `parse_static_map` | L207 | initialization parser |
-| `read_turn` | L245 | dynamic snapshot parser |
+| `Stats::tuple` | L50 | four-skill record and training-cost tuple |
+| `Unit::{total_carried,free_capacity}` | L62 | troll snapshot and cargo helpers |
+| `Plant` | L74 | dynamic tree snapshot |
+| `GameState::{plant_at,unit}` | L83 | full turn snapshot and lookup helpers |
+| `plant_cooldown`, `water_boost` | L112 | species timing constants |
+| `tree_health_params`, `tree_health` | L128 | species health model |
+| `effective_cooldown` | L139 | water-adjusted cooldown |
+| `training_cost` | L146 | nonlinear bill formula |
+| `score`, `rules::item_index` | L155 | bank scoring and command-item parsing |
+| `manhattan`, `ortho_neighbors`, `is_adjacent` | L176 | elementary grid geometry |
+| `bfs_distances` | L185 | exact walkable shortest paths |
+| `next_cell` | L205 | one-turn landing prediction |
+| `StaticMap` | L249 | immutable map data |
+| `read_line` | L257 | CR/LF-safe line read |
+| `read_static_map`, `parse_static_map` | L265 | initialization parser |
+| `read_turn` | L302 | dynamic snapshot parser |
 
 ### 54.2 Candidate and opening system
 
 | Symbol | Start | Purpose |
 |---|---:|---|
-| `Target`, `Candidate` | L315 | executable option plus reservation key |
-| `YamoOpeningPolicy::TUNED_CARRY` | L322 | opening thresholds and tie preferences |
-| `OpeningObjective` | L331 | stats plus estimated funding ETA |
-| `YamoBot` | L334 | persistent controller memory |
-| `PredictedTree` | L337 | arrival-time forecast subset |
-| `focus_type` | L341 | permanent PLUM/LEMON focus choice |
-| `ceil_div`, `carry_total`, `carrying_any` | L357 | arithmetic/cargo helpers |
-| `MoisanBot::bank_candidates` | L371 | DROP/return choices |
-| `can_train` | L400 | cap, time, and affordability gate |
-| `ticks_until_fruit` | L409 | next-ripe estimator |
-| `early_candidates` | L432 | opening phase dispatcher |
-| `fruit_candidates` | L463 | HARVEST/approach for a missing fruit |
-| `iron_candidates` | L485 | MINE/approach for missing iron |
-| `collection_eta` | L805 | approximate bill-acquisition cost |
-| `opening_objective`, `opening_key` | L827 | evaluate/rank one training spec |
-| `opening_options` | L848 | enumerate 27 specs |
-| `choose_second_troll` | L865 | horizon/preference constrained choice |
-| `training_affordable`, `strongest_affordable` | L899 | exact fallback candidates |
-| `enforce_training_deadline` | L914 | turn-35 downgrade/abandonment |
-| `fallback_second_troll` | L942 | minimum `(1,1,0,1)` spec |
+| `Target`, `Candidate` | L394 | executable option plus reservation key |
+| `YamoOpeningPolicy::TUNED_CARRY` | L403 | opening thresholds and tie preferences |
+| `OpeningObjective` | L428 | stats plus estimated funding ETA |
+| `YamoBot` | L431 | persistent controller memory |
+| `PredictedTree` | L449 | arrival-time forecast subset |
+| `focus_type` | L453 | permanent PLUM/LEMON focus choice |
+| `ceil_div`, `carry_total`, `carrying_any` | L475 | arithmetic/cargo helpers |
+| `MoisanBot::bank_candidates` | L488 | DROP/return choices |
+| `can_train` | L517 | cap, time, and affordability gate |
+| `ticks_until_fruit` | L529 | next-ripe estimator |
+| `early_candidates` | L551 | opening phase dispatcher |
+| `fruit_candidates` | L583 | HARVEST/approach for a missing fruit |
+| `iron_candidates` | L613 | MINE/approach for missing iron |
+| `collection_eta` | L1010 | approximate bill-acquisition cost |
+| `opening_objective`, `opening_key` | L1044 | evaluate/rank one training spec |
+| `opening_options` | L1087 | enumerate 27 specs |
+| `choose_second_troll` | L1106 | horizon/preference constrained choice |
+| `training_affordable`, `strongest_affordable` | L1158 | exact fallback candidates |
+| `enforce_training_deadline` | L1180 | turn-35 downgrade/abandonment |
+| `fallback_second_troll` | L1216 | minimum `(1,1,0,1)` spec |
 
 ### 54.3 Tree work, coordination, and movement
 
 | Symbol | Start | Purpose |
 |---|---:|---|
-| `predicted_opp_chop` | L509 | current/inferred enemy tree damage |
-| `predict_tree` | L522 | simulate tree until our arrival |
-| `chop_outcome` | L556 | simulate our chopping and growth |
-| `chop_candidates` | L582 | full-job throughput candidates |
-| `wait` | L638 | zero-score safe candidate |
-| `compatible` | L643 | spatial reservation rule |
-| `picked_item`, `stock_compatible` | L655 | same-seed inventory reservation |
-| `select` | L665 | one-worker max, exact pair max, generic greedy fallback |
-| `move_command` | L713 | parse MOVE text |
-| `resolve_move_conflicts*` | L720 | project, reserve, detour, or wait |
-| `YamoBot::bank_candidates` | L947 | occupancy-filtered bank choices |
-| `unique_shack_door`, `forced_move` | L956 | traffic primitives |
-| `carries_committed_fruit`, `planned_egress` | L965 | protect seed jobs and inspect exits |
-| `force_unique_door_clear` | L978 | two-troll doorway state machine |
-| `yamo_chop_candidates` | L1128 | optional opponent-arrival penalty wrapper |
+| `predicted_opp_chop` | L639 | current/inferred enemy tree damage |
+| `predict_tree` | L655 | simulate tree until our arrival |
+| `chop_outcome` | L687 | simulate our chopping and growth |
+| `chop_candidates` | L717 | full-job throughput candidates |
+| `wait` | L783 | zero-score safe candidate |
+| `compatible` | L788 | spatial reservation rule |
+| `picked_item`, `stock_compatible` | L800 | same-seed inventory reservation |
+| `select` | L811 | one-worker max, exact pair max, generic greedy fallback |
+| `move_command` | L866 | parse MOVE text |
+| `resolve_move_conflicts*` | L873 | project, reserve, detour, or wait |
+| `YamoBot::bank_candidates` | L1221 | occupancy-filtered bank choices |
+| `unique_shack_door`, `forced_move` | L1230 | traffic primitives |
+| `carries_committed_fruit`, `planned_egress` | L1244 | protect seed jobs and inspect exits |
+| `force_unique_door_clear` | L1266 | two-troll doorway state machine |
+| `yamo_chop_candidates` | L1476 | optional opponent-arrival penalty wrapper |
 
 ### 54.4 Regeneration, endgame, and application entry
 
 | Symbol | Start | Purpose |
 |---|---:|---|
-| `reconcile_regeneration_commitments` | L1094 | end completed/stale persistent seed jobs |
-| `remember_selected_regeneration` | L1112 | create commitment from selected PICK |
-| `main_candidates` | L1167 | ordinary post-opening scheduler |
-| `carried_fruit`, `inventory_fruits` | L1201 | fruit detection and fixed seed order |
-| `conversion_chop_turns` | L1207 | planted-tree chop forecast |
-| `endgame_candidates` | L1233 | plant/chop/bank/remaining-tree scheduler |
-| `idle_harvest_candidates` | L1340 | tiny work-conservation harvest fallback |
-| `endgame` | L1371 | late or sparse-behind trigger |
-| `YamoBot::commands` | L1376 | complete per-turn policy driver |
-| `Bot::commands` | L1444 | controller interface contract |
-| `main` | L1458 | construct, read, decide, write, flush loop |
+| `reconcile_regeneration_commitments` | L1442 | end completed/stale persistent seed jobs |
+| `remember_selected_regeneration` | L1459 | create commitment from selected PICK |
+| `main_candidates` | L1518 | ordinary post-opening scheduler |
+| `carried_fruit`, `inventory_fruits` | L1575 | fruit detection and fixed seed order |
+| `conversion_chop_turns` | L1588 | planted-tree chop forecast |
+| `endgame_candidates` | L1617 | plant/chop/bank/remaining-tree scheduler |
+| `idle_harvest_candidates` | L1752 | tiny work-conservation harvest fallback |
+| `endgame` | L1787 | late or sparse-behind trigger |
+| `YamoBot::commands` | L1793 | complete per-turn policy driver |
+| `Bot::commands` | L1893 | controller interface contract |
+| `main` | L1905 | construct, read, decide, write, flush loop |
 
 ## 55. Glossary
 

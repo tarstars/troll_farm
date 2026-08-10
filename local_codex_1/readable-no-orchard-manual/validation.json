@@ -1,27 +1,37 @@
 {
   "schema": 1,
-  "validated_at": "2026-08-04T12:14:37Z",
+  "validated_at": "2026-08-04T15:20:00Z",
   "subject": {
     "path": "local_codex_1/readable-orchard-code-cost/e7a-without-orchard-readable.rs",
-    "sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
-    "bytes": 75634,
-    "physical_lines": 1475,
-    "code_lines": 1470,
+    "sha256": "18f379024c8366ca90469be684e11d0a4362fd7c8e932ecac90e2a0be6565cf4",
+    "bytes": 88593,
+    "physical_lines": 1921,
+    "code_lines": 1916,
     "optimized_compile": "pass",
     "empty_input_exit": 0,
     "empty_input_stdout_bytes": 0,
-    "empty_input_stderr_bytes": 0
+    "empty_input_stderr_bytes": 0,
+    "layout": "relaid out 2026-08-04 by build_readable_orchard_cost.py; token stream unchanged, compacting still reproduces compact parent 102caecd",
+    "previous_layout_sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29"
   },
   "manual": {
     "path": "docs/manuals/readable-no-orchard-rust-manual-2026-08-04.md",
-    "bytes": 75869,
-    "lines": 1668,
-    "words": 11790
+    "bytes": 76040,
+    "lines": 1670,
+    "words": 11818,
+    "line_references_remapped": 143,
+    "line_references_corrected_after_remap": 18,
+    "line_reference_audit": "pass: 143 refs in range and non-inverted; 124 subject-bearing refs each contain a named symbol; residual strict-audit flags are multi-symbol index rows anchored on the first symbol, by column definition",
+    "corrections": [
+      "13.3 GameState field rows: the old layout packed four fields per line, so the mechanical remap smeared them; walkable/shacks/inventories/scores/turn/next_id/iron+water now cite L86/L87/L88/L91/L92/L93/L94–95",
+      "27: the Bot trait cited L1892–1895, whose first line is the `use` above it (wrong in the previous edition too); now L1893–1895",
+      "54.x Start anchors for ten derive-preceded types pointed at the #[derive] line; now at the declaration (PlantKind L19, Stats L50, Unit L62, Plant L74, GameState L83, StaticMap L249, Target L394, YamoOpeningPolicy L403, OpeningObjective L428, PredictedTree L449)"
+    ]
   },
   "pdf": {
     "path": "docs/manuals/readable-no-orchard-rust-manual-2026-08-04.pdf",
-    "sha256": "ed6757feb351d84bc9fb7196e870f509f63db16236535b901e5061a13b919ce6",
-    "bytes": 1057499,
+    "sha256": "0076c6c55a040e8d95060a5ee166ea6f3f0531ab478687d7d26ee9033900c137",
+    "bytes": 1059319,
     "pages": 43,
     "page_size": "A4",
     "pdf_version": "1.4",
@@ -31,15 +41,17 @@
   },
   "content_validation": {
     "source_symbols_indexed": 106,
-    "extracted_text_lines": 1900,
-    "extracted_text_words": 11503,
+    "extracted_text_lines": 1902,
+    "extracted_text_words": 11535,
     "required_sections_found": true,
     "raw_html_or_toc_markers_in_extracted_text": false,
+    "cover_reports_current_source_hash_and_size": true,
     "pages_raster_audited": 43,
     "near_blank_pages": 0,
-    "minimum_nonwhite_fraction": 0.058617226482169334,
-    "visually_inspected_pages": [1, 2, 8, 16, 24, 32, 40, 43],
-    "visual_overflow_or_missing_glyphs_observed": false
+    "minimum_nonwhite_fraction": 0.047672,
+    "visually_inspected_pages": [12, 40],
+    "visual_overflow_or_missing_glyphs_observed": false,
+    "symbol_anchor_spot_checks": "pass: L19, L50, L62, L74, L83, L86–95, L249, L394, L403, L428, L449, L1893, L1905 land on their declarations"
   },
   "integrity": {
     "builder_py_compile": "pass",

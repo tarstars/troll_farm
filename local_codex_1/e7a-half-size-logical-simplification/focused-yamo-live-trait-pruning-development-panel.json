@@ -1,0 +1,128 @@
+{
+  "evidence_boundary": "continued-referee engineering gate on already-consumed official maps; not an Arena predictor",
+  "gates": {
+    "bootstrap_lower_above_minus_2": false,
+    "both_seat_means_nonnegative": false,
+    "catastrophes_not_increased": false,
+    "coverage_at_least_512": true,
+    "five_of_six_family_means_nonnegative": false,
+    "latency_max_below_50ms": true,
+    "latency_p95_at_most_120pct": true,
+    "mean_delta_at_least_minus_0_5": false,
+    "median_worker2_delay_at_most_10": true,
+    "negative_mass_not_increased": false,
+    "six_families": true,
+    "worker2_coverage_at_least_95pct": true,
+    "zero_critical": true,
+    "zero_unclassified": true
+  },
+  "inputs": {
+    "baseline": {
+      "bytes": 62820,
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+      "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+    },
+    "candidate": {
+      "bytes": 31378,
+      "path": "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-live-trait-pruning.rs",
+      "sha256": "e5631f78691dc97c6b2d83850ff0ee0bcdb3f175a1e50a47750980b5a6e9c952"
+    },
+    "compiler": {
+      "baseline_module_sha256": "ffc92780c2bdf418740f197c22effb20a3ad6d957ea9b0f9bb451cab71294ded",
+      "candidate_module_sha256": "7c4dc08646e79c59e5f349675d870612e1a4a2dab48d2e139b075fcb5c25b99c",
+      "runner_sha256": "4d30ec25db7055faba9d7f33007ec4cc17f67680d529dbda876025613633d72e",
+      "rust_library_sha256": "1802bd8d69023b2e374d0a9586c33296485456892a9821dc635f5cb6dde0e660"
+    },
+    "panel_tsv": "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-live-trait-pruning-development-panel.tsv",
+    "runner": "local_codex_1/e7a-half-size-logical-simplification/open_panel_runner.rs",
+    "sacred_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "metrics": {
+    "bootstrap_95_lower": -20.42248062015504,
+    "catastrophes": {
+      "baseline": 19,
+      "candidate": 27
+    },
+    "family_mean_delta": {
+      "compact_gold": -10.627906976744185,
+      "gold_adaptive": -16.08139534883721,
+      "legend_balanced": -13.034883720930232,
+      "mybot": -3.63953488372093,
+      "norx_native_three": -13.86046511627907,
+      "resident": -5.232558139534884
+    },
+    "issues": {
+      "baseline": 18474,
+      "candidate": 18611
+    },
+    "latency": {
+      "baseline": {
+        "maximum_ms": 7.547223,
+        "maximum_ns": 7547223,
+        "p95_ms": 0.421179,
+        "p95_ns": 421179,
+        "samples": 139985
+      },
+      "candidate": {
+        "maximum_ms": 1.714907,
+        "maximum_ns": 1714907,
+        "p95_ms": 0.371467,
+        "p95_ns": 371467,
+        "samples": 142000
+      },
+      "candidate_p95_ratio": 0.881969423926644
+    },
+    "maximum_period2": {
+      "baseline": 244,
+      "candidate": 245
+    },
+    "mean_margin_delta": -10.412790697674419,
+    "mean_opponent_score": {
+      "baseline": 123.25387596899225,
+      "candidate": 123.4186046511628
+    },
+    "mean_score": {
+      "baseline": 200.53488372093022,
+      "candidate": 190.28682170542635
+    },
+    "negative_margin_mass": {
+      "baseline": 4138,
+      "candidate": 6269
+    },
+    "period2_ge6": {
+      "baseline": 115,
+      "candidate": 227
+    },
+    "seat_mean_delta": {
+      "0": -9.503875968992247,
+      "1": -11.321705426356589
+    },
+    "training": {
+      "baseline_games": 516,
+      "candidate_on_baseline_games": 516,
+      "coverage": 1.0,
+      "median_delay": 0.0
+    }
+  },
+  "panel": {
+    "bootstrap_samples": 50000,
+    "maps": 43,
+    "opponents": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot"
+    ],
+    "seats": [
+      0,
+      1
+    ],
+    "start_seed": 9854000,
+    "tasks": 516
+  },
+  "run_stderr": "saved 516 paired tasks in 110.887s",
+  "schema": "troll-farm-e7a-half-size-open-panel-v1",
+  "verdict": "REJECTED_OPEN_PANEL"
+}

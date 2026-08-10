@@ -1,0 +1,15 @@
+map_seed	seat	opponent	baseline_score	baseline_opponent_score	baseline_margin	candidate_score	candidate_opponent_score	candidate_margin	delta	baseline_wood	candidate_wood	baseline_opponent_wood	candidate_opponent_wood	baseline_turn	candidate_turn	baseline_train_turn	candidate_train_turn	baseline_workers	candidate_workers	baseline_period2	candidate_period2	baseline_issues	candidate_issues	baseline_critical	candidate_critical	baseline_unclassified	candidate_unclassified
+9854031	0	resident	141	144	-3	126	144	-18	-15	35	31	36	36	300	301	20	20	2	2	10	15	0	0	0	0	0	0
+9854031	0	gold_adaptive	155	73	82	138	77	61	-21	38	33	15	16	299	301	20	20	2	2	4	25	142	130	0	0	0	0
+9854031	0	compact_gold	171	236	-65	167	243	-76	-11	41	41	58	60	301	301	20	20	2	2	10	10	20	18	0	0	0	0
+9854031	0	norx_native_three	140	61	79	122	40	82	3	34	29	5	1	301	301	20	20	2	2	10	10	1	114	0	0	0	0
+9854031	0	legend_balanced	170	71	99	169	88	81	-18	41	41	3	9	301	301	20	20	2	2	10	10	50	39	0	0	0	0
+9854031	0	mybot	168	125	43	151	105	46	3	41	36	29	25	301	301	20	20	2	2	4	13	82	89	0	0	0	0
+9854031	1	resident	144	141	3	118	140	-22	-25	36	29	35	35	300	301	20	20	2	2	10	22	0	0	0	0	0	0
+9854031	1	gold_adaptive	159	80	79	129	85	44	-35	39	31	17	18	301	301	20	20	2	2	10	21	110	68	0	0	0	0
+9854031	1	compact_gold	175	284	-109	162	283	-121	-12	43	39	70	70	301	301	20	20	2	2	10	10	17	22	0	0	0	0
+9854031	1	norx_native_three	155	54	101	141	62	79	-22	38	34	2	2	301	301	20	20	2	2	10	10	8	18	0	0	0	0
+9854031	1	legend_balanced	170	71	99	168	66	102	3	41	41	2	2	301	301	20	20	2	2	10	10	48	49	0	0	0	0
+9854031	1	mybot	171	121	50	169	138	31	-19	42	41	28	32	301	301	20	20	2	2	4	5	75	67	0	0	0	0
+#latency	baseline	3596	225086	1835350
+#latency	candidate	3600	164297	550951

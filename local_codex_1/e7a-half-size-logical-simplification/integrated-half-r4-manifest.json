@@ -1,0 +1,171 @@
+{
+  "baseline": {
+    "bytes": 62820,
+    "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+  },
+  "candidate": {
+    "bytes": 31342,
+    "sha256": "b659fb460f1c11055ecd059fe6aa6358f8bdff2b57061adaf4213154f91461eb",
+    "target_bytes": 31410,
+    "within_target": true
+  },
+  "logical_changes": [
+    {
+      "block": "secure_orchard_removed",
+      "gross_removed_bytes": 57,
+      "marker": "enum OrchardPhase"
+    },
+    {
+      "block": "secure_orchard_removed",
+      "gross_removed_bytes": 102,
+      "marker": "struct OrchardGeometry"
+    },
+    {
+      "block": "secure_orchard_removed",
+      "gross_removed_bytes": 54,
+      "marker": "struct OrchardCycle"
+    },
+    {
+      "block": "secure_orchard_removed",
+      "gross_removed_bytes": 302,
+      "marker": "pub struct SecureOrchardBot"
+    },
+    {
+      "block": "secure_orchard_removed",
+      "gross_removed_bytes": 10241,
+      "marker": "impl SecureOrchardBot"
+    },
+    {
+      "block": "secure_orchard_removed",
+      "gross_removed_bytes": 3373,
+      "marker": "impl Bot for SecureOrchardBot"
+    },
+    {
+      "block": "general_opening_policy_removed",
+      "gross_removed_bytes": 260,
+      "marker": "pub struct YamoOpeningPolicy"
+    },
+    {
+      "block": "general_opening_policy_removed",
+      "gross_removed_bytes": 243,
+      "marker": "impl YamoOpeningPolicy"
+    },
+    {
+      "block": "general_opening_policy_removed",
+      "gross_removed_bytes": 55,
+      "marker": "struct OpeningObjective"
+    },
+    {
+      "block": "secure_orchard_removed",
+      "gross_removed_bytes": 102,
+      "marker": "three derives belonging to removed orchard types"
+    },
+    {
+      "block": "general_opening_policy_removed",
+      "gross_removed_bytes": 40,
+      "marker": "derive belonging to removed opening policy"
+    },
+    {
+      "block": "focused_state_replacement",
+      "marker": "pub struct YamoBot",
+      "net_removed_bytes": 354,
+      "replacement_bytes": 146
+    },
+    {
+      "block": "focused_two_worker_orchestration",
+      "marker": "impl YamoBot",
+      "net_removed_bytes": 14242,
+      "replacement_bytes": 8038
+    },
+    {
+      "block": "focused_two_worker_orchestration",
+      "marker": "impl Bot for YamoBot",
+      "net_removed_bytes": -293,
+      "replacement_bytes": 3289
+    },
+    {
+      "block": "full_tree_growth_forecast_removed",
+      "gross_removed_bytes": 76,
+      "marker": "#[derive(Clone,Copy)]struct PredictedTree"
+    },
+    {
+      "block": "full_tree_growth_forecast_removed",
+      "gross_removed_bytes": 294,
+      "marker": "fn predicted_opp_chop("
+    },
+    {
+      "block": "full_tree_growth_forecast_removed",
+      "gross_removed_bytes": 700,
+      "marker": "fn predict_tree("
+    },
+    {
+      "block": "full_tree_growth_forecast_removed",
+      "gross_removed_bytes": 631,
+      "marker": "fn chop_outcome("
+    },
+    {
+      "block": "direct_harvest_cycle_replacement",
+      "marker": "fn chop_candidates(",
+      "net_removed_bytes": -891,
+      "replacement_bytes": 2574
+    },
+    {
+      "block": "two_worker_selector_replacement",
+      "marker": "fn select(",
+      "net_removed_bytes": -88,
+      "replacement_bytes": 1417
+    },
+    {
+      "block": "two_worker_collision_guard_replacement",
+      "marker": "fn resolve_move_conflicts(",
+      "net_removed_bytes": -1510,
+      "replacement_bytes": 1651
+    },
+    {
+      "block": "general_priority_router_removed",
+      "gross_removed_bytes": 212,
+      "marker": "fn resolve_move_conflicts_with_priority("
+    },
+    {
+      "block": "general_priority_router_removed",
+      "gross_removed_bytes": 2352,
+      "marker": "fn resolve_move_conflicts_with_priority_and_forbidden("
+    },
+    {
+      "block": "redundant_carry_helpers_removed",
+      "gross_removed_bytes": 56,
+      "marker": "fn carry_total("
+    },
+    {
+      "block": "redundant_carry_helpers_removed",
+      "gross_removed_bytes": 60,
+      "marker": "fn carrying_any("
+    },
+    {
+      "block": "orphaned_plant_kind_api_removed",
+      "gross_removed_bytes": 140,
+      "marker": "pub fn item_index(self)"
+    },
+    {
+      "block": "direct_fruit_readiness_replacement",
+      "marker": "fn ticks_until_fruit(",
+      "net_removed_bytes": 276,
+      "replacement_bytes": 105
+    }
+  ],
+  "non_obfuscation": {
+    "construction": "unique named item removal/replacement only",
+    "encoding_or_compression": false,
+    "identifier_renaming_run": false,
+    "whole_source_minifier_run": false
+  },
+  "preserved_exact_items": [
+    "protocol parser and GameState",
+    "MoisanBot::focus_type E7a threshold",
+    "MoisanBot early fruit/iron collection",
+    "MoisanBot chop-cycle forecast and value",
+    "MoisanBot two-worker select",
+    "MoisanBot movement conflict resolver"
+  ],
+  "schema": "troll-farm-e7a-integrated-half-builder-v1"
+}

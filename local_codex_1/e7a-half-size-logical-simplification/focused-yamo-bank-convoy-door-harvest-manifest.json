@@ -1,0 +1,378 @@
+{
+  "arm": "FOCUSED_YAMO_BANK_CONVOY_DOOR_HARVEST",
+  "baseline_sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595",
+  "candidate_bytes": 31388,
+  "candidate_sha256": "5e115fd06e0f4ce5cd0782a55322e46f802e129c6c3292002ad93ff42bc91449",
+  "evidence_boundary": "distinct size candidate after terminal rejection; requires a new lock and new untouched validation block",
+  "identifier_renaming": false,
+  "logical_change": "replace speed-priority bank contention with a front-to-back convoy and retain productive natural door-tree harvesting in the simplified endgame",
+  "minification": false,
+  "removed_or_replaced_items": [
+    {
+      "bytes": 57,
+      "marker": "enum OrchardPhase"
+    },
+    {
+      "bytes": 102,
+      "marker": "struct OrchardGeometry"
+    },
+    {
+      "bytes": 54,
+      "marker": "struct OrchardCycle"
+    },
+    {
+      "bytes": 302,
+      "marker": "pub struct SecureOrchardBot"
+    },
+    {
+      "bytes": 10241,
+      "marker": "impl SecureOrchardBot"
+    },
+    {
+      "bytes": 3373,
+      "marker": "impl Bot for SecureOrchardBot"
+    },
+    {
+      "bytes": 260,
+      "marker": "pub struct YamoOpeningPolicy"
+    },
+    {
+      "bytes": 243,
+      "marker": "impl YamoOpeningPolicy"
+    },
+    {
+      "bytes": 55,
+      "marker": "struct OpeningObjective"
+    },
+    {
+      "marker": "pub struct YamoBot",
+      "net_removed_bytes": 383,
+      "replacement_bytes": 117
+    },
+    {
+      "marker": "impl YamoBot",
+      "net_removed_bytes": 14506,
+      "replacement_bytes": 7774
+    },
+    {
+      "marker": "impl Bot for YamoBot",
+      "net_removed_bytes": 124,
+      "replacement_bytes": 2872
+    },
+    {
+      "bytes": 140,
+      "marker": "pub fn item_index(self)"
+    },
+    {
+      "marker": "fn choose_second_troll(",
+      "net_removed_bytes": -822,
+      "replacement_bytes": 3961
+    },
+    {
+      "marker": "fn resolve_move_conflicts(",
+      "net_removed_bytes": -1778,
+      "replacement_bytes": 1919
+    },
+    {
+      "bytes": 212,
+      "marker": "fn resolve_move_conflicts_with_priority("
+    },
+    {
+      "bytes": 2352,
+      "marker": "fn resolve_move_conflicts_with_priority_and_forbidden("
+    },
+    {
+      "marker": "fn select(",
+      "net_removed_bytes": 584,
+      "replacement_bytes": 745
+    },
+    {
+      "bytes": 56,
+      "marker": "fn carry_total("
+    },
+    {
+      "bytes": 60,
+      "marker": "fn carrying_any("
+    },
+    {
+      "bytes": 77,
+      "marker": "duplicated early-resource affordability check"
+    },
+    {
+      "bytes": 28,
+      "marker": "pub const WOOD_POINTS"
+    },
+    {
+      "bytes": 127,
+      "marker": "pub fn score("
+    },
+    {
+      "bytes": 66,
+      "marker": "unused protocol score computation"
+    },
+    {
+      "bytes": 29,
+      "marker": "#[derive(Clone,Copy,Debug,Eq,PartialEq,Ord,PartialOrd,Hash)]pub enum PlantKind"
+    },
+    {
+      "bytes": 19,
+      "marker": "#[derive(Clone,Copy,Debug,Eq,PartialEq)]pub struct Stats"
+    },
+    {
+      "bytes": 35,
+      "marker": "#[derive(Clone,Debug,Eq,PartialEq)]pub struct Unit"
+    },
+    {
+      "bytes": 35,
+      "marker": "#[derive(Clone,Debug,Eq,PartialEq)]pub struct Plant"
+    },
+    {
+      "bytes": 35,
+      "marker": "#[derive(Clone,Debug,Eq,PartialEq)]pub struct GameState"
+    },
+    {
+      "bytes": 22,
+      "marker": "#[derive(Clone,Debug)]pub struct StaticMap"
+    },
+    {
+      "bytes": 24,
+      "marker": "#[derive(Clone,Copy,Debug,Eq,PartialEq,Ord,PartialOrd)]enum Target"
+    },
+    {
+      "bytes": 22,
+      "marker": "#[derive(Clone,Debug)]struct Candidate"
+    },
+    {
+      "bytes": 40,
+      "marker": "#[derive(Clone,Copy,Debug,Eq,PartialEq)]pub struct YamoBot"
+    },
+    {
+      "bytes": 21,
+      "marker": "#[derive(Clone,Copy)]struct PredictedTree"
+    },
+    {
+      "bytes": 157,
+      "marker": "doorless-shack banking fallback and Target::Shack"
+    },
+    {
+      "bytes": 37,
+      "marker": "pub const ITEM_COUNT and its sole Stock alias"
+    },
+    {
+      "marker": "fn bank_candidates(",
+      "net_removed_bytes": -23,
+      "replacement_bytes": 569
+    },
+    {
+      "marker": "fn choose_second_troll(",
+      "net_removed_bytes": 393,
+      "replacement_bytes": 3568
+    },
+    {
+      "marker": "fn chop_candidates(",
+      "net_removed_bytes": 107,
+      "replacement_bytes": 1576
+    },
+    {
+      "bytes": 294,
+      "marker": "fn predicted_opp_chop("
+    },
+    {
+      "bytes": 55,
+      "marker": "struct PredictedTree"
+    },
+    {
+      "bytes": 700,
+      "marker": "fn predict_tree("
+    },
+    {
+      "bytes": 631,
+      "marker": "fn chop_outcome("
+    },
+    {
+      "marker": "enum Target",
+      "net_removed_bytes": 22,
+      "replacement_bytes": 29
+    },
+    {
+      "marker": "fn compatible(",
+      "net_removed_bytes": 176,
+      "replacement_bytes": 78
+    },
+    {
+      "marker": "fn resolve_move_conflicts(",
+      "net_removed_bytes": 453,
+      "replacement_bytes": 1466
+    },
+    {
+      "marker": "pub struct Stats",
+      "net_removed_bytes": 22,
+      "replacement_bytes": 83
+    },
+    {
+      "bytes": 128,
+      "marker": "impl Stats"
+    },
+    {
+      "bytes": 78,
+      "marker": "zero-harvest parser and TRAIN plumbing"
+    },
+    {
+      "bytes": 194,
+      "marker": "pub fn training_cost("
+    },
+    {
+      "marker": "fn can_train(",
+      "net_removed_bytes": -222,
+      "replacement_bytes": 633
+    },
+    {
+      "marker": "fn early_candidates(",
+      "net_removed_bytes": -753,
+      "replacement_bytes": 1480
+    },
+    {
+      "marker": "fn ticks_until_fruit(",
+      "net_removed_bytes": -311,
+      "replacement_bytes": 692
+    },
+    {
+      "bytes": 124,
+      "marker": "pub fn effective_cooldown("
+    },
+    {
+      "bytes": 136,
+      "marker": "pub fn plant_cooldown("
+    },
+    {
+      "bytes": 133,
+      "marker": "pub fn water_boost("
+    },
+    {
+      "marker": "pub fn tree_health(",
+      "net_removed_bytes": -163,
+      "replacement_bytes": 269
+    },
+    {
+      "bytes": 155,
+      "marker": "pub fn tree_health_params("
+    },
+    {
+      "marker": "fn focus_type(",
+      "net_removed_bytes": -178,
+      "replacement_bytes": 706
+    },
+    {
+      "bytes": 212,
+      "marker": "pub fn item_index("
+    },
+    {
+      "marker": "fn picked_item(",
+      "net_removed_bytes": -55,
+      "replacement_bytes": 253
+    },
+    {
+      "marker": "pub fn parse(",
+      "net_removed_bytes": 31,
+      "replacement_bytes": 193
+    },
+    {
+      "marker": "fn chop_candidates(",
+      "net_removed_bytes": 188,
+      "replacement_bytes": 1388
+    },
+    {
+      "marker": "enum Target",
+      "net_removed_bytes": 4,
+      "replacement_bytes": 25
+    },
+    {
+      "bytes": 104,
+      "marker": "optional-cell target use sites"
+    },
+    {
+      "marker": "fn compatible(",
+      "net_removed_bytes": -8,
+      "replacement_bytes": 70
+    },
+    {
+      "marker": "fn resolve_move_conflicts(",
+      "net_removed_bytes": -71,
+      "replacement_bytes": 1537
+    },
+    {
+      "bytes": 83,
+      "marker": "pub fn unit("
+    },
+    {
+      "bytes": 241,
+      "marker": "unused parsed GameState and StaticMap fields"
+    },
+    {
+      "marker": "pub fn next_cell(",
+      "net_removed_bytes": 104,
+      "replacement_bytes": 661
+    },
+    {
+      "marker": "fn ensure_opening(",
+      "net_removed_bytes": 135,
+      "replacement_bytes": 348
+    },
+    {
+      "marker": "fn orchard_command(",
+      "net_removed_bytes": 216,
+      "replacement_bytes": 1328
+    },
+    {
+      "marker": "fn select_orchard_mother(",
+      "net_removed_bytes": 291,
+      "replacement_bytes": 954
+    },
+    {
+      "marker": "fn fruit_kind(",
+      "net_removed_bytes": 78,
+      "replacement_bytes": 612
+    },
+    {
+      "logical_change": "order same-door wood carriers by remaining cells rather than travel turns, so a faster rear worker cannot pin the front worker in WAIT",
+      "marker": "bank lane priority",
+      "net_removed_bytes": 42
+    },
+    {
+      "bytes": 27,
+      "logical_change": "protocol plant rows always have size at least one",
+      "marker": "impossible live-tree size-zero branch"
+    },
+    {
+      "logical_change": "factor one conversion boundary, remove scores from single-command paths, and harvest a ripe natural tree while empty on a home door",
+      "marker": "fn endgame_candidates(",
+      "net_removed_bytes": -85,
+      "replacement_bytes": 3467
+    },
+    {
+      "logical_change": "factor three unconditional single-command returns",
+      "marker": "single-command candidate construction",
+      "net_removed_bytes": -211,
+      "replacement_bytes": 211
+    },
+    {
+      "logical_change": "replace a four-way item match with the protocol's index table",
+      "marker": "fn fruit_kind(",
+      "net_removed_bytes": 75,
+      "replacement_bytes": 537
+    },
+    {
+      "logical_change": "collapse duplicated tree/no-tree cargo branches into one orchard state split",
+      "marker": "fn orchard_command(",
+      "net_removed_bytes": 112,
+      "replacement_bytes": 1216
+    },
+    {
+      "logical_change": "allow an empty eligible mother when a different home door has a natural tree",
+      "marker": "fn select_orchard_mother(",
+      "net_removed_bytes": -11,
+      "replacement_bytes": 965
+    }
+  ],
+  "schema": "troll-farm-e7a-development-ablation/1"
+}

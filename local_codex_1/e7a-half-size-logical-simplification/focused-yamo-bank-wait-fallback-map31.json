@@ -1,0 +1,128 @@
+{
+  "evidence_boundary": "continued-referee engineering gate on already-consumed official maps; not an Arena predictor",
+  "gates": {
+    "bootstrap_lower_above_minus_2": false,
+    "both_seat_means_nonnegative": false,
+    "catastrophes_not_increased": true,
+    "coverage_at_least_512": false,
+    "five_of_six_family_means_nonnegative": false,
+    "latency_max_below_50ms": true,
+    "latency_p95_at_most_120pct": true,
+    "mean_delta_at_least_minus_0_5": false,
+    "median_worker2_delay_at_most_10": true,
+    "negative_mass_not_increased": false,
+    "six_families": true,
+    "worker2_coverage_at_least_95pct": true,
+    "zero_critical": true,
+    "zero_unclassified": true
+  },
+  "inputs": {
+    "baseline": {
+      "bytes": 62820,
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+      "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+    },
+    "candidate": {
+      "bytes": 31401,
+      "path": "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-bank-wait-fallback.rs",
+      "sha256": "923395d8101aa2925e3ba4c237f0e0c80250afd289ca06629d16563acd67082d"
+    },
+    "compiler": {
+      "baseline_module_sha256": "ffc92780c2bdf418740f197c22effb20a3ad6d957ea9b0f9bb451cab71294ded",
+      "candidate_module_sha256": "ac4786ed8e07a4192d2161d94684219c38ac75ee2f53339fb334b1f22ce01050",
+      "runner_sha256": "4d30ec25db7055faba9d7f33007ec4cc17f67680d529dbda876025613633d72e",
+      "rust_library_sha256": "1802bd8d69023b2e374d0a9586c33296485456892a9821dc635f5cb6dde0e660"
+    },
+    "panel_tsv": "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-bank-wait-fallback-map31.tsv",
+    "runner": "local_codex_1/e7a-half-size-logical-simplification/open_panel_runner.rs",
+    "sacred_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "metrics": {
+    "bootstrap_95_lower": -14.083333333333334,
+    "catastrophes": {
+      "baseline": 1,
+      "candidate": 1
+    },
+    "family_mean_delta": {
+      "compact_gold": -11.5,
+      "gold_adaptive": -28,
+      "legend_balanced": -7.5,
+      "mybot": -8,
+      "norx_native_three": -9.5,
+      "resident": -20
+    },
+    "issues": {
+      "baseline": 553,
+      "candidate": 614
+    },
+    "latency": {
+      "baseline": {
+        "maximum_ms": 1.83535,
+        "maximum_ns": 1835350,
+        "p95_ms": 0.225086,
+        "p95_ns": 225086,
+        "samples": 3596
+      },
+      "candidate": {
+        "maximum_ms": 0.550951,
+        "maximum_ns": 550951,
+        "p95_ms": 0.164297,
+        "p95_ns": 164297,
+        "samples": 3600
+      },
+      "candidate_p95_ratio": 0.729929893462943
+    },
+    "maximum_period2": {
+      "baseline": 10,
+      "candidate": 25
+    },
+    "mean_margin_delta": -14.083333333333334,
+    "mean_opponent_score": {
+      "baseline": 121.75,
+      "candidate": 122.58333333333333
+    },
+    "mean_score": {
+      "baseline": 159.91666666666666,
+      "candidate": 146.66666666666666
+    },
+    "negative_margin_mass": {
+      "baseline": 177,
+      "candidate": 237
+    },
+    "period2_ge6": {
+      "baseline": 9,
+      "candidate": 11
+    },
+    "seat_mean_delta": {
+      "0": -9.833333333333334,
+      "1": -18.333333333333332
+    },
+    "training": {
+      "baseline_games": 12,
+      "candidate_on_baseline_games": 12,
+      "coverage": 1.0,
+      "median_delay": 0.0
+    }
+  },
+  "panel": {
+    "bootstrap_samples": 10000,
+    "maps": 1,
+    "opponents": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot"
+    ],
+    "seats": [
+      0,
+      1
+    ],
+    "start_seed": 9854031,
+    "tasks": 12
+  },
+  "run_stderr": "saved 12 paired tasks in 1.582s",
+  "schema": "troll-farm-e7a-half-size-open-panel-v1",
+  "verdict": "SMOKE_ONLY"
+}

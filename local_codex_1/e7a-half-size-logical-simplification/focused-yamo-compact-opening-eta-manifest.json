@@ -1,0 +1,173 @@
+{
+  "arm": "FOCUSED_YAMO_COMPACT_OPENING_ETA",
+  "baseline_sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595",
+  "candidate_bytes": 31008,
+  "candidate_sha256": "addb196b3fe039f1c6feca7d4d99b44d2e36b604751606db709576b396377337",
+  "evidence_boundary": "development refactor; requires exact behavioral parity",
+  "identifier_renaming": false,
+  "logical_change": "preserve the exact 27-profile opening choice while deriving each resource bill directly from the corresponding worker stat",
+  "minification": false,
+  "removed_or_replaced_items": [
+    {
+      "bytes": 57,
+      "marker": "enum OrchardPhase"
+    },
+    {
+      "bytes": 102,
+      "marker": "struct OrchardGeometry"
+    },
+    {
+      "bytes": 54,
+      "marker": "struct OrchardCycle"
+    },
+    {
+      "bytes": 302,
+      "marker": "pub struct SecureOrchardBot"
+    },
+    {
+      "bytes": 10241,
+      "marker": "impl SecureOrchardBot"
+    },
+    {
+      "bytes": 3373,
+      "marker": "impl Bot for SecureOrchardBot"
+    },
+    {
+      "bytes": 260,
+      "marker": "pub struct YamoOpeningPolicy"
+    },
+    {
+      "bytes": 243,
+      "marker": "impl YamoOpeningPolicy"
+    },
+    {
+      "bytes": 55,
+      "marker": "struct OpeningObjective"
+    },
+    {
+      "marker": "pub struct YamoBot",
+      "net_removed_bytes": 383,
+      "replacement_bytes": 117
+    },
+    {
+      "marker": "impl YamoBot",
+      "net_removed_bytes": 14506,
+      "replacement_bytes": 7774
+    },
+    {
+      "marker": "impl Bot for YamoBot",
+      "net_removed_bytes": 124,
+      "replacement_bytes": 2872
+    },
+    {
+      "bytes": 140,
+      "marker": "pub fn item_index(self)"
+    },
+    {
+      "marker": "fn choose_second_troll(",
+      "net_removed_bytes": -822,
+      "replacement_bytes": 3961
+    },
+    {
+      "marker": "fn resolve_move_conflicts(",
+      "net_removed_bytes": -1778,
+      "replacement_bytes": 1919
+    },
+    {
+      "bytes": 212,
+      "marker": "fn resolve_move_conflicts_with_priority("
+    },
+    {
+      "bytes": 2352,
+      "marker": "fn resolve_move_conflicts_with_priority_and_forbidden("
+    },
+    {
+      "marker": "fn select(",
+      "net_removed_bytes": 584,
+      "replacement_bytes": 745
+    },
+    {
+      "bytes": 56,
+      "marker": "fn carry_total("
+    },
+    {
+      "bytes": 60,
+      "marker": "fn carrying_any("
+    },
+    {
+      "bytes": 77,
+      "marker": "duplicated early-resource affordability check"
+    },
+    {
+      "bytes": 28,
+      "marker": "pub const WOOD_POINTS"
+    },
+    {
+      "bytes": 127,
+      "marker": "pub fn score("
+    },
+    {
+      "bytes": 66,
+      "marker": "unused protocol score computation"
+    },
+    {
+      "bytes": 29,
+      "marker": "#[derive(Clone,Copy,Debug,Eq,PartialEq,Ord,PartialOrd,Hash)]pub enum PlantKind"
+    },
+    {
+      "bytes": 19,
+      "marker": "#[derive(Clone,Copy,Debug,Eq,PartialEq)]pub struct Stats"
+    },
+    {
+      "bytes": 35,
+      "marker": "#[derive(Clone,Debug,Eq,PartialEq)]pub struct Unit"
+    },
+    {
+      "bytes": 35,
+      "marker": "#[derive(Clone,Debug,Eq,PartialEq)]pub struct Plant"
+    },
+    {
+      "bytes": 35,
+      "marker": "#[derive(Clone,Debug,Eq,PartialEq)]pub struct GameState"
+    },
+    {
+      "bytes": 22,
+      "marker": "#[derive(Clone,Debug)]pub struct StaticMap"
+    },
+    {
+      "bytes": 24,
+      "marker": "#[derive(Clone,Copy,Debug,Eq,PartialEq,Ord,PartialOrd)]enum Target"
+    },
+    {
+      "bytes": 22,
+      "marker": "#[derive(Clone,Debug)]struct Candidate"
+    },
+    {
+      "bytes": 40,
+      "marker": "#[derive(Clone,Copy,Debug,Eq,PartialEq)]pub struct YamoBot"
+    },
+    {
+      "bytes": 21,
+      "marker": "#[derive(Clone,Copy)]struct PredictedTree"
+    },
+    {
+      "bytes": 157,
+      "marker": "doorless-shack banking fallback and Target::Shack"
+    },
+    {
+      "bytes": 37,
+      "marker": "pub const ITEM_COUNT and its sole Stock alias"
+    },
+    {
+      "marker": "fn bank_candidates(",
+      "net_removed_bytes": -23,
+      "replacement_bytes": 569
+    },
+    {
+      "marker": "fn choose_second_troll(",
+      "net_removed_bytes": 393,
+      "replacement_bytes": 3568
+    }
+  ],
+  "schema": "troll-farm-e7a-development-ablation/1"
+}

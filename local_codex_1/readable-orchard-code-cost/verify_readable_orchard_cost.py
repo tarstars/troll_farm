@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import difflib
 import hashlib
 import json
 import subprocess
@@ -14,6 +15,11 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 SACRED = REPO / "rust/src/bin/yamo_orchard_live.rs"
 SACRED_SHA256 = "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+# Landmarks that bound the orchard-exclusive groups inside the with-orchard readable file.
+TYPES_START = "enum OrchardPhase {"
+HELPERS_START = "impl SecureOrchardBot {"
+DRIVER_START = "impl Bot for SecureOrchardBot {"
+HEADER_LINES = 5
 
 
 def sha256(path: Path) -> str:
@@ -22,6 +28,60 @@ def sha256(path: Path) -> str:
 
 def load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def landmark(lines: list[str], needle: str) -> int:
+    for number, line in enumerate(lines, 1):
+        if line.strip() == needle:
+            return number
+    raise RuntimeError(f"landmark not found: {needle}")
+
+
+def line_inventory(baseline: Path, stripped: Path) -> dict[str, object]:
+    """Group the with-orchard lines the stripped variant does not have."""
+
+    with_orchard = baseline.read_text(encoding="utf-8").splitlines()
+    without = stripped.read_text(encoding="utf-8").splitlines()
+    types = landmark(with_orchard, TYPES_START) - 1  # the derive attribute above the enum
+    helpers = landmark(with_orchard, HELPERS_START)
+    driver = landmark(with_orchard, DRIVER_START)
+
+    removed: list[int] = []
+    replacements = 0
+    opcodes = difflib.SequenceMatcher(None, with_orchard, without, autojunk=False).get_opcodes()
+    for tag, i1, i2, j1, j2 in opcodes:
+        if tag not in {"delete", "replace"}:
+            continue
+        span = [number for number in range(i1 + 1, i2 + 1) if number > HEADER_LINES]
+        removed.extend(span)
+        if span and tag == "replace":
+            replacements += j2 - j1  # lines the stripped variant kept in their place
+
+    groups = {
+        "orchard_data_types_and_wrapper_state": 0,
+        "orchard_selection_and_maintenance_helpers": 0,
+        "orchard_per_turn_driver": 0,
+        "reservation_channel_import_and_main_wiring": 0,
+    }
+    for number in removed:
+        if types <= number < helpers:
+            groups["orchard_data_types_and_wrapper_state"] += 1
+        elif helpers <= number < driver:
+            groups["orchard_selection_and_maintenance_helpers"] += 1
+        elif driver <= number <= max(n for n in removed if n >= driver and n < len(with_orchard) - 40):
+            groups["orchard_per_turn_driver"] += 1
+        else:
+            groups["reservation_channel_import_and_main_wiring"] += 1
+    # Replaced lines are rewrites of the reservation channel and main wiring, not deletions.
+    groups["reservation_channel_import_and_main_wiring"] -= replacements
+    total = sum(groups.values())
+    if total != len(with_orchard) - len(without):
+        raise RuntimeError(f"line inventory {total} does not match physical delta")
+    return {
+        **groups,
+        "total": total,
+        "basis": "canonical generated with-orchard line spans; grouped against exact stripped token stream",
+    }
 
 
 def main() -> int:
@@ -92,14 +152,10 @@ def main() -> int:
                 raise RuntimeError(f"{label}: empty-input gate failed")
             compile_results[label] = "PASS: optimized compile; empty input exit 0 with zero output"
 
-    manifest["line_inventory"] = {
-        "orchard_data_types_and_wrapper_state": 12,
-        "orchard_selection_and_maintenance_helpers": 242,
-        "orchard_per_turn_driver": 108,
-        "reservation_channel_import_and_main_wiring": 13,
-        "total": 375,
-        "basis": "canonical generated with-orchard line spans; grouped against exact stripped token stream",
-    }
+    manifest["line_inventory"] = line_inventory(
+        REPO / manifest["sources"]["with_orchard"]["readable_path"],
+        REPO / manifest["sources"]["orchard_stripped"]["readable_path"],
+    )
     manifest["verification"] = {
         "sacred_sha256": SACRED_SHA256,
         "readable_compile_empty_input": compile_results,
@@ -115,7 +171,14 @@ def main() -> int:
         "panels": "compile the three readable sources, then run claude_1/orchard-code-cost/run_equality_panel.py for baseline/disabled/stripped as recorded in the report",
     }
     manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    print(json.dumps({"verdict": "READABLE_ORCHARD_LOC_VERIFIED", "lines_removed": 375}))
+    print(
+        json.dumps(
+            {
+                "verdict": "READABLE_ORCHARD_LOC_VERIFIED",
+                "lines_removed": manifest["line_inventory"]["total"],
+            }
+        )
+    )
     return 0
 
 

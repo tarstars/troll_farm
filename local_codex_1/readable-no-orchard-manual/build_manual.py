@@ -23,7 +23,7 @@ PDF = ROOT / "docs/manuals/readable-no-orchard-rust-manual-2026-08-04.pdf"
 BUILD_DIR = ROOT / "local_codex_1/readable-no-orchard-manual"
 HTML = BUILD_DIR / "readable-no-orchard-rust-manual-2026-08-04.html"
 INDEX = BUILD_DIR / "source-index.json"
-EXPECTED_SHA256 = "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29"
+EXPECTED_SHA256 = "18f379024c8366ca90469be684e11d0a4362fd7c8e932ecac90e2a0be6565cf4"
 
 
 def sha256(path: Path) -> str:

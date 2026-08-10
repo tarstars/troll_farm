@@ -1,0 +1,128 @@
+{
+  "evidence_boundary": "continued-referee engineering gate on already-consumed official maps; not an Arena predictor",
+  "gates": {
+    "bootstrap_lower_above_minus_2": false,
+    "both_seat_means_nonnegative": false,
+    "catastrophes_not_increased": false,
+    "coverage_at_least_512": false,
+    "five_of_six_family_means_nonnegative": false,
+    "latency_max_below_50ms": true,
+    "latency_p95_at_most_120pct": true,
+    "mean_delta_at_least_minus_0_5": false,
+    "median_worker2_delay_at_most_10": true,
+    "negative_mass_not_increased": false,
+    "six_families": true,
+    "worker2_coverage_at_least_95pct": true,
+    "zero_critical": true,
+    "zero_unclassified": true
+  },
+  "inputs": {
+    "baseline": {
+      "bytes": 62820,
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+      "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+    },
+    "candidate": {
+      "bytes": 33372,
+      "path": "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-partial-wood-exact-moisan.rs",
+      "sha256": "81a1f2e0597f443c4287afbddb3c152817a384d9b1572cc59fb792c30d110c86"
+    },
+    "compiler": {
+      "baseline_module_sha256": "ffc92780c2bdf418740f197c22effb20a3ad6d957ea9b0f9bb451cab71294ded",
+      "candidate_module_sha256": "357be5b16713b52a43bda86c3c4250aa1cb4659dbc7d9eb228951a880efe4462",
+      "runner_sha256": "4d30ec25db7055faba9d7f33007ec4cc17f67680d529dbda876025613633d72e",
+      "rust_library_sha256": "1802bd8d69023b2e374d0a9586c33296485456892a9821dc635f5cb6dde0e660"
+    },
+    "panel_tsv": "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-partial-wood-exact-moisan-smoke.tsv",
+    "runner": "local_codex_1/e7a-half-size-logical-simplification/open_panel_runner.rs",
+    "sacred_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "metrics": {
+    "bootstrap_95_lower": -47.04166666666667,
+    "catastrophes": {
+      "baseline": 0,
+      "candidate": 3
+    },
+    "family_mean_delta": {
+      "compact_gold": -17.5625,
+      "gold_adaptive": -8.6875,
+      "legend_balanced": -25.5625,
+      "mybot": -32.1875,
+      "norx_native_three": -39.75,
+      "resident": -12.5625
+    },
+    "issues": {
+      "baseline": 3226,
+      "candidate": 3455
+    },
+    "latency": {
+      "baseline": {
+        "maximum_ms": 3.847375,
+        "maximum_ns": 3847375,
+        "p95_ms": 0.440073,
+        "p95_ns": 440073,
+        "samples": 26431
+      },
+      "candidate": {
+        "maximum_ms": 1.206407,
+        "maximum_ns": 1206407,
+        "p95_ms": 0.369559,
+        "p95_ns": 369559,
+        "samples": 26404
+      },
+      "candidate_p95_ratio": 0.8397674931204595
+    },
+    "maximum_period2": {
+      "baseline": 175,
+      "candidate": 124
+    },
+    "mean_margin_delta": -22.71875,
+    "mean_opponent_score": {
+      "baseline": 132.76041666666666,
+      "candidate": 130.48958333333334
+    },
+    "mean_score": {
+      "baseline": 215.88541666666666,
+      "candidate": 190.89583333333334
+    },
+    "negative_margin_mass": {
+      "baseline": 292,
+      "candidate": 800
+    },
+    "period2_ge6": {
+      "baseline": 23,
+      "candidate": 36
+    },
+    "seat_mean_delta": {
+      "0": -22.833333333333332,
+      "1": -22.604166666666668
+    },
+    "training": {
+      "baseline_games": 96,
+      "candidate_on_baseline_games": 96,
+      "coverage": 1.0,
+      "median_delay": 0.0
+    }
+  },
+  "panel": {
+    "bootstrap_samples": 10000,
+    "maps": 8,
+    "opponents": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot"
+    ],
+    "seats": [
+      0,
+      1
+    ],
+    "start_seed": 9854000,
+    "tasks": 96
+  },
+  "run_stderr": "saved 96 paired tasks in 20.024s",
+  "schema": "troll-farm-e7a-half-size-open-panel-v1",
+  "verdict": "SMOKE_ONLY"
+}

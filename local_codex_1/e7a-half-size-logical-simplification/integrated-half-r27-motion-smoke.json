@@ -1,0 +1,623 @@
+{
+  "baseline": {
+    "bytes": 62820,
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+    "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+  },
+  "candidate": {
+    "bytes": 31323,
+    "path": "local_codex_1/e7a-half-size-logical-simplification/integrated-half-r27.rs",
+    "sha256": "3908e90ec1f6a39f6deba0d85b613d5ecd500e7777db1e17658b2f7e1159e96e"
+  },
+  "evidence_boundary": "engineering discriminator; not an Arena predictor",
+  "games": 16,
+  "opponent": {
+    "name": "motion",
+    "path": "cgauto/submissions/v1.20.0-motion.min.rs",
+    "sha256": "d2d0d9a1f8af9ddc9922c2c1d57e0eb1c4a1dff8582d829215b916a03f6e4c66"
+  },
+  "rows": [
+    {
+      "baseline_catastrophe": false,
+      "baseline_first_train": {
+        "spec": [
+          1,
+          2,
+          0,
+          2
+        ],
+        "turn": 1
+      },
+      "baseline_margin": 54,
+      "baseline_opponent_score": 158,
+      "baseline_period2": 3,
+      "baseline_policy_score": 212,
+      "baseline_wood": 53,
+      "candidate_catastrophe": false,
+      "candidate_first_train": {
+        "spec": [
+          1,
+          2,
+          0,
+          2
+        ],
+        "turn": 1
+      },
+      "candidate_margin": -7,
+      "candidate_opponent_score": 146,
+      "candidate_period2": 3,
+      "candidate_policy_score": 139,
+      "candidate_wood": 30,
+      "margin_delta": -61,
+      "seat": 0,
+      "seed": 0
+    },
+    {
+      "baseline_catastrophe": false,
+      "baseline_first_train": {
+        "spec": [
+          1,
+          2,
+          0,
+          2
+        ],
+        "turn": 1
+      },
+      "baseline_margin": 70,
+      "baseline_opponent_score": 138,
+      "baseline_period2": 3,
+      "baseline_policy_score": 208,
+      "baseline_wood": 52,
+      "candidate_catastrophe": false,
+      "candidate_first_train": {
+        "spec": [
+          1,
+          2,
+          0,
+          2
+        ],
+        "turn": 1
+      },
+      "candidate_margin": 23,
+      "candidate_opponent_score": 169,
+      "candidate_period2": 3,
+      "candidate_policy_score": 192,
+      "candidate_wood": 48,
+      "margin_delta": -47,
+      "seat": 1,
+      "seed": 0
+    },
+    {
+      "baseline_catastrophe": false,
+      "baseline_first_train": {
+        "spec": [
+          2,
+          1,
+          0,
+          2
+        ],
+        "turn": 14
+      },
+      "baseline_margin": 123,
+      "baseline_opponent_score": 18,
+      "baseline_period2": 4,
+      "baseline_policy_score": 141,
+      "baseline_wood": 34,
+      "candidate_catastrophe": false,
+      "candidate_first_train": {
+        "spec": [
+          2,
+          1,
+          0,
+          2
+        ],
+        "turn": 14
+      },
+      "candidate_margin": 116,
+      "candidate_opponent_score": 19,
+      "candidate_period2": 2,
+      "candidate_policy_score": 135,
+      "candidate_wood": 32,
+      "margin_delta": -7,
+      "seat": 0,
+      "seed": 1
+    },
+    {
+      "baseline_catastrophe": false,
+      "baseline_first_train": {
+        "spec": [
+          2,
+          1,
+          0,
+          3
+        ],
+        "turn": 14
+      },
+      "baseline_margin": 138,
+      "baseline_opponent_score": 18,
+      "baseline_period2": 4,
+      "baseline_policy_score": 156,
+      "baseline_wood": 39,
+      "candidate_catastrophe": false,
+      "candidate_first_train": {
+        "spec": [
+          2,
+          1,
+          0,
+          2
+        ],
+        "turn": 1
+      },
+      "candidate_margin": 123,
+      "candidate_opponent_score": 18,
+      "candidate_period2": 2,
+      "candidate_policy_score": 141,
+      "candidate_wood": 34,
+      "margin_delta": -15,
+      "seat": 1,
+      "seed": 1
+    },
+    {
+      "baseline_catastrophe": true,
+      "baseline_first_train": {
+        "spec": [
+          1,
+          2,
+          0,
+          3
+        ],
+        "turn": 1
+      },
+      "baseline_margin": -133,
+      "baseline_opponent_score": 297,
+      "baseline_period2": 3,
+      "baseline_policy_score": 164,
+      "baseline_wood": 41,
+      "candidate_catastrophe": true,
+      "candidate_first_train": {
+        "spec": [
+          2,
+          2,
+          0,
+          3
+        ],
+        "turn": 35
+      },
+      "candidate_margin": -133,
+      "candidate_opponent_score": 313,
+      "candidate_period2": 3,
+      "candidate_policy_score": 180,
+      "candidate_wood": 45,
+      "margin_delta": 0,
+      "seat": 0,
+      "seed": 2
+    },
+    {
+      "baseline_catastrophe": false,
+      "baseline_first_train": {
+        "spec": [
+          1,
+          2,
+          0,
+          2
+        ],
+        "turn": 10
+      },
+      "baseline_margin": -73,
+      "baseline_opponent_score": 221,
+      "baseline_period2": 2,
+      "baseline_policy_score": 148,
+      "baseline_wood": 37,
+      "candidate_catastrophe": false,
+      "candidate_first_train": {
+        "spec": [
+          1,
+          2,
+          0,
+          2
+        ],
+        "turn": 10
+      },
+      "candidate_margin": -45,
+      "candidate_opponent_score": 177,
+      "candidate_period2": 2,
+      "candidate_policy_score": 132,
+      "candidate_wood": 33,
+      "margin_delta": 28,
+      "seat": 1,
+      "seed": 2
+    },
+    {
+      "baseline_catastrophe": false,
+      "baseline_first_train": {
+        "spec": [
+          2,
+          3,
+          0,
+          2
+        ],
+        "turn": 8
+      },
+      "baseline_margin": 17,
+      "baseline_opponent_score": 239,
+      "baseline_period2": 3,
+      "baseline_policy_score": 256,
+      "baseline_wood": 64,
+      "candidate_catastrophe": false,
+      "candidate_first_train": {
+        "spec": [
+          2,
+          3,
+          0,
+          2
+        ],
+        "turn": 8
+      },
+      "candidate_margin": 13,
+      "candidate_opponent_score": 203,
+      "candidate_period2": 3,
+      "candidate_policy_score": 216,
+      "candidate_wood": 54,
+      "margin_delta": -4,
+      "seat": 0,
+      "seed": 3
+    },
+    {
+      "baseline_catastrophe": false,
+      "baseline_first_train": {
+        "spec": [
+          2,
+          3,
+          0,
+          2
+        ],
+        "turn": 12
+      },
+      "baseline_margin": 26,
+      "baseline_opponent_score": 202,
+      "baseline_period2": 6,
+      "baseline_policy_score": 228,
+      "baseline_wood": 57,
+      "candidate_catastrophe": false,
+      "candidate_first_train": {
+        "spec": [
+          2,
+          3,
+          0,
+          2
+        ],
+        "turn": 12
+      },
+      "candidate_margin": 6,
+      "candidate_opponent_score": 198,
+      "candidate_period2": 4,
+      "candidate_policy_score": 204,
+      "candidate_wood": 51,
+      "margin_delta": -20,
+      "seat": 1,
+      "seed": 3
+    },
+    {
+      "baseline_catastrophe": false,
+      "baseline_first_train": {
+        "spec": [
+          1,
+          3,
+          0,
+          3
+        ],
+        "turn": 16
+      },
+      "baseline_margin": 21,
+      "baseline_opponent_score": 159,
+      "baseline_period2": 4,
+      "baseline_policy_score": 180,
+      "baseline_wood": 45,
+      "candidate_catastrophe": false,
+      "candidate_first_train": {
+        "spec": [
+          1,
+          2,
+          0,
+          2
+        ],
+        "turn": 1
+      },
+      "candidate_margin": 79,
+      "candidate_opponent_score": 21,
+      "candidate_period2": 2,
+      "candidate_policy_score": 100,
+      "candidate_wood": 23,
+      "margin_delta": 58,
+      "seat": 0,
+      "seed": 4
+    },
+    {
+      "baseline_catastrophe": false,
+      "baseline_first_train": {
+        "spec": [
+          1,
+          3,
+          0,
+          3
+        ],
+        "turn": 6
+      },
+      "baseline_margin": 25,
+      "baseline_opponent_score": 219,
+      "baseline_period2": 2,
+      "baseline_policy_score": 244,
+      "baseline_wood": 61,
+      "candidate_catastrophe": false,
+      "candidate_first_train": {
+        "spec": [
+          1,
+          2,
+          0,
+          2
+        ],
+        "turn": 1
+      },
+      "candidate_margin": 139,
+      "candidate_opponent_score": 33,
+      "candidate_period2": 2,
+      "candidate_policy_score": 172,
+      "candidate_wood": 43,
+      "margin_delta": 114,
+      "seat": 1,
+      "seed": 4
+    },
+    {
+      "baseline_catastrophe": false,
+      "baseline_first_train": {
+        "spec": [
+          3,
+          2,
+          0,
+          1
+        ],
+        "turn": 26
+      },
+      "baseline_margin": -16,
+      "baseline_opponent_score": 160,
+      "baseline_period2": 4,
+      "baseline_policy_score": 144,
+      "baseline_wood": 36,
+      "candidate_catastrophe": false,
+      "candidate_first_train": {
+        "spec": [
+          2,
+          1,
+          0,
+          2
+        ],
+        "turn": 12
+      },
+      "candidate_margin": 4,
+      "candidate_opponent_score": 120,
+      "candidate_period2": 2,
+      "candidate_policy_score": 124,
+      "candidate_wood": 31,
+      "margin_delta": 20,
+      "seat": 0,
+      "seed": 5
+    },
+    {
+      "baseline_catastrophe": false,
+      "baseline_first_train": {
+        "spec": [
+          3,
+          1,
+          0,
+          2
+        ],
+        "turn": 1
+      },
+      "baseline_margin": 77,
+      "baseline_opponent_score": 43,
+      "baseline_period2": 2,
+      "baseline_policy_score": 120,
+      "baseline_wood": 30,
+      "candidate_catastrophe": false,
+      "candidate_first_train": {
+        "spec": [
+          2,
+          1,
+          0,
+          2
+        ],
+        "turn": 1
+      },
+      "candidate_margin": 93,
+      "candidate_opponent_score": 47,
+      "candidate_period2": 2,
+      "candidate_policy_score": 140,
+      "candidate_wood": 35,
+      "margin_delta": 16,
+      "seat": 1,
+      "seed": 5
+    },
+    {
+      "baseline_catastrophe": false,
+      "baseline_first_train": {
+        "spec": [
+          3,
+          1,
+          0,
+          2
+        ],
+        "turn": 21
+      },
+      "baseline_margin": -98,
+      "baseline_opponent_score": 186,
+      "baseline_period2": 3,
+      "baseline_policy_score": 88,
+      "baseline_wood": 22,
+      "candidate_catastrophe": true,
+      "candidate_first_train": {
+        "spec": [
+          2,
+          1,
+          0,
+          2
+        ],
+        "turn": 1
+      },
+      "candidate_margin": -114,
+      "candidate_opponent_score": 198,
+      "candidate_period2": 2,
+      "candidate_policy_score": 84,
+      "candidate_wood": 21,
+      "margin_delta": -16,
+      "seat": 0,
+      "seed": 6
+    },
+    {
+      "baseline_catastrophe": true,
+      "baseline_first_train": {
+        "spec": [
+          3,
+          1,
+          0,
+          2
+        ],
+        "turn": 21
+      },
+      "baseline_margin": -106,
+      "baseline_opponent_score": 182,
+      "baseline_period2": 3,
+      "baseline_policy_score": 76,
+      "baseline_wood": 19,
+      "candidate_catastrophe": false,
+      "candidate_first_train": {
+        "spec": [
+          2,
+          1,
+          0,
+          2
+        ],
+        "turn": 1
+      },
+      "candidate_margin": -58,
+      "candidate_opponent_score": 142,
+      "candidate_period2": 2,
+      "candidate_policy_score": 84,
+      "candidate_wood": 21,
+      "margin_delta": 48,
+      "seat": 1,
+      "seed": 6
+    },
+    {
+      "baseline_catastrophe": false,
+      "baseline_first_train": {
+        "spec": [
+          2,
+          2,
+          0,
+          2
+        ],
+        "turn": 20
+      },
+      "baseline_margin": 34,
+      "baseline_opponent_score": 126,
+      "baseline_period2": 3,
+      "baseline_policy_score": 160,
+      "baseline_wood": 40,
+      "candidate_catastrophe": false,
+      "candidate_first_train": {
+        "spec": [
+          2,
+          1,
+          0,
+          2
+        ],
+        "turn": 10
+      },
+      "candidate_margin": -17,
+      "candidate_opponent_score": 177,
+      "candidate_period2": 3,
+      "candidate_policy_score": 160,
+      "candidate_wood": 40,
+      "margin_delta": -51,
+      "seat": 0,
+      "seed": 7
+    },
+    {
+      "baseline_catastrophe": false,
+      "baseline_first_train": {
+        "spec": [
+          2,
+          2,
+          0,
+          3
+        ],
+        "turn": 28
+      },
+      "baseline_margin": 51,
+      "baseline_opponent_score": 133,
+      "baseline_period2": 4,
+      "baseline_policy_score": 184,
+      "baseline_wood": 46,
+      "candidate_catastrophe": false,
+      "candidate_first_train": {
+        "spec": [
+          2,
+          2,
+          0,
+          2
+        ],
+        "turn": 20
+      },
+      "candidate_margin": 9,
+      "candidate_opponent_score": 143,
+      "candidate_period2": 2,
+      "candidate_policy_score": 152,
+      "candidate_wood": 38,
+      "margin_delta": -42,
+      "seat": 1,
+      "seed": 7
+    }
+  ],
+  "schema": "e7a-half-size-motion-smoke-v1",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "summary": {
+    "catastrophes": {
+      "baseline": 2,
+      "candidate": 2
+    },
+    "maximum_margin_delta": 114,
+    "maximum_period2_target_run": {
+      "baseline": 6,
+      "candidate": 4
+    },
+    "mean_margin_delta": 1.3125,
+    "mean_opponent_score": {
+      "baseline": 156.1875,
+      "candidate": 132.75
+    },
+    "mean_policy_score": {
+      "baseline": 169.3125,
+      "candidate": 147.1875
+    },
+    "mean_policy_wood": {
+      "baseline": 42.25,
+      "candidate": 36.1875
+    },
+    "median_margin_delta": -5.5,
+    "minimum_margin_delta": -61,
+    "same_first_train": 6,
+    "seat_mean_margin_delta": {
+      "0": -7.625,
+      "1": 10.25
+    }
+  }
+}

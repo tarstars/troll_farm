@@ -1,0 +1,73 @@
+{
+  "arm": "FOCUSED_YAMO_FIXED_CARRYING_CHOPPER",
+  "baseline_sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595",
+  "candidate_bytes": 30287,
+  "candidate_sha256": "0293f9ad015690cbe0888a7f3b1f7ef75e707e5ecdbd68a1c514676e09f07254",
+  "evidence_boundary": "development arm; size eligibility does not imply qualification",
+  "identifier_renaming": false,
+  "logical_change": "retain focused Yamo and exact Moisan behavior while replacing the map-wide opening-profile search with a fixed movement-2 carry-2 chop-2 worker",
+  "minification": false,
+  "removed_or_replaced_items": [
+    {
+      "bytes": 57,
+      "marker": "enum OrchardPhase"
+    },
+    {
+      "bytes": 102,
+      "marker": "struct OrchardGeometry"
+    },
+    {
+      "bytes": 54,
+      "marker": "struct OrchardCycle"
+    },
+    {
+      "bytes": 302,
+      "marker": "pub struct SecureOrchardBot"
+    },
+    {
+      "bytes": 10241,
+      "marker": "impl SecureOrchardBot"
+    },
+    {
+      "bytes": 3373,
+      "marker": "impl Bot for SecureOrchardBot"
+    },
+    {
+      "bytes": 260,
+      "marker": "pub struct YamoOpeningPolicy"
+    },
+    {
+      "bytes": 243,
+      "marker": "impl YamoOpeningPolicy"
+    },
+    {
+      "bytes": 55,
+      "marker": "struct OpeningObjective"
+    },
+    {
+      "marker": "pub struct YamoBot",
+      "net_removed_bytes": 383,
+      "replacement_bytes": 117
+    },
+    {
+      "marker": "impl YamoBot",
+      "net_removed_bytes": 14158,
+      "replacement_bytes": 8122
+    },
+    {
+      "marker": "impl Bot for YamoBot",
+      "net_removed_bytes": 124,
+      "replacement_bytes": 2872
+    },
+    {
+      "bytes": 140,
+      "marker": "pub fn item_index(self)"
+    },
+    {
+      "marker": "fn choose_second_troll(",
+      "net_removed_bytes": 2880,
+      "replacement_bytes": 259
+    }
+  ],
+  "schema": "troll-farm-e7a-development-ablation/1"
+}
