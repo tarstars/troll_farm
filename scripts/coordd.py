@@ -247,3 +247,51 @@ class Store:
             row = con.execute("SELECT seq FROM events WHERE idempotency_key=?",
                               (idempotency_key,)).fetchone()
             return row[0]
+
+    def add_event(self, actor, type_, task_id=None, payload=None,
+                  idempotency_key=None):
+        with self._tx() as con:
+            seq = self._event(con, type_, actor, task_id, payload, idempotency_key)
+        return {"seq": seq}
+
+    def events(self, since=0):
+        con = self._read()
+        try:
+            rows = con.execute(
+                "SELECT * FROM events WHERE seq > ? ORDER BY seq", (since,)).fetchall()
+            out = []
+            for r in rows:
+                d = dict(r)
+                d["payload"] = json.loads(d["payload"])
+                out.append(d)
+            return out
+        finally:
+            con.close()
+
+    def ack(self, agent, event_seq):
+        with self._tx() as con:
+            if con.execute("SELECT 1 FROM events WHERE seq=?",
+                           (event_seq,)).fetchone() is None:
+                raise NotFound(f"no event {event_seq}")
+            con.execute("INSERT OR IGNORE INTO acks VALUES(?,?,?)",
+                        (event_seq, agent, self._now_iso()))
+        return {"ok": True}
+
+    def add_review(self, task_id, reviewer, verdict, evidence=None,
+                   artifact_generation=None):
+        with self._tx() as con:
+            con.execute(
+                "INSERT INTO reviews(task_id, reviewer, verdict, evidence,"
+                " artifact_generation, server_time) VALUES(?,?,?,?,?,?)",
+                (task_id, reviewer, verdict, evidence, artifact_generation,
+                 self._now_iso()))
+            self._event(con, "review", reviewer, task_id, {"verdict": verdict})
+        return {"ok": True}
+
+    def reviews(self, task_id):
+        con = self._read()
+        try:
+            return [dict(r) for r in con.execute(
+                "SELECT * FROM reviews WHERE task_id=? ORDER BY id", (task_id,))]
+        finally:
+            con.close()

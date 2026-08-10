@@ -159,3 +159,35 @@ def test_release_clears_lease_and_sets_state(tmp_path):
     assert store.tasks(state="review")[0]["id"] == "t1"
     _reg(store, "a2")
     store.claim("a2", "t1", ["docs/x"])                       # lease is free again
+
+
+def test_event_idempotency_and_order(tmp_path):
+    store = mkstore(tmp_path)
+    _reg(store, "a1")
+    s1 = store.add_event("a1", "note", payload={"n": 1}, idempotency_key="k1")["seq"]
+    s2 = store.add_event("a1", "note", payload={"n": 1}, idempotency_key="k1")["seq"]
+    s3 = store.add_event("a1", "note", payload={"n": 2})["seq"]
+    assert s1 == s2 and s3 > s1
+    seqs = [e["seq"] for e in store.events(since=0)]
+    assert seqs == sorted(seqs) and len([e for e in store.events()
+                                         if e["type"] == "note"]) == 2
+
+
+def test_ack_exact_and_duplicate_harmless(tmp_path):
+    import pytest
+    store = mkstore(tmp_path)
+    _reg(store, "a1", "a2")
+    seq = store.add_event("a1", "question", payload={})["seq"]
+    assert store.ack("a2", seq) == {"ok": True}
+    assert store.ack("a2", seq) == {"ok": True}
+    with pytest.raises(coordd.NotFound):
+        store.ack("a2", 99999)
+
+
+def test_reviews_roundtrip(tmp_path):
+    store = mkstore(tmp_path)
+    store.create_task("t1", "demo")
+    store.add_review("t1", "codex_1", "REVISION_REQUIRED",
+                     evidence="claude_1/x.md", artifact_generation=2)
+    got = store.reviews("t1")
+    assert got[0]["verdict"] == "REVISION_REQUIRED" and got[0]["reviewer"] == "codex_1"
