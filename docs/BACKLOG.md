@@ -114,6 +114,24 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > treatment, conditioned versus identical-always-on versus unchanged control, can
 > establish value.**
 
+## P0 — OWNER RULE 2026-08-10: no banana before the second troll
+
+- ★★★ **STRICT, BINDING, INTERIM.** *"no banana manipulation before train the second troll"* —
+  threshold 0, no exemption. This is detector **D-9 branch (a)** `banana_before_train`. It
+  **dissolves** the D-9 affordability question that had blocked bite-test blocker 3 and had been
+  unowned since `local_codex_1` went dormant: there is no affordable delay to price when the
+  permitted count is zero. Recorded in `docs/CONSTRAINTS.md` §(h).
+  **Still open:** D-9 paired branches (b) `train_late`, (c) `train_missing`,
+  (d) `train_stats_differ` carry a stale pre-c5 `INSTRUMENT_UNSUPPORTED` label and need
+  recalibration; they guard TRAIN displacement by non-banana routes.
+  ⚠ **New top item in the bite-test audit:** the rule rests on the *least-verified* of the four
+  branches — row (a) is `UNPINNED` with **D9-M1/M2/M3 all SURVIVED**. A strict rule policed by a
+  detector that misses three mutations of itself is a rule in name only. **Pinning row (a) now
+  outranks recalibrating (b)–(d).**
+  **Consequence for CBF:** any banana farm that plants while `own_units == 1` is rejected
+  outright, regardless of later score. Check the `DENY → FARM → WOOD` machine's entry condition
+  against this before implementing.
+
 ## P0 — MEASUREMENT: the noise band (opened 2026-08-10)
 
 - **σ MEASUREMENT — PROPOSED, UNOWNED, NEEDS AN OWNER DECISION.**

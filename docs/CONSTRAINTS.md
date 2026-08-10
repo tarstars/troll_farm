@@ -839,6 +839,26 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 
 ## (h) Meta-lessons
 
+- ★★★ **OWNER RULE 2026-08-10, STRICT AND BINDING: NO BANANA MANIPULATION BEFORE THE SECOND
+  TROLL IS TRAINED.** Owner wording: *"For now I want to set strict rule 'no banana manipulation
+  before train the second troll'."* Threshold **0**, no exemption, no affordability trade.
+  Operationally this is detector **D-9 branch (a)** `banana_before_train`: any `PLANT`/`PICK
+  BANANA` issued before the candidate's first `TRAIN` while `|own units| == 1` is a **blocking**
+  violation. Marked "for now" by the owner — interim, revisable, but binding while it stands.
+  **What it settles:** the D-9 affordability question, which had been referred out of
+  `codex_1`'s gate review and left unowned when `local_codex_1` went dormant, is **dissolved
+  rather than answered** — there is no affordable delay to price, because the permitted number
+  of pre-TRAIN banana commands is zero. Blocker 3's semantics dependency is discharged.
+  **What it does NOT settle:** D-9's paired branches (b) `train_late`, (c) `train_missing`,
+  (d) `train_stats_differ` still carry a stale `INSTRUMENT_UNSUPPORTED` label from before c5 and
+  still need recalibration. They catch TRAIN displacement by routes other than bananas.
+  ⚠ **The rule now rests on the least-verified branch of the four.** Row (a) is
+  `impl_validity: UNPINNED`, and per the audit ledger **D9-M1, D9-M2 and D9-M3 all SURVIVED**
+  mutation (only D9-M4 was caught). The detector that enforces this rule currently fails to
+  notice three separate mutations of itself. **A strict rule policed by an unpinned detector is
+  a rule in name only** — pinning row (a) is now the highest-priority item in the bite-test
+  audit, ahead of recalibrating (b)–(d). [owner ruling; D-9; bite-test r2 blocker 3]
+
 - ★★ **EVERY PUBLISHED COUNT NAMES ITS UNIT — standing rule, added 2026-08-12 from repeated
   cost.** A bare integer in an artifact, message, table or commit message is not a measurement;
   the unit is part of the value. Write "74 side-games with at least one D-9 record" or
