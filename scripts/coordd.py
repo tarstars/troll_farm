@@ -119,3 +119,93 @@ class Store:
                 (agent, role, tool_digest, protocol_version,
                  json.dumps(list(capabilities)), self._now_iso(), compatible))
         return {"agent": agent, "compatible": bool(compatible)}
+
+    def create_task(self, task_id, title, priority=2):
+        now = self._now_iso()
+        with self._tx() as con:
+            con.execute(
+                "INSERT INTO tasks(id, title, state, priority, created, updated)"
+                " VALUES(?,?,?,?,?,?)",
+                (task_id, title, "open", priority, now, now))
+        return {"task_id": task_id, "state": "open"}
+
+    def set_state(self, task_id, state, actor):
+        if state not in TASK_STATES:
+            raise CoordError(f"unknown state {state!r}; allowed: {TASK_STATES}")
+        with self._tx() as con:
+            cur = con.execute("UPDATE tasks SET state=?, updated=? WHERE id=?",
+                              (state, self._now_iso(), task_id))
+            if cur.rowcount == 0:
+                raise NotFound(f"no task {task_id!r}")
+            self._event(con, "state", actor, task_id, {"state": state})
+        return {"task_id": task_id, "state": state}
+
+    def tasks(self, state=None):
+        con = self._read()
+        try:
+            q = "SELECT * FROM tasks" + (" WHERE state=?" if state else "")
+            rows = con.execute(q, (state,) if state else ()).fetchall()
+            return [dict(r) for r in rows]
+        finally:
+            con.close()
+
+    @staticmethod
+    def _overlap(a, b):
+        return a.startswith(b) or b.startswith(a)
+
+    def _require_agent(self, con, agent):
+        row = con.execute("SELECT compatible FROM agents WHERE id=?",
+                          (agent,)).fetchone()
+        if row is None or not row[0]:
+            raise Denied(f"agent {agent!r} not registered as compatible"
+                         f" (protocol {self.PROTOCOL_VERSION} required)")
+
+    def claim(self, agent, task_id, prefixes, idempotency_key=None):
+        if not prefixes:
+            raise CoordError("a claim must declare at least one write-set prefix")
+        now = self._now_iso()
+        with self._tx() as con:
+            self._require_agent(con, agent)
+            trow = con.execute("SELECT id FROM tasks WHERE id=?", (task_id,)).fetchone()
+            if trow is None:
+                raise NotFound(f"no task {task_id!r}")
+            lease = con.execute(
+                "SELECT owner, generation, expires FROM leases WHERE task_id=?",
+                (task_id,)).fetchone()
+            if lease and lease[2] > now and lease[0] != agent:
+                raise Conflict(f"task {task_id!r} owned by {lease[0]}"
+                               f" until {lease[2]} (gen {lease[1]})")
+            for other_task, prefix in con.execute(
+                    "SELECT l.task_id, tp.prefix FROM leases l"
+                    " JOIN task_paths tp ON tp.task_id = l.task_id"
+                    " WHERE l.task_id != ? AND l.expires > ?", (task_id, now)):
+                if any(self._overlap(p, prefix) for p in prefixes):
+                    raise Conflict(f"write-set overlap: {prefix!r} held by"
+                                   f" active task {other_task!r}")
+            gen = (lease[1] + 1) if lease else 1
+            expires = (self._now() + timedelta(seconds=self.LEASE_TTL)) \
+                .strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+            con.execute("INSERT OR REPLACE INTO leases VALUES(?,?,?,?,?)",
+                        (task_id, agent, gen, expires, now))
+            con.execute("DELETE FROM task_paths WHERE task_id=?", (task_id,))
+            con.executemany("INSERT INTO task_paths VALUES(?,?)",
+                            [(task_id, p) for p in prefixes])
+            con.execute("UPDATE tasks SET state='claimed', owner=?, updated=?"
+                        " WHERE id=?", (agent, now, task_id))
+            self._event(con, "claim", agent, task_id,
+                        {"generation": gen, "prefixes": list(prefixes)},
+                        idempotency_key)
+        return {"task_id": task_id, "generation": gen, "expires": expires}
+
+    def _event(self, con, type_, actor, task_id, payload, idempotency_key=None):
+        try:
+            cur = con.execute(
+                "INSERT INTO events(server_time, type, actor, task_id, payload,"
+                " idempotency_key) VALUES(?,?,?,?,?,?)",
+                (self._now_iso(), type_, actor, task_id,
+                 json.dumps(payload or {}), idempotency_key))
+            return cur.lastrowid
+        except sqlite3.IntegrityError:
+            row = con.execute("SELECT seq FROM events WHERE idempotency_key=?",
+                              (idempotency_key,)).fetchone()
+            return row[0]
