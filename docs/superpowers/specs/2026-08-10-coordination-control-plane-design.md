@@ -36,6 +36,17 @@ rules requiring memory are not.
 Nothing is hand-mirrored between homes. Anything that describes live state (dashboard,
 roster views, "who is doing what") is a query against `coordd`, never a maintained file.
 
+Provenance note (verified 2026-08-10 against the public repo): the first two rows follow
+Unagi's split; the third row does **not** describe Unagi. Their six humans pushed ~779
+commits directly to `main` with no review gate, and their coordination system governed
+task dispatch, not merge rights. The integrator row is Troll Farm's own existing rule,
+retained on the review's explicit recommendation ("the project can retain its existing
+single-integrator rule"), because the trust model differs: long-running LLM agents with
+one documented fabricated acceptance, a byte-sacred source, hash-locked experiment
+records, and a single Arena slot make a human-controlled integration gate load-bearing
+rather than overhead. Today that rule is convention only (`main` is unprotected, no CI);
+P3 is what makes it enforced.
+
 ## 3. The service
 
 **Runtime.** `coordd`: a single-file Python 3.10+ service, standard library only
