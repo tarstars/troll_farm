@@ -114,6 +114,47 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > treatment, conditioned versus identical-always-on versus unchanged control, can
 > establish value.**
 
+## P0 — OWNER RULE 2026-08-10: no banana before the second troll
+
+- ★★★ **STRICT, BINDING, INTERIM.** *"no banana manipulation before train the second troll"* —
+  threshold 0, no exemption. This is detector **D-9 branch (a)** `banana_before_train`. It
+  **dissolves** the D-9 affordability question that had blocked bite-test blocker 3 and had been
+  unowned since `local_codex_1` went dormant: there is no affordable delay to price when the
+  permitted count is zero. Recorded in `docs/CONSTRAINTS.md` §(h).
+  **Still open:** D-9 paired branches (b) `train_late`, (c) `train_missing`,
+  (d) `train_stats_differ` carry a stale pre-c5 `INSTRUMENT_UNSUPPORTED` label and need
+  recalibration; they guard TRAIN displacement by non-banana routes.
+  ⚠ **New top item in the bite-test audit:** the rule rests on the *least-verified* of the four
+  branches — row (a) is `UNPINNED` with **D9-M1/M2/M3 all SURVIVED**. A strict rule policed by a
+  detector that misses three mutations of itself is a rule in name only. **Pinning row (a) now
+  outranks recalibrating (b)–(d).**
+  **Consequence for CBF:** any banana farm that plants while `own_units == 1` is rejected
+  outright, regardless of later score. Check the `DENY → FARM → WOOD` machine's entry condition
+  against this before implementing.
+
+## P0 — MEASUREMENT: the noise band (opened 2026-08-10)
+
+- **σ MEASUREMENT — PROPOSED, UNOWNED, NEEDS AN OWNER DECISION.**
+  `coordination/tasks/20260810-arena-noise-band-measurement.md`. The owner removed the
+  noise-band gate on candidates 2026-08-12, which makes measurement throughput the binding
+  constraint and σ the number every promotion argument rests on. Already measured from existing
+  data by `cgauto/arena_noise_band.py`: **pooled within-source SD 1.098, CI [0.707, 2.418]**,
+  4 families / **10 deployments** (corrected 2026-08-10 from a first pass that counted 13
+  observation rows, three being second checkpoints of one run — a unit error in the tool written
+  to quantify unit errors). The ±0.5–1 band was understated, modestly. **Question 1 answered at
+  zero Arena cost: 10 distinct deployments of 4 byte-identical sources produced zero duplicate
+  scores, so the platform does not seed from the source hash and re-submission draws a real
+  sample.** **What is still unknown is the decision-relevant part:** all
+  13 observations are *blocked in time*, so within-source variance and ladder drift are
+  permanently confounded and no number of additional blocked runs separates them. Only
+  interleaved A/B/A/B does. A mature read now costs **~2 h**, not days. At σ ≈ 0.96 an A-vs-B
+  difference needs 10 runs per arm for SE 0.5. **Blocking question before spending anything:
+  does re-submitting an identical source draw an independent sample, or does the platform seed
+  from the source hash?** If the latter, Phase 1 measures nothing. No Arena action authorized.
+  **Consequence for everything below:** every closed experiment here was judged against a gate
+  in score points (±0.5, ≥+1.0, ≥+2). At σ ≈ 1.10 a single mature read cannot resolve any of
+  them (difference SD 1.55 at n=1 per arm). This does not reopen past calls; it determines whether future ones are decidable.
+
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
 Iteration 1 (H1/H3/H5/H8/H13 + the review cycle) closed five hypotheses in a day and
