@@ -14,9 +14,9 @@ Also binding:
 
 Scope: **audit only.** No detector, test, gate, harness, candidate, parent, host
 run, value protocol, TestSession, submission, restore or Arena state was
-modified or is authorized to be. `trace_detectors.py` and
-`test_trace_detectors.py` were read and executed, never edited; their semantics
-belong to `local_claude_1` and every finding below is **referred, not fixed**.
+modified or is authorized to be. `trace_detectors.py` was read and executed and is **never edited** — its semantics belong to `local_claude_1` and every finding below is **referred, not fixed**.
+
+**Scope amendment, 2026-08-10.** `test_trace_detectors.py` was edited once, under `local_claude_1`'s explicit invitation in `20260810T070000Z`, to add three negative pinning tests for D-9 (a) after the owner made that branch binding. **The detector was not touched**: the tests assert existing behaviour and were each verified to flip their own mutant to FAIL before being written, so they pin the predicate rather than change it. This is recorded here because the original scope sentence said these files were never edited, and a scope statement that has quietly stopped being true is worse than one that was never made.
 Mutations are applied only to copies under a scratch work root created by the
 committed runner.
 
@@ -633,7 +633,7 @@ only).
 | D-8 (f) oracle growth-aware chop count | SPEC Revision 2026-08-05; round-3 host review | helper assertion `:387-396` only; **D8-M9 SURVIVED, PROBE_SENSITIVE** | NO_FIXTURE at detector level | APPLICABLE | UNRESOLVED |
 | D-8 (g) oracle strict-tie `<` | `conversion_race_oracle.py:46-50` | none; D8-M3 SURVIVED, UNWITNESSED | NO_FIXTURE | APPLICABLE | UNRESOLVED |
 | D-8 (h) health-decrease confirmation (`:1154`) | A9 | none; **D8-M11 SURVIVED, PROBE_SENSITIVE** (reporting field only) | NO_FIXTURE | APPLICABLE | UNRESOLVED |
-| D-9 (a) single-trace `banana_before_train` (`:1189-1203`) | SPEC D-9, A10 | trigger `:484`, near-miss `:497` (breaks at `:1190`); **D9-M1, D9-M2, D9-M3 SURVIVED, PROBE_SENSITIVE**; D9-M4 CAUGHT | UNPINNED | **INSTRUMENT_UNSUPPORTED** (proxy retired, RULING §3) | GATE_UNREADY (§6) |
+| D-9 (a) single-trace `banana_before_train` (`:1189-1203`) | SPEC D-9, A10 | trigger `:484`, near-miss `:497`; **D9-M1, D9-M2, D9-M3, D9-M4 all CAUGHT, PROBE_SENSITIVE** — pinned 2026-08-10 by three negative tests added after the owner made this branch binding | PINNED | **INSTRUMENT_UNSUPPORTED** (proxy retired, RULING §3) | GATE_UNREADY (§6) |
 | D-9 (b) `train_late` (`:1214`) | SPEC D-9, I-16..I-18 | none — needs `--parent-commands-file` | NO_FIXTURE | **INSTRUMENT_UNSUPPORTED** (RULING §3) | GATE_UNREADY |
 | D-9 (c) `train_missing` (`:1211`) | SPEC D-9, I-16..I-18 | none | NO_FIXTURE | **INSTRUMENT_UNSUPPORTED** | GATE_UNREADY |
 | D-9 (d) `train_stats_differ` (`:1218`) | SPEC D-9, I-16..I-18 | none | NO_FIXTURE | **INSTRUMENT_UNSUPPORTED** | GATE_UNREADY |
@@ -644,7 +644,7 @@ only).
 |---|---|
 | applicability | 43 `APPLICABLE`, 4 `INSTRUMENT_UNSUPPORTED` (all D-9) |
 | contract authority | 45 `SETTLED`, 2 `CONFLICT` (D-6 (a1), D-6 (a2)) |
-| implementation validity | 11 `PINNED`, 5 `PARTIAL`, 9 `UNPINNED`, 22 `NO_FIXTURE` |
+| implementation validity | 12 `PINNED`, 5 `PARTIAL`, 8 `UNPINNED`, 22 `NO_FIXTURE` |
 | truth validity | 6 `GATE_UNREADY` (D-6 (a1), D-6 (a2), D-9 (a)–(d)), 41 `UNRESOLVED` |
 | definitional conformance | 1 `IDENTICAL_TO_SPEC` (D-5 (a) I-12 Ring geometry), 46 `NOT_APPLICABLE` |
 

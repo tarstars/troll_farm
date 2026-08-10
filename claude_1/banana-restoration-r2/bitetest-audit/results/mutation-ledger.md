@@ -1,7 +1,7 @@
 # Mutation ledger (generated — do not hand-edit)
 
 Source: `results/mutation-results.json`  
-manifest sha256 `e9d0c130c447667e3e374ba32f7b640112194b547a64ef123721d41bcfcdca22`  
+manifest sha256 `8d5ff843d426316d68113d515a5ed3830930554d40c1c58c0ef60a92fa93351e`  
 runner sha256 `2df817f2b85ac6d14216fea58085fee38d43b4539b22342d87b8fa2aa359309f`  
 probe corpus sha256 `9afe7f3cf3cb073158e67226ddbed31a750cda19900fc031853195cb8b0f3ddb`  
 python 3.12.3, control green: True
@@ -9,10 +9,10 @@ python 3.12.3, control green: True
 Pinned sources:
 
 - `conversion_race_oracle.py` sha256 `e0896e3f7cb2c7ac4ced35350469d704432f8c7a1a8a4c9c4ce41495ca13ecf7`
-- `test_trace_detectors.py` sha256 `b7ab897b1411f38cee61fedc4313ac72ed6ecd54ba5f794651f398a59d9e0079`
+- `test_trace_detectors.py` sha256 `79f7c18bba2784ca0d1831bc2fcbb5ba3aef954c34d33a1fcf6a8ddb781cb41c`
 - `trace_detectors.py` sha256 `59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209`
 
-Totals: **64 mutants run, 21 caught, 43 survived** (kill rate 32.8 %). `caught_by_expected` = 21; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 15 UNWITNESSED; PROBE_SENSITIVE survivors = 30.
+Totals: **64 mutants run, 24 caught, 40 survived** (kill rate 37.5 %). `caught_by_expected` = 24; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 15 UNWITNESSED; PROBE_SENSITIVE survivors = 27.
 
 ## Per detector
 
@@ -26,8 +26,8 @@ Totals: **64 mutants run, 21 caught, 43 survived** (kill rate 32.8 %). `caught_b
 | D-6 | 9 | 2 | 2 | 7 | 6 | 22 % |
 | D-7 | 8 | 1 | 1 | 7 | 7 | 12 % |
 | D-8 | 11 | 6 | 6 | 5 | 2 | 55 % |
-| D-9 | 4 | 1 | 1 | 3 | 3 | 25 % |
-| **all** | **64** | **21** | **21** | **43** | **30** | **32.8 %** |
+| D-9 | 4 | 4 | 4 | 0 | 0 | 100 % |
+| **all** | **64** | **24** | **24** | **40** | **27** | **37.5 %** |
 
 ## Full ledger
 
@@ -95,10 +95,10 @@ Totals: **64 mutants run, 21 caught, 43 survived** (kill rate 32.8 %). `caught_b
 | D8-M9 | D-8 | `conversion_race_oracle.py` | SURVIVED | PROBE_SENSITIVE | growth-aware exact_chop_turns -> static ceil(health/chop) inside CONVERSION_RACE_ORACLE (the round-3 host-review counterexample) |
 | D8-M10 | D-8 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | exemption conjunction 'lost AND race_won' -> disjunction |
 | D8-M11 | D-8 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | health-decrease confirmation of an executed chop deleted |
-| D9-M1 | D-9 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | \|own units\| == 1 qualifying guard deleted |
+| D9-M1 | D-9 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | \|own units\| == 1 qualifying guard deleted |
 | D9-M4 | D-9 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | \|own units\| == 1 qualifying guard -> == 7 |
-| D9-M2 | D-9 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | banana-attributable restriction widened to any resource argument |
-| D9-M3 | D-9 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | ordering boundary t >= first_train -> t > first_train |
+| D9-M2 | D-9 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | banana-attributable restriction widened to any resource argument |
+| D9-M3 | D-9 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | ordering boundary t >= first_train -> t > first_train |
 
 ## Entries excluded from the totals
 

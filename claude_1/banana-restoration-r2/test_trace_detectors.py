@@ -494,6 +494,70 @@ class TestD9(unittest.TestCase):
         self.assertEqual(ep["kind"], "banana_before_train")
         self.assertEqual(ep["turn_start"], 1)
 
+    # ---- pinning tests for the branch the owner made binding 2026-08-10 ----
+    # "No banana manipulation before training the second troll" is a STRICT
+    # rule with threshold 0, and it is policed by this branch alone. Three
+    # mutations of this branch's own implementation survived the suite
+    # (D9-M1, D9-M2, D9-M3), so the rule was enforced by a detector nobody had
+    # shown could tell right from wrong. Each test below is a NEGATIVE case:
+    # the detector must stay silent, and each corresponding mutation makes it
+    # speak. Verified by applying each manifest mutation and confirming the
+    # fixture flips to FAIL.
+
+    def test_no_episode_when_more_than_one_own_unit_holds_a_banana(self):
+        """Kills D9-M1 (`|own units| == 1` guard deleted).
+
+        The rule is about the FIRST worker: once a second troll exists there is
+        nothing left to displace. Without the guard the detector would flag
+        banana handling for the whole game.
+        """
+        blocks = [
+            turn_block([unit(0, 0, DOOR), unit(2, 0, (4, 4))],
+                       inv0=carry_of(banana=2)),
+            turn_block([unit(0, 0, DOOR, carry=carry_of(banana=1)),
+                        unit(2, 0, (4, 4))], inv0=carry_of(banana=1)),
+        ]
+        tr = make_trace(blocks, ["PICK 0 BANANA;WAIT", "WAIT"])
+        res = td.detect_d9(tr)
+        self.assertEqual(res["verdict"], "PASS")
+        self.assertEqual(res["episodes"], [])
+
+    def test_no_episode_for_a_non_banana_resource_before_train(self):
+        """Kills D9-M2 (banana restriction widened to any resource argument).
+
+        The owner's rule names bananas. A single worker picking WOOD before
+        TRAIN violates nothing, and a detector that flagged it would make the
+        strict rule unmeetable rather than strict.
+        """
+        blocks = [
+            turn_block([unit(0, 0, DOOR)], inv0=carry_of(wood=2)),
+            turn_block([unit(0, 0, DOOR, carry=carry_of(wood=1))],
+                       inv0=carry_of(wood=1)),
+        ]
+        tr = make_trace(blocks, ["PICK 0 WOOD", "WAIT"])
+        res = td.detect_d9(tr)
+        self.assertEqual(res["verdict"], "PASS")
+        self.assertEqual(res["episodes"], [])
+
+    def test_no_episode_when_the_banana_command_shares_the_train_turn(self):
+        """Kills D9-M3 (ordering boundary `t >= first_train` -> `t > first_train`).
+
+        "Before TRAIN" excludes the TRAIN turn itself: a banana command issued
+        on the same turn the second troll is trained is not *before* it. The
+        mutation shifts that boundary by one turn, which is the single most
+        likely way for this branch to be silently wrong -- and exactly the
+        games-vs-episodes class of boundary error this programme keeps hitting.
+        """
+        blocks = [
+            turn_block([unit(0, 0, DOOR)], inv0=carry_of(banana=2)),
+            turn_block([unit(0, 0, DOOR, carry=carry_of(banana=1)),
+                        unit(2, 0, (4, 4))], inv0=carry_of(banana=1)),
+        ]
+        tr = make_trace(blocks, ["TRAIN 1 1 1 1;PICK 0 BANANA", "WAIT"])
+        res = td.detect_d9(tr)
+        self.assertEqual(res["verdict"], "PASS")
+        self.assertEqual(res["episodes"], [])
+
     def test_near_miss_train_issued_first(self):
         blocks = [
             turn_block([unit(0, 0, DOOR)], inv0=carry_of(banana=2)),

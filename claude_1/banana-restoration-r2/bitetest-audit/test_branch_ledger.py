@@ -62,7 +62,7 @@ class BranchLedger(unittest.TestCase):
         """The other direction: the document drifts, the data does not."""
         with open(rbl.AUDIT, encoding="utf-8") as fh:
             text = fh.read()
-        tampered = text.replace("11 `PINNED`", "12 `PINNED`", 1)
+        tampered = text.replace("12 `PINNED`", "13 `PINNED`", 1)
         self.assertNotEqual(tampered, text, "precondition: the tally is present")
         with mock.patch("builtins.open", mock.mock_open(read_data=tampered)):
             self.assertEqual(rbl.check(_doc_cached), 2)
