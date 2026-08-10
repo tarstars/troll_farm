@@ -741,6 +741,85 @@ def test_my_own_malformed_ack_for_does_not_crash_the_sweep(repo):
     assert "malformed ack_for and acknowledges nothing" in result.stdout
 
 
+def test_non_ack_kind_discharges_exactly_its_declared_target(repo):
+    """RQ-1: the positive case the whole change exists for, and it had no test.
+
+    `collect_my_acks` now honours `ack_for` on every kind, not only `ack` -- a
+    `handoff` that acks the request it answers, or a `policy` that acks the
+    question it rules on, discharges its declared targets. The only test added
+    with that change covered the MALFORMED case, so the crash fix was guarded
+    and the feature itself was not (codex_1 second review, RQ-1).
+
+    Exactness matters as much as discharge: a kind that swept up same-task
+    messages it never named would silently clear real obligations, which is the
+    objection the change had to answer.
+    """
+    q1 = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "question")
+    q2 = publish_v2(repo, PEER, "20260805T100100Z", "task-a", "question")
+    # A `policy`, not a `handoff`: handoffs additionally require artifact_ref /
+    # artifact_commit / artifact_paths, and an incomplete one is invalid and
+    # would acknowledge nothing -- which is a different code path from the one
+    # under test. `policy` is also the real case: three of my own rulings
+    # carried ack_for on that kind.
+    publish_v2(repo, ME, "20260805T110000Z", "task-a", "policy", to=PEER,
+               ack_for=(q1,))
+
+    result = repo.sweep("--me", ME)
+    c = counts(result.stdout)
+    assert c["delivery errors"] == 0
+    # q1 discharged by the handoff; q2 named nowhere and still outstanding.
+    assert c["unacknowledged, ack required"] == 1
+    assert q2 in result.stdout.split("unacknowledged")[1]
+    assert q1 not in result.stdout.split("unacknowledged")[1]
+
+
+def test_tool_drift_warns_on_mismatch_and_is_quiet_when_in_sync(repo):
+    """RQ-2: `tool_drift()` had only manual verification, which is not a test.
+
+    I checked it by hand in both directions and reported that as evidence --
+    the same uncommitted-control pattern this programme keeps criticising.
+
+    The precondition has to be BUILT: `tool_drift()` compares the running file
+    against `origin/main:scripts/inbox_sweep.py`, and the fixture never
+    published `scripts/` at all, so the comparison silently returns None and
+    every assertion about it would have been vacuous. Writing this test without
+    noticing that would have produced a guard that cannot fail -- exactly the
+    defect under review.
+    """
+    running = pathlib.Path(inbox_sweep.__file__).read_text()
+
+    # In sync: origin/main carries byte-identical source.
+    repo.commit("main", {"scripts/inbox_sweep.py": running})
+    assert "TOOL DRIFT" not in repo.sweep("--me", ME).stdout
+
+    # Drifted: origin/main carries a different byte sequence.
+    repo.commit("main", {"scripts/inbox_sweep.py": running + "\n# newer\n"})
+    drifted = repo.sweep("--me", ME)
+    assert "TOOL DRIFT" in drifted.stdout
+    assert "MAY BE WRONG" in drifted.stdout
+
+
+def test_unexpected_failure_exits_2_not_1(monkeypatch, capsys):
+    """RQ-3: exit 1 means "healthy, you have mail" -- a crash must not claim it.
+
+    An uncaught traceback exits 1 in Python, colliding exactly with this
+    protocol's "healthy inbox with unacknowledged messages", so anything gating
+    on exit status would read a crash as a normal result. The wrapper was added
+    on that argument and never exercised, because it lived inline in the
+    `__main__` block where no test could reach it. It is now `run_cli()`.
+    """
+    def boom() -> int:
+        raise RuntimeError("simulated unexpected failure")
+
+    monkeypatch.setattr(inbox_sweep, "main", boom)
+    assert inbox_sweep.run_cli() == 2, "a crash must not exit 1"
+    assert "sweep FAILED" in capsys.readouterr().err
+
+    # And a normal exit code is passed through untouched.
+    monkeypatch.setattr(inbox_sweep, "main", lambda: 1)
+    assert inbox_sweep.run_cli() == 1
+
+
 def test_empty_ack_for_on_ack_and_empty_supersedes_on_correction_fail(repo):
     publish_v2(repo, PEER, "20260805T100000Z", "task-a", "ack",
                requires_ack=False)  # empty ack_for

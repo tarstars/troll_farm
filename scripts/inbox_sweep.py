@@ -1276,17 +1276,25 @@ def main() -> int:
     return 1 if unacked else 0
 
 
-if __name__ == "__main__":
-    # Exit 1 is defined by this protocol as "healthy inbox, unacknowledged
-    # ack-required messages present", so an uncaught traceback -- which Python
-    # also exits 1 -- is indistinguishable from a normal result to anything
-    # gating on exit status, which this project mandates.  Any unexpected
-    # failure is exit 2, the same status every other hard error here uses
-    # (claude_1 execution review, 2026-08-13).
+def run_cli() -> int:
+    """Run main(), mapping any unexpected failure to exit 2.
+
+    Exit 1 is defined by this protocol as "healthy inbox, unacknowledged
+    ack-required messages present", so an uncaught traceback -- which Python
+    also exits 1 -- is indistinguishable from a normal result to anything
+    gating on exit status, which this project mandates.  Any unexpected
+    failure is exit 2, the same status every other hard error here uses
+    (claude_1 execution review, 2026-08-13).
+
+    Extracted from the `__main__` block so it can be tested: inline there it
+    was unreachable by any test, which is how it shipped unexercised
+    (codex_1 second review, RQ-3).
+    """
     try:
-        sys.exit(main())
-    except SystemExit:
-        raise
+        return main()
+    except SystemExit as exc:
+        code = exc.code
+        return code if isinstance(code, int) else (0 if code is None else 1)
     except BaseException:
         traceback.print_exc()
         print(
@@ -1294,4 +1302,8 @@ if __name__ == "__main__":
             "'you have mail' -- no inbox state above should be trusted.",
             file=sys.stderr,
         )
-        sys.exit(2)
+        return 2
+
+
+if __name__ == "__main__":
+    sys.exit(run_cli())
