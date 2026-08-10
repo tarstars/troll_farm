@@ -114,6 +114,28 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > treatment, conditioned versus identical-always-on versus unchanged control, can
 > establish value.**
 
+## P0 — TOOLING INTEGRITY: guards that cannot fail (opened 2026-08-10)
+
+- ★★★ **OWNER-DIRECTED.** `coordination/tasks/20260810-guards-that-cannot-fail.md`. **Seven
+  instances in one week of a check that passes regardless of what it checks** — four of them the
+  integrator's. Classes: no precondition, unreachable guard, wrong code path, disarmed harness
+  (×2), no negative control, no fixture. The sharpest: `lint_outbox` was run as
+  `lint | tail -3 && commit && push`, so `&&` gated on `tail` and the guard was **never armed for
+  a whole session**; it printed `errors (1)` and the push proceeded, publishing an invalid
+  immutable message.
+  **Measured surface:** 426 test files, 1,587 test functions; **6** with no check of any kind,
+  **6** with an assertion that cannot fail. *(A naive bare-`assert` scan says 83 — 92% false
+  positive, because it misses `self.assertX` and `pytest.raises`. Do not re-run the naive
+  version.)*
+  **Sub-items:** G1 twelve known vacuous checks → `codex_1`; G2 negative controls for the 96
+  transport tests → `claude_1` (integrator authored both tests and subject, so the reviewer must
+  not be the integrator); G3 precondition audit → unassigned; G4 unreachable guards → unassigned;
+  G5 disarmed harnesses incl. shell invocation patterns → `local_claude_1`; **G6 the 22 of 47
+  detector branches with no fixture → `claude_1`, OWNER GO-AHEAD REQUIRED FIRST** (real work, no
+  score attached, competes with σ and the banana question).
+  **Standing rule established:** *a new test is not finished until it has been observed failing.*
+  Break the subject, watch it fail, restore, and say in the commit what you broke.
+
 ## P0 — OWNER RULE 2026-08-10: no banana before the second troll
 
 - ★★★ **STRICT, BINDING, INTERIM.** *"no banana manipulation before train the second troll"* —
