@@ -33,10 +33,14 @@ makes σ the number every future promotion argument rests on.
 family in the registry with repeated mature runs:
 
 ```text
-4 families, 13 mature observations, 9 d.o.f.
-POOLED WITHIN-SOURCE SD = 0.957 score points     95% CI [0.658, 1.747]
-SD of an A-minus-B difference at n=1 per arm     1.353
+4 families, 10 deployments, 6 d.o.f.
+POOLED WITHIN-SOURCE SD = 1.098 score points     95% CI [0.707, 2.418]
+SD of an A-minus-B difference at n=1 per arm     1.552
 ```
+
+*(Corrected 2026-08-10: the first run of this tool counted 13 observation rows, three of which
+were second checkpoints of a single deployment. Same run measured twice is not two samples —
+their difference is within-run maturation, not re-submission noise. n 13→10, σ 0.957→1.098.)*
 
 So the historical ±0.5–1 band was approximately right as a 1σ statement, and the integrator's
 initial reading of a single 24.76/22.46 pair as evidence the band was understated was **wrong** —
@@ -64,9 +68,9 @@ At σ ≈ 0.957, resolving an A-versus-B difference needs:
 
 | target SE of the difference | runs per arm | total runs | sequential ladder time |
 |---|---:|---:|---:|
-| 1.0 | 2 | 4 | ~8 h |
-| 0.5 | 8 | 16 | ~32 h |
-| 0.3 | 21 | 42 | ~84 h |
+| 1.0 | 3 | 6 | ~12 h |
+| 0.5 | 10 | 20 | ~40 h |
+| 0.3 | 27 | 54 | ~108 h |
 
 ## The measurement, in preference order
 
@@ -84,10 +88,13 @@ observations to it does not resolve the confound.
 
 ## Open design questions the owner or reviewer must settle
 
-1. **Does a resubmission of an identical source draw a genuinely independent sample?** If the
-   platform caches, seeds deterministically from the source hash, or reuses opponent assignments,
-   Phase 1 measures nothing. **This must be answered before spending 8 hours.** The two existing
-   `98628e98` runs scoring 24.76 and 22.46 is weak evidence that it does — but it is n=2.
+1. ~~**Does a resubmission of an identical source draw a genuinely independent sample?**~~
+   **ANSWERED 2026-08-10 from committed data, no Arena action spent.** Across **10 distinct
+   deployments of 4 byte-identical sources** there are **zero duplicate settled scores**
+   (spreads 1.70 / 1.72 / 1.77 / 2.30). Deterministic seeding from the source hash would
+   produce identical scores; it does not. Re-submission draws a genuine sample, so Phase 1
+   measures something real. *This was the blocking question and it cost nothing — it should
+   have been asked of the registry before it was written up as a reason to spend 8 hours.*
 2. **Does re-submitting churn our standing?** B0.3's "never churn" is weakened but not repealed.
    Each cycle displaces a matured score with a cold one for ~2 hours.
 3. **How many runs is the owner willing to spend?** 4 runs buys SE 1.0; 16 buys SE 0.5.

@@ -27,9 +27,9 @@ between two mature 160-game observations of one byte-identical bot.** 24.76 was 
 draw, not this source's level; the registry now carries both runs at median 23.61.
 **Correction 2026-08-12:** I initially read that spread as evidence the ±0.5–1 noise band was
 understated. Measurement says otherwise — pooled within-source SD across 4 repeated families is
-**0.957**, CI [0.658, 1.747] (§3). The band was about right; 2.30 is a wide draw from it. What
-does hold, and is now quantified rather than asserted: a sub-1-point mature delta is
-unresolvable at one run per arm, because the difference SD there is 1.353.
+**1.098**, CI [0.707, 2.418] (§3). The band was understated as a 1σ figure, but only modestly —
+not by the factor a single 2.30 pair suggests. What holds, quantified: a sub-1.5-point mature
+delta is unresolvable at one run per arm, because the difference SD there is 1.552.
 At 22.46/rank 35/139 the live bot matches the displaced bot's 22.7/rank 35/139 standing, inside
 noise: the cycle neither gained nor cost ground — which is why KEEP costs nothing either.
 
@@ -136,18 +136,25 @@ makes the goalpost move in the wrong direction.
     takes ~2 hours**, not days. Prefer **interleaved A/B/A/B ordering** over blocked runs, so
     that ladder drift is not confounded with our own run-to-run variance.
   - ★ **THE NOISE BAND IS NOW MEASURED, AND MY EARLIER CLAIM THAT IT WAS UNDERSTATED WAS WRONG.**
-    `python3 cgauto/arena_noise_band.py` pools every source family in the registry with repeated
-    mature runs: **4 families, 13 observations, 9 d.o.f., pooled within-source SD = 0.957 score
-    points, 95% CI [0.658, 1.747].** The ±0.5–1 band was approximately right as a 1σ statement.
-    The 2.30 spread that prompted the ruling is a ~1.7-SD draw of a two-run difference — wide,
-    not anomalous, and I over-read it because a single pair carries almost no information about
-    a variance. That is the same error the registry's `SINGLE_MATURE_RUN` warning exists to
-    prevent, committed while reasoning *about* run-to-run variance.
-    **The owner's ruling stands and is strengthened, not weakened:** at σ ≈ 0.96 the SD of an
-    A-minus-B difference at one run per arm is **1.353**, so a +1.0 effect is invisible at n=1
-    and needs **8 runs per arm** to reach SE 0.5 (~32 h of ladder time). Gating candidates on
-    beating a band we can only cross with repetition is exactly backwards. Re-run the estimator
-    after every new mature observation; it is cheap and the CI is still wide.
+    `python3 cgauto/arena_noise_band.py` pools every source family with repeated mature runs,
+    **one observation per deployment**: **4 families, 10 deployments, 6 d.o.f., pooled
+    within-source SD = 1.098 score points, 95% CI [0.707, 2.418].**
+    *(Corrected 2026-08-10. The first version counted 13 "observations", including three that
+    were second checkpoints of a single run — same deployment measured twice, so their
+    difference is within-run maturation, not re-submission noise. That inflated n and mixed in
+    the wrong quantity, and gave σ 0.957. Unit error, in the tool written to quantify unit
+    error.)*
+    So ±0.5–1 was understated as a 1σ figure, though only modestly — and the 2.30 pair is still
+    only a ~1.5-SD draw, so reading a factor-of-two failure off it was wrong either way.
+    **The owner's ruling is strengthened:** the SD of an A-minus-B difference at one run per arm
+    is **1.552**, so even a +1.5 effect is invisible at n=1, and SE 0.5 needs **10 runs per arm**
+    (~40 h). Gating candidates on beating a band only repetition can cross is backwards.
+    **Independent-sampling question now ANSWERED from committed data:** across 10 distinct
+    deployments of 4 byte-identical sources there are **zero duplicate scores** — so the platform
+    does not seed deterministically from the source hash, and re-submission draws a genuine
+    sample. That was the blocking question in
+    `coordination/tasks/20260810-arena-noise-band-measurement.md`; it cost no Arena action.
+    The CI remains wide; re-run the estimator after every new mature deployment.
   - **Unchanged:** mutations remain serialized through the **single arena controller**
     (now `local_claude_1` by owner reassignment — see the note in this section). No peer agent
     or subagent may submit. One cycle in flight at a time — that is a ladder-slot constraint,

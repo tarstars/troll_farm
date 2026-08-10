@@ -47,18 +47,38 @@ CHI2 = {
 
 
 def families(registry: dict, min_games: int) -> dict[str, list[dict]]:
-    """Group mature observations by the source family they belong to."""
+    """Group mature observations by source family, ONE observation per submission.
+
+    The unit of this estimate is a *deployment*, not an observation row.  The
+    registry legitimately holds several checkpoints of a single run -- e.g.
+    submission 41012256 at 122 and at 160 games -- and the first version of this
+    function counted each as an independent sample.  They are not: they are the
+    same deployment measured twice, so their difference is within-run maturation
+    drift, which is a different quantity from the re-submission noise this tool
+    exists to estimate.  Including them inflated n from 10 to 13, inflated the
+    degrees of freedom, and mixed a maturation component into the variance.
+
+    Keeping the most mature observation per submission is the conservative
+    choice: it is the reading closest to a settled score, and it is the one the
+    registry's own ranking treats as the run's result.
+    """
     source_of = {s["submission_id"]: s["source_id"] for s in registry["submissions"]}
-    grouped: dict[str, list[dict]] = {}
+    best_per_submission: dict[int, dict] = {}
     for obs in registry["observations"]:
         if obs.get("evidence_maturity") not in MATURE:
             continue
         if (obs.get("games_finished") or 0) < min_games:
             continue
-        source_id = source_of.get(obs["submission_id"])
-        if source_id is None:
+        if source_of.get(obs["submission_id"]) is None:
             continue
-        grouped.setdefault(source_id, []).append(obs)
+        sid = obs["submission_id"]
+        seen = best_per_submission.get(sid)
+        if seen is None or (obs.get("games_finished") or 0) > (seen.get("games_finished") or 0):
+            best_per_submission[sid] = obs
+
+    grouped: dict[str, list[dict]] = {}
+    for sid, obs in best_per_submission.items():
+        grouped.setdefault(source_of[sid], []).append(obs)
     return {k: v for k, v in grouped.items() if len(v) >= 2}
 
 
