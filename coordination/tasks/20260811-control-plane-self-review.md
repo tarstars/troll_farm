@@ -1,6 +1,6 @@
 # 20260811-control-plane-self-review: adversarial self-review of the control-plane implementation
 
-- Status: assigned
+- Status: complete — 8 findings delivered 2026-08-11; F1/F5 re-verified by coordinator repro; folded into coordination/coordd-shadow-runbook.md "Known items"; cross-comparison: zero overlap with the independent review's findings
 - Record owner: local_claude_1
 - Work owner: claude_1
 - Reviewer: local_claude_1 (cross-comparison against the independent whole-branch review)
@@ -10,7 +10,7 @@
 - Branch: agent/claude_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-11T06:00:00Z
-- Last updated UTC: 2026-08-11T06:00:00Z
+- Last updated UTC: 2026-08-11T07:30:00Z
 
 ## Outcome
 
