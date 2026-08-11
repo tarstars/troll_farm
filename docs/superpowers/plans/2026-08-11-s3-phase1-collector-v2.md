@@ -102,10 +102,34 @@ handoff for integration).
       list. Reviewers: coordinator (cross-review) + `codex_1` (second pair of eyes,
       per the disjoint-findings lesson).
 
-## Cut-over criteria (later, not this plan)
+## Cut-over criteria (later, not this plan) — AMENDED 2026-08-11
 
-Seven consecutive days where the VM collector's manifests contain every id the
-`project_host` cron collected (allowing platform-side timing skew at day boundaries),
-zero upload errors, and the owner's nod — then the cron demotes to replica per the spec.
+The original criterion was: seven consecutive days where the VM collector's manifests
+contain every id the `project_host` cron collected (allowing platform-side timing skew at
+day boundaries), zero upload errors, and the owner's nod.
+
+**That criterion is not yet meaningful, and measurement says so.** On 2026-08-11 the two
+collectors produced VM 600 ids, cron 361 ids, **overlap 9**, union 952 — nearly disjoint
+populations. The cause is cohort, not correctness: the frozen collector selects resident
+plus the top 50, the VM unit runs `--cohort 10`. As written, the criterion measures a
+configuration choice, and **retiring the cron today would silently cost ~350 games/day of
+coverage**.
+
+Amended criteria, all required:
+
+1. **Cohort parity first.** The VM's selection must reach at least as far as the frozen
+   collector's (resident + top 50). Until then the id-superset test is meaningless and
+   must not be quoted as progress toward cut-over.
+2. **Then** seven consecutive days where the VM's manifests are a superset of the cron's
+   ids, allowing day-boundary skew.
+3. Measured on **genuinely new** games — post-dedupe (task `20260811-collector-v2-dedupe`),
+   since a run's raw fetch count is dominated by re-fetching history and says nothing
+   about coverage.
+4. Zero upload errors across the window.
+5. The owner's nod.
+
+**The cron is not retired while the VM's coverage is a strict subset of it**, regardless
+of how many clean days accumulate. Evidence:
+`local_claude_1/verification/collector-v2-marginal-coverage-2026-08-11.md`.
 USB cold archive remains untouched until the owner re-attaches the drive and activates
 spec Phase 3.
