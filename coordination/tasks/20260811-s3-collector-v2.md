@@ -11,7 +11,8 @@
 - Branch: agent/claude_1
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-11T13:30:00Z
-- Last updated UTC: 2026-08-11T13:30:00Z
+- Last updated UTC: 2026-08-11T11:18:00Z (real UTC; the Created stamp above is
+  self-declared and runs ahead of git time — F7 class, noted, not rewritten)
 
 ## Outcome
 
@@ -32,6 +33,10 @@ report gates the rest.
 - The backfill upload (existing 15,291 games) is the coordinator's job from project_host
   and may still be in flight when you start — B2's smoke test must not assume
   `games/raw/backfill/` is complete; use your own `games/probe/` prefix.
+- 2026-08-11 (real UTC ~11:15Z): the backfill upload is COMPLETE and verified —
+  VERIFY: PASS; 16 packs / 15,291 games at `games/raw/backfill/`, 16 manifests at
+  `games/manifest/`. B2's probe-prefix instruction stands unchanged. Evidence:
+  `local_claude_1/verification/s3-backfill-upload-2026-08-11.md`.
 
 ## Exclusive write set
 
