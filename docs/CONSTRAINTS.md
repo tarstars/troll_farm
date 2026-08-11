@@ -1237,3 +1237,12 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   post-release edits, impossible-commitment exits, and a frozen coverage manifest. Do not infer a
   value verdict about banana production from these implementation failures. [banana R2 rounds
   5/6 and FSM review, 2026-08-06]
+- **Canonical human-readable format (owner ruling 2026-08-11): pinned rustfmt via
+  `claude_1/readable-source/format_readable.py`** (`reorder_imports=false`, `max_width=100`,
+  trailing-comma reconciliation, mandatory round-trip to the exact minified parent hash;
+  rustfmt 1.9.0-stable at ruling). Readable-LOC figures are formatting-dependent: **bytes are
+  canonical** (E7a orchard strip = 15,013 B = 23.9%), and any line figure names its expander
+  (375 = the 2026-08-04 task expander; 586 = the stricter stranded expander, archived on
+  `archive/local_codex_1-stranded-20260810`). In-place formatting of hash-locked sources
+  remains forbidden. Full text: `docs/readable-format.md`. [e7a LOC-cost reconciliation,
+  2026-08-11]

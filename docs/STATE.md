@@ -129,8 +129,8 @@ makes the goalpost move in the wrong direction.
 - **P0 tooling-integrity task** `20260810-guards-that-cannot-fail` (G1–G6; G6 owner-gated).
 - **σ task** `20260810-arena-noise-band-measurement` — unowned; Q2–Q4 open; blocked
   ordering cannot separate our variance from ladder drift, only interleaved A/B/A/B can.
-- **Needs the owner:** e7a 375-vs-586 canonical formatting definition, G6 go-ahead.
-  (B7 resolved 2026-08-11; B9 ruled "as-is", revisits at cloud-spec Phase 3.)
+- **Needs the owner:** G6 go-ahead only. (B7, B9, e7a all ruled 2026-08-11; the readable
+  format is pinned rustfmt per `docs/readable-format.md`.)
 - History: 2026-07-29 terminal synthesis closed all eight resident levers; A2 stopped at
   Phase-1 K1; N1 closed passive maturity; the full pre-diet record is
   `docs/archive/STATE-2026-08-10-pre-diet.md` and the ledger volumes.
