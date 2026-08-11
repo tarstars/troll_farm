@@ -8,10 +8,9 @@ encoded. A suite nobody has tried to break is a suite of unknown strength, so ea
 below is a signing bug that would produce `SignatureDoesNotMatch` against the real endpoint,
 and the drive records which ones the tests catch.
 
-Exit status describes the EXPERIMENT, not just the outcome (the B4 lesson from the bite-test
-audit): 0 = drive complete and every mutant caught, 1 = control suite not green before
-mutating, 2 = drive completed with survivors, 3 = drive could not be completed (a mutation
-pattern no longer matches the source, so its result would be a silent false pass).
+Mechanics live in `mutation_runner.py`, shared with the B3 drive; this file declares only the
+mutants. Exit status describes the EXPERIMENT, not just the outcome (the lesson from the
+bite-test audit): 0 complete and all caught, 1 control not green, 2 survivors, 3 incomplete.
 
 Usage: python3 claude_1/collector-v2/run_b2_mutations.py --out <results.json>
 """
@@ -19,10 +18,12 @@ Usage: python3 claude_1/collector-v2/run_b2_mutations.py --out <results.json>
 from __future__ import annotations
 
 import argparse
-import json
-import subprocess
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from mutation_runner import run_drive  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 TARGET = HERE / "s3client.py"
@@ -77,69 +78,12 @@ MUTANTS = [
 ]
 
 
-def run_tests() -> tuple[bool, str]:
-    proc = subprocess.run(
-        ["uvx", "--with", "boto3", "pytest", str(TESTS), "-q", "--no-header", "-x"],
-        capture_output=True, text=True, cwd=HERE.parents[1])
-    return proc.returncode == 0, (proc.stdout + proc.stderr)[-600:]
-
-
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="B2 mutation drive")
     ap.add_argument("--out", required=True)
     args = ap.parse_args(argv)
-
-    original = TARGET.read_text()
-    control_green, control_output = run_tests()
-    results = []
-    incomplete = []
-
-    if control_green:
-        for mutant_id, description, old, new in MUTANTS:
-            if original.count(old) != 1:
-                incomplete.append(mutant_id)
-                results.append({"id": mutant_id, "description": description,
-                                "status": "NOT_APPLIED",
-                                "reason": f"pattern occurs {original.count(old)} times, expected 1"})
-                continue
-            TARGET.write_text(original.replace(old, new, 1))
-            try:
-                green, tail = run_tests()
-            finally:
-                TARGET.write_text(original)
-            results.append({"id": mutant_id, "description": description,
-                            "status": "APPLIED",
-                            "caught": not green,
-                            "test_output_tail": None if not green else tail})
-
-    assert TARGET.read_text() == original, "implementation not restored — refusing to continue"
-
-    applied = [r for r in results if r["status"] == "APPLIED"]
-    survivors = [r["id"] for r in applied if not r["caught"]]
-    report = {
-        "drive": "b2-s3client-mutations",
-        "task_id": "20260811-s3-collector-v2",
-        "target": str(TARGET.relative_to(HERE.parents[1])),
-        "tests": str(TESTS.relative_to(HERE.parents[1])),
-        "control_green": control_green,
-        "control_output_tail": None if control_green else control_output,
-        "mutants_defined": len(MUTANTS),
-        "mutants_applied": len(applied),
-        "caught": sum(1 for r in applied if r["caught"]),
-        "survivors": survivors,
-        "not_applied": incomplete,
-        "results": results,
-    }
-    Path(args.out).write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
-    print(json.dumps({k: report[k] for k in
-                      ("control_green", "mutants_defined", "mutants_applied", "caught",
-                       "survivors", "not_applied")}, indent=2))
-
-    if not control_green:
-        return 1
-    if incomplete:
-        return 3
-    return 2 if survivors else 0
+    return run_drive(drive="b2-s3client-mutations", target=TARGET, tests=TESTS,
+                     mutants=MUTANTS, out=Path(args.out))
 
 
 if __name__ == "__main__":
