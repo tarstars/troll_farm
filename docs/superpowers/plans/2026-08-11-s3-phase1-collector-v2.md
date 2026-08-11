@@ -21,7 +21,10 @@ assumptions.
       handoff. **Done 2026-08-11: `troll-farm-data`.**
 - [x] A2. Create data-plane service account `troll-farm-vm-writer` with **storage.uploader
       + storage.viewer only** (upload + read/list; no delete, no bucket admin — the object
-      layout is append-only by design, so overwrite rights are unnecessary). Static access
+      layout is append-only by design, so overwrite rights are unnecessary — **CORRECTED
+      2026-08-11 by `claude_1`'s B2 measurement: the grant refuses DELETE (403) but a plain
+      PUT to a live key SUCCEEDS, so append-only was never enforced by permissions. It is
+      enforced by `If-None-Match: *` on every upload, ruled binding**). Static access
       keys → `~/.config/yandex-cloud/keys/vm-writer-s3.json` (0600). Also static keys for
       `troll-farm-agent` (admin, stays on project_host) →
       `~/.config/yandex-cloud/keys/agent-s3.json` (0600). Keys never enter git or chat;
@@ -60,8 +63,10 @@ per the shadow runbook — this is the first real shadow-mode workload**)
 Global constraints: stdlib-preferred Python; `zstandard` or gzip for packing (match Part
 A's naming honestly); keys only from `~/.config/troll-farm/s3-keys.json`, never logged,
 never committed; no writes outside the VM and the bucket's `games/` prefix; the bucket
-layout is **append-only** (uploader rights cannot overwrite — design around it, never
-request broader rights); no Arena actions; no trunk commits (work on `agent/claude_1`,
+layout is **append-only** — **CORRECTED 2026-08-11: uploader rights CAN overwrite; only
+DELETE is refused. Append-only is enforced in code by `If-None-Match: *` on every upload,
+with `PreconditionFailed` escalating to `.rerun-N` rather than being swallowed. Never
+request broader rights**; no Arena actions; no trunk commits (work on `agent/claude_1`,
 handoff for integration).
 
 - [ ] B1. **Platform-access check (gates everything).** From the VM, exercise the frozen

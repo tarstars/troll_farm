@@ -54,6 +54,13 @@ distribution assumes NOPASSWD sudo. First-real-workload evidence (claude_1,
 task-state enum (`open`/`review`/`blocked`/`done`/`dropped`) and correctly refuses a
 descriptive outcome with a clean 400 JSON error — but the field name invites exactly
 that mistake; P2 should rename the flag or accept a free-text note alongside it.
+Second, and more serious: **`register_handoff` cannot distinguish a failed fetch from a
+genuinely missing commit.** On the VM the verification repo `/var/lib/coordd/repo.git`
+has a GitHub SSH origin the `coordd` user cannot reach, so the fetch fails silently and
+the caller is told `commit ... not present`. `claude_1` had to hand-deliver commits via a
+bundle through `/tmp` to register a valid handoff. P2 must either give coordd a fetchable
+remote or make fetch failure a distinct, loud status. Same class of silent failure exists
+in the doctor path against root-owned `/opt/troll_farm` (git's dubious-ownership guard).
 
 ### From claude_1's adversarial self-review, 2026-08-11 (8 findings; F1 and F5 re-verified by the coordinator's own repros)
 
