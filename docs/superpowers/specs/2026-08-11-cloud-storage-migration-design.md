@@ -95,6 +95,18 @@ for cloud-side heavy runs — after the grant period resets.
   backup. Also the deferred B9 revisit (owner ruling 2026-08-11, option c): the 325
   tracked files inside gitignored `data/raw/` stay as-is until this phase; decide
   untracking here, once S3 is the canonical home for all raw dumps.
+  **Executed 2026-08-11 (owner-activated): upload + verification DONE — 3,483 files /
+  9.99 GiB at `archive/`, per-file objects mirroring the USB layout (packs would break
+  the Phase 4 mount for 2,346 absolute symlinks), manifests at `archive-manifest/`,
+  VERIFY: PASS with an independent local recount agreeing exactly. Tool
+  `data/scripts/upload_archive.py`; record
+  `local_claude_1/verification/s3-archive-phase3-2026-08-11.md`.
+  B9 DECIDED: defer untracking — the precondition (S3 canonical for raw dumps) is unmet
+  until Phase 2 cut-over; newly established that no test reads those 325 paths, so the
+  eventual removal is low-risk. Trigger: Phase 2 cut-over.
+  NOT done: demotion to offline backup, which needs Phase 4 — the symlinks still point at
+  the USB path. `geesefs` 0.35.0 is in the Yandex apt repo; the mount needs sudo and the
+  `/media/tarstars/medium_data` path.**
 - **Phase 4 — read layer:** GeeseFS mounts on both hosts; storage preflight v2;
   confirm the frozen seal tests pass on both machines through the mount.
 - **Phase 5 — docs:** `docs/storage-policy.md` v2 and the `AGENTS.md` short version
