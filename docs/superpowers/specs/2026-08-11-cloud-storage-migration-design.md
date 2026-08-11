@@ -92,7 +92,9 @@ for cloud-side heavy runs — after the grant period resets.
   compare a few days, cut over.
 - **Phase 3 — cold archive:** with the USB attached once more, upload the frozen
   trees to `archive/` (cold class), verify manifests, demote the USB to offline
-  backup.
+  backup. Also the deferred B9 revisit (owner ruling 2026-08-11, option c): the 325
+  tracked files inside gitignored `data/raw/` stay as-is until this phase; decide
+  untracking here, once S3 is the canonical home for all raw dumps.
 - **Phase 4 — read layer:** GeeseFS mounts on both hosts; storage preflight v2;
   confirm the frozen seal tests pass on both machines through the mount.
 - **Phase 5 — docs:** `docs/storage-policy.md` v2 and the `AGENTS.md` short version
