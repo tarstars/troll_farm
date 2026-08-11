@@ -548,3 +548,32 @@ def test_uploaded_pack_is_labelled_with_the_codec_actually_used(tmp_path, monkey
     for key in pack_keys:
         assert s3.content_types[key] == packer.CONTENT_TYPE
         assert key.endswith(packer.PACK_EXTENSION)
+
+
+def test_unseen_returns_ids_in_ascending_order(tmp_path):
+    """Pins the ORDERING ITSELF, not a slice of it (raised by local_claude_1, cross-review).
+
+    Oldest-first was load-bearing on an upstream sort: `main` takes `wanted[:max_games]`, which
+    only means "oldest" because `Cursor.unseen` happens to return sorted output. The existing
+    slice test does catch an unsorted `unseen`, but only by luck — set iteration for its
+    particular ids happens to come out non-ascending. With different ids it would pass while
+    the ordering guarantee was gone.
+
+    The id sets below are chosen so `list(set(...))` differs from `sorted(...)` in CPython,
+    including real 9-digit game ids.
+    """
+    cursor = Cursor(tmp_path / "c.json")
+    for candidates in ([10, 20, 30, 40],
+                       [898550181, 898096416, 898058061, 891153730, 895033379],
+                       list(reversed(range(100, 140)))):
+        result = cursor.unseen(list(candidates))
+        assert result == sorted(result), f"unseen must return ascending order for {candidates[:3]}…"
+        assert result == sorted(set(candidates)), "and must be the full de-duplicated set"
+
+
+def test_unseen_is_sorted_even_when_the_seen_set_removes_the_lowest(tmp_path):
+    """Removal must not be allowed to reintroduce arbitrary order."""
+    cursor = Cursor(tmp_path / "c.json")
+    cursor.record(run={"finished_utc": "x"}, collected=[891153730, 895033379])
+    result = cursor.unseen([898550181, 898096416, 898058061, 891153730, 895033379])
+    assert result == [898058061, 898096416, 898550181]

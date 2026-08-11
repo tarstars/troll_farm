@@ -1,10 +1,10 @@
 {
-  "caught": 24,
+  "caught": 25,
   "control_green": true,
   "control_output_tail": null,
   "drive": "b4-collector-mutations",
-  "mutants_applied": 24,
-  "mutants_defined": 24,
+  "mutants_applied": 25,
+  "mutants_defined": 25,
   "not_applied": [],
   "results": [
     {
@@ -142,6 +142,14 @@
       "description": "applies the budget before removing held games, so the budget is spent on re-fetches",
       "extras": [],
       "id": "D2-dedupe-after-the-cap",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "drops the sort from Cursor.unseen, so the oldest-first cap becomes arbitrary-order",
+      "extras": [],
+      "id": "D9-unseen-returns-arbitrary-order",
       "status": "APPLIED",
       "test_output_tail": null
     },

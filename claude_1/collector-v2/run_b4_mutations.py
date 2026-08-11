@@ -102,6 +102,13 @@ MUTANTS = [
      "applies the budget before removing held games, so the budget is spent on re-fetches",
      '        already_held = [gid for gid in candidates if gid in known]',
      '        candidates = candidates[:args.max_games] if args.max_games else candidates\n        already_held = [gid for gid in candidates if gid in known]'),
+    # Raised by local_claude_1 in cross-review: oldest-first was load-bearing on an upstream
+    # sort with nothing pinning the sort itself. The slice test caught this only by luck of
+    # set-iteration order for its particular ids.
+    ("D9-unseen-returns-arbitrary-order",
+     "drops the sort from Cursor.unseen, so the oldest-first cap becomes arbitrary-order",
+     '        return sorted(set(candidates) - self.seen)',
+     '        return list(set(candidates) - self.seen)'),
     ("D3-newest-first",
      "keeps the newest un-held candidates, leaving the ones nearest to expiry behind",
      '            wanted = wanted[:args.max_games]',
