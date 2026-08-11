@@ -48,14 +48,41 @@ object. In steady state, every **archive-backed** path must be a symlink resolvi
 beneath the physical Troll Farm root; the two scratch paths must be symlinks to
 writable local directories and are deliberately *outside* it.
 
-## ★ Unresolved: where new bulk output goes
+## Where new bulk output goes (owner decision, 2026-08-11)
 
-The cloud mount is read-only, so a write to `artifacts/experiments/...` now fails —
-loudly and correctly, but it fails. The migration spec says experiment rows are "S3
-standard, then read via GeeseFS" and never says how they are *written*. Candidates are
-local staging with periodic upload (what collector v2 does for games) or a second
-writable mount. **This is an open owner decision.** Until it is made, all history is
-readable and no new bulk artifact can be produced.
+**Local disk, then periodic upload** — the pattern collector v2 uses for games.
+
+The mechanism is a **union by symlink**, not an overlay filesystem (which would have
+needed a package install and, for kernel overlayfs, root). Each union root is a *real
+local* directory under `~/.cache/troll-farm/bulk/` whose children link into the read-only
+archive:
+
+```
+artifacts/                    real local dir
+├── legacy-data-analysis  ->  mount   (history, read-only)
+└── experiments/              real local dir
+    ├── d175a-…           ->  mount   (history, read-only)
+    └── <new experiment>      real local dir   <- new output lands here
+```
+
+History reads through the same paths as before, and a new experiment directory is simply
+created. `artifacts/experiments` is itself a union dir rather than a link, because that is
+the level at which new directories appear — a single link there would have left writes
+failing, which is what the first dry run of the builder revealed.
+
+- Refresh the layout: `python3 data/scripts/link_archive_roots.py --apply` — idempotent,
+  manages only symlinks, and **never deletes a real directory**, because a real directory
+  shadowing an archived name is the uploaded-but-not-yet-reclaimed state.
+- Upload new output with `data/scripts/upload_archive.py` (idempotent head-and-skip on the
+  recorded sha256, verifies what it wrote).
+- Replace a local copy with a link to reclaim space **only after** its upload verifies —
+  the same discipline by which collector v2 prunes staging only after re-downloading and
+  re-hashing its pack.
+
+The preflight enforces this: union roots are checked for **writability**, and
+`--required-free-gib` is measured on the **local** filesystem where the bytes land. It is
+deliberately not measured on the mount, which reports a fictitious 1 PiB free and would
+have left the threshold silently unenforceable.
 
 The existing `data/analysis`, `data/raw`, and `data/processed` directories are
 mixed: they contain tracked or compact scientific records as well as legacy

@@ -122,9 +122,11 @@ for cloud-side heavy runs — after the grant period resets.
   1670/0 through the mount (identical to the USB baseline), preflight v2 shipped with
   5 tests and mutation-checked guards, unit `geesefs-archive` enabled with linger.
   Runbook + results: `deploy/PHASE4-read-layer.md`. NOT done: the VM half of "mounts on
-  both hosts" — `claude_1`'s side, not started. NEW OPEN QUESTION the phase exposed:
-  the mount is read-only, so there is no answer yet for where NEW bulk artifacts are
-  written; `artifacts/experiments` writes now fail loudly. Owner decision needed.**
+  both hosts" — `claude_1`'s side, not started. The question this phase exposed — where
+  NEW bulk artifacts are written, given a read-only mount — was **decided by the owner the
+  same day: local disk, then periodic upload**, implemented as a union-by-symlink over the
+  mount (`data/scripts/link_archive_roots.py`), with the preflight measuring free space on
+  the local filesystem. See `docs/storage-policy.md`. Suite 1678 passed after the change.**
 - **Phase 5 — docs:** `docs/storage-policy.md` v2 and the `AGENTS.md` short version
   updated under the doc-budget discipline; the YT/burst compute rule recorded.
   **DONE 2026-08-11:** both rewritten for the two-backend, read-only steady state

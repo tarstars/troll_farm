@@ -44,9 +44,14 @@ ledgers unless archaeology is explicitly required.
   space, or any required symlink is unavailable, stop. Never create a
   replacement real directory in the repository, and never loosen the check to
   get past a read-only failure.
-- **Open: new bulk output has no home.** The cloud mount is read-only, so
-  writes to `artifacts/...` now fail by design. Awaiting an owner decision;
-  see `docs/storage-policy.md`.
+- **New bulk output: local disk, then periodic upload** (owner decision
+  2026-08-11). `artifacts`, `outputs` and `data/external` are *union roots* —
+  real local directories under `~/.cache/troll-farm/bulk/` whose children link
+  into the read-only archive, so history reads unchanged and new directories
+  are simply created. Refresh with
+  `python3 data/scripts/link_archive_roots.py --apply`; upload with
+  `data/scripts/upload_archive.py`; replace a local copy with a link only
+  after its upload verifies.
 - Put large simulation matrices, replay-derived corpora, datasets,
   checkpoints, raw prediction/trajectory dumps, YT payloads and downloads,
   runtime archives, and profiler captures under the external-backed roots.
