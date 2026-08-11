@@ -42,10 +42,18 @@ MUTANTS = [
      "reports exit 0 after a failed upload, so a lost day looks like a clean run",
      '                log("upload.failed", code=error.code, status=error.status)\n                exit_code = 2',
      '                log("upload.failed", code=error.code, status=error.status)'),
+    # Reachable only where the codec is NOT gzip, so this mutant is run with zstandard
+    # installed. Without that it is inert — hard-coding "application/gzip" is indistinguishable
+    # from the derived value while gzip is what is in use.
+    ("C4b-content-type-hardcoded-gzip",
+     "labels every pack application/gzip regardless of the codec actually used",
+     'content_type=packer.CONTENT_TYPE, if_none_match=True)',
+     'content_type="application/gzip", if_none_match=True)',
+     ["zstandard"]),
     ("C4-unconditional-put",
      "drops If-None-Match, so a re-run silently overwrites the day's object",
-     '            put_pack = s3.put_object(pack_key, pack.pack_bytes,\n                                     content_type="application/gzip", if_none_match=True)',
-     '            put_pack = s3.put_object(pack_key, pack.pack_bytes,\n                                     content_type="application/gzip", if_none_match=False)'),
+     'content_type=packer.CONTENT_TYPE, if_none_match=True)',
+     'content_type=packer.CONTENT_TYPE, if_none_match=False)'),
     ("C5-rerun-never-escalates",
      "treats a collision as fatal instead of moving to the next rerun key",
      '                log("upload.collision", key=pack_key, rerun=rerun)\n                continue',

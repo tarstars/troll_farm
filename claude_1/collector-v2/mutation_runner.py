@@ -22,37 +22,51 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 
 
-def _run_tests(tests: Path) -> tuple[bool, str]:
-    proc = subprocess.run(
-        ["uvx", "--with", "boto3", "pytest", str(tests), "-q", "--no-header", "-x"],
-        capture_output=True, text=True, cwd=REPO)
+def _run_tests(tests: Path, extras: tuple[str, ...] = ()) -> tuple[bool, str]:
+    """Run the suite, optionally with extra packages installed.
+
+    `extras` exists because some defects are only reachable in an environment the default run
+    does not have. Hard-coding `application/gzip` is invisible while gzip IS the codec, so
+    that mutant is inert unless `zstandard` is installed — and an inert mutant proves nothing.
+    Rather than delete the mutant or accept a blind spot, the drive runs it where it bites.
+    """
+    command = ["uvx", "--with", "boto3"]
+    for package in extras:
+        command += ["--with", package]
+    command += ["pytest", str(tests), "-q", "--no-header", "-x"]
+    proc = subprocess.run(command, capture_output=True, text=True, cwd=REPO)
     return proc.returncode == 0, (proc.stdout + proc.stderr)[-600:]
 
 
-def run_drive(*, drive: str, target: Path, tests: Path, mutants: list[tuple[str, str, str, str]],
+def run_drive(*, drive: str, target: Path, tests: Path, mutants: list[tuple],
               out: Path) -> int:
-    """Apply each mutant to `target`, run `tests`, restore, and write JSON evidence."""
+    """Apply each mutant to `target`, run `tests`, restore, and write JSON evidence.
+
+    A mutant is `(id, description, old, new)` or `(id, description, old, new, extras)`, where
+    `extras` names packages the suite must be run with for that mutant to be reachable.
+    """
     original = target.read_text()
     control_green, control_output = _run_tests(tests)
     results: list[dict] = []
     incomplete: list[str] = []
 
     if control_green:
-        for mutant_id, description, old, new in mutants:
+        for mutant_id, description, old, new, *rest in mutants:
+            extras = tuple(rest[0]) if rest else ()
             occurrences = original.count(old)
             if occurrences != 1:
                 incomplete.append(mutant_id)
                 results.append({"id": mutant_id, "description": description,
-                                "status": "NOT_APPLIED",
+                                "status": "NOT_APPLIED", "extras": list(extras),
                                 "reason": f"pattern occurs {occurrences} times, expected 1"})
                 continue
             target.write_text(original.replace(old, new, 1))
             try:
-                green, tail = _run_tests(tests)
+                green, tail = _run_tests(tests, extras)
             finally:
                 target.write_text(original)
             results.append({"id": mutant_id, "description": description, "status": "APPLIED",
-                            "caught": not green,
+                            "extras": list(extras), "caught": not green,
                             "test_output_tail": None if not green else tail})
 
     if target.read_text() != original:

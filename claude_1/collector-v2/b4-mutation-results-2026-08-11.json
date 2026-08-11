@@ -1,15 +1,16 @@
 {
-  "caught": 23,
+  "caught": 24,
   "control_green": true,
   "control_output_tail": null,
   "drive": "b4-collector-mutations",
-  "mutants_applied": 23,
-  "mutants_defined": 23,
+  "mutants_applied": 24,
+  "mutants_defined": 24,
   "not_applied": [],
   "results": [
     {
       "caught": true,
       "description": "writes the cursor in place, so a crash mid-write leaves a torn file (finding F8)",
+      "extras": [],
       "id": "C1-cursor-written-non-atomically",
       "status": "APPLIED",
       "test_output_tail": null
@@ -17,6 +18,7 @@
     {
       "caught": true,
       "description": "skips the directory fsync, so the rename itself can be lost on power failure",
+      "extras": [],
       "id": "C2-no-directory-fsync",
       "status": "APPLIED",
       "test_output_tail": null
@@ -24,6 +26,7 @@
     {
       "caught": true,
       "description": "records games as seen even when nothing was uploaded, so a failed day is never retried",
+      "extras": [],
       "id": "C3-cursor-advances-after-failed-upload",
       "status": "APPLIED",
       "test_output_tail": null
@@ -31,13 +34,25 @@
     {
       "caught": true,
       "description": "reports exit 0 after a failed upload, so a lost day looks like a clean run",
+      "extras": [],
       "id": "C3b-upload-failure-is-not-an-error",
       "status": "APPLIED",
       "test_output_tail": null
     },
     {
       "caught": true,
+      "description": "labels every pack application/gzip regardless of the codec actually used",
+      "extras": [
+        "zstandard"
+      ],
+      "id": "C4b-content-type-hardcoded-gzip",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
       "description": "drops If-None-Match, so a re-run silently overwrites the day's object",
+      "extras": [],
       "id": "C4-unconditional-put",
       "status": "APPLIED",
       "test_output_tail": null
@@ -45,6 +60,7 @@
     {
       "caught": true,
       "description": "treats a collision as fatal instead of moving to the next rerun key",
+      "extras": [],
       "id": "C5-rerun-never-escalates",
       "status": "APPLIED",
       "test_output_tail": null
@@ -52,6 +68,7 @@
     {
       "caught": true,
       "description": "keeps inventing rerun keys forever rather than refusing to guess",
+      "extras": [],
       "id": "C6-unbounded-rerun-search",
       "status": "APPLIED",
       "test_output_tail": null
@@ -59,6 +76,7 @@
     {
       "caught": true,
       "description": "does not distinguish a permanently gone replay from a transient failure",
+      "extras": [],
       "id": "C7-422-not-permanent",
       "status": "APPLIED",
       "test_output_tail": null
@@ -66,6 +84,7 @@
     {
       "caught": true,
       "description": "returns 0 when some games failed to fetch, hiding an incomplete day",
+      "extras": [],
       "id": "C8-incomplete-day-looks-clean",
       "status": "APPLIED",
       "test_output_tail": null
@@ -73,6 +92,7 @@
     {
       "caught": true,
       "description": "excuses permanent (422) failures from the nonzero exit, masking mixed-failure days too",
+      "extras": [],
       "id": "C8b-permanent-failures-excused",
       "status": "APPLIED",
       "test_output_tail": null
@@ -80,6 +100,7 @@
     {
       "caught": true,
       "description": "trusts the upload instead of downloading and re-hashing it",
+      "extras": [],
       "id": "C9-upload-never-verified",
       "status": "APPLIED",
       "test_output_tail": null
@@ -87,6 +108,7 @@
     {
       "caught": true,
       "description": "stages a replay whose shape did not validate, corrupting the day's pack",
+      "extras": [],
       "id": "C10-invalid-replay-staged",
       "status": "APPLIED",
       "test_output_tail": null
@@ -94,6 +116,7 @@
     {
       "caught": true,
       "description": "trims the seen set without reporting how many ids were dropped",
+      "extras": [],
       "id": "C11-cursor-trim-silent",
       "status": "APPLIED",
       "test_output_tail": null
@@ -101,6 +124,7 @@
     {
       "caught": true,
       "description": "prunes staging on any upload, so a failed verification destroys the only local copy",
+      "extras": [],
       "id": "C13-prune-before-verification",
       "status": "APPLIED",
       "test_output_tail": null
@@ -108,6 +132,7 @@
     {
       "caught": true,
       "description": "discovers candidates but does not subtract what S3 already holds",
+      "extras": [],
       "id": "D1-known-ids-ignored",
       "status": "APPLIED",
       "test_output_tail": null
@@ -115,6 +140,7 @@
     {
       "caught": true,
       "description": "applies the budget before removing held games, so the budget is spent on re-fetches",
+      "extras": [],
       "id": "D2-dedupe-after-the-cap",
       "status": "APPLIED",
       "test_output_tail": null
@@ -122,6 +148,7 @@
     {
       "caught": true,
       "description": "keeps the newest un-held candidates, leaving the ones nearest to expiry behind",
+      "extras": [],
       "id": "D3-newest-first",
       "status": "APPLIED",
       "test_output_tail": null
@@ -129,6 +156,7 @@
     {
       "caught": true,
       "description": "treats an empty manifest listing as 'we hold nothing' and re-fetches everything",
+      "extras": [],
       "id": "D4-empty-known-set-tolerated",
       "status": "APPLIED",
       "test_output_tail": null
@@ -136,6 +164,7 @@
     {
       "caught": true,
       "description": "skips a manifest it cannot read, silently under-counting what is held",
+      "extras": [],
       "id": "D5-unreadable-manifest-skipped",
       "status": "APPLIED",
       "test_output_tail": null
@@ -143,6 +172,7 @@
     {
       "caught": true,
       "description": "reports a missing known-id set as an ordinary crash, losing the distinct signal",
+      "extras": [],
       "id": "D6-known-ids-failure-is-generic",
       "status": "APPLIED",
       "test_output_tail": null
@@ -150,6 +180,7 @@
     {
       "caught": true,
       "description": "drops the fetched=0 line, so a nothing-new run is indistinguishable from a broken one",
+      "extras": [],
       "id": "D7-no-explicit-zero-marker",
       "status": "APPLIED",
       "test_output_tail": null
@@ -157,6 +188,7 @@
     {
       "caught": true,
       "description": "builds the known set from the backfill only, so its own prior runs are re-fetched",
+      "extras": [],
       "id": "D8-daily-manifests-not-counted",
       "status": "APPLIED",
       "test_output_tail": null
@@ -164,6 +196,7 @@
     {
       "caught": true,
       "description": "skips the exit marker on the failure path, so a crashed run looks truncated-but-quiet",
+      "extras": [],
       "id": "C12-no-end-marker-on-error",
       "status": "APPLIED",
       "test_output_tail": null

@@ -36,14 +36,22 @@ DAILY_PREFIX = "games/raw/daily"
 MANIFEST_PREFIX = "games/manifest"
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
-try:  # pragma: no cover - absent on this VM; the branch is pinned by a test with a stub
+# Codec selection is by availability, and EVERY codec-dependent value is derived from it —
+# extension, content type, magic bytes. `zstandard` is not installed on this VM, but merely
+# installing it used to break seven tests and leave uploads labelled `application/gzip`
+# (raised by codex_1 in second review). Anything that hard-codes gzip below this point is a bug.
+try:
     import zstandard  # noqa: F401
 
     CODEC = "zstd"
     PACK_EXTENSION = ".jsonl.zst"
+    CONTENT_TYPE = "application/zstd"
+    MAGIC = b"\x28\xb5\x2f\xfd"
 except ImportError:
     CODEC = "gzip"
     PACK_EXTENSION = ".jsonl.gz"
+    CONTENT_TYPE = "application/gzip"
+    MAGIC = b"\x1f\x8b"
 
 
 @dataclass(frozen=True)

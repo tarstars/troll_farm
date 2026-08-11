@@ -28,6 +28,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import collector  # noqa: E402
 from collector import Cursor, atomic_write_json, fetch, upload_day  # noqa: E402
+import packer  # noqa: E402
 from packer import pack_day  # noqa: E402
 from s3client import S3Error  # noqa: E402
 
@@ -148,6 +149,7 @@ class FakeS3:
         self.taken = set(taken)
         self.puts: list[str] = []
         self.objects: dict[str, bytes] = {}
+        self.content_types: dict[str, str] = {}
         if held is not None:
             self.objects["games/manifest/backfill-000000.jsonl"] = b"\n".join(
                 json.dumps({"game_id": gid, "sha256": "d", "size": 1,
@@ -155,6 +157,7 @@ class FakeS3:
 
     def put_object(self, key, body, *, content_type="", if_none_match=False):
         self.puts.append(key)
+        self.content_types[key] = content_type
         if if_none_match and key in self.taken:
             raise S3Error(412, "PreconditionFailed", "already exists")
         self.objects[key] = body
@@ -177,17 +180,18 @@ def test_upload_uses_the_plain_key_when_free(tmp_path):
     pack = make_pack(tmp_path)
     result = upload_day(FakeS3(), pack, date=DATE, dry_run=False)
     assert result["rerun"] == 0
-    assert result["pack_key"] == f"games/raw/daily/{DATE}.jsonl.gz"
+    assert result["pack_key"] == f"games/raw/daily/{DATE}{packer.PACK_EXTENSION}"
 
 
 def test_upload_escalates_to_rerun_on_collision(tmp_path):
     """Append-only is this code's job: the grant permits overwriting (measured in B2)."""
     pack = make_pack(tmp_path)
-    s3 = FakeS3(taken=[f"games/raw/daily/{DATE}.jsonl.gz",
-                       f"games/raw/daily/{DATE}.rerun-1.jsonl.gz"])
+    ext = packer.PACK_EXTENSION
+    s3 = FakeS3(taken=[f"games/raw/daily/{DATE}{ext}",
+                       f"games/raw/daily/{DATE}.rerun-1{ext}"])
     result = upload_day(s3, pack, date=DATE, dry_run=False)
     assert result["rerun"] == 2
-    assert result["pack_key"] == f"games/raw/daily/{DATE}.rerun-2.jsonl.gz"
+    assert result["pack_key"] == f"games/raw/daily/{DATE}.rerun-2{ext}"
 
 
 def test_upload_always_sets_if_none_match(tmp_path, monkeypatch):
@@ -206,8 +210,9 @@ def test_upload_always_sets_if_none_match(tmp_path, monkeypatch):
 
 def test_upload_gives_up_rather_than_guessing_forever(tmp_path):
     pack = make_pack(tmp_path)
-    every_key = {f"games/raw/daily/{DATE}.jsonl.gz"} | {
-        f"games/raw/daily/{DATE}.rerun-{n}.jsonl.gz"
+    ext = packer.PACK_EXTENSION
+    every_key = {f"games/raw/daily/{DATE}{ext}"} | {
+        f"games/raw/daily/{DATE}.rerun-{n}{ext}"
         for n in range(1, collector.MAX_RERUN + 1)}
     with pytest.raises(RuntimeError, match="refusing to guess"):
         upload_day(FakeS3(taken=every_key), pack, date=DATE, dry_run=False)
@@ -527,3 +532,19 @@ def test_a_nothing_new_run_is_recorded_exactly_once(tmp_path, monkeypatch):
     assert len(cursor["runs"]) == 1
     assert cursor["runs"][0]["collected"] == 0
     assert cursor["runs"][0]["already_held"] == 2
+
+
+def test_uploaded_pack_is_labelled_with_the_codec_actually_used(tmp_path, monkeypatch):
+    """A pack uploaded as application/gzip when it is zstd tells every future reader a lie.
+
+    Nothing asserted this until the content type was mutated back to a hard-coded
+    "application/gzip" and the whole suite stayed green — the same hard-coding codex_1 found
+    in review, surviving one layer up.
+    """
+    s3 = FakeS3()
+    run_main(tmp_path, monkeypatch, platform=DiscoveringPlatform([1]), s3=s3)
+    pack_keys = [key for key in s3.puts if key.startswith("games/raw/")]
+    assert pack_keys, "the run must have uploaded a pack"
+    for key in pack_keys:
+        assert s3.content_types[key] == packer.CONTENT_TYPE
+        assert key.endswith(packer.PACK_EXTENSION)

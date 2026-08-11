@@ -11,15 +11,21 @@ Two properties carry the weight:
                 data", and no digest comparison means anything.
 
 Determinism is tested against the real failure mode: gzip stamps the current time into its
-header, so the same games packed a second later would differ. `test_gzip_header_has_no_mtime`
-pins the fix at the byte level rather than trusting the round-trip to notice.
+header, so the same games packed a second later would differ.
+`test_compressed_bytes_carry_no_timestamp` pins the fix at the byte level rather than trusting
+the round-trip to notice.
 
-Run: `uvx pytest claude_1/collector-v2/tests -q` (no oracle needed for this file).
+Every codec-dependent value comes from `packer` (`CODEC`, `PACK_EXTENSION`, `CONTENT_TYPE`,
+`MAGIC`) rather than being written as gzip. Hard-coding gzip is what made seven tests fail the
+moment `zstandard` was installed — raised by codex_1 and fixed here — so the suite is run in
+both environments:
+
+Run: `uvx pytest claude_1/collector-v2/tests -q` and, to prove codec independence,
+`uvx --with zstandard pytest claude_1/collector-v2/tests -q`.
 """
 
 from __future__ import annotations
 
-import gzip
 import hashlib
 import json
 import sys
@@ -82,16 +88,22 @@ def test_pack_is_deterministic(games, tmp_path):
     assert first.manifest_text == second.manifest_text
 
 
-def test_gzip_header_has_no_mtime(games):
-    """The concrete determinism hazard: gzip stamps time into bytes 4-8 of its header."""
+def test_compressed_bytes_carry_no_timestamp(games):
+    """The concrete determinism hazard, checked per codec rather than assuming gzip.
+
+    gzip stamps the current time into bytes 4-8 of its header, which is why `mtime=0` is
+    pinned. zstd has no such field. Written this way because assuming gzip is what broke
+    seven tests the moment `zstandard` was installed.
+    """
     pack = pack_day(DATE, games)
-    assert pack.pack_bytes[:2] == b"\x1f\x8b"
-    assert pack.pack_bytes[4:8] == b"\x00\x00\x00\x00"
+    assert pack.pack_bytes[:len(packer.MAGIC)] == packer.MAGIC
+    if packer.CODEC == "gzip":
+        assert pack.pack_bytes[4:8] == b"\x00\x00\x00\x00", "gzip mtime must be pinned to 0"
 
 
 def test_no_timestamp_inside_the_pack(games):
     """The date belongs in the object name, not the payload."""
-    body = gzip.decompress(pack_day(DATE, games).pack_bytes).decode("utf-8")
+    body = packer.decompress(pack_day(DATE, games).pack_bytes).decode("utf-8")
     for record in (json.loads(line) for line in body.splitlines()):
         assert set(record) == {"game_id", "sha256", "size", "raw"}
 
@@ -124,7 +136,7 @@ def test_pack_line_is_byte_identical_to_part_a_encoding(tmp_path):
     raw = body.encode("utf-8")
 
     pack = pack_day(DATE, [tmp_path / "42.json"])
-    line = gzip.decompress(pack.pack_bytes).decode("utf-8").rstrip("\n")
+    line = packer.decompress(pack.pack_bytes).decode("utf-8").rstrip("\n")
 
     expected = json.dumps(
         {"game_id": 42, "sha256": hashlib.sha256(raw).hexdigest(), "size": len(raw),
@@ -172,9 +184,9 @@ def test_extension_names_the_actual_codec():
     expected = ".jsonl.gz" if packer.CODEC == "gzip" else ".jsonl.zst"
     assert packer.PACK_EXTENSION == expected
     assert pack_key_for(DATE).endswith(expected)
-    magic = pack_day(DATE, [])
-    if packer.CODEC == "gzip":
-        assert magic.pack_bytes[:2] == b"\x1f\x8b"
+    assert pack_day(DATE, []).pack_bytes[:len(packer.MAGIC)] == packer.MAGIC
+    assert packer.CONTENT_TYPE == (
+        "application/gzip" if packer.CODEC == "gzip" else "application/zstd")
 
 
 def test_bad_date_is_refused():
@@ -199,7 +211,7 @@ def test_duplicate_game_ids_are_refused(tmp_path):
 def test_corrupt_pack_is_detected_not_returned(games):
     """A pack whose recorded digest disagrees with its own payload must raise."""
     pack = pack_day(DATE, games)
-    body = gzip.decompress(pack.pack_bytes).decode("utf-8").splitlines()
+    body = packer.decompress(pack.pack_bytes).decode("utf-8").splitlines()
     tampered = json.loads(body[0])
     tampered["raw"] = tampered["raw"].replace("1", "2", 1)
     body[0] = json.dumps(tampered, ensure_ascii=False, sort_keys=True)

@@ -71,6 +71,10 @@ MUTANTS = [
      "accepts any date string, so a malformed date silently names an object",
      '    if not DATE_RE.match(date):\n        raise ValueError(f"date must be YYYY-MM-DD, got {date!r}")\n    stem = date if rerun == 0 else f"{date}.rerun-{rerun}"\n    return f"{DAILY_PREFIX}/{stem}{PACK_EXTENSION}"',
      '    stem = date if rerun == 0 else f"{date}.rerun-{rerun}"\n    return f"{DAILY_PREFIX}/{stem}{PACK_EXTENSION}"'),
+    # A mutant on the zstd branch's CONTENT_TYPE was considered and rejected for the same
+    # reason as the original P12: that branch cannot execute in this drive's environment, so
+    # the mutant would be inert. The reachable equivalent is C4b in the collector drive, and
+    # the codec-independence of the suite is proven by running it under `--with zstandard`.
     # P12 originally mutated the zstd branch's extension. It survived because that branch is
     # unreachable on this VM — `zstandard` is not installed — so the mutant was INERT, not
     # uncaught. An inert mutant proves nothing about the tests, so it is aimed at the branch

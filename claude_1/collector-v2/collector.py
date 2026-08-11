@@ -63,6 +63,7 @@ from data.scripts.collect_snapshot import (  # noqa: E402
     completed_battles,
     replay_shape,
 )
+import packer  # noqa: E402
 from packer import pack_day  # noqa: E402
 from s3client import S3Client, S3Error  # noqa: E402
 
@@ -261,8 +262,10 @@ def upload_day(s3: S3Client, pack, *, date: str, dry_run: bool) -> dict:
             return {"uploaded": False, "dry_run": True, "pack_key": pack_key,
                     "manifest_key": manifest_key, "rerun": rerun}
         try:
+            # Content type follows the codec actually in use; hard-coding gzip mislabels
+            # every object the moment `zstandard` is installed (found by codex_1 in review).
             put_pack = s3.put_object(pack_key, pack.pack_bytes,
-                                     content_type="application/gzip", if_none_match=True)
+                                     content_type=packer.CONTENT_TYPE, if_none_match=True)
             put_manifest = s3.put_object(manifest_key, pack.manifest_text.encode(),
                                          content_type="application/x-ndjson",
                                          if_none_match=True)
