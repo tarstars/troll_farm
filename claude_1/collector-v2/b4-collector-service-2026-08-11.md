@@ -57,14 +57,19 @@ the run record, where it informs rather than excuses. Mutant `C8b` keeps it from
 
 ## Two operational facts the coordinator should see
 
-**1. The run is capped, and the cap is dropping real games.** The VM's root filesystem is
-**94% full — 1.3 GB free**. A day's staging is ~90-107 MB before pruning. So the deployed unit
-runs `--cohort 10 --max-games 300`, and both live runs logged
-`discover.capped dropped=953` and `dropped=653` against 1,253 candidates. **Those dropped games
-are gone unless they are still in a participant's window at the next run.** The cap is logged
-every time rather than applied silently, but it is a real shortfall and it is disk, not design,
-that sets it. Raise both numbers as soon as there is headroom — or tell me the disk is being
-extended and I will raise them now.
+**1. The run was capped — and what the cap was dropping is NOT what I implied.**
+*Superseded 2026-08-11; kept visible rather than rewritten away.* I reported
+`discover.capped dropped=953` and `dropped=653` against 1,253 candidates and wrote that dropped
+games "are gone unless they are still in a participant's window at the next run". The coordinator
+measured it (`20260811T142500Z`) and that leaning was wrong: **0 of the 600 games collected on
+day one were new to the project**, and only **1 of 2,488** visible games was not already held.
+The drops were re-fetches of history, not lost data. The shortfall was real in throughput terms;
+the loss framing was not, and it was mine as much as theirs.
+
+Resolved by task `20260811-collector-v2-dedupe`: the collector now skips every game already in
+S3, so the budget is spent only on games the project lacks. `dropped` is now 0 and the deployed
+unit runs `--cohort 50 --max-games 2000`. Disk went 94% → 62% after reclaiming stale scratch.
+See `claude_1/collector-v2/dedupe-2026-08-11.md`.
 
 **2. Staging is pruned, and only after the bucket copy is verified.** Unpruned, ~100 MB/day on
 1.3 GB of free space fills the disk inside a fortnight and takes coordd down with it. Pruning is
@@ -110,11 +115,10 @@ enabled oneshot would also fire at every boot — a second uncontrolled run agai
 - **The unit runs from the agent worktree** `/home/tarstars/prj/troll_farm-plan-agent`. If that
   checkout moves or is deleted, the timer breaks — the same pinning pattern coordd uses, but
   worth naming at integration.
-- **`--cohort 10` is not the plan's implied full lens.** The frozen wide-lens collector reads
-  resident plus the top 50; this reads the top 10. Disk again. It is a parameter, not a design
-  choice, and the number lives in one line of the unit file.
-- **Two probe/rerun objects now exist for 2026-08-11** — the plain key from the manual run and
-  `.rerun-1` from the service run. That is the designed behaviour, not damage: neither
+- **`--cohort 10` was not the plan's implied full lens** — the frozen wide-lens collector reads
+  resident plus the top 50. Raised to `--cohort 50 --max-games 2000` on 2026-08-11 once dedupe
+  made the budget meaningful; it remains one line of the unit file.
+- **Four objects now exist for 2026-08-11** — the plain key plus `.rerun-1/2/3` from later runs. That is the designed behaviour, not damage: neither
   overwrote the other, and B5's comparison must read both.
 - Cursor `seen_game_ids` is bounded at 200,000 ids; a run that trims logs `cursor.trimmed` with
   the count. Nothing has been trimmed yet (600 ids at the time of writing).
