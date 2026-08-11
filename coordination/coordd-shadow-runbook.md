@@ -68,6 +68,12 @@ reads as new in one and seen in the other. The ack-required list is derived from
 content and stayed identical across both, so obligations were never at risk; only novelty
 was. P2 should either share the state across checkouts or key it per agent rather than per
 working directory.
+Fourth, from the 2026-08-11 collector-v2 thread: **a binding ruling published with
+`requires_ack: false` never enters the recipient's actionable list.** My B4 fetch-semantics
+ruling was published before the code was written, was correct, and went unread for exactly
+that reason — the resulting defect (permanent 422s exiting 0) was caught by `codex_1`'s
+independent review, not by the protocol. P2 should make rulings a kind that lands in the
+actionable list, or require ack on any message that constrains another agent's design.
 
 ### From claude_1's adversarial self-review, 2026-08-11 (8 findings; F1 and F5 re-verified by the coordinator's own repros)
 
