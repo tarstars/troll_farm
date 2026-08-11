@@ -1,0 +1,113 @@
+{
+  "caught": 14,
+  "control_green": true,
+  "control_output_tail": null,
+  "drive": "b4-collector-mutations",
+  "mutants_applied": 14,
+  "mutants_defined": 14,
+  "not_applied": [],
+  "results": [
+    {
+      "caught": true,
+      "description": "writes the cursor in place, so a crash mid-write leaves a torn file (finding F8)",
+      "id": "C1-cursor-written-non-atomically",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "skips the directory fsync, so the rename itself can be lost on power failure",
+      "id": "C2-no-directory-fsync",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "records games as seen even when nothing was uploaded, so a failed day is never retried",
+      "id": "C3-cursor-advances-after-failed-upload",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "reports exit 0 after a failed upload, so a lost day looks like a clean run",
+      "id": "C3b-upload-failure-is-not-an-error",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "drops If-None-Match, so a re-run silently overwrites the day's object",
+      "id": "C4-unconditional-put",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "treats a collision as fatal instead of moving to the next rerun key",
+      "id": "C5-rerun-never-escalates",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "keeps inventing rerun keys forever rather than refusing to guess",
+      "id": "C6-unbounded-rerun-search",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "does not distinguish a permanently gone replay from a transient failure",
+      "id": "C7-422-not-permanent",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "returns 0 when some games failed to fetch, hiding an incomplete day",
+      "id": "C8-incomplete-day-looks-clean",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "trusts the upload instead of downloading and re-hashing it",
+      "id": "C9-upload-never-verified",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "stages a replay whose shape did not validate, corrupting the day's pack",
+      "id": "C10-invalid-replay-staged",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "trims the seen set without reporting how many ids were dropped",
+      "id": "C11-cursor-trim-silent",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "prunes staging on any upload, so a failed verification destroys the only local copy",
+      "id": "C13-prune-before-verification",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "skips the exit marker on the failure path, so a crashed run looks truncated-but-quiet",
+      "id": "C12-no-end-marker-on-error",
+      "status": "APPLIED",
+      "test_output_tail": null
+    }
+  ],
+  "survivors": [],
+  "target": "claude_1/collector-v2/collector.py",
+  "task_id": "20260811-s3-collector-v2",
+  "tests": "claude_1/collector-v2/tests"
+}

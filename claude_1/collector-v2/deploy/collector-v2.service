@@ -1,0 +1,40 @@
+[Unit]
+Description=Troll Farm collector v2 — fetch, pack and upload one day of public games
+Documentation=file:/home/tarstars/prj/troll_farm-plan-agent/claude_1/collector-v2/b4-collector-service-2026-08-11.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=tarstars
+Group=tarstars
+WorkingDirectory=/home/tarstars/prj/troll_farm-plan-agent
+ExecStart=/usr/bin/python3 /home/tarstars/prj/troll_farm-plan-agent/claude_1/collector-v2/collector.py --cohort 10 --max-games 300 --prune-staging --report /home/tarstars/.local/state/troll-farm/last-run.json
+
+# The run is bounded on purpose. The VM's root filesystem was 94% full (1.3 GB free) when this
+# was deployed, and a day's staging is ~90 MB before pruning. --max-games is a CAP: the run
+# logs `discover.capped dropped=N` whenever it drops candidates, so a shortfall is visible in
+# journald rather than silent. Raise both numbers once there is disk headroom.
+
+# Timeout generously: 300 replays at the frozen client's 0.35s pacing took 138s on the first
+# live run, but the platform is a shared resource and can be slow.
+TimeoutStartSec=1800
+
+# The service only ever needs to write its own state directory.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/tarstars/.local/state/troll-farm
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+
+# journald keeps the structured log; every run ends with an `exit=N` marker, and a run killed
+# before that line has no marker at all — which is how a truncated run is detected.
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=collector-v2
+
+# Deliberately no [Install] section: this unit is timer-activated only. An enabled oneshot
+# would also fire at every boot, which is a second uncontrolled run against the platform.

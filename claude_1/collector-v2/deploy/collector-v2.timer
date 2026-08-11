@@ -1,0 +1,17 @@
+[Unit]
+Description=Run Troll Farm collector v2 daily at 05:47 UTC
+Documentation=file:/home/tarstars/prj/troll_farm-plan-agent/claude_1/collector-v2/b4-collector-service-2026-08-11.md
+
+[Timer]
+# 05:47 UTC — deliberately offset from project_host's 05:17 cron so the two collectors do not
+# hit the platform together during the parallel-run window.
+OnCalendar=*-*-* 05:47:00 UTC
+# A missed run (VM off, reboot) fires once on the next boot rather than being skipped. Games
+# are only readable while a participant's battle window still holds them, so a skipped day is
+# a permanent loss, not a delay.
+Persistent=true
+AccuracySec=1min
+Unit=collector-v2.service
+
+[Install]
+WantedBy=timers.target
