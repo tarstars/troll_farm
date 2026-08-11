@@ -36,6 +36,7 @@ Exit codes, chosen so an incomplete day never looks like a clean one:
      games are retried on the next run
   3  the day is incomplete: some fetches failed transiently, and those games are gone unless
      they are still in a participant's window on the next run
+  4  the S3 known-id set could not be built — the run stopped rather than re-fetch history
 """
 
 from __future__ import annotations
@@ -134,6 +135,64 @@ class Cursor:
         self.data["runs"] = self.data["runs"][-90:]
         atomic_write_json(self.path, self.data)
         return dropped
+
+
+class KnownIdsUnavailable(RuntimeError):
+    """The S3 known-id set could not be built. Never degrade to an empty set.
+
+    An empty known-set re-fetches the entire visible history — the exact defect this task
+    exists to remove, wearing a different hat — so the run stops instead (binding design 4).
+    """
+
+
+def known_ids_from_s3(s3: S3Client) -> tuple[set[int], dict]:
+    """Every game id already in S3, read from the manifests each run.
+
+    Sources are `games/manifest/backfill-*.jsonl` (the coordinator's corpus upload) and
+    `games/manifest/daily-*.jsonl` including `.rerun-N` (this collector's own prior runs).
+
+    Rebuilt every run and deliberately NOT cached in the cursor (binding design 2): a stale
+    cache under-fetches silently, which is far more expensive than re-reading ~2 MB.
+
+    Membership is by game id only. A held-but-corrupt object still counts as held — the
+    manifests carry `sha256` and `size` for a future integrity pass, and nothing here should
+    be read as proving the stored copy is good.
+    """
+    try:
+        rows = s3.list_objects("games/manifest/")
+    except Exception as error:  # noqa: BLE001
+        raise KnownIdsUnavailable(f"could not list manifests: {type(error).__name__}: {error}")
+
+    keys = [row["key"] for row in rows
+            if row["key"].endswith(".jsonl")
+            and (Path(row["key"]).name.startswith("backfill-")
+                 or Path(row["key"]).name.startswith("daily-"))]
+    if not keys:
+        raise KnownIdsUnavailable(
+            "no backfill or daily manifests found under games/manifest/ — refusing to treat "
+            "an empty bucket listing as 'we hold nothing'")
+
+    known: set[int] = set()
+    sources = {"backfill": 0, "daily": 0}
+    for key in sorted(keys):
+        try:
+            body = s3.get_object(key).decode()
+        except Exception as error:  # noqa: BLE001
+            raise KnownIdsUnavailable(f"could not read {key}: {type(error).__name__}: {error}")
+        before = len(known)
+        for line in body.splitlines():
+            if line.strip():
+                known.add(int(json.loads(line)["game_id"]))
+        bucket = "backfill" if Path(key).name.startswith("backfill-") else "daily"
+        sources[bucket] += len(known) - before
+
+    # These two are INCREMENTAL contributions in read order (backfill sorts before daily),
+    # not membership counts: `new_ids_from_daily` is how many ids the daily manifests add
+    # that the backfill did not already have. On 2026-08-11 that was 0, which is the whole
+    # reason this task exists.
+    return known, {"manifests": len(keys), "ids": len(known),
+                   "new_ids_from_backfill": sources["backfill"],
+                   "new_ids_from_daily": sources["daily"]}
 
 
 def discover(client: PublicClient, *, cohort: int) -> tuple[list[int], list[dict]]:
@@ -280,15 +339,34 @@ def main(argv: list[str] | None = None) -> int:
         log("start", date=date, cohort=args.cohort, dry_run=args.dry_run,
             state_dir=str(state))
 
+        # The known-id set is built BEFORE discovery costs anything, so a bucket problem stops
+        # the run before it touches the platform at all.
+        s3 = S3Client(args.bucket)
+        known, known_stats = known_ids_from_s3(s3)
+        log("known_ids", **known_stats)
+
         candidates, discover_failures = discover(client, cohort=args.cohort)
-        wanted = cursor.unseen(candidates)
+        # Skip BEFORE fetching (binding design 3): the budget is the scarce thing, so
+        # already-held games must never reach the fetch loop. The cursor is a local
+        # second opinion; S3 membership is what "we already have it" means.
+        already_held = [gid for gid in candidates if gid in known]
+        wanted = [gid for gid in cursor.unseen(candidates) if gid not in known]
         capped = 0
         if args.max_games and len(wanted) > args.max_games:
             capped = len(wanted) - args.max_games
-            wanted = wanted[-args.max_games:]
+            # Oldest-first (binding design 5): games leave participants' windows from the far
+            # end, so the oldest un-held candidate is nearest to expiry and most urgent.
+            wanted = wanted[:args.max_games]
             log("discover.capped", requested=args.max_games, dropped=capped)
-        log("discover", candidates=len(candidates), unseen=len(wanted),
-            battle_list_failures=len(discover_failures))
+        log("discover", candidates=len(candidates), already_held=len(already_held),
+            unseen=len(wanted), battle_list_failures=len(discover_failures))
+
+        if not wanted:
+            # Binding design 6: nothing new is a success and must not read as a broken run.
+            # No early return — an empty `wanted` flows through the ordinary path, which
+            # already fetches nothing, packs nothing and uploads nothing. A second exit path
+            # here would only duplicate that (and did: it recorded the run twice).
+            log("fetch", fetched=0, reason="every discovered game is already in S3")
 
         collected, fetch_failures = fetch(client, wanted, staging)
         permanent = [f for f in fetch_failures if f.get("permanent")]
@@ -303,7 +381,6 @@ def main(argv: list[str] | None = None) -> int:
         upload: dict = {}
         verification: dict = {}
         if pack.game_ids:
-            s3 = S3Client(args.bucket)
             # An upload failure is handled here rather than thrown, so that the cursor guard
             # below is a live check with a test that can reach it — and so the run report
             # carries what went wrong instead of only a traceback.
@@ -328,7 +405,8 @@ def main(argv: list[str] | None = None) -> int:
             log("upload.skipped", reason="no games collected this run")
 
         run.update({
-            "candidates": len(candidates), "unseen": len(wanted),
+            "candidates": len(candidates), "already_held": len(already_held),
+            "known_ids": known_stats, "unseen": len(wanted),
             "collected": len(collected), "capped_out": capped,
             "discover_failures": discover_failures,
             "fetch_failures": fetch_failures,
@@ -343,7 +421,10 @@ def main(argv: list[str] | None = None) -> int:
 
         # Only games that are actually in an uploaded (or dry-run packed) object are recorded
         # as seen; otherwise a failed upload would make them invisible to every later run.
-        if upload.get("uploaded") or args.dry_run:
+        # A run with nothing to upload still records itself — collected is empty, so nothing
+        # is marked seen, but "the collector ran and found nothing new" is worth having in
+        # the run history rather than looking like a run that never happened.
+        if upload.get("uploaded") or args.dry_run or not pack.game_ids:
             run["finished_utc"] = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
             dropped = cursor.record(run=run, collected=collected)
             if dropped:
@@ -354,6 +435,12 @@ def main(argv: list[str] | None = None) -> int:
 
         if exit_code == 0 and fetch_failures and not permanent:
             exit_code = 3  # transient fetch failures: collected something, but not everything
+    except KnownIdsUnavailable as error:
+        # Distinct marker and exit code: proceeding with an empty known-set would re-fetch
+        # everything, so this must never be mistaken for an ordinary failure.
+        run["error"] = str(error)[:600]
+        log("known_ids.failed", message=str(error)[:300])
+        exit_code = 4
     except Exception as error:  # noqa: BLE001 — the exit marker must always be reached
         run["error"] = f"{type(error).__name__}: {error}"[:600]
         run["traceback"] = traceback.format_exc()[-1200:]

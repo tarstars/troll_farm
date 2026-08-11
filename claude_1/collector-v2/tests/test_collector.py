@@ -137,12 +137,21 @@ def test_fetch_rejects_a_malformed_replay(tmp_path):
 
 
 class FakeS3:
-    """Records puts; `taken` keys raise PreconditionFailed as the live endpoint does."""
+    """Records puts; `taken` keys raise PreconditionFailed as the live endpoint does.
 
-    def __init__(self, taken=()):
+    `held` seeds a backfill manifest, which is how the collector learns what is already in
+    S3. It defaults to one id that no test discovers, so the known-id set is non-empty (an
+    empty bucket listing is a hard error by design) without accidentally skipping anything.
+    """
+
+    def __init__(self, taken=(), held=(999_999_999,)):
         self.taken = set(taken)
         self.puts: list[str] = []
         self.objects: dict[str, bytes] = {}
+        if held is not None:
+            self.objects["games/manifest/backfill-000000.jsonl"] = b"\n".join(
+                json.dumps({"game_id": gid, "sha256": "d", "size": 1,
+                            "pack": "p"}).encode() for gid in held) + b"\n"
 
     def put_object(self, key, body, *, content_type="", if_none_match=False):
         self.puts.append(key)
@@ -153,6 +162,10 @@ class FakeS3:
 
     def get_object(self, key):
         return self.objects[key]
+
+    def list_objects(self, prefix=""):
+        return [{"key": key, "size": len(body), "etag": "x"}
+                for key, body in sorted(self.objects.items()) if key.startswith(prefix)]
 
 
 def make_pack(tmp_path):
@@ -302,6 +315,10 @@ def test_uploaded_pack_is_verified_by_download(tmp_path, monkeypatch):
 
     class Corrupting(FakeS3):
         def get_object(self, key):
+            # Corrupt only what was just uploaded; manifests must still read, or the run
+            # would fail on the known-id set instead of on the verification being tested.
+            if key.startswith("games/manifest/backfill-"):
+                return super().get_object(key)
             return b"not what was uploaded"
 
     code = run_main(tmp_path, monkeypatch, platform=DiscoveringPlatform([1]), s3=Corrupting())
@@ -338,6 +355,10 @@ def test_staging_survives_a_failed_upload(tmp_path, monkeypatch):
 def test_staging_survives_a_failed_verification(tmp_path, monkeypatch):
     class Corrupting(FakeS3):
         def get_object(self, key):
+            # Corrupt only what was just uploaded; manifests must still read, or the run
+            # would fail on the known-id set instead of on the verification being tested.
+            if key.startswith("games/manifest/backfill-"):
+                return super().get_object(key)
             return b"not what was uploaded"
 
     code = run_main(tmp_path, monkeypatch, platform=DiscoveringPlatform([1]), s3=Corrupting(),
@@ -349,3 +370,122 @@ def test_staging_survives_a_failed_verification(tmp_path, monkeypatch):
 def test_staging_is_kept_by_default(tmp_path, monkeypatch):
     run_main(tmp_path, monkeypatch, platform=DiscoveringPlatform([1]), s3=FakeS3())
     assert sorted((tmp_path / "state" / "staging" / DATE).glob("*.json"))
+
+
+# --- deduplication against S3 (task 20260811-collector-v2-dedupe) ---------------------
+
+
+def test_a_game_already_in_s3_is_never_fetched(tmp_path, monkeypatch):
+    """The acceptance check: known ids must not reach the fetch loop at all.
+
+    Verified to fail against the pre-dedupe collector, which fetched all three.
+    """
+    platform = DiscoveringPlatform([1, 2, 3])
+    s3 = FakeS3(held=[2])
+    code = run_main(tmp_path, monkeypatch, platform=platform, s3=s3)
+    assert code == 0
+    fetched = [body[0] for service, body in platform.calls
+               if service == "gameResult/findByGameId"]
+    assert 2 not in fetched, "an already-held game must never be fetched"
+    assert sorted(fetched) == [1, 3]
+
+
+def test_known_ids_are_read_from_backfill_and_daily_manifests():
+    s3 = FakeS3(held=[10])
+    s3.objects["games/manifest/daily-2026-08-10.jsonl"] = (
+        json.dumps({"game_id": 20, "sha256": "d", "size": 1, "pack": "p"}).encode() + b"\n")
+    s3.objects["games/manifest/daily-2026-08-10.rerun-1.jsonl"] = (
+        json.dumps({"game_id": 21, "sha256": "d", "size": 1, "pack": "p"}).encode() + b"\n")
+    # a pack object under a different prefix must not be mistaken for a manifest
+    s3.objects["games/raw/daily/2026-08-10.jsonl.gz"] = b"\x1f\x8b not json"
+    known, stats = collector.known_ids_from_s3(s3)
+    assert known == {10, 20, 21}
+    assert stats["manifests"] == 3
+    assert stats["new_ids_from_backfill"] == 1 and stats["new_ids_from_daily"] == 2
+
+
+def test_dedupe_happens_before_the_cap_not_after(tmp_path, monkeypatch):
+    """Binding design 3: the budget must be spent on the remainder, not consumed by
+    already-held games that are then discarded."""
+    platform = DiscoveringPlatform([1, 2, 3, 4, 5])
+    s3 = FakeS3(held=[1, 2, 3])
+    run_main(tmp_path, monkeypatch, platform=platform, s3=s3, extra=["--max-games", "2"])
+    fetched = sorted(body[0] for service, body in platform.calls
+                     if service == "gameResult/findByGameId")
+    assert fetched == [4, 5], "the cap must apply to un-held games only"
+
+
+def test_capped_remainder_takes_the_oldest_first(tmp_path, monkeypatch):
+    """Binding design 5: games leave the window from the far end, so the oldest un-held
+    candidate is nearest to expiry."""
+    platform = DiscoveringPlatform([10, 20, 30, 40])
+    run_main(tmp_path, monkeypatch, platform=platform, s3=FakeS3(),
+             extra=["--max-games", "2"])
+    fetched = sorted(body[0] for service, body in platform.calls
+                     if service == "gameResult/findByGameId")
+    assert fetched == [10, 20], "oldest-first, not newest-first"
+
+
+def test_nothing_new_is_a_success_with_an_explicit_zero(tmp_path, monkeypatch, capsys):
+    """Binding design 6: an empty remainder is exit 0, no pack object, and must be
+    distinguishable in the log from a broken run."""
+    s3 = FakeS3(held=[1, 2])
+    code = run_main(tmp_path, monkeypatch, platform=DiscoveringPlatform([1, 2]), s3=s3)
+    output = capsys.readouterr().out
+    assert code == 0
+    assert "fetched=0" in output
+    assert "collector-v2 end exit=0" in output
+    assert not [key for key in s3.puts if key.startswith("games/raw/")], \
+        "no empty daily object may be written"
+
+
+def test_a_failure_to_build_the_known_set_stops_the_run(tmp_path, monkeypatch, capsys):
+    """Binding design 4: proceeding with an empty known-set re-fetches everything — today's
+    defect wearing a different hat — so it must exit non-zero with its own marker."""
+
+    class Unlistable(FakeS3):
+        def list_objects(self, prefix=""):
+            raise S3Error(403, "AccessDenied", "nope")
+
+    platform = DiscoveringPlatform([1, 2])
+    code = run_main(tmp_path, monkeypatch, platform=platform, s3=Unlistable())
+    output = capsys.readouterr().out
+    assert code == 4, "a distinct exit code, not a generic crash"
+    assert "known_ids.failed" in output
+    assert not [c for c in platform.calls if c[0] == "gameResult/findByGameId"], \
+        "no game may be fetched when the known-id set is unavailable"
+
+
+def test_an_empty_manifest_listing_is_an_error_not_an_empty_set(tmp_path, monkeypatch):
+    """'The bucket lists nothing' and 'we hold nothing' are different claims."""
+    with pytest.raises(collector.KnownIdsUnavailable):
+        collector.known_ids_from_s3(FakeS3(held=None))
+
+
+def test_an_unreadable_manifest_stops_the_run_rather_than_under_counting():
+    class Unreadable(FakeS3):
+        def get_object(self, key):
+            raise S3Error(500, "InternalError", "boom")
+
+    with pytest.raises(collector.KnownIdsUnavailable, match="could not read"):
+        collector.known_ids_from_s3(Unreadable())
+
+
+def test_known_set_is_rebuilt_every_run_not_cached_in_the_cursor(tmp_path, monkeypatch):
+    """Binding design 2: a stale cache under-fetches silently."""
+    s3 = FakeS3(held=[1])
+    run_main(tmp_path, monkeypatch, platform=DiscoveringPlatform([1, 2]), s3=s3)
+    cursor = json.loads((tmp_path / "state" / "collector-v2.json").read_text())
+    assert "known_game_ids" not in cursor
+    assert cursor["seen_game_ids"] == [2], "only what this run collected"
+
+
+def test_a_nothing_new_run_is_recorded_exactly_once(tmp_path, monkeypatch):
+    """The empty-remainder case flows through the ordinary path; a second early-exit branch
+    used to record the run twice."""
+    s3 = FakeS3(held=[1, 2])
+    run_main(tmp_path, monkeypatch, platform=DiscoveringPlatform([1, 2]), s3=s3)
+    cursor = json.loads((tmp_path / "state" / "collector-v2.json").read_text())
+    assert len(cursor["runs"]) == 1
+    assert cursor["runs"][0]["collected"] == 0
+    assert cursor["runs"][0]["already_held"] == 2

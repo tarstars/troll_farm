@@ -11,10 +11,13 @@ was not fixed in the plan and guessing wrong would have blocked the tool on a fo
 detail. `--reference-label` records which population it actually is; the label is copied into
 the output verbatim so a result can never be read as comparing something it did not.
 
-`missing` (in the reference, absent from the bucket) is the number that matters for cut-over:
-it is what the VM collector failed to capture. `extra` is not symmetric with it — the VM
-collector runs at 05:47 and `project_host` at 05:17, and the cohorts are not identical, so
-extra ids are expected and are reported, not flagged.
+`missing_from_day_manifests` (in the reference, absent from this range's daily manifests) is
+the cut-over number: what the VM collector failed to capture. It is reported alongside
+`absent_from_s3_entirely`, which asks the different and more important question of whether the
+project holds the game at all — a game can be missing from the VM's day object and still be
+safely in S3 via the backfill, which is exactly what 2026-08-11 looked like (352 vs 0).
+`extra` is not symmetric with either — the VM runs at 05:47 and `project_host` at 05:17 over
+different cohorts, so extra ids are expected, reported, and not flagged.
 
 Reads the bucket and the reference; writes only the `--out` JSON.
 """
@@ -132,12 +135,36 @@ def main(argv: list[str] | None = None) -> int:
             "reference_path": args.reference,
             "reference_label": args.reference_label or "UNLABELLED — provenance not stated",
             "reference_games_total": len(reference),
-            "missing_from_bucket": missing,
-            "missing_count": len(missing),
+            "missing_from_day_manifests": missing,
+            "missing_from_day_count": len(missing),
             "extra_in_bucket": extra[:500],
             "extra_count": len(extra),
             "verdict": "PARITY" if not missing else "GAPS",
         })
+        # Two different questions, and conflating them would misread the result badly:
+        #   "did the VM collect it?"  -> missing from THIS DATE RANGE's daily manifests
+        #   "is it safe in S3 at all?" -> absent from EVERY manifest, backfill included
+        # On 2026-08-11 the first was 352 and the second was 0: every game the cron collected
+        # was in S3, just via the backfill rather than the VM's daily object. The cut-over
+        # criterion is about the first; data safety is the second. Report both, always.
+        from collector import KnownIdsUnavailable, known_ids_from_s3
+        try:
+            known, known_stats = known_ids_from_s3(s3)
+        except KnownIdsUnavailable as error:
+            report["s3_wide_triage"] = {"available": False, "error": str(error)[:300]}
+        else:
+            absent_entirely = sorted(set(missing) - known)
+            report["s3_wide_triage"] = {
+                "available": True,
+                "known_ids_in_s3": known_stats["ids"],
+                "absent_from_s3_entirely": absent_entirely,
+                "absent_from_s3_entirely_count": len(absent_entirely),
+                "held_via_another_object_count": len(missing) - len(absent_entirely),
+                "note": ("`missing_from_day_manifests` measures what the VM collected on these "
+                         "dates — the cut-over criterion. `absent_from_s3_entirely` measures "
+                         "data safety. They are different questions and only the second means "
+                         "the project does not have the game."),
+            }
     else:
         report.update({
             "reference_path": None,
@@ -151,8 +178,11 @@ def main(argv: list[str] | None = None) -> int:
     summary["days"] = [{d["date"]: d["games"]} for d in days]
     if args.reference:
         summary.update({"reference_games_total": report["reference_games_total"],
-                        "missing_count": report["missing_count"],
+                        "missing_from_day_count": report["missing_from_day_count"],
                         "extra_count": report["extra_count"],
+                        "absent_from_s3_entirely_count":
+                            report.get("s3_wide_triage", {}).get(
+                                "absent_from_s3_entirely_count"),
                         "reference_label": report["reference_label"]})
     print(json.dumps(summary, indent=2))
     return 0 if report["verdict"] in {"PARITY", "NO_REFERENCE"} else 1

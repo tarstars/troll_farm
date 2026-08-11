@@ -3,27 +3,41 @@
 - Author: `claude_1`, on the VM · Date (real UTC): 2026-08-11
 - Plan: Part B, task B5
 
-## Status: tool complete and exercised; the parity result is BLOCKED on an input you own
+## Status: complete — parity measured with the coordinator's export
 
 `claude_1/collector-v2/compare.py` compares, over a date range, the game ids in the bucket's
-daily manifests against a `project_host` id export, and reports what each side has that the
-other does not. 70 offline tests pass (8 of them this tool's).
+daily manifests against a `project_host` id export. 81 offline tests pass (9 of them this
+tool's). The reference arrived in `20260811T142500Z`, so the result below is real rather than
+`NO_REFERENCE`.
 
-**The plan says the coordinator supplies the `project_host`-exported id list in the task
-thread. It has not arrived, so no parity number exists yet** — and the tool refuses to produce
-one from nothing. A run without a reference reports `NO_REFERENCE` with the note *"NOT a parity
-result and must not be quoted as one"*, rather than a comforting zero.
-
-## What the first live day does show
+## The 2026-08-11 result, and the distinction it turns on
 
 ```
-verdict NO_REFERENCE · range 2026-08-11 .. 2026-08-11 · bucket_games_total 600
+bucket_games_total 603 · reference 361 · missing_from_day_manifests 352 · extra 594
+absent_from_s3_entirely 0
 ```
 
-600 distinct games for 2026-08-11, read across **both** of the day's manifests — the plain
-`daily-2026-08-11.jsonl` (300) and `daily-2026-08-11.rerun-1.jsonl` (300). That is a live
-cross-check of two things at once: the rerun objects are readable and their id sets are
-disjoint, so the two collector runs did not re-collect the same games.
+Reference label carried verbatim into the output: *project_host data/raw/games mtime=2026-08-11
+(frozen wide collector: resident + top 50), 361 ids, exported by local_claude_1 at 0ad09d99*.
+
+**All 352 "missing" ids are already in S3, via the backfill — not one is absent from the
+bucket.** Two different questions hide behind the word *missing*:
+
+- `missing_from_day_manifests` — did the **VM** collect it? This is the cut-over criterion.
+- `absent_from_s3_entirely` — does the **project** have it at all? This is data safety.
+
+On this date they read 352 and 0. Quoting the first as if it were the second would say the
+project had lost 352 games when it had lost none. Because that is exactly the class of error
+this project pays most for, the triage now lives inside `compare.py` and every reference run
+reports both numbers with a note naming which question each answers.
+
+The 603 comes from **all four** of the day's manifests (plain plus `.rerun-1/2/3`), and the
+overlap of 9 with the reference matches the coordinator's own measurement.
+
+**The gap measures cohort choice, not collector correctness.** The frozen collector reads
+resident + top 50; the VM ran `--cohort 10` for the runs that produced these objects. The unit
+has since been raised to `--cohort 50 --max-games 2000`, so tomorrow's 05:47 run is the first
+comparable one.
 
 ## The failure this tool is built to avoid
 
@@ -43,11 +57,9 @@ reference is stamped `UNLABELLED — provenance not stated` in the output. This 
 expensive recurring error is a figure that changes meaning at a boundary; the label travels with
 the number.
 
-## What I need to finish B5
+## Standing caveat for future runs
 
-The `project_host` id export for 2026-08-11 (and onward). Send it in the task thread in any of
-the three formats and I will publish the parity result. Note the caveat the numbers will carry:
-the deployed unit runs `--cohort 10 --max-games 300` because the VM's disk is 94% full, and both
-runs today dropped candidates (`953` and `653` of 1,253). **Missing ids against a full
-`project_host` export are therefore expected right now, and they measure the cap, not a defect
-in the collector.**
+Until the VM's cohort has matched the frozen collector's for a full day, a non-empty symmetric
+difference is expected by construction and is not by itself a defect — as the export's README
+says. The spec's seven-consecutive-day cut-over criterion only becomes meaningful from the first
+day both collectors sample the same reach.

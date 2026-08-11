@@ -89,7 +89,9 @@ def test_missing_ids_are_reported_as_gaps(tmp_path, monkeypatch):
                             ["--reference", str(reference), "--reference-label", "test"])
     assert code == 1
     assert report["verdict"] == "GAPS"
-    assert report["missing_from_bucket"] == [99]
+    assert report["missing_from_day_manifests"] == [99]
+    assert report["s3_wide_triage"]["absent_from_s3_entirely"] == [99], \
+        "not held anywhere, so it is a real data gap"
 
 
 def test_extra_ids_do_not_count_as_gaps(tmp_path, monkeypatch):
@@ -109,7 +111,7 @@ def test_a_run_without_a_reference_refuses_to_claim_parity(tmp_path, monkeypatch
     _, report = run_main(tmp_path, monkeypatch, s3)
     assert report["verdict"] == "NO_REFERENCE"
     assert "must not be quoted" in report["note"]
-    assert "missing_count" not in report
+    assert "missing_from_day_count" not in report
 
 
 def test_an_unlabelled_reference_says_so(tmp_path, monkeypatch):
@@ -119,3 +121,18 @@ def test_an_unlabelled_reference_says_so(tmp_path, monkeypatch):
     s3 = FakeS3({"games/manifest/daily-2026-08-11.jsonl": [1]})
     _, report = run_main(tmp_path, monkeypatch, s3, ["--reference", str(reference)])
     assert "UNLABELLED" in report["reference_label"]
+
+
+def test_a_game_held_only_via_the_backfill_is_not_a_data_gap(tmp_path, monkeypatch):
+    """The distinction 2026-08-11 turned on: 352 ids missing from the day's object, 0 absent
+    from S3. Cut-over asks the first question; data safety asks the second."""
+    reference = tmp_path / "ref.txt"
+    reference.write_text("1\n2\n77\n")
+    s3 = FakeS3({"games/manifest/daily-2026-08-11.jsonl": [1, 2],
+                 "games/manifest/backfill-000000.jsonl": [77]})
+    code, report = run_main(tmp_path, monkeypatch, s3,
+                            ["--reference", str(reference), "--reference-label", "test"])
+    assert code == 1 and report["verdict"] == "GAPS"
+    assert report["missing_from_day_manifests"] == [77], "the VM did not collect it"
+    assert report["s3_wide_triage"]["absent_from_s3_entirely"] == [], "but S3 holds it"
+    assert report["s3_wide_triage"]["held_via_another_object_count"] == 1

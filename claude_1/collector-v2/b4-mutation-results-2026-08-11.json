@@ -1,10 +1,10 @@
 {
-  "caught": 14,
+  "caught": 22,
   "control_green": true,
   "control_output_tail": null,
   "drive": "b4-collector-mutations",
-  "mutants_applied": 14,
-  "mutants_defined": 14,
+  "mutants_applied": 22,
+  "mutants_defined": 22,
   "not_applied": [],
   "results": [
     {
@@ -95,6 +95,62 @@
       "caught": true,
       "description": "prunes staging on any upload, so a failed verification destroys the only local copy",
       "id": "C13-prune-before-verification",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "discovers candidates but does not subtract what S3 already holds",
+      "id": "D1-known-ids-ignored",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "applies the budget before removing held games, so the budget is spent on re-fetches",
+      "id": "D2-dedupe-after-the-cap",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "keeps the newest un-held candidates, leaving the ones nearest to expiry behind",
+      "id": "D3-newest-first",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "treats an empty manifest listing as 'we hold nothing' and re-fetches everything",
+      "id": "D4-empty-known-set-tolerated",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "skips a manifest it cannot read, silently under-counting what is held",
+      "id": "D5-unreadable-manifest-skipped",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "reports a missing known-id set as an ordinary crash, losing the distinct signal",
+      "id": "D6-known-ids-failure-is-generic",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "drops the fetched=0 line, so a nothing-new run is indistinguishable from a broken one",
+      "id": "D7-no-explicit-zero-marker",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "builds the known set from the backfill only, so its own prior runs are re-fetched",
+      "id": "D8-daily-manifests-not-counted",
       "status": "APPLIED",
       "test_output_tail": null
     },

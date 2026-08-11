@@ -1,0 +1,38 @@
+{
+  "already_held": 6341,
+  "candidates": 6343,
+  "capped_out": 0,
+  "collected": 2,
+  "date": "2026-08-11",
+  "discover_failures": [],
+  "dry_run": false,
+  "exit": 0,
+  "fetch_failures": [],
+  "finished_utc": "2026-08-11T15:03:36Z",
+  "known_ids": {
+    "ids": 15292,
+    "manifests": 19,
+    "new_ids_from_backfill": 15291,
+    "new_ids_from_daily": 1
+  },
+  "pack_sha256": "c1b343ade2c680831adb20ae3cb0c4bf011e75fd5426a62daefdcc252ed976b3",
+  "permanently_gone": 0,
+  "seconds": 41.5,
+  "started_utc": "2026-08-11T15:02:55Z",
+  "unseen": 2,
+  "upload": {
+    "manifest_etag": "\"836d62a250d275fb2d56d09363c07e5d\"",
+    "manifest_key": "games/manifest/daily-2026-08-11.rerun-3.jsonl",
+    "manifest_sha256": "cf4ddc888d3154a52acd07d30264897eee5c1523ad8028b2c250189fb9f0b21a",
+    "pack_etag": "\"d821cc1329229848dab433f44c7c271d\"",
+    "pack_key": "games/raw/daily/2026-08-11.rerun-3.jsonl.gz",
+    "pack_sha256": "c1b343ade2c680831adb20ae3cb0c4bf011e75fd5426a62daefdcc252ed976b3",
+    "rerun": 3,
+    "uploaded": true
+  },
+  "verification": {
+    "manifest_match": true,
+    "pack_bytes_match": true,
+    "pack_sha256_match": true
+  }
+}
