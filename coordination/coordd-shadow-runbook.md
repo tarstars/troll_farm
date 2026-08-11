@@ -50,3 +50,30 @@ test failures; auth polish (non-ASCII Authorization header returns 500 rather th
 401 — contained, cosmetic; don't echo raw exception text in 500 bodies); HTTP-level
 tests for the 403/422 paths; deploy README notes that remote `sudo cat` token
 distribution assumes NOPASSWD sudo.
+
+### From claude_1's adversarial self-review, 2026-08-11 (8 findings; F1 and F5 re-verified by the coordinator's own repros)
+
+Important — named P2 tasks:
+- **F1** `register_handoff`'s local-ref fallback verifies commits reachable from NO
+  origin ref (unpushed work passes). Nuance for the fix: the VM's bare-mirror deploy
+  NEEDS a non-`refs/remotes` lookup (`refs/heads/*` in a mirror) — distinguish mirror
+  vs worktree clones instead of deleting the fallback; the committed
+  `test_valid_handoff_verifies` fixture itself relies on the hole and must change.
+- **F2** `set_state` is unfenced and ignores `leases`: a non-owner can drive any task's
+  state, and a lease survives `done`, blocking overlapping write-sets indefinitely.
+- **F3** `claim` has no terminal-state guard: `done`/`dropped` tasks silently reopen.
+- **F5** `check_ref_census` only scans `refs/heads` — an unpushed commit on a detached
+  HEAD (exactly what worktree/VM flows produce) reports clean.
+
+Minor: **F4** negative Content-Length hangs a handler thread; **F6** cron guard
+accepts future-dated markers; **F7** nothing owns fabricated frontmatter/filename
+dates (check_clock covers only git dates — the 2026-08-09 incident surface); **F8**
+mirror cursor write is non-atomic (truncated cursor bricks later runs).
+
+Deployment deviations worth folding into deploy/README: root/coordd users need
+GitHub known_hosts+keys or clones route through the authed user; `coordctl doctor`
+against a root-owned repo dies on git's dubious-ownership guard (exit 1, not 2) —
+add `safe.directory` handling or document running doctor against the agent's own
+checkout. Attacks that HELD, for the record: multi-process HTTP claim race, fencing
+after expiry takeover, auth on all 14 routes, git-verification injection, kill -9
+durability + idempotency.
