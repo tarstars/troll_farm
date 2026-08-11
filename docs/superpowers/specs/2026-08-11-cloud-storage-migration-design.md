@@ -85,6 +85,14 @@ for cloud-side heavy runs — after the grant period resets.
 
 - **Phase 0 — prerequisites:** owner sets the 17,000 ₽ budget alert; owner glances at
   what consumed the non-VM ~7,500 ₽ this period (console → detailed consumption).
+  **2026-08-11: budget CREATED by the owner (reported; the agent has no billing access
+  and cannot verify it — `yc` here has no `billing` group at all, by design).** The
+  17,000 single threshold was superseded on review: a budget of 18,000 ₽ (the grant) with
+  thresholds at 50/80/95% warns instead of merely announcing, and the type must be
+  **«Стоимость потребления»** — «К оплате» nets the grant out and would sit at 0% until
+  the grant is exhausted, never firing. Budgets live at `center.yandex.cloud/billing`,
+  NOT `console.yandex.cloud`. Still open: billing export (plan A5) and the
+  detailed-consumption look at the unexplained ~7,500 ₽.
 - **Phase 1 — bucket + game DB:** create bucket + static S3 keys (stored beside the
   SA key, never in git); enable billing export; pack and upload the existing corpus
   with manifest; verify by count/bytes/sha256. Cost: tens of ₽/month.
