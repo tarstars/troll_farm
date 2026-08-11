@@ -33,7 +33,11 @@ assumptions.
       names the truth), one line per game `{"game_id", "sha256", "size", "raw"}` with the
       raw JSON embedded; per-pack manifest `manifest/backfill-%06d.jsonl` lines
       `{"game_id", "sha256", "size", "pack"}`. Packing is read-only over `data/raw/games/`.
-- [ ] A4. Upload packs + manifests to `s3://<bucket>/games/` (boto3 against
+- [ ] A4. **NETWORK GATE (owner rule 2026-08-11): project_host is sometimes on metered
+      mobile internet. Do not start this or any other big upload without the owner
+      explicitly confirming the connection is WiFi/unmetered.** Automated detection is
+      unreliable (a phone hotspot looks like WiFi to nmcli), so the owner's word is the
+      gate. Then: upload packs + manifests to `s3://<bucket>/games/` (boto3 against
       `storage.yandexcloud.net`, admin keys). Verify: object count == pack count; per-pack
       re-download spot-check (≥3 packs, sha256 match); total game count across manifests
       == local count at pack time. Record counts in the handoff.
