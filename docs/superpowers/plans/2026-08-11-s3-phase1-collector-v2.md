@@ -15,11 +15,11 @@ assumptions.
 
 ## Part A — coordinator, on project_host (execute immediately)
 
-- [ ] A1. Create the bucket in `troll-farm-auto` as `troll-farm-agent`:
+- [x] A1. Create the bucket in `troll-farm-auto` as `troll-farm-agent`:
       `yc storage bucket create --name <troll-farm-data | fallback troll-farm-data-tarstars>`
       (private ACL, standard class, ru-central1). Record the final name here and in the
-      handoff.
-- [ ] A2. Create data-plane service account `troll-farm-vm-writer` with **storage.uploader
+      handoff. **Done 2026-08-11: `troll-farm-data`.**
+- [x] A2. Create data-plane service account `troll-farm-vm-writer` with **storage.uploader
       + storage.viewer only** (upload + read/list; no delete, no bucket admin — the object
       layout is append-only by design, so overwrite rights are unnecessary). Static access
       keys → `~/.config/yandex-cloud/keys/vm-writer-s3.json` (0600). Also static keys for
@@ -27,13 +27,17 @@ assumptions.
       `~/.config/yandex-cloud/keys/agent-s3.json` (0600). Keys never enter git or chat;
       the vm-writer pair travels to the VM via the owner (one paste into claude_1's
       session), landing at `~/.config/troll-farm/s3-keys.json` (0600) there.
-- [ ] A3. Pack the existing corpus deterministically: `data/scripts/pack_games.py` —
+      **Done 2026-08-11: both key files in place (0600); vm-writer pair verified present
+      on the VM by `claude_1` (0600, never logged).**
+- [x] A3. Pack the existing corpus deterministically: `data/scripts/pack_games.py` —
       all `data/raw/games/*.json` sorted by numeric id, chunks of 1,000 →
       `backfill/pack-%06d.jsonl.gz` (gzip; zstd unavailable in the local venv, extension
       names the truth), one line per game `{"game_id", "sha256", "size", "raw"}` with the
       raw JSON embedded; per-pack manifest `manifest/backfill-%06d.jsonl` lines
       `{"game_id", "sha256", "size", "pack"}`. Packing is read-only over `data/raw/games/`.
-- [ ] A4. **NETWORK GATE (owner rule 2026-08-11): project_host is sometimes on metered
+      **Done 2026-08-11: 16 packs / 15,291 games / 672 MB staged durably at
+      `~/.cache/troll-farm/s3-backfill/`.**
+- [x] A4. **NETWORK GATE (owner rule 2026-08-11): project_host is sometimes on metered
       mobile internet. Do not start this or any other big upload without the owner
       explicitly confirming the connection is WiFi/unmetered.** Automated detection is
       unreliable (a phone hotspot looks like WiFi to nmcli), so the owner's word is the
@@ -41,6 +45,11 @@ assumptions.
       `storage.yandexcloud.net`, admin keys). Verify: object count == pack count; per-pack
       re-download spot-check (≥3 packs, sha256 match); total game count across manifests
       == local count at pack time. Record counts in the handoff.
+      **Done 2026-08-11, after the owner's explicit WiFi confirmation: 32 objects
+      uploaded; remote 16/16 packs, 16/16 manifests; sha256 spot-checks 3/3 MATCH;
+      manifest lines 15,291 == local 15,291; VERIFY: PASS (exit 0). Full log:
+      `local_claude_1/verification/s3-backfill-upload-2026-08-11.md` on
+      `agent/local_claude_1`.**
 - [ ] A5. Owner console errand (bundled with the budget alert): enable billing export
       into `s3://<bucket>/billing/` — console-only, not scriptable here.
 

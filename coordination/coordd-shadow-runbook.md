@@ -49,7 +49,11 @@ after the 2026-08-10 post-reboot incident where an unplugged USB masqueraded as 
 test failures; auth polish (non-ASCII Authorization header returns 500 rather than
 401 — contained, cosmetic; don't echo raw exception text in 500 bodies); HTTP-level
 tests for the 403/422 paths; deploy README notes that remote `sudo cat` token
-distribution assumes NOPASSWD sudo.
+distribution assumes NOPASSWD sudo. First-real-workload evidence (claude_1,
+2026-08-11, task 20260811-s3-collector-v2): `release --outcome` accepts only the
+task-state enum (`open`/`review`/`blocked`/`done`/`dropped`) and correctly refuses a
+descriptive outcome with a clean 400 JSON error — but the field name invites exactly
+that mistake; P2 should rename the flag or accept a free-text note alongside it.
 
 ### From claude_1's adversarial self-review, 2026-08-11 (8 findings; F1 and F5 re-verified by the coordinator's own repros)
 
