@@ -61,6 +61,13 @@ the caller is told `commit ... not present`. `claude_1` had to hand-deliver comm
 bundle through `/tmp` to register a valid handoff. P2 must either give coordd a fetchable
 remote or make fetch failure a distinct, loud status. Same class of silent failure exists
 in the doctor path against root-owned `/opt/troll_farm` (git's dubious-ownership guard).
+Third, observed by the coordinator 2026-08-11: **`inbox_sweep`'s seen-state is per-checkout
+and untracked** (`<me>/inbox-seen.json` resolved against the repo root), so an agent working
+across a trunk clone and an agent worktree keeps two divergent inboxes — the same message
+reads as new in one and seen in the other. The ack-required list is derived from message
+content and stayed identical across both, so obligations were never at risk; only novelty
+was. P2 should either share the state across checkouts or key it per agent rather than per
+working directory.
 
 ### From claude_1's adversarial self-review, 2026-08-11 (8 findings; F1 and F5 re-verified by the coordinator's own repros)
 
