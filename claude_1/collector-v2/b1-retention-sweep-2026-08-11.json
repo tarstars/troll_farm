@@ -1,0 +1,159 @@
+{
+  "agent_id": 6479768,
+  "boundary_monotone_in_game_id": false,
+  "cached_only_count": 287,
+  "cached_only_range": [
+    892621271,
+    895035298
+  ],
+  "check": "b1-retention-vs-authorization",
+  "failed_count": 5,
+  "highest_failed_id": 895033379,
+  "listed_but_failed": [],
+  "listed_id_range": [
+    891153730,
+    898550181
+  ],
+  "listed_ids_count": 154,
+  "lowest_resolved_id": 891153730,
+  "probes": [
+    {
+      "frames": 601,
+      "game_id": 891153730,
+      "origin": "listed_live",
+      "replay_valid": true,
+      "response_bytes": 412312,
+      "shape_error": null,
+      "status": "ok"
+    },
+    {
+      "error": "{\"id\":548,\"message\":\"Game not found\"}",
+      "game_id": 892621271,
+      "http_status": 422,
+      "origin": "cached_only",
+      "status": "http_error"
+    },
+    {
+      "frames": 601,
+      "game_id": 893206776,
+      "origin": "listed_live",
+      "replay_valid": true,
+      "response_bytes": 284843,
+      "shape_error": null,
+      "status": "ok"
+    },
+    {
+      "error": "{\"id\":548,\"message\":\"Game not found\"}",
+      "game_id": 893999013,
+      "http_status": 422,
+      "origin": "cached_only",
+      "status": "http_error"
+    },
+    {
+      "error": "{\"id\":548,\"message\":\"Game not found\"}",
+      "game_id": 894976998,
+      "http_status": 422,
+      "origin": "cached_only",
+      "status": "http_error"
+    },
+    {
+      "error": "{\"id\":548,\"message\":\"Game not found\"}",
+      "game_id": 894987110,
+      "http_status": 422,
+      "origin": "cached_only",
+      "status": "http_error"
+    },
+    {
+      "error": "{\"id\":548,\"message\":\"Game not found\"}",
+      "game_id": 895033379,
+      "http_status": 422,
+      "origin": "cached_only",
+      "status": "http_error"
+    },
+    {
+      "frames": 601,
+      "game_id": 895034023,
+      "origin": "cached_only",
+      "replay_valid": true,
+      "response_bytes": 328809,
+      "shape_error": null,
+      "status": "ok"
+    },
+    {
+      "frames": 601,
+      "game_id": 895034645,
+      "origin": "cached_only",
+      "replay_valid": true,
+      "response_bytes": 357547,
+      "shape_error": null,
+      "status": "ok"
+    },
+    {
+      "frames": 601,
+      "game_id": 895035298,
+      "origin": "cached_only",
+      "replay_valid": true,
+      "response_bytes": 279335,
+      "shape_error": null,
+      "status": "ok"
+    },
+    {
+      "frames": 601,
+      "game_id": 896586806,
+      "origin": "listed_live",
+      "replay_valid": true,
+      "response_bytes": 321643,
+      "shape_error": null,
+      "status": "ok"
+    },
+    {
+      "frames": 601,
+      "game_id": 896601275,
+      "origin": "listed_live",
+      "replay_valid": true,
+      "response_bytes": 347295,
+      "shape_error": null,
+      "status": "ok"
+    },
+    {
+      "frames": 601,
+      "game_id": 896625745,
+      "origin": "listed_live",
+      "replay_valid": true,
+      "response_bytes": 339186,
+      "shape_error": null,
+      "status": "ok"
+    },
+    {
+      "frames": 601,
+      "game_id": 896629536,
+      "origin": "listed_live",
+      "replay_valid": true,
+      "response_bytes": 294194,
+      "shape_error": null,
+      "status": "ok"
+    },
+    {
+      "frames": 601,
+      "game_id": 896635729,
+      "origin": "listed_live",
+      "replay_valid": true,
+      "response_bytes": 330092,
+      "shape_error": null,
+      "status": "ok"
+    },
+    {
+      "frames": 601,
+      "game_id": 898550181,
+      "origin": "listed_live",
+      "replay_valid": true,
+      "response_bytes": 369718,
+      "shape_error": null,
+      "status": "ok"
+    }
+  ],
+  "resolved_count": 11,
+  "run_utc": "2026-08-11T10:42:59.923Z",
+  "shape": "NOT_AGE_SHAPED",
+  "task_id": "20260811-s3-collector-v2"
+}
