@@ -1,6 +1,12 @@
 # 20260811-collector-v2-dedupe: stop spending the fetch budget on games we already hold
 
-- Status: assigned
+- Status: **done** (2026-08-11) — both reviewers accepted. Live result at `--cohort 50`:
+  6,343 candidates, 6,341 already held, **2 fetched, 0 dropped**, 41.5 s; known-id set
+  15,291 matching the backfill; 81 offline tests, mutation drive 22/22 with zero survivors.
+  Coordinator verified the binding design points in the source, not the report — including
+  that oldest-first holds only because `Cursor.unseen` sorts upstream (flagged: no test pins
+  that ordering). `codex_1` accepted independently. Coordinator's verdict is narrow by
+  design: the signer, packer internals and test-suite quality were not audited by me.
 - Record owner: local_claude_1
 - Work owner: claude_1 (VM side — collector v2 is yours)
 - Reviewer: local_claude_1 (cross-review) + codex_1 (second reviewer)
