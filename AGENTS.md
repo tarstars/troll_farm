@@ -29,21 +29,24 @@ ledgers unless archaeology is explicitly required.
 
 ## Local Bulk Storage Policy
 
-- The authoritative local bulk filesystem is the volume labeled
-  `medium_data`. Its last observed mount is `/media/tarstars/medium_data`, and
-  this project's physical root is
-  `/media/tarstars/medium_data/database/troll_farm`.
-- The mount path is observed state; the filesystem label is its identity.
-  Discover and verify the mount by label before every bulk write.
-- The clean external-backed logical roots are `artifacts`, `outputs`,
-  `yt_work`, `data/generated`, and `data/external`. Once provisioned, each
-  must be a symlink whose resolved target is beneath the physical project
-  root.
+- Bulk roots are served by whichever backend is mounted at
+  `/media/tarstars/medium_data/database/troll_farm`: the USB (ext4 label
+  `medium_data`, writable, only while attached) or — the steady state since
+  2026-08-11 — a **read-only** GeeseFS mount of `troll-farm-data:archive`.
+  The path is observed state; the label or mount source is the identity.
+- The archive-backed logical roots are `artifacts`, `outputs`, and
+  `data/external`; each must be a symlink resolving beneath the physical
+  project root. `yt_work` and `data/generated` are **local scratch** under
+  `~/.cache/troll-farm/` and are deliberately outside it.
 - Before writing through a bulk root, run
-  `python3 cgauto/check_external_storage.py --required-free-gib <GiB>`.
-  If the volume, project root, free space, or any required symlink is
-  unavailable, stop. Never create a replacement real directory in the
-  repository.
+  `python3 cgauto/check_external_storage.py --required-free-gib <GiB>`;
+  before a bulk read, `--intent read`. If the backend, project root, free
+  space, or any required symlink is unavailable, stop. Never create a
+  replacement real directory in the repository, and never loosen the check to
+  get past a read-only failure.
+- **Open: new bulk output has no home.** The cloud mount is read-only, so
+  writes to `artifacts/...` now fail by design. Awaiting an owner decision;
+  see `docs/storage-policy.md`.
 - Put large simulation matrices, replay-derived corpora, datasets,
   checkpoints, raw prediction/trajectory dumps, YT payloads and downloads,
   runtime archives, and profiler captures under the external-backed roots.

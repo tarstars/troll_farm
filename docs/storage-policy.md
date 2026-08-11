@@ -1,39 +1,61 @@
 # Troll Farm Storage And Compute Policy
 
-Date: 2026-07-23
-
-This adapts the proven `math_through_eml` external-storage policy to Troll
-Farm. The normative short version is in `AGENTS.md`.
+Date: 2026-07-23. **Amended 2026-08-11 (spec Phases 3–4): the USB is no longer live
+infrastructure.** This adapts the proven `math_through_eml` external-storage policy to
+Troll Farm. The normative short version is in `AGENTS.md`.
 
 ## Local bulk layout
 
-The authoritative local bulk filesystem is identified by label
-`medium_data`. Its last observed mount is:
+The bulk roots are served by **whichever backend is present**, and both are legitimate:
 
-```text
-/media/tarstars/medium_data
-```
+| Backend | Identity | Writable | When |
+| --- | --- | --- | --- |
+| USB (ext4) | filesystem label `medium_data` | yes | only while the drive is attached |
+| Cloud (GeeseFS) | mount source `troll-farm-data:archive` | **no** | the steady state since 2026-08-11 |
 
-The physical Troll Farm root is:
+Both present the **same path**, which is why the repo's 2,346 absolute symlinks keep
+working either way:
 
 ```text
 /media/tarstars/medium_data/database/troll_farm
 ```
 
+The USB is now an **offline backup**. Its contents were uploaded and verified on
+2026-08-11 (3,483 files / 9.99 GiB, `VERIFY: PASS`, independently recounted) as a
+**per-file mirror** under the bucket's `archive/` prefix — per-file, not packed,
+precisely so the mount can serve these paths. Manifests live at `archive-manifest/`.
+Note the drive also holds ~1.2 TB of unrelated personal data that this project does
+**not** back up.
+
 The following repository paths are the clean bulk boundary:
 
-| Logical path | Purpose |
-| --- | --- |
-| `artifacts` | Large experiment matrices, corpora, checkpoints, and raw telemetry |
-| `outputs` | Large run outputs and extracted bundles |
-| `yt_work` | YT payload staging and downloads |
-| `data/generated` | Regenerable generated datasets |
-| `data/external` | Downloaded or externally sourced datasets |
+| Logical path | Purpose | Backing |
+| --- | --- | --- |
+| `artifacts` | Large experiment matrices, corpora, checkpoints, and raw telemetry | archive |
+| `outputs` | Large run outputs and extracted bundles | archive |
+| `data/external` | Downloaded or externally sourced datasets | archive |
+| `yt_work` | YT payload staging and downloads | **local scratch** |
+| `data/generated` | Regenerable generated datasets | **local scratch** |
+
+The last two changed on 2026-08-11. Both held **zero files** on the USB — verified at the
+Phase 3 upload, where the whole drive was 3,483 files and none were under either — and
+both are *write* targets, which a read-only archive cannot host. They now point at
+`~/.cache/troll-farm/`. Both symlinks were untracked, so no clone is affected.
 
 These paths are ignored without trailing slashes so Git ignores either a
 temporary real directory during a validated migration or the final symlink
-object. In steady state, every path must be a symlink resolving beneath the
-physical Troll Farm root.
+object. In steady state, every **archive-backed** path must be a symlink resolving
+beneath the physical Troll Farm root; the two scratch paths must be symlinks to
+writable local directories and are deliberately *outside* it.
+
+## ★ Unresolved: where new bulk output goes
+
+The cloud mount is read-only, so a write to `artifacts/experiments/...` now fails —
+loudly and correctly, but it fails. The migration spec says experiment rows are "S3
+standard, then read via GeeseFS" and never says how they are *written*. Candidates are
+local staging with periodic upload (what collector v2 does for games) or a second
+writable mount. **This is an open owner decision.** Until it is made, all history is
+readable and no new bulk artifact can be produced.
 
 The existing `data/analysis`, `data/raw`, and `data/processed` directories are
 mixed: they contain tracked or compact scientific records as well as legacy
@@ -48,21 +70,29 @@ still needs them.
 Before a write through any bulk root, run:
 
 ```bash
-python3 cgauto/check_external_storage.py --required-free-gib <GiB>
+python3 cgauto/check_external_storage.py --required-free-gib <GiB>   # --intent write is the default
+python3 cgauto/check_external_storage.py --intent read               # before a bulk READ
 ```
 
-The command discovers the mount by filesystem label and checks:
+The command discovers whichever backend is present — USB by label first, else the
+GeeseFS mount by source — and checks:
 
-1. exactly one mounted filesystem has label `medium_data`;
-2. the physical project root exists on that filesystem;
-3. every required repository path is a symlink;
-4. every resolved target stays beneath the physical project root and is on
-   the labeled filesystem; and
-5. the requested free-space floor is available.
+1. exactly one mount matches the backend's identity;
+2. the physical project root exists on it;
+3. every archive-backed repository path is a symlink resolving beneath that root, on the
+   same backend;
+4. every scratch path resolves to a writable local directory;
+5. the requested free-space floor is available **when the backend is writable** — object
+   storage reports a fictitious 1 PiB free, so the threshold is skipped rather than
+   compared against a fiction; and
+6. **the caller's intent is satisfiable**: `--intent write` fails closed on a read-only
+   backend. This is the common case today, and it is correct — the write would fail
+   anyway, later and messier.
 
 The mount path is not the identity. If the device mounts elsewhere, the
-preflight reports that observed path. If the device or a link is absent, stop.
-Never replace a missing link with a real directory on `/`.
+preflight reports that observed path. If the backend or a link is absent, stop.
+Never replace a missing link with a real directory on `/`, and never "fix" a
+read-only failure by loosening the check.
 
 ## Safe migration procedure
 
@@ -93,7 +123,7 @@ Keep in the repository:
 - compact configs, manifests, checksums, and operation metadata;
 - aggregate metrics, analysis tables, figures, and result reports.
 
-Keep on `medium_data`:
+Keep on the bulk backend (the `archive/` prefix; historically `medium_data`):
 
 - simulation arm/candidate matrices;
 - replay-derived training corpora and raw trajectories;
