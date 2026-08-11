@@ -293,11 +293,49 @@ def test_transient_fetch_failure_reports_exit_3(tmp_path, monkeypatch):
     assert code == 3, "an incomplete day must not look like a clean run"
 
 
-def test_permanently_gone_game_does_not_fail_the_run(tmp_path, monkeypatch):
+def test_permanently_gone_game_still_makes_the_run_nonzero(tmp_path, monkeypatch, capsys):
+    """Replaces an earlier test that pinned exit 0 here — that pinned the wrong behaviour.
+
+    Coordinator ruling `20260811T112547Z`: a same-day fetch failure is a real error in the
+    end marker, not a soft skip. A 422 means the replay has left every participant's window,
+    which is a permanent loss and the last thing that should read as a clean run. Raised by
+    codex_1 in second review.
+    """
     gone = urllib.error.HTTPError("u", 422, "err", {},
                                   io.BytesIO(b'{"id":548,"message":"Game not found"}'))
     platform = DiscoveringPlatform([1, 2], replay_replies={2: gone})
-    assert run_main(tmp_path, monkeypatch, platform=platform, s3=FakeS3()) == 0
+    code = run_main(tmp_path, monkeypatch, platform=platform, s3=FakeS3())
+    output = capsys.readouterr().out
+    assert code == 3
+    assert "permanently_gone=1" in output, "the classification must survive, it just cannot excuse"
+    assert "collector-v2 end exit=3" in output
+
+
+def test_a_mixed_failure_day_is_nonzero_and_keeps_both_counts(tmp_path, monkeypatch, capsys):
+    """The sharper half of the same defect: one permanent failure used to mask every
+    transient one beside it, so a day that lost games two different ways exited 0."""
+    gone = urllib.error.HTTPError("u", 422, "err", {},
+                                  io.BytesIO(b'{"id":548,"message":"Game not found"}'))
+    platform = DiscoveringPlatform([1, 2, 3, 4],
+                                   replay_replies={2: gone, 3: TimeoutError("slow")})
+    code = run_main(tmp_path, monkeypatch, platform=platform, s3=FakeS3())
+    output = capsys.readouterr().out
+    assert code == 3
+    assert "failed=2" in output and "permanently_gone=1" in output
+    cursor = json.loads((tmp_path / "state" / "collector-v2.json").read_text())
+    run = cursor["runs"][0]
+    assert len(run["fetch_failures"]) == 2
+    assert sum(1 for f in run["fetch_failures"] if f.get("permanent")) == 1
+    assert run["collected"] == 2, "the sweep still finished: one lost game must not cost the day"
+
+
+def test_every_candidate_is_attempted_despite_a_failure(tmp_path, monkeypatch):
+    """The other half of the ruling: do not abort the sweep on the first failure."""
+    platform = DiscoveringPlatform([1, 2, 3], replay_replies={1: TimeoutError("slow")})
+    run_main(tmp_path, monkeypatch, platform=platform, s3=FakeS3())
+    attempted = sorted(body[0] for service, body in platform.calls
+                       if service == "gameResult/findByGameId")
+    assert attempted == [1, 2, 3]
 
 
 def test_end_marker_is_emitted_even_when_discovery_explodes(tmp_path, monkeypatch, capsys):

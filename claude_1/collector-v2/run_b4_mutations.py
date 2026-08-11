@@ -60,8 +60,15 @@ MUTANTS = [
      '"permanent": False,'),
     ("C8-incomplete-day-looks-clean",
      "returns 0 when some games failed to fetch, hiding an incomplete day",
-     '        if exit_code == 0 and fetch_failures and not permanent:',
+     '        if exit_code == 0 and fetch_failures:',
      '        if False:'),
+    # The defect codex_1 found in second review, kept as a mutant so it cannot come back:
+    # gating the nonzero exit on `not permanent` made an all-422 day exit 0, and made a MIXED
+    # day exit 0 as well, because one permanent failure masked every transient one beside it.
+    ("C8b-permanent-failures-excused",
+     "excuses permanent (422) failures from the nonzero exit, masking mixed-failure days too",
+     '        if exit_code == 0 and fetch_failures:',
+     '        if exit_code == 0 and fetch_failures and not permanent:'),
     ("C9-upload-never-verified",
      "trusts the upload instead of downloading and re-hashing it",
      '                if not all(verification.values()):',

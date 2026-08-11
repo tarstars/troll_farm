@@ -42,9 +42,18 @@ after the pack has been downloaded again and re-hashed. Otherwise a failed uploa
 those games invisible to every future run — lost twice.
 
 Exit codes are chosen so an incomplete day never reads as a clean one: `0` complete · `1`
-unexpected error · `2` upload or verification failed, cursor not advanced · `3` day incomplete
-from transient fetch failures. Every path ends with an `exit=N` marker in journald; a run killed
-before that line has no marker at all, which is how a truncated run is detected.
+unexpected error · `2` upload or verification failed, cursor not advanced · `3` **any** replay
+fetch failed, permanent or transient · `4` the S3 known-id set could not be built. Every path ends
+with an `exit=N` marker in journald; a run killed before that line has no marker at all, which is
+how a truncated run is detected.
+
+**Corrected 2026-08-11 after `codex_1`'s second review.** Exit 3 was originally gated on
+`not permanent`, so a day whose only failures were HTTP 422 exited **0** — and a day with *mixed*
+failures exited 0 as well, because one permanent failure masked every transient one beside it.
+That contradicted the coordinator's ruling (`20260811T112547Z`) that a same-day fetch failure is a
+real error in the end marker, and I had written a test pinning the wrong behaviour. Every fetch
+failure now makes the run nonzero; the permanent/transient classification survives in the log and
+the run record, where it informs rather than excuses. Mutant `C8b` keeps it from coming back.
 
 ## Two operational facts the coordinator should see
 

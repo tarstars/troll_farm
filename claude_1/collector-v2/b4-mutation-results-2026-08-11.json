@@ -1,10 +1,10 @@
 {
-  "caught": 22,
+  "caught": 23,
   "control_green": true,
   "control_output_tail": null,
   "drive": "b4-collector-mutations",
-  "mutants_applied": 22,
-  "mutants_defined": 22,
+  "mutants_applied": 23,
+  "mutants_defined": 23,
   "not_applied": [],
   "results": [
     {
@@ -67,6 +67,13 @@
       "caught": true,
       "description": "returns 0 when some games failed to fetch, hiding an incomplete day",
       "id": "C8-incomplete-day-looks-clean",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "excuses permanent (422) failures from the nonzero exit, masking mixed-failure days too",
+      "id": "C8b-permanent-failures-excused",
       "status": "APPLIED",
       "test_output_tail": null
     },

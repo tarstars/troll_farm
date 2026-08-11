@@ -34,8 +34,10 @@ Exit codes, chosen so an incomplete day never looks like a clean one:
   1  unexpected error — the run did not complete
   2  upload or post-upload verification failed; the cursor was NOT advanced, so the same
      games are retried on the next run
-  3  the day is incomplete: some fetches failed transiently, and those games are gone unless
-     they are still in a participant's window on the next run
+  3  the day is incomplete: at least one replay fetch failed. Permanent (HTTP 422, the game
+     has left every participant's window) and transient failures both land here — the counts
+     and the classification are in the log and the run record, but neither lets the run
+     report success
   4  the S3 known-id set could not be built — the run stopped rather than re-fetch history
 """
 
@@ -433,8 +435,16 @@ def main(argv: list[str] | None = None) -> int:
         else:
             log("cursor.not_advanced", reason="nothing uploaded this run")
 
-        if exit_code == 0 and fetch_failures and not permanent:
-            exit_code = 3  # transient fetch failures: collected something, but not everything
+        if exit_code == 0 and fetch_failures:
+            # EVERY replay-fetch failure makes the run nonzero, permanent ones included
+            # (coordinator ruling `20260811T112547Z`: a same-day fetch failure is a real error
+            # in the end marker, not a soft skip; finish the sweep, then exit nonzero with the
+            # failure count). My first version gated this on `not permanent`, so an all-422 day
+            # exited 0 — and worse, a MIXED day exited 0 too, because one permanent failure
+            # masked every transient one beside it. Found by codex_1 in second review.
+            # The permanent/transient distinction survives in the log and the run record, where
+            # it informs; it no longer decides whether the run looks clean.
+            exit_code = 3
     except KnownIdsUnavailable as error:
         # Distinct marker and exit code: proceeding with an empty known-set would re-fetch
         # everything, so this must never be mistaken for an ordinary failure.
