@@ -127,6 +127,10 @@ for cloud-side heavy runs — after the grant period resets.
   written; `artifacts/experiments` writes now fail loudly. Owner decision needed.**
 - **Phase 5 — docs:** `docs/storage-policy.md` v2 and the `AGENTS.md` short version
   updated under the doc-budget discipline; the YT/burst compute rule recorded.
+  **DONE 2026-08-11:** both rewritten for the two-backend, read-only steady state
+  (archive-backed roots vs local scratch, preflight `--intent`), YT/burst-compute rule
+  recorded as its own section, and the unresolved "new bulk output has no writable home"
+  question flagged in both. Amended in place rather than rewritten, per the doc budget.
 
 ## 6. Non-goals
 

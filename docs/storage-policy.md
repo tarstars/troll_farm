@@ -154,6 +154,21 @@ local wall time is expected to exceed roughly one hour. Keep small controls
 and smoke tests local. Neural workflows must pass their frozen local/YT
 functional parity gate before backend results become selectable.
 
+## Where heavy compute runs (owner rule, 2026-08-11)
+
+YT (`//home/delivery_ml/...`) is reachable **only from `project_host`**. So:
+
+- heavy batches launched from the workstation may use YT;
+- anything cloud-side, or anything needed while the workstation is off, uses
+  **preemptible** burst VMs — preemptible by default, never on-demand by habit;
+- **no compute instances are created while the grant period is spent** (it was
+  nearly exhausted at 2026-08-11; steady headroom is ~10,500 ₽/month). Storage
+  costs tens of ₽/month and proceeds any time;
+- quotas as measured 2026-08-11: **GPU is zero cloud-wide** — a support ticket and
+  a grant-eligibility check come before ever requesting one — 28 free vCPU of 32,
+  128 GiB RAM, 12 instances;
+- every cloud mutation is announced before and after and logged like an Arena cycle.
+
 ## Adoption status on 2026-07-23
 
 The first inspection found `medium_data` detached. The system filesystem had
