@@ -1,0 +1,33 @@
+{
+  "bucket": "troll-farm-data",
+  "bucket_games_total": 600,
+  "check": "b5-parallel-run-comparison",
+  "days": [
+    {
+      "date": "2026-08-11",
+      "games": 600,
+      "manifests": [
+        {
+          "games": 300,
+          "key": "games/manifest/daily-2026-08-11.jsonl",
+          "rerun": 0
+        },
+        {
+          "games": 300,
+          "key": "games/manifest/daily-2026-08-11.rerun-1.jsonl",
+          "rerun": 1
+        }
+      ]
+    }
+  ],
+  "manifest_read_problems": [],
+  "note": "No project_host export was supplied, so this run reports the bucket side only. It is NOT a parity result and must not be quoted as one.",
+  "range": {
+    "days": 1,
+    "end": "2026-08-11",
+    "start": "2026-08-11"
+  },
+  "reference_path": null,
+  "task_id": "20260811-s3-collector-v2",
+  "verdict": "NO_REFERENCE"
+}
