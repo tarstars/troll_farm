@@ -4,6 +4,7 @@ from types import SimpleNamespace
 import pytest
 
 from cgauto.check_external_storage import (
+    DEFAULT_SCRATCH_ROOTS,
     DEFAULT_LOGICAL_ROOTS,
     StoragePreflightError,
     validate_layout,
@@ -93,4 +94,96 @@ def test_insufficient_free_space_fails_closed(tmp_path: Path) -> None:
             required_free_bytes=10 * 1024**3,
             label_for_path=_label_medium_data,
             disk_usage=lambda _path: _disk_usage(free=5 * 1024**3),
+        )
+
+
+def _scratch(tmp_path: Path, repo: Path, writable: bool = True) -> None:
+    """Give the repo the two local scratch roots the cloud archive cannot host."""
+    for relative in DEFAULT_SCRATCH_ROOTS:
+        target = tmp_path / "scratch" / relative
+        target.mkdir(parents=True)
+        if not writable:
+            target.chmod(0o500)
+        logical = repo / relative
+        logical.parent.mkdir(parents=True, exist_ok=True)
+        logical.symlink_to(target, target_is_directory=True)
+
+
+def test_read_only_backend_blocks_write_intent(tmp_path: Path) -> None:
+    """A read-only cloud mount must never hand a PASS to a caller about to write."""
+    repo, mount = _valid_layout(tmp_path)
+
+    with pytest.raises(StoragePreflightError, match="read-only; bulk writes are blocked"):
+        validate_layout(
+            repo_root=repo,
+            mount_point=mount,
+            label="medium_data",
+            label_for_path=_label_medium_data,
+            disk_usage=lambda _path: _disk_usage(),
+            writable=False,
+            intent="write",
+        )
+
+
+def test_read_only_backend_satisfies_read_intent(tmp_path: Path) -> None:
+    repo, mount = _valid_layout(tmp_path)
+    result = validate_layout(
+        repo_root=repo,
+        mount_point=mount,
+        label="medium_data",
+        required_free_bytes=10 * 1024**3,
+        label_for_path=_label_medium_data,
+        disk_usage=lambda _path: _disk_usage(),
+        writable=False,
+        intent="read",
+    )
+    assert result["ok"] is True
+    assert result["writable"] is False
+    # Object storage reports a fictitious free figure; the threshold must not be applied.
+    assert result["free_bytes"] is None
+
+
+def test_scratch_root_must_be_writable(tmp_path: Path) -> None:
+    repo, mount = _valid_layout(tmp_path)
+    _scratch(tmp_path, repo, writable=False)
+
+    with pytest.raises(StoragePreflightError, match="not writable"):
+        validate_layout(
+            repo_root=repo,
+            mount_point=mount,
+            label="medium_data",
+            scratch_roots=DEFAULT_SCRATCH_ROOTS,
+            label_for_path=_label_medium_data,
+            disk_usage=lambda _path: _disk_usage(),
+        )
+
+
+def test_scratch_roots_may_live_outside_the_project_root(tmp_path: Path) -> None:
+    """Scratch is local by design — it must not be judged against the archive root."""
+    repo, mount = _valid_layout(tmp_path)
+    _scratch(tmp_path, repo)
+
+    result = validate_layout(
+        repo_root=repo,
+        mount_point=mount,
+        label="medium_data",
+        scratch_roots=DEFAULT_SCRATCH_ROOTS,
+        label_for_path=_label_medium_data,
+        disk_usage=lambda _path: _disk_usage(),
+    )
+    assert result["ok"] is True
+    assert set(result["scratch"]) == {str(path) for path in DEFAULT_SCRATCH_ROOTS}
+
+
+def test_missing_scratch_root_fails_closed(tmp_path: Path) -> None:
+    repo, mount = _valid_layout(tmp_path)
+
+    with pytest.raises(StoragePreflightError, match="scratch root is missing"):
+        validate_layout(
+            repo_root=repo,
+            mount_point=mount,
+            label="medium_data",
+            scratch_roots=DEFAULT_SCRATCH_ROOTS,
+            label_for_path=_label_medium_data,
+            disk_usage=lambda _path: _disk_usage(),
         )

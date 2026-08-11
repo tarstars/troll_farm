@@ -16,9 +16,12 @@
 # Then, as the normal user:
 #   mkdir -p /media/tarstars/medium_data/database/troll_farm
 #
-# UNVERIFIED: the exact flag spelling below has NOT been run — geesefs is not installed
-# on project_host yet. Check `geesefs --help` after installing and correct this file
-# before enabling it. Do not assume it is right because it is committed.
+# VERIFIED 2026-08-11 on project_host with geesefs 0.35.0: usage is
+# `geesefs [options] bucket[:prefix] mountpoint`; `-o`, `-f`, `--shared-config`,
+# `--endpoint` and `--region` all exist as spelled. A manual mount with exactly these
+# arguments came up read-only (`ro` in /proc mount options), served the tree, refused
+# writes, and returned a file whose sha256 matched its archive-manifest entry.
+# There is no dedicated --read-only flag; `-o ro` is the mechanism.
 
 [Unit]
 Description=GeeseFS read-only mount of troll-farm archive at the legacy medium_data path
