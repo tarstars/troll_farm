@@ -109,6 +109,14 @@ for cloud-side heavy runs — after the grant period resets.
   `/media/tarstars/medium_data` path.**
 - **Phase 4 — read layer:** GeeseFS mounts on both hosts; storage preflight v2;
   confirm the frozen seal tests pass on both machines through the mount.
+  **Executed 2026-08-11 on `project_host`: DONE there — geesefs 0.35.0 mounts
+  `troll-farm-data:archive` read-only at the legacy path, the full suite passes
+  1670/0 through the mount (identical to the USB baseline), preflight v2 shipped with
+  5 tests and mutation-checked guards, unit `geesefs-archive` enabled with linger.
+  Runbook + results: `deploy/PHASE4-read-layer.md`. NOT done: the VM half of "mounts on
+  both hosts" — `claude_1`'s side, not started. NEW OPEN QUESTION the phase exposed:
+  the mount is read-only, so there is no answer yet for where NEW bulk artifacts are
+  written; `artifacts/experiments` writes now fail loudly. Owner decision needed.**
 - **Phase 5 — docs:** `docs/storage-policy.md` v2 and the `AGENTS.md` short version
   updated under the doc-budget discipline; the YT/burst compute rule recorded.
 

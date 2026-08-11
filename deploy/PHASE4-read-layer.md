@@ -84,10 +84,51 @@ systemctl --user daemon-reload && systemctl --user enable --now geesefs-archive
 - **Only the project subtree is in the bucket.** The USB also holds ~1.2 TB of the owner's
   personal archive, which is **not** backed up anywhere by this project.
 
-## Still to write (not blocked by sudo)
+## EXECUTED 2026-08-11 — results
 
-**Storage preflight v2** — `cgauto/check_external_storage.py` currently resolves a mount by
-ext4 `LABEL=medium_data` and refuses bulk writes otherwise. v2 must accept a verified bucket
-mount instead: confirm the mount is live, is the expected bucket/prefix, and is readable,
-and keep failing closed when it is not. It is deliberately **not written yet** — validating a
-mount that has never existed would be guesswork; write it against the real thing.
+Owner ran the two sudo commands. Everything below was then done unprivileged and verified.
+
+- geesefs **0.35.0** installed; usage and every flag confirmed against `--help`.
+- Mounted `troll-farm-data:archive` at `/media/tarstars/medium_data/database/troll_farm`,
+  options `ro,nosuid,nodev,relatime` — writes refused at the kernel.
+- A tracked symlink resolves through the mount and its sha256
+  (`a7102a4bb5ab2f1f…`) matches its `archive-manifest` entry exactly.
+- **Full suite: 1670 passed / 0 failed** through the mount — identical to the recorded
+  USB-attached baseline. The ~20 seal tests that fail with the drive absent all pass.
+  This is the acceptance criterion for the phase, and it is met.
+- Installed as user unit `geesefs-archive` (enabled, active). `loginctl enable-linger`
+  succeeded **without root**, so the mount — and the coordd tunnel — now survive reboot
+  without a login session.
+- **Storage preflight v2 written and shipped** (`cgauto/check_external_storage.py`,
+  5 new tests, both new guards mutation-checked; suite now 1675 passed).
+
+## What preflight v2 does differently
+
+It discovers whichever backend is present — USB by ext4 label first, else the geesefs mount
+by SOURCE — and separates *what the store can do* from *what the caller wants*:
+
+```
+--intent read   → PASS   backend: geesefs (READ-ONLY)
+--intent write  → FAIL   "backing store ... is read-only; bulk writes are blocked"  (exit 2)
+```
+
+`--intent write` remains the default, so every existing caller keeps its fail-closed
+guarantee. The free-space threshold is skipped on object storage, which reports a
+fictitious 1 PiB free; comparing that to a threshold would be theatre.
+
+**`yt_work` and `data/generated` are now local scratch**, at `~/.cache/troll-farm/`. Both
+held **zero files** on the USB — verified at the Phase 3 upload, where the entire drive was
+3,483 files and none were under those two — so nothing was lost by their absence from the
+archive. They are write targets, and a read-only archive is the wrong home for a write
+target. Both symlinks were untracked, so this is local layout only; no clone is affected.
+
+## ★ Open question this phase exposes, for the owner
+
+**Where do new bulk artifacts get written now?** `artifacts/` is archive-backed and the
+mount is read-only, so an experiment that writes `artifacts/experiments/...` will fail —
+correctly and loudly, but it will fail. The spec's inventory says experiment rows are
+"S3 standard, then read via GeeseFS" and never says how they get written. The plausible
+answers are a local staging directory with periodic upload (mirroring what collector v2
+does for games), or a second writable mount. **This is not decided, and I have not
+decided it.** Until it is, the project can read all its history and cannot produce new
+bulk artifacts.
