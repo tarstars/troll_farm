@@ -150,5 +150,11 @@ does not reopen them. It determines whether future ones can be made at all.
 
 ## Phase 1 execution log (authorized 2026-08-12, four runs)
 
+Run 1 pre-mutation baseline, 2026-08-12T06:25Z: live source recovered exact
+`98628e98…`, 75,634 B (`recover_live_source.py`); standing 22.4 / rank 37/147, agent
+`6604529` — field 139 → 147 since the terminal read, drift 35 → 37. Top-3: delineate
+30.42 / norxondor_gorgonax 29.93 / MSz 28.14. `api_submit.py` argument-less default
+already removed on trunk (STATE §1 follow-up discharged).
+
 | run | UTC submit | submission / agent | initial health | terminal 160/160 |
 |---|---|---|---|---|
