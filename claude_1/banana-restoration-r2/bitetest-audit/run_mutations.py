@@ -125,6 +125,23 @@ def apply_patch(work, mutant):
     return sha256_text(new), n
 
 
+def drive_verdict(control_green, totals, allow_partial):
+    """Exit status for a drive. 0 only when the drive measured something.
+
+    1 control suite/probe red; 3 vacuous drive (zero mutants ran; never
+    excusable); 4 partial drive (patch/compile failures) without
+    --allow-partial. Verdicts reflect drive VALIDITY, not kill results —
+    surviving mutants are a measurement, not a harness failure.
+    """
+    if not control_green:
+        return 1
+    if totals["mutants_run"] == 0:
+        return 3
+    if (totals["patch_failed"] or totals["compile_failed"]) and not allow_partial:
+        return 4
+    return 0
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--manifest",
@@ -137,6 +154,9 @@ def main(argv=None):
     ap.add_argument("--only", default=None,
                     help="comma-separated mutant ids")
     ap.add_argument("--allow-drift", action="store_true")
+    ap.add_argument("--allow-partial", action="store_true",
+                    help="exit 0 even if some mutants failed to patch or "
+                         "compile (they still count as not-run in totals)")
     args = ap.parse_args(argv)
 
     with open(args.manifest, encoding="utf-8") as fh:
@@ -307,7 +327,14 @@ def main(argv=None):
         "survived=%d  live=%d  unwitnessed=%d\nwrote %s\n" % (
             control_green, len(ok), caught_n, expected_n, len(ok) - caught_n,
             live_n, doc["totals"]["unwitnessed"], args.out))
-    return 0 if control_green else 1
+    verdict = drive_verdict(control_green, doc["totals"], args.allow_partial)
+    if verdict:
+        sys.stderr.write(
+            "DRIVE INVALID exit=%d: control_green=%s run=%d patch_failed=%d "
+            "compile_failed=%d\n" % (
+                verdict, control_green, doc["totals"]["mutants_run"],
+                doc["totals"]["patch_failed"], doc["totals"]["compile_failed"]))
+    return verdict
 
 
 if __name__ == "__main__":
