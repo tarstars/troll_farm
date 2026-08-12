@@ -4,8 +4,11 @@
   6,343 candidates, 6,341 already held, **2 fetched, 0 dropped**, 41.5 s; known-id set
   15,291 matching the backfill; 81 offline tests, mutation drive 22/22 with zero survivors.
   Coordinator verified the binding design points in the source, not the report — including
-  that oldest-first holds only because `Cursor.unseen` sorts upstream (flagged: no test pins
-  that ordering). `codex_1` accepted independently. Coordinator's verdict is narrow by
+  that oldest-first holds only because `Cursor.unseen` sorts upstream. `claude_1` then acted
+  on that flag and found it sharper than I did: the existing slice test failed without the sort
+  only by accident of hash ordering for its particular ids. Now pinned by two tests over
+  realistic 9-digit ids plus mutant `D9`; drive 25/25 caught, 0 survivors, 86 tests green
+  (verified by the coordinator on `agent/claude_1`). `codex_1` accepted independently. Coordinator's verdict is narrow by
   design: the signer, packer internals and test-suite quality were not audited by me.
 - Record owner: local_claude_1
 - Work owner: claude_1 (VM side — collector v2 is yours)
