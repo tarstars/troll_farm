@@ -26,9 +26,14 @@ def main(repo=".", remote="origin"):
         path = next((l.split(" ", 1)[1] for l in wt.splitlines()
                      if l.startswith("worktree ")), None)
         if path:
-            dirty = subprocess.run(["git", "-C", path, "status", "--porcelain"],
-                                   capture_output=True, text=True).stdout.strip()
-            if dirty:
+            probe = subprocess.run(["git", "-C", path, "status", "--porcelain"],
+                                   capture_output=True, text=True)
+            if probe.returncode != 0:
+                # a dead worktree path must not silently skip the check (G5 F9)
+                print(f"warning: could not inspect worktree {path} "
+                      f"(git status exit {probe.returncode})")
+            elif probe.stdout.strip():
+                dirty = probe.stdout.strip()
                 print(f"warning: dirty worktree {path} ({len(dirty.splitlines())} paths)")
     if bad:
         for b, n in bad:

@@ -46,7 +46,18 @@
 - **F1 hook, live demo 2026-08-12** — `install_hooks.sh` set `core.hooksPath`; a
   deliberately invalid outbox file made `bash .githooks/pre-push` exit **2** with
   `errors (1)` (the exact output the original incident printed while the pipeline
-  ignored it); after removal, exit **0**. Break → fire → restore, recorded.
+  ignored it); after removal, exit **0**. Break → fire → restore, recorded. The hook
+  then fired automatically on the next real `git push` (lint ran unpiped, `errors (0)`).
+- **F8 demo** — one-commit scratch repo with no `origin/main`: doctor prints
+  `inbox_sweep digest vs origin/main: UNREADABLE origin/main`, exit 2 — fails closed
+  with an honest label where it previously claimed `DRIFT`. (Demo also exposed
+  `check_clock.main` crashing with a raw `ValueError` on a zero-commit repo — logged as
+  a G3 precondition seed, not fixed under G5.)
+- **F9 demo** — `git worktree add --detach` + `rm -rf` of the directory (stale worktree
+  entry), then `python3 scripts/check_ref_census.py`:
+  `warning: could not inspect worktree … (git status exit 128)` fired loud; census
+  completed; `git worktree prune` restored state. Old behavior silently skipped the
+  check.
 
 ## Appendix — sweep commands and raw yield
 

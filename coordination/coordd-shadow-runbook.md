@@ -111,3 +111,15 @@ add `safe.directory` handling or document running doctor against the agent's own
 checkout. Attacks that HELD, for the record: multi-process HTTP claim race, fencing
 after expiry takeover, auth on all 14 routes, git-verification injection, kill -9
 durability + idempotency.
+
+## Publish ritual (G5, 2026-08-12)
+
+Publish outbox messages ONLY via `scripts/publish_outbox.sh <me> "<msg>"` — it runs the
+lint unpiped, gates on its exit code, pushes, and remote-verifies. **Never pipe
+`lint_outbox.py`, `inbox_sweep.py`, or `pytest` into `tail`/`head`/`grep` in a gating
+position:** a pipeline exits with the LAST command's status, which disarmed the lint for
+a whole session (guards instance 4). To page long output:
+`cmd > /tmp/out 2>&1; echo EXIT=$?; tail /tmp/out` — or in bash, check
+`${PIPESTATUS[0]}`. Backstop: `scripts/install_hooks.sh` installs a pre-push lint hook
+(bypassable with `--no-verify`; the wrapper is canonical). Full findings:
+`local_claude_1/verification/g5-disarmed-harness-sweep-2026-08-12.md`.

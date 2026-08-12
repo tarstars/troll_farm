@@ -45,13 +45,18 @@ def _doctor(repo):
     ok = digest.startswith("fff6669b")
     print(f"sacred source: {digest[:12]} {'OK' if ok else 'VIOLATED'}")
     codes.append(0 if ok else 2)
-    theirs = subprocess.run(
+    show = subprocess.run(
         ["git", "-C", repo, "show", "origin/main:scripts/inbox_sweep.py"],
-        capture_output=True).stdout
+        capture_output=True)
     mine = (Path(repo) / "scripts/inbox_sweep.py").read_bytes()
-    same = hashlib.sha256(mine).hexdigest() == hashlib.sha256(theirs).hexdigest()
-    print(f"inbox_sweep digest vs origin/main: {'match' if same else 'DRIFT'}")
-    codes.append(0 if same else 2)
+    if show.returncode != 0:
+        # fail closed, but say what actually failed (G5 F8)
+        print("inbox_sweep digest vs origin/main: UNREADABLE origin/main")
+        codes.append(2)
+    else:
+        same = hashlib.sha256(mine).hexdigest() == hashlib.sha256(show.stdout).hexdigest()
+        print(f"inbox_sweep digest vs origin/main: {'match' if same else 'DRIFT'}")
+        codes.append(0 if same else 2)
     return max(codes)
 
 

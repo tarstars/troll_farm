@@ -39,7 +39,9 @@ subagent-driven development and now continues on the VM.
    python3 -m venv .venv && .venv/bin/pip install pytest
    ```
 2. **Establish the VM test baseline before Task 2** and record it in the ledger:
-   `.venv/bin/python3 -m pytest tests/ -q -p no:randomly 2>&1 | tail -3`. On
+   `.venv/bin/python3 -m pytest tests/ -q -p no:randomly > /tmp/vm-baseline.txt 2>&1;
+   echo "EXIT=$?"; tail -3 /tmp/vm-baseline.txt` — capture-then-page, never
+   `pytest | tail` (the pipe eats the gate's exit code; G5 F6, fixed 2026-08-12). On
    `project_host` the only failures are the three pre-existing B7 tests; on the VM,
    tests needing `rust/target/release/libtroll_farm.so` (Python ctypes) or local-only
    data will also fail — that is environmental, not regression. Task 17's full-suite

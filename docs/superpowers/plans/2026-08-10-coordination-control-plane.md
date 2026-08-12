@@ -2384,7 +2384,7 @@ Nothing about the existing protocol changes yet.
 
 - [ ] **Step 4: Run the full test suite as the task gate**
 
-Run: `.venv/bin/python3 -m pytest tests/ -q -p no:randomly 2>&1 | tail -3`
+Run: `.venv/bin/python3 -m pytest tests/ -q -p no:randomly > /tmp/gate.txt 2>&1; echo "EXIT=$?"; tail -3 /tmp/gate.txt` *(capture-then-page — `pytest | tail` eats the gate's exit; G5 F7, fixed 2026-08-12)*
 Expected: `3 failed` (the pre-existing B7 trio: `test_analyze_d102a_complete_macro_resident_transfer`, `test_idle_harvest_probe`, `test_validate_opponent_crop_candidate` — an owner decision, out of scope) and everything else passed, including all new `test_coordd*`, `test_check_*`, `test_doc_budgets` tests. Any other failure blocks this task.
 
 - [ ] **Step 5: Commit**
