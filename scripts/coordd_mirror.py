@@ -46,17 +46,23 @@ def main(messages_root, post, cursor_path):
     return new
 
 
-if __name__ == "__main__":
+def cli(argv=None):
+    # was a fat __main__ body: URL/env resolution lived unreachable (G4)
+    import os
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default="coordination/messages")
     ap.add_argument("--cursor", default=str(Path.home() / ".coordd" /
                                             "mirror-cursor.json"))
     ap.add_argument("--url", default=None)
     ap.add_argument("--token", default=None)
-    a = ap.parse_args()
-    import os
+    a = ap.parse_args(argv)
     url = a.url or os.environ.get("COORDD_URL", "http://127.0.0.1:7077")
     n = main(messages_root=a.root,
              post=_default_post_factory(url, a.token),
              cursor_path=a.cursor)
     print(f"mirrored {n} new message(s)")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(cli())

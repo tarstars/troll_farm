@@ -16,12 +16,19 @@ def newest_commit_utc(repo):
         ["git", "-C", repo, "for-each-ref", "--sort=-committerdate",
          "--count=1", "--format=%(committerdate:iso-strict)"],
         capture_output=True, text=True, check=True).stdout.strip()
+    if not out:
+        return None
     return datetime.fromisoformat(out).astimezone(timezone.utc)
 
 
 def main(repo=".", now=None):
     now_dt = (now or (lambda: datetime.now(timezone.utc)))()
     newest = newest_commit_utc(repo)
+    if newest is None:
+        # a repo with no refs must fail closed, not take the doctor down (G3)
+        print("CLOCK HAZARD: repository has no refs — cannot compare commit "
+              "dates against the system clock")
+        return 2
     skew = (newest - now_dt).total_seconds()
     print(f"system now : {now_dt.isoformat()}")
     print(f"newest ref : {newest.isoformat()}")
