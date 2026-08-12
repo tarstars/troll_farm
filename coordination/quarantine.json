@@ -64,7 +64,7 @@
   {
    "path": "coordination/messages/claude_1/20260812T074913Z-20260810-guards-that-cannot-fail-correction.md",
    "reason": "v2 correction with an empty 'supersedes' array; a correction that supersedes nothing cannot validate. Identical defect to the quarantined 20260807T113000Z from the same sender, who named the recurrence themselves. Rejected on transport, not substance: the sender retired it at 20260812T075036Z-...-correction.md, and its factual content (the stamp-drift measurement, +4 to +42 minutes across nine messages, and the date-u-only rule) is restated in the adjudication message so nothing is lost.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260812T193500Z-20260810-guards-that-cannot-fail-quarantine-adjudication-policy.md",
+   "adjudicated_by": "coordination/messages/local_claude_1/20260812T193800Z-20260810-guards-that-cannot-fail-quarantine-adjudication-v2-policy.md",
    "target_blob": "644f91d6c25498fc669861580825652dbe1b9618"
   }
  ]
