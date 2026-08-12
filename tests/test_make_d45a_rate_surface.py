@@ -20,4 +20,5 @@ def test_catalog_is_exact_zero_plus_minus_matrix() -> None:
 def test_direction_coordinates_are_unique_and_in_range() -> None:
     coordinates = [coordinate for _, coordinate, _ in DIRECTIONS]
     assert len(coordinates) == len(set(coordinates))
-    assert all(0 <= coordinate < PARAMETERS for coordinate in coordinates)
+    assert coordinates == [1, 2, 3, 4, 5, 12, 24, 28]
+    assert PARAMETERS == 32

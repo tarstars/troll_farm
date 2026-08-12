@@ -737,7 +737,7 @@ def test_my_own_malformed_ack_for_does_not_crash_the_sweep(repo):
 
     result = repo.sweep("--me", ME)
     assert "Traceback" not in result.stderr
-    assert result.returncode in (0, 1, 2)
+    assert result.returncode == 0
     assert "malformed ack_for and acknowledges nothing" in result.stdout
 
 
@@ -902,10 +902,13 @@ def test_legacy_repository_messages_parse_without_mutation():
         capture_output=True,
         text=True,
     )
-    assert result.returncode in (0, 1)
     m = re.search(r"scanned (\d+) authoritative messages", result.stdout)
     assert m and int(m.group(1)) > 500
-    assert counts(result.stdout)["delivery errors"] == 0
+    parsed_counts = counts(result.stdout)
+    assert parsed_counts["delivery errors"] == 0
+    assert result.returncode == (
+        1 if parsed_counts["unacknowledged, ack required"] else 0
+    )
     assert not (REPO_ROOT / fake_me).exists()
     for p, data in before_bytes.items():
         assert p.read_bytes() == data

@@ -17,7 +17,7 @@ def test_quantization_has_frozen_layer_order_and_preserves_critic() -> None:
         for layer in layers
     )
     assert sum(layer["weight_count"] for layer in layers) == 33_616
-    assert all(layer["maximum_absolute_weight_error"] >= 0 for layer in layers)
+    assert all(layer["maximum_absolute_weight_error"] > 0 for layer in layers)
     assert all(
         torch.equal(converted[name], tensor)
         for name, tensor in source.items()
