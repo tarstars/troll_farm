@@ -135,6 +135,15 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
   score attached, competes with σ and the banana question).
   **Standing rule established:** *a new test is not finished until it has been observed failing.*
   Break the subject, watch it fail, restore, and say in the commit what you broke.
+  **STATUS 2026-08-12: G1 ✅ (codex_1, integrated, gate 1679/0). G5 ✅ (11 findings F1–F11;
+  publish now ONLY via `scripts/publish_outbox.sh` — lint unpiped is the gate — plus a pre-push
+  hook backstop; mutation runner refuses vacuous/unacknowledged-partial drives). G3 ✅ / G4 ✅
+  (bounded first passes; residuals enumerated in
+  `local_claude_1/verification/g3-g4-guard-audit-2026-08-12.md`; key instrument fact: the 96
+  transport tests run via subprocess, so in-process coverage cannot vouch for them — mutation
+  drives are the honest instrument for G2). OPEN: G2 (claude_1; reassignment to codex_1
+  proposed 2026-08-12) and G6 (claude_1, owner go-ahead GRANTED 2026-08-12 — real surface is
+  19 actionable branches; see the banana section for the D-9 correction).**
 
 ## P0 — OWNER RULE 2026-08-10: no banana before the second troll
 
@@ -146,18 +155,28 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
   **Still open:** D-9 paired branches (b) `train_late`, (c) `train_missing`,
   (d) `train_stats_differ` carry a stale pre-c5 `INSTRUMENT_UNSUPPORTED` label and need
   recalibration; they guard TRAIN displacement by non-banana routes.
-  ⚠ **New top item in the bite-test audit:** the rule rests on the *least-verified* of the four
-  branches — row (a) is `UNPINNED` with **D9-M1/M2/M3 all SURVIVED**. A strict rule policed by a
-  detector that misses three mutations of itself is a rule in name only. **Pinning row (a) now
-  outranks recalibrating (b)–(d).**
+  ~~⚠ **New top item in the bite-test audit:** the rule rests on the *least-verified* of the four
+  branches — row (a) is `UNPINNED` with **D9-M1/M2/M3 all SURVIVED**.~~ **RESOLVED 2026-08-12:
+  row (a) was already pinned by claude_1 on 2026-08-10 (`80c3dd63`, 4/4 mutants caught, zero
+  survivors) — the handoff was filed under the phase1-work-allocation task id and sat
+  unintegrated for two days; integrated to trunk 2026-08-12. The rule is now policed by a
+  detector that demonstrably fires.** Caveat kept explicit: (a) is pinned on *implementation
+  validity*; its *applicability* still reads `INSTRUMENT_UNSUPPORTED` (proxy retired) — whether
+  the c5 instrument can observe the policed behaviour is a separate open question, and **(b)–(d)
+  recalibration is parked on that same unowned c5 instrument ruling** (fixturing them now would
+  test a measurement the instrument cannot make).
   **Consequence for CBF:** any banana farm that plants while `own_units == 1` is rejected
   outright, regardless of later score. Check the `DENY → FARM → WOOD` machine's entry condition
   against this before implementing.
 
 ## P0 — MEASUREMENT: the noise band (opened 2026-08-10)
 
-- **σ MEASUREMENT — PROPOSED, UNOWNED, NEEDS AN OWNER DECISION.**
-  `coordination/tasks/20260810-arena-noise-band-measurement.md`. The owner removed the
+- **σ MEASUREMENT — AUTHORIZED 2026-08-12 AND RUNNING: owner budget four Phase-1 runs (~8 h);
+  work owner `local_claude_1` (sole Arena controller); reviewer codex_1 (accepted, scoped to
+  the analysis). Run 1 = submission 41125196 / agent 6610399, identity-clean. Execution log in
+  the task record.**
+  `coordination/tasks/20260810-arena-noise-band-measurement.md`. Original framing (kept for
+  the record; the blocking question below was answered before spending, as demanded): The owner removed the
   noise-band gate on candidates 2026-08-12, which makes measurement throughput the binding
   constraint and σ the number every promotion argument rests on. Already measured from existing
   data by `cgauto/arena_noise_band.py`: **pooled within-source SD 1.098, CI [0.707, 2.418]**,
