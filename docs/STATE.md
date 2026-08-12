@@ -1,37 +1,20 @@
 # STATE — Troll Farm (single entry point)
 
-Last updated: **2026-08-12**. This file is live state, not a record — the ledger volumes are
-the record. Hard budget: 150 lines. Rewrite it whenever facts change.
+Last updated: 2026-08-10 (doc diet; see docs/archive/STATE-2026-08-10-pre-diet.md for the
+pre-diet text). This file is live state, not a record — the ledger volumes are the record.
+Hard budget: 150 lines. Rewrite it whenever facts change.
 
 ## 1. Live identity
 
 ### ★★★ CYCLE CLOSED — OWNER DECIDED **KEEP** 2026-08-12. Resident is `readable__no_orchard`.
 
-**Owner ruling: "keep readable__no_orchard".** No Arena action was taken to execute it — the
-source was already live, so KEEP is a no-op mutation-wise. `6604529` / `41113243` is now the
-**resident**, not a candidate under trial, and `2caac7c6…` is retired as a restore target for
-this cycle. Any future restore-to-resident means `98628e98…`.
-**`cgauto/api_submit.py` is fixed, and the hazard was worse than I first reported.** I said its
-default pointed at `2caac7c6…`; it actually pointed at `a8eb3b2b…`
-(`preseed-orchard-coverage-slim`, written 2026-07-17) — three residents stale. An argument-less
-or mistyped run would have silently replaced the live bot with a July source and forfeited a
-matured score. **There is now no default at all:** the script exits 2 with a usage gate naming
-the current resident. No programmatic caller relied on the default; real submissions go through
-`api_submit_once.py`, which requires an explicit path and its expected SHA-256.
-
-**Terminal read: 160/160, score 22.46, rank 35/139, 89W/3T/68L, 24 catastrophes (15.0%),
-negative mass 6,790, `identity_clean=True`, `signals=0`.** No restore trigger ever fired.
-
-**The result: the same source scored 24.76 last run and 22.46 this run — a 2.30-point spread
-between two mature 160-game observations of one byte-identical bot.** 24.76 was a favourable
-draw, not this source's level; the registry now carries both runs at median 23.61.
-**Correction 2026-08-12:** I initially read that spread as evidence the ±0.5–1 noise band was
-understated. Measurement says otherwise — pooled within-source SD across 4 repeated families is
-**1.098**, CI [0.707, 2.418] (§3). The band was understated as a 1σ figure, but only modestly —
-not by the factor a single 2.30 pair suggests. What holds, quantified: a sub-1.5-point mature
-delta is unresolvable at one run per arm, because the difference SD there is 1.552.
-At 22.46/rank 35/139 the live bot matches the displaced bot's 22.7/rank 35/139 standing, inside
-noise: the cycle neither gained nor cost ground — which is why KEEP costs nothing either.
+Owner ruled **KEEP** — `6604529`/`41113243` is the resident, restore target `98628e98…`.
+Terminal read 160/160: **22.46, rank 35/139**, clean. The same bytes scored 24.76 the
+prior run — a 2.30 spread; registry median 23.61. A sub-1.5-point mature delta is
+unresolvable at one run per arm (difference SD 1.552, §3). Cycle closed; submitting a
+new candidate is unblocked under §3.
+Task record: `coordination/tasks/20260812-readable-no-orchard-rerun-arena.md` (its "08-12"
+dates are the fabricated-clock session of 2026-08-09; trust `git log`).
 
 | field | value |
 |---|---|
@@ -43,43 +26,13 @@ noise: the cycle neither gained nor cost ground — which is why KEEP costs noth
 | disposition | **KEPT by owner ruling 2026-08-12 — this is the resident** |
 | restore-to-resident source | `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs`, SHA `98628e98…` |
 
-The terminal checkpoint is taken and the cycle is closed. **Submitting a new candidate is
-unblocked, subject to the §3 evidence discipline — but see the noise-band caveat above before
-pricing any candidate's expected gain.**
-
-Task record: `coordination/tasks/20260812-readable-no-orchard-rerun-arena.md` (full execution
-log). Evidence: `data/analysis/live-agent-6553250/readable-no-orchard-rerun-20260812/`.
-
 ⚠ **`docs/PROMOTION-RUNBOOK.md` MUST NOT be followed for this run.** Its authorization gate is
 scoped to candidate D171a only, and its §1 "fixed identities" are stale — it names resident
 `a8eb3b2b…` / agent `6561795`, which has not been live for weeks. **Following its abort path
 would restore the wrong bot.** Use the restore target in the table above.
 
-### Displaced resident (was live until 2026-08-12)
-
-- Player `tass`, Legend practice ladder (contest ended 2026-05-25 — no deadline).
-- Round-36 simplified E7a `6594200`/`41090606`: exact 55,799-byte source
-  `cgauto/submissions/candidate-agent6553250-e7a-r36-simplified.min.rs`, SHA `2caac7c6...`;
-  settled 22.81/rank 32/137 over 160, 93W/2T/65L, identity/runtime clean. **Its standing had
-  already eroded to 22.7 / rank 35 of 139 by the 2026-08-12 pre-mutation read** — Legend grew
-  from 137 to 139 and we slipped three places. 22.81/32/137 is the settled-checkpoint figure;
-  22.7/35/139 was current standing. Both are real; do not conflate them.
-- `cgauto/api_submit.py` default remains the exact fallback source; do not change casually.
-- Pre-mutation orchard `6592744`/`41087983`: 22.88/rank 32 over 160, exact and healthy.
-- **Arena cycle complete:** round 36 passed 0/516 equality, was accepted once, recovered exact,
-  and settled at 22.81/rank 32. Pre-mutation readable no-orchard `6593838`/`41089629` completed at
-  24.76/rank 21 over 160, 94W/2T/64L, identity/runtime clean.
-- **No-orchard terminal-rejected:** 23.27/rank 34 versus E7a 25.3/rank 12. Exact E7a restore
-  `6592131`/`41086057` is source-exact and complete at 23.56/rank 32; cycle closed.
-- Rank bar: 1. delineate 31.02, 2. norxondor_gorgonax 29.67, 3. MSz 28.26.
-- Corpus: **14,930 games / 582 agents / 279 names, zero parse failures** — verified 2026-08-12
-  against `data/processed/stats.json`, `games.jsonl` (14,930 rows) and the raw store (14,930
-  files); raw and parsed agree exactly, nothing is behind. The prior 10,470/513 figure was stale
-  because the 05:17 cron regenerates `stats.json` in the working tree and nobody had committed
-  it. **`data/processed/corpus_manifest.json` is separately stale** (generated 2026-07-15,
-  covering 1,302 files) — it is a per-file digest index, not a count, so it does not affect
-  analyses that read `games.jsonl`; regenerate it before relying on its hashes. The restore's
-  exact 162-game queue is also a sanitized 5.8 MB Git LFS corpus; the cron remains unchanged.
+- Displaced: `6594200`/`41090606` (`2caac7c6…`), settled 22.81/32/137, eroded 22.7/35/139.
+- Corpus: 14,930 games / 582 agents / 279 names, 0 parse failures (verified 2026-08-12-labelled session).
 
 ## 2. Goal (RE-SCOPED 2026-07-30 by owner decision)
 
@@ -116,45 +69,15 @@ makes the goalpost move in the wrong direction.
     NOT passed frozen gates (i.e. experimenting on the live ladder); any action that would
     abandon a matured score with no qualified candidate in hand; more than one submission
     cycle in flight; anything that could forfeit the ladder slot.
-  - ★★ **OWNER RULING 2026-08-12 — THE NOISE-BAND GATE IS REMOVED. Do not gate candidates on
-    beating the noise band.** *"Noise of measurement is 2 and we should conduct more
-    experiments to narrow the error band. We shouldn't gate candidates. This way we starve our
-    channel which gives precious information — new candidates on the platform."* The ladder is
-    an **information channel, not just a scoreboard**: gating on a band we cannot yet measure
-    suppresses the very observations that would measure it. Submissions are now the cheap
-    instrument, not the scarce resource.
-  - **Replacement discipline, as amended by that ruling:** (i) a QUALIFIED verdict from a
-    frozen protocol is still required — this ruling removes the *magnitude* bar, not the
-    correctness bar; **(ii) REMOVED** — expected gain no longer needs to exceed ±0.5–1, and a
-    sub-band candidate is a legitimate submission because it contributes a run to the variance
-    estimate even when its own effect is unresolvable; (iii) the promotion runbook runs in
-    full, no shortcuts; (iv) the owner is told before a cycle starts and again when it
-    terminates; (v) every submission id and terminal response is logged to the ledger.
-  - **What replaces the magnitude bar: throughput and design.** Since one observation is worth
-    little and n observations are worth a lot, the binding constraint is now cycle time and
-    allocation, not candidate strength. Measured 2026-08-12: **a full 160-game mature read
-    takes ~2 hours**, not days. Prefer **interleaved A/B/A/B ordering** over blocked runs, so
-    that ladder drift is not confounded with our own run-to-run variance.
-  - ★ **THE NOISE BAND IS NOW MEASURED, AND MY EARLIER CLAIM THAT IT WAS UNDERSTATED WAS WRONG.**
-    `python3 cgauto/arena_noise_band.py` pools every source family with repeated mature runs,
-    **one observation per deployment**: **4 families, 10 deployments, 6 d.o.f., pooled
-    within-source SD = 1.098 score points, 95% CI [0.707, 2.418].**
-    *(Corrected 2026-08-10. The first version counted 13 "observations", including three that
-    were second checkpoints of a single run — same deployment measured twice, so their
-    difference is within-run maturation, not re-submission noise. That inflated n and mixed in
-    the wrong quantity, and gave σ 0.957. Unit error, in the tool written to quantify unit
-    error.)*
-    So ±0.5–1 was understated as a 1σ figure, though only modestly — and the 2.30 pair is still
-    only a ~1.5-SD draw, so reading a factor-of-two failure off it was wrong either way.
-    **The owner's ruling is strengthened:** the SD of an A-minus-B difference at one run per arm
-    is **1.552**, so even a +1.5 effect is invisible at n=1, and SE 0.5 needs **10 runs per arm**
-    (~40 h). Gating candidates on beating a band only repetition can cross is backwards.
-    **Independent-sampling question now ANSWERED from committed data:** across 10 distinct
-    deployments of 4 byte-identical sources there are **zero duplicate scores** — so the platform
-    does not seed deterministically from the source hash, and re-submission draws a genuine
-    sample. That was the blocking question in
-    `coordination/tasks/20260810-arena-noise-band-measurement.md`; it cost no Arena action.
-    The CI remains wide; re-run the estimator after every new mature deployment.
+- ★★ **OWNER 2026-08-12 (real date 2026-08-09): the noise-band gate is REMOVED.** The ladder
+  is an information channel; submissions are the cheap instrument. QUALIFIED-verdict
+  correctness bar stands; magnitude bar is gone; runbook in full; owner told before and
+  after each cycle; every id and terminal response logged.
+- ★ **σ = 1.098** (CI [0.707, 2.418]; 4 families / 10 deployments / 6 d.o.f.;
+  `cgauto/arena_noise_band.py`). Difference SD at n=1 per arm = 1.552; SE 0.5 needs
+  10 runs/arm (~40 h). Re-submission draws an independent sample (zero duplicate scores
+  across 10 deployments). A mature 160-game read takes **~2 h**. Prefer interleaved
+  A/B/A/B over blocked runs. Re-run the estimator after every new mature deployment.
   - **Unchanged:** mutations remain serialized through the **single arena controller**
     (now `local_claude_1` by owner reassignment — see the note in this section). No peer agent
     or subagent may submit. One cycle in flight at a time — that is a ladder-slot constraint,
@@ -175,11 +98,13 @@ makes the goalpost move in the wrong direction.
 - Bulk writes: preflight `python3 cgauto/check_external_storage.py --required-free-gib N`
   (`AGENTS.md`, `docs/storage-policy.md`). YT root:
   `//home/delivery_ml/research/tarstars/troll_farm`.
-- **Multi-agent coordination protocol in force**: `coordination/multi-agent-protocol.md`.
-  **Coordinator (integrator) = `local_claude_1` from 2026-08-06** (owner reassignment); arena controller follows the coordinator by protocol default. `local_codex_1` is the outgoing coordinator and no longer a controller; `claude_1` and `chatgpt_1` are contributors. Handover: `coordination/HANDOVER-2026-08-06-local_codex_1-to-local_claude_1.md`. Hazards (§7) bind every agent: the dev copy
-  `rust/src/bin/yamo_orchard_live.rs` stays byte-exact at SHA prefix `fff6669b`
-  (library-visible to all experiments); no formatters over `rust/src/bin/` or `cgauto/`
-  (locks record hashes); do not disturb `data/raw/games/` or the 05:17 cron.
+- **Coordination is migrating to a control plane** — spec
+  `docs/superpowers/specs/2026-08-10-coordination-control-plane-design.md` (approved
+  2026-08-10; no CI this iteration). Until P2 switches authority, the existing protocol
+  `coordination/multi-agent-protocol.md` remains in force. Coordinator/integrator/Arena
+  controller = `local_claude_1` (owner reassignment 2026-08-06). §7 hazards bind everyone:
+  byte-sacred `fff6669b` dev copy, no formatters over hash-locked sources, `data/raw/games/`
+  and the 05:17 cron untouchable.
 - **History rewrite: DECLINED by owner 2026-07-30, closed.** Measured gain was 12.9 MB
   (39 MB → ~26 MB) against invalidating all ~380 published commit hashes, four of which are
   cited directly in experiment records. `git gc --aggressive` already reclaimed 14 MB for
@@ -191,154 +116,31 @@ makes the goalpost move in the wrong direction.
 
 ## 4. Open thread
 
-- ★★★ **N1 DONE — PARTIAL / IMMATERIAL:** at score 21.47 and age 10.36d, estimated
-  remaining uplift is −0.1612, CI [−0.7525,+0.4567], projected mature score 21.3088.
-  The upper bound is only 0.0433 below the frozen cutoff, so do not claim negative aging;
-  do close passive maturity as a decision-relevant planning lever.
-- **2026-07-29 terminal synthesis:** all eight tested levers for the resident architecture
-  are closed. At equal roster it matches strong two-worker peers; the deficit is
-  scale-asymmetry survival. Learned selection, closed-loop options, production/farming,
-  scaling/mining, harvest changes, execution waste, and suppression fixes did not clear
-  their frozen gates. See ledger vol 2 and `docs/D-series-atlas.pdf`.
-- ★★ **A2 Architecture-2 STOPPED AT PHASE-1 K1** under
-  `docs/A2-programme-charter-2026-07-30.md`; the resident remains untouched.
-  - **A2-0a DONE — EXISTS-qualified:** the crop base is sub-critical (R≈0.75) and
-    labor-limited. Top-5 reaches worker 3 in 75.6% by median t106 and worker 4 in 41.6% by
-    t137; self-planted currency funds 37%/50%. Phase 1 gate: fruit-funded worker 3 in ≥40%
-    by about turn 110, plus non-zero own-crop reap.
-  - **X1 DONE AND REVIEWED:** core mechanics match; the ~24-fruit/~6-iron starting bank
-    was a docs-only omission. A2-0b closes both continued-RNG and strict-validation duties.
-  - **A2-0b QUALIFIED AND PROTOCOL-CLOSED.** The locked
-    referee path exactly reproduces the historical control (49 catastrophes / 12,749
-    negative mass), is byte-identical at one/20 threads, zero-gates critical/unclassified
-    issues, and covers all six detectors over 2,048+2,048 trajectories. Referee RNG changes
-    1,781/2,048 trajectories (tail 53 / 13,646); legacy evaluation is control only.
-  - **A2-1 FAILED K1:** the locked new scheduler establishes/reaps/banks its own crops and
-    mines at rosters 2/3, but fruit-funded worker 3 by t≤110 falls from a narrow
-    development 206/512 (40.23%) to confirmation **582/2,048 (28.42%)**, below 40%.
-    Integrity, thread parity, command quality, and all six detectors pass. The programme
-    stops; A2-2…5 are closed, no candidate or Arena action.
-- ★ **Breadth strategy:** `docs/APPROACH-REGISTER-2026-07-30.md` is the rolling menu.
-  Cheap audits have no value pre-filter; experiments retain the ≥+1.0 rating bar.
-  **M1 DONE — DESCRIPTIVE_ONLY:** best held-agent MAE 0.4773 vs 0.4786 zero; no
-  wins-per-+1 conversion. **N2 DONE — B4_4_CORRECTED:** group rates reproduce, but its
-  all/every-peer, no-loop and causal claims fail. **M2 DONE — NO_ACTIONABLE_MATCHUP:**
-  three exact identities clear support, none clear all gates. **M3 DONE:** +10.09 matched,
-  CI crosses zero. **M4 DONE:** +0.438, CI crosses; late 60 use four lineages. **M5
-  DONE:** −1.44, CI crosses. **N5 CORRECTED/RE-REVIEW PENDING:** literal ETA keeps CI <20. **N6
-  ACCEPTED/CLOSED_AT_DEVELOPMENT:** HIGH +0.559 fails direction/breadth. **E1 NARROWED:** only a
-  terminal pairs are runtime-closed by N4. **E1 CLOSED:** N4 surface infeasible. **E2 DONE:** 0.335 hindsight move-turn/side-game. **E3 VOID:** tree order closed. **E4 DONE:** mother reverse −0.0855. **E5 DONE:** +0.106, seat 0 loses. **E6 VOID:** seed carry. **E7 DONE:** flip −12.174; hindsight +10.510; **E7a SECTOR LIVE:** restore `6592131`/`41086057` is 23.56/162; two exact mature runs median 24.41. **E7a HALF-SIZE:** 31,407-byte tree-edge source transfer-rejected on catastrophes and negative mass; no Arena action. **S1 DONE:** full exact infeasible. **S2 BLOCKED:** no valued library or map representation. **S3 GATED:** distinct combination; specification/model/runtime unresolved. **H10a NARROWED:** 72 spatial +17 decision fields; peer-gated. **L1 PRIMITIVE-ONLY:** 199 exact games; hidden plan/beam unlabeled; peer-gated. **L2/L3 CLOSED:** N4 runtime close. **N7 DONE:** deploy already slim; sacred fixtures stay exact. **H4 DONE:** 0/17 strict deniable bills. **H7′ DONE:** contention ubiquitous, not strong-cohort. **H3′ SIGNAL:** DiD 0.606; pre-loss 0.510; **H3a PAUSED FOR OWNER PRIORITY.** **BANANA R2 through 9f5e INVALID:** the oracle/real flip are repaired, but a full wood carrier oscillates for 225 turns on the first broad host panel; no value test. **H11 DONE:** umbrella decomposed. **B3.7 DONE:** orchard is conversion-by-design. **B3.10 CLOSED:** ceiling 4.84/game. **B3.11 RE-REVIEW PENDING.** **B3.12 DISPLACED:** 22.99 historical, 19.37 repeat. **B3.13 FAIL; B3.14 AUDIT; B3.15 DISPLACED; B3.16 FAIL; B3.17 UNRANKED.** **F1 RELEASED.**
-- **BANANA R2 CURRENT (supersedes inline `through 9f5e`):** `47c98f53` withdrawn at 141/240 fuzz blocks; `eac2eb36` is not a handoff. FSM event priority, exact asset-survival timing, attribution, and carrier precedence remain open; no value/Arena test.
-- **E7a ITERATIVE DELETION:** round 36 is 55,799 bytes and passes compile/fixtures, 7,234 live
-  commands, and 0/516 development equality. Owner-directed live measurement `6594200`/`41090606`
-  is 22.81/rank 32 over 160; no further mutation.
-- **Coordination:** `local_claude_1` integrates/controls Arena; `local_codex_1`, Claude, and ChatGPT contribute. Incoming operational ACK is pending; Arena stays unchanged during the gap.
-- ★ **ITERATION 2 CLOSED 2026-08-07 by owner.** Two carries into iteration 3, both designed
-  and neither started:
-  - **CBF conditional banana farm — DESIGN COMPLETE, NOT IMPLEMENTED.** Spec
-    `docs/superpowers/specs/2026-08-07-conditional-banana-farm-design.md`; backlog entry under
-    LIVE PRIORITIES → "Designed, not started". Latched `DENY → FARM → WOOD`: the resident's
-    existing `opponent_trolls > 2` denial abort gets a destination (the D89a seed factory)
-    instead of falling back to undifferentiated wood, and aborts to pure wood if the opponent
-    out-collects our bananas. Gates are **behavioural per owner ruling**; they authorize no
-    Arena action. Byte-identical to the resident when the opponent never fields a third troll.
-  - **D89a leak-repairability scoping — `claude_1` returned `NOT_REPAIRABLE` 2026-08-07**
-    (`claude_1/banana-restoration-r2/d89a-leak-repairability-2026-08-07.md`, artifact
-    `6c6215e4`); `chatgpt_1` review pending. Strongest evidence is an isolation: D92's
-    trained-only variant ran **898** opponent-crop selections vs D89's **166** — 5.4× denial
-    dose, starter provably unchanged — and opponent score moved **+0.188 upward** (verified by
-    me from the committed D92 result). `gold_adaptive` family delta **208.78**. Recommends
-    **neither** route enter Phase 3 before a read-only check and measurement repair.
-- ★★ **CORRECTION OF RECORD 2026-08-07 — the D89a theft/own-production split is UNRESOLVED.**
-  The figures `+12.453` (theft) and `+76.508` (opponent's own crops) are **prose only** in
-  `d89a-banana-seed-factory-result-2026-07-21.md`; the committed discovery JSON has no such
-  fields and the per-task panel TSVs were never committed on any ref. `+82.863` reproduces
-  exactly and stands. `claude_1` raised this against its own earlier over-claim; **I had
-  propagated it into the CBF spec and BACKLOG as measured fact and have corrected both.** Any
-  argument that D89a "lost to opponent production rather than theft" is currently unsupported.
-- **Owner ruling 2026-08-07 — judge on delta, not absolute opponent gain.** "If we increased
-  our production more than enemies, we are good." This supersedes D89a's
-  `active_opponent_score_delta_at_most_1` gate. Note the correction of record: D89a fails
-  **four** value gates, not one — the three others are downside-tail gates (worst family
-  −6.938/bar −5; p10 −72/bar −20; worst −235/bar −60) and remain unrelaxed.
-- ★★ **Transport quarantine/lint: `REVISION_REQUIRED` — DO NOT RELY ON IT.** `chatgpt_1`'s
-  independent review of `238a792a` (`chatgpt_1/transport-quarantine-outbox-lint-review-2026-08-07.md`,
-  artifact `e645800b`) returned `REVISION_REQUIRED` with six blocking findings, and it accepts
-  all six quarantine entries as substantively justified. **Finding 2 is a real authorization
-  hole and I reproduced it:** `validate_quarantine` accepts any `adjudicated_by` path that
-  merely exists on an authoritative ref — no coordinator authorship, no v2 validity, no
-  reference to the target. In my reproduction, an unrelated **2026-07-29 message from
-  `chatgpt_1` itself** successfully authorized quarantining `chatgpt_1`'s own fabricated
-  closeout, with zero quarantine errors. Also blocking: quarantine is read from the mutable
-  local worktree while messages come from remote refs, so inbox truth varies by checkout; the
-  lint reads worktree bytes while Git commits index bytes; receiver-side legacy grandfathering
-  is open-ended rather than a pinned baseline; the namespace scanner silently skips
-  non-digit-prefixed files; and the lint cannot reproduce immutable-path collisions.
-  **All six are now REPAIRED** (`f54be7d0`), and the mechanism is still **not accepted** —
-  the repair needs re-review by `chatgpt_1`, and `claude_1`'s independent review is still
-  outstanding. What changed: quarantine authority is the coordinator's canonical ref, never
-  the worktree, with the ref/blob reported and local drift warned (TQ-1); an adjudication must
-  be a valid v2 coordinator message on the coordinator's ref naming the exact target in a
-  `quarantines` array, with `target_blob` pinned (TQ-2 — quarantine schema is now v2, and
-  `20260807T190000Z-…-adjudication.md` is the adjudication for all six entries);
-  `coordination/legacy-baseline.json` pins 691 pre-v2 paths by blob and the receiver rejects
-  anything outside it (TQ-3); the lint gained `--staged` to read index rather than worktree
-  bytes and reports deletions against HEAD (TQ-4); the namespace is closed with an explicit
-  allowlist (TQ-5); and the lint reproduces immutable-path collisions (TQ-6). 128 tests pass.
-  Live delivery errors 9 → 2; a correction does **not** clear a delivery error (verified by
-  execution), so quarantine remains the only repair.
-  **UPDATE 2026-08-12 — transport is now CLEAN and the mechanism has been peer-attacked.**
-  `claude_1` ran an independent execution review (15 attacks, 6 reproducing) and `chatgpt_1`
-  formally requested adjudication, releasing the hold. Three further blobs quarantined
-  (`47aae1a6…`, `69e9a66c…`, `ffe97634…`), each verified by the coordinator to have a valid
-  replacement, so no content was lost. Sweep now reports **delivery errors 0, quarantine
-  errors 0, quarantined 9, immutable-path collisions 0** — the first clean sweep in this
-  programme. TQ-2 proved itself by rejecting *my own* unauthorized adjudication (missing
-  `quarantines` array) and failing closed to `quarantined 0` rather than partially applying.
-  Two open tool facts: `scripts/lint_outbox.py` is **absent** from `agent/claude_1`, which
-  explains its recurring delivery errors; and the two tool SHA-256 values in `chatgpt_1`'s
-  `20260811T232000Z` blocker match **no blob in the entire history** of either file, including
-  the blob cited beside them — its blob ids were all correct, its execution-derived digests
-  are not. Answers requested from both.
-- **Operations:** cron 05:17; H12 weekly; no Arena mutation cycle in flight.
-## 4b. Context-flush handover, 2026-08-12
-
-**`coordination/HANDOVER-2026-08-12-local_claude_1.md`** is the verified operational snapshot:
-identity and start ritual, the gate's repair status, transport state, roster and per-agent tool
-digests, both live programmes, owner decisions outstanding, hazards, and my own error record for
-calibration. Every figure in it was re-verified against the repository at the time of writing.
-
-Two facts from it that belong here: **TRAIN r4 is ACCEPTED** (first panel run with zero
-`GATE_UNREADY`; floor 118/240) and **`readable__no_orchard` (`98628e98…`, 24.76/rank 21) is the
-best bot we have measured and is not the one running** (live is `2caac7c6…` at 22.81/rank 32),
-on a single mature run.
-
-**★ SUPERSEDED 2026-08-12 — the gate IS now integrated.** The handover says r4 is "NOT
-INTEGRATED"; that was true when written and is no longer. `main` = `session-2026-07-01` =
-`agent/local_claude_1`, and `main:claude_1/pipeline/fuzz_panel.py` is `d8900abf31dd030d…` with
-33 TRAIN references. Nine branches merged, `abgate-selfplay-gate` deliberately unmerged;
-sacred `fff6669b…`, live `2caac7c6…`, readable `98628e98…` and banana parent `a8eb3b2b…` all
-verified intact; zero changes under `rust/`, `sim/`, `cgauto/`; one agent-authored CI file
-stripped. **Also correct the handover's size figure:** it claims the integration spanned
-"2,104 files, +193,920 / −729,616". The measured divergence was **251 files, +231,176 / −127**,
-touching only `claude_1/` and `coordination/`. The single conflict was `scripts/lint_outbox.py`,
-both sides byte-identical to the pinned `f3c47b70…`.
-
-**B1 is closed.** The r4 §8 packet was executed independently in a second checkout:
-163 + 24 tests OK, 16/16 mutations caught, floor BLOCK 118/240 and candidate BLOCK 121/240 with
-zero `GATE_UNREADY`, deterministic across two runs, and both packets **row-identical** to the
-committed `evidence-r4` packets. Record:
-`local_claude_1/verification/train-r4-independent-execution-review-2026-08-12.md`.
-`118/240` may now be cited as the floor — **with r4 §9's restriction attached**: TRAIN is
-witnessed in only 2 games and 10 of 17 repaired rules have no corpus witness, so the floor is
-not evidence for those; they are pinned by unit tests, the differential and the mutation drive.
+- **Transport CLEAN 2026-08-10** — delivery errors 0, quarantine errors 0, quarantined 10
+  for all three active agents; the half-done self-quarantine was found unpushed and landed
+  (`4de33b8c`, trunk `8c01c6ad`).
+- **Control-plane migration is the live programme.** Spec approved; plan
+  `docs/superpowers/plans/2026-08-10-coordination-control-plane.md` (P0+P1). P2/P3 follow
+  shadow-mode verification.
+- **Iteration-3 carries (designed, unstarted):** CBF conditional banana farm
+  (`docs/superpowers/specs/2026-08-07-conditional-banana-farm-design.md`; note the strict
+  no-banana-before-second-troll rule and D-9(a) UNPINNED status) and D89a
+  leak-repairability follow-up (claude_1 returned NOT_REPAIRABLE; review pending).
+- **P0 tooling-integrity task** `20260810-guards-that-cannot-fail` (G1–G6; G6 owner-gated).
+- **σ task** `20260810-arena-noise-band-measurement` — unowned; Q2–Q4 open; blocked
+  ordering cannot separate our variance from ladder drift, only interleaved A/B/A/B can.
+- **Needs the owner:** G6 go-ahead only. (B7, B9, e7a all ruled 2026-08-11; the readable
+  format is pinned rustfmt per `docs/readable-format.md`.)
+- History: 2026-07-29 terminal synthesis closed all eight resident levers; A2 stopped at
+  Phase-1 K1; N1 closed passive maturity; the full pre-diet record is
+  `docs/archive/STATE-2026-08-10-pre-diet.md` and the ledger volumes.
 
 ## 5. Reading order & pointers
 
 1. This file.
 2. `docs/CONSTRAINTS.md` — check BEFORE proposing any experiment.
 3. `docs/BACKLOG.md` — live priorities at the top; historical tiers below are the record.
-4. `coordination/README.md` + inbox sweep — mandatory for any agent before writing.
+4. `coordination/README.md` + inbox sweep — mandatory until P2; see the control-plane spec.
 5. Live ledger: `data/analysis/live-agent-6553250/legend-top3-experiment-cycle-vol4-2026-08-04.md`; prior volumes frozen. Atlas: `docs/D-series-atlas.pdf`.
 6. `AGENTS.md` (process), `docs/storage-policy.md`, `docs/mechanics.md`,
    `docs/archive/INDEX.md` (superseded docs).

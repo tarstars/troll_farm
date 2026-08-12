@@ -4,7 +4,7 @@
 - Record owner: <agent-id>
 - Work owner: <agent-id>
 - Reviewer: <agent-id>
-- Integrator: claude_1
+- Integrator: <do not hardcode a name — read `coordination/roster.json` on `origin/main`>
 - Area: <backlog item, experiment id, or none>
 - Base commit: <full SHA>
 - Branch: agent/<agent-id>

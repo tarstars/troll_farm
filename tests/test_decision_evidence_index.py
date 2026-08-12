@@ -171,7 +171,12 @@ def test_disclosed_population_mismatch_passes(tmp_path):
         incompatibility_reason="Threshold and outcome use different populations.",
     )
     repo = make_repo(tmp_path, r)
-    validate_repository(repo, require_pilot=False, check_generated=True)
+    records, warnings = validate_repository(repo, require_pilot=False, check_generated=True)
+    assert warnings == []
+    assert records[0]["decisive_claims"][0]["population_compatibility"] == "invalid_disclosed"
+    assert records[0]["decisive_claims"][0]["incompatibility_reason"] == (
+        "Threshold and outcome use different populations."
+    )
 
 @pytest.mark.parametrize("mutator", [
     lambda r: r.update(primary_evidence_strength="unknown_strength"),
@@ -240,7 +245,10 @@ def test_pinned_locator_survives_later_line_drift(tmp_path):
         "PREPENDED\nPREPENDED\n" + (repo / "source.md").read_text()
     )
     build(repo)
-    validate_repository(repo, require_pilot=False, check_generated=True)
+    records, warnings = validate_repository(repo, require_pilot=False, check_generated=True)
+    assert warnings == []
+    assert records[0]["textual_evidence"][0]["source"]["commit"] == sha
+    assert records[0]["constraint_projection"]["source"]["commit"] == sha
 
 def test_unresolvable_commit_is_hard_error(tmp_path):
     repo = make_repo(tmp_path, build_generated=False)
@@ -390,7 +398,11 @@ def test_accepted_state_is_allowed(tmp_path):
     record = base_record()
     record["acceptance"] = {"state": "accepted", "author": "a", "reviewer": "b"}
     repo = make_repo(tmp_path, record=record)
-    validate_repository(repo, require_pilot=False, check_generated=True)
+    records, warnings = validate_repository(repo, require_pilot=False, check_generated=True)
+    assert warnings == []
+    assert records[0]["acceptance"] == {
+        "state": "accepted", "author": "a", "reviewer": "b"
+    }
 
 def test_unknown_acceptance_state_rejected(tmp_path):
     record = base_record()

@@ -88,6 +88,17 @@ def test_report_covers_both_classes_and_all_sizes():
     assert report["source_sha256"] == SOURCE_SHA256
     assert {r["worker"] for r in report["rows"]} == {"starter", "trained"}
     assert sorted({r["size"] for r in report["rows"]}) == [1, 2, 3, 4]
-    for row in report["rows"]:
-        assert row["base_score"] > 0
-        assert row["crossover_distance"] >= 0
+    assert all(row["base_score"] > 0 for row in report["rows"])
+    assert {
+        (row["worker"], row["size"]): row["crossover_distance"]
+        for row in report["rows"]
+    } == {
+        ("starter", 1): 16,
+        ("starter", 2): 17,
+        ("starter", 3): 19,
+        ("starter", 4): 21,
+        ("trained", 1): 5,
+        ("trained", 2): 2,
+        ("trained", 3): 1,
+        ("trained", 4): 1,
+    }

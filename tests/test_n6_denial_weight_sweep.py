@@ -1,3 +1,5 @@
+import pytest
+
 from cgauto.n6_denial_weight_sweep import (
     CONFIRMATION_MAPS,
     CONFIRMATION_START,
@@ -90,14 +92,10 @@ def test_materializer_changes_only_exact_scalar():
     assert materialize_source(source, 1800) == source.replace("900.0", "1800.0")
 
 
-def test_materializer_fails_closed_on_missing_or_duplicate_anchor():
-    for source in ("nothing", f"{TARGET_LINE}\n{TARGET_LINE}"):
-        try:
+@pytest.mark.parametrize("source", ["nothing", f"{TARGET_LINE}\n{TARGET_LINE}"])
+def test_materializer_fails_closed_on_missing_or_duplicate_anchor(source):
+    with pytest.raises(ValueError):
             materialize_source(source, 450)
-        except ValueError:
-            pass
-        else:
-            raise AssertionError("bad anchor count did not fail")
 
 
 def test_module_normalization_removes_only_crate_allow():

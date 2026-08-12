@@ -831,6 +831,15 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 - Fresh submissions read 3–4 points below matured ones; a failed same-code A/A (16.1 → 19.9
   vs prior 26.3) proves the artifact. Never churn submissions; require capacity A/A before
   candidate trials. [vol 1 07-16 arena section; archive/legend/session-handoff-2026-07-16.md]
+  **[no-churn clause SUBSTANTIALLY WEAKENED — see `docs/STATE.md` §3 B0.3]** The
+  fresh-vs-matured gap stands; the operational prohibition does not. A mature 160-game
+  read costs ~2 h at current ladder rates, not days of standing, so "never churn" is no
+  longer a binding cost argument. The A/A capacity requirement also no longer applies as
+  written — the per-candidate gate was lifted by the owner 2026-07-30 and the noise-band
+  gate removed by owner ruling. Read STATE §3 before quoting this bullet as a live rule.
+  *Marked 2026-08-10 during hygiene cleanup: the weakening was recorded only in STATE, so
+  this bullet still read as binding to anyone following the reading order in
+  `coordination/peer-prompt.md` §1, which reaches CONSTRAINTS before STATE's standing rules.*
 - Verdicts are deltas against a same-window control, never absolute levels or cross-hour
   comparisons. [archive/bronze-to-gold/arena-queue.md, measurement policy v2]
 - Field evidence comes from authorized passive replay collection with immutable snapshots,
@@ -1228,3 +1237,12 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   post-release edits, impossible-commitment exits, and a frozen coverage manifest. Do not infer a
   value verdict about banana production from these implementation failures. [banana R2 rounds
   5/6 and FSM review, 2026-08-06]
+- **Canonical human-readable format (owner ruling 2026-08-11): pinned rustfmt via
+  `claude_1/readable-source/format_readable.py`** (`reorder_imports=false`, `max_width=100`,
+  trailing-comma reconciliation, mandatory round-trip to the exact minified parent hash;
+  rustfmt 1.9.0-stable at ruling). Readable-LOC figures are formatting-dependent: **bytes are
+  canonical** (E7a orchard strip = 15,013 B = 23.9%), and any line figure names its expander
+  (375 = the 2026-08-04 task expander; 586 = the stricter stranded expander, archived on
+  `archive/local_codex_1-stranded-20260810`). In-place formatting of hash-locked sources
+  remains forbidden. Full text: `docs/readable-format.md`. [e7a LOC-cost reconciliation,
+  2026-08-11]

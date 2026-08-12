@@ -1,0 +1,488 @@
+diff --git a/docs/evidence/generated/decision-evidence-index.yaml b/docs/evidence/generated/decision-evidence-index.yaml
+index b890a3a6..28ce5942 100644
+--- a/docs/evidence/generated/decision-evidence-index.yaml
++++ b/docs/evidence/generated/decision-evidence-index.yaml
+@@ -1 +1 @@
+-{"canonical_format":"docs/evidence/records/*.md#DECISION-EVIDENCE-JSON","records":[{"canonical_record":"docs/evidence/records/D101.md","claims":[{"display":"top-3 93.3% vs resident 10.3%","name":"self_crop_reap_game_coverage","population":"top-three and resident decoded public games","source":"docs/CONSTRAINTS.md#lines 115-118","strength":"observational_audit"},{"display":"top-3 24.16% vs resident 0.94%","name":"created_crop_reap_rate","population":"created-crop generations in decoded public games","source":"docs/CONSTRAINTS.md#lines 115-118","strength":"observational_audit"},{"display":"78% of top-3 suppression chops occur at workforce ≥3","name":"late_suppression_share","population":"top-three decoded suppression chops","source":"docs/CONSTRAINTS.md#lines 115-118","strength":"observational_audit"}],"conclusion":"The resident already suppresses competitively; the observed gap is persistent self-production during and after scaling.","cost_class":"medium","discussions":["D101-Q1"],"evidence_strength":"observational_audit","id":"D101","kind":"scientific_decision","relations":["supports:external:TERMINAL-SYNTHESIS","constrains:external:PRODUCTION-PROPOSALS"],"scope":"Observed replay behavior of the resident and top-three agents; architecture diagnosis, not intervention value.","status":"diagnosis"},{"canonical_record":"docs/evidence/records/D161.md","claims":[{"display":"+3.42 vs resident; CI [−8.70,+15.54]","name":"terminal_oracle_delta","population":"frozen D161/D158 same-panel tasks","source":"docs/CONSTRAINTS.md#lines 181-183","strength":"panel_causal"},{"display":"22 → 43 catastrophes","name":"catastrophe_change","population":"same frozen D161/D158 panel","source":"docs/CONSTRAINTS.md#lines 181-183","strength":"panel_causal"}],"conclusion":"No. Experiments must anchor on the exact resident, or first prove same-panel dominance over it.","cost_class":"medium","discussions":[],"evidence_strength":"panel_causal","id":"D161","kind":"scientific_decision","relations":["narrows:external:D158","constrains:external:ALL-RESIDENT-EXPERIMENTS"],"scope":"Control-substrate choice for resident-competition experiments.","status":"closed"},{"canonical_record":"docs/evidence/records/D169.md","claims":[{"display":"+10.671 mean; CI [+9.420,+11.922]","name":"full_envelope_mean","population":"1,024-task frozen option-envelope panel","source":"docs/CONSTRAINTS.md#lines 553-565","strength":"accounting_model"},{"display":"65% improved; 0 regressions","name":"improvement_breadth","population":"1,024-task frozen option-envelope panel","source":"docs/CONSTRAINTS.md#lines 553-565","strength":"accounting_model"},{"display":"+1.80 trigger-armed hindsight subset","name":"deployable_subset","population":"trigger-armed options on the same 1,024-task panel","source":"docs/CONSTRAINTS.md#lines 553-565","strength":"accounting_model"}],"conclusion":"Yes, the envelope contains material hindsight value, but it is a selection/timing opportunity rather than a deployable policy.","cost_class":"high","discussions":[],"evidence_strength":"accounting_model","id":"D169","kind":"scientific_decision","relations":["opens:external:D170","constrains:D172a"],"scope":"Hindsight option-envelope value on the frozen 1,024-task panel; authorization for D170 only.","status":"authorized"},{"canonical_record":"docs/evidence/records/D172a.md","claims":[{"display":"40.4% of 27,392 states carry a ≥+2 option","name":"positive_context_rate","population":"27,392 on-distribution budget-1 states","source":"docs/CONSTRAINTS.md#lines 358-367","strength":"panel_causal"},{"display":"+0.14..+0.26 vs +1.5 gate","name":"held_value","population":"eight held selection blocks across linear and MLP classes","source":"docs/CONSTRAINTS.md#lines 358-367","strength":"panel_causal"},{"display":"0 admitted fits","name":"admitted_fits","population":"D172a phase-3 evaluated fits","source":"data/analysis/live-agent-6553250/d172a-dense-counterfactual-option-policy-phase3-result.json#/admitted_count","strength":"panel_causal"}],"conclusion":"No. The signal exists but is not identifiable from the tested observables; selector learning on those features is closed.","cost_class":"high","discussions":[],"evidence_strength":"panel_causal","id":"D172a","kind":"scientific_decision","relations":["closes:D169","does_not_close:external:SPATIAL-PLANES"],"scope":"D172a observation class, budget-1 decisions, linear and MLP function classes, frozen LOBO selection blocks.","status":"closed"},{"canonical_record":"docs/evidence/records/D175a.md","claims":[{"display":"turn 199 → 13","name":"first_plant_shift","population":"activated D175a resident tasks","source":"docs/CONSTRAINTS.md#lines 258-268","strength":"panel_causal"},{"display":"−26.44 overall paired margin","name":"overall_margin","population":"frozen D175a paired panel","source":"docs/CONSTRAINTS.md#lines 258-268","strength":"panel_causal"},{"display":"Δown −5.41; Δopponent +21.09","name":"score_decomposition","population":"frozen D175a paired panel","source":"docs/CONSTRAINTS.md#lines 258-268","strength":"panel_causal"},{"display":"229 vs 130 catastrophes","name":"catastrophes","population":"candidate vs control in frozen D175a panel","source":"docs/CONSTRAINTS.md#lines 258-268","strength":"panel_causal"}],"conclusion":"No. The mechanism fires, but early planting is severely harmful because it feeds opponents and displaces suppression while failing to improve reaping.","cost_class":"high","discussions":[],"evidence_strength":"panel_causal","id":"D175a","kind":"scientific_decision","relations":["supports:external:TERMINAL-SYNTHESIS","calibrates:H1"],"scope":"D175a bounded early-plant intervention on the exact resident scheduler and frozen paired panel.","status":"closed"},{"canonical_record":"docs/evidence/records/D176a.md","claims":[{"display":"8.50% → 2.88%","name":"long_oscillation_rate","population":"D176a 2,048-task paired panel","source":"docs/CONSTRAINTS.md#lines 652-659","strength":"panel_causal"},{"display":"0 de-novo oscillations","name":"de_novo","population":"D176a 2,048-task paired panel","source":"docs/CONSTRAINTS.md#lines 652-659","strength":"panel_causal"},{"display":"+0.045 margin; CI [−0.024,+0.114]","name":"overall_value","population":"D176a 2,048-task paired panel","source":"data/analysis/live-agent-6553250/d176a-oscillation-breaker-successor-result.json#/value/overall_mean_margin_delta","strength":"panel_causal"},{"display":"real-corpus reference 133 turns vs panel control 247 turns","name":"worst_case_gate_population","population":"real resident corpus compared with D176a synthetic panel control","source":"docs/CONSTRAINTS.md#lines 697-704","strength":"observational_audit"}],"conclusion":"The mechanism largely succeeds and all value gates pass, but the gain is immaterial. Two mechanism gates were invalidly specified against the wrong population/failure mode.","cost_class":"high","discussions":[],"evidence_strength":"panel_causal","id":"D176a","kind":"scientific_decision","outcomes":{"mechanism":"successful","protocol_quality":"gate_design_error","value":"immaterial"},"relations":["corrects:external:D171a","closes:external:OSCILLATION-LINE","constrains:external:GATE-DESIGN"],"scope":"D176a exact-resident preference tie-break on the frozen 2,048-task panel; gate-design postmortem included.","status":"closed"},{"canonical_record":"docs/evidence/records/D30.md","claims":[{"display":"80/80 official roots outside model support","name":"official_roots_outside_support","population":"80 official generated roots","source":"docs/CONSTRAINTS.md#lines 188-193","strength":"observational_audit"},{"display":"−78.05 total shift; −72.12 from scalar features","name":"distribution_shift","population":"synthetic-vs-official map-domain comparison","source":"docs/CONSTRAINTS.md#lines 188-193","strength":"observational_audit"},{"display":"120/120 untouched confirmation","name":"official_generator_confirmation","population":"120 official roots under the SHA1PRNG port","source":"docs/CONSTRAINTS.md#lines 188-193","strength":"mechanics_proof"}],"conclusion":"No. The legacy generated-map substrate is outside official-map support; official SHA1PRNG map generation is required for field-relevant evidence.","cost_class":"medium","discussions":[],"evidence_strength":"observational_audit","id":"D30","kind":"scientific_decision","relations":["corrects:external:D29c","supports:external:D33"],"scope":"Evaluation substrate and map-domain validity for all downstream controller experiments.","status":"invalidated"},{"canonical_record":"docs/evidence/records/H1.md","claims":[{"display":"−2.49 rating; CI [−2.78,−2.21]; 6/220 positive","name":"own_side_sensitivity","population":"220 resident games under own-side-only displacement pricing","source":"docs/CONSTRAINTS.md#lines 734-749","strength":"accounting_model"},{"display":"36.8% of games; median turn 78","name":"worker3_affordability","population":"220 resident games with real bill and post-move legality","source":"docs/CONSTRAINTS.md#lines 734-749","strength":"accounting_model"},{"display":"0/220 ever","name":"worker4_affordability","population":"220 resident games under finite-windfall credit","source":"docs/CONSTRAINTS.md#lines 734-749","strength":"accounting_model"},{"display":"D175a own-side −5.41 actual vs −4.32 predicted","name":"calibration","population":"D175a intervention used as accounting-model calibration","source":"docs/CONSTRAINTS.md#lines 734-749","strength":"accounting_model"}],"conclusion":"No. Even the own-side-only sensitivity remains negative; the current scheduler cannot capitalize the finite windfall into a fourth worker.","cost_class":"low","discussions":["H1-Q1"],"evidence_strength":"accounting_model","id":"H1","kind":"scientific_decision","relations":["narrows:external:H1-HEADLINE","calibrated_by:D175a","constrains:external:MULTI-LEVER-PATCH"],"scope":"Grounded finite-windfall accounting stress test on 220 resident games; conditional on fixed pricing constants and the current scheduler.","status":"closed"},{"canonical_record":"docs/evidence/records/H7.md","claims":[],"conclusion":"The question is void because the proposed body-blocking mechanic does not exist under the referee rules.","cost_class":"low","discussions":[],"evidence_strength":"mechanics_proof","id":"H7","kind":"hypothesis_review","premise_failure":{"false_premise":"Body-blocking is a legal/exploitable mechanic in Troll Farm.","refutation":"Primary-source mechanics review found that the mechanic does not exist; action contention is a distinct surviving question.","source":{"locator":"lines 716-722","path":"docs/CONSTRAINTS.md"}},"relations":["supersedes:external:H7-ORIGINAL","does_not_close:external:H7-PRIME"],"scope":"H7’s original body-blocking hypothesis only; action contention and target races are separate questions.","status":"void-premise"},{"canonical_record":"docs/evidence/records/OWNER-ARENA-20260730.md","claims":[{"display":"expected gain must exceed ±0.5–1 rating noise band","name":"noise_band","population":"qualified candidate promotion decisions","source":"docs/STATE.md#lines 47-69","strength":"public_source_statement"},{"display":"exactly one arena controller","name":"controller_count","population":"all live submission cycles","source":"docs/STATE.md#lines 47-69","strength":"public_source_statement"}],"conclusion":"Yes. The permission gate is lifted for candidates that pass frozen qualification and promotion checks; evidence, notification, logging, and serialization requirements remain binding.","cost_class":"low","discussions":[],"evidence_strength":"public_source_statement","id":"OWNER-ARENA-20260730","kind":"operational_policy","relations":["supersedes:external:PER-CANDIDATE-PERMISSION","constrains:external:ARENA-CONTROLLER"],"scope":"Live ladder mutation by the single arena controller under the promotion runbook.","status":"authorized"},{"canonical_record":"docs/evidence/records/OWNER-GOAL-20260730.md","claims":[{"display":"mature score ≥25.40","name":"primary_target","population":"Legend practice-ladder goal","source":"docs/STATE.md#lines 24-43","strength":"public_source_statement"},{"display":"24.70 interim checkpoint","name":"interim_target","population":"yamo source-design score checkpoint","source":"docs/STATE.md#lines 24-43","strength":"public_source_statement"},{"display":"25 Legend agents at ranks 7–54 use the exact two-worker roster","name":"architectural_demonstration","population":"25 Legend agents in the cited ladder census","source":"docs/STATE.md#lines 24-43","strength":"observational_audit"}],"conclusion":"Primary goal becomes mature score ≥25.40 with 24.70 as an interim checkpoint; rank ≤3 is superseded.","cost_class":"low","discussions":[],"evidence_strength":"public_source_statement","id":"OWNER-GOAL-20260730","kind":"governance_decision","relations":["supersedes:external:GOAL-RANK-3","narrows:external:PROJECT-COMPLETION"],"scope":"Project objective and completion rule for the Legend practice ladder.","status":"accepted"}],"schema":"decision-evidence-index-v1"}
++{"canonical_format":"docs/evidence/records/*.md#DECISION-EVIDENCE-JSON","records":[{"canonical_record":"docs/evidence/records/D101.md","claims":[{"display":"top-3 93.3% vs resident 10.3%","name":"self_crop_reap_game_coverage","population":"top-three and resident decoded public games","source":"docs/CONSTRAINTS.md#lines 113-116","strength":"observational_audit"},{"display":"top-3 24.16% vs resident 0.94%","name":"created_crop_reap_rate","population":"created-crop generations in decoded public games","source":"docs/CONSTRAINTS.md#lines 113-116","strength":"observational_audit"},{"display":"78% of top-3 suppression chops occur at workforce ≥3","name":"late_suppression_share","population":"top-three decoded suppression chops","source":"docs/CONSTRAINTS.md#lines 113-116","strength":"observational_audit"}],"conclusion":"The resident already suppresses competitively; the observed gap is persistent self-production during and after scaling.","cost_class":"medium","discussions":["D101-Q1"],"evidence_strength":"observational_audit","id":"D101","kind":"scientific_decision","relations":["supports:external:TERMINAL-SYNTHESIS","constrains:external:PRODUCTION-PROPOSALS"],"scope":"Observed replay behavior of the resident and top-three agents; architecture diagnosis, not intervention value.","status":"diagnosis"},{"canonical_record":"docs/evidence/records/D161.md","claims":[{"display":"+3.42 vs resident; CI [−8.70,+15.54]","name":"terminal_oracle_delta","population":"frozen D161/D158 same-panel tasks","source":"docs/CONSTRAINTS.md#lines 179-181","strength":"panel_causal"},{"display":"22 → 43 catastrophes","name":"catastrophe_change","population":"same frozen D161/D158 panel","source":"docs/CONSTRAINTS.md#lines 179-181","strength":"panel_causal"}],"conclusion":"No. Experiments must anchor on the exact resident, or first prove same-panel dominance over it.","cost_class":"medium","discussions":[],"evidence_strength":"panel_causal","id":"D161","kind":"scientific_decision","relations":["narrows:external:D158","constrains:external:ALL-RESIDENT-EXPERIMENTS"],"scope":"Control-substrate choice for resident-competition experiments.","status":"closed"},{"canonical_record":"docs/evidence/records/D169.md","claims":[{"display":"+10.671 mean; CI [+9.420,+11.922]","name":"full_envelope_mean","population":"1,024-task frozen option-envelope panel","source":"docs/CONSTRAINTS.md#lines 553-562","strength":"accounting_model"},{"display":"65% improved; 0 regressions","name":"improvement_breadth","population":"1,024-task frozen option-envelope panel","source":"docs/CONSTRAINTS.md#lines 553-562","strength":"accounting_model"},{"display":"+1.80 trigger-armed hindsight subset","name":"deployable_subset","population":"trigger-armed options on the same 1,024-task panel","source":"docs/CONSTRAINTS.md#lines 553-562","strength":"accounting_model"}],"conclusion":"Yes, the envelope contains material hindsight value, but it is a selection/timing opportunity rather than a deployable policy.","cost_class":"high","discussions":[],"evidence_strength":"accounting_model","id":"D169","kind":"scientific_decision","relations":["opens:external:D170","constrains:D172a"],"scope":"Hindsight option-envelope value on the frozen 1,024-task panel; authorization for D170 only.","status":"authorized"},{"canonical_record":"docs/evidence/records/D172a.md","claims":[{"display":"40.4% of 27,392 states carry a ≥+2 option","name":"positive_context_rate","population":"27,392 on-distribution budget-1 states","source":"docs/CONSTRAINTS.md#lines 358-367","strength":"panel_causal"},{"display":"+0.14..+0.26 vs +1.5 gate","name":"held_value","population":"eight held selection blocks across linear and MLP classes","source":"docs/CONSTRAINTS.md#lines 358-367","strength":"panel_causal"},{"display":"0 admitted fits","name":"admitted_fits","population":"D172a phase-3 evaluated fits","source":"data/analysis/live-agent-6553250/d172a-dense-counterfactual-option-policy-phase3-result.json#/admitted_count","strength":"panel_causal"}],"conclusion":"No. The signal exists but is not identifiable from the tested observables; selector learning on those features is closed.","cost_class":"high","discussions":[],"evidence_strength":"panel_causal","id":"D172a","kind":"scientific_decision","relations":["closes:D169","does_not_close:external:SPATIAL-PLANES"],"scope":"D172a observation class, budget-1 decisions, linear and MLP function classes, frozen LOBO selection blocks.","status":"closed"},{"canonical_record":"docs/evidence/records/D175a.md","claims":[{"display":"turn 199 → 13","name":"first_plant_shift","population":"activated D175a resident tasks","source":"docs/CONSTRAINTS.md#lines 258-268","strength":"panel_causal"},{"display":"−26.44 overall paired margin","name":"overall_margin","population":"frozen D175a paired panel","source":"docs/CONSTRAINTS.md#lines 258-268","strength":"panel_causal"},{"display":"Δown −5.41; Δopponent +21.09","name":"score_decomposition","population":"frozen D175a paired panel","source":"docs/CONSTRAINTS.md#lines 258-268","strength":"panel_causal"},{"display":"229 vs 130 catastrophes","name":"catastrophes","population":"candidate vs control in frozen D175a panel","source":"docs/CONSTRAINTS.md#lines 258-268","strength":"panel_causal"}],"conclusion":"No. The mechanism fires, but early planting is severely harmful because it feeds opponents and displaces suppression while failing to improve reaping.","cost_class":"high","discussions":[],"evidence_strength":"panel_causal","id":"D175a","kind":"scientific_decision","relations":["supports:external:TERMINAL-SYNTHESIS","calibrates:H1"],"scope":"D175a bounded early-plant intervention on the exact resident scheduler and frozen paired panel.","status":"closed"},{"canonical_record":"docs/evidence/records/D176a.md","claims":[{"display":"8.50% → 2.88%","name":"long_oscillation_rate","population":"D176a 2,048-task paired panel","source":"docs/CONSTRAINTS.md#lines 652-657","strength":"panel_causal"},{"display":"0 de-novo oscillations","name":"de_novo","population":"D176a 2,048-task paired panel","source":"docs/CONSTRAINTS.md#lines 652-657","strength":"panel_causal"},{"display":"+0.045 margin; CI [−0.024,+0.114]","name":"overall_value","population":"D176a 2,048-task paired panel","source":"data/analysis/live-agent-6553250/d176a-oscillation-breaker-successor-result.json#/value/overall_mean_margin_delta","strength":"panel_causal"},{"display":"real-corpus reference 133 turns vs panel control 247 turns","name":"worst_case_gate_population","population":"real resident corpus compared with D176a synthetic panel control","source":"docs/CONSTRAINTS.md#lines 652-657","strength":"observational_audit"}],"conclusion":"The mechanism largely succeeds and all value gates pass, but the gain is immaterial. Two mechanism gates were invalidly specified against the wrong population/failure mode.","cost_class":"high","discussions":[],"evidence_strength":"panel_causal","id":"D176a","kind":"scientific_decision","outcomes":{"mechanism":"successful","protocol_quality":"gate_design_error","value":"immaterial"},"relations":["corrects:external:D171a","closes:external:OSCILLATION-LINE","constrains:external:GATE-DESIGN"],"scope":"D176a exact-resident preference tie-break on the frozen 2,048-task panel; gate-design postmortem included.","status":"closed"},{"canonical_record":"docs/evidence/records/D30.md","claims":[{"display":"80/80 official roots outside model support","name":"official_roots_outside_support","population":"80 official generated roots","source":"docs/CONSTRAINTS.md#lines 186-191","strength":"observational_audit"},{"display":"−78.05 total shift; −72.12 from scalar features","name":"distribution_shift","population":"synthetic-vs-official map-domain comparison","source":"docs/CONSTRAINTS.md#lines 186-191","strength":"observational_audit"},{"display":"120/120 untouched confirmation","name":"official_generator_confirmation","population":"120 official roots under the SHA1PRNG port","source":"docs/CONSTRAINTS.md#lines 186-191","strength":"mechanics_proof"}],"conclusion":"No. The legacy generated-map substrate is outside official-map support; official SHA1PRNG map generation is required for field-relevant evidence.","cost_class":"medium","discussions":[],"evidence_strength":"observational_audit","id":"D30","kind":"scientific_decision","relations":["corrects:external:D29c","supports:external:D33"],"scope":"Evaluation substrate and map-domain validity for all downstream controller experiments.","status":"invalidated"},{"canonical_record":"docs/evidence/records/H1.md","claims":[{"display":"−2.49 rating; CI [−2.78,−2.21]; 6/220 positive","name":"own_side_sensitivity","population":"220 resident games under own-side-only displacement pricing","source":"docs/CONSTRAINTS.md#lines 732-747","strength":"accounting_model"},{"display":"36.8% of games; median turn 78","name":"worker3_affordability","population":"220 resident games with real bill and post-move legality","source":"docs/CONSTRAINTS.md#lines 732-747","strength":"accounting_model"},{"display":"0/220 ever","name":"worker4_affordability","population":"220 resident games under finite-windfall credit","source":"docs/CONSTRAINTS.md#lines 732-747","strength":"accounting_model"},{"display":"D175a own-side −5.41 actual vs −4.32 predicted","name":"calibration","population":"D175a intervention used as accounting-model calibration","source":"docs/CONSTRAINTS.md#lines 732-747","strength":"accounting_model"}],"conclusion":"No. Even the own-side-only sensitivity remains negative; the current scheduler cannot capitalize the finite windfall into a fourth worker.","cost_class":"low","discussions":["H1-Q1"],"evidence_strength":"accounting_model","id":"H1","kind":"scientific_decision","relations":["narrows:external:H1-HEADLINE","calibrated_by:D175a","constrains:external:MULTI-LEVER-PATCH"],"scope":"Grounded finite-windfall accounting stress test on 220 resident games; conditional on fixed pricing constants and the current scheduler.","status":"closed"},{"canonical_record":"docs/evidence/records/H7.md","claims":[],"conclusion":"The question is void because the proposed body-blocking mechanic does not exist under the referee rules.","cost_class":"low","discussions":[],"evidence_strength":"mechanics_proof","id":"H7","kind":"hypothesis_review","premise_failure":{"false_premise":"Body-blocking is a legal/exploitable mechanic in Troll Farm.","refutation":"Primary-source mechanics review found that the mechanic does not exist; action contention is a distinct surviving question.","source":{"locator":"lines 714-719","path":"docs/CONSTRAINTS.md"}},"relations":["supersedes:external:H7-ORIGINAL","does_not_close:external:H7-PRIME"],"scope":"H7’s original body-blocking hypothesis only; action contention and target races are separate questions.","status":"void-premise"},{"canonical_record":"docs/evidence/records/OWNER-ARENA-20260730.md","claims":[{"display":"expected gain must exceed ±0.5–1 rating noise band","name":"noise_band","population":"qualified candidate promotion decisions","source":"docs/STATE.md#lines 47-69","strength":"public_source_statement"},{"display":"exactly one arena controller","name":"controller_count","population":"all live submission cycles","source":"docs/STATE.md#lines 47-69","strength":"public_source_statement"}],"conclusion":"Yes. The permission gate is lifted for candidates that pass frozen qualification and promotion checks; evidence, notification, logging, and serialization requirements remain binding.","cost_class":"low","discussions":[],"evidence_strength":"public_source_statement","id":"OWNER-ARENA-20260730","kind":"operational_policy","relations":["supersedes:external:PER-CANDIDATE-PERMISSION","constrains:external:ARENA-CONTROLLER"],"scope":"Live ladder mutation by the single arena controller under the promotion runbook.","status":"authorized"},{"canonical_record":"docs/evidence/records/OWNER-GOAL-20260730.md","claims":[{"display":"mature score ≥25.40","name":"primary_target","population":"Legend practice-ladder goal","source":"docs/STATE.md#lines 24-43","strength":"public_source_statement"},{"display":"24.70 interim checkpoint","name":"interim_target","population":"yamo source-design score checkpoint","source":"docs/STATE.md#lines 24-43","strength":"public_source_statement"},{"display":"25 Legend agents at ranks 7–54 use the exact two-worker roster","name":"architectural_demonstration","population":"25 Legend agents in the cited ladder census","source":"docs/STATE.md#lines 24-43","strength":"observational_audit"}],"conclusion":"Primary goal becomes mature score ≥25.40 with 24.70 as an interim checkpoint; rank ≤3 is superseded.","cost_class":"low","discussions":[],"evidence_strength":"public_source_statement","id":"OWNER-GOAL-20260730","kind":"governance_decision","relations":["supersedes:external:GOAL-RANK-3","narrows:external:PROJECT-COMPLETION"],"scope":"Project objective and completion rule for the Legend practice ladder.","status":"accepted"}],"schema":"decision-evidence-index-v1"}
+diff --git a/docs/evidence/generated/equivalence-report.md b/docs/evidence/generated/equivalence-report.md
+index 295a996a..42af01b0 100644
+--- a/docs/evidence/generated/equivalence-report.md
++++ b/docs/evidence/generated/equivalence-report.md
+@@ -5,15 +5,15 @@ projection. Numeric-token coverage is checked mechanically by the validator.
+ 
+ | Record | Binding source | Match class | Scope | Binding decisive numbers |
+ |---|---|---|---|---|
+-| `D101` | `docs/CONSTRAINTS.md` (lines 115-118) | CONSTRAINTS-equivalent | Observed replay behavior of the resident and top-three agents; architecture diagnosis, not intervention value. | `3`, `93.3%`, `10.3%`, `24.16%`, `0.94%`, `78%` |
+-| `D161` | `docs/CONSTRAINTS.md` (lines 181-183) | CONSTRAINTS-equivalent | Control-substrate choice for resident-competition experiments. | `+3.42`, `−8.70`, `+15.54`, `22`, `43` |
+-| `D169` | `docs/CONSTRAINTS.md` (lines 553-565) | CONSTRAINTS-equivalent | Hindsight option-envelope value on the frozen 1,024-task panel; authorization for D170 only. | `+10.671`, `+9.420`, `+11.922`, `65%`, `0`, `+1.80` |
++| `D101` | `docs/CONSTRAINTS.md` (lines 113-116) | CONSTRAINTS-equivalent | Observed replay behavior of the resident and top-three agents; architecture diagnosis, not intervention value. | `3`, `93.3%`, `10.3%`, `24.16%`, `0.94%`, `78%` |
++| `D161` | `docs/CONSTRAINTS.md` (lines 179-181) | CONSTRAINTS-equivalent | Control-substrate choice for resident-competition experiments. | `+3.42`, `−8.70`, `+15.54`, `22`, `43` |
++| `D169` | `docs/CONSTRAINTS.md` (lines 553-562) | CONSTRAINTS-equivalent | Hindsight option-envelope value on the frozen 1,024-task panel; authorization for D170 only. | `+10.671`, `+9.420`, `+11.922`, `65%`, `0`, `+1.80` |
+ | `D172a` | `docs/CONSTRAINTS.md` (lines 358-367) | CONSTRAINTS-equivalent | D172a observation class, budget-1 decisions, linear and MLP function classes, frozen LOBO selection blocks. | `40.4%`, `27`, `392`, `+2`, `+0.14`, `+0.26`, `+1.5`, `0` |
+ | `D175a` | `docs/CONSTRAINTS.md` (lines 258-268) | CONSTRAINTS-equivalent | D175a bounded early-plant intervention on the exact resident scheduler and frozen paired panel. | `199`, `13`, `−26.44`, `−5.41`, `+21.09`, `229`, `130` |
+-| `D176a` | `docs/CONSTRAINTS.md` (lines 652-704) | CONSTRAINTS-equivalent | D176a exact-resident preference tie-break on the frozen 2,048-task panel; gate-design postmortem included. | `8.50%`, `2.88%`, `0`, `+0.045`, `−0.024`, `+0.114`, `133`, `247` |
+-| `D30` | `docs/CONSTRAINTS.md` (lines 188-193) | CONSTRAINTS-equivalent | Evaluation substrate and map-domain validity for all downstream controller experiments. | `80/80`, `−78.05`, `−72.12`, `120/120` |
+-| `H1` | `docs/CONSTRAINTS.md` (lines 734-749) | CONSTRAINTS-equivalent | Grounded finite-windfall accounting stress test on 220 resident games; conditional on fixed pricing constants and the current scheduler. | `−2.49`, `−2.78`, `−2.21`, `6/220`, `36.8%`, `78`, `0/220` |
+-| `H7` | `docs/CONSTRAINTS.md` (lines 716-722) | CONSTRAINTS-equivalent | H7’s original body-blocking hypothesis only; action contention and target races are separate questions. | textual premise only |
++| `D176a` | `docs/CONSTRAINTS.md` (lines 652-657) | CONSTRAINTS-equivalent | D176a exact-resident preference tie-break on the frozen 2,048-task panel; gate-design postmortem included. | `8.50%`, `2.88%`, `0`, `+0.045`, `−0.024`, `+0.114`, `133`, `247` |
++| `D30` | `docs/CONSTRAINTS.md` (lines 186-191) | CONSTRAINTS-equivalent | Evaluation substrate and map-domain validity for all downstream controller experiments. | `80/80`, `−78.05`, `−72.12`, `120/120` |
++| `H1` | `docs/CONSTRAINTS.md` (lines 732-747) | CONSTRAINTS-equivalent | Grounded finite-windfall accounting stress test on 220 resident games; conditional on fixed pricing constants and the current scheduler. | `−2.49`, `−2.78`, `−2.21`, `6/220`, `36.8%`, `78`, `0/220` |
++| `H7` | `docs/CONSTRAINTS.md` (lines 714-719) | CONSTRAINTS-equivalent | H7’s original body-blocking hypothesis only; action contention and target races are separate questions. | textual premise only |
+ | `OWNER-ARENA-20260730` | `docs/STATE.md` (lines 47-69) | binding governance source; no matching CONSTRAINTS bullet | Live ladder mutation by the single arena controller under the promotion runbook. | `±0.5`, `1` |
+ | `OWNER-GOAL-20260730` | `docs/STATE.md` (lines 24-43) | binding governance source; no matching CONSTRAINTS bullet | Project objective and completion rule for the Legend practice ladder. | `25.40`, `24.70`, `25`, `7`, `54` |
+ 
+diff --git a/docs/evidence/generated/manifest.json b/docs/evidence/generated/manifest.json
+index 72f2bd2b..cbf8581c 100644
+--- a/docs/evidence/generated/manifest.json
++++ b/docs/evidence/generated/manifest.json
+@@ -3,8 +3,8 @@
+   "generated_sha256": {
+     "CONSTRAINTS-PILOT-PROJECTION.md": "4a9b1e04fd64a2526180050a2a538b7ab01bbeac0d4aa7d1b14b12142d8b3809",
+     "DECISION-EVIDENCE-INDEX.md": "6860ba71b17202d4a7096d71011d2d21e2f566d0e5223179db3a4cff98c10453",
+-    "decision-evidence-index.yaml": "9c00b1c66f070137a3ddda2a5de249a9644154cc90ad351d64718b6d5e666144",
+-    "equivalence-report.md": "b418781eb01057be06a97625b13eb5e0c671e2dd82e8b174c814bd92f0a42004"
++    "decision-evidence-index.yaml": "a11e98cff292520fa7b69247c28b97d685b1de8140a0f55ff38724ecd40fe26c",
++    "equivalence-report.md": "92f65f4f7a9316d0b769cf67862815bd5e09684ed1b8d32f3070e566c32d96c5"
+   },
+   "record_count": 11,
+   "schema": "decision-evidence-pilot-manifest-v1",
+diff --git a/docs/evidence/records/D101.md b/docs/evidence/records/D101.md
+index 688dc5aa..69c62ba6 100644
+--- a/docs/evidence/records/D101.md
++++ b/docs/evidence/records/D101.md
+@@ -17,13 +17,13 @@ The resident already suppresses competitively; the observed gap is persistent se
+ 
+ - **self_crop_reap_game_coverage**: top-3 93.3% vs resident 10.3%  
+   Population: top-three and resident decoded public games  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 115-118) [observational_audit]
++  Evidence: `docs/CONSTRAINTS.md` (lines 113-116) [observational_audit]
+ - **created_crop_reap_rate**: top-3 24.16% vs resident 0.94%  
+   Population: created-crop generations in decoded public games  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 115-118) [observational_audit]
++  Evidence: `docs/CONSTRAINTS.md` (lines 113-116) [observational_audit]
+ - **late_suppression_share**: 78% of top-3 suppression chops occur at workforce ≥3  
+   Population: top-three decoded suppression chops  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 115-118) [observational_audit]
++  Evidence: `docs/CONSTRAINTS.md` (lines 113-116) [observational_audit]
+ 
+ ## Attempts
+ 
+@@ -74,7 +74,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+     "bullet": "The resident’s observational architecture gap is production persistence, not suppression: top-3 self-crop reap coverage is 93.3% vs 10.3%, created-crop reap is 24.16% vs 0.94%, and 78% of top-3 suppression chops occur at workforce ≥3; resident suppression coverage/latency is already competitive. [D101]",
+     "section": "Workforce & scaling",
+     "source": {
+-      "locator": "lines 115-118",
++      "locator": "lines 113-116",
+       "path": "docs/CONSTRAINTS.md"
+     }
+   },
+@@ -92,7 +92,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "name": "self_crop_reap_game_coverage",
+       "population": "top-three and resident decoded public games",
+       "source": {
+-        "locator": "lines 115-118",
++        "locator": "lines 113-116",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     },
+@@ -103,7 +103,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "name": "created_crop_reap_rate",
+       "population": "created-crop generations in decoded public games",
+       "source": {
+-        "locator": "lines 115-118",
++        "locator": "lines 113-116",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     },
+@@ -114,7 +114,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "name": "late_suppression_share",
+       "population": "top-three decoded suppression chops",
+       "source": {
+-        "locator": "lines 115-118",
++        "locator": "lines 113-116",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     }
+@@ -155,7 +155,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+     {
+       "claim": "Resident suppression coverage and latency are already competitive.",
+       "source": {
+-        "locator": "lines 115-118",
++        "locator": "lines 113-116",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     }
+diff --git a/docs/evidence/records/D161.md b/docs/evidence/records/D161.md
+index 67ff31f1..6a972748 100644
+--- a/docs/evidence/records/D161.md
++++ b/docs/evidence/records/D161.md
+@@ -17,10 +17,10 @@ No. Experiments must anchor on the exact resident, or first prove same-panel dom
+ 
+ - **terminal_oracle_delta**: +3.42 vs resident; CI [−8.70,+15.54]  
+   Population: frozen D161/D158 same-panel tasks  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 181-183) [panel_causal]
++  Evidence: `docs/CONSTRAINTS.md` (lines 179-181) [panel_causal]
+ - **catastrophe_change**: 22 → 43 catastrophes  
+   Population: same frozen D161/D158 panel  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 181-183) [panel_causal]
++  Evidence: `docs/CONSTRAINTS.md` (lines 179-181) [panel_causal]
+ 
+ ## Attempts
+ 
+@@ -72,7 +72,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+     "bullet": "D40/q6 is closed as a resident-competition substrate: its full terminal oracle is only +3.42 vs resident (CI [−8.70,+15.54]) and catastrophes rise 22→43. Use the exact resident or first prove same-panel dominance. [D161; D158]",
+     "section": "Substrate & evaluation validity",
+     "source": {
+-      "locator": "lines 181-183",
++      "locator": "lines 179-181",
+       "path": "docs/CONSTRAINTS.md"
+     }
+   },
+@@ -90,7 +90,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "name": "terminal_oracle_delta",
+       "population": "frozen D161/D158 same-panel tasks",
+       "source": {
+-        "locator": "lines 181-183",
++        "locator": "lines 179-181",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     },
+@@ -101,7 +101,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "name": "catastrophe_change",
+       "population": "same frozen D161/D158 panel",
+       "source": {
+-        "locator": "lines 181-183",
++        "locator": "lines 179-181",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     }
+@@ -139,7 +139,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+     {
+       "claim": "Exact-resident fallback or proven same-panel dominance is mandatory.",
+       "source": {
+-        "locator": "lines 181-183",
++        "locator": "lines 179-181",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     }
+diff --git a/docs/evidence/records/D169.md b/docs/evidence/records/D169.md
+index c553aa2d..e92f7009 100644
+--- a/docs/evidence/records/D169.md
++++ b/docs/evidence/records/D169.md
+@@ -17,13 +17,13 @@ Yes, the envelope contains material hindsight value, but it is a selection/timin
+ 
+ - **full_envelope_mean**: +10.671 mean; CI [+9.420,+11.922]  
+   Population: 1,024-task frozen option-envelope panel  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 553-565) [accounting_model]
++  Evidence: `docs/CONSTRAINTS.md` (lines 553-562) [accounting_model]
+ - **improvement_breadth**: 65% improved; 0 regressions  
+   Population: 1,024-task frozen option-envelope panel  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 553-565) [accounting_model]
++  Evidence: `docs/CONSTRAINTS.md` (lines 553-562) [accounting_model]
+ - **deployable_subset**: +1.80 trigger-armed hindsight subset  
+   Population: trigger-armed options on the same 1,024-task panel  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 553-565) [accounting_model]
++  Evidence: `docs/CONSTRAINTS.md` (lines 553-562) [accounting_model]
+ 
+ ## Attempts
+ 
+@@ -78,7 +78,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+     "bullet": "The unified resident-native option envelope authorizes a selection programme: +10.671 mean (CI [+9.420,+11.922]), 65% improved, 0 regressions on 1,024 tasks; the trigger-armed subset is +1.80. This is hindsight value, not a deployable selector. [D169]",
+     "section": "Option selection",
+     "source": {
+-      "locator": "lines 553-565",
++      "locator": "lines 553-562",
+       "path": "docs/CONSTRAINTS.md"
+     }
+   },
+@@ -96,7 +96,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "name": "full_envelope_mean",
+       "population": "1,024-task frozen option-envelope panel",
+       "source": {
+-        "locator": "lines 553-565",
++        "locator": "lines 553-562",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     },
+@@ -107,7 +107,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "name": "improvement_breadth",
+       "population": "1,024-task frozen option-envelope panel",
+       "source": {
+-        "locator": "lines 553-565",
++        "locator": "lines 553-562",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     },
+@@ -118,7 +118,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "name": "deployable_subset",
+       "population": "trigger-armed options on the same 1,024-task panel",
+       "source": {
+-        "locator": "lines 553-565",
++        "locator": "lines 553-562",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     }
+@@ -157,7 +157,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+     {
+       "claim": "Every option is negative always-on; all value comes from per-game selection.",
+       "source": {
+-        "locator": "lines 553-565",
++        "locator": "lines 553-562",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     }
+diff --git a/docs/evidence/records/D176a.md b/docs/evidence/records/D176a.md
+index 5f3cf969..81de5af2 100644
+--- a/docs/evidence/records/D176a.md
++++ b/docs/evidence/records/D176a.md
+@@ -17,16 +17,16 @@ The mechanism largely succeeds and all value gates pass, but the gain is immater
+ 
+ - **long_oscillation_rate**: 8.50% → 2.88%  
+   Population: D176a 2,048-task paired panel  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 652-659) [panel_causal]
++  Evidence: `docs/CONSTRAINTS.md` (lines 652-657) [panel_causal]
+ - **de_novo**: 0 de-novo oscillations  
+   Population: D176a 2,048-task paired panel  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 652-659) [panel_causal]
++  Evidence: `docs/CONSTRAINTS.md` (lines 652-657) [panel_causal]
+ - **overall_value**: +0.045 margin; CI [−0.024,+0.114]  
+   Population: D176a 2,048-task paired panel  
+   Evidence: `data/analysis/live-agent-6553250/d176a-oscillation-breaker-successor-result.json` (/value/overall_mean_margin_delta) [panel_causal]
+ - **worst_case_gate_population**: real-corpus reference 133 turns vs panel control 247 turns  
+   Population: real resident corpus compared with D176a synthetic panel control  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 697-704) [observational_audit]
++  Evidence: `docs/CONSTRAINTS.md` (lines 652-657) [observational_audit]
+ 
+ ## Attempts
+ 
+@@ -80,7 +80,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+     "bullet": "D176a closes oscillation permanently: long-run incidence falls 8.50%→2.88%, de-novo is 0, and all value gates pass, but value is only +0.045 (CI [−0.024,+0.114]). Record two gate errors: 133-turn real-corpus calibration was incompatible with the panel control’s 247 turns, and the 5–9-turn gate confused intended fragmentation with manufactured oscillation. [D176a; D171a]",
+     "section": "Meta-lessons",
+     "source": {
+-      "locator": "lines 652-704",
++      "locator": "lines 652-657",
+       "path": "docs/CONSTRAINTS.md"
+     }
+   },
+@@ -98,7 +98,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "name": "long_oscillation_rate",
+       "population": "D176a 2,048-task paired panel",
+       "source": {
+-        "locator": "lines 652-659",
++        "locator": "lines 652-657",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     },
+@@ -109,7 +109,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "name": "de_novo",
+       "population": "D176a 2,048-task paired panel",
+       "source": {
+-        "locator": "lines 652-659",
++        "locator": "lines 652-657",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     },
+@@ -135,7 +135,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "population": "real resident corpus compared with D176a synthetic panel control",
+       "population_compatibility": "invalid_disclosed",
+       "source": {
+-        "locator": "lines 697-704",
++        "locator": "lines 652-657",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     }
+@@ -183,7 +183,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+     {
+       "claim": "The inherited 5–9-turn displacement gate cannot distinguish intended fragmentation from manufactured oscillation; de-novo zero is the valid guard.",
+       "source": {
+-        "locator": "lines 697-704",
++        "locator": "lines 652-657",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     }
+diff --git a/docs/evidence/records/D30.md b/docs/evidence/records/D30.md
+index 9f1fff5a..87d813d7 100644
+--- a/docs/evidence/records/D30.md
++++ b/docs/evidence/records/D30.md
+@@ -17,13 +17,13 @@ No. The legacy generated-map substrate is outside official-map support; official
+ 
+ - **official_roots_outside_support**: 80/80 official roots outside model support  
+   Population: 80 official generated roots  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 188-193) [observational_audit]
++  Evidence: `docs/CONSTRAINTS.md` (lines 186-191) [observational_audit]
+ - **distribution_shift**: −78.05 total shift; −72.12 from scalar features  
+   Population: synthetic-vs-official map-domain comparison  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 188-193) [observational_audit]
++  Evidence: `docs/CONSTRAINTS.md` (lines 186-191) [observational_audit]
+ - **official_generator_confirmation**: 120/120 untouched confirmation  
+   Population: 120 official roots under the SHA1PRNG port  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 188-193) [mechanics_proof]
++  Evidence: `docs/CONSTRAINTS.md` (lines 186-191) [mechanics_proof]
+ 
+ ## Attempts
+ 
+@@ -76,7 +76,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+     "bullet": "Generated-map results are not field evidence: 80/80 official roots lie outside the legacy synthetic model support (−78.05 total shift, −72.12 from scalars). Use the SHA1PRNG official generator, confirmed 120/120; do not rescue the synthetic substrate by more seeds or tuning. [D29c/D30/D31/D33]",
+     "section": "Substrate & evaluation validity",
+     "source": {
+-      "locator": "lines 188-193",
++      "locator": "lines 186-191",
+       "path": "docs/CONSTRAINTS.md"
+     }
+   },
+@@ -94,7 +94,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "name": "official_roots_outside_support",
+       "population": "80 official generated roots",
+       "source": {
+-        "locator": "lines 188-193",
++        "locator": "lines 186-191",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     },
+@@ -105,7 +105,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "name": "distribution_shift",
+       "population": "synthetic-vs-official map-domain comparison",
+       "source": {
+-        "locator": "lines 188-193",
++        "locator": "lines 186-191",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     },
+@@ -116,7 +116,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "name": "official_generator_confirmation",
+       "population": "120 official roots under the SHA1PRNG port",
+       "source": {
+-        "locator": "lines 188-193",
++        "locator": "lines 186-191",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     }
+@@ -153,7 +153,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+     {
+       "claim": "Recorded-command continuation also fails exact-stream fidelity.",
+       "source": {
+-        "locator": "lines 188-193",
++        "locator": "lines 186-191",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     }
+diff --git a/docs/evidence/records/H1.md b/docs/evidence/records/H1.md
+index 05033a6c..fe0153c1 100644
+--- a/docs/evidence/records/H1.md
++++ b/docs/evidence/records/H1.md
+@@ -17,16 +17,16 @@ No. Even the own-side-only sensitivity remains negative; the current scheduler c
+ 
+ - **own_side_sensitivity**: −2.49 rating; CI [−2.78,−2.21]; 6/220 positive  
+   Population: 220 resident games under own-side-only displacement pricing  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 734-749) [accounting_model]
++  Evidence: `docs/CONSTRAINTS.md` (lines 732-747) [accounting_model]
+ - **worker3_affordability**: 36.8% of games; median turn 78  
+   Population: 220 resident games with real bill and post-move legality  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 734-749) [accounting_model]
++  Evidence: `docs/CONSTRAINTS.md` (lines 732-747) [accounting_model]
+ - **worker4_affordability**: 0/220 ever  
+   Population: 220 resident games under finite-windfall credit  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 734-749) [accounting_model]
++  Evidence: `docs/CONSTRAINTS.md` (lines 732-747) [accounting_model]
+ - **calibration**: D175a own-side −5.41 actual vs −4.32 predicted  
+   Population: D175a intervention used as accounting-model calibration  
+-  Evidence: `docs/CONSTRAINTS.md` (lines 734-749) [accounting_model]
++  Evidence: `docs/CONSTRAINTS.md` (lines 732-747) [accounting_model]
+ 
+ ## Attempts
+ 
+@@ -83,7 +83,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+     "bullet": "The joint economy package cannot pay on the current scheduler under the grounded accounting stress test: the load-bearing own-side-only projection is −2.49 rating (CI [−2.78,−2.21]), only 6/220 positive; worker 3 is affordable in 36.8% (median t78) but worker 4 in 0/220. This is conditional accounting, not a formal upper bound. [H1]",
+     "section": "Meta-lessons",
+     "source": {
+-      "locator": "lines 734-749",
++      "locator": "lines 732-747",
+       "path": "docs/CONSTRAINTS.md"
+     }
+   },
+@@ -102,7 +102,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "population": "220 resident games under own-side-only displacement pricing",
+       "projection": true,
+       "source": {
+-        "locator": "lines 734-749",
++        "locator": "lines 732-747",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     },
+@@ -113,7 +113,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "name": "worker3_affordability",
+       "population": "220 resident games with real bill and post-move legality",
+       "source": {
+-        "locator": "lines 734-749",
++        "locator": "lines 732-747",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     },
+@@ -124,7 +124,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "name": "worker4_affordability",
+       "population": "220 resident games under finite-windfall credit",
+       "source": {
+-        "locator": "lines 734-749",
++        "locator": "lines 732-747",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     },
+@@ -135,7 +135,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+       "name": "calibration",
+       "population": "D175a intervention used as accounting-model calibration",
+       "source": {
+-        "locator": "lines 734-749",
++        "locator": "lines 732-747",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     }
+@@ -182,7 +182,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+     {
+       "claim": "This is not a formal upper bound over all complementarities.",
+       "source": {
+-        "locator": "lines 734-749",
++        "locator": "lines 732-747",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     }
+diff --git a/docs/evidence/records/H7.md b/docs/evidence/records/H7.md
+index 0ca7aad1..ce8d331a 100644
+--- a/docs/evidence/records/H7.md
++++ b/docs/evidence/records/H7.md
+@@ -34,7 +34,7 @@ The question is void because the proposed body-blocking mechanic does not exist
+ 
+ - False premise: Body-blocking is a legal/exploitable mechanic in Troll Farm.
+ - Refutation: Primary-source mechanics review found that the mechanic does not exist; action contention is a distinct surviving question.
+-- Source: `docs/CONSTRAINTS.md` (lines 716-722)
++- Source: `docs/CONSTRAINTS.md` (lines 714-719)
+ 
+ ## Relations
+ 
+@@ -69,7 +69,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+     "bullet": "H7 is void-premise, not a scientific closure: the proposed body-blocking mechanic does not exist. This does not close action contention, races, duplication, or target-disappearance audits. [H7]",
+     "section": "Meta-lessons",
+     "source": {
+-      "locator": "lines 716-722",
++      "locator": "lines 714-719",
+       "path": "docs/CONSTRAINTS.md"
+     }
+   },
+@@ -94,7 +94,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+     "false_premise": "Body-blocking is a legal/exploitable mechanic in Troll Farm.",
+     "refutation": "Primary-source mechanics review found that the mechanic does not exist; action contention is a distinct surviving question.",
+     "source": {
+-      "locator": "lines 716-722",
++      "locator": "lines 714-719",
+       "path": "docs/CONSTRAINTS.md"
+     }
+   },
+@@ -120,7 +120,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
+     {
+       "claim": "H7’s mechanic does not exist; cheap premise checks retired the work before an experiment.",
+       "source": {
+-        "locator": "lines 716-722",
++        "locator": "lines 714-719",
+         "path": "docs/CONSTRAINTS.md"
+       }
+     }
