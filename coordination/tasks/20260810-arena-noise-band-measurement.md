@@ -161,7 +161,7 @@ already removed on trunk (STATE §1 follow-up discharged).
 | 1 | 2026-08-12T06:27Z | **41125196 / agent 6610399** (`accepted=true ambiguous=false http=200 mutation_calls=1`; post-submit live recover exact `98628e98…`) | 06:52Z: 89/89 parsed, 17.62 / rank 99/147, cat 8 (9.0%), **signals=0 identity_clean=True** (`run1-checkpoint-initial.json`) | 07:41Z: **160/160, 19.77 / rank 60/147**, cat 12 (7.5%), neg_mass 3871, **signals=0 identity_clean=True** (`run1-checkpoint-terminal.json`) |
 
 | 2 | 2026-08-12T07:44Z | **41125448 / agent 6610636** (`accepted=true ambiguous=false http=200 mutation_calls=1`) | — (matured across host suspend) | read 19:29Z: **160/160, 23.73 / rank 29/147**, cat 17 (10.6%), neg_mass 5463, **signals=0 identity_clean=True** (`run2-checkpoint-terminal.json`) |
-| 3 | 2026-08-12T19:30Z | **41128302** / agent at next read (`accepted=true ambiguous=false`) | pending | pending |
+| 3 | 2026-08-12T19:30Z | **41128302 / agent 6612307** (`accepted=true ambiguous=false`) | 19:58–20:01Z: room cache flapped (returned prior agent id twice, field count 147↔140); checkpoint correctly refused the mixed pair, then 111/111 parsed, **23.54 / rank 31/147**, cat 10 (9.0%), **signals=0 identity_clean=True** on re-read; live source re-verified exact `98628e98…` mid-flap (`run3-checkpoint-initial{,-v2}.json` — the False read kept as evidence) | pending |
 
 Running spread on `98628e98…` after run 2: mature reads **24.76 / 22.46 / 19.77 / 23.73**
 — max−min **4.99**; sample SD of the four ≈ **2.16**. Note for question 4: the 19.77 read
