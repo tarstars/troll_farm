@@ -1,0 +1,85 @@
+{
+  "caught": 10,
+  "control_green": true,
+  "control_output_tail": null,
+  "drive": "b2-s3client-mutations",
+  "mutants_applied": 10,
+  "mutants_defined": 10,
+  "not_applied": [],
+  "results": [
+    {
+      "caught": true,
+      "description": "adds '+' to the unreserved set, so '+' in a key is sent literally instead of %2B",
+      "id": "M1-plus-treated-as-safe",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "encodes space as '+' instead of %20",
+      "id": "M2-space-as-plus",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "does not sort query parameters before canonicalising",
+      "id": "M3-query-unsorted",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "keeps header names as given instead of lowercasing them",
+      "id": "M4-headers-not-lowercased",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "keeps interior whitespace in header values instead of collapsing it",
+      "id": "M5-header-values-not-trimmed",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "signs the empty-body hash regardless of the actual body",
+      "id": "M6-empty-payload-hash",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "swaps region and service in the credential scope",
+      "id": "M7-wrong-scope-order",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "omits the service step from the signing-key derivation chain",
+      "id": "M8-signing-key-skips-service",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "stops after the first page instead of following continuation tokens",
+      "id": "M9-single-page-list",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "accepts a world-readable key file",
+      "id": "M10-credentials-mode-unchecked",
+      "status": "APPLIED",
+      "test_output_tail": null
+    }
+  ],
+  "survivors": [],
+  "target": "claude_1/collector-v2/s3client.py",
+  "task_id": "20260811-s3-collector-v2",
+  "tests": "claude_1/collector-v2/tests"
+}

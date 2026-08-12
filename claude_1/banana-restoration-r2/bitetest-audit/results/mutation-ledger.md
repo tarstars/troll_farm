@@ -1,7 +1,7 @@
 # Mutation ledger (generated — do not hand-edit)
 
 Source: `results/mutation-results.json`  
-manifest sha256 `8d5ff843d426316d68113d515a5ed3830930554d40c1c58c0ef60a92fa93351e`  
+manifest sha256 `74158e8991a0074a77c6f33d6fdfa89504b422760850a0cef982dee4f05f1539`  
 runner sha256 `2df817f2b85ac6d14216fea58085fee38d43b4539b22342d87b8fa2aa359309f`  
 probe corpus sha256 `9afe7f3cf3cb073158e67226ddbed31a750cda19900fc031853195cb8b0f3ddb`  
 python 3.12.3, control green: True
@@ -9,10 +9,10 @@ python 3.12.3, control green: True
 Pinned sources:
 
 - `conversion_race_oracle.py` sha256 `e0896e3f7cb2c7ac4ced35350469d704432f8c7a1a8a4c9c4ce41495ca13ecf7`
-- `test_trace_detectors.py` sha256 `79f7c18bba2784ca0d1831bc2fcbb5ba3aef954c34d33a1fcf6a8ddb781cb41c`
+- `test_trace_detectors.py` sha256 `b625e8c1eeba53cb0b567d07583a4451d4b3161b020884e446c4f000605fd484`
 - `trace_detectors.py` sha256 `59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209`
 
-Totals: **64 mutants run, 24 caught, 40 survived** (kill rate 37.5 %). `caught_by_expected` = 24; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 15 UNWITNESSED; PROBE_SENSITIVE survivors = 27.
+Totals: **64 mutants run, 29 caught, 35 survived** (kill rate 45.3 %). `caught_by_expected` = 29; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 15 UNWITNESSED; PROBE_SENSITIVE survivors = 22.
 
 ## Per detector
 
@@ -24,10 +24,10 @@ Totals: **64 mutants run, 24 caught, 40 survived** (kill rate 37.5 %). `caught_b
 | D-4 | 6 | 2 | 2 | 4 | 3 | 33 % |
 | D-5 | 8 | 2 | 2 | 6 | 2 | 25 % |
 | D-6 | 9 | 2 | 2 | 7 | 6 | 22 % |
-| D-7 | 8 | 1 | 1 | 7 | 7 | 12 % |
+| D-7 | 8 | 6 | 6 | 2 | 2 | 75 % |
 | D-8 | 11 | 6 | 6 | 5 | 2 | 55 % |
 | D-9 | 4 | 4 | 4 | 0 | 0 | 100 % |
-| **all** | **64** | **24** | **24** | **40** | **27** | **37.5 %** |
+| **all** | **64** | **29** | **29** | **35** | **22** | **45.3 %** |
 
 ## Full ledger
 
@@ -76,13 +76,13 @@ Totals: **64 mutants run, 24 caught, 40 survived** (kill rate 37.5 %). `caught_b
 | D6-M5 | D-6 | `trace_detectors.py` | SURVIVED | UNWITNESSED | clause (b) opponent-harvested-ours replay ground truth deleted |
 | D6-M6 | D-6 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | A7 flipped: min own ETA taken over harvest-capable own units only |
 | D6-M7 | D-6 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | ETA formula ceil(bfs/speed) -> raw bfs distance |
-| D7-M1 | D-7 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | carried-banana overage threshold age > 12 -> age > 0 |
-| D7-M8 | D-7 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | carried-banana overage threshold age > 12 -> age > 2 |
-| D7-M2 | D-7 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | end-of-game grace window T-6 -> T-600 (everything excused) |
+| D7-M1 | D-7 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | carried-banana overage threshold age > 12 -> age > 0 |
+| D7-M8 | D-7 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | carried-banana overage threshold age > 12 -> age > 2 |
+| D7-M2 | D-7 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | end-of-game grace window T-6 -> T-600 (everything excused) |
 | D7-M3 | D-7 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | banking conjunct 'DROP at a door cell' deleted |
 | D7-M4 | D-7 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | banking conjunct 'own inventory[BANANA] increased' deleted |
-| D7-M5 | D-7 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | PLANT-as-legitimate-sink exemption deleted |
-| D7-M6 | D-7 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | harvest provenance labelling deleted (all acquisitions 'unknown') |
+| D7-M5 | D-7 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | PLANT-as-legitimate-sink exemption deleted |
+| D7-M6 | D-7 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | harvest provenance labelling deleted (all acquisitions 'unknown') |
 | D7-M7 | D-7 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | lost_bananas episode emission deleted |
 | D8-M1 | D-8 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | base predicate cell set diag(tent) -> orth(tent) |
 | D8-M2 | D-8 | `trace_detectors.py` | CAUGHT | UNWITNESSED | I-7 ownership tie no longer conceded (< -> <=) |

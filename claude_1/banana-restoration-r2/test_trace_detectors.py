@@ -331,6 +331,125 @@ class TestD7(unittest.TestCase):
         self.assertEqual(verdict(td.detect_d7(tr)), ("PASS", 0))
 
 
+class TestD7Uncovered(unittest.TestCase):
+    """G6 fixtures for the four D-7 branches the bite-test audit found with NO_FIXTURE.
+
+    Task `20260810-guards-that-cannot-fail`, sub-item G6. Fixtures only — no predicate is
+    touched. Each branch gets BOTH halves of the standing rule: the exempting/limiting case
+    must pass, AND a deliberately violating subject must be observed firing. A test that only
+    shows the clean case cannot tell whether the branch still works.
+
+    Branch -> mutant these are written to kill:
+      (d) PLANT sink exemption `:1002`        -> D7-M5 (`planted = False`)
+      (e) carried overage `age > 12` `:973`   -> D7-M1 (`> 12` becomes `> 0`)
+      (f) end-of-game grace `T-6` `:1012`     -> D7-M2 (`T - 6` becomes `T - 600`)
+      (g) harvest provenance `:987`           -> D7-M6 (harvest label deleted)
+    """
+
+    CELL = (2, 2)
+
+    def carry_trace(self, turns, *, acquire_turn=1, final_verb="WAIT",
+                    acquire_verb="HARVEST", at_door=False):
+        """A unit that acquires one banana and then holds it for the rest of the trace.
+
+        `acquire_verb` drives provenance; `final_verb` lets the last turn dispose of the
+        banana (PLANT/DROP) so the sink branches can be exercised.
+        """
+        cell = DOOR if at_door else self.CELL
+        blocks, commands = [], []
+        for t in range(turns):
+            carried = 1 if (t >= acquire_turn and t < turns - 1) else 0
+            if t == turns - 1 and final_verb == "WAIT":
+                carried = 1            # still holding at the end
+            blocks.append(turn_block(
+                [unit(0, 0, cell, carry=carry_of(banana=carried)), OPP],
+                plants=[plant("BANANA", cell, size=4, health=6,
+                              fruits=1 if t < acquire_turn else 0)],
+                inv0=carry_of(banana=0)))
+            if t == acquire_turn - 1:
+                # Token counts are load-bearing in the parser: CHOP/HARVEST/DROP take
+                # `VERB <uid>`, PICK/PLANT take `VERB <uid> <KIND>`, MOVE takes
+                # `MOVE <uid> <x> <y>`. A line with the wrong arity parses to no command
+                # at all, which silently changes what the fixture is testing.
+                commands.append("PICK 0 BANANA" if acquire_verb == "PICK"
+                                else f"{acquire_verb} 0")
+            elif t == turns - 2 and final_verb != "WAIT":
+                commands.append(final_verb)
+            else:
+                commands.append("WAIT")
+        return make_trace(blocks, commands)
+
+    # --- (d) PLANT sink exemption -------------------------------------------------
+
+    def test_plant_is_a_legitimate_sink_not_a_loss(self):
+        """Branch (d): carried banana disappearing via PLANT BANANA is not a loss."""
+        tr = self.carry_trace(4, final_verb="PLANT 0 BANANA")
+        episodes = td.detect_d7(tr)["episodes"]
+        self.assertEqual([e for e in episodes if e["kind"] == "lost_bananas"], [])
+
+    def test_plant_exemption_observed_firing_when_the_verb_is_not_plant(self):
+        """The deliberate violation: same disappearance, no legitimate sink -> loss."""
+        tr = self.carry_trace(4, final_verb="MOVE 0 3 3")
+        episodes = td.detect_d7(tr)["episodes"]
+        self.assertTrue([e for e in episodes if e["kind"] == "lost_bananas"],
+                        "a banana vanishing without PLANT/DROP must be reported lost")
+
+    # --- (e) carried overage age > 12 ---------------------------------------------
+
+    def test_carrying_within_twelve_turns_is_not_an_overage(self):
+        """Branch (e), limiting side: held for exactly 12 turns is still inside the bound."""
+        tr = self.carry_trace(14, acquire_turn=1)
+        overage = [e for e in td.detect_d7(tr)["episodes"]
+                   if e["kind"] == "carried_overage"]
+        self.assertEqual(overage, [], "age == 12 is not > 12")
+
+    def test_carrying_beyond_twelve_turns_is_observed_firing(self):
+        """The deliberate violation: one turn past the bound must report carried_overage."""
+        tr = self.carry_trace(15, acquire_turn=1)
+        overage = [e for e in td.detect_d7(tr)["episodes"]
+                   if e["kind"] == "carried_overage"]
+        self.assertTrue(overage, "age 13 > 12 must be reported")
+        self.assertEqual(overage[0]["provenance"], "harvest")
+
+    # --- (f) end-of-game grace T-6 -------------------------------------------------
+
+    def test_harvest_inside_the_final_six_turns_is_excused_at_end(self):
+        """Branch (f): a late harvest still carried at T is excused."""
+        tr = self.carry_trace(8, acquire_turn=6)
+        unbanked = [e for e in td.detect_d7(tr)["episodes"]
+                    if e["kind"] == "unbanked_at_end"]
+        self.assertEqual(unbanked, [], "harvested inside the grace window")
+
+    def test_harvest_before_the_grace_window_is_observed_firing(self):
+        """The deliberate violation: harvested early, still carried at the end."""
+        tr = self.carry_trace(12, acquire_turn=1)
+        unbanked = [e for e in td.detect_d7(tr)["episodes"]
+                    if e["kind"] == "unbanked_at_end"]
+        self.assertTrue(unbanked, "harvest outside the grace window is not excused")
+
+    # --- (g) harvest provenance labelling ------------------------------------------
+
+    def test_provenance_distinguishes_harvest_from_bank_pick(self):
+        """Branch (g): the label is what the grace window keys on, so it must be real.
+
+        A PICK-acquired banana is never excused by the T-6 grace, because that grace is for
+        harvest only — which is exactly what makes the label load-bearing rather than
+        decorative.
+        """
+        harvested = self.carry_trace(8, acquire_turn=6, acquire_verb="HARVEST")
+        picked = self.carry_trace(8, acquire_turn=6, acquire_verb="PICK")
+
+        self.assertEqual(
+            [e for e in td.detect_d7(harvested)["episodes"]
+             if e["kind"] == "unbanked_at_end"], [],
+            "a late HARVEST is excused")
+        picked_unbanked = [e for e in td.detect_d7(picked)["episodes"]
+                           if e["kind"] == "unbanked_at_end"]
+        self.assertTrue(picked_unbanked,
+                        "a late PICK is NOT excused — the grace is harvest-only")
+        self.assertEqual(picked_unbanked[0]["provenance"], "bank_pick")
+
+
 class TestD8(unittest.TestCase):
     """D-8 diagonal-mother chop."""
 

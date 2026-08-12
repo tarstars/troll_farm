@@ -644,7 +644,7 @@ only).
 |---|---|
 | applicability | 43 `APPLICABLE`, 4 `INSTRUMENT_UNSUPPORTED` (all D-9) |
 | contract authority | 45 `SETTLED`, 2 `CONFLICT` (D-6 (a1), D-6 (a2)) |
-| implementation validity | 12 `PINNED`, 5 `PARTIAL`, 8 `UNPINNED`, 22 `NO_FIXTURE` |
+| implementation validity | 16 `PINNED`, 5 `PARTIAL`, 8 `UNPINNED`, 18 `NO_FIXTURE` |
 | truth validity | 6 `GATE_UNREADY` (D-6 (a1), D-6 (a2), D-9 (a)–(d)), 41 `UNRESOLVED` |
 | definitional conformance | 1 `IDENTICAL_TO_SPEC` (D-5 (a) I-12 Ring geometry), 46 `NOT_APPLICABLE` |
 
@@ -1078,10 +1078,14 @@ the mirror. What is missing is a refereed corpus to run it on, not the oracle.
   I-12 *is* a geometric definition. **1 pair discriminates a conceptual
   revision**: D-8's arrival-vs-ripeness control — but against the oracle the
   detector itself calls, so circularly.
-- **47 branch rows** (§3): 11 PINNED, 5 PARTIAL, 9 UNPINNED, **22 NO_FIXTURE**.
+- **47 branch rows** (§3): **16 PINNED, 5 PARTIAL, 8 UNPINNED, 18 NO_FIXTURE** as of
+  2026-08-12. The audit as first published read 11/5/9/22; D-9 row (a) was pinned
+  2026-08-10 and D-7 rows (d)-(g) by the G6 fixtures 2026-08-12.
   Four detectors (D-4, D-6, D-7, D-9) have near-misses that vary more than one
   dimension, which is why single-conjunct deletions survive.
-- **Mutation: 21 caught, 43 survived out of 64 (32.8 %)** — *not* the 20/64
+- **Mutation: 29 caught, 35 survived out of 64 (45.3 %) as of 2026-08-12** — the figure
+  below is the original 2026-08-08 measurement, kept for provenance: **21 caught, 43
+  survived out of 64 (32.8 %)** — *not* the 20/64
   reported on 2026-08-08; the difference is one retired inert mutant (§1.5). No
   mutation was caught by a detector other than its own. 30 of the 43 survivors
   are independently witnessed as live.
