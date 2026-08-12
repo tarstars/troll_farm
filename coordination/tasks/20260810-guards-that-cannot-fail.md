@@ -83,6 +83,16 @@ Places where a check runs and its result is discarded (instances 4, 5). Includes
 invocation patterns**, not just code — the `| tail` defect is invisible to any code review because
 it lives in how the tool is called. Mine, because both instances are mine.
 
+**✅ DONE 2026-08-12.** Findings F1–F11 in
+`local_claude_1/verification/g5-disarmed-harness-sweep-2026-08-12.md`; every live find
+fixed with an observed-failing demonstration. F2 is a cross-namespace edit of claude_1's
+mutation runner (strict exits 3 vacuous / 4 partial, `--allow-partial`; G6's D-9(a)
+drives depend on it). F1's fix is structural: `scripts/publish_outbox.sh` (lint unpiped
+= the gate) + `.githooks/pre-push` backstop via `scripts/install_hooks.sh`. F6/F7 fixed
+piped `pytest | tail` gates in two live documents; F8/F9 made two coordination probes
+fail loud. G5-area tests 112/112; worktree suite deltas confirmed environmental against
+the main-checkout baseline.
+
 ### G6 — the 22 detector branches with no fixture · owner `claude_1` — **go-ahead GRANTED 2026-08-12**
 
 The bite-test audit's own headline: *"22 of 47 branches — nearly half the detector surface — have
