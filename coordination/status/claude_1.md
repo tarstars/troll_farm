@@ -1,38 +1,102 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-08T22:00:00Z
-- State: Phase 1 measurement repair; three items delivered, three queued
-- Role: contributor; **execution reviewer** on every artifact (coordinator = `local_claude_1`; `chatgpt_1` = adversarial/committed-blob reviewer)
-- Branch: agent/claude_1-banana-restoration-r2; canonical agent/claude_1; worktree /home/tarstars/prj/troll_farm-claude_1
-- Write set: claude_1/**, my message namespace, this status file. NOT trace_detectors.py (detector semantics = local_claude_1 since 2026-08-08)
+- Updated UTC: 2026-08-13T08:20:00Z
+- State: inbox clean (sweep exit 0, 0 unacknowledged). M3a portability repair and the transport execution review both delivered. Working the remaining revisions.
+- Role: contributor + **execution reviewer** on every artifact. Coordinator/integrator/arena controller AND detector-semantics owner = `local_claude_1`. **`chatgpt_1` and `chatgpt_2` are unreachable** (owner ruling 2026-08-12). `codex_1` is a NEW agent (canonical `agent/codex_1`, onboarded 2026-08-09) and is **not** `local_codex_1`, which is dormant since 2026-08-06.
+- Branch: agent/claude_1-banana-restoration-r2; canonical agent/claude_1 at `48e8b731`. Tooling `inbox_sweep.py` `be8251c4…`, `lint_outbox.py` `f3c47b70…` (synced from `main` twice this cycle — `main` moved under me).
+- **Read `claude_1/SESSION-FINDINGS-2026-08-07-to-11.md` before acting.** It carries the programme state, the measured findings, and the error patterns. It predates the 08-12 unblock below.
 
-## Where the programme actually stands
+## Blocking state
 
-- **The gate blocks its own reference: 118/240.** Perfect raw D-1/D-4 compliance moves it only to **106** (12 of 118 games block solely on D-1/D-4). Measurement repair precedes bot repair — the owner-adopted ordering, driven by my feasibility scoping.
-- **Strict rule STANDS** (owner, reaffirmed 08-07): raw `D-1 == 0`, `D-4 == 0`, no exemption. Consequence accepted: the parent lineage must be repaired.
-- **D-9 is `INAPPLICABLE`** — not unproven. The panel is *built* so the parent can never TRAIN: second worker injected at bias 0.5 → `can_train` false at `yamo_orchard_live.rs:836` (`n >= 2 || TOTAL_TURNS - turn <= 20`); otherwise PLUM granted at 1 vs cost 2. Do not build a fixture for its paired clauses.
-- **D-6 enforces a retired predicate.** `founding_safety_oracle` (design F4 replacement) is called by **zero detectors**; `detect_d6` still uses arrival-order. Any verdict citing D-6 is unsound; its 9 floor games must not be quoted.
-- **Bite-test suite pins ~a third of its behaviour.** Mutation sweep: 64 mutants, 20 caught / 44 survived. 0 of 9 pairs establish truth validity; exactly one independent truth label exists (`founding_safety_oracle`, unused).
-- **D89a** (banana seed factory, +79.44 margin, CI [+40.99,+117.89]) is real and was never Arena-tested. My `NOT_REPAIRABLE` was **withdrawn** → `UNRESOLVED, leaning NOT_REPAIRABLE` after chatgpt_1 showed D92's 898 selections were nominal, not landed. Next step is U4, read-only, map-held-out.
-- Lineage preservation: the D89a/ring work exists **only on `origin/agent/local_codex_1`** (author inactive). Mirroring requested.
+- **The TRAIN/referee blocker is CLEARED.** r4 accepted by `chatgpt_1` for the c5 execution layer; B1 closed by `local_claude_1` through independent execution in a second checkout (7/7 artifact digests, `engine.rs` `7c240abf` untouched, panel 163 OK, pre-review 24 OK, mutation 16/16 caught, and floor packets **row-level `IDENTICAL`** to committed `evidence-r4/` — agreement on *which* games block, not just the total). The r4 panel is merged to `main`: `main:claude_1/pipeline/fuzz_panel.py` = `d8900abf31dd030d…`, 33 TRAIN references. `main` was pre-r4 until 08-12, so anything measured from `main` before then used the broken referee.
+- **This does NOT authorize verdicts.** `chatgpt_1` holds I-30 at `GATE_UNREADY / MEASURED_UNTHRESHOLDED` and states plainly: **no detector branch is authorized for candidate acceptance, and no I-30 PASS, FAIL, threshold or candidate verdict is accepted.** Do not read the r4 acceptance as a gate opening.
+- Instrument `fuzz-panel/5` · corpus `c5-two-player-phase-merged-2026-08-11`. **Floor (parent vs itself) = 118/240. Candidate run (banana `eac2eb36` vs parent) = 121/240.** Different quantities; `run_identity` is machine-checked. `118/240` is quotable **only** with r4's binding restriction attached: TRAIN is witnessed in 2 games (1 spawn each), and 10 of 17 repaired rules have no corpus witness — those are pinned by unit tests, the two-oracle differential and the mutation drive, never by the floor.
 
-## My Phase 1 items
+## Reviewers — resolved, and degraded on purpose
 
-- DELIVERED: item 4 detector bite-test audit (`f9b102c1`); item 6 I-30 + revision 2 (`258818cb`, schema v2, 48/48, aggregate `GATE_UNREADY`, zero PASS); D-9 calibration execution review; gate architecture revision-2 execution review (**`PARTIAL` — design commitments cannot be execution-reviewed until code lands**).
-- QUEUED: **item 3** P4 liveness post-`C_T` referee-state rule (32 games); **item 8** D-4 repair (single-door bank serialisation, 6/6 on 1-door maps, 0/210 elsewhere); **item 7** exit floor self-test on two machines (with `local_claude_1`); completion of the item-5 execution review once implemented.
-- I-30 open: never run against a real recorded pair, so the `unknown`/`GATE_UNREADY` firing rate is unknown — if high, the instrument is safe but unusable and the referee-side ledger returns. Identifiability rule sufficient for 3 enumerated ambiguity classes, **not proven complete**. D2–D4 deviations open, unrelied-upon.
+`chatgpt_1` held every review slot below and is unreachable. `codex_1` claimed
+`20260807-gate-architecture-review` and the M3a idle-blocker replication, and declined the rest.
+`local_claude_1` ruled (`20260812T211000Z`, superseding `20260812T204000Z`): **three of the four
+reviews had already been delivered before `chatgpt_1` went dark**, so the vacancy is the *re-review
+of my repairs*, not of my current work — I am not blocked.
 
-## Standing lessons that keep recurring
+Standing terms of that ruling, all still in force:
 
-- **A mechanism that cannot fail is not a check.** D-9 (clause never runs), D-6 (retired predicate), my own I-30 tie-break (reproducible, not identifiable) — three instances, one day.
-- Bite-tests measure detector-vs-spec; the floor measures detector-vs-parent; **neither measures detector-vs-truth**. Independent oracles are a third requirement.
-- **Re-derive, never repeat**, any figure crossing a document boundary — my `+12.453/+76.508` over-claim propagated into the CBF spec and BACKLOG before being caught.
-- Read a prose figure to the end of its paragraph before citing it (the D92 "898 selections" qualification sat 9 lines below).
-- State the unit: games vs episodes (74/196, 32/35, 63/68) produced three "contradictions" that were all the same measurement.
+- **I do not review my own repairs.** Not negotiable, and it is why I am not the check on anything
+  below that I author.
+- Anything `local_claude_1` reviews alone is labelled **`SINGLE_REVIEWER_DEGRADED`**; it is the
+  coordinator, so it adds a second look, not a second opinion.
+- **Nothing closes as fully `ACCEPTED` under a single reviewer without the owner's sign-off.**
+- Every `chatgpt_1` disposition is **`RECORDED / UNREPLICATED`** until reproduced by execution here
+  — they rest on self-run Actions jobs by the reviewing agent, the same evidence class as the
+  quarantined 2026-08-06 fabrication.
+- `local_claude_1` **cannot** review `20260807-transport-quarantine-and-outbox-lint` (it authored
+  it), so that task still needs a second reviewer; I am one of the two required and the other slot
+  is unfilled.
+
+Worth remembering: I once treated a reassignment table as a settled allocation. It was an *offer* —
+a reassignment is not complete until the receiving agent claims it, and the decline was already
+published when I wrote. **Re-sweep between reading an allocation and acting on it.**
+
+## Open dispositions requiring my revision work
+
+- **M3a correct-subject** — **REPAIRED AND DELIVERED** 2026-08-13, handoff `20260813T003000Z`, artifact `ae701fc4`. Each panel config now carries `source_git = {commit, path}` on an immutable 40-hex commit; the replay materialises the blob and re-checks it against the config's own `sha256` before compiling; corpus skips are evaluated before compilation; no absolute host path remains in either config's data fields. `fuzz_panel.py` untouched (`d8900abf…` is the accepted referee digest). Verified against a control that failed first: with the scratch directory masked, pre-repair reproduces `chatgpt_1`'s `PanelError` verbatim and repaired gives 94 tests OK / **34 of 34 byte-for-byte**. New `TestSourcesArePortable` (6 tests, default suite, no `rustc`) makes a recurrence a failure now. **Still open and not mine:** the M3b substrate selection — the c5 46-episode diagnostic library and the golden v2 record (34 exact D-1 episodes / 32 source games) are different populations and neither may silently replace the other.
+- **Bite-test audit r2** — **blockers 1, 2, 4, 5 CLOSED; blocker 3 open.** Handoffs `20260813T030000Z`, `20260813T054000Z`, `20260813T081000Z`; latest artifact `3e5ade1b`.
+  - **4** `run_mutations.py` exit status describes the experiment: `1` control not green, `2` incomplete, `0` only when whole; `--only` needs `--partial`. Accepted.
+  - **5** 47-branch tallies derived from `branch_ledger.json`; `render_branch_ledger.py --check` compares audit prose to data both ways. Accepted. **The contract-authority tally was never derivable from the table** — now an explicit field.
+  - **1** `LIVE` → **`PROBE_SENSITIVE`** with the limit inline everywhere: *changes probe output on generated traces; does NOT establish legal-game reachability.* Results schema bumped to `detector-mutation-results/3`; derived artifacts regenerated, not edited. Measurement unchanged and verified: 64 counted, 21 caught, 43 survived, 30 probe-sensitive survivors.
+  - **2** No contention label. `max(speed, 1)` replaced by the engine's own `d <= speed` — **`engine.rs::next_cell` has no floor**, so at speed 0 the authority returns `current`. Three D-3 rows carry `NO_WITNESSED_POPULATION (720 referee games, 3 corpora)`. **Binding wording: zero observed episodes is a statement about this corpus, NOT "the predicate cannot fire."** No D-3 branch is probe-covered.
+  - **3** D-9 `INSTRUMENT_UNSUPPORTED` rows post-c5 — **open and correctly so**: needs a c5 ruling nobody owns; the semantics owner is dormant.
+- **I-30 rev 3** — **blocker 2 REPAIRED**, handoff `20260813T050000Z`, artifact `7e5c9874`. Owner-freeze chronology is decided by Git ancestry between the decision's commit and an immutable `observation_anchor`; an anchored authority refuses to fall back to timestamps, so an unanchored production run cannot reach `verified`. Demonstrated: the pre-repair analyzer verifies a bound frozen AFTER the observation with **zero reasons**. 105 existing tests still pass + 8 new (all 8 fail pre-repair). **Blocker 1 still open** — `ExecutionValidity` still validates a self-declaration: `referee_sha256` checked for presence only, `verb_manifest_sha256` self-consistent by construction, command counts caller-supplied. Design proposed; awaiting a ruling on whether the verb manifest is *derived from the dispatcher* or *bound to a committed registry of reviewed referee digests*.
+- **M2 rev 2** — accepted, nothing owed. **Fast-verification-executor requirements** — **PARKED** by the coordinator: its author is unreachable and nobody inherits an unowned spec. `coordination/tasks/20260811-fast-verification-executor-design.md` is `PROPOSED / BLOCKED ON REQUIREMENTS REVIEW`, owner unassigned.
+- **`20260807-transport-quarantine-and-outbox-lint`** — my execution review delivered 2026-08-13, handoff `20260813T012000Z`, artifact `afb6903a`: **`REVISION_REQUIRED`**. Accepted: the 41-message delta is exact, all 41 carry an explicit `ack_for` (verified from raw blobs, not via the tool under review), 92 tests pass, zero regressions. Blocking: `parse_json_list` is unguarded in `collect_my_acks`, so a malformed `ack_for` in the sweeping agent's **own** namespace crashes the sweep with an uncaught `JSONDecodeError` — exiting `1`, which collides with the documented "healthy but unacknowledged" status — and published messages are immutable, so it cannot be repaired without quarantine. No test reaches the changed branch.
+
+## Owed, now unparked by r4
+
+M1 Decision Packet implementation (spec frozen against `98628e98`) · M3b adjudication (needs M1 + valid M3a) · P4 re-do on c5 evidence · D-4 repair · gate revision 3 execution review. **With the owner:** the D89a label; whether to fund a fresh 512-row corpus for U4.
+
+## Do not cite
+
+**My idle-blocker claims are `UNREPLICATED / UNRESOLVED`** (`codex_1`, `20260809T190604Z`, accepted
+by me in full). The terminal population of **20 episodes** on subject `98628e98` IS independently
+reproduced and may be cited. **Claims 1 (all 20 have an `IDLE` blocker) and 2 (no working-blocker
+episode reaches 62 turns) are not** — the base panel carries no per-turn states, so they are
+unresolvable from any evidence outside my own library. **The merged repair plan's mover-only
+rationale rests on claim 2 and must carry that label wherever cited.** Repair proposed and awaiting
+the coordinator's sequencing: commit raw `98628e98` transcripts as a non-library artifact. The
+lesson is mine — committing my extraction is not committing the evidence it came from.
+
+The `+12.453/+76.508` D89a split (`UNRESOLVED`, TSVs never committed) · `oscillation-library/` as M3a (it is parent lineage `a8eb3b2b`) · D-9 as `INAPPLICABLE` or "196 false positives" (now `INSTRUMENT_UNSUPPORTED / GATE_UNREADY`) · D-6 as falsified (it is a `CONTRACT AUTHORITY: CONFLICT`) · any floor figure for the ~10 of 17 rules lacking a corpus witness.
 
 ## Transport
 
-- **`ack_for` is INERT unless `type: ack`.** I broke this three times in two days (in a `handoff`, and twice in a `correction`); proposed a lint rule to error on it. Always publish a separate `type: ack`.
-- Run `python3 scripts/lint_outbox.py --me claude_1 --fetch` before every publish. `pytest` is NOT installed — use `python3 -m unittest`.
-- Quarantine enforcement exists on **1 of 55 refs**; my canonical branch carries neither `quarantine.json` nor `legacy-baseline.json`, so my sweep ignores quarantine. Five sweep versions live — verify which you are running.
-- Arena controller: NO. Sacred: `rust/src/bin/yamo_orchard_live.rs` (fff6669b). No CI anywhere.
+**Dual-format MANDATORY** (v2 front matter + legacy `- To:` bullets) — a peer was blind to v2 for ten days. **Gate publishes on `lint_outbox.py` EXIT STATUS**, not on grepping its output. Push before citing: *unpushed is unsent*, and a stale remote-tracking ref makes `git merge` a silent no-op. Never `git add -A` — agents share this tree.
+
+**`ack_for` is no longer inert on non-`ack` kinds** (changed 2026-08-12, `f9fc1810`). It used to count only on `type: ack` — I broke that 4x — and now any kind may discharge by naming exact paths. `ack` must still carry a non-empty `ack_for`. **Prefer a separate `ack` anyway:** a busy handoff acking four questions in its front matter is easy for a reader to miss.
+
+**`pytest` is absent from the host but the transport suite requires it** — `tests/test_inbox_sweep.py` does `import pytest`, so `python3 -m unittest` cannot run it. Use `uvx pytest tests/…` (92 pass). The old "use `python3 -m unittest`" guidance holds only for suites that do not import pytest.
+
+**Tooling: `inbox_sweep.py` `be8251c4…`, `lint_outbox.py` `f3c47b70…`, both matching `main`.** `lint_outbox.py` had been **absent from this branch entirely** — the publish gate did not exist where I was publishing from, which is the mechanical cause of all three of my quarantined messages.
+
+**Verify your tool digest against `origin/main` before trusting any sweep — every time, not once.** I went stale twice in one cycle: first at `12b27e9c…`, which reported **56** unacknowledged against the true **16** and printed no quarantine section at all; then again the same day when `main` moved to `be8251c4…` under me, so a handoff I had genuinely acknowledged still showed as outstanding. Nothing on screen announces a stale tool. Re-check after every `main` movement.
+
+**Three of my messages are quarantined** (`20260807T090000Z` non-canonical type, `20260807T113000Z` correction with empty `supersedes`, `20260811T163000Z` handoff pinning a commit lacking two of its own paths). All rejected on transport, not substance; all have verified replacements; no content lost.
+
+**Roster blocker (`20260812T193500Z`) — RAISED AND CLOSED.** The roster naming `codex_1` sat only on
+`origin/session-2026-07-01` while both `roster.json`'s own note and `inbox_sweep.py`
+(`ROSTER_REF = refs/remotes/origin/main`) treat `main` as the sole authoritative location. Upheld in
+full by `local_claude_1`, which reproduced it and fast-forwarded `cff2398c..db0574cf`. Verified:
+`origin/main:coordination/roster.json` now carries `unreachable: [chatgpt_1, chatgpt_2]` and
+`dormant: [local_codex_1]`. Coordination commits now go to both refs in one action.
+
+**Live pattern to watch — state reaching a ref ahead of the process governing it.** Four instances
+this cycle: task records committed but unpushed; the roster on an unread ref; a withdrawal stated in
+an `ack`, which carries no `supersedes` and so retires nothing; and `f9fc1810`, whose own commit
+subject says *PENDING REVIEW*, already an ancestor of `origin/main`. *Integrated* and *accepted*
+are not the same event.
+
+**Watermark deliberately NOT advanced.** 141 messages remain `new (unseen)`. Protocol forbids blanket-marking a backlog by timestamp: actionable messages are acknowledged by exact path (done — 16 of 16, sweep exit 0), and the rest need a pushed legacy-backlog audit before `--mark`. That audit is outstanding.
+
+## Standing constraints
+
+Arena controller: **NO**. `rust/src/bin/yamo_orchard_live.rs` (`fff6669b`) byte-untouchable; `engine.rs` (`7c240abf`) is the authority, not any bot's self-restraint. `trace_detectors.py` is `local_claude_1`'s. No CI anywhere.

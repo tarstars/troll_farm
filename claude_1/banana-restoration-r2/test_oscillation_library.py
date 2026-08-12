@@ -32,9 +32,11 @@ circularity it exists to avoid.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import shutil
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -42,6 +44,74 @@ from pathlib import Path
 import oscillation_library as ol
 
 HERE = Path(__file__).resolve().parent
+
+
+class SourceMaterialisationError(RuntimeError):
+    """A pinned bot source could not be produced from Git, or did not verify."""
+
+
+def materialise_pinned_sources(cfg, workdir: Path) -> dict:
+    """Rewrite `cfg` so every bot source is a real file inside `workdir`.
+
+    The panel configs used to name their bot sources by absolute path, under a
+    session scratchpad and a developer home directory.  Both are absent on a
+    clean runner -- and on this host too, once the session scratchpad is reaped
+    -- so the replay suites could only ever pass on the machine that produced
+    them.  `chatgpt_1` found this by running them somewhere else
+    (`20260811T230000Z`, REVISION_REQUIRED -- SOURCE REPLAY NOT PORTABLE).
+
+    Each entry now declares `source_git = {commit, path}`.  The blob is read
+    from that **commit** -- immutable, never a branch, because a moving ref is
+    the trust-root defect `chatgpt_1` raised against I-30 -- and verified
+    against the entry's own `sha256` pin before it is used.  Provenance comes
+    from the commit; content comes from the digest; neither comes from the
+    filesystem this happens to run on.
+
+    Returns the mutated cfg.  Raises `SourceMaterialisationError` loudly rather
+    than falling back to any host path: a replay that silently used a different
+    file would be worth less than one that did not run.
+    """
+    repo = Path(__file__).resolve()
+    for parent in repo.parents:
+        if (parent / ".git").exists():
+            repo = parent
+            break
+    else:  # pragma: no cover - the tree is always inside a checkout
+        raise SourceMaterialisationError("not inside a Git checkout")
+
+    for key in ("candidate", "parent"):
+        entry = cfg.get(key)
+        if not entry:
+            continue
+        pin = entry.get("source_git")
+        if not pin:
+            raise SourceMaterialisationError(
+                "%s has no source_git pin; this config predates the portability "
+                "repair and cannot be replayed off its original host" % key)
+        commit, path = pin["commit"], pin["path"]
+        proc = subprocess.run(["git", "-C", str(repo), "show", "%s:%s" % (commit, path)],
+                              capture_output=True)
+        if proc.returncode != 0:
+            raise SourceMaterialisationError(
+                "cannot read %s:%s from %s -- %s"
+                % (commit, path, repo, proc.stderr.decode("utf-8", "replace").strip()))
+        blob = proc.stdout
+        digest = hashlib.sha256(blob).hexdigest()
+        declared = entry.get("sha256", "")
+        if declared and not digest.startswith(declared.rstrip(".")):
+            raise SourceMaterialisationError(
+                "%s sha256 mismatch: config pins %s, %s:%s is %s"
+                % (key, declared, commit, path, digest))
+        out = workdir / ("source-%s-%s" % (key, digest[:16]))
+        out.write_bytes(blob)
+        entry["source"] = str(out)
+
+    # The cache and games directories were absolute session paths too.  Replay
+    # needs neither: build into the throwaway workdir so a run leaves nothing
+    # behind and depends on nothing outside it.
+    cfg.pop("bin_cache_dir", None)
+    cfg["games_dir"] = str(workdir / "games")
+    return cfg
 
 # The parent lineage (a8eb3b2b) -- NOT the M3a subject.
 LIB = HERE / "oscillation-library"
@@ -587,25 +657,41 @@ class TestFrozenStatesReplay(LibraryTestBase):
         import fuzz_panel as fp
         import regression_tests as rt
 
+        # Corpus eligibility is decided BEFORE anything is compiled.  A frozen
+        # situation replays byte-for-byte only under the referee that produced
+        # it -- `make_referee` is always the CURRENT panel -- so a situation
+        # frozen under an earlier corpus is not expected to reproduce and is
+        # not silently counted as if it had.  Evaluating that first means a
+        # tree that is entirely pre-bump skips without invoking rustc at all,
+        # instead of spending a bot build to discover it has nothing to check
+        # (required by chatgpt_1's review, 20260811T230000Z).
+        replayable, skipped = [], 0
+        for s in self.situations:
+            if s["completeness"] != "FULL":
+                continue
+            if s["provenance"]["corpus_version"] != fp.CORPUS_VERSION:
+                skipped += 1
+                continue
+            replayable.append(s)
+        if not replayable:
+            self.skipTest(
+                "every FULL situation in %s was frozen under a corpus other "
+                "than the running panel's %s (%d skipped); replay is not "
+                "meaningful across a corpus bump, and no bot was built"
+                % (self.LIB.name, fp.CORPUS_VERSION, skipped))
+
         workdir = Path(tempfile.mkdtemp(prefix="osclib-bot-"))
         self.addCleanup(shutil.rmtree, workdir, ignore_errors=True)
         cfg = json.loads(self.PANEL_CONFIG.read_text())
         cfg["config_dir"] = self.PANEL_CONFIG.parent
+        # Materialise the pinned sources from Git into `workdir` and verify
+        # them against the config's own digests, so this runs on a clean
+        # checkout with no scratch directory and no developer home.
+        cfg = materialise_pinned_sources(cfg, workdir)
         binary = fp.compile_bot(cfg, "candidate", workdir)
 
-        checked = skipped = 0
-        for s in self.situations:
-            if s["completeness"] != "FULL":
-                continue
-            # A frozen situation replays byte-for-byte only under the referee
-            # that produced it.  `make_referee` is always the CURRENT panel, so
-            # a situation frozen under an earlier corpus is not expected to
-            # reproduce and is not silently counted as if it had: the corpus
-            # bump changes the world transition, which is the whole reason the
-            # panel refuses cross-version comparison.
-            if s["provenance"]["corpus_version"] != fp.CORPUS_VERSION:
-                skipped += 1
-                continue
+        checked = 0
+        for s in replayable:
             init = s["initial_world_state"]
             spec = {
                 "rows": s["static_map_rows"],
@@ -625,12 +711,6 @@ class TestFrozenStatesReplay(LibraryTestBase):
                                  "%s: turn %d diverges from the freeze"
                                  % (s["id"], entry["turn"]))
             checked += 1
-        if checked == 0:
-            self.skipTest(
-                "every FULL situation in %s was frozen under a corpus other "
-                "than the running panel's %s (%d skipped); replay is not "
-                "meaningful across a corpus bump"
-                % (self.LIB.name, fp.CORPUS_VERSION, skipped))
         print("\n  replay: %s -- %d/%d FULL situations reproduce their frozen "
               "command window byte-for-byte (%d skipped: older corpus)"
               % (self.LIB.name, checked, checked + skipped, skipped))
@@ -904,6 +984,115 @@ class TestParentLineageIsLabelled(unittest.TestCase):
                             ol.load_index(SUBJECT_LIB)["library_sha256"])
         self.assertEqual(ol.DEFAULT_DIR, SUBJECT_LIB,
                          "an unqualified load must return the M3a subject")
+
+
+class TestSourcesArePortable(unittest.TestCase):
+    """The replay suites are opt-in and need `rustc`, so for weeks nothing
+    executed the code path that resolved a bot source.  The configs pointed at
+    a session scratchpad and a developer home; on the machine that produced
+    them those paths existed, so the defect was invisible here and immediate
+    for `chatgpt_1` on a clean runner.
+
+    These tests need neither `rustc` nor `OSC_LIB_REPLAY`: they run in the
+    default suite, so a source that is not reachable from Git is a **failure
+    now**, on any machine, rather than a surprise for whoever next tries to
+    reproduce the library somewhere else.
+    """
+
+    CONFIGS = (PARENT_PANEL_CONFIG, SUBJECT_PANEL_CONFIG)
+
+    def _configs(self):
+        for path in self.CONFIGS:
+            yield path, json.loads(path.read_text())
+
+    def test_no_config_names_an_absolute_host_path(self):
+        """`notes` is prose and may quote the old paths; data fields may not."""
+        def walk(node, trail=""):
+            if isinstance(node, dict):
+                for key, value in node.items():
+                    if key == "notes":
+                        continue
+                    yield from walk(value, "%s/%s" % (trail, key))
+            elif isinstance(node, list):
+                for i, value in enumerate(node):
+                    yield from walk(value, "%s[%d]" % (trail, i))
+            elif isinstance(node, str) and (node.startswith("/home/")
+                                            or node.startswith("/tmp/")):
+                yield trail, node
+
+        for path, cfg in self._configs():
+            offenders = list(walk(cfg))
+            self.assertEqual(
+                offenders, [],
+                "%s still names absolute host paths, which exist on no clean "
+                "runner: %s" % (path.name, offenders))
+
+    def test_every_bot_source_is_pinned_to_an_immutable_commit(self):
+        for path, cfg in self._configs():
+            for key in ("candidate", "parent"):
+                pin = cfg[key].get("source_git")
+                self.assertIsNotNone(
+                    pin, "%s: %s has no source_git pin" % (path.name, key))
+                commit = pin["commit"]
+                self.assertRegex(
+                    commit, r"^[0-9a-f]{40}$",
+                    "%s: %s source_git.commit must be a full 40-hex object id, "
+                    "not a branch -- a moving ref is not a pin" % (path.name, key))
+
+    def test_every_pinned_source_resolves_from_git_and_matches_its_digest(self):
+        """The pin is only worth something if it produces the declared bytes."""
+        workdir = Path(tempfile.mkdtemp(prefix="osclib-src-"))
+        self.addCleanup(shutil.rmtree, workdir, ignore_errors=True)
+        for path, cfg in self._configs():
+            cfg = materialise_pinned_sources(dict(cfg), workdir)
+            for key in ("candidate", "parent"):
+                source = Path(cfg[key]["source"])
+                self.assertTrue(
+                    source.is_file(),
+                    "%s: %s did not materialise" % (path.name, key))
+                digest = hashlib.sha256(source.read_bytes()).hexdigest()
+                self.assertTrue(
+                    digest.startswith(cfg[key]["sha256"].rstrip(".")),
+                    "%s: %s materialised to %s, config pins %s"
+                    % (path.name, key, digest, cfg[key]["sha256"]))
+
+    def test_a_floor_config_materialises_both_seats_to_the_same_bytes(self):
+        """`run_identity: floor` means the bot is judged against itself.  If
+        materialisation ever produced two different files for the two seats the
+        run would silently stop being a floor, which is the exact confusion
+        `run_identity` was added to make impossible."""
+        workdir = Path(tempfile.mkdtemp(prefix="osclib-floor-"))
+        self.addCleanup(shutil.rmtree, workdir, ignore_errors=True)
+        for path, cfg in self._configs():
+            if cfg.get("run_identity") != "floor":
+                continue
+            cfg = materialise_pinned_sources(dict(cfg), workdir)
+            a = Path(cfg["candidate"]["source"]).read_bytes()
+            b = Path(cfg["parent"]["source"]).read_bytes()
+            self.assertEqual(hashlib.sha256(a).hexdigest(),
+                             hashlib.sha256(b).hexdigest(),
+                             "%s declares run_identity 'floor' but its two "
+                             "seats materialised to different bytes" % path.name)
+
+    def test_materialisation_refuses_a_wrong_digest_rather_than_compiling_it(self):
+        """Fail closed, demonstrated on a really-corrupted pin rather than
+        asserted in prose -- the same standard the fixture-mutation test
+        already holds this suite to."""
+        workdir = Path(tempfile.mkdtemp(prefix="osclib-bad-"))
+        self.addCleanup(shutil.rmtree, workdir, ignore_errors=True)
+        cfg = json.loads(SUBJECT_PANEL_CONFIG.read_text())
+        cfg["candidate"]["sha256"] = "0" * 64
+        with self.assertRaises(SourceMaterialisationError) as caught:
+            materialise_pinned_sources(cfg, workdir)
+        self.assertIn("sha256 mismatch", str(caught.exception))
+
+    def test_materialisation_refuses_an_unreachable_commit(self):
+        workdir = Path(tempfile.mkdtemp(prefix="osclib-gone-"))
+        self.addCleanup(shutil.rmtree, workdir, ignore_errors=True)
+        cfg = json.loads(SUBJECT_PANEL_CONFIG.read_text())
+        cfg["candidate"]["source_git"]["commit"] = "0" * 40
+        with self.assertRaises(SourceMaterialisationError):
+            materialise_pinned_sources(cfg, workdir)
 
 
 if __name__ == "__main__":

@@ -7,7 +7,7 @@
  "pinned_sources": {
   "trace_detectors.py": "59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209",
   "conversion_race_oracle.py": "e0896e3f7cb2c7ac4ced35350469d704432f8c7a1a8a4c9c4ce41495ca13ecf7",
-  "test_trace_detectors.py": "b7ab897b1411f38cee61fedc4313ac72ed6ecd54ba5f794651f398a59d9e0079"
+  "test_trace_detectors.py": "79f7c18bba2784ca0d1831bc2fcbb5ba3aef954c34d33a1fcf6a8ddb781cb41c"
  },
  "test_command": "python3 -m unittest test_trace_detectors",
  "baseline_tests": 28,
