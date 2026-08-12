@@ -62,8 +62,15 @@ class BranchLedger(unittest.TestCase):
         """The other direction: the document drifts, the data does not."""
         with open(rbl.AUDIT, encoding="utf-8") as fh:
             text = fh.read()
-        tampered = text.replace("12 `PINNED`", "13 `PINNED`", 1)
-        self.assertNotEqual(tampered, text, "precondition: the tally is present")
+        # Derived, not hard-coded: this count legitimately changes every time a branch is
+        # pinned, and a literal here made the test fail for the right reason at the wrong
+        # time — it broke when G6 pinned four D-7 rows, which is exactly the drift the
+        # checker is supposed to tolerate in the data and catch in the prose.
+        pinned = sum(1 for b in _doc_cached["branches"]
+                     if b["impl_validity"] == "PINNED")
+        tampered = text.replace("%d `PINNED`" % pinned, "%d `PINNED`" % (pinned + 1), 1)
+        self.assertNotEqual(tampered, text,
+                            "precondition: the current PINNED tally is present in the audit")
         with mock.patch("builtins.open", mock.mock_open(read_data=tampered)):
             self.assertEqual(rbl.check(_doc_cached), 2)
 
@@ -76,7 +83,9 @@ class BranchLedger(unittest.TestCase):
     def test_the_rendered_table_is_a_projection_not_a_transcription(self):
         out = rbl.render(_doc())
         self.assertIn("47 branch rows", out)
-        self.assertIn("22 of 47 branches have no fixture at all", out)
+        no_fixture = sum(1 for b in _doc()["branches"]
+                         if b["impl_validity"] == "NO_FIXTURE")
+        self.assertIn("%d of 47 branches have no fixture at all" % no_fixture, out)
         for b in _doc()["branches"]:
             self.assertIn(b["branch"], out)
 
