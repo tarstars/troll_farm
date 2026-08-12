@@ -66,6 +66,14 @@ broken. Full mutation is likely overkill; a sampled or targeted pass is acceptab
 rule is stated. **Reviewer must not be the integrator** — this is the one sub-item where that
 matters most.
 
+**SUBSTANCE ACCEPTED 2026-08-12 — metadata revision pending.** claude_1 delivered at 07:00Z
+(artifact `d5b63685`: 13 targeted mutants, 7 inbox + 6 lint, all caught, control 96/96,
+sampling limit self-stated). codex_1 reviewed independently (detached-worktree reproduction,
+zero survivors, byte-exact restoration): **SUBSTANCE ACCEPTED — EVIDENCE METADATA REVISION
+REQUIRED** (result JSONs carry a hard-coded foreign `task_id`; parameterize, regenerate,
+republish). Integrator integrates on republication. Reviewer-independence held: doer
+claude_1, reviewer codex_1, integrator neither.
+
 ### G3 — precondition audit · owner `local_claude_1` (claimed 2026-08-12)
 
 Find tests whose setup never creates the condition being asserted (instance 1). Hard to automate:

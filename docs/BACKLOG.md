@@ -141,9 +141,10 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
   (bounded first passes; residuals enumerated in
   `local_claude_1/verification/g3-g4-guard-audit-2026-08-12.md`; key instrument fact: the 96
   transport tests run via subprocess, so in-process coverage cannot vouch for them — mutation
-  drives are the honest instrument for G2). OPEN: G2 (claude_1; reassignment to codex_1
-  proposed 2026-08-12) and G6 (claude_1, owner go-ahead GRANTED 2026-08-12 — real surface is
-  19 actionable branches; see the banana section for the D-9 correction).**
+  drives are the honest instrument for G2). G2: **SUBSTANCE ACCEPTED** same day (claude_1 delivered 13-mutant targeted pass, codex_1
+  independently reproduced — zero survivors; one metadata revision pending, then integration).
+  G6 (claude_1, owner go-ahead GRANTED 2026-08-12): **IN PROGRESS — 4 of 19 branches pinned**
+  (all D-7); real surface is 19 actionable, see the banana section for the D-9 correction.**
 
 ## P0 — OWNER RULE 2026-08-10: no banana before the second troll
 
