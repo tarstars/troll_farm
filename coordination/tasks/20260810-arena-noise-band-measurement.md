@@ -158,4 +158,10 @@ already removed on trunk (STATE §1 follow-up discharged).
 
 | run | UTC submit | submission / agent | initial health | terminal 160/160 |
 |---|---|---|---|---|
-| 1 | 2026-08-12T06:27Z | **41125196 / agent 6610399** (`accepted=true ambiguous=false http=200 mutation_calls=1`; post-submit live recover exact `98628e98…`) | 06:52Z: 89/89 parsed, 17.62 / rank 99/147, cat 8 (9.0%), **signals=0 identity_clean=True** (`run1-checkpoint-initial.json`) | pending ~07:40Z |
+| 1 | 2026-08-12T06:27Z | **41125196 / agent 6610399** (`accepted=true ambiguous=false http=200 mutation_calls=1`; post-submit live recover exact `98628e98…`) | 06:52Z: 89/89 parsed, 17.62 / rank 99/147, cat 8 (9.0%), **signals=0 identity_clean=True** (`run1-checkpoint-initial.json`) | 07:41Z: **160/160, 19.77 / rank 60/147**, cat 12 (7.5%), neg_mass 3871, **signals=0 identity_clean=True** (`run1-checkpoint-terminal.json`) |
+
+Running spread on `98628e98…` after run 1: mature reads **24.76 / 22.46 / 19.77** —
+max−min **4.99**; sample SD of the three ≈ **2.50**. Note for question 4: the 19.77 read
+sits in the freshly grown legend-147 era (139 → 147 between reads). Run 2 pre-mutation:
+live source assumed exact from run 1's own deployment; re-verified by
+`--expected-sha256` at submit.
