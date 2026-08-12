@@ -20,9 +20,12 @@ import subprocess
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
+# The drive shells out to pytest from this directory. G2 measures trunk's transport tooling in a
+# detached worktree, so the working directory is a parameter rather than always this checkout.
+_CWD = [REPO]
 
 
-def _run_tests(tests: Path, extras: tuple[str, ...] = ()) -> tuple[bool, str]:
+def _run_tests(tests, extras: tuple[str, ...] = ()) -> tuple[bool, str]:
     """Run the suite, optionally with extra packages installed.
 
     `extras` exists because some defects are only reachable in an environment the default run
@@ -33,18 +36,20 @@ def _run_tests(tests: Path, extras: tuple[str, ...] = ()) -> tuple[bool, str]:
     command = ["uvx", "--with", "boto3"]
     for package in extras:
         command += ["--with", package]
-    command += ["pytest", str(tests), "-q", "--no-header", "-x"]
-    proc = subprocess.run(command, capture_output=True, text=True, cwd=REPO)
+    targets = [str(tests)] if isinstance(tests, (str, Path)) else [str(t) for t in tests]
+    command += ["pytest", *targets, "-q", "--no-header", "-x"]
+    proc = subprocess.run(command, capture_output=True, text=True, cwd=_CWD[0])
     return proc.returncode == 0, (proc.stdout + proc.stderr)[-600:]
 
 
-def run_drive(*, drive: str, target: Path, tests: Path, mutants: list[tuple],
-              out: Path) -> int:
+def run_drive(*, drive: str, target: Path, tests, mutants: list[tuple],
+              out: Path, repo: Path | None = None) -> int:
     """Apply each mutant to `target`, run `tests`, restore, and write JSON evidence.
 
     A mutant is `(id, description, old, new)` or `(id, description, old, new, extras)`, where
     `extras` names packages the suite must be run with for that mutant to be reachable.
     """
+    _CWD[0] = repo or REPO
     original = target.read_text()
     control_green, control_output = _run_tests(tests)
     results: list[dict] = []
@@ -65,9 +70,15 @@ def run_drive(*, drive: str, target: Path, tests: Path, mutants: list[tuple],
                 green, tail = _run_tests(tests, extras)
             finally:
                 target.write_text(original)
+            # The tail is kept for BOTH outcomes. For a survivor it shows the suite passing;
+            # for a caught mutant it names which test failed — and "which test is load-bearing"
+            # is the whole question G2 asks, so discarding it there threw away the answer.
+            failing = sorted({line.split("::")[-1].split()[0]
+                              for line in tail.splitlines() if line.startswith("FAILED ")})
             results.append({"id": mutant_id, "description": description, "status": "APPLIED",
                             "extras": list(extras), "caught": not green,
-                            "test_output_tail": None if not green else tail})
+                            "failing_tests": failing,
+                            "test_output_tail": tail})
 
     if target.read_text() != original:
         raise RuntimeError(f"{target} was not restored — refusing to report a result")
@@ -77,8 +88,9 @@ def run_drive(*, drive: str, target: Path, tests: Path, mutants: list[tuple],
     report = {
         "drive": drive,
         "task_id": "20260811-s3-collector-v2",
-        "target": str(target.relative_to(REPO)),
-        "tests": str(tests.relative_to(REPO)),
+        "target": str(target),
+        "tests": (str(tests) if isinstance(tests, (str, Path))
+                  else [str(t) for t in tests]),
         "control_green": control_green,
         "control_output_tail": None if control_green else control_output,
         "mutants_defined": len(mutants),
