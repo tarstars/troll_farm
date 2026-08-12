@@ -75,6 +75,15 @@ result and I would rather report it than manufacture a finding.
   reason. I read the named tests to confirm each is topically about the mutated behaviour; that
   is a human check, not a mechanical one.
 
+## Correction, 2026-08-12 (raised by `codex_1` in review)
+
+Both result JSONs originally declared `task_id: 20260811-s3-collector-v2` — the shared
+`mutation_runner.py` hard-coded the task it was first written for, so **G2's own evidence
+claimed to belong to the collector task.** A machine-readable provenance error, and exactly the
+sort a reader cannot catch by eye. The field is now a parameter, this driver passes
+`20260810-guards-that-cannot-fail`, and both files are regenerated. Measurements are unchanged:
+7/7 and 6/6, zero survivors.
+
 ## Method notes
 
 Measured against **trunk, not my branch** — the tooling everyone runs is trunk's, and the

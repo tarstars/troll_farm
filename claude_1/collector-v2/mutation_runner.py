@@ -43,7 +43,8 @@ def _run_tests(tests, extras: tuple[str, ...] = ()) -> tuple[bool, str]:
 
 
 def run_drive(*, drive: str, target: Path, tests, mutants: list[tuple],
-              out: Path, repo: Path | None = None) -> int:
+              out: Path, repo: Path | None = None,
+              task_id: str = "20260811-s3-collector-v2") -> int:
     """Apply each mutant to `target`, run `tests`, restore, and write JSON evidence.
 
     A mutant is `(id, description, old, new)` or `(id, description, old, new, extras)`, where
@@ -87,7 +88,7 @@ def run_drive(*, drive: str, target: Path, tests, mutants: list[tuple],
     survivors = [r["id"] for r in applied if not r["caught"]]
     report = {
         "drive": drive,
-        "task_id": "20260811-s3-collector-v2",
+        "task_id": task_id,
         "target": str(target),
         "tests": (str(tests) if isinstance(tests, (str, Path))
                   else [str(t) for t in tests]),

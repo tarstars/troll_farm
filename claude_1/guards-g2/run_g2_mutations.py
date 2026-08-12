@@ -108,7 +108,10 @@ def main(argv: list[str] | None = None) -> int:
         code = run_drive(drive=name, target=subject,
                          tests=[repo / t for t in TESTS],
                          mutants=[(m[0], f"[{m[1]}] {m[2]}", m[3], m[4]) for m in mutants],
-                         out=out / f"{name}-results.json", repo=repo)
+                         out=out / f"{name}-results.json", repo=repo,
+                         # Raised by codex_1: the shared runner defaulted this to the
+                         # collector task, so G2's own evidence declared the wrong task id.
+                         task_id="20260810-guards-that-cannot-fail")
         codes.append(code)
         print(f"{name}: exit {code}")
 
