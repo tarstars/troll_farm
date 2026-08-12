@@ -1,6 +1,10 @@
 # 20260810-guards-that-cannot-fail: find and fix every check that passes regardless of what it checks
 
 - Status: **OPEN — owner-directed 2026-08-10.** Sub-items G1–G6 have individual owners.
+  **2026-08-12:** G1 ✅ integrated (merge `59415301`, project_host gate 1679/0). G3+G4
+  claimed by `local_claude_1`. **G6 owner go-ahead GRANTED — full scope, D-9 row (a)
+  first** (in-session owner decision 2026-08-12, relayed in
+  `coordination/messages/local_claude_1/20260812T061500Z-20260810-guards-that-cannot-fail-g6-go-ahead-policy.md`).
 - Record owner / integrator: `local_claude_1`
 - Area: tooling integrity; successor to the failures listed below
 - Base commit: `origin/main` at claim time
@@ -49,6 +53,11 @@ Fix or delete any that cannot be made to fail. Two of [B] are the integrator's o
 (`test_inbox_sweep.py`), and `assert result.returncode in (0, 1, 2)` is true of essentially every
 run. Mechanical, bounded, no design judgement.
 
+**✅ DONE 2026-08-11 / INTEGRATED 2026-08-12.** Implementation `7af07a6f`; report
+`codex_1/reviews/g1-vacuous-check-repair-2026-08-11.md` (pinned at `559030c3`); nine
+deliberate production mutations across all twelve classes caught; full-suite gate on
+project_host 1679 passed / 0 failed; integration merge `59415301`.
+
 ### G2 — negative controls for the transport suite · owner `claude_1`
 
 96 tests in `test_inbox_sweep.py` + `test_lint_outbox.py`, authored by the integrator, guarding
@@ -57,13 +66,13 @@ broken. Full mutation is likely overkill; a sampled or targeted pass is acceptab
 rule is stated. **Reviewer must not be the integrator** — this is the one sub-item where that
 matters most.
 
-### G3 — precondition audit · owner unassigned
+### G3 — precondition audit · owner `local_claude_1` (claimed 2026-08-12)
 
 Find tests whose setup never creates the condition being asserted (instance 1). Hard to automate:
 the signature is a fixture that silently returns the empty/None case. Start with tests that depend
 on `origin/*` refs or on files the fixture does not create.
 
-### G4 — unreachable guards · owner unassigned
+### G4 — unreachable guards · owner `local_claude_1` (claimed 2026-08-12)
 
 Find production code that no test can reach (instance 2): `if __name__ == "__main__"` bodies,
 bare `except` handlers, fail-safe branches. Mechanically approachable via coverage.
@@ -74,12 +83,15 @@ Places where a check runs and its result is discarded (instances 4, 5). Includes
 invocation patterns**, not just code — the `| tail` defect is invisible to any code review because
 it lives in how the tool is called. Mine, because both instances are mine.
 
-### G6 — the 22 detector branches with no fixture · owner `claude_1`, **owner decision required first**
+### G6 — the 22 detector branches with no fixture · owner `claude_1` — **go-ahead GRANTED 2026-08-12**
 
 The bite-test audit's own headline: *"22 of 47 branches — nearly half the detector surface — have
 no fixture at all. That, not the kill rate, is the load-bearing measurement."* Real work with no
-score attached, competing with the σ measurement and the banana question. **Do not start without
-an explicit owner go-ahead.**
+score attached, competing with the σ measurement and the banana question. ~~Do not start without
+an explicit owner go-ahead.~~ **Granted 2026-08-12** (in-session owner decision): fixture all 22,
+and **pin D-9 row (a) first** — the branch policing the no-banana-before-second-troll rule,
+currently surviving all three of its mutations (D9-M1/M2/M3). A fixture that leaves any of the
+three alive has not pinned the row.
 
 ## Boundaries
 

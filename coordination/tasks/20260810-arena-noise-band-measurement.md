@@ -1,18 +1,18 @@
 # 20260810-arena-noise-band-measurement: measure the ladder's run-to-run noise, and separate our variance from the ladder's drift
 
-- Status: **PROPOSED — needs an owner decision before any Arena action.** No submission is
-  authorized by this record. **Question 1 is now answered (2026-08-10) at zero Arena cost;
-  questions 2–4 remain.**
+- Status: **AUTHORIZED / IN PROGRESS — owner decision 2026-08-12: Phase 1, 4 runs ≈ 8 h.**
+  Questions 2 and 3 are thereby answered (churn accepted; budget four runs); question 1
+  was answered 2026-08-10; question 4 (era denominator) stays open for the analysis.
 - Record owner: local_claude_1
-- Work owner: unassigned
-- Reviewer: unassigned (must not be the work owner)
+- Work owner: local_claude_1 (claimed 2026-08-12; sole Arena controller)
+- Reviewer: requested codex_1 2026-08-12 (must not be the work owner; ack pending)
 - Integrator / sole Arena controller: local_claude_1
 - Area: measurement infrastructure; owner ruling 2026-08-12 removing the noise-band gate
 - Base commit: `origin/main` at the time of claim
 - Progress lease: 15 minutes without concrete evidence; a maturing Arena run renews via pushed
   checkpoint markers
 - Created UTC: 2026-08-10T04:40:00Z
-- Last updated UTC: 2026-08-10T04:40:00Z
+- Last updated UTC: 2026-08-12T06:16:00Z
 
 ## Outcome
 
@@ -133,10 +133,12 @@ observations to it does not resolve the confound.
 
 ## Arena authority
 
-Read-only platform access: allowed. **Platform mutation: this record authorizes none.** Phase 1 is
-a repeated-submission programme and the owner's standing authorization covers submitting
-candidates that passed frozen gates — not a deliberate re-submission campaign against the live
-slot. That is a separate owner decision, and question 1 above should be answered first regardless.
+Read-only platform access: allowed. **Platform mutation: the owner decision of 2026-08-12
+authorizes exactly four Phase-1 re-submissions of the resident source `98628e98…`,
+serialized through the sole Arena controller.** Question 1 was answered first, as this
+record required (2026-08-10: zero duplicate settled scores across 10 deployments of 4
+byte-identical sources). Nothing beyond those four runs — in particular no Phase 2
+interleaved A/B — is authorized by this record.
 
 ## Why this is worth an owner decision rather than quiet execution
 
@@ -145,3 +147,8 @@ Every closed experiment in `docs/BACKLOG.md` was judged against a gate expressed
 difference SD at one run per arm is 1.55 — and several historical accept/reject calls were made on
 differences smaller than the noise. This task
 does not reopen them. It determines whether future ones can be made at all.
+
+## Phase 1 execution log (authorized 2026-08-12, four runs)
+
+| run | UTC submit | submission / agent | initial health | terminal 160/160 |
+|---|---|---|---|---|
