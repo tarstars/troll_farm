@@ -72,10 +72,24 @@ Find tests whose setup never creates the condition being asserted (instance 1). 
 the signature is a fixture that silently returns the empty/None case. Start with tests that depend
 on `origin/*` refs or on files the fixture does not create.
 
+**✅ DONE (bounded first pass) 2026-08-12.** `check_clock` zero-commit crash fixed
+fail-closed (red observed); origin-dependent and existence-gated tests triaged — two
+audited clean, the transport-fixture surface **explicitly deferred to G2** (auditing my
+own fixtures would recreate the conflict G2 exists to avoid). Report:
+`local_claude_1/verification/g3-g4-guard-audit-2026-08-12.md`.
+
 ### G4 — unreachable guards · owner `local_claude_1` (claimed 2026-08-12)
 
 Find production code that no test can reach (instance 2): `if __name__ == "__main__"` bodies,
 bare `except` handlers, fail-safe branches. Mechanically approachable via coverage.
+
+**✅ DONE (bounded first pass) 2026-08-12.** `coordd_mirror` fat `__main__` extracted to
+tested `cli()`; the two G5 live-demoed branches (F8/F9) got permanent fixtures with
+re-break demonstrations; thin shims accepted; two never-tested tools and the server
+error-path gaps **enumerated as residuals with sizes** (no silent drop). Key instrument
+finding for G2: the 96 transport tests run their subjects via subprocess, so in-process
+coverage reads 0%/23% for armed tools — line-level G2 claims need subprocess coverage.
+Report: `local_claude_1/verification/g3-g4-guard-audit-2026-08-12.md`.
 
 ### G5 — disarmed harnesses · owner `local_claude_1`
 
