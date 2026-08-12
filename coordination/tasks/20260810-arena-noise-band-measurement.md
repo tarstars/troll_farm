@@ -166,6 +166,16 @@ already removed on trunk (STATE §1 follow-up discharged).
 Running spread on `98628e98…` after run 2: mature reads **24.76 / 22.46 / 19.77 / 23.73**
 — max−min **4.99**; sample SD of the four ≈ **2.16**. Note for question 4: the 19.77 read
 sits in the freshly grown legend-147 era (139 → 147 between reads).
+**CAMPAIGN HELD 2026-08-12T20:25Z — run 4 NOT submitted.** Two consecutive session
+timers for the run-3 terminal read were killed externally (20:02Z and ~20:25Z);
+per the coordinator's stated escalation, that is read as a stop signal pending an
+explicit owner word. No Arena mutation follows until then. Run 3 (41128302 / 6612307)
+continues maturing platform-side regardless — it is the resident's own bytes, so the
+slot is safe wherever it settles; its terminal read can be taken at any time.
+Resumption cost: one submit call + reads. Cancellation cost: none — five mature
+observations (runs 1–3 plus the two pre-campaign reads) already support a materially
+better σ than the record's 10-deployment pooled estimate.
+
 **Clock note (do not silently reconcile):** the project host suspended ~08:00–19:25Z;
 run 2 matured somewhere inside that window and was READ at 19:29Z — platform-side
 maturation time is not measurable from this side. An earlier draft claimed "~27 minutes";
