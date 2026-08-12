@@ -160,8 +160,15 @@ already removed on trunk (STATE §1 follow-up discharged).
 |---|---|---|---|---|
 | 1 | 2026-08-12T06:27Z | **41125196 / agent 6610399** (`accepted=true ambiguous=false http=200 mutation_calls=1`; post-submit live recover exact `98628e98…`) | 06:52Z: 89/89 parsed, 17.62 / rank 99/147, cat 8 (9.0%), **signals=0 identity_clean=True** (`run1-checkpoint-initial.json`) | 07:41Z: **160/160, 19.77 / rank 60/147**, cat 12 (7.5%), neg_mass 3871, **signals=0 identity_clean=True** (`run1-checkpoint-terminal.json`) |
 
-Running spread on `98628e98…` after run 1: mature reads **24.76 / 22.46 / 19.77** —
-max−min **4.99**; sample SD of the three ≈ **2.50**. Note for question 4: the 19.77 read
-sits in the freshly grown legend-147 era (139 → 147 between reads). Run 2 pre-mutation:
-live source assumed exact from run 1's own deployment; re-verified by
-`--expected-sha256` at submit.
+| 2 | 2026-08-12T07:44Z | **41125448 / agent 6610636** (`accepted=true ambiguous=false http=200 mutation_calls=1`) | — (matured across host suspend) | read 19:29Z: **160/160, 23.73 / rank 29/147**, cat 17 (10.6%), neg_mass 5463, **signals=0 identity_clean=True** (`run2-checkpoint-terminal.json`) |
+| 3 | 2026-08-12T19:30Z | **41128302** / agent at next read (`accepted=true ambiguous=false`) | pending | pending |
+
+Running spread on `98628e98…` after run 2: mature reads **24.76 / 22.46 / 19.77 / 23.73**
+— max−min **4.99**; sample SD of the four ≈ **2.16**. Note for question 4: the 19.77 read
+sits in the freshly grown legend-147 era (139 → 147 between reads).
+**Clock note (do not silently reconcile):** the project host suspended ~08:00–19:25Z;
+run 2 matured somewhere inside that window and was READ at 19:29Z — platform-side
+maturation time is not measurable from this side. An earlier draft claimed "~27 minutes";
+that was a wall-clock read taken across the suspend and is retracted. Runs 1–2 are also
+**not time-adjacent** despite being consecutive: ~11.5 h of ladder evolution separates
+their finishes.

@@ -2,10 +2,10 @@
   "schema_version": "arena-submission-history/1",
   "generator": "cgauto/submission_history.py",
   "manifest_path": "data/analysis/arena-submission-history-inputs.json",
-  "manifest_sha256": "c81c699fe511976f838601f82e02687d96c954bbe5f965d556093dc2e1673163",
+  "manifest_sha256": "5f838db394bd52266693581578ed5f7265210f445e2c35552af9c6e4d526d316",
   "counts": {
     "sources": 15,
-    "submissions": 28,
+    "submissions": 29,
     "observations": 49,
     "unresolved": 5
   },
@@ -912,7 +912,7 @@
     {
       "record_id": "submission-41125448",
       "submission_id": 41125448,
-      "agent_id": null,
+      "agent_id": 6610636,
       "source_id": "e7a-readable-no-orchard-code-cost",
       "source_attribution_confidence": "hash_verified_on_platform",
       "deployed_at": "2026-08-12T07:44:00Z",
@@ -921,15 +921,38 @@
       "comparison_basis": "same_source_repeat",
       "authority": "owner_directed_override",
       "parent_submission_id": 41125196,
+      "replaced_by_submission_id": 41128302,
+      "task_id": "20260810-arena-noise-band-measurement",
+      "protocol_id": null,
+      "disposition": "displaced_superseded",
+      "disposition_rationale": "Sigma campaign run 2 of 4. Matured across a host suspend window (~08:00-19:25Z), read at 19:29Z: 160/160, 23.73 / rank 29/147, identity clean, zero signals. Four mature reads of this source now span 24.76/22.46/19.77/23.73.",
+      "provenance": [
+        "coordination/tasks/20260810-arena-noise-band-measurement.md",
+        "data/analysis/arena-noise-band-2026-08/run2-checkpoint-terminal.json"
+      ],
+      "notes": "Submit accepted=true ambiguous=false http=200, single mutation call."
+    },
+    {
+      "record_id": "submission-41128302",
+      "submission_id": 41128302,
+      "agent_id": null,
+      "source_id": "e7a-readable-no-orchard-code-cost",
+      "source_attribution_confidence": "hash_verified_on_platform",
+      "deployed_at": "2026-08-12T19:30:00Z",
+      "era_id": "legend-147",
+      "deployment_purpose": "same_source_capacity_control",
+      "comparison_basis": "same_source_repeat",
+      "authority": "owner_directed_override",
+      "parent_submission_id": 41125448,
       "replaced_by_submission_id": null,
       "task_id": "20260810-arena-noise-band-measurement",
       "protocol_id": null,
       "disposition": "active",
-      "disposition_rationale": "Sigma campaign run 2 of 4, maturing; agent id pending first health checkpoint.",
+      "disposition_rationale": "Sigma campaign run 3 of 4, maturing; agent id pending first read.",
       "provenance": [
         "coordination/tasks/20260810-arena-noise-band-measurement.md"
       ],
-      "notes": "Submit accepted=true ambiguous=false http=200, single mutation call."
+      "notes": "Submit accepted=true ambiguous=false, single mutation call."
     }
   ],
   "observations": [

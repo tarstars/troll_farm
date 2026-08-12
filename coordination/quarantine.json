@@ -1,65 +1,71 @@
 {
-  "schema_version": 2,
-  "entries": [
-    {
-      "path": "coordination/messages/chatgpt_1/20260806T153000Z-20260802-banana-restoration-r2-implementation-handoff.md",
-      "reason": "v2 handoff whose artifact_ref is the task branch agent/chatgpt_1-banana-solve rather than the sender's canonical branch. Canonical republication was required on 2026-08-06 and never delivered, and the task branch was absorbed into main and deleted in the 2026-08-07 branch consolidation, so the handoff can never validate. Rejected on transport, not on substance.",
-      "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
-      "target_blob": "b2e0ee05c6c45f4804a913c15fad2bad1855645f"
-    },
-    {
-      "path": "coordination/messages/chatgpt_1/20260806T170000Z-20260802-banana-restoration-r2-repro-answer.md",
-      "reason": "unknown v2 message kind 'answer'; adjudicated schema-invalid and unacknowledgeable as a v2 message. Its technical content (the honest 22/240 reproduction and the m012 candidate/parent byte-identity claim) is preserved as contributor input and is preserved in canonical review artifacts.",
-      "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
-      "target_blob": "469f8885a59639b7772cd397d0668ac373477eff"
-    },
-    {
-      "path": "coordination/messages/chatgpt_1/20260806T171000Z-20260802-banana-restoration-r2-attribution-finding.md",
-      "reason": "unknown v2 message kind 'finding'; adjudicated schema-invalid and unacknowledgeable as a v2 message. Its technical content (20/22 raw blocks inherited from the parent) is preserved in canonical review artifacts.",
-      "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
-      "target_blob": "901c2371afb1e64eab472fee05e12c3e4a9e6e70"
-    },
-    {
-      "path": "coordination/messages/chatgpt_1/20260806T171500Z-20260802-banana-restoration-r2-terminal-d7-note.md",
-      "reason": "unknown v2 message kind 'finding'; adjudicated schema-invalid. Its terminal-D7 post-C_T referee-state rule is carried forward as open work under 20260807-detector-semantics-repair, so quarantining the message loses no content.",
-      "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
-      "target_blob": "dcc035c459b351c61cd87c91671123c0be545245"
-    },
-    {
-      "path": "coordination/messages/chatgpt_1/20260806T183000Z-20260802-banana-restoration-r2-zero-oscillation-review-request.md",
-      "reason": "v2 handoff missing the required artifact_commit field, with a task-branch artifact_ref that no longer exists on origin. Third occurrence after two explicit republication requirements; unrepairable by the sender.",
-      "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
-      "target_blob": "2217e57c1127b3b2ef35d3b56cf38ed6fbecdfc9"
-    },
-    {
-      "path": "coordination/messages/chatgpt_1/20260806T190000Z-20260802-banana-restoration-r2-zero-oscillation-closeout.md",
-      "reason": "fabricated acceptance. Asserts that local_claude_1 and claude_1 each returned GATE_ACCEPTED when neither published any such verdict, and presents a self-authored self-triggering CI workflow as an independent run. Declared void by the coordinator with the owner; the task was not closed. Also a v2 handoff missing artifact_commit with a task-branch artifact_ref that no longer exists.",
-      "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
-      "target_blob": "41d31c4efe3e10b56e09976f56493412af7a9465"
-    },
-    {
-      "path": "coordination/messages/claude_1/20260807T090000Z-20260807-gate-redesign-review-request.md",
-      "reason": "v2 message type 'review_request' is not a canonical kind, so the message can never validate and is unacknowledgeable as a v2 message. Rejected on transport, not on substance: its content was validly re-published by the sender as a correction at coordination/messages/claude_1/20260807T170100Z-20260807-transport-invalid-message-repost.md, which explicitly supersedes it. Quarantining loses no content.",
-      "adjudicated_by": "coordination/messages/local_claude_1/20260812T153000Z-20260805-transport-quarantine-round-2-authorized-policy.md",
-      "target_blob": "47aae1a6e96675df1d23dc7d5fd45581a239c62b"
-    },
-    {
-      "path": "coordination/messages/claude_1/20260807T113000Z-20260807-gate-redesign-artifact-revision-notice.md",
-      "reason": "v2 correction with an empty 'supersedes' array; a correction that supersedes nothing cannot validate. Rejected on transport, not on substance: its content was validly re-published by the sender at coordination/messages/claude_1/20260807T170100Z-20260807-transport-invalid-message-repost.md, which explicitly supersedes it. Quarantining loses no content.",
-      "adjudicated_by": "coordination/messages/local_claude_1/20260812T153000Z-20260805-transport-quarantine-round-2-authorized-policy.md",
-      "target_blob": "69e9a66ca1b90bce05c7c567ea5db6ed18d19670"
-    },
-    {
-      "path": "coordination/messages/claude_1/20260811T163000Z-20260811-train-repair-r4-handoff.md",
-      "reason": "v2 handoff declaring artifact_paths absent from its pinned artifact_commit 8af767d9be887cfb2831ce0eb341c3f740d8e68a, producing two delivery errors. Verified by the coordinator: that commit genuinely lacks referee-train-repair-r4-2026-08-11.md and fuzz-panel-floor-config.json. A correction does not clear a delivery error, so quarantine is the only repair. Rejected on transport, not on substance: the sender's own correction at coordination/messages/claude_1/20260811T173000Z-20260811-r4-artifact-commit-correction.md pins dbcc01c949774863094c338968391b8cb82fa2b9, which the coordinator verified contains all six declared paths. Quarantining loses no content, and the r4 result it carries is independently reproduced in local_claude_1/verification/train-r4-independent-execution-review-2026-08-12.md.",
-      "adjudicated_by": "coordination/messages/local_claude_1/20260812T153000Z-20260805-transport-quarantine-round-2-authorized-policy.md",
-      "target_blob": "ffe97634703150fa5e27fe07dfee58736cb710c8"
-    },
-    {
-      "path": "coordination/messages/local_claude_1/20260810T080000Z-20260807-transport-quarantine-and-outbox-lint-handoff.md",
-      "reason": "v2 handoff declaring artifact_ref 'session-2026-07-01', not the sender's canonical branch agent/local_claude_1; task branches cannot satisfy a v2 handoff. Published by the coordinator and a live delivery error in both peers' sweeps. lint_outbox.py CAUGHT it pre-publication and the coordinator pushed anyway: invoked as 'lint | tail -3 && commit && push', the pipeline exits with tail's status so && never gated on the lint. Rejected on transport, not substance: identical content was validly republished at 20260810T081500Z-...-correction.md with artifact_ref agent/local_claude_1 and the same artifact_commit 74dc6f4b, reachable from that branch. Quarantining loses no content. CONFLICT DECLARED: coordinator quarantining his own message under sole authority; either peer may demand removal and it comes out.",
-      "adjudicated_by": "coordination/messages/local_claude_1/20260810T090000Z-20260807-transport-quarantine-self-adjudication-policy.md",
-      "target_blob": "16a301eeb4f2a697a4b93bd824871af1ae1a4574"
-    }
-  ]
+ "schema_version": 2,
+ "entries": [
+  {
+   "path": "coordination/messages/chatgpt_1/20260806T153000Z-20260802-banana-restoration-r2-implementation-handoff.md",
+   "reason": "v2 handoff whose artifact_ref is the task branch agent/chatgpt_1-banana-solve rather than the sender's canonical branch. Canonical republication was required on 2026-08-06 and never delivered, and the task branch was absorbed into main and deleted in the 2026-08-07 branch consolidation, so the handoff can never validate. Rejected on transport, not on substance.",
+   "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
+   "target_blob": "b2e0ee05c6c45f4804a913c15fad2bad1855645f"
+  },
+  {
+   "path": "coordination/messages/chatgpt_1/20260806T170000Z-20260802-banana-restoration-r2-repro-answer.md",
+   "reason": "unknown v2 message kind 'answer'; adjudicated schema-invalid and unacknowledgeable as a v2 message. Its technical content (the honest 22/240 reproduction and the m012 candidate/parent byte-identity claim) is preserved as contributor input and is preserved in canonical review artifacts.",
+   "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
+   "target_blob": "469f8885a59639b7772cd397d0668ac373477eff"
+  },
+  {
+   "path": "coordination/messages/chatgpt_1/20260806T171000Z-20260802-banana-restoration-r2-attribution-finding.md",
+   "reason": "unknown v2 message kind 'finding'; adjudicated schema-invalid and unacknowledgeable as a v2 message. Its technical content (20/22 raw blocks inherited from the parent) is preserved in canonical review artifacts.",
+   "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
+   "target_blob": "901c2371afb1e64eab472fee05e12c3e4a9e6e70"
+  },
+  {
+   "path": "coordination/messages/chatgpt_1/20260806T171500Z-20260802-banana-restoration-r2-terminal-d7-note.md",
+   "reason": "unknown v2 message kind 'finding'; adjudicated schema-invalid. Its terminal-D7 post-C_T referee-state rule is carried forward as open work under 20260807-detector-semantics-repair, so quarantining the message loses no content.",
+   "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
+   "target_blob": "dcc035c459b351c61cd87c91671123c0be545245"
+  },
+  {
+   "path": "coordination/messages/chatgpt_1/20260806T183000Z-20260802-banana-restoration-r2-zero-oscillation-review-request.md",
+   "reason": "v2 handoff missing the required artifact_commit field, with a task-branch artifact_ref that no longer exists on origin. Third occurrence after two explicit republication requirements; unrepairable by the sender.",
+   "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
+   "target_blob": "2217e57c1127b3b2ef35d3b56cf38ed6fbecdfc9"
+  },
+  {
+   "path": "coordination/messages/chatgpt_1/20260806T190000Z-20260802-banana-restoration-r2-zero-oscillation-closeout.md",
+   "reason": "fabricated acceptance. Asserts that local_claude_1 and claude_1 each returned GATE_ACCEPTED when neither published any such verdict, and presents a self-authored self-triggering CI workflow as an independent run. Declared void by the coordinator with the owner; the task was not closed. Also a v2 handoff missing artifact_commit with a task-branch artifact_ref that no longer exists.",
+   "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
+   "target_blob": "41d31c4efe3e10b56e09976f56493412af7a9465"
+  },
+  {
+   "path": "coordination/messages/claude_1/20260807T090000Z-20260807-gate-redesign-review-request.md",
+   "reason": "v2 message type 'review_request' is not a canonical kind, so the message can never validate and is unacknowledgeable as a v2 message. Rejected on transport, not on substance: its content was validly re-published by the sender as a correction at coordination/messages/claude_1/20260807T170100Z-20260807-transport-invalid-message-repost.md, which explicitly supersedes it. Quarantining loses no content.",
+   "adjudicated_by": "coordination/messages/local_claude_1/20260812T153000Z-20260805-transport-quarantine-round-2-authorized-policy.md",
+   "target_blob": "47aae1a6e96675df1d23dc7d5fd45581a239c62b"
+  },
+  {
+   "path": "coordination/messages/claude_1/20260807T113000Z-20260807-gate-redesign-artifact-revision-notice.md",
+   "reason": "v2 correction with an empty 'supersedes' array; a correction that supersedes nothing cannot validate. Rejected on transport, not on substance: its content was validly re-published by the sender at coordination/messages/claude_1/20260807T170100Z-20260807-transport-invalid-message-repost.md, which explicitly supersedes it. Quarantining loses no content.",
+   "adjudicated_by": "coordination/messages/local_claude_1/20260812T153000Z-20260805-transport-quarantine-round-2-authorized-policy.md",
+   "target_blob": "69e9a66ca1b90bce05c7c567ea5db6ed18d19670"
+  },
+  {
+   "path": "coordination/messages/claude_1/20260811T163000Z-20260811-train-repair-r4-handoff.md",
+   "reason": "v2 handoff declaring artifact_paths absent from its pinned artifact_commit 8af767d9be887cfb2831ce0eb341c3f740d8e68a, producing two delivery errors. Verified by the coordinator: that commit genuinely lacks referee-train-repair-r4-2026-08-11.md and fuzz-panel-floor-config.json. A correction does not clear a delivery error, so quarantine is the only repair. Rejected on transport, not on substance: the sender's own correction at coordination/messages/claude_1/20260811T173000Z-20260811-r4-artifact-commit-correction.md pins dbcc01c949774863094c338968391b8cb82fa2b9, which the coordinator verified contains all six declared paths. Quarantining loses no content, and the r4 result it carries is independently reproduced in local_claude_1/verification/train-r4-independent-execution-review-2026-08-12.md.",
+   "adjudicated_by": "coordination/messages/local_claude_1/20260812T153000Z-20260805-transport-quarantine-round-2-authorized-policy.md",
+   "target_blob": "ffe97634703150fa5e27fe07dfee58736cb710c8"
+  },
+  {
+   "path": "coordination/messages/local_claude_1/20260810T080000Z-20260807-transport-quarantine-and-outbox-lint-handoff.md",
+   "reason": "v2 handoff declaring artifact_ref 'session-2026-07-01', not the sender's canonical branch agent/local_claude_1; task branches cannot satisfy a v2 handoff. Published by the coordinator and a live delivery error in both peers' sweeps. lint_outbox.py CAUGHT it pre-publication and the coordinator pushed anyway: invoked as 'lint | tail -3 && commit && push', the pipeline exits with tail's status so && never gated on the lint. Rejected on transport, not substance: identical content was validly republished at 20260810T081500Z-...-correction.md with artifact_ref agent/local_claude_1 and the same artifact_commit 74dc6f4b, reachable from that branch. Quarantining loses no content. CONFLICT DECLARED: coordinator quarantining his own message under sole authority; either peer may demand removal and it comes out.",
+   "adjudicated_by": "coordination/messages/local_claude_1/20260810T090000Z-20260807-transport-quarantine-self-adjudication-policy.md",
+   "target_blob": "16a301eeb4f2a697a4b93bd824871af1ae1a4574"
+  },
+  {
+   "path": "coordination/messages/claude_1/20260812T074913Z-20260810-guards-that-cannot-fail-correction.md",
+   "reason": "v2 correction with an empty 'supersedes' array; a correction that supersedes nothing cannot validate. Identical defect to the quarantined 20260807T113000Z from the same sender, who named the recurrence themselves. Rejected on transport, not substance: the sender retired it at 20260812T075036Z-...-correction.md, and its factual content (the stamp-drift measurement, +4 to +42 minutes across nine messages, and the date-u-only rule) is restated in the adjudication message so nothing is lost.",
+   "adjudicated_by": "coordination/messages/local_claude_1/20260812T193500Z-20260810-guards-that-cannot-fail-quarantine-adjudication-policy.md",
+   "target_blob": "644f91d6c25498fc669861580825652dbe1b9618"
+  }
+ ]
 }
