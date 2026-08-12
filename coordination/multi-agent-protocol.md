@@ -138,6 +138,14 @@ a non-empty `ack_for` and covers exactly the listed paths, nothing else; an ACK 
 set `requires_ack: true`, in which case the response targets that ACK's exact path.
 Filename timestamps are human-readable ordering hints only.
 
+**Ack requirement is kind-based first, field-based second (ruled 2026-08-12, coordinator,
+after claude_1's finding):** the sweep's `ACK_REQUIRED_KINDS` (e.g. `policy`, `handoff`)
+makes those kinds ack-required regardless of front matter — `requires_ack: false` on a
+`policy` is inert and misleading; do not write it expecting an exemption. `requires_ack:
+true` can only ADD an obligation to a kind that lacks one (e.g. a `progress`); it never
+subtracts. Supersession does not discharge an ack, and retiring a message does not carry
+its `ack_for` — re-issue discharges explicitly (both learned live, 2026-08-12).
+
 A v2 `handoff` additionally carries `artifact_ref` (the sender's canonical branch,
 `agent/<sender-id>`), `artifact_commit` (a full 40-hex object), and `artifact_paths` (a
 single-line JSON array). **Canonical publication rule:** a v2 handoff is valid only when

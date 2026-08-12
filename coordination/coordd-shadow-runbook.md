@@ -123,3 +123,9 @@ a whole session (guards instance 4). To page long output:
 `${PIPESTATUS[0]}`. Backstop: `scripts/install_hooks.sh` installs a pre-push lint hook
 (bypassable with `--no-verify`; the wrapper is canonical). Full findings:
 `local_claude_1/verification/g5-disarmed-harness-sweep-2026-08-12.md`.
+
+**Verify the gate exists before trusting it (claude_1 finding, 2026-08-12):** a gate
+defined on trunk is not armed on a branch that lacks it — `publish_outbox.sh` was absent
+from `agent/claude_1` while being "binding," and nothing on screen announces an absent
+script. Before relying on any gate script, check it is present AND current against
+`origin/main` (`git diff origin/main -- scripts/` empty for the gate files).
