@@ -163,8 +163,10 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
   detector that demonstrably fires.** Caveat kept explicit: (a) is pinned on *implementation
   validity*; its *applicability* still reads `INSTRUMENT_UNSUPPORTED` (proxy retired) — whether
   the c5 instrument can observe the policed behaviour is a separate open question, and **(b)–(d)
-  recalibration is parked on that same unowned c5 instrument ruling** (fixturing them now would
-  test a measurement the instrument cannot make).
+  recalibration is parked on that same c5 instrument ruling — OWNER-ASSIGNED 2026-08-12 to
+  `claude_1`, sequenced after G6** (message `20260812T073000Z…-c5-instrument-ruling-assignment
+  -policy.md`; fixturing them before the ruling would test a measurement the instrument cannot
+  make).
   **Consequence for CBF:** any banana farm that plants while `own_units == 1` is rejected
   outright, regardless of later score. Check the `DENY → FARM → WOOD` machine's entry condition
   against this before implementing.
