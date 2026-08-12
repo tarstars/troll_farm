@@ -68,6 +68,16 @@ reads as new in one and seen in the other. The ack-required list is derived from
 content and stayed identical across both, so obligations were never at risk; only novelty
 was. P2 should either share the state across checkouts or key it per agent rather than per
 working directory.
+Fifth, measured 2026-08-12: **the `project_host` collection cron fires at 02:17 UTC, not
+05:17 UTC** — the crontab says `17 5` and the machine is Europe/Moscow (UTC+3). Every
+document, including the handovers, has stated 05:17 UTC. Worse, syslog shows the job firing
+Aug 5–10 and **not on Aug 11 or Aug 12**; the Aug 11 run in `collect_wide.log` starts at
+04:51:41Z, i.e. it was launched by hand. Ordinary cron silently skips jobs scheduled while
+the machine sleeps. This matters beyond bookkeeping: the Phase 2 cut-over criterion compares
+the VM collector against this cron's ids, so an intermittent reference measures the reference
+rather than the collector. P2 (or the cut-over plan) should replace it with a catch-up-capable
+timer and record the real schedule.
+
 Fourth, from the 2026-08-11 collector-v2 thread: **a binding ruling published with
 `requires_ack: false` never enters the recipient's actionable list.** My B4 fetch-semantics
 ruling was published before the code was written, was correct, and went unread for exactly
