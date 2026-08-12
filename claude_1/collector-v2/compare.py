@@ -16,8 +16,10 @@ the cut-over number: what the VM collector failed to capture. It is reported alo
 `absent_from_s3_entirely`, which asks the different and more important question of whether the
 project holds the game at all — a game can be missing from the VM's day object and still be
 safely in S3 via the backfill, which is exactly what 2026-08-11 looked like (352 vs 0).
-`extra` is not symmetric with either — the VM runs at 05:47 and `project_host` at 05:17 over
-different cohorts, so extra ids are expected, reported, and not flagged.
+`extra` is not symmetric with either — the VM runs at 05:47 and `project_host`'s cron at 02:17
+(not the 05:17 long assumed) over different cohorts, so extra ids are expected, reported, and not
+flagged. That cron is also intermittent: it did not fire on Aug 11 or Aug 12, so a reference
+export for those dates describes a hand-launched run, not the schedule.
 
 Reads the bucket and the reference; writes only the `--out` JSON.
 """

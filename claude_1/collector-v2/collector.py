@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Collector v2 — fetch, pack and upload one day of public games (B4).
 
-Task `20260811-s3-collector-v2`. Runs unattended from a systemd timer at 05:47 UTC, offset
-from `project_host`'s 05:17 cron so the platform is not double-loaded.
+Task `20260811-s3-collector-v2`. Runs unattended from a systemd timer at 05:47 UTC, clear of
+`project_host`'s collection cron so the platform is not double-loaded. That cron fires at
+**02:17 UTC**, not the 05:17 every document (including earlier versions of this one) claimed —
+its crontab reads `17 5` on a Europe/Moscow machine. Measured by `local_claude_1` 2026-08-12.
 
 Shape of a run:
 

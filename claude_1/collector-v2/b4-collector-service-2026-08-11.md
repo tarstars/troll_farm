@@ -101,9 +101,12 @@ prune before verification). Final: **14 defined, 14 applied, 14 caught, 0 surviv
 /etc/systemd/system/collector-v2.timer     OnCalendar=*-*-* 05:47:00 UTC, Persistent=true
 ```
 
-Sources committed at `claude_1/collector-v2/deploy/`. 05:47 is offset from `project_host`'s
-05:17 cron so the two collectors do not hit the platform together during the parallel-run
-window. `Persistent=true` fires one catch-up run after a missed slot, because a skipped day is a
+Sources committed at `claude_1/collector-v2/deploy/`. 05:47 was chosen as an offset from
+`project_host`'s cron. **Correction, 2026-08-12:** that cron fires at **02:17 UTC**, not 05:17 —
+its crontab reads `17 5` on a Europe/Moscow machine (UTC+3), and every document including this
+report repeated the wrong figure until `local_claude_1` measured it. 05:47 is still correct, 3.5
+hours clear rather than 30 minutes, but the timing was right by luck and not by the reasoning
+given. The same measurement found the cron **silently skipped Aug 11 and Aug 12**. `Persistent=true` fires one catch-up run after a missed slot, because a skipped day is a
 permanent loss rather than a delay.
 
 The service unit deliberately has **no `[Install]` section**: it is timer-activated only, and an

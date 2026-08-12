@@ -3,8 +3,11 @@ Description=Run Troll Farm collector v2 daily at 05:47 UTC
 Documentation=file:/home/tarstars/prj/troll_farm-plan-agent/claude_1/collector-v2/b4-collector-service-2026-08-11.md
 
 [Timer]
-# 05:47 UTC — deliberately offset from project_host's 05:17 cron so the two collectors do not
-# hit the platform together during the parallel-run window.
+# 05:47 UTC. The original rationale was "3 minutes after project_host's 05:17 cron". That cron
+# actually fires at 02:17 UTC — its crontab reads `17 5` on a Europe/Moscow machine (UTC+3), and
+# every document said 05:17 until local_claude_1 measured it on 2026-08-12. 05:47 is still
+# correct, 3.5 hours clear rather than 30 minutes, but the timing was right by luck and not by
+# the reasoning given. That measurement also found the cron silently skipped Aug 11 and Aug 12.
 OnCalendar=*-*-* 05:47:00 UTC
 # A missed run (VM off, reboot) fires once on the next boot rather than being skipped. Games
 # are only readable while a participant's battle window still holds them, so a skipped day is
