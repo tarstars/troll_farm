@@ -158,3 +158,4 @@ already removed on trunk (STATE §1 follow-up discharged).
 
 | run | UTC submit | submission / agent | initial health | terminal 160/160 |
 |---|---|---|---|---|
+| 1 | 2026-08-12T06:27Z | **41125196** / agent at health read (`accepted=true ambiguous=false http=200 mutation_calls=1`; post-submit live recover exact `98628e98…`) | pending ~06:55Z | pending ~08:25Z |
