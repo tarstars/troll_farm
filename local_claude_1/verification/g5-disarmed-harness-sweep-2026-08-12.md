@@ -35,8 +35,18 @@
 
 ## Observed-failing demonstrations
 
-Recorded per fix at completion of Tasks 2–4 (test names / commands and the deliberate
-breaks are in the corresponding commit messages; hook demo recorded below when run).
+- **F2** — `tests/test_run_mutations_verdict.py`: red run observed (7 failed,
+  `AttributeError: drive_verdict` absent) before implementation; 7 passed after. The
+  removed defect is stated in the commit.
+- **F1 wrapper** — `tests/test_publish_outbox_wrapper.py`: red run observed (3 failed,
+  wrapper absent). With the lint shim forced to exit 1 the gate blocks commit AND push
+  (asserted against a local bare origin). 3 passed after. Extra defect found by the red
+  cycle itself: `git rev-parse --abbrev-ref HEAD` dies on an unborn branch — replaced
+  with `symbolic-ref` + explicit detached-HEAD refusal.
+- **F1 hook, live demo 2026-08-12** — `install_hooks.sh` set `core.hooksPath`; a
+  deliberately invalid outbox file made `bash .githooks/pre-push` exit **2** with
+  `errors (1)` (the exact output the original incident printed while the pipeline
+  ignored it); after removal, exit **0**. Break → fire → restore, recorded.
 
 ## Appendix — sweep commands and raw yield
 
