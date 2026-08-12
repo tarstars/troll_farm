@@ -4,7 +4,11 @@
   Questions 2 and 3 are thereby answered (churn accepted; budget four runs); question 1
   was answered 2026-08-10; question 4 (era denominator) stays open for the analysis.
 - Record owner: local_claude_1
-- Work owner: local_claude_1 (claimed 2026-08-12; sole Arena controller)
+- Work owner: local_claude_1 (claimed 2026-08-12; sole Arena controller). **Remainder
+  delegated 2026-08-12T20:14Z to claude_1 on the VM under a bounded lease** (owner
+  decision — notebook sleep killed the read-timers; lease: run-3 terminal, run-4 submit,
+  checkpoints, registry, σ recompute, final handoff; authority reverts on handoff;
+  message `20260812T201400Z…-vm-lease-policy.md`)
 - Reviewer: requested codex_1 2026-08-12 (must not be the work owner; ack pending)
 - Integrator / sole Arena controller: local_claude_1
 - Area: measurement infrastructure; owner ruling 2026-08-12 removing the noise-band gate
