@@ -1,7 +1,7 @@
 # Mutation ledger (generated — do not hand-edit)
 
 Source: `results/mutation-results.json`  
-manifest sha256 `5c7575d53dddbbd2d369e15f5aeb21fd6213d13d9b89f6fc8694e26b81cbf470`  
+manifest sha256 `c269ab779fcecb990acd6db96881de8d5552a2742728938c6307499c6ac151c0`  
 runner sha256 `8dbf4f7774a2cdc014e702675cf9fcf3e051b57f91fcf914782451bc706dd519`  
 probe corpus sha256 `9afe7f3cf3cb073158e67226ddbed31a750cda19900fc031853195cb8b0f3ddb`  
 python 3.12.3, control green: True
@@ -9,10 +9,10 @@ python 3.12.3, control green: True
 Pinned sources:
 
 - `conversion_race_oracle.py` sha256 `e0896e3f7cb2c7ac4ced35350469d704432f8c7a1a8a4c9c4ce41495ca13ecf7`
-- `test_trace_detectors.py` sha256 `086645a3efcac5eef1df030b50d4fd2d5c40c0ad1ac8f11c63138a9df0930677`
+- `test_trace_detectors.py` sha256 `3649d678c56902dbed1504373b62d1f17c03e9a7b5c192d7a58b8642c1f2dfc9`
 - `trace_detectors.py` sha256 `59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209`
 
-Totals: **64 mutants run, 39 caught, 25 survived** (kill rate 60.9 %). `caught_by_expected` = 39; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 15 UNWITNESSED; PROBE_SENSITIVE survivors = 18.
+Totals: **64 mutants run, 46 caught, 18 survived** (kill rate 71.9 %). `caught_by_expected` = 46; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 15 UNWITNESSED; PROBE_SENSITIVE survivors = 12.
 
 ## Per detector
 
@@ -23,11 +23,11 @@ Totals: **64 mutants run, 39 caught, 25 survived** (kill rate 60.9 %). `caught_b
 | D-3 | 4 | 3 | 3 | 1 | 1 | 75 % |
 | D-4 | 6 | 2 | 2 | 4 | 3 | 33 % |
 | D-5 | 8 | 8 | 8 | 0 | 0 | 100 % |
-| D-6 | 9 | 2 | 2 | 7 | 6 | 22 % |
+| D-6 | 9 | 9 | 9 | 0 | 0 | 100 % |
 | D-7 | 8 | 6 | 6 | 2 | 2 | 75 % |
 | D-8 | 11 | 10 | 10 | 1 | 0 | 91 % |
 | D-9 | 4 | 4 | 4 | 0 | 0 | 100 % |
-| **all** | **64** | **39** | **39** | **25** | **18** | **60.9 %** |
+| **all** | **64** | **46** | **46** | **18** | **12** | **71.9 %** |
 
 ## Full ledger
 
@@ -68,14 +68,14 @@ Totals: **64 mutants run, 39 caught, 25 survived** (kill rate 60.9 %). `caught_b
 | D5-M5 | D-5 | `trace_detectors.py` | CAUGHT | UNWITNESSED | I-13 concurrent \|Ring\| bound disabled |
 | D5-M8 | D-5 | `trace_detectors.py` | CAUGHT | UNWITNESSED | water-boost branch collapsed: CD is always CD_wet |
 | D6-M1 | D-6 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a2) opponent-chopper ETA bound <= 2 -> <= 1 |
-| D6-M2 | D-6 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | clause (a2) opponent-chopper ETA bound <= 2 -> <= 6 |
-| D6-M8 | D-6 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | clause (a2) opponent-chopper ETA bound <= 2 -> <= 5 |
+| D6-M2 | D-6 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a2) opponent-chopper ETA bound <= 2 -> <= 6 |
+| D6-M8 | D-6 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a2) opponent-chopper ETA bound <= 2 -> <= 5 |
 | D6-M9 | D-6 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a2) opponent-chopper ETA bound <= 2 -> <= 7 |
-| D6-M3 | D-6 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | clause (a1) arrival-order tie no longer conceded (<= -> <) |
-| D6-M4 | D-6 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | clause (a1) harvest-race arrival-order test deleted entirely |
-| D6-M5 | D-6 | `trace_detectors.py` | SURVIVED | UNWITNESSED | clause (b) opponent-harvested-ours replay ground truth deleted |
-| D6-M6 | D-6 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | A7 flipped: min own ETA taken over harvest-capable own units only |
-| D6-M7 | D-6 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | ETA formula ceil(bfs/speed) -> raw bfs distance |
+| D6-M3 | D-6 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a1) arrival-order tie no longer conceded (<= -> <) |
+| D6-M4 | D-6 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a1) harvest-race arrival-order test deleted entirely |
+| D6-M5 | D-6 | `trace_detectors.py` | CAUGHT | UNWITNESSED | clause (b) opponent-harvested-ours replay ground truth deleted |
+| D6-M6 | D-6 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | A7 flipped: min own ETA taken over harvest-capable own units only |
+| D6-M7 | D-6 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | ETA formula ceil(bfs/speed) -> raw bfs distance |
 | D7-M1 | D-7 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | carried-banana overage threshold age > 12 -> age > 0 |
 | D7-M8 | D-7 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | carried-banana overage threshold age > 12 -> age > 2 |
 | D7-M2 | D-7 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | end-of-game grace window T-6 -> T-600 (everything excused) |

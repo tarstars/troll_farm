@@ -431,6 +431,123 @@ class TestD6(unittest.TestCase):
         self.assertEqual(verdict(td.detect_d6(tr)), ("PASS", 0))
 
 
+class TestD6Uncovered(unittest.TestCase):
+    """G6 fixtures for the three D-6 branches the bite-test audit found with NO_FIXTURE.
+
+    Task `20260810-guards-that-cannot-fail`, sub-item G6. Fixtures only — no predicate is
+    touched.
+
+    Branch -> mutant these are written to kill:
+      (a1) arrival-order harvest race `:920` -> D6-M4 (clause deleted), D6-M3 (tie not
+           conceded), D6-M6 (A7 min taken over harvest-capable own units only)
+      (a3) ETA formula `ceil(bfs/speed)` `:911` -> D6-M7 (speed division dropped)
+      (b)  replay ground truth `:928-941`      -> D6-M5 (clause deleted)
+
+    **Structural note on (a1), which shapes every fixture below.** The clause is
+    `opp_h <= min_own`, and `min_own` is the minimum ETA over ALL own units at the planting
+    turn. The planting unit is by definition standing ON the cell it plants, so its ETA is 0
+    and `min_own` is **always 0** at a PLANT event. The clause can therefore only fire when
+    `opp_h == 0` — an opponent harvester sharing that exact cell. That is not a defect this
+    sub-item may repair (G6 changes no predicate) but it does mean the branch is close to
+    inert in ordinary play, and it is reported to the coordinator rather than papered over.
+    """
+
+    def plant_trace(self, own_line, opp_line):
+        """One PLANT of a banana on DIAG at t1, with the given own/opponent units."""
+        blocks = [turn_block([own_line, opp_line]),
+                  turn_block([own_line, opp_line], plants=[plant("BANANA", DIAG)])]
+        return make_trace(blocks, ["PLANT 0 BANANA", "WAIT"])
+
+    def kinds(self, tr):
+        return {e["kind"] for e in td.detect_d6(tr)["episodes"]}
+
+    # --- (a1) arrival-order harvest race -------------------------------------------
+
+    def test_arrival_tie_is_conceded_to_the_opponent(self):
+        """The violation: an opponent harvester on the planting cell ties our own ETA.
+
+        Both ETAs are 0, and the spec concedes ties to the opponent (`<=`), so planting into
+        that square is flagged. This is the only geometry in which the clause can fire; see
+        the class docstring."""
+        tr = self.plant_trace(unit(0, 0, DIAG, carry=carry_of(banana=1)),
+                              unit(9, 1, DIAG, hp=1, cp=0))
+        res = td.detect_d6(tr)
+        self.assertEqual(res["verdict"], "FAIL")
+        ep = next(e for e in res["episodes"] if e["kind"] == "opp_harvest_eta")
+        self.assertEqual(ep["eta_opp_h"], 0)
+        self.assertEqual(ep["min_own_eta"], 0)
+
+    def test_opponent_harvester_one_step_away_does_not_tie(self):
+        """The innocent case: the same plant with the harvester one step off the cell.
+        Its ETA is 1 against our 0, so we win the race and nothing is flagged."""
+        tr = self.plant_trace(unit(0, 0, DIAG, carry=carry_of(banana=1)),
+                              unit(9, 1, (3, 3), hp=1, cp=0))
+        self.assertNotIn("opp_harvest_eta", self.kinds(tr))
+
+    def test_min_own_eta_is_taken_over_all_own_units_not_just_harvesters(self):
+        """A7: the minimum is over EVERY own unit, harvest-capable or not.
+
+        The planter here has `harvest_power = 0`. Under A7 it still counts, so `min_own` is 0
+        and a harvester three steps away loses the race — nothing is flagged. Restricting the
+        minimum to harvest-capable units would leave the set empty, make `min_own`
+        unreachable, and flag this innocent plant."""
+        tr = self.plant_trace(unit(0, 0, DIAG, hp=0, cp=1, carry=carry_of(banana=1)),
+                              unit(9, 1, (3, 5), hp=1, cp=0))
+        self.assertEqual(verdict(td.detect_d6(tr)), ("PASS", 0))
+
+    # --- (a3) ETA formula: ceil(bfs distance / speed) --------------------------------
+    #
+    # Speed is what makes this branch observable: at speed 1 the ETA and the raw distance
+    # coincide, so every existing fixture — all of which use speed-1 units — cannot tell the
+    # formula from the bare distance. Both cases below use a speed-2 chopper.
+
+    def test_a_fast_chopper_is_within_reach_although_its_distance_is_not(self):
+        """The violation: distance 4 at speed 2 is an ETA of 2, inside the `<= 2` bound.
+        Reading the raw distance instead would call it 4 and wave the plant through."""
+        tr = self.plant_trace(unit(0, 0, DIAG, carry=carry_of(banana=1)),
+                              unit(9, 1, (3, 6), speed=2, hp=0, cp=1))
+        ep = next(e for e in td.detect_d6(tr)["episodes"] if e["kind"] == "opp_chop_eta")
+        self.assertEqual(ep["eta_opp_x"], 2)
+
+    def test_the_same_speed_at_a_greater_distance_stays_outside_the_bound(self):
+        """The innocent case: distance 5 at speed 2 is an ETA of 3, outside `<= 2`.
+        Same unit, same speed — only the distance moved, so the pair isolates the division."""
+        tr = self.plant_trace(unit(0, 0, DIAG, carry=carry_of(banana=1)),
+                              unit(9, 1, (8, 2), speed=2, hp=0, cp=1))
+        self.assertEqual(verdict(td.detect_d6(tr)), ("PASS", 0))
+
+    # --- (b) replay ground truth: the opponent actually took our fruit ----------------
+
+    def replay_trace(self, fruits_after, carry_after):
+        """We plant on DIAG and walk away; an opponent stands on the tree for two turns."""
+        blocks = [
+            turn_block([unit(0, 0, DIAG, carry=carry_of(banana=1)),
+                        unit(9, 1, (8, 0), hp=1, cp=0)]),
+            turn_block([unit(0, 0, (4, 4)), unit(9, 1, DIAG, hp=1, cp=0)],
+                       plants=[plant("BANANA", DIAG, size=4, health=6, fruits=2)]),
+            turn_block([unit(0, 0, (4, 4)),
+                        unit(9, 1, DIAG, hp=1, cp=0,
+                             carry=carry_of(banana=carry_after))],
+                       plants=[plant("BANANA", DIAG, size=4, health=6,
+                                     fruits=fruits_after)]),
+        ]
+        return make_trace(blocks, ["PLANT 0 BANANA", "WAIT", "WAIT"])
+
+    def test_opponent_harvesting_our_tree_is_recorded(self):
+        """The violation: the tree loses a fruit and that same opponent gains a banana.
+
+        Both halves are required — a fruit count falling on its own proves nothing, since
+        fruit can be lost other ways."""
+        kinds = self.kinds(self.replay_trace(fruits_after=1, carry_after=1))
+        self.assertIn("opp_harvested_ours", kinds)
+
+    def test_an_opponent_standing_on_our_tree_is_not_enough(self):
+        """The innocent case: same opponent, same cell, same carry increase — but the tree
+        keeps its fruit, so no harvest of ours is recorded."""
+        kinds = self.kinds(self.replay_trace(fruits_after=2, carry_after=1))
+        self.assertNotIn("opp_harvested_ours", kinds)
+
+
 class TestD7(unittest.TestCase):
     """D-7 lost harvested fruit ledger."""
 
