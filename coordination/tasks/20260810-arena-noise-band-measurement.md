@@ -217,9 +217,24 @@ unable to tell whether a fourth deployment exists.
   is reported explicitly.
 - **Outcome**: recorded in the row below immediately after the call returns, whatever it says.
 
+**Call returned 2026-08-13T05:24Z — ACCEPTED, UNAMBIGUOUS. The budget is now spent.**
+
+```
+accepted=true  ambiguous=false  http_status=200  mutation_calls=1
+phase=submit  endpoint=TestSession/submit  submission_id=41129543
+source_sha256=98628e98…  source_bytes=75634
+```
+
 | run | UTC submit | submission / agent | initial health | terminal 160/160 |
 |---|---|---|---|---|
-| 4 | 2026-08-13T05:23Z (intent) | *pending — result appended post-call* | pending | pending |
+| 4 | 2026-08-13T05:24Z | **41129543 / agent pending propagation** (`accepted=true ambiguous=false http=200 mutation_calls=1`, sha `98628e98…` verified pre-call, 75,634 B) | pending | pending |
+
+**Agent id not yet assigned at 05:25Z:** `cg_rank.py` still reports the arena room at
+`agentId=6612307` — run 3's agent, score 24.9, rank 21/147. That is the known room-cache lag, not
+a failed submission; the submission id is confirmed. The run-4 agent id will be read from the room
+once it propagates, and **no checkpoint will be taken against a guessed agent id** — the checkpoint
+tool requires both agent and submission and refuses mixed pairs, which is the behaviour that caught
+the run-2/run-3 flaps.
 
 ### Field-identity hazard in the inherited four-read baseline — READ BEFORE APPENDING TO THE REGISTRY
 
