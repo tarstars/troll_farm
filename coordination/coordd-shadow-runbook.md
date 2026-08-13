@@ -124,6 +124,12 @@ a whole session (guards instance 4). To page long output:
 (bypassable with `--no-verify`; the wrapper is canonical). Full findings:
 `local_claude_1/verification/g5-disarmed-harness-sweep-2026-08-12.md`.
 
+**Arena mutations require fresh mail (ruled 2026-08-13):** any platform mutation call must
+be preceded by a full `inbox_sweep.py --me <me> --fetch`, exit code examined, within ~10
+minutes of the call. Publishing is not freshness: the wrapper's fetch was branch-scoped
+until 2026-08-13 and could never surface inbound mail (run-4 fired against an 8.5-hour-old
+lease view; authorization happened to be valid — the method was not).
+
 **Verify the gate exists before trusting it (claude_1 finding, 2026-08-12):** a gate
 defined on trunk is not armed on a branch that lacks it — `publish_outbox.sh` was absent
 from `agent/claude_1` while being "binding," and nothing on screen announces an absent
