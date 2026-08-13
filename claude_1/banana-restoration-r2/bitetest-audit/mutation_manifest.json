@@ -7,7 +7,7 @@
  "pinned_sources": {
   "trace_detectors.py": "59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209",
   "conversion_race_oracle.py": "e0896e3f7cb2c7ac4ced35350469d704432f8c7a1a8a4c9c4ce41495ca13ecf7",
-  "test_trace_detectors.py": "07e87c91c97acb33f41bd9455b8302afe3a4416953fed272c655fa2f42bb58e6"
+  "test_trace_detectors.py": "086645a3efcac5eef1df030b50d4fd2d5c40c0ad1ac8f11c63138a9df0930677"
  },
  "test_command": "python3 -m unittest test_trace_detectors",
  "baseline_tests": 28,
@@ -360,7 +360,8 @@
    "replacement": "t_late = TOTAL_TURNS - (1 * cd + ceil_div(",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "I-5 orthogonal cutoff 2*CD -> 1*CD",
    "excluded_from_totals": false
@@ -373,7 +374,8 @@
    "replacement": "                BANANA_HEALTH_BASE + BANANA_HEALTH_SLOPE * 2, chop) + 20)",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "I-5 orthogonal cutoff slack +2 -> +20",
    "excluded_from_totals": false
@@ -386,7 +388,8 @@
    "replacement": "            BANANA_HEALTH_BASE + BANANA_HEALTH_SLOPE * 1, chop) + 40)",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "I-5 global cutoff slack +1 -> +40",
    "excluded_from_totals": false
@@ -399,7 +402,8 @@
    "replacement": "        if False:                           # MUTANT: I-13 cumulative off\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "I-13 cumulative |Ring| bound disabled",
    "excluded_from_totals": false
@@ -412,7 +416,8 @@
    "replacement": "        over = False                               # MUTANT: concurrent off\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "I-13 concurrent |Ring| bound disabled",
    "excluded_from_totals": false
@@ -425,7 +430,8 @@
    "replacement": "        cd = BANANA_PLANT_COOLDOWN - BANANA_WATER_BOOST  # MUTANT: always wet\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "water-boost branch collapsed: CD is always CD_wet",
    "excluded_from_totals": false

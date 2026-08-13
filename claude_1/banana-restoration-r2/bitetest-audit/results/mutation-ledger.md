@@ -1,7 +1,7 @@
 # Mutation ledger (generated — do not hand-edit)
 
 Source: `results/mutation-results.json`  
-manifest sha256 `d73e798a3b62e89b1670531a9c1083839b7f12e70f2af568c09ffbb79a146b07`  
+manifest sha256 `5c7575d53dddbbd2d369e15f5aeb21fd6213d13d9b89f6fc8694e26b81cbf470`  
 runner sha256 `8dbf4f7774a2cdc014e702675cf9fcf3e051b57f91fcf914782451bc706dd519`  
 probe corpus sha256 `9afe7f3cf3cb073158e67226ddbed31a750cda19900fc031853195cb8b0f3ddb`  
 python 3.12.3, control green: True
@@ -9,10 +9,10 @@ python 3.12.3, control green: True
 Pinned sources:
 
 - `conversion_race_oracle.py` sha256 `e0896e3f7cb2c7ac4ced35350469d704432f8c7a1a8a4c9c4ce41495ca13ecf7`
-- `test_trace_detectors.py` sha256 `07e87c91c97acb33f41bd9455b8302afe3a4416953fed272c655fa2f42bb58e6`
+- `test_trace_detectors.py` sha256 `086645a3efcac5eef1df030b50d4fd2d5c40c0ad1ac8f11c63138a9df0930677`
 - `trace_detectors.py` sha256 `59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209`
 
-Totals: **64 mutants run, 33 caught, 31 survived** (kill rate 51.6 %). `caught_by_expected` = 33; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 15 UNWITNESSED; PROBE_SENSITIVE survivors = 20.
+Totals: **64 mutants run, 39 caught, 25 survived** (kill rate 60.9 %). `caught_by_expected` = 39; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 15 UNWITNESSED; PROBE_SENSITIVE survivors = 18.
 
 ## Per detector
 
@@ -22,12 +22,12 @@ Totals: **64 mutants run, 33 caught, 31 survived** (kill rate 51.6 %). `caught_b
 | D-2 | 6 | 2 | 2 | 4 | 2 | 33 % |
 | D-3 | 4 | 3 | 3 | 1 | 1 | 75 % |
 | D-4 | 6 | 2 | 2 | 4 | 3 | 33 % |
-| D-5 | 8 | 2 | 2 | 6 | 2 | 25 % |
+| D-5 | 8 | 8 | 8 | 0 | 0 | 100 % |
 | D-6 | 9 | 2 | 2 | 7 | 6 | 22 % |
 | D-7 | 8 | 6 | 6 | 2 | 2 | 75 % |
 | D-8 | 11 | 10 | 10 | 1 | 0 | 91 % |
 | D-9 | 4 | 4 | 4 | 0 | 0 | 100 % |
-| **all** | **64** | **33** | **33** | **31** | **20** | **51.6 %** |
+| **all** | **64** | **39** | **39** | **25** | **18** | **60.9 %** |
 
 ## Full ledger
 
@@ -61,12 +61,12 @@ Totals: **64 mutants run, 33 caught, 31 survived** (kill rate 51.6 %). `caught_b
 | D4-M6 | D-4 | `trace_detectors.py` | SURVIVED | UNWITNESSED | DROP-at-door commitment start deleted |
 | D5-M1 | D-5 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | I-12 Ring membership cheby == 1 -> cheby == 2 |
 | D5-M6 | D-5 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | I-12 Ring narrowed from cheby == 1 to the four orthogonal doors |
-| D5-M2 | D-5 | `trace_detectors.py` | SURVIVED | UNWITNESSED | I-5 orthogonal cutoff 2*CD -> 1*CD |
-| D5-M3 | D-5 | `trace_detectors.py` | SURVIVED | UNWITNESSED | I-5 orthogonal cutoff slack +2 -> +20 |
-| D5-M7 | D-5 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | I-5 global cutoff slack +1 -> +40 |
-| D5-M4 | D-5 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | I-13 cumulative \|Ring\| bound disabled |
-| D5-M5 | D-5 | `trace_detectors.py` | SURVIVED | UNWITNESSED | I-13 concurrent \|Ring\| bound disabled |
-| D5-M8 | D-5 | `trace_detectors.py` | SURVIVED | UNWITNESSED | water-boost branch collapsed: CD is always CD_wet |
+| D5-M2 | D-5 | `trace_detectors.py` | CAUGHT | UNWITNESSED | I-5 orthogonal cutoff 2*CD -> 1*CD |
+| D5-M3 | D-5 | `trace_detectors.py` | CAUGHT | UNWITNESSED | I-5 orthogonal cutoff slack +2 -> +20 |
+| D5-M7 | D-5 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | I-5 global cutoff slack +1 -> +40 |
+| D5-M4 | D-5 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | I-13 cumulative \|Ring\| bound disabled |
+| D5-M5 | D-5 | `trace_detectors.py` | CAUGHT | UNWITNESSED | I-13 concurrent \|Ring\| bound disabled |
+| D5-M8 | D-5 | `trace_detectors.py` | CAUGHT | UNWITNESSED | water-boost branch collapsed: CD is always CD_wet |
 | D6-M1 | D-6 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a2) opponent-chopper ETA bound <= 2 -> <= 1 |
 | D6-M2 | D-6 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | clause (a2) opponent-chopper ETA bound <= 2 -> <= 6 |
 | D6-M8 | D-6 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | clause (a2) opponent-chopper ETA bound <= 2 -> <= 5 |

@@ -277,6 +277,133 @@ class TestD5(unittest.TestCase):
         self.assertEqual(verdict(td.detect_d5(tr)), ("PASS", 0))
 
 
+# The Ring is the 8 cells at Chebyshev distance 1 from the tent — the only legal
+# banana slots (I-12). |Ring| = 8 is the bound both I-13 clauses are written against.
+RING = [(x, y) for x in range(3, 6) for y in range(2, 5) if (x, y) != TENT]
+
+# Same 9x7 map, but with water at (4,1) — orthogonally adjacent to the DOOR slot
+# (4,2), so `near_water(DOOR)` is True and the planting cooldown is CD_wet = 4.
+MAP_ROWS_WATER = [
+    ".........",
+    "....~....",
+    ".........",
+    "....0....",
+    ".........",
+    ".........",
+    "........1",
+]
+
+
+def make_trace_on(map_rows, blocks, command_lines):
+    """make_trace, but on a caller-supplied map (needed to exercise water)."""
+    body = [MAP_HEADER] + map_rows
+    for block in blocks:
+        body.extend(block)
+    return td.build_trace("\n".join(body) + "\n", "\n".join(command_lines) + "\n")
+
+
+class TestD5Uncovered(unittest.TestCase):
+    """G6 fixtures for the three D-5 branches the bite-test audit found with NO_FIXTURE.
+
+    Task `20260810-guards-that-cannot-fail`, sub-item G6. Fixtures only — no predicate is
+    touched. Each branch gets both halves: the innocent case that must stay silent, and a
+    deliberately violating subject observed firing.
+
+    Branch -> mutant these are written to kill:
+      (b) I-13 cumulative bound `:850`   -> D5-M4 (`len(cumulative) > ring_size` -> False)
+      (c) I-13 concurrent bound `:876`   -> D5-M5 (`len(alive) > ring_size` -> False)
+      (f) water-boost CD selection `:857`-> D5-M8 (cooldown always CD_wet)
+    """
+
+    def sequential_plant(self, cells, keep_alive):
+        """One PLANT per turn, walking the unit onto each cell in turn.
+
+        `keep_alive` controls whether the planted trees are still present in later states:
+        the cumulative bound counts PLANT events and does not care, the concurrent bound
+        counts living trees and cares entirely.
+        """
+        blocks, cmds = [], []
+        for i in range(len(cells) + 1):
+            planted = cells[:i] if keep_alive else []
+            here = cells[i] if i < len(cells) else cells[-1]
+            blocks.append(turn_block(
+                [unit(0, 0, here, carry=carry_of(banana=1)), OPP],
+                plants=[plant("BANANA", c) for c in planted]))
+            cmds.append("PLANT 0 BANANA" if i < len(cells) else "WAIT")
+        return make_trace(blocks, cmds)
+
+    def kinds(self, tr):
+        return {e["kind"] for e in td.detect_d5(tr)["episodes"]}
+
+    # --- (b) I-13 cumulative bound ------------------------------------------------
+
+    def test_eight_distinct_ring_cells_is_within_the_cumulative_bound(self):
+        """The innocent case: every Ring slot used once is exactly |Ring|, not over it."""
+        self.assertEqual(len(RING), 8)
+        self.assertEqual(verdict(td.detect_d5(self.sequential_plant(RING, False))), ("PASS", 0))
+
+    def test_a_ninth_distinct_cell_breaks_the_cumulative_bound(self):
+        """The violation: a 9th distinct planting site exceeds |Ring| over the game.
+
+        The 9th cell is necessarily outside the Ring — there is no 9th Ring cell — so this
+        trace also trips `outside_ring`. The assertion names `cumulative_over_ring`
+        specifically so the two clauses cannot stand in for one another."""
+        kinds = self.kinds(self.sequential_plant(RING + [(6, 3)], False))
+        self.assertIn("cumulative_over_ring", kinds)
+
+    def test_replanting_the_same_cell_does_not_grow_the_cumulative_count(self):
+        """Cumulative counts DISTINCT sites: nine plants on eight cells stays legal."""
+        self.assertEqual(verdict(td.detect_d5(self.sequential_plant(RING + [RING[0]], False))),
+                         ("PASS", 0))
+
+    # --- (c) I-13 concurrent bound -------------------------------------------------
+
+    def test_eight_trees_alive_at_once_is_within_the_concurrent_bound(self):
+        """The innocent case: eight living trees is exactly |Ring|."""
+        self.assertNotIn("concurrent_over_ring", self.kinds(self.sequential_plant(RING, True)))
+
+    def test_nine_trees_alive_at_once_breaks_the_concurrent_bound(self):
+        """The violation: a 9th simultaneously living tree.
+
+        Distinct from (b): the cumulative clause counts sites ever used, this one counts
+        trees standing at the same moment. The two are only equal when nothing is felled."""
+        kinds = self.kinds(self.sequential_plant(RING + [(6, 3)], True))
+        self.assertIn("concurrent_over_ring", kinds)
+
+    # --- (f) water-boost cooldown selection ---------------------------------------
+    #
+    # The orthogonal-slot planting deadline is T_late = 300 - (2*CD + ceil(4/chop) + 2),
+    # so the cooldown chosen by this branch moves the deadline: CD_dry = 6 gives 282,
+    # CD_wet = 4 gives 286. Planting at turn 284 falls between them, which is the only
+    # window where the branch's choice is observable. The global cutoff (296) is not
+    # reached at 284, so nothing else can account for the verdict.
+
+    def late_plant(self, map_rows, cell, turn, total=300):
+        blocks, cmds = [], []
+        for t in range(1, total + 1):
+            carry = carry_of(banana=1) if t <= turn else [0] * 6
+            blocks.append(turn_block([unit(0, 0, cell, carry=carry), OPP],
+                                     plants=[plant("BANANA", cell)] if t > turn else []))
+            cmds.append("PLANT 0 BANANA" if t == turn else "WAIT")
+        return make_trace_on(map_rows, blocks, cmds)
+
+    def test_dry_slot_planted_after_its_deadline_is_flagged(self):
+        """The violation: no water, so CD_dry = 6 and the deadline is 282 — 284 is late."""
+        tr = self.late_plant(MAP_ROWS, DOOR, 284)
+        self.assertFalse(tr.near_water(DOOR), "precondition: the default map has no water")
+        self.assertIn("orth_cutoff", self.kinds(tr))
+
+    def test_the_same_turn_is_legal_next_to_water(self):
+        """The innocent case: water adjacent, so CD_wet = 4 and the deadline moves to 286.
+
+        Identical cell, identical turn, identical everything except one water tile. The
+        PASS is itself the evidence that the water branch was taken — a dry cell planted at
+        284 fails the test above."""
+        tr = self.late_plant(MAP_ROWS_WATER, DOOR, 284)
+        self.assertTrue(tr.near_water(DOOR), "precondition: water must be adjacent to the slot")
+        self.assertEqual(verdict(td.detect_d5(tr)), ("PASS", 0))
+
+
 class TestD6(unittest.TestCase):
     """D-6 opponent-favored fruit creation."""
 
