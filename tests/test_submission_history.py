@@ -525,13 +525,73 @@ def test_every_deployment_since_the_restored_resident_era_is_covered(registry: d
 
 
 def test_exactly_one_submission_is_active(registry: dict) -> None:
+    # This pin tracks whoever is actually deployed and must be updated by the agent that
+    # changes the resident.  Sigma run 4 (2026-08-13, submission 41129543 / agent 6614096)
+    # is the current live identity; the previous pin named 41090606 / 6594200, which had in
+    # fact been displaced by 41113243 back on 2026-08-12 and was never re-marked -- so this
+    # test was failing on `len(live) == 1` with two actives until that disposition was
+    # corrected (evidence: coordination/tasks/20260812-readable-no-orchard-rerun-arena.md:147).
     live = [s for s in registry["submissions"] if s["disposition"] == "active"]
     assert len(live) == 1
-    assert live[0]["submission_id"] == 41090606
-    assert live[0]["agent_id"] == 6594200
+    assert live[0]["submission_id"] == 41129543
+    assert live[0]["agent_id"] == 6614096
 
 
 def test_every_source_file_still_hashes_to_its_recorded_value(registry: dict) -> None:
     for source in registry["sources"]:
         path = os.path.join(sh.REPO_ROOT, source["path"])
         assert sh.sha256_file(path) == source["sha256"], source["source_id"]
+
+
+# --- stale arena-room row must not be ingested as the run's own score -------------
+#
+# The checkpoint reader sets identity_clean=False when the arena room block reports a
+# different agent than the deployment being measured (arena_transfer_checkpoint.py:212).
+# The builder checked raw['agent_id'] and filtered_ladder['agent_id'] but never
+# arena['agent_id'] -- and then took score/rank/field_size from that unchecked block.
+# On sigma run 2 (41125448 / agent 6610636) the room served agent 6604529's cached row,
+# so the builder recorded score 22.46 / field_size 140 with identity_faults == 0 and
+# maturity 'terminal': another deployment's score, admitted to the pooled SD, flagged
+# as clean.  22.46 is also 41113243's own genuine terminal score, so the corrupted value
+# reads as a plausible duplicate rather than an error.
+
+REAL_RUN2_CHECKPOINT = "data/analysis/arena-noise-band-2026-08/run2-checkpoint-terminal.json"
+
+
+def _run2_entry() -> dict:
+    path = os.path.join(sh.REPO_ROOT, REAL_RUN2_CHECKPOINT)
+    return {
+        "observation_id": "obs-41125448-terminal160",
+        "path": REAL_RUN2_CHECKPOINT,
+        "sha256": sh.sha256_file(path),
+        "expect_agent_id": 6610636,
+        "expect_submission_id": 41125448,
+        "observation_scope": "submission_scoped",
+        "observed_at_override": None,
+        "observed_at_override_evidence": None,
+        "is_terminal_audit": True,
+    }
+
+
+def test_stale_arena_room_row_is_faulted_not_silently_ingested() -> None:
+    """A room block naming a different agent is an identity fault, so the observation
+    cannot reach the mature set that feeds the pooled SD."""
+    obs = sh._observation_from_checkpoint(_run2_entry())
+    assert obs["identity_faults"] >= 1
+    assert obs["evidence_maturity"] == "invalid"
+    assert obs["evidence_maturity"] not in sh_mature_set()
+
+
+def test_checkpoint_self_reported_identity_clean_is_honoured() -> None:
+    """The producing tool's own verdict must not be discarded by the consumer."""
+    entry = _run2_entry()
+    raw = json.load(open(os.path.join(sh.REPO_ROOT, REAL_RUN2_CHECKPOINT), encoding="utf-8"))
+    assert raw["identity_clean"] is False, "fixture must be a genuinely unclean read"
+    obs = sh._observation_from_checkpoint(entry)
+    assert obs["identity_faults"] >= 1
+
+
+def sh_mature_set() -> frozenset:
+    from cgauto import arena_noise_band as anb
+
+    return anb.MATURE

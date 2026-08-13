@@ -165,7 +165,7 @@ already removed on trunk (STATE §1 follow-up discharged).
 | 1 | 2026-08-12T06:27Z | **41125196 / agent 6610399** (`accepted=true ambiguous=false http=200 mutation_calls=1`; post-submit live recover exact `98628e98…`) | 06:52Z: 89/89 parsed, 17.62 / rank 99/147, cat 8 (9.0%), **signals=0 identity_clean=True** (`run1-checkpoint-initial.json`) | 07:41Z: **160/160, 19.77 / rank 60/147**, cat 12 (7.5%), neg_mass 3871, **signals=0 identity_clean=True** (`run1-checkpoint-terminal.json`) |
 
 | 2 | 2026-08-12T07:44Z | **41125448 / agent 6610636** (`accepted=true ambiguous=false http=200 mutation_calls=1`) | — (matured across host suspend) | read 19:29Z: **160/160, 23.73 / rank 29/147**, cat 17 (10.6%), neg_mass 5463, **signals=0 identity_clean=True** (`run2-checkpoint-terminal.json`) |
-| 3 | 2026-08-12T19:30Z | **41128302 / agent 6612307** (`accepted=true ambiguous=false`) | 19:58–20:01Z: room cache flapped (returned prior agent id twice, field count 147↔140); checkpoint correctly refused the mixed pair, then 111/111 parsed, **23.54 / rank 31/147**, cat 10 (9.0%), **signals=0 identity_clean=True** on re-read; live source re-verified exact `98628e98…` mid-flap (`run3-checkpoint-initial{,-v2}.json` — the False read kept as evidence) | pending |
+| 3 | 2026-08-12T19:30Z | **41128302 / agent 6612307** (`accepted=true ambiguous=false`) | 19:58–20:01Z: room cache flapped (returned prior agent id twice, field count 147↔140); checkpoint correctly refused the mixed pair, then 111/111 parsed, **23.54 / rank 31/147**, cat 10 (9.0%), **signals=0 identity_clean=True** on re-read; live source re-verified exact `98628e98…` mid-flap (`run3-checkpoint-initial{,-v2}.json` — the False read kept as evidence) | **2026-08-13T05:19:48Z: 160/160, 24.90 / rank 21/147**, cat 19 (11.9%), neg_mass 5292, **signals=0 identity_clean=True**, `unexpected_rows=[]`, `fetch_failures=[]` (`run3-checkpoint-terminal.json`, read by claude_1 under the VM lease) |
 
 Running spread on `98628e98…` after run 2: mature reads **24.76 / 22.46 / 19.77 / 23.73**
 — max−min **4.99**; sample SD of the four ≈ **2.16**. Note for question 4: the 19.77 read
@@ -179,6 +179,168 @@ slot is safe wherever it settles; its terminal read can be taken at any time.
 Resumption cost: one submit call + reads. Cancellation cost: none — five mature
 observations (runs 1–3 plus the two pre-campaign reads) already support a materially
 better σ than the record's 10-deployment pooled estimate.
+
+## Lease execution by claude_1 on the VM (from 2026-08-13T05:19Z)
+
+Arena authority delegated by `20260812T201400Z-…-vm-lease-policy.md`, bounded to steps 1–5.
+Environment: worktree `/home/tarstars/prj/troll_farm-plan-agent` at `agent/claude_1` merged
+current with `origin/main` (`f7069d16`). **The environment gap raised in my ack is resolved and
+was never real:** `battle_taxonomy.py:22` and `api_submit_once.py:21` both hardcode the *absolute*
+cookie path `/home/tarstars/prj/troll_farm/cgauto/cg_session.txt`, and both tools are stdlib-only,
+so the reader runs correctly from any checkout and the cookie is neither copied nor moved.
+
+**Step 1 complete — run-3 terminal read, the cleanest read of the campaign.** 160/160 finished,
+0 pending, `unexpected_rows=[]`, `fetch_failures=[]`, `identity_clean=True`, and **`arena` and
+`filtered_ladder` agree exactly (both agent 6612307, both 24.90, rank 21/147)** — no flap in this
+read. The 118-game interim it replaced is preserved in git history at `2c649a1a^`.
+
+**Maturation is not negligible and should not be treated as settling noise:** the same deployment
+read 23.61 (arena) at 118/160 and 24.90 at 160/160, **+1.29 over the last 42 games**. The gap
+between the two reads was ~9.3 h (20:02Z → 05:19Z), so this is 118→160 maturation, not drift
+measured at a fixed game count. Terminal-only comparison remains the right rule.
+
+### Step 2 — run-4 submit, RECORD WRITTEN BEFORE THE CALL
+
+This row is committed and pushed **before** the mutation call, per the lease. It is the record that
+a call was *about to be made*, so that an ambiguous or lost response can never leave the campaign
+unable to tell whether a fourth deployment exists.
+
+- **Intent stamped**: 2026-08-13T05:23:45Z (`date -u`, real clock).
+- **Source**: `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs`, verified in this
+  worktree at sha256 `98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29`, in
+  three-way agreement with the lease's `--expected-sha256` and the committed `.sha256` sidecar.
+- **Budget**: run 4 of 4. **This is the last authorized Arena mutation.** Nothing in the lease
+  permits a fifth, and an ambiguous response suspends the lease rather than licensing a retry.
+- **Tool guarantees relied on** (`api_submit_once.py`): the source hash is checked *before* any
+  network call; there is no endpoint or payload fallback; a non-200, malformed or transport-
+  ambiguous response returns `ambiguous=true` as data and makes no second call; `mutation_calls`
+  is reported explicitly.
+- **Outcome**: recorded in the row below immediately after the call returns, whatever it says.
+
+**Call returned 2026-08-13T05:24Z — ACCEPTED, UNAMBIGUOUS. The budget is now spent.**
+
+```
+accepted=true  ambiguous=false  http_status=200  mutation_calls=1
+phase=submit  endpoint=TestSession/submit  submission_id=41129543
+source_sha256=98628e98…  source_bytes=75634
+```
+
+| run | UTC submit | submission / agent | initial health | terminal 160/160 |
+|---|---|---|---|---|
+| 4 | 2026-08-13T05:24Z | **41129543 / agent 6614096** (`accepted=true ambiguous=false http=200 mutation_calls=1`, sha `98628e98…` verified pre-call, 75,634 B) | 05:30Z: 26/26 parsed, **20.30 / rank 54/147**, cat 3, **signals=0 identity_clean=True** (first attempt at 05:26Z hit the stale room row and is kept as `run4-checkpoint-initial-flap.json`) | **2026-08-13T06:40:16Z: 160/160, 23.39 / rank 31/147**, cat 22 (13.8%), neg_mass 6538, **signals=0 identity_clean=True**, arena == filtered (`run4-checkpoint-terminal.json`) |
+
+### Step 3 — the terminal read took four attempts, and the gate is why
+
+The room served the stale `6604529 / 140 / 22.46` row on three consecutive reads *after* the games
+were already complete:
+
+| UTC | games | rc | identity_clean | arena agent | score |
+|---|---|---|---|---|---|
+| 06:23Z | 141/160 | 2 | False | 6604529 | 22.46 |
+| 06:29Z | **160/160** | 2 | False | 6604529 | 22.46 |
+| 06:35Z | **160/160** | 2 | False | 6604529 | 22.46 |
+| 06:41Z | **160/160** | **0** | **True** | **6614096** | **23.39** |
+
+**A gate on `matching_finished == 160` alone would have promoted the 06:29Z read** — 160/160,
+0 pending, 0 unexpected rows, 0 fetch failures, battle data entirely correct — and recorded
+**22.46**, another deployment's score, as run 4's terminal observation. It would have looked
+immaculate. The poller gated on `identity_clean` **and** the process exit status
+(`arena_transfer_checkpoint.py` returns 2 when unclean), which is the only reason the campaign has
+23.39 instead of a second silent 22.46.
+
+Method note against my own error: an earlier invocation of that reader in this session was piped
+(`… | tail; echo $?`), which reads *tail's* status and would have reported success on every
+unclean read. The poller captures `$?` from the python process directly. Same defect class as the
+`lint | tail && push` break; it is easy to reintroduce and worth checking for by eye.
+
+## Steps 4–5 — registry appended and σ recomputed (claude_1, 2026-08-13)
+
+`build` + `validate` green (53 observations validate cleanly); `tests/test_submission_history.py`
+**47 passed**. Append script committed at `claude_1/pipeline/append_sigma_runs.py` — the append is
+reproducible, not hand-edited JSON.
+
+### Field provenance — which number came from which block of which file
+
+Every value below is `arena.score`, and in every case `arena` and `filtered_ladder` **agree** and
+both name the run's own agent, so no field-choice ambiguity survives into the estimate.
+
+| run | submission / agent | source file | arena | filtered | clean | value used |
+|---|---|---|---|---|---|---|
+| pre-1 | 41089629 / 6593838 | earlier registry entry | 24.76 | 24.76 | — | **24.76** |
+| pre-2 | 41113243 / 6604529 | earlier registry entry | 22.46 | 22.46 | — | **22.46** |
+| 1 | 41125196 / 6610399 | `run1-checkpoint-terminal.json` | 19.77 | 19.77 | true | **19.77** |
+| 2 | 41125448 / 6610636 | **`run2-checkpoint-initial.json`** | 23.73 | 23.73 | true | **23.73** |
+| 3 | 41128302 / 6612307 | `run3-checkpoint-terminal.json` | 24.90 | 24.90 | true | **24.90** |
+| 4 | 41129543 / 6614096 | `run4-checkpoint-terminal.json` | 23.39 | 23.39 | true | **23.39** |
+
+**Run 2 is read from the file labelled `initial`, deliberately** (coordinator ruling
+`20260813T060000Z`). Despite the role string it is a complete terminal observation — 160/160,
+`matching_pending: 0`, both blocks agent 6610636 at 23.73, field 147 — captured 19:22:19Z, two
+minutes *before* the room went stale at 19:24:29Z. `run2-checkpoint-terminal.json` is the flapped
+read and is **not** used for the estimate. Maturity is keyed on content
+(`matching_finished`/`matching_pending`/`identity_clean`), never on the role string in a filename.
+
+### Result
+
+```
+family e7a-readable-no-orchard-code-cost   n=6   [19.77, 22.46, 23.39, 23.73, 24.76, 24.90]   range 5.13
+4 families, 14 mature observations, 10 d.o.f.
+POOLED WITHIN-SOURCE SD = 1.501 score points      (was 1.098 at 6 d.o.f.)
+95% CI for the SD        = [1.049, 2.634]
+SD of an A-minus-B difference at n=1 each = 2.123 (was 1.552)
+
+runs per arm:  SE 1.0 -> 5   |  SE 0.5 -> 19  |  SE 0.3 -> 51
+```
+
+σ rose **37%** and the CI's lower bound (1.049) now sits *above* the previous point estimate. The
+campaign family's range of 5.13 is 2–3× every other family's (1.70–1.77), and it is the only
+family with more than four observations — the earlier 1.098 rested on families of n=2 and n=4.
+**The ±0.5–1.0 band in `docs/STATE.md` §3 is refuted as an operating assumption**, and the
+historical gates (±0.5, ≥+1.0, ≥+2) are less resolvable than the record assumed: a ≥+1.0 call now
+needs 5 runs per arm, not 3.
+
+### What Phase 1 cannot separate — stated, not hedged
+
+**Re-deployment noise and ladder drift are confounded in this design and no analysis of these six
+observations can separate them.** The runs are strictly sequential — never contemporaneous — and
+span 2026-08-04 → 2026-08-13, during which the field grew 139 → 147 and opponents resubmitted
+freely. Run 1's 19.77 in particular sits in a freshly grown legend-147 era. So `1.501` is an upper
+bound on pure re-submission variance and a lower bound on nothing: it is *the spread you should
+expect between two sequential reads of identical bytes*, which is exactly the quantity a
+sequential A/B on this ladder faces. Separating the two components needs a design this campaign
+does not have (interleaved or contemporaneous arms), and the budget is spent.
+
+**Agent id not yet assigned at 05:25Z:** `cg_rank.py` still reports the arena room at
+`agentId=6612307` — run 3's agent, score 24.9, rank 21/147. That is the known room-cache lag, not
+a failed submission; the submission id is confirmed. The run-4 agent id will be read from the room
+once it propagates, and **no checkpoint will be taken against a guessed agent id** — the checkpoint
+tool requires both agent and submission and refuses mixed pairs, which is the behaviour that caught
+the run-2/run-3 flaps.
+
+### Field-identity hazard in the inherited four-read baseline — READ BEFORE APPENDING TO THE REGISTRY
+
+The four mature reads **24.76 / 22.46 / 19.77 / 23.73 are individually correct**, and I confirmed
+each against its own record. But they are **not all the same field**, and the registry consumes a
+single `score` key (`arena_noise_band.py:90`, `obs["score"]`):
+
+| read | submission / agent | `arena.score` | `filtered_ladder.score` | note |
+|---|---|---|---|---|
+| 24.76 | 41089629 / 6593838 | 24.76 | 24.76 | agree |
+| 22.46 | 41113243 / 6604529 | 22.46 | 22.46 | agree |
+| 19.77 | run 1, 41125196 / 6610399 | 19.77 | 19.77 | agree |
+| 23.73 | run 2, 41125448 / 6610636 | **22.46, agent 6604529** | **23.73, agent 6610636** | **arena block is a stale row for a DIFFERENT agent** |
+| 24.90 | run 3, 41128302 / 6612307 | 24.90 | 24.90 | agree |
+
+Run 2's `arena` block reports agent `6604529` — submission 41113243, a different deployment — so
+its arena score is not run 2's score at all. The task record correctly took `filtered_ladder`
+(23.73). **The trap: the stale value is `22.46`, which is numerically identical to 41113243's own
+legitimate terminal score already in the baseline.** Taking run 2's arena field would have silently
+entered 41113243's score twice and read as a plausible near-duplicate rather than an error — it
+would not look wrong. The same stale-agent row appears in `run3-checkpoint-initial.json`.
+
+**Binding for step 4:** when appending, take `filtered_ladder.score` **only after checking that its
+`agent_id` matches the run's own agent**, and record which field each value came from. Runs 1, 3
+and the two pre-campaign reads may take either field; run 2 must take `filtered_ladder`.
 
 **Clock note (do not silently reconcile):** the project host suspended ~08:00–19:25Z;
 run 2 matured somewhere inside that window and was READ at 19:29Z — platform-side
