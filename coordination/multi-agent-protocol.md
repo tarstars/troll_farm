@@ -138,6 +138,25 @@ a non-empty `ack_for` and covers exactly the listed paths, nothing else; an ACK 
 set `requires_ack: true`, in which case the response targets that ACK's exact path.
 Filename timestamps are human-readable ordering hints only.
 
+## Owner-facing wording policy (owner directive, 2026-08-13)
+
+Any text the owner is expected to read — messages with `user` in `to:`/`cc:`, session
+summaries, reports, backlog/state presentations — follows these rules:
+
+1. **Plain language.** Short sentences. Say what a thing IS before what it is called.
+2. **No unexplained codes.** Every project abbreviation or codename (G6, H3a, D-9, σ,
+   CBF, …) gets a plain-language explanation at first use: *"the watchdog-test job
+   (G6)"*, *"the score-wobble number (σ, 'sigma')"*. A code the reader must look up is
+   a defect, not shorthand.
+3. **Numbers carry their meaning.** Not "σ = 1.501" alone, but "scores wobble by about
+   ±1.5 points — one test run proves nothing."
+4. **Describe, then name.** Prefer "the rule that no banana tricks happen before the
+   second troll is trained" over "the D-9(a) constraint."
+5. Inter-agent technical artifacts (task records, evidence files, code) keep full
+   precision and exact identifiers — this policy governs the owner-facing layer, not
+   the lab notebook. When one message serves both audiences, the owner-facing summary
+   comes first, the technical detail after.
+
 **Ack requirement is kind-based first, field-based second (ruled 2026-08-12, coordinator,
 after claude_1's finding):** the sweep's `ACK_REQUIRED_KINDS` (e.g. `policy`, `handoff`)
 makes those kinds ack-required regardless of front matter — `requires_ack: false` on a
