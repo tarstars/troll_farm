@@ -1,0 +1,48 @@
+{
+ "task": "LOCAL_CLAUDE_1 INDEPENDENT FLOOR SELF-TEST: parent vs parent (a8eb3b2b)",
+ "notes": [
+  "RAW/ABSOLUTE gate (owner ruling 2026-08-06): every detector D-1..D-9 episode blocks, inherited-from-parent or not, on every map, and P4 liveness has no parent exemption. The round-6 ROOT-A D-9 parent-differential gate and the D-1 inherited-report-only downgrade are both REMOVED. The parent run is still computed for the P3 orchard-inertness check (an absolute candidate==parent requirement, kept) and for diagnostics, but never exempts a candidate detector episode. trace_detectors is unmodified.",
+  "P4 ABSOLUTE terminal-state calibration (gate repair #2, 2026-08-06): a stall window blocks only over the turns in which the referee world state still offers the own player a resource action -- i.e. some own unit still carries something to bank/plant, or some plant still stands on a cell an own unit can walk to (harvest/chop) -- so a stall that begins after the world is exhausted for the rest of the game is excused while any stall of >= liveness_window LIVE turns, mid-game or running to the sim horizon, still blocks. The predicate reads only the candidate's own transcript (static map + plants + own units): no parent reference, no all-WAIT command heuristic."
+ ],
+ "candidate": {
+  "source": "/home/tarstars/prj/troll_farm-local_claude_1/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+  "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "crate": "floor_selftest_candidate"
+ },
+ "parent": {
+  "source": "/home/tarstars/prj/troll_farm-local_claude_1/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+  "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "crate": "banana_r2_fuzz_parent"
+ },
+ "seeds": [
+  982451653,
+  15485863,
+  32452843,
+  49979687,
+  67867967,
+  86028121
+ ],
+ "maps": 120,
+ "turns": 200,
+ "processes": 8,
+ "liveness_window": 60,
+ "margin_collapse_threshold": 100,
+ "max_generation_attempts": 64,
+ "class_mix": {
+  "choke_corridor": 0.25,
+  "open_field": 0.15,
+  "single_door_tent": 0.1,
+  "multi_door": 0.1,
+  "water_diagonal": 0.15,
+  "orchard_eligible": 0.1,
+  "forest_dense": 0.08,
+  "forest_sparse": 0.07
+ },
+ "opponent_mix": {
+  "idle": 0.3,
+  "harvester": 0.4,
+  "chopper_aggressor": 0.3
+ },
+ "games_dir": "/tmp/claude-1001/-home-tarstars-prj-troll-farm/079b2fed-96c3-4e38-ac96-6ce6f8e933ac/scratchpad/fuzz/games-floor",
+ "bin_cache_dir": "/tmp/claude-1001/-home-tarstars-prj-troll-farm/079b2fed-96c3-4e38-ac96-6ce6f8e933ac/scratchpad/fuzz/bin"
+}

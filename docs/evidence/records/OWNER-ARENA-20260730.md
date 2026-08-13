@@ -62,7 +62,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
   "acceptance": {
     "author": "chatgpt_1",
     "reviewer": "local_codex_1",
-    "state": "proposed"
+    "state": "accepted"
   },
   "attempts": [
     "per-candidate permission gate",
@@ -74,8 +74,10 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
     "bullet": "Standing Arena authorization: the single arena controller may submit candidates that pass frozen qualification and the full promotion runbook without per-candidate permission. Expected gain must exceed the ±0.5–1 rating noise band; owner notification, serialization, and complete logging remain mandatory. [owner decision 2026-07-30]",
     "section": "Arena policy",
     "source": {
+      "commit": "cb1d53c8592380c14381135f1947abc6246cce3d",
       "locator": "lines 47-69",
-      "path": "docs/STATE.md"
+      "path": "docs/STATE.md",
+      "quote": "interaction with arena. Submit anything worth trying.\"* Scope, as recorded and confirmed\n  by the integrator:\n  - **Authorized without asking:** submitting a candidate that has passed its frozen\n    protocol's gates; the full promotion protocol including the capacity A/A phase; timed\n    reads; reverts and exact-resident restore within a cycle.\n  - **Still surfaced to the owner BEFORE acting** (not a permission request — a\n    notification, because these are not what was authorized): submitting anything that has\n    NOT passed frozen gates (i.e. experimenting on the live ladder); any action that would\n    abandon a matured score with no qualified candidate in hand; more than one submission\n    cycle in flight; anything that could forfeit the ladder slot.\n  - **Replacement discipline the integrator applies in place of the owner's gate** — since\n    the permission bottleneck is gone, the *evidence* bottleneck is stated explicitly:\n    (i) a QUALIFIED verdict from a frozen protocol is required; (ii) expected gain must\n    exceed the arena's own noise band (±0.5–1) on its own or bundled with others to exceed\n    it, because below that a submission buys an unmeasurable result at a measured cost;\n    (iii) the promotion runbook runs in full, no shortcuts; (iv) the owner is told before a\n    cycle starts and again when it terminates; (v) every submission id and terminal\n    response is logged to the ledger.\n  - **Unchanged:** mutations remain serialized through the **single arena controller**\n    (now `local_codex_1` by default — see the reassignment note in this section). No peer agent or subagent may submit. The no-churn evidence still binds\n    the judgment even though it no longer binds the permission.\n- Never churn submissions: fresh reads sit 3–4 points below matured ones; every failed\n  trial costs days of standing."
     }
   },
   "cost": {
@@ -92,8 +94,10 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
       "name": "noise_band",
       "population": "qualified candidate promotion decisions",
       "source": {
+        "commit": "cb1d53c8592380c14381135f1947abc6246cce3d",
         "locator": "lines 47-69",
-        "path": "docs/STATE.md"
+        "path": "docs/STATE.md",
+        "quote": "interaction with arena. Submit anything worth trying.\"* Scope, as recorded and confirmed\n  by the integrator:\n  - **Authorized without asking:** submitting a candidate that has passed its frozen\n    protocol's gates; the full promotion protocol including the capacity A/A phase; timed\n    reads; reverts and exact-resident restore within a cycle.\n  - **Still surfaced to the owner BEFORE acting** (not a permission request — a\n    notification, because these are not what was authorized): submitting anything that has\n    NOT passed frozen gates (i.e. experimenting on the live ladder); any action that would\n    abandon a matured score with no qualified candidate in hand; more than one submission\n    cycle in flight; anything that could forfeit the ladder slot.\n  - **Replacement discipline the integrator applies in place of the owner's gate** — since\n    the permission bottleneck is gone, the *evidence* bottleneck is stated explicitly:\n    (i) a QUALIFIED verdict from a frozen protocol is required; (ii) expected gain must\n    exceed the arena's own noise band (±0.5–1) on its own or bundled with others to exceed\n    it, because below that a submission buys an unmeasurable result at a measured cost;\n    (iii) the promotion runbook runs in full, no shortcuts; (iv) the owner is told before a\n    cycle starts and again when it terminates; (v) every submission id and terminal\n    response is logged to the ledger.\n  - **Unchanged:** mutations remain serialized through the **single arena controller**\n    (now `local_codex_1` by default — see the reassignment note in this section). No peer agent or subagent may submit. The no-churn evidence still binds\n    the judgment even though it no longer binds the permission.\n- Never churn submissions: fresh reads sit 3–4 points below matured ones; every failed\n  trial costs days of standing."
       }
     },
     {
@@ -103,8 +107,10 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
       "name": "controller_count",
       "population": "all live submission cycles",
       "source": {
+        "commit": "cb1d53c8592380c14381135f1947abc6246cce3d",
         "locator": "lines 47-69",
-        "path": "docs/STATE.md"
+        "path": "docs/STATE.md",
+        "quote": "interaction with arena. Submit anything worth trying.\"* Scope, as recorded and confirmed\n  by the integrator:\n  - **Authorized without asking:** submitting a candidate that has passed its frozen\n    protocol's gates; the full promotion protocol including the capacity A/A phase; timed\n    reads; reverts and exact-resident restore within a cycle.\n  - **Still surfaced to the owner BEFORE acting** (not a permission request — a\n    notification, because these are not what was authorized): submitting anything that has\n    NOT passed frozen gates (i.e. experimenting on the live ladder); any action that would\n    abandon a matured score with no qualified candidate in hand; more than one submission\n    cycle in flight; anything that could forfeit the ladder slot.\n  - **Replacement discipline the integrator applies in place of the owner's gate** — since\n    the permission bottleneck is gone, the *evidence* bottleneck is stated explicitly:\n    (i) a QUALIFIED verdict from a frozen protocol is required; (ii) expected gain must\n    exceed the arena's own noise band (±0.5–1) on its own or bundled with others to exceed\n    it, because below that a submission buys an unmeasurable result at a measured cost;\n    (iii) the promotion runbook runs in full, no shortcuts; (iv) the owner is told before a\n    cycle starts and again when it terminates; (v) every submission id and terminal\n    response is logged to the ledger.\n  - **Unchanged:** mutations remain serialized through the **single arena controller**\n    (now `local_codex_1` by default — see the reassignment note in this section). No peer agent or subagent may submit. The no-churn evidence still binds\n    the judgment even though it no longer binds the permission.\n- Never churn submissions: fresh reads sit 3–4 points below matured ones; every failed\n  trial costs days of standing."
       }
     }
   ],
@@ -136,15 +142,17 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
   "reopening_conditions": [
     "An explicit owner policy change."
   ],
-  "schema_version": 1,
+  "schema_version": 2,
   "scope": "Live ladder mutation by the single arena controller under the promotion runbook.",
   "status": "authorized",
   "textual_evidence": [
     {
       "claim": "Qualified candidates may be submitted without asking; unqualified live experiments must be surfaced before acting.",
       "source": {
+        "commit": "cb1d53c8592380c14381135f1947abc6246cce3d",
         "locator": "lines 47-69",
-        "path": "docs/STATE.md"
+        "path": "docs/STATE.md",
+        "quote": "interaction with arena. Submit anything worth trying.\"* Scope, as recorded and confirmed\n  by the integrator:\n  - **Authorized without asking:** submitting a candidate that has passed its frozen\n    protocol's gates; the full promotion protocol including the capacity A/A phase; timed\n    reads; reverts and exact-resident restore within a cycle.\n  - **Still surfaced to the owner BEFORE acting** (not a permission request — a\n    notification, because these are not what was authorized): submitting anything that has\n    NOT passed frozen gates (i.e. experimenting on the live ladder); any action that would\n    abandon a matured score with no qualified candidate in hand; more than one submission\n    cycle in flight; anything that could forfeit the ladder slot.\n  - **Replacement discipline the integrator applies in place of the owner's gate** — since\n    the permission bottleneck is gone, the *evidence* bottleneck is stated explicitly:\n    (i) a QUALIFIED verdict from a frozen protocol is required; (ii) expected gain must\n    exceed the arena's own noise band (±0.5–1) on its own or bundled with others to exceed\n    it, because below that a submission buys an unmeasurable result at a measured cost;\n    (iii) the promotion runbook runs in full, no shortcuts; (iv) the owner is told before a\n    cycle starts and again when it terminates; (v) every submission id and terminal\n    response is logged to the ledger.\n  - **Unchanged:** mutations remain serialized through the **single arena controller**\n    (now `local_codex_1` by default — see the reassignment note in this section). No peer agent or subagent may submit. The no-churn evidence still binds\n    the judgment even though it no longer binds the permission.\n- Never churn submissions: fresh reads sit 3–4 points below matured ones; every failed\n  trial costs days of standing."
       }
     }
   ],

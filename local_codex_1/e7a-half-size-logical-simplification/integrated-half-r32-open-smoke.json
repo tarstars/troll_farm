@@ -1,0 +1,128 @@
+{
+  "evidence_boundary": "continued-referee engineering gate on already-consumed official maps; not an Arena predictor",
+  "gates": {
+    "bootstrap_lower_above_minus_2": false,
+    "both_seat_means_nonnegative": false,
+    "catastrophes_not_increased": true,
+    "coverage_at_least_512": false,
+    "five_of_six_family_means_nonnegative": false,
+    "latency_max_below_50ms": true,
+    "latency_p95_at_most_120pct": true,
+    "mean_delta_at_least_minus_0_5": false,
+    "median_worker2_delay_at_most_10": true,
+    "negative_mass_not_increased": false,
+    "six_families": true,
+    "worker2_coverage_at_least_95pct": true,
+    "zero_critical": true,
+    "zero_unclassified": true
+  },
+  "inputs": {
+    "baseline": {
+      "bytes": 62820,
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+      "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+    },
+    "candidate": {
+      "bytes": 31387,
+      "path": "local_codex_1/e7a-half-size-logical-simplification/integrated-half-r32.rs",
+      "sha256": "abb202db71040f8784b7d02cc114ced9f71d82e82d3c8a1cc975d87d3feeb4da"
+    },
+    "compiler": {
+      "baseline_module_sha256": "ffc92780c2bdf418740f197c22effb20a3ad6d957ea9b0f9bb451cab71294ded",
+      "candidate_module_sha256": "5e3c13b477c201eb6e7cdceb05f761705ba2fb96382b9adcc4e224dc839f18ab",
+      "runner_sha256": "4d30ec25db7055faba9d7f33007ec4cc17f67680d529dbda876025613633d72e",
+      "rust_library_sha256": "1802bd8d69023b2e374d0a9586c33296485456892a9821dc635f5cb6dde0e660"
+    },
+    "panel_tsv": "local_codex_1/e7a-half-size-logical-simplification/integrated-half-r32-open-smoke.tsv",
+    "runner": "local_codex_1/e7a-half-size-logical-simplification/open_panel_runner.rs",
+    "sacred_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "metrics": {
+    "bootstrap_95_lower": -9.916666666666666,
+    "catastrophes": {
+      "baseline": 0,
+      "candidate": 0
+    },
+    "family_mean_delta": {
+      "compact_gold": 4,
+      "gold_adaptive": 4,
+      "legend_balanced": -42,
+      "mybot": -7.5,
+      "norx_native_three": -12,
+      "resident": -6
+    },
+    "issues": {
+      "baseline": 84,
+      "candidate": 88
+    },
+    "latency": {
+      "baseline": {
+        "maximum_ms": 2.921811,
+        "maximum_ns": 2921811,
+        "p95_ms": 0.305964,
+        "p95_ns": 305964,
+        "samples": 3060
+      },
+      "candidate": {
+        "maximum_ms": 0.323579,
+        "maximum_ns": 323579,
+        "p95_ms": 0.22263,
+        "p95_ns": 222630,
+        "samples": 3121
+      },
+      "candidate_p95_ratio": 0.7276346236812175
+    },
+    "maximum_period2": {
+      "baseline": 7,
+      "candidate": 3
+    },
+    "mean_margin_delta": -9.916666666666666,
+    "mean_opponent_score": {
+      "baseline": 62.333333333333336,
+      "candidate": 59.833333333333336
+    },
+    "mean_score": {
+      "baseline": 125.58333333333333,
+      "candidate": 113.16666666666667
+    },
+    "negative_margin_mass": {
+      "baseline": 4,
+      "candidate": 12
+    },
+    "period2_ge6": {
+      "baseline": 1,
+      "candidate": 0
+    },
+    "seat_mean_delta": {
+      "0": -8.666666666666666,
+      "1": -11.166666666666666
+    },
+    "training": {
+      "baseline_games": 12,
+      "candidate_on_baseline_games": 12,
+      "coverage": 1.0,
+      "median_delay": 0.0
+    }
+  },
+  "panel": {
+    "bootstrap_samples": 1000,
+    "maps": 1,
+    "opponents": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot"
+    ],
+    "seats": [
+      0,
+      1
+    ],
+    "start_seed": 9854000,
+    "tasks": 12
+  },
+  "run_stderr": "saved 12 paired tasks in 2.080s",
+  "schema": "troll-farm-e7a-half-size-open-panel-v1",
+  "verdict": "SMOKE_ONLY"
+}

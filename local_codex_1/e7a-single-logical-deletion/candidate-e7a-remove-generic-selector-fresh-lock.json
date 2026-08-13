@@ -1,0 +1,146 @@
+{
+  "schema": "troll-farm-e7a-single-logical-deletion-fresh-lock-v1",
+  "task_id": "20260803-e7a-single-logical-deletion",
+  "locked_at_utc": "2026-08-03T05:22:27Z",
+  "state_at_lock": "UNOPENED",
+  "one_shot": true,
+  "candidate": {
+    "path": "local_codex_1/e7a-single-logical-deletion/candidate-e7a-remove-generic-selector.rs",
+    "bytes": 62278,
+    "sha256": "ab0934740171cc7f5f4cd65cdfb8cf879ca92d8236c9505903e4741e0a7c57c2",
+    "removed_bytes": 542,
+    "logical_deletion": "generic greedy selector for friendly rosters above the preserved hard two-troll training cap"
+  },
+  "baseline": {
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+    "bytes": 62820,
+    "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+  },
+  "sacred": {
+    "path": "rust/src/bin/yamo_orchard_live.rs",
+    "sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "validation": {
+    "seed_start": 9867000,
+    "seed_end_inclusive": 9867042,
+    "maps": 43,
+    "seats": [0, 1],
+    "opponents": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot"
+    ],
+    "paired_tasks": 516,
+    "threads": 8,
+    "bootstrap_samples": 50000,
+    "bootstrap_rng_seed": 20260803,
+    "range_arguments_exposed": false,
+    "map_count_arguments_exposed": false,
+    "thread_count_arguments_exposed": false,
+    "bootstrap_arguments_exposed": false
+  },
+  "gates": {
+    "exact_terminal_equality_tasks": 516,
+    "exact_fields": [
+      "score",
+      "opponent_score",
+      "margin",
+      "wood",
+      "opponent_wood",
+      "terminal_turn",
+      "second_worker_train_turn",
+      "final_worker_count",
+      "period2",
+      "issues",
+      "critical",
+      "unclassified"
+    ],
+    "coverage_at_least_512": true,
+    "six_families": true,
+    "zero_critical_and_unclassified": true,
+    "latency_p95_ratio_maximum": 1.2,
+    "latency_maximum_ms_strictly_below": 50
+  },
+  "collision_audit": {
+    "result": "NO_RECORDED_EXACT_SEED_COLLISION",
+    "specific_tokens": ["9867000", "9_867_000", "9,867,000"],
+    "tracked_live_record_matches_before_reservation": 0,
+    "task_working_tree_matches_before_reservation": 0,
+    "tracked_filename_matches_before_reservation": 0,
+    "tracked_history_exact_matches_before_reservation": 0,
+    "tracked_history_filename_matches_before_reservation": 0,
+    "incidental_broad_token": {
+      "token": "9,867",
+      "matches": 1,
+      "disposition": "unrelated prose describing a 9,867-byte referee artifact, not a map seed"
+    },
+    "scoped_roots": [
+      "docs",
+      "coordination",
+      "cgauto",
+      "scripts",
+      "local_codex_1",
+      "data/analysis/live-agent-6553250"
+    ],
+    "recursive_external_bulk_scan_performed": false,
+    "recursive_external_bulk_scan_reason": "owner requires avoiding potentially blocking wide searches over huge mounted repositories; canonical compact records and tracked history are the seed-use authority",
+    "excluded_recorded_ranges": [
+      "9844200-9844215",
+      "9852000-9852063",
+      "9853000-9853127",
+      "9854000-9854127",
+      "9855000-9855127",
+      "9856000-9856255",
+      "9857000-9857127",
+      "9858000-9858031",
+      "9859000-9859127",
+      "9860000-9860511",
+      "9861000 selection material",
+      "9862000-9862063",
+      "9863000-9863042",
+      "9864000-9864042",
+      "9865000-9865042",
+      "9866000-9866042"
+    ]
+  },
+  "hashes": {
+    "protocol": "7fbafb956b1934481198b68fc6b0c10a6f673fd1245d101299d6deb6a11bbdb1",
+    "builder": "d06ca319ecc37bf742020d65c0ccf0a354ae82d8067ad4c0c504cd242f83f935",
+    "candidate_manifest": "d2490596d2f303eebe5c65d74fb1d912516827badef658785452d59b9cd5142d",
+    "semantic_validator": "d915ff76fdf71fd3e23d0676d8165da11cd95fc1515a7a4b1ba85ddb50683a5d",
+    "semantic_result": "4711cc9b136078a67c23fc32183ee22c3b554ccf7909cbd861a37c4c59b86de3",
+    "live_parity_evaluator": "2b89c8a68845614ac70df701d8611df54fb90cec08b27fd03909fa7d5a3c7339",
+    "live_parity_result": "4ca7d02a14d58aced168c547bcba3fe50980cd8e926885c34ac0b0223bed50d7",
+    "runner_adapter_builder": "a30d2c1fcb782c98d14390e8a592e3d1a0d5996b469a22c45bf641117db8f7d6",
+    "runner_adapter_manifest": "3f2654801a24dcdf411d87626faefb18dae3201ac66d6d51ff27cedcf6f3d74f",
+    "runner_template": "d9a118d715ab0b5f0e55f2a5a846afaa9007b725a3de1cad605feadb69a83c18",
+    "development_evaluator": "d08491b7b1da5a6547a01a7c870d7fbadecbec369ed503187070938de548dd20",
+    "development_result": "878d05b8c7a7739de01c69d22d94f63fe46cb921879e9e2f5d6c998b40cad116",
+    "development_tsv": "8a1de05402ecde0c5b95cfc8ce97dbe8c45550fade49021fa93a20a52c626c5f",
+    "shared_panel_analyzer": "fa1fc5c29d857b4d6c5fd3116f678f33d51be46566af2c503307ae4f21d8acff",
+    "fresh_evaluator": "c38c67455ab3e3922f79b1b721d08239b1348f41fb4d41fc4377d72e2ac58203",
+    "generated_fresh_runner": "2022c486a84117e14b86b26420017ab9f9c8b817edc63f3fefe25cec247f4155",
+    "rust_library": "1802bd8d69023b2e374d0a9586c33296485456892a9821dc635f5cb6dde0e660"
+  },
+  "pre_run_checks": {
+    "rebuild": "BYTE_IDENTICAL",
+    "standalone_optimized_compile": true,
+    "empty_input_exit_zero": true,
+    "semantic_fixtures": "EXACT_PASS_10_OF_10",
+    "live_command_parity": "EXACT_PASS_7234_OF_7234_LINES",
+    "development_panel": "EXACT_PASS_516_OF_516_TASKS",
+    "fresh_runner_compile_only": "PASS_NO_MAP_GENERATION"
+  },
+  "one_shot_command": [
+    "python3",
+    "local_codex_1/e7a-single-logical-deletion/evaluate_fresh_equality_gate.py",
+    "--panel",
+    "local_codex_1/e7a-single-logical-deletion/candidate-e7a-remove-generic-selector-fresh.tsv",
+    "--output",
+    "local_codex_1/e7a-single-logical-deletion/candidate-e7a-remove-generic-selector-fresh.json"
+  ],
+  "evidence_boundary": "one-shot untouched exact-equality engineering transfer gate; not an Arena-rating predictor"
+}

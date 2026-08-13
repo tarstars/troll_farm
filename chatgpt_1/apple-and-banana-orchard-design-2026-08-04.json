@@ -1,0 +1,335 @@
+{
+  "schema": "troll-farm-apple-banana-orchard-design/1",
+  "task_id": "20260804-orchard-activation-species-audit",
+  "status": {
+    "apple_secure_orchard": "DEPLOYED_RETAIN",
+    "direct_banana_mother_swap": "REJECTED",
+    "bounded_banana_wood_orchard": "PROPOSED_UNQUALIFIED",
+    "arena_mutation": false
+  },
+  "evidence": {
+    "arena_legs": 8,
+    "games": 1280,
+    "no_orchard": {
+      "games": 640,
+      "mean_arena_score": 23.1075,
+      "wins": 343,
+      "catastrophes": 69,
+      "mean_margin": 8.2328125
+    },
+    "current_apple_orchard": {
+      "games": 640,
+      "mean_arena_score": 23.6925,
+      "wins": 381,
+      "catastrophes": 91,
+      "mean_margin": 6.128125
+    },
+    "adjacent_score_deltas": [1.6, 2.03, -0.36, -0.93],
+    "score_delta_mean": 0.585,
+    "score_delta_exhaustive_bootstrap_95": [-0.645, 1.815],
+    "apple_activations": {
+      "games": 54,
+      "rate": 0.084375,
+      "inner_verbs": {
+        "MOVE": 50,
+        "CHOP": 1,
+        "WAIT": 3
+      },
+      "mothers_planted": 52,
+      "games_banking_fruit": 51,
+      "apple_harvested": 5660,
+      "apple_banked": 5615,
+      "median_banked_per_activation": 121,
+      "median_activation_to_first_bank": 13,
+      "mothers_alive_at_terminal": 32
+    },
+    "quality": {
+      "lfs_packages_hash_verified": 8,
+      "full_fresh_process_command_parity_games": 696,
+      "exact_deployed_prefix_through_turn_100_games": 911,
+      "exact_initial_state_opponent_submission_seat_pairs": 0
+    }
+  },
+  "apple_secure_orchard": {
+    "purpose": "persistent protected APPLE harvest mother producing banked fruit",
+    "non_goals": [
+      "direct wood production",
+      "worker-three funding",
+      "multiple-tree expansion",
+      "universal map activation"
+    ],
+    "geometry": {
+      "mother_role": "orthogonal home-door cell",
+      "requirements": [
+        "at least two walkable home doors",
+        "initial natural trees nonempty and all reachable",
+        "median natural-tree return distance at least 8",
+        "mother cell empty",
+        "mother cell water-adjacent",
+        "mother enemy-door distance at least 11"
+      ],
+      "selection": [
+        "maximize enemy-door distance",
+        "lexicographic tie-break"
+      ],
+      "reason_for_door_cell": "HARVEST and DROP occur at the same bank-adjacent cell"
+    },
+    "activation": {
+      "last_turn": 100,
+      "requirements": [
+        "starter empty on a home door",
+        "worker two exists",
+        "home inventory APPLE > 0",
+        "mother reachable and empty",
+        "mother unoccupied by another unit",
+        "earliest enemy chopper ETA > 8",
+        "non-starter chopper can use an alternate door with mother blocked",
+        "reserving starter does not surrender a non-duplicable contested natural-tree cycle"
+      ],
+      "explicitly_not_required": "inner starter command is WAIT"
+    },
+    "state_machine": [
+      "Dormant",
+      "CarryingSeed",
+      "Active",
+      "Abandoned"
+    ],
+    "active_loop": [
+      "MOVE to mother if elsewhere",
+      "DROP if carrying fruit",
+      "HARVEST if fruit is available",
+      "WAIT otherwise"
+    ],
+    "mechanics": {
+      "water_adjacent_effective_cooldown": 2,
+      "mature_health": 20,
+      "first_bank_eta": "starter_travel_turns + 11",
+      "steady_bank_interval_turns": 2
+    },
+    "invariants": [
+      "exactly one mother",
+      "mother never an ordinary chop target",
+      "exclusive starter ownership while CarryingSeed or Active",
+      "other workers cannot consume the reserved seed or occupy the mother",
+      "at least one alternate home door remains usable",
+      "no current replant loop after mother loss",
+      "parent commands exact outside declared orchard intervention"
+    ],
+    "rejected_activation_changes": {
+      "idle_only": {
+        "actual_kept": 3,
+        "actual_blocked": 51,
+        "no_orchard_exact_prefix_activations": 0,
+        "verdict": "REJECT_EFFECTIVE_DELETION"
+      },
+      "enemy_arrival_after_first_bank": {
+        "kept": 29,
+        "blocked": 25,
+        "verdict": "REJECT_ARRIVAL_IS_NOT_DESTRUCTION"
+      },
+      "continuous_kill_before_first_harvest": {
+        "safe": 54,
+        "unsafe": 0,
+        "verdict": "VALID_BUT_NONDISCRIMINATING"
+      }
+    },
+    "next_candidate": {
+      "name": "PROSPECTIVE_OPPORTUNITY_COST_GATE",
+      "formula": "activate if V_orchard >= V_displaced + delta",
+      "V_orchard": "guaranteed banked APPLE before turn 300 minus seed and explicit risk deductions",
+      "V_displaced": "guaranteed banked score plus non-duplicable denial value from the starter task overridden by orchard",
+      "required_instrumentation": [
+        "inner task class and target",
+        "first-action and completion ETA",
+        "expected banked material and score",
+        "denial or contested-tree value",
+        "whether another worker can complete the task"
+      ],
+      "threshold_rule": "delta must be frozen before fresh outcomes and must not be fit on the current 1280 games"
+    }
+  },
+  "direct_banana_mother_swap": {
+    "status": "REJECTED",
+    "support_on_640_no_orchard_prefixes": {
+      "apple": 46,
+      "banana": 46,
+      "both": 46,
+      "apple_only": 0,
+      "banana_only": 0,
+      "both_seeds_available": 46
+    },
+    "water_adjacent_comparison": {
+      "apple_effective_cooldown": 2,
+      "banana_effective_cooldown": 4,
+      "apple_mature_health": 20,
+      "banana_mature_health": 6,
+      "apple_first_bank_eta": "travel + 11",
+      "banana_first_bank_eta": "travel + 19",
+      "apple_mean_projected_bank_ceiling": 133.15217391304347,
+      "banana_mean_projected_bank_ceiling": 64.80434782608695
+    },
+    "reason": "the protected mother is harvested, not chopped; APPLE is faster beside water and more durable"
+  },
+  "bounded_banana_wood_orchard": {
+    "status": "PROPOSED_UNQUALIFIED",
+    "purpose": "self-sustained BANANA seed source feeding one disposable wood-production tree",
+    "role_split": {
+      "mother": "protected and harvested for seeds",
+      "child": "planted on a cut slot and chopped for wood before fruit"
+    },
+    "tent_neighbor_rule": {
+      "diagonal_neighbors": "mother/seeding cells; never chop",
+      "orthogonal_neighbors": "cut/banking cells; chop BANANA for wood"
+    },
+    "version_1_bounds": {
+      "mothers": 1,
+      "cut_slots": 1,
+      "expansion": false
+    },
+    "mother_geometry": {
+      "location": "one diagonal cell around the home tent",
+      "requirements": [
+        "walkable and empty",
+        "reachable from a home door",
+        "prefer water adjacency",
+        "not on a required home-door route",
+        "mechanically safe through first harvest"
+      ],
+      "selection": [
+        "water-adjacent first",
+        "maximize enemy kill ETA",
+        "minimize harvest-and-bank ETA",
+        "lexicographic tie-break"
+      ]
+    },
+    "cut_slot_geometry": {
+      "location": "one orthogonal side-neighbor of the home tent",
+      "requirements": [
+        "walkable and initially empty",
+        "not the unique usable home door",
+        "reachable by the wood worker without crossing the mother",
+        "no farther from our tent than from the opponent tent",
+        "immediately bankable after chop"
+      ]
+    },
+    "roles": {
+      "mother_worker": [
+        "bootstrap mother",
+        "exclusive HARVEST owner",
+        "bank harvested BANANA",
+        "maintain recovery-seed reserve",
+        "never chop mother"
+      ],
+      "wood_worker": [
+        "exclusive cut-slot owner",
+        "pick only an unreserved BANANA seed",
+        "plant only on the cut slot",
+        "fell child before fruit",
+        "drop wood immediately",
+        "never target mother"
+      ]
+    },
+    "state_machine": [
+      "Dormant",
+      "MotherBootstrap",
+      "MotherMaturing",
+      "MotherActive",
+      "SeedBanking",
+      "CutSeedReserved",
+      "CutPlanting",
+      "CutGrowingOrFelling",
+      "WoodBanking",
+      "SuspendedOrAbandoned"
+    ],
+    "seed_ledger": {
+      "reserved_recovery_seed": 1,
+      "maximum_cut_seed_leases": 1,
+      "source_of_truth": "confirmed carry and inventory deltas, not issued commands",
+      "rules": [
+        "do not plant cut slot before mother repays a seed",
+        "do not spend recovery reserve",
+        "consume lease only after confirmed PLANT",
+        "release harvested seed only after confirmed DROP",
+        "mother loss stops new cut cycles"
+      ]
+    },
+    "cut_cycle": {
+      "objective": "maximize 4 * guaranteed_banked_wood / total_cycle_turns",
+      "constraints": [
+        "complete and DROP before turn 300",
+        "wood no greater than free carry capacity",
+        "kill child before opponent-harvestable fruit",
+        "opponent cannot control child before planned kill",
+        "only one child tree exists",
+        "no movement oscillation"
+      ],
+      "fallback": "if no safe positive cycle exists, chop immediately or suspend"
+    },
+    "activation_requirements": [
+      "worker two exists",
+      "valid diagonal mother and orthogonal cut slot",
+      "mother worker has harvest power",
+      "wood worker has chop power",
+      "BANANA seed available for bootstrap",
+      "mother safe through first harvest",
+      "at least one harvest plus cut/fell/drop cycle fits before turn 300",
+      "no non-duplicable contested natural-tree cycle is surrendered",
+      "collision-free parent movement remains possible",
+      "no worker-three funding or unrelated crop policy"
+    ],
+    "safety_invariants": [
+      "exactly one mother and one cut slot",
+      "diagonal mother never chopped",
+      "orthogonal child always intended for chop",
+      "child never reaches opponent-accessible fruit",
+      "one recovery seed reserved",
+      "one owner per tree and slot",
+      "zero same-cell contention",
+      "zero period-2 MOVE episodes",
+      "wood carrier follows monotone bank commitment",
+      "statically bounded plant count",
+      "parent commands exact outside activation",
+      "no opponent-favored crop leakage increase",
+      "no worker-two training displacement"
+    ],
+    "relation_to_prior_banana_work": {
+      "production_potential": "demonstrated",
+      "previous_live_evidence": "implementation-invalid due to unbounded geography, banking failure, or period-2 movement",
+      "interpretation": "prior failures define mandatory gates; they do not close the bounded one-mother/one-slot architecture"
+    }
+  },
+  "next_experiment": {
+    "arms": {
+      "C0": "current APPLE orchard",
+      "C1": "current APPLE orchard plus opportunity-cost activation gate",
+      "C2": "bounded BANANA mother plus one cut/replant slot"
+    },
+    "pre_value_gates": [
+      "compile and runtime clean",
+      "exact parent commands outside activation",
+      "both seats and all selected opponent families",
+      "zero period-2 movement regression",
+      "zero unbounded planting",
+      "zero ownership and banking violations"
+    ],
+    "value_gates": [
+      "positive mean paired terminal margin versus C0",
+      "root-cluster 95 percent lower bound above zero",
+      "positive both-seat means",
+      "positive opponent-family breadth",
+      "no catastrophe or negative-margin-mass regression",
+      "meaningful activation support",
+      "gain expressed as banked resources, not extra plants or commands"
+    ],
+    "arena_controller": "local_codex_1",
+    "arena_release_required": true
+  },
+  "artifacts": {
+    "design_memo": "chatgpt_1/apple-and-banana-orchard-design-2026-08-04.md",
+    "final_analysis": "chatgpt_1/orchard-activation-species-audit-final-2026-08-04.md",
+    "final_machine_report": "chatgpt_1/orchard-activation-species-audit-final-2026-08-04.json",
+    "rows": "chatgpt_1/orchard-activation-opportunities-2026-08-04.csv",
+    "current_candidate": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+    "research_source": "rust/src/bin/yamo_orchard_live.rs"
+  }
+}

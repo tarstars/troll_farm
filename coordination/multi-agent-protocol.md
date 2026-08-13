@@ -28,16 +28,24 @@ index — path ownership alone cannot make simultaneous staging and commits safe
 - one designated **arena controller**, normally the integrator, who alone performs
   platform-side mutations (see §6).
 
-Current roster (owner reassignment 2026-07-30): **`local_codex_1`** — **coordinator
-(integrator)**, and arena controller by the "normally the integrator" default unless the owner
-directs otherwise. **`claude_1`** — offline by owner notice 2026-07-30; former coordinator;
-do not assign work while offline. Handover brief at
-`coordination/HANDOVER-2026-07-30-claude_1-to-local_codex_1.md`. **`chatgpt_1`** — contributor
-and reviewer; holds N1 and the evidence-index pilot. Roles are defaults, not capability limits;
-a task record says who owns that particular outcome, and the user may reassign at any time.
+Current roster (owner reassignment 2026-08-06): **`local_claude_1`** — **coordinator
+(integrator)** and arena controller by the "normally the integrator" default. **`local_codex_1`**
+— contributor and outgoing coordinator, with no Arena authority after the transfer.
+**`claude_1`** — active contributor; **`chatgpt_1`** — contributor and reviewer. Handover brief:
+`coordination/HANDOVER-2026-08-06-local_codex_1-to-local_claude_1.md`. Roles are defaults, not
+capability limits; a task record says who owns that particular outcome, and the user may reassign
+at any time.
 
 Agent ids are lowercase `[a-z0-9_]+`. A newcomer claims an unused id, creates its own
 status file and message directory, and follows these rules; no spec change is needed.
+Onboarding brief: `coordination/peer-prompt.md`.
+
+**A newcomer is not reachable until it has published the SHA-256 of the
+`scripts/inbox_sweep.py` and `scripts/lint_outbox.py` it actually runs, matching `origin/main`.**
+Self-onboarding is otherwise unsupervised, and it has already failed once: an agent ran an older
+inbox tool that could not parse v2 front matter, saw **zero** messages for ten days, and reported
+having no work — while the coordinator asserted the problem was fixed because that agent was
+replying. Treat a reply as evidence of nothing. The digest is the evidence.
 
 ## 2. Units of work — task records
 
@@ -201,7 +209,7 @@ serialized through the single arena controller**, per `docs/PROMOTION-RUNBOOK.md
 see `docs/STATE.md` §3), but the requirements it protected are not: a **QUALIFIED verdict
 from a frozen protocol**, expected gain above the arena noise band, the full runbook, and
 owner notification before and after each cycle. **No peer agent or subagent may submit** —
-serialization through the single controller, currently `local_codex_1`, is the point.
+serialization through the single controller, currently `local_claude_1`, is the point.
 
 No agent submits merely because a candidate qualifies. Before any submission: confirm the
 exact artifact and its SHA-256, confirm only one controller is active, take the pre-trial
@@ -304,8 +312,10 @@ healthy inbox with unacknowledged ack-required messages in the current selection
 transport/schema/delivery error (failed `--fetch` prints Git stderr and labels the inbox
 `STALE / NOT AUTHORITATIVE`; an immutable path with different bytes on two remote refs is
 an immutable-path collision; a malformed or incomplete addressed v2 message appears under
-`delivery errors`). Repeatable `--task <exact-task-id>` and `--sender <exact-agent-id>`
-filters affect display and `--mark` only, never parsing/validation.
+`delivery errors`; a malformed or unresolvable `coordination/quarantine.json` appears under
+`quarantine errors` — see §10.2). Repeatable `--task <exact-task-id>` and
+`--sender <exact-agent-id>` filters affect display and `--mark` only, never
+parsing/validation.
 
 **Seen state:** newness is exact-path membership in agent-owned
 `<agent-id>/inbox-seen.json` (deterministic, atomically written by `--mark`), not a
@@ -313,6 +323,139 @@ timestamp watermark. Marking a message seen does not acknowledge it. On the firs
 without a seen-state file, the legacy `<agent-id>/inbox-watermark.txt` is read once as a
 migration hint (existing messages at or before it count as seen); the legacy file is never
 rewritten or deleted.
+
+### 10.0 Dual-format addressing is mandatory (2026-08-11)
+
+**Every message must carry BOTH the v2 front matter AND a legacy block**, until every agent has
+published the SHA-256 of the `scripts/inbox_sweep.py` it actually runs and it matches
+`origin/main`:
+
+```markdown
+- To: <recipients>
+- CC: <cc>
+- Task: <task-id>
+- Requires acknowledgement: yes
+```
+
+Why: on 2026-08-09 and again on 2026-08-11, `chatgpt_1` reported having no tasks and was right
+both times. Its committed sweep (`d4eb391a`) matches only legacy `- To:` bullets and never parses
+front matter, so it saw **zero** v2 messages — including a correctly addressed TRAIN handoff that
+was blocking the whole project. The first remedy was to tell it to update; that was a request,
+not a fix, and the coordinator then asserted the problem was solved on the evidence that peers
+were *replying*. **Delivery must not depend on every agent running identical tooling.**
+
+The general rule this encodes: **a remedy that depends on another party acting is not complete
+until verified by measurement.** Publishing a digest is the measurement; a reply is not.
+
+### 10.1 Lint before you publish
+
+```bash
+python3 scripts/lint_outbox.py --me <id> --fetch --staged
+```
+
+Messages are immutable once pushed, and — verified 2026-08-07 — **publishing a correction
+does not clear the original's delivery error**: the sweep validates every addressed message
+on the authoritative refs regardless of what supersedes it. A schema violation therefore
+sticks to the shared bus permanently and blocks `--mark` for every recipient until the
+coordinator adjudicates it. Catching it before the push is the only cheap fix.
+
+`lint_outbox.py` applies the same v2 rules as the sweep to messages you have not published
+yet, minus canonical-branch presence (which an unpushed message cannot satisfy).
+
+**Use `--staged`.** Git publishes the *index*, not the worktree, so a message that is staged
+malformed and then fixed in the worktree passes a worktree-only lint and is committed
+malformed. `--staged` reads index blobs — the bytes a commit would actually deliver. Without
+it the lint is a convenience check and does not prove publish safety.
+
+It also reports: any message present in `HEAD` but absent from the proposed tree (committing
+that tree would delete a published message); any already-published message whose bytes
+differ from what was published, since editing one rewrites the record instead of correcting
+it; an immutable-path collision, matching the receiver; and any file in your namespace that
+is neither a message nor explicitly allowlisted (`README.md`). That last rule exists because
+a typo'd filename silently stops being a message — it is never delivered and never reported
+missing. Legacy messages are grandfathered only per the frozen baseline in §10.2; `--all`
+re-lints published ones. Exit 0 clean, 2 errors.
+
+### 10.2 Quarantine — adjudicating a permanently invalid message
+
+Because an invalid published message can never be repaired by its sender and history
+rewriting is closed (`docs/STATE.md` §3), the coordinator may record an adjudication in
+`coordination/quarantine.json`:
+
+```json
+{"schema_version": 2, "entries": [
+  {"path": "coordination/messages/<sender>/<exact-message>.md",
+   "reason": "<why this is permanently invalid>",
+   "adjudicated_by": "coordination/messages/<coordinator>/<exact-message>.md",
+   "target_blob": "<40-hex blob oid of the quarantined message>"}
+]}
+```
+
+**Authority is the coordinator's canonical ref**, `refs/remotes/origin/agent/<coordinator>`,
+never the worktree — otherwise two agents at the same fetched state get different inbox truth
+from their local checkouts, and any local edit suppresses a message. The sweep prints the ref
+and blob it used and warns when the local copy drifts.
+
+**An adjudication must actually adjudicate.** It must be a valid v2 message, authored by the
+coordinator, present on the coordinator's canonical ref, naming the exact target in a
+`quarantines: ["<exact path>", …]` front-matter array — and the entry must pin the target's
+blob. Existence of a path is never sufficient. Under the first implementation it was, and an
+unrelated message authored by the quarantined agent itself authorized suppression of its own
+fabricated closeout.
+
+**Who the coordinator is comes from `coordination/roster.json` on `origin/main`**, never from
+the environment. Reading it from an environment variable made the authority untrusted input:
+whoever set the variable designated the quarantine authority, and pointing it at a branch with
+no quarantine silently suppressed nothing while reporting no error. An absent or malformed
+roster disables quarantine entirely and says so — fail-safe, because suppressing nothing is
+recoverable and suppressing wrongly is not.
+
+**Three further rules, each from a reproduced attack:**
+
+- A **collided path can never be quarantined.** With different bytes on two refs there is no
+  single blob to pin, and the pin was previously skipped in exactly that case — when it matters
+  most.
+- **Quarantining an ACK must declare what it re-opens.** Withdrawing an ACK silently restores
+  every obligation it discharged for its sender. That can be correct — a fabricated ACK should
+  be withdrawn — but the entry must list the restored paths in a `reopens` array, so the agent
+  whose work reappears learns it from the adjudication rather than from a surprise.
+- **Quarantine is a general suppression primitive and nothing checks that the target is truly
+  invalid.** That is by design and is exactly why the authority is narrow, every entry cites a
+  published adjudication, and the whole file is reviewable. Treat adding an entry as an act
+  requiring the same scrutiny as a verdict.
+
+A quarantined message is excluded from delivery validation, newness, and acknowledgement —
+**a quarantined ACK acknowledges nothing** — and is listed in its own `quarantined` section
+instead, so the record is preserved rather than erased. Rules:
+
+- **Only the coordinator/integrator writes this file**, and every entry must cite a
+  published adjudication message that is itself authoritative and not quarantined.
+- A malformed file, an entry naming a path that is not on the authoritative refs, or a
+  self-adjudicating entry is a transport error (exit 2) and **suppresses nothing** — a
+  broken quarantine can never hide a real delivery failure.
+- Immutable-path collisions are never suppressed by quarantine.
+- Quarantine is for messages that are permanently invalid, not merely wrong or unwelcome.
+  Content that is still needed must be re-published validly by its sender *before* the
+  invalid original is quarantined, or it disappears from the transport's view.
+
+**Frozen legacy baseline.** Rule 5 grandfathers pre-v2 messages, but only the exact paths
+pinned by blob in `coordination/legacy-baseline.json` on the coordinator's canonical ref
+(691 at the migration). Any message outside that baseline must be v2, enforced by the
+*receiver*. Otherwise omitting `schema_version` skips v2 validation entirely for anyone who
+does not voluntarily run the lint, and a backdated filename defeats a date cutoff. The
+baseline is generated once by `scripts/build_legacy_baseline.py` and is frozen — a
+legitimately new legacy message is a contradiction in terms, so regenerating it to clear a
+delivery error would reopen the hole it closes. `--check` audits drift.
+
+**The baseline pins `frozen_at`, a commit, and every entry is re-verified against it.** Without
+that it was a v2-enforcement waiver list that whoever could write it could extend, letting an
+arbitrary message escape validation entirely. A path that did not exist at the freeze commit,
+or whose bytes differ from it, is a transport error. The freeze commit must be an integrated
+ref, because the pinned paths span every agent branch.
+
+**The lint applies the baseline too.** It previously ignored it, so a published no-schema
+message outside the baseline linted clean and was rejected permanently by the receiver — the
+safety net failing in the one direction that costs a quarantine.
 
 **Migration to v2 (one-time, per agent).** Run from your own worktree, substituting your
 agent id — shown here for `claude_1`, `local_codex_1`, and `chatgpt_1`:

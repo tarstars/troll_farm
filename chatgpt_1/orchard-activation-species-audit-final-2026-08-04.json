@@ -1,0 +1,161 @@
+{
+  "schema": "troll-farm-orchard-activation-species-audit-final/1",
+  "task_id": "20260804-orchard-activation-species-audit",
+  "status": "COMPLETE_CORRECTED_FINAL",
+  "supersedes": {
+    "path": "chatgpt_1/orchard-activation-species-audit-2026-08-04.json",
+    "reason": "The original four-pair bootstrap used low LCG bits modulo four, so every four-draw sample contained each pair exactly once and the interval collapsed incorrectly. All replay-derived counts remain unchanged."
+  },
+  "data": {
+    "arena_legs": 8,
+    "games": 1280,
+    "games_per_leg": 160,
+    "no_orchard_games": 640,
+    "orchard_games": 640,
+    "lfs_packages_hash_verified": 8,
+    "full_deployed_command_parity_games": 696,
+    "exact_deployed_prefix_through_turn_100_games": 911,
+    "exact_initial_state_opponent_submission_seat_pairs": 0,
+    "counterfactual_boundary": "Generated variants are interpreted only before their first divergence from no-orchard and before deployed-source process-dependent path-tie drift."
+  },
+  "repeated_live": {
+    "no_orchard": {
+      "mean_arena_score": 23.1075,
+      "median_arena_score": 23.905,
+      "wins": 343,
+      "ties": 17,
+      "losses": 280,
+      "catastrophes": 69,
+      "mean_game_margin": 8.2328125,
+      "negative_margin_mass": 21777
+    },
+    "current_apple_orchard": {
+      "mean_arena_score": 23.6925,
+      "median_arena_score": 23.35,
+      "wins": 381,
+      "ties": 8,
+      "losses": 251,
+      "catastrophes": 91,
+      "mean_game_margin": 6.128125,
+      "negative_margin_mass": 23956
+    },
+    "orchard_minus_no_orchard": {
+      "adjacent_leg_score_deltas": [1.6, 2.03, -0.36, -0.93],
+      "mean_score_delta": 0.585,
+      "median_score_delta": 0.62,
+      "exhaustive_ordinary_paired_bootstrap": {
+        "pairs": 4,
+        "resamples": 256,
+        "lower_95": -0.645,
+        "upper_95": 1.815,
+        "probability_mean_le_zero": 0.234375
+      },
+      "wins_added": 38,
+      "catastrophes_added": 22,
+      "interpretation": "Repeated live evidence is polarizing and opponent queues are not game-paired; it supports retaining the orchard but does not identify a causal rating effect."
+    }
+  },
+  "actual_current_apple_activation": {
+    "activated_games": 54,
+    "activation_rate": 0.084375,
+    "underlying_inner_starter_verbs": {
+      "MOVE": 50,
+      "CHOP": 1,
+      "WAIT": 3
+    },
+    "mother_successfully_planted_games": 52,
+    "games_banking_orchard_fruit": 51,
+    "total_harvested_apple": 5660,
+    "total_banked_apple": 5615,
+    "median_banked_apple_per_activated_game": 121,
+    "median_activation_to_first_bank_turns": 13,
+    "mother_alive_at_game_end": 32,
+    "activated_game_association": {
+      "wins": 28,
+      "losses": 26,
+      "mean_margin": -32.75925925925926,
+      "catastrophes": 15,
+      "warning": "Activation selects difficult map states and is not a causal treatment label."
+    }
+  },
+  "activation_gate_audit": {
+    "idle_only_work_conserving": {
+      "actual_activations_kept": 3,
+      "actual_activations_blocked": 51,
+      "activations_on_640_no_orchard_exact_prefixes": 0,
+      "verdict": "REJECT_AS_EFFECTIVE_ORCHARD_DELETION"
+    },
+    "enemy_arrival_after_first_bank": {
+      "kept": 29,
+      "blocked": 25,
+      "kept_descriptive_mean_margin": -52.206896551724135,
+      "kept_descriptive_win_rate": 0.4482758620689655,
+      "blocked_descriptive_mean_margin": -10.2,
+      "blocked_descriptive_win_rate": 0.6,
+      "verdict": "REJECT_MECHANICALLY_AND_DESCRIPTIVELY; ARRIVAL_IGNORES_TREE_HEALTH_AND_CHOP_TIME"
+    },
+    "continuous_adversarial_kill_before_first_harvest": {
+      "mechanically_safe": 54,
+      "mechanically_unsafe": 0,
+      "verdict": "CURRENT_APPLE_GEOMETRY_PASSES_BUT_GATE_IS_NONDISCRIMINATING"
+    },
+    "next_candidate": {
+      "name": "PROSPECTIVE_OPPORTUNITY_COST_GATE",
+      "definition": "Before override, expose the inner starter task class, predicted cycle ETA, and expected banked score. Activate only when projected remaining orchard fruit value minus the seed exceeds the displaced task's projected value by a frozen mechanics-derived margin.",
+      "fit_on_current_1280_outcomes": false,
+      "requires_fresh_closed_loop_panel": true
+    }
+  },
+  "apple_vs_banana_protected_mother": {
+    "no_orchard_exact_prefix_support": {
+      "apple_activations": 46,
+      "banana_activations": 46,
+      "both": 46,
+      "apple_only": 0,
+      "banana_only": 0,
+      "neither": 594,
+      "apple_seed_available_in_both_support_games": 46,
+      "banana_seed_available_in_both_support_games": 46
+    },
+    "water_adjacent_mechanics": {
+      "apple_effective_cooldown": 2,
+      "banana_effective_cooldown": 4,
+      "apple_first_bank_eta": "starter_travel_turns + 11",
+      "banana_first_bank_eta": "starter_travel_turns + 19",
+      "apple_mature_health": 20,
+      "banana_mature_health": 6,
+      "apple_steady_bank_interval_turns": 2,
+      "banana_steady_bank_interval_turns": 4
+    },
+    "projected_uninterrupted_bank_ceiling_on_shared_support": {
+      "games": 46,
+      "mean_apple": 133.15217391304347,
+      "mean_banana": 64.80434782608695,
+      "mean_apple_advantage": 68.34782608695652
+    },
+    "verdict": "REJECT_LIKE_FOR_LIKE_BANANA_MOTHER_SWAP",
+    "reason": "The current mother is protected and harvested, not chopped. APPLE's higher health and stronger water acceleration are benefits; BANANA does not expand support and approximately halves projected fruit throughput."
+  },
+  "bounded_self_sustained_banana_wood_orchard": {
+    "verdict": "DISTINCT_PLAUSIBLE_ARCHITECTURE_NOT_TESTED_BY_MOTHER_SWAP",
+    "minimum_design": [
+      "one protected mother, preferably diagonal to the tent",
+      "at most one orthogonal cut/replant slot initially",
+      "explicit seed banking and one chopper owner",
+      "monotone bank commitments",
+      "zero period-2 movement",
+      "exact parent commands outside activation",
+      "fresh closed-loop value panel before Arena"
+    ],
+    "comparison_control": "current APPLE orchard",
+    "not_comparison_control": "no orchard only"
+  },
+  "final_verdict": "KEEP_CURRENT_APPLE_ORCHARD; IDLE_ONLY_REJECTED_AS_EFFECTIVE_DELETION; TRAVEL_ONLY_SAFETY_REJECTED; KILL_SAFETY_NONDISCRIMINATING; BANANA_MOTHER_SWAP_REJECTED; PROSPECTIVE_OPPORTUNITY_COST_GATE_AND_BOUNDED_BANANA_PRINTER_REMAIN",
+  "platform_mutation": false,
+  "artifacts": {
+    "rows": "chatgpt_1/orchard-activation-opportunities-2026-08-04.csv",
+    "full_machine_report": "chatgpt_1/orchard-activation-species-audit-2026-08-04.json",
+    "analyzer": "chatgpt_1/orchard_activation_species_audit.py",
+    "method_patch": "chatgpt_1/patch_orchard_activation_species_audit.py"
+  }
+}

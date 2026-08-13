@@ -1393,3 +1393,436 @@ frozen exploratory sector; no source or Arena action follows from recovery alone
 Finally, inbox acknowledgements are now freshness-aware: a task ACK covers only strictly earlier
 messages for that task. This closes the bookkeeping defect where an old ACK could hide a later
 question or blocker; the focused suite passes 11/11.
+
+## 2026-08-02 — bounded banana ring invalidated by live oscillation
+
+The owner-corrected bounded ring artifact was 99,990 bytes, exact SHA `d2d8f658...`. Its focused
+packet passed 39 semantic checks, research/Arena equality on eight inherited streams / 2,400
+commands, compile/empty-input/latency checks, and a 16-game behavioral smoke. The owner directed
+publication despite weak descriptive value. One exact submit returned `41081465`; platform agent
+`6590136` recovered to the same hash. Initial clean health was 10/10 parsed plus one pending,
+4W/6L, mean margin -110.8, five catastrophes, negative mass 1,301, and zero runtime/identity faults.
+
+The live game exposed a gate failure that the packet missed. In exact game `897829265`, worker 2
+alternates `(10,4)<->(11,4)` for turns 20--29 and `(8,2)<->(8,3)` for turns 269--280, emitting a
+reversing MOVE each turn. The engine executes those commands, so this is policy/source liveness,
+not blocked motion. Pre-replacement room score was 11.0 at rank 129/131.
+
+**Disposition: IMPLEMENTATION_INVALID / DISPLACED.** The unbounded predecessor also violated the
+owner's bounded geometry and collection lifecycle. Neither live score is evidence against banana
+production. Claude owns a clean stable-parent restoration r2; broad inactive equality, research/
+compact parity on live counterexamples, and explicit oscillation/contention/banking/funding gates
+must pass before any value test.
+
+## 2026-08-02 — E7a frozen sector live by owner override
+
+The replacement is the exact mechanically materialized sector source: stable parent chooses PLUM
+instead of default LEMON only when `sum_distance(PLUM)-sum_distance(LEMON) <= 8`. Source is 62,820
+bytes, SHA `97bfe71e...`; regeneration, five focused tests, optimized compile, and the 16/16 exact
+inside-FLIP/outside-control bridge pass. Consumed-panel pricing is +4.0083 margin versus parent,
+root-bootstrap 95% interval [-1.5875,+13.1015]. It remains exploratory and not prospectively
+qualified; the owner explicitly overrode that value gate after the ring defect.
+
+The first client invocation failed locally on a path lookup before any HTTP request. The controller
+then submitted the same verified bytes by absolute path. Exactly one `TestSession/submit` request
+returned HTTP 200 and submission `41081503`; new agent `6590141` recovered to the candidate hash.
+First exact health is 16/16 parsed plus one pending, score 19.42/rank 69/131, 11W/1T/4L, mean
+margin +41.6875, zero catastrophes/runtime signals, negative mass 175, and clean identity.
+
+**Disposition: LIVE / OWNER OVERRIDE / CLEAN INITIAL HEALTH / VALUE UNRESOLVED.** Monitoring is
+read-only. The submit tool's default remains the exact stable parent as intentional fallback.
+
+## 2026-08-03 — E7a half-size categorical attribution and no-backtrack successor
+
+The exact live E7a source is 62,820 bytes, so the owner's 50% ceiling is 31,410. The prior
+31,405-byte period-2 lean-coordination source passed its value, liveness, training, latency, and
+integrity gates but was terminally rejected on untouched seeds 9,864,000--042 because
+catastrophes increased 26 -> 27.
+
+Cumulative diagnostic replay on that consumed panel now isolates the categorical cause. Removing
+only stock compatibility/helper blocks produces a 31,848-byte source at +10.058 mean / +2.517
+lower with catastrophes 26 -> 26. Also collapsing the original conditional funded-shack
+evacuation produces a 31,614-byte source at +9.457 / +1.744 with catastrophes 26 -> 27, exactly
+the rejected source's metrics before its last neutral deletions. The evacuation collapse caused
+the observed tail failure; stock deletion did not.
+
+A distinct source retains the original funded-shack evacuation, removes neutral predicates, and
+replaces the larger three-state A-B-A guard with one previous observed cell per stable worker
+slot. It is 31,248 bytes, a 50.258% logical reduction, SHA `a767e362...`; its manifest records no
+renaming, minification, compression, or formatting reduction. Rebuild, optimized compile, empty
+input, sacred SHA, and ten semantic fixtures pass.
+
+All 25 exact live period-2 counterexamples pass with maximum candidate run four and zero unknown
+updates or stderr. The 516-task consumed development panel passes at +9.141 mean / +3.859 lower,
+catastrophes 19 -> 14, negative mass 4,138 -> 3,871, six/six positive families, both seats
+positive, worker-two coverage 100%, and period-2 >=6 at zero. Diagnostic replay on the consumed
+transfer panel also passes analytically at +10.260 / +2.612, catastrophes 26 -> 26, and negative
+mass 6,149 -> 5,374.
+
+**Disposition: DEVELOPMENT-QUALIFIED / TRANSFER UNTESTED / NO ARENA ACTION.** A new
+collision-audited untouched range must be locked and published before its one-shot run. Full
+evidence is in `e7a-half-size-funded-evacuation-tail-attribution-2026-08-03.md`.
+
+## 2026-08-03 — no-backtrack half-size untouched transfer rejection
+
+Before execution, exact-token, tracked-filename, Git-history, task-tree, and verified external
+project-root searches found zero recorded collision for seeds 9,865,000--042. A dedicated
+launcher hard-coded 43 maps, both seats, six families, eight threads, and 50,000 bootstrap
+samples; compile-only preflight generated no map. Candidate, runner, evaluator, evidence, range,
+gates, and command were remotely frozen at commit `db1903b` while the range was unopened.
+
+The exact locked command then ran once over all 516 tasks in 105.477 seconds. The 31,248-byte
+source remains positive overall at +3.9167 mean with bootstrap lower -1.1822; catastrophes improve
+14 -> 8, negative mass 3,908 -> 3,549, both seats are positive, worker-two coverage is 100% with
+zero delay, period-2 >=6 improves 90 -> 0, latency passes, and integrity is clean.
+
+The source nevertheless fails the frozen family-transfer gate. Four means are positive, while
+legend-balanced is -2.9884 and resident is -1.4419. The legend total (-257) is dominated by one
+-265 row, but row removal and threshold relaxation are forbidden; resident's -124 total spans 50
+negative rows. **Disposition: TERMINAL FRESH REJECTION / NO RERUN / NO ARENA ACTION.** The range
+is consumed. Exact evidence is in `e7a-half-size-no-backtrack-fresh-result-2026-08-03.md`.
+
+## 2026-08-03 — half-size family-transfer attribution and tree-edge successor
+
+Replay of the consumed 9,865,000--042 rows compared strict, five-step, opponent-workforce,
+own-roster, and worker-role reversal guards. Exact single-task traces falsified opponent
+workforce as the discriminator. The two largest legend regressions reversed onto or away from
+a tree, while a resident improvement was an empty-route correction with no tree at either
+endpoint.
+
+A distinct 31,407-byte source, SHA `acbada47...`, stops the second consecutive reversal when
+the current or landing cell is a tree and otherwise caps the episode below six MOVE decisions.
+It removes unreachable zero-chop and selector-cardinality branches and specializes its internal
+MOVE parser to commands it generates; no renaming or minification is used. Optimized compile,
+ten semantic fixtures, and all 25 exact live counterexamples pass with maximum period-2 five.
+
+On the consumed transfer rows the exact source passes all thirteen gates: +4.6783 mean / -0.2926
+lower, catastrophes 14 -> 8, negative mass 3,908 -> 3,422, five/six nonnegative families, both
+seats positive, worker-two delay zero, and no period-2 episode >=6. **Disposition: CONSUMED
+DIAGNOSTIC PASS / DEVELOPMENT PANEL PENDING / NO ARENA ACTION.** These rows cannot qualify the
+source. Exact evidence is in
+`e7a-half-size-tree-edge-reversal-attribution-2026-08-03.md`.
+
+## 2026-08-03 — half-size family-transfer attribution and tree-edge successor
+
+Replay of the consumed 9,865,000--042 rows compared strict, five-step, opponent-workforce,
+own-roster, and worker-role reversal guards. Exact single-task traces falsified opponent
+workforce as the discriminator. The two largest legend regressions reversed onto or away from
+a tree, while a resident improvement was an empty-route correction with no tree at either
+endpoint.
+
+A distinct 31,407-byte source, SHA `acbada47...`, stops the second consecutive reversal when
+the current or landing cell is a tree and otherwise caps the episode below six MOVE decisions.
+It removes unreachable zero-chop and selector-cardinality branches and specializes its internal
+MOVE parser to commands it generates; no renaming or minification is used. Optimized compile,
+ten semantic fixtures, and all 25 exact live counterexamples pass with maximum period-2 five.
+
+On the consumed transfer rows the exact source passes all thirteen gates: +4.6783 mean / -0.2926
+lower, catastrophes 14 -> 8, negative mass 3,908 -> 3,422, five/six nonnegative families, both
+seats positive, worker-two delay zero, and no period-2 episode >=6. **Disposition: CONSUMED
+DIAGNOSTIC PASS / DEVELOPMENT PANEL PENDING / NO ARENA ACTION.** These rows cannot qualify the
+source. Exact evidence is in
+`e7a-half-size-tree-edge-reversal-attribution-2026-08-03.md`.
+
+## 2026-08-03 — tree-edge successor development qualification addendum
+
+The exact source subsequently passed the ordinary consumed development panel at +8.2248 mean /
++3.0155 lower, catastrophes 19 -> 12, negative mass 4,138 -> 3,864, all six families positive,
+both seats positive, worker-two delay zero, and period-2 >=6 at zero. The generated-map motion
+packet was liveness-clean but mildly adverse and remains a non-authoritative discriminator.
+**Updated disposition: DEVELOPMENT-QUALIFIED / TRANSFER UNTESTED / NO ARENA ACTION.**
+
+## 2026-08-03 — tree-edge successor untouched transfer lock
+
+Scoped live-record, task-tree, tracked-filename, Git-history, and verified external-project-root
+searches found no recorded collision for official-generator seeds 9,866,000--042. No map in the
+range was generated or inspected. A dedicated evaluator hard-codes 43 maps, both seats, six
+families, eight threads, and 50,000 bootstrap samples; compile-only preflight passes without map
+generation. Candidate, evaluator, generated runner, range, gates, evidence hashes, and the exact
+one-shot command are frozen in
+`focused-yamo-bank-convoy-tree-edge-reversal-fresh-lock.json`. **Disposition: LOCKED LOCALLY /
+UNOPENED / REMOTE PUBLICATION REQUIRED BEFORE EXECUTION / NO ARENA ACTION.**
+
+## 2026-08-03 — tree-edge half-size untouched transfer rejection
+
+The lock was remotely verified at commit `4fab81bc` before the exact command ran once. It saved
+516 tasks in 98.920 seconds with exact source, runner, library, and range hashes. Eleven of
+thirteen gates pass: +6.2926 mean / -1.3469 lower, five/six nonnegative families, both seats
+positive, worker-two delay zero, period-2 >=6 at zero, latency and integrity green. The frozen
+tail gates fail: catastrophes worsen 12 -> 16 and negative mass worsens 4,567 -> 4,826. Nine new
+catastrophes outweigh five rescues; five new catastrophes share seed 9,866,014, but row removal is
+forbidden. **Disposition: TERMINAL FRESH REJECTION / RANGE CONSUMED / NO RERUN / NO ARENA
+ACTION.** Exact evidence is in
+`e7a-half-size-tree-edge-reversal-fresh-result-2026-08-03.md`.
+
+## 2026-08-03 — consumed tail attribution and eight-hour report
+
+Five controlled sources were replayed on the consumed 9,866,000--042 panel. Strict
+no-backtrack, five-step reversal, tree-edge reversal, an over-limit exact-logic control, and a
+stock-retaining control all remain positive at +6.22 to +6.53 mean but fail the preserved tail
+gates. Tree-edge improves strict no-backtrack from 19 to 16 catastrophes and negative mass from
+5,017 to 4,826, so its liveness distinction is not the tail cause. An orchard-free 28,517-byte
+control falsifies global orchard deletion at -38.717 mean, catastrophes 12 -> 48, and negative
+mass 4,567 -> 15,719.
+
+Exact paired command traces on the worst task (seed 9,866,014, seat 0, gold-adaptive) match
+through turn 14. At turn 15 the baseline starter continues outward toward a natural tree while
+the half-size parent returns home; at turns 18--19 it picks and plants APPLE, activating the
+compact orchard while the opponent scales. The current boundary is therefore to preserve the
+orchard's broad value but make its activation fail closed or closer to the exact parent.
+
+The full work session is synthesized for a beginner in the seven-page PDF
+`e7a-half-size-last-eight-hours-report-2026-08-03.pdf`, SHA-256
+`c61b07b907d1044f71b8a468cae69feaffa68703d05178102a32bd8b7600e447`. It explains the game,
+all test terminology, the chronological candidates, untouched one-shot validation, exact current
+status, and next work. **Disposition: JOINT GOAL INCOMPLETE / LIVE RANK-11 BOT UNCHANGED / NO
+ARENA ACTION.**
+
+## 2026-08-03 — owner-rescoped single logical deletion
+
+The owner softened the rigid half-size requirement to deleting one meaningful source block.
+The frozen successor protocol starts again from exact 62,820-byte live E7a and keeps behavior
+equality strict. Its first arm deletes the generic greedy selector for rosters above two friendly
+trolls while preserving the exact zero/one/two selector; the live policy's `can_train` hard cap
+makes the deleted path unreachable. Unexpected larger rosters fail safe to `WAIT`.
+
+The exact candidate is 62,278 bytes (542 bytes / 0.863% removed), SHA `ab093474...`, with no
+identifier renaming, minification, compression, or formatting reduction. Rebuild, optimized
+compile, empty input, baseline/sacred hashes, and all ten live-baseline semantic fixtures pass
+exactly. **Disposition: STATIC/SEMANTIC PASS / LIVE COMMAND PARITY AND DEVELOPMENT EQUALITY
+PENDING / NO ARENA ACTION.**
+
+## 2026-08-03 — single deletion development exact-equality qualification
+
+The 62,278-byte candidate matches exact live E7a on all 7,234 command lines from the 25 immutable
+public liveness counterexamples: zero different games, unknown updates, or stderr. Both retain the
+inherited maximum period-2 episode of 128; the deletion is behavior-preserving, not a liveness
+repair.
+
+The generated live-type runner adapter (`d9a118d...`) then executed 43 official-generator maps,
+both seats, and six frozen opponent families. All 516 terminal rows are exact: mean/lower 0.0,
+catastrophes 19 -> 19, negative mass 4,138 -> 4,138, and zero differences in scores, resources,
+turns, training, workers, liveness, or issue fields. Latency passes at p95 ratio 1.0041 and
+candidate maximum 6.276 ms. **Disposition: DEVELOPMENT EXACT-EQUALITY PASS / UNTOUCHED TRANSFER
+PENDING / NO ARENA ACTION.**
+
+## 2026-08-03 — single-deletion untouched equality lock
+
+Scoped canonical-record, task-tree, tracked-filename, and Git-history searches found no exact
+record of seeds 9,867,000--042. One broad `9,867` prose match is an unrelated byte count. Per the
+owner's search-safety instruction, no recursive search crossed the huge mounted bulk repositories;
+no map was generated or inspected.
+
+The dedicated evaluator hard-codes 43 maps, both seats, six families, eight threads, 50,000
+bootstrap samples, and exact equality across every terminal field. Compile-only preflight passes
+without map generation. Candidate, range, evaluator, runner, evidence hashes, gates, and one-shot
+command are frozen in `candidate-e7a-remove-generic-selector-fresh-lock.json`. **Disposition:
+LOCKED LOCALLY / UNOPENED / REMOTE PUBLICATION REQUIRED / NO ARENA ACTION.**
+
+## 2026-08-03 — single-deletion untouched exact-equality qualification
+
+The lock was committed, pushed, and remotely verified at `3857f309` before the frozen one-shot
+command ran. Seeds 9,867,000--042 produced 516 paired tasks over 43 maps, both seats, and six
+families. All terminal fields match: zero differing tasks, mean/lower 0.0, catastrophes 30 -> 30,
+negative mass 6,084 -> 6,084, all family and seat deltas zero, identical training and liveness,
+and no critical or unclassified issues. Latency passes at p95 ratio 1.0260 and candidate maximum
+8.215 ms.
+
+The 62,278-byte source is therefore a fully qualified, 542-byte-smaller equivalent of live E7a.
+It has exactly zero measured and expected score gain, so publishing would only reset maturity.
+**Disposition: UNTOUCHED EXACT-EQUALITY PASS / TASK COMPLETE / QUALIFIED BUT NOT DEPLOYED / LIVE
+RANK-11 BOT UNCHANGED UNDER NO-CHURN.** Exact evidence is in
+`e7a-single-logical-deletion-fresh-result-2026-08-03.md`.
+
+## 2026-08-03 — iterative deletion rounds 1--13 exact qualification
+
+Starting from the qualified 62,278-byte equivalent, thirteen logical blocks were removed and
+tested sequentially. They delete single-use configurability, fixed policy switches, three
+disabled modes, a redundant geometry check, and the opponent-risk calculation behind a fixed
+zero penalty. Every intermediate program rebuilds exactly, compiles, passes ten semantic
+fixtures, and matches all 7,234 commands on 25 public liveness counterexamples before becoming
+the next parent.
+
+The accumulated source is 57,677 bytes (`6b9fdc99...`), 4,601 below that parent and 5,143 below
+live E7a. All 516 development tasks are terminal-exact. The 9,868,000--042 lock was remotely
+verified at `666e8e62` before its one-shot execution; all 516 untouched tasks are also exact:
+mean/lower 0.0, catastrophes 28 -> 28, negative mass 6,539 -> 6,539, identical training and
+liveness, and passing latency.
+
+**Disposition: ROUND-13 UNTOUCHED EXACT-EQUALITY PASS / QUALIFIED CHECKPOINT / NOT DEPLOYED / LIVE
+RANK-11 BOT UNCHANGED UNDER NO-CHURN.** Further deletion requires a newly recorded invariant.
+Exact evidence is in `e7a-iterative-logical-deletion-r13-result-2026-08-03.md`.
+
+## 2026-08-03 — owner-directed no-orchard ablation Arena cycle
+
+The owner explicitly directed a live Arena ablation of the simplified round-28 bot with secure
+orchard activation disabled. This is deliberately behavior-changing and not frozen-protocol
+qualified. The exact 56,200-byte artifact is
+`claude_1/no-orchard-arena/candidate-e7a-r28-no-orchard.rs`, SHA-256
+`d1f32c358d0f7b6a49b988c1b4ad6958a2d8ed84a9e3492632087732aae7e02a`. Independent rebuild,
+optimized compile, empty input, and ten semantic fixtures pass. Frozen replay is identical in
+24/25 games and first differs in game `897833045` at turn 79, one turn after the orchard would
+activate. The owner was surfaced the measured mature-leg cost and selected the Arena experiment.
+
+**Cycle status: IN FLIGHT / SOLE CONTROLLER `local_codex_1` / NO AUTOMATIC RETRY.**
+
+| Timestamp (UTC) | Action | Result |
+|---|---|---|
+| 2026-08-03T14:57:23Z | Submission-history preflight | Exact candidate hash has never been deployed; experiment has no measured score history. |
+| 2026-08-03T14:57:23Z | Recover current platform source | 62,820 bytes; exact resident SHA-256 `97bfe71e...`. |
+| 2026-08-03T14:57:23Z | Pre-trial Arena-room read | Resident `6590141` score 25.3, rank 12/137; top three 30.84 / 29.56 / 28.34. |
+| 2026-08-03T14:57:23Z | Pre-trial battle/identity checkpoint | 160/160 finished, 82W/3T/75L, 35 catastrophes, negative mass 10,045, zero runtime signals, identity clean. |
+| 2026-08-03T15:02:24Z | Submit exact no-orchard candidate once | `TestSession/submit` HTTP 200; submission `41085842`; `SUBMIT-OK`; exit 0; no retry or fallback endpoint. |
+| 2026-08-03T15:02:35Z | Immediate identity discovery and rank read | New agent `6592097`; ten queued unfinished battles carry exact submission `41085842`. Arena-room still displayed old resident `6590141`, score 25.3/rank 12 while queue had no finished result. |
+| 2026-08-03T15:04:31Z | First candidate health/rank checkpoint | Agent `6592097`, submission `41085842`: 13 finished plus one pending, score 17.93, rank 97/137, one catastrophe, negative mass 302, zero runtime signals, identity clean. Public row momentarily read 18.7/rank 81; fresh partial read is not a verdict. |
+| 2026-08-03T15:06Z | Lightweight queue identity/count poll | Exact agent/submission match: 21 finished, one pending. |
+| 2026-08-03T15:08Z | Lightweight queue identity/count poll | Exact agent/submission match: 24 finished, one pending. |
+| 2026-08-03T15:10Z | Lightweight queue identity/count poll | Exact agent/submission match: 28 finished, one pending. |
+| 2026-08-03T15:12Z | Lightweight queue identity/count poll | Exact agent/submission match: 31 finished, one pending. |
+| 2026-08-03T15:14:08Z | Lightweight queue identity/count poll | Exact agent/submission match reached 43 finished and one pending before the full checkpoint. |
+| 2026-08-03T15:14:08Z | 45-game candidate health/rank checkpoint | Agent `6592097`, submission `41085842`: score 19.69, rank 66/137, 45 finished plus one pending, two catastrophes (4.4%), negative mass 883, zero runtime signals, identity clean. |
+| 2026-08-03T15:18:52Z | Lightweight queue identity/count poll | Exact agent/submission match: 64 finished, one pending. |
+| 2026-08-03T15:21:07Z | Lightweight queue identity/count poll | Exact agent/submission match reached 72 finished and one pending before the full checkpoint. |
+| 2026-08-03T15:21:07Z | 74-game candidate health/rank checkpoint | Agent `6592097`, submission `41085842`: score 22.49, rank 38/137, 74 finished plus one pending, four catastrophes (5.4%), negative mass 1,561, zero runtime signals, identity clean. |
+| 2026-08-03T15:26:32Z | Lightweight queue identity/count poll | Exact agent/submission match reached 94 finished and one pending before the full checkpoint. |
+| 2026-08-03T15:26:32Z | 96-game candidate health/rank checkpoint | Agent `6592097`, submission `41085842`: score 22.85, rank 37/137, 96 finished plus one pending, seven catastrophes (7.3%), negative mass 2,426, zero runtime signals, identity clean. |
+| 2026-08-03T15:31:35Z | Lightweight queue identity/count poll | Exact agent/submission match: 113 finished, one pending. |
+| 2026-08-03T15:33:58Z | Lightweight queue identity/count poll | Exact agent/submission match reached 123 finished and one pending before the full checkpoint. |
+| 2026-08-03T15:33:58Z | 125-game candidate health/rank checkpoint | Agent `6592097`, submission `41085842`: score 23.26, rank 34/137, 125 finished plus one pending, ten catastrophes (8.0%), negative mass 3,281, zero runtime signals, identity clean. |
+| 2026-08-03T15:39:33Z | Lightweight queue identity/count poll | Exact agent/submission match: 143 finished, one pending. |
+| 2026-08-03T15:41:50Z | Lightweight queue identity/count poll | Exact agent/submission match: 154 finished, one pending. |
+| 2026-08-03T15:43:10Z | Terminal queue identity/count poll | Exact agent/submission match: 160/160 finished, zero pending. |
+| 2026-08-03T15:43:10Z | Terminal candidate health/rank checkpoint | No-orchard `6592097`/`41085842`: score 23.27, rank 34/137, 91W/4T/65L, mean margin +10.56875, 16 catastrophes (10.0%), negative mass 5,441, zero runtime signals, identity clean. Pre-trial score/rank delta is −2.03 / +22 places. |
+| 2026-08-03T15:45:15Z | Recover terminal platform source before disposition | 56,200 bytes; exact no-orchard SHA-256 `d1f32c35...`. Controller verdict: materially below resident, reject ablation and restore exact E7a in-cycle. |
+
+**Terminal ablation disposition: REJECT NO-ORCHARD / PRESERVE ORCHARD / EXACT E7A RESTORE
+REQUIRED.** The score loss exceeds the Arena noise band. The reduced catastrophe rate is not
+enough to retain a bot that finishes roughly two rating points lower, and terminal matchup sets
+differ, so component-value language remains bounded to this live ablation rather than a clean
+paired causal estimate.
+
+Restore execution:
+
+| Timestamp (UTC) | Action | Result |
+|---|---|---|
+| 2026-08-03T15:46:51Z | Submit exact E7a restore once | `TestSession/submit` HTTP 200; submission `41086057`; `SUBMIT-OK`; exit 0; no retry or fallback endpoint. |
+| 2026-08-03T15:47:05Z | Immediate restore identity/rank read | New restore agent `6592131`; ten queued unfinished battles carry exact submission `41086057`. Arena-room still displayed terminal ablation `6592097`, score 23.2/rank 34 while restore had no finished result. |
+| 2026-08-03T15:49:34Z | Recover restore platform source | Exact 62,820-byte E7a SHA-256 `97bfe71e...`; source gate passes. |
+| 2026-08-03T15:49:34Z | Initial restore health/rank checkpoint | Restore `6592131`/`41086057`: 15 finished plus one pending, score 18.57, rank 84/137, 10W/0T/5L, two catastrophes, negative mass 468, zero runtime signals, identity clean. Cold-start placement only. |
+
+**Cycle status: TERMINATED / NO-ORCHARD REJECTED / EXACT E7A ACTIVE / ARENA LOCK RELEASED.**
+The source and initial-health restore gates pass. The fresh restore score is not mature evidence;
+passive convergence requires no further platform mutation. Full result:
+`no-orchard-ablation-arena-result-2026-08-03.md`. Registry active identity is
+`6592131`/`41086057`; any successor requires a distinct serialized task.
+
+## 2026-08-03 — exact E7a restore replay collection and shared export
+
+The owner's targeted collection requested the active restore's games in the repository. The
+public battle list returned 162 finished rows, all exact agent/submission `6592131`/`41086057`.
+All 162 replay bodies fetched with zero failures. The independent checkpoint is clean at score
+23.56, rank 32/137, 93W/3T/66L, 18 catastrophes, negative mass 5,569, and zero runtime signals.
+
+The 40,902,888 raw bytes remain in the canonical local cache and were deterministically exported
+as a 5,812,614-byte sanitized JSONL-gzip Git LFS object at
+`data/shared-lfs/e7a-restore-agent-6592131/`, SHA `f9567974...`. Names are replaced by positional
+placeholders; user IDs, avatars, public handles, and session handles are absent. The manifest pins
+all 162 game IDs and source/export hashes. Exact E7a now has two mature registry runs: median 24.41,
+worst 23.56, best 25.26. No Arena or cron mutation occurred.
+
+Payload commit `90e8890e` uploaded exactly one 5.8 MB LFS object. A fresh smudge-disabled clone
+observed the pointer and selectively downloaded exact SHA `f9567974...` at 5,812,614 bytes;
+remote publication is therefore verified, not merely inferred from the push response.
+
+## 2026-08-03 — four-cycle orchard/no-orchard overnight replication
+
+The owner directed four live repetitions of orchard versus no-orchard, one hour per version, with
+all games and results written to Git. The controller freezes the strict sequence `N→O` ×4 so the
+eighth leg ends with exact orchard active. Exact sources are E7a SHA `97bfe71e...` and no-orchard
+SHA `d1f32c35...`; pre-cycle exact E7a is 23.56/rank 32/137 over 162 clean games, with an immediate
+23.4/rank-33 read.
+
+The one-call submitter has no compatibility fallback or automatic retry. Each accepted leg gets
+three pushed 15-minute phase markers, a settled one-hour identity/runtime checkpoint, complete
+sanitized LFS replays, and a pushed result before the next mutation. A 05:14–05:31 local network
+blackout avoids the daily collector. **Status: PREPARED / SOLE CONTROLLER `local_codex_1` / FIRST
+MUTATION GATED ON REMOTE START-COMMIT VERIFICATION.** Runtime state will live at
+`data/analysis/live-agent-6553250/orchard-ab-night-20260803/state.json`.
+
+The first launch at 19:11:26Z stopped before maturity because read-only source recovery searched
+for the untracked controller credential in the isolated worktree. No-orchard submission
+`41086801` was exposed for approximately 66 seconds, then the declared single orchard safety
+restore was accepted as `6592329`/`41086809`. This is a preflight abort, not one of the eight legs.
+The restart is gated on an explicit verifier credential path, a five-minute propagation-read
+window, exact restore verification, tests, and a remotely verified correction commit.
+
+Correction commit `9f21ef69` was remote-verified. The clean run restarted at 19:16:14Z; leg 1 is
+no-orchard agent `6592330`, submission `41086822`, with exact recovered source and one canonical
+mutation call. Start commit `1ff538c7` is remote-verified. The approximately 66-second preflight
+exposure remains excluded from all eight experimental legs.
+
+## 2026-08-04 — owner-directed exact readable no-orchard deployment
+
+The owner directed submission of the exact readable orchard-stripped artifact, not its compact
+equivalent. It is 75,634 bytes, 1,475 physical lines / 1,470 nonblank/noncomment code lines, at
+SHA-256 `98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29`.
+Compile, empty input, lexical exactness to the stripped compact parent, and 25/25 frozen live
+fixtures pass. This is explicitly not a strength qualification: earlier no-orchard live evidence
+was weaker, and the owner has chosen deployment after measuring the feature's code and ladder cost.
+
+Pre-mutation baseline `6592744`/`41087983` is exact orchard, score 22.88/rank 32/137 over 160
+finished games, 99W/2T/59L, 19 catastrophes, negative-margin mass 4,703, zero runtime signals,
+and clean identity. Platform recovery confirms exact orchard SHA `97bfe71e...`. The serialized
+cycle permits one canonical submission, no ambiguous retry, exact source recovery, and an initial
+runtime/identity checkpoint. Weak cold-start value alone is not a restore condition.
+
+**Status: PREPARED / SOLE CONTROLLER `local_codex_1` / MUTATION GATED ON REMOTE START-RECORD
+VERIFICATION.**
+
+Start commit `cb949add` was pushed and remote-verified. One canonical submit call then returned
+HTTP 200 with unambiguous submission `41089629`; new agent is `6593838`. No retry or restore
+occurred. Read-only platform recovery is exact to the 75,634-byte readable candidate at full SHA
+`98628e98...`. Initial submission-scoped health has ten parsed finished games plus one pending,
+score 18.38/rank 87 of 137, zero catastrophes, negative mass 21, zero runtime signals, and clean
+identity. This is a cold-start runtime check, not a value verdict.
+
+**Status: COMPLETE / EXACT READABLE SOURCE ACTIVE / INITIAL HEALTH CLEAN / ARENA LOCK RELEASED.**
+
+## 2026-08-04 — round-36 simplified exact-equality qualification and Arena-cycle start
+
+The owner directed an exact four-step controller sequence: compare round 36 with exact E7a on the
+frozen 516-task panel; submit once only on full equality; recover and hash-check platform source
+and record identity/runtime health; otherwise stop at the first divergence.
+
+The 55,799-byte candidate at SHA `2caac7c6...` passes: 0/516 differing terminal tasks across 43
+consumed official-generator maps, both seats, and six families. Mean/lower, family/seat deltas,
+catastrophes 19/19, negative mass 4,138/4,138, training, liveness, issues, and all terminal fields
+are exact; every gate is green. Result/TSV hashes are `ec61d43a...` / `c9a8161a...`. Three runner
+compile preflights stopped before map generation while the live-candidate adapter was brought to
+round-36 API parity; they are tooling corrections, not candidate observations.
+
+Submission-history preflight reports the exact hash has never been deployed. The pre-mutation
+platform source is exact readable no-orchard SHA `98628e98...`; agent `6593838`, submission
+`41089629` is complete at 160 games, score 24.76/rank 21/137, 94W/2T/64L, 17 catastrophes,
+negative mass 4,986, zero runtime signals, and clean identity.
+
+**Status: QUALIFIED / OWNER-DIRECTED ONE-CALL MUTATION PREPARED / REMOTE START-RECORD
+VERIFICATION REQUIRED / SOLE CONTROLLER `local_codex_1`.**
+
+Remote start commit `a913ba7f` was verified. One canonical call at 14:56:50Z returned HTTP 200 and
+submission `41090606`; no retry occurred. The new agent is `6594200`. Immediate read-only source
+recovery is exact at 55,799 bytes and full SHA `2caac7c6...`.
+
+Initial submission-scoped health at 14:57:50Z has 11 finished plus one pending, 7W/0T/4L, one
+catastrophe, negative mass 375, zero runtime signals, and clean identity. The Arena-room endpoint
+still read 0/rank 136 while the filtered ladder read 17.55/rank 102; both are cold asynchronous
+placement, not a strength verdict.
+
+**Status: COMPLETE / EXACT ROUND-36 SOURCE ACTIVE / INITIAL HEALTH CLEAN / NO RETRY OR RESTORE /
+ARENA READ-ONLY WHILE SETTLING.**
+
+## 2026-08-04 — volume 3 frozen
+
+The round-36 execution closeout leaves this volume above its 100 KB rotation threshold. Volume 3
+is now frozen; the live ledger continues in
+`legend-top3-experiment-cycle-vol4-2026-08-04.md`.

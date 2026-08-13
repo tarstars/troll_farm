@@ -1,0 +1,105 @@
+{
+  "schema": "troll-farm-e7a-half-size-fresh-gate-lock-v1",
+  "task_id": "20260802-e7a-half-size-logical-simplification",
+  "locked_at_utc": "2026-08-03T01:13:00Z",
+  "state_at_lock": "UNOPENED",
+  "one_shot": true,
+  "candidate": {
+    "path": "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-bank-convoy-spare-door-orchard.rs",
+    "bytes": 31398,
+    "sha256": "ec4b31408e963e0647d934e19bed7cc91d881f0a5d84717a295e3ad62426d9b2"
+  },
+  "baseline": {
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+    "bytes": 62820,
+    "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+  },
+  "sacred": {
+    "path": "rust/src/bin/yamo_orchard_live.rs",
+    "sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "validation": {
+    "seed_start": 9863000,
+    "seed_end_inclusive": 9863042,
+    "maps": 43,
+    "seats": [0, 1],
+    "opponents": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot"
+    ],
+    "paired_tasks": 516,
+    "threads": 8,
+    "bootstrap_samples": 50000,
+    "bootstrap_rng_seed": 20260803,
+    "range_arguments_exposed": false
+  },
+  "gates": {
+    "coverage_at_least_512": true,
+    "six_families": true,
+    "zero_critical_and_unclassified": true,
+    "mean_margin_delta_minimum": -0.5,
+    "bootstrap_95_lower_strictly_above": -2.0,
+    "catastrophes_may_increase": false,
+    "negative_margin_mass_may_increase": false,
+    "minimum_nonnegative_family_means": 5,
+    "both_seat_means_nonnegative": true,
+    "worker2_coverage_minimum": 0.95,
+    "median_worker2_delay_maximum": 10,
+    "candidate_period2_ge6_maximum": 0,
+    "latency_p95_ratio_maximum": 1.2,
+    "latency_maximum_ms_strictly_below": 50
+  },
+  "collision_audit": {
+    "result": "NO_RECORDED_SEED_COLLISION",
+    "live_record_roots": ["docs", "coordination", "cgauto", "scripts"],
+    "exact_tokens": ["9863000", "9_863_000", "9,863,000", "9,863"],
+    "live_record_matches_before_reservation": 0,
+    "tracked_history_exact_9863000_matches": 0,
+    "external_artifact_filename_matches": 0,
+    "excluded_recorded_ranges": [
+      "9844200-9844215",
+      "9852000-9852063",
+      "9853000-9853127",
+      "9854000-9854127",
+      "9855000-9855127",
+      "9856000-9856255",
+      "9857000-9857127",
+      "9858000-9858031",
+      "9859000-9859127",
+      "9860000-9860511",
+      "9861000 selection material",
+      "9862000-9862063"
+    ]
+  },
+  "hashes": {
+    "builder": "88b7365dd662a45b54254cb394b3b24d3b82c566a926134cbd77957e6b83b4c5",
+    "candidate_manifest": "177adc7d05bdf52eaebf012960b843029c30358d91b284d4b17da8a1c1fa1e1e",
+    "semantic_validator": "fcf279595cd5663796014d2d85a3c1db989ce46a8e2dee83947201ef2a3fb5ff",
+    "semantic_result": "85e37e3583ea5f014ad8c825ed6c68ab9a26538da5f2eb790922adb893e593a5",
+    "motion_evaluator": "aeccde7b73891fbfa03a57c657ce230c65e1930ef04ff735c081cbf4134b6258",
+    "motion_result": "6ca9116cb1c18b3c9e915a113322cf9f88df670179772a6bc67c426cae86123b",
+    "shared_panel_analyzer": "61989811806719625155638b941896bb446d9c07b7e07de37da90982b474d7fd",
+    "fresh_evaluator": "56f350e4a8bda8498b3e48ffffc50d993d8eb992171f01e23ddef92611547366",
+    "runner_template": "05335ff0226394abe0216e172bf234c56051358bbc29fceb5f5de86da9361a45",
+    "generated_fresh_runner": "c28567879abbcd9d481cb43233d56fe97162d03288a828f6dac501862160d755",
+    "rust_library": "1802bd8d69023b2e374d0a9586c33296485456892a9821dc635f5cb6dde0e660",
+    "consumed_panel_tsv": "7d203089d454e9f2cdeeb663ec463af5dd67db5246cedf9a78719afadf2f655d",
+    "consumed_result": "9e03caa01f23169b68f4aaaadf98abb041e00c37b3ea1fde77360bd524a6ba3d",
+    "rejected_block_diagnostic_tsv": "bd36db4769ae7ba95db371b10f085067abbc3fa4fd9b720427c7b9210b9ad7cc",
+    "rejected_block_diagnostic_result": "4038c242fb90239cf8621a2b7d846aff0868e343d6e0c068bb9bc60cdcb14336"
+  },
+  "pre_run_checks": {
+    "standalone_optimized_compile": true,
+    "empty_input_exit_zero": true,
+    "empty_input_stdout_bytes": 0,
+    "empty_input_stderr_bytes": 0,
+    "semantic_fixtures": "PASS_10_OF_10",
+    "motion_candidate_period2_ge6": 0,
+    "fresh_runner_compile_only": "PASS_NO_MAP_GENERATION"
+  },
+  "evidence_boundary": "Untouched engineering transfer gate; not an Arena-rating predictor"
+}

@@ -6,13 +6,31 @@ from: <agent-id>
 to: <agent-id or user>
 cc: []
 message_id: coordination/messages/<agent-id>/<YYYYMMDDTHHMMSSZ>-<task-id>-<kind>.md
-requires_ack: true
+requires_ack: <true|false — MUST be false for progress, ack, release, integrated (protocol §4)>
 ack_for: []
 supersedes: []
 created_utc: <YYYY-MM-DDTHH:MM:SSZ>
 ---
 
+- To: <recipient>
+- CC: <cc, or omit>
+- Task: <task-id>
+- Requires acknowledgement: <yes|no — must agree with requires_ack above>
+
 # <kind>: <task-id>
+
+<!--
+The four bullets above are the MANDATORY legacy block (protocol §10.0). Do not delete
+them. Every message must carry BOTH the v2 front matter and the legacy block, because
+peers do not all run the same sweep version and a front-matter-only message is invisible
+to an older reader. That is not hypothetical: one agent saw zero messages for ten days.
+
+requires_ack above is a placeholder on purpose. It used to be hardcoded `true`, so
+copying this template for a progress note manufactured a permanent, immutable
+acknowledgement obligation that protocol §4 explicitly exempts. requires_ack() ORs the
+flag with the kind, so the template's default silently overrode the protocol's exemption.
+-->
+
 
 <!--
 v2 rules (coordination/multi-agent-protocol.md §4):

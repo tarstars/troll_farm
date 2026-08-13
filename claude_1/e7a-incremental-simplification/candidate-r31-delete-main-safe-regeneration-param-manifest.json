@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 56126,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r31-delete-main-safe-regeneration-param.rs",
+    "removed_from_initial_62278": 6152,
+    "removed_this_round": 84,
+    "sha256": "b1fc3e60894eee901cf81326d89c21fb868536dda9392d31d1add83d15d42b20"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact offline live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "delete the main_candidates safe_regeneration parameter, which round 10 fixed to literal true at both call sites, folding its two constant-true conjuncts and passing true at the one passthrough argument",
+  "minification": false,
+  "parent": {
+    "bytes": 56210,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r30-inline-max-chop-power-local.rs",
+    "sha256": "72d36be112991dfd263da13a2bc4e3e51945b5570dd776e40a01b0def75dfdda"
+  },
+  "round": 31,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}

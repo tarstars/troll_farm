@@ -1,0 +1,37 @@
+{
+  "arm": "ORCHARD_REMOVED_CORE_EXACT",
+  "baseline_sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595",
+  "candidate_bytes": 48644,
+  "candidate_sha256": "7a8f3d45621e6fe9b9bd22858476f0ae0cdfb1fcfd5b96a4fea6e7af42dfb69d",
+  "evidence_boundary": "oversized attribution arm; cannot qualify for Arena",
+  "identifier_renaming": false,
+  "logical_change": "remove SecureOrchardBot and run the otherwise exact inner YamoBot",
+  "minification": false,
+  "removed_items": [
+    {
+      "bytes": 57,
+      "marker": "enum OrchardPhase"
+    },
+    {
+      "bytes": 102,
+      "marker": "struct OrchardGeometry"
+    },
+    {
+      "bytes": 54,
+      "marker": "struct OrchardCycle"
+    },
+    {
+      "bytes": 302,
+      "marker": "pub struct SecureOrchardBot"
+    },
+    {
+      "bytes": 10241,
+      "marker": "impl SecureOrchardBot"
+    },
+    {
+      "bytes": 3373,
+      "marker": "impl Bot for SecureOrchardBot"
+    }
+  ],
+  "schema": "troll-farm-e7a-development-ablation/1"
+}

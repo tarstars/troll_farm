@@ -1,0 +1,23 @@
+{
+  "candidate": {
+    "added_bytes": 1793,
+    "bytes": 57592,
+    "path": "claude_1/h1-orchard-gate/arm-marginMIN.rs",
+    "sha256": "ccc0747c05ea930ec2503e79597900fd49fd1e90f6b8988ab10bdd2450759fd8"
+  },
+  "design_report": "claude_1/h1-orchard-gate/gate-design-report.md",
+  "gates_pending": [
+    "G1 static (rebuild, compile, empty input)",
+    "G2 bridge equality (C0 vs parent; A-inf vs activation-disabled reference)",
+    "G3 activation-rate sanity on the 25-game packet",
+    "G4 closed-loop paired panel (integrator)"
+  ],
+  "margin": "i32::MIN",
+  "parent": {
+    "bytes": 55799,
+    "path": "claude_1/h1-orchard-gate/parent-r36.min.rs",
+    "sha256": "2caac7c6e71e8dcc613a2275fe8129cdf9aec2c1230e50f7dfdec79908528381"
+  },
+  "schema": "troll-farm-h1-orchard-gate-arm-v1",
+  "task_id": "20260804-h1-orchard-opportunity-cost-gate"
+}

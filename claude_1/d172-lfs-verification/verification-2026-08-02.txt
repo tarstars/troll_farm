@@ -1,0 +1,51 @@
+D172 LFS download verification — claude_1 cloud environment
+Task: 20260802-claude_1-d172-lfs-download-verification
+Payload commit: bcbd5cafd3cfabb1fe99de2a869d9e36fd595021 (origin/agent/local_codex_1)
+Executed UTC: 2026-08-02T06:24Z–06:26Z
+git-lfs: 3.4.1 (GitHub; linux amd64; go 1.22.2)
+
+--- step 1: clean clone, smudge disabled, exact payload commit
+GIT_LFS_SKIP_SMUDGE=1 git clone --no-checkout git@github.com:tarstars/troll_farm.git <tmp>
+GIT_LFS_SKIP_SMUDGE=1 git checkout --detach bcbd5cafd3cfabb1fe99de2a869d9e36fd595021
+git rev-parse HEAD  -> bcbd5cafd3cfabb1fe99de2a869d9e36fd595021
+
+--- step 2: pre-pull, all four TSV worktree paths are pointers (133 bytes each)
+version https://git-lfs.github.com/spec/v1
+oid sha256:e9d46b5e3411d94be2df14935971a7f3cec6799069b9db35ad0575bb880aab51  shard-9860000-9860127
+oid sha256:82541a97a714e5115735e83b49988ef25f7c92721efc5bfc16aad07fd7d499ad  shard-9860128-9860255
+oid sha256:d0a79ea73867a793a5ed6bbf55a092e6b8f6ab13cd760ad495163bc1f466ba6c  shard-9860256-9860383
+oid sha256:bd83cf3188b3597d8eb864adc68a7893745855a09eda2aed38285664a159b630  shard-9860384-9860511
+
+--- step 3: selective pull
+git lfs pull --include="data/shared-lfs/d172a-option-corpus/*.tsv"
+real 0m8.173s   user 0m1.051s   sys 0m0.888s
+no auth, quota, bandwidth, pointer, smudge, or filesystem error; no retry needed
+
+--- step 4: parity
+files                4 regular TSV
+apparent bytes       82824259        expected 82,824,259   MATCH
+physical lines       80001           expected 80,001       MATCH
+data rows            79997           expected 79,997       MATCH  (80,001 - 4 headers)
+sha256sum -c SHA256SUMS
+  d172a-corpus.shard-9860000-9860127.tsv: OK
+  d172a-corpus.shard-9860128-9860255.tsv: OK
+  d172a-corpus.shard-9860256-9860383.tsv: OK
+  d172a-corpus.shard-9860384-9860511.tsv: OK
+
+per shard:
+  shard-9860000-9860127.tsv   20862015 bytes   20150 lines
+  shard-9860128-9860255.tsv   20608837 bytes   19907 lines
+  shard-9860256-9860383.tsv   20642952 bytes   19940 lines
+  shard-9860384-9860511.tsv   20710455 bytes   20004 lines
+each file ends with a trailing newline; each carries one header row
+header begins: map_seed<TAB>seat<TAB>opponent_index<TAB>opponent<TAB>tu...
+
+--- selectivity: unrelated LFS paths were NOT downloaded
+git lfs ls-files
+  e9d46b5e34 * data/shared-lfs/d172a-option-corpus/d172a-corpus.shard-9860000-9860127.tsv
+  82541a97a7 * data/shared-lfs/d172a-option-corpus/d172a-corpus.shard-9860128-9860255.tsv
+  d0a79ea738 * data/shared-lfs/d172a-option-corpus/d172a-corpus.shard-9860256-9860383.tsv
+  bd83cf3188 * data/shared-lfs/d172a-option-corpus/d172a-corpus.shard-9860384-9860511.tsv
+  527b8d3e10 - local_codex_1/lfs-probe/probe.bin      <- '-' = pointer only, not fetched
+local_codex_1/lfs-probe/probe.bin still 127 bytes on disk (pointer)
+.git/lfs store: 80M — the four requested objects only

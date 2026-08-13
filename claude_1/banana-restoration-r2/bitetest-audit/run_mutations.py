@@ -360,16 +360,25 @@ def main(argv=None):
             control_green, len(ok), caught_n, expected_n, len(ok) - caught_n,
             live_n, doc["totals"]["unwitnessed"], args.out))
 
-    # Exit status, in severity order.  A green control over a broken experiment
-    # is the failure mode being closed here: it is not a success, and it must
-    # not be reportable as one by anything gating on exit status.
+    return drive_verdict(control_green, complete, bool(args.partial), reasons)
+
+
+def drive_verdict(control_green, complete, acknowledged_partial, reasons):
+    """Exit status, in severity order.  A green control over a broken experiment
+    is the failure mode being closed here: it is not a success, and it must
+    not be reportable as one by anything gating on exit status.
+
+    Semantics are exactly the 2026-08-10 revision (80c3dd63); extracted from
+    main() unchanged so the contract is unit-testable
+    (tests/test_run_mutations_verdict.py).
+    """
     if not control_green:
         sys.stderr.write(
             "INCONCLUSIVE: the unmutated control is not green, so no mutant "
             "result means anything.\n")
         return 1
     if not complete:
-        if args.partial:
+        if acknowledged_partial:
             sys.stderr.write(
                 "PARTIAL (acknowledged with --partial): %s\n"
                 "These totals describe a subset and must not be published as a "

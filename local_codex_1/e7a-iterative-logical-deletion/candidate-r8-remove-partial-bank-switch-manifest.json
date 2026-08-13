@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 60940,
+    "path": "local_codex_1/e7a-iterative-logical-deletion/candidate-r8-remove-partial-bank-switch.rs",
+    "removed_from_initial_62278": 1338,
+    "removed_this_round": 110,
+    "sha256": "4cd13b154a33e998a2cd415b0f80a4dcb0f46860d12e8c32e5873369b0d72131"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "delete the fixed-on partial-load bank-transit switch and preserve the formerly guarded candidate predicate",
+  "minification": false,
+  "parent": {
+    "bytes": 61050,
+    "path": "local_codex_1/e7a-iterative-logical-deletion/candidate-r7-remove-door-switch.rs",
+    "sha256": "3f8c61509e415579a238c4913767139fea3c7d951b33e5329dbf41689d6fba8f"
+  },
+  "round": 8,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}

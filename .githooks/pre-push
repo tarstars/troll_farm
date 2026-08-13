@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Pre-push backstop for agent branches: lint the outbox, never piped.
+# Bypassable with --no-verify by design; scripts/publish_outbox.sh is the
+# canonical path. Installed via scripts/install_hooks.sh (core.hooksPath).
+set -euo pipefail
+BRANCH="$(git symbolic-ref --short HEAD 2>/dev/null || true)"
+case "$BRANCH" in
+    agent/*) AGENT="${BRANCH#agent/}" ;;
+    *) exit 0 ;;
+esac
+cd "$(git rev-parse --show-toplevel)"
+python3 scripts/lint_outbox.py --me "$AGENT"

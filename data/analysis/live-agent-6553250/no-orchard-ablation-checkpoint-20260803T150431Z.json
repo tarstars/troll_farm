@@ -1,0 +1,185 @@
+{
+ "schema": 1,
+ "observed_at": "2026-08-03T15:04:45.057080+00:00",
+ "result_audit_completed_at": "2026-08-03T15:04:49.862235+00:00",
+ "role": "no-orchard-candidate",
+ "agent_id": 6592097,
+ "submission_id": 41085842,
+ "arena": {
+  "agent_id": 6592097,
+  "rank": 97,
+  "total": 137,
+  "score": 17.93,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6592097,
+  "rank": 81,
+  "score": 18.71,
+  "division_index": 5
+ },
+ "battle_rows_listed": 14,
+ "matching_rows": 14,
+ "matching_finished": 13,
+ "matching_pending": 1,
+ "unexpected_rows": [],
+ "parsed_results": 13,
+ "fetch_failures": [],
+ "summary": {
+  "games": 13,
+  "wins": 9,
+  "ties": 0,
+  "losses": 4,
+  "mean_margin": 65.61538461538461,
+  "catastrophic_losses": 1,
+  "catastrophic_rate": 0.07692307692307693,
+  "negative_margin_mass": 302.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 897919348,
+   "opponent": "Mmdrlol",
+   "opponent_agent_id": 6588478,
+   "our_score": 172.0,
+   "opponent_score": 108.0,
+   "margin": 64.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897919325,
+   "opponent": "Pduhard-",
+   "opponent_agent_id": 6488390,
+   "our_score": 200.0,
+   "opponent_score": 327.0,
+   "margin": -127.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897919279,
+   "opponent": "Highruler",
+   "opponent_agent_id": 6505286,
+   "our_score": 173.0,
+   "opponent_score": 36.0,
+   "margin": 137.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897919232,
+   "opponent": "Alos",
+   "opponent_agent_id": 6588477,
+   "our_score": 276.0,
+   "opponent_score": 122.0,
+   "margin": 154.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897919231,
+   "opponent": "Gr0zamir",
+   "opponent_agent_id": 6591731,
+   "our_score": 240.0,
+   "opponent_score": 14.0,
+   "margin": 226.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897919230,
+   "opponent": "Ramdeath",
+   "opponent_agent_id": 6588460,
+   "our_score": 230.0,
+   "opponent_score": 22.0,
+   "margin": 208.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897919229,
+   "opponent": "Alexdelia",
+   "opponent_agent_id": 6480519,
+   "our_score": 139.0,
+   "opponent_score": 73.0,
+   "margin": 66.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897919228,
+   "opponent": "Zabym",
+   "opponent_agent_id": 6483514,
+   "our_score": 264.0,
+   "opponent_score": 204.0,
+   "margin": 60.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897919227,
+   "opponent": "dabino",
+   "opponent_agent_id": 6480948,
+   "our_score": 160.0,
+   "opponent_score": 153.0,
+   "margin": 7.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897919226,
+   "opponent": "m4l0s4n",
+   "opponent_agent_id": 6480544,
+   "our_score": 205.0,
+   "opponent_score": 291.0,
+   "margin": -86.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897919225,
+   "opponent": "siman",
+   "opponent_agent_id": 6479840,
+   "our_score": 270.0,
+   "opponent_score": 339.0,
+   "margin": -69.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897919224,
+   "opponent": "uta_ccc",
+   "opponent_agent_id": 6481139,
+   "our_score": 293.0,
+   "opponent_score": 60.0,
+   "margin": 233.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897919223,
+   "opponent": "yaichi",
+   "opponent_agent_id": 6480541,
+   "our_score": 236.0,
+   "opponent_score": 256.0,
+   "margin": -20.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": true
+}

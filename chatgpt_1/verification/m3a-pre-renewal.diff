@@ -1,0 +1,10 @@
+--- chatgpt_1/m3a-d1-situation-library-2026-08-10.json
++++ regenerated
+@@ -1050,6 +1050,7 @@
+     "panel_path": "local_claude_1/verification/readable-no-orchard-oscillation-2026-08-08.json"
+   },
+   "summary": {
++    "episode_ledger_sha256": "8e05b8aeb9fa90449819558f2c638a358f9c8667c35ea28d2fc2788b02fffc5d",
+     "episodes": 34,
+     "idle_blocker_claim_status": "UNRESOLVED_FROM_BASE_PANEL",
+     "situations": 32,

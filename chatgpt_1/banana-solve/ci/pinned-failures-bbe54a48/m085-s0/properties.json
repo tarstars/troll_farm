@@ -1,0 +1,112 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": false,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   3
+  ],
+  "margin": -12,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   6
+  ],
+  "opp_score": 24,
+  "score": 12
+ },
+ "class": "orchard_eligible",
+ "detector_counts": {
+  "D-1": 1,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 0,
+  "D-6": 0,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 2
+ },
+ "flags": [
+  {
+   "candidate_episodes": [
+    {
+     "cells": [
+      [
+       1,
+       4
+      ],
+      [
+       2,
+       4
+      ]
+     ],
+     "k": 3,
+     "turn_end": 23,
+     "turn_start": 17,
+     "unit": 0
+    }
+   ],
+   "detail": "candidate D-1 episodes (1) on a map where the parent also fails D-1 (1 episodes) - known family defect, report only",
+   "flag": "inherited-parent-D1",
+   "parent_episodes": [
+    {
+     "cells": [
+      [
+       1,
+       4
+      ],
+      [
+       2,
+       4
+      ]
+     ],
+     "k": 3,
+     "turn_end": 23,
+     "turn_start": 17,
+     "unit": 0
+    }
+   ]
+  },
+  {
+   "detail": "2 D-9 episode(s) reproduced identically by the parent on the identical map/opponent - inherited funding-phase behavior (I-18 byte-equal default), report only (ROOT-A panel-layer gate, round-6 ruling 2026-08-06)",
+   "flag": "inherited-parent-D9"
+  }
+ ],
+ "map_id": "m085",
+ "orchard_eligible": true,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   3
+  ],
+  "margin": -12,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   6
+  ],
+  "opp_score": 24,
+  "score": 12
+ },
+ "profile": "chopper_aggressor",
+ "seat": 0,
+ "seed": 15485863,
+ "turns": 200,
+ "violations": []
+}

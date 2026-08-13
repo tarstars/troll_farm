@@ -1,16 +1,21 @@
 # 20260731-dridriun-fruit-control-postmortem
 
-- Status: compact correction published; narrow corrected re-review pending
-- Record owner: local_codex_1
+- Status: closed — corrected record accepted; empirical verdict
+  `NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK`, disposition `ACCEPTED_NARROW_CORRECTION`
+  (chatgpt_1 re-review handoff 2026-08-06T09:18Z; artifact
+  `chatgpt_1/dridriun-fruit-control-postmortem-corrected-rereview-2026-08-06.md` at `0f0bd5a3`,
+  integrated). Acceptance covers a read-only existing-corpus precheck only; it does not
+  authorize implementation or reopen Phase 21, D173a/b, B3.7, B3.10, or any broad intervention.
+- Record owner: local_claude_1 (coordinator transfer 2026-08-06; work authored by local_codex_1)
 - Work owner: local_codex_1
-- Reviewer: chatgpt_1 (blocked handoff received; narrow re-review required after correction)
-- Integrator: local_codex_1
+- Reviewer: chatgpt_1 — review complete
+- Integrator: local_claude_1
 - Area: owner-observed fruit control / B3.7, B3.10, H3 boundary
 - Base commit: c2df655468a39c9f6f90da77a798f92b247ec6a8
 - Branch: agent/local_codex_1
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-31T11:00:00Z
-- Last updated UTC: 2026-07-31T13:45:00Z
+- Last updated UTC: 2026-08-06T13:05:00Z
 
 ## Result
 

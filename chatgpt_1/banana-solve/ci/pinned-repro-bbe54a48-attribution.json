@@ -1,0 +1,1084 @@
+{
+  "candidate_or_post_divergence_games": 2,
+  "fully_inherited_games": 20,
+  "games": [
+    {
+      "banana_active": false,
+      "candidate_command_sha256": "1a0da332654ce0fbb0e2131a274cb8ffa3953f9b5fc46c49c06593a487c369ea",
+      "class": "single_door_tent",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m003-s0",
+      "map_id": "m003",
+      "parent_command_sha256": "1a0da332654ce0fbb0e2131a274cb8ffa3953f9b5fc46c49c06593a487c369ea",
+      "profile": "harvester",
+      "seat": 0,
+      "seed": 49979687,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": true,
+          "count": 1,
+          "detector": "D-4",
+          "episode_parent_matches": [
+            true
+          ],
+          "episodes": [
+            {
+              "kind": "no_progress",
+              "turn_end": 16,
+              "turn_start": 14,
+              "unit": 2
+            }
+          ],
+          "parent_episodes": [
+            {
+              "kind": "no_progress",
+              "turn_end": 16,
+              "turn_start": 14,
+              "unit": 2
+            }
+          ],
+          "parent_reproduces": true,
+          "property": "P1"
+        }
+      ]
+    },
+    {
+      "banana_active": true,
+      "candidate_command_sha256": "d101394dcd640bb8709883ce538b87f14323e6a20094d9955f0d525612b31246",
+      "class": "single_door_tent",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m012-s0",
+      "map_id": "m012",
+      "parent_command_sha256": "d101394dcd640bb8709883ce538b87f14323e6a20094d9955f0d525612b31246",
+      "profile": "chopper_aggressor",
+      "seat": 0,
+      "seed": 982451653,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": true,
+          "count": 1,
+          "detector": "D-5",
+          "episode_parent_matches": [
+            true
+          ],
+          "episodes": [
+            {
+              "cell": [
+                4,
+                1
+              ],
+              "kind": "outside_ring",
+              "turn_end": 15,
+              "turn_start": 15,
+              "unit": 2
+            }
+          ],
+          "parent_episodes": [
+            {
+              "cell": [
+                4,
+                1
+              ],
+              "kind": "outside_ring",
+              "turn_end": 15,
+              "turn_start": 15,
+              "unit": 2
+            }
+          ],
+          "parent_reproduces": true,
+          "property": "P1"
+        }
+      ]
+    },
+    {
+      "banana_active": true,
+      "candidate_command_sha256": "a42596450cd376479a1f5d927d9dbde94506838a0f96fd324cdbf85c76af660e",
+      "class": "single_door_tent",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m012-s1",
+      "map_id": "m012",
+      "parent_command_sha256": "a42596450cd376479a1f5d927d9dbde94506838a0f96fd324cdbf85c76af660e",
+      "profile": "chopper_aggressor",
+      "seat": 1,
+      "seed": 982451653,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": true,
+          "count": 1,
+          "detector": "D-6",
+          "episode_parent_matches": [
+            true
+          ],
+          "episodes": [
+            {
+              "cell": [
+                12,
+                2
+              ],
+              "eta_opp_x": 1,
+              "kind": "opp_chop_eta",
+              "turn_end": 21,
+              "turn_start": 21,
+              "unit": 0
+            }
+          ],
+          "parent_episodes": [
+            {
+              "cell": [
+                12,
+                2
+              ],
+              "eta_opp_x": 1,
+              "kind": "opp_chop_eta",
+              "turn_end": 21,
+              "turn_start": 21,
+              "unit": 0
+            }
+          ],
+          "parent_reproduces": true,
+          "property": "P1"
+        }
+      ]
+    },
+    {
+      "banana_active": true,
+      "candidate_command_sha256": "a097b55381fb6258bf2bd80122548cb139faa2c050b0e5913fbc8ad5f2d52190",
+      "class": "choke_corridor",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m021-s1",
+      "map_id": "m021",
+      "parent_command_sha256": "a097b55381fb6258bf2bd80122548cb139faa2c050b0e5913fbc8ad5f2d52190",
+      "profile": "idle",
+      "seat": 1,
+      "seed": 49979687,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": true,
+          "count": 1,
+          "detector": "D-4",
+          "episode_parent_matches": [
+            true
+          ],
+          "episodes": [
+            {
+              "kind": "no_progress",
+              "turn_end": 17,
+              "turn_start": 15,
+              "unit": 2
+            }
+          ],
+          "parent_episodes": [
+            {
+              "kind": "no_progress",
+              "turn_end": 17,
+              "turn_start": 15,
+              "unit": 2
+            }
+          ],
+          "parent_reproduces": true,
+          "property": "P1"
+        }
+      ]
+    },
+    {
+      "banana_active": true,
+      "candidate_command_sha256": "5a9b3d3666011778dbe8656fdd13a149c202736ba72b4f072cd269c5165474e2",
+      "class": "water_diagonal",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m022-s0",
+      "map_id": "m022",
+      "parent_command_sha256": "5a9b3d3666011778dbe8656fdd13a149c202736ba72b4f072cd269c5165474e2",
+      "profile": "chopper_aggressor",
+      "seat": 0,
+      "seed": 67867967,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": true,
+          "count": 1,
+          "detector": "D-6",
+          "episode_parent_matches": [
+            true
+          ],
+          "episodes": [
+            {
+              "cell": [
+                2,
+                4
+              ],
+              "eta_opp_x": 1,
+              "kind": "opp_chop_eta",
+              "turn_end": 11,
+              "turn_start": 11,
+              "unit": 0
+            }
+          ],
+          "parent_episodes": [
+            {
+              "cell": [
+                2,
+                4
+              ],
+              "eta_opp_x": 1,
+              "kind": "opp_chop_eta",
+              "turn_end": 11,
+              "turn_start": 11,
+              "unit": 0
+            }
+          ],
+          "parent_reproduces": true,
+          "property": "P1"
+        }
+      ]
+    },
+    {
+      "banana_active": true,
+      "candidate_command_sha256": "f4fb25c790cbccb6d41007f0733376f53feaaab9d09e70a7b271820c2587c9e4",
+      "class": "single_door_tent",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m024-s0",
+      "map_id": "m024",
+      "parent_command_sha256": "f4fb25c790cbccb6d41007f0733376f53feaaab9d09e70a7b271820c2587c9e4",
+      "profile": "idle",
+      "seat": 0,
+      "seed": 982451653,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": true,
+          "count": 1,
+          "detector": "D-4",
+          "episode_parent_matches": [
+            true
+          ],
+          "episodes": [
+            {
+              "kind": "no_progress",
+              "turn_end": 25,
+              "turn_start": 23,
+              "unit": 0
+            }
+          ],
+          "parent_episodes": [
+            {
+              "kind": "no_progress",
+              "turn_end": 25,
+              "turn_start": 23,
+              "unit": 0
+            }
+          ],
+          "parent_reproduces": true,
+          "property": "P1"
+        }
+      ]
+    },
+    {
+      "banana_active": true,
+      "candidate_command_sha256": "775da735b78288b9177a31530309c0e352a7e97fed50a346331616e3729e3316",
+      "class": "single_door_tent",
+      "command_streams_byte_equal": false,
+      "first_command_divergence_turn": 1,
+      "game": "m024-s1",
+      "map_id": "m024",
+      "parent_command_sha256": "b3146c8f7a4ac17ce277488fefacc05027cc81764ed97f3e662f87442e4cc50b",
+      "profile": "idle",
+      "seat": 1,
+      "seed": 982451653,
+      "violations": [
+        {
+          "classification": "candidate_or_post_divergence",
+          "complete_aligned_prefix": false,
+          "count": 1,
+          "detector": "D-7",
+          "episode_parent_matches": [
+            false
+          ],
+          "episodes": [
+            {
+              "kind": "unbanked_at_end",
+              "provenance": "bank_pick",
+              "turn_end": 200,
+              "turn_start": 200,
+              "unit": 0
+            }
+          ],
+          "parent_episodes": [],
+          "parent_reproduces": false,
+          "property": "P1"
+        }
+      ]
+    },
+    {
+      "banana_active": true,
+      "candidate_command_sha256": "e9a3bc8ba91e1052cfb8c74d2477009b24efa1c1117d4dad7f900fa7f8e55803",
+      "class": "open_field",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m038-s0",
+      "map_id": "m038",
+      "parent_command_sha256": "e9a3bc8ba91e1052cfb8c74d2477009b24efa1c1117d4dad7f900fa7f8e55803",
+      "profile": "chopper_aggressor",
+      "seat": 0,
+      "seed": 32452843,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": true,
+          "count": 1,
+          "detector": "D-6",
+          "episode_parent_matches": [
+            true
+          ],
+          "episodes": [
+            {
+              "cell": [
+                0,
+                4
+              ],
+              "eta_opp_x": 1,
+              "kind": "opp_chop_eta",
+              "turn_end": 44,
+              "turn_start": 44,
+              "unit": 0
+            }
+          ],
+          "parent_episodes": [
+            {
+              "cell": [
+                0,
+                4
+              ],
+              "eta_opp_x": 1,
+              "kind": "opp_chop_eta",
+              "turn_end": 44,
+              "turn_start": 44,
+              "unit": 0
+            }
+          ],
+          "parent_reproduces": true,
+          "property": "P1"
+        }
+      ]
+    },
+    {
+      "banana_active": true,
+      "candidate_command_sha256": "8dfc38b29ccf19fb56a9e41736b6557754bfc0238cbd395d9b637af2c61f66ce",
+      "class": "open_field",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m038-s1",
+      "map_id": "m038",
+      "parent_command_sha256": "8dfc38b29ccf19fb56a9e41736b6557754bfc0238cbd395d9b637af2c61f66ce",
+      "profile": "chopper_aggressor",
+      "seat": 1,
+      "seed": 32452843,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": true,
+          "count": 2,
+          "detector": "D-6",
+          "episode_parent_matches": [
+            true,
+            true
+          ],
+          "episodes": [
+            {
+              "cell": [
+                8,
+                2
+              ],
+              "eta_opp_x": 2,
+              "kind": "opp_chop_eta",
+              "turn_end": 37,
+              "turn_start": 37,
+              "unit": 0
+            },
+            {
+              "cell": [
+                8,
+                2
+              ],
+              "eta_opp_x": 0,
+              "kind": "opp_chop_eta",
+              "turn_end": 42,
+              "turn_start": 42,
+              "unit": 0
+            }
+          ],
+          "parent_episodes": [
+            {
+              "cell": [
+                8,
+                2
+              ],
+              "eta_opp_x": 2,
+              "kind": "opp_chop_eta",
+              "turn_end": 37,
+              "turn_start": 37,
+              "unit": 0
+            },
+            {
+              "cell": [
+                8,
+                2
+              ],
+              "eta_opp_x": 0,
+              "kind": "opp_chop_eta",
+              "turn_end": 42,
+              "turn_start": 42,
+              "unit": 0
+            }
+          ],
+          "parent_reproduces": true,
+          "property": "P1"
+        }
+      ]
+    },
+    {
+      "banana_active": true,
+      "candidate_command_sha256": "0de7a890e5f7c611cb1561d1e3a47870f32b4bd41b2e2a4bc5e71255bd69b6eb",
+      "class": "forest_sparse",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m048-s0",
+      "map_id": "m048",
+      "parent_command_sha256": "0de7a890e5f7c611cb1561d1e3a47870f32b4bd41b2e2a4bc5e71255bd69b6eb",
+      "profile": "chopper_aggressor",
+      "seat": 0,
+      "seed": 982451653,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": true,
+          "count": 1,
+          "detector": "D-6",
+          "episode_parent_matches": [
+            true
+          ],
+          "episodes": [
+            {
+              "cell": [
+                1,
+                2
+              ],
+              "eta_opp_x": 0,
+              "kind": "opp_chop_eta",
+              "turn_end": 26,
+              "turn_start": 26,
+              "unit": 0
+            }
+          ],
+          "parent_episodes": [
+            {
+              "cell": [
+                1,
+                2
+              ],
+              "eta_opp_x": 0,
+              "kind": "opp_chop_eta",
+              "turn_end": 26,
+              "turn_start": 26,
+              "unit": 0
+            }
+          ],
+          "parent_reproduces": true,
+          "property": "P1"
+        }
+      ]
+    },
+    {
+      "banana_active": false,
+      "candidate_command_sha256": "2d8c8a7b9f1f5d837612c973d4aac4746fa37113ffbd8e5e76d35456893b0b26",
+      "class": "choke_corridor",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m061-s0",
+      "map_id": "m061",
+      "parent_command_sha256": "2d8c8a7b9f1f5d837612c973d4aac4746fa37113ffbd8e5e76d35456893b0b26",
+      "profile": "idle",
+      "seat": 0,
+      "seed": 15485863,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": false,
+          "count": null,
+          "detector": null,
+          "episode_parent_matches": [],
+          "episodes": [],
+          "parent_episodes": [],
+          "parent_reproduces": false,
+          "property": "P2"
+        }
+      ]
+    },
+    {
+      "banana_active": false,
+      "candidate_command_sha256": "ce3137a2d5dac4bbf12b107fbc3ec8bd9a04df74b6ce53b1fdde75f4a2e556cf",
+      "class": "single_door_tent",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m064-s0",
+      "map_id": "m064",
+      "parent_command_sha256": "ce3137a2d5dac4bbf12b107fbc3ec8bd9a04df74b6ce53b1fdde75f4a2e556cf",
+      "profile": "idle",
+      "seat": 0,
+      "seed": 67867967,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": true,
+          "count": 1,
+          "detector": "D-4",
+          "episode_parent_matches": [
+            true
+          ],
+          "episodes": [
+            {
+              "kind": "no_progress",
+              "turn_end": 11,
+              "turn_start": 9,
+              "unit": 2
+            }
+          ],
+          "parent_episodes": [
+            {
+              "kind": "no_progress",
+              "turn_end": 11,
+              "turn_start": 9,
+              "unit": 2
+            }
+          ],
+          "parent_reproduces": true,
+          "property": "P1"
+        }
+      ]
+    },
+    {
+      "banana_active": true,
+      "candidate_command_sha256": "07d0ec1595acac90f91fe3eeaf427ef8b27e4c2fbe62c4296597e71bbb4bb403",
+      "class": "choke_corridor",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m066-s0",
+      "map_id": "m066",
+      "parent_command_sha256": "07d0ec1595acac90f91fe3eeaf427ef8b27e4c2fbe62c4296597e71bbb4bb403",
+      "profile": "harvester",
+      "seat": 0,
+      "seed": 982451653,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": false,
+          "count": null,
+          "detector": null,
+          "episode_parent_matches": [],
+          "episodes": [],
+          "parent_episodes": [],
+          "parent_reproduces": false,
+          "property": "P2"
+        }
+      ]
+    },
+    {
+      "banana_active": true,
+      "candidate_command_sha256": "8dfba4217a564a26bf0457958bd7e559fb309fdb29c195466535620610ba9fae",
+      "class": "forest_dense",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m068-s0",
+      "map_id": "m068",
+      "parent_command_sha256": "8dfba4217a564a26bf0457958bd7e559fb309fdb29c195466535620610ba9fae",
+      "profile": "chopper_aggressor",
+      "seat": 0,
+      "seed": 32452843,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": true,
+          "count": 1,
+          "detector": "D-6",
+          "episode_parent_matches": [
+            true
+          ],
+          "episodes": [
+            {
+              "cell": [
+                3,
+                2
+              ],
+              "eta_opp_x": 2,
+              "kind": "opp_chop_eta",
+              "turn_end": 70,
+              "turn_start": 70,
+              "unit": 0
+            }
+          ],
+          "parent_episodes": [
+            {
+              "cell": [
+                3,
+                2
+              ],
+              "eta_opp_x": 2,
+              "kind": "opp_chop_eta",
+              "turn_end": 70,
+              "turn_start": 70,
+              "unit": 0
+            }
+          ],
+          "parent_reproduces": true,
+          "property": "P1"
+        }
+      ]
+    },
+    {
+      "banana_active": true,
+      "candidate_command_sha256": "78b051cd0a0624fd6e60ec4a3096b11a7325ad98f75b430f6e6c6b5fec8945d6",
+      "class": "forest_dense",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m068-s1",
+      "map_id": "m068",
+      "parent_command_sha256": "78b051cd0a0624fd6e60ec4a3096b11a7325ad98f75b430f6e6c6b5fec8945d6",
+      "profile": "chopper_aggressor",
+      "seat": 1,
+      "seed": 32452843,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": true,
+          "count": 6,
+          "detector": "D-6",
+          "episode_parent_matches": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "episodes": [
+            {
+              "cell": [
+                9,
+                4
+              ],
+              "eta_opp_x": 2,
+              "kind": "opp_chop_eta",
+              "turn_end": 84,
+              "turn_start": 84,
+              "unit": 0
+            },
+            {
+              "cell": [
+                9,
+                4
+              ],
+              "eta_opp_x": 2,
+              "kind": "opp_chop_eta",
+              "turn_end": 108,
+              "turn_start": 108,
+              "unit": 0
+            },
+            {
+              "cell": [
+                9,
+                4
+              ],
+              "eta_opp_x": 0,
+              "kind": "opp_chop_eta",
+              "turn_end": 113,
+              "turn_start": 113,
+              "unit": 0
+            },
+            {
+              "cell": [
+                9,
+                4
+              ],
+              "eta_opp_x": 0,
+              "kind": "opp_chop_eta",
+              "turn_end": 116,
+              "turn_start": 116,
+              "unit": 0
+            },
+            {
+              "cell": [
+                9,
+                4
+              ],
+              "eta_opp_x": 0,
+              "kind": "opp_chop_eta",
+              "turn_end": 119,
+              "turn_start": 119,
+              "unit": 0
+            }
+          ],
+          "parent_episodes": [
+            {
+              "cell": [
+                9,
+                4
+              ],
+              "eta_opp_x": 2,
+              "kind": "opp_chop_eta",
+              "turn_end": 84,
+              "turn_start": 84,
+              "unit": 0
+            },
+            {
+              "cell": [
+                9,
+                4
+              ],
+              "eta_opp_x": 2,
+              "kind": "opp_chop_eta",
+              "turn_end": 108,
+              "turn_start": 108,
+              "unit": 0
+            },
+            {
+              "cell": [
+                9,
+                4
+              ],
+              "eta_opp_x": 0,
+              "kind": "opp_chop_eta",
+              "turn_end": 113,
+              "turn_start": 113,
+              "unit": 0
+            },
+            {
+              "cell": [
+                9,
+                4
+              ],
+              "eta_opp_x": 0,
+              "kind": "opp_chop_eta",
+              "turn_end": 116,
+              "turn_start": 116,
+              "unit": 0
+            },
+            {
+              "cell": [
+                9,
+                4
+              ],
+              "eta_opp_x": 0,
+              "kind": "opp_chop_eta",
+              "turn_end": 119,
+              "turn_start": 119,
+              "unit": 0
+            },
+            {
+              "cell": [
+                9,
+                4
+              ],
+              "eta_opp_x": 1,
+              "kind": "opp_chop_eta",
+              "turn_end": 122,
+              "turn_start": 122,
+              "unit": 0
+            }
+          ],
+          "parent_reproduces": true,
+          "property": "P1"
+        }
+      ]
+    },
+    {
+      "banana_active": false,
+      "candidate_command_sha256": "b33a343bda187b6fedd144fc1d5f8413a6e399a6c18b66e883ed854f82f5e3a7",
+      "class": "choke_corridor",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m070-s0",
+      "map_id": "m070",
+      "parent_command_sha256": "b33a343bda187b6fedd144fc1d5f8413a6e399a6c18b66e883ed854f82f5e3a7",
+      "profile": "harvester",
+      "seat": 0,
+      "seed": 67867967,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": false,
+          "count": null,
+          "detector": null,
+          "episode_parent_matches": [],
+          "episodes": [],
+          "parent_episodes": [],
+          "parent_reproduces": false,
+          "property": "P2"
+        }
+      ]
+    },
+    {
+      "banana_active": true,
+      "candidate_command_sha256": "004915324ac8c537348bedec4244120f40e05ab78b084490f1733853b98f2cc2",
+      "class": "open_field",
+      "command_streams_byte_equal": false,
+      "first_command_divergence_turn": 1,
+      "game": "m071-s1",
+      "map_id": "m071",
+      "parent_command_sha256": "62d4e0c4ce66b7b2be7d47fd698e3c3b6d79be580da654547e7240020c2a0c76",
+      "profile": "idle",
+      "seat": 1,
+      "seed": 86028121,
+      "violations": [
+        {
+          "classification": "candidate_or_post_divergence",
+          "complete_aligned_prefix": false,
+          "count": 1,
+          "detector": "D-7",
+          "episode_parent_matches": [
+            false
+          ],
+          "episodes": [
+            {
+              "kind": "unbanked_at_end",
+              "provenance": "bank_pick",
+              "turn_end": 200,
+              "turn_start": 200,
+              "unit": 2
+            }
+          ],
+          "parent_episodes": [],
+          "parent_reproduces": false,
+          "property": "P1"
+        }
+      ]
+    },
+    {
+      "banana_active": true,
+      "candidate_command_sha256": "527df5bae621fdb4c13e3a6eb77db5e8c92e00d0493e60541b920fcc327eeb0d",
+      "class": "multi_door",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m075-s0",
+      "map_id": "m075",
+      "parent_command_sha256": "527df5bae621fdb4c13e3a6eb77db5e8c92e00d0493e60541b920fcc327eeb0d",
+      "profile": "chopper_aggressor",
+      "seat": 0,
+      "seed": 49979687,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": true,
+          "count": 1,
+          "detector": "D-6",
+          "episode_parent_matches": [
+            true
+          ],
+          "episodes": [
+            {
+              "cell": [
+                1,
+                5
+              ],
+              "eta_opp_x": 0,
+              "kind": "opp_chop_eta",
+              "turn_end": 35,
+              "turn_start": 35,
+              "unit": 0
+            }
+          ],
+          "parent_episodes": [
+            {
+              "cell": [
+                1,
+                5
+              ],
+              "eta_opp_x": 0,
+              "kind": "opp_chop_eta",
+              "turn_end": 35,
+              "turn_start": 35,
+              "unit": 0
+            }
+          ],
+          "parent_reproduces": true,
+          "property": "P1"
+        }
+      ]
+    },
+    {
+      "banana_active": true,
+      "candidate_command_sha256": "8c300dbfbfb6eec2c372064949fc1d82498dce0df6e8d69efbf1a2959b963f2f",
+      "class": "single_door_tent",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m084-s0",
+      "map_id": "m084",
+      "parent_command_sha256": "8c300dbfbfb6eec2c372064949fc1d82498dce0df6e8d69efbf1a2959b963f2f",
+      "profile": "idle",
+      "seat": 0,
+      "seed": 982451653,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": true,
+          "count": 1,
+          "detector": "D-4",
+          "episode_parent_matches": [
+            true
+          ],
+          "episodes": [
+            {
+              "kind": "no_progress",
+              "turn_end": 23,
+              "turn_start": 21,
+              "unit": 2
+            }
+          ],
+          "parent_episodes": [
+            {
+              "kind": "no_progress",
+              "turn_end": 23,
+              "turn_start": 21,
+              "unit": 2
+            }
+          ],
+          "parent_reproduces": true,
+          "property": "P1"
+        }
+      ]
+    },
+    {
+      "banana_active": true,
+      "candidate_command_sha256": "56d1bbcbddbd8d3205c0ddd39de195129a22132d2a4cadb44e2c4f9818373915",
+      "class": "choke_corridor",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m090-s0",
+      "map_id": "m090",
+      "parent_command_sha256": "56d1bbcbddbd8d3205c0ddd39de195129a22132d2a4cadb44e2c4f9818373915",
+      "profile": "harvester",
+      "seat": 0,
+      "seed": 982451653,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": false,
+          "count": null,
+          "detector": null,
+          "episode_parent_matches": [],
+          "episodes": [],
+          "parent_episodes": [],
+          "parent_reproduces": false,
+          "property": "P2"
+        }
+      ]
+    },
+    {
+      "banana_active": true,
+      "candidate_command_sha256": "0a927714e313d9b5d5525f7e164c23d8a6a4b405ebcf95637c40728c3bce1a91",
+      "class": "orchard_eligible",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m095-s1",
+      "map_id": "m095",
+      "parent_command_sha256": "0a927714e313d9b5d5525f7e164c23d8a6a4b405ebcf95637c40728c3bce1a91",
+      "profile": "chopper_aggressor",
+      "seat": 1,
+      "seed": 86028121,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": true,
+          "count": 1,
+          "detector": "D-6",
+          "episode_parent_matches": [
+            true
+          ],
+          "episodes": [
+            {
+              "cell": [
+                12,
+                2
+              ],
+              "eta_opp_x": 0,
+              "kind": "opp_chop_eta",
+              "turn_end": 28,
+              "turn_start": 28,
+              "unit": 0
+            }
+          ],
+          "parent_episodes": [
+            {
+              "cell": [
+                12,
+                2
+              ],
+              "eta_opp_x": 0,
+              "kind": "opp_chop_eta",
+              "turn_end": 28,
+              "turn_start": 28,
+              "unit": 0
+            }
+          ],
+          "parent_reproduces": true,
+          "property": "P1"
+        }
+      ]
+    },
+    {
+      "banana_active": false,
+      "candidate_command_sha256": "cd6bf195667cf14e6843b4d00b5b4fcc7d6fc7cc8e86e943ac0f1fa823aa5cfc",
+      "class": "choke_corridor",
+      "command_streams_byte_equal": true,
+      "first_command_divergence_turn": null,
+      "game": "m106-s1",
+      "map_id": "m106",
+      "parent_command_sha256": "cd6bf195667cf14e6843b4d00b5b4fcc7d6fc7cc8e86e943ac0f1fa823aa5cfc",
+      "profile": "harvester",
+      "seat": 1,
+      "seed": 67867967,
+      "violations": [
+        {
+          "classification": "inherited_aligned_prefix",
+          "complete_aligned_prefix": true,
+          "count": 1,
+          "detector": "D-4",
+          "episode_parent_matches": [
+            true
+          ],
+          "episodes": [
+            {
+              "kind": "no_progress",
+              "turn_end": 7,
+              "turn_start": 5,
+              "unit": 2
+            }
+          ],
+          "parent_episodes": [
+            {
+              "kind": "no_progress",
+              "turn_end": 7,
+              "turn_start": 5,
+              "unit": 2
+            }
+          ],
+          "parent_reproduces": true,
+          "property": "P1"
+        }
+      ]
+    }
+  ],
+  "raw_blocking_games": 22,
+  "schema": "banana-r2-pinned-attribution-diagnostic/1",
+  "surviving_game_ids": [
+    "m024-s1",
+    "m071-s1"
+  ]
+}

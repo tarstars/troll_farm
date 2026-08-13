@@ -1,0 +1,335 @@
+{
+  "fixtures": {
+    "p_banana_inventory_dormant": {
+      "golden_lines": [
+        "MSG yamo-carry-regen-transit-idle-harvest-rust;WAIT;MOVE 1 5 2",
+        "WAIT;MOVE 1 5 2",
+        "WAIT;MOVE 1 5 2",
+        "WAIT;MOVE 1 5 2",
+        "WAIT;MOVE 1 5 2"
+      ],
+      "invariants": [
+        "I-1",
+        "I-2"
+      ],
+      "payload_sha256": "4faf0bbd97755b8d6507e34798a177f748eca482cbab492aaf2b387ad2094baf",
+      "status": "PASS",
+      "stdout_sha256": "211231f9ae989608dcb04490ce310a94981cb607a77a7f55938675f8b7ac0f80",
+      "turns": 5
+    },
+    "p_baseline_plain": {
+      "golden_lines": [
+        "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0"
+      ],
+      "invariants": [
+        "check-4",
+        "I-1"
+      ],
+      "payload_sha256": "b61e155c5c7516de4537f1b732c57bd05d724330a1730a3a89ae2bac85d0bc95",
+      "status": "PASS",
+      "stdout_sha256": "8d9b6b12b1911e1b3f327b76ed001d501c5d33c974dc92c2cce77fa3cd7621b5",
+      "turns": 4
+    },
+    "p_late_window": {
+      "golden_lines": [
+        "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0",
+        "MOVE 0 2 0"
+      ],
+      "invariants": [
+        "I-1"
+      ],
+      "payload_sha256": "5b2246168835c85dc89bc58f5cc3475056bb46affee49147a9a58e98b0ebf48f",
+      "status": "PASS",
+      "stdout_sha256": "bba2402405523601f209c0eab3fc31729645013c08d8ce5f2e392a6fc51cffee",
+      "turns": 105
+    },
+    "p_orchard_eligible": {
+      "golden_lines": [
+        "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 2 2",
+        "MOVE 0 2 2",
+        "MOVE 0 2 2",
+        "MOVE 0 2 2",
+        "MOVE 0 2 2",
+        "MOVE 0 2 2"
+      ],
+      "invariants": [
+        "I-27",
+        "I-28"
+      ],
+      "payload_sha256": "bb84cea6caf7aa3bc0056808d757f0fc5c6c7cb7cb86aa15e4069e1ad8878915",
+      "status": "PASS",
+      "stdout_sha256": "8b19868da9adaacff0dc1cde95602587f2cfd4ec67ca2f6315b0168d73535b11",
+      "turns": 6
+    },
+    "p_training": {
+      "golden_lines": [
+        "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0",
+        "TRAIN 3 3 0 3;MOVE 0 2 0"
+      ],
+      "invariants": [
+        "I-16",
+        "I-17",
+        "I-18"
+      ],
+      "observations": {
+        "first_train": {
+          "command": "TRAIN 3 3 0 3",
+          "turn": 1
+        }
+      },
+      "payload_sha256": "2bc905e0c685a0d8c895b85826f40cf56ed218a6045fad6cb5d69ebb6d8d0810",
+      "status": "PASS",
+      "stdout_sha256": "3d89e34dd9ef6bdf48ef3594f90a1f1830379331e8d5df02a8e671ef41d3f2f5",
+      "turns": 30
+    },
+    "p_two_worker": {
+      "golden_lines": [
+        "MSG yamo-carry-regen-transit-idle-harvest-rust;WAIT;MOVE 1 4 1",
+        "WAIT;MOVE 1 4 1"
+      ],
+      "invariants": [
+        "I-22",
+        "I-23"
+      ],
+      "observations": {
+        "turn1_active_commands": [
+          "MOVE 1 4 1"
+        ]
+      },
+      "payload_sha256": "c2b6c87a28d2a74325c1e6351dff2e63ffafd3c54a1ec7f40eabc4714332aa8f",
+      "status": "PASS",
+      "stdout_sha256": "9f5508345d6b049470c9e7342f5f1bbb91ccdbfc3610dadd87a50ffe89d3ee1a",
+      "turns": 2
+    },
+    "p_wood_banking": {
+      "golden_lines": [
+        "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 4 0",
+        "MOVE 0 2 0",
+        "DROP 0"
+      ],
+      "invariants": [
+        "I-19",
+        "I-20",
+        "I-21"
+      ],
+      "observations": {
+        "final_turn_drops": true
+      },
+      "payload_sha256": "cb69e7635df43d40788d3d14512aa199798410417c6a70a16f71014363d02a73",
+      "status": "PASS",
+      "stdout_sha256": "b8d1ded922f998abe48ad67906d7dbf4355c4ab3f8489a9ae61be0cec013dc64",
+      "turns": 3
+    }
+  },
+  "parent": {
+    "bytes": 62725,
+    "path": "/home/runner/work/troll_farm/troll_farm/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+    "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+  },
+  "schema": "troll-farm-banana-r2-tier-p-golden/1",
+  "tier_c_planned": {
+    "c_arbitration": {
+      "invariants": [
+        "I-16",
+        "I-17",
+        "I-22",
+        "I-23",
+        "I-27",
+        "I-28"
+      ],
+      "status": "PENDING_CANDIDATE"
+    },
+    "c_banking": {
+      "invariants": [
+        "I-7",
+        "I-8",
+        "I-9",
+        "I-21"
+      ],
+      "status": "PENDING_CANDIDATE"
+    },
+    "c_bootstrap_budget": {
+      "invariants": [
+        "I-1",
+        "I-2",
+        "I-16"
+      ],
+      "status": "PENDING_CANDIDATE"
+    },
+    "c_bounded_placement": {
+      "invariants": [
+        "I-12",
+        "I-13",
+        "I-15"
+      ],
+      "status": "PENDING_CANDIDATE"
+    },
+    "c_eta_suppression": {
+      "invariants": [
+        "I-10",
+        "I-18",
+        "I-17"
+      ],
+      "status": "PENDING_CANDIDATE"
+    },
+    "c_late_conversion": {
+      "invariants": [
+        "I-4",
+        "I-5",
+        "I-6",
+        "I-14",
+        "I-1"
+      ],
+      "status": "PENDING_CANDIDATE"
+    },
+    "c_replant_renewable": {
+      "invariants": [
+        "I-3",
+        "I-9"
+      ],
+      "status": "PENDING_CANDIDATE"
+    },
+    "c_target_recovery": {
+      "invariants": [
+        "I-24",
+        "I-26",
+        "I-23"
+      ],
+      "status": "PENDING_CANDIDATE"
+    }
+  }
+}

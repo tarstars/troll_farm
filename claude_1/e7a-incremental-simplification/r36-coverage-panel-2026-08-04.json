@@ -1,0 +1,538 @@
+{
+  "by_function": {
+    "RBFzvKxW5": {
+      "cold_regions": 29,
+      "coverage_percent": 91.37,
+      "entries": 60120,
+      "regions": 336
+    },
+    "StdinLock": {
+      "cold_regions": 25,
+      "coverage_percent": 86.19,
+      "entries": 685812,
+      "regions": 181
+    },
+    "as_str": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 874,
+      "regions": 7
+    },
+    "bank_candidates": {
+      "cold_regions": 5,
+      "coverage_percent": 91.67,
+      "entries": 120316,
+      "regions": 60
+    },
+    "bankable_cycle": {
+      "cold_regions": 4,
+      "coverage_percent": 94.29,
+      "entries": 136,
+      "regions": 70
+    },
+    "best_alternate_door": {
+      "cold_regions": 19,
+      "coverage_percent": 0.0,
+      "entries": 0,
+      "regions": 19
+    },
+    "bfs_distances": {
+      "cold_regions": 1,
+      "coverage_percent": 97.06,
+      "entries": 46758,
+      "regions": 34
+    },
+    "can_activate": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 6,
+      "regions": 24
+    },
+    "can_continue_seed": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 132,
+      "regions": 39
+    },
+    "can_train": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 38335,
+      "regions": 23
+    },
+    "carried_fruit": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 78292,
+      "regions": 8
+    },
+    "carries_committed_fruit": {
+      "cold_regions": 7,
+      "coverage_percent": 0.0,
+      "entries": 0,
+      "regions": 7
+    },
+    "ceil_div": {
+      "cold_regions": 1,
+      "coverage_percent": 80.0,
+      "entries": 328330,
+      "regions": 5
+    },
+    "choose_second_troll": {
+      "cold_regions": 4,
+      "coverage_percent": 90.7,
+      "entries": 1103,
+      "regions": 43
+    },
+    "chop_candidates": {
+      "cold_regions": 11,
+      "coverage_percent": 89.52,
+      "entries": 209398,
+      "regions": 105
+    },
+    "chop_outcome": {
+      "cold_regions": 2,
+      "coverage_percent": 94.74,
+      "entries": 3581794,
+      "regions": 38
+    },
+    "collection_eta": {
+      "cold_regions": 4,
+      "coverage_percent": 94.03,
+      "entries": 21681,
+      "regions": 67
+    },
+    "compatible": {
+      "cold_regions": 2,
+      "coverage_percent": 90.0,
+      "entries": 2971283,
+      "regions": 20
+    },
+    "conversion_chop_turns": {
+      "cold_regions": 2,
+      "coverage_percent": 95.0,
+      "entries": 1166276,
+      "regions": 40
+    },
+    "early_candidates": {
+      "cold_regions": 7,
+      "coverage_percent": 88.33,
+      "entries": 523,
+      "regions": 60
+    },
+    "effective_cooldown": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 190547,
+      "regions": 8
+    },
+    "endgame": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 7234,
+      "regions": 7
+    },
+    "endgame_candidates": {
+      "cold_regions": 7,
+      "coverage_percent": 96.32,
+      "entries": 234493,
+      "regions": 190
+    },
+    "enemy_eta": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 226,
+      "regions": 21
+    },
+    "enforce_training_deadline": {
+      "cold_regions": 15,
+      "coverage_percent": 37.5,
+      "entries": 35529,
+      "regions": 24
+    },
+    "ensure_opening": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 7234,
+      "regions": 9
+    },
+    "fallback_second_troll": {
+      "cold_regions": 2,
+      "coverage_percent": 0.0,
+      "entries": 0,
+      "regions": 2
+    },
+    "focus_type": {
+      "cold_regions": 1,
+      "coverage_percent": 97.37,
+      "entries": 1091,
+      "regions": 38
+    },
+    "force_unique_door_clear": {
+      "cold_regions": 337,
+      "coverage_percent": 1.17,
+      "entries": 7234,
+      "regions": 341
+    },
+    "forced_move": {
+      "cold_regions": 2,
+      "coverage_percent": 0.0,
+      "entries": 0,
+      "regions": 2
+    },
+    "free_capacity": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 132847,
+      "regions": 3
+    },
+    "fruit_candidates": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 1622,
+      "regions": 40
+    },
+    "idle_harvest_candidates": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 6790,
+      "regions": 67
+    },
+    "initialize": {
+      "cold_regions": 15,
+      "coverage_percent": 87.07,
+      "entries": 3108,
+      "regions": 116
+    },
+    "inventory_fruits": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 4525,
+      "regions": 11
+    },
+    "iron_candidates": {
+      "cold_regions": 1,
+      "coverage_percent": 97.14,
+      "entries": 153,
+      "regions": 35
+    },
+    "is_adjacent": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 8343500,
+      "regions": 3
+    },
+    "item_index": {
+      "cold_regions": 5,
+      "coverage_percent": 78.26,
+      "entries": 9012,
+      "regions": 23
+    },
+    "loses_contested_tree": {
+      "cold_regions": 2,
+      "coverage_percent": 97.33,
+      "entries": 166,
+      "regions": 75
+    },
+    "main": {
+      "cold_regions": 1,
+      "coverage_percent": 97.44,
+      "entries": 25,
+      "regions": 39
+    },
+    "main_candidates": {
+      "cold_regions": 5,
+      "coverage_percent": 94.12,
+      "entries": 11679,
+      "regions": 85
+    },
+    "manhattan": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 8351401,
+      "regions": 4
+    },
+    "median": {
+      "cold_regions": 1,
+      "coverage_percent": 88.89,
+      "entries": 25,
+      "regions": 9
+    },
+    "move_command": {
+      "cold_regions": 3,
+      "coverage_percent": 87.5,
+      "entries": 22537,
+      "regions": 24
+    },
+    "new": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 25,
+      "regions": 5
+    },
+    "next_cell": {
+      "cold_regions": 28,
+      "coverage_percent": 52.54,
+      "entries": 906677,
+      "regions": 59
+    },
+    "opening_key": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 187,
+      "regions": 9
+    },
+    "opening_objective": {
+      "cold_regions": 1,
+      "coverage_percent": 96.67,
+      "entries": 2025,
+      "regions": 30
+    },
+    "opening_options": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 25,
+      "regions": 17
+    },
+    "ortho_neighbors": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 27497,
+      "regions": 5
+    },
+    "parse": {
+      "cold_regions": 1,
+      "coverage_percent": 91.67,
+      "entries": 96224,
+      "regions": 12
+    },
+    "parse_static_map": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 25,
+      "regions": 35
+    },
+    "picked_item": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 2115680,
+      "regions": 15
+    },
+    "planned_egress": {
+      "cold_regions": 33,
+      "coverage_percent": 0.0,
+      "entries": 0,
+      "regions": 33
+    },
+    "plant_at": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 842267,
+      "regions": 6
+    },
+    "plant_cooldown": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 190547,
+      "regions": 7
+    },
+    "predict_tree": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 3824974,
+      "regions": 45
+    },
+    "predicted_opp_chop": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 694796,
+      "regions": 20
+    },
+    "protect_mother": {
+      "cold_regions": 53,
+      "coverage_percent": 45.36,
+      "entries": 2034,
+      "regions": 97
+    },
+    "reconcile_initial_natural": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 120452,
+      "regions": 15
+    },
+    "reconcile_regeneration_commitments": {
+      "cold_regions": 1,
+      "coverage_percent": 95.65,
+      "entries": 9753,
+      "regions": 23
+    },
+    "remember_selected_regeneration": {
+      "cold_regions": 1,
+      "coverage_percent": 95.83,
+      "entries": 7234,
+      "regions": 24
+    },
+    "replace_action": {
+      "cold_regions": 2,
+      "coverage_percent": 77.78,
+      "entries": 223,
+      "regions": 9
+    },
+    "resolve_move_conflicts": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 7234,
+      "regions": 6
+    },
+    "resolve_move_conflicts_with_priority": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 7234,
+      "regions": 7
+    },
+    "resolve_move_conflicts_with_priority_and_forbidden": {
+      "cold_regions": 6,
+      "coverage_percent": 96.63,
+      "entries": 136960,
+      "regions": 178
+    },
+    "route_cycle": {
+      "cold_regions": 5,
+      "coverage_percent": 88.37,
+      "entries": 91,
+      "regions": 43
+    },
+    "score": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 1642,
+      "regions": 2
+    },
+    "select": {
+      "cold_regions": 8,
+      "coverage_percent": 87.69,
+      "entries": 8810,
+      "regions": 65
+    },
+    "stock_compatible": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 1054147,
+      "regions": 12
+    },
+    "strongest_affordable": {
+      "cold_regions": 15,
+      "coverage_percent": 0.0,
+      "entries": 0,
+      "regions": 15
+    },
+    "ticks_until_fruit": {
+      "cold_regions": 2,
+      "coverage_percent": 93.1,
+      "entries": 48327,
+      "regions": 29
+    },
+    "total_carried": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 147982,
+      "regions": 5
+    },
+    "training_affordable": {
+      "cold_regions": 21,
+      "coverage_percent": 0.0,
+      "entries": 0,
+      "regions": 21
+    },
+    "training_cost": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 1041,
+      "regions": 21
+    },
+    "tree_health": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 147963,
+      "regions": 6
+    },
+    "tree_health_params": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 314948,
+      "regions": 6
+    },
+    "tuned_carry_regeneration_transit_idle_harvest": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 25,
+      "regions": 5
+    },
+    "tuple": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 1041,
+      "regions": 4
+    },
+    "unique_shack_door": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 36170,
+      "regions": 15
+    },
+    "unit": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 60845,
+      "regions": 6
+    },
+    "unit_action_slot": {
+      "cold_regions": 2,
+      "coverage_percent": 89.47,
+      "entries": 446,
+      "regions": 19
+    },
+    "wait": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 14513,
+      "regions": 3
+    },
+    "walkable_without": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 17,
+      "regions": 8
+    },
+    "water_boost": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 55898,
+      "regions": 7
+    },
+    "worker_can_use_alternate": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 112,
+      "regions": 25
+    },
+    "yamo_chop_candidates": {
+      "cold_regions": 0,
+      "coverage_percent": 100.0,
+      "entries": 14501,
+      "regions": 14
+    }
+  },
+  "candidate": {
+    "path": "claude_1/e7a-incremental-simplification/candidate-r36-delete-orphaned-carry-total.rs",
+    "sha256": "2caac7c6e71e8dcc613a2275fe8129cdf9aec2c1230e50f7dfdec79908528381"
+  },
+  "evidence_boundary": "coverage of the 25-game frozen open packet only; those games were selected as liveness counterexamples, not sampled uniformly, so cold regions may be cold in this sample rather than on the ladder. Cold is not dead: removing cold code is a behavior change.",
+  "function_coverage_percent": 80,
+  "games": 25,
+  "instrumented_output_identical": 25,
+  "never_executed_units": 52,
+  "packet_sha256": "fb8e968ff65fc55c6f6f9d2f2b678434ab2dfda8eba84fdb6d0384d41856c7e2",
+  "region_coverage_percent": 79.134,
+  "schema": "troll-farm-e7a-coverage-panel-v1"
+}

@@ -1,39 +1,88 @@
 # Troll Farm Storage And Compute Policy
 
-Date: 2026-07-23
-
-This adapts the proven `math_through_eml` external-storage policy to Troll
-Farm. The normative short version is in `AGENTS.md`.
+Date: 2026-07-23. **Amended 2026-08-11 (spec Phases 3–4): the USB is no longer live
+infrastructure.** This adapts the proven `math_through_eml` external-storage policy to
+Troll Farm. The normative short version is in `AGENTS.md`.
 
 ## Local bulk layout
 
-The authoritative local bulk filesystem is identified by label
-`medium_data`. Its last observed mount is:
+The bulk roots are served by **whichever backend is present**, and both are legitimate:
 
-```text
-/media/tarstars/medium_data
-```
+| Backend | Identity | Writable | When |
+| --- | --- | --- | --- |
+| USB (ext4) | filesystem label `medium_data` | yes | only while the drive is attached |
+| Cloud (GeeseFS) | mount source `troll-farm-data:archive` | **no** | the steady state since 2026-08-11 |
 
-The physical Troll Farm root is:
+Both present the **same path**, which is why the repo's 2,346 absolute symlinks keep
+working either way:
 
 ```text
 /media/tarstars/medium_data/database/troll_farm
 ```
 
+The USB is now an **offline backup**. Its contents were uploaded and verified on
+2026-08-11 (3,483 files / 9.99 GiB, `VERIFY: PASS`, independently recounted) as a
+**per-file mirror** under the bucket's `archive/` prefix — per-file, not packed,
+precisely so the mount can serve these paths. Manifests live at `archive-manifest/`.
+Note the drive also holds ~1.2 TB of unrelated personal data that this project does
+**not** back up.
+
 The following repository paths are the clean bulk boundary:
 
-| Logical path | Purpose |
-| --- | --- |
-| `artifacts` | Large experiment matrices, corpora, checkpoints, and raw telemetry |
-| `outputs` | Large run outputs and extracted bundles |
-| `yt_work` | YT payload staging and downloads |
-| `data/generated` | Regenerable generated datasets |
-| `data/external` | Downloaded or externally sourced datasets |
+| Logical path | Purpose | Backing |
+| --- | --- | --- |
+| `artifacts` | Large experiment matrices, corpora, checkpoints, and raw telemetry | archive |
+| `outputs` | Large run outputs and extracted bundles | archive |
+| `data/external` | Downloaded or externally sourced datasets | archive |
+| `yt_work` | YT payload staging and downloads | **local scratch** |
+| `data/generated` | Regenerable generated datasets | **local scratch** |
+
+The last two changed on 2026-08-11. Both held **zero files** on the USB — verified at the
+Phase 3 upload, where the whole drive was 3,483 files and none were under either — and
+both are *write* targets, which a read-only archive cannot host. They now point at
+`~/.cache/troll-farm/`. Both symlinks were untracked, so no clone is affected.
 
 These paths are ignored without trailing slashes so Git ignores either a
 temporary real directory during a validated migration or the final symlink
-object. In steady state, every path must be a symlink resolving beneath the
-physical Troll Farm root.
+object. In steady state, every **archive-backed** path must be a symlink resolving
+beneath the physical Troll Farm root; the two scratch paths must be symlinks to
+writable local directories and are deliberately *outside* it.
+
+## Where new bulk output goes (owner decision, 2026-08-11)
+
+**Local disk, then periodic upload** — the pattern collector v2 uses for games.
+
+The mechanism is a **union by symlink**, not an overlay filesystem (which would have
+needed a package install and, for kernel overlayfs, root). Each union root is a *real
+local* directory under `~/.cache/troll-farm/bulk/` whose children link into the read-only
+archive:
+
+```
+artifacts/                    real local dir
+├── legacy-data-analysis  ->  mount   (history, read-only)
+└── experiments/              real local dir
+    ├── d175a-…           ->  mount   (history, read-only)
+    └── <new experiment>      real local dir   <- new output lands here
+```
+
+History reads through the same paths as before, and a new experiment directory is simply
+created. `artifacts/experiments` is itself a union dir rather than a link, because that is
+the level at which new directories appear — a single link there would have left writes
+failing, which is what the first dry run of the builder revealed.
+
+- Refresh the layout: `python3 data/scripts/link_archive_roots.py --apply` — idempotent,
+  manages only symlinks, and **never deletes a real directory**, because a real directory
+  shadowing an archived name is the uploaded-but-not-yet-reclaimed state.
+- Upload new output with `data/scripts/upload_archive.py` (idempotent head-and-skip on the
+  recorded sha256, verifies what it wrote).
+- Replace a local copy with a link to reclaim space **only after** its upload verifies —
+  the same discipline by which collector v2 prunes staging only after re-downloading and
+  re-hashing its pack.
+
+The preflight enforces this: union roots are checked for **writability**, and
+`--required-free-gib` is measured on the **local** filesystem where the bytes land. It is
+deliberately not measured on the mount, which reports a fictitious 1 PiB free and would
+have left the threshold silently unenforceable.
 
 The existing `data/analysis`, `data/raw`, and `data/processed` directories are
 mixed: they contain tracked or compact scientific records as well as legacy
@@ -48,21 +97,29 @@ still needs them.
 Before a write through any bulk root, run:
 
 ```bash
-python3 cgauto/check_external_storage.py --required-free-gib <GiB>
+python3 cgauto/check_external_storage.py --required-free-gib <GiB>   # --intent write is the default
+python3 cgauto/check_external_storage.py --intent read               # before a bulk READ
 ```
 
-The command discovers the mount by filesystem label and checks:
+The command discovers whichever backend is present — USB by label first, else the
+GeeseFS mount by source — and checks:
 
-1. exactly one mounted filesystem has label `medium_data`;
-2. the physical project root exists on that filesystem;
-3. every required repository path is a symlink;
-4. every resolved target stays beneath the physical project root and is on
-   the labeled filesystem; and
-5. the requested free-space floor is available.
+1. exactly one mount matches the backend's identity;
+2. the physical project root exists on it;
+3. every archive-backed repository path is a symlink resolving beneath that root, on the
+   same backend;
+4. every scratch path resolves to a writable local directory;
+5. the requested free-space floor is available **when the backend is writable** — object
+   storage reports a fictitious 1 PiB free, so the threshold is skipped rather than
+   compared against a fiction; and
+6. **the caller's intent is satisfiable**: `--intent write` fails closed on a read-only
+   backend. This is the common case today, and it is correct — the write would fail
+   anyway, later and messier.
 
 The mount path is not the identity. If the device mounts elsewhere, the
-preflight reports that observed path. If the device or a link is absent, stop.
-Never replace a missing link with a real directory on `/`.
+preflight reports that observed path. If the backend or a link is absent, stop.
+Never replace a missing link with a real directory on `/`, and never "fix" a
+read-only failure by loosening the check.
 
 ## Safe migration procedure
 
@@ -93,7 +150,7 @@ Keep in the repository:
 - compact configs, manifests, checksums, and operation metadata;
 - aggregate metrics, analysis tables, figures, and result reports.
 
-Keep on `medium_data`:
+Keep on the bulk backend (the `archive/` prefix; historically `medium_data`):
 
 - simulation arm/candidate matrices;
 - replay-derived training corpora and raw trajectories;
@@ -123,6 +180,21 @@ matrices, corpus construction, or neural training batches whose aggregate
 local wall time is expected to exceed roughly one hour. Keep small controls
 and smoke tests local. Neural workflows must pass their frozen local/YT
 functional parity gate before backend results become selectable.
+
+## Where heavy compute runs (owner rule, 2026-08-11)
+
+YT (`//home/delivery_ml/...`) is reachable **only from `project_host`**. So:
+
+- heavy batches launched from the workstation may use YT;
+- anything cloud-side, or anything needed while the workstation is off, uses
+  **preemptible** burst VMs — preemptible by default, never on-demand by habit;
+- **no compute instances are created while the grant period is spent** (it was
+  nearly exhausted at 2026-08-11; steady headroom is ~10,500 ₽/month). Storage
+  costs tens of ₽/month and proceeds any time;
+- quotas as measured 2026-08-11: **GPU is zero cloud-wide** — a support ticket and
+  a grant-eligibility check come before ever requesting one — 28 free vCPU of 32,
+  128 GiB RAM, 12 instances;
+- every cloud mutation is announced before and after and logged like an Arena cycle.
 
 ## Adoption status on 2026-07-23
 

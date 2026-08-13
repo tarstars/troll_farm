@@ -8,8 +8,25 @@ from pathlib import Path
 
 PUZZLE = "spring-challenge-2026-troll-farm"
 USERID = 1302251
-SOURCE = Path(sys.argv[1] if len(sys.argv) > 1 else
-              "/home/tarstars/prj/troll_farm/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs")
+
+# There is deliberately NO default source. Until 2026-08-12 an argument-less run
+# silently submitted candidate-agent6553250-preseed-orchard-coverage-slim.min.rs
+# (a8eb3b2b…, written 2026-07-17) — by then three residents stale. A mistyped or
+# argument-less invocation would have replaced the live bot with a July source and
+# forfeited a matured score, which is not recoverable by editing anything here.
+# Submission is irreversible and outward-facing: it must be stated, never assumed.
+if len(sys.argv) < 2:
+    print(
+        "USAGE GATE: api_submit.py <path-to-.rs>\n"
+        "  No default source. Name the source you mean to submit.\n"
+        "  Current resident (docs/STATE.md §1): 98628e98…\n"
+        "    cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs\n"
+        "  Programmatic callers should use api_submit_once.py, which requires an\n"
+        "  explicit path AND its expected SHA-256."
+    )
+    sys.exit(2)
+
+SOURCE = Path(sys.argv[1])
 LANG = {".go": "Go", ".rs": "Rust"}.get(SOURCE.suffix)
 if LANG is None:
     print(f"LANGUAGE GATE: unsupported extension {SOURCE.suffix!r}"); sys.exit(2)
@@ -49,7 +66,15 @@ handle = json.loads(body)["handle"] if st == 200 else None
 if not handle:
     sys.exit(1)
 
-# 2) try known submit endpoints/shapes until one is accepted
+# 2) probe known submit endpoint shapes, stopping at the first non-definitive answer.
+#
+# AMBIGUITY GATE. This loop used to advance on *any* non-200, including a timeout.
+# call() returns st=None when the request never completed, so a submission the server
+# had already accepted would be re-sent up to three more times from a single run —
+# multiple irreversible ladder mutations from one invocation. Protocol
+# coordination/multi-agent-protocol.md sec 6: "Never automatically retry an ambiguous
+# submission." Only a definitive 4xx ("that endpoint shape does not exist, nothing was
+# submitted") is safe to advance past; None and 5xx are ambiguous and must stop.
 attempts = [
     ("TestSession", "submit", [handle, {"code": CODE, "programmingLanguageId": LANG}, None]),
     ("TestSession", "submit", [handle, {"code": CODE, "programmingLanguageId": LANG}]),
@@ -62,5 +87,14 @@ for svc, m, payload in attempts:
     if st == 200:
         print("SUBMIT-OK via", svc, m)
         sys.exit(0)
+    if st is None or st >= 500:
+        print(
+            f"AMBIGUOUS: {svc}/{m} returned {st}. The submission may or may not have\n"
+            f"  been accepted. NOT trying the remaining {len(attempts) - attempts.index((svc, m, payload)) - 1}"
+            f" endpoint shape(s) — retrying could submit twice.\n"
+            "  Check the ladder before doing anything else. Use api_submit_once.py, which\n"
+            "  makes exactly one mutation call and reports ambiguity as data."
+        )
+        sys.exit(4)
 print("no submit endpoint accepted")
 sys.exit(3)

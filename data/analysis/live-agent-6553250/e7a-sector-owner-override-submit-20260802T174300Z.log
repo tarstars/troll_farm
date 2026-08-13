@@ -1,0 +1,11 @@
+attempt 1 — local pre-request failure; no session or submit HTTP request was made
+Traceback (most recent call last):
+  File "/home/tarstars/prj/troll_farm/cgauto/api_submit.py", line 16, in <module>
+    CODE = SOURCE.read_text()
+FileNotFoundError: [Errno 2] No such file or directory: 'cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs'
+
+attempt 2 — same verified artifact by absolute path
+artifact sha256: 97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595
+session: 200 {"reportReady":false,"handle":"77167730956ef53402472b3c52474908f5b73026","direct":false}
+TestSession/submit: 200 41081503
+SUBMIT-OK via TestSession submit

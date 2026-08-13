@@ -2,6 +2,15 @@
 
 Last updated: 2026-08-02T06:34:50Z
 
+> ⚠ **STALE TABLE (2026-08-02) — roster changed since.** Current reality, 2026-08-10:
+> `local_claude_1` runs on `project_host` (coordinator/integrator/Arena controller);
+> **`claude_1` and `codex_1` run on the owner's Yandex Cloud VM** (owner statement
+> 2026-08-10) — this VM is the planned host for `coordd`, see
+> `docs/superpowers/specs/2026-08-10-coordination-control-plane-design.md`;
+> `local_codex_1` dormant; `chatgpt_1`/`chatgpt_2` unreachable (owner ruling). The rows
+> below are preserved capability evidence for environments that may no longer exist; the
+> control plane's `agents` table replaces this file at P2.
+
 This registry records observed capabilities separately from authority. It never stores
 credentials, tokens, session contents, or secret paths. “Can” means the environment has
 been tested; “may” is controlled by repository policy and task records. Reverify before

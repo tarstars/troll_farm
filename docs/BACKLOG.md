@@ -6,6 +6,19 @@ Re-rank only from written evidence. One experiment in flight at a time; read-onl
 may run in parallel and are claimable by any agent under
 `coordination/multi-agent-protocol.md`.
 
+## P0 operational safety — coordination transport hardening
+
+- **DONE / PHASE 3 MANDATORY.** The 2026-08-05 banana handoff exposed incomplete canonical delivery,
+  a missed pushed review, a 188-message stale inbox, clock-skew-sensitive ACK matching, and an
+  inbox implementation that can silently accept failed fetches or count an unpushed working-tree
+  ACK. Replace it with remote-only authoritative state, exact-path `ack_for`, canonical handoff
+  artifact validation, exact-path seen state, corrections as new immutable messages, loud errors,
+  filters, and backward-compatible migration. The bounded revision passes 41/41 tests and a
+  701-message remote-only live scan with zero collisions/delivery errors; it is integrated and
+  schema v2 is mandatory for new messages. Per-agent seen-state migration remains operational
+  rollout, not a code blocker. Task:
+  `coordination/tasks/20260805-coordination-transport-hardening.md`.
+
 ## P0 operational safety — Arena submission registry
 
 - **R1 DONE / INTEGRATED — categorized submission-history registry and query tool.** The
@@ -18,21 +31,30 @@ may run in parallel and are claimable by any agent under
   must never select by a single maximum. Task and acceptance contract:
   `coordination/tasks/20260802-arena-submission-history-registry.md`. Run
   `python3 cgauto/submission_history.py preflight <candidate-source>` before selection;
-  deterministic build/validation pass and the maintained real pytest suite is 44/44. `current`
-  names exact live submission `41081195` / agent `6590083`.
+  deterministic build/validation pass and the maintained real pytest suite is 45/45. The live
+  registry is current through rejected no-orchard `41085842` and active exact E7a restore
+  `41086057` / agent `6592131`; deterministic validation passes with 45 observations.
 
 ## Position summary (2026-08-02)
 
-Active resident `6590083`/`41081195` is the owner's unqualified live override combining the
-closed-loop banana factory with b100/e6. Exact source is 99,440 bytes, SHA `2d164ecbaf8a…`.
-Its approximately 30-minute checkpoint is mechanically clean but weak: 98/98 parsed plus one
-pending, score 12.99/rank 127/131, 49W/49L, mean margin +4.643, and 22 catastrophes. It remains
-provisional under the 100-finished rule; monitoring is read-only and no automatic mutation follows.
-The owner-corrected next build is a gate-aware Chebyshev-1 banana ring: diagonal seed mothers,
-orthogonal cut/replant wood trees, and surplus fruit banked at a full ring. Its pre-lock packet is
-integrated and local build paths are assigned; no successor source or Arena authority exists yet.
-The displaced b100/e6 resident finished at 23.12/160; repeated preseed evidence remains the
-registry leader at median 24.19. Corpus catch-up is complete at 10,470 games / 513 agents / zero parse
+Active resident is exact E7a restore agent `6592131` / submission `41086057`, source SHA
+`97bfe71e3f2f...`. Its complete identity-clean checkpoint has 162/162 finished, score 23.56/rank
+32/137, 93W/3T/66L, and zero runtime signals. The preceding exact deployment read 25.3/rank 12;
+the exact source now has two mature runs at median 24.41. The owner-directed no-orchard ablation
+terminated at 23.27/rank 34 and was rejected. E7a remains a consumed-panel owner override, not
+prospective validation.
+
+**P0 BANANA RESTORATION R2 — assigned to Claude; round 4 implementation-invalid.** The unbounded factory
+`6590083`/`41081195` and bounded ring `6590136`/`41081465` are implementation-invalid trials, not
+evidence rejecting banana production. The ring bot has exact long period-2 movement in live game
+`897829265`; the unbounded bot violated the intended geometry/collection lifecycle. Claude retries
+from stable parent `a8eb3b2b...` under `coordination/tasks/20260802-banana-restoration-r2.md`.
+Implementation validity, broad inactive-state equality, and exact counterexample liveness precede
+any value test. Round-4 SHA `9f5ef833...` repairs the conversion oracle/flip response but a broad
+host task has a full wood carrier oscillating for 225 turns; a new hash and red/green banking gate
+are required.
+The displaced b100/e6 resident finished at 23.12/160; repeated exact E7a evidence is now the
+registry leader at median 24.41. Corpus catch-up is complete at 10,470 games / 513 agents / zero parse
 failures, +282 in the manual run and +1,388 over the stale STATE count. **Goal
 re-scoped 2026-07-30: mature score ≥ 25.40, interim checkpoint 24.70 = yamo; rank ≤3
 superseded. H2 is optional upside, not goal-required.** **The TERMINAL SYNTHESIS closed all eight improvement
@@ -91,6 +113,92 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
 > (CI [0.293,0.841]). H3a source reconstruction is exact and accepted: only the archived
 > treatment, conditioned versus identical-always-on versus unchanged control, can
 > establish value.**
+
+## P0 — TOOLING INTEGRITY: guards that cannot fail (opened 2026-08-10)
+
+- ★★★ **OWNER-DIRECTED.** `coordination/tasks/20260810-guards-that-cannot-fail.md`. **Seven
+  instances in one week of a check that passes regardless of what it checks** — four of them the
+  integrator's. Classes: no precondition, unreachable guard, wrong code path, disarmed harness
+  (×2), no negative control, no fixture. The sharpest: `lint_outbox` was run as
+  `lint | tail -3 && commit && push`, so `&&` gated on `tail` and the guard was **never armed for
+  a whole session**; it printed `errors (1)` and the push proceeded, publishing an invalid
+  immutable message.
+  **Measured surface:** 426 test files, 1,587 test functions; **6** with no check of any kind,
+  **6** with an assertion that cannot fail. *(A naive bare-`assert` scan says 83 — 92% false
+  positive, because it misses `self.assertX` and `pytest.raises`. Do not re-run the naive
+  version.)*
+  **Sub-items:** G1 twelve known vacuous checks → `codex_1`; G2 negative controls for the 96
+  transport tests → `claude_1` (integrator authored both tests and subject, so the reviewer must
+  not be the integrator); G3 precondition audit → unassigned; G4 unreachable guards → unassigned;
+  G5 disarmed harnesses incl. shell invocation patterns → `local_claude_1`; **G6 the 22 of 47
+  detector branches with no fixture → `claude_1`, OWNER GO-AHEAD REQUIRED FIRST** (real work, no
+  score attached, competes with σ and the banana question).
+  **Standing rule established:** *a new test is not finished until it has been observed failing.*
+  Break the subject, watch it fail, restore, and say in the commit what you broke.
+  **STATUS 2026-08-12: G1 ✅ (codex_1, integrated, gate 1679/0). G5 ✅ (11 findings F1–F11;
+  publish now ONLY via `scripts/publish_outbox.sh` — lint unpiped is the gate — plus a pre-push
+  hook backstop; mutation runner refuses vacuous/unacknowledged-partial drives). G3 ✅ / G4 ✅
+  (bounded first passes; residuals enumerated in
+  `local_claude_1/verification/g3-g4-guard-audit-2026-08-12.md`; key instrument fact: the 96
+  transport tests run via subprocess, so in-process coverage cannot vouch for them — mutation
+  drives are the honest instrument for G2). G2 ✅ **CLOSED/INTEGRATED same day** (claude_1's 13-mutant targeted pass, codex_1 independent
+  reproduction, provenance revision `6fbacca4` merged; doer/reviewer/integrator all distinct).
+  G6 (claude_1, owner go-ahead GRANTED 2026-08-12): **IN PROGRESS — 4 of 19 branches pinned**
+  (all D-7); real surface is 19 actionable, see the banana section for the D-9 correction.
+  Guards scoreboard: **G1–G5 ✅ · G6 in progress · then claude_1 → c5 instrument ruling.**
+
+## P0 — OWNER RULE 2026-08-10: no banana before the second troll
+
+- ★★★ **STRICT, BINDING, INTERIM.** *"no banana manipulation before train the second troll"* —
+  threshold 0, no exemption. This is detector **D-9 branch (a)** `banana_before_train`. It
+  **dissolves** the D-9 affordability question that had blocked bite-test blocker 3 and had been
+  unowned since `local_codex_1` went dormant: there is no affordable delay to price when the
+  permitted count is zero. Recorded in `docs/CONSTRAINTS.md` §(h).
+  **Still open:** D-9 paired branches (b) `train_late`, (c) `train_missing`,
+  (d) `train_stats_differ` carry a stale pre-c5 `INSTRUMENT_UNSUPPORTED` label and need
+  recalibration; they guard TRAIN displacement by non-banana routes.
+  ~~⚠ **New top item in the bite-test audit:** the rule rests on the *least-verified* of the four
+  branches — row (a) is `UNPINNED` with **D9-M1/M2/M3 all SURVIVED**.~~ **RESOLVED 2026-08-12:
+  row (a) was already pinned by claude_1 on 2026-08-10 (`80c3dd63`, 4/4 mutants caught, zero
+  survivors) — the handoff was filed under the phase1-work-allocation task id and sat
+  unintegrated for two days; integrated to trunk 2026-08-12. The rule is now policed by a
+  detector that demonstrably fires.** Caveat kept explicit: (a) is pinned on *implementation
+  validity*; its *applicability* still reads `INSTRUMENT_UNSUPPORTED` (proxy retired) — whether
+  the c5 instrument can observe the policed behaviour is a separate open question, and **(b)–(d)
+  recalibration is parked on that same c5 instrument ruling — OWNER-ASSIGNED 2026-08-12 to
+  `claude_1`, sequenced after G6** (message `20260812T073000Z…-c5-instrument-ruling-assignment
+  -policy.md`; fixturing them before the ruling would test a measurement the instrument cannot
+  make).
+  **Consequence for CBF:** any banana farm that plants while `own_units == 1` is rejected
+  outright, regardless of later score. Check the `DENY → FARM → WOOD` machine's entry condition
+  against this before implementing.
+
+## P0 — MEASUREMENT: the noise band (opened 2026-08-10)
+
+- **σ MEASUREMENT — AUTHORIZED 2026-08-12 AND RUNNING: owner budget four Phase-1 runs (~8 h);
+  work owner `local_claude_1` (sole Arena controller); reviewer codex_1 (accepted, scoped to
+  the analysis). Run 1 = submission 41125196 / agent 6610399, identity-clean. Execution log in
+  the task record.**
+  `coordination/tasks/20260810-arena-noise-band-measurement.md`. Original framing (kept for
+  the record; the blocking question below was answered before spending, as demanded): The owner removed the
+  noise-band gate on candidates 2026-08-12, which makes measurement throughput the binding
+  constraint and σ the number every promotion argument rests on. Already measured from existing
+  data by `cgauto/arena_noise_band.py`: **pooled within-source SD 1.098, CI [0.707, 2.418]**,
+  4 families / **10 deployments** (corrected 2026-08-10 from a first pass that counted 13
+  observation rows, three being second checkpoints of one run — a unit error in the tool written
+  to quantify unit errors). The ±0.5–1 band was understated, modestly. **Question 1 answered at
+  zero Arena cost: 10 distinct deployments of 4 byte-identical sources produced zero duplicate
+  scores, so the platform does not seed from the source hash and re-submission draws a real
+  sample.** **What is still unknown is the decision-relevant part:** all
+  13 observations are *blocked in time*, so within-source variance and ladder drift are
+  permanently confounded and no number of additional blocked runs separates them. Only
+  interleaved A/B/A/B does. A mature read now costs **~2 h**, not days. At σ ≈ 0.96 an A-vs-B
+  difference needs 10 runs per arm for SE 0.5. **Blocking question before spending anything:
+  does re-submitting an identical source draw an independent sample, or does the platform seed
+  from the source hash?** If the latter, Phase 1 measures nothing. No Arena action authorized.
+  **Consequence for everything below:** every closed experiment here was judged against a gate
+  in score points (±0.5, ≥+1.0, ≥+2). At σ ≈ 1.10 a single mature read cannot resolve any of
+  them (difference SD 1.55 at n=1 per arm). This does not reopen past calls; it determines whether future ones are decidable.
 
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
@@ -200,7 +308,8 @@ continues with construction and rating-dynamics measurement, not waiting.
   first; on pass only, freeze/build C1, equality bridge and three-arm runner, then one
   6,144-task development panel. Estimated 4–8 hours to the stop gate, 3–5 working days for
   the full path. Task: `coordination/tasks/20260802-h3a-conditioned-value-unblock.md`.
-- **F1 — READINESS AUDIT RELEASED TO `chatgpt_1`.** Use only legal public state history,
+- **F1 — READINESS AUDIT REASSIGNED TO `codex_1` 2026-08-12** (released to `chatgpt_1`
+  2026-07-31, never claimed; that agent is out of reach). Use only legal public state history,
   whole-map-root folds, turn 40 as primary, fixed linear/centroid models, and
   command/label deletion plus static/permutation/seat controls. N4 is closed, H3a is
   integrated, and the exact A2-0b artifact hash was reverified before release. A
@@ -363,6 +472,53 @@ continues with construction and rating-dynamics measurement, not waiting.
   at ≤100 kB and warm p95 <50 ms. No model, compute job, candidate, TestSession,
   submission, or Arena action is authorized by this backlog entry. [owner direction,
   2026-08-01]
+
+### Designed, not started — carried forward (iteration 2 closed 2026-08-07)
+
+- **CBF conditional banana farm — DESIGN COMPLETE, OWNER-SPECIFIED, NOT IMPLEMENTED.**
+  Full spec: `docs/superpowers/specs/2026-08-07-conditional-banana-farm-design.md`. A
+  three-state machine `DENY → FARM → WOOD` with both transitions latched: farm the D89a
+  seed factory once `opponent_trolls > 2` latches (the resident's existing denial abort,
+  which today has no destination and falls back to undifferentiated wood), then abort to
+  pure wood if the opponent out-collects our bananas. Acceptance is **behavioural per owner
+  ruling 2026-08-07** — G1 trains worker two, G2 denies one of lemon/plum, G3 establishes a
+  sustained orchard, G4 aborts on the banana test *and does not fire when it should not* —
+  plus G5 byte-identity on non-triggering games and G6 monotonicity (including that the
+  denial bonus never re-enables after DENY is left; it is gated inline on the live troll
+  count today, §3.0 of the spec).
+  - **Why it is shaped this way:** D89a is the only banana mechanism that ever worked at
+    scale here (+79.441 margin, CI [+40.991,+117.892], 252/256 sustained loop, catastrophes
+    26 → 11) and failed on **four** value gates, not one — worst opponent-family −6.938
+    (bar −5), p10 −72 (bar −20), worst −235 (bar −60), opponent delta +82.863 (bar +1). The
+    last is superseded by the owner's delta ruling. The design does not repair D89a's leak;
+    it bounds exposure by farming only in games already being lost. If the opponent never
+    reaches three trolls the bot is byte-identical to the resident.
+  - **Recorded risk, owner-accepted, and CORRECTED 2026-08-07:** this entry originally said the
+    banana-collection sensor watches theft (+12.453) rather than the dominant leak (+76.508 from
+    the opponent's own crops). **That split is UNRESOLVED, not measured** — it is prose in the
+    D89a result `.md` with no committed data behind it (`claude_1`'s scoping re-derivation;
+    verified by me — the discovery JSON has no such fields and the per-task TSVs were never
+    committed). `+82.863` itself stands. The residual risk is weaker: the test only sees
+    bananas, so a farm could pass G4 and still lose as D89a did. A margin-based abort on
+    `view.scores` costs the same and is the named variant.
+  - **`claude_1` verdict 2026-08-07: `NOT_REPAIRABLE`** (second review reassigned to `codex_1`
+    2026-08-12; `chatgpt_1` out of reach). D92's
+    trained-only isolation ran 898 opponent-crop selections against D89's 166 — 5.4× the denial
+    dose, starter unchanged — and opponent score moved **+0.188 upward**; `gold_adaptive` family
+    delta is **208.78**. It recommends **neither** route enter Phase 3 before a read-only check
+    and measurement repair. Does not block this design, which never assumed the leak was
+    repairable, but weakens the case for entering FARM at all.
+  - **Boundary:** behavioural gates deliver a bot, not a promotion. Mining hit 100% trigger
+    fidelity at −10.76; B3.13 passed every local gate and scored 11.96/rank 111 live. Arena
+    still requires a `QUALIFIED` frozen-protocol verdict and gain above the ±0.5–1 band
+    (`docs/STATE.md` §3). Passing G1–G6 authorizes no submission.
+  - **Reopens nothing:** N6 closed the denial weight ("keep 900"), H4 closed denial as bill
+    prevention (`NO_MATERIAL_DENIABLE_BILL`, strict rate 0.0; 43/73 mandatory batches are
+    IRON), D176a closed oscillation. Supporting audit:
+    `data/analysis/live-agent-6553250/resident-denial-scoring-audit-2026-08-07.md`.
+  - **Next step when resumed:** implementation plan, three stages — inert machine plus its
+    byte-identity and monotonicity checks first (proves the plumbing changes nothing), then
+    graft the farm, then the abort. Not started; no task record, no D-series id, no branch.
 
 ### Operations
 

@@ -1,0 +1,23 @@
+{
+  "schema": "orchard-ab-night-preflight-abort-v1",
+  "started_at_utc": "2026-08-03T19:11:26Z",
+  "failed_at_utc": "2026-08-03T19:12:32Z",
+  "status": "aborted-before-maturity",
+  "reason": "source verifier looked for cg_session.txt in the isolated worktree instead of the controller credential path",
+  "counted_as_experiment_leg": false,
+  "no_orchard_submission": {
+    "submission_id": 41086801,
+    "source_sha256": "d1f32c358d0f7b6a49b988c1b4ad6958a2d8ed84a9e3492632087732aae7e02a",
+    "mutation_calls": 1,
+    "active_seconds_before_restore_approximately": 66
+  },
+  "safety_restore": {
+    "agent_id": 6592329,
+    "submission_id": 41086809,
+    "source_sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595",
+    "mutation_calls": 1,
+    "platform_source_verified": true,
+    "verified_at_utc": "2026-08-03T19:14:40Z"
+  },
+  "correction": "pass the explicit controller session file to read-only recovery and allow up to five minutes for platform propagation; then restart all eight clean legs from no-orchard"
+}

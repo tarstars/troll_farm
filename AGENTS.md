@@ -10,7 +10,8 @@ ledgers unless archaeology is explicitly required.
 - If more than one writing agent is active, the protocol in
   `coordination/multi-agent-protocol.md` is in force. Read it before writing anything.
 - One worktree and `agent/<id>` branch per writing agent; never share a worktree. One
-  integrator; one arena controller (both `claude_1` by default).
+  integrator; one arena controller (both `local_claude_1` since the 2026-08-06 owner
+  reassignment — `coordination/roster.json` on `origin/main` is the authority, not this line).
 - Four artifacts: task records (`coordination/tasks/`), status snapshots
   (`coordination/status/<id>.md`), immutable typed messages
   (`coordination/messages/<sender>/YYYYMMDDTHHMMSSZ-<task-id>-<kind>.md`), and handoffs.
@@ -28,21 +29,29 @@ ledgers unless archaeology is explicitly required.
 
 ## Local Bulk Storage Policy
 
-- The authoritative local bulk filesystem is the volume labeled
-  `medium_data`. Its last observed mount is `/media/tarstars/medium_data`, and
-  this project's physical root is
-  `/media/tarstars/medium_data/database/troll_farm`.
-- The mount path is observed state; the filesystem label is its identity.
-  Discover and verify the mount by label before every bulk write.
-- The clean external-backed logical roots are `artifacts`, `outputs`,
-  `yt_work`, `data/generated`, and `data/external`. Once provisioned, each
-  must be a symlink whose resolved target is beneath the physical project
-  root.
+- Bulk roots are served by whichever backend is mounted at
+  `/media/tarstars/medium_data/database/troll_farm`: the USB (ext4 label
+  `medium_data`, writable, only while attached) or — the steady state since
+  2026-08-11 — a **read-only** GeeseFS mount of `troll-farm-data:archive`.
+  The path is observed state; the label or mount source is the identity.
+- The archive-backed logical roots are `artifacts`, `outputs`, and
+  `data/external`; each must be a symlink resolving beneath the physical
+  project root. `yt_work` and `data/generated` are **local scratch** under
+  `~/.cache/troll-farm/` and are deliberately outside it.
 - Before writing through a bulk root, run
-  `python3 cgauto/check_external_storage.py --required-free-gib <GiB>`.
-  If the volume, project root, free space, or any required symlink is
-  unavailable, stop. Never create a replacement real directory in the
-  repository.
+  `python3 cgauto/check_external_storage.py --required-free-gib <GiB>`;
+  before a bulk read, `--intent read`. If the backend, project root, free
+  space, or any required symlink is unavailable, stop. Never create a
+  replacement real directory in the repository, and never loosen the check to
+  get past a read-only failure.
+- **New bulk output: local disk, then periodic upload** (owner decision
+  2026-08-11). `artifacts`, `outputs` and `data/external` are *union roots* —
+  real local directories under `~/.cache/troll-farm/bulk/` whose children link
+  into the read-only archive, so history reads unchanged and new directories
+  are simply created. Refresh with
+  `python3 data/scripts/link_archive_roots.py --apply`; upload with
+  `data/scripts/upload_archive.py`; replace a local copy with a link only
+  after its upload verifies.
 - Put large simulation matrices, replay-derived corpora, datasets,
   checkpoints, raw prediction/trajectory dumps, YT payloads and downloads,
   runtime archives, and profiler captures under the external-backed roots.

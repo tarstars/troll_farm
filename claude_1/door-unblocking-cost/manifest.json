@@ -1,0 +1,64 @@
+{
+  "baseline": {
+    "bytes": 62820,
+    "characters": 62820,
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+    "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+  },
+  "behavior_exact": false,
+  "cost": {
+    "bytes_removed_vs_baseline": 5991,
+    "percent_of_100k_allowance": 5.991,
+    "percent_of_baseline": 9.537
+  },
+  "coverage_evidence": {
+    "carries_committed_fruit": {
+      "entries": 0
+    },
+    "force_unique_door_clear": {
+      "coverage_percent": 1.17,
+      "entries": 7234
+    },
+    "forced_move": {
+      "entries": 0
+    },
+    "planned_egress": {
+      "entries": 0
+    },
+    "source": "claude_1/e7a-incremental-simplification/r36-coverage-panel-2026-08-04.json"
+  },
+  "feature": "door-unblocking (force_unique_door_clear cluster)",
+  "gates": {
+    "reference_compile_empty_input": "PASS",
+    "reference_fixtures": "SEMANTIC_FIXTURES_EXACT_PASS 10/10",
+    "reference_vs_baseline_25_games": "25/25 identical, 7234/7234 lines (feature changed no command)",
+    "stripped_compile_empty_input": "PASS",
+    "stripped_fixtures": "SEMANTIC_FIXTURES_EXACT_PASS 10/10",
+    "stripped_vs_reference_25_games": "25/25 identical, 7234/7234 lines (safety gate)"
+  },
+  "motivation": "round-36 coverage panel: 337 of 341 regions never execute across the 25-game frozen packet (1.2 % covered)",
+  "qualification": "NOT QUALIFIED - no development or untouched panel; no arena action authorized",
+  "reference": {
+    "bytes": 62749,
+    "path": "claude_1/door-unblocking-cost/activation-disabled-reference.rs",
+    "semantic_change": "door-unblocking routine is never called; nothing else",
+    "sha256": "25940318a02e815c92fe3e3a8bebd55e272c18ebad0ff808845d2fac2144b779"
+  },
+  "removed_function_bytes": {
+    "carries_committed_fruit": 146,
+    "force_unique_door_clear": 4803,
+    "forced_move": 156,
+    "planned_egress": 540,
+    "unique_shack_door": 207
+  },
+  "schema": "troll-farm-feature-code-cost-v1",
+  "shared_retained": [
+    "compatible",
+    "move_command"
+  ],
+  "stripped": {
+    "bytes": 56829,
+    "path": "claude_1/door-unblocking-cost/e7a-without-door-unblocking.rs",
+    "sha256": "b21a8495d191f900861447291523001b0945217e1e404ca4b0d88ed4c15c6c39"
+  }
+}

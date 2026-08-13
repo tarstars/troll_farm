@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 60506,
+    "path": "local_codex_1/e7a-iterative-logical-deletion/candidate-r10-remove-nonpersistent-mode.rs",
+    "removed_from_initial_62278": 1772,
+    "removed_this_round": 342,
+    "sha256": "f6f40374d3016627454d2c51ab0e0cd5dae28e93881446915658e087ecdd63c8"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "delete the disabled non-persistent regeneration mode and preserve all enabled branches and helper arguments as constant true",
+  "minification": false,
+  "parent": {
+    "bytes": 60848,
+    "path": "local_codex_1/e7a-iterative-logical-deletion/candidate-r9-inline-idle-regeneration.rs",
+    "sha256": "72adc52fe6339964588f3a766b6f7b335c07e4bd6e394859d9b634ee1f27efe2"
+  },
+  "round": 10,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}

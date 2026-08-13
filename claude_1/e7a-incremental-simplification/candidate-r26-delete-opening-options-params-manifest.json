@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 56491,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r26-delete-opening-options-params.rs",
+    "removed_from_initial_62278": 5787,
+    "removed_this_round": 75,
+    "sha256": "2e43b6a23837390282287e7f7e45024cc6e22b8272640459be5c562f6dfe8012"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact offline live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "delete the opening_options parameters whose only surviving call arguments are literal 3,3 and seed the body's shadowing locals with the same literals",
+  "minification": false,
+  "parent": {
+    "bytes": 56566,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r25-delete-plantkind-hash-derive.rs",
+    "sha256": "50de16585a28c5494c0fa2dea610eee8b987a0e08db9c1e75402bef911e4dc38"
+  },
+  "round": 26,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}

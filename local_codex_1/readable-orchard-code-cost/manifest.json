@@ -1,0 +1,83 @@
+{
+  "canonical_character_cost": 15013,
+  "commands": {
+    "build": "python3 local_codex_1/readable-orchard-code-cost/build_readable_orchard_cost.py --output-dir local_codex_1/readable-orchard-code-cost --manifest local_codex_1/readable-orchard-code-cost/manifest.json --force",
+    "panels": "compile the three readable sources, then run claude_1/orchard-code-cost/run_equality_panel.py for baseline/disabled/stripped as recorded in the report",
+    "verify": "python3 local_codex_1/readable-orchard-code-cost/verify_readable_orchard_cost.py --manifest local_codex_1/readable-orchard-code-cost/manifest.json"
+  },
+  "generator": "local_codex_1/readable-orchard-code-cost/build_readable_orchard_cost.py",
+  "line_cost": {
+    "activation_edit_physical_lines": 6,
+    "code_lines_removed_vs_baseline": 375,
+    "formatting_definition": "one line after every brace or semicolon, four-space brace indentation, common four-line generated header",
+    "physical_implementation_lines_removed_after_disable": 369,
+    "physical_lines_removed_vs_baseline": 375
+  },
+  "line_inventory": {
+    "basis": "canonical generated with-orchard line spans; grouped against exact stripped token stream",
+    "orchard_data_types_and_wrapper_state": 12,
+    "orchard_per_turn_driver": 108,
+    "orchard_selection_and_maintenance_helpers": 242,
+    "reservation_channel_import_and_main_wiring": 13,
+    "total": 375
+  },
+  "sacred_source_modified": false,
+  "schema": "troll-farm-readable-orchard-code-cost-v1",
+  "sources": {
+    "activation_disabled": {
+      "blank_lines": 1,
+      "code_lines": 1839,
+      "comment_only_lines": 4,
+      "compact_bytes": 62581,
+      "compact_path": "claude_1/orchard-code-cost/activation-disabled-reference.rs",
+      "compact_sha256": "8fc1b7f3499a407e5df546bbc688843c56c0f6e7d9382b18ba359592b586693d",
+      "nonblank_lines": 1843,
+      "physical_lines": 1844,
+      "readable_bytes": 97604,
+      "readable_path": "local_codex_1/readable-orchard-code-cost/e7a-activation-disabled-readable.rs",
+      "readable_sha256": "09960a85e69ac058bf97453e3a4a1fd12326acd0339315f3860ecd10ba1e25d7",
+      "round_trip_exact": true
+    },
+    "orchard_stripped": {
+      "blank_lines": 1,
+      "code_lines": 1470,
+      "comment_only_lines": 4,
+      "compact_bytes": 47807,
+      "compact_path": "claude_1/orchard-code-cost/e7a-without-orchard-code.rs",
+      "compact_sha256": "102caecde916b03dde0c02d1d8c13c9333b6ee3a26f13df34ad21fbebaae0fd6",
+      "nonblank_lines": 1474,
+      "physical_lines": 1475,
+      "readable_bytes": 75634,
+      "readable_path": "local_codex_1/readable-orchard-code-cost/e7a-without-orchard-readable.rs",
+      "readable_sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+      "round_trip_exact": true
+    },
+    "with_orchard": {
+      "blank_lines": 1,
+      "code_lines": 1845,
+      "comment_only_lines": 4,
+      "compact_bytes": 62820,
+      "compact_path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+      "compact_sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595",
+      "nonblank_lines": 1849,
+      "physical_lines": 1850,
+      "readable_bytes": 97978,
+      "readable_path": "local_codex_1/readable-orchard-code-cost/e7a-with-orchard-readable.rs",
+      "readable_sha256": "eb2c1ab6cde4b00e87b93e345a71f7c1512293fef80589d1b6cb48eb9bfd5e1a",
+      "round_trip_exact": true
+    }
+  },
+  "verification": {
+    "arena_mutation": false,
+    "baseline_vs_packet": "PASS: 25/25 games, 7234/7234 commands",
+    "disabled_vs_baseline": "PASS: 24/25; only game 897833045 diverges at turn 79",
+    "readable_compile_empty_input": {
+      "activation_disabled": "PASS: optimized compile; empty input exit 0 with zero output",
+      "orchard_stripped": "PASS: optimized compile; empty input exit 0 with zero output",
+      "with_orchard": "PASS: optimized compile; empty input exit 0 with zero output"
+    },
+    "sacred_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "semantic_fixtures": "PASS: all three exact compact parents, 10/10 each",
+    "stripped_vs_disabled": "PASS: 25/25 games, 7234/7234 commands"
+  }
+}

@@ -1,0 +1,123 @@
+[
+ {
+  "count": 0,
+  "detector": "D-1",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-2",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-3",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-4",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-5",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 6,
+  "detector": "D-6",
+  "episodes": [
+   {
+    "cell": [
+     9,
+     4
+    ],
+    "eta_opp_x": 2,
+    "kind": "opp_chop_eta",
+    "turn_end": 84,
+    "turn_start": 84,
+    "unit": 0
+   },
+   {
+    "cell": [
+     9,
+     4
+    ],
+    "eta_opp_x": 2,
+    "kind": "opp_chop_eta",
+    "turn_end": 108,
+    "turn_start": 108,
+    "unit": 0
+   },
+   {
+    "cell": [
+     9,
+     4
+    ],
+    "eta_opp_x": 0,
+    "kind": "opp_chop_eta",
+    "turn_end": 113,
+    "turn_start": 113,
+    "unit": 0
+   },
+   {
+    "cell": [
+     9,
+     4
+    ],
+    "eta_opp_x": 0,
+    "kind": "opp_chop_eta",
+    "turn_end": 116,
+    "turn_start": 116,
+    "unit": 0
+   },
+   {
+    "cell": [
+     9,
+     4
+    ],
+    "eta_opp_x": 0,
+    "kind": "opp_chop_eta",
+    "turn_end": 119,
+    "turn_start": 119,
+    "unit": 0
+   },
+   {
+    "cell": [
+     9,
+     4
+    ],
+    "eta_opp_x": 1,
+    "kind": "opp_chop_eta",
+    "turn_end": 122,
+    "turn_start": 122,
+    "unit": 0
+   }
+  ],
+  "verdict": "FAIL"
+ },
+ {
+  "count": 0,
+  "detector": "D-7",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-8",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-9",
+  "episodes": [],
+  "verdict": "PASS"
+ }
+]

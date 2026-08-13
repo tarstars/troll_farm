@@ -64,7 +64,7 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
   "acceptance": {
     "author": "chatgpt_1",
     "reviewer": "local_codex_1",
-    "state": "proposed"
+    "state": "accepted"
   },
   "attempts": [
     "rank≤3 goal",
@@ -77,8 +77,10 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
     "bullet": "Owner goal re-scope: primary target is mature score ≥25.40, interim 24.70, with mature read plus later confirmation; rank≤3 is superseded. The target is architecturally grounded by 25 Legend agents at ranks 7–54 using the exact two-worker roster. [owner decision 2026-07-30]",
     "section": "Governance",
     "source": {
+      "commit": "cb1d53c8592380c14381135f1947abc6246cce3d",
       "locator": "lines 24-43",
-      "path": "docs/STATE.md"
+      "path": "docs/STATE.md",
+      "quote": "**Primary: reach a mature score ≥ 25.40** — the current top-10 boundary (Escdemon 25.37),\ni.e. **+3.64** from our frozen 21.76. **Interim checkpoint: 24.70** — yamo's score, the\ndesign this bot reproduces, so passing it means the reproduction has surpassed its original\n(+2.94). Completion rule unchanged: a mature read **plus a later confirmation**, never a\nsingle spike.\n\nSuperseded: Legend rank ≤ 3 (bar 28.22). It was set when passive maturity looked like a\nlive lever; that assumption died (score is source-side frozen between rare recomputes) and\nthe target was never revisited. No path to +6.5 has been identified in two months, and the\n2026-07-29 terminal synthesis closed all eight known routes for this architecture.\n\nWhy ≥25.40 is the right kind of target: **25 Legend agents reach ranks 7–54 on our exact\ntwo-worker roster**, so it is architecturally demonstrated rather than hypothetical.\nN1 has now rejected the anecdotal 3–4-point passive-maturity premise for planning:\nremaining uplift −0.161, CI [−0.753,+0.457]. The measured policy/architecture gap must do\nthe work. **A2 has now stopped at its Phase-1 K1**, so it is no longer a current goal path;\nwaiting is not one either. Rank targets are additionally avoided because pool strengthening\nmakes the goalpost move in the wrong direction.\n\n## 3. Standing rules"
     }
   },
   "cost": {
@@ -95,8 +97,10 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
       "name": "primary_target",
       "population": "Legend practice-ladder goal",
       "source": {
+        "commit": "cb1d53c8592380c14381135f1947abc6246cce3d",
         "locator": "lines 24-43",
-        "path": "docs/STATE.md"
+        "path": "docs/STATE.md",
+        "quote": "**Primary: reach a mature score ≥ 25.40** — the current top-10 boundary (Escdemon 25.37),\ni.e. **+3.64** from our frozen 21.76. **Interim checkpoint: 24.70** — yamo's score, the\ndesign this bot reproduces, so passing it means the reproduction has surpassed its original\n(+2.94). Completion rule unchanged: a mature read **plus a later confirmation**, never a\nsingle spike.\n\nSuperseded: Legend rank ≤ 3 (bar 28.22). It was set when passive maturity looked like a\nlive lever; that assumption died (score is source-side frozen between rare recomputes) and\nthe target was never revisited. No path to +6.5 has been identified in two months, and the\n2026-07-29 terminal synthesis closed all eight known routes for this architecture.\n\nWhy ≥25.40 is the right kind of target: **25 Legend agents reach ranks 7–54 on our exact\ntwo-worker roster**, so it is architecturally demonstrated rather than hypothetical.\nN1 has now rejected the anecdotal 3–4-point passive-maturity premise for planning:\nremaining uplift −0.161, CI [−0.753,+0.457]. The measured policy/architecture gap must do\nthe work. **A2 has now stopped at its Phase-1 K1**, so it is no longer a current goal path;\nwaiting is not one either. Rank targets are additionally avoided because pool strengthening\nmakes the goalpost move in the wrong direction.\n\n## 3. Standing rules"
       }
     },
     {
@@ -106,8 +110,10 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
       "name": "interim_target",
       "population": "yamo source-design score checkpoint",
       "source": {
+        "commit": "cb1d53c8592380c14381135f1947abc6246cce3d",
         "locator": "lines 24-43",
-        "path": "docs/STATE.md"
+        "path": "docs/STATE.md",
+        "quote": "**Primary: reach a mature score ≥ 25.40** — the current top-10 boundary (Escdemon 25.37),\ni.e. **+3.64** from our frozen 21.76. **Interim checkpoint: 24.70** — yamo's score, the\ndesign this bot reproduces, so passing it means the reproduction has surpassed its original\n(+2.94). Completion rule unchanged: a mature read **plus a later confirmation**, never a\nsingle spike.\n\nSuperseded: Legend rank ≤ 3 (bar 28.22). It was set when passive maturity looked like a\nlive lever; that assumption died (score is source-side frozen between rare recomputes) and\nthe target was never revisited. No path to +6.5 has been identified in two months, and the\n2026-07-29 terminal synthesis closed all eight known routes for this architecture.\n\nWhy ≥25.40 is the right kind of target: **25 Legend agents reach ranks 7–54 on our exact\ntwo-worker roster**, so it is architecturally demonstrated rather than hypothetical.\nN1 has now rejected the anecdotal 3–4-point passive-maturity premise for planning:\nremaining uplift −0.161, CI [−0.753,+0.457]. The measured policy/architecture gap must do\nthe work. **A2 has now stopped at its Phase-1 K1**, so it is no longer a current goal path;\nwaiting is not one either. Rank targets are additionally avoided because pool strengthening\nmakes the goalpost move in the wrong direction.\n\n## 3. Standing rules"
       }
     },
     {
@@ -117,8 +123,10 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
       "name": "architectural_demonstration",
       "population": "25 Legend agents in the cited ladder census",
       "source": {
+        "commit": "cb1d53c8592380c14381135f1947abc6246cce3d",
         "locator": "lines 24-43",
-        "path": "docs/STATE.md"
+        "path": "docs/STATE.md",
+        "quote": "**Primary: reach a mature score ≥ 25.40** — the current top-10 boundary (Escdemon 25.37),\ni.e. **+3.64** from our frozen 21.76. **Interim checkpoint: 24.70** — yamo's score, the\ndesign this bot reproduces, so passing it means the reproduction has surpassed its original\n(+2.94). Completion rule unchanged: a mature read **plus a later confirmation**, never a\nsingle spike.\n\nSuperseded: Legend rank ≤ 3 (bar 28.22). It was set when passive maturity looked like a\nlive lever; that assumption died (score is source-side frozen between rare recomputes) and\nthe target was never revisited. No path to +6.5 has been identified in two months, and the\n2026-07-29 terminal synthesis closed all eight known routes for this architecture.\n\nWhy ≥25.40 is the right kind of target: **25 Legend agents reach ranks 7–54 on our exact\ntwo-worker roster**, so it is architecturally demonstrated rather than hypothetical.\nN1 has now rejected the anecdotal 3–4-point passive-maturity premise for planning:\nremaining uplift −0.161, CI [−0.753,+0.457]. The measured policy/architecture gap must do\nthe work. **A2 has now stopped at its Phase-1 K1**, so it is no longer a current goal path;\nwaiting is not one either. Rank targets are additionally avoided because pool strengthening\nmakes the goalpost move in the wrong direction.\n\n## 3. Standing rules"
       }
     }
   ],
@@ -148,15 +156,17 @@ The JSON block below is part of this human-reviewed Markdown record. Generated Y
   "reopening_conditions": [
     "An explicit owner decision citing new target evidence."
   ],
-  "schema_version": 1,
+  "schema_version": 2,
   "scope": "Project objective and completion rule for the Legend practice ladder.",
   "status": "accepted",
   "textual_evidence": [
     {
       "claim": "Completion requires a mature read plus a later confirmation, never a single spike.",
       "source": {
+        "commit": "cb1d53c8592380c14381135f1947abc6246cce3d",
         "locator": "lines 24-43",
-        "path": "docs/STATE.md"
+        "path": "docs/STATE.md",
+        "quote": "**Primary: reach a mature score ≥ 25.40** — the current top-10 boundary (Escdemon 25.37),\ni.e. **+3.64** from our frozen 21.76. **Interim checkpoint: 24.70** — yamo's score, the\ndesign this bot reproduces, so passing it means the reproduction has surpassed its original\n(+2.94). Completion rule unchanged: a mature read **plus a later confirmation**, never a\nsingle spike.\n\nSuperseded: Legend rank ≤ 3 (bar 28.22). It was set when passive maturity looked like a\nlive lever; that assumption died (score is source-side frozen between rare recomputes) and\nthe target was never revisited. No path to +6.5 has been identified in two months, and the\n2026-07-29 terminal synthesis closed all eight known routes for this architecture.\n\nWhy ≥25.40 is the right kind of target: **25 Legend agents reach ranks 7–54 on our exact\ntwo-worker roster**, so it is architecturally demonstrated rather than hypothetical.\nN1 has now rejected the anecdotal 3–4-point passive-maturity premise for planning:\nremaining uplift −0.161, CI [−0.753,+0.457]. The measured policy/architecture gap must do\nthe work. **A2 has now stopped at its Phase-1 K1**, so it is no longer a current goal path;\nwaiting is not one either. Rank targets are additionally avoided because pool strengthening\nmakes the goalpost move in the wrong direction.\n\n## 3. Standing rules"
       }
     }
   ],

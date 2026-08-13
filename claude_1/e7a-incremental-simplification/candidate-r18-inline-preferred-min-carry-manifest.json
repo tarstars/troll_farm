@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 57232,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r18-inline-preferred-min-carry.rs",
+    "removed_from_initial_62278": 5046,
+    "removed_this_round": 72,
+    "sha256": "dc11f12d96bca634b6f61280b42ce05c7241144465d087b51092dcc96b858de0"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact offline live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "inline the sole-value preferred_min_carry 2 at its single clamped read and delete the field and TUNED_CARRY initializer; the local binding of the same name is untouched",
+  "minification": false,
+  "parent": {
+    "bytes": 57304,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r17-inline-max-extra-eta.rs",
+    "sha256": "326213a3d4888f8fb853195358b0c1257bb6e4a76018fb3df3cd01c8c6eb5092"
+  },
+  "round": 18,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}

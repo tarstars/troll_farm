@@ -100,6 +100,10 @@ EVIDENCE_MATURITIES = frozenset(
 #: Maturities that may be used for a promotion or selection comparison.
 MATURE_CLASS = frozenset({"mature", "later_confirmed", "terminal"})
 
+#: One mature queue is useful evidence but not a repeat. Default ranking keeps every
+#: repeatedly measured source ahead of single-run sources, then compares their medians.
+REPEATED_MATURE_RUNS = 2
+
 DISPOSITIONS = frozenset(
     {
         "active",
@@ -793,7 +797,7 @@ def rank_sources(
     evidence: Iterable[str] = MATURE_CLASS,
     scope: str = "all",
 ) -> list[dict[str, Any]]:
-    """Rank by median of repeated mature runs — never by a single maximum."""
+    """Rank repeated mature evidence first, then by median — never by one maximum."""
     summaries = []
     for source in registry["sources"]:
         if scope != "all" and scope not in source["strategy_categories"]:
@@ -804,6 +808,7 @@ def rank_sources(
     summaries.sort(
         key=lambda s: (
             s["median_score"] is None,
+            s["mature_runs"] < REPEATED_MATURE_RUNS,
             -(s["median_score"] or 0.0),
             -(s["worst_score"] or 0.0),
             -s["mature_runs"],
@@ -1052,7 +1057,10 @@ def cmd_best(args: argparse.Namespace) -> int:
     print(render_scope_banner(args.scope, args.min_finished, MATURE_CLASS))
     print(render_source_table(summaries))
     print()
-    print("Ranked by MEDIAN of repeated mature runs, then by worst run. Not by maximum.")
+    print(
+        "Repeated mature evidence ranks before single-run evidence; within each tier, "
+        "rank by median then worst run. Never by maximum."
+    )
     for summary in summaries:
         if summary["warnings"]:
             print()
@@ -1102,12 +1110,7 @@ def cmd_preflight(args: argparse.Namespace) -> int:
 
     if source is not None:
         mine = next(s for s in everything if s["source_id"] == source["source_id"])
-        stronger = [
-            s
-            for s in everything
-            if s["median_score"] is not None
-            and (mine["median_score"] is None or s["median_score"] > mine["median_score"])
-        ]
+        stronger = everything[: everything.index(mine)]
         if stronger:
             print("STRONGER HISTORICAL SOURCE FAMILIES THAN THIS CANDIDATE:")
             for s in stronger:

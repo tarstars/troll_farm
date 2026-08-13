@@ -1,0 +1,1359 @@
+{
+  "candidate_raw_exit": 1,
+  "candidate_raw_reports": [
+    {
+      "bank_turns": [
+        6,
+        12
+      ],
+      "check": "R-1 one-seed-reservation",
+      "invariant": "I-9",
+      "resident": 0,
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "check": "R-2a unripe-contested-abandon",
+      "eta_opp_at_flip": 0,
+      "eta_res_at_flip": 0,
+      "flip_turn": 6,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "resident": 0,
+      "unripe_at_flip": true,
+      "verdict": "FAIL",
+      "violations": [
+        {
+          "command": "CHOP 0",
+          "turn": 6,
+          "why": "CHOP on the lost mother"
+        },
+        {
+          "command": "CHOP 0",
+          "turn": 7,
+          "why": "CHOP on the lost mother"
+        },
+        {
+          "command": "CHOP 0",
+          "turn": 8,
+          "why": "CHOP on the lost mother"
+        },
+        {
+          "command": "CHOP 0",
+          "turn": 9,
+          "why": "CHOP on the lost mother"
+        },
+        {
+          "command": "CHOP 0",
+          "turn": 10,
+          "why": "CHOP on the lost mother"
+        }
+      ]
+    },
+    {
+      "check": "R-2b unripe-contested-convert",
+      "chop_turns_on_mother": [
+        2,
+        3
+      ],
+      "eta_opp_at_flip": 0,
+      "eta_res_at_flip": 1,
+      "feasibility_at_flip": null,
+      "flip_turn": 5,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "resident": 0,
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "check": "R-3a conversion-race-boundary/infeasible-tie",
+      "chop_analysis": {
+        "chop_start_turn": 3,
+        "oracle_at_chop_start": {
+          "completion_turn": 7,
+          "eta_opp": 0,
+          "eta_res": 0,
+          "exact_chop_turns": 5,
+          "feasible": false,
+          "first_fruit_turn": 7,
+          "opponent_harvest_turn": 7
+        }
+      },
+      "eta_opp_at_flip": 2,
+      "eta_res_at_flip": 2,
+      "flip_turn": 1,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "oracle_at_flip": {
+        "completion_turn": 7,
+        "eta_opp": 2,
+        "eta_res": 2,
+        "exact_chop_turns": 5,
+        "feasible": false,
+        "first_fruit_turn": 7,
+        "opponent_harvest_turn": 7
+      },
+      "resident": 0,
+      "verdict": "FAIL",
+      "violations": [
+        {
+          "chop_turns_on_mother": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "why": "doomed chop: CONVERSION_RACE_ORACLE at chop-start turn 3 is infeasible (completion 7, opponent harvest 7) \u2014 I-10a requires abandon"
+        }
+      ]
+    },
+    {
+      "check": "R-3b conversion-race-boundary/feasible-edge",
+      "chop_turns_on_mother": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "eta_opp_at_flip": 2,
+      "eta_res_at_flip": 2,
+      "flip_turn": 1,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "oracle_at_flip": {
+        "completion_turn": 6,
+        "eta_opp": 2,
+        "eta_res": 2,
+        "exact_chop_turns": 4,
+        "feasible": true,
+        "first_fruit_turn": 7,
+        "opponent_harvest_turn": 7
+      },
+      "resident": 0,
+      "verdict": "PASS",
+      "violations": [],
+      "voided_legacy_deadlines_at_flip": {
+        "voided_code_max_eta_opp_predicted_cooldown": {
+          "accepts": false,
+          "lhs_eta_res_plus_chops": 6,
+          "rhs_deadline": 4
+        },
+        "voided_d8_arrival_only": {
+          "accepts": false,
+          "eta_opp_at_chop_start": 0,
+          "exact_chops_at_chop_start": 4
+        },
+        "voided_spec_old_lt_eta_opp": {
+          "accepts": false,
+          "lhs_eta_res_plus_chops": 6,
+          "rhs_eta_opp": 2
+        }
+      }
+    },
+    {
+      "check": "R-4 flip-response-reachability",
+      "invariant": "I-10a",
+      "reason": "scenario invalid: the candidate never planted the mother itself",
+      "verdict": "ERROR"
+    },
+    {
+      "bank_turns": {
+        "0": 9,
+        "2": 10
+      },
+      "check": "R-5 two-worker-full-cargo-banking",
+      "episodes": [],
+      "full_wood_carrier_since": {
+        "0": 8,
+        "2": 1
+      },
+      "invariants": [
+        "I-19",
+        "I-20",
+        "I-21",
+        "D-1"
+      ],
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "bank_turns": [
+        4
+      ],
+      "check": "R-1 one-seed-reservation",
+      "control": "control-r1-compliant",
+      "expected_verdict": "PASS",
+      "invariant": "I-9",
+      "resident": 0,
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "check": "R-2a unripe-contested-abandon",
+      "control": "control-r2a-compliant",
+      "eta_opp_at_flip": 1,
+      "eta_res_at_flip": 2,
+      "expected_verdict": "PASS",
+      "flip_turn": 5,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "resident": 0,
+      "unripe_at_flip": true,
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "check": "R-2b unripe-contested-convert",
+      "chop_turns_on_mother": [
+        2,
+        3
+      ],
+      "control": "control-r2b-compliant",
+      "eta_opp_at_flip": 0,
+      "eta_res_at_flip": 1,
+      "expected_verdict": "PASS",
+      "feasibility_at_flip": null,
+      "flip_turn": 5,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "resident": 0,
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "check": "R-3a conversion-race-boundary/infeasible-tie",
+      "chop_analysis": null,
+      "control": "control-r3a-compliant",
+      "eta_opp_at_flip": 2,
+      "eta_res_at_flip": 2,
+      "expected_verdict": "PASS",
+      "flip_turn": 1,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "oracle_at_flip": {
+        "completion_turn": 7,
+        "eta_opp": 2,
+        "eta_res": 2,
+        "exact_chop_turns": 5,
+        "feasible": false,
+        "first_fruit_turn": 7,
+        "opponent_harvest_turn": 7
+      },
+      "resident": 0,
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "check": "R-3a conversion-race-boundary/infeasible-tie",
+      "chop_analysis": {
+        "chop_start_turn": 3,
+        "oracle_at_chop_start": {
+          "completion_turn": 7,
+          "eta_opp": 0,
+          "eta_res": 0,
+          "exact_chop_turns": 5,
+          "feasible": false,
+          "first_fruit_turn": 7,
+          "opponent_harvest_turn": 7
+        }
+      },
+      "control": "control-r3a-doomed",
+      "eta_opp_at_flip": 2,
+      "eta_res_at_flip": 2,
+      "expected_verdict": "FAIL",
+      "flip_turn": 1,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "oracle_at_flip": {
+        "completion_turn": 7,
+        "eta_opp": 2,
+        "eta_res": 2,
+        "exact_chop_turns": 5,
+        "feasible": false,
+        "first_fruit_turn": 7,
+        "opponent_harvest_turn": 7
+      },
+      "resident": 0,
+      "verdict": "FAIL",
+      "violations": [
+        {
+          "chop_turns_on_mother": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "why": "doomed chop: CONVERSION_RACE_ORACLE at chop-start turn 3 is infeasible (completion 7, opponent harvest 7) \u2014 I-10a requires abandon"
+        }
+      ]
+    },
+    {
+      "check": "R-3b conversion-race-boundary/feasible-edge",
+      "chop_turns_on_mother": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "control": "control-r3b-compliant",
+      "eta_opp_at_flip": 2,
+      "eta_res_at_flip": 2,
+      "expected_verdict": "PASS",
+      "flip_turn": 1,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "oracle_at_flip": {
+        "completion_turn": 6,
+        "eta_opp": 2,
+        "eta_res": 2,
+        "exact_chop_turns": 4,
+        "feasible": true,
+        "first_fruit_turn": 7,
+        "opponent_harvest_turn": 7
+      },
+      "resident": 0,
+      "verdict": "PASS",
+      "violations": [],
+      "voided_legacy_deadlines_at_flip": {
+        "voided_code_max_eta_opp_predicted_cooldown": {
+          "accepts": false,
+          "lhs_eta_res_plus_chops": 6,
+          "rhs_deadline": 4
+        },
+        "voided_d8_arrival_only": {
+          "accepts": false,
+          "eta_opp_at_chop_start": 0,
+          "exact_chops_at_chop_start": 4
+        },
+        "voided_spec_old_lt_eta_opp": {
+          "accepts": false,
+          "lhs_eta_res_plus_chops": 6,
+          "rhs_eta_opp": 2
+        }
+      }
+    },
+    {
+      "check": "R-4 flip-response-reachability",
+      "chop_turns_on_mother": [
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "control": "control-r4-compliant",
+      "eta_opp_at_flip": 3,
+      "eta_res_at_flip": 3,
+      "expected_verdict": "PASS",
+      "flip_turn": 11,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "oracle_at_flip": {
+        "completion_turn": 18,
+        "eta_opp": 3,
+        "eta_res": 3,
+        "exact_chop_turns": 5,
+        "feasible": true,
+        "first_fruit_turn": 27,
+        "opponent_harvest_turn": 27
+      },
+      "plant_turn": 3,
+      "post_flip_commands": [
+        {
+          "resident_command": "DROP 0",
+          "turn": 11
+        },
+        {
+          "resident_command": "MOVE 0 2 2",
+          "turn": 12
+        },
+        {
+          "resident_command": "MOVE 0 2 2",
+          "turn": 13
+        },
+        {
+          "resident_command": "MOVE 0 2 2",
+          "turn": 14
+        },
+        {
+          "resident_command": "CHOP 0",
+          "turn": 15
+        },
+        {
+          "resident_command": "CHOP 0",
+          "turn": 16
+        },
+        {
+          "resident_command": "CHOP 0",
+          "turn": 17
+        },
+        {
+          "resident_command": "CHOP 0",
+          "turn": 18
+        },
+        {
+          "resident_command": "CHOP 0",
+          "turn": 19
+        },
+        {
+          "resident_command": "MOVE 0 2 1",
+          "turn": 20
+        },
+        {
+          "resident_command": "DROP 0",
+          "turn": 21
+        }
+      ],
+      "resident": 0,
+      "response_begun_turns": [
+        12
+      ],
+      "response_window": [
+        11,
+        12
+      ],
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "bank_turns": {
+        "2": 6
+      },
+      "check": "R-5 two-worker-full-cargo-banking",
+      "control": "control-r5-compliant",
+      "episodes": [],
+      "expected_verdict": "PASS",
+      "full_wood_carrier_since": {
+        "2": 1
+      },
+      "invariants": [
+        "I-19",
+        "I-20",
+        "I-21",
+        "D-1"
+      ],
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "bank_turns": {
+        "2": null
+      },
+      "check": "R-5 two-worker-full-cargo-banking",
+      "control": "control-r5-oscillator",
+      "episodes": [
+        {
+          "carry": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            2
+          ],
+          "cells": [
+            [
+              4,
+              2
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "k": 8,
+          "turn_end": 20,
+          "turn_start": 3,
+          "unit": 2
+        }
+      ],
+      "expected_verdict": "FAIL",
+      "full_wood_carrier_since": {
+        "2": 1
+      },
+      "invariants": [
+        "I-19",
+        "I-20",
+        "I-21",
+        "D-1"
+      ],
+      "verdict": "FAIL",
+      "violations": [
+        {
+          "unit": 2,
+          "why": "full wood carrier (carry [0, 0, 0, 0, 0, 2], free_capacity 0) exhibits a two-cell alternation cells (4, 2)<->(3, 2) over turns 3-20 (18 states, >= 3 A->B->A cycles) with cargo unchanged and no DROP - violates I-19 (no monotone door approach), I-20 (non-progress beyond the one-turn conflict tolerance) and I-21 (banking commitment never completes); a D-1 episode by construction"
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "controls": {
+      "rows": [
+        {
+          "actual": "PASS",
+          "control": "control-r1-compliant",
+          "expected": "PASS",
+          "verdict": "PASS"
+        },
+        {
+          "actual": "PASS",
+          "control": "control-r2a-compliant",
+          "expected": "PASS",
+          "verdict": "PASS"
+        },
+        {
+          "actual": "PASS",
+          "control": "control-r2b-compliant",
+          "expected": "PASS",
+          "verdict": "PASS"
+        },
+        {
+          "actual": "PASS",
+          "control": "control-r3a-compliant",
+          "expected": "PASS",
+          "verdict": "PASS"
+        },
+        {
+          "actual": "FAIL",
+          "control": "control-r3a-doomed",
+          "expected": "FAIL",
+          "verdict": "PASS"
+        },
+        {
+          "actual": "PASS",
+          "control": "control-r3b-compliant",
+          "expected": "PASS",
+          "verdict": "PASS"
+        },
+        {
+          "actual": "PASS",
+          "control": "control-r4-compliant",
+          "expected": "PASS",
+          "verdict": "PASS"
+        },
+        {
+          "actual": "PASS",
+          "control": "control-r5-compliant",
+          "expected": "PASS",
+          "verdict": "PASS"
+        },
+        {
+          "actual": "FAIL",
+          "control": "control-r5-oscillator",
+          "expected": "FAIL",
+          "verdict": "PASS"
+        }
+      ],
+      "verdict": "PASS"
+    },
+    "r1": {
+      "raw": {
+        "bank_turns": [
+          6,
+          12
+        ],
+        "check": "R-1 one-seed-reservation",
+        "invariant": "I-9",
+        "resident": 0,
+        "verdict": "PASS",
+        "violations": []
+      },
+      "rule": "hard gate",
+      "verdict": "PASS"
+    },
+    "r2a": {
+      "candidate_parent_byte_equal": true,
+      "raw": {
+        "check": "R-2a unripe-contested-abandon",
+        "eta_opp_at_flip": 0,
+        "eta_res_at_flip": 0,
+        "flip_turn": 6,
+        "invariant": "I-10a",
+        "mother": [
+          2,
+          2
+        ],
+        "resident": 0,
+        "unripe_at_flip": true,
+        "verdict": "FAIL",
+        "violations": [
+          {
+            "command": "CHOP 0",
+            "turn": 6,
+            "why": "CHOP on the lost mother"
+          },
+          {
+            "command": "CHOP 0",
+            "turn": 7,
+            "why": "CHOP on the lost mother"
+          },
+          {
+            "command": "CHOP 0",
+            "turn": 8,
+            "why": "CHOP on the lost mother"
+          },
+          {
+            "command": "CHOP 0",
+            "turn": 9,
+            "why": "CHOP on the lost mother"
+          },
+          {
+            "command": "CHOP 0",
+            "turn": 10,
+            "why": "CHOP on the lost mother"
+          }
+        ]
+      },
+      "rule": "raw PASS or complete candidate commands byte-identical to stable parent on the pre-existing-mother fixture",
+      "verdict": "PASS"
+    },
+    "r2b": {
+      "raw": {
+        "check": "R-2b unripe-contested-convert",
+        "chop_turns_on_mother": [
+          2,
+          3
+        ],
+        "eta_opp_at_flip": 0,
+        "eta_res_at_flip": 1,
+        "feasibility_at_flip": null,
+        "flip_turn": 5,
+        "invariant": "I-10a",
+        "mother": [
+          2,
+          2
+        ],
+        "resident": 0,
+        "verdict": "PASS",
+        "violations": []
+      },
+      "rule": "hard gate",
+      "verdict": "PASS"
+    },
+    "r3a": {
+      "candidate_parent_byte_equal": true,
+      "raw": {
+        "check": "R-3a conversion-race-boundary/infeasible-tie",
+        "chop_analysis": {
+          "chop_start_turn": 3,
+          "oracle_at_chop_start": {
+            "completion_turn": 7,
+            "eta_opp": 0,
+            "eta_res": 0,
+            "exact_chop_turns": 5,
+            "feasible": false,
+            "first_fruit_turn": 7,
+            "opponent_harvest_turn": 7
+          }
+        },
+        "eta_opp_at_flip": 2,
+        "eta_res_at_flip": 2,
+        "flip_turn": 1,
+        "invariant": "I-10a",
+        "mother": [
+          2,
+          2
+        ],
+        "oracle_at_flip": {
+          "completion_turn": 7,
+          "eta_opp": 2,
+          "eta_res": 2,
+          "exact_chop_turns": 5,
+          "feasible": false,
+          "first_fruit_turn": 7,
+          "opponent_harvest_turn": 7
+        },
+        "resident": 0,
+        "verdict": "FAIL",
+        "violations": [
+          {
+            "chop_turns_on_mother": [
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "why": "doomed chop: CONVERSION_RACE_ORACLE at chop-start turn 3 is infeasible (completion 7, opponent harvest 7) \u2014 I-10a requires abandon"
+          }
+        ]
+      },
+      "rule": "raw PASS or complete candidate commands byte-identical to stable parent on the pre-existing-mother fixture",
+      "verdict": "PASS"
+    },
+    "r3b": {
+      "raw": {
+        "check": "R-3b conversion-race-boundary/feasible-edge",
+        "chop_turns_on_mother": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "eta_opp_at_flip": 2,
+        "eta_res_at_flip": 2,
+        "flip_turn": 1,
+        "invariant": "I-10a",
+        "mother": [
+          2,
+          2
+        ],
+        "oracle_at_flip": {
+          "completion_turn": 6,
+          "eta_opp": 2,
+          "eta_res": 2,
+          "exact_chop_turns": 4,
+          "feasible": true,
+          "first_fruit_turn": 7,
+          "opponent_harvest_turn": 7
+        },
+        "resident": 0,
+        "verdict": "PASS",
+        "violations": [],
+        "voided_legacy_deadlines_at_flip": {
+          "voided_code_max_eta_opp_predicted_cooldown": {
+            "accepts": false,
+            "lhs_eta_res_plus_chops": 6,
+            "rhs_deadline": 4
+          },
+          "voided_d8_arrival_only": {
+            "accepts": false,
+            "eta_opp_at_chop_start": 0,
+            "exact_chops_at_chop_start": 4
+          },
+          "voided_spec_old_lt_eta_opp": {
+            "accepts": false,
+            "lhs_eta_res_plus_chops": 6,
+            "rhs_eta_opp": 2
+          }
+        }
+      },
+      "rule": "hard gate",
+      "verdict": "PASS"
+    },
+    "r4": {
+      "owner_dynamic_response": {
+        "banking_events": 2,
+        "blocking_detectors": [],
+        "completed_orthogonal_wood_chops": 2,
+        "diagonal_plants": 0,
+        "harvests": 0,
+        "opponent_banana_carry": 0,
+        "orthogonal_plants": 2,
+        "outside_ring_plants": [],
+        "plant_events": [
+          {
+            "cell": [
+              2,
+              1
+            ],
+            "kind": "BANANA",
+            "landed": true,
+            "turn": 2,
+            "unit": 0,
+            "verb": "PLANT"
+          },
+          {
+            "cell": [
+              2,
+              1
+            ],
+            "kind": "BANANA",
+            "landed": true,
+            "turn": 8,
+            "unit": 0,
+            "verb": "PLANT"
+          }
+        ],
+        "safety_mode": "founding_suppressed_before_opponent_capture",
+        "verdict": "PASS"
+      },
+      "raw": {
+        "check": "R-4 flip-response-reachability",
+        "invariant": "I-10a",
+        "reason": "scenario invalid: the candidate never planted the mother itself",
+        "verdict": "ERROR"
+      },
+      "rule": "legacy raw PASS or candidate-founded delayed-threat replacement PASS",
+      "verdict": "PASS"
+    },
+    "r5": {
+      "raw": {
+        "bank_turns": {
+          "0": 9,
+          "2": 10
+        },
+        "check": "R-5 two-worker-full-cargo-banking",
+        "episodes": [],
+        "full_wood_carrier_since": {
+          "0": 8,
+          "2": 1
+        },
+        "invariants": [
+          "I-19",
+          "I-20",
+          "I-21",
+          "D-1"
+        ],
+        "verdict": "PASS",
+        "violations": []
+      },
+      "rule": "hard gate",
+      "verdict": "PASS"
+    }
+  },
+  "parent_raw_exit": 1,
+  "parent_raw_reports": [
+    {
+      "bank_turns": [
+        6,
+        12
+      ],
+      "check": "R-1 one-seed-reservation",
+      "invariant": "I-9",
+      "resident": 0,
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "check": "R-2a unripe-contested-abandon",
+      "eta_opp_at_flip": 0,
+      "eta_res_at_flip": 0,
+      "flip_turn": 6,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "resident": 0,
+      "unripe_at_flip": true,
+      "verdict": "FAIL",
+      "violations": [
+        {
+          "command": "CHOP 0",
+          "turn": 6,
+          "why": "CHOP on the lost mother"
+        },
+        {
+          "command": "CHOP 0",
+          "turn": 7,
+          "why": "CHOP on the lost mother"
+        },
+        {
+          "command": "CHOP 0",
+          "turn": 8,
+          "why": "CHOP on the lost mother"
+        },
+        {
+          "command": "CHOP 0",
+          "turn": 9,
+          "why": "CHOP on the lost mother"
+        },
+        {
+          "command": "CHOP 0",
+          "turn": 10,
+          "why": "CHOP on the lost mother"
+        }
+      ]
+    },
+    {
+      "check": "R-2b unripe-contested-convert",
+      "chop_turns_on_mother": [
+        2,
+        3
+      ],
+      "eta_opp_at_flip": 0,
+      "eta_res_at_flip": 1,
+      "feasibility_at_flip": null,
+      "flip_turn": 5,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "resident": 0,
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "check": "R-3a conversion-race-boundary/infeasible-tie",
+      "chop_analysis": {
+        "chop_start_turn": 3,
+        "oracle_at_chop_start": {
+          "completion_turn": 7,
+          "eta_opp": 0,
+          "eta_res": 0,
+          "exact_chop_turns": 5,
+          "feasible": false,
+          "first_fruit_turn": 7,
+          "opponent_harvest_turn": 7
+        }
+      },
+      "eta_opp_at_flip": 2,
+      "eta_res_at_flip": 2,
+      "flip_turn": 1,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "oracle_at_flip": {
+        "completion_turn": 7,
+        "eta_opp": 2,
+        "eta_res": 2,
+        "exact_chop_turns": 5,
+        "feasible": false,
+        "first_fruit_turn": 7,
+        "opponent_harvest_turn": 7
+      },
+      "resident": 0,
+      "verdict": "FAIL",
+      "violations": [
+        {
+          "chop_turns_on_mother": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "why": "doomed chop: CONVERSION_RACE_ORACLE at chop-start turn 3 is infeasible (completion 7, opponent harvest 7) \u2014 I-10a requires abandon"
+        }
+      ]
+    },
+    {
+      "check": "R-3b conversion-race-boundary/feasible-edge",
+      "chop_turns_on_mother": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "eta_opp_at_flip": 2,
+      "eta_res_at_flip": 2,
+      "flip_turn": 1,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "oracle_at_flip": {
+        "completion_turn": 6,
+        "eta_opp": 2,
+        "eta_res": 2,
+        "exact_chop_turns": 4,
+        "feasible": true,
+        "first_fruit_turn": 7,
+        "opponent_harvest_turn": 7
+      },
+      "resident": 0,
+      "verdict": "PASS",
+      "violations": [],
+      "voided_legacy_deadlines_at_flip": {
+        "voided_code_max_eta_opp_predicted_cooldown": {
+          "accepts": false,
+          "lhs_eta_res_plus_chops": 6,
+          "rhs_deadline": 4
+        },
+        "voided_d8_arrival_only": {
+          "accepts": false,
+          "eta_opp_at_chop_start": 0,
+          "exact_chops_at_chop_start": 4
+        },
+        "voided_spec_old_lt_eta_opp": {
+          "accepts": false,
+          "lhs_eta_res_plus_chops": 6,
+          "rhs_eta_opp": 2
+        }
+      }
+    },
+    {
+      "check": "R-4 flip-response-reachability",
+      "invariant": "I-10a",
+      "reason": "scenario invalid: the candidate never planted the mother itself",
+      "verdict": "ERROR"
+    },
+    {
+      "bank_turns": {
+        "0": 9,
+        "2": 10
+      },
+      "check": "R-5 two-worker-full-cargo-banking",
+      "episodes": [],
+      "full_wood_carrier_since": {
+        "0": 8,
+        "2": 1
+      },
+      "invariants": [
+        "I-19",
+        "I-20",
+        "I-21",
+        "D-1"
+      ],
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "bank_turns": [
+        4
+      ],
+      "check": "R-1 one-seed-reservation",
+      "control": "control-r1-compliant",
+      "expected_verdict": "PASS",
+      "invariant": "I-9",
+      "resident": 0,
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "check": "R-2a unripe-contested-abandon",
+      "control": "control-r2a-compliant",
+      "eta_opp_at_flip": 1,
+      "eta_res_at_flip": 2,
+      "expected_verdict": "PASS",
+      "flip_turn": 5,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "resident": 0,
+      "unripe_at_flip": true,
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "check": "R-2b unripe-contested-convert",
+      "chop_turns_on_mother": [
+        2,
+        3
+      ],
+      "control": "control-r2b-compliant",
+      "eta_opp_at_flip": 0,
+      "eta_res_at_flip": 1,
+      "expected_verdict": "PASS",
+      "feasibility_at_flip": null,
+      "flip_turn": 5,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "resident": 0,
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "check": "R-3a conversion-race-boundary/infeasible-tie",
+      "chop_analysis": null,
+      "control": "control-r3a-compliant",
+      "eta_opp_at_flip": 2,
+      "eta_res_at_flip": 2,
+      "expected_verdict": "PASS",
+      "flip_turn": 1,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "oracle_at_flip": {
+        "completion_turn": 7,
+        "eta_opp": 2,
+        "eta_res": 2,
+        "exact_chop_turns": 5,
+        "feasible": false,
+        "first_fruit_turn": 7,
+        "opponent_harvest_turn": 7
+      },
+      "resident": 0,
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "check": "R-3a conversion-race-boundary/infeasible-tie",
+      "chop_analysis": {
+        "chop_start_turn": 3,
+        "oracle_at_chop_start": {
+          "completion_turn": 7,
+          "eta_opp": 0,
+          "eta_res": 0,
+          "exact_chop_turns": 5,
+          "feasible": false,
+          "first_fruit_turn": 7,
+          "opponent_harvest_turn": 7
+        }
+      },
+      "control": "control-r3a-doomed",
+      "eta_opp_at_flip": 2,
+      "eta_res_at_flip": 2,
+      "expected_verdict": "FAIL",
+      "flip_turn": 1,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "oracle_at_flip": {
+        "completion_turn": 7,
+        "eta_opp": 2,
+        "eta_res": 2,
+        "exact_chop_turns": 5,
+        "feasible": false,
+        "first_fruit_turn": 7,
+        "opponent_harvest_turn": 7
+      },
+      "resident": 0,
+      "verdict": "FAIL",
+      "violations": [
+        {
+          "chop_turns_on_mother": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "why": "doomed chop: CONVERSION_RACE_ORACLE at chop-start turn 3 is infeasible (completion 7, opponent harvest 7) \u2014 I-10a requires abandon"
+        }
+      ]
+    },
+    {
+      "check": "R-3b conversion-race-boundary/feasible-edge",
+      "chop_turns_on_mother": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "control": "control-r3b-compliant",
+      "eta_opp_at_flip": 2,
+      "eta_res_at_flip": 2,
+      "expected_verdict": "PASS",
+      "flip_turn": 1,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "oracle_at_flip": {
+        "completion_turn": 6,
+        "eta_opp": 2,
+        "eta_res": 2,
+        "exact_chop_turns": 4,
+        "feasible": true,
+        "first_fruit_turn": 7,
+        "opponent_harvest_turn": 7
+      },
+      "resident": 0,
+      "verdict": "PASS",
+      "violations": [],
+      "voided_legacy_deadlines_at_flip": {
+        "voided_code_max_eta_opp_predicted_cooldown": {
+          "accepts": false,
+          "lhs_eta_res_plus_chops": 6,
+          "rhs_deadline": 4
+        },
+        "voided_d8_arrival_only": {
+          "accepts": false,
+          "eta_opp_at_chop_start": 0,
+          "exact_chops_at_chop_start": 4
+        },
+        "voided_spec_old_lt_eta_opp": {
+          "accepts": false,
+          "lhs_eta_res_plus_chops": 6,
+          "rhs_eta_opp": 2
+        }
+      }
+    },
+    {
+      "check": "R-4 flip-response-reachability",
+      "chop_turns_on_mother": [
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "control": "control-r4-compliant",
+      "eta_opp_at_flip": 3,
+      "eta_res_at_flip": 3,
+      "expected_verdict": "PASS",
+      "flip_turn": 11,
+      "invariant": "I-10a",
+      "mother": [
+        2,
+        2
+      ],
+      "oracle_at_flip": {
+        "completion_turn": 18,
+        "eta_opp": 3,
+        "eta_res": 3,
+        "exact_chop_turns": 5,
+        "feasible": true,
+        "first_fruit_turn": 27,
+        "opponent_harvest_turn": 27
+      },
+      "plant_turn": 3,
+      "post_flip_commands": [
+        {
+          "resident_command": "DROP 0",
+          "turn": 11
+        },
+        {
+          "resident_command": "MOVE 0 2 2",
+          "turn": 12
+        },
+        {
+          "resident_command": "MOVE 0 2 2",
+          "turn": 13
+        },
+        {
+          "resident_command": "MOVE 0 2 2",
+          "turn": 14
+        },
+        {
+          "resident_command": "CHOP 0",
+          "turn": 15
+        },
+        {
+          "resident_command": "CHOP 0",
+          "turn": 16
+        },
+        {
+          "resident_command": "CHOP 0",
+          "turn": 17
+        },
+        {
+          "resident_command": "CHOP 0",
+          "turn": 18
+        },
+        {
+          "resident_command": "CHOP 0",
+          "turn": 19
+        },
+        {
+          "resident_command": "MOVE 0 2 1",
+          "turn": 20
+        },
+        {
+          "resident_command": "DROP 0",
+          "turn": 21
+        }
+      ],
+      "resident": 0,
+      "response_begun_turns": [
+        12
+      ],
+      "response_window": [
+        11,
+        12
+      ],
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "bank_turns": {
+        "2": 6
+      },
+      "check": "R-5 two-worker-full-cargo-banking",
+      "control": "control-r5-compliant",
+      "episodes": [],
+      "expected_verdict": "PASS",
+      "full_wood_carrier_since": {
+        "2": 1
+      },
+      "invariants": [
+        "I-19",
+        "I-20",
+        "I-21",
+        "D-1"
+      ],
+      "verdict": "PASS",
+      "violations": []
+    },
+    {
+      "bank_turns": {
+        "2": null
+      },
+      "check": "R-5 two-worker-full-cargo-banking",
+      "control": "control-r5-oscillator",
+      "episodes": [
+        {
+          "carry": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            2
+          ],
+          "cells": [
+            [
+              4,
+              2
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "k": 8,
+          "turn_end": 20,
+          "turn_start": 3,
+          "unit": 2
+        }
+      ],
+      "expected_verdict": "FAIL",
+      "full_wood_carrier_since": {
+        "2": 1
+      },
+      "invariants": [
+        "I-19",
+        "I-20",
+        "I-21",
+        "D-1"
+      ],
+      "verdict": "FAIL",
+      "violations": [
+        {
+          "unit": 2,
+          "why": "full wood carrier (carry [0, 0, 0, 0, 0, 2], free_capacity 0) exhibits a two-cell alternation cells (4, 2)<->(3, 2) over turns 3-20 (18 states, >= 3 A->B->A cycles) with cargo unchanged and no DROP - violates I-19 (no monotone door approach), I-20 (non-progress beyond the one-turn conflict tolerance) and I-21 (banking commitment never completes); a D-1 episode by construction"
+        }
+      ]
+    }
+  ],
+  "verdict": "PASS"
+}
