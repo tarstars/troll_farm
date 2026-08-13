@@ -227,7 +227,88 @@ source_sha256=98628e98…  source_bytes=75634
 
 | run | UTC submit | submission / agent | initial health | terminal 160/160 |
 |---|---|---|---|---|
-| 4 | 2026-08-13T05:24Z | **41129543 / agent pending propagation** (`accepted=true ambiguous=false http=200 mutation_calls=1`, sha `98628e98…` verified pre-call, 75,634 B) | pending | pending |
+| 4 | 2026-08-13T05:24Z | **41129543 / agent 6614096** (`accepted=true ambiguous=false http=200 mutation_calls=1`, sha `98628e98…` verified pre-call, 75,634 B) | 05:30Z: 26/26 parsed, **20.30 / rank 54/147**, cat 3, **signals=0 identity_clean=True** (first attempt at 05:26Z hit the stale room row and is kept as `run4-checkpoint-initial-flap.json`) | **2026-08-13T06:40:16Z: 160/160, 23.39 / rank 31/147**, cat 22 (13.8%), neg_mass 6538, **signals=0 identity_clean=True**, arena == filtered (`run4-checkpoint-terminal.json`) |
+
+### Step 3 — the terminal read took four attempts, and the gate is why
+
+The room served the stale `6604529 / 140 / 22.46` row on three consecutive reads *after* the games
+were already complete:
+
+| UTC | games | rc | identity_clean | arena agent | score |
+|---|---|---|---|---|---|
+| 06:23Z | 141/160 | 2 | False | 6604529 | 22.46 |
+| 06:29Z | **160/160** | 2 | False | 6604529 | 22.46 |
+| 06:35Z | **160/160** | 2 | False | 6604529 | 22.46 |
+| 06:41Z | **160/160** | **0** | **True** | **6614096** | **23.39** |
+
+**A gate on `matching_finished == 160` alone would have promoted the 06:29Z read** — 160/160,
+0 pending, 0 unexpected rows, 0 fetch failures, battle data entirely correct — and recorded
+**22.46**, another deployment's score, as run 4's terminal observation. It would have looked
+immaculate. The poller gated on `identity_clean` **and** the process exit status
+(`arena_transfer_checkpoint.py` returns 2 when unclean), which is the only reason the campaign has
+23.39 instead of a second silent 22.46.
+
+Method note against my own error: an earlier invocation of that reader in this session was piped
+(`… | tail; echo $?`), which reads *tail's* status and would have reported success on every
+unclean read. The poller captures `$?` from the python process directly. Same defect class as the
+`lint | tail && push` break; it is easy to reintroduce and worth checking for by eye.
+
+## Steps 4–5 — registry appended and σ recomputed (claude_1, 2026-08-13)
+
+`build` + `validate` green (53 observations validate cleanly); `tests/test_submission_history.py`
+**47 passed**. Append script committed at `claude_1/pipeline/append_sigma_runs.py` — the append is
+reproducible, not hand-edited JSON.
+
+### Field provenance — which number came from which block of which file
+
+Every value below is `arena.score`, and in every case `arena` and `filtered_ladder` **agree** and
+both name the run's own agent, so no field-choice ambiguity survives into the estimate.
+
+| run | submission / agent | source file | arena | filtered | clean | value used |
+|---|---|---|---|---|---|---|
+| pre-1 | 41089629 / 6593838 | earlier registry entry | 24.76 | 24.76 | — | **24.76** |
+| pre-2 | 41113243 / 6604529 | earlier registry entry | 22.46 | 22.46 | — | **22.46** |
+| 1 | 41125196 / 6610399 | `run1-checkpoint-terminal.json` | 19.77 | 19.77 | true | **19.77** |
+| 2 | 41125448 / 6610636 | **`run2-checkpoint-initial.json`** | 23.73 | 23.73 | true | **23.73** |
+| 3 | 41128302 / 6612307 | `run3-checkpoint-terminal.json` | 24.90 | 24.90 | true | **24.90** |
+| 4 | 41129543 / 6614096 | `run4-checkpoint-terminal.json` | 23.39 | 23.39 | true | **23.39** |
+
+**Run 2 is read from the file labelled `initial`, deliberately** (coordinator ruling
+`20260813T060000Z`). Despite the role string it is a complete terminal observation — 160/160,
+`matching_pending: 0`, both blocks agent 6610636 at 23.73, field 147 — captured 19:22:19Z, two
+minutes *before* the room went stale at 19:24:29Z. `run2-checkpoint-terminal.json` is the flapped
+read and is **not** used for the estimate. Maturity is keyed on content
+(`matching_finished`/`matching_pending`/`identity_clean`), never on the role string in a filename.
+
+### Result
+
+```
+family e7a-readable-no-orchard-code-cost   n=6   [19.77, 22.46, 23.39, 23.73, 24.76, 24.90]   range 5.13
+4 families, 14 mature observations, 10 d.o.f.
+POOLED WITHIN-SOURCE SD = 1.501 score points      (was 1.098 at 6 d.o.f.)
+95% CI for the SD        = [1.049, 2.634]
+SD of an A-minus-B difference at n=1 each = 2.123 (was 1.552)
+
+runs per arm:  SE 1.0 -> 5   |  SE 0.5 -> 19  |  SE 0.3 -> 51
+```
+
+σ rose **37%** and the CI's lower bound (1.049) now sits *above* the previous point estimate. The
+campaign family's range of 5.13 is 2–3× every other family's (1.70–1.77), and it is the only
+family with more than four observations — the earlier 1.098 rested on families of n=2 and n=4.
+**The ±0.5–1.0 band in `docs/STATE.md` §3 is refuted as an operating assumption**, and the
+historical gates (±0.5, ≥+1.0, ≥+2) are less resolvable than the record assumed: a ≥+1.0 call now
+needs 5 runs per arm, not 3.
+
+### What Phase 1 cannot separate — stated, not hedged
+
+**Re-deployment noise and ladder drift are confounded in this design and no analysis of these six
+observations can separate them.** The runs are strictly sequential — never contemporaneous — and
+span 2026-08-04 → 2026-08-13, during which the field grew 139 → 147 and opponents resubmitted
+freely. Run 1's 19.77 in particular sits in a freshly grown legend-147 era. So `1.501` is an upper
+bound on pure re-submission variance and a lower bound on nothing: it is *the spread you should
+expect between two sequential reads of identical bytes*, which is exactly the quantity a
+sequential A/B on this ladder faces. Separating the two components needs a design this campaign
+does not have (interleaved or contemporaneous arms), and the budget is spent.
 
 **Agent id not yet assigned at 05:25Z:** `cg_rank.py` still reports the arena room at
 `agentId=6612307` — run 3's agent, score 24.9, rank 21/147. That is the known room-cache lag, not
