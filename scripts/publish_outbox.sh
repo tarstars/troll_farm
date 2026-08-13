@@ -29,7 +29,10 @@ python3 scripts/lint_outbox.py --me "$AGENT" --staged
 
 git commit -m "$MSG"
 git push origin "$BRANCH"
-git fetch origin "$BRANCH"
+# fetch ALL refs, not just our branch: a branch-scoped fetch here let an agent
+# publish seven times while 8.5-hour-old inbound mail stayed invisible
+# (claude_1 disclosure, 2026-08-13)
+git fetch origin
 if [ "$(git rev-parse HEAD)" != "$(git rev-parse "origin/$BRANCH")" ]; then
     echo "remote-verify FAILED: origin/$BRANCH != HEAD" >&2
     exit 1
