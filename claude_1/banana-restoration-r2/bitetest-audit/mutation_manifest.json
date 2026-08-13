@@ -786,7 +786,8 @@
     "TestD8Amended"
    ],
    "intent": "plant-kind == BANANA restriction on the chopped mother deleted",
-   "excluded_from_totals": false
+   "excluded_from_totals": true,
+   "exclusion_reason": "EQUIVALENT MUTANT. `detect_d8` reaches `p.kind == \"BANANA\"` (:1115) only inside `c in alive_per_turn[t]`, and `own_banana_history` builds that set from the SAME state(t) filtering on exactly that kind, so the guard is true whenever evaluated. Proved by construction (an own-planted DIAG banana turning to WOOD leaves the alive set on the same turn, so the CHOP never reaches the guard) and by differential (0 of 416 probe-corpus traces differ under the mutant). Excluded by coordinator ruling 20260813T194500Z per the D3-M4-RETIRED precedent."
   },
   {
    "id": "D8-M9",

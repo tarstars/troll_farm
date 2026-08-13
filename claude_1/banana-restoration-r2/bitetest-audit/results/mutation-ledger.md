@@ -1,7 +1,7 @@
 # Mutation ledger (generated — do not hand-edit)
 
 Source: `results/mutation-results.json`  
-manifest sha256 `13fcdd7c6681f0cddf1bc5c1aee30586256c7212c684f89ea644e2fb15c2950c`  
+manifest sha256 `686ce17d56890973314acf94a0089be5052fe1ee53c3d603d879f5e269caa989`  
 runner sha256 `8dbf4f7774a2cdc014e702675cf9fcf3e051b57f91fcf914782451bc706dd519`  
 probe corpus sha256 `9afe7f3cf3cb073158e67226ddbed31a750cda19900fc031853195cb8b0f3ddb`  
 python 3.12.3, control green: True
@@ -12,7 +12,7 @@ Pinned sources:
 - `test_trace_detectors.py` sha256 `28bbe54f03093ce58bc9da039019a71c0af2dd8c252c19ee0820d7d0ed1b679e`
 - `trace_detectors.py` sha256 `59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209`
 
-Totals: **64 mutants run, 51 caught, 13 survived** (kill rate 79.7 %). `caught_by_expected` = 51; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 15 UNWITNESSED; PROBE_SENSITIVE survivors = 9.
+Totals: **63 mutants run, 51 caught, 12 survived** (kill rate 81.0 %). `caught_by_expected` = 51; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 14 UNWITNESSED; PROBE_SENSITIVE survivors = 9.
 
 ## Per detector
 
@@ -25,9 +25,9 @@ Totals: **64 mutants run, 51 caught, 13 survived** (kill rate 79.7 %). `caught_b
 | D-5 | 8 | 8 | 8 | 0 | 0 | 100 % |
 | D-6 | 9 | 9 | 9 | 0 | 0 | 100 % |
 | D-7 | 8 | 6 | 6 | 2 | 2 | 75 % |
-| D-8 | 11 | 10 | 10 | 1 | 0 | 91 % |
+| D-8 | 10 | 10 | 10 | 0 | 0 | 100 % |
 | D-9 | 4 | 4 | 4 | 0 | 0 | 100 % |
-| **all** | **64** | **51** | **51** | **13** | **9** | **79.7 %** |
+| **all** | **63** | **51** | **51** | **12** | **9** | **81.0 %** |
 
 ## Full ledger
 
@@ -91,7 +91,6 @@ Totals: **64 mutants run, 51 caught, 13 survived** (kill rate 79.7 %). `caught_b
 | D8-M5 | D-8 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | ownership-flip precondition ignored (lost forced True) |
 | D8-M6 | D-8 | `conversion_race_oracle.py` | CAUGHT | PROBE_SENSITIVE | opponent deadline = arrival only (ripeness dropped) |
 | D8-M7 | D-8 | `conversion_race_oracle.py` | CAUGHT | UNWITNESSED | opponent deadline = ripeness only (travel dropped) |
-| D8-M8 | D-8 | `trace_detectors.py` | SURVIVED | UNWITNESSED | plant-kind == BANANA restriction on the chopped mother deleted |
 | D8-M9 | D-8 | `conversion_race_oracle.py` | CAUGHT | PROBE_SENSITIVE | growth-aware exact_chop_turns -> static ceil(health/chop) inside CONVERSION_RACE_ORACLE (the round-3 host-review counterexample) |
 | D8-M10 | D-8 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | exemption conjunction 'lost AND race_won' -> disjunction |
 | D8-M11 | D-8 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | health-decrease confirmation of an executed chop deleted |
@@ -104,6 +103,7 @@ Totals: **64 mutants run, 51 caught, 13 survived** (kill rate 79.7 %). `caught_b
 
 | id | det | result | liveness | why excluded |
 |---|---|---|---|---|
+| D8-M8 | D-8 | SURVIVED | UNWITNESSED |  |
 | D3-M4-RETIRED | D-3 | SURVIVED | UNWITNESSED | RETIRED, excluded from totals. This patch is INERT: the command parser files a command under Trace.cmds(t).by_unit only when cmd.unit_id is not None (trace_detectors.py:410), and WAIT is parsed with unit_id None (:393-394), so cmd_of (:493-494) can never return a WAIT command and the widened branch is unreachable. It is kept and re-run so the delta against the 2026-08-08 ledger is auditable, and replaced in the counted set by D3-M4 (destination identity dropped). |
 
 ## Mutated-file SHA-256
@@ -166,7 +166,6 @@ Totals: **64 mutants run, 51 caught, 13 survived** (kill rate 79.7 %). `caught_b
 | D8-M5 | `b3c7b66941ed6ef195be47c09a7f5d6aab9397870385c731873df717bb15aa0e` |
 | D8-M6 | `78e83f855826c06dd64306015b56c0d5f862facfe9f4caee9e4ae00f3282b43f` |
 | D8-M7 | `ab10840e299a70141dd9be99dc43792438838e6b4f4e73a3665997b1986a31b6` |
-| D8-M8 | `7cc0185f757748fdd4eab69c18875c8a116fd52a7d564fbd61942dde147208c8` |
 | D8-M9 | `38b12a2e65cb3900015c5b9efd54e6d53b49d4aa99532ac91059e35fbc53bf37` |
 | D8-M10 | `d8b71301d37b42c6da64623ca15187149ea8594bde84104ab0cf1015c304147b` |
 | D8-M11 | `dab82ddbe1995abf8b1807ba97d1b41438514629286ae236e93899536d9bd00b` |
