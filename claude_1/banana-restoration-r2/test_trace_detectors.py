@@ -597,6 +597,181 @@ class TestD8Amended(unittest.TestCase):
         self.assertEqual(verdict(td.detect_d8(tr)), ("PASS", 0))
 
 
+class TestD8Uncovered(unittest.TestCase):
+    """G6 fixtures for the D-8 branches the bite-test audit found with NO_FIXTURE.
+
+    Task `20260810-guards-that-cannot-fail`, sub-item G6. Fixtures only — no predicate is
+    touched. Each branch gets BOTH halves of the standing rule: the limiting case that must
+    stay silent, AND a deliberately violating subject observed firing.
+
+    Branch -> mutant these are written to kill:
+      (f) oracle growth-aware chop count -> D8-M9  (exact_chop_turns -> ceil(health/chop))
+      (g) oracle strict-tie `<`          -> D8-M3  (`<` becomes `<=`)
+      (h) health-decrease confirmation   -> D8-M11 (`health_drop = True`)
+
+    Branch (b) `plant kind == BANANA` is NOT fixtured here and D8-M8 is NOT killed. It is an
+    equivalent mutant; see `test_alive_set_already_guarantees_the_plant_kind` below for the
+    demonstration and the audit note for the disposition.
+
+    Every exemption below requires ownership to have FLIPPED first — `exempt = lost and
+    race_won`. Without the flip, `lost` is False and the chop is flagged as
+    `discretionary_owned` whatever the oracle says, so an oracle mutant would survive: the
+    fixture would be testing the ownership clause instead of the clause it names.
+    """
+
+    # Resident plants the DIAG mother at t1 while standing on it, then per-turn
+    # (resident_cell, opponent_cell, plant_row_or_None, command). Mirrors TestD8Amended.
+    def flip_trace(self, steps):
+        blocks = [turn_block(
+            [unit(0, 0, DIAG, carry=carry_of(banana=1)),
+             unit(9, 1, (3, 6), hp=1, cp=0)])]
+        cmds = ["PLANT 0 BANANA"]
+        for res_cell, opp_cell, plant_row, cmd in steps:
+            blocks.append(turn_block(
+                [unit(0, 0, res_cell), unit(9, 1, opp_cell, hp=1, cp=0)],
+                plants=[plant_row] if plant_row else []))
+            cmds.append(cmd)
+        return make_trace(blocks, cmds)
+
+    # --- (g) strict tie: completion_turn < opponent_harvest_turn ---------------------
+    #
+    # The mother is size 4 / health 3 / cd 1 with the resident standing on it at chop-start
+    # t4: eta_res 0, exact chops 3, so completion_turn = 4 + 0 + 3 - 1 = 6. The opponent sits
+    # at BFS distance 2 and the mother is within 2 turns of fruit, so
+    # opponent_harvest_turn = 6 as well. A dead heat is NOT a win: the spec requires the final
+    # chop STRICTLY before the opponent's earliest executable harvest.
+
+    TIE_PLANT = dict(size=4, cooldown=1)
+
+    def tie_trace(self, opp_cell):
+        p = lambda h: plant("BANANA", DIAG, health=h, **self.TIE_PLANT)
+        return self.flip_trace([
+            ((1, 2), (3, 4), p(3), "WAIT"),          # t2: flip, eta_res 2 == eta_opp 2
+            ((2, 2), opp_cell, p(3), "MOVE 0 3 2"),  # t3
+            (DIAG,   opp_cell, p(3), "CHOP 0"),      # t4: chop-start
+            (DIAG,   opp_cell, p(2), "CHOP 0"),      # t5
+            (DIAG,   opp_cell, p(1), "CHOP 0"),      # t6
+            (DIAG,   opp_cell, None, "WAIT"),        # t7
+        ])
+
+    def test_tie_on_the_conversion_race_is_flagged_not_exempt(self):
+        """Branch (g), the violation: completion_turn == opponent_harvest_turn == 6."""
+        res = td.detect_d8(self.tie_trace((3, 4)))
+        self.assertEqual(res["verdict"], "FAIL")
+        ep = res["episodes"][0]
+        self.assertEqual(ep["reason"], "flip_but_infeasible")
+        self.assertEqual(ep["completion_turn"], 6)
+        self.assertEqual(ep["opponent_harvest_turn"], 6)
+        self.assertEqual(ep["completion_turn"], ep["opponent_harvest_turn"])
+
+    def test_one_turn_of_margin_is_exempt(self):
+        """Branch (g), the silent half: the SAME geometry with the opponent one step
+        further is completion 6 < harvest 7 — a real win, and exempt. The pair localises
+        the boundary to the tie itself rather than to the surrounding scenario."""
+        self.assertEqual(verdict(td.detect_d8(self.tie_trace((3, 5)))), ("PASS", 0))
+
+    # --- (f) oracle growth-aware chop count ------------------------------------------
+    #
+    # size 2 / health 7 / fruits 1, resident on the cell, opponent at BFS distance 7.
+    # Growth-aware: the tree grows mid-sequence, so it takes NINE chops, not
+    # ceil(7/1) = 7 -> completion 12 against an opponent harvest of 11 -> race lost.
+    # The static arithmetic would claim 7 chops, completion 10, and wrongly exempt it.
+    # The margin is deliberately 2 turns, so this fixture does NOT also depend on the
+    # tie semantics of branch (g) — under the `<=` mutant 12 <= 11 is still false.
+
+    def growth_trace(self, cooldown):
+        p = lambda h: plant("BANANA", DIAG, size=2, health=h, fruits=1, cooldown=cooldown)
+        return self.flip_trace([
+            ((1, 2), (3, 4), p(7), "WAIT"),          # t2: flip
+            ((2, 2), (6, 1), p(7), "MOVE 0 3 2"),    # t3: opponent withdrawing
+            (DIAG,   (8, 0), p(7), "CHOP 0"),        # t4: chop-start, distance 7
+            (DIAG,   (8, 0), p(6), "WAIT"),
+        ])
+
+    def test_growth_during_the_chop_sequence_loses_the_race(self):
+        """Branch (f), the violation: cooldown 1 lets the tree grow mid-sequence."""
+        res = td.detect_d8(self.growth_trace(cooldown=1))
+        self.assertEqual(res["verdict"], "FAIL")
+        ep = res["episodes"][0]
+        self.assertEqual(ep["reason"], "flip_but_infeasible")
+        self.assertEqual(ep["exact_chop_turns"], 9)       # NOT ceil(7/1) = 7
+        self.assertEqual(ep["completion_turn"], 12)
+        self.assertEqual(ep["opponent_harvest_turn"], 11)
+
+    def test_without_growth_interference_the_same_race_is_won(self):
+        """Branch (f), the silent half: identical geometry, cooldown 7 so the tree cannot
+        grow before the sequence ends. Then exact == static == 7, completion 10 < 11, and
+        the conversion is exempt. The only thing that changed is the growth."""
+        self.assertEqual(verdict(td.detect_d8(self.growth_trace(cooldown=7))), ("PASS", 0))
+
+    # --- (h) health-decrease confirmation ---------------------------------------------
+    #
+    # `health_decreased` records whether the chop actually landed. It is a reporting field,
+    # so nothing downstream forces it to be right — which is exactly why it needs a fixture.
+
+    def health_trace(self, health_after):
+        p = lambda h: plant("BANANA", DIAG, size=1, health=h, cooldown=5)
+        return self.flip_trace([
+            (DIAG, (3, 6), p(3), "WAIT"),
+            (DIAG, (3, 6), p(3), "CHOP 0"),          # t3: the chop under test
+            (DIAG, (3, 6), p(health_after), "WAIT"),  # t4: state after it
+        ])
+
+    def test_health_decrease_is_reported_false_when_the_chop_does_not_land(self):
+        """Branch (h), the discriminating case: health unchanged at t+1 -> False.
+
+        A mutant that hard-codes the field True still produces the right episode, the right
+        count and the right reason; only this field distinguishes it."""
+        res = td.detect_d8(self.health_trace(health_after=3))
+        self.assertEqual(res["verdict"], "FAIL")
+        self.assertIs(res["episodes"][0]["health_decreased"], False)
+
+    def test_health_decrease_is_reported_true_when_the_chop_lands(self):
+        """Branch (h), the other half: health drops by the chop power -> True."""
+        res = td.detect_d8(self.health_trace(health_after=2))
+        self.assertIs(res["episodes"][0]["health_decreased"], True)
+
+    # --- (b) plant kind == BANANA: equivalent mutant, documented not pinned -------------
+
+    def test_alive_set_already_guarantees_the_plant_kind(self):
+        """Branch (b) `p.kind == "BANANA"` (`:1115`) cannot be observed failing.
+
+        `detect_d8` only reaches that test when `c in alive_per_turn[t]`, and
+        `own_banana_history` builds that set from the SAME `state(t)` while filtering
+        `plant_at(c).kind == "BANANA"`. So the kind test is true whenever it is evaluated and
+        D8-M8 (which deletes it) is an EQUIVALENT MUTANT — no fixture can kill it, and its
+        survival is not evidence of weak coverage.
+
+        This test pins the coupling that makes it equivalent rather than pretending to pin the
+        branch: if `own_banana_history` ever stops filtering on kind, the redundancy
+        disappears, the branch becomes load-bearing, and this test fails to say so.
+        """
+        blocks, rows = [], {
+            1: [plant("BANANA", DIAG, size=2, health=4)],
+            2: [plant("BANANA", DIAG, size=2, health=4)],
+            3: [plant("WOOD", DIAG, size=2, health=4)],
+            4: [plant("WOOD", DIAG, size=2, health=4)],
+        }
+        for t in (1, 2, 3, 4):
+            carry = carry_of(banana=1) if t == 1 else [0] * 6
+            blocks.append(turn_block([unit(0, 0, DIAG, carry=carry), OPP], plants=rows[t]))
+        tr = make_trace(blocks, ["PLANT 0 BANANA", "WAIT", "CHOP 0", "WAIT"])
+
+        _events, alive = tr.own_banana_history()
+        for t in range(1, tr.T + 1):
+            p = tr.state(t).plant_at(DIAG)
+            if DIAG in alive[t]:
+                self.assertIsNotNone(p)
+                self.assertEqual(p.kind, "BANANA",
+                                 f"t{t}: a cell in the alive set held a non-banana plant, so "
+                                 f"the kind test at :1115 is no longer redundant")
+        # The CHOP at t3 targets a WOOD plant on a diagonal cell: the cell has already left
+        # the alive set, so the kind test is never reached and no episode is produced.
+        self.assertEqual(tr.state(3).plant_at(DIAG).kind, "WOOD")
+        self.assertNotIn(DIAG, alive[3])
+        self.assertEqual(verdict(td.detect_d8(tr)), ("PASS", 0))
+
+
 class TestD9(unittest.TestCase):
     """D-9 second-worker TRAIN displacement (single-trace clause)."""
 

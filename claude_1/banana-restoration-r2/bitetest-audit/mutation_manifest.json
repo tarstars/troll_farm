@@ -1,880 +1,884 @@
 {
-  "schema": "detector-mutation-manifest/1",
-  "created_utc": "2026-08-09T00:00:00Z",
-  "author": "claude_1",
-  "task": "20260808-phase1-work-allocation item 4 (revision r2)",
-  "purpose": "Pinned, reproducible mutation experiment for the D-1..D-9 trigger/near-miss bite-test suite. Every mutant is a single textual substitution asserted to match EXACTLY ONCE in the pinned source. The detector sources are NEVER modified in place: the runner copies them to a scratch work tree.",
-  "pinned_sources": {
-    "trace_detectors.py": "59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209",
-    "conversion_race_oracle.py": "e0896e3f7cb2c7ac4ced35350469d704432f8c7a1a8a4c9c4ce41495ca13ecf7",
-    "test_trace_detectors.py": "b625e8c1eeba53cb0b567d07583a4451d4b3161b020884e446c4f000605fd484"
+ "schema": "detector-mutation-manifest/1",
+ "created_utc": "2026-08-09T00:00:00Z",
+ "author": "claude_1",
+ "task": "20260808-phase1-work-allocation item 4 (revision r2)",
+ "purpose": "Pinned, reproducible mutation experiment for the D-1..D-9 trigger/near-miss bite-test suite. Every mutant is a single textual substitution asserted to match EXACTLY ONCE in the pinned source. The detector sources are NEVER modified in place: the runner copies them to a scratch work tree.",
+ "pinned_sources": {
+  "trace_detectors.py": "59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209",
+  "conversion_race_oracle.py": "e0896e3f7cb2c7ac4ced35350469d704432f8c7a1a8a4c9c4ce41495ca13ecf7",
+  "test_trace_detectors.py": "07e87c91c97acb33f41bd9455b8302afe3a4416953fed272c655fa2f42bb58e6"
+ },
+ "test_command": "python3 -m unittest test_trace_detectors",
+ "baseline_tests": 28,
+ "mutant_count": 64,
+ "entry_count": 65,
+ "mutants": [
+  {
+   "id": "D1-M1",
+   "detector": "D-1",
+   "file": "trace_detectors.py",
+   "preimage": "(t - 1) - s >= 6",
+   "replacement": "(t - 1) - s >= 4",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD1"
+   ],
+   "intent": "window threshold >= 6 transitions (k>=3) -> >= 4",
+   "excluded_from_totals": false
   },
-  "test_command": "python3 -m unittest test_trace_detectors",
-  "baseline_tests": 28,
-  "mutant_count": 64,
-  "entry_count": 65,
-  "mutants": [
-    {
-      "id": "D1-M1",
-      "detector": "D-1",
-      "file": "trace_detectors.py",
-      "preimage": "(t - 1) - s >= 6",
-      "replacement": "(t - 1) - s >= 4",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD1"
-      ],
-      "intent": "window threshold >= 6 transitions (k>=3) -> >= 4",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D1-M2",
-      "detector": "D-1",
-      "file": "trace_detectors.py",
-      "preimage": "(t - 1) - s >= 6",
-      "replacement": "(t - 1) - s >= 8",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD1"
-      ],
-      "intent": "window threshold >= 6 transitions (k>=3) -> >= 8",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D1-M7",
-      "detector": "D-1",
-      "file": "trace_detectors.py",
-      "preimage": "(t - 1) - s >= 6",
-      "replacement": "(t - 1) - s >= 5",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD1"
-      ],
-      "intent": "window threshold >= 6 transitions (k>=3) -> >= 5",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D1-M8",
-      "detector": "D-1",
-      "file": "trace_detectors.py",
-      "preimage": "(t - 1) - s >= 6",
-      "replacement": "(t - 1) - s >= 9",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD1"
-      ],
-      "intent": "window threshold >= 6 transitions (k>=3) -> >= 9",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D1-M3",
-      "detector": "D-1",
-      "file": "trace_detectors.py",
-      "preimage": "            if u0.carry != u1.carry:\n                return True\n",
-      "replacement": "            if False and u0.carry != u1.carry:   # MUTANT\n                return True\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD1"
-      ],
-      "intent": "A2 progress event 'carry change' deleted",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D1-M4",
-      "detector": "D-1",
-      "file": "trace_detectors.py",
-      "preimage": "            if (p0 is None) != (p1 is None):\n                return True\n",
-      "replacement": "            if False and ((p0 is None) != (p1 is None)):   # MUTANT\n                return True\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD1"
-      ],
-      "intent": "A2 progress event 'plant created/removed at u's cell' deleted",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D1-M5",
-      "detector": "D-1",
-      "file": "trace_detectors.py",
-      "preimage": "                if tr.state(t).inventories[0] != tr.state(t + 1).inventories[0]:\n                    return True\n",
-      "replacement": "                if False and (tr.state(t).inventories[0]\n                              != tr.state(t + 1).inventories[0]):   # MUTANT\n                    return True\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD1"
-      ],
-      "intent": "A2 progress event 'inventory change on a DROP/PICK turn' deleted",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D1-M6",
-      "detector": "D-1",
-      "file": "trace_detectors.py",
-      "preimage": "                      and (t == s + 1 or pos[t] == pos[t - 2])\n",
-      "replacement": "                      and True   # MUTANT: A!=B!=A shape requirement gone\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD1"
-      ],
-      "intent": "period-2 A,B,A,B shape requirement deleted (any motion counts)",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D2-M1",
-      "detector": "D-2",
-      "file": "trace_detectors.py",
-      "preimage": "if e - s + 1 > 12:",
-      "replacement": "if e - s + 1 > 3:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD2"
-      ],
-      "intent": "D-2 window length <= 12 turns -> <= 3",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D2-M2",
-      "detector": "D-2",
-      "file": "trace_detectors.py",
-      "preimage": "if e - s + 1 > 12:",
-      "replacement": "if e - s + 1 > 120:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD2"
-      ],
-      "intent": "D-2 window length <= 12 turns -> <= 120",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D2-M6",
-      "detector": "D-2",
-      "file": "trace_detectors.py",
-      "preimage": "if e - s + 1 > 12:",
-      "replacement": "if e - s + 1 > 4:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD2"
-      ],
-      "intent": "D-2 window length <= 12 turns -> <= 4",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D2-M3",
-      "detector": "D-2",
-      "file": "trace_detectors.py",
-      "preimage": "if picks < 2 or drops < 2:",
-      "replacement": "if picks < 1 or drops < 1:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD2"
-      ],
-      "intent": ">= 2 PICKs and >= 2 DROPs -> >= 1 each",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D2-M4",
-      "detector": "D-2",
-      "file": "trace_detectors.py",
-      "preimage": "            p = tr.pos(uid, t)\n            if p in tr.doors:\n",
-      "replacement": "            p = tr.pos(uid, t)\n            if True:   # MUTANT\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD2"
-      ],
-      "intent": "door-cell restriction on the PICK/DROP events deleted",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D2-M5",
-      "detector": "D-2",
-      "file": "trace_detectors.py",
-      "preimage": "                if v0 == v1:                # net zero over window (D-2)\n",
-      "replacement": "                if True:                    # MUTANT: net-zero deleted\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD2"
-      ],
-      "intent": "net-zero-over-window requirement deleted",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D3-M1",
-      "detector": "D-3",
-      "file": "trace_detectors.py",
-      "preimage": "if len(run) >= 2:",
-      "replacement": "if len(run) >= 1:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD3"
-      ],
-      "intent": "clause (a) run length >= 2 consecutive turns -> >= 1",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D3-M2",
-      "detector": "D-3",
-      "file": "trace_detectors.py",
-      "preimage": "if len(run) >= 2:",
-      "replacement": "if len(run) >= 3:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD3"
-      ],
-      "intent": "clause (a) run length >= 2 consecutive turns -> >= 3",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D3-M3",
-      "detector": "D-3",
-      "file": "trace_detectors.py",
-      "preimage": "flags.append(working and pu1 == pv0)",
-      "replacement": "flags.append(False)   # MUTANT: clause (b) disabled",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD3"
-      ],
-      "intent": "clause (b) landing-on-stationary-working-peer disabled outright",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D3-M4",
-      "detector": "D-3",
-      "file": "trace_detectors.py",
-      "preimage": "dests.setdefault(cmd.args[0], []).append(uid)",
-      "replacement": "dests.setdefault((0, 0), []).append(uid)   # MUTANT",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD3"
-      ],
-      "intent": "clause (a) proxy widened: destination identity dropped, any two own MOVEs on one turn count as a shared target",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D4-M1",
-      "detector": "D-4",
-      "file": "trace_detectors.py",
-      "preimage": "if nd_run == 2:",
-      "replacement": "if nd_run == 1:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD4"
-      ],
-      "intent": "stall tolerance: 2 consecutive non-decreases -> 1",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D4-M2",
-      "detector": "D-4",
-      "file": "trace_detectors.py",
-      "preimage": "if nd_run == 2:",
-      "replacement": "if nd_run == 3:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD4"
-      ],
-      "intent": "stall tolerance: 2 consecutive non-decreases -> 3",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D4-M3",
-      "detector": "D-4",
-      "file": "trace_detectors.py",
-      "preimage": "if d0 is not None and d1 >= d0:",
-      "replacement": "if d0 is not None and d1 > d0:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD4"
-      ],
-      "intent": "non-progress test d1 >= d0 (stall counts) -> d1 > d0 (only retreat counts): equality semantics flipped",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D4-M4",
-      "detector": "D-4",
-      "file": "trace_detectors.py",
-      "preimage": "D4_BANNED_VERBS = {\"HARVEST\", \"CHOP\", \"PLANT\", \"MINE\", \"PICK\"}",
-      "replacement": "D4_BANNED_VERBS = {\"MINE\"}",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD4"
-      ],
-      "intent": "banned non-bank verb set reduced to {MINE}",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D4-M5",
-      "detector": "D-4",
-      "file": "trace_detectors.py",
-      "preimage": "                if u.free_capacity() == 0:  # forced commitment (I-21)\n",
-      "replacement": "                if False:                   # MUTANT: I-21 start gone\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD4"
-      ],
-      "intent": "I-21 forced (full-capacity) commitment start deleted",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D4-M6",
-      "detector": "D-4",
-      "file": "trace_detectors.py",
-      "preimage": "                elif cmd is not None and cmd.verb == \"DROP\" \\\n                        and u.cell in tr.doors:\n",
-      "replacement": "                elif False:   # MUTANT: DROP-at-door start gone\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD4"
-      ],
-      "intent": "DROP-at-door commitment start deleted",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D5-M1",
-      "detector": "D-5",
-      "file": "trace_detectors.py",
-      "preimage": "        if cheby(c, tr.tent) != 1:          # I-12: Ring only (D-5)\n",
-      "replacement": "        if cheby(c, tr.tent) != 2:          # MUTANT\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD5"
-      ],
-      "intent": "I-12 Ring membership cheby == 1 -> cheby == 2",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D5-M6",
-      "detector": "D-5",
-      "file": "trace_detectors.py",
-      "preimage": "        if cheby(c, tr.tent) != 1:          # I-12: Ring only (D-5)\n",
-      "replacement": "        if c not in tr.doors:               # MUTANT: orth-only ring\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD5"
-      ],
-      "intent": "I-12 Ring narrowed from cheby == 1 to the four orthogonal doors",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D5-M2",
-      "detector": "D-5",
-      "file": "trace_detectors.py",
-      "preimage": "t_late = TOTAL_TURNS - (2 * cd + ceil_div(",
-      "replacement": "t_late = TOTAL_TURNS - (1 * cd + ceil_div(",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD5"
-      ],
-      "intent": "I-5 orthogonal cutoff 2*CD -> 1*CD",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D5-M3",
-      "detector": "D-5",
-      "file": "trace_detectors.py",
-      "preimage": "                BANANA_HEALTH_BASE + BANANA_HEALTH_SLOPE * 2, chop) + 2)",
-      "replacement": "                BANANA_HEALTH_BASE + BANANA_HEALTH_SLOPE * 2, chop) + 20)",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD5"
-      ],
-      "intent": "I-5 orthogonal cutoff slack +2 -> +20",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D5-M7",
-      "detector": "D-5",
-      "file": "trace_detectors.py",
-      "preimage": "            BANANA_HEALTH_BASE + BANANA_HEALTH_SLOPE * 1, chop) + 1)",
-      "replacement": "            BANANA_HEALTH_BASE + BANANA_HEALTH_SLOPE * 1, chop) + 40)",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD5"
-      ],
-      "intent": "I-5 global cutoff slack +1 -> +40",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D5-M4",
-      "detector": "D-5",
-      "file": "trace_detectors.py",
-      "preimage": "        if len(cumulative) > ring_size:     # I-13 cumulative bound (D-5)\n",
-      "replacement": "        if False:                           # MUTANT: I-13 cumulative off\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD5"
-      ],
-      "intent": "I-13 cumulative |Ring| bound disabled",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D5-M5",
-      "detector": "D-5",
-      "file": "trace_detectors.py",
-      "preimage": "        over = len(alive_per_turn[t]) > ring_size   # I-13 concurrent bound\n",
-      "replacement": "        over = False                               # MUTANT: concurrent off\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD5"
-      ],
-      "intent": "I-13 concurrent |Ring| bound disabled",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D5-M8",
-      "detector": "D-5",
-      "file": "trace_detectors.py",
-      "preimage": "        cd = (BANANA_PLANT_COOLDOWN - BANANA_WATER_BOOST) \\\n            if tr.near_water(c) else BANANA_PLANT_COOLDOWN  # CD_wet=4/CD_dry=6\n",
-      "replacement": "        cd = BANANA_PLANT_COOLDOWN - BANANA_WATER_BOOST  # MUTANT: always wet\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD5"
-      ],
-      "intent": "water-boost branch collapsed: CD is always CD_wet",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D6-M1",
-      "detector": "D-6",
-      "file": "trace_detectors.py",
-      "preimage": "if opp_x <= 2:",
-      "replacement": "if opp_x <= 1:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD6"
-      ],
-      "intent": "clause (a2) opponent-chopper ETA bound <= 2 -> <= 1",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D6-M2",
-      "detector": "D-6",
-      "file": "trace_detectors.py",
-      "preimage": "if opp_x <= 2:",
-      "replacement": "if opp_x <= 6:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD6"
-      ],
-      "intent": "clause (a2) opponent-chopper ETA bound <= 2 -> <= 6",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D6-M8",
-      "detector": "D-6",
-      "file": "trace_detectors.py",
-      "preimage": "if opp_x <= 2:",
-      "replacement": "if opp_x <= 5:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD6"
-      ],
-      "intent": "clause (a2) opponent-chopper ETA bound <= 2 -> <= 5",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D6-M9",
-      "detector": "D-6",
-      "file": "trace_detectors.py",
-      "preimage": "if opp_x <= 2:",
-      "replacement": "if opp_x <= 7:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD6"
-      ],
-      "intent": "clause (a2) opponent-chopper ETA bound <= 2 -> <= 7",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D6-M3",
-      "detector": "D-6",
-      "file": "trace_detectors.py",
-      "preimage": "if opp_h <= min_own:",
-      "replacement": "if opp_h < min_own:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD6"
-      ],
-      "intent": "clause (a1) arrival-order tie no longer conceded (<= -> <)",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D6-M4",
-      "detector": "D-6",
-      "file": "trace_detectors.py",
-      "preimage": "if opp_h <= min_own:",
-      "replacement": "if False:   # MUTANT",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD6"
-      ],
-      "intent": "clause (a1) harvest-race arrival-order test deleted entirely",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D6-M5",
-      "detector": "D-6",
-      "file": "trace_detectors.py",
-      "preimage": "            if p0 is None or p1 is None or p1.fruits >= p0.fruits:\n",
-      "replacement": "            if True:   # MUTANT: clause (b) replay ground truth deleted\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD6"
-      ],
-      "intent": "clause (b) opponent-harvested-ours replay ground truth deleted",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D6-M6",
-      "detector": "D-6",
-      "file": "trace_detectors.py",
-      "preimage": "own_etas = [eta(u) for u in st.own_units()]",
-      "replacement": "own_etas = [eta(u) for u in st.own_units() if u.harvest_power > 0]",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD6"
-      ],
-      "intent": "A7 flipped: min own ETA taken over harvest-capable own units only",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D6-M7",
-      "detector": "D-6",
-      "file": "trace_detectors.py",
-      "preimage": "            return ceil_div(d, u.speed)",
-      "replacement": "            return d   # MUTANT: speed division dropped",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD6"
-      ],
-      "intent": "ETA formula ceil(bfs/speed) -> raw bfs distance",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D7-M1",
-      "detector": "D-7",
-      "file": "trace_detectors.py",
-      "preimage": "                if not entry[\"aged\"] and t - entry[\"acq\"] > 12:  # age > 12",
-      "replacement": "                if not entry[\"aged\"] and t - entry[\"acq\"] > 0:  # MUTANT",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD7",
-        "TestD7Uncovered"
-      ],
-      "intent": "carried-banana overage threshold age > 12 -> age > 0",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D7-M8",
-      "detector": "D-7",
-      "file": "trace_detectors.py",
-      "preimage": "                if not entry[\"aged\"] and t - entry[\"acq\"] > 12:  # age > 12",
-      "replacement": "                if not entry[\"aged\"] and t - entry[\"acq\"] > 2:  # MUTANT",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD7",
-        "TestD7Uncovered"
-      ],
-      "intent": "carried-banana overage threshold age > 12 -> age > 2",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D7-M2",
-      "detector": "D-7",
-      "file": "trace_detectors.py",
-      "preimage": "            if entry[\"prov\"] == \"harvest\" and entry[\"acq\"] > T - 6:",
-      "replacement": "            if entry[\"prov\"] == \"harvest\" and entry[\"acq\"] > T - 600:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD7",
-        "TestD7Uncovered"
-      ],
-      "intent": "end-of-game grace window T-6 -> T-600 (everything excused)",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D7-M3",
-      "detector": "D-7",
-      "file": "trace_detectors.py",
-      "preimage": "                banked = (cmd is not None and cmd.verb == \"DROP\"\n                          and u.cell in tr.doors\n                          and tr.state(t + 1).inventories[0][BANANA]\n                          > tr.state(t).inventories[0][BANANA])\n",
-      "replacement": "                banked = (cmd is not None and cmd.verb == \"DROP\"\n                          and tr.state(t + 1).inventories[0][BANANA]\n                          > tr.state(t).inventories[0][BANANA])   # MUTANT\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD7"
-      ],
-      "intent": "banking conjunct 'DROP at a door cell' deleted",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D7-M4",
-      "detector": "D-7",
-      "file": "trace_detectors.py",
-      "preimage": "                banked = (cmd is not None and cmd.verb == \"DROP\"\n                          and u.cell in tr.doors\n                          and tr.state(t + 1).inventories[0][BANANA]\n                          > tr.state(t).inventories[0][BANANA])\n",
-      "replacement": "                banked = (cmd is not None and cmd.verb == \"DROP\"\n                          and u.cell in tr.doors)   # MUTANT\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD7"
-      ],
-      "intent": "banking conjunct 'own inventory[BANANA] increased' deleted",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D7-M5",
-      "detector": "D-7",
-      "file": "trace_detectors.py",
-      "preimage": "                planted = (cmd is not None and cmd.verb == \"PLANT\"\n                           and cmd.args and cmd.args[0] == \"BANANA\")\n",
-      "replacement": "                planted = False   # MUTANT: PLANT sink exemption gone\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD7",
-        "TestD7Uncovered"
-      ],
-      "intent": "PLANT-as-legitimate-sink exemption deleted",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D7-M6",
-      "detector": "D-7",
-      "file": "trace_detectors.py",
-      "preimage": "                if cmd is not None and cmd.verb == \"HARVEST\":\n                    prov = \"harvest\"\n",
-      "replacement": "                if False:   # MUTANT: harvest provenance gone\n                    prov = \"harvest\"\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD7",
-        "TestD7Uncovered"
-      ],
-      "intent": "harvest provenance labelling deleted (all acquisitions 'unknown')",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D7-M7",
-      "detector": "D-7",
-      "file": "trace_detectors.py",
-      "preimage": "                if not banked and not planted:\n                    episodes.append({\"unit\": uid, \"kind\": \"lost_bananas\",\n                                     \"turn_start\": t, \"turn_end\": t + 1,\n                                     \"bananas\": n})\n",
-      "replacement": "                if False:   # MUTANT: lost_bananas emission deleted\n                    pass\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD7"
-      ],
-      "intent": "lost_bananas episode emission deleted",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D8-M1",
-      "detector": "D-8",
-      "file": "trace_detectors.py",
-      "preimage": "if c in tr.diag and c in alive_per_turn[t]:",
-      "replacement": "if c in tr.doors and c in alive_per_turn[t]:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD8",
-        "TestD8Amended"
-      ],
-      "intent": "base predicate cell set diag(tent) -> orth(tent)",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D8-M2",
-      "detector": "D-8",
-      "file": "trace_detectors.py",
-      "preimage": "if not (eta_res < eta_opp):",
-      "replacement": "if not (eta_res <= eta_opp):",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD8",
-        "TestD8Amended"
-      ],
-      "intent": "I-7 ownership tie no longer conceded (< -> <=)",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D8-M3",
-      "detector": "D-8",
-      "file": "conversion_race_oracle.py",
-      "preimage": "    feasible = (completion_turn < t + UNREACHABLE\n                and completion_turn < opponent_harvest_turn)\n",
-      "replacement": "    feasible = (completion_turn < t + UNREACHABLE\n                and completion_turn <= opponent_harvest_turn)   # MUTANT\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD8",
-        "TestD8Amended"
-      ],
-      "intent": "CONVERSION_RACE_ORACLE race strictness < -> <= (tie now conceded to us)",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D8-M4",
-      "detector": "D-8",
-      "file": "trace_detectors.py",
-      "preimage": "race_won = oracle[\"feasible\"]",
-      "replacement": "race_won = True   # MUTANT",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD8",
-        "TestD8Amended"
-      ],
-      "intent": "oracle result ignored: the conversion race is always won",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D8-M5",
-      "detector": "D-8",
-      "file": "trace_detectors.py",
-      "preimage": "                        lost, flip_t, eta_res, eta_opp_f = \\\n                            _d8_ownership_lost_by(tr, c, t, alive_per_turn)\n",
-      "replacement": "                        _l, flip_t, eta_res, eta_opp_f = \\\n                            _d8_ownership_lost_by(tr, c, t, alive_per_turn)\n                        lost = True   # MUTANT\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD8",
-        "TestD8Amended"
-      ],
-      "intent": "ownership-flip precondition ignored (lost forced True)",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D8-M6",
-      "detector": "D-8",
-      "file": "conversion_race_oracle.py",
-      "preimage": "        opponent_harvest_turn = max(t + eta_opp, t + ripe)",
-      "replacement": "        opponent_harvest_turn = t + eta_opp   # MUTANT: arrival only",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD8",
-        "TestD8Amended"
-      ],
-      "intent": "opponent deadline = arrival only (ripeness dropped)",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D8-M7",
-      "detector": "D-8",
-      "file": "conversion_race_oracle.py",
-      "preimage": "        opponent_harvest_turn = max(t + eta_opp, t + ripe)",
-      "replacement": "        opponent_harvest_turn = t + ripe   # MUTANT: ripeness only",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD8",
-        "TestD8Amended"
-      ],
-      "intent": "opponent deadline = ripeness only (travel dropped)",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D8-M8",
-      "detector": "D-8",
-      "file": "trace_detectors.py",
-      "preimage": "                p = st.plant_at(c)\n                if p is not None and p.kind == \"BANANA\":\n                    if c not in exempt_cells:\n",
-      "replacement": "                p = st.plant_at(c)\n                if p is not None:   # MUTANT\n                    if c not in exempt_cells:\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD8",
-        "TestD8Amended"
-      ],
-      "intent": "plant-kind == BANANA restriction on the chopped mother deleted",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D8-M9",
-      "detector": "D-8",
-      "file": "conversion_race_oracle.py",
-      "preimage": "        chops = exact_chop_turns(arrival_plant[0], arrival_plant[1],\n                                 arrival_plant[3], resident_chop_power,\n                                 near_water)\n    if eta_res >= UNREACHABLE or chops >= UNREACHABLE:\n",
-      "replacement": "        chops = ceil_div(arrival_plant[1], resident_chop_power)  # MUTANT\n    if eta_res >= UNREACHABLE or chops >= UNREACHABLE:\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD8",
-        "TestD8Amended"
-      ],
-      "intent": "growth-aware exact_chop_turns -> static ceil(health/chop) inside CONVERSION_RACE_ORACLE (the round-3 host-review counterexample)",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D8-M10",
-      "detector": "D-8",
-      "file": "trace_detectors.py",
-      "preimage": "\"exempt\": lost and race_won,",
-      "replacement": "\"exempt\": lost or race_won,   # MUTANT",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD8",
-        "TestD8Amended"
-      ],
-      "intent": "exemption conjunction 'lost AND race_won' -> disjunction",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D8-M11",
-      "detector": "D-8",
-      "file": "trace_detectors.py",
-      "preimage": "health_drop = (p1 is None or p1.health < p.health)",
-      "replacement": "health_drop = True   # MUTANT",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD8",
-        "TestD8Amended"
-      ],
-      "intent": "health-decrease confirmation of an executed chop deleted",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D9-M1",
-      "detector": "D-9",
-      "file": "trace_detectors.py",
-      "preimage": "if len(st.own_units()) != 1:",
-      "replacement": "if False:   # MUTANT: single-worker guard deleted",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD9"
-      ],
-      "intent": "|own units| == 1 qualifying guard deleted",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D9-M4",
-      "detector": "D-9",
-      "file": "trace_detectors.py",
-      "preimage": "if len(st.own_units()) != 1:",
-      "replacement": "if len(st.own_units()) != 7:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD9"
-      ],
-      "intent": "|own units| == 1 qualifying guard -> == 7",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D9-M2",
-      "detector": "D-9",
-      "file": "trace_detectors.py",
-      "preimage": "            if cmd.verb in (\"PLANT\", \"PICK\") and cmd.args \\\n                    and cmd.args[0] == \"BANANA\":\n",
-      "replacement": "            if cmd.verb in (\"PLANT\", \"PICK\") and cmd.args:   # MUTANT\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD9"
-      ],
-      "intent": "banana-attributable restriction widened to any resource argument",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D9-M3",
-      "detector": "D-9",
-      "file": "trace_detectors.py",
-      "preimage": "if first_train is not None and t >= first_train:",
-      "replacement": "if first_train is not None and t > first_train:",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD9"
-      ],
-      "intent": "ordering boundary t >= first_train -> t > first_train",
-      "excluded_from_totals": false
-    },
-    {
-      "id": "D3-M4-RETIRED",
-      "detector": "D-3",
-      "file": "trace_detectors.py",
-      "preimage": "            if cmd is not None and cmd.verb == \"MOVE\" \\\n                    and tr.unit(uid, t) is not None:\n",
-      "replacement": "            if cmd is not None and cmd.verb in (\"MOVE\", \"WAIT\") \\\n                    and tr.unit(uid, t) is not None:\n",
-      "expected_matches": 1,
-      "owner_test_classes": [
-        "TestD3"
-      ],
-      "intent": "the 2026-08-08 D3-M4: shared-target proxy widened to include WAIT",
-      "excluded_from_totals": true,
-      "note": "RETIRED, excluded from totals. This patch is INERT: the command parser files a command under Trace.cmds(t).by_unit only when cmd.unit_id is not None (trace_detectors.py:410), and WAIT is parsed with unit_id None (:393-394), so cmd_of (:493-494) can never return a WAIT command and the widened branch is unreachable. It is kept and re-run so the delta against the 2026-08-08 ledger is auditable, and replaced in the counted set by D3-M4 (destination identity dropped)."
-    }
-  ]
+  {
+   "id": "D1-M2",
+   "detector": "D-1",
+   "file": "trace_detectors.py",
+   "preimage": "(t - 1) - s >= 6",
+   "replacement": "(t - 1) - s >= 8",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD1"
+   ],
+   "intent": "window threshold >= 6 transitions (k>=3) -> >= 8",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D1-M7",
+   "detector": "D-1",
+   "file": "trace_detectors.py",
+   "preimage": "(t - 1) - s >= 6",
+   "replacement": "(t - 1) - s >= 5",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD1"
+   ],
+   "intent": "window threshold >= 6 transitions (k>=3) -> >= 5",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D1-M8",
+   "detector": "D-1",
+   "file": "trace_detectors.py",
+   "preimage": "(t - 1) - s >= 6",
+   "replacement": "(t - 1) - s >= 9",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD1"
+   ],
+   "intent": "window threshold >= 6 transitions (k>=3) -> >= 9",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D1-M3",
+   "detector": "D-1",
+   "file": "trace_detectors.py",
+   "preimage": "            if u0.carry != u1.carry:\n                return True\n",
+   "replacement": "            if False and u0.carry != u1.carry:   # MUTANT\n                return True\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD1"
+   ],
+   "intent": "A2 progress event 'carry change' deleted",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D1-M4",
+   "detector": "D-1",
+   "file": "trace_detectors.py",
+   "preimage": "            if (p0 is None) != (p1 is None):\n                return True\n",
+   "replacement": "            if False and ((p0 is None) != (p1 is None)):   # MUTANT\n                return True\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD1"
+   ],
+   "intent": "A2 progress event 'plant created/removed at u's cell' deleted",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D1-M5",
+   "detector": "D-1",
+   "file": "trace_detectors.py",
+   "preimage": "                if tr.state(t).inventories[0] != tr.state(t + 1).inventories[0]:\n                    return True\n",
+   "replacement": "                if False and (tr.state(t).inventories[0]\n                              != tr.state(t + 1).inventories[0]):   # MUTANT\n                    return True\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD1"
+   ],
+   "intent": "A2 progress event 'inventory change on a DROP/PICK turn' deleted",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D1-M6",
+   "detector": "D-1",
+   "file": "trace_detectors.py",
+   "preimage": "                      and (t == s + 1 or pos[t] == pos[t - 2])\n",
+   "replacement": "                      and True   # MUTANT: A!=B!=A shape requirement gone\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD1"
+   ],
+   "intent": "period-2 A,B,A,B shape requirement deleted (any motion counts)",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D2-M1",
+   "detector": "D-2",
+   "file": "trace_detectors.py",
+   "preimage": "if e - s + 1 > 12:",
+   "replacement": "if e - s + 1 > 3:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD2"
+   ],
+   "intent": "D-2 window length <= 12 turns -> <= 3",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D2-M2",
+   "detector": "D-2",
+   "file": "trace_detectors.py",
+   "preimage": "if e - s + 1 > 12:",
+   "replacement": "if e - s + 1 > 120:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD2"
+   ],
+   "intent": "D-2 window length <= 12 turns -> <= 120",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D2-M6",
+   "detector": "D-2",
+   "file": "trace_detectors.py",
+   "preimage": "if e - s + 1 > 12:",
+   "replacement": "if e - s + 1 > 4:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD2"
+   ],
+   "intent": "D-2 window length <= 12 turns -> <= 4",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D2-M3",
+   "detector": "D-2",
+   "file": "trace_detectors.py",
+   "preimage": "if picks < 2 or drops < 2:",
+   "replacement": "if picks < 1 or drops < 1:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD2"
+   ],
+   "intent": ">= 2 PICKs and >= 2 DROPs -> >= 1 each",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D2-M4",
+   "detector": "D-2",
+   "file": "trace_detectors.py",
+   "preimage": "            p = tr.pos(uid, t)\n            if p in tr.doors:\n",
+   "replacement": "            p = tr.pos(uid, t)\n            if True:   # MUTANT\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD2"
+   ],
+   "intent": "door-cell restriction on the PICK/DROP events deleted",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D2-M5",
+   "detector": "D-2",
+   "file": "trace_detectors.py",
+   "preimage": "                if v0 == v1:                # net zero over window (D-2)\n",
+   "replacement": "                if True:                    # MUTANT: net-zero deleted\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD2"
+   ],
+   "intent": "net-zero-over-window requirement deleted",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D3-M1",
+   "detector": "D-3",
+   "file": "trace_detectors.py",
+   "preimage": "if len(run) >= 2:",
+   "replacement": "if len(run) >= 1:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD3"
+   ],
+   "intent": "clause (a) run length >= 2 consecutive turns -> >= 1",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D3-M2",
+   "detector": "D-3",
+   "file": "trace_detectors.py",
+   "preimage": "if len(run) >= 2:",
+   "replacement": "if len(run) >= 3:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD3"
+   ],
+   "intent": "clause (a) run length >= 2 consecutive turns -> >= 3",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D3-M3",
+   "detector": "D-3",
+   "file": "trace_detectors.py",
+   "preimage": "flags.append(working and pu1 == pv0)",
+   "replacement": "flags.append(False)   # MUTANT: clause (b) disabled",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD3"
+   ],
+   "intent": "clause (b) landing-on-stationary-working-peer disabled outright",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D3-M4",
+   "detector": "D-3",
+   "file": "trace_detectors.py",
+   "preimage": "dests.setdefault(cmd.args[0], []).append(uid)",
+   "replacement": "dests.setdefault((0, 0), []).append(uid)   # MUTANT",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD3"
+   ],
+   "intent": "clause (a) proxy widened: destination identity dropped, any two own MOVEs on one turn count as a shared target",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D4-M1",
+   "detector": "D-4",
+   "file": "trace_detectors.py",
+   "preimage": "if nd_run == 2:",
+   "replacement": "if nd_run == 1:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD4"
+   ],
+   "intent": "stall tolerance: 2 consecutive non-decreases -> 1",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D4-M2",
+   "detector": "D-4",
+   "file": "trace_detectors.py",
+   "preimage": "if nd_run == 2:",
+   "replacement": "if nd_run == 3:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD4"
+   ],
+   "intent": "stall tolerance: 2 consecutive non-decreases -> 3",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D4-M3",
+   "detector": "D-4",
+   "file": "trace_detectors.py",
+   "preimage": "if d0 is not None and d1 >= d0:",
+   "replacement": "if d0 is not None and d1 > d0:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD4"
+   ],
+   "intent": "non-progress test d1 >= d0 (stall counts) -> d1 > d0 (only retreat counts): equality semantics flipped",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D4-M4",
+   "detector": "D-4",
+   "file": "trace_detectors.py",
+   "preimage": "D4_BANNED_VERBS = {\"HARVEST\", \"CHOP\", \"PLANT\", \"MINE\", \"PICK\"}",
+   "replacement": "D4_BANNED_VERBS = {\"MINE\"}",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD4"
+   ],
+   "intent": "banned non-bank verb set reduced to {MINE}",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D4-M5",
+   "detector": "D-4",
+   "file": "trace_detectors.py",
+   "preimage": "                if u.free_capacity() == 0:  # forced commitment (I-21)\n",
+   "replacement": "                if False:                   # MUTANT: I-21 start gone\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD4"
+   ],
+   "intent": "I-21 forced (full-capacity) commitment start deleted",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D4-M6",
+   "detector": "D-4",
+   "file": "trace_detectors.py",
+   "preimage": "                elif cmd is not None and cmd.verb == \"DROP\" \\\n                        and u.cell in tr.doors:\n",
+   "replacement": "                elif False:   # MUTANT: DROP-at-door start gone\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD4"
+   ],
+   "intent": "DROP-at-door commitment start deleted",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D5-M1",
+   "detector": "D-5",
+   "file": "trace_detectors.py",
+   "preimage": "        if cheby(c, tr.tent) != 1:          # I-12: Ring only (D-5)\n",
+   "replacement": "        if cheby(c, tr.tent) != 2:          # MUTANT\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD5"
+   ],
+   "intent": "I-12 Ring membership cheby == 1 -> cheby == 2",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D5-M6",
+   "detector": "D-5",
+   "file": "trace_detectors.py",
+   "preimage": "        if cheby(c, tr.tent) != 1:          # I-12: Ring only (D-5)\n",
+   "replacement": "        if c not in tr.doors:               # MUTANT: orth-only ring\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD5"
+   ],
+   "intent": "I-12 Ring narrowed from cheby == 1 to the four orthogonal doors",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D5-M2",
+   "detector": "D-5",
+   "file": "trace_detectors.py",
+   "preimage": "t_late = TOTAL_TURNS - (2 * cd + ceil_div(",
+   "replacement": "t_late = TOTAL_TURNS - (1 * cd + ceil_div(",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD5"
+   ],
+   "intent": "I-5 orthogonal cutoff 2*CD -> 1*CD",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D5-M3",
+   "detector": "D-5",
+   "file": "trace_detectors.py",
+   "preimage": "                BANANA_HEALTH_BASE + BANANA_HEALTH_SLOPE * 2, chop) + 2)",
+   "replacement": "                BANANA_HEALTH_BASE + BANANA_HEALTH_SLOPE * 2, chop) + 20)",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD5"
+   ],
+   "intent": "I-5 orthogonal cutoff slack +2 -> +20",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D5-M7",
+   "detector": "D-5",
+   "file": "trace_detectors.py",
+   "preimage": "            BANANA_HEALTH_BASE + BANANA_HEALTH_SLOPE * 1, chop) + 1)",
+   "replacement": "            BANANA_HEALTH_BASE + BANANA_HEALTH_SLOPE * 1, chop) + 40)",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD5"
+   ],
+   "intent": "I-5 global cutoff slack +1 -> +40",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D5-M4",
+   "detector": "D-5",
+   "file": "trace_detectors.py",
+   "preimage": "        if len(cumulative) > ring_size:     # I-13 cumulative bound (D-5)\n",
+   "replacement": "        if False:                           # MUTANT: I-13 cumulative off\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD5"
+   ],
+   "intent": "I-13 cumulative |Ring| bound disabled",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D5-M5",
+   "detector": "D-5",
+   "file": "trace_detectors.py",
+   "preimage": "        over = len(alive_per_turn[t]) > ring_size   # I-13 concurrent bound\n",
+   "replacement": "        over = False                               # MUTANT: concurrent off\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD5"
+   ],
+   "intent": "I-13 concurrent |Ring| bound disabled",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D5-M8",
+   "detector": "D-5",
+   "file": "trace_detectors.py",
+   "preimage": "        cd = (BANANA_PLANT_COOLDOWN - BANANA_WATER_BOOST) \\\n            if tr.near_water(c) else BANANA_PLANT_COOLDOWN  # CD_wet=4/CD_dry=6\n",
+   "replacement": "        cd = BANANA_PLANT_COOLDOWN - BANANA_WATER_BOOST  # MUTANT: always wet\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD5"
+   ],
+   "intent": "water-boost branch collapsed: CD is always CD_wet",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D6-M1",
+   "detector": "D-6",
+   "file": "trace_detectors.py",
+   "preimage": "if opp_x <= 2:",
+   "replacement": "if opp_x <= 1:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD6"
+   ],
+   "intent": "clause (a2) opponent-chopper ETA bound <= 2 -> <= 1",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D6-M2",
+   "detector": "D-6",
+   "file": "trace_detectors.py",
+   "preimage": "if opp_x <= 2:",
+   "replacement": "if opp_x <= 6:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD6"
+   ],
+   "intent": "clause (a2) opponent-chopper ETA bound <= 2 -> <= 6",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D6-M8",
+   "detector": "D-6",
+   "file": "trace_detectors.py",
+   "preimage": "if opp_x <= 2:",
+   "replacement": "if opp_x <= 5:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD6"
+   ],
+   "intent": "clause (a2) opponent-chopper ETA bound <= 2 -> <= 5",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D6-M9",
+   "detector": "D-6",
+   "file": "trace_detectors.py",
+   "preimage": "if opp_x <= 2:",
+   "replacement": "if opp_x <= 7:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD6"
+   ],
+   "intent": "clause (a2) opponent-chopper ETA bound <= 2 -> <= 7",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D6-M3",
+   "detector": "D-6",
+   "file": "trace_detectors.py",
+   "preimage": "if opp_h <= min_own:",
+   "replacement": "if opp_h < min_own:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD6"
+   ],
+   "intent": "clause (a1) arrival-order tie no longer conceded (<= -> <)",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D6-M4",
+   "detector": "D-6",
+   "file": "trace_detectors.py",
+   "preimage": "if opp_h <= min_own:",
+   "replacement": "if False:   # MUTANT",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD6"
+   ],
+   "intent": "clause (a1) harvest-race arrival-order test deleted entirely",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D6-M5",
+   "detector": "D-6",
+   "file": "trace_detectors.py",
+   "preimage": "            if p0 is None or p1 is None or p1.fruits >= p0.fruits:\n",
+   "replacement": "            if True:   # MUTANT: clause (b) replay ground truth deleted\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD6"
+   ],
+   "intent": "clause (b) opponent-harvested-ours replay ground truth deleted",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D6-M6",
+   "detector": "D-6",
+   "file": "trace_detectors.py",
+   "preimage": "own_etas = [eta(u) for u in st.own_units()]",
+   "replacement": "own_etas = [eta(u) for u in st.own_units() if u.harvest_power > 0]",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD6"
+   ],
+   "intent": "A7 flipped: min own ETA taken over harvest-capable own units only",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D6-M7",
+   "detector": "D-6",
+   "file": "trace_detectors.py",
+   "preimage": "            return ceil_div(d, u.speed)",
+   "replacement": "            return d   # MUTANT: speed division dropped",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD6"
+   ],
+   "intent": "ETA formula ceil(bfs/speed) -> raw bfs distance",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D7-M1",
+   "detector": "D-7",
+   "file": "trace_detectors.py",
+   "preimage": "                if not entry[\"aged\"] and t - entry[\"acq\"] > 12:  # age > 12",
+   "replacement": "                if not entry[\"aged\"] and t - entry[\"acq\"] > 0:  # MUTANT",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD7",
+    "TestD7Uncovered"
+   ],
+   "intent": "carried-banana overage threshold age > 12 -> age > 0",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D7-M8",
+   "detector": "D-7",
+   "file": "trace_detectors.py",
+   "preimage": "                if not entry[\"aged\"] and t - entry[\"acq\"] > 12:  # age > 12",
+   "replacement": "                if not entry[\"aged\"] and t - entry[\"acq\"] > 2:  # MUTANT",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD7",
+    "TestD7Uncovered"
+   ],
+   "intent": "carried-banana overage threshold age > 12 -> age > 2",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D7-M2",
+   "detector": "D-7",
+   "file": "trace_detectors.py",
+   "preimage": "            if entry[\"prov\"] == \"harvest\" and entry[\"acq\"] > T - 6:",
+   "replacement": "            if entry[\"prov\"] == \"harvest\" and entry[\"acq\"] > T - 600:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD7",
+    "TestD7Uncovered"
+   ],
+   "intent": "end-of-game grace window T-6 -> T-600 (everything excused)",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D7-M3",
+   "detector": "D-7",
+   "file": "trace_detectors.py",
+   "preimage": "                banked = (cmd is not None and cmd.verb == \"DROP\"\n                          and u.cell in tr.doors\n                          and tr.state(t + 1).inventories[0][BANANA]\n                          > tr.state(t).inventories[0][BANANA])\n",
+   "replacement": "                banked = (cmd is not None and cmd.verb == \"DROP\"\n                          and tr.state(t + 1).inventories[0][BANANA]\n                          > tr.state(t).inventories[0][BANANA])   # MUTANT\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD7"
+   ],
+   "intent": "banking conjunct 'DROP at a door cell' deleted",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D7-M4",
+   "detector": "D-7",
+   "file": "trace_detectors.py",
+   "preimage": "                banked = (cmd is not None and cmd.verb == \"DROP\"\n                          and u.cell in tr.doors\n                          and tr.state(t + 1).inventories[0][BANANA]\n                          > tr.state(t).inventories[0][BANANA])\n",
+   "replacement": "                banked = (cmd is not None and cmd.verb == \"DROP\"\n                          and u.cell in tr.doors)   # MUTANT\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD7"
+   ],
+   "intent": "banking conjunct 'own inventory[BANANA] increased' deleted",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D7-M5",
+   "detector": "D-7",
+   "file": "trace_detectors.py",
+   "preimage": "                planted = (cmd is not None and cmd.verb == \"PLANT\"\n                           and cmd.args and cmd.args[0] == \"BANANA\")\n",
+   "replacement": "                planted = False   # MUTANT: PLANT sink exemption gone\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD7",
+    "TestD7Uncovered"
+   ],
+   "intent": "PLANT-as-legitimate-sink exemption deleted",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D7-M6",
+   "detector": "D-7",
+   "file": "trace_detectors.py",
+   "preimage": "                if cmd is not None and cmd.verb == \"HARVEST\":\n                    prov = \"harvest\"\n",
+   "replacement": "                if False:   # MUTANT: harvest provenance gone\n                    prov = \"harvest\"\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD7",
+    "TestD7Uncovered"
+   ],
+   "intent": "harvest provenance labelling deleted (all acquisitions 'unknown')",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D7-M7",
+   "detector": "D-7",
+   "file": "trace_detectors.py",
+   "preimage": "                if not banked and not planted:\n                    episodes.append({\"unit\": uid, \"kind\": \"lost_bananas\",\n                                     \"turn_start\": t, \"turn_end\": t + 1,\n                                     \"bananas\": n})\n",
+   "replacement": "                if False:   # MUTANT: lost_bananas emission deleted\n                    pass\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD7"
+   ],
+   "intent": "lost_bananas episode emission deleted",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D8-M1",
+   "detector": "D-8",
+   "file": "trace_detectors.py",
+   "preimage": "if c in tr.diag and c in alive_per_turn[t]:",
+   "replacement": "if c in tr.doors and c in alive_per_turn[t]:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD8",
+    "TestD8Amended"
+   ],
+   "intent": "base predicate cell set diag(tent) -> orth(tent)",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D8-M2",
+   "detector": "D-8",
+   "file": "trace_detectors.py",
+   "preimage": "if not (eta_res < eta_opp):",
+   "replacement": "if not (eta_res <= eta_opp):",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD8",
+    "TestD8Amended"
+   ],
+   "intent": "I-7 ownership tie no longer conceded (< -> <=)",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D8-M3",
+   "detector": "D-8",
+   "file": "conversion_race_oracle.py",
+   "preimage": "    feasible = (completion_turn < t + UNREACHABLE\n                and completion_turn < opponent_harvest_turn)\n",
+   "replacement": "    feasible = (completion_turn < t + UNREACHABLE\n                and completion_turn <= opponent_harvest_turn)   # MUTANT\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD8",
+    "TestD8Amended",
+    "TestD8Uncovered"
+   ],
+   "intent": "CONVERSION_RACE_ORACLE race strictness < -> <= (tie now conceded to us)",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D8-M4",
+   "detector": "D-8",
+   "file": "trace_detectors.py",
+   "preimage": "race_won = oracle[\"feasible\"]",
+   "replacement": "race_won = True   # MUTANT",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD8",
+    "TestD8Amended"
+   ],
+   "intent": "oracle result ignored: the conversion race is always won",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D8-M5",
+   "detector": "D-8",
+   "file": "trace_detectors.py",
+   "preimage": "                        lost, flip_t, eta_res, eta_opp_f = \\\n                            _d8_ownership_lost_by(tr, c, t, alive_per_turn)\n",
+   "replacement": "                        _l, flip_t, eta_res, eta_opp_f = \\\n                            _d8_ownership_lost_by(tr, c, t, alive_per_turn)\n                        lost = True   # MUTANT\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD8",
+    "TestD8Amended"
+   ],
+   "intent": "ownership-flip precondition ignored (lost forced True)",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D8-M6",
+   "detector": "D-8",
+   "file": "conversion_race_oracle.py",
+   "preimage": "        opponent_harvest_turn = max(t + eta_opp, t + ripe)",
+   "replacement": "        opponent_harvest_turn = t + eta_opp   # MUTANT: arrival only",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD8",
+    "TestD8Amended"
+   ],
+   "intent": "opponent deadline = arrival only (ripeness dropped)",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D8-M7",
+   "detector": "D-8",
+   "file": "conversion_race_oracle.py",
+   "preimage": "        opponent_harvest_turn = max(t + eta_opp, t + ripe)",
+   "replacement": "        opponent_harvest_turn = t + ripe   # MUTANT: ripeness only",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD8",
+    "TestD8Amended",
+    "TestD8Uncovered"
+   ],
+   "intent": "opponent deadline = ripeness only (travel dropped)",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D8-M8",
+   "detector": "D-8",
+   "file": "trace_detectors.py",
+   "preimage": "                p = st.plant_at(c)\n                if p is not None and p.kind == \"BANANA\":\n                    if c not in exempt_cells:\n",
+   "replacement": "                p = st.plant_at(c)\n                if p is not None:   # MUTANT\n                    if c not in exempt_cells:\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD8",
+    "TestD8Amended"
+   ],
+   "intent": "plant-kind == BANANA restriction on the chopped mother deleted",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D8-M9",
+   "detector": "D-8",
+   "file": "conversion_race_oracle.py",
+   "preimage": "        chops = exact_chop_turns(arrival_plant[0], arrival_plant[1],\n                                 arrival_plant[3], resident_chop_power,\n                                 near_water)\n    if eta_res >= UNREACHABLE or chops >= UNREACHABLE:\n",
+   "replacement": "        chops = ceil_div(arrival_plant[1], resident_chop_power)  # MUTANT\n    if eta_res >= UNREACHABLE or chops >= UNREACHABLE:\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD8",
+    "TestD8Amended",
+    "TestD8Uncovered"
+   ],
+   "intent": "growth-aware exact_chop_turns -> static ceil(health/chop) inside CONVERSION_RACE_ORACLE (the round-3 host-review counterexample)",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D8-M10",
+   "detector": "D-8",
+   "file": "trace_detectors.py",
+   "preimage": "\"exempt\": lost and race_won,",
+   "replacement": "\"exempt\": lost or race_won,   # MUTANT",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD8",
+    "TestD8Amended"
+   ],
+   "intent": "exemption conjunction 'lost AND race_won' -> disjunction",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D8-M11",
+   "detector": "D-8",
+   "file": "trace_detectors.py",
+   "preimage": "health_drop = (p1 is None or p1.health < p.health)",
+   "replacement": "health_drop = True   # MUTANT",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD8",
+    "TestD8Amended",
+    "TestD8Uncovered"
+   ],
+   "intent": "health-decrease confirmation of an executed chop deleted",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D9-M1",
+   "detector": "D-9",
+   "file": "trace_detectors.py",
+   "preimage": "if len(st.own_units()) != 1:",
+   "replacement": "if False:   # MUTANT: single-worker guard deleted",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD9"
+   ],
+   "intent": "|own units| == 1 qualifying guard deleted",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D9-M4",
+   "detector": "D-9",
+   "file": "trace_detectors.py",
+   "preimage": "if len(st.own_units()) != 1:",
+   "replacement": "if len(st.own_units()) != 7:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD9"
+   ],
+   "intent": "|own units| == 1 qualifying guard -> == 7",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D9-M2",
+   "detector": "D-9",
+   "file": "trace_detectors.py",
+   "preimage": "            if cmd.verb in (\"PLANT\", \"PICK\") and cmd.args \\\n                    and cmd.args[0] == \"BANANA\":\n",
+   "replacement": "            if cmd.verb in (\"PLANT\", \"PICK\") and cmd.args:   # MUTANT\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD9"
+   ],
+   "intent": "banana-attributable restriction widened to any resource argument",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D9-M3",
+   "detector": "D-9",
+   "file": "trace_detectors.py",
+   "preimage": "if first_train is not None and t >= first_train:",
+   "replacement": "if first_train is not None and t > first_train:",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD9"
+   ],
+   "intent": "ordering boundary t >= first_train -> t > first_train",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D3-M4-RETIRED",
+   "detector": "D-3",
+   "file": "trace_detectors.py",
+   "preimage": "            if cmd is not None and cmd.verb == \"MOVE\" \\\n                    and tr.unit(uid, t) is not None:\n",
+   "replacement": "            if cmd is not None and cmd.verb in (\"MOVE\", \"WAIT\") \\\n                    and tr.unit(uid, t) is not None:\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD3"
+   ],
+   "intent": "the 2026-08-08 D3-M4: shared-target proxy widened to include WAIT",
+   "excluded_from_totals": true,
+   "note": "RETIRED, excluded from totals. This patch is INERT: the command parser files a command under Trace.cmds(t).by_unit only when cmd.unit_id is not None (trace_detectors.py:410), and WAIT is parsed with unit_id None (:393-394), so cmd_of (:493-494) can never return a WAIT command and the widened branch is unreachable. It is kept and re-run so the delta against the 2026-08-08 ledger is auditable, and replaced in the counted set by D3-M4 (destination identity dropped)."
+  }
+ ]
 }

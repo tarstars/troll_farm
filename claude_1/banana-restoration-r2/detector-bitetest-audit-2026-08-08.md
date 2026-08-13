@@ -644,7 +644,7 @@ only).
 |---|---|
 | applicability | 43 `APPLICABLE`, 4 `INSTRUMENT_UNSUPPORTED` (all D-9) |
 | contract authority | 45 `SETTLED`, 2 `CONFLICT` (D-6 (a1), D-6 (a2)) |
-| implementation validity | 16 `PINNED`, 5 `PARTIAL`, 8 `UNPINNED`, 18 `NO_FIXTURE` |
+| implementation validity | 20 `PINNED`, 4 `PARTIAL`, 8 `UNPINNED`, 15 `NO_FIXTURE` |
 | truth validity | 6 `GATE_UNREADY` (D-6 (a1), D-6 (a2), D-9 (a)–(d)), 41 `UNRESOLVED` |
 | definitional conformance | 1 `IDENTICAL_TO_SPEC` (D-5 (a) I-12 Ring geometry), 46 `NOT_APPLICABLE` |
 
@@ -1083,7 +1083,7 @@ the mirror. What is missing is a refereed corpus to run it on, not the oracle.
   2026-08-10 and D-7 rows (d)-(g) by the G6 fixtures 2026-08-12.
   Four detectors (D-4, D-6, D-7, D-9) have near-misses that vary more than one
   dimension, which is why single-conjunct deletions survive.
-- **Mutation: 29 caught, 35 survived out of 64 (45.3 %) as of 2026-08-12** — the figure
+- **Mutation: 33 caught, 31 survived out of 64 (51.6 %) as of 2026-08-13** — the figure
   below is the original 2026-08-08 measurement, kept for provenance: **21 caught, 43
   survived out of 64 (32.8 %)** — *not* the 20/64
   reported on 2026-08-08; the difference is one retired inert mutant (§1.5). No

@@ -1,18 +1,18 @@
 # Mutation ledger (generated — do not hand-edit)
 
 Source: `results/mutation-results.json`  
-manifest sha256 `74158e8991a0074a77c6f33d6fdfa89504b422760850a0cef982dee4f05f1539`  
-runner sha256 `2df817f2b85ac6d14216fea58085fee38d43b4539b22342d87b8fa2aa359309f`  
+manifest sha256 `d73e798a3b62e89b1670531a9c1083839b7f12e70f2af568c09ffbb79a146b07`  
+runner sha256 `8dbf4f7774a2cdc014e702675cf9fcf3e051b57f91fcf914782451bc706dd519`  
 probe corpus sha256 `9afe7f3cf3cb073158e67226ddbed31a750cda19900fc031853195cb8b0f3ddb`  
 python 3.12.3, control green: True
 
 Pinned sources:
 
 - `conversion_race_oracle.py` sha256 `e0896e3f7cb2c7ac4ced35350469d704432f8c7a1a8a4c9c4ce41495ca13ecf7`
-- `test_trace_detectors.py` sha256 `b625e8c1eeba53cb0b567d07583a4451d4b3161b020884e446c4f000605fd484`
+- `test_trace_detectors.py` sha256 `07e87c91c97acb33f41bd9455b8302afe3a4416953fed272c655fa2f42bb58e6`
 - `trace_detectors.py` sha256 `59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209`
 
-Totals: **64 mutants run, 29 caught, 35 survived** (kill rate 45.3 %). `caught_by_expected` = 29; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 15 UNWITNESSED; PROBE_SENSITIVE survivors = 22.
+Totals: **64 mutants run, 33 caught, 31 survived** (kill rate 51.6 %). `caught_by_expected` = 33; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 15 UNWITNESSED; PROBE_SENSITIVE survivors = 20.
 
 ## Per detector
 
@@ -25,9 +25,9 @@ Totals: **64 mutants run, 29 caught, 35 survived** (kill rate 45.3 %). `caught_b
 | D-5 | 8 | 2 | 2 | 6 | 2 | 25 % |
 | D-6 | 9 | 2 | 2 | 7 | 6 | 22 % |
 | D-7 | 8 | 6 | 6 | 2 | 2 | 75 % |
-| D-8 | 11 | 6 | 6 | 5 | 2 | 55 % |
+| D-8 | 11 | 10 | 10 | 1 | 0 | 91 % |
 | D-9 | 4 | 4 | 4 | 0 | 0 | 100 % |
-| **all** | **64** | **29** | **29** | **35** | **22** | **45.3 %** |
+| **all** | **64** | **33** | **33** | **31** | **20** | **51.6 %** |
 
 ## Full ledger
 
@@ -86,15 +86,15 @@ Totals: **64 mutants run, 29 caught, 35 survived** (kill rate 45.3 %). `caught_b
 | D7-M7 | D-7 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | lost_bananas episode emission deleted |
 | D8-M1 | D-8 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | base predicate cell set diag(tent) -> orth(tent) |
 | D8-M2 | D-8 | `trace_detectors.py` | CAUGHT | UNWITNESSED | I-7 ownership tie no longer conceded (< -> <=) |
-| D8-M3 | D-8 | `conversion_race_oracle.py` | SURVIVED | UNWITNESSED | CONVERSION_RACE_ORACLE race strictness < -> <= (tie now conceded to us) |
+| D8-M3 | D-8 | `conversion_race_oracle.py` | CAUGHT | UNWITNESSED | CONVERSION_RACE_ORACLE race strictness < -> <= (tie now conceded to us) |
 | D8-M4 | D-8 | `trace_detectors.py` | CAUGHT | UNWITNESSED | oracle result ignored: the conversion race is always won |
 | D8-M5 | D-8 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | ownership-flip precondition ignored (lost forced True) |
 | D8-M6 | D-8 | `conversion_race_oracle.py` | CAUGHT | PROBE_SENSITIVE | opponent deadline = arrival only (ripeness dropped) |
-| D8-M7 | D-8 | `conversion_race_oracle.py` | SURVIVED | UNWITNESSED | opponent deadline = ripeness only (travel dropped) |
+| D8-M7 | D-8 | `conversion_race_oracle.py` | CAUGHT | UNWITNESSED | opponent deadline = ripeness only (travel dropped) |
 | D8-M8 | D-8 | `trace_detectors.py` | SURVIVED | UNWITNESSED | plant-kind == BANANA restriction on the chopped mother deleted |
-| D8-M9 | D-8 | `conversion_race_oracle.py` | SURVIVED | PROBE_SENSITIVE | growth-aware exact_chop_turns -> static ceil(health/chop) inside CONVERSION_RACE_ORACLE (the round-3 host-review counterexample) |
+| D8-M9 | D-8 | `conversion_race_oracle.py` | CAUGHT | PROBE_SENSITIVE | growth-aware exact_chop_turns -> static ceil(health/chop) inside CONVERSION_RACE_ORACLE (the round-3 host-review counterexample) |
 | D8-M10 | D-8 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | exemption conjunction 'lost AND race_won' -> disjunction |
-| D8-M11 | D-8 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | health-decrease confirmation of an executed chop deleted |
+| D8-M11 | D-8 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | health-decrease confirmation of an executed chop deleted |
 | D9-M1 | D-9 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | \|own units\| == 1 qualifying guard deleted |
 | D9-M4 | D-9 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | \|own units\| == 1 qualifying guard -> == 7 |
 | D9-M2 | D-9 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | banana-attributable restriction widened to any resource argument |
