@@ -525,10 +525,16 @@ def test_every_deployment_since_the_restored_resident_era_is_covered(registry: d
 
 
 def test_exactly_one_submission_is_active(registry: dict) -> None:
+    # This pin tracks whoever is actually deployed and must be updated by the agent that
+    # changes the resident.  Sigma run 4 (2026-08-13, submission 41129543 / agent 6614096)
+    # is the current live identity; the previous pin named 41090606 / 6594200, which had in
+    # fact been displaced by 41113243 back on 2026-08-12 and was never re-marked -- so this
+    # test was failing on `len(live) == 1` with two actives until that disposition was
+    # corrected (evidence: coordination/tasks/20260812-readable-no-orchard-rerun-arena.md:147).
     live = [s for s in registry["submissions"] if s["disposition"] == "active"]
     assert len(live) == 1
-    assert live[0]["submission_id"] == 41090606
-    assert live[0]["agent_id"] == 6594200
+    assert live[0]["submission_id"] == 41129543
+    assert live[0]["agent_id"] == 6614096
 
 
 def test_every_source_file_still_hashes_to_its_recorded_value(registry: dict) -> None:
