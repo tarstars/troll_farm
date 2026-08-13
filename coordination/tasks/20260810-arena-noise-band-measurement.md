@@ -199,6 +199,28 @@ read 23.61 (arena) at 118/160 and 24.90 at 160/160, **+1.29 over the last 42 gam
 between the two reads was ~9.3 h (20:02Z → 05:19Z), so this is 118→160 maturation, not drift
 measured at a fixed game count. Terminal-only comparison remains the right rule.
 
+### Step 2 — run-4 submit, RECORD WRITTEN BEFORE THE CALL
+
+This row is committed and pushed **before** the mutation call, per the lease. It is the record that
+a call was *about to be made*, so that an ambiguous or lost response can never leave the campaign
+unable to tell whether a fourth deployment exists.
+
+- **Intent stamped**: 2026-08-13T05:23:45Z (`date -u`, real clock).
+- **Source**: `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs`, verified in this
+  worktree at sha256 `98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29`, in
+  three-way agreement with the lease's `--expected-sha256` and the committed `.sha256` sidecar.
+- **Budget**: run 4 of 4. **This is the last authorized Arena mutation.** Nothing in the lease
+  permits a fifth, and an ambiguous response suspends the lease rather than licensing a retry.
+- **Tool guarantees relied on** (`api_submit_once.py`): the source hash is checked *before* any
+  network call; there is no endpoint or payload fallback; a non-200, malformed or transport-
+  ambiguous response returns `ambiguous=true` as data and makes no second call; `mutation_calls`
+  is reported explicitly.
+- **Outcome**: recorded in the row below immediately after the call returns, whatever it says.
+
+| run | UTC submit | submission / agent | initial health | terminal 160/160 |
+|---|---|---|---|---|
+| 4 | 2026-08-13T05:23Z (intent) | *pending — result appended post-call* | pending | pending |
+
 ### Field-identity hazard in the inherited four-read baseline — READ BEFORE APPENDING TO THE REGISTRY
 
 The four mature reads **24.76 / 22.46 / 19.77 / 23.73 are individually correct**, and I confirmed
