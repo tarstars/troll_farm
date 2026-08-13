@@ -73,11 +73,21 @@ makes the goalpost move in the wrong direction.
   is an information channel; submissions are the cheap instrument. QUALIFIED-verdict
   correctness bar stands; magnitude bar is gone; runbook in full; owner told before and
   after each cycle; every id and terminal response logged.
-- ★ **σ = 1.098** (CI [0.707, 2.418]; 4 families / 10 deployments / 6 d.o.f.;
-  `cgauto/arena_noise_band.py`). Difference SD at n=1 per arm = 1.552; SE 0.5 needs
-  10 runs/arm (~40 h). Re-submission draws an independent sample (zero duplicate scores
-  across 10 deployments). A mature 160-game read takes **~2 h**. Prefer interleaved
-  A/B/A/B over blocked runs. Re-run the estimator after every new mature deployment.
+- ★ **σ = 1.501** (CI [1.049, 2.634]; 4 families / 14 mature observations / 10 d.o.f.;
+  Phase-1 campaign 2026-08-12/13, `cgauto/arena_noise_band.py`; supersedes the 1.098
+  whose families never exceeded n=4 — the n=6 resident family spans **5.13** points:
+  19.77…24.90 on byte-identical source). Difference SD at n=1 per arm = **2.123**;
+  SE 1.0 needs 5 runs/arm (~20 h), SE 0.5 needs 19 (~76 h). **The old ±0.5–1 band does
+  not survive as an operating assumption; no promotion argument may rest on a
+  single-read delta.** 1.501 is an upper bound on pure re-submission variance (drift
+  confounded — runs strictly sequential, field grew 139→147) and simultaneously the
+  right practical number for sequential A/B on this ladder. Re-submission draws an
+  independent sample (zero duplicate scores across 14). A mature 160-game read takes
+  ~2 h when the host stays awake. Prefer interleaved A/B/A/B over blocked runs. Re-run
+  the estimator after every new mature deployment. **Read scores only from an
+  agent-validated block** (the room serves a persistent stale row — agent 6604529 /
+  field 140 / 22.46 — that camouflages as a plausible value; the registry now faults
+  it automatically).
   - **Unchanged:** mutations remain serialized through the **single arena controller**
     (now `local_claude_1` by owner reassignment — see the note in this section). No peer agent
     or subagent may submit. One cycle in flight at a time — that is a ladder-slot constraint,
