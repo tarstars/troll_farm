@@ -74,23 +74,32 @@ makes the goalpost move in the wrong direction.
   correctness bar stands; magnitude bar is gone; runbook in full; owner told before and
   after each cycle; every id and terminal response logged.
 - ★ **σ = 1.501** (CI [1.049, 2.634]; 4 families / 14 mature observations / 10 d.o.f.;
-  Phase-1 campaign 2026-08-12/13, `cgauto/arena_noise_band.py`; supersedes the 1.098
-  whose families never exceeded n=4 — the n=6 resident family spans **5.13** points:
-  19.77…24.90 on byte-identical source). Difference SD at n=1 per arm = **2.123**;
-  SE 1.0 needs 5 runs/arm (~20 h), SE 0.5 needs 19 (~76 h). **The old ±0.5–1 band does
-  not survive as an operating assumption; no promotion argument may rest on a
-  single-read delta.** Per codex_1's accepted review (2026-08-13): 1.501 is the
-  **combined operational variability of this sequential campaign** — pure re-submission
-  variance and ladder drift are not separately identifiable and **no inequality between
-  them is established** (drift can inflate or deflate sequential dispersion). It is the
-  right practical number for sequential A/B on this ladder; the runs-per-arm table is an
-  IID/stationary planning approximation whose drift control requires interleaving. Re-submission draws an
-  independent sample (zero duplicate scores across 14). A mature 160-game read takes
-  ~2 h when the host stays awake. Prefer interleaved A/B/A/B over blocked runs. Re-run
-  the estimator after every new mature deployment. **Read scores only from an
-  agent-validated block** (the room serves a persistent stale row — agent 6604529 /
-  field 140 / 22.46 — that camouflages as a plausible value; the registry now faults
-  it automatically).
+  `cgauto/arena_noise_band.py`). **Supersedes the earlier 1.098** (6 d.o.f.) after the
+  2026-08-13 four-run same-source campaign; the CI's lower bound now sits *above* the old point
+  estimate, so the previous figure was optimistic, not merely imprecise. Difference SD at n=1
+  per arm = **2.123**; SE 1.0 needs **5** runs/arm, SE 0.5 needs **19** (~76 h), SE 0.3 needs
+  **51**. A mature 160-game read takes **~2 h**.
+  - **What this number is** (wording required by `codex_1`'s review, 2026-08-13): `1.501`
+    estimates **combined operational variability for sequential same-source deployments in the
+    observed campaign**. Pure re-submission variance and ladder drift are **not separately
+    identifiable** from these data, and **no inequality between them is established** — drift can
+    increase *or* decrease within-family dispersion depending on its direction, timing and
+    covariance with deployment order. An earlier draft of mine called `1.501` an upper bound on
+    re-submission variance; **that claim is withdrawn** — it assumed an additive, independent
+    drift term that this design cannot establish.
+  - **The runs-per-arm figures are a planning approximation, not a guarantee.** They are exact
+    under independent, stationary observations with variance `1.501²`. Persistent or
+    autocorrelated drift can prevent the nominal `1/√n` improvement. **Interleaved A/B/A/B is
+    required** to distribute drift across arms — with sequential blocks the arithmetic does not
+    hold. Re-run the estimator after every new mature deployment.
+  - Evidence: campaign family `e7a-readable-no-orchard-code-cost`, n=6 on byte-identical
+    `98628e98…` — [19.77, 22.46, 23.39, 23.73, 24.76, 24.90], range 5.13, which is 2–3× every
+    other family (1.70–1.77). Task record `20260810-arena-noise-band-measurement`; independently
+    reproduced by `codex_1` to `SD 1.5010773908540938`.
+  - **Read scores only from an agent-validated block.** The room serves a persistent
+    stale row — agent 6604529 / field 140 / score 22.46 — that camouflages as a plausible
+    value (it nearly entered the registry twice); the registry now faults any checkpoint
+    whose arena block names a foreign agent.
   - **Unchanged:** mutations remain serialized through the **single arena controller**
     (now `local_claude_1` by owner reassignment — see the note in this section). No peer agent
     or subagent may submit. One cycle in flight at a time — that is a ladder-slot constraint,

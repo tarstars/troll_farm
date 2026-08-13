@@ -303,16 +303,32 @@ family with more than four observations — the earlier 1.098 rested on families
 historical gates (±0.5, ≥+1.0, ≥+2) are less resolvable than the record assumed: a ≥+1.0 call now
 needs 5 runs per arm, not 3.
 
-### What Phase 1 cannot separate — stated, not hedged
+### What Phase 1 cannot separate — corrected wording (`codex_1` review, 2026-08-13)
 
 **Re-deployment noise and ladder drift are confounded in this design and no analysis of these six
 observations can separate them.** The runs are strictly sequential — never contemporaneous — and
 span 2026-08-04 → 2026-08-13, during which the field grew 139 → 147 and opponents resubmitted
-freely. Run 1's 19.77 in particular sits in a freshly grown legend-147 era. So `1.501` is an upper
-bound on pure re-submission variance and a lower bound on nothing: it is *the spread you should
-expect between two sequential reads of identical bytes*, which is exactly the quantity a
-sequential A/B on this ladder faces. Separating the two components needs a design this campaign
-does not have (interleaved or contemporaneous arms), and the budget is spent.
+freely. Run 1's 19.77 in particular sits in a freshly grown legend-147 era.
+
+**`1.501` estimates combined operational variability for sequential same-source deployments in the
+observed campaign. Pure re-submission variance and ladder drift are not separately identifiable
+from these data, and no inequality between them is established.**
+
+**WITHDRAWN: my earlier claim that `1.501` is "an upper bound on pure re-submission variance."**
+That required drift to enter as an additive, independent term — then observed variance would be
+the sum and the inequality would follow. This design establishes no such thing: drift can
+*decrease* within-family dispersion as easily as increase it, depending on its direction, timing
+and covariance with deployment order. The conclusion I drew (the components are inseparable) was
+right; the inequality I attached to it was not established. **This is my "right finding, wrong
+reason" pattern in its exact classic form** — I stopped checking once the direction felt
+intuitive.
+
+**The runs-per-arm table is an IID/stationary planning approximation, not a guarantee.** It is
+arithmetically exact under independent, stationary observations with variance `1.501²`. Persistent
+or autocorrelated drift can prevent the nominal `1/√n` improvement, so **an interleaved A/B/A/B
+design is required** to distribute drift across arms; the figures do not license sequential
+blocked runs. Separating the components needs a design this campaign does not have, and the
+budget is spent.
 
 **Agent id not yet assigned at 05:25Z:** `cg_rank.py` still reports the arena room at
 `agentId=6612307` — run 3's agent, score 24.9, rank 21/147. That is the known room-cache lag, not
