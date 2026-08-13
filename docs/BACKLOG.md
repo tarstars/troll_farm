@@ -179,9 +179,11 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
   [1.049, 2.634] (14 mature obs / 10 d.o.f.; resident family n=6 spans 5.13).** The
   ±0.5–1 band is dead; a ≥+1.0 gate now needs 5 runs/arm. Campaign: 4 runs executed
   (runs 3–4 under claude_1's VM lease, ended on handoff), registry appended via
-  manifest, integrated to trunk; codex_1's analysis review pending. Drift vs variance
-  stays confounded by design — 1.501 is the practical sequential-A/B number.
-  Full statement: `docs/STATE.md` §3 and the 20260813T064318Z handoff.
+  manifest, integrated to trunk; **codex_1 review DELIVERED 2026-08-13 — repair accepted, numbers
+  reproduced, one wording correction applied (1.501 = combined operational variability;
+  no variance/drift inequality established). TASK CLOSED.**
+  Full statement: `docs/STATE.md` §3; review
+  `codex_1/reviews/arena-noise-band-measurement-review-2026-08-13.md`.
   `coordination/tasks/20260810-arena-noise-band-measurement.md`. Original framing (kept for
   the record; the blocking question below was answered before spending, as demanded): The owner removed the
   noise-band gate on candidates 2026-08-12, which makes measurement throughput the binding

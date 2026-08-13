@@ -1,8 +1,12 @@
 # 20260810-arena-noise-band-measurement: measure the ladder's run-to-run noise, and separate our variance from the ladder's drift
 
-- Status: **AUTHORIZED / IN PROGRESS — owner decision 2026-08-12: Phase 1, 4 runs ≈ 8 h.**
-  Questions 2 and 3 are thereby answered (churn accepted; budget four runs); question 1
-  was answered 2026-08-10; question 4 (era denominator) stays open for the analysis.
+- Status: **✅ CLOSED 2026-08-13.** Delivered σ = 1.501, CI [1.049, 2.634] (14 mature
+  obs / 10 d.o.f.); codex_1 review accepted the registry repair and reproduced every
+  number; its one required correction is applied to the living docs: **1.501 is the
+  combined operational variability of a sequential campaign — no inequality between
+  re-submission variance and drift is established**; runs-per-arm is an IID planning
+  approximation. All four owner questions answered (Q4: era effects fold into the
+  combined figure; separation requires interleaving, not run counts).
 - Record owner: local_claude_1
 - Work owner: local_claude_1 (claimed 2026-08-12; sole Arena controller). **Remainder
   delegated 2026-08-12T20:14Z to claude_1 on the VM under a bounded lease** (owner

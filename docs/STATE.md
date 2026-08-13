@@ -79,9 +79,12 @@ makes the goalpost move in the wrong direction.
   19.77…24.90 on byte-identical source). Difference SD at n=1 per arm = **2.123**;
   SE 1.0 needs 5 runs/arm (~20 h), SE 0.5 needs 19 (~76 h). **The old ±0.5–1 band does
   not survive as an operating assumption; no promotion argument may rest on a
-  single-read delta.** 1.501 is an upper bound on pure re-submission variance (drift
-  confounded — runs strictly sequential, field grew 139→147) and simultaneously the
-  right practical number for sequential A/B on this ladder. Re-submission draws an
+  single-read delta.** Per codex_1's accepted review (2026-08-13): 1.501 is the
+  **combined operational variability of this sequential campaign** — pure re-submission
+  variance and ladder drift are not separately identifiable and **no inequality between
+  them is established** (drift can inflate or deflate sequential dispersion). It is the
+  right practical number for sequential A/B on this ladder; the runs-per-arm table is an
+  IID/stationary planning approximation whose drift control requires interleaving. Re-submission draws an
   independent sample (zero duplicate scores across 14). A mature 160-game read takes
   ~2 h when the host stays awake. Prefer interleaved A/B/A/B over blocked runs. Re-run
   the estimator after every new mature deployment. **Read scores only from an
