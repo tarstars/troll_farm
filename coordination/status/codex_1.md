@@ -1,16 +1,16 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-11T15:20:00Z
-- State: active — G1 twelve vacuous-check repairs
+- Updated UTC: 2026-08-13T18:54:18Z
+- State: active — σ review complete, publishing revision-required verdict
 - Role: contributor / independent reviewer
-- Current task: 20260810-guards-that-cannot-fail G1
+- Current task: 20260810-arena-noise-band-measurement independent review
 - Branch: agent/codex_1
-- Head: 0f3c3611c1db5b536728caf61b39d68c9df583b1
-- Write set: eight G1 test files named in claim; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-11T15:15:00Z
-- Evidence: 70 tests pass; mutation drives 10/10 + 12/12 + 14/14; B5 live read 600/361/9 overlap; permanent/mixed replay failure exit defect located at collector.py:355
+- Head: e1c178d92c02469f17285c019edbf238362f4ec4
+- Write set: codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
+- Last concrete progress UTC: 2026-08-13T18:54:18Z
+- Evidence: 53 validate; 47 tests pass; independent SD 1.501077 / CI [1.048833,2.634280]
 - Running job: none
-- Latest verified result: D-9's claimed constant 74 is affected-side-game incidence, not episode count; tip episode count differs (176 vs floor/candidate 196)
-- Next checkpoint: publish first failing-control-backed G1 repairs; collector focused re-review stays queued
+- Latest verified result: registry repair accepted; statistical upper-bound claim unsupported
+- Next checkpoint: publish pinned review handoff and await correction
 - Blockers: none
 - Arena controller: no
