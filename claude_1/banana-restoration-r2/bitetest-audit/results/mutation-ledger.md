@@ -1,7 +1,7 @@
 # Mutation ledger (generated — do not hand-edit)
 
 Source: `results/mutation-results.json`  
-manifest sha256 `c269ab779fcecb990acd6db96881de8d5552a2742728938c6307499c6ac151c0`  
+manifest sha256 `13fcdd7c6681f0cddf1bc5c1aee30586256c7212c684f89ea644e2fb15c2950c`  
 runner sha256 `8dbf4f7774a2cdc014e702675cf9fcf3e051b57f91fcf914782451bc706dd519`  
 probe corpus sha256 `9afe7f3cf3cb073158e67226ddbed31a750cda19900fc031853195cb8b0f3ddb`  
 python 3.12.3, control green: True
@@ -9,25 +9,25 @@ python 3.12.3, control green: True
 Pinned sources:
 
 - `conversion_race_oracle.py` sha256 `e0896e3f7cb2c7ac4ced35350469d704432f8c7a1a8a4c9c4ce41495ca13ecf7`
-- `test_trace_detectors.py` sha256 `3649d678c56902dbed1504373b62d1f17c03e9a7b5c192d7a58b8642c1f2dfc9`
+- `test_trace_detectors.py` sha256 `28bbe54f03093ce58bc9da039019a71c0af2dd8c252c19ee0820d7d0ed1b679e`
 - `trace_detectors.py` sha256 `59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209`
 
-Totals: **64 mutants run, 46 caught, 18 survived** (kill rate 71.9 %). `caught_by_expected` = 46; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 15 UNWITNESSED; PROBE_SENSITIVE survivors = 12.
+Totals: **64 mutants run, 51 caught, 13 survived** (kill rate 79.7 %). `caught_by_expected` = 51; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 15 UNWITNESSED; PROBE_SENSITIVE survivors = 9.
 
 ## Per detector
 
 | Det | mutants | caught | caught_by_expected | survived | PROBE_SENSITIVE survivors | kill rate |
 |---|---|---|---|---|---|---|
-| D-1 | 8 | 2 | 2 | 6 | 4 | 25 % |
+| D-1 | 8 | 5 | 5 | 3 | 3 | 62 % |
 | D-2 | 6 | 2 | 2 | 4 | 2 | 33 % |
-| D-3 | 4 | 3 | 3 | 1 | 1 | 75 % |
-| D-4 | 6 | 2 | 2 | 4 | 3 | 33 % |
+| D-3 | 4 | 4 | 4 | 0 | 0 | 100 % |
+| D-4 | 6 | 3 | 3 | 3 | 2 | 50 % |
 | D-5 | 8 | 8 | 8 | 0 | 0 | 100 % |
 | D-6 | 9 | 9 | 9 | 0 | 0 | 100 % |
 | D-7 | 8 | 6 | 6 | 2 | 2 | 75 % |
 | D-8 | 11 | 10 | 10 | 1 | 0 | 91 % |
 | D-9 | 4 | 4 | 4 | 0 | 0 | 100 % |
-| **all** | **64** | **46** | **46** | **18** | **12** | **71.9 %** |
+| **all** | **64** | **51** | **51** | **13** | **9** | **79.7 %** |
 
 ## Full ledger
 
@@ -37,11 +37,11 @@ Totals: **64 mutants run, 46 caught, 18 survived** (kill rate 71.9 %). `caught_b
 |---|---|---|---|---|---|
 | D1-M1 | D-1 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | window threshold >= 6 transitions (k>=3) -> >= 4 |
 | D1-M2 | D-1 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | window threshold >= 6 transitions (k>=3) -> >= 8 |
-| D1-M7 | D-1 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | window threshold >= 6 transitions (k>=3) -> >= 5 |
+| D1-M7 | D-1 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | window threshold >= 6 transitions (k>=3) -> >= 5 |
 | D1-M8 | D-1 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | window threshold >= 6 transitions (k>=3) -> >= 9 |
 | D1-M3 | D-1 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | A2 progress event 'carry change' deleted |
-| D1-M4 | D-1 | `trace_detectors.py` | SURVIVED | UNWITNESSED | A2 progress event 'plant created/removed at u's cell' deleted |
-| D1-M5 | D-1 | `trace_detectors.py` | SURVIVED | UNWITNESSED | A2 progress event 'inventory change on a DROP/PICK turn' deleted |
+| D1-M4 | D-1 | `trace_detectors.py` | CAUGHT | UNWITNESSED | A2 progress event 'plant created/removed at u's cell' deleted |
+| D1-M5 | D-1 | `trace_detectors.py` | CAUGHT | UNWITNESSED | A2 progress event 'inventory change on a DROP/PICK turn' deleted |
 | D1-M6 | D-1 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | period-2 A,B,A,B shape requirement deleted (any motion counts) |
 | D2-M1 | D-2 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | D-2 window length <= 12 turns -> <= 3 |
 | D2-M2 | D-2 | `trace_detectors.py` | SURVIVED | UNWITNESSED | D-2 window length <= 12 turns -> <= 120 |
@@ -51,13 +51,13 @@ Totals: **64 mutants run, 46 caught, 18 survived** (kill rate 71.9 %). `caught_b
 | D2-M5 | D-2 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | net-zero-over-window requirement deleted |
 | D3-M1 | D-3 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a) run length >= 2 consecutive turns -> >= 1 |
 | D3-M2 | D-3 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a) run length >= 2 consecutive turns -> >= 3 |
-| D3-M3 | D-3 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | clause (b) landing-on-stationary-working-peer disabled outright |
+| D3-M3 | D-3 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (b) landing-on-stationary-working-peer disabled outright |
 | D3-M4 | D-3 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a) proxy widened: destination identity dropped, any two own MOVEs on one turn count as a shared target |
 | D4-M1 | D-4 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | stall tolerance: 2 consecutive non-decreases -> 1 |
 | D4-M2 | D-4 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | stall tolerance: 2 consecutive non-decreases -> 3 |
 | D4-M3 | D-4 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | non-progress test d1 >= d0 (stall counts) -> d1 > d0 (only retreat counts): equality semantics flipped |
 | D4-M4 | D-4 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | banned non-bank verb set reduced to {MINE} |
-| D4-M5 | D-4 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | I-21 forced (full-capacity) commitment start deleted |
+| D4-M5 | D-4 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | I-21 forced (full-capacity) commitment start deleted |
 | D4-M6 | D-4 | `trace_detectors.py` | SURVIVED | UNWITNESSED | DROP-at-door commitment start deleted |
 | D5-M1 | D-5 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | I-12 Ring membership cheby == 1 -> cheby == 2 |
 | D5-M6 | D-5 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | I-12 Ring narrowed from cheby == 1 to the four orthogonal doors |

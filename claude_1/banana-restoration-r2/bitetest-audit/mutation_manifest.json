@@ -7,7 +7,7 @@
  "pinned_sources": {
   "trace_detectors.py": "59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209",
   "conversion_race_oracle.py": "e0896e3f7cb2c7ac4ced35350469d704432f8c7a1a8a4c9c4ce41495ca13ecf7",
-  "test_trace_detectors.py": "3649d678c56902dbed1504373b62d1f17c03e9a7b5c192d7a58b8642c1f2dfc9"
+  "test_trace_detectors.py": "28bbe54f03093ce58bc9da039019a71c0af2dd8c252c19ee0820d7d0ed1b679e"
  },
  "test_command": "python3 -m unittest test_trace_detectors",
  "baseline_tests": 28,
@@ -48,7 +48,8 @@
    "replacement": "(t - 1) - s >= 5",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD1"
+    "TestD1",
+    "TestD1Uncovered"
    ],
    "intent": "window threshold >= 6 transitions (k>=3) -> >= 5",
    "excluded_from_totals": false
@@ -87,7 +88,8 @@
    "replacement": "            if False and ((p0 is None) != (p1 is None)):   # MUTANT\n                return True\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD1"
+    "TestD1",
+    "TestD1Uncovered"
    ],
    "intent": "A2 progress event 'plant created/removed at u's cell' deleted",
    "excluded_from_totals": false
@@ -100,7 +102,8 @@
    "replacement": "                if False and (tr.state(t).inventories[0]\n                              != tr.state(t + 1).inventories[0]):   # MUTANT\n                    return True\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD1"
+    "TestD1",
+    "TestD1Uncovered"
    ],
    "intent": "A2 progress event 'inventory change on a DROP/PICK turn' deleted",
    "excluded_from_totals": false
@@ -230,7 +233,8 @@
    "replacement": "flags.append(False)   # MUTANT: clause (b) disabled",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD3"
+    "TestD3",
+    "TestD3Uncovered"
    ],
    "intent": "clause (b) landing-on-stationary-working-peer disabled outright",
    "excluded_from_totals": false
@@ -308,7 +312,8 @@
    "replacement": "                if False:                   # MUTANT: I-21 start gone\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD4"
+    "TestD4",
+    "TestD4Uncovered"
    ],
    "intent": "I-21 forced (full-capacity) commitment start deleted",
    "excluded_from_totals": false

@@ -1110,5 +1110,143 @@ class TestD9(unittest.TestCase):
         self.assertEqual(verdict(td.detect_d9(tr)), ("PASS", 0))
 
 
+class TestD1Uncovered(unittest.TestCase):
+    """G6 fixtures for the two D-1 progress clauses the audit found with NO_FIXTURE.
+
+    Task `20260810-guards-that-cannot-fail`, sub-item G6. Fixtures only.
+
+      (d) inventory change on a DROP/PICK turn `:584` -> D1-M5
+      (e) plant created/removed at the unit's cell `:588` -> D1-M4
+
+    These clauses do not raise episodes — they SUPPRESS them. `progress(t)` decides whether a
+    turn counts as real work; an oscillation run is only reported when no progress happens
+    throughout it. So deleting a progress source makes the detector flag MORE, and each
+    fixture below is an innocent trace that must stay silent: the run oscillates, but a
+    genuine progress event breaks it. The mutant reports an oscillation that is not there.
+    """
+
+    A, B = (1, 1), (1, 2)
+
+    def osc(self, turns=10, inv_change_at=None, plant_at=None, drop_at=None):
+        """Unit 0 paces A-B-A-B…; optionally one progress event partway through."""
+        blocks, cmds = [], []
+        for t in range(1, turns + 1):
+            cell = self.A if t % 2 else self.B
+            inv = carry_of(wood=1) if (inv_change_at is not None and t > inv_change_at) else [0] * 6
+            plants = ([plant("BANANA", cell)]
+                      if (plant_at is not None and t > plant_at) else [])
+            blocks.append(turn_block([unit(0, 0, cell), OPP], plants=plants, inv0=inv))
+            nxt = self.B if t % 2 else self.A
+            cmds.append("DROP 0" if t == drop_at else f"MOVE 0 {nxt[0]} {nxt[1]}")
+        return make_trace(blocks, cmds)
+
+    def test_a_plain_pacing_run_is_an_oscillation(self):
+        """Precondition for the two tests below: with no progress at all, this fires.
+        Without it, a fixture that expects silence proves nothing — silence would be the
+        default rather than the consequence of the clause under test."""
+        self.assertEqual(td.detect_d1(self.osc())["verdict"], "FAIL")
+
+    def test_inventory_change_on_a_drop_turn_counts_as_progress(self):
+        """(d): the unit banks something mid-pace. That is real work, so the run is broken
+        and no oscillation is reported."""
+        self.assertEqual(verdict(td.detect_d1(self.osc(inv_change_at=5, drop_at=5))), ("PASS", 0))
+
+    def test_a_plant_appearing_at_the_unit_cell_counts_as_progress(self):
+        """(e): a plant appears where the unit is standing — the world changed, so the
+        pacing is not idle churn."""
+        self.assertEqual(verdict(td.detect_d1(self.osc(plant_at=5))), ("PASS", 0))
+
+
+class TestD3Uncovered(unittest.TestCase):
+    """G6 fixture for D-3 clause (b), `landing on a stationary working peer` `:723-753`.
+
+    Kills D3-M3 (clause disabled outright).
+
+    **Population caveat, carried from the audit:** D-3 has never fired in a referee-produced
+    trace — zero episodes across 720 games. These fixtures pin the IMPLEMENTATION against the
+    spec; they say nothing about whether the situation occurs in real play.
+    """
+
+    PEER = (5, 5)
+
+    def landing_trace(self, peer_moves):
+        peer = ([self.PEER] * 5 if not peer_moves
+                else [self.PEER, (6, 5), self.PEER, (6, 5), self.PEER])
+        own = [(5, 4)] + [self.PEER] * 4
+        blocks = [turn_block([unit(0, 0, own[i]), unit(1, 0, peer[i]), OPP]) for i in range(5)]
+        cmds = [f"MOVE 0 {peer[min(i + 1, 4)][0]} {peer[min(i + 1, 4)][1]};WAIT 1"
+                for i in range(5)]
+        return make_trace(blocks, cmds)
+
+    def test_moving_onto_a_stationary_working_peer_is_flagged(self):
+        """The violation: unit 0 keeps stepping onto unit 1's square while unit 1 stands
+        there working. Two consecutive turns is the threshold."""
+        res = td.detect_d3(self.landing_trace(peer_moves=False))
+        self.assertEqual(res["verdict"], "FAIL")
+        self.assertEqual(res["episodes"][0]["kind"], "landing_on_working_peer")
+
+    def test_a_peer_that_keeps_moving_is_not_landed_on(self):
+        """The innocent case: the peer is not stationary, so there is no one to crowd."""
+        self.assertEqual(verdict(td.detect_d3(self.landing_trace(peer_moves=True))), ("PASS", 0))
+
+
+class TestD4Uncovered(unittest.TestCase):
+    """G6 fixtures for the two D-4 commitment-start branches the audit found with NO_FIXTURE.
+
+      (d) I-21 full-capacity forced commitment `:785` -> D4-M5
+      (e) DROP-at-door commitment start `:789`        -> D4-M6, an EQUIVALENT MUTANT
+
+    Branch (e) is NOT pinned and D4-M6 is NOT killed; see
+    `test_drop_at_a_door_starts_and_ends_the_interval_on_the_same_turn` for the demonstration.
+    """
+
+    def wood_trace(self, carry, cell, cmds):
+        blocks = [turn_block([unit(0, 0, cell, carry=carry), OPP]) for _ in cmds]
+        return make_trace(blocks, cmds)
+
+    # --- (d) I-21 forced commitment ------------------------------------------------
+
+    def test_a_full_hold_forces_a_banking_commitment(self):
+        """The violation: capacity is entirely used by wood, so under I-21 the unit is
+        committed to banking whether or not it says so — and chopping instead is flagged."""
+        tr = self.wood_trace(carry_of(wood=2), (6, 6), ["CHOP 0", "CHOP 0"])
+        res = td.detect_d4(tr)
+        self.assertEqual(res["verdict"], "FAIL")
+        self.assertEqual(res["episodes"][0]["kind"], "non_bank_verb")
+
+    def test_spare_capacity_with_no_banking_intent_is_not_a_commitment(self):
+        """The innocent case: identical trace with one wood instead of two. There is room
+        left, nothing signals an intent to bank, so no interval starts and chopping is fine.
+        Capacity is the only difference between this and the test above."""
+        tr = self.wood_trace(carry_of(wood=1), (6, 6), ["CHOP 0", "CHOP 0"])
+        self.assertEqual(verdict(td.detect_d4(tr)), ("PASS", 0))
+
+    # --- (e) DROP-at-door start: equivalent mutant, documented not pinned -------------
+
+    def test_drop_at_a_door_starts_and_ends_the_interval_on_the_same_turn(self):
+        """Branch (e) has no observable consequence, so D4-M6 cannot be killed.
+
+        The clause starts a commitment interval when a carrying unit DROPs on a door cell.
+        But on that same turn: `DROP` is not one of `D4_BANNED_VERBS`, so no episode can be
+        raised; and `executed_drop` is true a few lines later, which immediately clears
+        `committed`. The interval is therefore born and closed within one turn having
+        emitted nothing. Its only other effect is `nd_run = 0`, and every commitment start
+        sets `nd_run = 0` anyway, so that reset can never be observed either.
+
+        Confirmed by differential: the mutant that deletes this clause changes D-4 output on
+        **0 of 416** probe-corpus traces.
+
+        This test pins the reasoning rather than the branch: it asserts the two facts the
+        equivalence rests on, so if either changes — if DROP becomes a banned verb, or the
+        same-turn clear is removed — the branch becomes load-bearing and this fails to say so.
+        """
+        tr = self.wood_trace(carry_of(wood=1), DOOR, ["DROP 0", "CHOP 0"])
+        self.assertNotIn("DROP", td.D4_BANNED_VERBS)
+        self.assertIn(DOOR, tr.doors)
+        # The DROP turn commits and un-commits, so the CHOP on the next turn is not inside
+        # any interval and nothing is reported.
+        self.assertEqual(verdict(td.detect_d4(tr)), ("PASS", 0))
+
+
 if __name__ == "__main__":
     unittest.main()
