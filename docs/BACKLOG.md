@@ -143,9 +143,10 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
   transport tests run via subprocess, so in-process coverage cannot vouch for them — mutation
   drives are the honest instrument for G2). G2 ✅ **CLOSED/INTEGRATED same day** (claude_1's 13-mutant targeted pass, codex_1 independent
   reproduction, provenance revision `6fbacca4` merged; doer/reviewer/integrator all distinct).
-  G6 (claude_1, owner go-ahead GRANTED 2026-08-12): **IN PROGRESS — 4 of 19 branches pinned**
-  (all D-7); real surface is 19 actionable, see the banana section for the D-9 correction.
-  Guards scoreboard: **G1–G5 ✅ · G6 in progress · then claude_1 → c5 instrument ruling.**
+  G6 ✅ **COMPLETE 2026-08-13** — all 19 actionable branches resolved (17 pinned with both
+  halves; 2 proven untestable-equivalent, excluded by ruling with proofs); kill rate
+  21/64 → **51/62**; codex_1's review is the last gate on the whole guards task.
+  Guards scoreboard: **G1–G6 ✅ (G6 review pending) · now: claude_1 → c5 instrument ruling.**
 
 ## P0 — OWNER RULE 2026-08-10: no banana before the second troll
 
