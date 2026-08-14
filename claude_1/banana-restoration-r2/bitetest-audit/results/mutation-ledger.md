@@ -1,7 +1,7 @@
 # Mutation ledger (generated — do not hand-edit)
 
 Source: `results/mutation-results.json`  
-manifest sha256 `686ce17d56890973314acf94a0089be5052fe1ee53c3d603d879f5e269caa989`  
+manifest sha256 `1495ec5457d07eae5d7b8324f01d2db6997edf806b2c96ce40c138dec0582d86`  
 runner sha256 `8dbf4f7774a2cdc014e702675cf9fcf3e051b57f91fcf914782451bc706dd519`  
 probe corpus sha256 `9afe7f3cf3cb073158e67226ddbed31a750cda19900fc031853195cb8b0f3ddb`  
 python 3.12.3, control green: True
@@ -12,7 +12,7 @@ Pinned sources:
 - `test_trace_detectors.py` sha256 `28bbe54f03093ce58bc9da039019a71c0af2dd8c252c19ee0820d7d0ed1b679e`
 - `trace_detectors.py` sha256 `59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209`
 
-Totals: **63 mutants run, 51 caught, 12 survived** (kill rate 81.0 %). `caught_by_expected` = 51; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 14 UNWITNESSED; PROBE_SENSITIVE survivors = 9.
+Totals: **62 mutants run, 51 caught, 11 survived** (kill rate 82.3 %). `caught_by_expected` = 51; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 13 UNWITNESSED; PROBE_SENSITIVE survivors = 9.
 
 ## Per detector
 
@@ -21,13 +21,13 @@ Totals: **63 mutants run, 51 caught, 12 survived** (kill rate 81.0 %). `caught_b
 | D-1 | 8 | 5 | 5 | 3 | 3 | 62 % |
 | D-2 | 6 | 2 | 2 | 4 | 2 | 33 % |
 | D-3 | 4 | 4 | 4 | 0 | 0 | 100 % |
-| D-4 | 6 | 3 | 3 | 3 | 2 | 50 % |
+| D-4 | 5 | 3 | 3 | 2 | 2 | 60 % |
 | D-5 | 8 | 8 | 8 | 0 | 0 | 100 % |
 | D-6 | 9 | 9 | 9 | 0 | 0 | 100 % |
 | D-7 | 8 | 6 | 6 | 2 | 2 | 75 % |
 | D-8 | 10 | 10 | 10 | 0 | 0 | 100 % |
 | D-9 | 4 | 4 | 4 | 0 | 0 | 100 % |
-| **all** | **63** | **51** | **51** | **12** | **9** | **81.0 %** |
+| **all** | **62** | **51** | **51** | **11** | **9** | **82.3 %** |
 
 ## Full ledger
 
@@ -58,7 +58,6 @@ Totals: **63 mutants run, 51 caught, 12 survived** (kill rate 81.0 %). `caught_b
 | D4-M3 | D-4 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | non-progress test d1 >= d0 (stall counts) -> d1 > d0 (only retreat counts): equality semantics flipped |
 | D4-M4 | D-4 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | banned non-bank verb set reduced to {MINE} |
 | D4-M5 | D-4 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | I-21 forced (full-capacity) commitment start deleted |
-| D4-M6 | D-4 | `trace_detectors.py` | SURVIVED | UNWITNESSED | DROP-at-door commitment start deleted |
 | D5-M1 | D-5 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | I-12 Ring membership cheby == 1 -> cheby == 2 |
 | D5-M6 | D-5 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | I-12 Ring narrowed from cheby == 1 to the four orthogonal doors |
 | D5-M2 | D-5 | `trace_detectors.py` | CAUGHT | UNWITNESSED | I-5 orthogonal cutoff 2*CD -> 1*CD |
@@ -103,6 +102,7 @@ Totals: **63 mutants run, 51 caught, 12 survived** (kill rate 81.0 %). `caught_b
 
 | id | det | result | liveness | why excluded |
 |---|---|---|---|---|
+| D4-M6 | D-4 | SURVIVED | UNWITNESSED |  |
 | D8-M8 | D-8 | SURVIVED | UNWITNESSED |  |
 | D3-M4-RETIRED | D-3 | SURVIVED | UNWITNESSED | RETIRED, excluded from totals. This patch is INERT: the command parser files a command under Trace.cmds(t).by_unit only when cmd.unit_id is not None (trace_detectors.py:410), and WAIT is parsed with unit_id None (:393-394), so cmd_of (:493-494) can never return a WAIT command and the widened branch is unreachable. It is kept and re-run so the delta against the 2026-08-08 ledger is auditable, and replaced in the counted set by D3-M4 (destination identity dropped). |
 
@@ -133,7 +133,6 @@ Totals: **63 mutants run, 51 caught, 12 survived** (kill rate 81.0 %). `caught_b
 | D4-M3 | `8f976d25fe0a373aaf884dd8146a7a769d4ecf64720686da2bb22290a38f023b` |
 | D4-M4 | `3c9097ac3d6034820cbf9181c03f2ddee0e33437016e420af2f79240cef2261c` |
 | D4-M5 | `f5b534f7557c996f2dd537a1121fadd66d0497897d2d5d14a2f9cc881a68c773` |
-| D4-M6 | `6cb1c8e9fc09fda732bde2e00d82c4be4c23df7b363ff5f3674da364a6000584` |
 | D5-M1 | `51093365f2ef1ab3cb05dc5f92cfb5d1333ed357cdd258ac9ab62a93282a84e5` |
 | D5-M6 | `4368e83fe9ad5afe2b17d0760f1b66615dbe251444214a32aeb420217a30908b` |
 | D5-M2 | `00ef01fdb5cb2236cfe61b84bf2519f32112013210403c2f050fe81c986a1fb2` |
