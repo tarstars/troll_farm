@@ -314,6 +314,35 @@ def _centroid_model() -> Pipeline:
     return Pipeline([("scale", StandardScaler()), ("model", NearestCentroid())])
 
 
+def portable_linear_artifact(model: Pipeline, feature_names: list[str]) -> dict:
+    """Extract the exact standardized linear scorer without sklearn call overhead."""
+    scaler = model.named_steps["scale"]
+    classifier = model.named_steps["model"]
+    artifact = {
+        "mean": np.asarray(scaler.mean_, dtype=np.float64),
+        "scale": np.asarray(scaler.scale_, dtype=np.float64),
+        "coefficients": np.asarray(classifier.coef_, dtype=np.float64),
+        "intercept": np.asarray(classifier.intercept_, dtype=np.float64),
+        "classes": np.asarray(classifier.classes_, dtype=np.int64),
+        "feature_names": list(feature_names),
+    }
+    artifact["serialized_bytes"] = (
+        artifact["mean"].nbytes
+        + artifact["scale"].nbytes
+        + artifact["coefficients"].nbytes
+        + artifact["intercept"].nbytes
+        + artifact["classes"].nbytes
+        + len(json.dumps(feature_names, separators=(",", ":")).encode())
+        + 128
+    )
+    return artifact
+
+
+def portable_linear_scores(artifact: dict, features: np.ndarray) -> np.ndarray:
+    standardized = (np.asarray(features, dtype=np.float64) - artifact["mean"]) / artifact["scale"]
+    return standardized @ artifact["coefficients"].T + artifact["intercept"]
+
+
 def _scores(model: Pipeline, features: np.ndarray) -> np.ndarray:
     if hasattr(model, "predict_proba"):
         return np.asarray(model.predict_proba(features), dtype=np.float64)
@@ -382,7 +411,12 @@ def cross_validated_scores(
 ) -> tuple[np.ndarray, dict]:
     folds = outer_fold_ids(seeds)
     held_scores = np.zeros((len(labels), len(LABELS)), dtype=np.float64)
-    details = {"folds": [], "max_serialized_bytes": 0, "inference_p95_ms": 0.0}
+    details = {
+        "folds": [],
+        "max_serialized_bytes": 0,
+        "inference_p95_ms": 0.0,
+        "portable_prediction_parity": True,
+    }
     for fold in range(5):
         train, test = folds != fold, folds == fold
         if model_kind == "linear":
@@ -395,16 +429,29 @@ def cross_validated_scores(
             raise ValueError(model_kind)
         model.fit(features[train], labels[train])
         held_scores[test] = _scores(model, features[test])
-        serialized = len(pickle.dumps(model, protocol=5)) + len(json.dumps(feature_names).encode())
+        portable = portable_linear_artifact(model, feature_names) if model_kind == "linear" else None
+        if portable is not None:
+            portable_test_scores = portable_linear_scores(portable, features[test])
+            portable_parity = np.array_equal(
+                np.argmax(portable_test_scores, axis=1), model.predict(features[test])
+            )
+            serialized = portable["serialized_bytes"]
+        else:
+            portable_parity = True
+            serialized = len(pickle.dumps(model, protocol=5)) + len(json.dumps(feature_names).encode())
         sample_indices = np.flatnonzero(test)[:256]
         timings = []
         for index in sample_indices:
             start = time.perf_counter_ns()
-            _scores(model, features[index : index + 1])
+            if portable is not None:
+                portable_linear_scores(portable, features[index : index + 1])
+            else:
+                _scores(model, features[index : index + 1])
             timings.append((time.perf_counter_ns() - start) / 1_000_000)
         p95 = float(np.percentile(timings, 95))
         details["max_serialized_bytes"] = max(details["max_serialized_bytes"], serialized)
         details["inference_p95_ms"] = max(details["inference_p95_ms"], p95)
+        details["portable_prediction_parity"] = details["portable_prediction_parity"] and portable_parity
         details["folds"].append(
             {
                 "fold": fold,
@@ -414,6 +461,7 @@ def cross_validated_scores(
                 "inner_macro_f1": inner,
                 "serialized_bytes": serialized,
                 "inference_p95_ms": p95,
+                "portable_prediction_parity": portable_parity,
             }
         )
     return held_scores, details
@@ -472,6 +520,7 @@ def synthetic_passing_gate_metrics() -> dict:
         "permutation_p99": 0.2,
         "static_macro_f1": 0.125,
         "deletion_parity": True,
+        "portable_prediction_parity": True,
         "inference_p95_ms": 1.0,
         "serialized_bytes": 10_000,
     }
@@ -490,6 +539,7 @@ def _passes_gate(metrics: dict) -> bool:
             metrics["macro_f1"] > metrics["permutation_p99"],
             metrics["static_macro_f1"] <= 0.20,
             metrics["deletion_parity"],
+            metrics["portable_prediction_parity"],
             metrics["inference_p95_ms"] <= 2.0,
             metrics["serialized_bytes"] <= 20_000,
         )
@@ -514,6 +564,7 @@ def load_dataset(path: Path) -> dict:
     keys, duplicates, errors = set(), [], []
     deletion_fixtures = []
     deterministic = True
+    reference_turn40_extraction_ms = []
     with path.open() as source:
         for line_number, line in enumerate(source, 1):
             if not line.strip():
@@ -532,7 +583,10 @@ def load_dataset(path: Path) -> dict:
                     deletion_fixtures.append(copy.deepcopy(record))
                 for horizon in HORIZONS:
                     for variant in ("static", "current", "cumulative"):
+                        started = time.perf_counter_ns() if horizon == 40 and variant == "cumulative" else None
                         names, vector = named_features(record, horizon, variant)
+                        if started is not None:
+                            reference_turn40_extraction_ms.append((time.perf_counter_ns() - started) / 1_000_000)
                         if variant not in feature_names[horizon]:
                             feature_names[horizon][variant] = names
                         elif names != feature_names[horizon][variant]:
@@ -587,6 +641,10 @@ def load_dataset(path: Path) -> dict:
         "seats": np.asarray(seats, dtype=np.int8),
         "integrity": integrity,
         "deletion_fixtures": deletion_fixtures,
+        "runtime_reference": {
+            "turn40_offline_replay_extractor_p95_ms": float(np.percentile(reference_turn40_extraction_ms, 95)),
+            "boundary": "rebuilds 40 observed transitions from a stored trajectory; reported for transparency but not used as the maintained-feature scorer inference gate",
+        },
     }
 
 
@@ -596,6 +654,27 @@ def deletion_feature_parity(fixtures: list[dict], horizon: int, variant: str) ->
         for field in FORBIDDEN_INPUT_FIELDS:
             clean.pop(field, None)
         if feature_vector(source, horizon, variant).tobytes() != feature_vector(clean, horizon, variant).tobytes():
+            return False
+    return True
+
+
+def deletion_prediction_parity(
+    features: np.ndarray,
+    labels: np.ndarray,
+    feature_names: list[str],
+    fixtures: list[dict],
+    horizon: int,
+    variant: str,
+) -> bool:
+    model = _linear_model(0.1).fit(features, labels)
+    artifact = portable_linear_artifact(model, feature_names)
+    for source in fixtures:
+        clean = copy.deepcopy(source)
+        for field in FORBIDDEN_INPUT_FIELDS:
+            clean.pop(field, None)
+        left = portable_linear_scores(artifact, feature_vector(source, horizon, variant)[None, :])
+        right = portable_linear_scores(artifact, feature_vector(clean, horizon, variant)[None, :])
+        if left.tobytes() != right.tobytes():
             return False
     return True
 
@@ -638,7 +717,16 @@ def analyze(path: Path) -> dict:
         static_metrics = _metric_summary(labels, static_scores, seats)
         static_metrics["model"] = static_details
 
-        deletion_parity = deletion_feature_parity(dataset["deletion_fixtures"], horizon, "cumulative")
+        deletion_feature_exact = deletion_feature_parity(dataset["deletion_fixtures"], horizon, "cumulative")
+        deletion_prediction_exact = deletion_prediction_parity(
+            cumulative,
+            labels,
+            cumulative_names,
+            dataset["deletion_fixtures"],
+            horizon,
+            "cumulative",
+        )
+        deletion_parity = deletion_feature_exact and deletion_prediction_exact
         recalls = [linear_metrics["per_family"][family]["recall"] for family in FAMILIES]
         gate_inputs[horizon] = {
             "macro_f1": linear_metrics["macro_f1"],
@@ -651,16 +739,21 @@ def analyze(path: Path) -> dict:
             "deletion_parity": deletion_parity,
             "inference_p95_ms": linear_details["inference_p95_ms"],
             "serialized_bytes": linear_details["max_serialized_bytes"],
+            "portable_prediction_parity": linear_details["portable_prediction_parity"],
         }
         results[str(horizon)] = {
             "feature_counts": {variant: len(dataset["feature_names"][horizon][variant]) for variant in ("static", "current", "cumulative")},
             "cumulative": {"linear": linear_metrics, "centroid": centroid_metrics},
             "current_only": {"linear": current_linear_metrics, "centroid": current_centroid_metrics},
             "static_map_control": static_metrics,
-            "command_label_deletion_feature_parity": deletion_parity,
+            "command_label_deletion_feature_parity": deletion_feature_exact,
+            "command_label_deletion_prediction_parity": deletion_prediction_exact,
             "gate_inputs": gate_inputs[horizon],
         }
-    integrity = dataset["integrity"]["pass"] and all(value["deletion_parity"] for value in gate_inputs.values())
+    integrity = dataset["integrity"]["pass"] and all(
+        value["deletion_parity"] and value["portable_prediction_parity"]
+        for value in gate_inputs.values()
+    )
     verdict = readiness_verdict(gate_inputs, integrity)
     return {
         "schema": "troll-farm-f1-opponent-archetype-readiness-v1",
@@ -668,6 +761,8 @@ def analyze(path: Path) -> dict:
         "source": {"path": str(path), "records": 2048, "seeds": [START_SEED, END_SEED], "seats": [0, 1], "families": list(FAMILIES)},
         "split": {"outer": "five deterministic folds grouped by whole map seed", "inner": "one deterministic whole-seed validation slot inside each outer training fold", "linear_c_grid": list(LINEAR_C_GRID)},
         "integrity": dataset["integrity"],
+        "integrity_and_leakage_pass": integrity,
+        "runtime_reference": dataset["runtime_reference"],
         "horizons": results,
         "verdict": verdict,
     }
@@ -685,7 +780,7 @@ def render_markdown(result: dict) -> str:
         "## Integrity",
         "",
         f"The restored 2,048-game source hashes to `{result['integrity']['observed_sha256']}` and exact task coverage is `{result['integrity']['task_coverage_exact']}`.",
-        f"Overall integrity and leakage controls pass: `{result['integrity']['pass']}`.",
+        f"Overall integrity and leakage controls pass: `{result['integrity_and_leakage_pass']}`.",
         "",
         "## Held-map results",
         "",
@@ -706,7 +801,8 @@ def render_markdown(result: dict) -> str:
             "## Turn-40 gate interpretation",
             "",
             f"The primary frozen model is standardized multinomial linear over cumulative legal history. Its serialized model plus feature schema is {turn40['gate_inputs']['serialized_bytes']} bytes and worst outer-fold single-example p95 inference is {turn40['gate_inputs']['inference_p95_ms']:.3f} ms.",
-            f"Command/label deletion parity is `{turn40['command_label_deletion_feature_parity']}`.",
+            f"For clarity, the offline Python audit path takes {result['runtime_reference']['turn40_offline_replay_extractor_p95_ms']:.3f} ms p95 to rebuild all 40 observed transitions from scratch. That replay-rebuild cost is not the inference gate above; a live extractor maintains those transition totals as states arrive. This report is not an end-to-end Rust deployment benchmark.",
+            f"Command/label deletion feature and prediction parity are `{turn40['command_label_deletion_feature_parity']}` / `{turn40['command_label_deletion_prediction_parity']}`; portable-scorer prediction parity is `{turn40['gate_inputs']['portable_prediction_parity']}`.",
             "",
             "The exact per-family precision/recall tables, confusion matrices, nested choices, seat controls, 1,000 within-seed permutations, and all four horizon results are in the adjacent JSON.",
             "",

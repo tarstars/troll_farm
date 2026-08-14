@@ -65,6 +65,19 @@ def test_group_folds_keep_every_seed_block_whole():
     assert set(folds) == {0, 1, 2, 3, 4}
 
 
+def test_portable_linear_scorer_preserves_pipeline_predictions():
+    features = np.asarray(
+        [[float(row), float(column), float(row == column)] for row in range(8) for column in range(8)]
+    )
+    labels = np.repeat(np.arange(8), 8)
+    model = f1._linear_model(0.1).fit(features, labels)
+    artifact = f1.portable_linear_artifact(model, ["a", "b", "c"])
+    expected = model.predict(features)
+    observed = np.argmax(f1.portable_linear_scores(artifact, features), axis=1)
+    assert np.array_equal(expected, observed)
+    assert artifact["serialized_bytes"] < 20_000
+
+
 def test_verdict_gate_uses_turn40_and_requires_every_integrity_check():
     passing = f1.synthetic_passing_gate_metrics()
     assert f1.readiness_verdict({40: passing, 80: passing}, integrity=True) == "EARLY_PROXY_SIGNAL"
