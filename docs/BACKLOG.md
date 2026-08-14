@@ -215,6 +215,23 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
   in score points (±0.5, ≥+1.0, ≥+2). At σ ≈ 1.10 a single mature read cannot resolve any of
   them (difference SD 1.55 at n=1 per arm). This does not reopen past calls; it determines whether future ones are decidable.
 
+## ★★★ P0 — OWNER PROGRAMME 2026-08-15: banana farm, reached through an oscillation deep-dive
+
+- **The holistic record is `docs/PROGRAMME-banana-farm-2026-08-15.md`** — read it first; this
+  entry is only the pointer. Owner-decided sequence: (1) oscillation deep-dive on the readable
+  resident `98628e98…` — Decision Packet implementation, a troll-moves viewer, owner
+  goal-hierarchy doctrine, per-situation ideal-vs-actual adjudication in joint sessions
+  (`coordination/tasks/20260815-oscillation-deep-dive.md`); (2) owner gate: fix oscillations or
+  rule them unavoidable-and-harmless — **both gates are the owner's alone**; (3) write TWO farm
+  specs — A unconditional, B conditional on the enemy's third troll
+  (`coordination/tasks/20260815-banana-farm-two-specs.md`); (4) implement staged; (5) measure:
+  one night = 8 mature runs = 4/arm interleaved, resolves ~2-point differences at σ = 1.501.
+  Roles: claude_1 code, codex_1 reviews, local_claude_1 integrator/arena, owner gates.
+  **Owner method ruling: no cheap ways — depth over speed.** The CONSTRAINTS oscillation
+  closure is a score-value closure and does not bar stage 1. The CBF design entry below
+  ("Designed, not started") is superseded as an entry point: CBF is now Spec B inside this
+  programme, re-based onto the readable resident.
+
 ## LIVE PRIORITIES — iteration 2 (formed 2026-07-29, post-audit-sweep)
 
 Iteration 1 (H1/H3/H5/H8/H13 + the review cycle) closed five hypotheses in a day and
@@ -511,7 +528,9 @@ continues with construction and rating-dynamics measurement, not waiting.
 
 ### Designed, not started — carried forward (iteration 2 closed 2026-08-07)
 
-- **CBF conditional banana farm — DESIGN COMPLETE, OWNER-SPECIFIED, NOT IMPLEMENTED.**
+- **CBF conditional banana farm — DESIGN COMPLETE, NOT IMPLEMENTED; FOLDED 2026-08-15 into
+  the owner programme above as Spec B** (re-based onto the readable resident; entry via
+  `docs/PROGRAMME-banana-farm-2026-08-15.md`). The design detail below remains valid input.
   Full spec: `docs/superpowers/specs/2026-08-07-conditional-banana-farm-design.md`. A
   three-state machine `DENY → FARM → WOOD` with both transitions latched: farm the D89a
   seed factory once `opponent_trolls > 2` latches (the resident's existing denial abort,

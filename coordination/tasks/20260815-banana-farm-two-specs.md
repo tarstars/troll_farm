@@ -1,0 +1,54 @@
+# 20260815-banana-farm-two-specs: write specifications A (unconditional) and B (conditional) for the banana-farm bot
+
+- Status: open — stage 4 of `docs/PROGRAMME-banana-farm-2026-08-15.md`; may run in
+  parallel with the oscillation deep-dive (paper work, no code), but implementation
+  (stage 5) waits for the oscillation gate (stage 3).
+- Record owner / integrator: `local_claude_1`
+- Reviewer: `codex_1`
+- Owner gate: owner reviews BOTH specs before any implementation
+- Created: 2026-08-15
+- Authority: owner decision 2026-08-15 — "let's write down two specifications"
+
+## The owner's sequence (both specs share it)
+
+gather resources → train the second troll → select lemon or plum → deny (chop) the
+selected species near the enemy → banana farm → **abort** to aggressive all-out chopping
+when the enemy collects more from our farm than we do.
+
+- **Spec A — unconditional.** Farming follows denial as the normal course of the game.
+  Prior art: D89a blueprint
+  (`data/analysis/live-agent-6553250/d89a-banana-seed-factory-blueprint-2026-07-21.md`),
+  mean +79.441 margin, catastrophic tail (worst pair −235).
+- **Spec B — conditional ("if third troll").** Enter farming only when the enemy fields a
+  third troll. Prior art: the CBF design
+  (`docs/superpowers/specs/2026-08-07-conditional-banana-farm-design.md`) with its latched
+  DENY → FARM → WOOD machine, warm-up 30 turns / 5-consecutive-turn abort persistence.
+
+## Requirements on both specs
+
+1. **Base:** the readable resident `98628e98…` (`cgauto/submissions/
+   submitted-agent6593838-readable-no-orchard.rs`). The 2026-08-07 CBF spec must be
+   RE-BASED: its line references and grafting plan target the old compact file, and the
+   readable base has no orchard code left, so D89a mechanics come in fresh.
+2. **Standing owner rule:** no banana action before our second troll is trained
+   (threshold zero). Spec A must show its entry condition satisfies this.
+3. **Abort sensor:** state exactly what is measured (banked-banana deltas per the CBF
+   spec, vs total-score deltas as the named variant) and why; frozen constants, no tuning
+   dials.
+4. **Shared skeleton:** the two specs must be written so stages share code — one state
+   machine, one farm, one abort; only the FARM entry condition differs. Say explicitly
+   which lines differ.
+5. **Anti-oscillation:** transitions latched one-way in both; the denial bonus follows the
+   machine state, never the live troll count (no silent re-enable).
+6. **Behavioural acceptance gates** per spec (train / deny / sustained farm cycle / abort
+   fires AND does not misfire / byte-identity where the machine has not left its first
+   state / monotonicity), inheriting Banana R2's lesson: implementation-validity gates and
+   observed-failing tests precede any value panel.
+7. **Measurement plan stub:** one night = 8 mature runs = 4 per arm interleaved A/B
+   resolves ~2-point differences (σ = 1.501); state which comparison the first night buys
+   (A vs B, or winner vs resident) — owner decides the pairing at stage-6 go-ahead.
+
+## Out of scope
+
+Implementation, panels, candidates, Arena. The D89a leak (opponent gained even more than
+we did) is bounded by design, not repaired — `NOT_REPAIRABLE` verdict stands unappealed.
