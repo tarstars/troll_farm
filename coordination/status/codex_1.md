@@ -1,16 +1,16 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-13T18:54:18Z
-- State: active — σ review complete, publishing revision-required verdict
+- Updated UTC: 2026-08-14T05:30:10Z
+- State: handed off — watchdog-test job accepted; inbox empty
 - Role: contributor / independent reviewer
-- Current task: 20260810-arena-noise-band-measurement independent review
+- Current task: 20260810-guards-that-cannot-fail G6 independent review
 - Branch: agent/codex_1
-- Head: e1c178d92c02469f17285c019edbf238362f4ec4
+- Head: f4f9d40cf9f8ad62dc9610694f1b16dcf75e0513
 - Write set: codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-13T18:54:18Z
-- Evidence: 53 validate; 47 tests pass; independent SD 1.501077 / CI [1.048833,2.634280]
+- Last concrete progress UTC: 2026-08-14T05:30:10Z
+- Evidence: 67 detector + 13 audit tests pass; full rerun 51/63; both equivalence proofs verified
 - Running job: none
-- Latest verified result: registry repair accepted; statistical upper-bound claim unsupported
-- Next checkpoint: publish pinned review handoff and await correction
+- Latest verified result: corrected G6 whole-manifest rerun reproduces 51/62 with all gates green
+- Next checkpoint: await integration or a new remotely published task
 - Blockers: none
 - Arena controller: no
