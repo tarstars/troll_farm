@@ -7,7 +7,7 @@
  "pinned_sources": {
   "trace_detectors.py": "59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209",
   "conversion_race_oracle.py": "e0896e3f7cb2c7ac4ced35350469d704432f8c7a1a8a4c9c4ce41495ca13ecf7",
-  "test_trace_detectors.py": "07e87c91c97acb33f41bd9455b8302afe3a4416953fed272c655fa2f42bb58e6"
+  "test_trace_detectors.py": "28bbe54f03093ce58bc9da039019a71c0af2dd8c252c19ee0820d7d0ed1b679e"
  },
  "test_command": "python3 -m unittest test_trace_detectors",
  "baseline_tests": 28,
@@ -48,7 +48,8 @@
    "replacement": "(t - 1) - s >= 5",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD1"
+    "TestD1",
+    "TestD1Uncovered"
    ],
    "intent": "window threshold >= 6 transitions (k>=3) -> >= 5",
    "excluded_from_totals": false
@@ -87,7 +88,8 @@
    "replacement": "            if False and ((p0 is None) != (p1 is None)):   # MUTANT\n                return True\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD1"
+    "TestD1",
+    "TestD1Uncovered"
    ],
    "intent": "A2 progress event 'plant created/removed at u's cell' deleted",
    "excluded_from_totals": false
@@ -100,7 +102,8 @@
    "replacement": "                if False and (tr.state(t).inventories[0]\n                              != tr.state(t + 1).inventories[0]):   # MUTANT\n                    return True\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD1"
+    "TestD1",
+    "TestD1Uncovered"
    ],
    "intent": "A2 progress event 'inventory change on a DROP/PICK turn' deleted",
    "excluded_from_totals": false
@@ -230,7 +233,8 @@
    "replacement": "flags.append(False)   # MUTANT: clause (b) disabled",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD3"
+    "TestD3",
+    "TestD3Uncovered"
    ],
    "intent": "clause (b) landing-on-stationary-working-peer disabled outright",
    "excluded_from_totals": false
@@ -308,7 +312,8 @@
    "replacement": "                if False:                   # MUTANT: I-21 start gone\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD4"
+    "TestD4",
+    "TestD4Uncovered"
    ],
    "intent": "I-21 forced (full-capacity) commitment start deleted",
    "excluded_from_totals": false
@@ -360,7 +365,8 @@
    "replacement": "t_late = TOTAL_TURNS - (1 * cd + ceil_div(",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "I-5 orthogonal cutoff 2*CD -> 1*CD",
    "excluded_from_totals": false
@@ -373,7 +379,8 @@
    "replacement": "                BANANA_HEALTH_BASE + BANANA_HEALTH_SLOPE * 2, chop) + 20)",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "I-5 orthogonal cutoff slack +2 -> +20",
    "excluded_from_totals": false
@@ -386,7 +393,8 @@
    "replacement": "            BANANA_HEALTH_BASE + BANANA_HEALTH_SLOPE * 1, chop) + 40)",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "I-5 global cutoff slack +1 -> +40",
    "excluded_from_totals": false
@@ -399,7 +407,8 @@
    "replacement": "        if False:                           # MUTANT: I-13 cumulative off\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "I-13 cumulative |Ring| bound disabled",
    "excluded_from_totals": false
@@ -412,7 +421,8 @@
    "replacement": "        over = False                               # MUTANT: concurrent off\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "I-13 concurrent |Ring| bound disabled",
    "excluded_from_totals": false
@@ -425,7 +435,8 @@
    "replacement": "        cd = BANANA_PLANT_COOLDOWN - BANANA_WATER_BOOST  # MUTANT: always wet\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "water-boost branch collapsed: CD is always CD_wet",
    "excluded_from_totals": false
@@ -451,7 +462,8 @@
    "replacement": "if opp_x <= 6:",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD6"
+    "TestD6",
+    "TestD6Uncovered"
    ],
    "intent": "clause (a2) opponent-chopper ETA bound <= 2 -> <= 6",
    "excluded_from_totals": false
@@ -464,7 +476,8 @@
    "replacement": "if opp_x <= 5:",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD6"
+    "TestD6",
+    "TestD6Uncovered"
    ],
    "intent": "clause (a2) opponent-chopper ETA bound <= 2 -> <= 5",
    "excluded_from_totals": false
@@ -490,7 +503,8 @@
    "replacement": "if opp_h < min_own:",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD6"
+    "TestD6",
+    "TestD6Uncovered"
    ],
    "intent": "clause (a1) arrival-order tie no longer conceded (<= -> <)",
    "excluded_from_totals": false
@@ -503,7 +517,8 @@
    "replacement": "if False:   # MUTANT",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD6"
+    "TestD6",
+    "TestD6Uncovered"
    ],
    "intent": "clause (a1) harvest-race arrival-order test deleted entirely",
    "excluded_from_totals": false
@@ -516,7 +531,8 @@
    "replacement": "            if True:   # MUTANT: clause (b) replay ground truth deleted\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD6"
+    "TestD6",
+    "TestD6Uncovered"
    ],
    "intent": "clause (b) opponent-harvested-ours replay ground truth deleted",
    "excluded_from_totals": false
@@ -529,7 +545,8 @@
    "replacement": "own_etas = [eta(u) for u in st.own_units() if u.harvest_power > 0]",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD6"
+    "TestD6",
+    "TestD6Uncovered"
    ],
    "intent": "A7 flipped: min own ETA taken over harvest-capable own units only",
    "excluded_from_totals": false
@@ -542,7 +559,8 @@
    "replacement": "            return d   # MUTANT: speed division dropped",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD6"
+    "TestD6",
+    "TestD6Uncovered"
    ],
    "intent": "ETA formula ceil(bfs/speed) -> raw bfs distance",
    "excluded_from_totals": false
@@ -768,7 +786,8 @@
     "TestD8Amended"
    ],
    "intent": "plant-kind == BANANA restriction on the chopped mother deleted",
-   "excluded_from_totals": false
+   "excluded_from_totals": true,
+   "exclusion_reason": "EQUIVALENT MUTANT. `detect_d8` reaches `p.kind == \"BANANA\"` (:1115) only inside `c in alive_per_turn[t]`, and `own_banana_history` builds that set from the SAME state(t) filtering on exactly that kind, so the guard is true whenever evaluated. Proved by construction (an own-planted DIAG banana turning to WOOD leaves the alive set on the same turn, so the CHOP never reaches the guard) and by differential (0 of 416 probe-corpus traces differ under the mutant). Excluded by coordinator ruling 20260813T194500Z per the D3-M4-RETIRED precedent."
   },
   {
    "id": "D8-M9",

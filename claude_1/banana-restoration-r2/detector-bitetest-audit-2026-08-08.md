@@ -644,7 +644,7 @@ only).
 |---|---|
 | applicability | 43 `APPLICABLE`, 4 `INSTRUMENT_UNSUPPORTED` (all D-9) |
 | contract authority | 45 `SETTLED`, 2 `CONFLICT` (D-6 (a1), D-6 (a2)) |
-| implementation validity | 20 `PINNED`, 4 `PARTIAL`, 8 `UNPINNED`, 15 `NO_FIXTURE` |
+| implementation validity | 33 `PINNED`, 3 `PARTIAL`, 6 `UNPINNED`, 4 `NO_FIXTURE`, 1 `EQUIVALENT_GUARD_UNTESTABLE` |
 | truth validity | 6 `GATE_UNREADY` (D-6 (a1), D-6 (a2), D-9 (a)–(d)), 41 `UNRESOLVED` |
 | definitional conformance | 1 `IDENTICAL_TO_SPEC` (D-5 (a) I-12 Ring geometry), 46 `NOT_APPLICABLE` |
 
@@ -1083,7 +1083,11 @@ the mirror. What is missing is a refereed corpus to run it on, not the oracle.
   2026-08-10 and D-7 rows (d)-(g) by the G6 fixtures 2026-08-12.
   Four detectors (D-4, D-6, D-7, D-9) have near-misses that vary more than one
   dimension, which is why single-conjunct deletions survive.
-- **Mutation: 33 caught, 31 survived out of 64 (51.6 %) as of 2026-08-13** — the figure
+- **Mutation: 51 caught, 12 survived out of 63 (81.0 %) as of 2026-08-13.** The denominator
+  moved 64 -> 63 on this date: D8-M8 was ruled an EQUIVALENT MUTANT and excluded
+  (coordinator ruling `20260813T194500Z`, `D3-M4-RETIRED` precedent). **Stated both ways so the
+  change is visible in the series: 51/64 = 79.7 % counting it, 51/63 = 81.0 % excluding it.**
+  D4-M6 is a second proven-equivalent mutant awaiting the same ruling; it is still counted. The figure
   below is the original 2026-08-08 measurement, kept for provenance: **21 caught, 43
   survived out of 64 (32.8 %)** — *not* the 20/64
   reported on 2026-08-08; the difference is one retired inert mutant (§1.5). No

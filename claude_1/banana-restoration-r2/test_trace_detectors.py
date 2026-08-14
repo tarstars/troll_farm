@@ -277,6 +277,133 @@ class TestD5(unittest.TestCase):
         self.assertEqual(verdict(td.detect_d5(tr)), ("PASS", 0))
 
 
+# The Ring is the 8 cells at Chebyshev distance 1 from the tent — the only legal
+# banana slots (I-12). |Ring| = 8 is the bound both I-13 clauses are written against.
+RING = [(x, y) for x in range(3, 6) for y in range(2, 5) if (x, y) != TENT]
+
+# Same 9x7 map, but with water at (4,1) — orthogonally adjacent to the DOOR slot
+# (4,2), so `near_water(DOOR)` is True and the planting cooldown is CD_wet = 4.
+MAP_ROWS_WATER = [
+    ".........",
+    "....~....",
+    ".........",
+    "....0....",
+    ".........",
+    ".........",
+    "........1",
+]
+
+
+def make_trace_on(map_rows, blocks, command_lines):
+    """make_trace, but on a caller-supplied map (needed to exercise water)."""
+    body = [MAP_HEADER] + map_rows
+    for block in blocks:
+        body.extend(block)
+    return td.build_trace("\n".join(body) + "\n", "\n".join(command_lines) + "\n")
+
+
+class TestD5Uncovered(unittest.TestCase):
+    """G6 fixtures for the three D-5 branches the bite-test audit found with NO_FIXTURE.
+
+    Task `20260810-guards-that-cannot-fail`, sub-item G6. Fixtures only — no predicate is
+    touched. Each branch gets both halves: the innocent case that must stay silent, and a
+    deliberately violating subject observed firing.
+
+    Branch -> mutant these are written to kill:
+      (b) I-13 cumulative bound `:850`   -> D5-M4 (`len(cumulative) > ring_size` -> False)
+      (c) I-13 concurrent bound `:876`   -> D5-M5 (`len(alive) > ring_size` -> False)
+      (f) water-boost CD selection `:857`-> D5-M8 (cooldown always CD_wet)
+    """
+
+    def sequential_plant(self, cells, keep_alive):
+        """One PLANT per turn, walking the unit onto each cell in turn.
+
+        `keep_alive` controls whether the planted trees are still present in later states:
+        the cumulative bound counts PLANT events and does not care, the concurrent bound
+        counts living trees and cares entirely.
+        """
+        blocks, cmds = [], []
+        for i in range(len(cells) + 1):
+            planted = cells[:i] if keep_alive else []
+            here = cells[i] if i < len(cells) else cells[-1]
+            blocks.append(turn_block(
+                [unit(0, 0, here, carry=carry_of(banana=1)), OPP],
+                plants=[plant("BANANA", c) for c in planted]))
+            cmds.append("PLANT 0 BANANA" if i < len(cells) else "WAIT")
+        return make_trace(blocks, cmds)
+
+    def kinds(self, tr):
+        return {e["kind"] for e in td.detect_d5(tr)["episodes"]}
+
+    # --- (b) I-13 cumulative bound ------------------------------------------------
+
+    def test_eight_distinct_ring_cells_is_within_the_cumulative_bound(self):
+        """The innocent case: every Ring slot used once is exactly |Ring|, not over it."""
+        self.assertEqual(len(RING), 8)
+        self.assertEqual(verdict(td.detect_d5(self.sequential_plant(RING, False))), ("PASS", 0))
+
+    def test_a_ninth_distinct_cell_breaks_the_cumulative_bound(self):
+        """The violation: a 9th distinct planting site exceeds |Ring| over the game.
+
+        The 9th cell is necessarily outside the Ring — there is no 9th Ring cell — so this
+        trace also trips `outside_ring`. The assertion names `cumulative_over_ring`
+        specifically so the two clauses cannot stand in for one another."""
+        kinds = self.kinds(self.sequential_plant(RING + [(6, 3)], False))
+        self.assertIn("cumulative_over_ring", kinds)
+
+    def test_replanting_the_same_cell_does_not_grow_the_cumulative_count(self):
+        """Cumulative counts DISTINCT sites: nine plants on eight cells stays legal."""
+        self.assertEqual(verdict(td.detect_d5(self.sequential_plant(RING + [RING[0]], False))),
+                         ("PASS", 0))
+
+    # --- (c) I-13 concurrent bound -------------------------------------------------
+
+    def test_eight_trees_alive_at_once_is_within_the_concurrent_bound(self):
+        """The innocent case: eight living trees is exactly |Ring|."""
+        self.assertNotIn("concurrent_over_ring", self.kinds(self.sequential_plant(RING, True)))
+
+    def test_nine_trees_alive_at_once_breaks_the_concurrent_bound(self):
+        """The violation: a 9th simultaneously living tree.
+
+        Distinct from (b): the cumulative clause counts sites ever used, this one counts
+        trees standing at the same moment. The two are only equal when nothing is felled."""
+        kinds = self.kinds(self.sequential_plant(RING + [(6, 3)], True))
+        self.assertIn("concurrent_over_ring", kinds)
+
+    # --- (f) water-boost cooldown selection ---------------------------------------
+    #
+    # The orthogonal-slot planting deadline is T_late = 300 - (2*CD + ceil(4/chop) + 2),
+    # so the cooldown chosen by this branch moves the deadline: CD_dry = 6 gives 282,
+    # CD_wet = 4 gives 286. Planting at turn 284 falls between them, which is the only
+    # window where the branch's choice is observable. The global cutoff (296) is not
+    # reached at 284, so nothing else can account for the verdict.
+
+    def late_plant(self, map_rows, cell, turn, total=300):
+        blocks, cmds = [], []
+        for t in range(1, total + 1):
+            carry = carry_of(banana=1) if t <= turn else [0] * 6
+            blocks.append(turn_block([unit(0, 0, cell, carry=carry), OPP],
+                                     plants=[plant("BANANA", cell)] if t > turn else []))
+            cmds.append("PLANT 0 BANANA" if t == turn else "WAIT")
+        return make_trace_on(map_rows, blocks, cmds)
+
+    def test_dry_slot_planted_after_its_deadline_is_flagged(self):
+        """The violation: no water, so CD_dry = 6 and the deadline is 282 — 284 is late."""
+        tr = self.late_plant(MAP_ROWS, DOOR, 284)
+        self.assertFalse(tr.near_water(DOOR), "precondition: the default map has no water")
+        self.assertIn("orth_cutoff", self.kinds(tr))
+
+    def test_the_same_turn_is_legal_next_to_water(self):
+        """The innocent case: water adjacent, so CD_wet = 4 and the deadline moves to 286.
+
+        Identical cell, identical turn, identical everything except one water tile. The
+        PASS is itself the evidence that the water branch was taken — a dry cell planted at
+        284 fails the test above."""
+        tr = self.late_plant(MAP_ROWS_WATER, DOOR, 284)
+        self.assertTrue(tr.near_water(DOOR), "precondition: water must be adjacent to the slot")
+        self.assertEqual(verdict(td.detect_d5(tr)), ("PASS", 0))
+
+
 class TestD6(unittest.TestCase):
     """D-6 opponent-favored fruit creation."""
 
@@ -302,6 +429,123 @@ class TestD6(unittest.TestCase):
     def test_near_miss_opponent_far_away(self):
         tr = self.plant_with_opp((0, 6))   # BFS distance 7 > 2
         self.assertEqual(verdict(td.detect_d6(tr)), ("PASS", 0))
+
+
+class TestD6Uncovered(unittest.TestCase):
+    """G6 fixtures for the three D-6 branches the bite-test audit found with NO_FIXTURE.
+
+    Task `20260810-guards-that-cannot-fail`, sub-item G6. Fixtures only — no predicate is
+    touched.
+
+    Branch -> mutant these are written to kill:
+      (a1) arrival-order harvest race `:920` -> D6-M4 (clause deleted), D6-M3 (tie not
+           conceded), D6-M6 (A7 min taken over harvest-capable own units only)
+      (a3) ETA formula `ceil(bfs/speed)` `:911` -> D6-M7 (speed division dropped)
+      (b)  replay ground truth `:928-941`      -> D6-M5 (clause deleted)
+
+    **Structural note on (a1), which shapes every fixture below.** The clause is
+    `opp_h <= min_own`, and `min_own` is the minimum ETA over ALL own units at the planting
+    turn. The planting unit is by definition standing ON the cell it plants, so its ETA is 0
+    and `min_own` is **always 0** at a PLANT event. The clause can therefore only fire when
+    `opp_h == 0` — an opponent harvester sharing that exact cell. That is not a defect this
+    sub-item may repair (G6 changes no predicate) but it does mean the branch is close to
+    inert in ordinary play, and it is reported to the coordinator rather than papered over.
+    """
+
+    def plant_trace(self, own_line, opp_line):
+        """One PLANT of a banana on DIAG at t1, with the given own/opponent units."""
+        blocks = [turn_block([own_line, opp_line]),
+                  turn_block([own_line, opp_line], plants=[plant("BANANA", DIAG)])]
+        return make_trace(blocks, ["PLANT 0 BANANA", "WAIT"])
+
+    def kinds(self, tr):
+        return {e["kind"] for e in td.detect_d6(tr)["episodes"]}
+
+    # --- (a1) arrival-order harvest race -------------------------------------------
+
+    def test_arrival_tie_is_conceded_to_the_opponent(self):
+        """The violation: an opponent harvester on the planting cell ties our own ETA.
+
+        Both ETAs are 0, and the spec concedes ties to the opponent (`<=`), so planting into
+        that square is flagged. This is the only geometry in which the clause can fire; see
+        the class docstring."""
+        tr = self.plant_trace(unit(0, 0, DIAG, carry=carry_of(banana=1)),
+                              unit(9, 1, DIAG, hp=1, cp=0))
+        res = td.detect_d6(tr)
+        self.assertEqual(res["verdict"], "FAIL")
+        ep = next(e for e in res["episodes"] if e["kind"] == "opp_harvest_eta")
+        self.assertEqual(ep["eta_opp_h"], 0)
+        self.assertEqual(ep["min_own_eta"], 0)
+
+    def test_opponent_harvester_one_step_away_does_not_tie(self):
+        """The innocent case: the same plant with the harvester one step off the cell.
+        Its ETA is 1 against our 0, so we win the race and nothing is flagged."""
+        tr = self.plant_trace(unit(0, 0, DIAG, carry=carry_of(banana=1)),
+                              unit(9, 1, (3, 3), hp=1, cp=0))
+        self.assertNotIn("opp_harvest_eta", self.kinds(tr))
+
+    def test_min_own_eta_is_taken_over_all_own_units_not_just_harvesters(self):
+        """A7: the minimum is over EVERY own unit, harvest-capable or not.
+
+        The planter here has `harvest_power = 0`. Under A7 it still counts, so `min_own` is 0
+        and a harvester three steps away loses the race — nothing is flagged. Restricting the
+        minimum to harvest-capable units would leave the set empty, make `min_own`
+        unreachable, and flag this innocent plant."""
+        tr = self.plant_trace(unit(0, 0, DIAG, hp=0, cp=1, carry=carry_of(banana=1)),
+                              unit(9, 1, (3, 5), hp=1, cp=0))
+        self.assertEqual(verdict(td.detect_d6(tr)), ("PASS", 0))
+
+    # --- (a3) ETA formula: ceil(bfs distance / speed) --------------------------------
+    #
+    # Speed is what makes this branch observable: at speed 1 the ETA and the raw distance
+    # coincide, so every existing fixture — all of which use speed-1 units — cannot tell the
+    # formula from the bare distance. Both cases below use a speed-2 chopper.
+
+    def test_a_fast_chopper_is_within_reach_although_its_distance_is_not(self):
+        """The violation: distance 4 at speed 2 is an ETA of 2, inside the `<= 2` bound.
+        Reading the raw distance instead would call it 4 and wave the plant through."""
+        tr = self.plant_trace(unit(0, 0, DIAG, carry=carry_of(banana=1)),
+                              unit(9, 1, (3, 6), speed=2, hp=0, cp=1))
+        ep = next(e for e in td.detect_d6(tr)["episodes"] if e["kind"] == "opp_chop_eta")
+        self.assertEqual(ep["eta_opp_x"], 2)
+
+    def test_the_same_speed_at_a_greater_distance_stays_outside_the_bound(self):
+        """The innocent case: distance 5 at speed 2 is an ETA of 3, outside `<= 2`.
+        Same unit, same speed — only the distance moved, so the pair isolates the division."""
+        tr = self.plant_trace(unit(0, 0, DIAG, carry=carry_of(banana=1)),
+                              unit(9, 1, (8, 2), speed=2, hp=0, cp=1))
+        self.assertEqual(verdict(td.detect_d6(tr)), ("PASS", 0))
+
+    # --- (b) replay ground truth: the opponent actually took our fruit ----------------
+
+    def replay_trace(self, fruits_after, carry_after):
+        """We plant on DIAG and walk away; an opponent stands on the tree for two turns."""
+        blocks = [
+            turn_block([unit(0, 0, DIAG, carry=carry_of(banana=1)),
+                        unit(9, 1, (8, 0), hp=1, cp=0)]),
+            turn_block([unit(0, 0, (4, 4)), unit(9, 1, DIAG, hp=1, cp=0)],
+                       plants=[plant("BANANA", DIAG, size=4, health=6, fruits=2)]),
+            turn_block([unit(0, 0, (4, 4)),
+                        unit(9, 1, DIAG, hp=1, cp=0,
+                             carry=carry_of(banana=carry_after))],
+                       plants=[plant("BANANA", DIAG, size=4, health=6,
+                                     fruits=fruits_after)]),
+        ]
+        return make_trace(blocks, ["PLANT 0 BANANA", "WAIT", "WAIT"])
+
+    def test_opponent_harvesting_our_tree_is_recorded(self):
+        """The violation: the tree loses a fruit and that same opponent gains a banana.
+
+        Both halves are required — a fruit count falling on its own proves nothing, since
+        fruit can be lost other ways."""
+        kinds = self.kinds(self.replay_trace(fruits_after=1, carry_after=1))
+        self.assertIn("opp_harvested_ours", kinds)
+
+    def test_an_opponent_standing_on_our_tree_is_not_enough(self):
+        """The innocent case: same opponent, same cell, same carry increase — but the tree
+        keeps its fruit, so no harvest of ours is recorded."""
+        kinds = self.kinds(self.replay_trace(fruits_after=2, carry_after=1))
+        self.assertNotIn("opp_harvested_ours", kinds)
 
 
 class TestD7(unittest.TestCase):
@@ -864,6 +1108,144 @@ class TestD9(unittest.TestCase):
         tr = make_trace(blocks,
                         ["TRAIN 1 1 1 1;WAIT", "WAIT", "PICK 0 BANANA"])
         self.assertEqual(verdict(td.detect_d9(tr)), ("PASS", 0))
+
+
+class TestD1Uncovered(unittest.TestCase):
+    """G6 fixtures for the two D-1 progress clauses the audit found with NO_FIXTURE.
+
+    Task `20260810-guards-that-cannot-fail`, sub-item G6. Fixtures only.
+
+      (d) inventory change on a DROP/PICK turn `:584` -> D1-M5
+      (e) plant created/removed at the unit's cell `:588` -> D1-M4
+
+    These clauses do not raise episodes — they SUPPRESS them. `progress(t)` decides whether a
+    turn counts as real work; an oscillation run is only reported when no progress happens
+    throughout it. So deleting a progress source makes the detector flag MORE, and each
+    fixture below is an innocent trace that must stay silent: the run oscillates, but a
+    genuine progress event breaks it. The mutant reports an oscillation that is not there.
+    """
+
+    A, B = (1, 1), (1, 2)
+
+    def osc(self, turns=10, inv_change_at=None, plant_at=None, drop_at=None):
+        """Unit 0 paces A-B-A-B…; optionally one progress event partway through."""
+        blocks, cmds = [], []
+        for t in range(1, turns + 1):
+            cell = self.A if t % 2 else self.B
+            inv = carry_of(wood=1) if (inv_change_at is not None and t > inv_change_at) else [0] * 6
+            plants = ([plant("BANANA", cell)]
+                      if (plant_at is not None and t > plant_at) else [])
+            blocks.append(turn_block([unit(0, 0, cell), OPP], plants=plants, inv0=inv))
+            nxt = self.B if t % 2 else self.A
+            cmds.append("DROP 0" if t == drop_at else f"MOVE 0 {nxt[0]} {nxt[1]}")
+        return make_trace(blocks, cmds)
+
+    def test_a_plain_pacing_run_is_an_oscillation(self):
+        """Precondition for the two tests below: with no progress at all, this fires.
+        Without it, a fixture that expects silence proves nothing — silence would be the
+        default rather than the consequence of the clause under test."""
+        self.assertEqual(td.detect_d1(self.osc())["verdict"], "FAIL")
+
+    def test_inventory_change_on_a_drop_turn_counts_as_progress(self):
+        """(d): the unit banks something mid-pace. That is real work, so the run is broken
+        and no oscillation is reported."""
+        self.assertEqual(verdict(td.detect_d1(self.osc(inv_change_at=5, drop_at=5))), ("PASS", 0))
+
+    def test_a_plant_appearing_at_the_unit_cell_counts_as_progress(self):
+        """(e): a plant appears where the unit is standing — the world changed, so the
+        pacing is not idle churn."""
+        self.assertEqual(verdict(td.detect_d1(self.osc(plant_at=5))), ("PASS", 0))
+
+
+class TestD3Uncovered(unittest.TestCase):
+    """G6 fixture for D-3 clause (b), `landing on a stationary working peer` `:723-753`.
+
+    Kills D3-M3 (clause disabled outright).
+
+    **Population caveat, carried from the audit:** D-3 has never fired in a referee-produced
+    trace — zero episodes across 720 games. These fixtures pin the IMPLEMENTATION against the
+    spec; they say nothing about whether the situation occurs in real play.
+    """
+
+    PEER = (5, 5)
+
+    def landing_trace(self, peer_moves):
+        peer = ([self.PEER] * 5 if not peer_moves
+                else [self.PEER, (6, 5), self.PEER, (6, 5), self.PEER])
+        own = [(5, 4)] + [self.PEER] * 4
+        blocks = [turn_block([unit(0, 0, own[i]), unit(1, 0, peer[i]), OPP]) for i in range(5)]
+        cmds = [f"MOVE 0 {peer[min(i + 1, 4)][0]} {peer[min(i + 1, 4)][1]};WAIT 1"
+                for i in range(5)]
+        return make_trace(blocks, cmds)
+
+    def test_moving_onto_a_stationary_working_peer_is_flagged(self):
+        """The violation: unit 0 keeps stepping onto unit 1's square while unit 1 stands
+        there working. Two consecutive turns is the threshold."""
+        res = td.detect_d3(self.landing_trace(peer_moves=False))
+        self.assertEqual(res["verdict"], "FAIL")
+        self.assertEqual(res["episodes"][0]["kind"], "landing_on_working_peer")
+
+    def test_a_peer_that_keeps_moving_is_not_landed_on(self):
+        """The innocent case: the peer is not stationary, so there is no one to crowd."""
+        self.assertEqual(verdict(td.detect_d3(self.landing_trace(peer_moves=True))), ("PASS", 0))
+
+
+class TestD4Uncovered(unittest.TestCase):
+    """G6 fixtures for the two D-4 commitment-start branches the audit found with NO_FIXTURE.
+
+      (d) I-21 full-capacity forced commitment `:785` -> D4-M5
+      (e) DROP-at-door commitment start `:789`        -> D4-M6, an EQUIVALENT MUTANT
+
+    Branch (e) is NOT pinned and D4-M6 is NOT killed; see
+    `test_drop_at_a_door_starts_and_ends_the_interval_on_the_same_turn` for the demonstration.
+    """
+
+    def wood_trace(self, carry, cell, cmds):
+        blocks = [turn_block([unit(0, 0, cell, carry=carry), OPP]) for _ in cmds]
+        return make_trace(blocks, cmds)
+
+    # --- (d) I-21 forced commitment ------------------------------------------------
+
+    def test_a_full_hold_forces_a_banking_commitment(self):
+        """The violation: capacity is entirely used by wood, so under I-21 the unit is
+        committed to banking whether or not it says so — and chopping instead is flagged."""
+        tr = self.wood_trace(carry_of(wood=2), (6, 6), ["CHOP 0", "CHOP 0"])
+        res = td.detect_d4(tr)
+        self.assertEqual(res["verdict"], "FAIL")
+        self.assertEqual(res["episodes"][0]["kind"], "non_bank_verb")
+
+    def test_spare_capacity_with_no_banking_intent_is_not_a_commitment(self):
+        """The innocent case: identical trace with one wood instead of two. There is room
+        left, nothing signals an intent to bank, so no interval starts and chopping is fine.
+        Capacity is the only difference between this and the test above."""
+        tr = self.wood_trace(carry_of(wood=1), (6, 6), ["CHOP 0", "CHOP 0"])
+        self.assertEqual(verdict(td.detect_d4(tr)), ("PASS", 0))
+
+    # --- (e) DROP-at-door start: equivalent mutant, documented not pinned -------------
+
+    def test_drop_at_a_door_starts_and_ends_the_interval_on_the_same_turn(self):
+        """Branch (e) has no observable consequence, so D4-M6 cannot be killed.
+
+        The clause starts a commitment interval when a carrying unit DROPs on a door cell.
+        But on that same turn: `DROP` is not one of `D4_BANNED_VERBS`, so no episode can be
+        raised; and `executed_drop` is true a few lines later, which immediately clears
+        `committed`. The interval is therefore born and closed within one turn having
+        emitted nothing. Its only other effect is `nd_run = 0`, and every commitment start
+        sets `nd_run = 0` anyway, so that reset can never be observed either.
+
+        Confirmed by differential: the mutant that deletes this clause changes D-4 output on
+        **0 of 416** probe-corpus traces.
+
+        This test pins the reasoning rather than the branch: it asserts the two facts the
+        equivalence rests on, so if either changes — if DROP becomes a banned verb, or the
+        same-turn clear is removed — the branch becomes load-bearing and this fails to say so.
+        """
+        tr = self.wood_trace(carry_of(wood=1), DOOR, ["DROP 0", "CHOP 0"])
+        self.assertNotIn("DROP", td.D4_BANNED_VERBS)
+        self.assertIn(DOOR, tr.doors)
+        # The DROP turn commits and un-commits, so the CHOP on the next turn is not inside
+        # any interval and nothing is reported.
+        self.assertEqual(verdict(td.detect_d4(tr)), ("PASS", 0))
 
 
 if __name__ == "__main__":

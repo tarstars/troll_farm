@@ -34,7 +34,18 @@ AXES = (
      ["APPLICABLE", "INSTRUMENT_UNSUPPORTED"]),
     ("contract authority", "contract_authority", ["SETTLED", "CONFLICT"]),
     ("implementation validity", "impl_validity",
-     ["PINNED", "PARTIAL", "UNPINNED", "NO_FIXTURE"]),
+     ["PINNED", "PARTIAL", "UNPINNED", "NO_FIXTURE",
+      "EQUIVALENT_GUARD_UNTESTABLE"]),
+    # `EQUIVALENT_GUARD_UNTESTABLE` was added by the coordinator's ruling of
+    # 2026-08-13 (`20260813T194500Z`) for a branch that cannot be observed
+    # failing: its mutant is an EQUIVALENT MUTANT, so there is no fixture to
+    # write and no amount of work would produce one. It is deliberately NOT
+    # `NO_FIXTURE`, which means "a fixture is owed and missing" — the headline
+    # "N of 47 branches have no fixture at all" must not absorb rows where the
+    # honest answer is that none can exist. Use it only with a two-way proof
+    # (unreachability by construction AND a differential over the probe corpus)
+    # recorded in the row's evidence, and mark the mutant
+    # `excluded_from_totals` in the manifest so every future drive inherits it.
     # `VALIDATED_BY_DEFINITION` was retired from this axis by the coordinator's
     # ruling of 2026-08-13 (bite-test r2 blocker 6): a spec stipulating a
     # property does not establish that the property is the right one to detect,
