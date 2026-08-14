@@ -479,6 +479,19 @@ continues with construction and rating-dynamics measurement, not waiting.
   submission, or Arena action is authorized by this backlog entry. [owner direction,
   2026-08-01]
 
+- **D89a-LI banana-leak investigation — OWNER-CHARTERED ANALYTIC PROGRAMME, LOW PRIORITY,
+  NOT STARTED [owner ruling 2026-08-14].** Standing question: *why* does sustained banana
+  farming move the opponent's score up (+82.863 aggregate, `gold_adaptive` +208.78), and is
+  any timing/throttle/geometry variant free of the leak? The owner sizes this as a big
+  analytic project and prices it low — it never displaces P0–P2 work and starts only when
+  an agent has no higher-priority item and the owner confirms. Known missing measurements
+  that any charter must include: (1) the theft-vs-own-production split of the leak
+  (currently prose with no committed data); (2) leak response to dose *timing*, not just
+  volume (D92 varied volume only); (3) whether the leak is referee-mechanical or
+  opponent-behavioural. Prior work consumed: D89/D89a, D92, both repairability reviews.
+  A positive finding authorizes analysis conclusions only — any candidate remains gated by
+  the standard experiment bar (≥+1.0 at 5 runs/arm) and a separate owner decision.
+
 ### Designed, not started — carried forward (iteration 2 closed 2026-08-07)
 
 - **CBF conditional banana farm — DESIGN COMPLETE, OWNER-SPECIFIED, NOT IMPLEMENTED.**
@@ -514,6 +527,17 @@ continues with construction and rating-dynamics measurement, not waiting.
     delta is **208.78**. It recommends **neither** route enter Phase 3 before a read-only check
     and measurement repair. Does not block this design, which never assumed the leak was
     repairable, but weakens the case for entering FARM at all.
+  - **`codex_1` second review 2026-08-14: `UNRESOLVED`, strongly leaning `NOT_REPAIRABLE`**
+    (`codex_1/reviews/d89a-leak-repairability-second-review-2026-08-14.md`). Reproduces all of
+    claude_1's numbers; dissents only from the structural-impossibility label — D92's 5.4× dose
+    closes that exact policy, not every timing/throttle repair, and the restoration's +8.002 is
+    a reweighted CI endpoint, not the frozen ≤ +1 task-weighted gate.
+  - ★ **OWNER RULING 2026-08-14 — closure label decided: `FOR_FURTHER_INVESTIGATION`, not
+    structural.** The repairability question is NOT closed as impossible; the gate against
+    banana-leak work is **weakened, not removed**. The route is recorded as an owner-chartered
+    **analytic programme at LOW priority** (see D89a-LI under P3): potentially large, no urgency,
+    no work authorized without a frozen charter. Do not cite `NOT_REPAIRABLE` as a structural
+    fact; cite this ruling.
   - **Boundary:** behavioural gates deliver a bot, not a promotion. Mining hit 100% trigger
     fidelity at −10.76; B3.13 passed every local gate and scored 11.96/rank 111 live. Arena
     still requires a `QUALIFIED` frozen-protocol verdict and gain above the ±0.5–1 band

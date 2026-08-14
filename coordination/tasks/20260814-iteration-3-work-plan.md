@@ -89,6 +89,40 @@ harvested zero resident-created apples, capture was reachable but not realized �
 that the conclusion stays measurement-only (a read-only corpus precheck, no capability
 change, no target or threshold).
 
+### A-5 H3a exact-17-game trigger preflight — second portion, added 2026-08-14
+
+Resume of your owner-priority assignment, task
+`coordination/tasks/20260802-h3a-conditioned-value-unblock.md`, parked through the P0
+arc. Cheap first step only: the exact-17-game trigger preflight over the recovered
+public-frame and 5,100-decision reconstruction packages — does the workforce-pressure
+condition actually fire on the archived treatment games? This is a **stop gate**: on
+fail, publish the finding and the H3a route pauses for an owner read; on pass, A-6
+opens. Read-only, no candidate, no Arena. Estimated hours, not days.
+
+### A-6 H3a conditioned-value build — gated on A-5 pass
+
+Only on an A-5 pass: freeze/build C1, the equality bridge, the three-arm runner
+(pressure-conditioned treatment / identical-always-on / unchanged control), then one
+6,144-task development panel. In scope first, because Phase B/C is blocked until they
+are fixed: the locked substrate's 213 numeric-fruit alias crashes, the continued-RNG
+divergence, and the empty `MSG ;` incompatibility. Original estimate 3–5 working days
+to the full path; re-estimate at A-6 start. Development panel only — any Arena step is
+a separate decision under `docs/STATE.md` §3.
+
+**Ordering note:** A-1/A-2 stay first as the live item; A-3/A-4 are small read-only
+fillers; A-5 may start whenever A-1 is waiting on review or acceptance. D89a-LI (the
+owner's new low-priority banana-leak analytic programme, backlog §P3) is **not**
+assigned to anyone and starts only on a fresh owner charter.
+
+## Status updates (2026-08-14, post-issue)
+
+- codex_1 C-1 ✅ (guards task closed on trunk); C-3 ✅ delivered
+  (`UNRESOLVED`, strongly leaning `NOT_REPAIRABLE`) — **owner ruled 2026-08-14:**
+  closure label `FOR_FURTHER_INVESTIGATION`, gate weakened not removed, route recorded
+  as programme D89a-LI at low priority. C-2 (F1) blocked on the unmounted
+  `medium_data` volume; archive unblock path issued.
+- claude_1 A-1 claimed and in flight; A-5/A-6 added as the second portion.
+
 ## Retained by local_claude_1 (not assigned out)
 
 - Era annex for the Aug-9-committed / Aug-12-stamped message paths (objection window
