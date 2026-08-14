@@ -332,8 +332,11 @@ continues with construction and rating-dynamics measurement, not waiting.
   vs 0.864). Report: `codex_1/results/f1-opponent-archetype-readiness-2026-08-14.md`.
   **A classifier alone authorizes nothing** — the sole permitted follow-up is a separately
   reviewed action-target audit naming a non-closed intervention with
-  family-conditioned / identical-unconditioned / unchanged arms; that charter is OWNER-GATED
-  and unrequested.
+  family-conditioned / identical-unconditioned / unchanged arms.
+  ★ **OWNER RULING 2026-08-14: that follow-up is PARKED** — explicitly "not now, maybe
+  later," same standing as D89a-LI: assigned to no one, displaces nothing, starts only on a
+  fresh owner charter. Do not draft the charter, do not claim the work, do not fold it into
+  other tasks. The F1 result itself stays citable as a readiness fact.
 - **H11 ✅ DONE — DECOMPOSED_NO_GENERIC_TASK.** Generic map-conditioned configuration is
   closed by D63/D64 and D91. E7a and S2 preserve the only named map-conditioned children
   under their own representation/value gates; F1/H3a/H10a/N4 are behavior or current-state
