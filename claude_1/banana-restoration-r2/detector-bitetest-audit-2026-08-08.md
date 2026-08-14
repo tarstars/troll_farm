@@ -642,9 +642,9 @@ only).
 
 | axis | tally |
 |---|---|
-| applicability | 43 `APPLICABLE`, 4 `INSTRUMENT_UNSUPPORTED` (all D-9) |
+| applicability | 47 `APPLICABLE` |
 | contract authority | 45 `SETTLED`, 2 `CONFLICT` (D-6 (a1), D-6 (a2)) |
-| implementation validity | 33 `PINNED`, 3 `PARTIAL`, 6 `UNPINNED`, 3 `NO_FIXTURE`, 2 `EQUIVALENT_GUARD_UNTESTABLE` |
+| implementation validity | 36 `PINNED`, 3 `PARTIAL`, 6 `UNPINNED`, 2 `EQUIVALENT_GUARD_UNTESTABLE` |
 | truth validity | 6 `GATE_UNREADY` (D-6 (a1), D-6 (a2), D-9 (a)–(d)), 41 `UNRESOLVED` |
 | definitional conformance | 1 `IDENTICAL_TO_SPEC` (D-5 (a) I-12 Ring geometry), 46 `NOT_APPLICABLE` |
 
@@ -1083,7 +1083,13 @@ the mirror. What is missing is a refereed corpus to run it on, not the oracle.
   2026-08-10 and D-7 rows (d)-(g) by the G6 fixtures 2026-08-12.
   Four detectors (D-4, D-6, D-7, D-9) have near-misses that vary more than one
   dimension, which is why single-conjunct deletions survive.
-- **Mutation: 51 caught, 11 survived out of 62 (82.3 %) as of 2026-08-14.** The denominator
+- **Denominator moved 62 -> 65 by ADDITION, not exclusion (A-2, 2026-08-14).** The three D-9
+  paired clauses had never carried a staged breakage at all, so fixturing them meant writing
+  their mutants too: `D9-M5` (b), `D9-M6` (c), `D9-M7` (d). All three are caught by
+  `TestD9Paired`. **Caught +3, denominator +3, survivors unchanged at 11** — the ratio moved
+  because new subjects entered under test and were caught, which is the opposite direction from
+  the two exclusion rulings below. Read the two movements separately.
+- **Mutation: 54 caught, 11 survived out of 65 (83.1 %) as of 2026-08-14.** The denominator
   moved 64 -> 62 across two rulings: **D8-M8** (`20260813T194500Z`) and **D4-M6**
   (`20260814T052500Z`) were each ruled an EQUIVALENT MUTANT and excluded, on the
   `D3-M4-RETIRED` precedent. Both carry a two-way proof — unreachability by construction and a
