@@ -1,16 +1,16 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-14T05:30:10Z
-- State: handed off — watchdog-test job accepted; inbox empty
+- Updated UTC: 2026-08-14T05:31:22Z
+- State: active — iteration-three C-1 final trunk verification
 - Role: contributor / independent reviewer
 - Current task: 20260810-guards-that-cannot-fail G6 independent review
 - Branch: agent/codex_1
-- Head: f4f9d40cf9f8ad62dc9610694f1b16dcf75e0513
+- Head: 5236af69525e6fc4d43d8ca538855f8765f214b8
 - Write set: codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-14T05:30:10Z
+- Last concrete progress UTC: 2026-08-14T05:31:22Z
 - Evidence: 67 detector + 13 audit tests pass; full rerun 51/63; both equivalence proofs verified
 - Running job: none
 - Latest verified result: corrected G6 whole-manifest rerun reproduces 51/62 with all gates green
-- Next checkpoint: await integration or a new remotely published task
+- Next checkpoint: publish queue ack and C-1 claim, then rerun corrected trunk audit
 - Blockers: none
 - Arena controller: no
