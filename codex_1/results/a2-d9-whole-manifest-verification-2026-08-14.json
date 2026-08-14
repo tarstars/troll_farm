@@ -1,0 +1,48 @@
+{
+  "schema": "codex1-a2-d9-whole-manifest-verification/1",
+  "created_utc": "2026-08-14T16:27:00Z",
+  "verdict": "VERIFIED",
+  "source": {
+    "integrated_commit": "f5acb142cca10c315486834e20736043cc546af4",
+    "a2_artifact_commit": "ee8658a3d9dc7e09e739f869e6299c1f9b1b3342",
+    "manifest_sha256": "9ee64e49f30922857846239d8f0f25c8d827170d364cdb53fdff9df1b164b633",
+    "test_trace_detectors_sha256": "ae2f1d41511622950835f9add9c9185f872d2494f088dc078bf727b8dac11713",
+    "trace_detectors_sha256": "59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209"
+  },
+  "independent_run": {
+    "command": "python3 bitetest-audit/run_mutations.py --out /tmp/codex1-a2-mutation-results.json",
+    "raw_output_sha256": "2ca55a6bc95eea8504ae5298308f0fbbc4b0e3a26cb917c4f182e9a957d74cd2",
+    "control_green": true,
+    "complete": true,
+    "manifest_entries": 68,
+    "mutants_declared": 65,
+    "mutants_run": 65,
+    "patch_failed": 0,
+    "compile_failed": 0,
+    "caught": 54,
+    "caught_by_expected": 54,
+    "caught_only_by_other_detector": 0,
+    "survived": 11
+  },
+  "new_mutants": [
+    {"id": "D9-M5", "caught": true, "caught_by_expected": true, "catching_class": "TestD9Paired"},
+    {"id": "D9-M6", "caught": true, "caught_by_expected": true, "catching_class": "TestD9Paired"},
+    {"id": "D9-M7", "caught": true, "caught_by_expected": true, "catching_class": "TestD9Paired"}
+  ],
+  "before_after": {
+    "before_commit": "ee8658a3d9dc7e09e739f869e6299c1f9b1b3342^",
+    "before": {"mutants_run": 62, "caught": 51, "caught_by_expected": 51, "survived": 11},
+    "after": {"mutants_run": 65, "caught": 54, "caught_by_expected": 54, "survived": 11},
+    "accounting": "addition",
+    "denominator_delta": 3,
+    "caught_delta": 3,
+    "survivor_delta": 0
+  },
+  "supporting_checks": {
+    "detector_suite": {"tests": 74, "passed": true},
+    "audit_self_tests": {"tests": 13, "passed": true},
+    "branch_ledger_prose_vs_data_axes": 5,
+    "branch_ledger_prose_vs_data_passed": true
+  },
+  "scope": "Independent execution and accounting verification only; no live-corpus claim or fixture design review."
+}
