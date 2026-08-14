@@ -1110,6 +1110,110 @@ class TestD9(unittest.TestCase):
         self.assertEqual(verdict(td.detect_d9(tr)), ("PASS", 0))
 
 
+class TestD9Paired(unittest.TestCase):
+    """A-2 fixtures for the three D-9 paired clauses: rows (b), (c), (d).
+
+    Task `20260814-iteration-3-work-plan` item A-2, opened by the c5 instrument ruling
+    (`claude_1/rulings/c5-instrument-ruling-2026-08-14.md`, accepted `20260814T062010Z`).
+
+    Row -> mutant these are written to kill:
+      (b) `train_late` `:1214`         -> D9-M5
+      (c) `train_missing` `:1211`      -> D9-M6
+      (d) `train_stats_differ` `:1218` -> D9-M7
+
+    **These clauses only execute when a parent command stream is supplied**
+    (`trace_detectors.py:1204`), which is why they had no fixture: every pre-A-2 D-9 test
+    passes only a candidate trace. Each case below injects a parent stream, exactly as the
+    panel does — the ruling established that `fuzz_panel` always supplies one.
+
+    **Population caveat, carried from the ruling and NOT to be dropped when citing these
+    tests:** all three rows are `SUPPORTED` by the instrument and have a witnessed population
+    of **0 of 240 games** in corpus c5. These are constructed fixtures pinning implementation
+    against spec. They say nothing about whether the behaviour occurs in real play, and no
+    live-corpus claim may rest on them.
+    """
+
+    PARENT_TRAINS_T2 = "WAIT\nTRAIN 1 1 0 1\nWAIT\nWAIT\nWAIT"
+
+    def paired(self, candidate_lines, parent_text=None):
+        """Run D-9 with an injected parent stream, mirroring the panel's call shape."""
+        parent_text = self.PARENT_TRAINS_T2 if parent_text is None else parent_text
+        blocks = [turn_block([unit(0, 0, TENT), OPP]) for _ in candidate_lines]
+        tr = make_trace(blocks, candidate_lines)
+        parent_cmds = td.CommandParser().parse(parent_text + "\n")
+        return td.detect_d9(tr, parent_cmds)
+
+    def kinds(self, res):
+        return [e["kind"] for e in res["episodes"]]
+
+    # --- the innocent case, first, because the other three assert firing ---------------
+
+    def test_matching_the_parent_exactly_is_silent(self):
+        """Same TRAIN turn, same talents: nothing is displaced, so none of the three fire.
+
+        This is deliberately the first test in the class. Three clauses that fired on
+        everything would still 'pass' the three firing cases below; only this one separates
+        a working paired clause from one that is merely noisy."""
+        res = self.paired(["WAIT", "TRAIN 1 1 0 1", "WAIT", "WAIT", "WAIT"])
+        self.assertEqual(verdict(res), ("PASS", 0))
+
+    # --- (c) train_missing --------------------------------------------------------------
+
+    def test_never_training_when_the_parent_does_is_flagged(self):
+        """Row (c): the parent trains at t2, the candidate never trains at all."""
+        res = self.paired(["WAIT"] * 5)
+        self.assertEqual(res["verdict"], "FAIL")
+        self.assertEqual(self.kinds(res), ["train_missing"])
+        ep = res["episodes"][0]
+        self.assertEqual(ep["turn_start"], 2)   # reported at the parent's TRAIN turn
+        self.assertEqual(ep["turn_end"], 2)
+
+    def test_no_parent_train_means_nothing_to_be_late_for(self):
+        """The other half of (c): if the PARENT never trains, a candidate that also never
+        trains is not missing anything. Without this, `train_missing` could be firing on
+        'candidate did not train' alone, which is a different and wrong predicate."""
+        res = self.paired(["WAIT"] * 5, parent_text="WAIT\nWAIT\nWAIT\nWAIT\nWAIT")
+        self.assertEqual(verdict(res), ("PASS", 0))
+
+    # --- (b) train_late -----------------------------------------------------------------
+
+    def test_training_later_than_the_parent_is_flagged(self):
+        """Row (b): parent trains t2, candidate trains t4 — displaced by two turns."""
+        res = self.paired(["WAIT", "WAIT", "WAIT", "TRAIN 1 1 0 1", "WAIT"])
+        self.assertEqual(res["verdict"], "FAIL")
+        self.assertEqual(self.kinds(res), ["train_late"])
+        ep = res["episodes"][0]
+        self.assertEqual(ep["turn_start"], 2)   # parent's turn
+        self.assertEqual(ep["turn_end"], 4)     # candidate's turn
+
+    def test_training_earlier_than_the_parent_is_not_late(self):
+        """The boundary: training EARLIER is not a displacement. The clause is
+        `first_train > p_train`, not `!=` — a candidate that trains sooner has not delayed
+        its second worker, and flagging it would invert the rule's intent."""
+        res = self.paired(["TRAIN 1 1 0 1", "WAIT", "WAIT", "WAIT", "WAIT"],
+                          parent_text="WAIT\nWAIT\nTRAIN 1 1 0 1\nWAIT\nWAIT")
+        self.assertEqual(verdict(res), ("PASS", 0))
+
+    # --- (d) train_stats_differ ---------------------------------------------------------
+
+    def test_same_turn_different_talents_is_flagged(self):
+        """Row (d): trained on the parent's turn, but with a different stats tuple."""
+        res = self.paired(["WAIT", "TRAIN 1 1 1 1", "WAIT", "WAIT", "WAIT"])
+        self.assertEqual(res["verdict"], "FAIL")
+        self.assertEqual(self.kinds(res), ["train_stats_differ"])
+        ep = res["episodes"][0]
+        self.assertEqual(ep["candidate_stats"], [1, 1, 1, 1])
+        self.assertEqual(ep["parent_stats"], [1, 1, 0, 1])
+
+    def test_stats_are_only_compared_when_the_turns_match(self):
+        """The clause ordering matters: (d) is an `elif` after (b). A candidate that trains
+        LATE *and* with different talents is reported as `train_late`, not as a stats
+        difference — the timing displacement is the finding, and reporting both would
+        double-count one divergence."""
+        res = self.paired(["WAIT", "WAIT", "WAIT", "TRAIN 1 1 1 1", "WAIT"])
+        self.assertEqual(self.kinds(res), ["train_late"])
+
+
 class TestD1Uncovered(unittest.TestCase):
     """G6 fixtures for the two D-1 progress clauses the audit found with NO_FIXTURE.
 

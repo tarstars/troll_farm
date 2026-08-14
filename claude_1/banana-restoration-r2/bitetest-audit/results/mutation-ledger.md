@@ -1,7 +1,7 @@
 # Mutation ledger (generated — do not hand-edit)
 
 Source: `results/mutation-results.json`  
-manifest sha256 `1495ec5457d07eae5d7b8324f01d2db6997edf806b2c96ce40c138dec0582d86`  
+manifest sha256 `9ee64e49f30922857846239d8f0f25c8d827170d364cdb53fdff9df1b164b633`  
 runner sha256 `8dbf4f7774a2cdc014e702675cf9fcf3e051b57f91fcf914782451bc706dd519`  
 probe corpus sha256 `9afe7f3cf3cb073158e67226ddbed31a750cda19900fc031853195cb8b0f3ddb`  
 python 3.12.3, control green: True
@@ -9,10 +9,10 @@ python 3.12.3, control green: True
 Pinned sources:
 
 - `conversion_race_oracle.py` sha256 `e0896e3f7cb2c7ac4ced35350469d704432f8c7a1a8a4c9c4ce41495ca13ecf7`
-- `test_trace_detectors.py` sha256 `28bbe54f03093ce58bc9da039019a71c0af2dd8c252c19ee0820d7d0ed1b679e`
+- `test_trace_detectors.py` sha256 `ae2f1d41511622950835f9add9c9185f872d2494f088dc078bf727b8dac11713`
 - `trace_detectors.py` sha256 `59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209`
 
-Totals: **62 mutants run, 51 caught, 11 survived** (kill rate 82.3 %). `caught_by_expected` = 51; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 13 UNWITNESSED; PROBE_SENSITIVE survivors = 9.
+Totals: **65 mutants run, 54 caught, 11 survived** (kill rate 83.1 %). `caught_by_expected` = 54; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 16 UNWITNESSED; PROBE_SENSITIVE survivors = 9.
 
 ## Per detector
 
@@ -26,8 +26,8 @@ Totals: **62 mutants run, 51 caught, 11 survived** (kill rate 82.3 %). `caught_b
 | D-6 | 9 | 9 | 9 | 0 | 0 | 100 % |
 | D-7 | 8 | 6 | 6 | 2 | 2 | 75 % |
 | D-8 | 10 | 10 | 10 | 0 | 0 | 100 % |
-| D-9 | 4 | 4 | 4 | 0 | 0 | 100 % |
-| **all** | **62** | **51** | **51** | **11** | **9** | **82.3 %** |
+| D-9 | 7 | 7 | 7 | 0 | 0 | 100 % |
+| **all** | **65** | **54** | **54** | **11** | **9** | **83.1 %** |
 
 ## Full ledger
 
@@ -97,6 +97,9 @@ Totals: **62 mutants run, 51 caught, 11 survived** (kill rate 82.3 %). `caught_b
 | D9-M4 | D-9 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | \|own units\| == 1 qualifying guard -> == 7 |
 | D9-M2 | D-9 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | banana-attributable restriction widened to any resource argument |
 | D9-M3 | D-9 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | ordering boundary t >= first_train -> t > first_train |
+| D9-M5 | D-9 | `trace_detectors.py` | CAUGHT | UNWITNESSED | paired clause (b) train_late deleted |
+| D9-M6 | D-9 | `trace_detectors.py` | CAUGHT | UNWITNESSED | paired clause (c) train_missing deleted |
+| D9-M7 | D-9 | `trace_detectors.py` | CAUGHT | UNWITNESSED | paired clause (d) train_stats_differ deleted |
 
 ## Entries excluded from the totals
 
@@ -172,3 +175,6 @@ Totals: **62 mutants run, 51 caught, 11 survived** (kill rate 82.3 %). `caught_b
 | D9-M4 | `3d15ca32928ca8ff1d0ee46f70605bfa96802797feb5094dc84f094512faba97` |
 | D9-M2 | `a09640da6b8b8f07a8d67a856733eb47d4b5b845880d88443c18285a5bb35822` |
 | D9-M3 | `2424832a09822ce4869680144af84465571b4631c1b6e374f375fcf3faab334b` |
+| D9-M5 | `6bfede4194519b77bb662a47f1c7e1503a5cbfcba23261a70fafba7172dca1fc` |
+| D9-M6 | `503c46167600427ad11db0127aa8ab5413951aedf79ec9c7470ded4a15de45b6` |
+| D9-M7 | `5d6e08a648ab8087c14ff471a1f62bd2ddcf6b89f601ed8acdac396e83cd8e0f` |
