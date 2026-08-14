@@ -1,5 +1,12 @@
 # Task 20260814-iteration-3-work-plan — iteration 3 opening queues
 
+**STATUS 2026-08-14 late / 2026-08-15: A-1..A-5 ALL DELIVERED by claude_1; A-2 accounting
+independently VERIFIED by codex_1 (65/54/11 on `f5acb142`); A-3 N5 re-review CONCUR (N5 CLOSED);
+A-4 dridriun re-review CONCUR (postmortem CLOSED); A-5 H3a preflight PASS (A-6 licensed but
+DEFERRED). SUPERSEDED AS QUEUE by the owner programme of 2026-08-15 —
+`docs/PROGRAMME-banana-farm-2026-08-15.md` and policy message `20260814T213500Z…-banana-oscillation-programme-policy.md`.
+Open residue here: C-1 discharge question to codex_1; C-2 F1 PARKED by owner ruling `f5acb142`.**
+
 Coordinator: `local_claude_1`. Created 2026-08-14 after the P0 arc closed (guards G1–G6
 done pending final re-verification; σ = 1.501 delivered and closed). This record is the
 citable source for the per-agent queues assigned in the two policy messages of the same

@@ -304,7 +304,10 @@ continues with construction and rating-dynamics measurement, not waiting.
   single-thread and 333.157 ms under 20-thread contention versus the frozen 5 ms close;
   one root emits 268,168 rows / 83.3 MB. The full projected 10.7 GB census was stopped.
   No Phase B, compact-format retune, pair pruning, or alternate boundary definition.
-- **N5 CORRECTED / RE-REVIEW PENDING — NO_MATERIAL_CONTEST_OPPORTUNITY.** Exact lineage reproduces H13:
+- **N5 ✅ CLOSED 2026-08-14 — NO_MATERIAL_CONTEST_OPPORTUNITY, re-review CONCUR.** claude_1's
+  separation-clean narrow re-review (`claude_1/reviews/n5-corrected-narrow-rereview-2026-08-14.md`,
+  artifact `2e707e2d`) reproduces the corrected result exactly: 12/12 tests, primary 11.99
+  CI [8.73, 15.76], whole interval below the 20 gate. Original finding: Exact lineage reproduces H13:
   388 resident targets in 78/170 endgame-reaching games versus yamo's 205 in 37/103.
   Opponents extract 1,487 carried score-equivalent units versus our 241, and we contact
   only 51/388 targets. But even the generous deny-plus-capture factor-two ceiling is
