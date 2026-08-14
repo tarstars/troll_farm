@@ -155,9 +155,18 @@ review `docs/reviews/2026-07-29-chatgpt_1-rank-hypotheses-critique.md`.
   **dissolves** the D-9 affordability question that had blocked bite-test blocker 3 and had been
   unowned since `local_codex_1` went dormant: there is no affordable delay to price when the
   permitted count is zero. Recorded in `docs/CONSTRAINTS.md` §(h).
-  **Still open:** D-9 paired branches (b) `train_late`, (c) `train_missing`,
+  ~~**Still open:** D-9 paired branches (b) `train_late`, (c) `train_missing`,
   (d) `train_stats_differ` carry a stale pre-c5 `INSTRUMENT_UNSUPPORTED` label and need
-  recalibration; they guard TRAIN displacement by non-banana routes.
+  recalibration; they guard TRAIN displacement by non-banana routes.~~ **RULED 2026-08-14
+  (claude_1, `claude_1/rulings/c5-instrument-ruling-2026-08-14.md`): all three are
+  SUPPORTED** — the c5 panel always supplies the parent command stream the clauses need,
+  and each clause was observed firing (plus an honest case staying silent) through the
+  instrument's own path. The stale label described the standalone CLI, not the panel.
+  **Separate fact that must ride along:** witnessed population in the 240-game c5 corpus
+  is **0 of 240** for all three (second TRAIN occurs in 2 games, both identical to the
+  parent's). Row (a) applicability: **APPLICABLE**, 196 episodes / 74 of 240 games —
+  the last caveat on the owner-rule detector is closed. Fixture recalibration is A-2 of
+  the iteration-3 plan, gated on ruling acceptance.
   ~~⚠ **New top item in the bite-test audit:** the rule rests on the *least-verified* of the four
   branches — row (a) is `UNPINNED` with **D9-M1/M2/M3 all SURVIVED**.~~ **RESOLVED 2026-08-12:
   row (a) was already pinned by claude_1 on 2026-08-10 (`80c3dd63`, 4/4 mutants caught, zero
@@ -314,12 +323,17 @@ continues with construction and rating-dynamics measurement, not waiting.
   first; on pass only, freeze/build C1, equality bridge and three-arm runner, then one
   6,144-task development panel. Estimated 4–8 hours to the stop gate, 3–5 working days for
   the full path. Task: `coordination/tasks/20260802-h3a-conditioned-value-unblock.md`.
-- **F1 — READINESS AUDIT REASSIGNED TO `codex_1` 2026-08-12** (released to `chatgpt_1`
-  2026-07-31, never claimed; that agent is out of reach). Use only legal public state history,
-  whole-map-root folds, turn 40 as primary, fixed linear/centroid models, and
-  command/label deletion plus static/permutation/seat controls. N4 is closed, H3a is
-  integrated, and the exact A2-0b artifact hash was reverified before release. A
-  classifier alone never authorizes adaptation.
+- **F1 ✅ DONE 2026-08-14 — `EARLY_PROXY_SIGNAL` (readiness only).** codex_1's audit on the
+  frozen 2,048-game source (restored from the verified cold archive, SHA-256 match): turn-40
+  standardized multinomial linear macro-F1 **0.922** [0.906, 0.937] over eight proxy families,
+  top-2 0.986, min family recall 0.855, seat-split 0.919/0.925; static-map control 0.028,
+  permutation p99 0.153, deletion controls byte-identical; portable scorer 15,107 bytes at
+  0.012 ms p95. Turn 10 already 0.800; cumulative transitions beat current-state-only (0.922
+  vs 0.864). Report: `codex_1/results/f1-opponent-archetype-readiness-2026-08-14.md`.
+  **A classifier alone authorizes nothing** — the sole permitted follow-up is a separately
+  reviewed action-target audit naming a non-closed intervention with
+  family-conditioned / identical-unconditioned / unchanged arms; that charter is OWNER-GATED
+  and unrequested.
 - **H11 ✅ DONE — DECOMPOSED_NO_GENERIC_TASK.** Generic map-conditioned configuration is
   closed by D63/D64 and D91. E7a and S2 preserve the only named map-conditioned children
   under their own representation/value gates; F1/H3a/H10a/N4 are behavior or current-state
