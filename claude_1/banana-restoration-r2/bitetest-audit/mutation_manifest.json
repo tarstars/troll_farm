@@ -329,7 +329,8 @@
     "TestD4"
    ],
    "intent": "DROP-at-door commitment start deleted",
-   "excluded_from_totals": false
+   "excluded_from_totals": true,
+   "exclusion_reason": "EQUIVALENT MUTANT. The DROP-at-door clause (:789) starts a wood-commitment interval that can have no observable consequence: `DROP` is not in D4_BANNED_VERBS so no episode can be raised on that turn; `executed_drop` clears `committed` on the SAME turn; and the only residue, `nd_run = 0`, is set by every commitment start anyway. The interval is born and closed within one turn having emitted nothing. Proved by construction (the three facts above, pinned by TestD4Uncovered.test_drop_at_a_door_starts_and_ends_the_interval_on_the_same_turn) and by differential (0 of 416 probe-corpus traces differ under the mutant). Excluded by coordinator ruling 20260814T052500Z on the same four conditions as D8-M8."
   },
   {
    "id": "D5-M1",
