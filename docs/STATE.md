@@ -18,12 +18,12 @@ dates are the fabricated-clock session of 2026-08-09; trust `git log`).
 
 | field | value |
 |---|---|
-| live agent / submission | **`6604529` / `41113243`** |
+| live agent / submission | **`6614096` / `41129543`** (σ-campaign run 4, the fourth and last budgeted re-submission; same bytes as every run) |
 | source | `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs` |
 | SHA-256 | `98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29` |
-| purpose | **second mature observation** to settle `SINGLE_MATURE_RUN` against its prior 24.76 — **DONE, settled at 22.46** |
-| last read | **terminal, 160 games, 22.46, rank 35/139, `identity_clean=True`, `signals=0`** |
-| disposition | **KEPT by owner ruling 2026-08-12 — this is the resident** |
+| purpose | resident holding the slot after the closed σ campaign; **six mature reads of this hash: 19.77–24.90, median ≈ 23.6** |
+| last read | **terminal, 160 games, 23.39, `identity_clean=True`, `signals=0`** (2026-08-13) |
+| disposition | **resident — owner KEEP ruling 2026-08-12 applies to the source; the agent id advanced through the σ campaign's authorized re-submissions** |
 | restore-to-resident source | `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs`, SHA `98628e98…` |
 
 ⚠ **`docs/PROMOTION-RUNBOOK.md` MUST NOT be followed for this run.** Its authorization gate is
