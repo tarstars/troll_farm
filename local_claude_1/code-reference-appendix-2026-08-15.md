@@ -1,11 +1,12 @@
-# Goal-hierarchy doctrine — DRAFT for owner correction
+# Code-reference appendix (was: goal-hierarchy doctrine draft)
 
+- **OWNER RULING 2026-08-15: the doctrine-freeze approach is REJECTED and replaced by the
+  top-down template `docs/ADJUDICATION-TEMPLATE-2026-08-15.md`.** This file survives as the
+  code-reference appendix: Part 1 below (structural layer + C1–C9) is the verified description
+  of what the code DOES, cited only in adjudication step 5 (deviation analysis). It defines
+  nothing normative. Parts 2–3 are a NON-BINDING checklist a ruling may cite if relevant.
 - v2 2026-08-15: revised per codex_1 review (oscillation-d2-d3-review-2026-08-15.md) and
   claude_1 P-2 feasibility response; v1 findings corrected in place.
-- Status: **DRAFT — the OWNER owns this document.** Agents drafted it from code; the owner
-  corrects and freezes it. After freezing, every "what should the trolls have done?" ruling in
-  the oscillation deep-dive (`coordination/tasks/20260815-oscillation-deep-dive.md`, D3) must
-  cite numbered principles from this page (C-, N-, T-numbers below).
 - Subject: the current resident bot, file
   `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs` (content hash `98628e98…`).
   "R:n" below means line n of that file; every line was re-verified 2026-08-15 in this worktree.
@@ -58,7 +59,7 @@ Two more structural facts: the compatibility check waves through any troll whose
 "None", i.e. no target (R:643-646) — so an idle troll constrains nobody and nobody constrains
 it — and idle-harvest is only admitted when every candidate has no target (R:1413).
 
-## Part 2 — PROPOSED normative hierarchy (what the trolls SHOULD value; owner to correct)
+## Part 2 — candidate considerations (NON-BINDING checklist; demoted by the 2026-08-15 ruling)
 
 Each item is [PROPOSED — owner to confirm / correct / delete].
 
@@ -80,7 +81,7 @@ Each item is [PROPOSED — owner to confirm / correct / delete].
   sums, R:683), but a sum must never license one troll wrecking the other's path (see N1).
 - **N8. Unblocking and rule-forced moves stay absolute** (keep C1 on top).
 
-## Part 3 — Known tensions the owner must arbitrate
+## Part 3 — open tensions (NON-BINDING; may inform step-6 rule candidates)
 
 - **T1. Denial vs income** (C9's two terms; N4). How much wood is one denied opponent-lemon worth?
 - **T2. Position-dependent pricing vs stability** (C2, C3 vs N2). Removing the standing bonus may

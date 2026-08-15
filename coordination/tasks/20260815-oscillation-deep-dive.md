@@ -50,11 +50,15 @@ moves the trolls should conduct.
    frozen situation: board, trolls, their goals per turn, candidate scores, resolver
    rewrites. Good enough for the owner to adjudicate from. Scope and UI agreed with the
    owner before building.
-3. **D3 — Goal-hierarchy doctrine, one page.** Agents draft from code + the 2026-08-09
-   transparency manifest; the OWNER corrects and freezes it. Every adjudication cites it.
+3. **D3 — REDEFINED BY OWNER RULING 2026-08-15: the adjudication template.** The
+   doctrine-freeze approach is rejected (it repeated code logic). D3 is now
+   `docs/ADJUDICATION-TEMPLATE-2026-08-15.md`: top-down per-situation judgment (L1 game
+   state → L2 best course → L3 joint behavior → L4 concrete moves → step-5 deviation
+   analysis → step-6 rule candidates). Winning rules are the programme's OUTPUT,
+   accumulated in `docs/RULES-LEDGER.md` (owner-approved entries only). The old draft
+   survives as `local_claude_1/code-reference-appendix-2026-08-15.md`, step-5 use only.
 4. **D4 — Per-situation adjudication record.** For each of the 34 situations: the bot's
-   actual line (from D1), the proposed ideal line with its goal-hierarchy justification
-   (citing D3), and the owner's ruling from a joint session (D2 as the instrument). Easy
+   actual line (from D1), the proposed ideal line reasoned through the D3 template levels, and the owner's ruling from a joint session (D2 as the instrument). Easy
    cases batched; hard cases (est. 8–12) individually with the owner.
 5. **D5 — Outcome.** Either a verified fix (per-situation regression fixtures from the
    library; test observed failing before the fix, per standing rule) or the owner's
