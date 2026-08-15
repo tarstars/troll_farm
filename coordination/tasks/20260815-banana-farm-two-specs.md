@@ -53,8 +53,24 @@ the spec as the named future variant (faithful to the literal per-farm rule; ado
 if measurement shows (b) aborts too often). Owner phrasing supporting (b): "more profitable
 for the enemy than for us" is an overall-profit statement.
 
-Spec files rewrite to this definition is queued after decision M-1 lands (one revision
-pass, not three).
+**M-1 RULED 2026-08-15 (final of the five owner decisions):**
+- **Procedure:** interleaved ABABABABAB, one submission per ~2 h (a mature 160-game read
+  settles in ~2 h, measured 2026-08-12), one block ≈ 20 h.
+- **Verdict object:** the 95% confidence interval of the PAIRED difference (adjacent A/B
+  pairs averaged — drift cancels within pairs), never two separate per-bot intervals.
+- **Rule, n-independent:** winner when |Δ| ≥ 1.96·SE(Δ), SE(Δ)=σ√(2/n), σ=1.501
+  (n=5: ≈1.9 pts; pooled n=10: ≈1.3); **materiality floor |Δ| < 1.0 → stop as
+  immaterial** (fixed in points by design — the standing value bar, not a statistical
+  bound); between → extend one ABAB block, **max two extensions** (30 runs, SE≈0.55),
+  then the floor forces the stop.
+- **Honesty clause:** campaign reports its own empirical paired-difference spread beside
+  the planning σ; gross disagreement = "re-measure σ" flag, never a license to choose
+  the flattering number.
+- **Night-1 pairing: Spec A vs current resident** (`98628e98…`). A-vs-B (pricing the two
+  new doorways) runs only if A earns it.
+
+Spec files rewrite to the full ruling set (Spec A state machine, S-1 score-delta with
+provenance variant, M-1) is now UNBLOCKED — one revision pass.
 
 ## The owner's sequence (both specs share it) — superseded by the ruling above where they differ
 
