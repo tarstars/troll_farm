@@ -69,7 +69,39 @@ MAP_LEGEND = {
     "~": ("water", "water"),
 }
 
-CARRY_SLOTS = ["PLUM", "APPLE", "LEMON", "BANANA", "ORANGE", "WOOD"]
+#: Slot order is the AUTHORITY's, read out of the subject rather than remembered.
+#: `codex_1` blocker 1: the first build shipped `PLUM, APPLE, LEMON, BANANA, ORANGE, WOOD` —
+#: APPLE and LEMON transposed, and `ORANGE` invented where the subject has `IRON`. Every
+#: inventory column on every page was mislabelled. `check_slot_order()` now reads the `pub const`
+#: declarations from the subject and fails the build on any disagreement, so this cannot recur
+#: quietly. I asserted a label instead of deriving it; the guard makes the derivation binding.
+CARRY_SLOTS = ["PLUM", "LEMON", "APPLE", "BANANA", "IRON", "WOOD"]
+
+SLOT_CONST_RE = re.compile(r"^\s*pub const ([A-Z]+)\s*:\s*usize\s*=\s*(\d+)\s*;")
+
+
+def authoritative_slots():
+    """Read the slot order from the subject's own constants."""
+    path = os.path.join(REPO, "cgauto", "submissions",
+                        "submitted-agent6593838-readable-no-orchard.rs")
+    found = {}
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            m = SLOT_CONST_RE.match(line)
+            if m:
+                found[int(m.group(2))] = m.group(1)
+    return [found[i] for i in sorted(found)] if found else []
+
+
+def check_slot_order():
+    actual = authoritative_slots()
+    if not actual:
+        raise BuildError("could not read slot constants from the subject; refusing to guess "
+                         "an inventory column order")
+    if actual != CARRY_SLOTS:
+        raise BuildError(
+            f"inventory slot order disagrees with the subject: authority {actual}, "
+            f"viewer {CARRY_SLOTS}. Every inventory column would be mislabelled.")
 
 MOVE_RE = re.compile(r"\AMOVE\s+(\d+)\s+(\d+)\s+(\d+)\Z")
 
@@ -196,14 +228,28 @@ def derived_positions(sit):
     for u in sit["world_state_at_entry"]["units"]:
         pos[u[0]] = (u[2], u[3])
     own_ids = {u[0] for u in sit["world_state_at_entry"]["units"] if u[1] == 0}
-    out = []
+    entry_turn = sit["world_state_at_entry"]["turn"]
+
+    # FRAME 0 IS THE ENTRY STATE, before any command is applied (`codex_1` blocker 3).
+    # The entry position is the ONLY exact board state we hold, and the first build skipped
+    # straight past it by applying turn one's command before the first render — so the one
+    # frame that is ground truth was the one frame never shown. It is marked `exact` so the
+    # page can say so rather than dressing it as another inference.
+    out = [{"turn": entry_turn, "line": None, "segments": [], "exact": True,
+            "targets": {},
+            "own": {str(k): v for k, v in pos.items() if k in own_ids}}]
+
     for cmd in w["commands"]:
+        targets = {}
         for seg in parse_commands(cmd["line"]):
             t = move_target(seg)
             if t and t[0] in own_ids:
+                targets[str(t[0])] = (t[1], t[2])
                 pos[t[0]] = (t[1], t[2])
         out.append({"turn": cmd["turn"], "line": cmd["line"],
-                    "segments": parse_commands(cmd["line"]),
+                    "segments": parse_commands(cmd["line"]), "exact": False,
+                    # the ORDERED cell, kept separate from the assumed position (blocker 4)
+                    "targets": targets,
                     "own": {str(k): v for k, v in pos.items() if k in own_ids}})
     return out
 
@@ -223,6 +269,13 @@ def board_svg(sit, turn_index, frames):
     for (cx, cy) in sit["window"]["cells"]:
         parts.append(f'<rect class="cycle" x="{cx*cell}" y="{cy*cell}" '
                      f'width="{cell}" height="{cell}"/>')
+    # the BLOCKER's cell, specially marked (`codex_1` blocker 2): the stuck/blocking
+    # identities are the whole subject of a ruling and were previously indistinguishable
+    # from any other unit on the board.
+    blk = (sit["classification"].get("blocker") or {}).get("cell_at_entry")
+    if blk:
+        parts.append(f'<rect class="blockercell" x="{blk[0]*cell}" y="{blk[1]*cell}" '
+                     f'width="{cell}" height="{cell}"/>')
     # plants and opponent: FROZEN AT ENTRY, drawn with the entry marker
     for p in sit["world_state_at_entry"]["plants"]:
         kind, px, py = p[0], p[1], p[2]
@@ -232,14 +285,31 @@ def board_svg(sit, turn_index, frames):
         if u[1] != 0:
             parts.append(f'<circle class="opp entry" cx="{u[2]*cell+cell/2}" '
                          f'cy="{u[3]*cell+cell/2}" r="{cell*0.30}"/>')
-    # own units: INFERRED position — hollow + dashed, marked structurally
     for f_i, frame in enumerate(frames):
-        for uid, (ux, uy) in frame["own"].items():
+        # The ORDERED cell — ground truth, drawn as its own mark (blocker 4). Previously the
+        # dashed unit sat on the target and nothing else did, so a recorded order and an
+        # assumed arrival were the same pixel. They are now separate marks.
+        for uid, (tx, ty) in frame.get("targets", {}).items():
             parts.append(
-                f'<circle {DERIVED_ROLE} class="own {DERIVED_CLASS} f{f_i}" '
+                f'<rect data-role="ordered-target" class="target frame f{f_i}" '
+                f'x="{tx*cell+cell*0.16}" y="{ty*cell+cell*0.16}" '
+                f'width="{cell*0.68}" height="{cell*0.68}"/>')
+        for uid, (ux, uy) in frame["own"].items():
+            if frame.get("exact"):
+                # entry frame: this position IS recorded. Solid, and NOT marked as derived.
+                parts.append(
+                    f'<circle data-role="exact-position" class="own exact frame f{f_i}" '
+                    f'cx="{ux*cell+cell/2}" cy="{uy*cell+cell/2}" r="{cell*0.32}"/>')
+                parts.append(
+                    f'<text data-role="exact-position" class="ownid exact frame f{f_i}" '
+                    f'x="{ux*cell+cell/2}" y="{uy*cell+cell*0.62}" '
+                    f'text-anchor="middle">{html.escape(uid)}</text>')
+                continue
+            parts.append(
+                f'<circle {DERIVED_ROLE} class="own {DERIVED_CLASS} frame f{f_i}" '
                 f'cx="{ux*cell+cell/2}" cy="{uy*cell+cell/2}" r="{cell*0.32}"/>')
             parts.append(
-                f'<text {DERIVED_ROLE} class="ownid {DERIVED_CLASS} f{f_i}" '
+                f'<text {DERIVED_ROLE} class="ownid {DERIVED_CLASS} frame f{f_i}" '
                 f'x="{ux*cell+cell/2}" y="{uy*cell+cell*0.62}" '
                 f'text-anchor="middle">{html.escape(uid)}</text>')
     parts.append("</svg>")
@@ -262,6 +332,7 @@ h1{font-size:1.25rem;margin:0 0 .2rem}
 .wall{fill:var(--wall)}.floor{fill:var(--floor)}
 .shack-own{fill:#cfe0f5}.shack-opp{fill:#f5d8cf}.iron{fill:var(--iron)}.water{fill:var(--water)}
 .cycle{fill:var(--cycle);opacity:.55}
+.blockercell{fill:none;stroke:#b4401a;stroke-width:2.5;stroke-dasharray:2 2}
 .plant{font:600 13px ui-monospace,monospace;fill:#2f6b34}
 /* Ground truth is SOLID. Inference is HOLLOW + DASHED. The two must not look alike:
    the opponent snapshot is recorded fact, the own position is our assumption. An earlier
@@ -269,9 +340,13 @@ h1{font-size:1.25rem;margin:0 0 .2rem}
 .opp{fill:var(--opp);stroke:none}
 .own{fill:none;stroke:var(--own);stroke-width:2.5;stroke-dasharray:4 3}
 .ownid{font:600 12px ui-monospace,monospace;fill:var(--own)}
-.own,.ownid,.opp,.plant{pointer-events:none}
-[data-role="derived-position"]{display:none}
-[data-role="derived-position"].show{display:inline}
+.own.exact{fill:var(--own);stroke:none;stroke-dasharray:none}
+.ownid.exact{fill:var(--bg)}
+/* the ORDERED cell: ground truth, its own mark, distinct from the assumed arrival */
+.target{fill:none;stroke:var(--own);stroke-width:2;opacity:.85}
+.own,.ownid,.opp,.plant,.target{pointer-events:none}
+.frame{display:none}
+.frame.show{display:inline}
 .panel{min-width:280px;max-width:460px;flex:1}
 .panel h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);
 margin:1rem 0 .3rem;border-bottom:1px solid var(--line);padding-bottom:.2rem}
@@ -322,8 +397,49 @@ def page(sit):
              f"a {len(w['cells'])}-cell cycle between "
              + " and ".join(f"({c[0]},{c[1]})" for c in w["cells"]))
 
-    frames_json = json.dumps([{"turn": f["turn"], "line": f["line"],
+    frames_json = json.dumps([{"turn": f["turn"], "line": f["line"], "exact": f["exact"],
                                "segments": f["segments"]} for f in frames])
+
+    # --- blocker 2: the frozen evidence a ruling needs, rendered rather than withheld -----
+    cl = sit["classification"]
+    prov = sit["provenance"]
+    blocker = cl.get("blocker") or {}
+    blk_cell = tuple(blocker.get("cell_at_entry") or ())
+    stuck_cells = {tuple(c) for c in w["cells"]}
+
+    def cellfmt(c):
+        return f"({c[0]},{c[1]})" if c else "—"
+
+    evidence = f"""
+<h2>Classification <span class="entrytag">frozen evidence</span></h2>
+<table>
+<tr><th>mechanism</th><td>{html.escape(str(cl.get('mechanism')))}</td></tr>
+<tr><th>blocker state</th><td>{html.escape(str(cl.get('blocker_state')))}</td></tr>
+<tr><th>blocker cell at entry</th><td>{html.escape(cellfmt(blk_cell))}</td></tr>
+<tr><th>stuck cells</th><td>{html.escape(' '.join(cellfmt(c) for c in stuck_cells))}</td></tr>
+<tr><th>classifier</th><td>{html.escape(str(cl.get('classifier_version')))}</td></tr>
+<tr><th>detectors</th><td>{html.escape(', '.join(f'{k}={v}' for k, v in
+    sorted((sit['detectors'].get('counts') or {{}}).items()) if v))or '—'}</td></tr>
+<tr><th>episodes / dedupe</th><td>{sit['multiplicity'].get('episodes')} ·
+  <code>{html.escape(str(sit['multiplicity'].get('dedupe_key_sha256'))[:12])}…</code></td></tr>
+</table>
+<p class="sub"><b>Mechanism evidence.</b>
+{html.escape(str(cl.get('mechanism_evidence') or '—'))}</p>
+
+<div class="warn"><b>Unresolved, carried from the frozen record — read before ruling.</b><br>
+{'<br>'.join(html.escape(u) for u in (sit.get('unresolved') or ['(none recorded)']))}</div>
+
+<h2>Provenance <span class="entrytag">frozen evidence</span></h2>
+<table>
+<tr><th>subject</th><td><code>{html.escape(str(prov.get('subject')))}</code>
+  <code>{html.escape(str(prov.get('bot_source_sha256'))[:12])}…</code></td></tr>
+<tr><th>map / seed / seat</th><td>{html.escape(str(prov.get('map_id')))} ·
+  {html.escape(str(prov.get('seed')))} · seat {html.escape(str(prov.get('seat')))}</td></tr>
+<tr><th>instrument / corpus</th><td>{html.escape(str(prov.get('instrument_version')))} ·
+  {html.escape(str(prov.get('corpus_version')))}</td></tr>
+<tr><th>opponent profile</th><td>{html.escape(str(prov.get('opponent_profile')))}</td></tr>
+<tr><th>content sha256</th><td><code>{html.escape(sit['content_sha256'][:24])}…</code></td></tr>
+</table>"""
 
     body = f"""<h1>{html.escape(sit['id'])} — {html.escape(sit['kind'])}</h1>
 <p class="sub">unit {w['unit']} · turns {w['turn_start']}–{w['turn_end']}
@@ -342,6 +458,9 @@ completeness {html.escape(sit['completeness'])}</p>
 <div class="legend">
   <span class="legend-derived"><b>Dashed hollow circle</b> = <b>inferred</b> own position —
   where the troll would be <em>if</em> its order completed. Not a recorded position.</span><br>
+  <b>Blue square outline</b> = the cell our order named — ground truth ·
+  <b>Solid blue circle</b> = exact position, entry frame only ·
+  <b>Dashed red cell</b> = the blocker's cell ·<br>
   <b>Solid red circle</b> = opponent <span class="entrytag">at entry</span> ·
   <b>Letter</b> = plant <span class="entrytag">at entry</span> ·
   <b>Amber cells</b> = the squares this episode repeats.
@@ -361,6 +480,8 @@ speed lands part-way, and a simultaneous move by the opponent can change the res
 opponent's own commands are <b>not in this library</b>, so no realized position can be
 reconstructed from it.
 </div>
+
+{evidence}
 
 <h2>Inventories <span class="entrytag">at entry</span></h2>
 <table><tr><th>side</th>{''.join(f'<th>{s[:2]}</th>' for s in CARRY_SLOTS)}</tr>
@@ -386,17 +507,22 @@ inventories cannot be derived honestly from our own commands alone.</p>
 const FRAMES = {frames_json};
 let i = 0;
 function render() {{
-  document.querySelectorAll('[data-role="derived-position"]').forEach(function (el) {{
+  document.querySelectorAll('.frame').forEach(function (el) {{
     el.classList.toggle('show', el.classList.contains('f' + i));
   }});
-  document.getElementById('turnno').textContent = 'turn ' + FRAMES[i].turn;
-  document.getElementById('cmdline').textContent = FRAMES[i].line;
-  var t = FRAMES[i].segments.map(function (s) {{
+  var f = FRAMES[i];
+  document.getElementById('turnno').textContent =
+    'turn ' + f.turn + (f.exact ? '  (entry)' : '');
+  document.getElementById('cmdline').textContent =
+    f.exact ? '— entry state, before any command —' : f.line;
+  var t = f.segments.map(function (s) {{
     var m = /^MOVE\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)$/.exec(s);
     return m ? ('unit ' + m[1] + ' ordered to (' + m[2] + ',' + m[3] + ')')
              : ('unit order: ' + s);
   }}).join(' · ');
-  document.getElementById('targets').textContent = t + '  — order target, ground truth';
+  document.getElementById('targets').textContent = f.exact
+    ? 'Positions on this frame are EXACT — the only recorded board state in the window.'
+    : t + '  — order target (square outline), ground truth';
 }}
 function step(d) {{ i = Math.max(0, Math.min(FRAMES.length - 1, i + d)); render(); }}
 document.getElementById('prev').onclick = function () {{ step(-1); }};
@@ -460,6 +586,7 @@ def build(outdir, situations=None):
     situations = load() if situations is None else situations
     check_situation_count(situations)
     check_visual_distinction(CSS)
+    check_slot_order()
     os.makedirs(outdir, exist_ok=True)
     written = []
     for s in situations:
@@ -522,6 +649,37 @@ def _self_test():
     nolegend = f'<svg><circle {DERIVED_ROLE} class="own derived f0"/></svg>'
     rejects("inferred positions drawn with no legend explaining them",
             lambda: check_inference_marked(nolegend, "SYNTH"), "no legend")
+
+    # --- blocker fixes, each with its own control ---------------------------------------
+    accepts("baseline: slot order matches the subject's constants", check_slot_order)
+
+    real = globals()["CARRY_SLOTS"]
+    globals()["CARRY_SLOTS"] = ["PLUM", "APPLE", "LEMON", "BANANA", "ORANGE", "WOOD"]
+    try:
+        rejects("the ORIGINAL shipped slot order (APPLE/LEMON swapped, ORANGE for IRON)",
+                check_slot_order, "disagrees with the subject")
+    finally:
+        globals()["CARRY_SLOTS"] = real
+
+    fr = derived_positions(situations[0])
+    entry_turn = situations[0]["world_state_at_entry"]["turn"]
+    cases.append(("frame 0 is the ENTRY state, before any command",
+                  fr[0]["exact"] and fr[0]["line"] is None and fr[0]["turn"] == entry_turn,
+                  f"turn {fr[0]['turn']}, exact={fr[0]['exact']}"))
+    entry_pos = {str(u[0]): (u[2], u[3]) for u in situations[0]["world_state_at_entry"]["units"]
+                 if u[1] == 0}
+    cases.append(("entry frame shows the RECORDED positions unmodified",
+                  fr[0]["own"] == entry_pos, ""))
+    cases.append(("later frames are not marked exact",
+                  not any(f["exact"] for f in fr[1:]), ""))
+    moved = [f for f in fr[1:] if f["targets"]]
+    cases.append(("ordered targets are carried SEPARATELY from assumed positions",
+                  bool(moved), f"{len(moved)} frames carry an ordered target"))
+    pg = page(situations[0])
+    cases.append(("page draws an ordered-target mark distinct from the unit",
+                  'data-role="ordered-target"' in pg, ""))
+    for field in ("mechanism", "blocker state", "Unresolved", "Provenance", "blocker's cell"):
+        cases.append((f"page renders required evidence: {field}", field in pg, ""))
 
     accepts("baseline: ground truth and inference styled differently",
             lambda: check_visual_distinction(CSS))

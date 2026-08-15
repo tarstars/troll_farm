@@ -14,6 +14,7 @@ h1{font-size:1.25rem;margin:0 0 .2rem}
 .wall{fill:var(--wall)}.floor{fill:var(--floor)}
 .shack-own{fill:#cfe0f5}.shack-opp{fill:#f5d8cf}.iron{fill:var(--iron)}.water{fill:var(--water)}
 .cycle{fill:var(--cycle);opacity:.55}
+.blockercell{fill:none;stroke:#b4401a;stroke-width:2.5;stroke-dasharray:2 2}
 .plant{font:600 13px ui-monospace,monospace;fill:#2f6b34}
 /* Ground truth is SOLID. Inference is HOLLOW + DASHED. The two must not look alike:
    the opponent snapshot is recorded fact, the own position is our assumption. An earlier
@@ -21,9 +22,13 @@ h1{font-size:1.25rem;margin:0 0 .2rem}
 .opp{fill:var(--opp);stroke:none}
 .own{fill:none;stroke:var(--own);stroke-width:2.5;stroke-dasharray:4 3}
 .ownid{font:600 12px ui-monospace,monospace;fill:var(--own)}
-.own,.ownid,.opp,.plant{pointer-events:none}
-[data-role="derived-position"]{display:none}
-[data-role="derived-position"].show{display:inline}
+.own.exact{fill:var(--own);stroke:none;stroke-dasharray:none}
+.ownid.exact{fill:var(--bg)}
+/* the ORDERED cell: ground truth, its own mark, distinct from the assumed arrival */
+.target{fill:none;stroke:var(--own);stroke-width:2;opacity:.85}
+.own,.ownid,.opp,.plant,.target{pointer-events:none}
+.frame{display:none}
+.frame.show{display:inline}
 .panel{min-width:280px;max-width:460px;flex:1}
 .panel h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);
 margin:1rem 0 .3rem;border-bottom:1px solid var(--line);padding-bottom:.2rem}
