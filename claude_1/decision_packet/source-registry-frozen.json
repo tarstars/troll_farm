@@ -204,6 +204,12 @@
   }
  ],
  "schema": "troll-farm-decision-packet/v1",
+ "semantic_gaps": [
+  "A site may name a VALID but WRONG stage or intent; nothing here checks that the mapping describes what the function actually does.",
+  "A required site may be OMITTED; expected coverage is derived from SITES itself, so the registry cannot notice its own holes. Drift only catches removal AFTER a freeze.",
+  "A site_id may not describe its function's semantics; the id is not checked against the code.",
+  "Closing these needs an independently curated required-site inventory, NOT a comparison against the same SITES list used to build the registry."
+ ],
  "sites": [
   {
    "end_line": 1111,
@@ -492,7 +498,7 @@
    "start_line": 1458
   }
  ],
- "source_registry_sha256": "e6cb7000ed1e46a3ac05ab959c4a35869c920fb4c58dcf9d99eda9b012019ff0",
+ "source_registry_sha256": "3c953d107bda882dd7ba863552dc6f5299f197027cb9e987860f8bb3fe7b64b7",
  "spec_discrepancies": [
   "\u00a74 example enum omits EXECUTION_UNAVAILABLE, which \u00a74 prose requires; implemented the prose."
  ],
@@ -510,6 +516,8 @@
   "EMIT",
   "EXECUTE"
  ],
+ "status": "PARTIAL_FOUNDATION",
+ "status_note": "Rollout step 1 INCOMPLETE and acceptance item 1 OPEN. This is a versioned partial source registry, not a frozen one: no FILTER_*/TERM_* sub-function ids exist, so adding the required sites will change source_registry_sha256. ENVELOPE_CONTRACT is the \u00a74 field shape only, not the packet/event schema.",
  "subject": {
   "fn_definitions": 79,
   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",

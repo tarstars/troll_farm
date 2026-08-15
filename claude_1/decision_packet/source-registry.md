@@ -1,9 +1,11 @@
 # Decision Packet source registry (generated — do not edit)
 
+> **STATUS: `PARTIAL_FOUNDATION`.** Rollout step 1 INCOMPLETE and acceptance item 1 OPEN. This is a versioned partial source registry, not a frozen one: no FILTER_*/TERM_* sub-function ids exist, so adding the required sites will change source_registry_sha256. ENVELOPE_CONTRACT is the §4 field shape only, not the packet/event schema.
+
 - schema: `troll-farm-decision-packet/v1`
 - subject: `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs`
 - subject sha256: `98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29`
-- source_registry_sha256: `e6cb7000ed1e46a3ac05ab959c4a35869c920fb4c58dcf9d99eda9b012019ff0`
+- source_registry_sha256: `3c953d107bda882dd7ba863552dc6f5299f197027cb9e987860f8bb3fe7b64b7`
 - stages: 12 · intents: 13 · priority classes: 4 · sites: 22
 
 ## Known gaps at this increment
@@ -11,6 +13,15 @@
 - **13 of 13 intents carry no completion / progress / invalidation predicate yet** — the §5.2 fields are present and explicitly null. They are read out of the subject in rollout step 2+, never inferred here: `WAIT`, `BANK`, `EQUIP_FOR_TRAIN`, `CLEAR_SHACK_FOR_TRAIN`, `HARVEST_FRUIT`, `MINE_IRON`, `CHOP_WOOD`, `DENY_FOCUS_SPECIES`, `REGENERATE_CARRIED_FRUIT`, `CONVERT_BANKED_FRUIT`, `COMMIT_CURRENT_CHOP`, `IDLE_HARVEST`, `UNBLOCK_UNIQUE_DOOR`.
 - **The site registry is NOT yet §5.4-complete, and this increment does not claim it is.** 22 sites are pinned against 79 function definitions in the subject. §5.4 also requires ids for every *filter*, *score term* and *early return*; no `FILTER_*` or `TERM_*` id exists yet, because those are sub-function spans and this increment pins whole functions only. They arrive with rollout steps 2–3. What is frozen is exact; it is not complete.
 - **5 intents have no source site bound**: `CLEAR_SHACK_FOR_TRAIN`, `DENY_FOCUS_SPECIES`, `CONVERT_BANKED_FRUIT`, `COMMIT_CURRENT_CHOP`, `IDLE_HARVEST`. An intent with no site is a name with nothing behind it, and is listed rather than dropped.
+
+## What the drift guard and validator CANNOT catch
+
+Reproduced by execution, not conceded on argument:
+
+- A site may name a VALID but WRONG stage or intent; nothing here checks that the mapping describes what the function actually does.
+- A required site may be OMITTED; expected coverage is derived from SITES itself, so the registry cannot notice its own holes. Drift only catches removal AFTER a freeze.
+- A site_id may not describe its function's semantics; the id is not checked against the code.
+- Closing these needs an independently curated required-site inventory, NOT a comparison against the same SITES list used to build the registry.
 
 ## Spec discrepancies raised, not resolved silently
 

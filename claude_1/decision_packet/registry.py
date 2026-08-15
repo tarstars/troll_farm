@@ -1,9 +1,17 @@
 #!/usr/bin/env python3
 """Decision Packet — code-owned registries and the source-site drift guard.
 
-P-1 increment 1 = rollout step 1 of the frozen contract
-`chatgpt_1/decision-packet-spec-2026-08-10.md`: *freeze schema, source registry and exact
-candidate SHA*, which is also acceptance item 1, *exact subject SHA and registry drift guard*.
+P-1 increment 1 — **`PARTIAL_FOUNDATION`. Rollout step 1 is NOT complete and acceptance item 1
+stays OPEN.** (Relabelled 2026-08-15 per `codex_1` review
+`codex_1/reviews/decision-packet-p1-increment1-review-2026-08-15.md`, whose two concrete claims
+I reproduced by execution before accepting them.)
+
+Step 1 is *"freeze schema, source registry and exact candidate SHA."* This module freezes the
+exact candidate SHA and a **versioned partial** source registry. It is not the frozen step-1
+registry, because §5.4 also requires ids for every filter, score term and early return — no
+`FILTER_*` or `TERM_*` id exists yet — and adding them necessarily changes
+`source_registry_sha256`. `ENVELOPE_CONTRACT` is the §4 envelope *field shape* only: there is no
+event schema, reason-code schema, or canonicalization contract here.
 
 Two spec rules shape this module:
 
@@ -54,6 +62,30 @@ FORBIDDEN_SUBJECT_SHA256 = "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1
 FROZEN_PATH = "claude_1/decision_packet/source-registry-frozen.json"
 
 SCHEMA = "troll-farm-decision-packet/v1"
+
+#: Carried into the frozen artifact so the label cannot be lost when the JSON is read without
+#: this file. `codex_1` review 2026-08-15: relabel increment 1 and keep acceptance item 1 open.
+STATUS = "PARTIAL_FOUNDATION"
+STATUS_NOTE = (
+    "Rollout step 1 INCOMPLETE and acceptance item 1 OPEN. This is a versioned partial source "
+    "registry, not a frozen one: no FILTER_*/TERM_* sub-function ids exist, so adding the "
+    "required sites will change source_registry_sha256. ENVELOPE_CONTRACT is the §4 field shape "
+    "only, not the packet/event schema."
+)
+
+#: What `validate_registry()` does NOT catch. Reproduced by execution 2026-08-15, not conceded
+#: on argument: relabelling GEN_FRUIT_CANDIDATES's intent HARVEST_FRUIT -> MINE_IRON yields 0
+#: failures, and deleting three sites outright yields 0 failures. Both are wrong-at-freeze
+#: errors, and both are invisible to every check in this module.
+SEMANTIC_GAPS = [
+    "A site may name a VALID but WRONG stage or intent; nothing here checks that the mapping "
+    "describes what the function actually does.",
+    "A required site may be OMITTED; expected coverage is derived from SITES itself, so the "
+    "registry cannot notice its own holes. Drift only catches removal AFTER a freeze.",
+    "A site_id may not describe its function's semantics; the id is not checked against the code.",
+    "Closing these needs an independently curated required-site inventory, NOT a comparison "
+    "against the same SITES list used to build the registry.",
+]
 
 HEX40 = re.compile(r"\A[0-9a-f]{40}\Z")
 HEX64 = re.compile(r"\A[0-9a-f]{64}\Z")
@@ -388,6 +420,9 @@ def build(lines=None):
     sites = derive(lines)
     payload = {
         "schema": SCHEMA,
+        "status": STATUS,
+        "status_note": STATUS_NOTE,
+        "semantic_gaps": SEMANTIC_GAPS,
         "subject": {"path": SUBJECT_PATH, "sha256": SUBJECT_SHA256,
                     # Recorded so the registry's own incompleteness is a number in the artifact,
                     # not something a reader has to go and measure.
@@ -462,6 +497,7 @@ def check_drift(frozen, subject_text=None, subject_sha=None):
 def render_prose(reg):
     """Prose is a PROJECTION of the registry (§5.4), never the authority."""
     out = [f"# Decision Packet source registry (generated — do not edit)", "",
+           f"> **STATUS: `{reg['status']}`.** {reg['status_note']}", "",
            f"- schema: `{reg['schema']}`",
            f"- subject: `{reg['subject']['path']}`",
            f"- subject sha256: `{reg['subject']['sha256']}`",
@@ -488,6 +524,10 @@ def render_prose(reg):
             f"{', '.join(f'`{i}`' for i in nositz) or 'none'}. An intent with no site is a name "
             f"with nothing behind it, and is listed rather than dropped.",
             ""]
+    out += ["## What the drift guard and validator CANNOT catch", "",
+            "Reproduced by execution, not conceded on argument:", ""]
+    out += [f"- {g}" for g in reg["semantic_gaps"]] + [""]
+
     if reg.get("spec_discrepancies"):
         out += ["## Spec discrepancies raised, not resolved silently", ""]
         out += [f"- {d}" for d in reg["spec_discrepancies"]] + [""]

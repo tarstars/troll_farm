@@ -1,0 +1,339 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OSC-003 — D1_EPISODE</title><style>
+:root{--bg:#fbfaf7;--fg:#1d1b17;--line:#c9c3b6;--wall:#3a352d;--floor:#f2eee5;
+--own:#1a5fb4;--opp:#b4401a;--cycle:#ffd98a;--iron:#8d8577;--water:#8fb8cf;--muted:#6c665c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#16150f;--fg:#efe9dc;
+--line:#4a453b;--wall:#0c0b08;--floor:#26241d;--cycle:#6b5320;--muted:#a09a8e}}
+*{box-sizing:border-box}
+body{margin:0;padding:1.2rem;background:var(--bg);color:var(--fg);
+font:15px/1.5 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+h1{font-size:1.25rem;margin:0 0 .2rem}
+.sub{color:var(--muted);margin:0 0 1rem;font-size:.9rem}
+.wrap{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:flex-start}
+.board{width:min(560px,94vw);height:auto;border:1px solid var(--line);background:var(--floor)}
+.c{stroke:var(--line);stroke-width:.5}
+.wall{fill:var(--wall)}.floor{fill:var(--floor)}
+.shack-own{fill:#cfe0f5}.shack-opp{fill:#f5d8cf}.iron{fill:var(--iron)}.water{fill:var(--water)}
+.cycle{fill:var(--cycle);opacity:.55}
+.plant{font:600 13px ui-monospace,monospace;fill:#2f6b34}
+/* Ground truth is SOLID. Inference is HOLLOW + DASHED. The two must not look alike:
+   the opponent snapshot is recorded fact, the own position is our assumption. An earlier
+   draft drew both hollow, which is precisely the confusion these rules exist to prevent. */
+.opp{fill:var(--opp);stroke:none}
+.own{fill:none;stroke:var(--own);stroke-width:2.5;stroke-dasharray:4 3}
+.ownid{font:600 12px ui-monospace,monospace;fill:var(--own)}
+.own,.ownid,.opp,.plant{pointer-events:none}
+[data-role="derived-position"]{display:none}
+[data-role="derived-position"].show{display:inline}
+.panel{min-width:280px;max-width:460px;flex:1}
+.panel h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);
+margin:1rem 0 .3rem;border-bottom:1px solid var(--line);padding-bottom:.2rem}
+.cmd{font:13px/1.5 ui-monospace,monospace;background:#00000010;padding:.5rem .6rem;
+border-left:3px solid var(--own);overflow-x:auto;white-space:pre}
+table{border-collapse:collapse;width:100%;font-size:.86rem}
+td,th{border-bottom:1px solid var(--line);padding:.22rem .35rem;text-align:left}
+th{color:var(--muted);font-weight:600}
+.entrytag{display:inline-block;background:#00000012;color:var(--muted);border-radius:3px;
+padding:.05rem .38rem;font-size:.72rem;letter-spacing:.04em;margin-left:.35rem}
+.warn{border:1px solid var(--line);border-left:3px solid #c07a18;padding:.6rem .7rem;
+background:#c07a1810;font-size:.88rem;margin:.9rem 0}
+.legend{font-size:.82rem;color:var(--muted);margin-top:.7rem}
+.legend b{color:var(--fg)}
+.ctrl{display:flex;gap:.5rem;align-items:center;margin:.7rem 0}
+button{font:inherit;padding:.3rem .8rem;border:1px solid var(--line);border-radius:4px;
+background:var(--bg);color:var(--fg);cursor:pointer}
+button:hover{background:#00000010}
+.turnno{font:600 15px ui-monospace,monospace;min-width:8ch}
+a{color:var(--own)}
+</style></head><body><h1>OSC-003 — D1_EPISODE</h1>
+<p class="sub">unit 0 · turns 25–47
+(23 turns) · k=11 · a 2-cell cycle between (10,6) and (9,6) ·
+completeness FULL</p>
+
+<div class="wrap">
+<div>
+<svg viewBox="0 0 476 272" class="board" role="img" aria-label="situation board">
+<rect class="c wall" x="0" y="0" width="34" height="34"/>
+<rect class="c water" x="34" y="0" width="34" height="34"/>
+<rect class="c floor" x="68" y="0" width="34" height="34"/>
+<rect class="c floor" x="102" y="0" width="34" height="34"/>
+<rect class="c floor" x="136" y="0" width="34" height="34"/>
+<rect class="c floor" x="170" y="0" width="34" height="34"/>
+<rect class="c floor" x="204" y="0" width="34" height="34"/>
+<rect class="c floor" x="238" y="0" width="34" height="34"/>
+<rect class="c floor" x="272" y="0" width="34" height="34"/>
+<rect class="c floor" x="306" y="0" width="34" height="34"/>
+<rect class="c floor" x="340" y="0" width="34" height="34"/>
+<rect class="c floor" x="374" y="0" width="34" height="34"/>
+<rect class="c floor" x="408" y="0" width="34" height="34"/>
+<rect class="c floor" x="442" y="0" width="34" height="34"/>
+<rect class="c shack-opp" x="0" y="34" width="34" height="34"/>
+<rect class="c floor" x="34" y="34" width="34" height="34"/>
+<rect class="c floor" x="68" y="34" width="34" height="34"/>
+<rect class="c floor" x="102" y="34" width="34" height="34"/>
+<rect class="c floor" x="136" y="34" width="34" height="34"/>
+<rect class="c floor" x="170" y="34" width="34" height="34"/>
+<rect class="c floor" x="204" y="34" width="34" height="34"/>
+<rect class="c floor" x="238" y="34" width="34" height="34"/>
+<rect class="c floor" x="272" y="34" width="34" height="34"/>
+<rect class="c floor" x="306" y="34" width="34" height="34"/>
+<rect class="c floor" x="340" y="34" width="34" height="34"/>
+<rect class="c floor" x="374" y="34" width="34" height="34"/>
+<rect class="c floor" x="408" y="34" width="34" height="34"/>
+<rect class="c floor" x="442" y="34" width="34" height="34"/>
+<rect class="c floor" x="0" y="68" width="34" height="34"/>
+<rect class="c floor" x="34" y="68" width="34" height="34"/>
+<rect class="c floor" x="68" y="68" width="34" height="34"/>
+<rect class="c floor" x="102" y="68" width="34" height="34"/>
+<rect class="c floor" x="136" y="68" width="34" height="34"/>
+<rect class="c floor" x="170" y="68" width="34" height="34"/>
+<rect class="c floor" x="204" y="68" width="34" height="34"/>
+<rect class="c floor" x="238" y="68" width="34" height="34"/>
+<rect class="c floor" x="272" y="68" width="34" height="34"/>
+<rect class="c floor" x="306" y="68" width="34" height="34"/>
+<rect class="c floor" x="340" y="68" width="34" height="34"/>
+<rect class="c floor" x="374" y="68" width="34" height="34"/>
+<rect class="c floor" x="408" y="68" width="34" height="34"/>
+<rect class="c floor" x="442" y="68" width="34" height="34"/>
+<rect class="c floor" x="0" y="102" width="34" height="34"/>
+<rect class="c floor" x="34" y="102" width="34" height="34"/>
+<rect class="c floor" x="68" y="102" width="34" height="34"/>
+<rect class="c floor" x="102" y="102" width="34" height="34"/>
+<rect class="c floor" x="136" y="102" width="34" height="34"/>
+<rect class="c wall" x="170" y="102" width="34" height="34"/>
+<rect class="c floor" x="204" y="102" width="34" height="34"/>
+<rect class="c floor" x="238" y="102" width="34" height="34"/>
+<rect class="c floor" x="272" y="102" width="34" height="34"/>
+<rect class="c floor" x="306" y="102" width="34" height="34"/>
+<rect class="c floor" x="340" y="102" width="34" height="34"/>
+<rect class="c floor" x="374" y="102" width="34" height="34"/>
+<rect class="c floor" x="408" y="102" width="34" height="34"/>
+<rect class="c floor" x="442" y="102" width="34" height="34"/>
+<rect class="c floor" x="0" y="136" width="34" height="34"/>
+<rect class="c floor" x="34" y="136" width="34" height="34"/>
+<rect class="c floor" x="68" y="136" width="34" height="34"/>
+<rect class="c floor" x="102" y="136" width="34" height="34"/>
+<rect class="c floor" x="136" y="136" width="34" height="34"/>
+<rect class="c floor" x="170" y="136" width="34" height="34"/>
+<rect class="c floor" x="204" y="136" width="34" height="34"/>
+<rect class="c floor" x="238" y="136" width="34" height="34"/>
+<rect class="c floor" x="272" y="136" width="34" height="34"/>
+<rect class="c floor" x="306" y="136" width="34" height="34"/>
+<rect class="c floor" x="340" y="136" width="34" height="34"/>
+<rect class="c floor" x="374" y="136" width="34" height="34"/>
+<rect class="c floor" x="408" y="136" width="34" height="34"/>
+<rect class="c floor" x="442" y="136" width="34" height="34"/>
+<rect class="c floor" x="0" y="170" width="34" height="34"/>
+<rect class="c floor" x="34" y="170" width="34" height="34"/>
+<rect class="c floor" x="68" y="170" width="34" height="34"/>
+<rect class="c floor" x="102" y="170" width="34" height="34"/>
+<rect class="c floor" x="136" y="170" width="34" height="34"/>
+<rect class="c floor" x="170" y="170" width="34" height="34"/>
+<rect class="c floor" x="204" y="170" width="34" height="34"/>
+<rect class="c floor" x="238" y="170" width="34" height="34"/>
+<rect class="c floor" x="272" y="170" width="34" height="34"/>
+<rect class="c floor" x="306" y="170" width="34" height="34"/>
+<rect class="c floor" x="340" y="170" width="34" height="34"/>
+<rect class="c floor" x="374" y="170" width="34" height="34"/>
+<rect class="c floor" x="408" y="170" width="34" height="34"/>
+<rect class="c shack-own" x="442" y="170" width="34" height="34"/>
+<rect class="c floor" x="0" y="204" width="34" height="34"/>
+<rect class="c floor" x="34" y="204" width="34" height="34"/>
+<rect class="c floor" x="68" y="204" width="34" height="34"/>
+<rect class="c floor" x="102" y="204" width="34" height="34"/>
+<rect class="c floor" x="136" y="204" width="34" height="34"/>
+<rect class="c floor" x="170" y="204" width="34" height="34"/>
+<rect class="c floor" x="204" y="204" width="34" height="34"/>
+<rect class="c wall" x="238" y="204" width="34" height="34"/>
+<rect class="c floor" x="272" y="204" width="34" height="34"/>
+<rect class="c floor" x="306" y="204" width="34" height="34"/>
+<rect class="c floor" x="340" y="204" width="34" height="34"/>
+<rect class="c floor" x="374" y="204" width="34" height="34"/>
+<rect class="c floor" x="408" y="204" width="34" height="34"/>
+<rect class="c floor" x="442" y="204" width="34" height="34"/>
+<rect class="c floor" x="0" y="238" width="34" height="34"/>
+<rect class="c floor" x="34" y="238" width="34" height="34"/>
+<rect class="c floor" x="68" y="238" width="34" height="34"/>
+<rect class="c floor" x="102" y="238" width="34" height="34"/>
+<rect class="c floor" x="136" y="238" width="34" height="34"/>
+<rect class="c floor" x="170" y="238" width="34" height="34"/>
+<rect class="c floor" x="204" y="238" width="34" height="34"/>
+<rect class="c floor" x="238" y="238" width="34" height="34"/>
+<rect class="c floor" x="272" y="238" width="34" height="34"/>
+<rect class="c floor" x="306" y="238" width="34" height="34"/>
+<rect class="c floor" x="340" y="238" width="34" height="34"/>
+<rect class="c floor" x="374" y="238" width="34" height="34"/>
+<rect class="c floor" x="408" y="238" width="34" height="34"/>
+<rect class="c floor" x="442" y="238" width="34" height="34"/>
+<rect class="cycle" x="340" y="204" width="34" height="34"/>
+<rect class="cycle" x="306" y="204" width="34" height="34"/>
+<text class="plant entry" x="391.0" y="227.12" text-anchor="middle">A</text>
+<circle class="opp entry" cx="51.0" cy="85.0" r="10.2"/>
+<circle data-role="derived-position" class="own derived f0" cx="323.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f0" x="323.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f0" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f0" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f1" cx="357.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f1" x="357.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f1" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f1" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f2" cx="323.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f2" x="323.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f2" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f2" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f3" cx="357.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f3" x="357.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f3" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f3" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f4" cx="323.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f4" x="323.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f4" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f4" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f5" cx="357.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f5" x="357.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f5" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f5" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f6" cx="323.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f6" x="323.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f6" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f6" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f7" cx="357.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f7" x="357.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f7" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f7" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f8" cx="323.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f8" x="323.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f8" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f8" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f9" cx="357.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f9" x="357.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f9" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f9" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f10" cx="323.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f10" x="323.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f10" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f10" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f11" cx="357.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f11" x="357.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f11" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f11" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f12" cx="323.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f12" x="323.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f12" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f12" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f13" cx="357.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f13" x="357.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f13" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f13" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f14" cx="323.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f14" x="323.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f14" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f14" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f15" cx="357.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f15" x="357.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f15" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f15" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f16" cx="323.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f16" x="323.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f16" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f16" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f17" cx="357.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f17" x="357.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f17" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f17" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f18" cx="323.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f18" x="323.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f18" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f18" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f19" cx="357.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f19" x="357.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f19" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f19" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f20" cx="323.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f20" x="323.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f20" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f20" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f21" cx="357.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f21" x="357.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f21" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f21" x="391.0" y="225.07999999999998" text-anchor="middle">2</text>
+<circle data-role="derived-position" class="own derived f22" cx="391.0" cy="221.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f22" x="391.0" y="225.07999999999998" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived f22" cx="425.0" cy="187.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived f22" x="425.0" y="191.07999999999998" text-anchor="middle">2</text>
+</svg>
+<div class="ctrl">
+  <button id="prev">◀ prev</button>
+  <span class="turnno" id="turnno"></span>
+  <button id="next">next ▶</button>
+  <span class="sub" style="margin:0">← → step · Home/End jump</span>
+</div>
+<div class="legend">
+  <span class="legend-derived"><b>Dashed hollow circle</b> = <b>inferred</b> own position —
+  where the troll would be <em>if</em> its order completed. Not a recorded position.</span><br>
+  <b>Solid red circle</b> = opponent <span class="entrytag">at entry</span> ·
+  <b>Letter</b> = plant <span class="entrytag">at entry</span> ·
+  <b>Amber cells</b> = the squares this episode repeats.
+</div>
+</div>
+
+<div class="panel">
+<h2>Command this turn — ground truth</h2>
+<div class="cmd" id="cmdline"></div>
+<div id="targets" class="legend"></div>
+
+<div class="warn">
+<b>What is recorded and what is inferred.</b> The command line above is copied verbatim from the
+referee transcript — it is what our bot ordered. The dashed circle is <b>our inference</b> that
+the order completed. It may not have: a <code>MOVE</code> to a square further than the unit's
+speed lands part-way, and a simultaneous move by the opponent can change the result. The
+opponent's own commands are <b>not in this library</b>, so no realized position can be
+reconstructed from it.
+</div>
+
+<h2>Inventories <span class="entrytag">at entry</span></h2>
+<table><tr><th>side</th><th>PL</th><th>AP</th><th>LE</th><th>BA</th><th>OR</th><th>WO</th></tr>
+<tr><td>opponent</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>own</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>2</td></tr></table>
+
+<h2>Units <span class="entrytag">at entry</span></h2>
+<table><tr><th>id</th><th>side</th><th>cell</th><th>speed</th><th>cap</th><th>harv</th>
+<th>chop</th><th>carry</th></tr><tr><td>0</td><td>ours</td><td>(10,6)</td><td>1</td><td>2</td><td>1</td><td>1</td><td>0,0,0,0,0,0</td></tr><tr><td>2</td><td>ours</td><td>(11,6)</td><td>2</td><td>1</td><td>0</td><td>1</td><td>0,0,0,0,0,0</td></tr><tr><td>5</td><td>opponent</td><td>(1,2)</td><td>1</td><td>2</td><td>0</td><td>1</td><td>0,0,0,0,0,2</td></tr></table>
+
+<h2>Plants <span class="entrytag">at entry</span></h2>
+<table><tr><th>kind</th><th>cell</th><th>size</th><th>health</th><th>fruits</th>
+<th>cooldown</th></tr><tr><td>APPLE</td><td>(11,6)</td><td>4</td><td>5</td><td>3</td><td>0</td></tr></table>
+
+<p class="sub">Every panel above is frozen at turn 25, the
+episode's entry. They are <b>not advanced</b> as you step: plant growth, harvests, cargo and
+inventories cannot be derived honestly from our own commands alone.</p>
+
+<p class="sub"><a href="index.html">← all situations</a></p>
+</div>
+</div>
+
+<script>
+const FRAMES = [{"turn": 25, "line": "MOVE 0 9 6;WAIT", "segments": ["MOVE 0 9 6", "WAIT"]}, {"turn": 26, "line": "MOVE 0 10 6;WAIT", "segments": ["MOVE 0 10 6", "WAIT"]}, {"turn": 27, "line": "MOVE 0 9 6;WAIT", "segments": ["MOVE 0 9 6", "WAIT"]}, {"turn": 28, "line": "MOVE 0 10 6;WAIT", "segments": ["MOVE 0 10 6", "WAIT"]}, {"turn": 29, "line": "MOVE 0 9 6;WAIT", "segments": ["MOVE 0 9 6", "WAIT"]}, {"turn": 30, "line": "MOVE 0 10 6;WAIT", "segments": ["MOVE 0 10 6", "WAIT"]}, {"turn": 31, "line": "MOVE 0 9 6;WAIT", "segments": ["MOVE 0 9 6", "WAIT"]}, {"turn": 32, "line": "MOVE 0 10 6;WAIT", "segments": ["MOVE 0 10 6", "WAIT"]}, {"turn": 33, "line": "MOVE 0 9 6;WAIT", "segments": ["MOVE 0 9 6", "WAIT"]}, {"turn": 34, "line": "MOVE 0 10 6;WAIT", "segments": ["MOVE 0 10 6", "WAIT"]}, {"turn": 35, "line": "MOVE 0 9 6;WAIT", "segments": ["MOVE 0 9 6", "WAIT"]}, {"turn": 36, "line": "MOVE 0 10 6;WAIT", "segments": ["MOVE 0 10 6", "WAIT"]}, {"turn": 37, "line": "MOVE 0 9 6;WAIT", "segments": ["MOVE 0 9 6", "WAIT"]}, {"turn": 38, "line": "MOVE 0 10 6;WAIT", "segments": ["MOVE 0 10 6", "WAIT"]}, {"turn": 39, "line": "MOVE 0 9 6;WAIT", "segments": ["MOVE 0 9 6", "WAIT"]}, {"turn": 40, "line": "MOVE 0 10 6;WAIT", "segments": ["MOVE 0 10 6", "WAIT"]}, {"turn": 41, "line": "MOVE 0 9 6;WAIT", "segments": ["MOVE 0 9 6", "WAIT"]}, {"turn": 42, "line": "MOVE 0 10 6;WAIT", "segments": ["MOVE 0 10 6", "WAIT"]}, {"turn": 43, "line": "MOVE 0 9 6;WAIT", "segments": ["MOVE 0 9 6", "WAIT"]}, {"turn": 44, "line": "MOVE 0 10 6;WAIT", "segments": ["MOVE 0 10 6", "WAIT"]}, {"turn": 45, "line": "MOVE 0 9 6;WAIT", "segments": ["MOVE 0 9 6", "WAIT"]}, {"turn": 46, "line": "MOVE 0 10 6;CHOP 2", "segments": ["MOVE 0 10 6", "CHOP 2"]}, {"turn": 47, "line": "MOVE 0 11 6;MOVE 2 12 5", "segments": ["MOVE 0 11 6", "MOVE 2 12 5"]}];
+let i = 0;
+function render() {
+  document.querySelectorAll('[data-role="derived-position"]').forEach(function (el) {
+    el.classList.toggle('show', el.classList.contains('f' + i));
+  });
+  document.getElementById('turnno').textContent = 'turn ' + FRAMES[i].turn;
+  document.getElementById('cmdline').textContent = FRAMES[i].line;
+  var t = FRAMES[i].segments.map(function (s) {
+    var m = /^MOVE\s+(\d+)\s+(\d+)\s+(\d+)$/.exec(s);
+    return m ? ('unit ' + m[1] + ' ordered to (' + m[2] + ',' + m[3] + ')')
+             : ('unit order: ' + s);
+  }).join(' · ');
+  document.getElementById('targets').textContent = t + '  — order target, ground truth';
+}
+function step(d) { i = Math.max(0, Math.min(FRAMES.length - 1, i + d)); render(); }
+document.getElementById('prev').onclick = function () { step(-1); };
+document.getElementById('next').onclick = function () { step(1); };
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'ArrowLeft') { step(-1); e.preventDefault(); }
+  if (e.key === 'ArrowRight') { step(1); e.preventDefault(); }
+  if (e.key === 'Home') { i = 0; render(); e.preventDefault(); }
+  if (e.key === 'End') { i = FRAMES.length - 1; render(); e.preventDefault(); }
+});
+render();
+</script></body></html>

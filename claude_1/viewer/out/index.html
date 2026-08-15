@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Oscillation situations</title><style>
+:root{--bg:#fbfaf7;--fg:#1d1b17;--line:#c9c3b6;--wall:#3a352d;--floor:#f2eee5;
+--own:#1a5fb4;--opp:#b4401a;--cycle:#ffd98a;--iron:#8d8577;--water:#8fb8cf;--muted:#6c665c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#16150f;--fg:#efe9dc;
+--line:#4a453b;--wall:#0c0b08;--floor:#26241d;--cycle:#6b5320;--muted:#a09a8e}}
+*{box-sizing:border-box}
+body{margin:0;padding:1.2rem;background:var(--bg);color:var(--fg);
+font:15px/1.5 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+h1{font-size:1.25rem;margin:0 0 .2rem}
+.sub{color:var(--muted);margin:0 0 1rem;font-size:.9rem}
+.wrap{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:flex-start}
+.board{width:min(560px,94vw);height:auto;border:1px solid var(--line);background:var(--floor)}
+.c{stroke:var(--line);stroke-width:.5}
+.wall{fill:var(--wall)}.floor{fill:var(--floor)}
+.shack-own{fill:#cfe0f5}.shack-opp{fill:#f5d8cf}.iron{fill:var(--iron)}.water{fill:var(--water)}
+.cycle{fill:var(--cycle);opacity:.55}
+.plant{font:600 13px ui-monospace,monospace;fill:#2f6b34}
+/* Ground truth is SOLID. Inference is HOLLOW + DASHED. The two must not look alike:
+   the opponent snapshot is recorded fact, the own position is our assumption. An earlier
+   draft drew both hollow, which is precisely the confusion these rules exist to prevent. */
+.opp{fill:var(--opp);stroke:none}
+.own{fill:none;stroke:var(--own);stroke-width:2.5;stroke-dasharray:4 3}
+.ownid{font:600 12px ui-monospace,monospace;fill:var(--own)}
+.own,.ownid,.opp,.plant{pointer-events:none}
+[data-role="derived-position"]{display:none}
+[data-role="derived-position"].show{display:inline}
+.panel{min-width:280px;max-width:460px;flex:1}
+.panel h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);
+margin:1rem 0 .3rem;border-bottom:1px solid var(--line);padding-bottom:.2rem}
+.cmd{font:13px/1.5 ui-monospace,monospace;background:#00000010;padding:.5rem .6rem;
+border-left:3px solid var(--own);overflow-x:auto;white-space:pre}
+table{border-collapse:collapse;width:100%;font-size:.86rem}
+td,th{border-bottom:1px solid var(--line);padding:.22rem .35rem;text-align:left}
+th{color:var(--muted);font-weight:600}
+.entrytag{display:inline-block;background:#00000012;color:var(--muted);border-radius:3px;
+padding:.05rem .38rem;font-size:.72rem;letter-spacing:.04em;margin-left:.35rem}
+.warn{border:1px solid var(--line);border-left:3px solid #c07a18;padding:.6rem .7rem;
+background:#c07a1810;font-size:.88rem;margin:.9rem 0}
+.legend{font-size:.82rem;color:var(--muted);margin-top:.7rem}
+.legend b{color:var(--fg)}
+.ctrl{display:flex;gap:.5rem;align-items:center;margin:.7rem 0}
+button{font:inherit;padding:.3rem .8rem;border:1px solid var(--line);border-radius:4px;
+background:var(--bg);color:var(--fg);cursor:pointer}
+button:hover{background:#00000010}
+.turnno{font:600 15px ui-monospace,monospace;min-width:8ch}
+a{color:var(--own)}
+</style></head><body><h1>Oscillation situations — 34 frozen</h1>
+<p class="sub">Subject <code>readable__no_orchard</code>
+<code>98628e98…</code> · 30 D1_EPISODE · 4 P4_STALL ·
+display-only, nothing here is a ruling</p>
+<div class="warn"><b>How to read these pages.</b> Solid marks are recorded facts — the command
+line and the opponent/plant snapshot at the moment the episode begins. The dashed hollow circle
+is the one thing we infer: where a troll would be if its order completed. Side panels are frozen
+at entry and never advance.</div>
+<table><tr><th>id</th><th>kind</th><th>shape</th><th>turns</th><th>range</th><th>unit</th>
+<th>terrain</th></tr><tr><td><a href="OSC-001.html">OSC-001</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>195</td><td>6–200</td><td>0</td><td>—</td></tr><tr><td><a href="OSC-002.html">OSC-002</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>189</td><td>12–200</td><td>2</td><td>—</td></tr><tr><td><a href="OSC-003.html">OSC-003</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>23</td><td>25–47</td><td>0</td><td>~</td></tr><tr><td><a href="OSC-004.html">OSC-004</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>14</td><td>9–22</td><td>2</td><td>~</td></tr><tr><td><a href="OSC-005.html">OSC-005</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>12</td><td>7–18</td><td>2</td><td>—</td></tr><tr><td><a href="OSC-006.html">OSC-006</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>9</td><td>12–20</td><td>2</td><td>—</td></tr><tr><td><a href="OSC-007.html">OSC-007</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>9</td><td>8–16</td><td>2</td><td>—</td></tr><tr><td><a href="OSC-008.html">OSC-008</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>8</td><td>57–64</td><td>0</td><td>—</td></tr><tr><td><a href="OSC-009.html">OSC-009</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>7</td><td>77–83</td><td>0</td><td>—</td></tr><tr><td><a href="OSC-010.html">OSC-010</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>7</td><td>80–86</td><td>0</td><td>—</td></tr><tr><td><a href="OSC-011.html">OSC-011</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>7</td><td>26–32</td><td>0</td><td>~</td></tr><tr><td><a href="OSC-012.html">OSC-012</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>193</td><td>8–200</td><td>0</td><td>—</td></tr><tr><td><a href="OSC-013.html">OSC-013</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>187</td><td>14–200</td><td>2</td><td>—</td></tr><tr><td><a href="OSC-014.html">OSC-014</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>168</td><td>33–200</td><td>2</td><td>+</td></tr><tr><td><a href="OSC-015.html">OSC-015</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>157</td><td>44–200</td><td>2</td><td>+</td></tr><tr><td><a href="OSC-016.html">OSC-016</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>194</td><td>7–200</td><td>2</td><td>~</td></tr><tr><td><a href="OSC-017.html">OSC-017</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>194</td><td>7–200</td><td>2</td><td>~</td></tr><tr><td><a href="OSC-018.html">OSC-018</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>191</td><td>10–200</td><td>2</td><td>+</td></tr><tr><td><a href="OSC-019.html">OSC-019</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>178</td><td>23–200</td><td>2</td><td>—</td></tr><tr><td><a href="OSC-020.html">OSC-020</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>172</td><td>29–200</td><td>2</td><td>~</td></tr><tr><td><a href="OSC-021.html">OSC-021</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>169</td><td>32–200</td><td>0</td><td>+</td></tr><tr><td><a href="OSC-022.html">OSC-022</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>95</td><td>106–200</td><td>2</td><td>—</td></tr><tr><td><a href="OSC-023.html">OSC-023</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>74</td><td>27–100</td><td>2</td><td>—</td></tr><tr><td><a href="OSC-024.html">OSC-024</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>65</td><td>5–69</td><td>0</td><td>—</td></tr><tr><td><a href="OSC-025.html">OSC-025</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>21</td><td>12–32</td><td>0</td><td>+</td></tr><tr><td><a href="OSC-026.html">OSC-026</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>9</td><td>17–25</td><td>0</td><td>+~</td></tr><tr><td><a href="OSC-027.html">OSC-027</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>22</td><td>3–24</td><td>2</td><td>—</td></tr><tr><td><a href="OSC-028.html">OSC-028</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>53</td><td>2–54</td><td>0</td><td>—</td></tr><tr><td><a href="OSC-029.html">OSC-029</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>17</td><td>28–44</td><td>0</td><td>—</td></tr><tr><td><a href="OSC-030.html">OSC-030</a></td><td>D1_EPISODE</td><td>2-cell cycle</td><td>8</td><td>24–31</td><td>2</td><td>~</td></tr><tr><td><a href="OSC-031.html">OSC-031</a></td><td>P4_STALL</td><td>2-cell cycle</td><td>190</td><td>11–200</td><td>0</td><td>—</td></tr><tr><td><a href="OSC-032.html">OSC-032</a></td><td>P4_STALL</td><td>stall (1 cell)</td><td>110</td><td>91–200</td><td>0</td><td>—</td></tr><tr><td><a href="OSC-033.html">OSC-033</a></td><td>P4_STALL</td><td>stall (1 cell)</td><td>143</td><td>58–200</td><td>0</td><td>—</td></tr><tr><td><a href="OSC-034.html">OSC-034</a></td><td>P4_STALL</td><td>2-cell cycle</td><td>94</td><td>6–99</td><td>0</td><td>—</td></tr></table></body></html>
