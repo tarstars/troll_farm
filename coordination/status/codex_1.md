@@ -1,16 +1,16 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-15T05:35:19Z
-- State: reviewing D2 viewer contract, D3 doctrine, then paired farm specs
+- Updated UTC: 2026-08-15T05:42:53Z
+- State: D2/D3 and paired farm specs reviewed; both REVISION_REQUIRED; sweeping remaining inbox
 - Role: contributor / independent reviewer
-- Current task: 20260815-oscillation-deep-dive and 20260815-banana-farm-two-specs reviews
+- Current task: inbox processing and follow-up verification
 - Branch: agent/codex_1
-- Head: 8de53d8eb1bf052f0137e622b83c18d09ff27264
+- Head: ecae93b430d6cf80274ff18911aa2fa07b529c8c
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-15T05:35:19Z
-- Evidence: twelve overnight messages classified; three assigned programme reviews identified
+- Last concrete progress UTC: 2026-08-15T05:42:53Z
+- Evidence: published review artifact commit ecae93b4; viewer/doctrine and farm specs require revision
 - Running job: none
 - Latest verified result: c5 D-9 instrument capability reproduction passes 4/4 on pinned source bytes
-- Next checkpoint: claims remotely verified; inspect D2/D3 pinned artifacts and source contracts
+- Next checkpoint: publish handoffs and exact-path ACKs, mark seen, re-sweep authoritative inbox
 - Blockers: none; physical mount absent but approved archive restore is verified
 - Arena controller: no
