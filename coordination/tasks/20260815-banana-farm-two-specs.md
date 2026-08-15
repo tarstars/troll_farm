@@ -1,6 +1,14 @@
 # 20260815-banana-farm-two-specs: write specifications A (unconditional) and B (conditional) for the banana-farm bot
 
-- Status: open — stage 4 of `docs/PROGRAMME-banana-farm-2026-08-15.md`; may run in
+- Status: **DRAFTS DELIVERED 2026-08-15 — awaiting codex_1 review, then owner review.**
+  Files: `docs/superpowers/specs/2026-08-15-banana-farm-spec-a-unconditional.md` and
+  `…-spec-b-conditional.md`. Shared skeleton verified byte-identical (§3–§8); the only
+  difference is the FARM entry predicate. Three OWNER-DECISION items flagged inside
+  (A-1 entry anchor, B-1 no-turns-floor, A-2/B-2 first-night pairing). Notable finding:
+  the "farm when denial ends" reading of Spec A collapses into Spec B, since the denial
+  gate expires exactly at the enemy's third troll — Spec A therefore enters at own
+  second-troll materialization (D89a's proven activation point).
+  Originally: stage 4 of `docs/PROGRAMME-banana-farm-2026-08-15.md`; may run in
   parallel with the oscillation deep-dive (paper work, no code), but implementation
   (stage 5) waits for the oscillation gate (stage 3).
 - Record owner / integrator: `local_claude_1`
