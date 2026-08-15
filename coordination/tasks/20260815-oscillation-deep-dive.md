@@ -46,10 +46,15 @@ moves the trolls should conduct.
 1. **D1 — Decision Packet implementation** to the frozen spec (claude_1; codex_1 reviews
    conformance). Run it over all 34 frozen subject-correct situations; resolve unknowns U1–U4 (which
    mechanism each situation really is).
-2. **D2 — Troll-moves viewer** (new; owner-requested). Step-through visualisation of a
-   frozen situation: board, trolls, their goals per turn, candidate scores, resolver
-   rewrites. Good enough for the owner to adjudicate from. Scope and UI agreed with the
-   owner before building.
+2. **D2 — Troll-moves viewer. SCOPE AGREED BY OWNER 2026-08-15 — build authorized.**
+   Per `local_claude_1/troll-moves-viewer-scope-proposal-2026-08-15.md` v2, with the
+   owner's three rulings: (1) form = self-contained HTML page per situation + index,
+   generated via the verifying loader, keyboard step-through; (2) **display-only** —
+   NO in-tool ruling capture; `local_claude_1` records rulings separately during
+   sessions; (3) sessions are **LIVE** (owner + integrator together). Phase 1 renders
+   frozen data only, with the three honesty rules (inferred positions dashed, opponent
+   frozen-at-entry labelled, side panels "at entry"); situation kind on every page.
+   Phase 2 (Decision Packet overlay incl. blind mode) waits for P-1.
 3. **D3 — REDEFINED BY OWNER RULING 2026-08-15: the adjudication template.** The
    doctrine-freeze approach is rejected (it repeated code logic). D3 is now
    `docs/ADJUDICATION-TEMPLATE-2026-08-15.md`: top-down per-situation judgment (L1 game
