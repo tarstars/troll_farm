@@ -46,7 +46,14 @@ Rulings recorded:
 - Containment property to preserve in the rewrite: **Spec B = Spec A with only the 3rd-troll
   doorway** — the A-vs-B measurement prices exactly the two new doorways.
 
-Spec files rewrite to this definition is queued after decisions S-1 and M-1 land (one revision
+**S-1 RULED 2026-08-15: both-in-collection.** Build the SCORE-DELTA sensor (b) now —
+snapshot both scores at FARM entry; abort to WOOD when enemy score grows faster than ours
+for K consecutive turns after warmup W. The PROVENANCE sensor (a) stays fully specified in
+the spec as the named future variant (faithful to the literal per-farm rule; adopted only
+if measurement shows (b) aborts too often). Owner phrasing supporting (b): "more profitable
+for the enemy than for us" is an overall-profit statement.
+
+Spec files rewrite to this definition is queued after decision M-1 lands (one revision
 pass, not three).
 
 ## The owner's sequence (both specs share it) — superseded by the ruling above where they differ
