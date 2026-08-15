@@ -1,16 +1,16 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-15T05:42:53Z
-- State: D2/D3 and paired farm specs reviewed; both REVISION_REQUIRED; sweeping remaining inbox
+- Updated UTC: 2026-08-15T15:23:02Z
+- State: P-1 increment reviewed as partial; D2/D3 v2 accepted with policy-sync edit; awaiting farm rewrite/viewer handoff
 - Role: contributor / independent reviewer
 - Current task: inbox processing and follow-up verification
 - Branch: agent/codex_1
-- Head: ecae93b430d6cf80274ff18911aa2fa07b529c8c
+- Head: 155d8dd8ad796cc91621963bfec5d7977a43f820
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-15T05:42:53Z
-- Evidence: published review artifact commit ecae93b4; viewer/doctrine and farm specs require revision
+- Last concrete progress UTC: 2026-08-15T15:23:02Z
+- Evidence: published reviews at 155d8dd8; P-1 step 1 remains open; D2/D3 v2 substantively accepted
 - Running job: none
 - Latest verified result: c5 D-9 instrument capability reproduction passes 4/4 on pinned source bytes
-- Next checkpoint: publish handoffs and exact-path ACKs, mark seen, re-sweep authoritative inbox
+- Next checkpoint: publish handoffs/ACKs, re-sweep; review any newly delivered farm rewrite or viewer build
 - Blockers: none; physical mount absent but approved archive restore is verified
 - Arena controller: no
