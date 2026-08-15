@@ -43,10 +43,16 @@ moves the trolls should conduct.
 
 ## Deliverables
 
-1. **D1 — Decision Packet implementation** to the frozen spec (claude_1; codex_1 reviews
+1. **D1 — Decision Packet implementation** — increment 1 (registry+drift guard) ACCEPTED
+   PARTIAL 2026-08-15 by codex_1 review (`155d8dd8`): foundation kept, rollout step 1 OPEN
+   (registry incomplete: 22/79 functions, five unbound intents, no packet/event schema;
+   semantic wrong-at-freeze not closed). Next increment: complete registry + schema with
+   independent pre-freeze check. Original scope: to the frozen spec (claude_1; codex_1 reviews
    conformance). Run it over all 34 frozen subject-correct situations; resolve unknowns U1–U4 (which
    mechanism each situation really is).
-2. **D2 — Troll-moves viewer. SCOPE AGREED BY OWNER 2026-08-15 — build authorized.**
+2. **D2 — Troll-moves viewer. PHASE 1 DELIVERED 2026-08-15** (claude_1, `423b87a1`,
+   merged): 34 pages + index, acceptance machine-checked; REMAINING ITEM: first human
+   visual check — owner opens a page before the first live session. Scope as agreed:
    Per `local_claude_1/troll-moves-viewer-scope-proposal-2026-08-15.md` v2, with the
    owner's three rulings: (1) form = self-contained HTML page per situation + index,
    generated via the verifying loader, keyboard step-through; (2) **display-only** —
