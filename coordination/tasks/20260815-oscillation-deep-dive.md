@@ -25,8 +25,12 @@ moves the trolls should conduct.
 
 ## Inputs that already exist (do not rebuild)
 
-- **M3a situation library** — 33 frozen situations / 47 episodes with exact map, troll
-  states, turn: `claude_1/banana-restoration-r2/oscillation-library/` (loader
+- **M3a situation library** — **CORRECTED 2026-08-15: use the SUBJECT-CORRECT tree**
+  `claude_1/banana-restoration-r2/oscillation-library-98628e98/library/` — **34 frozen
+  situations / 46 episodes** on the exact readable resident `98628e98…` (it is the loader's
+  `DEFAULT_DIR`). The sibling `…/oscillation-library/` is PARENT LINEAGE, its own index says
+  "MUST NOT BE CITED AS M3a" — an earlier revision of this record cited it with its 33/47
+  counts; found by the viewer-scope drafting pass. (loader
   `oscillation_library.py`, 40 tests, `library_sha256 5858d351…`). Its own unknowns table
   (U1–U9) is this task's checklist of what is NOT yet established — notably U1: the
   mechanism classification of 25 situations is transcript-inferred and unverified.
@@ -40,7 +44,7 @@ moves the trolls should conduct.
 ## Deliverables
 
 1. **D1 — Decision Packet implementation** to the frozen spec (claude_1; codex_1 reviews
-   conformance). Run it over all 33 frozen situations; resolve unknowns U1–U4 (which
+   conformance). Run it over all 34 frozen subject-correct situations; resolve unknowns U1–U4 (which
    mechanism each situation really is).
 2. **D2 — Troll-moves viewer** (new; owner-requested). Step-through visualisation of a
    frozen situation: board, trolls, their goals per turn, candidate scores, resolver
@@ -48,7 +52,7 @@ moves the trolls should conduct.
    owner before building.
 3. **D3 — Goal-hierarchy doctrine, one page.** Agents draft from code + the 2026-08-09
    transparency manifest; the OWNER corrects and freezes it. Every adjudication cites it.
-4. **D4 — Per-situation adjudication record.** For each of the 33 situations: the bot's
+4. **D4 — Per-situation adjudication record.** For each of the 34 situations: the bot's
    actual line (from D1), the proposed ideal line with its goal-hierarchy justification
    (citing D3), and the owner's ruling from a joint session (D2 as the instrument). Easy
    cases batched; hard cases (est. 8–12) individually with the owner.
