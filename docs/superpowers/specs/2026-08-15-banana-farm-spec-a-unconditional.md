@@ -1,6 +1,9 @@
 # Banana-farm bot — Spec A (unconditional entry)
 
-- Status: DRAFT for `codex_1` review then owner review
+- Status: DRAFT v2 for re-review then owner review
+- Revision: v2 2026-08-15: abort sensor reworked per codex_1 REVISION_REQUIRED review
+  (`codex_1/reviews/banana-farm-two-specs-review-2026-08-15.md`); sensor choice elevated
+  to OWNER-DECISION S-1; measurement decision rule added (M-1).
 - Author: `local_claude_1` (drafted by subagent under its direction)
 - Date: 2026-08-15
 - Task record: `coordination/tasks/20260815-banana-farm-two-specs.md` (stage 4 of
@@ -67,7 +70,8 @@ from stealing our crops or from their own production is **UNRESOLVED** (the once
 +12.5/+76.5 split was prose, not measurement — see the correction in §2 of the CBF spec).
 The D89a leak carries a standing `NOT_REPAIRABLE` verdict; per the task record it is
 **bounded by design here, not repaired**: the abort (section 7) stops the farm when it is
-observably feeding the opponent.
+feeding the opponent — what "observably feeding" means is exactly the sensor question,
+elevated to OWNER-DECISION S-1 in this revision.
 
 Spec A accepts D89a's shape (farm in every game, from the earliest possible turn, so the
 compounding loop has maximum time) and adds only the abort as the tail bound. Spec B
@@ -166,7 +170,7 @@ fresh. New code, and where it hooks in:
 |---|---|---|
 | `FarmState` enum + latches + abort fields | the machine of sections 3–5, 7 | new fields on `YamoBot` (line 335); updated at top of `commands()` (lines 1376–1379) |
 | `farm_candidates()` | the starter's persistent farm task (below) | routed in the per-unit dispatch at lines 1394–1411, following the pattern of the existing commitment routing at lines 1396–1398 |
-| Tracked-crop table | which live banana plants are ours (bank-sourced or replanted), incl. one protected reserve cell | reconciled from observed plants each turn, alongside `reconcile_regeneration_commitments` (line 1377); failed PICK/PLANT/HARVEST, death, opponent removal, or collision cannot invent progress, per the D89a blueprint's shared-safety rule |
+| Tracked-crop table | which live banana plants are ours (bank-sourced or replanted), incl. one protected reserve cell — ownership per the transactional contract in section 7: a tracked crop is ours iff created by our own confirmed PLANT and not since removed or replaced; ambiguity fails closed to NOT-ours | reconciled from observed plants each turn, alongside `reconcile_regeneration_commitments` (line 1377); failed PICK/PLANT/HARVEST, death, opponent removal, or collision cannot invent progress, per the D89a blueprint's shared-safety rule |
 | Reserve protection | the protected seed-reserve cell is excluded from both trolls' chop targets and from movement-conflict landing | filter candidates with `Target::Tree(reserve_cell)` after `chop_candidates`; pass the cell via the existing `resolve_move_conflicts_with_priority_and_forbidden` (line 726; plain wrappers at lines 720–725) |
 | Trained-role filter (FARM only) | replace a resident-selected PICK/PLANT/HARVEST/MINE for the trained troll with its best wood/bank candidate, per the D89a trained-worker rule | applied to the trained troll's candidate list in the same dispatch loop (lines 1394–1411) |
 
@@ -177,10 +181,15 @@ to our shack as to the enemy's, by the same `manhattan` used at line 621), and P
 until the initial count is planted or the bank is empty. Rank and keep one protected
 bank-sourced reserve (water adjacency, home accessibility, opponent distance,
 deterministic cell order; promote a survivor if it is lost). When empty-handed, harvest a
-ripe tracked own banana, reserve first; after a tracked harvest, carry the banana to the
-nearest reachable empty conversion cell and PLANT; return to seed acquisition. Never DROP
-renewable seed between farm actions. **Carrying wood, iron, or a non-banana fruit takes
-precedence** and uses resident bank logistics (`bank_candidates`, lines 371–399;
+ripe tracked own banana, reserve first. A harvest can yield more than one banana (harvest
+power; cargo up to carry capacity — review finding F3), so the post-harvest loop is
+specified for every banana carry count 1..capacity: travel to the nearest reachable empty
+conversion cell and PLANT exactly one; if banana cargo remains, bank it at our shack via
+resident bank logistics; then return to seed acquisition. One PLANT keeps the renewable
+generation in the ground; banking the surplus terminates the loop at every carry count
+and makes farm output visible in the bank and score. Never DROP renewable seed between
+farm actions (banking surplus is banking, not dropping). **Carrying wood, iron, or a
+non-banana fruit takes precedence** and uses resident bank logistics (`bank_candidates`, lines 371–399;
 `carried_fruit` at lines 1201–1202 distinguishes the payload).
 
 **Routing, not score competition.** The farm is a task override for the starter, exactly
@@ -196,39 +205,123 @@ lines 386/394; base chop `1000*wood/turns` + 900 denial, lines 619–622). While
 the farm task also outranks the endgame regeneration branch (`endgame()` at lines
 1371–1373) **for the starter only**; the trained troll's endgame behaviour is unchanged.
 
-## 7. Shared skeleton — abort sensor and frozen constants (identical in both specs)
+## 7. Shared skeleton — abort sensor (OWNER-DECISION S-1) and frozen constants (identical in both specs)
 
-**What is measured: banked-banana deltas.** On entering FARM, snapshot
-`(turn, inventories[0][BANANA], inventories[1][BANANA])`. Both players' inventories are
-parsed from the referee every turn (`read_turn`, lines 245–256, filling
-`inventories: [Stock; 2]`, line 63) — no chop attribution or plant-lifecycle inference is
-needed, which is the layer where Banana R2 (the six failed 2026 implementation rounds of
-this idea) kept failing. Let `d_us` and `d_them` be each side's banked-banana increase
-since the snapshot. **Abort (FARM → WOOD) when `d_them > d_us` has held for K consecutive
+**The v1 sensor was invalid; this section replaces it.** The v1 draft froze banked-banana
+deltas — snapshot `(turn, inventories[0][BANANA], inventories[1][BANANA])` on FARM entry,
+abort when `d_them > d_us` persists — and called that "a sound proxy for harvesting from
+our orchard". codex_1's review (finding F1,
+`codex_1/reviews/banana-farm-two-specs-review-2026-08-15.md`) showed the proxy is wrong
+in both directions, and the defect is **inherited from CBF §4**, which introduced the
+same sensor with the same "sound proxy" claim:
+
+- Our farm loop HARVESTs and then re-PLANTs the renewable banana (section 6, per the
+  D89a blueprint). Collection from our own farm therefore need not raise our bank at
+  all: `d_us` can sit at 0 while the farm works exactly as designed.
+- The opponent can harvest and bank bananas from **its own** plants, raising `d_them`
+  without collecting anything from our farm. "No training reason to farm bananas"
+  (`docs/mechanics.md` line 91: "BANANA and WOOD cost zero") is not "no scoring reason"
+  — every banked banana is a point (`score()`, lines 120–121).
+- A cumulative bank comparison also mixes each side's pre-existing independent
+  production into the farm window. W warm-up and K persistence filter noise; they cannot
+  restore missing provenance (consistent with the standing `NOT_REPAIRABLE` finding).
+
+Banked-banana deltas are therefore **withdrawn**. The owner's rule — abort when the
+enemy collects more **from our farm** than we do — has no free observable: the referee
+sends both inventories every turn (`read_turn`, lines 245–256, filling
+`inventories: [Stock; 2]`, line 63), every unit with player, cell, cargo, and stats
+including `harvest_power` (`Unit`, lines 47–48; `Stats`, line 40; parsed at line 282),
+and the full plant list — but a `Plant` carries only kind, cell, size, health, fruits,
+cooldown (lines 58–59), **no owner field**. Ownership and harvest events must either be
+inferred (candidate (a) below) or given up in favor of a coarser observable
+(candidate (b)).
+
+**OWNER-DECISION (S-1, shared by both specs): choose the abort sensor.** The chosen
+sensor becomes the single frozen abort of both specs; the other is recorded, not built.
+
+### Candidate (a) — provenance sensor: harvest events from tracked-ours crops
+
+Two cumulative counters, both 0 at FARM entry. `farm_us` counts confirmed harvest events
+**by us** from tracked-ours crops; `farm_them` counts inferred enemy-collection events
+from tracked-ours crops (both per event, not per banana, so the section 6 cargo rule
+does not skew the comparison). **Abort (FARM → WOOD) when `farm_them > farm_us` has held
+for K consecutive turns, and only after W turns in FARM.**
+
+The counters require a **transactional ownership contract** on the section 6
+tracked-crop table. Contract: **a tracked cell's crop is ours iff it was created by our
+own confirmed PLANT command and has not since been removed or replaced.** The only
+writer is the reconciliation pass at the top of `commands()` (alongside line 1377),
+running each turn on (previous turn's `GameState`, the commands we emitted, this turn's
+`GameState`). Transitions:
+
+- **Plant.** We emitted PLANT at a cell last turn, a size-0 banana plant stands there
+  now, and our unit's banana cargo dropped by one → a new tracked-ours entry with a
+  generation identity (cell, confirmation turn, last observed size/fruits/cooldown).
+  Anything else — no plant, wrong kind, wrong size — is a failed PLANT: no entry.
+- **Grow.** An observation consistent with the tracked plant's own growth updates the
+  identity and keeps ownership.
+- **Replace.** Any inconsistent observation — size reset, kind change, or a plant
+  present after the tracked plant was observed absent — means the crop at that cell is a
+  **different generation, NOT ours** (the opponent can plant on the same cell): the
+  entry is removed, and only our own confirmed PLANT can re-establish it.
+- **Harvest (ours).** We emitted HARVEST at a tracked cell; its fruits dropped and our
+  unit's banana cargo rose accordingly → one `farm_us` event.
+- **Chop (ours).** Our confirmed CHOP removed a tracked plant → entry removed, no event.
+- **Disappear.** A tracked plant is absent with no command of ours explaining it. If it
+  bore fruit and at least one enemy unit with `harvest_power >= 1` was in reach of the
+  cell across the transition → one `farm_them` event; entry removed. Otherwise (health
+  death, no capable enemy nearby, or any ambiguity about the cause) → entry removed, no
+  event.
+- **Ambiguity fails closed to NOT-ours.** An untracked crop is never harvested by the
+  farm task and never feeds `farm_us`; uncertainty shrinks our side of the comparison
+  and the farm itself, biasing toward abort — the safe direction for a one-way switch.
+  Reserve promotion (section 6) may promote only a tracked-ours crop, so an opponent
+  replacement at a lost reserve cell can never inherit protection (review F2).
+
+Honest observability limits: enemy HARVEST is never observed as an event —
+"fruit-bearing tracked plant vanished with a capable enemy in reach" is an inference,
+and the referee gives no way to distinguish it from edge cases the inference mislabels.
+This layer — command confirmation plus plant-lifecycle diffing — is exactly where Banana
+R2 rounds 1–6 failed. Candidate (a) is the only sensor that measures the owner's stated
+rule; it is also the only one that depends on the layer with the six-failure history.
+
+### Candidate (b) — score-delta sensor (the variant CBF §4 named and shelved)
+
+On entering FARM, snapshot `view.scores` (line 289, computed by `score()` at lines
+120–121 from banked stock). Let `s_us` and `s_them` be each side's score increase since
+the snapshot. **Abort (FARM → WOOD) when `s_them > s_us` has held for K consecutive
 turns, and only after W turns in FARM.**
 
-Why bananas and not score: bananas cost zero toward TRAIN (`docs/mechanics.md` line 91:
-"BANANA and WOOD cost zero"), so the opponent has no training reason to farm bananas of
-their own; a rise in their banked bananas is a sound proxy for harvesting from **our**
-orchard — which is the owner's stated abort rule, expressed in directly observable
-quantities. A farm that produces nothing also aborts (if `d_us` stays 0 and they collect
-anything), which is intended. **Named alternative — total-score deltas:** snapshot
-`view.scores` (computed at line 289 from `score()`, lines 120–121) and abort when their
-score grows faster. It watches total outcome at identical implementation cost, and stays
-on the shelf as the variant to try if the abort fires correctly but the tail does not
-improve. Choosing between the two on evidence would need the theft-vs-own-production
-decomposition that does not exist (section 2). Banked-banana deltas are primary per the
-owner's wording and the CBF spec.
+Honest characterization: provenance-free and a few lines of code, but it watches the
+**total outcome**, not the farm — it aborts whenever we are being outscored while
+farming, whether or not the opponent takes a single crop of ours. A replanted harvest
+scores nothing until banked, so a working farm registers on `s_us` only through the
+banked surplus of the section 6 cargo rule and the rest of the bot's banking. Both
+distortions push the same way: toward aborting **too often**, the safe direction, at the
+price that the abort implements "stop farming when we are being outscored", not the
+owner's literal collection rule. Choosing (b) means the owner accepts that substitution
+explicitly — the review's condition for any sensor swap.
 
-**Frozen constants** — chosen by reasoning, frozen before any run, **no tuning dials**
-(the project's one permitted denial-weight sweep, N6, failed both arms; we do not sweep
-our way out of a bad constant):
+### Drafter's recommendation on S-1
 
-| Constant | Value | Justification |
+**Candidate (b) as primary for v2; candidate (a) recorded as the faithful but heavier
+alternative.** The tracked-crop table and its ownership contract exist under either
+choice (the farm task needs them to know what it may harvest, and the reserve needs them
+for protection) — but only (a) hangs the **abort** on the inference layer with the
+six-failure Banana R2 history, and a misread there flips a one-way switch, while a table
+error under (b) merely makes the farm smaller. Both candidates err toward aborting; (b)
+does it with almost no new failure surface. codex_1's F1 findings (the three bullets
+above) are recorded as the reason v1's sensor is withdrawn rather than defended.
+
+**Frozen constants** — they apply to whichever sensor S-1 selects; chosen by reasoning,
+frozen before any run, **no tuning dials** (the project's one permitted denial-weight
+sweep, N6, failed both arms; we do not sweep our way out of a bad constant):
+
+| Constant | Value | Justification (re-checked against each candidate) |
 |---|---:|---|
-| `W` (warm-up turns in FARM before the abort may fire) | 30 | A banana planted at size 0 needs four growth steps at base cooldown 6 (line 85 of the base file: `PlantKind::Banana => 6`) plus one further cooldown to fruit; 30 turns is one "time to first banana". Aborting sooner would kill the farm before it could pay. |
-| `K` (consecutive failing turns required) | 5 | Insurance against a single-turn spike; cheap, and the transition is one-way, so a spurious abort is unrecoverable within the game. |
-| `T` (deficit threshold) | 0 | Strict inequality `d_them > d_us`. Warm-up and persistence carry the noise rejection; a third tunable would add surface without evidence. |
+| `W` (warm-up turns in FARM before the abort may fire) | 30 | A banana planted at size 0 needs four growth steps at base cooldown 6 (line 85 of the base file: `PlantKind::Banana => 6`) plus one further cooldown to fruit; 30 turns is one "time to first banana". Under (a) no `farm_us` event can exist before the first crop ripens; under (b) the farm cannot have moved `s_us` before then. Aborting sooner would kill the farm before it could pay. |
+| `K` (consecutive failing turns required) | 5 | Insurance against a single-turn spike; cheap, and the transition is one-way, so a spurious abort is unrecoverable within the game. Under (a), K also spans the one-to-two-turn lag of event inference; under (b), it rides out score bursts such as an opponent banking a large cargo at once. |
+| `T` (deficit threshold) | 0 | Strict inequality on the chosen sensor's pair (`farm_them > farm_us` or `s_them > s_us`). Warm-up and persistence carry the noise rejection; a third tunable would add surface without evidence. |
 
 ## 8. Shared skeleton — what differs between the specs (identical in both files)
 
@@ -303,7 +396,7 @@ broken build) before its pass is credited; all of them precede any value panel.
 | GT — train | A second troll is trained | `TRAIN` issued (lines 1387–1389) and own unit count reaches 2. Resident already does this: a do-not-break gate. |
 | GD — deny | One of lemon/plum is selected, frozen, and denied | `type_to_cut` set once (lines 796–799); focus-species chops occur while `denial_enabled`, preferentially near the enemy shack (bonus at line 622). Do-not-break. |
 | GF — sustained farm cycle | FARM entered per this spec's predicate; bootstrap plants ≥ 1 banked banana; at least one full harvest → replant cycle completes; the loop repeats while conditions hold | Telemetry per the D89a blueprint: every activation, bootstrap attempt/success, reserve promotion/loss, own-crop harvest, renewable replant, trained-role rewrite logged. |
-| GA+ — abort fires | In games where `d_them > d_us` persists ≥ K turns after warm-up, WOOD is entered | Constructed/replayed games on the development panel; sealed ranges stay closed. |
+| GA+ — abort fires | In games where the S-1-chosen sensor's abort condition persists ≥ K turns after warm-up, WOOD is entered | Constructed/replayed games on the development panel; sealed ranges stay closed. |
 | GA− — abort does not misfire | In games where the condition never persists, WOOD is never entered | Both arms are mandatory: a rule that always fires is not conditional, and a rule that never fires is not a rule (the project's trigger-fidelity check). |
 | GB — byte-identity before first transition | Emitted command lines are byte-identical to the resident on every turn before the machine leaves DENY (under the conditions stated at the end of section 9), and for whole opening-abandoned games | Diff of full command transcripts. |
 | GM — monotonicity | Over the whole test panel: no state transition ever reverses, and `denial_enabled` never returns to true after latching off | Assertions in the bot plus transcript audit. |
@@ -329,10 +422,25 @@ Both specs are built as one code change with the predicate as the only fork (sec
 ## 12. Measurement plan stub (stage 6; owner gates every night)
 
 Ladder noise σ (sigma — the measured standard deviation of a mature ladder run's score)
-= 1.501 per the 2026-08-13 ruling. **One night = 8 mature runs = 4 per arm, interleaved
-A/B/A/B** → uncertainty on the difference ≈ 1.501·√(¼+¼) ≈ 1.06 points → one night
-cleanly resolves differences of ~2 points or more; a second night (8 per arm, SE ≈ 0.75)
-usually settles closer calls.
+= 1.501 per the 2026-08-13 ruling (the review notes this estimate bundles sequential
+ladder drift; it is the number we have). **One night = 8 mature runs = 4 per arm,
+interleaved A/B/A/B.** The arithmetic, stated exactly: the standard error (SE — the
+expected noise on an estimate) of the between-arm difference is 1.501·√(¼+¼) ≈ 1.06
+points, so an observed 2.0-point difference is 2.0/1.06 ≈ 1.89 SE — short of a
+conventional two-sided 95% bar (≈ 1.96 SE, i.e. ≈ 2.08 points; a small-sample t interval
+needs more). **One night does not "cleanly resolve" a ~2-point difference** — v1
+overclaimed this (review F4). Instead, the following rule is pre-registered before any
+run.
+
+**OWNER-DECISION (M-1, shared with Spec B) — first-night decision rule** (the owner may
+reset these thresholds at the stage-6 go-ahead, before any run). Let Δ (delta) be the
+observed mean difference between the arms after the night's 4+4 runs:
+
+- |Δ| ≥ 2.5 points (≈ 2.4 SE) → winner declared;
+- 1.0 ≤ |Δ| < 2.5 → a second night on the same pairing (8 per arm total, SE ≈ 0.75),
+  then re-apply this rule to the pooled Δ against the tightened SE;
+- |Δ| < 1.0 → the arms are indistinguishable at this budget; the owner chooses on other
+  grounds (tail shape, blast radius, simplicity).
 
 **OWNER-DECISION (A-2, shared with Spec B).** Which comparison the first night buys —
 Spec A vs Spec B, or winner vs resident — is the owner's call at the stage-6 go-ahead,
@@ -345,9 +453,10 @@ leak (`NOT_REPAIRABLE` stands unappealed — bounded here, not fixed); any chang
 denial-bonus magnitude (N6 closed it: keep 900); denying the opponent's training bills
 (H4 closed it). No formatter over `cgauto/`; the base file stays byte-exact.
 
-Risks specific to A, beyond the shared ones inherited from the CBF spec (proxy inexact —
-an opponent planting own bananas biases toward aborting, the safe direction; the abort may
-watch a minor term — open question, score-delta variant named in section 7):
+Risks specific to A, beyond the shared ones (the abort sensor is now OWNER-DECISION S-1,
+section 7 — v1's banked-banana proxy is withdrawn per codex_1's review; both remaining
+candidates bias toward aborting, the safe direction, and candidate (b) watches the total
+outcome rather than the farm):
 
 - **The tail is the whole bet.** Spec A re-exposes D89a's catastrophic tail (worst pair
   −235) in every game and relies solely on the W=30/K=5 abort to cut it. If the abort is
@@ -363,3 +472,5 @@ watch a minor term — open question, score-delta variant named in section 7):
 |---|---|---|
 | A-1 | Spec A entry: second-troll materialization (recommended) vs a "denial visibly happened" sequential marker | Materialization (section 9, reasons 1–4) |
 | A-2 | First measurement night's pairing: A vs B, or winner vs resident | None — owner's call at stage-6 go-ahead |
+| S-1 (shared with Spec B) | Abort sensor: (a) provenance harvest-events or (b) score-delta (section 7) | (b) primary for v2; (a) recorded as the faithful, heavier alternative |
+| M-1 (shared with Spec B) | First-night decision-rule thresholds (section 12) | 2.5 / 1.0 points as pre-registered; owner may reset before any run |
