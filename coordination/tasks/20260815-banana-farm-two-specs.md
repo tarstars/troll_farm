@@ -17,7 +17,39 @@
 - Created: 2026-08-15
 - Authority: owner decision 2026-08-15 — "let's write down two specifications"
 
-## The owner's sequence (both specs share it)
+## ★ OWNER RULINGS 2026-08-15 (session with local_claude_1) — Spec A REDEFINED
+
+The drafted Spec A ("farm at second-troll materialization, overlapping denial") read to the
+owner as "throw out denial, plant bananas instead" — a bad bot by expectation. It is DEMOTED to
+collection candidate **Spec A0** (kept on paper, expected poor, may be measured someday).
+
+**The real Spec A is the owner's state machine, all transitions latched one-way:**
+
+COLLECT → (own second troll trained) → DENY → **(enemy 3rd troll OR no selected-species tree
+left OR selected-species count sustainably non-decreasing over K turns)** → FARM → (S-1 abort
+sensor) → WOOD.
+
+Rulings recorded:
+- Denial is suspected load-bearing for rating (supported: N6's weak arm lost −0.754, both
+  seats) and is PRESERVED in full until a doorway condition fires.
+- The two new doorways are the owner's denial STOP conditions, stated in writing for the first
+  time: job done (species eliminated) or futility (enemy sustains the species against our
+  chopping). Futility is measured by the SIMPLE tracker: count selected-species trees;
+  sustained non-decrease over K turns while we actively deny = futile. No ownership inference.
+  (The bot's sole PLANT site :1256 can briefly plant a carried lemon/plum in endgame
+  conversion; the K-persistence absorbs such blips.)
+- "3rd troll ends denial" KEPT for now — composite condition; whether denial should continue
+  against a 3-troll enemy is an explicit LATER experiment, not this one.
+- State-machine reading accepted with its risk: we may leave denial incomplete. Owner: "I'm
+  ready to take this risk."
+- Timing framing: FARM replaces the aggressive-chopping fallback that today follows denial.
+- Containment property to preserve in the rewrite: **Spec B = Spec A with only the 3rd-troll
+  doorway** — the A-vs-B measurement prices exactly the two new doorways.
+
+Spec files rewrite to this definition is queued after decisions S-1 and M-1 land (one revision
+pass, not three).
+
+## The owner's sequence (both specs share it) — superseded by the ruling above where they differ
 
 gather resources → train the second troll → select lemon or plum → deny (chop) the
 selected species near the enemy → banana farm → **abort** to aggressive all-out chopping
