@@ -70,6 +70,28 @@ Two of these found real defects in this code before delivery:
    "solid red circle". Ground truth and assumption looked alike — the exact confusion the honesty
    rules exist to prevent.
 
+## Revision 2 — four blockers from `codex_1`'s review, all fixed
+
+1. **Inventory columns were mislabelled.** The build shipped `PLUM, APPLE, LEMON, BANANA, ORANGE,
+   WOOD`; the subject's own constants are `PLUM, LEMON, APPLE, BANANA, IRON, WOOD` — APPLE and
+   LEMON transposed, and `ORANGE` invented where the authority has `IRON`. `check_slot_order()`
+   now **reads those constants out of the subject** and fails the build on disagreement. I had
+   asserted a label instead of deriving it.
+2. **The frozen evidence a ruling needs is now rendered**: mechanism and its evidence sentence,
+   blocker state and cell, classifier version, detector counts, episode/dedupe identity, the
+   `unresolved` notes, and full provenance (subject, map, seed, seat, instrument, corpus,
+   content digest). The blocker's cell is marked on the board.
+3. **Frame 0 is now the entry state**, before any command is applied. The entry position is the
+   only exact board state in the window, and the first build skipped past it by applying turn
+   one's command before the first render — so the one frame that is ground truth was the one
+   frame never shown. It is drawn **solid** and labelled exact.
+4. **The ordered cell has its own mark** (blue square outline). Previously the dashed unit sat on
+   the target and nothing else did, so a recorded order and an assumed arrival were the same
+   pixel.
+
+Self-test is now **23 cases**, including a control that reproduces the original wrong slot order
+and confirms the guard rejects it.
+
 ## Known limit, stated rather than papered over
 
 **The visual layer is unverified by execution.** No browser is installed on this host, nothing was

@@ -14,6 +14,7 @@ h1{font-size:1.25rem;margin:0 0 .2rem}
 .wall{fill:var(--wall)}.floor{fill:var(--floor)}
 .shack-own{fill:#cfe0f5}.shack-opp{fill:#f5d8cf}.iron{fill:var(--iron)}.water{fill:var(--water)}
 .cycle{fill:var(--cycle);opacity:.55}
+.blockercell{fill:none;stroke:#b4401a;stroke-width:2.5;stroke-dasharray:2 2}
 .plant{font:600 13px ui-monospace,monospace;fill:#2f6b34}
 /* Ground truth is SOLID. Inference is HOLLOW + DASHED. The two must not look alike:
    the opponent snapshot is recorded fact, the own position is our assumption. An earlier
@@ -21,9 +22,13 @@ h1{font-size:1.25rem;margin:0 0 .2rem}
 .opp{fill:var(--opp);stroke:none}
 .own{fill:none;stroke:var(--own);stroke-width:2.5;stroke-dasharray:4 3}
 .ownid{font:600 12px ui-monospace,monospace;fill:var(--own)}
-.own,.ownid,.opp,.plant{pointer-events:none}
-[data-role="derived-position"]{display:none}
-[data-role="derived-position"].show{display:inline}
+.own.exact{fill:var(--own);stroke:none;stroke-dasharray:none}
+.ownid.exact{fill:var(--bg)}
+/* the ORDERED cell: ground truth, its own mark, distinct from the assumed arrival */
+.target{fill:none;stroke:var(--own);stroke-width:2;opacity:.85}
+.own,.ownid,.opp,.plant,.target{pointer-events:none}
+.frame{display:none}
+.frame.show{display:inline}
 .panel{min-width:280px;max-width:460px;flex:1}
 .panel h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);
 margin:1rem 0 .3rem;border-bottom:1px solid var(--line);padding-bottom:.2rem}
@@ -147,94 +152,122 @@ completeness FULL</p>
 <rect class="cycle" x="136" y="68" width="34" height="34"/>
 <text class="plant entry" x="119.0" y="91.12" text-anchor="middle">A</text>
 <circle class="opp entry" cx="391.0" cy="85.0" r="10.2"/>
-<circle data-role="derived-position" class="own derived f0" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f0" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f0" cx="153.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f0" x="153.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f1" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f1" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f1" cx="187.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f1" x="187.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f2" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f2" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f2" cx="153.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f2" x="153.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f3" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f3" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f3" cx="187.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f3" x="187.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f4" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f4" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f4" cx="153.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f4" x="153.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f5" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f5" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f5" cx="187.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f5" x="187.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f6" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f6" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f6" cx="153.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f6" x="153.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f7" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f7" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f7" cx="187.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f7" x="187.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f8" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f8" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f8" cx="153.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f8" x="153.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f9" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f9" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f9" cx="187.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f9" x="187.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f10" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f10" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f10" cx="153.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f10" x="153.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f11" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f11" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f11" cx="187.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f11" x="187.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f12" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f12" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f12" cx="153.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f12" x="153.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f13" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f13" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f13" cx="187.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f13" x="187.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f14" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f14" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f14" cx="153.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f14" x="153.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f15" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f15" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f15" cx="187.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f15" x="187.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f16" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f16" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f16" cx="153.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f16" x="153.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f17" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f17" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f17" cx="187.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f17" x="187.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f18" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f18" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f18" cx="153.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f18" x="153.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f19" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f19" x="119.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f19" cx="187.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f19" x="187.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f20" cx="85.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f20" x="85.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f20" cx="153.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f20" x="153.0" y="89.08" text-anchor="middle">2</text>
-<circle data-role="derived-position" class="own derived f21" cx="51.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f21" x="51.0" y="89.08" text-anchor="middle">0</text>
-<circle data-role="derived-position" class="own derived f21" cx="119.0" cy="85.0" r="10.88"/>
-<text data-role="derived-position" class="ownid derived f21" x="119.0" y="89.08" text-anchor="middle">2</text>
+<circle data-role="exact-position" class="own exact frame f0" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="exact-position" class="ownid exact frame f0" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="exact-position" class="own exact frame f0" cx="187.0" cy="85.0" r="10.88"/>
+<text data-role="exact-position" class="ownid exact frame f0" x="187.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f1" x="141.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f1" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f1" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f1" cx="153.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f1" x="153.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f2" x="175.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f2" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f2" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f2" cx="187.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f2" x="187.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f3" x="141.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f3" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f3" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f3" cx="153.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f3" x="153.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f4" x="175.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f4" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f4" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f4" cx="187.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f4" x="187.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f5" x="141.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f5" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f5" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f5" cx="153.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f5" x="153.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f6" x="175.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f6" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f6" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f6" cx="187.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f6" x="187.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f7" x="141.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f7" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f7" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f7" cx="153.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f7" x="153.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f8" x="175.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f8" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f8" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f8" cx="187.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f8" x="187.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f9" x="141.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f9" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f9" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f9" cx="153.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f9" x="153.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f10" x="175.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f10" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f10" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f10" cx="187.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f10" x="187.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f11" x="141.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f11" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f11" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f11" cx="153.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f11" x="153.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f12" x="175.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f12" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f12" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f12" cx="187.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f12" x="187.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f13" x="141.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f13" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f13" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f13" cx="153.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f13" x="153.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f14" x="175.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f14" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f14" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f14" cx="187.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f14" x="187.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f15" x="141.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f15" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f15" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f15" cx="153.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f15" x="153.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f16" x="175.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f16" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f16" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f16" cx="187.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f16" x="187.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f17" x="141.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f17" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f17" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f17" cx="153.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f17" x="153.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f18" x="175.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f18" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f18" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f18" cx="187.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f18" x="187.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f19" x="141.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f19" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f19" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f19" cx="153.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f19" x="153.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f20" x="175.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f20" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f20" x="119.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f20" cx="187.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f20" x="187.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f21" x="73.44" y="73.44" width="23.12" height="23.12"/>
+<rect data-role="ordered-target" class="target frame f21" x="141.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f21" cx="85.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f21" x="85.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f21" cx="153.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f21" x="153.0" y="89.08" text-anchor="middle">2</text>
+<rect data-role="ordered-target" class="target frame f22" x="39.44" y="73.44" width="23.12" height="23.12"/>
+<rect data-role="ordered-target" class="target frame f22" x="107.44" y="73.44" width="23.12" height="23.12"/>
+<circle data-role="derived-position" class="own derived frame f22" cx="51.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f22" x="51.0" y="89.08" text-anchor="middle">0</text>
+<circle data-role="derived-position" class="own derived frame f22" cx="119.0" cy="85.0" r="10.88"/>
+<text data-role="derived-position" class="ownid derived frame f22" x="119.0" y="89.08" text-anchor="middle">2</text>
 </svg>
 <div class="ctrl">
   <button id="prev">◀ prev</button>
@@ -245,6 +278,9 @@ completeness FULL</p>
 <div class="legend">
   <span class="legend-derived"><b>Dashed hollow circle</b> = <b>inferred</b> own position —
   where the troll would be <em>if</em> its order completed. Not a recorded position.</span><br>
+  <b>Blue square outline</b> = the cell our order named — ground truth ·
+  <b>Solid blue circle</b> = exact position, entry frame only ·
+  <b>Dashed red cell</b> = the blocker's cell ·<br>
   <b>Solid red circle</b> = opponent <span class="entrytag">at entry</span> ·
   <b>Letter</b> = plant <span class="entrytag">at entry</span> ·
   <b>Amber cells</b> = the squares this episode repeats.
@@ -265,8 +301,38 @@ opponent's own commands are <b>not in this library</b>, so no realized position 
 reconstructed from it.
 </div>
 
+
+<h2>Classification <span class="entrytag">frozen evidence</span></h2>
+<table>
+<tr><th>mechanism</th><td>UNCLASSIFIED</td></tr>
+<tr><th>blocker state</th><td>NONE</td></tr>
+<tr><th>blocker cell at entry</th><td>—</td></tr>
+<tr><th>stuck cells</th><td>(4,2) (5,2)</td></tr>
+<tr><th>classifier</th><td>m3a-observational/1</td></tr>
+<tr><th>detectors</th><td>D-1=1</td></tr>
+<tr><th>episodes / dedupe</th><td>4 ·
+  <code>5ffb182accec…</code></td></tr>
+</table>
+<p class="sub"><b>Mechanism evidence.</b>
+own peers exist but none holds a single cell orthogonally adjacent to an oscillation cell, so neither the detour branch nor a stationary occupation is established by the transcript</p>
+
+<div class="warn"><b>Unresolved, carried from the frozen record — read before ruling.</b><br>
+No own peer holds a single cell orthogonally adjacent to an oscillation cell for the whole window, so neither the forced-detour mechanism nor a stationary occupation is established. Settled by a resolver/goal trace over this frozen state.</div>
+
+<h2>Provenance <span class="entrytag">frozen evidence</span></h2>
+<table>
+<tr><th>subject</th><td><code>readable__no_orchard</code>
+  <code>98628e98dce4…</code></td></tr>
+<tr><th>map / seed / seat</th><td>m066 ·
+  982451653 · seat 0</td></tr>
+<tr><th>instrument / corpus</th><td>fuzz-panel/5-two-player-phase-merged-referee ·
+  c5-two-player-phase-merged-2026-08-11</td></tr>
+<tr><th>opponent profile</th><td>harvester</td></tr>
+<tr><th>content sha256</th><td><code>0eade1ece26c68ed36b0fa4e…</code></td></tr>
+</table>
+
 <h2>Inventories <span class="entrytag">at entry</span></h2>
-<table><tr><th>side</th><th>PL</th><th>AP</th><th>LE</th><th>BA</th><th>OR</th><th>WO</th></tr>
+<table><tr><th>side</th><th>PL</th><th>LE</th><th>AP</th><th>BA</th><th>IR</th><th>WO</th></tr>
 <tr><td>opponent</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>own</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td></tr></table>
 
 <h2>Units <span class="entrytag">at entry</span></h2>
@@ -286,20 +352,25 @@ inventories cannot be derived honestly from our own commands alone.</p>
 </div>
 
 <script>
-const FRAMES = [{"turn": 3, "line": "CHOP 0;MOVE 2 4 2", "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 4, "line": "CHOP 0;MOVE 2 5 2", "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 5, "line": "CHOP 0;MOVE 2 4 2", "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 6, "line": "CHOP 0;MOVE 2 5 2", "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 7, "line": "CHOP 0;MOVE 2 4 2", "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 8, "line": "CHOP 0;MOVE 2 5 2", "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 9, "line": "CHOP 0;MOVE 2 4 2", "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 10, "line": "CHOP 0;MOVE 2 5 2", "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 11, "line": "CHOP 0;MOVE 2 4 2", "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 12, "line": "CHOP 0;MOVE 2 5 2", "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 13, "line": "CHOP 0;MOVE 2 4 2", "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 14, "line": "CHOP 0;MOVE 2 5 2", "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 15, "line": "CHOP 0;MOVE 2 4 2", "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 16, "line": "CHOP 0;MOVE 2 5 2", "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 17, "line": "CHOP 0;MOVE 2 4 2", "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 18, "line": "CHOP 0;MOVE 2 5 2", "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 19, "line": "CHOP 0;MOVE 2 4 2", "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 20, "line": "CHOP 0;MOVE 2 5 2", "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 21, "line": "CHOP 0;MOVE 2 4 2", "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 22, "line": "CHOP 0;MOVE 2 5 2", "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 23, "line": "MOVE 0 2 2;MOVE 2 4 2", "segments": ["MOVE 0 2 2", "MOVE 2 4 2"]}, {"turn": 24, "line": "MOVE 0 1 2;MOVE 2 3 2", "segments": ["MOVE 0 1 2", "MOVE 2 3 2"]}];
+const FRAMES = [{"turn": 3, "line": null, "exact": true, "segments": []}, {"turn": 3, "line": "CHOP 0;MOVE 2 4 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 4, "line": "CHOP 0;MOVE 2 5 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 5, "line": "CHOP 0;MOVE 2 4 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 6, "line": "CHOP 0;MOVE 2 5 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 7, "line": "CHOP 0;MOVE 2 4 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 8, "line": "CHOP 0;MOVE 2 5 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 9, "line": "CHOP 0;MOVE 2 4 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 10, "line": "CHOP 0;MOVE 2 5 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 11, "line": "CHOP 0;MOVE 2 4 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 12, "line": "CHOP 0;MOVE 2 5 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 13, "line": "CHOP 0;MOVE 2 4 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 14, "line": "CHOP 0;MOVE 2 5 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 15, "line": "CHOP 0;MOVE 2 4 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 16, "line": "CHOP 0;MOVE 2 5 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 17, "line": "CHOP 0;MOVE 2 4 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 18, "line": "CHOP 0;MOVE 2 5 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 19, "line": "CHOP 0;MOVE 2 4 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 20, "line": "CHOP 0;MOVE 2 5 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 21, "line": "CHOP 0;MOVE 2 4 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 4 2"]}, {"turn": 22, "line": "CHOP 0;MOVE 2 5 2", "exact": false, "segments": ["CHOP 0", "MOVE 2 5 2"]}, {"turn": 23, "line": "MOVE 0 2 2;MOVE 2 4 2", "exact": false, "segments": ["MOVE 0 2 2", "MOVE 2 4 2"]}, {"turn": 24, "line": "MOVE 0 1 2;MOVE 2 3 2", "exact": false, "segments": ["MOVE 0 1 2", "MOVE 2 3 2"]}];
 let i = 0;
 function render() {
-  document.querySelectorAll('[data-role="derived-position"]').forEach(function (el) {
+  document.querySelectorAll('.frame').forEach(function (el) {
     el.classList.toggle('show', el.classList.contains('f' + i));
   });
-  document.getElementById('turnno').textContent = 'turn ' + FRAMES[i].turn;
-  document.getElementById('cmdline').textContent = FRAMES[i].line;
-  var t = FRAMES[i].segments.map(function (s) {
+  var f = FRAMES[i];
+  document.getElementById('turnno').textContent =
+    'turn ' + f.turn + (f.exact ? '  (entry)' : '');
+  document.getElementById('cmdline').textContent =
+    f.exact ? '— entry state, before any command —' : f.line;
+  var t = f.segments.map(function (s) {
     var m = /^MOVE\s+(\d+)\s+(\d+)\s+(\d+)$/.exec(s);
     return m ? ('unit ' + m[1] + ' ordered to (' + m[2] + ',' + m[3] + ')')
              : ('unit order: ' + s);
   }).join(' · ');
-  document.getElementById('targets').textContent = t + '  — order target, ground truth';
+  document.getElementById('targets').textContent = f.exact
+    ? 'Positions on this frame are EXACT — the only recorded board state in the window.'
+    : t + '  — order target (square outline), ground truth';
 }
 function step(d) { i = Math.max(0, Math.min(FRAMES.length - 1, i + d)); render(); }
 document.getElementById('prev').onclick = function () { step(-1); };
