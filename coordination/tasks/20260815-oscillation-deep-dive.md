@@ -51,8 +51,7 @@ moves the trolls should conduct.
    conformance). Run it over all 34 frozen subject-correct situations; resolve unknowns U1–U4 (which
    mechanism each situation really is).
 2. **D2 — Troll-moves viewer. PHASE 1 DELIVERED 2026-08-15** (claude_1, `423b87a1`,
-   merged): 34 pages + index, acceptance machine-checked; REMAINING ITEM: first human
-   visual check — owner opens a page before the first live session. Scope as agreed:
+   merged): 34 pages + index, acceptance machine-checked; visual check DONE — **owner opened and confirmed the viewer 2026-08-15 ("viewer works, I checked") → D2 Phase 1 FULLY ACCEPTED.** Live adjudication sessions are unblocked from the viewer side. Scope as agreed:
    Per `local_claude_1/troll-moves-viewer-scope-proposal-2026-08-15.md` v2, with the
    owner's three rulings: (1) form = self-contained HTML page per situation + index,
    generated via the verifying loader, keyboard step-through; (2) **display-only** —
