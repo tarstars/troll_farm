@@ -82,9 +82,12 @@ and score terms; rejected candidates with reason codes; pair selection; resolver
 branch (`DIRECT`/`DETOUR`/`WAIT_NO_LANDING`/`ALREADY_AT_LANDING`). The viewer should accept an
 optional directory of per-turn packet JSONs alongside a situation and overlay them. The spec's
 section 16 "blind view" matters: for fair adjudication the viewer needs a toggle that HIDES
-scores and the bot's choice until the human has committed a judgment. Timing (per codex_1
-review): the blind/reveal control must exist BEFORE adjudication sessions start, not be added
-after early judgments have already been made unblinded. It hides only Decision Packet material;
+scores and the bot's choice until the human has committed a judgment. Timing — SYNCED TO THE OWNER RULING 2026-08-15 (per codex_1 re-review): Phase-1
+display-only LIVE sessions are authorized and may run without blind mode, since Phase 1
+contains no Decision Packet material to be biased by; the blind/reveal control must exist
+before PHASE-2 (packet-overlay) adjudication begins — under the top-down template the
+human commits L1–L4 before step 5 opens the code's view, which is the same discipline
+enforced socially until the control exists. It hides only Decision Packet material;
 Phase 1 still shows the board and the frozen evidence.
 
 ## 3. Proposed form
