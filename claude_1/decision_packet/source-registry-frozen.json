@@ -1,0 +1,526 @@
+{
+ "envelope_contract": {
+  "input": [
+   "map_sha256",
+   "state_sha256",
+   "turn",
+   "seat",
+   "source",
+   "source_ref",
+   "trust"
+  ],
+  "subject": [
+   "path",
+   "sha256",
+   "instrumentation_sha256",
+   "tool_commit",
+   "source_registry_sha256"
+  ],
+  "top": [
+   "schema",
+   "packet_id",
+   "subject",
+   "input"
+  ]
+ },
+ "intents": [
+  {
+   "completion_predicate": null,
+   "human_label": "hold position",
+   "intent_id": "WAIT",
+   "invalidation_predicate": null,
+   "predicate_status": "UNSPECIFIED",
+   "progress_predicate": null,
+   "source_sites": [
+    "GEN_WAIT"
+   ],
+   "status": "OBSERVED"
+  },
+  {
+   "completion_predicate": null,
+   "human_label": "deposit carried goods at a door",
+   "intent_id": "BANK",
+   "invalidation_predicate": null,
+   "predicate_status": "UNSPECIFIED",
+   "progress_predicate": null,
+   "source_sites": [
+    "GEN_BANK_CANDIDATES_FREE",
+    "GEN_BANK_CANDIDATES_YAMO"
+   ],
+   "status": "OBSERVED"
+  },
+  {
+   "completion_predicate": null,
+   "human_label": "gather the training cost",
+   "intent_id": "EQUIP_FOR_TRAIN",
+   "invalidation_predicate": null,
+   "predicate_status": "UNSPECIFIED",
+   "progress_predicate": null,
+   "source_sites": [
+    "GEN_EARLY_CANDIDATES",
+    "MODE_CHOOSE_SECOND_TROLL",
+    "OPENING_ENSURE",
+    "TRAIN_DEADLINE_ENFORCE"
+   ],
+   "status": "OBSERVED"
+  },
+  {
+   "completion_predicate": null,
+   "human_label": "vacate the shack cell to train",
+   "intent_id": "CLEAR_SHACK_FOR_TRAIN",
+   "invalidation_predicate": null,
+   "predicate_status": "UNSPECIFIED",
+   "progress_predicate": null,
+   "source_sites": [],
+   "status": "OBSERVED"
+  },
+  {
+   "completion_predicate": null,
+   "human_label": "take fruit from a tree",
+   "intent_id": "HARVEST_FRUIT",
+   "invalidation_predicate": null,
+   "predicate_status": "UNSPECIFIED",
+   "progress_predicate": null,
+   "source_sites": [
+    "GEN_FRUIT_CANDIDATES"
+   ],
+   "status": "OBSERVED"
+  },
+  {
+   "completion_predicate": null,
+   "human_label": "mine iron",
+   "intent_id": "MINE_IRON",
+   "invalidation_predicate": null,
+   "predicate_status": "UNSPECIFIED",
+   "progress_predicate": null,
+   "source_sites": [
+    "GEN_IRON_CANDIDATES"
+   ],
+   "status": "OBSERVED"
+  },
+  {
+   "completion_predicate": null,
+   "human_label": "chop a tree for wood",
+   "intent_id": "CHOP_WOOD",
+   "invalidation_predicate": null,
+   "predicate_status": "UNSPECIFIED",
+   "progress_predicate": null,
+   "source_sites": [
+    "GEN_CHOP_CANDIDATES",
+    "GEN_YAMO_CHOP_CANDIDATES"
+   ],
+   "status": "OBSERVED"
+  },
+  {
+   "completion_predicate": null,
+   "human_label": "deny the opponent the focus species",
+   "intent_id": "DENY_FOCUS_SPECIES",
+   "invalidation_predicate": null,
+   "predicate_status": "UNSPECIFIED",
+   "progress_predicate": null,
+   "source_sites": [],
+   "status": "HYPOTHESIZED"
+  },
+  {
+   "completion_predicate": null,
+   "human_label": "replant carried fruit to regrow it",
+   "intent_id": "REGENERATE_CARRIED_FRUIT",
+   "invalidation_predicate": null,
+   "predicate_status": "UNSPECIFIED",
+   "progress_predicate": null,
+   "source_sites": [
+    "COMMIT_REMEMBER_REGENERATION",
+    "STATE_RECONCILE_REGENERATION"
+   ],
+   "status": "OBSERVED"
+  },
+  {
+   "completion_predicate": null,
+   "human_label": "convert banked fruit at end of game",
+   "intent_id": "CONVERT_BANKED_FRUIT",
+   "invalidation_predicate": null,
+   "predicate_status": "UNSPECIFIED",
+   "progress_predicate": null,
+   "source_sites": [],
+   "status": "HYPOTHESIZED"
+  },
+  {
+   "completion_predicate": null,
+   "human_label": "continue an in-progress chop",
+   "intent_id": "COMMIT_CURRENT_CHOP",
+   "invalidation_predicate": null,
+   "predicate_status": "UNSPECIFIED",
+   "progress_predicate": null,
+   "source_sites": [],
+   "status": "OBSERVED"
+  },
+  {
+   "completion_predicate": null,
+   "human_label": "harvest opportunistically while idle",
+   "intent_id": "IDLE_HARVEST",
+   "invalidation_predicate": null,
+   "predicate_status": "UNSPECIFIED",
+   "progress_predicate": null,
+   "source_sites": [],
+   "status": "OBSERVED"
+  },
+  {
+   "completion_predicate": null,
+   "human_label": "clear the only shack door",
+   "intent_id": "UNBLOCK_UNIQUE_DOOR",
+   "invalidation_predicate": null,
+   "predicate_status": "UNSPECIFIED",
+   "progress_predicate": null,
+   "source_sites": [
+    "FORCED_UNIQUE_DOOR_CLEAR"
+   ],
+   "status": "OBSERVED"
+  }
+ ],
+ "priority_classes": [
+  {
+   "class_id": "FORCED",
+   "note": "structurally forced replacement; not chosen by score",
+   "rank_hint": 0,
+   "status": "HYPOTHESIZED"
+  },
+  {
+   "class_id": "COMMITMENT",
+   "note": "honours a persistent commitment made on an earlier turn",
+   "rank_hint": 1,
+   "status": "HYPOTHESIZED"
+  },
+  {
+   "class_id": "ECONOMIC",
+   "note": "ordinary score-ranked production or banking",
+   "rank_hint": 2,
+   "status": "HYPOTHESIZED"
+  },
+  {
+   "class_id": "FALLBACK",
+   "note": "emitted when nothing else qualifies",
+   "rank_hint": 3,
+   "status": "HYPOTHESIZED"
+  }
+ ],
+ "schema": "troll-farm-decision-packet/v1",
+ "sites": [
+  {
+   "end_line": 1111,
+   "fingerprint": "3274fefe6cc25d0af44af06bdf5f41b81848e57fef9012a87a0fe3f6998d0a0a",
+   "fn": "reconcile_regeneration_commitments",
+   "fn_at_start_line": "reconcile_regeneration_commitments",
+   "intent": "REGENERATE_CARRIED_FRUIT",
+   "io_shape": "fn reconcile_regeneration_commitments(&mut self,view:&GameState)",
+   "line_count": 18,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "STATE_RECONCILE_REGENERATION",
+   "stage": "STATE_RECONCILE",
+   "start_line": 1094
+  },
+  {
+   "end_line": 804,
+   "fingerprint": "5dab94b16d5845e27295a9018a38201c9a29389e07883f2ac9f13caee83ef28c",
+   "fn": "ensure_opening",
+   "fn_at_start_line": "ensure_opening",
+   "intent": "EQUIP_FOR_TRAIN",
+   "io_shape": "fn ensure_opening(&mut self,view:&GameState)",
+   "line_count": 9,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "OPENING_ENSURE",
+   "stage": "OPENING_INITIALIZE",
+   "start_line": 796
+  },
+  {
+   "end_line": 941,
+   "fingerprint": "2a7cd3ab6d972af860b36bf92ba74ca7f8be198ebebf6caaa72142f4f1c701d0",
+   "fn": "enforce_training_deadline",
+   "fn_at_start_line": "enforce_training_deadline",
+   "intent": "EQUIP_FOR_TRAIN",
+   "io_shape": "fn enforce_training_deadline(&mut self,view:&GameState)",
+   "line_count": 28,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "TRAIN_DEADLINE_ENFORCE",
+   "stage": "TRAIN_DEADLINE",
+   "start_line": 914
+  },
+  {
+   "end_line": 898,
+   "fingerprint": "ece560f265e44cbf95bea94b3e9c9e1a928d44a23a1b34980de3393336bfa13f",
+   "fn": "choose_second_troll",
+   "fn_at_start_line": "choose_second_troll",
+   "intent": "EQUIP_FOR_TRAIN",
+   "io_shape": "fn choose_second_troll(view:&GameState,policy:YamoOpeningPolicy)->OpeningObjective",
+   "line_count": 34,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "MODE_CHOOSE_SECOND_TROLL",
+   "stage": "MODE_SELECT",
+   "start_line": 865
+  },
+  {
+   "end_line": 1200,
+   "fingerprint": "77a0d7829ffa3372ef2a7f89006416767373ab955ff23c9126b55f796f273d82",
+   "fn": "main_candidates",
+   "fn_at_start_line": "main_candidates",
+   "intent": null,
+   "io_shape": "fn main_candidates(view:&GameState,unit:&Unit,type_to_cut:Option<PlantKind>,idle_regeneration:bool,safe_regeneration:bool,opponent_eta_penalty:i32,)->Vec<Candidate>",
+   "line_count": 34,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "GEN_MAIN_CANDIDATES",
+   "stage": "CANDIDATE_GENERATE",
+   "start_line": 1167
+  },
+  {
+   "end_line": 637,
+   "fingerprint": "33a5c817dcb56ec0f2e83deee7b65a7f353e3645742a54591077034bfcde59b6",
+   "fn": "chop_candidates",
+   "fn_at_start_line": "chop_candidates",
+   "intent": "CHOP_WOOD",
+   "io_shape": "fn chop_candidates(view:&GameState,unit:&Unit,type_to_cut:Option<PlantKind>,)->Vec<Candidate>",
+   "line_count": 56,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "GEN_CHOP_CANDIDATES",
+   "stage": "CANDIDATE_GENERATE",
+   "start_line": 582
+  },
+  {
+   "end_line": 1166,
+   "fingerprint": "66f0c54cb90b5c77c7d276c19c8b6fc44f5812d66570c118980a1acfc602fadd",
+   "fn": "yamo_chop_candidates",
+   "fn_at_start_line": "yamo_chop_candidates",
+   "intent": "CHOP_WOOD",
+   "io_shape": "fn yamo_chop_candidates(view:&GameState,unit:&Unit,type_to_cut:Option<PlantKind>,opponent_eta_penalty:i32,)->Vec<Candidate>",
+   "line_count": 39,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "GEN_YAMO_CHOP_CANDIDATES",
+   "stage": "CANDIDATE_GENERATE",
+   "start_line": 1128
+  },
+  {
+   "end_line": 484,
+   "fingerprint": "e4dbc70954d165861befb218c915737f399550127d9b382a21b955d3427c8c6b",
+   "fn": "fruit_candidates",
+   "fn_at_start_line": "fruit_candidates",
+   "intent": "HARVEST_FRUIT",
+   "io_shape": "fn fruit_candidates(view:&GameState,unit:&Unit,kind:PlantKind,base_score:f64,)->Vec<Candidate>",
+   "line_count": 22,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "GEN_FRUIT_CANDIDATES",
+   "stage": "CANDIDATE_GENERATE",
+   "start_line": 463
+  },
+  {
+   "end_line": 508,
+   "fingerprint": "2cd5b14e178a975bbbc9cd541d56b206d5c4741f92155f21cc5ce8b8dff5586c",
+   "fn": "iron_candidates",
+   "fn_at_start_line": "iron_candidates",
+   "intent": "MINE_IRON",
+   "io_shape": "fn iron_candidates(view:&GameState,unit:&Unit,base_score:f64)->Vec<Candidate>",
+   "line_count": 24,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "GEN_IRON_CANDIDATES",
+   "stage": "CANDIDATE_GENERATE",
+   "start_line": 485
+  },
+  {
+   "end_line": 462,
+   "fingerprint": "d9e90af02e2e54e5eb8396e92d66b32643b27547d4a139c31bbcb4f53dcad677",
+   "fn": "early_candidates",
+   "fn_at_start_line": "early_candidates",
+   "intent": "EQUIP_FOR_TRAIN",
+   "io_shape": "fn early_candidates(view:&GameState,unit:&Unit,desired:Stats)->Vec<Candidate>",
+   "line_count": 31,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "GEN_EARLY_CANDIDATES",
+   "stage": "CANDIDATE_GENERATE",
+   "start_line": 432
+  },
+  {
+   "end_line": 399,
+   "fingerprint": "1437dc9dee5bc7c9f8dc364a2563576d79d6f761e56f277d465c3f3121edf111",
+   "fn": "bank_candidates",
+   "fn_at_start_line": "bank_candidates",
+   "intent": "BANK",
+   "io_shape": "fn bank_candidates(view:&GameState,unit:&Unit)->Vec<Candidate>",
+   "line_count": 29,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "GEN_BANK_CANDIDATES_FREE",
+   "stage": "CANDIDATE_GENERATE",
+   "start_line": 371
+  },
+  {
+   "end_line": 955,
+   "fingerprint": "ebca61f58a5a27214f99b01e2b2b9a28fcc9238a3edd0207202377227b51d66c",
+   "fn": "bank_candidates",
+   "fn_at_start_line": "bank_candidates",
+   "intent": "BANK",
+   "io_shape": "fn bank_candidates(view:&GameState,unit:&Unit)->Vec<Candidate>",
+   "line_count": 9,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "GEN_BANK_CANDIDATES_YAMO",
+   "stage": "CANDIDATE_GENERATE",
+   "start_line": 947
+  },
+  {
+   "end_line": 642,
+   "fingerprint": "49108636db678c3ad7448f5a5a7fe7cf6781cd45ab6b1514c8f0258980e80893",
+   "fn": "wait",
+   "fn_at_start_line": "wait",
+   "intent": "WAIT",
+   "io_shape": "fn wait()->Candidate",
+   "line_count": 5,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "GEN_WAIT",
+   "stage": "CANDIDATE_GENERATE",
+   "start_line": 638
+  },
+  {
+   "end_line": 1093,
+   "fingerprint": "331b1c0c1fb794b3d007bdac2a276fc519496472d8cbd25404eee38f23af7978",
+   "fn": "force_unique_door_clear",
+   "fn_at_start_line": "force_unique_door_clear",
+   "intent": "UNBLOCK_UNIQUE_DOOR",
+   "io_shape": "fn force_unique_door_clear(&self,view:&GameState,candidates:&mut BTreeMap<i32,Vec<Candidate>>,)",
+   "line_count": 116,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "FORCED_UNIQUE_DOOR_CLEAR",
+   "stage": "FORCED_REPLACEMENT",
+   "start_line": 978
+  },
+  {
+   "end_line": 654,
+   "fingerprint": "5d9bcb42cf6e6ac11d0986a3fe24484b623467806c774f0d23d5f78b44934f84",
+   "fn": "compatible",
+   "fn_at_start_line": "compatible",
+   "intent": null,
+   "io_shape": "fn compatible(a:Target,b:Target)->bool",
+   "line_count": 12,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "PAIR_COMPATIBLE",
+   "stage": "PAIR_SELECT",
+   "start_line": 643
+  },
+  {
+   "end_line": 664,
+   "fingerprint": "70198808b8105fa00fe18f43b3f76321ecc7da1777726802c8d5c06a9c8fd3c6",
+   "fn": "stock_compatible",
+   "fn_at_start_line": "stock_compatible",
+   "intent": null,
+   "io_shape": "fn stock_compatible(a:&Candidate,b:&Candidate,inventory:&[i32;",
+   "line_count": 6,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "PAIR_STOCK_COMPATIBLE",
+   "stage": "PAIR_SELECT",
+   "start_line": 659
+  },
+  {
+   "end_line": 712,
+   "fingerprint": "6194b41fb6bcab638c7ec63e250476d3fe2c8a13364a7d5be491cce3fc5c8474",
+   "fn": "select",
+   "fn_at_start_line": "select",
+   "intent": null,
+   "io_shape": "fn select(candidates_by_id:BTreeMap<i32,Vec<Candidate>>,inventory:&[i32;",
+   "line_count": 48,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "PAIR_SELECT_ARBITRATE",
+   "stage": "PAIR_SELECT",
+   "start_line": 665
+  },
+  {
+   "end_line": 722,
+   "fingerprint": "9940dd24a110cad142e1ed722a78a69c0235f2b039cea33a4401ebc9ad1714bc",
+   "fn": "resolve_move_conflicts",
+   "fn_at_start_line": "resolve_move_conflicts",
+   "intent": null,
+   "io_shape": "fn resolve_move_conflicts(view:&GameState,commands:&mut[String])",
+   "line_count": 3,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "REWRITE_MOVE_CONFLICTS",
+   "stage": "MOVE_RESOLVE",
+   "start_line": 720
+  },
+  {
+   "end_line": 725,
+   "fingerprint": "d324b35945e4d236e481252b790c0d07ae0378b696086afe44e0fb5bf2612676",
+   "fn": "resolve_move_conflicts_with_priority",
+   "fn_at_start_line": "resolve_move_conflicts_with_priority",
+   "intent": null,
+   "io_shape": "fn resolve_move_conflicts_with_priority(view:&GameState,commands:&mut[String],priority_ids:&BTreeSet<i32>,)",
+   "line_count": 3,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "REWRITE_MOVE_CONFLICTS_PRIORITY",
+   "stage": "MOVE_RESOLVE",
+   "start_line": 723
+  },
+  {
+   "end_line": 780,
+   "fingerprint": "1b2b1997dd5cd89102b31378e890e20129ae2f4b0eab6f58c2f14dd7a563dc89",
+   "fn": "resolve_move_conflicts_with_priority_and_forbidden",
+   "fn_at_start_line": "resolve_move_conflicts_with_priority_and_forbidden",
+   "intent": null,
+   "io_shape": "fn resolve_move_conflicts_with_priority_and_forbidden(view:&GameState,commands:&mut[String],priority_ids:&BTreeSet<i32>,forbidden_for_non_priority:&BTreeSet<Cell>,)",
+   "line_count": 55,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "REWRITE_MOVE_CONFLICTS_FORBIDDEN",
+   "stage": "MOVE_RESOLVE",
+   "start_line": 726
+  },
+  {
+   "end_line": 1127,
+   "fingerprint": "2c24b38c25cf77e8d34543f7888ed6d7b7c383186ba73af960d8f61e4491601e",
+   "fn": "remember_selected_regeneration",
+   "fn_at_start_line": "remember_selected_regeneration",
+   "intent": "REGENERATE_CARRIED_FRUIT",
+   "io_shape": "fn remember_selected_regeneration(&mut self,commands:&[String])",
+   "line_count": 16,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "COMMIT_REMEMBER_REGENERATION",
+   "stage": "COMMITMENT_UPDATE",
+   "start_line": 1112
+  },
+  {
+   "end_line": 1476,
+   "fingerprint": "81d38e4da7af0ca013ebe562f880f2d7cbaebdaa94ddef1adf958d579ca035b3",
+   "fn": "main",
+   "fn_at_start_line": "main",
+   "intent": null,
+   "io_shape": "fn main()",
+   "line_count": 19,
+   "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "site_id": "EMIT_MAIN",
+   "stage": "EMIT",
+   "start_line": 1458
+  }
+ ],
+ "source_registry_sha256": "e6cb7000ed1e46a3ac05ab959c4a35869c920fb4c58dcf9d99eda9b012019ff0",
+ "spec_discrepancies": [
+  "\u00a74 example enum omits EXECUTION_UNAVAILABLE, which \u00a74 prose requires; implemented the prose."
+ ],
+ "stages": [
+  "STATE_RECONCILE",
+  "OPENING_INITIALIZE",
+  "TRAIN_DEADLINE",
+  "MODE_SELECT",
+  "CANDIDATE_GENERATE",
+  "FORCED_REPLACEMENT",
+  "PAIR_SELECT",
+  "GREEDY_SELECT",
+  "MOVE_RESOLVE",
+  "COMMITMENT_UPDATE",
+  "EMIT",
+  "EXECUTE"
+ ],
+ "subject": {
+  "fn_definitions": 79,
+  "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+  "sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29"
+ },
+ "trust_allowed": [
+  "SOURCE_EXACT",
+  "PROVISIONAL_EXECUTION",
+  "EXECUTION_UNAVAILABLE"
+ ],
+ "trust_withheld": [
+  "ACCEPTED_EXECUTION"
+ ]
+}
