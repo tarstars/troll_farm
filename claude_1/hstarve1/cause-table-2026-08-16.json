@@ -1,0 +1,33 @@
+{
+ "table": [
+  {
+   "branches": {
+    "MAIN": 195
+   },
+   "cause": "ALL_WAIT_CAUSE_UNDETERMINED",
+   "parked_unit": 2,
+   "situation": "OSC-001",
+   "turns_all_wait": 195,
+   "turns_committed": 0,
+   "turns_committed_midgame": 0,
+   "turns_empty_candidates": 0,
+   "turns_observed": 195
+  },
+  {
+   "branches": {
+    "MAIN": 193
+   },
+   "cause": "ALL_WAIT_CAUSE_UNDETERMINED",
+   "parked_unit": 2,
+   "situation": "OSC-012",
+   "turns_all_wait": 193,
+   "turns_committed": 0,
+   "turns_committed_midgame": 0,
+   "turns_empty_candidates": 0,
+   "turns_observed": 193
+  }
+ ],
+ "totals": {
+  "ALL_WAIT_CAUSE_UNDETERMINED": 2
+ }
+}
