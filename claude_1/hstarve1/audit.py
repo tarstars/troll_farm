@@ -18,6 +18,7 @@ REPO = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(REPO / "claude_1/t1"))
 import fixture_harness as H   # noqa: E402
 import fuzz_panel as fp       # noqa: E402
+import trace_detectors as td  # noqa: E402
 
 INSTR = REPO / "claude_1/hstarve1/instrumented-hstarve1.rs"
 HS1 = re.compile(r"HS1 turn=(\d+) unit=(\d+) cell=(-?\d+),(-?\d+) branch=(\w+) "
@@ -57,7 +58,31 @@ def check_noninterference(sit, cfg, plain_bin, instr_bin):
     return c_plain.strip() == c_instr.strip()
 
 
-def classify(rows, sit):
+def world_offers_work(tr, lo, hi):
+    """INCREMENT 2 — the world-state check that increment 1 deliberately lacked.
+
+    `fuzz_panel.work_remaining(tr, t)` (:1756) is the referee-world predicate: True iff the
+    world still offers the own player a resource action (own cargo to bank/plant, or a plant
+    standing on a reachable cell). It reads the world, NOT the generator's output — which is
+    exactly the distinction increment 1 could not make and refused to fake.
+
+    Reused rather than re-derived: a second definition of "there is work" would let the phrase
+    mean one thing to the gate and another to this audit.
+
+    **KNOWN IMPRECISION, stated not buried.** `work_remaining` is a PLAYER-level predicate: its
+    reachability BFS is multi-source over ALL own units (`fuzz_panel:1774`). So a plant reachable
+    only by the DANCER counts as "work remains" even if the parked unit can reach nothing. The
+    GENERATOR_GAP label therefore means *the world offered the player a resource action while
+    this unit was handed only WAIT* — strong, but not yet *this unit had reachable work*. A
+    per-unit refinement (BFS from the parked unit's cell alone) is the next increment and could
+    move some rows to NO_WORK_ON_MAP.
+    """
+    turns = [t for t in range(lo, min(hi, tr.T) + 1)]
+    offered = [t for t in turns if fp.work_remaining(tr, t)]
+    return len(offered), len(turns)
+
+
+def classify(rows, sit, tr=None):
     """Assign a CAUSE for the idle unit of this situation."""
     w = sit["window"]
     lo, hi = w["turn_start"], w["turn_end"]
@@ -67,6 +92,7 @@ def classify(rows, sit):
         if lo <= r["turn"] <= hi:
             per_unit[r["unit"]].append(r)
     parked = {u: rs for u, rs in per_unit.items() if u != w["unit"]}
+    work_turns, total_turns = world_offers_work(tr, lo, hi) if tr is not None else (0, 0)
     out = []
     for uid, rs in sorted(parked.items()):
         empty = [r for r in rs if r["n"] == 0]
@@ -78,12 +104,16 @@ def classify(rows, sit):
         elif empty and not committed:
             cause = "GENERATOR_GAP"
         elif allnone and not empty:
-            # UNSUPPORTED BY THIS INSTRUMENT. "All candidates are WAIT" is the GENERATOR'S
-            # OUTPUT, not a fact about the world. Calling it NO_WORK_ON_MAP assumes the
-            # conclusion: a generator that fails to see available work produces the same
-            # signal. Distinguishing the two needs the world-state predicate
-            # `fuzz_panel.work_remaining(tr, t)` (:1756), which this slice does not read.
-            cause = "ALL_WAIT_CAUSE_UNDETERMINED"
+            # Increment 2: now decidable. The generator emitted only WAIT; ask the WORLD
+            # whether work was available on those turns.
+            if tr is None:
+                cause = "ALL_WAIT_CAUSE_UNDETERMINED"
+            elif work_turns > 0:
+                # the world offered a resource action and the generator still produced
+                # nothing but WAIT
+                cause = "GENERATOR_GAP"
+            else:
+                cause = "NO_WORK_ON_MAP"
         elif not rs:
             cause = "OTHER"
         else:
@@ -93,6 +123,8 @@ def classify(rows, sit):
             "turns_observed": len(rs), "turns_empty_candidates": len(empty),
             "turns_all_wait": len(allnone), "turns_committed": len(committed),
             "turns_committed_midgame": len(midgame_commit),
+            "turns_world_offered_work": work_turns,
+            "turns_in_window": total_turns,
             "branches": dict(collections.Counter(r["branch"] for r in rs)),
         })
     return out
@@ -128,24 +160,28 @@ def main():
                     return 1
                 first = False
             spec = H.spec_for(sit, cfg)
-            _, _, err = run_capturing_stderr(instr, fp.make_referee(spec), int(cfg["turns"]))
+            transcript, commands, err = run_capturing_stderr(
+                instr, fp.make_referee(spec), int(cfg["turns"]))
             rows = parse(err)
-            table.extend(classify(rows, sit))
+            tr = td.build_trace(transcript, commands)
+            table.extend(classify(rows, sit, tr))
     counts = collections.Counter(r["cause"] for r in table)
     print(f"\nCAUSE table — {len(table)} parked-unit observations over {len(sits)} situations")
     for r in table:
         print(f"  {r['situation']}  unit {r['parked_unit']}  {r['cause']:<18} "
               f"obs={r['turns_observed']:>3} empty={r['turns_empty_candidates']:>3} "
               f"allWAIT={r['turns_all_wait']:>3} commit(mid)={r['turns_committed_midgame']:>3} "
+              f"worldWork={r['turns_world_offered_work']}/{r['turns_in_window']} "
               f"{r['branches']}")
     print(f"\ntotals: {dict(counts)}")
     out = REPO / "claude_1/hstarve1/cause-table-2026-08-16.json"
     out.write_text(json.dumps({"table": table, "totals": dict(counts)}, indent=1,
                               sort_keys=True) + "\n")
     print(f"wrote {out.relative_to(REPO)}")
-    print("\nNOTE: ALL_WAIT_CAUSE_UNDETERMINED is deliberate. Separating NO_WORK_ON_MAP from")
-    print("GENERATOR_GAP needs fuzz_panel.work_remaining(tr,t) (:1756), which this slice does")
-    print("not read. Labelling it NO_WORK_ON_MAP would assume the conclusion.")
+    print("\nINCREMENT 2: NO_WORK_ON_MAP vs GENERATOR_GAP is now decided by")
+    print("fuzz_panel.work_remaining(tr,t) (:1756) - the referee WORLD state, not the")
+    print("generator's output. GENERATOR_GAP = the world offered a resource action and the")
+    print("generator still emitted nothing but WAIT.")
     print("\nLABEL: Packet-lite SLICE. Routing branch + candidate count for one unit per turn.")
     print("NOT Decision Packet completeness and must never be cited as such.")
     return 0
