@@ -2,12 +2,13 @@
  "table": [
   {
    "branches": {
-    "MAIN": 195
+    "ENDGAME": 137,
+    "MAIN": 58
    },
    "cause": "GENERATOR_GAP",
    "parked_unit": 2,
    "situation": "OSC-001",
-   "turns_all_wait": 195,
+   "turns_all_wait": 172,
    "turns_committed": 0,
    "turns_committed_midgame": 0,
    "turns_empty_candidates": 0,
@@ -18,7 +19,25 @@
   },
   {
    "branches": {
-    "MAIN": 193
+    "ENDGAME": 19,
+    "MAIN": 170
+   },
+   "cause": "OTHER",
+   "parked_unit": 0,
+   "situation": "OSC-002",
+   "turns_all_wait": 0,
+   "turns_committed": 0,
+   "turns_committed_midgame": 0,
+   "turns_empty_candidates": 0,
+   "turns_in_window": 189,
+   "turns_observed": 189,
+   "turns_this_unit_could_reach_work": 189,
+   "turns_world_offered_work": 189
+  },
+  {
+   "branches": {
+    "ENDGAME": 138,
+    "MAIN": 55
    },
    "cause": "GENERATOR_GAP",
    "parked_unit": 2,
@@ -34,12 +53,13 @@
   },
   {
    "branches": {
-    "MAIN": 190
+    "ENDGAME": 21,
+    "MAIN": 169
    },
    "cause": "GENERATOR_GAP",
    "parked_unit": 2,
    "situation": "OSC-031",
-   "turns_all_wait": 190,
+   "turns_all_wait": 189,
    "turns_committed": 0,
    "turns_committed_midgame": 0,
    "turns_empty_candidates": 0,
@@ -50,6 +70,7 @@
   }
  ],
  "totals": {
-  "GENERATOR_GAP": 3
+  "GENERATOR_GAP": 3,
+  "OTHER": 1
  }
 }

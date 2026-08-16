@@ -57,6 +57,12 @@ def run_capturing_stderr(binary, referee, turns):
             line = line.rstrip("\n")
             command_lines.append(line)
             referee.apply(line)
+            # `grow()` is NOT optional. Omitting it was my bug: the shared runner
+            # (regression_tests.run_binary_custom:845-846) calls apply() AND grow(), so
+            # without it plants never ripen, no fruit ever appears, and the harvest
+            # generators correctly find nothing to offer. Every H-STARVE-1 number measured
+            # before this line existed was taken in a world where nothing grows.
+            referee.grow()
         proc.stdin.close()
     finally:
         proc.wait()
