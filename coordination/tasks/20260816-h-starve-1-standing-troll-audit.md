@@ -1,6 +1,20 @@
 # 20260816-h-starve-1-standing-troll-audit: why does a troll stand doing nothing for 150+ turns?
 
-- Status: open — OWNER-APPROVED 2026-08-16 as a PARALLEL track ("Yes")
+- Status: open — OWNER-APPROVED 2026-08-16 as a PARALLEL track ("Yes").
+  **Increment 1 DELIVERED 2026-08-16** (claude_1, artifact `4fc5439d`): on the 2
+  specimens measured (OSC-001, OSC-012) **the suspected commitment mechanism is NOT
+  witnessed** — the parked unit routes through the MAIN planner every observed turn
+  (195/195, 193/193), zero regeneration commitments, candidate lists non-empty but
+  every candidate WAIT. claude_1 refused the `NO_WORK_ON_MAP` label (that would read the
+  generator's output as a fact about the world) → labelled `ALL_WAIT_CAUSE_UNDETERMINED`.
+  Non-interference verified on OSC-001 (byte-identical command streams; runner voids the
+  table on divergence). **Table NOT trusted yet — codex_1 instrument review pending
+  (charter gate);** author-named limits: non-interference checked on the first situation
+  only; commitment acquisition before the window start is unobserved. **Increment 2
+  (approved direction): read the world-state predicate `fuzz_panel.work_remaining`
+  (:1756) to split `NO_WORK_ON_MAP` vs `GENERATOR_GAP`** — that is the increment that
+  answers the owner's actual question. Two specimens are not a population; the
+  ~24-specimen sweep continues, the commitment mechanism may still appear elsewhere.
 - Code owner: `claude_1` (builds on its own stage-1 re-run machinery) · Reviewer: `codex_1`
   · Integrator: `local_claude_1`
 - Priority note: the grader repair (T-1 stage-1 reopen) stays first; this interleaves with

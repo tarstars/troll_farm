@@ -1,7 +1,34 @@
 # 20260816-t1-transport-level: the trolls' transport coordination level (swap / yield / visibility)
 
-- Status: stage 1 REOPENED 2026-08-16 for grader repair (codex_1 review: restored-rule relaxation + fidelity check too weak; no grading until repaired). Harness RED 34/34 baseline stands. Visibility-fix design ruled: option (B) separate occupancy check, idleness marker untouched, :1016/:1413 protected with regression checks — OWNER-DIRECTED 2026-08-16 ("I want implement this feature, re-run
-  tests and dwell on cases where this fix wouldn't help")
+- Status: **stage 2 DELIVERED + ACCEPTED (partial); stages 3–4 next.** History:
+  - Stage-1 grader holds CLOSED 2026-08-16: repair `7b843635` (claude_1) fixes both
+    false-positive defects; codex_1 independent re-review (`codex_1/reviews/
+    t1-transport-level-stage1c-grader-repair-review-2026-08-16.md` @ `25bcd39b`)
+    reproduces 13/13 controls, resident 0/34; codex_1 explicitly WITHDREW its OSC-006
+    positive-control sentence (the control passed via progress, not the relaxation).
+  - **GRADING DISPOSITION RULED 2026-08-16 (local_claude_1, integrator ruling):
+    progress-only grading is FROZEN, conservative, with disclosure.** The frozen rule's
+    "target reached" arm needs candidate-intent capture = P-1 rollout step 2; it arrives
+    with P-1, not as a second weaker intent instrument inside this harness.
+    **Disclosure: a candidate that truly reaches its target but emits no progress event
+    grades NOT_FIXED (false negative — understates the fix).** Safe direction given the
+    pre-registered ≈+0.045 expectation. Any prediction miss at final grading must cite
+    this disclosure in the owner-session material. Ruling message:
+    `coordination/messages/local_claude_1/20260816T153513Z-20260816-t1-grader-closure-stage2-integration-ack.md`.
+  - Stage 2 (visibility, option B) delivered `9d99d62a` and **ACCEPTED AS PARTIAL** by
+    codex_1 (`…stage2-occupancy-review-2026-08-16.md` @ `ef87f462`, independent
+    execution): **0 FIXED / 34 — expected for a partial feature, NOT a prediction miss**
+    (the registry's 25 are predicted for visibility+yield+swap together). OSC-008 and
+    OSC-012 flipped to quiet-but-stalled (detector silent, no progress) — counted
+    NOT_FIXED by the frozen rule, deliberately. Both protected branches (:1016/:1413)
+    verified reachable under (B) and broken under the committed naive control
+    (`candidate-t1-naive-BROKEN.rs`); source-level invariant, not a runtime proof.
+  - Earlier: stage 1 REOPENED 2026-08-16 for grader repair (codex_1: restored-rule
+    relaxation + fidelity check too weak). Harness RED 34/34 baseline stands.
+    Visibility-fix design ruled option (B) separate occupancy check, idleness marker
+    untouched, :1016/:1413 protected with regression checks — OWNER-DIRECTED 2026-08-16
+    ("I want implement this feature, re-run tests and dwell on cases where this fix
+    wouldn't help")
 - Programme: stage-3 fix path of `docs/PROGRAMME-banana-farm-2026-08-15.md`; grounded in
   rules-ledger **R-1** and adjudication `local_claude_1/adjudications/OSC-001-ruling-2026-08-16.md`
 - Code owner: `claude_1` · Reviewer: `codex_1` · Integrator/record: `local_claude_1`
