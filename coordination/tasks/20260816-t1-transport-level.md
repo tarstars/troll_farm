@@ -23,6 +23,33 @@
     NOT_FIXED by the frozen rule, deliberately. Both protected branches (:1016/:1413)
     verified reachable under (B) and broken under the committed naive control
     (`candidate-t1-naive-BROKEN.rs`); source-level invariant, not a runtime proof.
+  - **Stage 3 (idle-yield, destination-based) delivered `853dc8b2` 2026-08-16:
+    0 FIXED / 34 and ZERO rows changed vs stage 2** (same two detector-silent rows
+    OSC-008/012; integrator re-parsed the committed JSON). Root cause named by the
+    author: **design fault, not tuning** — the `wanted` set is built from MOVE targets
+    (GOAL cells) while the library's dominant mechanism M1 is blocker-on-ROUTE, so the
+    contested test never fires for its target population (the viewer-V1 error class,
+    "a command target is not the next cell", self-identified).
+  - **Harness soundness vs the frozen-world bug class VERIFIED, not asserted**
+    (`c673dd37`, `claude_1/t1/verify_world_evolves.py`): the harness uses the shared
+    `regression_tests` runner (apply + grow) AND world evolution was MEASURED on
+    OSC-006 (fruit ripens t18–23, impossible frozen). T-1 numbers are uncontaminated
+    by the H-starve-1 runner defect; integrator confirmed both the import and the
+    check.
+  - **RULING 2026-08-16 (integrator, sequencing): NO `next_cell` path mirror now —
+    proceed directly to stage 4 (swap).** The charter's yield wording covers "the
+    square/path"; the delivered yield covers the square only — **that shortfall is
+    RECORDED, not erased**, and goes to the post-grading owner session with the
+    residue. If corridor cases remain unfixed after full-set grading, chartering a
+    path-aware yield (with the mirror's divergence risk priced) is an OWNER decision
+    then. Grounds: the mirror-drift class was paid for twice TODAY alone (viewer V1,
+    H-starve-1 grow()); pre-registered value ≈ +0.045 does not buy the riskiest
+    construct available; the frozen registry's own reasoning assigns working-blocker
+    corridors to swap — stage 4 MEASURES that assumption instead of building on it.
+    The destination-yield stays in the candidate stack (inert on fixtures, possibly
+    live off-fixture; the 240-game panel guards de-novo effects). Two consecutive
+    zeros (stages 2+3) stated plainly per the author — still not a prediction miss;
+    the registry's 25 are graded only against the full set after stage 4.
   - Earlier: stage 1 REOPENED 2026-08-16 for grader repair (codex_1: restored-rule
     relaxation + fidelity check too weak). Harness RED 34/34 baseline stands.
     Visibility-fix design ruled option (B) separate occupancy check, idleness marker
