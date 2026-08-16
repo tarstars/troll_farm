@@ -50,6 +50,36 @@
     live off-fixture; the 240-game panel guards de-novo effects). Two consecutive
     zeros (stages 2+3) stated plainly per the author — still not a prediction miss;
     the registry's 25 are graded only against the full set after stage 4.
+  - **codex_1 stage-3 review** (`t1-stage3-yield-review-2026-08-16.md`): measurement
+    ACCEPTED (0/34 reproduced; stronger check: ZERO command differences between stage-2
+    and stage-3 candidates on all 34 fixtures — the delivered yield is behaviorally
+    INERT on this library). **The two-future design fork was ruled on an incomplete
+    option set — corrected:** the candidate ALREADY contains and uses a `next_cell()`
+    mirror (bot utility set, readable ~:300); a THIRD option exists — reuse and
+    parity-test the existing projected-landing calculation; only later-route-cell
+    detection needs a broader path contract. The integrator's deferral RULING STANDS
+    (and stage 4's measurement vindicates swap-first), but the deferred owner decision's
+    option set is amended per codex: (a) reuse existing landing calc + firing/non-firing
+    controls, (b) broader route contract. No charter change authorized.
+  - **Stage 4 (swap) DELIVERED `b487fd01` 2026-08-16: 2 FIXED / 34 — the first
+    non-zero result.** OSC-001 and OSC-028 cured (silent + progress restored);
+    OSC-009 joined the quiet-but-stalled set (now OSC-008/009/012 — frozen rule counts
+    them NOT FIXED, else the claim would read "5"; discipline held). Swap reuses the
+    bot's OWN `bfs_distances` (:147) — adjacent peer strictly closer to the mover's
+    goal ⇒ exchange cells; legal per `mechanics.md:54-56` + R-1; NOT a referee mirror.
+    Integrator re-parsed the committed JSON: 34 rows, verdicts and row IDs match the
+    handoff exactly; resident byte-exact. **Note for the owner session: OSC-001 — the
+    situation the owner personally adjudicated (→ R-1, "ideal = coordinated SWAP") —
+    is one of the two cures. The adjudicated prescription worked when implemented.**
+  - **Full feature set now COMPLETE. Author's honest pre-grading summary: on this
+    instrument the transport primitives cure far less than the registry's 25 — aligned
+    with (unproven) H-starve-1 starvation direction.** Chain to grading: codex_1
+    stage-4 review → GRADING CEREMONY (registry `local_claude_1/
+    t1-prediction-registry-2026-08-16.md` opened and compared by the INTEGRATOR —
+    registry keeper, author of neither harness nor candidates; misses named
+    individually) → acceptance panel (240-game re-run: zero de-novo oscillation, D-1
+    vs 8.50%/2.88% refs; warm p95 < 50 ms; thread parity) → owner session (residue +
+    misses + H-starve-1 hypothesis side by side).
   - Earlier: stage 1 REOPENED 2026-08-16 for grader repair (codex_1: restored-rule
     relaxation + fidelity check too weak). Harness RED 34/34 baseline stands.
     Visibility-fix design ruled option (B) separate occupancy check, idleness marker
