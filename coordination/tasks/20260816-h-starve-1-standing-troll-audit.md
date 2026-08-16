@@ -39,6 +39,26 @@
   (these rows likely un-fixable by transport; the registry's 25 possibly optimistic) is
   a NAMED HYPOTHESIS for the owner session only — the prediction registry stays frozen,
   nothing is re-scored on an untrusted table.
+  **Increment 3 DELIVERED 2026-08-16** (claude_1, `f5a9d2e9`, **crossed in flight** with
+  the increment-2 adjudication and codex reviews — it cites neither): per-unit
+  refinement `unit_offered_work()` (BFS from the parked unit's own cell); claims
+  GENERATOR_GAP survives on all three (unit itself could reach work 195/193/190 turns,
+  still handed only WAIT). **Integrator verification:** the faithful-narrowing claim
+  HOLDS — both predicates read side by side, same two clauses, same static-walkable
+  `game::nav`-mirror BFS (`trace_detectors.bfs_distances`), only the source set differs.
+  **But: (a) the OSC-031 row still reports `parked_unit: 2`** — the wrong-unit defect
+  is UNREPAIRED (selection logic unchanged), so **the OSC-031 withdrawal STANDS and the
+  honest count is at most 2/2 (OSC-001/012), pending review**; (b) none of the five
+  instrument defects are addressed; (c) the new `UNIT_CANNOT_REACH_WORK` arm has never
+  been observed firing (observed-failing rule) — a walled-in negative control is
+  required. **Adjudication 2026-08-16 (integrator): no discipline breach (parallel
+  composition), but no ruling moves** — critical path stays: five repairs +
+  label-specific negative controls (incl. the walled-in control) → codex_1 re-review of
+  increments 2+3 together → re-run so numbers land on the RIGHT units → only then owner
+  session. Named review question for codex_1: both predicates ignore unit-blocking by
+  design; whether the bot's own candidate nav does too decides if transient blocking
+  could excuse the generator. Generator-fix charter, if any, is an OWNER gate — not
+  spawned on today's table.
 - Code owner: `claude_1` (builds on its own stage-1 re-run machinery) · Reviewer: `codex_1`
   · Integrator: `local_claude_1`
 - Priority note: the grader repair (T-1 stage-1 reopen) stays first; this interleaves with
