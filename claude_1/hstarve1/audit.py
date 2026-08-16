@@ -82,6 +82,37 @@ def world_offers_work(tr, lo, hi):
     return len(offered), len(turns)
 
 
+def unit_offered_work(tr, uid, lo, hi):
+    """INCREMENT 3 — the PER-UNIT refinement of `work_remaining`.
+
+    Same two clauses as the authority (`fuzz_panel.work_remaining`, :1756) — own cargo to
+    bank/plant, or a standing plant on a reachable cell — with ONE narrowing: reachability is
+    BFS from **this unit's cell alone**, not multi-source over every own unit.
+
+    This is deliberately a *narrowing of the authority's predicate*, not a new idea about what
+    work is. The clauses are copied so the two cannot drift; only the source set differs, and
+    that difference is the entire question increment 2 left open: a plant reachable only by the
+    DANCER made the player-level predicate true while telling us nothing about the parked unit.
+    """
+    offered = 0
+    total = 0
+    for t in range(lo, min(hi, tr.T) + 1):
+        st = tr.state(t)
+        u = tr.unit(uid, t)
+        if u is None:
+            continue
+        total += 1
+        if sum(u.carry):
+            offered += 1
+            continue
+        if not st.plants:
+            continue
+        reach = td.bfs_distances(tr.smap.walkable, [u.cell])
+        if any(p.cell in reach for p in st.plants):
+            offered += 1
+    return offered, total
+
+
 def classify(rows, sit, tr=None):
     """Assign a CAUSE for the idle unit of this situation."""
     w = sit["window"]
@@ -95,6 +126,8 @@ def classify(rows, sit, tr=None):
     work_turns, total_turns = world_offers_work(tr, lo, hi) if tr is not None else (0, 0)
     out = []
     for uid, rs in sorted(parked.items()):
+        unit_work, unit_total = (unit_offered_work(tr, uid, lo, hi) if tr is not None
+                                 else (0, 0))
         empty = [r for r in rs if r["n"] == 0]
         allnone = [r for r in rs if r["all_none"]]
         committed = [r for r in rs if r["committed"]]
@@ -108,10 +141,13 @@ def classify(rows, sit, tr=None):
             # whether work was available on those turns.
             if tr is None:
                 cause = "ALL_WAIT_CAUSE_UNDETERMINED"
-            elif work_turns > 0:
-                # the world offered a resource action and the generator still produced
-                # nothing but WAIT
+            elif unit_work > 0:
+                # THIS unit could itself reach work, and was still handed only WAIT
                 cause = "GENERATOR_GAP"
+            elif work_turns > 0:
+                # the player had work but this unit could reach none of it: the unit is
+                # cut off, which is a reachability fact and not a generator defect
+                cause = "UNIT_CANNOT_REACH_WORK"
             else:
                 cause = "NO_WORK_ON_MAP"
         elif not rs:
@@ -124,6 +160,7 @@ def classify(rows, sit, tr=None):
             "turns_all_wait": len(allnone), "turns_committed": len(committed),
             "turns_committed_midgame": len(midgame_commit),
             "turns_world_offered_work": work_turns,
+            "turns_this_unit_could_reach_work": unit_work,
             "turns_in_window": total_turns,
             "branches": dict(collections.Counter(r["branch"] for r in rs)),
         })
@@ -172,12 +209,16 @@ def main():
               f"obs={r['turns_observed']:>3} empty={r['turns_empty_candidates']:>3} "
               f"allWAIT={r['turns_all_wait']:>3} commit(mid)={r['turns_committed_midgame']:>3} "
               f"worldWork={r['turns_world_offered_work']}/{r['turns_in_window']} "
+              f"unitWork={r['turns_this_unit_could_reach_work']} "
               f"{r['branches']}")
     print(f"\ntotals: {dict(counts)}")
     out = REPO / "claude_1/hstarve1/cause-table-2026-08-16.json"
     out.write_text(json.dumps({"table": table, "totals": dict(counts)}, indent=1,
                               sort_keys=True) + "\n")
     print(f"wrote {out.relative_to(REPO)}")
+    print("\nINCREMENT 3: GENERATOR_GAP now requires that THIS unit could itself reach work")
+    print("(BFS from its own cell). If the player had work but this unit could reach none,")
+    print("the label is UNIT_CANNOT_REACH_WORK - a reachability fact, not a generator defect.")
     print("\nINCREMENT 2: NO_WORK_ON_MAP vs GENERATOR_GAP is now decided by")
     print("fuzz_panel.work_remaining(tr,t) (:1756) - the referee WORLD state, not the")
     print("generator's output. GENERATOR_GAP = the world offered a resource action and the")
