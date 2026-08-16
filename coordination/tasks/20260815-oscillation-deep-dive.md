@@ -67,7 +67,11 @@ moves the trolls should conduct.
    analysis → step-6 rule candidates). Winning rules are the programme's OUTPUT,
    accumulated in `docs/RULES-LEDGER.md` (owner-approved entries only). The old draft
    survives as `local_claude_1/code-reference-appendix-2026-08-15.md`, step-5 use only.
-4. **D4 — Per-situation adjudication record.** For each of the 34 situations: the bot's
+4. **D4 — Per-situation adjudication record. AGENDA CHANGED BY OWNER RULING 2026-08-16:**
+   the sessions adjudicate **the parked troll** — "for every parked troll, say what it
+   should have been doing" — batched BY CAUSE from the H-starve-1 audit table
+   (`coordination/tasks/20260816-h-starve-1-standing-troll-audit.md`), a few rulings
+   instead of 25; plus the T-1 prediction misses and true residue. Original text: For each of the 34 situations: the bot's
    actual line (from D1), the proposed ideal line reasoned through the D3 template levels, and the owner's ruling from a joint session (D2 as the instrument). Easy
    cases batched; hard cases (est. 8–12) individually with the owner.
 5. **D5 — Outcome.** Either a verified fix (per-situation regression fixtures from the
