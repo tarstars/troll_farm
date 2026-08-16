@@ -11,7 +11,7 @@ cited as one.
 resident and the instrumented build on the same spec and requires byte-identical command streams.
 If they differ, the diagnostics describe a different bot and the table is void.
 """
-import json, re, subprocess, sys, tempfile, collections
+import json, re, subprocess, sys, tempfile, collections, threading
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent.parent
@@ -26,11 +26,25 @@ HS1 = re.compile(r"HS1 turn=(\d+) unit=(\d+) cell=(-?\d+),(-?\d+) branch=(\w+) "
 
 
 def run_capturing_stderr(binary, referee, turns):
-    """Mirror of regression_tests.run_binary_custom that also captures stderr."""
+    """Mirror of regression_tests.run_binary_custom that also captures stderr.
+
+    **stderr is drained on a THREAD, and that is not a detail.** The first version read
+    `proc.stderr` only after the turn loop finished. A diagnostic build emits far more than the
+    ~64 KB pipe buffer over 200 turns, so the child BLOCKED on its own stderr write partway
+    through the game and its command stream was silently truncated. The audit would then have
+    described a bot that stopped playing rather than one that was starved.
+
+    Found by strengthening non-interference to every situation instead of only the first: it
+    failed on OSC-002 immediately. The weaker check passed because OSC-001 happened to stay
+    under the buffer — a limit I had named and, until now, tolerated.
+    """
     header = referee.map_header()
     transcript_parts, command_lines = [header], []
     proc = subprocess.Popen([str(binary)], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE, text=True)
+    chunks = []
+    drain = threading.Thread(target=lambda: chunks.append(proc.stderr.read()), daemon=True)
+    drain.start()
     try:
         proc.stdin.write(header); proc.stdin.flush()
         for _ in range(turns):
@@ -45,9 +59,9 @@ def run_capturing_stderr(binary, referee, turns):
             referee.apply(line)
         proc.stdin.close()
     finally:
-        err = proc.stderr.read()
         proc.wait()
-    return "".join(transcript_parts), "\n".join(command_lines) + "\n", err
+        drain.join(timeout=30)
+    return "".join(transcript_parts), "\n".join(command_lines) + "\n", "".join(chunks)
 
 
 def check_noninterference(sit, cfg, plain_bin, instr_bin):
@@ -187,15 +201,18 @@ def main():
         di.mkdir(); dp.mkdir()
         instr = H.compile_candidate(INSTR, di)
         plain = H.compile_candidate(H.RESIDENT, dp)
-        first = True
+        # LIMIT CLOSED (was: first situation only). A build that diverged only on a later
+        # map would have passed the old check, and every row after it would have described a
+        # different bot than the one being audited.
+        ni_ok = 0
         for sit in sits:
-            if first:
-                ok = check_noninterference(sit, cfg, plain, instr)
-                print(f"non-interference on {sit['id']}: "
-                      f"{'IDENTICAL command stream' if ok else 'DIFFERS — TABLE IS VOID'}")
-                if not ok:
-                    return 1
-                first = False
+            if not check_noninterference(sit, cfg, plain, instr):
+                print(f"non-interference on {sit['id']}: DIFFERS - TABLE IS VOID")
+                return 1
+            ni_ok += 1
+        print(f"non-interference: IDENTICAL command stream on ALL {ni_ok} situations")
+
+        for sit in sits:
             spec = H.spec_for(sit, cfg)
             transcript, commands, err = run_capturing_stderr(
                 instr, fp.make_referee(spec), int(cfg["turns"]))
