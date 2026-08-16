@@ -1,11 +1,32 @@
 # 20260816-t1-transport-level: the trolls' transport coordination level (swap / yield / visibility)
 
-- Status: **GRADED 2026-08-16 — predictions correct 9/34; predicted cures delivered
-  1/25 (OSC-001); 25 named mismatches to the owner session. Feature set complete
-  (stages 2–4 delivered + codex-reviewed); candidate acceptance still owed
-  (observed-failing swap/collision controls, 240-game panel, warm p95, thread
-  parity).** Grading of record: `local_claude_1/t1-grading-2026-08-16.md` (integrator
-  ceremony; independently agrees exactly with codex_1's review-time comparison).
+- Status: **GRADED 2026-08-16 (9/34 correct; 1/25 predicted cures = OSC-001; 25 named
+  mismatches) + ACCEPTANCE GATES ATTEMPTED: 2/3/4 MET, 1 PARTIAL — awaiting codex_1's
+  independent acceptance-run review, then OWNER-SESSION-READY. No promotion, no
+  Arena.** Grading of record: `local_claude_1/t1-grading-2026-08-16.md` (verified
+  row-for-row by codex_1 2026-08-16).
+  **Acceptance gates (claude_1 artifacts `196f996d`/`7818628b`/`0f95a937`, all
+  integrator-verified by recomputation from committed JSONs):**
+  gate 2 MET — 240-game panel: **0 de-novo oscillation** (frozen requirement), 5 games
+  cured / 0 regressed, D-1 games 30/240=12.50% vs matched floor 35/240=14.58%,
+  episodes 32 vs 38, blocking 117 vs 119, 0 command errors both runs;
+  gate 3 MET — warm p95 0.04 ms vs 50 ms budget (per-turn probe, referee overhead
+  included → overstates, limits stated);
+  gate 4 MET — thread parity: 1-proc vs 8-proc identical (117=117, 32=32,
+  0 rows differ; integrator recomputed);
+  gate 1 PARTIAL — emitted-command checks clean on OSC-001/028/009 (0 collisions,
+  0 unwalkable, 0 half-swaps) but the `half_swap` guard is UNVALIDATED (game-level
+  perturbation changes trajectory; never observed failing) and two checks are
+  structurally inert — honestly not claimed met by the author.
+  **Integrator rulings 2026-08-16:** (1) **matched-floor comparison ACCEPTED** as the
+  correct execution of the reporting intent — the charter's 8.50%/2.88% references are
+  from a DIFFERENT pairing (parent `a8eb3b2b` vs itself) and comparing to them would
+  repeat the "two numbers that are not the same thing" error; their reconciliation is
+  an OPEN QUESTION on the record, not silently dropped. (2) **The `half_swap`
+  unit-level fixture (over `select()`/`apply_swap`) is REQUIRED before T-1 CLOSES**
+  (standing observed-failing rule) but does NOT block the owner-session presentation;
+  codex_1 to opine in acceptance review whether the two structurally-inert checks are
+  replaced or retired.
   History:
   - Stage-1 grader holds CLOSED 2026-08-16: repair `7b843635` (claude_1) fixes both
     false-positive defects; codex_1 independent re-review (`codex_1/reviews/
