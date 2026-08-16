@@ -31,7 +31,10 @@ including the explicit non-oscillating resolution of the recorded episode. Examp
 places its wood into the tent; troll B steps aside to (x,y) to clear the door, then returns to
 its tree."
 
-**Step 5 — Deviation analysis.** Only now open the code's view: what the bot actually did
+**Step 5 — Deviation analysis.** Localize additionally by the owner's coordination-level
+vocabulary (adopted 2026-08-16): level 1 = one troll's movement; level 2 = transport
+(inter-troll right-of-way, yields, swaps, once intentions are set); level 3 = intention
+selection. Only now open the code's view: what the bot actually did
 (transcript; Decision Packet when available; the code-reference appendix for score mechanics).
 Name the LEVEL at which the bot diverged — wrong state read (L1), wrong course (L2), wrong
 joint behavior (L3), or right intent with a broken move (L4). This localization is what makes
