@@ -194,9 +194,14 @@ def check_replay_fidelity(sit, d1_episodes):
     if sit["kind"] != "D1_EPISODE":
         return None
     w = sit["window"]
+    # finding 2 — ACCEPTED. This matched only unit + turn bounds and then called the
+    # episode "exact". Two different oscillations can share a unit and a window; the cells
+    # and k are what make it THIS episode.
     match = [e for e in d1_episodes
              if e["unit"] == w["unit"] and e["turn_start"] == w["turn_start"]
-             and e["turn_end"] == w["turn_end"]]
+             and e["turn_end"] == w["turn_end"]
+             and [list(c) for c in e["cells"]] == [list(c) for c in w["cells"]]
+             and e["k"] == w["k"]]
     if not match:
         near = [e for e in d1_episodes if e["unit"] == w["unit"]]
         raise HarnessError(
@@ -237,7 +242,16 @@ def grade(sit, tr, d1_episodes, p4_violations=()):
 
     progressed = had_progress(tr, uid, lo, hi)
     escaped = left_the_cycle(tr, uid, lo, hi, w["cells"])
-    restored = progressed or escaped
+    # `codex_1` blocker 2026-08-16, finding 1 — ACCEPTED. This was
+    #     restored = progressed or escaped
+    # which counted "visited any third cell" as restored progress. D-1 detects a TWO-cell
+    # A-B-A alternation, so a three-cell no-progress loop evades the detector clause AND
+    # satisfied the progress clause: a false FIXED with neither check objecting.
+    # The frozen rule is "reaches its target OR produces progress events". Target is NOT
+    # evaluable -- the library records no goals (its own README says so) -- so the only
+    # honest reading is progress events alone. `escaped` is retained as a REPORTED
+    # diagnostic and no longer participates in the verdict.
+    restored = progressed
 
     return {
         "id": sit["id"], "kind": sit["kind"], "unit": uid,
@@ -370,6 +384,44 @@ def _self_test():
                       f"P4 violations in window = {rs['p4_violations_in_window']}"))
         cases.append(("frozen stall still grades NOT FIXED on the resident",
                       rs["verdict"] == "NOT_FIXED", rs["why"]))
+        # finding 1 control: a detector-quiet THIRD-CELL loop with no progress must NOT pass
+        class _StubUnit:
+            def __init__(self, cell): self.cell, self.carry = cell, (0, 0, 0, 0, 0, 0)
+        class _StubState:
+            inventories = [(0, 0, 0, 0, 0, 0), (0, 0, 0, 0, 0, 0)]
+            def plant_at(self, cell): return None
+        class _FakeTr:
+            """A three-cell loop with NO progress of any kind: carry constant, inventories
+            constant, no plant appears or disappears, no DROP/PICK. Everything is stubbed so
+            nothing leaks in from the real trace -- the first draft of this control delegated
+            to the real one and reported progress=True, which measured nothing."""
+            T = 100
+            def pos(self, uid, t): return (t % 3, 0)
+            def unit(self, uid, t): return _StubUnit((t % 3, 0))
+            def cmd_of(self, uid, t): return None
+            def state(self, t): return _StubState()
+        fake = _FakeTr()
+        third = {**sit, "window": {**sit["window"], "turn_start": 1, "turn_end": 30}}
+        rf = grade(third, fake, [], [])
+        cases.append(("detector-quiet 3-cell loop with no progress is NOT FIXED",
+                      rf["verdict"] == "NOT_FIXED",
+                      f"left_cycle={rf['left_cycle']} progress={rf['progress_events']}"))
+
+        # finding 2 controls: cells-only and k-only mismatches must both abort
+        real_ep = [e for e in eps if e["unit"] == sit["window"]["unit"]][0]
+        bad_cells = {**sit, "window": {**sit["window"], "cells": [[9, 9], [8, 8]]}}
+        try:
+            check_replay_fidelity(bad_cells, eps)
+            cases.append(("fidelity aborts on a CELLS-only mismatch", False, "NO ERROR"))
+        except HarnessError:
+            cases.append(("fidelity aborts on a CELLS-only mismatch", True, "aborted"))
+        bad_k = {**sit, "window": {**sit["window"], "k": real_ep["k"] + 7}}
+        try:
+            check_replay_fidelity(bad_k, eps)
+            cases.append(("fidelity aborts on a K-only mismatch", False, "NO ERROR"))
+        except HarnessError:
+            cases.append(("fidelity aborts on a K-only mismatch", True, "aborted"))
+
         try:
             check_p4_fidelity({**stall, "window": {**stall["window"],
                                                    "turn_start": 1, "turn_end": 2}}, [])
