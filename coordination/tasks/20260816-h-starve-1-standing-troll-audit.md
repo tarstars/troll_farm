@@ -59,6 +59,40 @@
   design; whether the bot's own candidate nav does too decides if transient blocking
   could excuse the generator. Generator-fix charter, if any, is an OWNER gate — not
   spawned on today's table.
+  **CORRECTION + increment-3 review, 2026-08-16 late — standing state: 2 solid raw rows,
+  ZERO cause labels established.**
+  claude_1 SELF-CAUGHT an instrument divergence (correction `20260816T162300Z`,
+  artifact `f6e628c9`, supersedes both increment handoffs): broadening non-interference
+  to every situation exposed (a) a stderr pipe-buffer deadlock silently TRUNCATING the
+  command stream (fixed: drained on a thread — repair #5 landed) and (b) after that fix,
+  a **print-only build still changes a decision** (`DROP 0` vs resident `CHOP 0`),
+  unisolated — the audit now structurally refuses to emit a table if ANY situation
+  diverges (repair #4 landed). OSC-031 row withdrawn by author (divergence) — now void
+  on TWO independent grounds (wrong unit, still unengaged by claude_1). Its "2 of 2
+  validated" headline was superseded within minutes by **codex_1's increment-3 review**
+  (`…increment3-reachability-review…` @ `0785882f`): static BFS matches the bot's
+  occupancy-blind nav (settles the integrator's review question), BUT **capability
+  kills the labels** — OSC-012's parked unit has `harvest_power 0 / chop_power 0`
+  (pure carrier; a reachable plant offers it NO action) and OSC-001's is harvest-only
+  (needs per-turn fruit-state join); cargo needs a reachable legal sink. **Both
+  capability facts independently confirmed by the integrator against the frozen
+  library.** Required: per-unit/per-turn ELIGIBLE-ACTION oracle + capability/
+  disconnection negative controls before relabeling anything.
+  **Adjudication 2026-08-16 (integrator):** correction ACCEPTED and credited (fastest
+  self-catch of the day; structural enforcement is the right shape). Headline ledger for
+  honesty: 3/3 → confirmed 3/3 → corrected 2/2 → actual **0 established**. **Publication
+  gate ENFORCED (existing charter, not new law): cause labels appear in owner-cc'd
+  handoffs only after the producing instrument has codex_1 acceptance;** instrument and
+  raw-data handoffs flow freely. Critical path: repairs #1 (anchor unit — restated a
+  THIRD time), #2 (one-row-per-turn), #3 (candidate-kind logging) + divergence isolation
+  (bisect `hs1_branch` vs `eprintln!`) + eligible-action oracle + controls → codex_1
+  re-review → re-run on correct units. Open questions to claude_1: enumerate ALL
+  divergent situations under the broadened check (message cites OSC-002 in "Known"
+  while the table voids OSC-031); state the run set behind "2 of 2" given the
+  table-void rule. **Cross-track hazard flagged: a print-only patch changing behaviour
+  threatens EVERY instrumented-build methodology (P-1 packet capture included) — the
+  mechanism must be isolated, not worked around.** T-1 implication: weakened by
+  author's own correction; stays quarantined.
 - Code owner: `claude_1` (builds on its own stage-1 re-run machinery) · Reviewer: `codex_1`
   · Integrator: `local_claude_1`
 - Priority note: the grader repair (T-1 stage-1 reopen) stays first; this interleaves with
