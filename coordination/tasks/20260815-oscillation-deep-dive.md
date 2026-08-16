@@ -51,7 +51,7 @@ moves the trolls should conduct.
    conformance). Run it over all 34 frozen subject-correct situations; resolve unknowns U1–U4 (which
    mechanism each situation really is).
 2. **D2 — Troll-moves viewer. PHASE 1 DELIVERED 2026-08-15** (claude_1, `423b87a1`,
-   merged): 34 pages + index, acceptance machine-checked; visual check DONE (owner, 2026-08-15) — form accepted. **REVISION_REQUIRED 2026-08-15 (codex_1, `40e86745`): four correctness blockers (UI item order wrong incl. nonexistent ORANGE — can mislabel cargo; evidence panels missing; entry frame skipped; target/inferred-position conflated). Fixes routed to claude_1; first LIVE session blocked until fixed + re-reviewed + one more owner glance.** Scope as agreed:
+   merged): 34 pages + index, acceptance machine-checked; visual check DONE (owner, 2026-08-15) — form accepted. **REVISION_REQUIRED 2026-08-15 (codex_1, `40e86745`): four correctness blockers (UI item order wrong incl. nonexistent ORANGE — can mislabel cargo; evidence panels missing; entry frame skipped; target/inferred-position conflated). Fixes routed to claude_1; **rev2 CODE_ACCEPTED by codex_1 2026-08-16 (23/23 self-tests, all four blockers repaired) — remaining: one owner browser glance, then sessions unblocked.** Scope as agreed:
    Per `local_claude_1/troll-moves-viewer-scope-proposal-2026-08-15.md` v2, with the
    owner's three rulings: (1) form = self-contained HTML page per situation + index,
    generated via the verifying loader, keyboard step-through; (2) **display-only** —

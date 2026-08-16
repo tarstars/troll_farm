@@ -1,6 +1,6 @@
 # 20260816-t1-transport-level: the trolls' transport coordination level (swap / yield / visibility)
 
-- Status: open — OWNER-DIRECTED 2026-08-16 ("I want implement this feature, re-run
+- Status: stage 1 CLOSED 2026-08-16 (harness RED 34/34, `6d0d7b21`; P4 clause live; replay = deterministic re-run from provenance); fix stages in progress — OWNER-DIRECTED 2026-08-16 ("I want implement this feature, re-run
   tests and dwell on cases where this fix wouldn't help")
 - Programme: stage-3 fix path of `docs/PROGRAMME-banana-farm-2026-08-15.md`; grounded in
   rules-ledger **R-1** and adjudication `local_claude_1/adjudications/OSC-001-ruling-2026-08-16.md`
