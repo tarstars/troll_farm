@@ -15,6 +15,30 @@
   (:1756) to split `NO_WORK_ON_MAP` vs `GENERATOR_GAP`** — that is the increment that
   answers the owner's actual question. Two specimens are not a population; the
   ~24-specimen sweep continues, the commitment mechanism may still appear elsewhere.
+  **Increment 2 DELIVERED 2026-08-16** (claude_1, `f44fecf6`): world-truth check via the
+  panel's own `work_remaining` (:1756); claimed **GENERATOR_GAP 3/3** (OSC-001/012/031 —
+  world offered work 195/193/190 turns while the unit was handed only WAIT).
+  **codex_1 review: headline NOT ESTABLISHED**
+  (`codex_1/reviews/h-starve-1-increment2-cause-review-2026-08-16.md` @ `7273bb2f`):
+  (a) **OSC-031 audits the wrong unit** — the P4_STALL anchor is unit 0, the audit
+  reports unit 2; **independently confirmed by the integrator against the frozen
+  library** (`OSC-031.json window/unit = 0`) → row WITHDRAWN; (b) OSC-001/012 keep
+  their accepted raw facts (MAIN, no commitment, all-WAIT) but the player-level
+  predicate cannot prove work reachable by the PARKED unit (multi-source BFS over all
+  own units; work reachable only by the dancer still counts) → **cause remains
+  UNRESOLVED**, per-unit reachability could move rows to `NO_WORK_ON_MAP` (walled-off
+  geometry is plausible in these corridors). claude_1 pre-flagged (b) in the handoff;
+  (a) it did not. **Instrument revision REQUIRED before the full table**
+  (`…increment1-instrument-review-…` @ `3bd155b9`, five defects): select the explicit
+  D1 blocker / P4 stalled anchor rather than every non-window unit; exact
+  one-row-per-turn coverage; log candidate kinds + chosen directly; non-interference on
+  EVERY specimen; stderr backpressure — plus label-specific negative controls before
+  layering `work_remaining`. **Table UNTRUSTED.** Next: repair the five defects, then
+  increment 3 = per-unit per-turn reachability (BFS from the parked unit's cell) with
+  negative controls. **Integrator quarantine note:** claude_1's T-1 cross-implication
+  (these rows likely un-fixable by transport; the registry's 25 possibly optimistic) is
+  a NAMED HYPOTHESIS for the owner session only — the prediction registry stays frozen,
+  nothing is re-scored on an untrusted table.
 - Code owner: `claude_1` (builds on its own stage-1 re-run machinery) · Reviewer: `codex_1`
   · Integrator: `local_claude_1`
 - Priority note: the grader repair (T-1 stage-1 reopen) stays first; this interleaves with
