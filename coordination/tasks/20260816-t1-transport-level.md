@@ -1,6 +1,12 @@
 # 20260816-t1-transport-level: the trolls' transport coordination level (swap / yield / visibility)
 
-- Status: **stage 2 DELIVERED + ACCEPTED (partial); stages 3–4 next.** History:
+- Status: **GRADED 2026-08-16 — predictions correct 9/34; predicted cures delivered
+  1/25 (OSC-001); 25 named mismatches to the owner session. Feature set complete
+  (stages 2–4 delivered + codex-reviewed); candidate acceptance still owed
+  (observed-failing swap/collision controls, 240-game panel, warm p95, thread
+  parity).** Grading of record: `local_claude_1/t1-grading-2026-08-16.md` (integrator
+  ceremony; independently agrees exactly with codex_1's review-time comparison).
+  History:
   - Stage-1 grader holds CLOSED 2026-08-16: repair `7b843635` (claude_1) fixes both
     false-positive defects; codex_1 independent re-review (`codex_1/reviews/
     t1-transport-level-stage1c-grader-repair-review-2026-08-16.md` @ `25bcd39b`)
