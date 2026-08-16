@@ -35,18 +35,25 @@ From `local_claude_1/t1-prediction-registry-2026-08-16.md`:
 That second clause is the 08-09 20/20 lesson and it is the failure mode T-1 is most likely to
 produce, since yielding a square can convert an oscillation into a polite standstill.
 
-## KNOWN GAP — the P4 clause is not yet wired (stage 1b)
+## Stage 1b — the P4 clause, CLOSED
 
-The harness runs `trace_detectors.detect_d1` only. **P4 liveness is not evaluated here** — it
-lives in the panel (`fuzz_panel`), not in `trace_detectors`, and has no `detect_p4` entry point.
+Stage 1 shipped with this gap named rather than hidden: the harness ran `detect_d1` only, so for
+the four `P4_STALL` situations the "detector silent" clause was **vacuously True** and they were
+graded on the progress clause alone.
 
-Consequence, stated rather than buried: for the **4 `P4_STALL` situations (OSC-031..034) the
-"detector silent" clause is vacuously True.** They currently grade `NOT_FIXED` on the progress
-clause alone. That is the correct verdict today, but it is reached by one working check and one
-inert one, and an inert check is not a check. **A T-1 candidate could silence nothing and still
-be graded on those four by progress only.** Wiring P4 is stage 1b, before any T-1 fix is graded
-against the stalls. The 30 `D1_EPISODE` situations are fully covered: their detector clause fires
-and their frozen episode is required to reproduce.
+Now wired, using **the panel's own `fuzz_panel.eval_p4`** rather than a second definition of
+"stalled" written here — a second definition would let the word mean one thing to the gate and
+another to this harness. `tr_p` is accepted by that function for signature parity and never
+consulted (`fuzz_panel:1831-1838`), so passing the candidate trace twice is faithful.
+`post_ct_state(ref)` supplies the world after the final command set resolves, which the post-C_T
+rule needs to judge turn T at all.
+
+Which clause applies is decided by the situation's own `kind`: **D-1 for a `D1_EPISODE`, P4 for a
+`P4_STALL`.** `check_p4_fidelity()` requires every frozen stall to reproduce as a P4 violation
+overlapping its window — the control that stops the new clause from being wired and still inert,
+which is exactly how the D-1 clause shipped the first time.
+
+**All 34 situations now carry a live detector clause**, verified firing on the resident.
 
 Run:
     python3 claude_1/t1/fixture_harness.py --self-test
@@ -158,6 +165,25 @@ def left_the_cycle(tr, uid, lo, hi, cycle_cells):
     return False
 
 
+def check_p4_fidelity(sit, p4_violations):
+    """A frozen P4_STALL must reproduce as a P4 liveness violation overlapping its window.
+
+    Stage 1b's own control. Without it the P4 clause could be wired and still inert -- the
+    exact failure the D-1 clause already shipped with once in this file.
+    """
+    if sit["kind"] != "P4_STALL":
+        return None
+    w = sit["window"]
+    over = [v for v in p4_violations
+            if not (v["window_end"] < w["turn_start"] or v["window_start"] > w["turn_end"])]
+    if not over:
+        raise HarnessError(
+            f"{sit['id']}: the re-run does NOT reproduce a P4 liveness violation overlapping "
+            f"turns {w['turn_start']}-{w['turn_end']}. Found: {p4_violations}. The P4 clause "
+            f"would be inert and a FIXED verdict on a stall would be meaningless.")
+    return over[0]
+
+
 def check_replay_fidelity(sit, d1_episodes):
     """The re-run must REPRODUCE the frozen episode, or the replay is not of this situation.
 
@@ -166,7 +192,7 @@ def check_replay_fidelity(sit, d1_episodes):
     inert grader would otherwise report a clean sweep of FIXEDs.
     """
     if sit["kind"] != "D1_EPISODE":
-        return None  # P4_STALL: nothing to reproduce until the P4 clause is wired (stage 1b)
+        return None
     w = sit["window"]
     match = [e for e in d1_episodes
              if e["unit"] == w["unit"] and e["turn_start"] == w["turn_start"]
@@ -181,8 +207,13 @@ def check_replay_fidelity(sit, d1_episodes):
     return match[0]
 
 
-def grade(sit, tr, d1_episodes):
-    """FIXED = detector silent over the window AND progress restored. Never one alone."""
+def grade(sit, tr, d1_episodes, p4_violations=()):
+    """FIXED = detector silent over the window AND progress restored. Never one alone.
+
+    "Detector" means D-1 for a D1_EPISODE situation and P4 liveness for a P4_STALL. Before
+    stage 1b the P4 half did not exist, so the four stall situations were graded by the
+    progress clause alone with a vacuously-silent detector clause beside it.
+    """
     w = sit["window"]
     uid, lo, hi = w["unit"], w["turn_start"], w["turn_end"]
 
@@ -195,7 +226,14 @@ def grade(sit, tr, d1_episodes):
     overlapping = [e for e in d1_episodes
                    if e["unit"] == uid
                    and not (e["turn_end"] < lo or e["turn_start"] > hi)]
-    silent = not overlapping
+    p4_over = [v for v in p4_violations
+               if not (v["window_end"] < lo or v["window_start"] > hi)]
+
+    # The clause that applies is the one this situation was frozen under.
+    if sit["kind"] == "P4_STALL":
+        silent = not p4_over
+    else:
+        silent = not overlapping
 
     progressed = had_progress(tr, uid, lo, hi)
     escaped = left_the_cycle(tr, uid, lo, hi, w["cells"])
@@ -205,7 +243,9 @@ def grade(sit, tr, d1_episodes):
         "id": sit["id"], "kind": sit["kind"], "unit": uid,
         "window": [lo, hi], "cells": w["cells"],
         "detector_silent": silent,
+        "detector_clause": "P4" if sit["kind"] == "P4_STALL" else "D-1",
         "d1_episodes_in_window": len(overlapping),
+        "p4_violations_in_window": len(p4_over),
         "progress_events": progressed,
         "left_cycle": escaped,
         "progress_restored": restored,
@@ -226,7 +266,13 @@ def run_situation(sit, binary, cfg):
     transcript, commands = rt.run_binary_custom(Path(binary), ref, int(cfg["turns"]))
     tr = td.build_trace(transcript, commands)
     d1 = td.detect_d1(tr)
-    return tr, d1.get("episodes", []), spec
+    # STAGE 1b: P4 liveness, using the PANEL'S OWN eval_p4 rather than a second definition
+    # of "stalled" written here. `tr_p` is accepted for signature parity and never consulted
+    # (fuzz_panel:1831-1838), so passing the candidate trace twice is faithful, not a fudge.
+    # `post_ct_state(ref)` supplies the world AFTER the final command set resolves, which is
+    # what the post-C_T rule needs to judge turn T at all.
+    p4 = fp.eval_p4(tr, tr, int(cfg["liveness_window"]), fp.post_ct_state(ref))
+    return tr, d1.get("episodes", []), p4, spec
 
 
 def compile_candidate(src: Path, workdir: Path) -> Path:
@@ -243,18 +289,20 @@ def run_all(candidate: Path, only=None, verbose=True, baseline=False):
     with tempfile.TemporaryDirectory(prefix="t1-fixtures-") as wd:
         binary = compile_candidate(candidate, Path(wd))
         for sit in sits:
-            tr, eps, _ = run_situation(sit, binary, cfg)
+            tr, eps, p4, _ = run_situation(sit, binary, cfg)
             if baseline:
+                check_p4_fidelity(sit, p4)
                 # On the UNMODIFIED resident every D1 situation must reproduce. Under a
                 # candidate it must not be required -- curing the episode is the point.
                 check_replay_fidelity(sit, eps)
-            r = grade(sit, tr, eps)
+            r = grade(sit, tr, eps, p4)
             results.append(r)
             if verbose:
                 mark = "FIXED    " if r["verdict"] == "FIXED" else "NOT FIXED"
                 print(f"  {mark} {r['id']}  {r['kind']:<12} "
                       f"turns {r['window'][0]}-{r['window'][1]}  "
-                      f"silent={r['detector_silent']} progress={r['progress_restored']}")
+                      f"{r['detector_clause']:<4} silent={r['detector_silent']} "
+                      f"progress={r['progress_restored']}")
     return results
 
 
@@ -295,9 +343,9 @@ def _self_test():
 
     with tempfile.TemporaryDirectory(prefix="t1-selftest-") as wd:
         binary = compile_candidate(RESIDENT, Path(wd))
-        tr, eps, spec = run_situation(sit, binary, cfg)
+        tr, eps, p4, spec = run_situation(sit, binary, cfg)
 
-        r = grade(sit, tr, eps)
+        r = grade(sit, tr, eps, p4)
         cases.append(("resident is NOT FIXED on its own frozen window",
                       r["verdict"] == "NOT_FIXED", r["why"]))
 
@@ -312,6 +360,24 @@ def _self_test():
                       ep is not None and ep["cells"] == sit["window"]["cells"],
                       f"unit {ep['unit']} turns {ep['turn_start']}-{ep['turn_end']} "
                       f"k={ep['k']}" if ep else "no match"))
+
+        stall = load_situations(["OSC-033"])[0]
+        tr_s, eps_s, p4_s, _ = run_situation(stall, binary, cfg)
+        rs = grade(stall, tr_s, eps_s, p4_s)
+        cases.append(("P4 clause FIRES on a frozen stall (stage 1b, was inert)",
+                      rs["detector_clause"] == "P4" and rs["detector_silent"] is False
+                      and rs["p4_violations_in_window"] >= 1,
+                      f"P4 violations in window = {rs['p4_violations_in_window']}"))
+        cases.append(("frozen stall still grades NOT FIXED on the resident",
+                      rs["verdict"] == "NOT_FIXED", rs["why"]))
+        try:
+            check_p4_fidelity({**stall, "window": {**stall["window"],
+                                                   "turn_start": 1, "turn_end": 2}}, [])
+            cases.append(("P4 fidelity aborts when no stall reproduces", False,
+                          "NO ERROR RAISED"))
+        except HarnessError as e:
+            cases.append(("P4 fidelity aborts when no stall reproduces",
+                          "does NOT reproduce" in str(e), str(e)[:55]))
 
         try:
             check_replay_fidelity({**sit, "window": {**sit["window"], "turn_start": 999,
@@ -329,13 +395,13 @@ def _self_test():
         late["window"] = dict(w)
         late["window"]["turn_start"] = max(1, w["turn_end"] + 5)
         late["window"]["turn_end"] = min(tr.T, w["turn_end"] + 40)
-        r2 = grade(late, tr, eps)
+        r2 = grade(late, tr, eps, p4)
         cases.append(("grader CAN return FIXED on a non-stuck window of the same trace",
                       r2["verdict"] == "FIXED", r2["why"]))
 
         # a window the unit never leaves its cycle in, with the detector muted by hand,
         # must still be NOT FIXED -- the quiet-but-stalled clause
-        r3 = grade(sit, tr, [])
+        r3 = grade(sit, tr, [], p4)
         cases.append(("detector silenced by hand is still NOT FIXED without progress",
                       r3["verdict"] == "NOT_FIXED", r3["why"]))
 
