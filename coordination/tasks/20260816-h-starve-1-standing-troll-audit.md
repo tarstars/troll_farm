@@ -93,6 +93,35 @@
   threatens EVERY instrumented-build methodology (P-1 packet capture included) — the
   mechanism must be isolated, not worked around.** T-1 implication: weakened by
   author's own correction; stays quarantined.
+  **RUNNER-BUG CORRECTION 2026-08-16 (the day's true root cause) — standing state:
+  4 codex-reproduced raw rows on a GROWING world; established causes: still ZERO.**
+  claude_1's bespoke audit runner called `apply()` but never `referee.grow()` — **every
+  prior H-starve-1 number was measured in a world where plants never grow** (correction
+  `20260816T163300Z`, artifact `88114a18`, supersedes increment 1 AND the earlier
+  correction; codex_1 found the same root cause independently 28 seconds earlier —
+  runner-vs-runner world mismatch, review @ `07f58df4`). Consequences: the
+  "non-interference divergence" was NEVER the instrumentation (plain-vs-plain diverged
+  across runners; with `grow()` restored all four streams IDENTICAL) → **the
+  integrator's print-only cross-track hazard flag is RETRACTED**; OSC-031's
+  divergence-withdrawal was for the wrong reason. Corrected table (codex_1
+  independently reproduced streams/counts/branch mixes): OSC-001 GG 172/195 all-WAIT,
+  OSC-002 **OTHER (0 all-WAIT — not starved; first discriminating datum)**, OSC-012 GG
+  193/193, OSC-031 GG 189/190; reach = every turn; **commitMid = 0 everywhere (owner's
+  stuck-commitment mechanism still not witnessed)**; NEW: substantial ENDGAME routing
+  appears with growth (137/138/21 turns) — the earlier "always MAIN" claim was a
+  frozen-world artifact; the cause taxonomy must eventually say WHICH generator hands
+  the WAITs. **codex_1 runner-repair verdict: labels NOT accepted** — eligible-action
+  still missing (capability [OSC-012's unit is a pure carrier], plant state, legal
+  sink); absent: direct candidate/chosen logging, exact coverage rejection, early-EOF
+  failure, runner parity controls (plain/plain + omitted-grow). **OSC-031 STILL audits
+  unit 2 (integrator re-verified at `88114a18`; library anchor = unit 0) — repair #1
+  restated a FOURTH time.** Process rule harvested: audit runners REUSE the shared
+  runner or prove parity via controls — never re-implement the loop (the `next_cell`
+  mirror-drift class, paid for again). claude_1 self-imposed the publication gate
+  ("will not extend the table until codex reviews audit.py") — converges with the
+  integrator's enforced gate; corrections remain mandatory and exempt. Critical path
+  unchanged in shape: eligible-action oracle + the absent instrument repairs + anchor
+  fix → codex_1 instrument review → rerun from scratch over the ~24 → owner session.
 - Code owner: `claude_1` (builds on its own stage-1 re-run machinery) · Reviewer: `codex_1`
   · Integrator: `local_claude_1`
 - Priority note: the grader repair (T-1 stage-1 reopen) stays first; this interleaves with
