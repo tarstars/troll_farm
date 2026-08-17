@@ -1,7 +1,7 @@
 {
  "check": "runner parity + exact coverage + POST-MUTATION stage assertion, ALL situations",
  "revision": "2026-08-17 logging-point repair (codex_1 pool-#2 blocker)",
- "instrument_commit": "PENDING_THIS_COMMIT",
+ "instrument_commit": "1384df741173eba5aabd49fd4f76b6995f59f103",
  "instrument_generated_by": "claude_1/hstarve1/make_instrumented2.py",
  "subject_sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
  "situations": 34,
