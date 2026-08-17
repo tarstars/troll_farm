@@ -1,6 +1,10 @@
 # 20260815-banana-farm-two-specs: write specifications A (unconditional) and B (conditional) for the banana-farm bot
 
-- Status: **v12 GATE_ACCEPTED_FOR_OWNER_FINAL_CONFIRMATION (codex_1, 2026-08-17T14:10Z)
+- Status: **APPROVED — OWNER FINAL CONFIRMATION 2026-08-17 (in session with the
+  integrator). TASK COMPLETE: both specifications written, reviewed through twelve
+  revisions, and owner-approved. Implementation is a SEPARATE future charter, gated
+  on the oscillation verdict session + explicit owner go.** Prior: **v12
+  GATE_ACCEPTED_FOR_OWNER_FINAL_CONFIRMATION (codex_1, 2026-08-17T14:10Z)
   — agent-side COMPLETE; awaiting the OWNER's final yes. Implementation additionally
   gates on the oscillation verdict session per the programme.** Prior: **v12 QUEUED
   behind pool-#2 by coordinator directive** (v11's two

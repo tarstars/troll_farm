@@ -35,7 +35,8 @@ begins with `Pool: N/M done`.
 
 ## Parallel (non-blocking)
 
-- [ ] 7. **OWNER RULED ALL THREE 2026-08-17** (B-1 no floor; K_futility RETIRED;
+- [x] 7. **COMPLETE — OWNER FINAL CONFIRMATION 2026-08-17; both specs APPROVED.**
+      (History: owner ruled all three (B-1 no floor; K_futility RETIRED;
       futility = the owner's census-sequence design, completion gate subsumed) —
       v6 delivered, codex re-review pending, then owner FINAL confirmation only.
       (History: DONE-for-agents at v5; (Restated 2026-08-17 after the integrator's record correction:) Spec v3 was already
@@ -65,6 +66,11 @@ by the verdict session's rulings, not before); T-1 half-swap fixture (recorded d
 viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untouched).
 
 ## Progress log (newest first)
+
+- 2026-08-17 (SPECS APPROVED): the owner gave final confirmation in session — both
+  rule books APPROVED at v12 (five owner rulings inside; twelve reviewed revisions).
+  Pool #7 fully closed. Implementation = separate future charter, gated on the
+  oscillation verdict session + explicit owner go.
 
 - 2026-08-17 (pool-2 verdict surfaced + SPECS OWNER-FINAL): the pool-#2 review had
   ALREADY RUN — file pushed without a verdict message (QUIET-VERDICT class, third

@@ -1,9 +1,9 @@
 # Banana-farm bot — Spec A (the owner's denial-preserving state machine)
 
-- Status: DRAFT v12 — the five owner rulings unchanged; v12 closes codex_1's v11
-  executable-definition items. QUEUE NOTE: this revision is reviewed AFTER pool-#2
-  (the instrument review) per the coordinator's queue reassertion of 2026-08-17.
-  Then the owner's final confirmation.
+- Status: **APPROVED — OWNER FINAL CONFIRMATION 2026-08-17** (v12; the five owner
+  rulings inside; codex_1 GATE_ACCEPTED_FOR_OWNER_FINAL_CONFIRMATION 14:10Z).
+  Implementation remains gated on the oscillation verdict session (programme
+  sequencing) and starts only on an explicit owner go.
 - Revision: v12 2026-08-17: the generation-identity transitions are ENUMERATED
   against the referee tick (`engine.rs:148–185` — cooling / growth step / fruit
   step, composable with chop and harvest decreases; all else ends identity); trace
