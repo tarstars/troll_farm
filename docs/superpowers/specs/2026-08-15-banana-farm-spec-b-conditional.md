@@ -1,6 +1,13 @@
 # Banana-farm bot — Spec B (conditional entry: "if third troll")
 
-- Status: DRAFT v5 for codex_1 re-review (pool 7b), then owner approval
+- Status: DRAFT v6 — ALL THREE OWNER DECISIONS RULED 2026-08-17 (B-1 no floor;
+  `K_futility` retired; futility = the owner's census-sequence design). For codex_1
+  re-review of the v6 text, then the owner's final confirmation.
+- Revision: v6 2026-08-17: futility mechanism replaced by the OWNER'S SEQUENCE DESIGN
+  (census → chop that many → recount; stall or rise stops denial); `K_futility`
+  RETIRED; the v4–v5 completion gate SUBSUMED (its confirmation rule survives as the
+  round-progress element); own-plant census exclusion closes the conversion blip;
+  gates GE/GK re-bound.
 - Revision: v5 2026-08-17: per codex_1's v4 review — the completion gate gains its
   operational definition (confirmation rule, fail-closed ambiguity, fixed ordering
   against tracker reset; gate GK bound to it) and is entered in the OWNER-DECISION
@@ -66,9 +73,9 @@ use; the recurring ones are gathered here):
 - **Doorway** — a condition that ends denial and opens the way to farming. The owner's
   doorways are denial's STOP conditions: the enemy out-scales us, the job is done, or
   the work is futile.
-- **Futility tracker** — a simple per-turn count of the selected-species trees on the
-  board; if the count refuses to fall for `K_futility` consecutive turns while we deny,
-  denial is judged futile (section 4). Spec B computes it but does not consume it.
+- **Futility tracker** — the owner's census sequence (RULED 2026-08-17): count the
+  selected-species trees, chop that many down, recount; a recount that fails to fall
+  below the previous census judges denial futile (section 4). Spec B computes it but does not consume it.
 - **Banana farm** — planting banked bananas, harvesting them when ripe, and replanting
   each harvest, so bananas compound into score (each banked banana is one point:
   `score()` at lines 120–121 counts `inventory[3]`, and `BANANA` is item index 3,
@@ -136,7 +143,7 @@ FARM ──(score-delta abort trips; identical in both specs)──────�
     `view.units.iter().filter(|unit|unit.player==1).count()` (line 590).
 - **DENY** — still the resident's behaviour, unmodified except the denial-bonus re-gating
   of section 5. What is new is observation: the doorway signals of section 4 are
-  evaluated here every turn, and the futility counter advances only in this state.
+  evaluated here every turn, and the futility tracker runs only in this state.
 - **FARM** — denial has ended (the doorways are its stop conditions): the starter runs
   the grafted D89a farm task (section 6); the trained troll runs the resident
   wood/logistics behaviour with the denial bonus off. In the owner's framing, FARM
@@ -162,80 +169,54 @@ risk."
 | `second_troll_ready` | latch | our unit count reaches 2: `view.units.iter().filter(\|u\|u.player==0).count() >= 2` — same filter as line 401. Fires COLLECT → DENY. |
 | `enemy_third_troll` | latch | opponent unit count exceeds 2: `view.units.iter().filter(\|u\|u.player==1).count() > 2` — same expression as line 590. Doorway 1. |
 | `species_gone` | latch | the visible selected-species tree count (tracker below) is zero, observed while in DENY. Doorway 2 — the owner's "job done" stop: the species is eliminated from the board. |
-| `futility_reached` | latch | the futility counter (below) reaches `K_futility`. Doorway 3 — the owner's "futility" stop: the enemy sustains the species against our chopping. |
+| `futility_reached` | latch | a completed chopping round fails to lower the census (tracker below). Doorway 3 — the owner's "futility" stop: the enemy sustains the species against our chopping. |
 
 Once set, a latch never clears (a count dropping back does not revert it).
 
-**The futility tracker (the SIMPLE tracker of the 2026-08-15 ruling).** Each turn while
-the machine is in DENY, count the visible selected-species trees:
-`view.plants.iter().filter(|p| p.kind == focus).count()` with `focus = type_to_cut` (set
-once, lines 796–799). **No ownership inference anywhere** — the count is over every plant
-of the species on the board, whoever planted it. This is deliberate: the sensor asks "is
-the species dying?", not "whose trees are these?", and ownership inference is exactly the
-layer where Banana R2 rounds 1–6 failed. A per-turn counter starts at 0 on DENY entry,
-increments when the count is greater than or equal to the previous DENY turn's count
-(non-decreasing), and resets to 0 whenever the count decreases; comparisons begin on the
-second DENY turn. `futility_reached` sets when the counter reaches `K_futility`. A zero
-count sets `species_gone` instead (zero trees is job-done, not futility).
+**The futility tracker — THE OWNER'S SEQUENCE DESIGN (RULED 2026-08-17, superseding
+the 2026-08-15 turn-counter and the v4–v5 completion gate, which it absorbs).** The
+owner's statement of the rule: *"at select denial target we counted amount of trees
+to chop. We chopped them. Then we again measure amount of target trees. We chopped
+down this amount. We track this sequence of numbers. If it stalls (we have two equal
+numbers in this sequence) or rises at some point — we stop denial."*
 
-**`K_futility` = 10 turns — FROZEN, and a HEURISTIC** (proposed by the drafter under
-the no-tuning-dials rule; the owner confirms or resets it at spec approval, before
-implementation; it is never swept; it is distinct from the abort persistence `K` of
-section 7). What the value DOES bound: the selected species (lemon or plum) regrows on
-a base cooldown of 8 turns (line 85: `PlantKind::Plum=>8, PlantKind::Lemon=>8`; water
-can shorten it — `effective_cooldown`, lines 102–104), so ten consecutive
-non-decreasing turns span more than one full base growth cycle — the count's refusal
-to fall is not an artifact of watching inside a single static growth interval. What
-the value does NOT bound (v4 correction per codex_1's v3 review; the v3 claim that ten
-turns also span "more than one in-flight chop" is WITHDRAWN): a single legitimate
-denial chop's travel-plus-chop time (the `chop_turns` arithmetic inside
-`chop_candidates`) is unbounded by 10 — a distant focus tree can keep a troll in
-transit and mid-chop for more than ten turns with no completion, during which the
-count legitimately does not fall.
+Mechanism, in the bot's terms — no per-turn window and **no `K_futility` constant
+(retired by the same ruling; the clock is completed work, not turns)**:
 
-**The completion gate (v4).** To make that case structurally incapable of firing the
-doorway, `futility_reached` requires, in addition to the counter reaching
-`K_futility`, that **at least one focus-species chop of ours COMPLETED during the
-current non-decrease run** (one boolean, set on confirmed focus-chop completion,
-reset whenever the counter resets; no new constants, no ownership inference —
-completions are our own confirmed commands). Why this is exactly the owner's futility
-evidence: a completed chop removes a tree, so a non-decrease across a completion
-means the enemy REPLACED the species within the same window — "the enemy sustains the
-species against our chopping" made literal. A run containing no completion proves
-nothing about the enemy and can no longer latch the doorway, however long it grows.
-**Operational definition (v5, per codex_1's v4 review — gate GK uses exactly this):**
+- **Census.** On DENY entry take `C_0` = the count of visible selected-species trees,
+  EXCLUDING trees standing on cells our own confirmed `PLANT` created (section 7-style
+  reconciliation over OUR OWN commands only — no enemy-ownership inference anywhere).
+  The exclusion closes the endgame conversion blip: our own briefly-planted lemon or
+  plum can never inflate a census.
+- **Round.** A round completes when our cumulative CONFIRMED focus-chop completions
+  since the last census reach that census value. If the (exclusion-adjusted) live
+  count reaches 0 at any point, `species_gone` sets instead — zero trees is job-done,
+  not futility.
+- **Verdict.** At each round completion take the next census `C_{i+1}` and append it
+  to the sequence. **`futility_reached` sets iff `C_{i+1} >= C_i`** — the owner's
+  stall ("two equal numbers") or rise: we removed a full census of trees and the
+  species stands as tall as before, so the enemy is sustaining it against our
+  chopping, proven by a completed generation of work.
+- **No completed round — no verdict.** A round that cannot complete (unreachable
+  trees, trolls needed elsewhere) never fires futility, however many turns pass:
+  erring toward CONTINUING denial, the conservative side (denial is suspected
+  load-bearing, N6), with the other doorways still providing exits.
 
-- **Completion confirmation.** Evaluated by the same reconciliation pass as section 7,
-  on (previous turn's `GameState`, the commands we emitted, this turn's `GameState`):
-  a focus-chop completion is confirmed iff our unit emitted `CHOP` at cell C, the
-  plant at C in the PREVIOUS state was focus-species with `health <=` that unit's
-  `chop_power` (removal guaranteed by our own hit, referee-deterministic), and no
-  live focus plant of that generation stands at C in THIS state.
-- **Ambiguity fails closed to NO EVENT.** If the previous health exceeded our
-  `chop_power` and the plant nonetheless vanished, the removal is NOT attributed to
-  us: no completion. The bias direction is deliberate — futility becomes harder to
-  reach, we keep denying longer, the conservative side given denial is suspected
-  load-bearing (N6).
-- **Ordering against the tracker, fixed per turn:** (1) compute this turn's species
-  count; (2) compare with the previous DENY turn — on a DECREASE, reset the counter
-  AND the completion boolean (a completion that produced the decrease belongs to the
-  run it ended and never seeds the next); on a NON-decrease, increment the counter;
-  (3) only then evaluate this turn's completion confirmation and, on a non-decrease
-  turn, set the boolean. The boolean also clears on DENY entry.
-  `futility_reached` = counter `>= K_futility` AND boolean set.
+**Completion confirmation (unchanged from v5 — now the round-progress element):**
+evaluated by the same reconciliation pass as section 7, on (previous turn's
+`GameState`, the commands we emitted, this turn's `GameState`): a focus-chop
+completion is confirmed iff our unit emitted `CHOP` at cell C, the plant at C in the
+PREVIOUS state was focus-species with `health <=` that unit's `chop_power` (removal
+guaranteed by our own hit, referee-deterministic), and no live focus plant of that
+generation stands at C in THIS state. **Ambiguity fails closed to NO EVENT** (health
+above our power and the plant vanished anyway → not attributed to us; the round does
+not advance) — futility stays harder to reach, the same conservative direction.
 
-(This gate is the minimal mechanism satisfying the review's constructed case;
-codex_1's v4 review confirms it is in scope AND rules it a NEW OWNER DECISION — it is
-entered in the section 14 register, decided at spec approval alongside the K_futility
-freeze.)
-
-**The endgame-conversion blip.** The bot's sole PLANT site is line 1256 (inside the
-endgame fruit-conversion branch; at-target score 9 000 at line 1262): a carried lemon or
-plum is briefly planted next to our shack and then chopped for wood points. If the
-carried fruit is the selected species, this adds one visible tree for a few turns. The
-K-persistence absorbs the blip: the conversion chop removes the tree, the count
-decreases, and the futility counter resets — a 10-turn non-decrease cannot be produced by
-a plant-then-chop excursion lasting a few turns.
+Properties inherited and improved from the retired designs: the "troll still
+walking" misfire is impossible BY CONSTRUCTION (no completed round → no census → no
+comparison); the evidence per verdict is a full completed generation of chopping,
+strictly stronger than the v4–v5 single-completion gate; and the tuning constant is
+gone.
 
 Because `second_troll_ready` is the only edge out of COLLECT and every doorway sits at
 the far side of DENY, the standing owner rule — **no banana action before our second
@@ -534,13 +515,13 @@ broken build) before its pass is credited; all of them precede any value panel.
 |---|---|---|
 | GT — train | A second troll is trained | `TRAIN` issued (lines 1387–1389) and own unit count reaches 2. Resident already does this: a do-not-break gate. |
 | GD — deny | One of lemon/plum is selected, frozen, and denied | `type_to_cut` set once (lines 796–799); focus-species chops occur while `denial_enabled`, preferentially near the enemy shack (bonus at line 622). Do-not-break. |
-| GE — doorway fidelity | The third-troll doorway fires in games where the enemy fields a third troll (and our second exists), and does NOT fire where the enemy never does; the unconsumed signals (`species_gone`, `futility_reached`) provably never cause a transition | Constructed/replayed games; doorway and futility-tracker telemetry logged every DENY turn. |
-| GK — futility completion-gate twins (v4) | Though unconsumed in Spec B, the shared tracker's latch must behave identically to Spec A for A-vs-B comparability: the in-flight case CANNOT set `futility_reached` (one legitimate focus chop, travel+chop > `K_futility`, no enemy planting); the positive twin (completed chop, same-turn enemy replacement, count non-decreasing through `K_futility`) sets it — and still causes no transition | Constructed games per the section 4 completion gate and its v5 confirmation rule (positive twin: removal with `health <= chop_power`, same-turn enemy replacement); both arms observed, fail-first per the standing rule. |
+| GE — doorway fidelity | The third-troll doorway fires in games where the enemy fields a third troll (and our second exists), and does NOT fire where the enemy never does; the unconsumed signals (`species_gone`, `futility_reached`) provably never cause a transition | Constructed/replayed games; doorway and futility-tracker telemetry (census sequence, round progress, own-plant exclusions) logged every DENY turn. |
+| GK — futility sequence twins (v6) | Though unconsumed in Spec B, the shared tracker's latch must behave identically to Spec A for A-vs-B comparability: the unfinishable-round case CANNOT set `futility_reached` (round incomplete, no enemy planting); the positive twin (a completed round with enemy replanting keeping the recount ≥ the previous census) sets it — and still causes no transition | Constructed games per the section 4 sequence tracker and its confirmation rule; both arms observed, fail-first per the standing rule. |
 | GF — sustained farm cycle | FARM entered per this spec's predicate (and NOT entered when the enemy never fields a third troll); bootstrap plants ≥ 1 banked banana; at least one full harvest → replant cycle completes; the loop repeats while conditions hold | Telemetry per the D89a blueprint: every activation, bootstrap attempt/success, reserve promotion/loss, own-crop harvest, renewable replant, trained-role rewrite logged. Entry needs both arms too: games where it fires and games where it correctly does not. |
 | GA+ — abort fires | In games where the score-delta abort condition persists ≥ K turns after warm-up, WOOD is entered | Constructed/replayed games on the development panel; sealed ranges stay closed. |
 | GA− — abort does not misfire | In games where the condition never persists, WOOD is never entered | Both arms are mandatory: a rule that always fires is not conditional, and a rule that never fires is not a rule (the project's trigger-fidelity check). |
 | GB — byte-identity before first transition | Emitted command lines are byte-identical to the resident for **entire games** in which the enemy never fields a third troll, and on every turn before the first transition out of DENY fires otherwise (the sole permitted pre-doorway divergence is the COLLECT-phase no-re-enable caveat of section 5(a)) | Diff of full command transcripts. |
-| GM — monotonicity | Over the whole test panel: no state transition ever reverses, `denial_enabled` never returns to true after latching off, and no doorway latch ever clears (the futility *counter* may reset; the `futility_reached` latch may not) | Assertions in the bot plus transcript audit. |
+| GM — monotonicity | Over the whole test panel: no state transition ever reverses, `denial_enabled` never returns to true after latching off, and no doorway latch ever clears (census rounds restart freely; the `futility_reached` latch may not clear) | Assertions in the bot plus transcript audit. |
 
 Boundary (unchanged from the CBF spec): behavioural gates deliver a *correctly built*
 bot, never a *good* one. Passing GT–GM authorizes no Arena action; value comes only from
@@ -624,8 +605,8 @@ Risks, carried over from CBF §9 and re-checked against the readable base:
 
 | Id | Question | Status |
 |---|---|---|
-| B-1 | Whether entry should carry a minimum-turns-remaining floor | OPEN (section 9); drafter recommends no floor: it would add a tuning dial, and a non-establishing farm self-aborts under the score-delta sensor |
+| B-1 | Whether entry should carry a minimum-turns-remaining floor | RULED 2026-08-17: NO FLOOR (owner) — no new tuning dial; a late, non-establishing farm is bounded by the abort sensor and game end |
 | B-2 | First measurement night's pairing | RULED 2026-08-15: Spec A vs current resident; Spec B runs only if A earns the A-vs-B comparison (section 12) |
 | S-1 (shared with Spec A) | Abort sensor | RULED 2026-08-15: score-delta built; provenance fully specified as the named future variant (section 7) |
 | M-1 (shared with Spec A) | Measurement decision rule | RULED 2026-08-15: paired-CI protocol of section 12 |
-| — (shared with Spec A) | The completion gate on `futility_reached` (section 4, v4–v5): a NEW mechanism, in scope per codex_1's v4 review but a new owner decision | OPEN: the owner ADOPTS or STRIKES it at spec approval, alongside the K_futility freeze (B carries the shared tracker; the latch stays unconsumed in B either way) |
+| — (shared with Spec A) | The v4–v5 completion gate | RULED 2026-08-17: SUBSUMED by the owner's census-sequence design; its confirmation rule survives as the round-progress element (section 4). B carries the shared tracker; the latch stays unconsumed in B either way |
