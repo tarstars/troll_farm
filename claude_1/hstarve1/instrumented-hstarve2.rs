@@ -1392,6 +1392,7 @@ mod bot{
                 let early=!self.opening_abandoned&&my_units.len()<2&&!train_now;
                 let endgame=Self::endgame(view);
                 let mut by_id=BTreeMap::new();
+                let mut hs2_ctx:BTreeMap<i32,(Cell,String,bool,bool)> =BTreeMap::new();
                 for unit in my_units{
                     let committed_regeneration=self.regeneration_commitments.contains_key(&unit.id);
                     let hs2_branch=if committed_regeneration{"COMMITTED_REGEN"}
@@ -1434,18 +1435,31 @@ mod bot{
                             let verb=candidate.command.split_whitespace().next().unwrap_or("?");
                             kinds.push(verb.to_string());
                             }
-                        eprintln!("HS2 turn={} unit={} cell={},{} branch={} endgame={} committed={} ncand={} kinds={}",
+                        eprintln!("HS2PRE turn={} unit={} cell={},{} branch={} endgame={} committed={} ncand={} kinds={}",
                             view.turn,unit.id,unit.cell.0,unit.cell.1,hs2_branch,endgame,committed_regeneration,
                             candidates.len(),kinds.join("|"));
+                        hs2_ctx.insert(unit.id,(unit.cell,hs2_branch.to_string(),endgame,committed_regeneration));
                         }
                     by_id.insert(unit.id,candidates);
                     }
                 if self.door_unblocking{
                     self.force_unique_door_clear(view,&mut by_id);
                     }
+                for(id,candidates)in by_id.iter(){
+                    let mut kinds:Vec<String> =Vec::new();
+                    for candidate in candidates.iter(){
+                        let verb=candidate.command.split_whitespace().next().unwrap_or("?");
+                        kinds.push(verb.to_string());
+                        }
+                    let(cell,branch,endgame_flag,committed_flag)=hs2_ctx.get(id).cloned().unwrap_or(((-1,-1),"NO_CONTEXT".to_string(),false,false));
+                    eprintln!("HS2 turn={} unit={} cell={},{} branch={} endgame={} committed={} ncand={} kinds={}",
+                        view.turn,id,cell.0,cell.1,branch,endgame_flag,committed_flag,
+                        candidates.len(),kinds.join("|"));
+                    }
                 let mut selected=MoisanBot::select(by_id,&view.inventories[0]);
-                eprintln!("HS2CHOSEN turn={} line={}",view.turn,selected.join(";"));
+                eprintln!("HS2CHOSENPRE turn={} line={}",view.turn,selected.join(";"));
                 MoisanBot::resolve_move_conflicts(view,&mut selected);
+                eprintln!("HS2CHOSEN turn={} line={}",view.turn,selected.join(";"));
                 self.remember_selected_regeneration(&selected);
                 out.extend(selected);
                 if out.is_empty(){
