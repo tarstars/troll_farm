@@ -1,6 +1,11 @@
 # Banana-farm bot — Spec B (conditional entry: "if third troll")
 
-- Status: DRAFT v3 for codex_1 re-review, then owner approval
+- Status: DRAFT v4 for codex_1 re-review (pool 7b), then owner approval
+- Revision: v4 2026-08-17: abort-sensor characterization corrected to BOTH failure
+  directions (wood masking via `WOOD_POINTS = 4`, line 82) with per-event score
+  decomposition reporting; `K_futility` relabelled a heuristic, its in-flight span
+  claim withdrawn, the completion gate added, and gate GK introduced — per
+  `codex_1/reviews/banana-farm-two-specs-v3-review-2026-08-16.md`.
 - Revision: v3 2026-08-15: rewritten to the owner five-decision rulings (session record:
   `coordination/tasks/20260815-banana-farm-two-specs.md`); v2 abort/entry superseded.
   Containment property preserved by ruling: Spec B = Spec A with only the third-troll
@@ -169,18 +174,34 @@ increments when the count is greater than or equal to the previous DENY turn's c
 second DENY turn. `futility_reached` sets when the counter reaches `K_futility`. A zero
 count sets `species_gone` instead (zero trees is job-done, not futility).
 
-**`K_futility` = 10 turns — FROZEN** (proposed by the drafter under the no-tuning-dials
-rule; the owner confirms or resets it at spec approval, before implementation; it is
-never swept; it is distinct from the abort persistence `K` of section 7). Growth-cycle
-justification: the selected species (lemon or plum) regrows on a base cooldown of 8 turns
-(line 85: `PlantKind::Plum=>8, PlantKind::Lemon=>8`; water can shorten it —
-`effective_cooldown`, lines 102–104), and our own chops take multiple turns to complete
-(the `chop_turns` travel-and-chop arithmetic inside `chop_candidates`). Ten consecutive
-non-decreasing turns therefore spans more than one full base growth cycle of the species
-AND more than one in-flight chop, so it cannot be an artifact of watching inside a single
-static growth interval, nor of one chop's latency: over at least one full cycle in which
-we actively denied, the count still did not fall — the enemy is sustaining the species at
-or above our chopping rate.
+**`K_futility` = 10 turns — FROZEN, and a HEURISTIC** (proposed by the drafter under
+the no-tuning-dials rule; the owner confirms or resets it at spec approval, before
+implementation; it is never swept; it is distinct from the abort persistence `K` of
+section 7). What the value DOES bound: the selected species (lemon or plum) regrows on
+a base cooldown of 8 turns (line 85: `PlantKind::Plum=>8, PlantKind::Lemon=>8`; water
+can shorten it — `effective_cooldown`, lines 102–104), so ten consecutive
+non-decreasing turns span more than one full base growth cycle — the count's refusal
+to fall is not an artifact of watching inside a single static growth interval. What
+the value does NOT bound (v4 correction per codex_1's v3 review; the v3 claim that ten
+turns also span "more than one in-flight chop" is WITHDRAWN): a single legitimate
+denial chop's travel-plus-chop time (the `chop_turns` arithmetic inside
+`chop_candidates`) is unbounded by 10 — a distant focus tree can keep a troll in
+transit and mid-chop for more than ten turns with no completion, during which the
+count legitimately does not fall.
+
+**The completion gate (v4).** To make that case structurally incapable of firing the
+doorway, `futility_reached` requires, in addition to the counter reaching
+`K_futility`, that **at least one focus-species chop of ours COMPLETED during the
+current non-decrease run** (one boolean, set on confirmed focus-chop completion,
+reset whenever the counter resets; no new constants, no ownership inference —
+completions are our own confirmed commands). Why this is exactly the owner's futility
+evidence: a completed chop removes a tree, so a non-decrease across a completion
+means the enemy REPLACED the species within the same window — "the enemy sustains the
+species against our chopping" made literal. A run containing no completion proves
+nothing about the enemy and can no longer latch the doorway, however long it grows.
+(This gate is the minimal mechanism satisfying the review's constructed case; flagged
+for codex_1 to confirm it stays within the review's textual/test-gate scope, and for
+the owner alongside the K_futility freeze at approval.)
 
 **The endgame-conversion blip.** The bot's sole PLANT site is line 1256 (inside the
 endgame fruit-conversion branch; at-target score 9 000 at line 1262): a carried lemon or
@@ -299,8 +320,9 @@ sensor).
 
 **S-1 RULED 2026-08-15: both-in-collection.** The score-delta sensor is **THE built
 abort of both specs**. The provenance sensor stays **fully specified as the named future
-variant** — faithful to the literal per-farm rule, adopted only if measurement shows the
-score-delta abort fires too often; it is not built now. The owner's supporting reading:
+variant** — faithful to the literal per-farm rule, adopted only if measurement shows
+either of its failure modes material (v4: false aborts OR wood-masked robbery); it is
+not built now. The owner's supporting reading:
 the abort phrase "more profitable for the enemy than for us" is an overall-profit
 statement, so a total-outcome sensor implements the rule as the owner means it.
 
@@ -313,19 +335,37 @@ On entering FARM, snapshot `view.scores` — the `scores: [i32; 2]` field of `Ga
 since the snapshot. **Abort (FARM → WOOD) when `s_them > s_us` (strict inequality,
 T = 0) has held for K = 5 consecutive turns, and only after W = 30 turns in FARM.**
 
-Honest characterization (unchanged from v2): provenance-free and a few lines of code,
-but it watches the **total outcome**, not the farm — it aborts whenever we are being
-outscored while farming, whether or not the opponent takes a single crop of ours. A
-replanted harvest scores nothing until banked, so a working farm registers on `s_us`
-only through the banked surplus of the section 6 cargo rule and the rest of the bot's
-banking. Both distortions push the same way: toward aborting **too often**, the safe
-direction for a one-way switch. The 2026-08-15 ruling accepts this substitution
-explicitly; the adoption condition on the variant below is the counterweight.
+Honest characterization — REVISED v4 per codex_1's v3 review (the v2/v3 claim that
+"both distortions push the same way: toward aborting too often, the safe direction"
+was FALSE and is withdrawn): the sensor watches the **total outcome**, not the farm,
+and it fails in BOTH directions.
+
+- **Fires too often (false abort):** it aborts whenever we are being outscored while
+  farming, whether or not the opponent takes a single crop of ours; and a replanted
+  harvest scores nothing until banked, so a working farm registers on `s_us` only
+  through the banked surplus of the section 6 cargo rule and the rest of the bot's
+  banking.
+- **Fires too late or never (masked robbery):** `score()` (lines 120–121) sums ALL
+  banked stock, and wood banks at `WOOD_POINTS = 4` per unit (line 82) against 1 per
+  banana. Our trained troll's wood production therefore feeds `s_us` at four points a
+  bank and can mask the opponent's banana gain — including gain taken from our own
+  farm — keeping `s_us >= s_them` while the farm is being robbed. The abort then
+  fires late or never.
+
+Neither direction is "safe"; the sensor is a frozen heuristic with both failure modes
+accepted for now by the S-1 ruling. **Measurement must report both** (M-1 nights and
+the development panel alike): every abort event is logged with the decomposition of
+each side's score growth since FARM entry into wood and non-wood components, and
+every FARM phase that ends without an abort logs the same decomposition at exit — so
+false-abort candidates and masked-robbery candidates are both inspectable per game.
+The 2026-08-15 ruling's substitution stands; the adoption condition on the variant
+below is the counterweight.
 
 ### Named future variant — the provenance sensor (fully specified, NOT built now)
 
-If measurement shows the score-delta abort fires too often (farms stopped that were not
-actually being robbed), the replacement is this sensor, faithful to the owner's literal
+If measurement shows either failure mode material — false aborts (farms stopped that
+were not being robbed) or masked robbery (wood-fed score keeping the abort silent while
+the farm is drained) — the replacement is this sensor, faithful to the owner's literal
 per-farm rule. Two cumulative counters, both 0 at FARM entry. `farm_us` counts confirmed
 harvest events **by us** from tracked-ours crops; `farm_them` counts inferred
 enemy-collection events from tracked-ours crops (both per event, not per banana, so the
@@ -469,6 +509,7 @@ broken build) before its pass is credited; all of them precede any value panel.
 | GT — train | A second troll is trained | `TRAIN` issued (lines 1387–1389) and own unit count reaches 2. Resident already does this: a do-not-break gate. |
 | GD — deny | One of lemon/plum is selected, frozen, and denied | `type_to_cut` set once (lines 796–799); focus-species chops occur while `denial_enabled`, preferentially near the enemy shack (bonus at line 622). Do-not-break. |
 | GE — doorway fidelity | The third-troll doorway fires in games where the enemy fields a third troll (and our second exists), and does NOT fire where the enemy never does; the unconsumed signals (`species_gone`, `futility_reached`) provably never cause a transition | Constructed/replayed games; doorway and futility-tracker telemetry logged every DENY turn. |
+| GK — futility completion-gate twins (v4) | Though unconsumed in Spec B, the shared tracker's latch must behave identically to Spec A for A-vs-B comparability: the in-flight case CANNOT set `futility_reached` (one legitimate focus chop, travel+chop > `K_futility`, no enemy planting); the positive twin (completed chop, same-turn enemy replacement, count non-decreasing through `K_futility`) sets it — and still causes no transition | Constructed games per the section 4 completion gate; both arms observed, fail-first per the standing rule. |
 | GF — sustained farm cycle | FARM entered per this spec's predicate (and NOT entered when the enemy never fields a third troll); bootstrap plants ≥ 1 banked banana; at least one full harvest → replant cycle completes; the loop repeats while conditions hold | Telemetry per the D89a blueprint: every activation, bootstrap attempt/success, reserve promotion/loss, own-crop harvest, renewable replant, trained-role rewrite logged. Entry needs both arms too: games where it fires and games where it correctly does not. |
 | GA+ — abort fires | In games where the score-delta abort condition persists ≥ K turns after warm-up, WOOD is entered | Constructed/replayed games on the development panel; sealed ranges stay closed. |
 | GA− — abort does not misfire | In games where the condition never persists, WOOD is never entered | Both arms are mandatory: a rule that always fires is not conditional, and a rule that never fires is not a rule (the project's trigger-fidelity check). |
