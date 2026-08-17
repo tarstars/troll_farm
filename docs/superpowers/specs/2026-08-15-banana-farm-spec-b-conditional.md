@@ -1,8 +1,13 @@
 # Banana-farm bot — Spec B (conditional entry: "if third troll")
 
-- Status: DRAFT v8 — FOUR owner rulings now carried (B-1 no floor; `K_futility`
-  retired; futility = the owner's census-sequence design; NO PLANTING DURING DENY).
-  For codex_1 re-review, then the owner's final confirmation.
+- Status: DRAFT v9 — FIVE owner rulings carried (B-1 no floor; `K_futility` retired;
+  futility = the owner's census-sequence design; NO PLANTING DURING DENY; and
+  LOG-AND-DEFER on the suppression corners — no prevention machinery until logs show
+  real occurrences). For codex_1 re-review, then the owner's final confirmation.
+- Revision: v9 2026-08-17: the C1/C2/C3 corner analysis written in (two PICK sites,
+  scores, routing); owner rules corners rare — suppression events logged with context,
+  the 240-game panel's zero-de-novo-oscillation gate is the backstop, prevention
+  machinery deferred to an owner decision IF logs show occurrences.
 - Revision: v8 2026-08-17: owner ruling — PLANT suppressed while the machine is in
   DENY (sole site :1256; code-verified reachable only in a bare-board/late corner);
   the v6–v7 census-exclusion machinery (exclusion tracker, census-eligibility) is
@@ -217,12 +222,28 @@ Mechanism, in the bot's terms — no per-turn window and **no `K_futility` const
 **No planting during DENY — OWNER RULING 2026-08-17 (v8).** While the machine is in
 DENY, the endgame planner's sole `PLANT` candidate (readable resident :1256, the only
 planting site in the bot) is SUPPRESSED. Code-verified basis: that site is reachable
-during DENY only in a narrow corner — board ≤ 4 plants while losing, or turn > 250,
-or the ≤2-plant banked-fruit PICK pipeline (:1177). The ruling turns "the bot cannot
-plant during denial" from a circumstance into an enforced invariant and DELETES the
-v6–v7 census-exclusion machinery whole. Cost, accepted by the owner: the endgame
-conversion trick is delayed until a doorway fires, in states where denial is ending
-anyway. This is the SECOND named exception to gate GB (byte-identity during DENY).
+during DENY only through the conversion pipeline, whose entry points are the two PICK
+sites (main planner :1177, score 7500, needs turn ≥ 100 AND board ≤ 2 plants while
+winning; endgame planner :1287, score 7000 after turn 250 / ~83 before, reachable
+when losing on a ≤ 4-plant board or any time after turn 250) — the three corners
+C1/C2/C3 of the 2026-08-17 session analysis. The ruling turns "the bot cannot plant
+during denial" from a circumstance into an enforced invariant and DELETES the v6–v7
+census-exclusion machinery whole. This is the SECOND named exception to gate GB
+(byte-identity during DENY).
+
+**Log-and-defer — OWNER RULING 2026-08-17 (v9, same session).** The suppressed
+pipeline can strand a committed troll (walk-to-plant with the plant refused → a
+manufactured dance between adjacent cells at scores 8000−distance, or all-WAIT at 0 —
+the very pathologies of the standing-troll track). The owner judges the C1/C2/C3
+corners RARE and rules: **no prevention machinery is built now** (no PICK
+suppression, no commitment clearing). Instead: (a) every suppression event is LOGGED
+with its full context — turn, board plant count, score sign, banked fruits, the
+suppressed command, the unit's next 5 emitted commands; (b) the implementation's
+mandatory 240-game acceptance panel is the empirical backstop — a manufactured dance
+surfaces there as de-novo D-1 and fails the panel's zero-de-novo requirement; (c) the
+interaction RETURNS TO THE OWNER if the logs show real occurrences. The integrator's
+"C3 is common" claim is recorded as a mechanism argument to be tested by exactly this
+log, not assumed.
 
 **Completion confirmation (unchanged from v5 — now the round-progress element):**
 evaluated by the same reconciliation pass as section 7, on (previous turn's
@@ -633,3 +654,4 @@ Risks, carried over from CBF §9 and re-checked against the readable base:
 | M-1 (shared with Spec A) | Measurement decision rule | RULED 2026-08-15: paired-CI protocol of section 12 |
 | — (shared with Spec A) | The v4–v5 completion gate | RULED 2026-08-17: SUBSUMED by the owner's census-sequence design; its confirmation rule survives as the round-progress element (section 4). B carries the shared tracker; the latch stays unconsumed in B either way |
 | — (shared with Spec A) | May the bot plant during DENY? | RULED 2026-08-17: FORBIDDEN — the sole PLANT site is suppressed while the machine is in DENY; the census-exclusion machinery is deleted as unnecessary (section 4) |
+| — (shared with Spec A) | Prevention machinery for the suppression corners (C1/C2/C3)? | RULED 2026-08-17: NOT BUILT — corners judged rare; suppression events logged with context; the acceptance panel's de-novo-oscillation gate is the backstop; returns to the owner if logs show occurrences (section 4, v9) |
