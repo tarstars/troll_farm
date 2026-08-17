@@ -66,11 +66,27 @@ def eligible_actions(tr, uid, t):
         acts.add("CHOP")
 
     if sum(u.carry) > 0:
-        doors = [c for c in td.orth_neighbors(tr.smap.shacks[0])
-                 if c in tr.smap.walkable] if hasattr(td, "orth_neighbors") else []
-        if any(c in reach for c in doors) or tr.smap.shacks[0] in reach:
+        # BANK: a reachable shack door, or the shack cell itself.
+        # The first version wrote `td.orth_neighbors(...) if hasattr(td, "orth_neighbors")`.
+        # That helper DOES NOT EXIST in trace_detectors, so `doors` was silently always []
+        # and BANK collapsed to "is the shack cell itself reachable". A hasattr fallback that
+        # changes a predicate's meaning without saying so is the same disease as an inert
+        # check: it cannot fail, it just quietly means something else.
+        shack = tr.smap.shacks[0]
+        doors = [(shack[0] + dx, shack[1] + dy) for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))]
+        doors = [c for c in doors if c in tr.smap.walkable]
+        if shack in reach or any(c in reach for c in doors):
             acts.add("BANK")
-        if any(c in reach for c in tr.smap.walkable):
+        # PLANT: needs a carried FRUIT (wood and iron cannot be planted) and a reachable cell
+        # with no plant already on it.
+        # The first version was `any(c in reach for c in tr.smap.walkable)` — but `reach` is a
+        # BFS *over* walkable from this unit's own cell, so the unit's own cell is always in
+        # both and the clause was ALWAYS TRUE whenever the unit carried anything. It reduced
+        # "can plant" to "is carrying". A walled-in carrying unit therefore reported work, which
+        # defeats the walled-in arm I called the strongest control I had.
+        fruit_slots = (0, 1, 2, 3)          # PLUM, LEMON, APPLE, BANANA — not IRON(4)/WOOD(5)
+        occupied = {p.cell for p in st.plants}
+        if any(u.carry[i] > 0 for i in fruit_slots) and any(c not in occupied for c in reach):
             acts.add("PLANT")
     return acts
 
@@ -170,6 +186,30 @@ def _self_test():
     tr = _StubTrace(open_row, [], _StubUnit((2, 0), 0, 0, carry=1))
     cases.append(("carrying unit with reachable board -> sink action eligible",
                   bool(eligible_actions(tr, 7, 1)), sorted(eligible_actions(tr, 7, 1))))
+
+    # WALLED-IN *CARRYING* ARM. I first wrote this expecting NO eligible action and it failed —
+    # and the code was right, my expectation was wrong. A unit carrying a FRUIT, standing on a
+    # cell with no plant, can PLANT it where it stands; being walled in does not prevent that.
+    # So PLANT really is almost always available to a fruit carrier, and that is a fact about
+    # the game rather than an inert clause. What WAS inert is the version I replaced, which
+    # granted PLANT for wood and iron too and ignored whether a plant already occupied the cell.
+    # The arm therefore holds on the WOOD-only carrier below, not on a fruit carrier.
+    tr = _StubTrace({(0, 0)}, [], _StubUnit((0, 0), 0, 0, carry=1), shack=(9, 9))
+    a = eligible_actions(tr, 7, 1)
+    cases.append(("walled-in FRUIT carrier can still PLANT in place (true, not a bug)",
+                  a == {"PLANT"}, sorted(a)))
+
+    # ...and the twin: same carrying unit with the shack adjacent -> BANK returns
+    tr = _StubTrace({(0, 0), (1, 0)}, [], _StubUnit((0, 0), 0, 0, carry=1), shack=(1, 0))
+    cases.append(("...same carrying unit with the shack adjacent -> BANK returns",
+                  "BANK" in eligible_actions(tr, 7, 1), ""))
+
+    # wood-only carrier cannot PLANT (fruit slots only)
+    wood = _StubUnit((2, 0), 0, 0)
+    wood.carry = [0, 0, 0, 0, 0, 3]
+    tr = _StubTrace(open_row, [], wood, shack=(9, 9))
+    cases.append(("wood-only carrier, shack unreachable -> no PLANT, no eligible action",
+                  not eligible_actions(tr, 7, 1), sorted(eligible_actions(tr, 7, 1))))
 
     ok = True
     for label, passed, detail in cases:

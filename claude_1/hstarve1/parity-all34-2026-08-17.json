@@ -1,0 +1,13 @@
+{
+ "check": "runner parity + exact coverage, ALL situations",
+ "instrument_commit": "0a95de5bd13796342f91864afe008f97ce39fc3c",
+ "subject_sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+ "situations": 34,
+ "parity_pass": 34,
+ "parity_fail": 0,
+ "coverage_pass": 34,
+ "total_unit_turn_rows": 12981,
+ "total_chosen_rows": 6800,
+ "parity_definition": "diagnostic runner command stream byte-identical to regression_tests.run_binary_custom",
+ "note": "Closes the limit handed over in 20260817T111300Z, which had verified 3 of 34. Same shape as the 'non-interference checked on the first situation only' limit that produced a void OSC-031 row on 2026-08-16."
+}

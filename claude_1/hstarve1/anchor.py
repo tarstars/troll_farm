@@ -68,14 +68,65 @@ def validate_anchor(sit):
     return True
 
 
+UNRULED = "UNRULED_SHAPE"   # coverage state; fails CLOSED, never a cause label
+
+
 def anchors(sit):
-    """The anchor set, or the explicit NO_ANCHOR coverage state — never a silent empty."""
+    """PER-KIND anchor, ruled by `local_claude_1` 20260817T081749Z / 090423Z.
+
+    My delivered rule was "every own unit that is not the dancer", uniformly. That is WRONG for
+    `P4_STALL`: a stall means the named unit is itself the one standing still, so excluding it
+    excluded the subject in all four stall cases — the instrument watched the wrong troll exactly
+    where the owner's question lives.
+
+    The ruled mapping:
+
+    - `D1_EPISODE` **with** `classification.blocker` -> the BLOCKER unit;
+    - `D1_EPISODE` **without** a blocker (blocker-less pair) -> the unique NON-DANCER;
+    - `D1_EPISODE`, single own unit -> the one honest no-anchor state;
+    - `P4_STALL` -> **`window.unit` ITSELF**.
+
+    Anything not matching a ruled shape returns `UNRULED_SHAPE` and is FAIL-CLOSED per codex_1 —
+    it is never quietly folded into the nearest case.
+    """
     validate_anchor(sit)
     d = dancer_id(sit)
-    a = sorted(u[0] for u in own_units(sit) if u[0] != d)
-    return {"situation": sit["id"], "dancer": d, "anchors": a,
-            "coverage": NO_ANCHOR if not a else "ANCHORED",
-            "own_unit_count": len(own_units(sit))}
+    own = own_units(sit)
+    ids = [u[0] for u in own]
+    kind = sit["kind"]
+
+    if kind == "P4_STALL":
+        return {"situation": sit["id"], "dancer": d, "anchors": [d],
+                "rule": "P4_STALL -> window.unit itself",
+                "coverage": "ANCHORED", "own_unit_count": len(own)}
+
+    if kind == "D1_EPISODE":
+        blk = (sit["classification"].get("blocker") or {}).get("cell_at_entry")
+        if blk is not None:
+            hit = [u[0] for u in own if list(u[2:4]) == list(blk)]
+            if len(hit) == 1:
+                return {"situation": sit["id"], "dancer": d, "anchors": hit,
+                        "rule": "D1 with blocker -> the blocker unit",
+                        "coverage": "ANCHORED", "own_unit_count": len(own)}
+            return {"situation": sit["id"], "dancer": d, "anchors": [],
+                    "rule": f"D1 blocker cell {blk} matches {len(hit)} own units",
+                    "coverage": UNRULED, "own_unit_count": len(own)}
+        others = sorted(i for i in ids if i != d)
+        if len(others) == 1:
+            return {"situation": sit["id"], "dancer": d, "anchors": others,
+                    "rule": "D1 blocker-less pair -> the unique non-dancer",
+                    "coverage": "ANCHORED", "own_unit_count": len(own)}
+        if not others:
+            return {"situation": sit["id"], "dancer": d, "anchors": [],
+                    "rule": "D1 single own unit -> honest no-anchor",
+                    "coverage": NO_ANCHOR, "own_unit_count": len(own)}
+        return {"situation": sit["id"], "dancer": d, "anchors": [],
+                "rule": f"D1 blocker-less with {len(others)} non-dancers, not a pair",
+                "coverage": UNRULED, "own_unit_count": len(own)}
+
+    return {"situation": sit["id"], "dancer": d, "anchors": [],
+            "rule": f"kind {kind!r} has no ruled anchor",
+            "coverage": UNRULED, "own_unit_count": len(own)}
 
 
 def _self_test():
@@ -86,12 +137,22 @@ def _self_test():
     rows = [anchors(s) for s in sits]
     anchored = [r for r in rows if r["coverage"] == "ANCHORED"]
     none = [r for r in rows if r["coverage"] == NO_ANCHOR]
+    unruled = [r for r in rows if r["coverage"] == UNRULED]
     cases.append((f"every one of {len(sits)} situations yields a coverage state",
-                  len(rows) == len(sits), f"{len(anchored)} anchored, {len(none)} single-unit"))
+                  len(rows) == len(sits),
+                  f"{len(anchored)} anchored, {len(none)} no-anchor, {len(unruled)} unruled"))
+    cases.append(("P4_STALL anchors on window.unit ITSELF (the ruled fix)",
+                  all(r["anchors"] == [r["dancer"]] for r in rows
+                      if next(s for s in sits if s["id"] == r["situation"])["kind"] == "P4_STALL"),
+                  "all four stalls"))
+    cases.append(("no situation falls through to UNRULED", not unruled,
+                  [r["situation"] for r in unruled][:4]))
     cases.append(("no situation is silently skipped",
                   all(r["coverage"] in ("ANCHORED", NO_ANCHOR) for r in rows), ""))
-    cases.append(("the dancer is never in its own anchor set",
-                  all(r["dancer"] not in r["anchors"] for r in rows), ""))
+    d1 = [r for r in rows
+          if next(s for s in sits if s["id"] == r["situation"])["kind"] == "D1_EPISODE"]
+    cases.append(("for D1 the dancer is never its own anchor",
+                  all(r["dancer"] not in r["anchors"] for r in d1), ""))
 
     def rejects(label, sit, fragment):
         try:
@@ -112,6 +173,19 @@ def _self_test():
     if opp:
         bad2["window"]["unit"] = opp[0][0]
         rejects("dancer that is an OPPONENT unit", bad2, "NOT one of our units")
+
+    # UNRULED_SHAPE never executes on the real 34 (0 fall-throughs), so without these it is a
+    # branch that has never run — the inert-check pattern. Both observed.
+    unk = json.loads(json.dumps(base)); unk["kind"] = "SOMETHING_NEW"
+    r_unk = anchors(unk)
+    cases.append(("unknown situation kind -> UNRULED_SHAPE (fail-closed)",
+                  r_unk["coverage"] == UNRULED, r_unk["rule"]))
+
+    ghost = json.loads(json.dumps(base))
+    ghost["classification"]["blocker"] = {"cell_at_entry": [99, 99]}
+    r_ghost = anchors(ghost)
+    cases.append(("blocker cell matching no own unit -> UNRULED_SHAPE",
+                  r_ghost["coverage"] == UNRULED, r_ghost["rule"]))
 
     bad3 = json.loads(json.dumps(base))
     bad3["world_state_at_entry"]["units"] = [u for u in bad3["world_state_at_entry"]["units"]

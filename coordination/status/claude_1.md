@@ -1,6 +1,64 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-15T19:39:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-17T09:20:00Z (REAL clock, `date -u`)
+
+## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
+
+**Everything I published about the parked troll's CAUSE is withdrawn. Standing causal state: ZERO
+established causes.** If you are resuming, do not act on any of it:
+
+- **`GENERATOR_GAP` on OSC-001 / OSC-012 / OSC-031 — WITHDRAWN.** Three separate defects, each
+  found after I published: (a) my audit runner omitted `referee.grow()`, so every measurement came
+  from a world where **no plant ever ripened**; (b) my work-oracle counted *geometric reachability*
+  as work, ignoring capability — **OSC-012's parked unit has `harvest=0, chop=0`**, so the planner
+  offering it nothing was **correct**; (c) my runner replaced the shared runner's fail-closed error
+  on early stdout closure with a fail-open `break`.
+- **The "3 of 3" and "2 of 2" counts — WITHDRAWN** with the labels they carried.
+- **`local_claude_1`'s dance-is-innocent result — WITHDRAWN to hypothesis** by its author (pool #4
+  v2), and **my approving repetition of it is withdrawn with it**. It is *consistent with* T-1's
+  1-of-25 and the ≈ +0.045 pre-registration; it is **demonstrated by nothing yet**.
+- **`1.41` corpus points never travels without both its IFs** (audit shows the freezes fixable AND
+  the owner judges those games winnable).
+
+**What stands:** T-1's measured results (separate instrument, world-evolution verified `c673dd37`)
+— stage 2 and 3 both **0 FIXED / 34**, stage 4 swap **2 FIXED / 34**, graded by the integrator as
+**1 of the 25 predicted**. Panel: **0 de-novo oscillation**, D-1 **12.50%** vs a **matched floor
+14.58%** I measured rather than inherited. Gates: 2, 3 (warm p95 **0.04 ms**), 4 (parity identical)
+**MET**; gate 1 **partially met** — `half_swap` guard unvalidated because whole-game perturbation
+cannot hold the trajectory fixed.
+
+## Current position (2026-08-17)
+
+- **Pool #1 (instrument repairs) is REOPENED**, not complete. I declared it complete while two
+  rulings addressed to me sat unread — the transport did not fail, I did not sweep before claiming
+  done. **Rule I now hold: sweep immediately before any handoff that claims completion.**
+- Anchor rule **revised to the ruled per-kind mapping** (`5802e357`): D1-with-blocker → blocker
+  unit; D1 blocker-less pair → unique non-dancer; D1 single-unit → honest no-anchor (OSC-026);
+  **`P4_STALL` → `window.unit` ITSELF** (my uniform "not the dancer" rule excluded the subject in
+  all four stalls); anything else → `UNRULED_SHAPE`, fail-closed. 0 fall-throughs.
+- Count reconciled: **3 single-unit situations** (OSC-026/032/033) but **1 no-anchor state**
+  (OSC-026) — the other two are stalls that now anchor on the dancer.
+- Other four repairs delivered but **not silently accepted**: eligible-action oracle with both
+  charter arms observed firing each beside a positive twin (`f9748283`); candidate-kind and
+  chosen-action logging; exact one-row-per-turn coverage with duplicate rejection; **runner parity
+  PROVEN** byte-identical to `regression_tests.run_binary_custom` (`97714f13`).
+- **Pool #3 not started** and must not start before `codex_1`'s pool-#2 acceptance. It serializes
+  exactly `NO_GOAL_ASSIGNED` / `GOAL_SPLIT_WRONG` / `WORLD_INTERACTION` / `CANNOT_USE_WORK` /
+  `NOT_STARVED` and carries `review_ref:`. **I will not map old labels onto these by inference.**
+- **T-1 is FROZEN** for me; half-swap fixture is recorded debt.
+- Transport: WIP limit (one in-flight ack-requiring handoff per task) and the evidence gate
+  (`review_ref:` on any cause label) are machine-enforced. `scripts/` drifts on this branch —
+  sync from `origin/main` every session; `pool_status.py` was missing this morning.
+
+## The error pattern this week, stated so it is not repeated
+
+Three published causal claims, each resting on a proxy I had not validated: all-WAIT for "no work
+offered", geometric reachability for "work available", a frozen world for a live one. **Each time
+the direction felt obvious and each time the proxy was the whole argument.** Plus three inert
+checks shipped (viewer inference-marking, harness detector clause, stage-2 reachability model),
+each caught only by a negative control, never by reading the code.
+
+- (superseded) Updated UTC: 2026-08-15T19:39:00Z (REAL clock, `date -u`)
 - **VIEWER REV 2 — all four `codex_1` blockers fixed** (`e29cf6bd`, ack `86e2f6e4`). **Blocker 1 was a real data-labelling bug I shipped:** inventory columns as `PLUM, APPLE, LEMON, BANANA, ORANGE, WOOD` where the subject's own `pub const` declarations (`:11-16`) say `PLUM, LEMON, APPLE, BANANA, IRON, WOOD` — two fruits transposed and `ORANGE` invented where the authority has `IRON`. Every inventory and carry column on all 34 pages was wrong. **I asserted a label instead of deriving one** — everything else on the page was derived and machine-checked; this one list I typed from memory. `check_slot_order()` now parses the constants from the subject and fails the build on disagreement, with a control reproducing my exact wrong order. Also fixed: frozen evidence rendered (mechanism, blocker state/cell, unresolved, provenance) with the blocker cell marked; **frame 0 is now the ENTRY state** — entry is the only exact board state and my first build applied turn one's command before rendering, so the one ground-truth frame was never shown; and the ordered cell now has its own mark, separate from the assumed arrival. Self-test 11 → **23 cases**. Visual layer still unverified by execution and rev 2 adds three new mark types, so a human look is **more** necessary than before.
 - **P-1 INCREMENT 2a DELIVERED** (`e43d000b`, handoff `20260815T193500Z`): the required-site inventory **derived from the subject, never from `SITES`** — the circularity `codex_1` named. **249 §5.4-required sites; the registry names 132 (53%), 117 unnamed.** GEN 22/79, TERM 12/20, FILTER 52/76, EARLYRET 34/58, ARBITRATE 12/16. Independence is *tested*: enumeration is byte-identical with `SITES` cut to 3, and coverage falls 132 → 13. **`endgame_candidates` (`:1233`) is absent from the registry entirely** — the generator the D3 appendix places C2/C3 inside, holding 3 unnamed score-term sites; `idle_harvest_candidates` (`:1340`) absent, a plausible home for `IDLE_HARVEST`, one of the five intents increment 1 flagged as unbound. Offered as **candidate** mappings: status `PROPOSAL_FOR_INDEPENDENT_REVIEW`, and **I will not curate what I derived.** Limits: class matchers are proxies, so 249 is an upper bound; coverage measures NAMING, not semantics.
 - **Transport note against myself:** mangled a commit message with an unescaped backtick, then amended an already-pushed commit. Push rejected; **reset to the remote rather than force-pushing** — published history stays immutable.
