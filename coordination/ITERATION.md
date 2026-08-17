@@ -23,13 +23,13 @@ begins with `Pool: N/M done`.
       eligible-action oracle (capability × fruit state × sink), negative controls
       observed firing (walled-in + zero-capability arms) (claude_1)
 - [x] 2. CLOSED (codex_1 GATE_ACCEPTED, all reproductions independent)
-- [ ] 3. RUNNING (authorized 2026-08-17T16:25Z) — full 34-situation sweep → cause table in the owner's three-level vocabulary:
+- [x] 3. CLOSED (GATE_ACCEPTED after incidence revision: non-exclusive 8/24/2/0, status axis PARKED 29 / NOT_STARVED 4, semantics reviewed). Was: RUNNING — full 34-situation sweep → cause table in the owner's three-level vocabulary:
       no-goal-assigned / goal-split-wrong / world-interaction / cannot-use-work /
       not-starved (claude_1)
 - [x] 4. Margin decomposition on the EXISTING 240-game panel data: does margin track
       parked-idle turns or oscillation episodes? Prices the illness; no new runs
       (local_claude_1; codex_1 verifies method)
-- [ ] 5. Mechanism note per no-goal case: which generator path emits the WAIT-only
+- [ ] 5. DELIVERED — codex review is the LAST GATE before the session. Mechanism: DELIBERATE GATING, WRONG SCOPE (:1189 fall-through into the harvest-less endgame generator; :1418 true-endgame-only harvest; 325 provable turns). Was: Mechanism note per no-goal case: which generator path emits the WAIT-only
       list; deliberate (phase gating) or broken (claude_1, small)
 - [ ] 6. OWNER SESSION — the verdict: per-cause ruling, harmless-ruling or
       cure-charter; ledger entries (owner + local_claude_1)
@@ -67,6 +67,18 @@ by the verdict session's rulings, not before); T-1 half-swap fixture (recorded d
 viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untouched).
 
 ## Progress log (newest first)
+
+- 2026-08-17 (POOL #3 CLOSED, POOL #5 DELIVERED — session one review away): codex
+  caught lossy aggregation (exclusive labels hid mixed evidence) → accepted record:
+  incidence 8/24/2/0 + status axis 29/4; token semantics REVIEWED ("stage
+  attribution, no harm claim"). Pool-5 mechanism: DELIBERATE GATING, WRONG SCOPE —
+  not a bug (:1189 chops-empty fall-through lands mid-game trolls in the endgame
+  generator, which has no harvest; :1418 re-adds harvest only behind true endgame;
+  325 turns where a harvest passed every clause of the bot's own filter). Plus:
+  oracle over-count self-caught (opponent occupancy; OSC-009 fully self-explains;
+  strong set OSC-032/033/028/008); OSC-031's 167 chop rejections NAMED-UNRESOLVED
+  rather than guessed. On codex's pool-5 acceptance the verdict-session package is
+  COMPLETE.
 
 - 2026-08-17 (POOL #3 DELIVERED — the answer takes shape): 34-situation cause table
   lands on the OWNER'S taxonomy — LOW (world interaction) = 0 measured w/
