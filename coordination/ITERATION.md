@@ -63,7 +63,14 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
-- 2026-08-17 (pool #4 DELIVERED, pending codex method check): margin decomposition
+- 2026-08-17 (pool #4 v2 after REVISION_REQUIRED): codex's method review caught
+  v1's unblocked permutation (240 games are 120 matched map pairs). Blocked exact
+  sign-flip, integrator-reproduced digit-for-digit: STALL association SURVIVES
+  strengthened (n=17 pairs, −24.29, p=1.5e-5); dance-only NOT established (n=14,
+  −7.07, p=0.134) — "marker" claim WITHDRAWN to hypothesis. 1.41 relabelled
+  bring-to-par SCENARIO with two IFs (causality; fixability — discharged at session
+  L1 per claude_1's dependency flag, no new instrument). v2 handoff supersedes v1.
+- 2026-08-17 (pool #4 v1 DELIVERED, superseded above): margin decomposition
   on the 240-game floor (`local_claude_1/pool4/`, artifact `561a5353`): the
   whole-bot no-progress STALL is the billable event (stall games −12.5 vs par,
   p≈1e-4; ceiling ≈1.4 corpus points if cured); the DANCE is mostly a MARKER
