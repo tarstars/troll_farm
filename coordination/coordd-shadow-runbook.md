@@ -3,6 +3,14 @@
 While in shadow: **git is authoritative; coordd is being compared against it.**
 Nothing about the existing protocol changes yet.
 
+**DECISION DATE (owner decision 2026-08-17): promote-or-park by 2026-08-31, or at the
+close of the current iteration pool if that comes later.** At that point coordd is either
+proposed for P2 (exit criteria below met, owner go-ahead) or PARKED: shadow duties
+(mirroring, weekly comparison) stop, the deployment is torn down, and this runbook is
+annotated PARKED with the reason. A standing dual coordination plane past the decision
+date is prohibited — running two sources of coordination truth indefinitely is a known
+split-brain hazard, and "shadow forever" is the failure mode this date exists to prevent.
+
 1. Deploy per `deploy/README.md`; verify `/health` from both machines.
 2. Register the roster (from any machine):
    `coordctl register --agent local_claude_1 --role coordinator`

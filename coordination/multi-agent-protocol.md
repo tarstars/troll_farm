@@ -484,6 +484,24 @@ ref, because the pinned paths span every agent branch.
 message outside the baseline linted clean and was rejected permanently by the receiver — the
 safety net failing in the one direction that costs a quarantine.
 
+**WIP limit (owner decision 2026-08-17).** One in-flight ack-requiring handoff per agent
+per task: do not publish handoff N+1 for a task while your handoff N still awaits
+acknowledgement. The canonical retirement is the integrator's ack; a correction naming the
+pending handoff in `supersedes` is always allowed (corrections are mandatory and exempt).
+Enforced sender-side by `scripts/lint_outbox.py` on NEW handoffs only — published messages
+are immutable and are never flagged retroactively. Rationale: crossings-in-flight were the
+largest measured coordination cost of 2026-08-16 (three handoffs crossed rulings, each
+crossing spawning a correction round).
+
+**Evidence gate (owner decision 2026-08-17).** A handoff whose body asserts a chartered
+cause label (the audit vocabulary, e.g. `GENERATOR_GAP` — the registered set lives in
+`CAUSE_LABEL_TOKENS` in `scripts/lint_outbox.py`) must carry a `review_ref:` front-matter
+field naming the review file that ACCEPTED the producing instrument, resolvable on an
+authoritative remote ref. Causal claims travel only with their instrument's acceptance;
+raw-data and instrument handoffs need nothing. This mechanizes the standing publication
+gate that was enforced only socially on 2026-08-16 (three headlines published ahead of
+review, all later withdrawn).
+
 **Migration to v2 (one-time, per agent).** Run from your own worktree, substituting your
 agent id — shown here for `claude_1`, `local_codex_1`, and `chatgpt_1`:
 

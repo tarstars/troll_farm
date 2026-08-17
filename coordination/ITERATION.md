@@ -38,6 +38,15 @@ begins with `Pool: N/M done`.
 - [ ] 7. Spec v3 review (codex_1, in queue gaps — 30+ h waiting; owner approval is
       the next milestone on the score path)
 - [ ] 8. Methods ledger consolidation `docs/METHODS-LEDGER.md` (local_claude_1, ~1 h)
+- [x] 9. OWNER-ADDED 2026-08-17: WIP limit — one in-flight ack-requiring handoff per
+      agent per task; protocol §10 rule + sender-side lint check, tests observed
+      firing (local_claude_1)
+- [x] 10. OWNER-ADDED 2026-08-17: evidence gate — cause-label handoffs require
+      `review_ref:` resolvable on an authoritative ref; lint check + tests; plus
+      `scripts/pool_status.py` (pool state computed, not maintained) (local_claude_1)
+- [x] 11. OWNER-ADDED 2026-08-17: coordd promote-or-park DECISION DATE set:
+      2026-08-31 or pool close, whichever later; no standing dual plane
+      (runbook amended) (local_claude_1)
 
 ## Parked — explicitly OUT of this iteration
 
@@ -47,5 +56,9 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-17: owner added items 9–11 (best-practice fixes); all three DONE same
+  session — lint gates live (31/31 transport tests green, both gates observed
+  firing), `pool_status.py` live, coordd decision date set. Check progress any
+  time: `python3 scripts/pool_status.py`.
 - 2026-08-17: pool opened; item 0 done (charter message
   `coordination/messages/local_claude_1/20260817T072116Z-20260817-iteration-pool-and-queue-order.md`).

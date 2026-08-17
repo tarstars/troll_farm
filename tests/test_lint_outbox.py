@@ -392,3 +392,110 @@ def test_valid_handoff_with_pushed_artifact_passes(repo):
     result = lint(repo)
     assert result.returncode == 0
     assert "errors (0)" in result.stdout
+
+
+# ---------------------------------------------------------------------------
+# Iteration-pool gates (owner decision 2026-08-17): WIP limit + evidence gate.
+# Both are sender-side tripwires on NEW handoffs; each is observed FIRING here
+# (the standing rule: every new check observed failing first).
+# ---------------------------------------------------------------------------
+
+def _valid_handoff_extra(repo, sender=ME):
+    artifacts = {f"{sender}/example/artifact.md": "artifact\n"}
+    commit = repo.commit(f"agent/{sender}", artifacts)
+    return handoff_fields(f"agent/{sender}", commit, sorted(artifacts))
+
+
+def test_wip_limit_blocks_second_handoff_while_first_unacked(repo):
+    extra = _valid_handoff_extra(repo)
+    publish_v2(repo, ME, "20260807T110000Z", "task-a", "handoff", to=PEER,
+               extra_fields=extra)
+    path = msg_path(ME, STAMP, "task-a", "handoff")
+    repo.write_worktree(path, v2_message(
+        path, kind="handoff", task="task-a", sender=ME, to=PEER,
+        extra_fields=extra))
+
+    result = lint(repo)
+    assert result.returncode == 2
+    assert "WIP limit" in result.stdout
+
+
+def test_wip_limit_releases_after_ack(repo):
+    extra = _valid_handoff_extra(repo)
+    prior = publish_v2(repo, ME, "20260807T110000Z", "task-a", "handoff",
+                       to=PEER, extra_fields=extra)
+    publish_v2(repo, PEER, "20260807T113000Z", "task-a", "ack", to=ME,
+               requires_ack=False, ack_for=(prior,))
+    path = msg_path(ME, STAMP, "task-a", "handoff")
+    repo.write_worktree(path, v2_message(
+        path, kind="handoff", task="task-a", sender=ME, to=PEER,
+        extra_fields=extra))
+
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout
+
+
+def test_wip_limit_superseding_handoff_allowed(repo):
+    extra = _valid_handoff_extra(repo)
+    prior = publish_v2(repo, ME, "20260807T110000Z", "task-a", "handoff",
+                       to=PEER, extra_fields=extra)
+    path = msg_path(ME, STAMP, "task-a", "handoff")
+    repo.write_worktree(path, v2_message(
+        path, kind="handoff", task="task-a", sender=ME, to=PEER,
+        supersedes=(prior,), extra_fields=extra))
+
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout
+
+
+def test_wip_limit_other_task_unaffected(repo):
+    extra = _valid_handoff_extra(repo)
+    publish_v2(repo, ME, "20260807T110000Z", "task-a", "handoff", to=PEER,
+               extra_fields=extra)
+    path = msg_path(ME, STAMP, "task-b", "handoff")
+    repo.write_worktree(path, v2_message(
+        path, kind="handoff", task="task-b", sender=ME, to=PEER,
+        extra_fields=extra))
+
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout
+
+
+def test_evidence_gate_cause_label_without_review_ref_fails(repo):
+    extra = _valid_handoff_extra(repo)
+    path = msg_path(ME, STAMP, "task-a", "handoff")
+    body = v2_message(path, kind="handoff", task="task-a", sender=ME, to=PEER,
+                      extra_fields=extra)
+    repo.write_worktree(path, body + "\ncause table: GENERATOR_GAP on 3 rows\n")
+
+    result = lint(repo)
+    assert result.returncode == 2
+    assert "evidence gate" in result.stdout
+    assert "GENERATOR_GAP" in result.stdout
+
+
+def test_evidence_gate_review_ref_must_exist_on_remote(repo):
+    extra = {**_valid_handoff_extra(repo),
+             "review_ref": "codex_1/reviews/missing.md"}
+    path = msg_path(ME, STAMP, "task-a", "handoff")
+    body = v2_message(path, kind="handoff", task="task-a", sender=ME, to=PEER,
+                      extra_fields=extra)
+    repo.write_worktree(path, body + "\nGENERATOR_GAP\n")
+
+    result = lint(repo)
+    assert result.returncode == 2
+    assert "not found on any" in result.stdout
+
+
+def test_evidence_gate_passes_with_published_review(repo):
+    review = {f"{PEER}/reviews/instrument-review.md": "ACCEPTED\n"}
+    repo.commit(f"agent/{PEER}", review)
+    extra = {**_valid_handoff_extra(repo),
+             "review_ref": f"{PEER}/reviews/instrument-review.md"}
+    path = msg_path(ME, STAMP, "task-a", "handoff")
+    body = v2_message(path, kind="handoff", task="task-a", sender=ME, to=PEER,
+                      extra_fields=extra)
+    repo.write_worktree(path, body + "\nGENERATOR_GAP with review\n")
+
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout
