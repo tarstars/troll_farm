@@ -66,6 +66,18 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-17 (critical path MOVING + v10): pool-#1 revision handoff LANDED
+  (`0a95de5b` — per-kind anchor, fail-closed UNRULED_SHAPE, count reconciliation
+  CONFIRMED against raw world-state: 3 single-own-unit situations, the integrator's
+  earlier "library says 1" was a counting bug, owned on record; four self-audit
+  repairs observed firing; deadlock owned: "self-audit is not a substitute for the
+  review gate" → methods ledger). Parity-on-34 directed to run in parallel with
+  codex's pool-#2 review. Spec v9 → REVISION_REQUIRED (three evidence-contract
+  blockers) → v10 same hour: census = frozen generation set (new enemy trees cannot
+  pay an old quota; member-loss rounds end without verdict); panel gate = zero
+  de-novo D-1 AND P4 (P4 arm measured by claude_1); suppression log until
+  commitment resolution/phase exit.
+
 - 2026-08-17 (FIFTH owner ruling → v9): deep joint code-walk on "what does a
   committed troll receive under PLANT suppression" — owner challenged the premise,
   code answered: two PICK sites (main :1177 @7500 needs turn≥100+board≤2+winning;

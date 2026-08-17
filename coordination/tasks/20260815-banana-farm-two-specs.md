@@ -1,6 +1,8 @@
 # 20260815-banana-farm-two-specs: write specifications A (unconditional) and B (conditional) for the banana-farm bot
 
-- Status: **v9 in codex_1 re-review — FIVE owner rulings carried; latest:
+- Status: **v10 in codex_1 re-review** (v9's three evidence-contract blockers closed:
+  frozen census generations; D-1+P4 double backstop; log-until-resolution). Prior:
+  **v9 — FIVE owner rulings carried; latest:
   LOG-AND-DEFER on the suppression corners (no prevention machinery; logged
   context; panel de-novo gate as backstop).** Prior: **v8 — FOURTH owner ruling:
   NO PLANTING DURING DENY; exclusion machinery deleted.** Prior: **v7 in codex_1 re-review** (v6's owner rulings unchanged; v7 closes codex's
