@@ -69,31 +69,36 @@ the clock:
 | OSC-031 | 22 of its 189 | 11 |
 | OSC-001 | 16 | 3 |
 
-**Verdict: deliberate gating, wrong scope.** Nothing here is a coding error — every clause does
-what it says. But the phase gate withholds a candidate the subject's own helper would have
-produced, on turns where the fruit is reachable, unclaimed and bankable. That is the owner's cure
-property (*"a troll with reachable, usable work receives at least one non-WAIT candidate"*) failing
-**by design**, which is a materially different finding from a bug and should be ruled on as such.
+**Verdict: deliberate phase-gate composition gap.** Nothing here is a coding error — every clause
+does what it says. The two gates simply do not share a condition, so on these turns the phase gate
+withholds a candidate the subject's own helper would have produced while the fruit is reachable,
+unclaimed and bankable.
+
+**Whether that scope is wrong, or worth widening, is the owner's call in pool #6 and is not
+decided here.** My first draft wrote "wrong scope"; that is a judgement the measurement does not
+license, and codex_1 was right to strike it.
 
 ---
 
-## 2. The counter-finding, against my own instrument: the planner is right more often than the token says
+## 2. A second resident gate: opponent occupancy
 
-On many of the same situations the reason no harvest was offered is that **an opponent with empty
-hands is standing on the plant** (:1350–1353), and the subject declines it on purpose.
+On 28 turns the clause that declines the harvest is a different one: **an opponent with empty
+hands is standing on the plant** (:1350–1353).
 
 `OPPONENT_SITTING_ON_PLANT`: **OSC-009 4 of 4 · OSC-001 13 of 16 · OSC-031 11 of its 22 harvest
 turns.**
 
-**My eligible-action oracle ignores opponent occupancy**, so it calls those turns harvestable when
-the subject was correct to decline. `NO_GOAL_ASSIGNED` is therefore **over-counted on this
-corpus**, and OSC-009 in particular has *no* unexplained turn — all four are the subject correctly
-refusing a contested plant.
+**These remain valid `NO_GOAL_ASSIGNED` attributions.** Per codex_1's pool-#3 acceptance the token
+is **stage attribution** under the reviewed, occupancy-blind oracle: the generator emitted only
+WAIT while that oracle reported eligible work. Identifying which resident gate declined does not
+re-adjudicate that, and these 28 turns are **not** deducted from the count.
 
-This is the same class as OSC-012, where my earlier oracle ignored capability and I withdrew a
-`GENERATOR_GAP` claim. I am reporting it rather than letting the count stand: **the honest
-strong cases are OSC-032, OSC-033, OSC-028 and OSC-008**, where a qualifying harvest existed on
-every single turn.
+I am recording the correction to my own draft rather than quietly restating it. I originally wrote
+that the oracle **over-counts**, that the behaviour was **correct**, and that OSC-009 has no
+unexplained turn. Those are three judgements the token does not carry — whether declining a
+contested plant is right, and whether the oracle should model occupancy, both belong to the owner
+in pool #6. What the measurement supports is narrower and is all that stands here: **on 325 turns
+the declining gate is the phase gate, and on 28 turns it is the occupancy clause.**
 
 ---
 
@@ -131,8 +136,8 @@ fourth cause claim resting on an unvalidated proxy.
 
 | mechanism | turns | reading |
 |---|---:|---|
-| endgame harvest fallback gated out of the mid-game while the endgame generator is in use | 325 | **deliberate gating, wrong scope** — cure property fails by design |
-| opponent camping the plant; subject correctly declines, **my oracle over-counts** | 28 | **correct behaviour** — instrument limitation, reported against myself |
+| endgame harvest fallback gated out of the mid-game while the endgame generator is in use | 325 | **deliberate phase-gate composition gap**; scope question is the owner's |
+| opponent occupancy clause declines the plant | 28 | a second resident gate — **still a valid attribution**, not deducted |
 | full-capacity unit, `bank_candidates` empty (OSC-005) | 1 | distinct path, not starvation |
 | chop rejected inside the per-plant loop (OSC-031) | 167 | **unresolved**; clause not localized, hypothesis stated only |
 

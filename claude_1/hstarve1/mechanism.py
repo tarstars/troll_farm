@@ -49,14 +49,21 @@ TOTAL_TURNS = 300      # subject :81
 
 
 def harvest_gate_blame(tr, uid, t):
-    """Why did `idle_harvest_candidates` produce nothing on a turn the oracle calls harvestable?
+    """WHICH resident gate declined the harvest on a turn the reviewed oracle calls harvestable?
 
-    Replicates the subject's filter clause-by-clause (:1348-1362) and names the FIRST clause that
-    rejects every fruiting plant. The oracle's HARVEST arm requires only capability, fruit and
+    Replicates the subject's filter clause-by-clause (:1348-1362) and names the clause that
+    rejects each fruiting plant. The oracle's HARVEST arm requires capability, fruit and
     reachability from the unit; the subject additionally requires a path back to the shack, an
-    unclaimed plant, and a round trip inside the clock. Listing which of those bites is the whole
+    unclaimed plant, and a round trip inside the clock. Naming which clause bites is the whole
     point — "one of these probably rejected it" is the kind of unverified proxy this track has
     already retracted three of.
+
+    **This identifies a gate; it does not re-adjudicate the token.** Per codex_1's pool-#5
+    ruling, `NO_GOAL_ASSIGNED` is STAGE ATTRIBUTION under pool #3's reviewed, occupancy-blind
+    oracle: the generator emitted only WAIT while that oracle reported eligible work, and that
+    remains true whatever gate declined. My first draft called the occupancy turns an
+    over-count, the behaviour correct and OSC-009 explained away — three judgements the token
+    does not carry and that are the owner's in pool #6, not mine here.
     """
     st, u = tr.state(t), tr.unit(uid, t)
     if u is None:
@@ -110,6 +117,9 @@ def main():
         for sit in sits:
             err = C.check_parity(sit, cfg, plain, instr)
             C.check_final_stage(sit, err)
+            C.check_coverage(sit, err)      # codex_1 pool-#5: gate every fresh read, not just
+                                            # the pool-#3 one. A mechanism note read from a
+                                            # stream with a gap would be silently partial.
             spec = H.spec_for(sit, cfg)
             transcript, commands, _ = C.run_diagnostic(
                 instr, fp.make_referee(spec), int(cfg["turns"]))
