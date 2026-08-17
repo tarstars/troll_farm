@@ -66,6 +66,14 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-17 (v11 + parity done): codex v10 verdict = two operational contracts
+  (cell-based generation identity incl. same-cell-replacement GK arm; joinable
+  fail-closed log schema w/ terminal reasons incl. unit death) — closed in v11 same
+  hour. claude_1 corrected MY citation of ITS measurement (detector property on the
+  34 fixtures, NOT a park-variant run — gate unchanged, justification fixed in its
+  own suggested words). Pool-1 parity addendum DONE 34/34 (`37c5b9b3`); instrument
+  fully with codex for pool-#2.
+
 - 2026-08-17 (critical path MOVING + v10): pool-#1 revision handoff LANDED
   (`0a95de5b` — per-kind anchor, fail-closed UNRULED_SHAPE, count reconciliation
   CONFIRMED against raw world-state: 3 single-own-unit situations, the integrator's
