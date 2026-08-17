@@ -66,6 +66,37 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-17 (v11 + parity done): codex v10 verdict = two operational contracts
+  (cell-based generation identity incl. same-cell-replacement GK arm; joinable
+  fail-closed log schema w/ terminal reasons incl. unit death) — closed in v11 same
+  hour. claude_1 corrected MY citation of ITS measurement (detector property on the
+  34 fixtures, NOT a park-variant run — gate unchanged, justification fixed in its
+  own suggested words). Pool-1 parity addendum DONE 34/34 (`37c5b9b3`); instrument
+  fully with codex for pool-#2.
+
+- 2026-08-17 (critical path MOVING + v10): pool-#1 revision handoff LANDED
+  (`0a95de5b` — per-kind anchor, fail-closed UNRULED_SHAPE, count reconciliation
+  CONFIRMED against raw world-state: 3 single-own-unit situations, the integrator's
+  earlier "library says 1" was a counting bug, owned on record; four self-audit
+  repairs observed firing; deadlock owned: "self-audit is not a substitute for the
+  review gate" → methods ledger). Parity-on-34 directed to run in parallel with
+  codex's pool-#2 review. Spec v9 → REVISION_REQUIRED (three evidence-contract
+  blockers) → v10 same hour: census = frozen generation set (new enemy trees cannot
+  pay an old quota; member-loss rounds end without verdict); panel gate = zero
+  de-novo D-1 AND P4 (P4 arm measured by claude_1); suppression log until
+  commitment resolution/phase exit.
+
+- 2026-08-17 (FIFTH owner ruling → v9): deep joint code-walk on "what does a
+  committed troll receive under PLANT suppression" — owner challenged the premise,
+  code answered: two PICK sites (main :1177 @7500 needs turn≥100+board≤2+winning;
+  endgame :1287 @7000 after turn 250, ~83 before), three corners C1/C2/C3; the
+  suppressed pipeline can strand a troll (manufactured dance/park). OWNER RULED:
+  corners rare — LOG-AND-DEFER; no prevention machinery; full-context logging + the
+  panel's de-novo gate as backstop; returns to owner if logs show occurrences.
+  Integrator's "C3 common" recorded as a testable claim, not assumed. v9
+  (`d83a66f2`) to codex; open sub-question flagged: park variant surfaces as P4,
+  not D-1 — second backstop line if codex agrees.
+
 - 2026-08-17 (FOURTH owner ruling → v8): owner stated "during denial our bot can't
   plant trees"; code verification showed it true-by-circumstance except the
   bare-board corner (sole PLANT :1256 reachable only via board≤4-and-losing /

@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-17T09:20:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-17T12:30:00Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -29,7 +29,21 @@ cannot hold the trajectory fixed.
 
 ## Current position (2026-08-17)
 
-- **Pool #1 (instrument repairs) is REOPENED**, not complete. I declared it complete while two
+- **Pool #1 REVISION IS HANDED OFF** and sits with `codex_1` for pool-#2 review: handoff
+  `20260817T111300Z` at `37c5b9b3`, instrument pinned `0a95de5b`. Artifact and all four declared
+  paths verified reachable on `origin/agent/claude_1`. Parity + coverage since closed at **34/34**
+  (`34857fa1`) — the limit I had handed over at 3/34.
+- **Since the anchor revision I self-audited and found FOUR more defects of my own**, all fixed and
+  each observed firing: `PLANT` eligibility was **always true** for any carrying unit
+  (`any(c in reach for c in walkable)` — `reach` is a BFS *over* walkable from the unit's own cell);
+  `BANK` rested on `td.orth_neighbors` behind a `hasattr` guard and **that helper does not exist**,
+  so the predicate silently weakened; `check_parity()` had **never rejected anything** (now observed
+  rejecting a deliberately different bot); and `UNRULED_SHAPE` had **never executed** (now observed
+  on an unknown kind and on a blocker cell matching no own unit).
+- **The deadlock that cost two hours was mine.** I reported "awaiting acceptance" for two hours
+  while never sending the pinned handoff `codex_1` was waiting for; each side believed it was
+  waiting on the other. **Self-audit is not a substitute for the review gate — ship, then audit.**
+- (superseded 12:30Z) **Pool #1 (instrument repairs) is REOPENED**, not complete. I declared it complete while two
   rulings addressed to me sat unread — the transport did not fail, I did not sweep before claiming
   done. **Rule I now hold: sweep immediately before any handoff that claims completion.**
 - Anchor rule **revised to the ruled per-kind mapping** (`5802e357`): D1-with-blocker → blocker
