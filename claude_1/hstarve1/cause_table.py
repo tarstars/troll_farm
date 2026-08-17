@@ -32,9 +32,11 @@ my old labels onto the new five by inference, and I am not doing that — these 
 derived from the **owner's cure property and the four observable stages**, stated here in full so
 they can be overruled without re-running anything:
 
-- `NOT_STARVED` — the unit was not parked: **fewer than half** its window turns were WAIT. (My
-  first rule also cleared any unit that acted even once, which called OSC-023 not-starved on 73
-  WAITs out of 74. One action in a window does not un-park a troll.)
+- `NOT_STARVED` — the unit was not parked: **fewer than half** its window turns were WAIT. This
+  is a **STATUS, not a cause**, and lives on its own axis: it answers "was this troll idle?", not
+  "why did it wait?", and it never suppresses the causes measured in the same window. (Two
+  earlier rules were wrong here: the first cleared any unit that acted even once — OSC-023,
+  not-starved on 73 WAITs out of 74 — and the second let this status overwrite real cause turns.)
 - `CANNOT_USE_WORK` — the unit was idle on turns where the eligible-action oracle reports it had
   **no usable work of its own** (capability x fruit state x sink, BFS from its own cell). The
   planner offering nothing was correct. This is the arm that vindicated OSC-012's planner.
@@ -54,8 +56,17 @@ that trade was worth making is the owner's call in pool #6, and nothing here mea
 registry fixed the spelling before anyone defined the semantics, and I am not reading a verdict
 into the word "wrong".
 
-The per-turn attribution is written to the artifact in full, so a different situation-level rule
-can be applied to the same measurements without re-running the sweep.
+## Aggregation: NON-EXCLUSIVE incidence, on two axes
+
+A situation exhibits every cause its window contains — OSC-001 has 16 `NO_GOAL_ASSIGNED` turns
+*and* 23 `GOAL_SPLIT_WRONG` *and* 156 `CANNOT_USE_WORK`. Collapsing that to one plurality token
+(codex_1's pool-#3 blocker) discarded the minority evidence and read **6 / 21 / 2** against a
+measured incidence of **8 / 24 / 2** — and would have handed pool #5 six situations instead of
+the eight that actually contain a `NO_GOAL_ASSIGNED` turn.
+
+So each situation is reported under **every** cause it exhibits, with the parked/not-starved
+status beside it rather than instead of it. The per-turn attribution is written to the artifact
+in full, so a different rule can be applied to the same measurements without re-running.
 
 ## What is NOT claimed
 
@@ -203,7 +214,7 @@ def classify(sit, stages, chosen, tr, force_units=None):
     if anc["coverage"] == A.UNRULED:
         raise SweepError(f"{sit['id']}: {anc['rule']} — fail-closed, never folded into a token")
     if anc["coverage"] == A.NO_ANCHOR:
-        return [{"situation": sit["id"], "unit": None, "token": None,
+        return [{"situation": sit["id"], "unit": None, "status": None, "causes_present": [],
                  "coverage": A.NO_ANCHOR, "anchor_rule": anc["rule"],
                  "note": "single own unit; no anchor exists. A coverage state, NOT a cause."}]
 
@@ -234,18 +245,28 @@ def classify(sit, stages, chosen, tr, force_units=None):
 
         total = hi - lo + 1
         wait_turns = total - acted
-        # NOT_STARVED is a MAJORITY rule, not "it moved once". My first version said
-        # `acted > 0 or ...`, which called OSC-023 not-starved on 73 WAITs out of 74 — a single
-        # action in a whole window cleared a plainly parked troll. Only the fraction decides.
-        if wait_turns * 2 < total:
-            token = "NOT_STARVED"
-        else:
-            token = waits.most_common(1)[0][0]
-        if token not in TOKENS:
-            raise SweepError(f"{sit['id']}: token {token!r} is not registered")
+
+        # TWO AXES, NOT ONE — codex_1's pool-#3 blocker.
+        #
+        # I first collapsed each situation to a single plurality token. That is LOSSY in exactly
+        # the cases that matter: OSC-001 has 16 `NO_GOAL_ASSIGNED` turns and reported as
+        # `CANNOT_USE_WORK`; OSC-005 has one and reported as `NOT_STARVED`. The exclusive
+        # headline read 6 / 21 / 2 where the measured incidence is 8 / 24 / 2, and pool #5 would
+        # have been handed six situations instead of the eight that contain the evidence.
+        #
+        # A situation can exhibit more than one cause across its window, and being parked is a
+        # STATUS rather than a cause — `NOT_STARVED` answers a different question from the other
+        # four and must not overwrite them. So: incidence is non-exclusive, and the parked axis
+        # is reported beside it, never instead of it.
+        status = "NOT_STARVED" if wait_turns * 2 < total else "PARKED"
+        causes_present = sorted(t for t, n in waits.items() if n)
+        for t in causes_present:
+            if t not in TOKENS:
+                raise SweepError(f"{sit['id']}: token {t!r} is not registered")
 
         out.append({
-            "situation": sit["id"], "kind": sit["kind"], "unit": uid, "token": token,
+            "situation": sit["id"], "kind": sit["kind"], "unit": uid,
+            "status": status, "causes_present": causes_present,
             "coverage": "ANCHORED", "anchor_rule": anc["rule"],
             "window": [lo, hi], "turns_in_window": total,
             "turns_acted": acted, "turns_wait": wait_turns,
@@ -318,22 +339,35 @@ def main():
             rows = classify(sit, *parse(err), tr)
             table.extend(rows)
             for r in rows:
-                if r["token"] is None:
+                if r["status"] is None:
                     print(f"  {r['situation']}  ---  {A.NO_ANCHOR}")
                 else:
-                    print(f"  {r['situation']}  unit {r['unit']}  {r['token']:<17} "
+                    print(f"  {r['situation']}  unit {r['unit']}  {r['status']:<11} "
                           f"wait={r['turns_wait']:>3}/{r['turns_in_window']} "
                           f"work={r['turns_with_usable_work']:>3} "
-                          f"{r['wait_attribution']}")
+                          f"causes={','.join(r['causes_present']) or '-'}")
 
-    counts = collections.Counter(r["token"] for r in table if r["token"])
+    incidence = collections.defaultdict(list)
+    for r in table:
+        for t in r.get("causes_present", []):
+            incidence[t].append(r["situation"])
     per_turn_counts = collections.Counter(
         pt["token"] for r in table for pt in r.get("per_turn", []) if pt["token"])
+    parked = [r["situation"] for r in table if r.get("status") == "PARKED"]
+    not_starved = [r["situation"] for r in table if r.get("status") == "NOT_STARVED"]
+
     print(f"\nCAUSE TABLE — {len(table)} anchored observations over {len(sits)} situations")
-    print("\nsituation-level tokens:")
+    print("\nCAUSE INCIDENCE (non-exclusive: a situation appears under every cause it exhibits):")
     for tok in TOKENS:
-        print(f"  {tok:<18} {counts.get(tok, 0)}")
-    nocov = sum(1 for r in table if r["token"] is None)
+        if tok == "NOT_STARVED":
+            continue
+        print(f"  {tok:<18} {len(incidence[tok]):>2} situations")
+    print("\nSTATUS axis (separate question — parked or not, never a cause):")
+    print(f"  PARKED             {len(parked):>2}")
+    print(f"  NOT_STARVED        {len(not_starved):>2}   {not_starved}")
+    print("\nsituations with at least one NO_GOAL_ASSIGNED turn — POOL #5 CONSUMES ALL OF THESE:")
+    print(f"  {incidence['NO_GOAL_ASSIGNED']}")
+    nocov = sum(1 for r in table if r.get("status") is None)
     if nocov:
         print(f"  ({A.NO_ANCHOR}: {nocov} — a coverage state, not a cause)")
     print("\nWAIT turns attributed by stage (all anchored units, all windows):")
@@ -351,7 +385,14 @@ def main():
         "token_definitions_authored_by": "claude_1 — the registry bound the SPELLING only; no "
                                          "semantics were ever published. Stated in the module "
                                          "docstring and open to being overruled.",
-        "situation_level_totals": {t: counts.get(t, 0) for t in TOKENS},
+        "cause_incidence_non_exclusive": {t: sorted(incidence[t]) for t in TOKENS
+                                          if t != "NOT_STARVED"},
+        "status_axis": {"PARKED": sorted(parked), "NOT_STARVED": sorted(not_starved)},
+        "pool5_input_no_goal_assigned_situations": sorted(incidence["NO_GOAL_ASSIGNED"]),
+        "aggregation_note": "Incidence is NON-EXCLUSIVE and status is a SEPARATE AXIS. An "
+                            "earlier revision collapsed each situation to a plurality token, "
+                            "which read 6/21/2 against a measured incidence of 8/24/2 and would "
+                            "have handed pool #5 six situations instead of eight.",
         "wait_turn_totals_by_stage": {t: per_turn_counts.get(t, 0) for t in TOKENS},
         "no_anchor_coverage_states": nocov,
         "table": table,

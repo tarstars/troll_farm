@@ -1,20 +1,111 @@
 {
+ "aggregation_note": "Incidence is NON-EXCLUSIVE and status is a SEPARATE AXIS. An earlier revision collapsed each situation to a plurality token, which read 6/21/2 against a measured incidence of 8/24/2 and would have handed pool #5 six situations instead of eight.",
+ "cause_incidence_non_exclusive": {
+  "CANNOT_USE_WORK": [
+   "OSC-001",
+   "OSC-012"
+  ],
+  "GOAL_SPLIT_WRONG": [
+   "OSC-001",
+   "OSC-002",
+   "OSC-003",
+   "OSC-004",
+   "OSC-006",
+   "OSC-007",
+   "OSC-009",
+   "OSC-011",
+   "OSC-013",
+   "OSC-014",
+   "OSC-015",
+   "OSC-016",
+   "OSC-017",
+   "OSC-018",
+   "OSC-019",
+   "OSC-020",
+   "OSC-021",
+   "OSC-022",
+   "OSC-023",
+   "OSC-024",
+   "OSC-025",
+   "OSC-029",
+   "OSC-031",
+   "OSC-034"
+  ],
+  "NO_GOAL_ASSIGNED": [
+   "OSC-001",
+   "OSC-005",
+   "OSC-008",
+   "OSC-009",
+   "OSC-028",
+   "OSC-031",
+   "OSC-032",
+   "OSC-033"
+  ],
+  "WORLD_INTERACTION": []
+ },
  "instrument": "claude_1/hstarve1/instrumented-hstarve2.rs (logging-repaired)",
  "no_anchor_coverage_states": 1,
  "pool": 3,
+ "pool5_input_no_goal_assigned_situations": [
+  "OSC-001",
+  "OSC-005",
+  "OSC-008",
+  "OSC-009",
+  "OSC-028",
+  "OSC-031",
+  "OSC-032",
+  "OSC-033"
+ ],
  "review_ref": "codex_1/reviews/h-starve-1-pool1-logging-repair-review-2026-08-17.md",
- "situation_level_totals": {
-  "CANNOT_USE_WORK": 2,
-  "GOAL_SPLIT_WRONG": 21,
-  "NOT_STARVED": 4,
-  "NO_GOAL_ASSIGNED": 6,
-  "WORLD_INTERACTION": 0
- },
  "situations": 34,
+ "status_axis": {
+  "NOT_STARVED": [
+   "OSC-005",
+   "OSC-010",
+   "OSC-027",
+   "OSC-030"
+  ],
+  "PARKED": [
+   "OSC-001",
+   "OSC-002",
+   "OSC-003",
+   "OSC-004",
+   "OSC-006",
+   "OSC-007",
+   "OSC-008",
+   "OSC-009",
+   "OSC-011",
+   "OSC-012",
+   "OSC-013",
+   "OSC-014",
+   "OSC-015",
+   "OSC-016",
+   "OSC-017",
+   "OSC-018",
+   "OSC-019",
+   "OSC-020",
+   "OSC-021",
+   "OSC-022",
+   "OSC-023",
+   "OSC-024",
+   "OSC-025",
+   "OSC-028",
+   "OSC-029",
+   "OSC-031",
+   "OSC-032",
+   "OSC-033",
+   "OSC-034"
+  ]
+ },
  "subject_sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
  "table": [
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "CANNOT_USE_WORK",
+    "GOAL_SPLIT_WRONG",
+    "NO_GOAL_ASSIGNED"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -2796,7 +2887,7 @@
     }
    ],
    "situation": "OSC-001",
-   "token": "CANNOT_USE_WORK",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 195,
    "turns_wait": 195,
@@ -2814,6 +2905,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -5843,7 +5937,7 @@
     }
    ],
    "situation": "OSC-002",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 189,
    "turns_wait": 189,
@@ -5859,6 +5953,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -6236,7 +6333,7 @@
     }
    ],
    "situation": "OSC-003",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 2,
    "turns_in_window": 23,
    "turns_wait": 21,
@@ -6252,6 +6349,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -6485,7 +6585,7 @@
     }
    ],
    "situation": "OSC-004",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 2,
    "turns_in_window": 14,
    "turns_wait": 12,
@@ -6501,6 +6601,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "NO_GOAL_ASSIGNED"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -6735,7 +6838,7 @@
     }
    ],
    "situation": "OSC-005",
-   "token": "NOT_STARVED",
+   "status": "NOT_STARVED",
    "turns_acted": 11,
    "turns_in_window": 12,
    "turns_wait": 1,
@@ -6751,6 +6854,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -6900,7 +7006,7 @@
     }
    ],
    "situation": "OSC-006",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 2,
    "turns_in_window": 9,
    "turns_wait": 7,
@@ -6916,6 +7022,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -7065,7 +7174,7 @@
     }
    ],
    "situation": "OSC-007",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 1,
    "turns_in_window": 9,
    "turns_wait": 8,
@@ -7081,6 +7190,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "NO_GOAL_ASSIGNED"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -7202,7 +7314,7 @@
     }
    ],
    "situation": "OSC-008",
-   "token": "NO_GOAL_ASSIGNED",
+   "status": "PARKED",
    "turns_acted": 1,
    "turns_in_window": 8,
    "turns_wait": 7,
@@ -7218,6 +7330,10 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG",
+    "NO_GOAL_ASSIGNED"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -7327,7 +7443,7 @@
     }
    ],
    "situation": "OSC-009",
-   "token": "NO_GOAL_ASSIGNED",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 7,
    "turns_wait": 7,
@@ -7344,6 +7460,7 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -7539,7 +7656,7 @@
     }
    ],
    "situation": "OSC-010",
-   "token": "NOT_STARVED",
+   "status": "NOT_STARVED",
    "turns_acted": 7,
    "turns_in_window": 7,
    "turns_wait": 0,
@@ -7553,6 +7670,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -7670,7 +7790,7 @@
     }
    ],
    "situation": "OSC-011",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 1,
    "turns_in_window": 7,
    "turns_wait": 6,
@@ -7686,6 +7806,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "CANNOT_USE_WORK"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -10393,7 +10516,7 @@
     }
    ],
    "situation": "OSC-012",
-   "token": "CANNOT_USE_WORK",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 193,
    "turns_wait": 193,
@@ -10409,6 +10532,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -13406,7 +13532,7 @@
     }
    ],
    "situation": "OSC-013",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 187,
    "turns_wait": 187,
@@ -13422,6 +13548,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -16115,7 +16244,7 @@
     }
    ],
    "situation": "OSC-014",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 168,
    "turns_wait": 168,
@@ -16131,6 +16260,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -18648,7 +18780,7 @@
     }
    ],
    "situation": "OSC-015",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 157,
    "turns_wait": 157,
@@ -18664,6 +18796,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -21773,7 +21908,7 @@
     }
    ],
    "situation": "OSC-016",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 194,
    "turns_wait": 194,
@@ -21789,6 +21924,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -24898,7 +25036,7 @@
     }
    ],
    "situation": "OSC-017",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 194,
    "turns_wait": 194,
@@ -24914,6 +25052,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -27975,7 +28116,7 @@
     }
    ],
    "situation": "OSC-018",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 191,
    "turns_wait": 191,
@@ -27991,6 +28132,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -30844,7 +30988,7 @@
     }
    ],
    "situation": "OSC-019",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 178,
    "turns_wait": 178,
@@ -30860,6 +31004,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -33617,7 +33764,7 @@
     }
    ],
    "situation": "OSC-020",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 172,
    "turns_wait": 172,
@@ -33633,6 +33780,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -36342,7 +36492,7 @@
     }
    ],
    "situation": "OSC-021",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 169,
    "turns_wait": 169,
@@ -36358,6 +36508,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -37883,7 +38036,7 @@
     }
    ],
    "situation": "OSC-022",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 95,
    "turns_wait": 95,
@@ -37899,6 +38052,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -39088,7 +39244,7 @@
     }
    ],
    "situation": "OSC-023",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 1,
    "turns_in_window": 74,
    "turns_wait": 73,
@@ -39104,6 +39260,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -40149,7 +40308,7 @@
     }
    ],
    "situation": "OSC-024",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 1,
    "turns_in_window": 65,
    "turns_wait": 64,
@@ -40165,6 +40324,9 @@
   },
   {
    "anchor_rule": "D1 with blocker -> the blocker unit",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -40506,7 +40668,7 @@
     }
    ],
    "situation": "OSC-025",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 1,
    "turns_in_window": 21,
    "turns_wait": 20,
@@ -40522,14 +40684,16 @@
   },
   {
    "anchor_rule": "D1 single own unit -> honest no-anchor",
+   "causes_present": [],
    "coverage": "NO_ANCHOR_SINGLE_UNIT",
    "note": "single own unit; no anchor exists. A coverage state, NOT a cause.",
    "situation": "OSC-026",
-   "token": null,
+   "status": null,
    "unit": null
   },
   {
    "anchor_rule": "D1 blocker-less pair -> the unique non-dancer",
+   "causes_present": [],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -40891,7 +41055,7 @@
     }
    ],
    "situation": "OSC-027",
-   "token": "NOT_STARVED",
+   "status": "NOT_STARVED",
    "turns_acted": 22,
    "turns_in_window": 22,
    "turns_wait": 0,
@@ -40905,6 +41069,9 @@
   },
   {
    "anchor_rule": "D1 blocker-less pair -> the unique non-dancer",
+   "causes_present": [
+    "NO_GOAL_ASSIGNED"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -41664,7 +41831,7 @@
     }
    ],
    "situation": "OSC-028",
-   "token": "NO_GOAL_ASSIGNED",
+   "status": "PARKED",
    "turns_acted": 2,
    "turns_in_window": 53,
    "turns_wait": 51,
@@ -41680,6 +41847,9 @@
   },
   {
    "anchor_rule": "D1 blocker-less pair -> the unique non-dancer",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -41971,7 +42141,7 @@
     }
    ],
    "situation": "OSC-029",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 3,
    "turns_in_window": 17,
    "turns_wait": 14,
@@ -41987,6 +42157,7 @@
   },
   {
    "anchor_rule": "D1 blocker-less pair -> the unique non-dancer",
+   "causes_present": [],
    "coverage": "ANCHORED",
    "kind": "D1_EPISODE",
    "per_turn": [
@@ -42136,7 +42307,7 @@
     }
    ],
    "situation": "OSC-030",
-   "token": "NOT_STARVED",
+   "status": "NOT_STARVED",
    "turns_acted": 8,
    "turns_in_window": 8,
    "turns_wait": 0,
@@ -42150,6 +42321,10 @@
   },
   {
    "anchor_rule": "P4_STALL -> window.unit itself",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG",
+    "NO_GOAL_ASSIGNED"
+   ],
    "coverage": "ANCHORED",
    "kind": "P4_STALL",
    "per_turn": [
@@ -44817,7 +44992,7 @@
     }
    ],
    "situation": "OSC-031",
-   "token": "NO_GOAL_ASSIGNED",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 190,
    "turns_wait": 190,
@@ -44834,6 +45009,9 @@
   },
   {
    "anchor_rule": "P4_STALL -> window.unit itself",
+   "causes_present": [
+    "NO_GOAL_ASSIGNED"
+   ],
    "coverage": "ANCHORED",
    "kind": "P4_STALL",
    "per_turn": [
@@ -46379,7 +46557,7 @@
     }
    ],
    "situation": "OSC-032",
-   "token": "NO_GOAL_ASSIGNED",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 110,
    "turns_wait": 110,
@@ -46395,6 +46573,9 @@
   },
   {
    "anchor_rule": "P4_STALL -> window.unit itself",
+   "causes_present": [
+    "NO_GOAL_ASSIGNED"
+   ],
    "coverage": "ANCHORED",
    "kind": "P4_STALL",
    "per_turn": [
@@ -48402,7 +48583,7 @@
     }
    ],
    "situation": "OSC-033",
-   "token": "NO_GOAL_ASSIGNED",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 143,
    "turns_wait": 143,
@@ -48418,6 +48599,9 @@
   },
   {
    "anchor_rule": "P4_STALL -> window.unit itself",
+   "causes_present": [
+    "GOAL_SPLIT_WRONG"
+   ],
    "coverage": "ANCHORED",
    "kind": "P4_STALL",
    "per_turn": [
@@ -49927,7 +50111,7 @@
     }
    ],
    "situation": "OSC-034",
-   "token": "GOAL_SPLIT_WRONG",
+   "status": "PARKED",
    "turns_acted": 0,
    "turns_in_window": 94,
    "turns_wait": 94,
