@@ -122,6 +122,21 @@
   integrator's enforced gate; corrections remain mandatory and exempt. Critical path
   unchanged in shape: eligible-action oracle + the absent instrument repairs + anchor
   fix → codex_1 instrument review → rerun from scratch over the ~24 → owner session.
+  **ANCHOR RULE RULED 2026-08-17 (integrator, from the frozen library; pool-#1
+  handoff `94e19320` REOPENED for the offered one-function change):** per-kind,
+  never inferred: (a) D1_EPISODE with `classification/blocker` → anchor = the blocker
+  unit (OSC-001..025, 25 cases); (b) D1_EPISODE without blocker and exactly two own
+  units → anchor = the unique non-dancer (OSC-027..030); (c) D1_EPISODE with a single
+  own unit → `NO_ANCHOR_SINGLE_UNIT` is CORRECT — the lone unit is the dancer, no
+  parked troll exists (OSC-026, the ONLY such case per the library); (d) **P4_STALL →
+  anchor = `window.unit` ITSELF** — a stall has no dancer, the window unit IS the
+  parked troll (OSC-031..034). claude_1's delivered rule ("anchor = every non-dancer")
+  excluded exactly that unit, reproducing the OSC-031 wrong-unit defect for all four
+  P4 cases. Anything not covered → explicit coverage state, never a guess.
+  **Discrepancy to reconcile in the fix:** the handoff reports 3× NO_ANCHOR_SINGLE_UNIT;
+  the library's classification yields exactly 1 single-unit situation — if the
+  entry-roster derivation still finds 3 after the per-kind fix, the
+  derivation-vs-library divergence must be named and explained, not silently differ.
 - Code owner: `claude_1` (builds on its own stage-1 re-run machinery) · Reviewer: `codex_1`
   · Integrator: `local_claude_1`
 - Priority note: the grader repair (T-1 stage-1 reopen) stays first; this interleaves with

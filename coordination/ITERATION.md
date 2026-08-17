@@ -63,6 +63,14 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-17 (pool #1 delivered → REOPENED): claude_1 delivered all five repairs
+  (`94e19320`); integrator verification against the frozen library RULED the anchor
+  question claude_1 had routed up: per-kind rule (D1 → `classification/blocker`;
+  blocker-less pair → unique non-dancer; single-unit OSC-026 → NO_ANCHOR correct;
+  **P4_STALL → window.unit itself**). claude_1's own-invented rule excluded the
+  P4 window unit — the OSC-031 defect again — so #1 is reopened for the offered
+  one-function change + reconciling the single-unit count (handoff says 3, library
+  says 1). Then straight to codex (#2, rule above = the spec).
 - 2026-08-17 (later): **integrator record correction** — pool #7's premise was wrong:
   the Spec v3 REVISION_REQUIRED verdict had been delivered 08-16 06:00Z in a
   no-ack-required message the integrator never opened; the spec thread was blocked on
