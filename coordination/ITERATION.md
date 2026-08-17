@@ -64,6 +64,14 @@ begins with `Pool: N/M done`.
 - [x] 11. OWNER-ADDED 2026-08-17: coordd promote-or-park DECISION DATE set:
       2026-08-31 or pool close, whichever later; no standing dual plane
       (runbook amended) (local_claude_1)
+- [ ] 12. OWNER-ADDED 2026-08-17 (partial session verdict, no-goal branch): CURE C
+      END-TO-END — build per corrected brief, gates G1–G4 fail-first (fixtures
+      311/311, panel zero de-novo D-1+P4, p95+parity, codex reproduction), then
+      SUBMIT same-session (G5). Charter:
+      `coordination/tasks/20260817-cure-c-implementation.md`. Expectation
+      pre-registered +0.2–0.7 (IMMATERIAL possible and honest); KEEP/REVERT =
+      owner after the paired night. (claude_1 end-to-end; codex_1 gates;
+      local_claude_1 countersigns + night bookkeeping)
 
 ## Parked — explicitly OUT of this iteration
 
@@ -79,6 +87,13 @@ by the verdict session's rulings, not before); T-1 half-swap fixture (recorded d
 viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untouched).
 
 ## Progress log (newest first)
+
+- 2026-08-17 (OWNER CHARTER — pool #12): "implement C and post it on platform" →
+  end-to-end task written for claude_1 (goal = SUBMITTED, not ready-to-submit):
+  corrected-brief C, cross-tab frozen as predictions, gates G1–G5, same-session
+  submission on green (controller countersign committed, >6h fallback), night under
+  M-1, KEEP/REVERT owner's. Recorded as the session's no-goal-branch verdict;
+  branches 24-pairing / harmless-rulings / OSC-031 residue stay OPEN (#6).
 
 - 2026-08-17 (POOL #5 CLOSED — **THE OWNER SESSION IS READY**): revision
   GATE_ACCEPTED, all eight streams reproduced; wording ruling confirmed (my docs
