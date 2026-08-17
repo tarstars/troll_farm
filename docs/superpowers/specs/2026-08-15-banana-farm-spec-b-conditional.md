@@ -1,8 +1,13 @@
 # Banana-farm bot — Spec B (conditional entry: "if third troll")
 
-- Status: DRAFT v6 — ALL THREE OWNER DECISIONS RULED 2026-08-17 (B-1 no floor;
-  `K_futility` retired; futility = the owner's census-sequence design). For codex_1
-  re-review of the v6 text, then the owner's final confirmation.
+- Status: DRAFT v7 — the v6 owner rulings unchanged (B-1 no floor; `K_futility`
+  retired; futility = the owner's census-sequence design); v7 repairs codex_1's v6
+  findings. For codex_1 re-review, then the owner's final confirmation.
+- Revision: v7 2026-08-17: round progress counts CENSUS-ELIGIBLE completions only
+  (a chop of an excluded own tree advances nothing; the constructed
+  census-1/own-tree must-not-fire case added to gate GK); the exclusion tracker
+  receives its own built-now generation contract instead of leaning on section 7's
+  future-variant table.
 - Revision: v6 2026-08-17: futility mechanism replaced by the OWNER'S SEQUENCE DESIGN
   (census → chop that many → recount; stall or rise stops denial); `K_futility`
   RETIRED; the v4–v5 completion gate SUBSUMED (its confirmation rule survives as the
@@ -188,10 +193,14 @@ Mechanism, in the bot's terms — no per-turn window and **no `K_futility` const
   reconciliation over OUR OWN commands only — no enemy-ownership inference anywhere).
   The exclusion closes the endgame conversion blip: our own briefly-planted lemon or
   plum can never inflate a census.
-- **Round.** A round completes when our cumulative CONFIRMED focus-chop completions
-  since the last census reach that census value. If the (exclusion-adjusted) live
-  count reaches 0 at any point, `species_gone` sets instead — zero trees is job-done,
-  not futility.
+- **Round.** A round completes when our cumulative confirmed **CENSUS-ELIGIBLE**
+  focus-chop completions since the last census reach that census value. A completion
+  is census-eligible iff its tree was part of the census population — that is, NOT
+  standing on an excluded own-planted cell (v7, per codex_1's v6 review: chopping our
+  own excluded conversion tree is a confirmed completion that advances NOTHING — with
+  census 1, one such chop must not complete the round while the eligible tree still
+  stands). If the (exclusion-adjusted) live count reaches 0 at any point,
+  `species_gone` sets instead — zero trees is job-done, not futility.
 - **Verdict.** At each round completion take the next census `C_{i+1}` and append it
   to the sequence. **`futility_reached` sets iff `C_{i+1} >= C_i`** — the owner's
   stall ("two equal numbers") or rise: we removed a full census of trees and the
@@ -201,6 +210,19 @@ Mechanism, in the bot's terms — no per-turn window and **no `K_futility` const
   trees, trolls needed elsewhere) never fires futility, however many turns pass:
   erring toward CONTINUING denial, the conservative side (denial is suspected
   load-bearing, N6), with the other doorways still providing exits.
+
+**The exclusion tracker — its own contract, BUILT NOW (v7; distinct from section 7's
+future-variant banana table, which is not built):** an excluded-ours entry is created
+iff our own confirmed focus-species `PLANT` at cell C (confirmed exactly as a
+section 7 Plant transition: we emitted `PLANT` there last turn, a size-0 focus plant
+stands there now, our unit's cargo dropped by one), carrying a generation identity
+(cell, confirmation turn, last observed size/fruits/cooldown). Observations
+consistent with that plant's own growth update the identity. ANY inconsistent
+observation — size reset, kind change, or presence after observed absence — ends the
+generation: the entry is removed and whatever stands there re-enters the census as
+NOT ours. The failure direction is deliberate: a lost exclusion means we count MORE
+trees, futility gets HARDER to reach, and denial continues — conservative. Our own
+confirmed chop of an excluded tree removes its entry (and advances no round, above).
 
 **Completion confirmation (unchanged from v5 — now the round-progress element):**
 evaluated by the same reconciliation pass as section 7, on (previous turn's
@@ -516,7 +538,7 @@ broken build) before its pass is credited; all of them precede any value panel.
 | GT — train | A second troll is trained | `TRAIN` issued (lines 1387–1389) and own unit count reaches 2. Resident already does this: a do-not-break gate. |
 | GD — deny | One of lemon/plum is selected, frozen, and denied | `type_to_cut` set once (lines 796–799); focus-species chops occur while `denial_enabled`, preferentially near the enemy shack (bonus at line 622). Do-not-break. |
 | GE — doorway fidelity | The third-troll doorway fires in games where the enemy fields a third troll (and our second exists), and does NOT fire where the enemy never does; the unconsumed signals (`species_gone`, `futility_reached`) provably never cause a transition | Constructed/replayed games; doorway and futility-tracker telemetry (census sequence, round progress, own-plant exclusions) logged every DENY turn. |
-| GK — futility sequence twins (v6) | Though unconsumed in Spec B, the shared tracker's latch must behave identically to Spec A for A-vs-B comparability: the unfinishable-round case CANNOT set `futility_reached` (round incomplete, no enemy planting); the positive twin (a completed round with enemy replanting keeping the recount ≥ the previous census) sets it — and still causes no transition | Constructed games per the section 4 sequence tracker and its confirmation rule; both arms observed, fail-first per the standing rule. |
+| GK — futility sequence twins (v6) | Though unconsumed in Spec B, the shared tracker's latch must behave identically to Spec A for A-vs-B comparability: the unfinishable-round case CANNOT set `futility_reached` (round incomplete, no enemy planting); the positive twin (a completed round of CENSUS-ELIGIBLE completions with enemy replanting keeping the recount ≥ the previous census) sets it — and still causes no transition; exclusion arm (v7): census of 1 eligible tree + our chop of our own EXCLUDED conversion tree → no round completion, no latch | Constructed games per the section 4 sequence tracker and its confirmation rule; both arms observed, fail-first per the standing rule. |
 | GF — sustained farm cycle | FARM entered per this spec's predicate (and NOT entered when the enemy never fields a third troll); bootstrap plants ≥ 1 banked banana; at least one full harvest → replant cycle completes; the loop repeats while conditions hold | Telemetry per the D89a blueprint: every activation, bootstrap attempt/success, reserve promotion/loss, own-crop harvest, renewable replant, trained-role rewrite logged. Entry needs both arms too: games where it fires and games where it correctly does not. |
 | GA+ — abort fires | In games where the score-delta abort condition persists ≥ K turns after warm-up, WOOD is entered | Constructed/replayed games on the development panel; sealed ranges stay closed. |
 | GA− — abort does not misfire | In games where the condition never persists, WOOD is never entered | Both arms are mandatory: a rule that always fires is not conditional, and a rule that never fires is not a rule (the project's trigger-fidelity check). |
