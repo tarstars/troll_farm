@@ -1,6 +1,9 @@
 # 20260815-banana-farm-two-specs: write specifications A (unconditional) and B (conditional) for the banana-farm bot
 
-- Status: **v5 GATE_ACCEPTED_FOR_OWNER_REVIEW (codex_1, 2026-08-17T10:00Z) — AWAITING
+- Status: **v6 — OWNER RULED ALL THREE DECISIONS 2026-08-17 (B-1 no floor; K_futility
+  RETIRED; futility = the owner's census-sequence design, completion gate subsumed).
+  v6 in codex_1 re-review of the new mechanism text; then owner FINAL confirmation.**
+  Prior: v5 GATE_ACCEPTED_FOR_OWNER_REVIEW (codex_1, 2026-08-17T10:00Z) — AWAITING
   THE OWNER: B-1 floor, K_futility freeze, completion gate adopt/strike. No
   implementation before owner approval AND the programme's oscillation gate.**
   Prior: v5 delivered (`3cc51122`) — in codex_1 re-review (7b), then

@@ -35,7 +35,10 @@ begins with `Pool: N/M done`.
 
 ## Parallel (non-blocking)
 
-- [x] 7. **DONE for the agents — owner-gate LIVE.** (Restated 2026-08-17 after the integrator's record correction:) Spec v3 was already
+- [ ] 7. **OWNER RULED ALL THREE 2026-08-17** (B-1 no floor; K_futility RETIRED;
+      futility = the owner's census-sequence design, completion gate subsumed) —
+      v6 delivered, codex re-review pending, then owner FINAL confirmation only.
+      (History: DONE-for-agents at v5; (Restated 2026-08-17 after the integrator's record correction:) Spec v3 was already
       reviewed 2026-08-16T06:00Z — verdict **REVISION_REQUIRED**
       (`codex_1/reviews/banana-farm-two-specs-v3-review-2026-08-16.md`), unread by the
       integrator for ~26 h. 7a: spec REVISION (**local_claude_1**) — (i) score-delta
@@ -62,6 +65,13 @@ by the verdict session's rulings, not before); T-1 half-swap fixture (recorded d
 viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untouched).
 
 ## Progress log (newest first)
+
+- 2026-08-17 (OWNER SESSION on specs — three rulings): B-1 = NO FLOOR; futility
+  mechanism = the OWNER'S SEQUENCE DESIGN (census → chop that many → recount;
+  stall/rise stops denial) — K_futility RETIRED (owner's provisional "16" superseded
+  by their own design), v4–v5 completion gate SUBSUMED as the round-progress element;
+  own-plant census exclusion closes the conversion blip. Spec v6 (`d153277`) to codex
+  for re-review of the new mechanism text; then owner FINAL confirmation only.
 
 - 2026-08-17 (two gates ACCEPTED): pool #4 v3 GATE_ACCEPTED (method artifact final;
   hardened post-acceptance per claude_1's hazard note — the withdrawn v1 function now
