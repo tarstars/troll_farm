@@ -62,6 +62,13 @@ begins with `Pool: N/M done`.
 
 ## Parked — explicitly OUT of this iteration
 
+**OWNER-ADDED NOTE 2026-08-17 (not a work item): the "two correct doors make a
+wall" discovery is recorded as crucial —
+`docs/DISCOVERY-two-correct-doors-make-a-wall-2026-08-17.md`. The owner will
+brainstorm it later and wants a composition-failure discovery/analysis tool;
+NOTHING chartered yet. Candidate seed for the next iteration's pool.**
+
+
 Full bridge-as-code (term census B0 / property audit B1 / band enforcement B3 — shaped
 by the verdict session's rulings, not before); T-1 half-swap fixture (recorded debt);
 viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untouched).
