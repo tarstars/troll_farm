@@ -1,6 +1,9 @@
 # 20260815-banana-farm-two-specs: write specifications A (unconditional) and B (conditional) for the banana-farm bot
 
-- Status: **v12 QUEUED behind pool-#2 by coordinator directive** (v11's two
+- Status: **v12 GATE_ACCEPTED_FOR_OWNER_FINAL_CONFIRMATION (codex_1, 2026-08-17T14:10Z)
+  — agent-side COMPLETE; awaiting the OWNER's final yes. Implementation additionally
+  gates on the oscillation verdict session per the programme.** Prior: **v12 QUEUED
+  behind pool-#2 by coordinator directive** (v11's two
   executable-definition items closed: enumerated transition table vs engine tick;
   explicit trace schema w/ mandatory terminal row). Prior: **v11 in codex_1 re-review** (v10's two operational contracts closed +
   claude_1's citation-precision fix). Prior: **v10 in codex_1 re-review** (v9's three evidence-contract blockers closed:

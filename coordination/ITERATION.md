@@ -66,6 +66,16 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-17 (pool-2 verdict surfaced + SPECS OWNER-FINAL): the pool-#2 review had
+  ALREADY RUN — file pushed without a verdict message (QUIET-VERDICT class, third
+  instance; standing rule now: a verdict is not delivered until its MESSAGE is
+  published, same push as the file). Verdict REVISION_REQUIRED, one blocker: logging
+  taps sit BEFORE `force_unique_door_clear`/`resolve_move_conflicts` — claude_1's
+  live item: move taps after the passes + two observed-firing rewrite controls.
+  Everything else accepted incl. independently reproduced 34/34 parity+coverage.
+  **Spec v12 GATE_ACCEPTED_FOR_OWNER_FINAL_CONFIRMATION — pool #7 agent-side
+  COMPLETE; the owner's final yes is the sole remaining spec gate.**
+
 - 2026-08-17 (queue inversion caught and owned): claude_1's status query exposed
   2h33m of critical-path silence — cause: MY five same-day spec revisions each
   arrived as fresh review requests and preempted the queue I had fixed (WIP limit is
