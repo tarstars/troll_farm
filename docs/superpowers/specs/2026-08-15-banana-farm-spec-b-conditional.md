@@ -1,9 +1,13 @@
 # Banana-farm bot — Spec B (conditional entry: "if third troll")
 
-- Status: DRAFT v9 — FIVE owner rulings carried (B-1 no floor; `K_futility` retired;
-  futility = the owner's census-sequence design; NO PLANTING DURING DENY; and
-  LOG-AND-DEFER on the suppression corners — no prevention machinery until logs show
-  real occurrences). For codex_1 re-review, then the owner's final confirmation.
+- Status: DRAFT v10 — the five owner rulings unchanged; v10 closes codex_1's v9
+  evidence-contract blockers. For codex_1 re-review, then the owner's final
+  confirmation.
+- Revision: v10 2026-08-17: census frozen as a SET of specific tree generations
+  (new enemy trees cannot pay an old quota; member loss by other causes ends the
+  round without a verdict); the panel backstop gains its second arm (zero de-novo
+  D-1 AND P4); the suppression log follows the unit until commitment resolution or
+  phase/game exit.
 - Revision: v9 2026-08-17: the C1/C2/C3 corner analysis written in (two PICK sites,
   scores, routing); owner rules corners rare — suppression events logged with context,
   the 240-game panel's zero-de-novo-oscillation gate is the backstop, prevention
@@ -198,17 +202,23 @@ numbers in this sequence) or rises at some point — we stop denial."*
 Mechanism, in the bot's terms — no per-turn window and **no `K_futility` constant
 (retired by the same ruling; the clock is completed work, not turns)**:
 
-- **Census.** On DENY entry take `C_0` = the plain count of visible selected-species
-  trees. No exclusions are needed: planting is FORBIDDEN during DENY (owner ruling
-  below), so no tree of ours can appear while censuses run. A focus tree our bot
-  planted BEFORE DENY entry (possible only in degenerate pre-DENY endgame states)
-  counts as an ordinary census member — accepted: extra census members make futility
-  HARDER to reach, the conservative side.
-- **Round.** A round completes when our cumulative CONFIRMED focus-chop completions
-  since the last census reach that census value. (With planting forbidden during
-  DENY, every standing focus tree is census population — v7's census-eligibility
-  distinction is moot and deleted.) If the live count reaches 0 at any point,
-  `species_gone` sets instead — zero trees is job-done, not futility.
+- **Census.** On DENY entry record the census as the SET of specific standing
+  selected-species trees — cell plus generation identity (v10, per codex_1's v9
+  review) — and `C_0` = its size. No ownership exclusions are needed: planting is
+  FORBIDDEN during DENY (owner ruling below), so no tree of ours can appear while
+  censuses run. A focus tree our bot planted BEFORE DENY entry (degenerate pre-DENY
+  endgame states only) counts as an ordinary census member — accepted: extra members
+  make futility HARDER to reach, the conservative side.
+- **Round.** A round completes when our confirmed completions of **CENSUS-MEMBER
+  trees** reach `C_i` (v10: the quota is payable only by the trees that were counted
+  — an enemy tree planted after the census cannot pay an old quota; it appears in
+  the recount instead, which is where it belongs). If census members vanish through
+  anything OTHER than our confirmed completions (enemy action, decay), the quota can
+  no longer be met by us: when the last member is gone, re-census and start a fresh
+  round WITHOUT a stall/rise comparison — the owner's verdict reads "against our
+  chopping", and that round was not finished by our chopping. If the live count
+  reaches 0 at any point, `species_gone` sets instead — zero trees is job-done, not
+  futility.
 - **Verdict.** At each round completion take the next census `C_{i+1}` and append it
   to the sequence. **`futility_reached` sets iff `C_{i+1} >= C_i`** — the owner's
   stall ("two equal numbers") or rise: we removed a full census of trees and the
@@ -238,9 +248,14 @@ the very pathologies of the standing-troll track). The owner judges the C1/C2/C3
 corners RARE and rules: **no prevention machinery is built now** (no PICK
 suppression, no commitment clearing). Instead: (a) every suppression event is LOGGED
 with its full context — turn, board plant count, score sign, banked fruits, the
-suppressed command, the unit's next 5 emitted commands; (b) the implementation's
-mandatory 240-game acceptance panel is the empirical backstop — a manufactured dance
-surfaces there as de-novo D-1 and fails the panel's zero-de-novo requirement; (c) the
+suppressed command — and the unit's per-turn branch / candidate summary / commitment
+state / emitted command are logged FROM the event UNTIL its commitment resolves or
+the phase or game exits (v10, per codex_1's v9 review — a fixed five-command window
+cannot adjudicate a strand); (b) the implementation's mandatory 240-game acceptance
+panel is the empirical backstop with BOTH arms: a manufactured dance surfaces as
+de-novo D-1, a stranded parked troll as a de-novo P4 liveness violation — the panel
+gate is ZERO de-novo D-1 AND ZERO de-novo P4 (the P4 arm confirmed by claude_1's
+T-1 stage-1b measurement, not assumed); (c) the
 interaction RETURNS TO THE OWNER if the logs show real occurrences. The integrator's
 "C3 is common" claim is recorded as a mechanism argument to be tested by exactly this
 log, not assumed.
