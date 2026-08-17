@@ -1,8 +1,14 @@
 # Banana-farm bot — Spec B (conditional entry: "if third troll")
 
-- Status: DRAFT v10 — the five owner rulings unchanged; v10 closes codex_1's v9
-  evidence-contract blockers. For codex_1 re-review, then the owner's final
-  confirmation.
+- Status: DRAFT v11 — the five owner rulings unchanged; v11 closes codex_1's v10
+  operational contracts and one citation-precision correction from claude_1. For
+  codex_1 re-review, then the owner's final confirmation.
+- Revision: v11 2026-08-17: cell-based generation-identity contract (identity ends on
+  any inconsistent observation; same-cell replacements are non-members) + GK
+  same-cell-replacement arm; suppression-log schema made joinable and fail-closed
+  (keys, before/after states, post-conflict command, explicit terminal reason incl.
+  unit death); the P4-backstop justification corrected to the measured detector
+  property (claude_1's own citation-precision correction).
 - Revision: v10 2026-08-17: census frozen as a SET of specific tree generations
   (new enemy trees cannot pay an old quota; member loss by other causes ends the
   round without a verdict); the panel backstop gains its second arm (zero de-novo
@@ -246,19 +252,33 @@ pipeline can strand a committed troll (walk-to-plant with the plant refused → 
 manufactured dance between adjacent cells at scores 8000−distance, or all-WAIT at 0 —
 the very pathologies of the standing-troll track). The owner judges the C1/C2/C3
 corners RARE and rules: **no prevention machinery is built now** (no PICK
-suppression, no commitment clearing). Instead: (a) every suppression event is LOGGED
-with its full context — turn, board plant count, score sign, banked fruits, the
-suppressed command — and the unit's per-turn branch / candidate summary / commitment
-state / emitted command are logged FROM the event UNTIL its commitment resolves or
-the phase or game exits (v10, per codex_1's v9 review — a fixed five-command window
-cannot adjudicate a strand); (b) the implementation's mandatory 240-game acceptance
-panel is the empirical backstop with BOTH arms: a manufactured dance surfaces as
-de-novo D-1, a stranded parked troll as a de-novo P4 liveness violation — the panel
-gate is ZERO de-novo D-1 AND ZERO de-novo P4 (the P4 arm confirmed by claude_1's
-T-1 stage-1b measurement, not assumed); (c) the
+suppression, no commitment clearing). Instead: (a) every suppression event is LOGGED, JOINABLE and FAIL-CLOSED
+(v11, per codex_1's v10 review): keys = run id / map / seat / unit id / cell; at the
+event — turn, board plant count, score sign, banked fruits, the suppressed command,
+commitment state and candidate summary BEFORE and AFTER the suppression, and the
+post-conflict emitted command; then per-turn branch / candidate summary / commitment
+state / emitted command UNTIL an explicit terminal reason: `commitment_resolved`,
+`phase_exit`, `game_end`, or `unit_death`. A record missing any key field VOIDS that
+event's log and is itself surfaced as a panel error — fail-closed, never silently
+partial (a fixed five-command window cannot adjudicate a strand — v9 review); (b) the implementation's mandatory 240-game acceptance
+panel is the empirical backstop with BOTH arms — the panel gate is ZERO de-novo D-1
+AND ZERO de-novo P4. P4 is named because D-1 is structurally blind to a non-moving
+unit — measured on the 34 frozen fixtures, where all four stalls show 0 D-1 and 1 P4
+(claude_1, T-1 stage 1b). Whether any farm strand actually surfaces as P4 is
+untested (v11 citation precision, corrected by claude_1 itself); (c) the
 interaction RETURNS TO THE OWNER if the logs show real occurrences. The integrator's
 "C3 is common" claim is recorded as a mechanism argument to be tested by exactly this
 log, not assumed.
+
+**Census-member generation identity (v11, per codex_1's v10 review — the referee
+exposes no plant ID, so identity is cell-based and must be defined):** a member's
+identity is its census-time observation at its cell (kind, size, health, fruits,
+cooldown), advanced each turn only by observations CONSISTENT with that same plant's
+growth (the section 7 consistency rules). ANY inconsistent observation — size reset,
+kind change, absence, or absence-then-presence — ENDS the identity permanently: the
+member leaves the census set (the Round bullet's mixed-loss rule then governs), and
+ANY tree subsequently standing at that cell — including a same-cell enemy
+replacement — is a NON-member: it pays no quota and appears only in the next recount.
 
 **Completion confirmation (unchanged from v5 — now the round-progress element):**
 evaluated by the same reconciliation pass as section 7, on (previous turn's
@@ -574,7 +594,7 @@ broken build) before its pass is credited; all of them precede any value panel.
 | GT — train | A second troll is trained | `TRAIN` issued (lines 1387–1389) and own unit count reaches 2. Resident already does this: a do-not-break gate. |
 | GD — deny | One of lemon/plum is selected, frozen, and denied | `type_to_cut` set once (lines 796–799); focus-species chops occur while `denial_enabled`, preferentially near the enemy shack (bonus at line 622). Do-not-break. |
 | GE — doorway fidelity | The third-troll doorway fires in games where the enemy fields a third troll (and our second exists), and does NOT fire where the enemy never does; the unconsumed signals (`species_gone`, `futility_reached`) provably never cause a transition | Constructed/replayed games; doorway and futility-tracker telemetry (census sequence, round progress) logged every DENY turn. |
-| GK — futility sequence twins (v6) | Though unconsumed in Spec B, the shared tracker's latch must behave identically to Spec A for A-vs-B comparability: the unfinishable-round case CANNOT set `futility_reached` (round incomplete, no enemy planting); the positive twin (a completed round with enemy replanting keeping the recount ≥ the previous census) sets it — and still causes no transition; suppression twins (v8): in a constructed bare-board DENY state the machine bot emits no PLANT while DENY holds, and PLANT resumes after the doorway | Constructed games per the section 4 sequence tracker and its confirmation rule; both arms observed, fail-first per the standing rule. |
+| GK — futility sequence twins (v6) | Though unconsumed in Spec B, the shared tracker's latch must behave identically to Spec A for A-vs-B comparability: the unfinishable-round case CANNOT set `futility_reached` (round incomplete, no enemy planting); the positive twin (a completed round with enemy replanting keeping the recount ≥ the previous census) sets it — and still causes no transition; suppression twins (v8): in a constructed bare-board DENY state the machine bot emits no PLANT while DENY holds, and PLANT resumes after the doorway; same-cell replacement arm (v11): a completion followed by same-cell enemy replant → the new tree pays no quota, recount-only | Constructed games per the section 4 sequence tracker and its confirmation rule; both arms observed, fail-first per the standing rule. |
 | GF — sustained farm cycle | FARM entered per this spec's predicate (and NOT entered when the enemy never fields a third troll); bootstrap plants ≥ 1 banked banana; at least one full harvest → replant cycle completes; the loop repeats while conditions hold | Telemetry per the D89a blueprint: every activation, bootstrap attempt/success, reserve promotion/loss, own-crop harvest, renewable replant, trained-role rewrite logged. Entry needs both arms too: games where it fires and games where it correctly does not. |
 | GA+ — abort fires | In games where the score-delta abort condition persists ≥ K turns after warm-up, WOOD is entered | Constructed/replayed games on the development panel; sealed ranges stay closed. |
 | GA− — abort does not misfire | In games where the condition never persists, WOOD is never entered | Both arms are mandatory: a rule that always fires is not conditional, and a rule that never fires is not a rule (the project's trigger-fidelity check). |
