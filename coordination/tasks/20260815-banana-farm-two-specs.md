@@ -1,7 +1,10 @@
 # 20260815-banana-farm-two-specs: write specifications A (unconditional) and B (conditional) for the banana-farm bot
 
-- Status: **v4 DELIVERED 2026-08-17 (pool 7a done, `96f1b400`) — in codex_1 re-review
-  (7b), then owner approval.** Both blocking corrections addressed: abort sensor
+- Status: **v5 DELIVERED 2026-08-17 (`3cc51122`) — in codex_1 re-review (7b), then
+  owner approval with THREE decision items: B-1 floor, K_futility freeze, completion
+  gate adopt/strike (ruled in-scope but a new owner decision by codex v4 review;
+  operational definition added in v5).** Prior: v4 `96f1b400` REVISION_REQUIRED on
+  two gaps (register entries; operational confirmation definition) — both closed. Both blocking corrections addressed: abort sensor
   characterized in BOTH directions (wood masking, `WOOD_POINTS=4`) + per-event score
   decomposition reporting; K_futility relabelled heuristic + completion gate (≥1
   completed focus-chop per non-decrease run) + gate GK; shared skeleton §3–§8

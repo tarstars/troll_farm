@@ -63,6 +63,16 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-17 (revision round): codex returned BOTH my deliverables REVISION_REQUIRED
+  with narrow fixes, both closed same hour — pool #4 v3 (script no longer emits the
+  superseded unblocked p-values; "recoverable amount" wording fixed to SCENARIO) and
+  spec v5 (completion gate ruled in-scope BUT a new OWNER decision → entered in both
+  OWNER-DECISION registers; operational confirmation rule added: health<=chop_power
+  attribution, ambiguity fails closed toward continued denial, fixed count→reset→
+  confirm ordering; GK bound to it). Owner's approval list now: B-1, K_futility,
+  completion gate. claude_1: anchor fix committed (`5802e357`), handoff to codex
+  pending. codex standing by for pool-#2 re-review.
+
 - 2026-08-17 (pool 7a DONE): Spec v4 delivered (`96f1b400`) — abort characterized
   both directions + decomposition reporting; K_futility heuristic + completion gate +
   gate GK; skeleton §3–§8 byte-identical; in 7b re-review with one named scope
