@@ -66,6 +66,17 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-17 (FIFTH owner ruling → v9): deep joint code-walk on "what does a
+  committed troll receive under PLANT suppression" — owner challenged the premise,
+  code answered: two PICK sites (main :1177 @7500 needs turn≥100+board≤2+winning;
+  endgame :1287 @7000 after turn 250, ~83 before), three corners C1/C2/C3; the
+  suppressed pipeline can strand a troll (manufactured dance/park). OWNER RULED:
+  corners rare — LOG-AND-DEFER; no prevention machinery; full-context logging + the
+  panel's de-novo gate as backstop; returns to owner if logs show occurrences.
+  Integrator's "C3 common" recorded as a testable claim, not assumed. v9
+  (`d83a66f2`) to codex; open sub-question flagged: park variant surfaces as P4,
+  not D-1 — second backstop line if codex agrees.
+
 - 2026-08-17 (FOURTH owner ruling → v8): owner stated "during denial our bot can't
   plant trees"; code verification showed it true-by-circumstance except the
   bare-board corner (sole PLANT :1256 reachable only via board≤4-and-losing /
