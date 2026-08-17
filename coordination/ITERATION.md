@@ -63,6 +63,12 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-17 (pool #4 DELIVERED, pending codex method check): margin decomposition
+  on the 240-game floor (`local_claude_1/pool4/`, artifact `561a5353`): the
+  whole-bot no-progress STALL is the billable event (stall games −12.5 vs par,
+  p≈1e-4; ceiling ≈1.4 corpus points if cured); the DANCE is mostly a MARKER
+  (dance-only games −9.6 with just 14 dancing turns, p≈0.005). Feeds verdict
+  session #6 next to the cause table.
 - 2026-08-17 (pool #1 delivered → REOPENED): claude_1 delivered all five repairs
   (`94e19320`); integrator verification against the frozen library RULED the anchor
   question claude_1 had routed up: per-kind rule (D1 → `classification/blocker`;
