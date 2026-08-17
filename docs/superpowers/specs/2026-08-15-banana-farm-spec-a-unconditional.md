@@ -1,8 +1,13 @@
 # Banana-farm bot — Spec A (the owner's denial-preserving state machine)
 
-- Status: DRAFT v7 — the v6 owner rulings unchanged (B-1 no floor; `K_futility`
-  retired; futility = the owner's census-sequence design); v7 repairs codex_1's v6
-  findings. For codex_1 re-review, then the owner's final confirmation.
+- Status: DRAFT v8 — FOUR owner rulings now carried (B-1 no floor; `K_futility`
+  retired; futility = the owner's census-sequence design; NO PLANTING DURING DENY).
+  For codex_1 re-review, then the owner's final confirmation.
+- Revision: v8 2026-08-17: owner ruling — PLANT suppressed while the machine is in
+  DENY (sole site :1256; code-verified reachable only in a bare-board/late corner);
+  the v6–v7 census-exclusion machinery (exclusion tracker, census-eligibility) is
+  DELETED as unnecessary; gate GB gains the second named exception; GK's exclusion
+  arm replaced by the suppression twins.
 - Revision: v7 2026-08-17: round progress counts CENSUS-ELIGIBLE completions only
   (a chop of an excluded own tree advances nothing; the constructed
   census-1/own-tree must-not-fire case added to gate GK); the exclusion tracker
@@ -187,18 +192,16 @@ numbers in this sequence) or rises at some point — we stop denial."*
 Mechanism, in the bot's terms — no per-turn window and **no `K_futility` constant
 (retired by the same ruling; the clock is completed work, not turns)**:
 
-- **Census.** On DENY entry take `C_0` = the count of visible selected-species trees,
-  EXCLUDING trees standing on cells our own confirmed `PLANT` created (section 7-style
-  reconciliation over OUR OWN commands only — no enemy-ownership inference anywhere).
-  The exclusion closes the endgame conversion blip: our own briefly-planted lemon or
-  plum can never inflate a census.
-- **Round.** A round completes when our cumulative confirmed **CENSUS-ELIGIBLE**
-  focus-chop completions since the last census reach that census value. A completion
-  is census-eligible iff its tree was part of the census population — that is, NOT
-  standing on an excluded own-planted cell (v7, per codex_1's v6 review: chopping our
-  own excluded conversion tree is a confirmed completion that advances NOTHING — with
-  census 1, one such chop must not complete the round while the eligible tree still
-  stands). If the (exclusion-adjusted) live count reaches 0 at any point,
+- **Census.** On DENY entry take `C_0` = the plain count of visible selected-species
+  trees. No exclusions are needed: planting is FORBIDDEN during DENY (owner ruling
+  below), so no tree of ours can appear while censuses run. A focus tree our bot
+  planted BEFORE DENY entry (possible only in degenerate pre-DENY endgame states)
+  counts as an ordinary census member — accepted: extra census members make futility
+  HARDER to reach, the conservative side.
+- **Round.** A round completes when our cumulative CONFIRMED focus-chop completions
+  since the last census reach that census value. (With planting forbidden during
+  DENY, every standing focus tree is census population — v7's census-eligibility
+  distinction is moot and deleted.) If the live count reaches 0 at any point,
   `species_gone` sets instead — zero trees is job-done, not futility.
 - **Verdict.** At each round completion take the next census `C_{i+1}` and append it
   to the sequence. **`futility_reached` sets iff `C_{i+1} >= C_i`** — the owner's
@@ -210,18 +213,15 @@ Mechanism, in the bot's terms — no per-turn window and **no `K_futility` const
   erring toward CONTINUING denial, the conservative side (denial is suspected
   load-bearing, N6), with the other doorways still providing exits.
 
-**The exclusion tracker — its own contract, BUILT NOW (v7; distinct from section 7's
-future-variant banana table, which is not built):** an excluded-ours entry is created
-iff our own confirmed focus-species `PLANT` at cell C (confirmed exactly as a
-section 7 Plant transition: we emitted `PLANT` there last turn, a size-0 focus plant
-stands there now, our unit's cargo dropped by one), carrying a generation identity
-(cell, confirmation turn, last observed size/fruits/cooldown). Observations
-consistent with that plant's own growth update the identity. ANY inconsistent
-observation — size reset, kind change, or presence after observed absence — ends the
-generation: the entry is removed and whatever stands there re-enters the census as
-NOT ours. The failure direction is deliberate: a lost exclusion means we count MORE
-trees, futility gets HARDER to reach, and denial continues — conservative. Our own
-confirmed chop of an excluded tree removes its entry (and advances no round, above).
+**No planting during DENY — OWNER RULING 2026-08-17 (v8).** While the machine is in
+DENY, the endgame planner's sole `PLANT` candidate (readable resident :1256, the only
+planting site in the bot) is SUPPRESSED. Code-verified basis: that site is reachable
+during DENY only in a narrow corner — board ≤ 4 plants while losing, or turn > 250,
+or the ≤2-plant banked-fruit PICK pipeline (:1177). The ruling turns "the bot cannot
+plant during denial" from a circumstance into an enforced invariant and DELETES the
+v6–v7 census-exclusion machinery whole. Cost, accepted by the owner: the endgame
+conversion trick is delayed until a doorway fires, in states where denial is ending
+anyway. This is the SECOND named exception to gate GB (byte-identity during DENY).
 
 **Completion confirmation (unchanged from v5 — now the round-progress element):**
 evaluated by the same reconciliation pass as section 7, on (previous turn's
@@ -516,12 +516,12 @@ broken build) before its pass is credited; all of them precede any value panel.
 |---|---|---|
 | GT — train | A second troll is trained | `TRAIN` issued (lines 1387–1389) and own unit count reaches 2. Resident already does this: a do-not-break gate. |
 | GD — deny | One of lemon/plum is selected, frozen, and denied | `type_to_cut` set once (lines 796–799); focus-species chops occur while `denial_enabled`, preferentially near the enemy shack (bonus at line 622). Do-not-break. |
-| GE — doorway fidelity | Each of the three doorways fires in constructed games where its condition holds, and does NOT fire where it does not — in particular, an endgame conversion-blip game (section 4) must not fire futility | Constructed/replayed games; futility-tracker telemetry (census sequence, round progress, own-plant exclusions) logged every DENY turn. |
-| GK — futility sequence twins (v6) | The unfinishable-round case CANNOT fire futility: a distant/unreachable focus tree keeps the round incomplete, no enemy planting → `futility_reached` never sets, however many turns pass. Positive twin: a completed round (a full census of confirmed CENSUS-ELIGIBLE completions) with enemy replanting keeping the recount ≥ the previous census → it sets. Exclusion arm (v7): census of 1 eligible tree; we chop our own EXCLUDED conversion tree → the round does NOT complete and futility does NOT fire. | Constructed games per the section 4 sequence tracker and its confirmation rule (completions: removal with `health <= chop_power`); both arms observed, fail-first per the standing rule. |
+| GE — doorway fidelity | Each of the three doorways fires in constructed games where its condition holds, and does NOT fire where it does not (the conversion-blip hazard is closed structurally by the section 4 PLANT suppression; its tests live in GK's suppression twins) | Constructed/replayed games; futility-tracker telemetry (census sequence, round progress) logged every DENY turn. |
+| GK — futility sequence twins (v6) | The unfinishable-round case CANNOT fire futility: a distant/unreachable focus tree keeps the round incomplete, no enemy planting → `futility_reached` never sets, however many turns pass. Positive twin: a completed round (a full census of confirmed completions) with enemy replanting keeping the recount ≥ the previous census → it sets. Suppression twins (v8): a constructed bare-board DENY state where the RESIDENT would emit PLANT → the machine bot emits none while DENY holds; after a doorway fires, PLANT resumes. | Constructed games per the section 4 sequence tracker and its confirmation rule (completions: removal with `health <= chop_power`); both arms observed, fail-first per the standing rule. |
 | GF — sustained farm cycle | FARM entered on the first doorway firing and never before; bootstrap plants ≥ 1 banked banana; at least one full harvest → replant cycle completes; the loop repeats while conditions hold | Telemetry per the D89a blueprint: every activation, bootstrap attempt/success, reserve promotion/loss, own-crop harvest, renewable replant, trained-role rewrite logged. |
 | GA+ — abort fires | In games where the score-delta abort condition persists ≥ K turns after warm-up, WOOD is entered | Constructed/replayed games on the development panel; sealed ranges stay closed. |
 | GA− — abort does not misfire | In games where the condition never persists, WOOD is never entered | Both arms are mandatory: a rule that always fires is not conditional, and a rule that never fires is not a rule (the project's trigger-fidelity check). |
-| GB — byte-identity before first transition | Emitted command lines are byte-identical to the resident on every turn before the first transition out of DENY fires (the sole permitted pre-doorway divergence is the COLLECT-phase no-re-enable caveat of section 5(a)), and for whole opening-abandoned games | Diff of full command transcripts. |
+| GB — byte-identity before first transition | Emitted command lines are byte-identical to the resident on every turn before the first transition out of DENY fires (the two permitted pre-doorway divergences: the COLLECT-phase no-re-enable caveat of section 5(a), and the DENY-phase PLANT suppression of section 4 — owner ruling 2026-08-17), and for whole opening-abandoned games | Diff of full command transcripts. |
 | GM — monotonicity | Over the whole test panel: no state transition ever reverses, `denial_enabled` never returns to true after latching off, and no doorway latch ever clears (census rounds restart freely; the `futility_reached` latch may not clear) | Assertions in the bot plus transcript audit. |
 
 Boundary (unchanged from the CBF spec): behavioural gates deliver a *correctly built*
@@ -607,6 +607,7 @@ Risks specific to A, beyond the shared ones:
 | M-1 (shared with Spec B) | Measurement decision rule | RULED 2026-08-15: paired-CI protocol of section 12 |
 | — | `K_futility` (section 4) | RULED 2026-08-17: RETIRED — the owner's census-sequence design has no turn constant. (The same session's provisional "16" answer is superseded by this same ruling.) |
 | — (shared with Spec B) | The v4–v5 completion gate | RULED 2026-08-17: SUBSUMED by the owner's census-sequence design; its confirmation rule survives as the round-progress element (section 4) |
+| — (shared with Spec B) | May the bot plant during DENY? | RULED 2026-08-17: FORBIDDEN — the sole PLANT site is suppressed while the machine is in DENY; the census-exclusion machinery is deleted as unnecessary (section 4) |
 
 ## 15. Appendix — Spec A0, the demoted collection candidate (not built)
 
