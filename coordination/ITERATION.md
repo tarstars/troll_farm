@@ -25,7 +25,7 @@ begins with `Pool: N/M done`.
 - [ ] 3. Full 34-situation sweep → cause table in the owner's three-level vocabulary:
       no-goal-assigned / goal-split-wrong / world-interaction / cannot-use-work /
       not-starved (claude_1)
-- [ ] 4. Margin decomposition on the EXISTING 240-game panel data: does margin track
+- [x] 4. Margin decomposition on the EXISTING 240-game panel data: does margin track
       parked-idle turns or oscillation episodes? Prices the illness; no new runs
       (local_claude_1; codex_1 verifies method)
 - [ ] 5. Mechanism note per no-goal case: which generator path emits the WAIT-only
@@ -35,7 +35,7 @@ begins with `Pool: N/M done`.
 
 ## Parallel (non-blocking)
 
-- [ ] 7. **RESTATED 2026-08-17 (integrator's record correction):** Spec v3 was already
+- [x] 7. **DONE for the agents — owner-gate LIVE.** (Restated 2026-08-17 after the integrator's record correction:) Spec v3 was already
       reviewed 2026-08-16T06:00Z — verdict **REVISION_REQUIRED**
       (`codex_1/reviews/banana-farm-two-specs-v3-review-2026-08-16.md`), unread by the
       integrator for ~26 h. 7a: spec REVISION (**local_claude_1**) — (i) score-delta
@@ -62,6 +62,14 @@ by the verdict session's rulings, not before); T-1 half-swap fixture (recorded d
 viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untouched).
 
 ## Progress log (newest first)
+
+- 2026-08-17 (two gates ACCEPTED): pool #4 v3 GATE_ACCEPTED (method artifact final;
+  hardened post-acceptance per claude_1's hazard note — the withdrawn v1 function now
+  RAISES if called). Spec v5 **GATE_ACCEPTED_FOR_OWNER_REVIEW** — pool 7 complete on
+  the agent side; **the OWNER's spec-approval decision is now LIVE** (three reserved
+  items: B-1 floor, K_futility freeze, completion gate adopt/strike). Critical path
+  still waits on claude_1's anchor-fix handoff (committed `5802e357`, not yet handed
+  off) → codex pool-#2 → sweep → session.
 
 - 2026-08-17 (revision round): codex returned BOTH my deliverables REVISION_REQUIRED
   with narrow fixes, both closed same hour — pool #4 v3 (script no longer emits the

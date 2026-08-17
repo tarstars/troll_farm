@@ -63,9 +63,19 @@ def pearson(xs, ys):
     return num / den if den else float("nan")
 
 
-def perm_p(a, b, seed, k=20000):
-    """One-sided permutation p for mean(a) - mean(b) being this low."""
-    obs = mean(a) - mean(b)
+def perm_p_v1_SUPERSEDED(a, b, seed, k=20000):
+    """WITHDRAWN METHOD — kept only as the record of what v1 did. RAISES on call.
+
+    The unblocked permutation treats 240 games as independent; the panel is 120
+    matched map pairs, so these p-values are INVALID for this design (codex_1 v2
+    review). Hardened per claude_1's 2026-08-17 hazard note: a retained, uncalled
+    function is one careless call away from returning, so this one refuses to run.
+    Use exact_signflip_p() over paired_deltas() instead.
+    """
+    raise RuntimeError(
+        "perm_p_v1_SUPERSEDED: unblocked permutation is INVALID for the matched "
+        "120-map design — use exact_signflip_p(paired_deltas(...)) (v2)")
+    obs = mean(a) - mean(b)  # unreachable, kept as the record of the method
     pool = a + b
     rng = random.Random(seed)
     cnt = 0
@@ -93,8 +103,8 @@ def main():
               f"  osc {mean([r['osc'] for r in g]):6.1f}  stall {mean([r['stall'] for r in g]):6.1f}")
     print("inference: see the map-blocked exact sign-flip tests below (v2). The v1")
     print("unblocked permutation p-values are SUPERSEDED and INVALID for this matched")
-    print("design (codex_1 v2 review) and are no longer emitted; perm_p() remains only")
-    print("as the documented record of the withdrawn method.")
+    print("design (codex_1 v2 review) and are no longer emitted; the withdrawn method")
+    print("is kept as perm_p_v1_SUPERSEDED(), which raises if called.")
     print(f"corr(margin, stall) {pearson(allm, [r['stall'] for r in rows]):+.3f}   "
           f"corr(margin, osc) {pearson(allm, [r['osc'] for r in rows]):+.3f}")
 
