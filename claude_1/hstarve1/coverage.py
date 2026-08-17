@@ -76,6 +76,13 @@ def run_diagnostic(binary, referee, turns):
     return "".join(parts), "\n".join(lines) + "\n", "".join(chunks)
 
 
+# check_parity had never REJECTED anything until 2026-08-17: it passed on every situation,
+# which is exactly what an inert check looks like. Observed rejecting by running it against a
+# deliberately different bot (the T-1 swap candidate vs the resident), which it caught:
+#   "OSC-001: diagnostic runner DIVERGES from regression_tests.run_binary_custom"
+# Reproduce:
+#   check_parity(sit, cfg, compile(RESIDENT), compile(claude_1/t1/candidate-t1-swap.rs))
+# A guard that has only ever agreed is not evidence of agreement.
 def check_parity(sit, cfg, plain_bin, instr_bin):
     spec = H.spec_for(sit, cfg)
     _, c_shared = rt.run_binary_custom(Path(plain_bin), fp.make_referee(spec), int(cfg["turns"]))

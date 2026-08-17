@@ -174,6 +174,19 @@ def _self_test():
         bad2["window"]["unit"] = opp[0][0]
         rejects("dancer that is an OPPONENT unit", bad2, "NOT one of our units")
 
+    # UNRULED_SHAPE never executes on the real 34 (0 fall-throughs), so without these it is a
+    # branch that has never run — the inert-check pattern. Both observed.
+    unk = json.loads(json.dumps(base)); unk["kind"] = "SOMETHING_NEW"
+    r_unk = anchors(unk)
+    cases.append(("unknown situation kind -> UNRULED_SHAPE (fail-closed)",
+                  r_unk["coverage"] == UNRULED, r_unk["rule"]))
+
+    ghost = json.loads(json.dumps(base))
+    ghost["classification"]["blocker"] = {"cell_at_entry": [99, 99]}
+    r_ghost = anchors(ghost)
+    cases.append(("blocker cell matching no own unit -> UNRULED_SHAPE",
+                  r_ghost["coverage"] == UNRULED, r_ghost["rule"]))
+
     bad3 = json.loads(json.dumps(base))
     bad3["world_state_at_entry"]["units"] = [u for u in bad3["world_state_at_entry"]["units"]
                                              if u[1] != 0]
