@@ -1,0 +1,394 @@
+{
+ "denovo_d1": [],
+ "denovo_p4": [],
+ "detector_counts_whole_game": {
+  "OSC-001": {
+   "candidate": [
+    1,
+    1
+   ],
+   "resident": [
+    1,
+    1
+   ]
+  },
+  "OSC-002": {
+   "candidate": [
+    1,
+    1
+   ],
+   "resident": [
+    1,
+    1
+   ]
+  },
+  "OSC-003": {
+   "candidate": [
+    1,
+    0
+   ],
+   "resident": [
+    1,
+    0
+   ]
+  },
+  "OSC-004": {
+   "candidate": [
+    1,
+    0
+   ],
+   "resident": [
+    1,
+    0
+   ]
+  },
+  "OSC-005": {
+   "candidate": [
+    1,
+    0
+   ],
+   "resident": [
+    1,
+    0
+   ]
+  },
+  "OSC-006": {
+   "candidate": [
+    1,
+    0
+   ],
+   "resident": [
+    1,
+    0
+   ]
+  },
+  "OSC-007": {
+   "candidate": [
+    1,
+    0
+   ],
+   "resident": [
+    1,
+    0
+   ]
+  },
+  "OSC-008": {
+   "candidate": [
+    0,
+    0
+   ],
+   "resident": [
+    1,
+    0
+   ]
+  },
+  "OSC-009": {
+   "candidate": [
+    0,
+    0
+   ],
+   "resident": [
+    2,
+    0
+   ]
+  },
+  "OSC-010": {
+   "candidate": [
+    1,
+    0
+   ],
+   "resident": [
+    1,
+    0
+   ]
+  },
+  "OSC-011": {
+   "candidate": [
+    1,
+    0
+   ],
+   "resident": [
+    1,
+    0
+   ]
+  },
+  "OSC-012": {
+   "candidate": [
+    1,
+    1
+   ],
+   "resident": [
+    1,
+    1
+   ]
+  },
+  "OSC-013": {
+   "candidate": [
+    1,
+    1
+   ],
+   "resident": [
+    1,
+    1
+   ]
+  },
+  "OSC-014": {
+   "candidate": [
+    1,
+    1
+   ],
+   "resident": [
+    1,
+    1
+   ]
+  },
+  "OSC-015": {
+   "candidate": [
+    1,
+    1
+   ],
+   "resident": [
+    1,
+    1
+   ]
+  },
+  "OSC-016": {
+   "candidate": [
+    1,
+    1
+   ],
+   "resident": [
+    1,
+    1
+   ]
+  },
+  "OSC-017": {
+   "candidate": [
+    1,
+    1
+   ],
+   "resident": [
+    1,
+    1
+   ]
+  },
+  "OSC-018": {
+   "candidate": [
+    1,
+    1
+   ],
+   "resident": [
+    1,
+    1
+   ]
+  },
+  "OSC-019": {
+   "candidate": [
+    1,
+    1
+   ],
+   "resident": [
+    1,
+    1
+   ]
+  },
+  "OSC-020": {
+   "candidate": [
+    1,
+    1
+   ],
+   "resident": [
+    1,
+    1
+   ]
+  },
+  "OSC-021": {
+   "candidate": [
+    1,
+    1
+   ],
+   "resident": [
+    1,
+    1
+   ]
+  },
+  "OSC-022": {
+   "candidate": [
+    2,
+    2
+   ],
+   "resident": [
+    2,
+    2
+   ]
+  },
+  "OSC-023": {
+   "candidate": [
+    2,
+    2
+   ],
+   "resident": [
+    2,
+    2
+   ]
+  },
+  "OSC-024": {
+   "candidate": [
+    1,
+    1
+   ],
+   "resident": [
+    1,
+    1
+   ]
+  },
+  "OSC-025": {
+   "candidate": [
+    1,
+    0
+   ],
+   "resident": [
+    1,
+    0
+   ]
+  },
+  "OSC-026": {
+   "candidate": [
+    1,
+    0
+   ],
+   "resident": [
+    1,
+    0
+   ]
+  },
+  "OSC-027": {
+   "candidate": [
+    1,
+    0
+   ],
+   "resident": [
+    1,
+    0
+   ]
+  },
+  "OSC-028": {
+   "candidate": [
+    0,
+    0
+   ],
+   "resident": [
+    2,
+    0
+   ]
+  },
+  "OSC-029": {
+   "candidate": [
+    1,
+    0
+   ],
+   "resident": [
+    1,
+    0
+   ]
+  },
+  "OSC-030": {
+   "candidate": [
+    1,
+    0
+   ],
+   "resident": [
+    1,
+    0
+   ]
+  },
+  "OSC-031": {
+   "candidate": [
+    0,
+    1
+   ],
+   "resident": [
+    0,
+    1
+   ]
+  },
+  "OSC-032": {
+   "candidate": [
+    0,
+    0
+   ],
+   "resident": [
+    0,
+    1
+   ]
+  },
+  "OSC-033": {
+   "candidate": [
+    0,
+    0
+   ],
+   "resident": [
+    0,
+    1
+   ]
+  },
+  "OSC-034": {
+   "candidate": [
+    0,
+    1
+   ],
+   "resident": [
+    0,
+    1
+   ]
+  }
+ },
+ "fail_first_turns_red_on_resident": 311,
+ "gate": "G1",
+ "no_goal_after": {
+  "OSC-001": 13,
+  "OSC-005": 1,
+  "OSC-008": 0,
+  "OSC-009": 0,
+  "OSC-028": 0,
+  "OSC-031": 89,
+  "OSC-032": 0,
+  "OSC-033": 0
+ },
+ "no_goal_before": {
+  "OSC-001": 16,
+  "OSC-005": 1,
+  "OSC-008": 7,
+  "OSC-009": 4,
+  "OSC-028": 51,
+  "OSC-031": 189,
+  "OSC-032": 110,
+  "OSC-033": 143
+ },
+ "prediction_divergences": [
+  {
+   "first_divergent_command_turn": 1,
+   "observed_remaining": 0,
+   "predicted_remaining": 4,
+   "situation": "OSC-009",
+   "window": [
+    77,
+    83
+   ]
+  },
+  {
+   "first_divergent_command_turn": 18,
+   "observed_remaining": 89,
+   "predicted_remaining": 178,
+   "situation": "OSC-031",
+   "window": [
+    11,
+    200
+   ]
+  }
+ ],
+ "registry": "claude_1/cure-c/prediction-registry-2026-08-17.json",
+ "situations_compared_for_regression": 34,
+ "task": "20260817-cure-c-implementation",
+ "verdict": "BLOCKED_ON_PREDICTION_DIVERGENCE"
+}
