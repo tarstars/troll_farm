@@ -68,6 +68,17 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-17 (POOL #3 DELIVERED — the answer takes shape): 34-situation cause table
+  lands on the OWNER'S taxonomy — LOW (world interaction) = 0 measured w/
+  observed-firing control (consistent with T-1's 1/25); HIGH (no goal) = 6; **MIDDLE
+  (goal split) DOMINANT = 21 situations / 2,240 WAIT turns** — the generator offered
+  real work and select()'s joint pairing discarded it (up to 194 straight turns).
+  Two self-caught defects incl. a complete-plausible-wrong table (kinds regex) —
+  caught by per-record reading. Evidence gate's first live passage (review_ref
+  resolvable, five tokens exact). codex review pending WITH a semantics-ruling
+  directive (no token semantics were ever published; docstring definitions must be
+  blessed/amended). Then #5, then the SESSION.
+
 - 2026-08-17 (POOLS 1+2 CLOSED, #3 RUNNING + integrator retraction): logging repair
   GATE_ACCEPTED — and substantive: 21 door-clear + 3,517 conflict rewrites incl. 97
   manufactured MOVE→WAIT (generator-WAIT vs resolver-WAIT now distinguishable — a
