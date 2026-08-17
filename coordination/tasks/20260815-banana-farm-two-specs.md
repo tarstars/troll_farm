@@ -1,6 +1,8 @@
 # 20260815-banana-farm-two-specs: write specifications A (unconditional) and B (conditional) for the banana-farm bot
 
-- Status: **v11 in codex_1 re-review** (v10's two operational contracts closed +
+- Status: **v12 QUEUED behind pool-#2 by coordinator directive** (v11's two
+  executable-definition items closed: enumerated transition table vs engine tick;
+  explicit trace schema w/ mandatory terminal row). Prior: **v11 in codex_1 re-review** (v10's two operational contracts closed +
   claude_1's citation-precision fix). Prior: **v10 in codex_1 re-review** (v9's three evidence-contract blockers closed:
   frozen census generations; D-1+P4 double backstop; log-until-resolution). Prior:
   **v9 — FIVE owner rulings carried; latest:

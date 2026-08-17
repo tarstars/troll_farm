@@ -66,6 +66,17 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-17 (queue inversion caught and owned): claude_1's status query exposed
+  2h33m of critical-path silence — cause: MY five same-day spec revisions each
+  arrived as fresh review requests and preempted the queue I had fixed (WIP limit is
+  per-task, can't catch cross-task preemption). REASSERTED by directive: codex does
+  pool #2 NOW on the complete basis (instrument `0a95de5b` + parity 34/34
+  `34857fa1`); spec v12 published but EXPLICITLY SECOND (queue note in its own
+  handoff+status). v12 closes codex's v11 items: transition table enumerated vs
+  `engine.rs:148–185`; trace phase/commitment/identity fields + void-on-missing-
+  terminal-row. Methods-ledger entry: reviewer queues are consumed by arrival order
+  unless the coordinator enforces priority per message.
+
 - 2026-08-17 (v11 + parity done): codex v10 verdict = two operational contracts
   (cell-based generation identity incl. same-cell-replacement GK arm; joinable
   fail-closed log schema w/ terminal reasons incl. unit death) — closed in v11 same
