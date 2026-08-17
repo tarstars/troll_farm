@@ -29,7 +29,9 @@ begins with `Pool: N/M done`.
 - [x] 4. Margin decomposition on the EXISTING 240-game panel data: does margin track
       parked-idle turns or oscillation episodes? Prices the illness; no new runs
       (local_claude_1; codex_1 verifies method)
-- [ ] 5. DELIVERED — codex review is the LAST GATE before the session. Mechanism: DELIBERATE GATING, WRONG SCOPE (:1189 fall-through into the harvest-less endgame generator; :1418 true-endgame-only harvest; 325 provable turns). Was: Mechanism note per no-goal case: which generator path emits the WAIT-only
+- [x] 5. CLOSED (GATE_ACCEPTED; neutral wording: deliberate phase-gate composition
+      gap — scope judgment reserved to the owner; 521-turn reconciliation, 325-turn
+      gap, 28 occupancy turns, 167 named-unresolved all stand). Was: Mechanism note per no-goal case: which generator path emits the WAIT-only
       list; deliberate (phase gating) or broken (claude_1, small)
 - [ ] 6. OWNER SESSION — the verdict. **Session inputs ready-or-pending: cure
       candidate = C ("fix the first door") per OWNER PREFERENCE 2026-08-17 —
@@ -77,6 +79,17 @@ by the verdict session's rulings, not before); T-1 half-swap fixture (recorded d
 viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untouched).
 
 ## Progress log (newest first)
+
+- 2026-08-17 (POOL #5 CLOSED — **THE OWNER SESSION IS READY**): revision
+  GATE_ACCEPTED, all eight streams reproduced; wording ruling confirmed (my docs
+  already aligned). AND claude_1 corrected MY C brief with a measured cross-tab: C
+  fully cures the bulletproof FOUR (311/311 turns) + 14 bonus = 325/521; the other
+  four fail through DIFFERENT doors (endgame-branch ×2, full-backpack :1185,
+  fruitless-board → correct WAIT tail); acceptance fixtures = the FOUR, never eight
+  (gate-relaxation warning cited from quarantine history). Residue framing adopted:
+  OSC-031's 167 chop turns = a different, bigger question if the owner wants the
+  TROLL fixed rather than the GATE. Session package COMPLETE: incidence table,
+  neutral mechanism notes, pricing, corrected C brief, L1 procedure.
 
 - 2026-08-17 (pool-5 revision + the smuggled-verdict lesson): codex caught that
   claude_1's self-criticism WAS a verdict ("over-counted"/"correct"/"explained" are

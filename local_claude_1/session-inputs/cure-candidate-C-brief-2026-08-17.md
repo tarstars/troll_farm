@@ -22,9 +22,17 @@ itself: an undefined tail is how the next wall gets built.
 
 ## What C closes (measured basis)
 
-- The 8 no-goal situations (325 proven turns; bulletproof four: OSC-032 110/110,
-  OSC-033 143/143, OSC-028 51/51, OSC-008 7/7) become observed-failing regression
-  fixtures — the cure property flips green per situation.
+- **CORRECTED 2026-08-17 (claude_1's measured cross-tab, from the accepted
+  instrument):** C's honest acceptance set is the BULLETPROOF FOUR — OSC-008, OSC-028,
+  OSC-032, OSC-033 — cured completely (311 of their 311 no-goal turns), plus 14 bonus
+  turns across OSC-031/001. Total: 325 of the 521 no-goal turns. **The other four
+  situations are untouched by C, each through a DIFFERENT door:** OSC-009 (all
+  endgame-branch — C alters only the non-endgame path, per sub-choice 2), OSC-005
+  (full backpack exits at :1185 before the fall-through), OSC-031 (167 turns have no
+  fruit anywhere — C's chain correctly reaches its WAIT tail; the same unresolved
+  chop-side mechanism), OSC-001 (mostly endgame-branch + occupancy). **The acceptance
+  fixtures are the FOUR at 311/311 — never the eight**: adopting eight would sink a
+  working cure or invite relaxing the gate to fit the result.
 - **Bonus synergy with the no-planting ruling:** the mid-game fall-through is one of
   the roads into the endgame planner's conversion PICK (the C2-style suppression
   corners). Closing the road shrinks the suppression-log surface the log-and-defer
@@ -48,6 +56,13 @@ implementation-validity gates with observed-failing tests → 240-game panel wit
 ZERO de-novo D-1 AND P4 → one paired A-vs-resident night under the M-1 rule
 (1.96·SE winner, 1.0 materiality floor). One change per night; never stacked with
 the banana farm.
+
+## The residue — the session's bigger question (claude_1's framing, adopted)
+
+OSC-031's 167 chop-only turns are a DIFFERENT mechanism that C does not address and
+that remains deliberately unlocalized. If the owner wants THE PARKED TROLL fixed
+rather than THE PHASE GATE fixed, that residue is the next question — and it is
+bigger than the one C closes.
 
 ## Open sub-choices FOR THE SESSION (not decided by this preference)
 
