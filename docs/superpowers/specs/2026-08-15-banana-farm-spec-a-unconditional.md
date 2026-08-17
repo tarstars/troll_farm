@@ -1,8 +1,14 @@
 # Banana-farm bot — Spec A (the owner's denial-preserving state machine)
 
-- Status: DRAFT v11 — the five owner rulings unchanged; v11 closes codex_1's v10
-  operational contracts and one citation-precision correction from claude_1. For
-  codex_1 re-review, then the owner's final confirmation.
+- Status: DRAFT v12 — the five owner rulings unchanged; v12 closes codex_1's v11
+  executable-definition items. QUEUE NOTE: this revision is reviewed AFTER pool-#2
+  (the instrument review) per the coordinator's queue reassertion of 2026-08-17.
+  Then the owner's final confirmation.
+- Revision: v12 2026-08-17: the generation-identity transitions are ENUMERATED
+  against the referee tick (`engine.rs:148–185` — cooling / growth step / fruit
+  step, composable with chop and harvest decreases; all else ends identity); trace
+  rows carry phase, commitment kind+target, event join identity and final command,
+  and a missing terminal row voids the trace as a panel error.
 - Revision: v11 2026-08-17: cell-based generation-identity contract (identity ends on
   any inconsistent observation; same-cell replacements are non-members) + GK
   same-cell-replacement arm; suppression-log schema made joinable and fail-closed
@@ -255,11 +261,14 @@ suppression, no commitment clearing). Instead: (a) every suppression event is LO
 (v11, per codex_1's v10 review): keys = run id / map / seat / unit id / cell; at the
 event — turn, board plant count, score sign, banked fruits, the suppressed command,
 commitment state and candidate summary BEFORE and AFTER the suppression, and the
-post-conflict emitted command; then per-turn branch / candidate summary / commitment
-state / emitted command UNTIL an explicit terminal reason: `commitment_resolved`,
-`phase_exit`, `game_end`, or `unit_death`. A record missing any key field VOIDS that
-event's log and is itself surfaced as a panel error — fail-closed, never silently
-partial (a fixed five-command window cannot adjudicate a strand — v9 review); (b) the implementation's mandatory 240-game acceptance
+post-conflict emitted command; then per-turn rows each carrying the machine PHASE, the
+commitment KIND and TARGET, the row's event identity (the suppression event's join
+key), branch, candidate summary, and the FINAL post-conflict emitted command, UNTIL
+an explicit terminal row with reason `commitment_resolved`, `phase_exit`,
+`game_end`, or `unit_death`. A record missing any key field — **or a trace missing
+its terminal row** — VOIDS that event's log and is itself surfaced as a panel error:
+fail-closed, never silently partial (a fixed five-command window cannot adjudicate a
+strand — v9 review); (b) the implementation's mandatory 240-game acceptance
 panel is the empirical backstop with BOTH arms — the panel gate is ZERO de-novo D-1
 AND ZERO de-novo P4. P4 is named because D-1 is structurally blind to a non-moving
 unit — measured on the 34 frozen fixtures, where all four stalls show 0 D-1 and 1 P4
@@ -269,15 +278,29 @@ interaction RETURNS TO THE OWNER if the logs show real occurrences. The integrat
 "C3 is common" claim is recorded as a mechanism argument to be tested by exactly this
 log, not assumed.
 
-**Census-member generation identity (v11, per codex_1's v10 review — the referee
-exposes no plant ID, so identity is cell-based and must be defined):** a member's
-identity is its census-time observation at its cell (kind, size, health, fruits,
-cooldown), advanced each turn only by observations CONSISTENT with that same plant's
-growth (the section 7 consistency rules). ANY inconsistent observation — size reset,
-kind change, absence, or absence-then-presence — ENDS the identity permanently: the
-member leaves the census set (the Round bullet's mixed-loss rule then governs), and
-ANY tree subsequently standing at that cell — including a same-cell enemy
-replacement — is a NON-member: it pays no quota and appears only in the next recount.
+**Census-member generation identity (v11/v12, per codex_1's v10–v11 reviews — the
+referee exposes no plant ID, so identity is cell-based, with the allowed transitions
+ENUMERATED, not defined by recursion):** a member's identity is its census-time
+observation at its cell (kind, size, health, fruits, cooldown). Between consecutive
+turns, the identity ADVANCES iff kind is unchanged and the observation delta is
+exactly one of the referee's tick outcomes (`rust/src/game/engine.rs:148–185`):
+
+- **T1 cooling:** cooldown decremented by 1 (from > 0); size, fruits unchanged;
+- **T2 growth step:** size +1 AND health increased by exactly the kind's health
+  slope AND cooldown reset to `effective_cooldown(kind, near_water)`; fruits
+  unchanged (fires from cooldown 0/1);
+- **T3 fruit step:** at max size — fruits +1 AND cooldown reset as in T2; size,
+  base-health unchanged;
+
+each optionally COMPOSED with: **health decreased** (a chop landed — ours or the
+enemy's; either keeps identity) and/or **fruits decreased** (a harvest — ours
+confirmed or the enemy's; keeps identity). EVERYTHING ELSE ends the identity
+permanently: kind change; size decrease or a jump ≥ 2; health increase outside T2's
+exact slope; fruits increase off max size or a jump ≥ 2; cooldown increase outside a
+T2/T3 reset; absence; absence-then-presence. On identity end the member leaves the
+census set (the Round bullet's mixed-loss rule governs), and ANY tree subsequently
+standing at that cell — including a same-cell enemy replacement — is a NON-member:
+it pays no quota and appears only in the next recount.
 
 **Completion confirmation (unchanged from v5 — now the round-progress element):**
 evaluated by the same reconciliation pass as section 7, on (previous turn's
