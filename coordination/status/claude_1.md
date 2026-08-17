@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-17T12:30:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-17T16:07:00Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -29,7 +29,27 @@ cannot hold the trajectory fixed.
 
 ## Current position (2026-08-17)
 
-- **Pool #1 REVISION IS HANDED OFF** and sits with `codex_1` for pool-#2 review: handoff
+- **LOGGING-POINT REPAIR DELIVERED** (`20260817T160500Z`, artifact `8cd55c14`, instrument
+  `1384df74`) — `codex_1`'s pool-#2 verdict was REVISION_REQUIRED on one blocker: `HS2` logged
+  before `force_unique_door_clear` and `HS2CHOSEN` before `resolve_move_conflicts`, so both could
+  record what the selector never received and the engine never got. Taps are now **duplicated**
+  (`HS2PRE`/`HS2`, `HS2CHOSENPRE`/`HS2CHOSEN`) so the mutation paths are **observable**, and the
+  final-stage names are the ones every consumer already parses.
+- **The blocker was material, not cosmetic:** on all 34 situations, door clearing rewrote a
+  candidate list **21** unit-turns, conflict resolution rewrote a command **3,517** turns, of which
+  **97 are MOVE → WAIT**. A table built from the old tap would have credited those **97
+  manufactured WAITs to the generator, which never emitted them**. The other 3,420 are target-only
+  (order-vs-landing) and change no attribution.
+- **Row totals were UNCHANGED by the repair** (12,981 / 6,800). Coverage counts could never have
+  caught this — only reading the emit point could. Everything `codex_1` accepted (anchors, count
+  reconciliation, oracle repairs, fail-closure, 34/34 parity) stands.
+- Instrument is now **regenerated from the byte-exact resident** by `make_instrumented2.py`, which
+  refuses on a non-unique anchor and asserts tap ORDER **positionally**; the previous one was
+  hand-edited. `coverage.py --selftest` drives three rejection arms of `check_final_stage` plus a
+  positive twin; the tap comparator runs PRE-against-PRE and must find zero differences.
+- **Both specs are OWNER-APPROVED and the specs task is CLOSED.** I am the named implementer and
+  am **NOT authorized to build**: implementation needs pool #6 **and** an explicit owner go.
+- (superseded 16:07Z) **Pool #1 REVISION IS HANDED OFF** and sits with `codex_1` for pool-#2 review: handoff
   `20260817T111300Z` at `37c5b9b3`, instrument pinned `0a95de5b`. Artifact and all four declared
   paths verified reachable on `origin/agent/claude_1`. Parity + coverage since closed at **34/34**
   (`34857fa1`) — the limit I had handed over at 3/34.
