@@ -106,6 +106,33 @@
    }
   ]
  },
+ "denovo_by_turn_coverage": {
+  "D-1": [
+   {
+    "candidate_score": 1,
+    "floor_score": 12,
+    "map_id": "m082",
+    "new_turns": 184,
+    "seat": 1
+   }
+  ],
+  "P4": [
+   {
+    "candidate_score": 75,
+    "floor_score": 48,
+    "map_id": "m061",
+    "new_turns": 61,
+    "seat": 0
+   },
+   {
+    "candidate_score": 1,
+    "floor_score": 12,
+    "map_id": "m082",
+    "new_turns": 185,
+    "seat": 1
+   }
+  ]
+ },
  "denovo_d1_games": 1,
  "denovo_p4_games": 3,
  "games": 240,
@@ -119,6 +146,7 @@
  },
  "task": "20260817-cure-c-implementation",
  "verdict": "FAIL",
+ "verdict_note": "Verdict uses the EPISODE-COUNT reading. The turn-coverage reading is reported beside it and differs on m106 seat 0. Which reading the gate means is a ruling; this module does not choose.",
  "violation_instances": {
   "candidate": 115,
   "floor": 289

@@ -47,6 +47,30 @@ def key(game):
     return (game["map_id"], game["seat"])
 
 
+def violation_turns(game, prop=None, det=None):
+    """Set of TURNS covered by a property/detector, not the number of episodes.
+
+    Episode COUNT and turn COVERAGE disagree, and the disagreement is not cosmetic. On m106 seat 0
+    the floor stalls once over turns 11-200; the candidate stalls over 11-99 and 111-182 — it
+    BROKE the stall around turn 100 and again after 182, and scored 25 against the floor's 16.
+    By count that is 1 -> 2 and reads as a new stall. By coverage it adds ZERO newly-stalled turns,
+    which is what actually happened.
+
+    Both are reported. Which one the charter's "ZERO de-novo P4" means is a ruling, not mine to
+    pick — and picking the flattering one is exactly the move I refused when the eight fixtures
+    were proposed as C's acceptance set.
+    """
+    out = set()
+    for v in game.get("violations") or []:
+        if prop and v.get("detector") is None and v.get("property") == prop:
+            d = v["detail"]
+            out |= set(range(d["window_start"], d["window_end"] + 1))
+        if det and v.get("detector") == det:
+            for e in v.get("episodes", []):
+                out |= set(range(e["turn_start"], e["turn_end"] + 1))
+    return out
+
+
 def violation_counts(game):
     """-> Counter keyed by `detector` when present, else `property`.
 
@@ -115,6 +139,32 @@ def main():
 
     d1 = len(denovo.get("D-1", []))
     p4 = len(denovo.get("P4", []))
+
+    # SECOND METRIC: turn coverage. Reported beside the count, never instead of it.
+    cov = {"D-1": [], "P4": []}
+    Fg = {key(g): g for g in floor["games"]}
+    for g in cand["games"]:
+        b = Fg[key(g)]
+        extra_p4 = violation_turns(g, prop="P4") - violation_turns(b, prop="P4")
+        extra_d1 = violation_turns(g, det="D-1") - violation_turns(b, det="D-1")
+        if extra_p4:
+            cov["P4"].append({"map_id": g["map_id"], "seat": g["seat"], "new_turns": len(extra_p4),
+                              "floor_score": b["candidate"]["score"],
+                              "candidate_score": g["candidate"]["score"]})
+        if extra_d1:
+            cov["D-1"].append({"map_id": g["map_id"], "seat": g["seat"], "new_turns": len(extra_d1),
+                               "floor_score": b["candidate"]["score"],
+                               "candidate_score": g["candidate"]["score"]})
+    print("\n=== SECOND METRIC: de-novo by TURN COVERAGE (newly stalled/oscillating turns) ===")
+    for name in ("D-1", "P4"):
+        print(f"    {name}: {len(cov[name])} games")
+        for r in cov[name]:
+            print(f"          {r['map_id']} seat {r['seat']}: +{r['new_turns']} turns, "
+                  f"score {r['floor_score']} -> {r['candidate_score']}")
+    gone = {(r["map_id"], r["seat"]) for r in denovo.get("P4", [])
+            if not any(x["map_id"] == r["map_id"] and x["seat"] == r["seat"] for x in cov["P4"])}
+    if gone:
+        print(f"    counted as de-novo P4 but adding ZERO newly-stalled turns: {sorted(gone)}")
     print(f"\ncommand errors — floor {floor_err}, candidate {cand_err}")
     print(f"blocking games — floor {floor['stats']['blocking_games']}, "
           f"candidate {cand['stats']['blocking_games']}")
@@ -145,7 +195,11 @@ def main():
         "blocking_games": {"floor": floor["stats"]["blocking_games"],
                            "candidate": cand["stats"]["blocking_games"]},
         "violation_instances": {"floor": tot(F), "candidate": tot(C)},
+        "denovo_by_turn_coverage": cov,
         "verdict": verdict,
+        "verdict_note": "Verdict uses the EPISODE-COUNT reading. The turn-coverage reading is "
+                        "reported beside it and differs on m106 seat 0. Which reading the gate "
+                        "means is a ruling; this module does not choose.",
     }, indent=1, sort_keys=True) + "\n")
     print(f"wrote {out.relative_to(HERE.parent.parent)}")
     return 0 if passed else 1
