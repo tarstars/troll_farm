@@ -78,6 +78,15 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-17 (pool-5 revision + the smuggled-verdict lesson): codex caught that
+  claude_1's self-criticism WAS a verdict ("over-counted"/"correct"/"explained" are
+  owner calls) — revision withdraws the judgments, keeps the 28 turns as valid
+  attributions, adopts neutral "phase-gate composition gap" wording, adds coverage
+  gates. The wording ruling applied to MY docs too (discovery note + C brief).
+  Instance 5 (reader's-half transport wall — ack-type verdicts structurally
+  unreachable by the ack gate) integrated into the discovery note with the
+  sharpened join form. FINAL GATE: codex review of the revision; then the session.
+
 - 2026-08-17 (owner preference on the cure): from the A–E alternatives analysis the
   owner chose **C — fix the first door** (mid-game chopless trolls get an explicit
   fallback chain from existing generators instead of the endgame planner; chain tail
