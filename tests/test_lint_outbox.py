@@ -499,3 +499,32 @@ def test_evidence_gate_passes_with_published_review(repo):
 
     result = lint(repo)
     assert result.returncode == 0, result.stdout
+
+
+def test_evidence_gate_fires_on_pool3_vocabulary(repo):
+    # codex_1 gates-review catch 2026-08-17: the new three-level taxonomy
+    # could bypass the gate because only legacy tokens were registered.
+    extra = _valid_handoff_extra(repo)
+    path = msg_path(ME, STAMP, "task-a", "handoff")
+    body = v2_message(path, kind="handoff", task="task-a", sender=ME, to=PEER,
+                      extra_fields=extra)
+    repo.write_worktree(path, body + "\ncause: NO_GOAL_ASSIGNED (12 rows)\n")
+
+    result = lint(repo)
+    assert result.returncode == 2
+    assert "evidence gate" in result.stdout
+    assert "NO_GOAL_ASSIGNED" in result.stdout
+
+
+def test_evidence_gate_releases_pool3_vocabulary_with_review(repo):
+    review = {f"{PEER}/reviews/instrument-review.md": "ACCEPTED\n"}
+    repo.commit(f"agent/{PEER}", review)
+    extra = {**_valid_handoff_extra(repo),
+             "review_ref": f"{PEER}/reviews/instrument-review.md"}
+    path = msg_path(ME, STAMP, "task-a", "handoff")
+    body = v2_message(path, kind="handoff", task="task-a", sender=ME, to=PEER,
+                      extra_fields=extra)
+    repo.write_worktree(path, body + "\ncause: NO_GOAL_ASSIGNED, NOT_STARVED\n")
+
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout

@@ -129,8 +129,15 @@ def published_bodies(per_path: dict[str, dict[str, list[str]]], path: str) -> li
 # only with the review that accepted the instrument producing them. Extend the
 # set when a task charters new cause labels.
 CAUSE_LABEL_TOKENS = frozenset({
+    # Legacy first-instrument vocabulary (withdrawn tables; kept so older
+    # threads stay gated):
     "GENERATOR_GAP", "NO_WORK_ON_MAP", "UNIT_CANNOT_REACH_WORK",
     "STUCK_COMMITMENT", "ALL_WAIT_CAUSE_UNDETERMINED",
+    # Pool-#3 vocabulary (owner's three-level taxonomy, iteration 2026-08-17;
+    # gap found by codex_1's gates review — the new labels could bypass the
+    # gate entirely). Cause tables MUST serialize with exactly these tokens:
+    "NO_GOAL_ASSIGNED", "GOAL_SPLIT_WRONG", "WORLD_INTERACTION",
+    "CANNOT_USE_WORK", "NOT_STARVED",
 })
 
 

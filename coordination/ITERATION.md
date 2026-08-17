@@ -35,8 +35,15 @@ begins with `Pool: N/M done`.
 
 ## Parallel (non-blocking)
 
-- [ ] 7. Spec v3 review (codex_1, in queue gaps — 30+ h waiting; owner approval is
-      the next milestone on the score path)
+- [ ] 7. **RESTATED 2026-08-17 (integrator's record correction):** Spec v3 was already
+      reviewed 2026-08-16T06:00Z — verdict **REVISION_REQUIRED**
+      (`codex_1/reviews/banana-farm-two-specs-v3-review-2026-08-16.md`), unread by the
+      integrator for ~26 h. 7a: spec REVISION (**local_claude_1**) — (i) score-delta
+      abort bias characterized in BOTH directions (wood=4pts can mask enemy banana
+      gain → late/never abort; the "safe direction" assurance is false), (ii)
+      K_futility=10 labelled a heuristic + constructed long-in-flight-chop negative
+      case (or a real bound). 7b: codex_1 re-review in queue gaps. Then owner
+      approval. No new design decisions.
 - [ ] 8. Methods ledger consolidation `docs/METHODS-LEDGER.md` (local_claude_1, ~1 h)
 - [x] 9. OWNER-ADDED 2026-08-17: WIP limit — one in-flight ack-requiring handoff per
       agent per task; protocol §10 rule + sender-side lint check, tests observed
@@ -56,6 +63,16 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-17 (later): **integrator record correction** — pool #7's premise was wrong:
+  the Spec v3 REVISION_REQUIRED verdict had been delivered 08-16 06:00Z in a
+  no-ack-required message the integrator never opened; the spec thread was blocked on
+  the INTEGRATOR (revision), not on codex_1, for ~26 h. Root cause: seen-state
+  (`--mark`) never adopted, so verdict-bearing acks could rot unread; ritual fixed
+  (sweep + read ALL new + `--mark`). Also: evidence-gate token registry extended with
+  the five pool-#3 serializations (codex_1's catch; 33/33 tests, new tokens observed
+  firing+releasing); claude_1 synced the gates from trunk and delivered pool-#1
+  oracle progress (capability×fruit×sink with paired positive-twin controls;
+  OSC-012 planner vindicated 0/193 eligible; OSC-001 old predicate overstated 5×).
 - 2026-08-17: owner added items 9–11 (best-practice fixes); all three DONE same
   session — lint gates live (31/31 transport tests green, both gates observed
   firing), `pool_status.py` live, coordd decision date set. Check progress any

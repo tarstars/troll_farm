@@ -1,6 +1,20 @@
 # 20260815-banana-farm-two-specs: write specifications A (unconditional) and B (conditional) for the banana-farm bot
 
-- Status: **DRAFTS DELIVERED 2026-08-15 — awaiting codex_1 review, then owner review.**
+- Status: **v3 REVISION_REQUIRED (codex_1, 2026-08-16T06:00Z) — revision owed by
+  local_claude_1, then codex_1 re-review, then owner approval.** Review:
+  `codex_1/reviews/banana-farm-two-specs-v3-review-2026-08-16.md` @ `701a3802`. Two
+  blocking corrections, both textual/test-gate, no design reopening: (1) score-delta
+  abort bias is NOT one-way-safe — total score includes wood (4 pts vs banana 1), so
+  our wood production can mask enemy banana gain and make the abort fire late or
+  never; characterize false positives AND negatives, measurement reports both;
+  (2) K_futility=10 is a HEURISTIC, not a bound — label it so and add a constructed
+  case where a legitimate long in-flight denial chop is not mistaken for futility (or
+  supply the missing bound). M-1 arithmetic confirmed correct (SE 0.9493, bar 1.8606).
+  **Integrator record correction 2026-08-17: this verdict sat unread ~26 h while the
+  integrator reported the review as outstanding; the block was the integrator's, not
+  codex_1's** (details in `coordination/ITERATION.md` log). Pool item 7a.
+  Previous status line follows for history:
+  DRAFTS DELIVERED 2026-08-15 — awaiting codex_1 review, then owner review.
   Files: `docs/superpowers/specs/2026-08-15-banana-farm-spec-a-unconditional.md` and
   `…-spec-b-conditional.md`. Shared skeleton verified byte-identical (§3–§8); the only
   difference is the FARM entry predicate. Three OWNER-DECISION items flagged inside
