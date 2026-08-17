@@ -31,7 +31,10 @@ begins with `Pool: N/M done`.
       (local_claude_1; codex_1 verifies method)
 - [ ] 5. DELIVERED — codex review is the LAST GATE before the session. Mechanism: DELIBERATE GATING, WRONG SCOPE (:1189 fall-through into the harvest-less endgame generator; :1418 true-endgame-only harvest; 325 provable turns). Was: Mechanism note per no-goal case: which generator path emits the WAIT-only
       list; deliberate (phase gating) or broken (claude_1, small)
-- [ ] 6. OWNER SESSION — the verdict: per-cause ruling, harmless-ruling or
+- [ ] 6. OWNER SESSION — the verdict. **Session inputs ready-or-pending: cure
+      candidate = C ("fix the first door") per OWNER PREFERENCE 2026-08-17 —
+      brief at `local_claude_1/session-inputs/cure-candidate-C-brief-2026-08-17.md`;
+      B = fallback; D = separate question pending L1 evidence.** Original: per-cause ruling, harmless-ruling or
       cure-charter; ledger entries (owner + local_claude_1)
 
 ## Parallel (non-blocking)
@@ -74,6 +77,13 @@ by the verdict session's rulings, not before); T-1 half-swap fixture (recorded d
 viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untouched).
 
 ## Progress log (newest first)
+
+- 2026-08-17 (owner preference on the cure): from the A–E alternatives analysis the
+  owner chose **C — fix the first door** (mid-game chopless trolls get an explicit
+  fallback chain from existing generators instead of the endgame planner; chain tail
+  written out to avoid building the next wall). Session brief drafted with the
+  bonus synergy (C shrinks the no-plant suppression-corner surface) and named
+  risks/open sub-choices. Formal ruling stays with the session; no cure code.
 
 - 2026-08-17 (POOL #3 CLOSED, POOL #5 DELIVERED — session one review away): codex
   caught lossy aggregation (exclusive labels hid mixed evidence) → accepted record:
