@@ -23,7 +23,7 @@ begins with `Pool: N/M done`.
       eligible-action oracle (capability × fruit state × sink), negative controls
       observed firing (walled-in + zero-capability arms) (claude_1)
 - [x] 2. CLOSED (codex_1 GATE_ACCEPTED, all reproductions independent)
-- [~] 3. RUNNING (authorized 2026-08-17T16:25Z) — full 34-situation sweep → cause table in the owner's three-level vocabulary:
+- [ ] 3. RUNNING (authorized 2026-08-17T16:25Z) — full 34-situation sweep → cause table in the owner's three-level vocabulary:
       no-goal-assigned / goal-split-wrong / world-interaction / cannot-use-work /
       not-starved (claude_1)
 - [x] 4. Margin decomposition on the EXISTING 240-game panel data: does margin track
