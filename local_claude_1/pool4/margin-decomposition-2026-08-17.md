@@ -1,4 +1,4 @@
-# Pool #4 — margin decomposition (v2, after method review)
+# Pool #4 — margin decomposition (v3; v2 after method review, v3 after its re-check)
 
 Integrator deliverable (`local_claude_1`), 2026-08-17. **v2: revised per codex_1's
 method review (`codex_1/reviews/pool4-margin-decomposition-method-review-2026-08-17.md`,
@@ -60,8 +60,9 @@ the same convention. Par = corpus mean margin, 17.40 (sd 19.5, n = 240).
 
 The frozen verdict rule asks whether parked-idle "explains" the margin deficit. This
 analysis establishes: the deficit concentrates in stall-carrying games (blocked
-p ≈ 1.5e-5), the dance-only deficit is not established (p = 0.134), the recoverable
-amount IF stalls are causal AND fixable is ≈ 1.41 corpus points, and both IFs are
+p ≈ 1.5e-5), the dance-only deficit is not established (p = 0.134), the bring-to-par
+SCENARIO — never a recoverable-amount claim — is ≈ 1.41 corpus points IF stalls are
+causal AND fixable, and both IFs are
 the session's to resolve (cause table for the first, L1 judgment for the second).
 
 ## Limits

@@ -91,20 +91,17 @@ def main():
         ms = [r["margin"] for r in g]
         print(f"{k:<10} n={len(g):<4} margin {mean(ms):7.2f} ({mean(ms)-par:+6.2f} vs par)"
               f"  osc {mean([r['osc'] for r in g]):6.1f}  stall {mean([r['stall'] for r in g]):6.1f}")
-    stall_g = [r["margin"] for r in rows if r["stall_n"]]
-    nostall = [r["margin"] for r in rows if not r["stall_n"]]
-    obs, p = perm_p(stall_g, nostall, seed=20260817)
-    print(f"stall vs no-stall: {obs:+.2f} pts, one-sided p={p:.4f}")
-    d1_nop4 = [r["margin"] for r in groups["D1_only"]]
-    clean = [r["margin"] for r in groups["clean"]]
-    obs2, p2 = perm_p(d1_nop4, clean, seed=20260817)
-    print(f"dance-without-stall vs clean: {obs2:+.2f} pts, one-sided p={p2:.4f}")
+    print("inference: see the map-blocked exact sign-flip tests below (v2). The v1")
+    print("unblocked permutation p-values are SUPERSEDED and INVALID for this matched")
+    print("design (codex_1 v2 review) and are no longer emitted; perm_p() remains only")
+    print("as the documented record of the withdrawn method.")
     print(f"corr(margin, stall) {pearson(allm, [r['stall'] for r in rows]):+.3f}   "
           f"corr(margin, osc) {pearson(allm, [r['osc'] for r in rows]):+.3f}")
 
 
-if __name__ == "__main__":
-    main()
+# (v1's standalone entry point removed in v3: the single entry point at the
+# bottom runs the descriptive table and then the v2 blocked inference, so the
+# superseded numbers can never print by default.)
 
 
 # --- v2 (2026-08-17, after codex_1 method review REVISION_REQUIRED) -----------
@@ -165,5 +162,6 @@ def main_v2():
     print(f"[blocked] dance-only vs clean: n={n2} pairs, delta {obs2:+.2f}, exact p={p2:.4f}")
 
 
-if __name__ == "__main__":  # noqa: F811 — v2 entry point appended by revision
-    main_v2()
+if __name__ == "__main__":
+    main()      # descriptive table (valid) — no unblocked p-values since v3
+    main_v2()   # primary inference: map-blocked exact sign-flip tests

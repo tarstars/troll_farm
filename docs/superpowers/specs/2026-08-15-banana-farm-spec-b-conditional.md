@@ -1,6 +1,10 @@
 # Banana-farm bot — Spec B (conditional entry: "if third troll")
 
-- Status: DRAFT v4 for codex_1 re-review (pool 7b), then owner approval
+- Status: DRAFT v5 for codex_1 re-review (pool 7b), then owner approval
+- Revision: v5 2026-08-17: per codex_1's v4 review — the completion gate gains its
+  operational definition (confirmation rule, fail-closed ambiguity, fixed ordering
+  against tracker reset; gate GK bound to it) and is entered in the OWNER-DECISION
+  register as a new decision.
 - Revision: v4 2026-08-17: abort-sensor characterization corrected to BOTH failure
   directions (wood masking via `WOOD_POINTS = 4`, line 82) with per-event score
   decomposition reporting; `K_futility` relabelled a heuristic, its in-flight span
@@ -199,9 +203,31 @@ evidence: a completed chop removes a tree, so a non-decrease across a completion
 means the enemy REPLACED the species within the same window — "the enemy sustains the
 species against our chopping" made literal. A run containing no completion proves
 nothing about the enemy and can no longer latch the doorway, however long it grows.
-(This gate is the minimal mechanism satisfying the review's constructed case; flagged
-for codex_1 to confirm it stays within the review's textual/test-gate scope, and for
-the owner alongside the K_futility freeze at approval.)
+**Operational definition (v5, per codex_1's v4 review — gate GK uses exactly this):**
+
+- **Completion confirmation.** Evaluated by the same reconciliation pass as section 7,
+  on (previous turn's `GameState`, the commands we emitted, this turn's `GameState`):
+  a focus-chop completion is confirmed iff our unit emitted `CHOP` at cell C, the
+  plant at C in the PREVIOUS state was focus-species with `health <=` that unit's
+  `chop_power` (removal guaranteed by our own hit, referee-deterministic), and no
+  live focus plant of that generation stands at C in THIS state.
+- **Ambiguity fails closed to NO EVENT.** If the previous health exceeded our
+  `chop_power` and the plant nonetheless vanished, the removal is NOT attributed to
+  us: no completion. The bias direction is deliberate — futility becomes harder to
+  reach, we keep denying longer, the conservative side given denial is suspected
+  load-bearing (N6).
+- **Ordering against the tracker, fixed per turn:** (1) compute this turn's species
+  count; (2) compare with the previous DENY turn — on a DECREASE, reset the counter
+  AND the completion boolean (a completion that produced the decrease belongs to the
+  run it ended and never seeds the next); on a NON-decrease, increment the counter;
+  (3) only then evaluate this turn's completion confirmation and, on a non-decrease
+  turn, set the boolean. The boolean also clears on DENY entry.
+  `futility_reached` = counter `>= K_futility` AND boolean set.
+
+(This gate is the minimal mechanism satisfying the review's constructed case;
+codex_1's v4 review confirms it is in scope AND rules it a NEW OWNER DECISION — it is
+entered in the section 14 register, decided at spec approval alongside the K_futility
+freeze.)
 
 **The endgame-conversion blip.** The bot's sole PLANT site is line 1256 (inside the
 endgame fruit-conversion branch; at-target score 9 000 at line 1262): a carried lemon or
@@ -509,7 +535,7 @@ broken build) before its pass is credited; all of them precede any value panel.
 | GT — train | A second troll is trained | `TRAIN` issued (lines 1387–1389) and own unit count reaches 2. Resident already does this: a do-not-break gate. |
 | GD — deny | One of lemon/plum is selected, frozen, and denied | `type_to_cut` set once (lines 796–799); focus-species chops occur while `denial_enabled`, preferentially near the enemy shack (bonus at line 622). Do-not-break. |
 | GE — doorway fidelity | The third-troll doorway fires in games where the enemy fields a third troll (and our second exists), and does NOT fire where the enemy never does; the unconsumed signals (`species_gone`, `futility_reached`) provably never cause a transition | Constructed/replayed games; doorway and futility-tracker telemetry logged every DENY turn. |
-| GK — futility completion-gate twins (v4) | Though unconsumed in Spec B, the shared tracker's latch must behave identically to Spec A for A-vs-B comparability: the in-flight case CANNOT set `futility_reached` (one legitimate focus chop, travel+chop > `K_futility`, no enemy planting); the positive twin (completed chop, same-turn enemy replacement, count non-decreasing through `K_futility`) sets it — and still causes no transition | Constructed games per the section 4 completion gate; both arms observed, fail-first per the standing rule. |
+| GK — futility completion-gate twins (v4) | Though unconsumed in Spec B, the shared tracker's latch must behave identically to Spec A for A-vs-B comparability: the in-flight case CANNOT set `futility_reached` (one legitimate focus chop, travel+chop > `K_futility`, no enemy planting); the positive twin (completed chop, same-turn enemy replacement, count non-decreasing through `K_futility`) sets it — and still causes no transition | Constructed games per the section 4 completion gate and its v5 confirmation rule (positive twin: removal with `health <= chop_power`, same-turn enemy replacement); both arms observed, fail-first per the standing rule. |
 | GF — sustained farm cycle | FARM entered per this spec's predicate (and NOT entered when the enemy never fields a third troll); bootstrap plants ≥ 1 banked banana; at least one full harvest → replant cycle completes; the loop repeats while conditions hold | Telemetry per the D89a blueprint: every activation, bootstrap attempt/success, reserve promotion/loss, own-crop harvest, renewable replant, trained-role rewrite logged. Entry needs both arms too: games where it fires and games where it correctly does not. |
 | GA+ — abort fires | In games where the score-delta abort condition persists ≥ K turns after warm-up, WOOD is entered | Constructed/replayed games on the development panel; sealed ranges stay closed. |
 | GA− — abort does not misfire | In games where the condition never persists, WOOD is never entered | Both arms are mandatory: a rule that always fires is not conditional, and a rule that never fires is not a rule (the project's trigger-fidelity check). |
@@ -602,3 +628,4 @@ Risks, carried over from CBF §9 and re-checked against the readable base:
 | B-2 | First measurement night's pairing | RULED 2026-08-15: Spec A vs current resident; Spec B runs only if A earns the A-vs-B comparison (section 12) |
 | S-1 (shared with Spec A) | Abort sensor | RULED 2026-08-15: score-delta built; provenance fully specified as the named future variant (section 7) |
 | M-1 (shared with Spec A) | Measurement decision rule | RULED 2026-08-15: paired-CI protocol of section 12 |
+| — (shared with Spec A) | The completion gate on `futility_reached` (section 4, v4–v5): a NEW mechanism, in scope per codex_1's v4 review but a new owner decision | OPEN: the owner ADOPTS or STRIKES it at spec approval, alongside the K_futility freeze (B carries the shared tracker; the latch stays unconsumed in B either way) |
