@@ -105,3 +105,65 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# --- v2 (2026-08-17, after codex_1 method review REVISION_REQUIRED) -----------
+# The v1 permutation shuffled 240 games as independent, breaking the panel's
+# matched 120-map structure (both seats of a map share the map effect). Primary
+# inference is now the exact sign-flip test on discordant map pairs.
+
+from itertools import product as _product
+
+
+def map_pairs(rows):
+    by_map = {}
+    for r in rows:
+        by_map.setdefault(r["map"], []).append(r)
+    return {m: g for m, g in by_map.items() if len(g) == 2}
+
+
+def group_of(r):
+    if r["osc_n"] and r["stall_n"]:
+        return "D1P4"
+    if r["osc_n"]:
+        return "D1"
+    if r["stall_n"]:
+        return "P4"
+    return "clean"
+
+
+def paired_deltas(rows, cond_a, cond_b):
+    """margin(cond_a seat) - margin(cond_b seat) over discordant map pairs."""
+    out = []
+    for m, (a, b) in sorted(map_pairs(rows).items()):
+        ga, gb = group_of(a), group_of(b)
+        if cond_a(ga) and cond_b(gb):
+            out.append(a["margin"] - b["margin"])
+        elif cond_a(gb) and cond_b(ga):
+            out.append(b["margin"] - a["margin"])
+    return out
+
+
+def exact_signflip_p(deltas):
+    n = len(deltas)
+    obs = sum(deltas) / n
+    cnt = sum(
+        1 for signs in _product((1, -1), repeat=n)
+        if sum(s * d for s, d in zip(signs, deltas)) / n <= obs
+    )
+    return obs, cnt / 2 ** n, n
+
+
+def main_v2():
+    rows = load_rows()
+    is_stall = lambda g: g in ("P4", "D1P4")
+    no_stall = lambda g: g in ("clean", "D1")
+    obs, p, n = exact_signflip_p(paired_deltas(rows, is_stall, no_stall))
+    print(f"[blocked] stall vs no-stall:   n={n} pairs, delta {obs:+.2f}, exact p={p:.7f}")
+    obs2, p2, n2 = exact_signflip_p(
+        paired_deltas(rows, lambda g: g == "D1", lambda g: g == "clean"))
+    print(f"[blocked] dance-only vs clean: n={n2} pairs, delta {obs2:+.2f}, exact p={p2:.4f}")
+
+
+if __name__ == "__main__":  # noqa: F811 — v2 entry point appended by revision
+    main_v2()
