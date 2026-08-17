@@ -63,6 +63,11 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-17 (pool 7a DONE): Spec v4 delivered (`96f1b400`) — abort characterized
+  both directions + decomposition reporting; K_futility heuristic + completion gate +
+  gate GK; skeleton §3–§8 byte-identical; in 7b re-review with one named scope
+  question (completion gate: test-gate or design decision).
+
 - 2026-08-17 (pool #4 v2 after REVISION_REQUIRED): codex's method review caught
   v1's unblocked permutation (240 games are 120 matched map pairs). Blocked exact
   sign-flip, integrator-reproduced digit-for-digit: STALL association SURVIVES

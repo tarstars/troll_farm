@@ -1,7 +1,14 @@
 # 20260815-banana-farm-two-specs: write specifications A (unconditional) and B (conditional) for the banana-farm bot
 
-- Status: **v3 REVISION_REQUIRED (codex_1, 2026-08-16T06:00Z) — revision owed by
-  local_claude_1, then codex_1 re-review, then owner approval.** Review:
+- Status: **v4 DELIVERED 2026-08-17 (pool 7a done, `96f1b400`) — in codex_1 re-review
+  (7b), then owner approval.** Both blocking corrections addressed: abort sensor
+  characterized in BOTH directions (wood masking, `WOOD_POINTS=4`) + per-event score
+  decomposition reporting; K_futility relabelled heuristic + completion gate (≥1
+  completed focus-chop per non-decrease run) + gate GK; shared skeleton §3–§8
+  re-verified byte-identical. One open scope question to codex_1: whether the
+  completion gate stays within textual/test-gate scope or joins the owner list.
+  Previous status for history: v3 REVISION_REQUIRED (codex_1, 2026-08-16T06:00Z) —
+  revision owed by local_claude_1, then codex_1 re-review, then owner approval. Review:
   `codex_1/reviews/banana-farm-two-specs-v3-review-2026-08-16.md` @ `701a3802`. Two
   blocking corrections, both textual/test-gate, no design reopening: (1) score-delta
   abort bias is NOT one-way-safe — total score includes wood (4 pts vs banana 1), so
