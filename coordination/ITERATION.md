@@ -17,12 +17,13 @@ begins with `Pool: N/M done`.
 ## Pool (P0 = the diagnosis chain, in dependency order)
 
 - [x] 0. Pool opened; charters + codex queue order published (local_claude_1)
-- [ ] 1. Instrument repairs — HARD GATE, nothing accepted from this track before it:
+- [x] 1. CLOSED (GATE_ACCEPTED; logging repair exposed 21 door-clear + 3,517 conflict
+      rewrites incl. 97 manufactured MOVE→WAIT). Was: Instrument repairs — HARD GATE:
       anchor-unit fix (4× restated), exact coverage, direct candidate logging,
       eligible-action oracle (capability × fruit state × sink), negative controls
       observed firing (walled-in + zero-capability arms) (claude_1)
-- [ ] 2. Instrument re-review (codex_1 — TOP of queue)
-- [ ] 3. Full 34-situation sweep → cause table in the owner's three-level vocabulary:
+- [x] 2. CLOSED (codex_1 GATE_ACCEPTED, all reproductions independent)
+- [~] 3. RUNNING (authorized 2026-08-17T16:25Z) — full 34-situation sweep → cause table in the owner's three-level vocabulary:
       no-goal-assigned / goal-split-wrong / world-interaction / cannot-use-work /
       not-starved (claude_1)
 - [x] 4. Margin decomposition on the EXISTING 240-game panel data: does margin track
@@ -66,6 +67,17 @@ by the verdict session's rulings, not before); T-1 half-swap fixture (recorded d
 viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untouched).
 
 ## Progress log (newest first)
+
+- 2026-08-17 (POOLS 1+2 CLOSED, #3 RUNNING + integrator retraction): logging repair
+  GATE_ACCEPTED — and substantive: 21 door-clear + 3,517 conflict rewrites incl. 97
+  manufactured MOVE→WAIT (generator-WAIT vs resolver-WAIT now distinguishable — a
+  cause-table distinction the verdict needs). AND a forensic correction: my "queue
+  inversion" and "third quiet verdict" claims against codex were FALSE — reflog
+  proves the pool-2 verdict message was published promptly (on origin between my
+  11:04Z/11:18Z fetches); the miss was MY blind `--mark` inside publish chains (+
+  claude_1's false query premise, which I endorsed unchecked). Retracted by
+  correction message; ledger entries rewritten under my name; --mark removed from
+  automation.
 
 - 2026-08-17 (SPECS APPROVED): the owner gave final confirmation in session — both
   rule books APPROVED at v12 (five owner rulings inside; twelve reviewed revisions).
