@@ -66,6 +66,15 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-17 (v7 + deadlock broken): codex's v6 review caught a REAL constructed bug
+  in the sequence-design text (chopping our own EXCLUDED tree could complete a round
+  and falsely fire futility) → v7: round progress counts CENSUS-ELIGIBLE completions
+  only + the exclusion tracker gets its own built-now contract; owner rulings
+  untouched. AND: pool #1 was in a mutual-waiting deadlock (claude_1 "awaiting
+  codex" with an unpublished handoff; codex "awaiting the handoff") while claude_1
+  self-audited 3× and fixed 4 more real defects — publish ORDER issued
+  (requires_ack). Critical path resumes on that handoff.
+
 - 2026-08-17 (OWNER SESSION on specs — three rulings): B-1 = NO FLOOR; futility
   mechanism = the OWNER'S SEQUENCE DESIGN (census → chop that many → recount;
   stall/rise stops denial) — K_futility RETIRED (owner's provisional "16" superseded
