@@ -21,7 +21,16 @@ Checks, for every `coordination/messages/<me>/**.md`:
    message announcing them);
 4. a message whose path is already published is byte-identical to what was
    published — published messages are immutable, and editing one rewrites the
-   record instead of correcting it.
+   record instead of correcting it;
+5. WIP limit (owner decision 2026-08-17): a NEW handoff is rejected while the
+   sender's previous ack-requiring handoff for the same task is still awaiting
+   acknowledgement — publish after the ack lands, or name the pending handoff
+   in `supersedes`. Sender-side only: published messages are immutable, so this
+   can never fire retroactively;
+6. evidence gate (owner decision 2026-08-17): a NEW handoff whose body asserts
+   a registered cause label (`CAUSE_LABEL_TOKENS`) must carry a `review_ref:`
+   front-matter field naming a review file that exists on an authoritative
+   remote ref — cause claims travel only with their accepted instrument review.
 
 Already-published messages are otherwise the sweep's business and are skipped
 unless `--all` is given. Because ack/handoff targets are validated against
@@ -107,6 +116,113 @@ def classify(path: str) -> str:
 
 def published_bodies(per_path: dict[str, dict[str, list[str]]], path: str) -> list[str]:
     return [inbox_sweep.git("cat-file", "blob", oid) for oid in per_path[path]]
+
+
+# ---------------------------------------------------------------------------
+# Iteration-pool gates (owner decision 2026-08-17). Sender-side ONLY: published
+# messages are immutable, so neither check can ever fire retroactively.
+# ---------------------------------------------------------------------------
+
+# The chartered cause vocabulary of the standing-troll audit
+# (coordination/tasks/20260816-h-starve-1-standing-troll-audit.md). A handoff
+# asserting any of these is making a causal claim, and causal claims travel
+# only with the review that accepted the instrument producing them. Extend the
+# set when a task charters new cause labels.
+CAUSE_LABEL_TOKENS = frozenset({
+    "GENERATOR_GAP", "NO_WORK_ON_MAP", "UNIT_CANNOT_REACH_WORK",
+    "STUCK_COMMITMENT", "ALL_WAIT_CAUSE_UNDETERMINED",
+})
+
+
+def parse_published_messages(
+    per_path: dict[str, list[str]]
+) -> list["inbox_sweep.Message"]:
+    """Parse every single-body authoritative message. Collision paths (more
+    than one body) are already reported elsewhere and are skipped here."""
+    out = []
+    for path, oid_map in sorted(per_path.items()):
+        # per_path maps path -> {blob oid -> refs}; >1 oid is a collision,
+        # reported elsewhere.
+        if len(oid_map) != 1:
+            continue
+        try:
+            body = inbox_sweep.git("cat-file", "blob", next(iter(oid_map)))
+        except inbox_sweep.GitError:
+            continue
+        out.append(inbox_sweep.Message(path, "authoritative", body))
+    return out
+
+
+def _own_supersedes(msg: "inbox_sweep.Message") -> set[str]:
+    try:
+        return set(inbox_sweep.parse_json_list(msg.fields.get("supersedes", "[]")))
+    except Exception:
+        return set()
+
+
+def wip_limit_errors(
+    msg: "inbox_sweep.Message",
+    published_msgs: list["inbox_sweep.Message"],
+    batch_msgs: list["inbox_sweep.Message"],
+) -> list[str]:
+    """One in-flight ack-requiring handoff per sender per task.
+
+    A prior handoff is retired when ANY published message names it in `ack_for`
+    or `supersedes`, or when the staged message itself supersedes it. The
+    protocol's canonical retirement is the integrator's ack; the lint accepts
+    any published ack because it is a tripwire, not a court.
+    """
+    if msg.kind != "handoff":
+        return []
+    retired: set[str] = set()
+    for m in published_msgs:
+        for field in ("ack_for", "supersedes"):
+            try:
+                retired |= set(inbox_sweep.parse_json_list(m.fields.get(field, "[]")))
+            except Exception:
+                continue
+    retired |= _own_supersedes(msg)
+    pending = [
+        m.path
+        for m in published_msgs + batch_msgs
+        if m.kind == "handoff" and m.sender == msg.sender and m.task == msg.task
+        and m.path != msg.path and m.stamp < msg.stamp
+        and inbox_sweep.requires_ack(m.body, m.kind)
+        and m.path not in retired
+    ]
+    if pending:
+        return [
+            f"WIP limit: prior ack-requiring handoff for task {msg.task!r} is still "
+            f"awaiting acknowledgement ({pending[-1]!r}); publish after it is acked, "
+            "or name it in `supersedes` (owner decision 2026-08-17)"
+        ]
+    return []
+
+
+def evidence_gate_errors(
+    msg: "inbox_sweep.Message", remote_ref_names: set[str]
+) -> list[str]:
+    """A handoff asserting a chartered cause label must carry `review_ref:`
+    naming a review file that exists on an authoritative remote ref."""
+    if msg.kind != "handoff":
+        return []
+    tokens = sorted(t for t in CAUSE_LABEL_TOKENS if t in msg.body)
+    if not tokens:
+        return []
+    review_ref = msg.fields.get("review_ref", "").strip().strip('"').strip("'")
+    if not review_ref:
+        return [
+            f"evidence gate: handoff asserts cause label(s) {', '.join(tokens)} "
+            "without a `review_ref:` front-matter field naming the accepted "
+            "instrument review (owner decision 2026-08-17)"
+        ]
+    for ref in sorted(remote_ref_names):
+        if inbox_sweep.run_git("cat-file", "-e", f"{ref}:{review_ref}").returncode == 0:
+            return []
+    return [
+        f"evidence gate: review_ref {review_ref!r} not found on any "
+        "authoritative remote ref — publish the review before the claim"
+    ]
 
 
 def current_branch() -> str:
@@ -204,6 +320,16 @@ def main() -> int:
     errors: list[tuple[str, str]] = []
     linted = 0
 
+    # Iteration-pool gates (owner decision 2026-08-17) need the published
+    # corpus parsed once, plus the new messages of this very batch so two
+    # same-task handoffs staged together cannot slip past the WIP limit.
+    published_msgs = parse_published_messages(per_path)
+    batch_msgs = [
+        inbox_sweep.Message(p, source, t)
+        for p, t in sorted(tree.items())
+        if classify(p) == "message" and p not in authoritative_paths
+    ]
+
     # A v2 message is delivered only from `agent/<sender>`. The lint cannot check
     # that for an unpublished message — but it CAN check that publishing from
     # HERE would satisfy it. Three of the six real quarantine entries exist
@@ -262,6 +388,17 @@ def main() -> int:
                 legacy_baseline, baseline_present
             )
         )
+        if not published:
+            gate_msg = inbox_sweep.Message(path, source, text)
+            if gate_msg.is_v2:
+                errors.extend(
+                    (path, error)
+                    for error in wip_limit_errors(gate_msg, published_msgs, batch_msgs)
+                )
+                errors.extend(
+                    (path, error)
+                    for error in evidence_gate_errors(gate_msg, remote_ref_names)
+                )
 
     # A message present in HEAD but absent from the proposed tree would be
     # deleted by this commit. Enumerating only existing files hid that entirely
