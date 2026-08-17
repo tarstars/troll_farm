@@ -66,6 +66,14 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-17 (FOURTH owner ruling → v8): owner stated "during denial our bot can't
+  plant trees"; code verification showed it true-by-circumstance except the
+  bare-board corner (sole PLANT :1256 reachable only via board≤4-and-losing /
+  turn>250 / ≤2-plant PICK pipeline :1177). Owner RULED: forbid it — PLANT
+  suppressed during DENY. v6–v7 exclusion machinery DELETED whole; GB second named
+  exception; GK suppression twins; register row added. v8 (`1958a0bc`) to codex —
+  named review surface: the commitment-pipeline interaction under suppression.
+
 - 2026-08-17 (v7 + deadlock broken): codex's v6 review caught a REAL constructed bug
   in the sequence-design text (chopping our own EXCLUDED tree could complete a round
   and falsely fire futility) → v7: round progress counts CENSUS-ELIGIBLE completions

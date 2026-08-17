@@ -1,6 +1,7 @@
 # 20260815-banana-farm-two-specs: write specifications A (unconditional) and B (conditional) for the banana-farm bot
 
-- Status: **v7 in codex_1 re-review** (v6's owner rulings unchanged; v7 closes codex's
+- Status: **v8 in codex_1 re-review — FOURTH owner ruling (2026-08-17): NO PLANTING
+  DURING DENY; exclusion machinery deleted.** Prior: **v7 in codex_1 re-review** (v6's owner rulings unchanged; v7 closes codex's
   v6 constructed case — census-eligible round progress — and gives the exclusion
   tracker its own contract). Prior: **v6 — OWNER RULED ALL THREE DECISIONS 2026-08-17 (B-1 no floor; K_futility
   RETIRED; futility = the owner's census-sequence design, completion gate subsumed).
