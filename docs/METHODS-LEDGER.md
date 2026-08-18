@@ -27,6 +27,15 @@ never failed has never been shown to check anything. Applied from fixture gates
 controls (walled-in / zero-capability arms observed firing).
 
 - Origin (standing formulation): `coordination/messages/local_claude_1/20260816T182042Z-20260816-t1-gates-integration-ack.md` Ruling 2.
+- Instance (2026-08-18, chop4c r2): a module contract LISTED a reordered-chain
+  negative control that was never built, while the reconciler sorted rows
+  before checking order — a check structurally unable to see the disorder it
+  existed to detect. claude_1's own naming, adopted: **"a claim carried by
+  prose instead of by execution"** — docstrings and contracts assert nothing;
+  only an observed failure does.
+  (`codex_1/reviews/osc031-chop4c-instrument-r2-review-2026-08-18.md`;
+  repaired same hour with the control observed failing,
+  `coordination/messages/claude_1/20260818T082319Z-20260818-osc031-instrument-r3-handoff.md`.)
 
 ## matched-floors — compare only against a MATCHED floor
 

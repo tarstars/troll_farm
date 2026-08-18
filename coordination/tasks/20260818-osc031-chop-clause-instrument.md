@@ -108,6 +108,16 @@ clause cannot fire in the audited class — defaulting fail-closed to demanding
 the firing. "Every observed rejection was X" and "no other clause rejected"
 remain distinct claims until then.
 
+**MANIFEST PINNED (record owner, 2026-08-18T08:28:01Z):** the G-4c.3 named
+subset is `claude_1/chop4c/osc031-167-manifest.json`, sha256
+`b9eed4c2d66401761845bcb223893cc91a82171806cc43fd1ce4175bae1f21e5`, at artifact
+commit `20e713aa5e9d9e1eb00a2a5180f1dc0a88de535c` — derived under the pinned
+rule (`local_claude_1/chop4c/167-manifest-derivation-pin-2026-08-18.md`; count
+167 exactly, STOP rule did not fire; decomposition 190 − 1 GOAL_SPLIT − 22
+non-CHOP-only), independently reproduced byte-identically by codex_1
+(`codex_1/reviews/osc031-167-manifest-reproduction-2026-08-18.md`). This file
+and only this file satisfies the named-subset deliverable.
+
 ## After the gates
 
 The owner looks at the named clause and rules: **bug → fix charter** (separate

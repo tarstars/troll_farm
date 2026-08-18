@@ -49,7 +49,14 @@ resident file; the alternation is the chartered M-1 procedure itself.
 |---|---|---|---|---|---|---|---|---|
 | A1 | A cure-C | ~04:35Z | 41153619 | 6631618 | 06:31–06:33Z | 160 | 25.2 | 18/160 |
 
-| B1 | B resident | 06:32:15Z | 41154017 | (at read) | — due ~08:33Z | — | — | — |
+| B1 | B resident | 06:32:15Z | 41154017 | 6632048 | 08:27Z | 160 | 23.9 | 26/160 |
+| A2 | A cure-C | 08:27:39Z | 41154515 | (at read) | — due ~10:33Z | — | — | — |
+
+- B1 sample: 5/12 wins, avg margin ~−1 vs the 23.2–25.3 band (color only).
+- **Pair 1: A1 − B1 = 25.2 − 23.9 = +1.3** (n=1; SE(Δ) at n=1 ≈ 2.12 — no
+  claim, four pairs to go).
+- A2 swap 08:27:39Z: fail-closed submitter accepted, sha `ad3bfefe…` verified,
+  one mutation call, HTTP 200, submission 41154515.
 
 - A1 sample: 10/12 wins vs the 24.2–25.4 band, avg margin +57 (color only). 25.2
   exceeds every recorded resident mature read ([19.77…24.90], six reads) — ONE
