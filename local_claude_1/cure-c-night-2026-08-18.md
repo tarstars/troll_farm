@@ -47,7 +47,15 @@ resident file; the alternation is the chartered M-1 procedure itself.
 
 | # | arm | submitted | submission id | agent id | read time | battles listed | score | rank |
 |---|---|---|---|---|---|---|---|---|
-| A1 | A cure-C | ~04:35Z | 41153619 | 6631618 | — due ~06:30Z | — | — | — |
+| A1 | A cure-C | ~04:35Z | 41153619 | 6631618 | 06:31–06:33Z | 160 | 25.2 | 18/160 |
+
+| B1 | B resident | 06:32:15Z | 41154017 | (at read) | — due ~08:33Z | — | — | — |
+
+- A1 sample: 10/12 wins vs the 24.2–25.4 band, avg margin +57 (color only). 25.2
+  exceeds every recorded resident mature read ([19.77…24.90], six reads) — ONE
+  window, no claim; the paired B windows decide.
+- B swap 06:32:15Z: fail-closed submitter accepted, sha `98628e98…` verified,
+  one mutation call, HTTP 200, submission 41154017.
 
 - 04:52–04:57Z liveness check (NOT an M-1 datum, immature): score 23.1,
   rank 32/160 Legend, promotable=False, 111 battles listed, sample 5/12 wins vs
