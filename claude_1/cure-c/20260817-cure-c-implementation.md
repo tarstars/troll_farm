@@ -7,13 +7,14 @@
 - Subject: `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs`,
   sha256 `98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29`.
 
-> **STATUS: PLAN ONLY. NO CURE CODE IS WRITTEN OR AUTHORIZED BY THIS DOCUMENT.**
-> The last published rulings — codex_1 `20260817T203000Z` and the integrator
-> `20260817T190221Z` — both state that candidate C is an **owner preference, not a ruling**, and
-> that no cure code, resident mutation, Arena action or spec implementation is authorized. The
-> formal decision belongs to the pool-#6 owner session. This document is what that session would
-> need in order to charter the work, plus the pre-registration the standing decision procedure
-> requires to be written **before** the build. Nothing here modifies the resident.
+> **STATUS (superseded 2026-08-18): PLAN EXECUTED. See §6.**
+> As written on 2026-08-17 this was **plan only** — codex_1 `20260817T203000Z` and the integrator
+> `20260817T190221Z` both held that candidate C was an **owner preference, not a ruling**, and that
+> no cure code, resident mutation, Arena action or spec implementation was authorized. The owner
+> charter `local_claude_1 20260817T223919` (pool #12) then authorized the build end-to-end, and it
+> was carried out against this document unchanged. **The pre-registration below was frozen before
+> the build and has not been amended.** The resident is still unmodified at
+> `98628e98…`; nothing in this document modifies it.
 
 ---
 
@@ -175,3 +176,59 @@ It does not modify the resident, write cure code, run the Arena, or implement ei
 spec. It does not decide the ruling: whether the phase gate's scope should be widened is the
 owner's call in pool #6, and the accepted neutral wording for the finding remains **"deliberate
 phase-gate composition gap"**.
+
+*(§5 describes the document. Under the pool-#12 charter the build itself was carried out
+separately; §6 records it. The resident remained unmodified throughout.)*
+
+---
+
+## 6. Execution record — added 2026-08-18, after the pool-#12 charter
+
+The change in §1 was built **verbatim**, by generator rather than by hand:
+`make_candidate_c.py` derives the candidate from the resident and refuses on a non-unique anchor,
+on an edit that changes more than the anchor, or on more than one diff hunk. It also re-verifies
+the five textual premises of §2's reachability argument on **every** build, so the argument cannot
+quietly go stale against a changed subject.
+
+- candidate `claude_1/cure-c/candidate-cure-c-quiet.rs` — sha256
+  `ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1`
+- resident, **unmodified** — sha256 `98628e98…`
+- the diff is **one hunk, six lines**
+
+| gate | result |
+|---|---|
+| G1.1 fail-first | **PASS** — 311/311 turns red on the unmodified resident, matching the frozen registry |
+| G1.2 cured | **PASS** — OSC-008/028/032/033 → 0 no-goal turns |
+| G1.3 predicted-uncured | **RED** — OSC-009 4→0, OSC-031 178→89; both *over*-deliver |
+| G1.4 fixture no-regression | **PASS** — 34 situations, whole-game, zero de-novo D-1/P4 |
+| G2 acceptance panel | **FAIL** — de-novo D-1 = 1, P4 = 3 by episode count · 1 and 2 by turn coverage |
+| G3 latency + thread parity | **PASS** — warm p95 0.065 ms against a 50 ms budget (resident 0.057 ms, same run); 240/240 rows byte-identical 1-proc vs 8-proc |
+| G4 review | handed to `codex_1` **red**, `20260818T014000Z` |
+| G5 submission | **not approached** — the charter's direct-submit exception applies only after a green handoff |
+
+Aggregate, recorded for context and **not** offered as a gate argument: blocking games 119 → 58,
+violation instances 289 → 115.
+
+**Both G2 regressions are mechanised, and neither is repairable from here:**
+
+- **m082 seat 1** is *tail-caused*. It vanishes under an `endgame_candidates` tail — but that tail
+  costs nearly all of C's benefit (blocking 58 → **122**). It is a genuine regression, not a
+  counting artifact: score 12 → 1. Choosing between the tails is a session decision, not mine.
+- **m061 seat 0** is *trajectory-caused*. C and the endgame-tail variant are **byte-identical**
+  there, so no choice of tail changes it. The candidate diverges at turn 24, reaches a
+  higher-scoring position (75 against the floor's 48), and starves in a state where the resident's
+  own generators would also have offered nothing. **No implementation fix exists within C's
+  design.**
+
+**Where §3's pre-registration was wrong.** The registry's rule was *turn-local*, which can support
+a zero-residual claim but never a positive-residual one on a whole-game replay — the exact hazard
+declared one document earlier for the other 26 fixtures. Two of eight fixtures diverged. The
+registry was **not amended**; the defect is recorded in
+`registry-postmortem-2026-08-17.md` and clause 3 was left red.
+
+**What this leaves open.** The implementation is complete and every gate that can be run has been
+run. Submission requires one of three decisions that are not the implementer's: a ruling on which
+metric "ZERO de-novo" means (`20260818T003500Z` — the two disagree, and the friendlier one flatters
+this candidate), authorization to revise C's tail at the stated aggregate cost, or an explicit lift
+of G2 recorded as the owner's call. Absent one of those, the correct state of this task is
+**blocked, not submitted**.
