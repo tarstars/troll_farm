@@ -1,0 +1,52 @@
+{
+  "OSC-031": {
+    "parity": "IDENTICAL",
+    "rows": 734,
+    "by_clause": {
+      "ACCEPT": 7,
+      "PREDICT_TREE_NONE": 727
+    },
+    "turn_coverage": {
+      "ACCEPT": 7,
+      "PREDICT_TREE_NONE": 198
+    },
+    "window": [
+      11,
+      200
+    ]
+  },
+  "OSC-001": {
+    "parity": "IDENTICAL",
+    "rows": 463,
+    "by_clause": {
+      "ACCEPT": 200,
+      "GATE_UNIT": 263
+    },
+    "turn_coverage": {
+      "ACCEPT": 200,
+      "GATE_UNIT": 200
+    },
+    "window": [
+      6,
+      200
+    ]
+  },
+  "OSC-008": {
+    "parity": "IDENTICAL",
+    "rows": 694,
+    "by_clause": {
+      "ACCEPT": 329,
+      "GATE_UNIT": 354,
+      "PREDICT_TREE_NONE": 11
+    },
+    "turn_coverage": {
+      "ACCEPT": 96,
+      "GATE_UNIT": 188,
+      "PREDICT_TREE_NONE": 11
+    },
+    "window": [
+      57,
+      64
+    ]
+  }
+}
