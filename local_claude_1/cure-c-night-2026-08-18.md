@@ -1,0 +1,63 @@
+# Cure-C paired night — M-1 bookkeeping ledger (2026-08-18)
+
+Charter: `coordination/tasks/20260817-cure-c-implementation.md` §4 — "the paired
+candidate-vs-resident night runs under the M-1 rule; local_claude_1 does the
+Arena bookkeeping; KEEP vs REVERT is the OWNER's ruling on the night's numbers."
+M-1 (owner-ruled 2026-08-15, `coordination/tasks/20260815-banana-farm-two-specs.md:103-117`):
+interleaved ABAB, one submission per ~2 h (mature 160-game read settles in ~2 h,
+measured 2026-08-12); one block ≈ 20 h = 5 adjacent (A,B) pairs.
+
+## Arms (both byte-verified this session, 04:57Z)
+
+| arm | source | sha256 | submit command |
+|---|---|---|---|
+| A = cure C | `cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs` (75,844 B) | `ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1` | `python3 cgauto/api_submit_once.py cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs --expected-sha256 ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1` |
+| B = resident | `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs` | `98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29` | `python3 cgauto/api_submit_once.py cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs --expected-sha256 98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29` |
+
+Submitting the archived resident COPY is not a mutation of the byte-sacred
+resident file; the alternation is the chartered M-1 procedure itself.
+
+## Verdict arithmetic (fixed in advance)
+
+- Verdict object: 95% CI of the PAIRED difference Δ = mean over adjacent pairs of
+  (A_i − B_i). Never two separate per-bot intervals.
+- SE(Δ) = σ·√(2/n), σ = 1.501 (operational, closed 2026-08-14). n=5 → SE 0.949,
+  1.96·SE = 1.861. Pooled n=10 → 1.32.
+- Winner when |Δ| ≥ 1.96·SE. **Materiality floor: |Δ| < 1.0 → IMMATERIAL, stop**
+  (point estimate; the standing value bar, not a statistical bound). Between →
+  extend one ABAB block, max two extensions (30 runs, SE ≈ 0.55), then the floor
+  forces the stop.
+- Honesty clause: report the empirical paired-difference spread beside the
+  planning σ; gross disagreement = "re-measure σ" flag, never a license to pick
+  the flattering number.
+- Pre-registered expectation: **+0.2 to +0.7 — IMMATERIAL is a possible HONEST
+  outcome nobody re-frames.** m082 seat 1 (score 12 → 1) travels in every report
+  as the named accepted cost. KEEP/REVERT = OWNER, on the numbers.
+
+## Per-mark ritual (each ~2 h)
+
+1. `python3 cgauto/cg_rank.py` → authoritative line (score, rank, agentId).
+2. `python3 cgauto/battles.py 12` → battles-listed count (maturity sanity ≥ ~150)
+   + W/L sample. If clearly immature, wait 15–30 min and re-read.
+3. Record the row below, THEN submit the other arm (sha-verified command above),
+   record new submission id + stamp. One mutation call per mark, fail-closed.
+4. Commit + push the ledger row (no `--mark`, no lint-piping).
+
+## Read log (times UTC, read off the clock)
+
+| # | arm | submitted | submission id | agent id | read time | battles listed | score | rank |
+|---|---|---|---|---|---|---|---|---|
+| A1 | A cure-C | ~04:35Z | 41153619 | 6631618 | — due ~06:30Z | — | — | — |
+
+- 04:52–04:57Z liveness check (NOT an M-1 datum, immature): score 23.1,
+  rank 32/160 Legend, promotable=False, 111 battles listed, sample 5/12 wins vs
+  the 22.6–24.6 band (incl. L −4 vs yamo). Games flowing; identity fresh agent
+  6631618 ≠ resident agents (6604529/6614096-era).
+
+## Schedule (approximate, drift tolerated; window = arm's own ~2 h)
+
+A@04:35 → read A1 + submit B ~06:30 → read B1 + submit A ~08:30 → read A2 +
+submit B ~10:30 → read B2 + submit A ~12:30 → read A3 + submit B ~14:30 →
+read B3 + submit A ~16:30 → read A4 + submit B ~18:30 → read B4 + submit A
+~20:30 → read A5 + submit B ~22:30 → read B5 ~00:30Z (block complete, n=5) →
+numbers to the OWNER.
