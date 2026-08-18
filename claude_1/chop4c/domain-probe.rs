@@ -328,7 +328,7 @@ mod bot{
     for x in 0..4{for y in 0..4{walkable.insert((x,y));}}
     let mut executed:u64=0;
     let mut pt_some:u64=0;let mut pt_none:u64=0;
-    let mut co_some:u64=0;let mut co_none:u64=0;
+    let mut co_some:u64=0;let mut co_none:u64=0;let mut co_calls:u64=0;let mut wood_evals:u64=0;
     let mut v_pred_nonpos:u64=0;let mut v_wood_nonpos:u64=0;
     for kind in kinds{
         for size in 1..=4{
@@ -337,7 +337,7 @@ mod bot{
                 for fruits in 0..=3{
                     for cooldown in 0..=9{
                         for near_water in [false,true]{
-                            for opp_chop in 0..=3{
+                            for opp_chop in 0..=21{
                                 let mut water=BTreeSet::new();
                                 if near_water{water.insert((1,0));}
                                 let mut units=Vec::new();
@@ -351,7 +351,7 @@ mod bot{
                                     shacks:[(0,0),(3,3)],inventories:[[0;ITEM_COUNT];2],units,
                                     plants:vec![plant.clone()],scores:[0,0],turn:1,next_id:10,
                                     iron:BTreeSet::new(),water};
-                                for travel in [0,1,2,7,50,150,299,300]{
+                                for travel in 0..=300{
                                     executed+=1;
                                     match MoisanBot::predict_tree(&view,&plant,travel){
                                         None=>{pt_none+=1;}
@@ -359,13 +359,15 @@ mod bot{
                                             pt_some+=1;
                                             if pred.size<=0||pred.health<=0{v_pred_nonpos+=1;
                                                 println!("VIOLATION PREDICTED_NONPOSITIVE kind={:?} size={} health={} fruits={} cd={} nw={} opp={} travel={} psize={} phealth={}",kind,size,health,fruits,cooldown,near_water,opp_chop,travel,pred.size,pred.health);}
-                                            for chop_power in 1..=3{
+                                            for chop_power in 1..=21{
+                                                co_calls+=1;
                                                 match MoisanBot::chop_outcome(&view,&plant,pred,chop_power){
                                                     None=>{co_none+=1;
                                                         println!("VIOLATION CHOP_OUTCOME_NONE kind={:?} size={} health={} fruits={} cd={} nw={} opp={} travel={} chop={} psize={} phealth={}",kind,size,health,fruits,cooldown,near_water,opp_chop,travel,chop_power,pred.size,pred.health);}
                                                     Some((_turns,final_size))=>{
                                                         co_some+=1;
-                                                        for free_cap in 1..=3{
+                                                        for free_cap in 1..=5{
+                                                            wood_evals+=1;
                                                             let wood=final_size.min(free_cap);
                                                             if final_size>0&&free_cap>0&&wood<=0{v_wood_nonpos+=1;
                                                                 println!("VIOLATION WOOD_NONPOSITIVE final_size={} free_cap={} wood={}",final_size,free_cap,wood);}
@@ -384,7 +386,7 @@ mod bot{
             }
         }
     println!("C4CDOMAIN resident_sha=98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29");
-    println!("C4CDOMAIN executed={} predict_some={} predict_none={} chop_some={} chop_none={}",executed,pt_some,pt_none,co_some,co_none);
+    println!("C4CDOMAIN executed={} predict_some={} predict_none={} chop_some={} chop_none={} chop_calls={} wood_evals={}",executed,pt_some,pt_none,co_some,co_none,co_calls,wood_evals);
     println!("C4CDOMAIN violations predicted_nonpositive={} chop_outcome_none={} wood_nonpositive={}",v_pred_nonpos,co_none,v_wood_nonpos);
     }
 //C4C_PROBE_END

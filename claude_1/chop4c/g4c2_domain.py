@@ -29,7 +29,8 @@ sys.path.insert(0, str(REPO / "claude_1/chop4c"))
 import fixture_harness as H          # noqa: E402
 import make_domain_probe as MDP      # noqa: E402
 
-FRUITS, COOLDOWN, NEAR_WATER, OPP, TRAVEL = 4, 10, 2, 4, 8   # loop ranges in the probe
+FRUITS, COOLDOWN, NEAR_WATER, OPP, TRAVEL = 4, 10, 2, 22, 301  # probe loop ranges
+CHOP_POWER, FREE_CAP = 21, 5
 
 
 class DomainError(RuntimeError):
@@ -97,6 +98,21 @@ def main():
         raise DomainError("UNCOVERED TUPLES: predict_some + predict_none != executed")
     print("  every tuple accounted for by exactly one predict_tree outcome")
 
+    # PER-PREDICATE cardinality (codex_1 G-4c.2 point 2): reconciling only prediction calls left
+    # the nested chop_outcome and wood evaluations unaudited.
+    want_chop = stats["predict_some"] * CHOP_POWER
+    if stats["chop_calls"] != want_chop:
+        raise DomainError(f"chop_outcome evaluations {stats['chop_calls']} != predict_some x "
+                          f"{CHOP_POWER} = {want_chop}")
+    if stats["chop_some"] + stats["chop_none"] != stats["chop_calls"]:
+        raise DomainError("UNCOVERED: chop_some + chop_none != chop_calls")
+    want_wood = stats["chop_some"] * FREE_CAP
+    if stats["wood_evals"] != want_wood:
+        raise DomainError(f"wood evaluations {stats['wood_evals']} != chop_some x {FREE_CAP} "
+                          f"= {want_wood}")
+    print(f"  chop_outcome evaluations reconcile ({want_chop}); wood evaluations reconcile "
+          f"({want_wood})")
+
     # ---- the three invariants, as measured
     for k in ("predicted_nonpositive", "chop_outcome_none", "wood_nonpositive"):
         if stats[k] != 0:
@@ -115,6 +131,14 @@ def main():
             ("if final_size>0&&free_cap>0&&wood<=0{v_wood_nonpos+=1;",
              "if final_size>0&&free_cap>0&&wood<=1{v_wood_nonpos+=1;"),
     }
+    # CHOP_OUTCOME_NONE had no mutation control (codex_1 point 3). Truncating the subject's own
+    # felling loop to a single iteration forces None for any tree not felled in one hit, so the
+    # harness must report chop_outcome_none > 0.
+    # `for turns in 1..=100{` occurs three times in the subject; anchor on chop_outcome's own
+    # preceding line so the mutation lands in the function under proof and nowhere else.
+    mutations["truncated chop_outcome loop (1..=100 -> 1..=1)"] = (
+        "let mut cooldown=predicted.cooldown;\n                for turns in 1..=100{",
+        "let mut cooldown=predicted.cooldown;\n                for turns in 1..=1{")
     mut_path = REPO / "claude_1/chop4c/domain-probe-mutant.rs"
     for name, (old, new) in mutations.items():
         if text.count(old) != 1:
