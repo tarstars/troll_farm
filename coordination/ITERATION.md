@@ -118,10 +118,14 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
   predicate, pre-registered count + STOP rule) → derived 167 exactly →
   codex_1 byte-identical reproduction → SHA-PINNED in the task record
   (`b9eed4c2…`). Amendment 1: coverage structural, 167 = named subset.
-  G-4c.2 in build: compiled-domain proof method APPROVED (no replicas
-  admissible), two observed-firing controls specified (island, turn-300).
-  G-4c.3 unauthorized until G-4c.2. Night: pair 1 = A 25.2 − B 23.9 = +1.3
-  (no claim, n=1); A2 window running (sub 41154515).
+  G-4c.2: compiled-domain proof method APPROVED (no replicas admissible), two
+  observed-firing controls specified (island, turn-300). **CORRECTION 09:31Z —
+  "in build" was the integrator's unverified inference: the approval went out
+  no-ack, the implementer was on record holding for it, both queues were
+  correctly empty (owner caught the contradiction). GO directive issued
+  requires_ack (`20260818T093139Z`); verdict-equals-message Instance 3 in the
+  ledger.** G-4c.3 unauthorized until G-4c.2. Night: pair 1 = A 25.2 − B 23.9
+  = +1.3 (no claim, n=1); A2 window running (sub 41154515).
 
 - 2026-08-18 (**4c CHARTERED**, owner in session): the OSC-031 chop-mystery
   instrument is live work — task

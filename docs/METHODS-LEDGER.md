@@ -58,6 +58,16 @@ Three parties made that mistake within twenty-four hours (spec-v3 verdict unread
 
 - Origins: `coordination/messages/local_claude_1/20260817T150607Z-20260816-h-starve-1-pool2-verdict-integration.md` §2;
   `coordination/messages/local_claude_1/20260817T090423Z-20260816-h-starve-1-pool1-reopened-redirect.md`.
+- Instance 3 (2026-08-18, chop4c G-4c.2 stall): a reviewer's method APPROVAL —
+  the exact signal the implementer was on record as holding for — went out
+  `requires_ack: false`; the implementer's queue stayed correctly empty and
+  the work never started, while the coordinator reported it "presumably" in
+  flight to the owner (an unverified record claim, adjacent to
+  no-unchecked-endorsement). Caught by the OWNER asking why idle agents
+  contradicted the status. The clause violated is the second one: requires_ack
+  when it changes anyone's queue — an approval that unblocks work changes a
+  queue as surely as a ruling that reopens it. Repair:
+  `coordination/messages/local_claude_1/20260818T093139Z-20260818-osc031-g4c2-build-directive.md`.
 
 ## never-blind-mark — never `--mark` outside a displayed-and-read sweep
 
