@@ -28,6 +28,7 @@ sys.path.insert(0, str(REPO / "claude_1/pipeline"))
 sys.path.insert(0, str(REPO / "claude_1/chop4c"))
 import fixture_harness as H          # noqa: E402
 import make_domain_probe as MDP      # noqa: E402
+import reduction_checker as RC       # noqa: E402
 
 FRUITS, COOLDOWN, NEAR_WATER, OPP, TRAVEL = 4, 10, 2, 22, 301  # probe loop ranges
 CHOP_POWER, FREE_CAP = 21, 5
@@ -63,13 +64,14 @@ def run_probe(rs_path, expect_ok=True):
         raise DomainError(f"probe exited {r.returncode}: {r.stderr[-400:]}")
     stats = {}
     for ln in r.stdout.splitlines():
-        if ln.startswith("C4CDOMAIN executed=") or ln.startswith("C4CDOMAIN violations"):
+        if (ln.startswith("C4CDOMAIN executed=") or ln.startswith("C4CDOMAIN violations")
+                or ln.startswith("C4CDOMAIN bounds")):
             for kv in ln.split()[1:]:
                 if "=" in kv:
                     k, v = kv.split("=", 1)
                     stats[k] = int(v) if v.isdigit() else v
     viol = [l for l in r.stdout.splitlines() if l.startswith("VIOLATION")]
-    return stats, viol
+    return stats, viol, r.stdout
 
 
 def main():
@@ -84,7 +86,7 @@ def main():
     print(f"expected tuples = {health_terms}(health) x {FRUITS} x {COOLDOWN} x {NEAR_WATER} "
           f"x {OPP} x {TRAVEL} = {expected}")
 
-    stats, viol = run_probe(probe)
+    stats, viol, raw = run_probe(probe)
     print(f"probe: executed={stats['executed']} predict_some={stats['predict_some']} "
           f"predict_none={stats['predict_none']} chop_some={stats['chop_some']} "
           f"chop_none={stats['chop_none']}")
@@ -144,7 +146,7 @@ def main():
         if text.count(old) != 1:
             raise DomainError(f"mutation anchor not unique for {name}")
         mut_path.write_text(text.replace(old, new))
-        mstats, mviol = run_probe(mut_path, expect_ok=True)
+        mstats, mviol, _ = run_probe(mut_path, expect_ok=True)
         total = (mstats["predicted_nonpositive"] + mstats["chop_outcome_none"]
                  + mstats["wood_nonpositive"])
         if total == 0:
@@ -152,7 +154,38 @@ def main():
                               f"harness cannot detect the defect it exists to detect.")
         print(f"  OK — {name}: {total} violations detected")
     mut_path.unlink()
-    print("\nG-4c.2 impossibility proofs: conditions 1-5 satisfied")
+    # ---- PROVENANCE: bounds are PARSED from this run, never supplied by hand (r3 blocker)
+    print("\nsaturation reduction (bounds parsed from the run above):")
+    need = ("max_pred_health", "max_pred_size", "max_final_size", "travel0_some",
+            "travel_ge1_some")
+    missing = [k for k in need if k not in stats]
+    if missing:
+        raise DomainError(f"bound record missing fields {missing} — refusing to check a "
+                          f"reduction against numbers this run did not emit")
+    RC.check_identities(RC.SUBJECT)
+    RC.check_bounds(stats)
+    RC.run(stats)
+
+    # negative controls on the PROVENANCE path itself
+    print("\nprovenance negative controls (each MUST be rejected):")
+    for name, mutate in {
+        "bounds row dropped": lambda s: {k: v for k, v in s.items() if k not in need},
+        "bounds row altered (max_pred_health 21)": lambda s: dict(s, max_pred_health=21),
+        "bounds row altered (max_final_size 5)": lambda s: dict(s, max_final_size=5),
+    }.items():
+        m = mutate(stats)
+        try:
+            miss = [k for k in need if k not in m]
+            if miss:
+                raise DomainError("missing bound fields")
+            RC.check_bounds(m)
+        except (DomainError, RC.ReductionError):
+            print(f"  OK — rejected: {name}")
+        else:
+            raise DomainError(f"PROVENANCE CONTROL FAILED: {name} accepted")
+
+    print("\nG-4c.2: conditions 1-5 satisfied and the reduction is checked against "
+          "parsed measurements")
     return 0
 
 

@@ -85,6 +85,9 @@ def check_bounds(bounds):
     if bounds["max_pred_health"] > 20:
         raise ReductionError(f"bound FAILED — max predicted health {bounds['max_pred_health']} "
                              f"> 20; the chop_power cutoff is NOT justified")
+    if bounds["max_pred_size"] > 4:
+        raise ReductionError(f"bound FAILED — max predicted size {bounds['max_pred_size']} > 4; "
+                             f"the growth cap the other bounds rely on does not hold")
     if bounds["max_final_size"] > 4:
         raise ReductionError(f"bound FAILED — max final_size {bounds['max_final_size']} > 4; "
                              f"the free_capacity cutoff is NOT justified")
@@ -94,14 +97,9 @@ def check_bounds(bounds):
     return True
 
 
-def main():
-    bounds = {}
-    for arg in sys.argv[1:]:
-        k, v = arg.split("=", 1)
-        bounds[k] = int(v)
-    if not bounds:
-        raise ReductionError("usage: reduction_checker.py max_pred_health=.. max_final_size=.. "
-                             "travel0_some=.. travel_ge1_some=..")
+def run(bounds):
+    """Bounds MUST come from a parsed probe run. There is no manual path — codex_1's r3 blocker:
+    a checker taking CLI numbers accepted fabricated values while calling them measurements."""
 
     print("subject-operation identities:")
     check_identities(SUBJECT)
@@ -113,6 +111,7 @@ def main():
     check_bounds(bounds)
     print(f"  OK — max predicted health {bounds['max_pred_health']} <= 20 "
           f"(post-growth, per codex_1's refinement)")
+    print(f"  OK — max predicted size {bounds['max_pred_size']} <= 4")
     print(f"  OK — max final_size {bounds['max_final_size']} <= 4")
     print(f"  OK — both travel cases observed: travel==0 {bounds['travel0_some']}, "
           f"travel>=1 {bounds['travel_ge1_some']}")
@@ -137,6 +136,10 @@ def main():
             (None, dict(bounds, max_final_size=5)),
         "bound: travel==0 case never observed":
             (None, dict(bounds, travel0_some=0)),
+        "bound: travel>=1 case never observed":
+            (None, dict(bounds, travel_ge1_some=0)),
+        "bound: predicted size 5 (growth cap broken)":
+            (None, dict(bounds, max_pred_size=5)),
     }
     for name, (msrc, mbounds) in muts.items():
         try:
@@ -154,4 +157,5 @@ def main():
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    raise SystemExit("REFUSING: this checker has no manual-measurement path. Run "
+                     "g4c2_domain.py, which parses the probe's emitted bound row and calls it.")
