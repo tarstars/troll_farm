@@ -54,7 +54,14 @@ resident file; the alternation is the chartered M-1 procedure itself.
 | B2 | B resident | 11:04:06Z | 41155368 | 6633209 | 12:58Z | 160 | 22.8 | 34/161 |
 | A3 | A cure-C | 12:59:16Z | 41155957 | 6633433 | 14:58Z | 160 | 23.2 | 32/161 |
 | B3 | B resident | 14:59:09Z | 41156649 | 6633935 | 18:11Z | 160 | 22.8 | 32/162 |
-| A4 | A cure-C | 18:12:47Z | 41157565 | (at read) | — due ~20:13Z | — | — | — |
+| A4 | A cure-C | 18:12:47Z | 41157565 | 6634457 | 20:58Z | 160 | 22.9 | 31/162 |
+| B4 | B resident | 20:59:11Z | 41158211 | (at read) | — due ~22:59Z | — | — | — |
+
+- A4 read 20:58Z (window 2h46m, 160 battles; late fire). Sample 6/12.
+  A-windows so far: 25.2, 23.0, 23.2, 22.9. Pair 4 completes at B4's read.
+- B4 swap 20:59:11Z: accepted, sha `98628e98…` verified, one mutation call,
+  HTTP 200, submission 41158211. Remaining: B4 read ~22:59 → A5 → B5; block
+  close projected ~03:00Z (drift accumulated; windows all ≥2h, valid).
 
 - B3 read 18:11Z — window ran LONG (3h12m: the session REPL sat busy/idle
   through the 16:33/17:33 fires). Long windows are valid (more mature, no
