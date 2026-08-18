@@ -53,7 +53,20 @@ resident file; the alternation is the chartered M-1 procedure itself.
 | A2 | A cure-C | 08:27:39Z | 41154515 | 6632611 | 11:03Z | 160 | 23.0 | 30/160 |
 | B2 | B resident | 11:04:06Z | 41155368 | 6633209 | 12:58Z | 160 | 22.8 | 34/161 |
 | A3 | A cure-C | 12:59:16Z | 41155957 | 6633433 | 14:58Z | 160 | 23.2 | 32/161 |
-| B3 | B resident | 14:59:09Z | 41156649 | (at read) | — due ~16:59Z | — | — | — |
+| B3 | B resident | 14:59:09Z | 41156649 | 6633935 | 18:11Z | 160 | 22.8 | 32/162 |
+| A4 | A cure-C | 18:12:47Z | 41157565 | (at read) | — due ~20:13Z | — | — | — |
+
+- B3 read 18:11Z — window ran LONG (3h12m: the session REPL sat busy/idle
+  through the 16:33/17:33 fires). Long windows are valid (more mature, no
+  bias); noted for the honesty clause. Sample 9/12 wins.
+  **Pair 3: A3 − B3 = 23.2 − 22.8 = +0.4.** Running (+1.3, +0.2, +0.4),
+  mean +0.633 at n=3.
+- A4 swap: FIRST ATTEMPT FAILED CLEAN at 18:11:59Z — RemoteDisconnected in the
+  SESSION phase, mutation_calls=0, exit 2 (fail-closed before any submit).
+  Verified by read: live agent still 6633935 → nothing landed. ONE retry
+  (allowed: the no-retry rule guards ambiguous MUTATIONS; this was a failed
+  read) → accepted 18:12:47Z, sha `ad3bfefe…` verified, one mutation call,
+  HTTP 200, submission 41157565. Legend grew again 161→162 seats.
 
 - A3 read 14:58Z (elapsed 1h59m, 160 battles). Sample 4/12 wins. A-windows so
   far: 25.2, 23.0, 23.2. Pair 3 completes at the B3 read (~16:59Z).
