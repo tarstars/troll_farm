@@ -1,0 +1,154 @@
+{
+ "blocking_games": {
+  "candidate": 58,
+  "floor": 119
+ },
+ "command_errors": {
+  "candidate": 0,
+  "floor": 0
+ },
+ "corpus_version": "c5-two-player-phase-merged-2026-08-11",
+ "denovo": {
+  "D-1": [
+   {
+    "candidate": 1,
+    "floor": 0,
+    "map_id": "m082",
+    "seat": 1
+   }
+  ],
+  "D-4": [
+   {
+    "candidate": 1,
+    "floor": 0,
+    "map_id": "m061",
+    "seat": 0
+   },
+   {
+    "candidate": 2,
+    "floor": 0,
+    "map_id": "m061",
+    "seat": 1
+   }
+  ],
+  "D-6": [
+   {
+    "candidate": 5,
+    "floor": 0,
+    "map_id": "m092",
+    "seat": 0
+   }
+  ],
+  "P2": [
+   {
+    "candidate": 1,
+    "floor": 0,
+    "map_id": "m082",
+    "seat": 1
+   }
+  ],
+  "P3": [
+   {
+    "candidate": 1,
+    "floor": 0,
+    "map_id": "m054",
+    "seat": 0
+   },
+   {
+    "candidate": 1,
+    "floor": 0,
+    "map_id": "m065",
+    "seat": 0
+   },
+   {
+    "candidate": 1,
+    "floor": 0,
+    "map_id": "m074",
+    "seat": 0
+   },
+   {
+    "candidate": 1,
+    "floor": 0,
+    "map_id": "m095",
+    "seat": 0
+   },
+   {
+    "candidate": 1,
+    "floor": 0,
+    "map_id": "m104",
+    "seat": 0
+   },
+   {
+    "candidate": 1,
+    "floor": 0,
+    "map_id": "m114",
+    "seat": 0
+   }
+  ],
+  "P4": [
+   {
+    "candidate": 1,
+    "floor": 0,
+    "map_id": "m061",
+    "seat": 0
+   },
+   {
+    "candidate": 1,
+    "floor": 0,
+    "map_id": "m082",
+    "seat": 1
+   },
+   {
+    "candidate": 2,
+    "floor": 1,
+    "map_id": "m106",
+    "seat": 0
+   }
+  ]
+ },
+ "denovo_by_turn_coverage": {
+  "D-1": [
+   {
+    "candidate_score": 1,
+    "floor_score": 12,
+    "map_id": "m082",
+    "new_turns": 184,
+    "seat": 1
+   }
+  ],
+  "P4": [
+   {
+    "candidate_score": 75,
+    "floor_score": 48,
+    "map_id": "m061",
+    "new_turns": 61,
+    "seat": 0
+   },
+   {
+    "candidate_score": 1,
+    "floor_score": 12,
+    "map_id": "m082",
+    "new_turns": 185,
+    "seat": 1
+   }
+  ]
+ },
+ "denovo_d1_games": 1,
+ "denovo_p4_games": 3,
+ "games": 240,
+ "gate": "G2",
+ "instrument_version": "fuzz-panel/5-two-player-phase-merged-referee",
+ "removed_by_detector": {
+  "D-1": 2,
+  "D-6": 9,
+  "D-9": 66,
+  "P4": 5
+ },
+ "task": "20260817-cure-c-implementation",
+ "verdict": "FAIL",
+ "verdict_note": "Verdict uses the EPISODE-COUNT reading. The turn-coverage reading is reported beside it and differs on m106 seat 0. Which reading the gate means is a ruling; this module does not choose.",
+ "violation_instances": {
+  "candidate": 115,
+  "floor": 289
+ }
+}
