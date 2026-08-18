@@ -12,7 +12,9 @@ any row was counted. Neutral wording: this note reports a mechanism; the fix des
 | exits | **NONE: 630 · SOME: 0** |
 | `opp_chop` on every NONE exit | **1** |
 | tree health at forecast start | **4**, every time |
+| forecast horizon (`travel_turns`) | **9** on 624 evaluations, **8** on 6 |
 | iteration the forecast killed the tree | **4**, every time |
+| per-turn evaluation multiplicity | 4 on 148 turns, 2 on 19 turns |
 | `predicted_opp_chop` provenance (whole run) | **DAMAGED_FLAT1: 732 · ON_TREE: 0 · NONE: 2** |
 
 ## The mechanism
@@ -22,9 +24,12 @@ any row was counted. Neutral wording: this note reports a mechanism; the fix des
 1. `predicted_opp_chop` finds **no opponent on the tree** (`ON_TREE` never fires here). It then
    falls to its second rule: *the tree's health is below full for its size, so assume an opponent
    is chopping it at **1 per turn***. That flat 1 is returned in **732 of 734** calls.
-2. The troll's walk to the tree is ~4 turns. The forecast subtracts 1 health per turn, and the
-   tree's health is 4.
-3. At iteration 4 the forecast's health reaches 0, so `predict_tree` returns `None`.
+2. The forecast horizon is the walk length, **`travel_turns` = 8 or 9** — measured, not assumed.
+   The forecast subtracts 1 health per simulated turn from a starting health of **4**.
+3. Health reaches 0 at simulated **iteration 4 — well before arrival at turn 8 or 9** — so
+   `predict_tree` returns `None`. **The 4 is the death iteration, not the walk length**; an
+   earlier draft of this note conflated the two, and the long horizon in fact makes the outcome
+   more certain rather than less, because the loop has 8–9 chances to reach zero.
 4. `chop_candidates` treats `None` as "no tree to plan against" and skips it — every tree, every
    turn.
 
