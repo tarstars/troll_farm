@@ -1,0 +1,519 @@
+{
+  "task": "20260818-osc031-chop-clause-instrument",
+  "manifest_sha256": "b9eed4c2d66401761845bcb223893cc91a82171806cc43fd1ce4175bae1f21e5",
+  "manifest_turns": 167,
+  "unit": 0,
+  "parity": "IDENTICAL",
+  "exact_turn_set_equality": {
+    "missing": [],
+    "covered": 167
+  },
+  "turns_outside_manifest": 31,
+  "clause_distribution": {
+    "PREDICT_TREE_NONE": 315
+  },
+  "turns_with_mixed_terminal_clauses": 0,
+  "per_turn_clauses": {
+    "11": [
+      "PREDICT_TREE_NONE"
+    ],
+    "12": [
+      "PREDICT_TREE_NONE"
+    ],
+    "13": [
+      "PREDICT_TREE_NONE"
+    ],
+    "14": [
+      "PREDICT_TREE_NONE"
+    ],
+    "15": [
+      "PREDICT_TREE_NONE"
+    ],
+    "16": [
+      "PREDICT_TREE_NONE"
+    ],
+    "17": [
+      "PREDICT_TREE_NONE"
+    ],
+    "19": [
+      "PREDICT_TREE_NONE"
+    ],
+    "20": [
+      "PREDICT_TREE_NONE"
+    ],
+    "21": [
+      "PREDICT_TREE_NONE"
+    ],
+    "22": [
+      "PREDICT_TREE_NONE"
+    ],
+    "23": [
+      "PREDICT_TREE_NONE"
+    ],
+    "24": [
+      "PREDICT_TREE_NONE"
+    ],
+    "25": [
+      "PREDICT_TREE_NONE"
+    ],
+    "27": [
+      "PREDICT_TREE_NONE"
+    ],
+    "28": [
+      "PREDICT_TREE_NONE"
+    ],
+    "29": [
+      "PREDICT_TREE_NONE"
+    ],
+    "30": [
+      "PREDICT_TREE_NONE"
+    ],
+    "31": [
+      "PREDICT_TREE_NONE"
+    ],
+    "32": [
+      "PREDICT_TREE_NONE"
+    ],
+    "33": [
+      "PREDICT_TREE_NONE"
+    ],
+    "35": [
+      "PREDICT_TREE_NONE"
+    ],
+    "36": [
+      "PREDICT_TREE_NONE"
+    ],
+    "37": [
+      "PREDICT_TREE_NONE"
+    ],
+    "38": [
+      "PREDICT_TREE_NONE"
+    ],
+    "39": [
+      "PREDICT_TREE_NONE"
+    ],
+    "40": [
+      "PREDICT_TREE_NONE"
+    ],
+    "41": [
+      "PREDICT_TREE_NONE"
+    ],
+    "43": [
+      "PREDICT_TREE_NONE"
+    ],
+    "44": [
+      "PREDICT_TREE_NONE"
+    ],
+    "45": [
+      "PREDICT_TREE_NONE"
+    ],
+    "46": [
+      "PREDICT_TREE_NONE"
+    ],
+    "47": [
+      "PREDICT_TREE_NONE"
+    ],
+    "48": [
+      "PREDICT_TREE_NONE"
+    ],
+    "49": [
+      "PREDICT_TREE_NONE"
+    ],
+    "51": [
+      "PREDICT_TREE_NONE"
+    ],
+    "52": [
+      "PREDICT_TREE_NONE"
+    ],
+    "53": [
+      "PREDICT_TREE_NONE"
+    ],
+    "54": [
+      "PREDICT_TREE_NONE"
+    ],
+    "55": [
+      "PREDICT_TREE_NONE"
+    ],
+    "56": [
+      "PREDICT_TREE_NONE"
+    ],
+    "57": [
+      "PREDICT_TREE_NONE"
+    ],
+    "59": [
+      "PREDICT_TREE_NONE"
+    ],
+    "60": [
+      "PREDICT_TREE_NONE"
+    ],
+    "61": [
+      "PREDICT_TREE_NONE"
+    ],
+    "62": [
+      "PREDICT_TREE_NONE"
+    ],
+    "63": [
+      "PREDICT_TREE_NONE"
+    ],
+    "64": [
+      "PREDICT_TREE_NONE"
+    ],
+    "65": [
+      "PREDICT_TREE_NONE"
+    ],
+    "67": [
+      "PREDICT_TREE_NONE"
+    ],
+    "68": [
+      "PREDICT_TREE_NONE"
+    ],
+    "69": [
+      "PREDICT_TREE_NONE"
+    ],
+    "70": [
+      "PREDICT_TREE_NONE"
+    ],
+    "71": [
+      "PREDICT_TREE_NONE"
+    ],
+    "72": [
+      "PREDICT_TREE_NONE"
+    ],
+    "73": [
+      "PREDICT_TREE_NONE"
+    ],
+    "75": [
+      "PREDICT_TREE_NONE"
+    ],
+    "76": [
+      "PREDICT_TREE_NONE"
+    ],
+    "77": [
+      "PREDICT_TREE_NONE"
+    ],
+    "78": [
+      "PREDICT_TREE_NONE"
+    ],
+    "79": [
+      "PREDICT_TREE_NONE"
+    ],
+    "80": [
+      "PREDICT_TREE_NONE"
+    ],
+    "81": [
+      "PREDICT_TREE_NONE"
+    ],
+    "83": [
+      "PREDICT_TREE_NONE"
+    ],
+    "84": [
+      "PREDICT_TREE_NONE"
+    ],
+    "85": [
+      "PREDICT_TREE_NONE"
+    ],
+    "86": [
+      "PREDICT_TREE_NONE"
+    ],
+    "87": [
+      "PREDICT_TREE_NONE"
+    ],
+    "88": [
+      "PREDICT_TREE_NONE"
+    ],
+    "89": [
+      "PREDICT_TREE_NONE"
+    ],
+    "91": [
+      "PREDICT_TREE_NONE"
+    ],
+    "92": [
+      "PREDICT_TREE_NONE"
+    ],
+    "93": [
+      "PREDICT_TREE_NONE"
+    ],
+    "94": [
+      "PREDICT_TREE_NONE"
+    ],
+    "95": [
+      "PREDICT_TREE_NONE"
+    ],
+    "96": [
+      "PREDICT_TREE_NONE"
+    ],
+    "97": [
+      "PREDICT_TREE_NONE"
+    ],
+    "99": [
+      "PREDICT_TREE_NONE"
+    ],
+    "100": [
+      "PREDICT_TREE_NONE"
+    ],
+    "101": [
+      "PREDICT_TREE_NONE"
+    ],
+    "102": [
+      "PREDICT_TREE_NONE"
+    ],
+    "103": [
+      "PREDICT_TREE_NONE"
+    ],
+    "104": [
+      "PREDICT_TREE_NONE"
+    ],
+    "105": [
+      "PREDICT_TREE_NONE"
+    ],
+    "107": [
+      "PREDICT_TREE_NONE"
+    ],
+    "108": [
+      "PREDICT_TREE_NONE"
+    ],
+    "109": [
+      "PREDICT_TREE_NONE"
+    ],
+    "110": [
+      "PREDICT_TREE_NONE"
+    ],
+    "111": [
+      "PREDICT_TREE_NONE"
+    ],
+    "112": [
+      "PREDICT_TREE_NONE"
+    ],
+    "113": [
+      "PREDICT_TREE_NONE"
+    ],
+    "115": [
+      "PREDICT_TREE_NONE"
+    ],
+    "116": [
+      "PREDICT_TREE_NONE"
+    ],
+    "117": [
+      "PREDICT_TREE_NONE"
+    ],
+    "118": [
+      "PREDICT_TREE_NONE"
+    ],
+    "119": [
+      "PREDICT_TREE_NONE"
+    ],
+    "120": [
+      "PREDICT_TREE_NONE"
+    ],
+    "121": [
+      "PREDICT_TREE_NONE"
+    ],
+    "123": [
+      "PREDICT_TREE_NONE"
+    ],
+    "124": [
+      "PREDICT_TREE_NONE"
+    ],
+    "125": [
+      "PREDICT_TREE_NONE"
+    ],
+    "126": [
+      "PREDICT_TREE_NONE"
+    ],
+    "127": [
+      "PREDICT_TREE_NONE"
+    ],
+    "128": [
+      "PREDICT_TREE_NONE"
+    ],
+    "129": [
+      "PREDICT_TREE_NONE"
+    ],
+    "131": [
+      "PREDICT_TREE_NONE"
+    ],
+    "132": [
+      "PREDICT_TREE_NONE"
+    ],
+    "133": [
+      "PREDICT_TREE_NONE"
+    ],
+    "134": [
+      "PREDICT_TREE_NONE"
+    ],
+    "135": [
+      "PREDICT_TREE_NONE"
+    ],
+    "136": [
+      "PREDICT_TREE_NONE"
+    ],
+    "137": [
+      "PREDICT_TREE_NONE"
+    ],
+    "139": [
+      "PREDICT_TREE_NONE"
+    ],
+    "140": [
+      "PREDICT_TREE_NONE"
+    ],
+    "141": [
+      "PREDICT_TREE_NONE"
+    ],
+    "142": [
+      "PREDICT_TREE_NONE"
+    ],
+    "143": [
+      "PREDICT_TREE_NONE"
+    ],
+    "144": [
+      "PREDICT_TREE_NONE"
+    ],
+    "145": [
+      "PREDICT_TREE_NONE"
+    ],
+    "147": [
+      "PREDICT_TREE_NONE"
+    ],
+    "148": [
+      "PREDICT_TREE_NONE"
+    ],
+    "149": [
+      "PREDICT_TREE_NONE"
+    ],
+    "150": [
+      "PREDICT_TREE_NONE"
+    ],
+    "151": [
+      "PREDICT_TREE_NONE"
+    ],
+    "152": [
+      "PREDICT_TREE_NONE"
+    ],
+    "153": [
+      "PREDICT_TREE_NONE"
+    ],
+    "155": [
+      "PREDICT_TREE_NONE"
+    ],
+    "156": [
+      "PREDICT_TREE_NONE"
+    ],
+    "157": [
+      "PREDICT_TREE_NONE"
+    ],
+    "158": [
+      "PREDICT_TREE_NONE"
+    ],
+    "159": [
+      "PREDICT_TREE_NONE"
+    ],
+    "160": [
+      "PREDICT_TREE_NONE"
+    ],
+    "161": [
+      "PREDICT_TREE_NONE"
+    ],
+    "163": [
+      "PREDICT_TREE_NONE"
+    ],
+    "164": [
+      "PREDICT_TREE_NONE"
+    ],
+    "165": [
+      "PREDICT_TREE_NONE"
+    ],
+    "166": [
+      "PREDICT_TREE_NONE"
+    ],
+    "167": [
+      "PREDICT_TREE_NONE"
+    ],
+    "168": [
+      "PREDICT_TREE_NONE"
+    ],
+    "169": [
+      "PREDICT_TREE_NONE"
+    ],
+    "171": [
+      "PREDICT_TREE_NONE"
+    ],
+    "172": [
+      "PREDICT_TREE_NONE"
+    ],
+    "173": [
+      "PREDICT_TREE_NONE"
+    ],
+    "174": [
+      "PREDICT_TREE_NONE"
+    ],
+    "175": [
+      "PREDICT_TREE_NONE"
+    ],
+    "176": [
+      "PREDICT_TREE_NONE"
+    ],
+    "177": [
+      "PREDICT_TREE_NONE"
+    ],
+    "179": [
+      "PREDICT_TREE_NONE"
+    ],
+    "180": [
+      "PREDICT_TREE_NONE"
+    ],
+    "181": [
+      "PREDICT_TREE_NONE"
+    ],
+    "182": [
+      "PREDICT_TREE_NONE"
+    ],
+    "183": [
+      "PREDICT_TREE_NONE"
+    ],
+    "184": [
+      "PREDICT_TREE_NONE"
+    ],
+    "185": [
+      "PREDICT_TREE_NONE"
+    ],
+    "187": [
+      "PREDICT_TREE_NONE"
+    ],
+    "188": [
+      "PREDICT_TREE_NONE"
+    ],
+    "189": [
+      "PREDICT_TREE_NONE"
+    ],
+    "190": [
+      "PREDICT_TREE_NONE"
+    ],
+    "191": [
+      "PREDICT_TREE_NONE"
+    ],
+    "192": [
+      "PREDICT_TREE_NONE"
+    ],
+    "193": [
+      "PREDICT_TREE_NONE"
+    ],
+    "195": [
+      "PREDICT_TREE_NONE"
+    ],
+    "196": [
+      "PREDICT_TREE_NONE"
+    ],
+    "197": [
+      "PREDICT_TREE_NONE"
+    ],
+    "198": [
+      "PREDICT_TREE_NONE"
+    ],
+    "199": [
+      "PREDICT_TREE_NONE"
+    ],
+    "200": [
+      "PREDICT_TREE_NONE"
+    ]
+  }
+}
