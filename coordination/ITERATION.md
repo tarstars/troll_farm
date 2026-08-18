@@ -108,6 +108,21 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-18 (4c instrument ACCEPTED at r3 + manifest closed; night pair 1):
+  G-4c.1 GATE_ACCEPTED after three same-morning review rounds (r1: terminal-only
+  logging + 3 more; r2: sort-before-check reconciler + a docstring-asserted
+  control that did not exist — "a claim carried by prose instead of by
+  execution", now an observed-failing ledger instance; r3: five negative
+  controls all observed failing, counterexamples replayed). The 167-turn
+  manifest: derivation PINNED by the record owner (accepted-stack shas, closed
+  predicate, pre-registered count + STOP rule) → derived 167 exactly →
+  codex_1 byte-identical reproduction → SHA-PINNED in the task record
+  (`b9eed4c2…`). Amendment 1: coverage structural, 167 = named subset.
+  G-4c.2 in build: compiled-domain proof method APPROVED (no replicas
+  admissible), two observed-firing controls specified (island, turn-300).
+  G-4c.3 unauthorized until G-4c.2. Night: pair 1 = A 25.2 − B 23.9 = +1.3
+  (no claim, n=1); A2 window running (sub 41154515).
+
 - 2026-08-18 (**4c CHARTERED**, owner in session): the OSC-031 chop-mystery
   instrument is live work — task
   `coordination/tasks/20260818-osc031-chop-clause-instrument.md` (claude_1
