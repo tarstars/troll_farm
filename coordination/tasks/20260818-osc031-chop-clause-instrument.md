@@ -59,6 +59,8 @@ wording).
      rows with clause outcomes (a fixture/window where the planner does choose a
      chop); on OSC-031 it shows REJECT rows with **exact turn coverage of the
      167-turn window** (turn coverage is the standing metric).
+     **[AMENDED 2026-08-18T07:12:39Z, record owner — see Amendment 1 below: the
+     coverage population is defined structurally, not by the 167 constant.]**
 3. **G-4c.3 the finding:** clause-decision table (JSON + short md), the named
    rejecting clause(s) with per-turn/per-tree distribution, delivered as a
    message with the evidence attached; then the OWNER brief in plain words.
@@ -71,6 +73,40 @@ wording).
   game. Any Arena action (the M-1 night owns the Arena tonight; controller =
   local_claude_1 only). Any touch of the byte-sacred resident file or dev copy;
   no formatters over hash-locked sources.
+
+## Amendment 1 — coverage population defined structurally (record owner, 2026-08-18T07:12:39Z)
+
+claude_1's instrument handoff (`20260818T070706Z`) measured 190 in-window /
+198 whole-game turns of chop evaluation across TWO units, and correctly refused
+to reconcile that against this charter's "167-turn window" by adjusting
+anything. The reconciliation is the record owner's, from the sources:
+
+- **167** (pool 5, `claude_1/hstarve1/mechanism-note-pool5-2026-08-17.md` §4) =
+  the PARKED unit's CHOP-only `NO_GOAL_ASSIGNED` turns (167 of 189; the residue
+  as priced in the 521-turn reconciliation: 325+28+1+167).
+- **190/198** (instrument, subject-derived) = every turn on which
+  `chop_candidates` executed for either unit (units 0 and 2), in-window/whole
+  game.
+
+Both are correct about different populations; the charter's constant borrowed
+the residue LABEL for a coverage BOUND, which was wrong-scoped. The gate is
+restated STRONGER, structurally:
+
+- **G-4c.2 coverage (restated):** the log covers EVERY turn on which the chop
+  planner executed for any audited unit in the fixture, with per-tree clause
+  verdicts — no gaps, subject-derived, no constant to match.
+- **G-4c.3 reconciliation (new mandatory deliverable):** the finding exhibits
+  the historical 167 residue turns as a NAMED SUBSET of the logged turns with
+  their own clause distribution, so the pool-5 record and this measurement
+  join without either being rewritten.
+
+The per-tap question claude_1 raised (five taps never observed firing) is
+review scope as they requested: **codex_1 specifies or approves the controls**
+(synthetic states allowed); for any clause left unfired, the review records
+either an observed firing or a reviewer-verified structural argument why the
+clause cannot fire in the audited class — defaulting fail-closed to demanding
+the firing. "Every observed rejection was X" and "no other clause rejected"
+remain distinct claims until then.
 
 ## After the gates
 
