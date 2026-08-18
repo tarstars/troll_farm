@@ -50,13 +50,23 @@ resident file; the alternation is the chartered M-1 procedure itself.
 | A1 | A cure-C | ~04:35Z | 41153619 | 6631618 | 06:31–06:33Z | 160 | 25.2 | 18/160 |
 
 | B1 | B resident | 06:32:15Z | 41154017 | 6632048 | 08:27Z | 160 | 23.9 | 26/160 |
-| A2 | A cure-C | 08:27:39Z | 41154515 | (at read) | — due ~10:33Z | — | — | — |
+| A2 | A cure-C | 08:27:39Z | 41154515 | 6632611 | 11:03Z | 160 | 23.0 | 30/160 |
+| B2 | B resident | 11:04:06Z | 41155368 | (at read) | — due ~13:04Z | — | — | — |
 
 - B1 sample: 5/12 wins, avg margin ~−1 vs the 23.2–25.3 band (color only).
 - **Pair 1: A1 − B1 = 25.2 − 23.9 = +1.3** (n=1; SE(Δ) at n=1 ≈ 2.12 — no
   claim, four pairs to go).
 - A2 swap 08:27:39Z: fail-closed submitter accepted, sha `ad3bfefe…` verified,
   one mutation call, HTTP 200, submission 41154515.
+- A2 read 11:03Z (mark fired late, elapsed 2h35m — window valid): 23.0 @ 30/160,
+  sample 3/12 wins. A's two windows now span 25.2 → 23.0, a 2.2 spread —
+  the operational σ visible in one arm; the pairing exists for exactly this.
+- B2 swap 11:04:06Z: accepted, sha `98628e98…` verified, one mutation call,
+  HTTP 200, submission 41155368. B2 read due ~13:04Z.
+- Cadence note 11:04Z: replaced the odd-MSK-hour cron with an HOURLY :33 cron
+  (same guard; premature fires stand down in seconds). Late REPL-busy fires
+  were stretching windows ~30 min per mark; hourly firing bounds drift at
+  ≤1 h and self-corrects. Windows stay ≥2 h; adjacency unchanged.
 
 - A1 sample: 10/12 wins vs the 24.2–25.4 band, avg margin +57 (color only). 25.2
   exceeds every recorded resident mature read ([19.77…24.90], six reads) — ONE
