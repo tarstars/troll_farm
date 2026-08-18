@@ -22,13 +22,21 @@ same test:
 > worth chopping, the bot predicts what that tree will look like when the troll arrives. On these
 > turns the forecast came back with **no tree to plan against**, so the checklist ended there.
 
-Every other test in the checklist: **zero**. Not "rarely"; **never reached**, because the
-forecast step is earlier in the list and stopped each evaluation before them.
+Every other test in the checklist ended **zero** evaluations — but for two different reasons,
+and the distinction matters:
+
+- **Tests BEFORE the forecast were reached, and passed.** The capacity gate and the
+  "is the tree alive and reachable?" test ran on these turns and said *yes, carry on*. They are
+  not silent; they simply never had cause to stop anything here.
+- **Tests AFTER the forecast were never reached**, because the forecast stopped each evaluation
+  before them.
 
 | test in the chop checklist | times it was the deciding answer |
 |---|---:|
-| **`PREDICT_TREE_NONE`** (the forecast step) | **315** |
-| capacity gate · reachability · predicted size/health · felling outcome · round-trip clock · wood · accept | **0** each |
+| capacity gate (before the forecast) | 0 — reached and **passed** every time |
+| tree alive / reachable (before the forecast) | 0 — reached and **passed** every time |
+| **`PREDICT_TREE_NONE`** (the forecast step) | **315 — stopped every evaluation** |
+| predicted size/health · felling outcome · round-trip clock · wood · accept (after the forecast) | 0 — **never reached** |
 
 ## What was done so you can trust it
 
@@ -38,10 +46,13 @@ of review** to be accepted:
 
 - the recorder logs **every** test it reaches, not just the one that said no;
 - it produces **identical game output** to your untouched resident bot, so it is the same bot;
-- the seven tests that show zero were each dealt with separately — **two were made to fire on
-  purpose-built situations** (an unreachable tree; a turn-300 clock), and **three were proven
-  incapable of firing** by running the bot's own arithmetic over **all 80,523,520 legal
-  combinations**, including sabotage tests proving the prover notices violations when they exist;
+- the seven tests showing zero were each accounted for, none left as unexplained silence:
+  **two were made to fire on purpose-built situations** (an unreachable tree; a turn-300 clock);
+  **three were proven incapable of firing** by running the bot's own arithmetic over **all
+  80,523,520 legal combinations**, with sabotage tests proving the prover notices violations when
+  they exist; and the remaining two were **observed working in both directions elsewhere** — the
+  capacity gate was seen both stopping and passing units, and the "accept, chop this tree"
+  outcome was observed on control situations;
 - the list of 167 turns was **locked by the integrator in advance**, from last week's accepted
   measurements, and reproduced independently — nobody chose a flattering list after seeing the
   answer.
