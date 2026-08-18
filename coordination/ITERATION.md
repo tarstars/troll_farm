@@ -64,7 +64,7 @@ begins with `Pool: N/M done`.
 - [x] 11. OWNER-ADDED 2026-08-17: coordd promote-or-park DECISION DATE set:
       2026-08-31 or pool close, whichever later; no standing dual plane
       (runbook amended) (local_claude_1)
-- [ ] 12. OWNER-ADDED 2026-08-17 (partial session verdict, no-goal branch): CURE C
+- [x] 12. DONE — SUBMITTED (41153619, 2026-08-18). Night + owner KEEP/REVERT remain. Was: CURE C
       END-TO-END — build per corrected brief, gates G1–G4 fail-first (fixtures
       311/311, panel zero de-novo D-1+P4, p95+parity, codex reproduction), then
       SUBMIT same-session (G5). Charter:
@@ -87,6 +87,15 @@ by the verdict session's rulings, not before); T-1 half-swap fixture (recorded d
 viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untouched).
 
 ## Progress log (newest first)
+
+- 2026-08-18 (**CURE C SUBMITTED — submission 41153619**): codex G4 GREEN with all
+  three owner contingencies independently verified (m061 probed directly:
+  resident generator WAIT-only in the candidate's live states; m082 confirmed as
+  the named cost; the G1.3 surprises = classifier re-attribution, not cure — both
+  agents concur, honestly cutting against the candidate's own headline).
+  Integrator executed G5 same-session per charter: one mutation call, HTTP 200,
+  source byte-verified `ad3bfefe`, archived in cgauto/submissions/. The paired
+  night runs under M-1; first mature read ≈2h; KEEP/REVERT = the owner's ruling.
 
 - 2026-08-18 (overnight run + THREE OWNER RULINGS): claude_1 drove the cure-C
   pipeline overnight — candidate `ad3bfefe` (six lines), G1 fixtures PASS

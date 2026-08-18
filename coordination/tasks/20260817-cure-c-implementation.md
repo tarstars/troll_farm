@@ -1,6 +1,13 @@
 # 20260817-cure-c-implementation: implement cure C, pass every gate, submit to the platform
 
-- Status: OPEN — G1/G3 PASS, G2 adjudicated by OWNER RULINGS 2026-08-18 (message
+- Status: **G5 DONE — SUBMITTED 2026-08-18T~04:35Z, submission 41153619, source
+  `ad3bfefe…` (75,844 B), one mutation call, archived at
+  `cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs`. G4 was GREEN with all
+  owner contingencies independently verified (codex probed the resident generator
+  in m061's live states: WAIT-only; the G1.3 "over-delivery" is re-attribution, not
+  cure — both agents concur, no bonus claimed). REMAINING: the paired night under
+  M-1 (integrator bookkeeping) → OWNER KEEP/REVERT.** Prior: OPEN — G1/G3 PASS,
+  G2 adjudicated by OWNER RULINGS 2026-08-18 (message
   `20260818T041052Z`): G1.3 = explain-then-pass (codex verifies both over-delivery
   mechanisms); de-novo metric = TURN COVERAGE (general rule; clears m106);
   pre-existing-hole exception (two prongs, reviewer-verified; clears m061 if
