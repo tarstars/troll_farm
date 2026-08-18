@@ -52,7 +52,13 @@ resident file; the alternation is the chartered M-1 procedure itself.
 | B1 | B resident | 06:32:15Z | 41154017 | 6632048 | 08:27Z | 160 | 23.9 | 26/160 |
 | A2 | A cure-C | 08:27:39Z | 41154515 | 6632611 | 11:03Z | 160 | 23.0 | 30/160 |
 | B2 | B resident | 11:04:06Z | 41155368 | 6633209 | 12:58Z | 160 | 22.8 | 34/161 |
-| A3 | A cure-C | 12:59:16Z | 41155957 | (at read) | — due ~14:59Z | — | — | — |
+| A3 | A cure-C | 12:59:16Z | 41155957 | 6633433 | 14:58Z | 160 | 23.2 | 32/161 |
+| B3 | B resident | 14:59:09Z | 41156649 | (at read) | — due ~16:59Z | — | — | — |
+
+- A3 read 14:58Z (elapsed 1h59m, 160 battles). Sample 4/12 wins. A-windows so
+  far: 25.2, 23.0, 23.2. Pair 3 completes at the B3 read (~16:59Z).
+- B3 swap 14:59:09Z: accepted, sha `98628e98…` verified, one mutation call,
+  HTTP 200, submission 41156649.
 
 - B2 read 12:58Z (elapsed 1h54m, 160 battles = fully mature; within the ~2h
   tolerance). Sample 7/12 wins. **Pair 2: A2 − B2 = 23.0 − 22.8 = +0.2.**
