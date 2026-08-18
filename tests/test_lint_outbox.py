@@ -528,3 +528,65 @@ def test_evidence_gate_releases_pool3_vocabulary_with_review(repo):
 
     result = lint(repo)
     assert result.returncode == 0, result.stdout
+
+
+# ---------------------------------------------------------------------------
+# Cross-task reference gate (lint hardening 2026-08-18): supersedes/ack_for
+# must reference the message's own task unless the body carries an explicit
+# `cross-task:` marker. The defective real case was well-formed and pointed at
+# a real file, so the check compares front-matter task_id, not shape or
+# existence — and the fixture set includes a LEGITIMATE cross-task supersession
+# so the marker path is exercised, not just the rejection path.
+# ---------------------------------------------------------------------------
+
+def test_cross_task_supersedes_fails(repo):
+    target = publish_v2(repo, ME, "20260807T110000Z", "task-a", "update", to=PEER)
+    path = msg_path(ME, STAMP, "task-b", "correction")
+    body = v2_message(path, kind="correction", task="task-b", sender=ME,
+                      to=PEER, supersedes=(target,))
+    repo.write_worktree(path, body)
+
+    result = lint(repo)
+    assert result.returncode == 2
+    assert "cross-task reference" in result.stdout
+    assert "task-a" in result.stdout and "task-b" in result.stdout
+
+
+def test_cross_task_ack_for_fails(repo):
+    target = publish_v2(repo, ME, "20260807T110100Z", "task-a", "update", to=PEER)
+    path = msg_path(ME, STAMP, "task-b", "ack")
+    body = v2_message(path, kind="ack", task="task-b", sender=ME,
+                      to=PEER, ack_for=(target,))
+    repo.write_worktree(path, body)
+
+    result = lint(repo)
+    assert result.returncode == 2
+    assert "cross-task reference" in result.stdout
+    assert "`ack_for`" in result.stdout
+
+
+def test_cross_task_marker_allows_deliberate_supersession(repo):
+    target = publish_v2(repo, ME, "20260807T110200Z", "task-a", "update", to=PEER)
+    path = msg_path(ME, STAMP, "task-b", "correction")
+    body = v2_message(path, kind="correction", task="task-b", sender=ME,
+                      to=PEER, supersedes=(target,))
+    body = body.replace(
+        "# body",
+        "# body\n\ncross-task: deliberate supersession of the task-a update "
+        "(owner-approved consolidation)",
+    )
+    repo.write_worktree(path, body)
+
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout
+
+
+def test_same_task_supersedes_clean(repo):
+    target = publish_v2(repo, ME, "20260807T110300Z", "task-a", "update", to=PEER)
+    path = msg_path(ME, STAMP, "task-a", "correction")
+    body = v2_message(path, kind="correction", task="task-a", sender=ME,
+                      to=PEER, supersedes=(target,))
+    repo.write_worktree(path, body)
+
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout

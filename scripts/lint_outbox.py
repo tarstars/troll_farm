@@ -232,6 +232,48 @@ def evidence_gate_errors(
     ]
 
 
+def cross_task_reference_errors(
+    msg: "inbox_sweep.Message", published_msgs: list["inbox_sweep.Message"]
+) -> list[str]:
+    """`supersedes`/`ack_for` entries must belong to this message's task.
+
+    A syntactically valid path to a REAL message of a DIFFERENT task passes
+    every shape and existence check; on 2026-08-18 such an entry falsely
+    superseded an unrelated August-15 handoff (built by substring search over
+    two tasks sharing a "phase1-handoff" name). The comparison is by the
+    referenced message's front-matter `task_id`, never by filename, because
+    filename middles are not full task ids. Escape hatch: an explicit
+    `cross-task:` marker in the body naming why the reference is deliberate.
+    Sender-side only, like every gate here.
+    """
+    if "cross-task:" in msg.body:
+        return []
+    own_task = msg.fields.get("task_id", "").strip()
+    if not own_task:
+        return []
+    by_path = {m.path: m for m in published_msgs}
+    errors: list[str] = []
+    for field in ("supersedes", "ack_for"):
+        try:
+            entries = inbox_sweep.parse_json_list(msg.fields.get(field, "[]"))
+        except Exception:
+            continue  # malformed arrays are validate_v2's finding, not ours
+        for entry in entries:
+            ref_msg = by_path.get(entry)
+            if ref_msg is None or not ref_msg.is_v2:
+                continue  # existence is validate_v2's job; legacy has no task_id
+            ref_task = ref_msg.fields.get("task_id", "").strip()
+            if ref_task and ref_task != own_task:
+                errors.append(
+                    f"cross-task reference: `{field}` names {entry!r} of task "
+                    f"{ref_task!r}, not this message's task {own_task!r}; "
+                    "same-task references only, or carry an explicit "
+                    "`cross-task:` marker in the body naming why "
+                    "(lint hardening 2026-08-18)"
+                )
+    return errors
+
+
 def current_branch() -> str:
     """Branch HEAD points at, or "" when detached.
 
@@ -405,6 +447,10 @@ def main() -> int:
                 errors.extend(
                     (path, error)
                     for error in evidence_gate_errors(gate_msg, remote_ref_names)
+                )
+                errors.extend(
+                    (path, error)
+                    for error in cross_task_reference_errors(gate_msg, published_msgs)
                 )
 
     # A message present in HEAD but absent from the proposed tree would be
