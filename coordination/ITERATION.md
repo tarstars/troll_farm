@@ -88,6 +88,17 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-18 (overnight run + THREE OWNER RULINGS): claude_1 drove the cure-C
+  pipeline overnight — candidate `ad3bfefe` (six lines), G1 fixtures PASS
+  (with two fixtures OVER-delivering), G2 panel FAIL (1 de-novo D-1, up to 3 P4),
+  G3 PASS; diagnosed everything (m106 counting artifact; m061 better-trajectory →
+  pre-existing hole, unfixable by any tail, proven; m082 real regression 12→1);
+  aggregate blocking 119→58; decision brief with three exits, advocating none.
+  OWNER RULED: (1) G1.3 explain-then-pass; (2) de-novo = TURN COVERAGE, general
+  rule; (3) SHIP under the pre-existing-hole exception (two prongs,
+  reviewer-verified), m082 the named accepted cost. codex G4 applies the rulings;
+  on green → same-session submission → paired night → owner KEEP/REVERT.
+
 - 2026-08-17 (OWNER CHARTER — pool #12): "implement C and post it on platform" →
   end-to-end task written for claude_1 (goal = SUBMITTED, not ready-to-submit):
   corrected-brief C, cross-tab frozen as predictions, gates G1–G5, same-session

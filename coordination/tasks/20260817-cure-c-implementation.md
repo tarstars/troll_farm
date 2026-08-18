@@ -1,6 +1,12 @@
 # 20260817-cure-c-implementation: implement cure C, pass every gate, submit to the platform
 
-- Status: OPEN — OWNER-CHARTERED 2026-08-17 in session ("I would propose implement C
+- Status: OPEN — G1/G3 PASS, G2 adjudicated by OWNER RULINGS 2026-08-18 (message
+  `20260818T041052Z`): G1.3 = explain-then-pass (codex verifies both over-delivery
+  mechanisms); de-novo metric = TURN COVERAGE (general rule; clears m106);
+  pre-existing-hole exception (two prongs, reviewer-verified; clears m061 if
+  verified); **m082 = the one NAMED ACCEPTED COST (12→1)**; tail unchanged.
+  SHIP PATH OPEN contingent on codex_1's G4. Aggregate: blocking 119→58.
+  Originally: OWNER-CHARTERED 2026-08-17 in session ("I would propose implement C
   and post it on platform"; task written at owner direction as a single end-to-end
   goal for claude_1). This charter IS the owner's verdict on the no-goal branch of
   the oscillation session; the session's other branches (the 24 pairing-bench cases,
