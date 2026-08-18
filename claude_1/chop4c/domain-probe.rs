@@ -329,6 +329,8 @@ mod bot{
     let mut executed:u64=0;
     let mut pt_some:u64=0;let mut pt_none:u64=0;
     let mut co_some:u64=0;let mut co_none:u64=0;let mut co_calls:u64=0;let mut wood_evals:u64=0;
+    let mut max_pred_health:i32=i32::MIN;let mut max_pred_size:i32=i32::MIN;let mut max_final_size:i32=i32::MIN;
+    let mut travel0:u64=0;let mut travel_ge1:u64=0;
     let mut v_pred_nonpos:u64=0;let mut v_wood_nonpos:u64=0;
     for kind in kinds{
         for size in 1..=4{
@@ -357,6 +359,9 @@ mod bot{
                                         None=>{pt_none+=1;}
                                         Some(pred)=>{
                                             pt_some+=1;
+                                            if pred.health>max_pred_health{max_pred_health=pred.health;}
+                                            if pred.size>max_pred_size{max_pred_size=pred.size;}
+                                            if travel==0{travel0+=1;}else{travel_ge1+=1;}
                                             if pred.size<=0||pred.health<=0{v_pred_nonpos+=1;
                                                 println!("VIOLATION PREDICTED_NONPOSITIVE kind={:?} size={} health={} fruits={} cd={} nw={} opp={} travel={} psize={} phealth={}",kind,size,health,fruits,cooldown,near_water,opp_chop,travel,pred.size,pred.health);}
                                             for chop_power in 1..=21{
@@ -366,6 +371,7 @@ mod bot{
                                                         println!("VIOLATION CHOP_OUTCOME_NONE kind={:?} size={} health={} fruits={} cd={} nw={} opp={} travel={} chop={} psize={} phealth={}",kind,size,health,fruits,cooldown,near_water,opp_chop,travel,chop_power,pred.size,pred.health);}
                                                     Some((_turns,final_size))=>{
                                                         co_some+=1;
+                                                        if final_size>max_final_size{max_final_size=final_size;}
                                                         for free_cap in 1..=5{
                                                             wood_evals+=1;
                                                             let wood=final_size.min(free_cap);
@@ -387,6 +393,7 @@ mod bot{
         }
     println!("C4CDOMAIN resident_sha=98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29");
     println!("C4CDOMAIN executed={} predict_some={} predict_none={} chop_some={} chop_none={} chop_calls={} wood_evals={}",executed,pt_some,pt_none,co_some,co_none,co_calls,wood_evals);
+    println!("C4CDOMAIN bounds max_pred_health={} max_pred_size={} max_final_size={} travel0_some={} travel_ge1_some={}",max_pred_health,max_pred_size,max_final_size,travel0,travel_ge1);
     println!("C4CDOMAIN violations predicted_nonpositive={} chop_outcome_none={} wood_nonpositive={}",v_pred_nonpos,co_none,v_wood_nonpos);
     }
 //C4C_PROBE_END
