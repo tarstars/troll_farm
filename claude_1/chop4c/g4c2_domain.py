@@ -38,6 +38,64 @@ class DomainError(RuntimeError):
     """Fail closed."""
 
 
+# EXACT ROW SCHEMAS (codex_1 r4 blocker). The previous parser merged every matching row into one
+# dictionary: duplicate rows were last-value-wins and unknown keys were ignored, so an UNSAFE
+# first row followed by a SAFE second row was accepted. A parser that silently reconciles
+# conflicting evidence is not a measurement channel.
+SCHEMAS = {
+    "executed": ("executed", "predict_some", "predict_none", "chop_some", "chop_none",
+                 "chop_calls", "wood_evals"),
+    "bounds": ("max_pred_health", "max_pred_size", "max_final_size", "travel0_some",
+               "travel_ge1_some"),
+    "violations": ("predicted_nonpositive", "chop_outcome_none", "wood_nonpositive"),
+}
+
+
+def strict_parse(raw):
+    """Exactly one row per record type; exact key set; unique keys; integer values.
+
+    Rejects: duplicate rows, duplicate keys, unknown keys, missing keys, malformed tokens.
+    """
+    rows = {k: [] for k in SCHEMAS}
+    for ln in raw.splitlines():
+        if not ln.startswith("C4CDOMAIN"):
+            continue
+        parts = ln.split()[1:]
+        if parts and parts[0].startswith("resident_sha="):
+            continue
+        kind = None
+        if parts and parts[0] in ("bounds", "violations"):
+            kind, parts = parts[0], parts[1:]
+        elif parts and parts[0].startswith("executed="):
+            kind = "executed"
+        if kind is None:
+            raise DomainError(f"unrecognised C4CDOMAIN record, refusing: {ln!r}")
+        seen = {}
+        for tok in parts:
+            if tok.count("=") != 1:
+                raise DomainError(f"malformed token {tok!r} in {kind} row")
+            k, v = tok.split("=")
+            if k in seen:
+                raise DomainError(f"duplicate key {k!r} in {kind} row")
+            try:
+                seen[k] = int(v)
+            except ValueError:
+                raise DomainError(f"non-integer value for {k!r} in {kind} row: {v!r}")
+        want = set(SCHEMAS[kind])
+        if set(seen) != want:
+            raise DomainError(f"{kind} row schema mismatch — unknown {sorted(set(seen)-want)}, "
+                              f"missing {sorted(want-set(seen))}")
+        rows[kind].append(seen)
+
+    out = {}
+    for kind, got in rows.items():
+        if len(got) != 1:
+            raise DomainError(f"expected exactly ONE {kind} row, got {len(got)} — duplicate or "
+                              f"absent records are a conflict, not something to reconcile")
+        out.update(got[0])
+    return out
+
+
 def subject_health_bounds():
     """max legal health per (kind, size), read from the SUBJECT's tree_health_params."""
     src = MDP.RESIDENT.read_text()
@@ -62,14 +120,7 @@ def run_probe(rs_path, expect_ok=True):
                        capture_output=True, text=True, timeout=2400)
     if r.returncode != 0 and expect_ok:
         raise DomainError(f"probe exited {r.returncode}: {r.stderr[-400:]}")
-    stats = {}
-    for ln in r.stdout.splitlines():
-        if (ln.startswith("C4CDOMAIN executed=") or ln.startswith("C4CDOMAIN violations")
-                or ln.startswith("C4CDOMAIN bounds")):
-            for kv in ln.split()[1:]:
-                if "=" in kv:
-                    k, v = kv.split("=", 1)
-                    stats[k] = int(v) if v.isdigit() else v
+    stats = strict_parse(r.stdout)
     viol = [l for l in r.stdout.splitlines() if l.startswith("VIOLATION")]
     return stats, viol, r.stdout
 
@@ -167,6 +218,34 @@ def main():
     RC.run(stats)
 
     # negative controls on the PROVENANCE path itself
+    # RAW-OUTPUT parser controls (r4 blocker): the attack is at the text layer, so the controls
+    # must be too — post-parse dictionary edits cannot catch a duplicate row.
+    print("\nraw-output parser controls (each MUST be rejected):")
+    bad_bounds = "C4CDOMAIN bounds max_pred_health=99 max_pred_size=99 max_final_size=99 travel0_some=1 travel_ge1_some=1"
+    raws = {
+        "duplicate bounds row (unsafe first, safe second)":
+            raw.replace("C4CDOMAIN bounds", bad_bounds + "\nC4CDOMAIN bounds", 1),
+        "unknown key in bounds row":
+            raw.replace("C4CDOMAIN bounds max_pred_health=",
+                        "C4CDOMAIN bounds sneaky=1 max_pred_health=", 1),
+        "missing key in bounds row":
+            raw.replace(" max_final_size=4", "", 1),
+        "duplicate key in bounds row":
+            raw.replace("C4CDOMAIN bounds max_pred_health=",
+                        "C4CDOMAIN bounds max_pred_health=99 max_pred_health=", 1),
+        "malformed token":
+            raw.replace("max_final_size=4", "max_final_size", 1),
+        "non-integer value":
+            raw.replace("max_final_size=4", "max_final_size=four", 1),
+    }
+    for name, mraw in raws.items():
+        try:
+            strict_parse(mraw)
+        except DomainError:
+            print(f"  OK — rejected: {name}")
+        else:
+            raise DomainError(f"PARSER CONTROL FAILED: {name} was ACCEPTED")
+
     print("\nprovenance negative controls (each MUST be rejected):")
     for name, mutate in {
         "bounds row dropped": lambda s: {k: v for k, v in s.items() if k not in need},
