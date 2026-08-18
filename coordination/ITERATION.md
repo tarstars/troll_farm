@@ -41,6 +41,10 @@ begins with `Pool: N/M done`.
       **4c = chop-mystery instrument** (OSC-031's 167 rejected-chop turns: small
       parity-disciplined logger names the rejecting clause, then owner judges
       bug-vs-caution; possibly a class, possibly bigger than cure C).
+      **4c CHARTERED 2026-08-18 (owner: "put it in action") —
+      `coordination/tasks/20260818-osc031-chop-clause-instrument.md`, claude_1
+      instrument / codex_1 instrument-first review; owner moment stays the
+      bug-vs-caution ruling after G-4c.3. 4a and 4b remain owner sittings.**
       Canonical brief: `local_claude_1/session-inputs/leftovers-4a-4b-4c-2026-08-18.md`.
       Suggested order: 4a sitting → 4c parallel instrument → 4b stamps last.
       (Original: cure
@@ -103,6 +107,16 @@ by the verdict session's rulings, not before); T-1 half-swap fixture (recorded d
 viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untouched).
 
 ## Progress log (newest first)
+
+- 2026-08-18 (**4c CHARTERED**, owner in session): the OSC-031 chop-mystery
+  instrument is live work — task
+  `coordination/tasks/20260818-osc031-chop-clause-instrument.md` (claude_1
+  builds the clause-logger on the h-starve-1 toolkit; codex_1 reviews the
+  instrument BEFORE findings; parity + both-ways controls + exact 167-turn
+  coverage are gates; NO fix, NO judgment — bug-vs-caution stays the owner's
+  ruling). Runs fully local, in parallel with the M-1 night; Arena untouched by
+  this task. Night mark 1 was executed on schedule (A1 25.2 @ 18/160; B swap
+  41154017); B1 read due ~08:33Z.
 
 - 2026-08-18 (night running + pool #8 CLOSED): transport gap closed (formal ack of
   claude_1's green handoff — my G5 update predated it by 47 s and could not name
