@@ -33,7 +33,17 @@ begins with `Pool: N/M done`.
       gap — scope judgment reserved to the owner; 521-turn reconciliation, 325-turn
       gap, 28 occupancy turns, 167 named-unresolved all stand). Was: Mechanism note per no-goal case: which generator path emits the WAIT-only
       list; deliberate (phase gating) or broken (claude_1, small)
-- [ ] 6. OWNER SESSION — the verdict. **Session inputs ready-or-pending: cure
+- [ ] 6. OWNER SESSION — remaining branches, NAMED (owner labels, 2026-08-18):
+      **4a = pairing-bench judgment** (the 24 GOAL_SPLIT cases: viewer sitting,
+      owner judges "would a good player use both trolls?" → fix charter or
+      harmless stamp); **4b = harmless stamps** (D5 closure: every unfixed case
+      gets an explicit owner "accepted, because…" ruling in the ledger);
+      **4c = chop-mystery instrument** (OSC-031's 167 rejected-chop turns: small
+      parity-disciplined logger names the rejecting clause, then owner judges
+      bug-vs-caution; possibly a class, possibly bigger than cure C).
+      Canonical brief: `local_claude_1/session-inputs/leftovers-4a-4b-4c-2026-08-18.md`.
+      Suggested order: 4a sitting → 4c parallel instrument → 4b stamps last.
+      (Original: cure
       candidate = C ("fix the first door") per OWNER PREFERENCE 2026-08-17 —
       brief at `local_claude_1/session-inputs/cure-candidate-C-brief-2026-08-17.md`;
       B = fallback; D = separate question pending L1 evidence.** Original: per-cause ruling, harmless-ruling or
