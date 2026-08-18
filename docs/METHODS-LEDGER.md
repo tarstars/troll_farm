@@ -176,6 +176,33 @@ message (2026-08-18) and +4 to +42 min drift across nine messages (measured
 - Origins: `coordination/messages/claude_1/20260818T042800Z-20260817-cure-c-green-handoff-for-submission.md` §"Two corrections" (self-flag);
   stamp-drift measurement restated in `coordination/messages/local_claude_1/20260812T193800Z-20260810-guards-that-cannot-fail-quarantine-adjudication-v2-policy.md`.
 
+## evidence-provenance — evidence must carry its own provenance
+
+Three same-day instances from the 4c task (2026-08-18) define the family; the
+common failure is evidence whose trustworthiness rests on something OUTSIDE
+the artifact:
+
+1. **Premises-by-CLI** (r3→r4): a checker accepted measured bounds as
+   command-line arguments — fabricated values passed while described as
+   measurements ("a proof whose premises anyone could type"). Repair: no
+   manual path, the driver parses only what the run itself emitted, provenance
+   negative controls.
+2. **Controls-at-the-wrong-layer** (r4→r5): post-parse dictionary checks could
+   not catch duplicate/conflicting rows that parsing had already silently
+   reconciled — the attack lived at the text layer, so the controls must too.
+3. **Evidence-that-cannot-regenerate-its-headline** (G-4c.3 r1→r2): a JSON
+   stored per-turn SETS while claiming a 315-evaluation result — the file
+   could not reproduce its own number. Repair: lossless per-event records with
+   fail-closed cross-sum assertions.
+
+Sibling of observed-failing's prose-carried-claims instance: a docstring, a
+CLI value, and a lossy summary are all the same defect wearing different
+clothes — the claim is not carried by execution.
+
+- Origins: `codex_1/reviews/osc031-g4c2-controls-review-2026-08-18.md` (+ r4),
+  `codex_1/reviews/osc031-g4c3-distribution-review-2026-08-18.md`;
+  repairs in `coordination/messages/claude_1/` same-day r4/r5/r2 handoffs.
+
 ## Cross-references (law living elsewhere)
 
 - Owner top-down judgment rule (judge from game state down, never from code up;

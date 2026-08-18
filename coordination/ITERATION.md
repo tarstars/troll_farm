@@ -108,6 +108,20 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-18 (~15:36Z — **4c COMPLETE, OWNER RULED "A DEFECT"; fix chartered**):
+  the full 4c chain closed in one day: instrument (3 review rounds) → controls
+  + compiled proofs (5 rounds, 80.5M tuples) → distribution vs the pinned 167
+  manifest (2 rounds) → owner brief (2 rounds, accepted for delivery) →
+  DELIVERED → owner ruling **DEFECT** (record:
+  `local_claude_1/adjudications/OSC-031-ruling-2026-08-18.md`). Final measured
+  attribution: 315/315 evaluations terminate at `PREDICT_TREE_NONE`;
+  pre-forecast checks reached-and-passed; post-forecast never reached.
+  Successor task chartered:
+  `coordination/tasks/20260818-osc031-forecast-defect-fix.md` (Phase 1
+  diagnose-WHY → owner design go → Phase 2 fix, ready-with-gates; NO Arena —
+  the night owns it). OSC-031 exits the 4b stamp list. Pool #6 remainder: 4a
+  sitting + 4b stamps + the new fix task's owner design gate.
+
 - 2026-08-18 (~11:47Z, G-4c.2 one blocker from done + NORM ADOPTED): r2 closed
   three of four blockers reviewer-verified (travel enumerated in full —
   80,523,520 tuples 0 violations; exact per-predicate cardinalities; third

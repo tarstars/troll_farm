@@ -1,6 +1,13 @@
 # 20260818-osc031-chop-clause-instrument — 4c: make the chop planner say its "no" out loud
 
-- Status: OPEN — OWNER-CHARTERED 2026-08-18 in session ("put it in action" on the
+- Status: **CLOSED 2026-08-18T15:36Z — OWNER RULED "A DEFECT."** All gates
+  passed (G-4c.1 instrument r3; G-4c.2 controls+proofs r5; G-4c.3 evidence r2;
+  brief r2 accepted-for-delivery and delivered). Measured attribution final:
+  315/315 evaluations over the pinned 167 turns terminate at
+  `PREDICT_TREE_NONE`. Ruling record:
+  `local_claude_1/adjudications/OSC-031-ruling-2026-08-18.md`. Successor task:
+  `coordination/tasks/20260818-osc031-forecast-defect-fix.md`. OSC-031 exits
+  the 4b stamp list. Prior: OPEN — OWNER-CHARTERED 2026-08-18 in session ("put it in action" on the
   4c brief). Canonical brief:
   `local_claude_1/session-inputs/leftovers-4a-4b-4c-2026-08-18.md` §4c; residue
   named-unresolved at `claude_1/hstarve1/mechanism-note-pool5-2026-08-17.md`.
