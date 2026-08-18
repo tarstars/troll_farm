@@ -28,6 +28,21 @@ wall" is the standing hazard — no fix is built before the owner sees WHY and
 approves the door). codex_1 reviews the probe instrument-first, then the
 mechanism note.
 
+## OWNER DESIGN RULING (2026-08-18, in session) — DOOR 1
+
+The owner ruled on the three-door proposal: **Door 1 — demand evidence for the
+guess.** The "assume a damaged tree is being chopped" inference
+(`DAMAGED_FLAT1`) may fire only when an opponent is actually observed at the
+tree; historical damage alone is not evidence of ongoing chopping. The exact
+presence predicate (on-tree / adjacent / in-reach) is claude_1's to propose
+with measurements and codex_1's to verify; if that sub-choice turns out
+load-bearing, it escalates to the owner. The integrator's door-3
+recommendation (death-as-cost) was considered and declined as the primary; it
+remains a possible later refinement if the panel/night shows wasted-walk or
+recurrence patterns. **Conditional:** this go is against the provisional
+Phase-1 mechanism; if codex_1's probe review changes the mechanism, the design
+decision returns to the owner before any build.
+
 ## Phase 2 — the fix (only after the owner's design go)
 
 Implement per the approved design. Gates, fail-first, in order: fixtures
