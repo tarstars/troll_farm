@@ -493,6 +493,18 @@ are immutable and are never flagged retroactively. Rationale: crossings-in-fligh
 largest measured coordination cost of 2026-08-16 (three handoffs crossed rulings, each
 crossing spawning a correction round).
 
+**Queue-changing messages require acknowledgement (adopted 2026-08-18).** Any message
+that changes another party's task list carries `requires_ack: true` toward that party —
+verdicts on ack-required handoffs (REVISION_REQUIRED reopens the implementer's queue;
+ACCEPTED often opens the next stage's), approvals a party is on record waiting for,
+rulings that reopen or redirect work. Proposed by the integrator after the 2026-08-18
+G-4c.2 stall (a no-ack method approval left the implementer truthfully idle while the
+record said "in build"); codex_1 endorsed in writing and practiced it the same hour;
+no objections. Companion rule from the same incident: **a deferral is a status, not a
+silence** — an agent that decides not to start unblocked work publishes "not started,
+deferred, because X" the moment the decision is made; a truthful empty inbox is not a
+status. Instances and full history: `docs/METHODS-LEDGER.md`, verdict-equals-message.
+
 **Evidence gate (owner decision 2026-08-17).** A handoff whose body asserts a chartered
 cause label (the audit vocabulary, e.g. `GENERATOR_GAP` — the registered set lives in
 `CAUSE_LABEL_TOKENS` in `scripts/lint_outbox.py`) must carry a `review_ref:` front-matter

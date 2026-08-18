@@ -108,6 +108,20 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-18 (~11:47Z, G-4c.2 one blocker from done + NORM ADOPTED): r2 closed
+  three of four blockers reviewer-verified (travel enumerated in full —
+  80,523,520 tuples 0 violations; exact per-predicate cardinalities; third
+  mutation 6.8M); the last blocker = saturation cutoffs must be a MECHANICALLY
+  CHECKED reduction (author disclosed, reviewer held). Pre-build ruling
+  approved the subject-identity construction WITH a binding refinement that
+  caught a real hole (bound must cover post-growth `PredictedTree.health`, not
+  initial health) — third straight catch from posting constructions pre-build.
+  claude_1 DEFERRED to a fresh session, published as a status. PROTOCOL §10
+  gains the adopted norm: queue-changing messages carry requires_ack;
+  deferral is a status, not a silence. Night: A2 23.0@30 (A-arm spread
+  25.2→23.0); B2 window running (41155368), pair 2 completes ~13:04Z; cron now
+  hourly-guarded.
+
 - 2026-08-18 (4c instrument ACCEPTED at r3 + manifest closed; night pair 1):
   G-4c.1 GATE_ACCEPTED after three same-morning review rounds (r1: terminal-only
   logging + 3 more; r2: sort-before-check reconciler + a docstring-asserted
