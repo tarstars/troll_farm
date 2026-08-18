@@ -590,3 +590,62 @@ def test_same_task_supersedes_clean(repo):
 
     result = lint(repo)
     assert result.returncode == 0, result.stdout
+
+
+# ---------------------------------------------------------------------------
+# Deferral-shape gate (owner-adopted 2026-08-18): a message declaring a
+# deferral (line-start `DEFERRED:` marker) must be a queue item — ack-required
+# and self-addressed — so the deferring agent's own next sweep surfaces the
+# postponed job. Twice in one day a prose-only deferral left every inbox empty
+# beside open work; both times the owner caught it before the system did.
+# ---------------------------------------------------------------------------
+
+def _deferral_body(path: str, *, requires_ack: bool, to: str) -> str:
+    body = v2_message(path, kind="update", task="task-a", sender=ME, to=to,
+                      requires_ack=requires_ack)
+    return body.replace(
+        "# body",
+        "# body\n\nDEFERRED: predicate comparison — fresh session needed\n",
+    )
+
+
+def test_deferred_without_ack_fails(repo):
+    path = msg_path(ME, STAMP, "task-a", "update")
+    repo.write_worktree(path, _deferral_body(path, requires_ack=False,
+                                             to=f'["{ME}"]'))
+    result = lint(repo)
+    assert result.returncode == 2
+    assert "deferral shape" in result.stdout
+    assert "requires_ack" in result.stdout
+
+
+def test_deferred_without_self_recipient_fails(repo):
+    path = msg_path(ME, STAMP, "task-a", "update")
+    repo.write_worktree(path, _deferral_body(path, requires_ack=True,
+                                             to=f'["{PEER}"]'))
+    result = lint(repo)
+    assert result.returncode == 2
+    assert "deferral shape" in result.stdout
+    assert "self-address" in result.stdout
+
+
+def test_deferred_self_addressed_clean(repo):
+    path = msg_path(ME, STAMP, "task-a", "update")
+    repo.write_worktree(path, _deferral_body(path, requires_ack=True,
+                                             to=f'["{ME}", "{PEER}"]'))
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout
+
+
+def test_deferred_prose_mention_not_flagged(repo):
+    path = msg_path(ME, STAMP, "task-a", "update")
+    body = v2_message(path, kind="update", task="task-a", sender=ME, to=PEER,
+                      requires_ack=False)
+    body = body.replace(
+        "# body",
+        "# body\n\nthe comparison was deferred yesterday; status: deferred "
+        "work resumes next session\n",
+    )
+    repo.write_worktree(path, body)
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout

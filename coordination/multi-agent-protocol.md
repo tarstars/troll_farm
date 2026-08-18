@@ -505,6 +505,17 @@ silence** — an agent that decides not to start unblocked work publishes "not s
 deferred, because X" the moment the decision is made; a truthful empty inbox is not a
 status. Instances and full history: `docs/METHODS-LEDGER.md`, verdict-equals-message.
 
+**A deferral is also a QUEUE ITEM (owner-adopted 2026-08-18).** Prose is not enough:
+twice in one day a correctly-published deferral left every inbox empty beside open
+work, because everyone polls the queue, not the diary. A deferral message declares
+itself with a body line starting with the canonical marker `DEFERRED:` and must carry
+`requires_ack: true` with the SENDER among its own `to` recipients — the deferring
+agent's next session then finds the postponed job as its first unacknowledged item and
+acknowledges it by starting (or by publishing a further deferral of the same shape).
+Enforced sender-side by `deferral_shape_errors` in `scripts/lint_outbox.py`; prose
+mentions of the word "deferred" mid-line do not trigger the gate. Coordinator
+resume-orders remain the backstop for sessions that die before declaring.
+
 **Evidence gate (owner decision 2026-08-17).** A handoff whose body asserts a chartered
 cause label (the audit vocabulary, e.g. `GENERATOR_GAP` — the registered set lives in
 `CAUSE_LABEL_TOKENS` in `scripts/lint_outbox.py`) must carry a `review_ref:` front-matter

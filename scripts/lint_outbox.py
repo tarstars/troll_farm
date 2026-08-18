@@ -49,6 +49,7 @@ from __future__ import annotations
 
 import argparse
 import pathlib
+import re
 import sys
 
 try:  # invoked as `python3 scripts/lint_outbox.py`
@@ -274,6 +275,42 @@ def cross_task_reference_errors(
     return errors
 
 
+DEFERRED_LINE_RE = re.compile(r"^DEFERRED:", re.MULTILINE)
+
+
+def deferral_shape_errors(msg: "inbox_sweep.Message") -> list[str]:
+    """A declared deferral must BE a queue item (owner-adopted 2026-08-18).
+
+    Twice in one day a legitimate deferral left every inbox empty while open
+    work existed: the postponement lived in prose, but everyone polls the
+    queue. The rule: a message declaring a deferral (a body line starting with
+    the canonical marker `DEFERRED:`) must carry `requires_ack: true` and name
+    ITS OWN SENDER among `to`, so the deferring agent's next session finds the
+    postponed job as its first unacknowledged item and acknowledges it by
+    starting. Prose mentions of the word "deferred" mid-line do not trigger;
+    only the line-start marker does. Sender-side only, never retroactive.
+    """
+    if not DEFERRED_LINE_RE.search(msg.body):
+        return []
+    errors: list[str] = []
+    if inbox_sweep.parse_boolean(msg.fields.get("requires_ack", "")) is not True:
+        errors.append(
+            "deferral shape: body declares `DEFERRED:` but requires_ack is not "
+            "true — a deferral must be a queue item, not an announcement "
+            "(owner-adopted 2026-08-18)"
+        )
+    to_raw = msg.fields.get("to", "")
+    tokens = inbox_sweep.recipient_tokens(to_raw)
+    if msg.sender.lower() not in tokens:
+        errors.append(
+            f"deferral shape: body declares `DEFERRED:` but `to` {to_raw!r} "
+            f"does not include the sender {msg.sender!r} — self-address the "
+            "deferral so your own next sweep surfaces it "
+            "(owner-adopted 2026-08-18)"
+        )
+    return errors
+
+
 def current_branch() -> str:
     """Branch HEAD points at, or "" when detached.
 
@@ -451,6 +488,9 @@ def main() -> int:
                 errors.extend(
                     (path, error)
                     for error in cross_task_reference_errors(gate_msg, published_msgs)
+                )
+                errors.extend(
+                    (path, error) for error in deferral_shape_errors(gate_msg)
                 )
 
     # A message present in HEAD but absent from the proposed tree would be
