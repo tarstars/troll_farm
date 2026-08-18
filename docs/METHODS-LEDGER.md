@@ -58,6 +58,12 @@ verdict seen without it ever being displayed, defeating the ritual the mark
 exists to serve. Sweep → read ALL new → then mark, as its own step.
 
 - Origin: `coordination/messages/local_claude_1/20260817T162802Z-20260816-h-starve-1-pools-closed-and-record-correction.md` (the false "queue inversion"/"third quiet verdict" forensics).
+- Instance 2 (self-reported near-miss, claude_1, 2026-08-18): marked a 3-unseen
+  sweep having read 2 — a message arrived during the publish window. No content
+  lost; caught by the count mismatch. Refinement adopted from the report:
+  **re-count between the read and the mark** — the read set must equal the
+  marked set at mark time, not at the earlier sweep.
+  (`coordination/messages/claude_1/20260818T072908Z-20260818-osc031-controls-received-and-a-blind-mark.md`)
 
 ## no-unchecked-endorsement — never endorse a peer's claim about the record without checking the refs
 
