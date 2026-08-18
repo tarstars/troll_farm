@@ -16,9 +16,12 @@ What is enforced now:
    `plants=N`; there must be exactly N plant chains, each starting at seq 1, strictly increasing
    in seq with no gaps, every non-terminal verdict PASS, terminating exactly once in REJECT or
    ACCEPT.
-4. **NEGATIVE CONTROL.** The reconciler is run against deliberately corrupted logs — a dropped
-   row, a duplicated terminal, a reordered chain. It MUST fail on each. A reconciler that has
-   only ever passed is not evidence of reconciliation.
+4. **NEGATIVE CONTROLS.** The reconciler is run against deliberately corrupted logs — dropped
+   row, duplicated terminal, corrupted text, **reordered chain**, **alien plant identity**. It
+   MUST fail on each. A reconciler that has only ever passed is not evidence of reconciliation.
+   The reorder and identity cases exist because the r2 review found this contract asserting a
+   check the code did not perform: `reconcile()` sorted rows before testing their order, and
+   counted chains without testing their identities.
 
 Coverage is STRUCTURAL per Amendment 1 (`local_claude_1 20260818T071239Z`): every executed
 chop evaluation, no gaps, no constant to match. The historical 167-turn residue is a NAMED
@@ -94,6 +97,12 @@ def reconcile(gates, chains):
         if len(found) != n:
             raise G4cError(f"call {call} turn {t} unit {u}: gate declared plants={n} "
                            f"but {len(found)} chains")
+        # EXACT IDENTITIES, not just cardinality — r2 blocker: plant index 99 was accepted for
+        # plants=1 because only the count was checked.
+        ids = sorted(k[3] for k in found)
+        if ids != list(range(n)):
+            raise G4cError(f"call {call} turn {t} unit {u}: plant identities {ids}, "
+                           f"want exactly {list(range(n))}")
         # The GATE_UNIT verdict row carries plant=-1 and was being skipped by the per-plant
         # loop below, so a dropped gate row went undetected — the negative control caught this,
         # which is the entire reason the control exists. Every entry record must now be matched
@@ -112,12 +121,19 @@ def reconcile(gates, chains):
     for key, rows in chains.items():
         if key[3] < 0:
             continue
-        rows = sorted(rows)
+        # PHYSICAL EMITTED ORDER, NOT SORTED ORDER. codex_1's r2 blocker: the previous version
+        # sorted first, so an actually-emitted [2,1,3] chain was accepted — the check could not
+        # see the very disorder it claimed to detect. `rows` is in emission order because parse()
+        # appends as it reads; nothing may re-sort it.
         seqs = [r[0] for r in rows]
-        if seqs != list(range(1, len(seqs) + 1)) and seqs != list(range(1, seqs[-1] + 1)):
-            raise G4cError(f"{key}: seq gaps/disorder {seqs}")
+        if seqs != sorted(seqs):
+            raise G4cError(f"{key}: rows emitted OUT OF ORDER {seqs}")
         if len(set(seqs)) != len(seqs):
             raise G4cError(f"{key}: duplicate seq {seqs}")
+        if seqs != list(range(seqs[0], seqs[0] + len(seqs))):
+            raise G4cError(f"{key}: seq gaps {seqs}")
+        if seqs[0] != 1:
+            raise G4cError(f"{key}: chain starts at seq {seqs[0]}, want 1")
         terminals = [r for r in rows if r[2] in TERMINAL]
         if len(terminals) != 1:
             raise G4cError(f"{key}: {len(terminals)} terminal rows, want exactly 1")
@@ -134,10 +150,31 @@ def negative_controls(err):
     lines = [l for l in err.splitlines() if l.startswith("C4C")]
     victim = next(i for i, l in enumerate(lines) if "verdict=PASS" in l)
     term = next(i for i, l in enumerate(lines) if "verdict=REJECT" in l)
+    # A REORDERED CHAIN. My module contract claimed this control and the code did not implement
+    # it — codex_1's r2 blocker. Swap two adjacent verdict rows of the SAME chain so the emitted
+    # order is wrong while every row remains individually valid.
+    def _swap_same_chain(ls):
+        keyof = lambda l: re.match(r"^C4CV call=(\d+) turn=(\d+) unit=(\d+) plant=(-?\d+)", l)
+        for i in range(len(ls) - 1):
+            a, b = keyof(ls[i]), keyof(ls[i + 1])
+            if a and b and a.groups() == b.groups() and int(a.group(4)) >= 0:
+                return ls[:i] + [ls[i + 1], ls[i]] + ls[i + 2:]
+        raise G4cError("no adjacent same-chain pair found to build the reorder control")
+
+    # A FOREIGN PLANT INDEX for a plants=N gate — the identity check must reject it.
+    def _alien_plant(ls):
+        for i, l in enumerate(ls):
+            m = re.match(r"^(C4CV call=\d+ turn=\d+ unit=\d+ plant=)(\d+)( .*)$", l)
+            if m and int(m.group(2)) == 0:
+                return ls[:i] + [f"{m.group(1)}99{m.group(3)}"] + ls[i + 1:]
+        raise G4cError("no plant=0 row found to build the alien-identity control")
+
     cases = {
         "dropped PASS row": "\n".join(lines[:victim] + lines[victim + 1:]),
         "duplicated terminal": "\n".join(lines[:term + 1] + [lines[term]] + lines[term + 1:]),
         "corrupted row text": "\n".join(lines[:victim] + ["C4CV turn=oops"] + lines[victim + 1:]),
+        "reordered chain (emitted [2,1])": "\n".join(_swap_same_chain(lines)),
+        "alien plant identity (99 for plants=N)": "\n".join(_alien_plant(lines)),
     }
     for name, corrupted in cases.items():
         try:
