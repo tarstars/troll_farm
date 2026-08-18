@@ -581,49 +581,59 @@ mod bot{
             }
             fn chop_candidates(view:&GameState,unit:&Unit,type_to_cut:Option<PlantKind>,)->Vec<Candidate>{
                 let mut out=Vec::new();
+                static C4C_CALLS:std::sync::atomic::AtomicUsize=std::sync::atomic::AtomicUsize::new(0);
+                let c4c_call=C4C_CALLS.fetch_add(1,std::sync::atomic::Ordering::Relaxed);
                 if unit.stats.chop_power<=0||unit.free_capacity()<=0{
-                    eprintln!("C4C turn={} unit={} plant=-1 cell=-1,-1 clause=GATE_UNIT chop_power={} free_cap={}",view.turn,unit.id,unit.stats.chop_power,unit.free_capacity());
+                    eprintln!("C4CV call={} turn={} unit={} plant=-1 seq=0 clause=GATE_UNIT verdict=REJECT chop_power={} free_cap={}",c4c_call,view.turn,unit.id,unit.stats.chop_power,unit.free_capacity());
+                    eprintln!("C4CGATE call={} turn={} unit={} plants=0 gate=REJECT chop_power={} free_cap={}",c4c_call,view.turn,unit.id,unit.stats.chop_power,unit.free_capacity());
                     return out;
                     }
-                eprintln!("C4CGATE turn={} unit={} plants={} chop_power={} free_cap={}",view.turn,unit.id,view.plants.len(),unit.stats.chop_power,unit.free_capacity());
+                eprintln!("C4CV call={} turn={} unit={} plant=-1 seq=0 clause=GATE_UNIT verdict=PASS chop_power={} free_cap={}",c4c_call,view.turn,unit.id,unit.stats.chop_power,unit.free_capacity());
+                eprintln!("C4CGATE call={} turn={} unit={} plants={} gate=PASS chop_power={} free_cap={}",c4c_call,view.turn,unit.id,view.plants.len(),unit.stats.chop_power,unit.free_capacity());
                 let from_unit=bfs_distances(&view.walkable,&[unit.cell]);
                 let shack_starts:Vec<Cell> =ortho_neighbors(view.shacks[0]).iter().filter(|cell|view.walkable.contains(cell)).copied().collect();
                 let to_shack=bfs_distances(&view.walkable,&shack_starts);
                 let opponent_trolls=view.units.iter().filter(|unit|unit.player==1).count();
                 for(c4c_idx,plant)in view.plants.iter().enumerate(){
                     if plant.health<=0||!from_unit.contains_key(&plant.cell){
-                        eprintln!("C4C turn={} unit={} plant={} cell={},{} clause=DEAD_OR_UNREACHABLE health={} reachable={}",view.turn,unit.id,c4c_idx,plant.cell.0,plant.cell.1,plant.health,from_unit.contains_key(&plant.cell));
+                        eprintln!("C4CV call={} turn={} unit={} plant={} seq=1 clause=DEAD_OR_UNREACHABLE verdict=REJECT health={} reachable={}",c4c_call,view.turn,unit.id,c4c_idx,plant.health,from_unit.contains_key(&plant.cell));
                         continue;
                         }
+                    eprintln!("C4CV call={} turn={} unit={} plant={} seq=1 clause=DEAD_OR_UNREACHABLE verdict=PASS health={} reachable=true",c4c_call,view.turn,unit.id,c4c_idx,plant.health);
                     let travel_turns=Self::ceil_div(from_unit[&plant.cell],unit.stats.movement_speed);
                     let Some(predicted)=Self::predict_tree(view,plant,travel_turns)else{
-                        eprintln!("C4C turn={} unit={} plant={} cell={},{} clause=PREDICT_TREE_NONE travel_turns={} size={} health={}",view.turn,unit.id,c4c_idx,plant.cell.0,plant.cell.1,travel_turns,plant.size,plant.health);
+                        eprintln!("C4CV call={} turn={} unit={} plant={} seq=2 clause=PREDICT_TREE_NONE verdict=REJECT travel_turns={} size={} health={}",c4c_call,view.turn,unit.id,c4c_idx,travel_turns,plant.size,plant.health);
                         continue;
                         }
                     ;
+                    eprintln!("C4CV call={} turn={} unit={} plant={} seq=2 clause=PREDICT_TREE_NONE verdict=PASS travel_turns={} size={} health={}",c4c_call,view.turn,unit.id,c4c_idx,travel_turns,plant.size,plant.health);
                     if predicted.size<=0||predicted.health<=0{
-                        eprintln!("C4C turn={} unit={} plant={} cell={},{} clause=PREDICTED_NONPOSITIVE pred_size={} pred_health={} travel_turns={}",view.turn,unit.id,c4c_idx,plant.cell.0,plant.cell.1,predicted.size,predicted.health,travel_turns);
+                        eprintln!("C4CV call={} turn={} unit={} plant={} seq=3 clause=PREDICTED_NONPOSITIVE verdict=REJECT pred_size={} pred_health={}",c4c_call,view.turn,unit.id,c4c_idx,predicted.size,predicted.health);
                         continue;
                         }
+                    eprintln!("C4CV call={} turn={} unit={} plant={} seq=3 clause=PREDICTED_NONPOSITIVE verdict=PASS pred_size={} pred_health={}",c4c_call,view.turn,unit.id,c4c_idx,predicted.size,predicted.health);
                     let return_turns=to_shack.get(&plant.cell).map(|d|Self::ceil_div(*d,unit.stats.movement_speed)).unwrap_or_else(||{
                         Self::ceil_div(manhattan(plant.cell,view.shacks[0]),unit.stats.movement_speed,)
                     }
                     );
                     let Some((chop_turns,final_size))=Self::chop_outcome(view,plant,predicted,unit.stats.chop_power)else{
-                        eprintln!("C4C turn={} unit={} plant={} cell={},{} clause=CHOP_OUTCOME_NONE pred_size={} pred_health={} chop_power={}",view.turn,unit.id,c4c_idx,plant.cell.0,plant.cell.1,predicted.size,predicted.health,unit.stats.chop_power);
+                        eprintln!("C4CV call={} turn={} unit={} plant={} seq=4 clause=CHOP_OUTCOME_NONE verdict=REJECT pred_size={} chop_power={}",c4c_call,view.turn,unit.id,c4c_idx,predicted.size,unit.stats.chop_power);
                         continue;
                         }
                     ;
+                    eprintln!("C4CV call={} turn={} unit={} plant={} seq=4 clause=CHOP_OUTCOME_NONE verdict=PASS chop_turns={} final_size={}",c4c_call,view.turn,unit.id,c4c_idx,chop_turns,final_size);
                     let turns=(travel_turns+chop_turns+return_turns+1).max(1);
                     if turns>TOTAL_TURNS-view.turn+1{
-                        eprintln!("C4C turn={} unit={} plant={} cell={},{} clause=ROUND_TRIP_CLOCK turns={} remaining={} travel={} chop={} ret={}",view.turn,unit.id,c4c_idx,plant.cell.0,plant.cell.1,turns,TOTAL_TURNS-view.turn+1,travel_turns,chop_turns,return_turns);
+                        eprintln!("C4CV call={} turn={} unit={} plant={} seq=5 clause=ROUND_TRIP_CLOCK verdict=REJECT turns={} remaining={}",c4c_call,view.turn,unit.id,c4c_idx,turns,TOTAL_TURNS-view.turn+1);
                         continue;
                         }
+                    eprintln!("C4CV call={} turn={} unit={} plant={} seq=5 clause=ROUND_TRIP_CLOCK verdict=PASS turns={} remaining={}",c4c_call,view.turn,unit.id,c4c_idx,turns,TOTAL_TURNS-view.turn+1);
                     let wood=final_size.min(unit.free_capacity());
                     if wood<=0{
-                        eprintln!("C4C turn={} unit={} plant={} cell={},{} clause=WOOD_NONPOSITIVE wood={} final_size={} free_cap={}",view.turn,unit.id,c4c_idx,plant.cell.0,plant.cell.1,wood,final_size,unit.free_capacity());
+                        eprintln!("C4CV call={} turn={} unit={} plant={} seq=6 clause=WOOD_NONPOSITIVE verdict=REJECT wood={} final_size={}",c4c_call,view.turn,unit.id,c4c_idx,wood,final_size);
                         continue;
                         }
+                    eprintln!("C4CV call={} turn={} unit={} plant={} seq=6 clause=WOOD_NONPOSITIVE verdict=PASS wood={} final_size={}",c4c_call,view.turn,unit.id,c4c_idx,wood,final_size);
                     let mut score=1000.0*wood as f64/turns as f64;
                     if Some(plant.kind)==type_to_cut&&opponent_trolls<=2{
                         let opponent_distance=manhattan(plant.cell,view.shacks[1]);
@@ -636,7 +646,7 @@ mod bot{
                         format!("MOVE {} {} {}",unit.id,plant.cell.0,plant.cell.1)
                     }
                     ;
-                    eprintln!("C4C turn={} unit={} plant={} cell={},{} clause=ACCEPT wood={} turns={} score={}",view.turn,unit.id,c4c_idx,plant.cell.0,plant.cell.1,wood,turns,score);
+                    eprintln!("C4CV call={} turn={} unit={} plant={} seq=7 clause=ACCEPT verdict=ACCEPT wood={} turns={} score={}",c4c_call,view.turn,unit.id,c4c_idx,wood,turns,score);
                     out.push(Candidate{
                         command,score,target:Target::Tree(plant.cell),
                     }

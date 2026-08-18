@@ -48,14 +48,20 @@ RESIDENT_SHA = "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29
 # instruments the wrong site — the same disease as a tap that logs the wrong stage.
 
 # unit-level gate: the loop never runs, so no per-plant row would otherwise exist
-GATE_OLD = '''                if unit.stats.chop_power<=0||unit.free_capacity()<=0{
+GATE_OLD = '''                let mut out=Vec::new();
+                if unit.stats.chop_power<=0||unit.free_capacity()<=0{
                     return out;
                     }'''
-GATE_NEW = '''                if unit.stats.chop_power<=0||unit.free_capacity()<=0{
-                    eprintln!("C4C turn={} unit={} plant=-1 cell=-1,-1 clause=GATE_UNIT chop_power={} free_cap={}",view.turn,unit.id,unit.stats.chop_power,unit.free_capacity());
+GATE_NEW = '''                let mut out=Vec::new();
+                static C4C_CALLS:std::sync::atomic::AtomicUsize=std::sync::atomic::AtomicUsize::new(0);
+                let c4c_call=C4C_CALLS.fetch_add(1,std::sync::atomic::Ordering::Relaxed);
+                if unit.stats.chop_power<=0||unit.free_capacity()<=0{
+                    eprintln!("C4CV call={} turn={} unit={} plant=-1 seq=0 clause=GATE_UNIT verdict=REJECT chop_power={} free_cap={}",c4c_call,view.turn,unit.id,unit.stats.chop_power,unit.free_capacity());
+                    eprintln!("C4CGATE call={} turn={} unit={} plants=0 gate=REJECT chop_power={} free_cap={}",c4c_call,view.turn,unit.id,unit.stats.chop_power,unit.free_capacity());
                     return out;
                     }
-                eprintln!("C4CGATE turn={} unit={} plants={} chop_power={} free_cap={}",view.turn,unit.id,view.plants.len(),unit.stats.chop_power,unit.free_capacity());'''
+                eprintln!("C4CV call={} turn={} unit={} plant=-1 seq=0 clause=GATE_UNIT verdict=PASS chop_power={} free_cap={}",c4c_call,view.turn,unit.id,unit.stats.chop_power,unit.free_capacity());
+                eprintln!("C4CGATE call={} turn={} unit={} plants={} gate=PASS chop_power={} free_cap={}",c4c_call,view.turn,unit.id,view.plants.len(),unit.stats.chop_power,unit.free_capacity());'''
 
 C1_OLD = '''                for plant in&view.plants{
                     if plant.health<=0||!from_unit.contains_key(&plant.cell){
@@ -63,45 +69,50 @@ C1_OLD = '''                for plant in&view.plants{
                         }'''
 C1_NEW = '''                for(c4c_idx,plant)in view.plants.iter().enumerate(){
                     if plant.health<=0||!from_unit.contains_key(&plant.cell){
-                        eprintln!("C4C turn={} unit={} plant={} cell={},{} clause=DEAD_OR_UNREACHABLE health={} reachable={}",view.turn,unit.id,c4c_idx,plant.cell.0,plant.cell.1,plant.health,from_unit.contains_key(&plant.cell));
+                        eprintln!("C4CV call={} turn={} unit={} plant={} seq=1 clause=DEAD_OR_UNREACHABLE verdict=REJECT health={} reachable={}",c4c_call,view.turn,unit.id,c4c_idx,plant.health,from_unit.contains_key(&plant.cell));
                         continue;
-                        }'''
+                        }
+                    eprintln!("C4CV call={} turn={} unit={} plant={} seq=1 clause=DEAD_OR_UNREACHABLE verdict=PASS health={} reachable=true",c4c_call,view.turn,unit.id,c4c_idx,plant.health);'''
 
 C2_OLD = '''                    let Some(predicted)=Self::predict_tree(view,plant,travel_turns)else{
                         continue;
                         }
                     ;'''
 C2_NEW = '''                    let Some(predicted)=Self::predict_tree(view,plant,travel_turns)else{
-                        eprintln!("C4C turn={} unit={} plant={} cell={},{} clause=PREDICT_TREE_NONE travel_turns={} size={} health={}",view.turn,unit.id,c4c_idx,plant.cell.0,plant.cell.1,travel_turns,plant.size,plant.health);
+                        eprintln!("C4CV call={} turn={} unit={} plant={} seq=2 clause=PREDICT_TREE_NONE verdict=REJECT travel_turns={} size={} health={}",c4c_call,view.turn,unit.id,c4c_idx,travel_turns,plant.size,plant.health);
                         continue;
                         }
-                    ;'''
+                    ;
+                    eprintln!("C4CV call={} turn={} unit={} plant={} seq=2 clause=PREDICT_TREE_NONE verdict=PASS travel_turns={} size={} health={}",c4c_call,view.turn,unit.id,c4c_idx,travel_turns,plant.size,plant.health);'''
 
 C3_OLD = '''                    if predicted.size<=0||predicted.health<=0{
                         continue;
                         }'''
 C3_NEW = '''                    if predicted.size<=0||predicted.health<=0{
-                        eprintln!("C4C turn={} unit={} plant={} cell={},{} clause=PREDICTED_NONPOSITIVE pred_size={} pred_health={} travel_turns={}",view.turn,unit.id,c4c_idx,plant.cell.0,plant.cell.1,predicted.size,predicted.health,travel_turns);
+                        eprintln!("C4CV call={} turn={} unit={} plant={} seq=3 clause=PREDICTED_NONPOSITIVE verdict=REJECT pred_size={} pred_health={}",c4c_call,view.turn,unit.id,c4c_idx,predicted.size,predicted.health);
                         continue;
-                        }'''
+                        }
+                    eprintln!("C4CV call={} turn={} unit={} plant={} seq=3 clause=PREDICTED_NONPOSITIVE verdict=PASS pred_size={} pred_health={}",c4c_call,view.turn,unit.id,c4c_idx,predicted.size,predicted.health);'''
 
 C4_OLD = '''                    let Some((chop_turns,final_size))=Self::chop_outcome(view,plant,predicted,unit.stats.chop_power)else{
                         continue;
                         }
                     ;'''
 C4_NEW = '''                    let Some((chop_turns,final_size))=Self::chop_outcome(view,plant,predicted,unit.stats.chop_power)else{
-                        eprintln!("C4C turn={} unit={} plant={} cell={},{} clause=CHOP_OUTCOME_NONE pred_size={} pred_health={} chop_power={}",view.turn,unit.id,c4c_idx,plant.cell.0,plant.cell.1,predicted.size,predicted.health,unit.stats.chop_power);
+                        eprintln!("C4CV call={} turn={} unit={} plant={} seq=4 clause=CHOP_OUTCOME_NONE verdict=REJECT pred_size={} chop_power={}",c4c_call,view.turn,unit.id,c4c_idx,predicted.size,unit.stats.chop_power);
                         continue;
                         }
-                    ;'''
+                    ;
+                    eprintln!("C4CV call={} turn={} unit={} plant={} seq=4 clause=CHOP_OUTCOME_NONE verdict=PASS chop_turns={} final_size={}",c4c_call,view.turn,unit.id,c4c_idx,chop_turns,final_size);'''
 
 C5_OLD = '''                    if turns>TOTAL_TURNS-view.turn+1{
                         continue;
                         }'''
 C5_NEW = '''                    if turns>TOTAL_TURNS-view.turn+1{
-                        eprintln!("C4C turn={} unit={} plant={} cell={},{} clause=ROUND_TRIP_CLOCK turns={} remaining={} travel={} chop={} ret={}",view.turn,unit.id,c4c_idx,plant.cell.0,plant.cell.1,turns,TOTAL_TURNS-view.turn+1,travel_turns,chop_turns,return_turns);
+                        eprintln!("C4CV call={} turn={} unit={} plant={} seq=5 clause=ROUND_TRIP_CLOCK verdict=REJECT turns={} remaining={}",c4c_call,view.turn,unit.id,c4c_idx,turns,TOTAL_TURNS-view.turn+1);
                         continue;
-                        }'''
+                        }
+                    eprintln!("C4CV call={} turn={} unit={} plant={} seq=5 clause=ROUND_TRIP_CLOCK verdict=PASS turns={} remaining={}",c4c_call,view.turn,unit.id,c4c_idx,turns,TOTAL_TURNS-view.turn+1);'''
 
 C6_OLD = '''                    let wood=final_size.min(unit.free_capacity());
                     if wood<=0{
@@ -109,15 +120,16 @@ C6_OLD = '''                    let wood=final_size.min(unit.free_capacity());
                         }'''
 C6_NEW = '''                    let wood=final_size.min(unit.free_capacity());
                     if wood<=0{
-                        eprintln!("C4C turn={} unit={} plant={} cell={},{} clause=WOOD_NONPOSITIVE wood={} final_size={} free_cap={}",view.turn,unit.id,c4c_idx,plant.cell.0,plant.cell.1,wood,final_size,unit.free_capacity());
+                        eprintln!("C4CV call={} turn={} unit={} plant={} seq=6 clause=WOOD_NONPOSITIVE verdict=REJECT wood={} final_size={}",c4c_call,view.turn,unit.id,c4c_idx,wood,final_size);
                         continue;
-                        }'''
+                        }
+                    eprintln!("C4CV call={} turn={} unit={} plant={} seq=6 clause=WOOD_NONPOSITIVE verdict=PASS wood={} final_size={}",c4c_call,view.turn,unit.id,c4c_idx,wood,final_size);'''
 
 ACCEPT_OLD = '''                    out.push(Candidate{
                         command,score,target:Target::Tree(plant.cell),
                     }
                     );'''
-ACCEPT_NEW = '''                    eprintln!("C4C turn={} unit={} plant={} cell={},{} clause=ACCEPT wood={} turns={} score={}",view.turn,unit.id,c4c_idx,plant.cell.0,plant.cell.1,wood,turns,score);
+ACCEPT_NEW = '''                    eprintln!("C4CV call={} turn={} unit={} plant={} seq=7 clause=ACCEPT verdict=ACCEPT wood={} turns={} score={}",c4c_call,view.turn,unit.id,c4c_idx,wood,turns,score);
                     out.push(Candidate{
                         command,score,target:Target::Tree(plant.cell),
                     }
@@ -155,11 +167,20 @@ def main():
 
     # STRUCTURAL GUARDS, because "it compiled and the numbers looked plausible" is how the
     # pool-3 table was confidently wrong for a day.
+    # Each clause must carry BOTH verdict rows (PASS and REJECT), except ACCEPT which is the
+    # terminal row. codex_1 blocker 1: a terminal-decision logger cannot name a clause, because a
+    # tree rejected at clause N leaves clauses 1..N-1 with no evidence they were even reached.
     for clause in CLAUSES:
-        n = out.count(f"clause={clause} ")
-        if n != 1:
-            print(f"REFUSING: clause {clause} has {n} taps, want exactly 1")
-            return 1
+        if clause == "ACCEPT":
+            want = {"verdict=ACCEPT": 1}
+        else:
+            want = {"verdict=PASS": 1, "verdict=REJECT": 1}
+        for verdict, n_want in want.items():
+            n = sum(1 for ln in out.splitlines()
+                    if f"clause={clause} " in ln and verdict in ln)
+            if n != n_want:
+                print(f"REFUSING: clause {clause} has {n} '{verdict}' taps, want {n_want}")
+                return 1
 
     # Every reject tap must sit INSIDE chop_candidates, before its own `continue`. If a tap
     # drifted outside the function the row would no longer mean "the bot executed this clause".
@@ -171,13 +192,26 @@ def main():
             print(f"REFUSING: tap for {clause} is outside chop_candidates")
             return 1
 
-    # the subject must be otherwise untouched: only eprintln lines and the enumerate() rebind
-    added = [ln for ln in out.splitlines() if ln.strip() and ln not in src.splitlines()]
-    non_log = [ln for ln in added if "eprintln!" not in ln]
-    if [ln for ln in non_log if "c4c_idx,plant)in view.plants.iter().enumerate()" not in ln]:
-        print(f"REFUSING: instrument changed non-logging source lines:\n  " +
-              "\n  ".join(non_log[:5]))
+    # BLOCKER 4 REPAIR. The old guard asked "is each added line absent from the source's line
+    # SET?" — which cannot see removals, reordering, multiplicity changes, or a behavioral line
+    # that happens to duplicate an existing source line. A set-membership test standing in for a
+    # diff is the same disease as a check that cannot fail. This is a real diff: strip every
+    # logging line from the instrument and require what remains to be BYTE-IDENTICAL to the
+    # subject, modulo the one declared structural edit (the enumerate() rebind).
+    import difflib
+    stripped = "\n".join(ln for ln in out.splitlines()
+                           if "eprintln!(\"C4C" not in ln and "C4C_CALLS" not in ln
+                           and "let c4c_call=" not in ln)
+    canon = stripped.replace(
+        "                for(c4c_idx,plant)in view.plants.iter().enumerate(){",
+        "                for plant in&view.plants{")
+    if canon != src.rstrip("\n"):
+        d = list(difflib.unified_diff(src.rstrip("\n").splitlines(), canon.splitlines(),
+                                      "resident", "instrument-minus-logging", lineterm="", n=1))
+        print("REFUSING: instrument differs from the subject beyond logging + the declared "
+              "enumerate() rebind:\n  " + "\n  ".join(d[:12]))
         return 1
+    print("  non-logging diff: NONE (instrument minus logging == subject, modulo enumerate)")
 
     OUT.write_text(out)
     print(f"wrote {OUT.relative_to(REPO)}")
