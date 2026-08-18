@@ -64,7 +64,13 @@ begins with `Pool: N/M done`.
       K_futility=10 labelled a heuristic + constructed long-in-flight-chop negative
       case (or a real bound). 7b: codex_1 re-review in queue gaps. Then owner
       approval. No new design decisions.
-- [ ] 8. Methods ledger consolidation `docs/METHODS-LEDGER.md` (local_claude_1, ~1 h)
+- [x] 8. DONE 2026-08-18 — `docs/METHODS-LEDGER.md` created: 13 slugged entries
+      (shared-runners, observed-failing, matched-floors, verdict-equals-message,
+      never-blind-mark, no-unchecked-endorsement, self-audit-is-not-the-gate,
+      smuggled-verdict, arrival-order-queues, turn-coverage-de-novo,
+      pre-existing-hole, probe-the-live-states, clock-read-timestamps), each with
+      origin incident + exact-path citation; owner-law entries marked; credited
+      verbatims kept. Was: Methods ledger consolidation (local_claude_1, ~1 h)
 - [x] 9. OWNER-ADDED 2026-08-17: WIP limit — one in-flight ack-requiring handoff per
       agent per task; protocol §10 rule + sender-side lint check, tests observed
       firing (local_claude_1)
@@ -97,6 +103,16 @@ by the verdict session's rulings, not before); T-1 half-swap fixture (recorded d
 viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untouched).
 
 ## Progress log (newest first)
+
+- 2026-08-18 (night running + pool #8 CLOSED): transport gap closed (formal ack of
+  claude_1's green handoff — my G5 update predated it by 47 s and could not name
+  it). Night bookkeeping live: ledger `local_claude_1/cure-c-night-2026-08-18.md`
+  (arms byte-verified, M-1 arithmetic fixed in advance, per-mark ritual), liveness
+  04:52Z = 23.1 @ rank 32/160 Legend, 111 battles, fresh agent 6631618; reads at
+  ~2 h marks, block of 5 pairs → owner numbers. **Pool #8 DONE:**
+  `docs/METHODS-LEDGER.md` — 13 slugged method entries with origins, incl. the two
+  owner measurement laws (turn-coverage-de-novo, pre-existing-hole) and the two
+  fresh 08-18 lessons (probe-the-live-states, clock-read-timestamps).
 
 - 2026-08-18 (**CURE C SUBMITTED — submission 41153619**): codex G4 GREEN with all
   three owner contingencies independently verified (m061 probed directly:
