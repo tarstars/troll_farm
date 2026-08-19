@@ -27,8 +27,11 @@ import make_predicate_probe as MPP      # noqa: E402
 # would let trailing garbage ride along unnoticed.
 PRED = re.compile(r"^PRED eval=(\d+) cell=(-?\d+),(-?\d+) on_tree=(\d+) adjacent=(\d+) "
                   r"inreach=(\d+) damaged=(true|false) health=(-?\d+)$")
+# Both tails enumerated exactly. The previous ` .*$` wildcard meant `fullmatch` proved nothing
+# about the end of the row — a strict-looking check that could not reject trailing fields.
 WHY = re.compile(r"^WHY eval=(\d+) turn=(\d+) cell=(-?\d+),(-?\d+) exit=(NONE|SOME) "
-                 r"opp_chop=(-?\d+) start_health=(-?\d+) horizon=(-?\d+) .*$")
+                 r"opp_chop=(-?\d+) start_health=(-?\d+) horizon=(-?\d+) "
+                 r"(?:died_at_iter=-?\d+|end_health=-?\d+ end_size=-?\d+)$")
 EXPECTED_FIXTURES = [f"OSC-{i:03d}" for i in range(1, 35)]
 OUT = REPO / "claude_1/chop4c/predicate-comparison-2026-08-19.json"
 
@@ -96,29 +99,6 @@ def reconcile(err):
     return pairs
 
 
-def parse_rows(err):
-    """STRICT: every `PRED` line must parse, or nothing is counted.
-
-    A regex that silently skips malformed rows cannot tell "this case never occurred" from
-    "this row was dropped" — the defect that made the 4c clause table unable to support a
-    negative statement.
-    """
-    rows = []
-    for ln in err.splitlines():
-        if not ln.startswith("PRED "):
-            continue
-        m = ROW.match(ln)
-        if not m:
-            raise RunnerError(f"UNPARSED PRED row, refusing to count anything: {ln!r}")
-        on, adj, inr, dam, hp = m.groups()
-        if dam not in ("true", "false"):
-            raise RunnerError(f"non-boolean damaged flag: {ln!r}")
-        rows.append((int(on), int(adj), int(inr), dam, int(hp)))
-    if not rows:
-        raise RunnerError("no PRED rows at all — the probe emitted nothing to measure")
-    return rows
-
-
 def tally(pairs):
     """r3 point 5: counts derived from RECONCILED PAIRS, not from the row list they came from."""
     c = collections.Counter()
@@ -139,6 +119,19 @@ def tally(pairs):
     return c
 
 
+def alien_why(line):
+    """A syntactically VALID WHY row with the same eval id and a different two-number cell."""
+    m = WHY.fullmatch(line)
+    if not m:
+        raise RunnerError(f"control setup failed: sample WHY row does not full-match: {line!r}")
+    cx, cy = int(m.group(3)), int(m.group(4))
+    out = line.replace(f"cell={cx},{cy}", f"cell={cx + 77},{cy + 77}", 1)
+    if not WHY.fullmatch(out):
+        raise RunnerError("control setup failed: alien row must remain schema-valid, else it "
+                          "tests malformedness rather than identity")
+    return out
+
+
 def negative_controls(err):
     """r3 point 4: every reconciliation failure mode must be OBSERVED failing."""
     ls = [l for l in err.splitlines() if l.startswith(("PRED ", "WHY "))]
@@ -153,10 +146,15 @@ def negative_controls(err):
         "dropped provenance": "\n".join(ls[:ip] + ls[ip + 1:]),
         "duplicated provenance": "\n".join(ls[:ip + 1] + [ls[ip]] + ls[ip + 1:]),
         "reordered provenance/exit": "\n".join(swap),
-        "alien identity": "\n".join([ls[iw].replace("cell=", "cell=99,99", 1)
-                                      if i == iw else l for i, l in enumerate(ls)]),
-        "trailing garbage on a row": "\n".join([l + " extra=1" if i == ip else l
-                                                for i, l in enumerate(ls)]),
+        # A VALID row carrying a DIFFERENT cell — the previous version spliced "99,99" in front
+        # of the existing coordinates, producing `cell=99,993,4`, which the schema rejected as
+        # malformed. It therefore never reached the identity branch it claimed to test.
+        "alien identity (valid row, different cell)": "\n".join(
+            [alien_why(ls[iw]) if i == iw else l for i, l in enumerate(ls)]),
+        "trailing garbage on a PRED row": "\n".join([l + " extra=1" if i == ip else l
+                                                     for i, l in enumerate(ls)]),
+        "trailing garbage on a WHY row": "\n".join([l + " extra=1" if i == iw else l
+                                                    for i, l in enumerate(ls)]),
         "no rows at all": "",
     }
     for name, corrupted in cases.items():
