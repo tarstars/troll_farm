@@ -84,7 +84,9 @@ begins with `Pool: N/M done`.
 - [x] 11. OWNER-ADDED 2026-08-17: coordd promote-or-park DECISION DATE set:
       2026-08-31 or pool close, whichever later; no standing dual plane
       (runbook amended) (local_claude_1)
-- [x] 12. DONE — SUBMITTED (41153619, 2026-08-18). Night + owner KEEP/REVERT remain. Was: CURE C
+- [x] 12. **FULLY CLOSED — OWNER KEEP 2026-08-19** (night 5/5 pairs, mean
+      +1.02; cure C is the resident, sub 41159334, sha `ad3bfefe…`; STATE §1
+      updated; m082 accepted). Was: DONE — SUBMITTED (41153619, 2026-08-18). Night + owner KEEP/REVERT remain. Was: CURE C
       END-TO-END — build per corrected brief, gates G1–G4 fail-first (fixtures
       311/311, panel zero de-novo D-1+P4, p95+parity, codex reproduction), then
       SUBMIT same-session (G5). Charter:
@@ -107,6 +109,18 @@ by the verdict session's rulings, not before); T-1 half-swap fixture (recorded d
 viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untouched).
 
 ## Progress log (newest first)
+
+- 2026-08-19 (~04:05Z — **NIGHT COMPLETE, OWNER RULED KEEP; CURE C IS THE
+  RESIDENT**): block closed 02:58Z with n=5 pairs, ALL FIVE to cure C
+  (+1.3/+0.2/+0.4/+0.6/+2.6, mean +1.02 — clears the 1.0 floor, not the
+  planning 1.86 winner bar; M-1's prescribed extension presented, owner chose
+  KEEP, which is the owner's call). Honesty on record: empirical pair SD 0.976
+  vs planning 2.123 (re-measure σ for paired designs = follow-up); pair-5
+  ladder-event caveat; m082 (12→1) permanently accepted. Cure C re-submitted
+  on the ruling (41159334); STATE §1 rewritten (resident sha `ad3bfefe…`,
+  restore target updated). The oscillation programme's first shipped cure is
+  now the resident. Pool: #6 remainder = 4a sitting + 4b stamps; the forecast
+  defect-fix task (Door 1) continues independently.
 
 - 2026-08-18 (~15:36Z — **4c COMPLETE, OWNER RULED "A DEFECT"; fix chartered**):
   the full 4c chain closed in one day: instrument (3 review rounds) → controls

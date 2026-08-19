@@ -6,25 +6,26 @@ Hard budget: 150 lines. Rewrite it whenever facts change.
 
 ## 1. Live identity
 
-### ★★★ CYCLE CLOSED — OWNER DECIDED **KEEP** 2026-08-12. Resident is `readable__no_orchard`.
+### ★★★ OWNER RULED **KEEP** 2026-08-19 — the resident is **CURE C** (`cure-c-quiet`).
 
-Owner ruled **KEEP** — `6604529`/`41113243` is the resident, restore target `98628e98…`.
-Terminal read 160/160: **22.46, rank 35/139**, clean. The same bytes scored 24.76 the
-prior run — a 2.30 spread; registry median 23.61. A sub-1.5-point mature delta is
-unresolvable at one run per arm (difference SD 1.552, §3). Cycle closed; submitting a
-new candidate is unblocked under §3.
-Task record: `coordination/tasks/20260812-readable-no-orchard-rerun-arena.md` (its "08-12"
-dates are the fabricated-clock session of 2026-08-09; trust `git log`).
+M-1 paired night 2026-08-18/19 (ledger `local_claude_1/cure-c-night-2026-08-18.md`):
+cure C won **all five pairs** vs the prior resident `98628e98…` — +1.3, +0.2, +0.4,
++0.6, +2.6, **mean +1.02** (clears the 1.0 floor; planning winner bar 1.86 not met;
+M-1's prescribed extension was superseded by the owner's KEEP, which is the owner's
+call to make). Honesty: empirical pair SD 0.976 vs planning 2.123; pair-5 ladder-event
+caveat on record. **m082 seat 1 (12→1) is the permanently accepted named cost.**
+Prior resident era (98628e98, KEEP 2026-08-12, six reads 19.77–24.90): archived in
+this file's git history and the night ledger.
 
 | field | value |
 |---|---|
-| live agent / submission | **`6614096` / `41129543`** (σ-campaign run 4, the fourth and last budgeted re-submission; same bytes as every run) |
-| source | `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs` |
-| SHA-256 | `98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29` |
-| purpose | resident holding the slot after the closed σ campaign; **six mature reads of this hash: 19.77–24.90, median ≈ 23.6** |
-| last read | **terminal, 160 games, 23.39, `identity_clean=True`, `signals=0`** (2026-08-13) |
-| disposition | **resident — owner KEEP ruling 2026-08-12 applies to the source; the agent id advanced through the σ campaign's authorized re-submissions** |
-| restore-to-resident source | `cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs`, SHA `98628e98…` |
+| live submission | **`41159334`** (submitted 2026-08-19T04:04Z on the KEEP; agent id pending first read — night agents for these bytes: 6631618/6632611/6633433/6634457/6634986) |
+| source | `cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs` (75,844 B) |
+| SHA-256 | `ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1` |
+| purpose | resident; cure C = mid-game fallback for chopless trolls (one hunk, six lines, over `98628e98…`) |
+| last read | A5 night window: **24.4, rank 24/162, 160 games** (2026-08-19T00:58Z); night windows 25.2/23.0/23.2/22.9/24.4 |
+| disposition | **resident — owner KEEP ruling 2026-08-19 on the night's numbers** |
+| restore-to-resident source | `cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs`, SHA `ad3bfefe…` |
 
 ⚠ **`docs/PROMOTION-RUNBOOK.md` MUST NOT be followed for this run.** Its authorization gate is
 scoped to candidate D171a only, and its §1 "fixed identities" are stale — it names resident
