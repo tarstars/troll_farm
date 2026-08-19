@@ -12,9 +12,36 @@
   (sentinel build moves to second).
 - Created UTC: 2026-08-19T18:39:26Z
 
-## OWNER DESIGN RULING — TWO TRUTHS (2026-08-19, superseding the 1b scope
-design SAME SESSION, before any build; the owner rejected the scope carve-out
-as a patch: "our task is to simplify the program")
+## OWNER RULING B — NAMED-COSTS GATE + PURE DELETION (2026-08-19, third and
+FINAL design ruling, superseding two-truths after claude_1's measured dead-end
+proof: 5-game floor by construction; P3 divergence≡blocking; range 5–14 vs a
+frozen 0)
+
+**The candidate is the PURE DELETION** — the already-built, already-measured
+Door-1 candidate (`claude_1/chop4c/candidate-door1.rs`, sha `547fa706…`): the
+fiction removed, nothing added, no orchard sentence. Strictly simpler than the
+resident. The orchard question is answered by SCORE, not byte-fidelity.
+
+**The gate regime for behavior-CHANGING candidates (owner law, this ruling):**
+zero-de-novo remains the gate for surgical additions (the cure-C class);
+behavior-changing candidates instead pass a **named-costs gate**:
+
+1. full panel measurement with per-game decomposition, both directions —
+   every de-novo game individually diagnosed and NAMED as a cost (the m082
+   precedent, generalized);
+2. aggregate must improve (here: blocking 53 → 47 ✓, healed 15 vs de-novo 9);
+3. latency + parity as ever;
+4. codex_1 verdict that the PACKAGE is complete and honest under this regime;
+5. **the DECIDER is the M-1 paired night vs the resident** — the owner rules
+   KEEP/REVERT on the score with the named costs on the table.
+
+The old task's rejection stands untouched — it was judged under its own frozen
+gate and honestly failed it. This is a new charter with its gates set BEFORE
+any decision, not a threshold bent after one.
+
+## (SUPERSEDED same session) OWNER DESIGN RULING — TWO TRUTHS (2026-08-19,
+superseding the 1b scope design; the owner rejected the scope carve-out as a
+patch: "our task is to simplify the program")
 
 The one lie doing two jobs is replaced by two single-purpose truths:
 

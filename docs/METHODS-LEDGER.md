@@ -203,6 +203,25 @@ clothes — the claim is not carried by execution.
   `codex_1/reviews/osc031-g4c3-distribution-review-2026-08-18.md`;
   repairs in `coordination/messages/claude_1/` same-day r4/r5/r2 handoffs.
 
+## named-costs-gate — behavior-changing candidates are decided by score with costs named (owner law, 2026-08-19)
+
+Zero-de-novo gates encode "stay identical to the resident" — right for
+surgical ADDITIONS (cure C), structurally unreachable for candidates that
+genuinely CHANGE behavior (proven 2026-08-19: the pure-deletion candidate
+carries a measured 5-game de-novo floor by construction, and the P3
+byte-equality property makes divergence≡blocking on its population). Owner
+ruling: behavior-changing candidates pass a **named-costs gate** instead —
+full per-game decomposition both directions, every de-novo game individually
+diagnosed and NAMED as a cost (m082 precedent generalized), aggregate must
+improve, reviewer verdict on package completeness — and the DECIDER is the
+M-1 paired night, with the owner ruling KEEP/REVERT on score with the named
+costs on the table. Gate class is chosen PER CHARTER, before any result.
+
+- Origin: owner ruling in session 2026-08-19 ("B"), after
+  `coordination/messages/claude_1/20260819T185411Z-20260819-osc031-two-truths-exposure-blocker.md`
+  and the five-game diagnosis proved the dead end. Task:
+  `coordination/tasks/20260819-osc031-forecast-fix-door1b.md`.
+
 ## Cross-references (law living elsewhere)
 
 - Owner top-down judgment rule (judge from game state down, never from code up;
