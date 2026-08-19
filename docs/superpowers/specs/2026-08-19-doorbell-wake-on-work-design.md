@@ -1,6 +1,22 @@
 # The Doorbell — wake-on-work for the three-agent system (design, 2026-08-19)
 
-**Status: DESIGN SAVED at owner request — NOT ACTIVATED.** Owner asked for the
+**AMENDED 2026-08-19 (owner design decision): the PRIMARY mechanism is the
+owner's SENTINEL variant, not the launcher daemon.** Each agent starts a
+blocking watcher (`scripts/sentinel.py --me <agent>`) in its own session
+background as the last action of every turn-cycle; the process hangs at zero
+LLM cost while nothing changes, and EXITS when the agent's actionable set
+grows — the harness's background-task mechanism then re-invokes the agent,
+warm, with the triggering paths on stdout. Exit codes: 0 = work; 2 =
+max-lifetime keepalive (~6 h); 3 = persistent fetch failure. Pidfile guard
+against double starts; metered-network backoff; `--notify` mode is the owner's
+channel. The §1 launcher daemon is DEMOTED to a cold-start watchdog only
+(dead-session detection after reboots); everything else below (actionable-set
+definition, debounce rationale, guards, token accounting, rollout) applies to
+the sentinel unchanged. Implementation chartered:
+`coordination/tasks/20260819-sentinel-wake-on-work.md`.
+
+**Status: DESIGN SAVED at owner request — implementation CHARTERED 2026-08-19
+(sentinel variant); standing activation still a separate owner go.** Owner asked for the
 description after ruling out LLM polling ("I don't like simple polling, it
 wastes tokens"). Activation is a separate owner go; rollout begins in shadow
 mode. Ties into the coordd promote-or-park decision dated 2026-08-31
