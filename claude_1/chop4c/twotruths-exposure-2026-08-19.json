@@ -1,0 +1,84 @@
+{
+  "absorbed_by_floor_blocking": [
+    {
+      "map_id": "m004",
+      "seat": 0
+    },
+    {
+      "map_id": "m085",
+      "seat": 0
+    },
+    {
+      "map_id": "m095",
+      "seat": 0
+    }
+  ],
+  "denovo_lower_bound": 5,
+  "denovo_upper_bound": 14,
+  "exposed_clean_orchard_views": [
+    {
+      "map_id": "m014",
+      "seat": 0
+    },
+    {
+      "map_id": "m025",
+      "seat": 0
+    },
+    {
+      "map_id": "m035",
+      "seat": 0
+    },
+    {
+      "map_id": "m045",
+      "seat": 0
+    },
+    {
+      "map_id": "m054",
+      "seat": 0
+    },
+    {
+      "map_id": "m065",
+      "seat": 0
+    },
+    {
+      "map_id": "m074",
+      "seat": 0
+    },
+    {
+      "map_id": "m104",
+      "seat": 0
+    },
+    {
+      "map_id": "m114",
+      "seat": 0
+    }
+  ],
+  "five_non_p3_denovo_untouchable": [
+    {
+      "map_id": "m021",
+      "seat": 0
+    },
+    {
+      "map_id": "m040",
+      "seat": 0
+    },
+    {
+      "map_id": "m063",
+      "seat": 1
+    },
+    {
+      "map_id": "m078",
+      "seat": 1
+    },
+    {
+      "map_id": "m090",
+      "seat": 1
+    }
+  ],
+  "floor_p3_is_structurally_zero": true,
+  "floor_p3_violations": 0,
+  "frozen_gate": 0,
+  "note": "Two-truths pre-build exposure analysis, from the accepted Phase-2 artifacts.\n\nThe charter's item 3 says the broader orchard rule's divergences \"fail only where games become\nblocking\". This measures what that means for P3 specifically, because P3 does not work like the\nother properties: it is VIEW-LEVEL and ABSOLUTE. `eval_p3` (fuzz_panel.py:1817) raises a violation\nwhenever an orchard-eligible view's candidate command stream differs from the parent's AT ALL, and\na violation blocks. So on that population \"divergence\" and \"blocking\" are the same event.\n\nSecond structural fact: a self-judged floor compares a bot against itself, so its command streams\nare identical by construction and its P3 count is necessarily ZERO. Every P3 violation is\ntherefore de-novo unless the floor blocks that same game for some other reason.",
+  "orchard_eligible_games": 12,
+  "reading": "Two-truths item 1 (delete the flat-1 fiction) is BYTE-IDENTICAL to what Door-1 already did, so the 5 non-P3 de-novo games are reproduced exactly: they are the lower bound, not an estimate. Item 2 (exclude orchard trees from chop candidacy) ADDS divergence on precisely the population P3 polices, where the parent does not exclude; each clean orchard view whose commands change becomes a NEW de-novo. Range 5-14 against a frozen gate of 0."
+}
