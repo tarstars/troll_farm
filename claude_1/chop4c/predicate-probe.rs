@@ -318,6 +318,7 @@ mod bot{
         #[derive(Clone,Debug)]struct Candidate{
             command:String,score:f64,target:Target,
         }
+        static C4C_EVAL:std::sync::atomic::AtomicUsize=std::sync::atomic::AtomicUsize::new(0);
         struct MoisanBot;
         #[derive(Clone,Copy,Debug,Eq,PartialEq)]pub struct YamoOpeningPolicy{
             pub train_horizon:i32,pub preferred_min_carry:i32,pub max_carry_capacity:i32,pub preferred_min_chop:i32,pub max_chop_power:i32,pub require_preferred:bool,pub max_extra_eta:i32,pub hard_train_turn:i32,pub prefer_movement_ties:bool,
@@ -511,7 +512,7 @@ mod bot{
                 let c4c_adjacent:i32=view.units.iter().filter(|unit|unit.player==1&&is_adjacent(unit.cell,plant.cell)).map(|unit|unit.stats.chop_power).sum();
                 let c4c_inreach:i32=view.units.iter().filter(|unit|unit.player==1&&bfs_distances(&view.walkable,&[unit.cell]).get(&plant.cell).map(|d|*d<=unit.stats.movement_speed.max(1)).unwrap_or(false)).map(|unit|unit.stats.chop_power).sum();
                 let c4c_damaged=plant.health<tree_health(plant.kind,plant.size);
-                eprintln!("PRED cell={},{} on_tree={} adjacent={} inreach={} damaged={} health={}",plant.cell.0,plant.cell.1,on_tree,c4c_adjacent,c4c_inreach,c4c_damaged,plant.health);
+                eprintln!("PRED eval={} cell={},{} on_tree={} adjacent={} inreach={} damaged={} health={}",C4C_EVAL.load(std::sync::atomic::Ordering::Relaxed).saturating_sub(1),plant.cell.0,plant.cell.1,on_tree,c4c_adjacent,c4c_inreach,c4c_damaged,plant.health);
                 if on_tree>0{
                     return on_tree;
                     }
@@ -524,6 +525,7 @@ mod bot{
                 }
                 }
             fn predict_tree(view:&GameState,plant:&Plant,turns:i32)->Option<PredictedTree>{
+                let c4c_eval=C4C_EVAL.fetch_add(1,std::sync::atomic::Ordering::Relaxed);
                 let mut size=plant.size;
                 let mut health=plant.health;
                 let mut fruits=plant.fruits;
@@ -536,7 +538,7 @@ mod bot{
                     if opp_chop>0{
                         health-=opp_chop;
                         if health<=0{
-                            eprintln!("WHY turn={} cell={},{} exit=NONE opp_chop={} start_health={} horizon={} died_at_iter={}",view.turn,plant.cell.0,plant.cell.1,opp_chop,plant.health,turns,hs_iter);
+                            eprintln!("WHY eval={} turn={} cell={},{} exit=NONE opp_chop={} start_health={} horizon={} died_at_iter={}",c4c_eval,view.turn,plant.cell.0,plant.cell.1,opp_chop,plant.health,turns,hs_iter);
                             return None;
                             }
                         }
@@ -555,7 +557,7 @@ mod bot{
                             }
                         }
                     }
-                eprintln!("WHY turn={} cell={},{} exit=SOME opp_chop={} start_health={} horizon={} end_health={} end_size={}",view.turn,plant.cell.0,plant.cell.1,opp_chop,plant.health,turns,health,size);
+                eprintln!("WHY eval={} turn={} cell={},{} exit=SOME opp_chop={} start_health={} horizon={} end_health={} end_size={}",c4c_eval,view.turn,plant.cell.0,plant.cell.1,opp_chop,plant.health,turns,health,size);
                 Some(PredictedTree{
                     size,health,cooldown,
                 }

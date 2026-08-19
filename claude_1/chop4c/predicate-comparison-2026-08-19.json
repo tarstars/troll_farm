@@ -2,11 +2,13 @@
   "by_fixture": {
     "OSC-001": {
       "calls": 200,
+      "exit_SOME": 200,
       "parity": "IDENTICAL"
     },
     "OSC-002": {
       "calls": 393,
       "evidence_free_firings": 4,
+      "exit_SOME": 393,
       "parity": "IDENTICAL"
     },
     "OSC-003": {
@@ -14,6 +16,8 @@
       "admit_inreach": 4,
       "calls": 121,
       "evidence_free_firings": 89,
+      "exit_NONE": 4,
+      "exit_SOME": 117,
       "on_tree_fires": 16,
       "parity": "IDENTICAL"
     },
@@ -22,12 +26,16 @@
       "admit_inreach": 2,
       "calls": 42,
       "evidence_free_firings": 14,
+      "exit_NONE": 1,
+      "exit_SOME": 41,
       "on_tree_fires": 20,
       "parity": "IDENTICAL"
     },
     "OSC-005": {
       "calls": 155,
       "evidence_free_firings": 60,
+      "exit_NONE": 5,
+      "exit_SOME": 150,
       "parity": "IDENTICAL"
     },
     "OSC-006": {
@@ -35,6 +43,8 @@
       "admit_inreach": 2,
       "calls": 96,
       "evidence_free_firings": 56,
+      "exit_NONE": 11,
+      "exit_SOME": 85,
       "on_tree_fires": 18,
       "parity": "IDENTICAL"
     },
@@ -43,12 +53,16 @@
       "admit_inreach": 14,
       "calls": 82,
       "evidence_free_firings": 56,
+      "exit_NONE": 38,
+      "exit_SOME": 44,
       "on_tree_fires": 17,
       "parity": "IDENTICAL"
     },
     "OSC-008": {
       "calls": 301,
       "evidence_free_firings": 83,
+      "exit_NONE": 15,
+      "exit_SOME": 286,
       "on_tree_fires": 40,
       "parity": "IDENTICAL"
     },
@@ -57,12 +71,16 @@
       "admit_inreach": 3,
       "calls": 253,
       "evidence_free_firings": 34,
+      "exit_NONE": 33,
+      "exit_SOME": 220,
       "on_tree_fires": 58,
       "parity": "IDENTICAL"
     },
     "OSC-010": {
       "calls": 1795,
       "evidence_free_firings": 398,
+      "exit_NONE": 75,
+      "exit_SOME": 1720,
       "parity": "IDENTICAL"
     },
     "OSC-011": {
@@ -70,71 +88,95 @@
       "admit_inreach": 25,
       "calls": 138,
       "evidence_free_firings": 64,
+      "exit_NONE": 4,
+      "exit_SOME": 134,
       "on_tree_fires": 44,
       "parity": "IDENTICAL"
     },
     "OSC-012": {
       "calls": 200,
+      "exit_SOME": 200,
       "parity": "IDENTICAL"
     },
     "OSC-013": {
       "calls": 408,
       "evidence_free_firings": 406,
+      "exit_NONE": 2,
+      "exit_SOME": 406,
       "parity": "IDENTICAL"
     },
     "OSC-014": {
       "calls": 479,
       "evidence_free_firings": 419,
+      "exit_NONE": 11,
+      "exit_SOME": 468,
       "parity": "IDENTICAL"
     },
     "OSC-015": {
       "calls": 468,
       "evidence_free_firings": 370,
+      "exit_NONE": 13,
+      "exit_SOME": 455,
       "parity": "IDENTICAL"
     },
     "OSC-016": {
       "calls": 400,
       "evidence_free_firings": 396,
+      "exit_SOME": 400,
       "parity": "IDENTICAL"
     },
     "OSC-017": {
       "calls": 396,
       "evidence_free_firings": 392,
+      "exit_SOME": 396,
       "parity": "IDENTICAL"
     },
     "OSC-018": {
       "calls": 400,
       "evidence_free_firings": 394,
+      "exit_SOME": 400,
       "parity": "IDENTICAL"
     },
     "OSC-019": {
       "calls": 430,
       "evidence_free_firings": 378,
+      "exit_NONE": 7,
+      "exit_SOME": 423,
       "parity": "IDENTICAL"
     },
     "OSC-020": {
       "calls": 413,
       "evidence_free_firings": 391,
+      "exit_NONE": 2,
+      "exit_SOME": 411,
       "parity": "IDENTICAL"
     },
     "OSC-021": {
       "calls": 425,
       "evidence_free_firings": 413,
+      "exit_NONE": 11,
+      "exit_SOME": 414,
       "parity": "IDENTICAL"
     },
     "OSC-022": {
       "calls": 473,
       "evidence_free_firings": 461,
+      "exit_NONE": 35,
+      "exit_SOME": 438,
       "parity": "IDENTICAL"
     },
     "OSC-023": {
       "calls": 473,
       "evidence_free_firings": 461,
+      "exit_NONE": 35,
+      "exit_SOME": 438,
       "parity": "IDENTICAL"
     },
     "OSC-024": {
       "calls": 144,
       "evidence_free_firings": 142,
+      "exit_NONE": 2,
+      "exit_SOME": 142,
       "parity": "IDENTICAL"
     },
     "OSC-025": {
@@ -142,6 +184,8 @@
       "admit_inreach": 2,
       "calls": 108,
       "evidence_free_firings": 44,
+      "exit_NONE": 17,
+      "exit_SOME": 91,
       "on_tree_fires": 38,
       "parity": "IDENTICAL"
     },
@@ -150,12 +194,15 @@
       "admit_inreach": 1,
       "calls": 36,
       "evidence_free_firings": 15,
+      "exit_NONE": 9,
+      "exit_SOME": 27,
       "on_tree_fires": 7,
       "parity": "IDENTICAL"
     },
     "OSC-027": {
       "calls": 22,
       "evidence_free_firings": 19,
+      "exit_SOME": 22,
       "parity": "IDENTICAL"
     },
     "OSC-028": {
@@ -163,6 +210,8 @@
       "admit_inreach": 3,
       "calls": 253,
       "evidence_free_firings": 34,
+      "exit_NONE": 33,
+      "exit_SOME": 220,
       "on_tree_fires": 58,
       "parity": "IDENTICAL"
     },
@@ -171,32 +220,44 @@
       "admit_inreach": 2,
       "calls": 190,
       "evidence_free_firings": 56,
+      "exit_NONE": 25,
+      "exit_SOME": 165,
       "on_tree_fires": 40,
       "parity": "IDENTICAL"
     },
     "OSC-030": {
       "calls": 109,
       "evidence_free_firings": 25,
+      "exit_NONE": 5,
+      "exit_SOME": 104,
       "parity": "IDENTICAL"
     },
     "OSC-031": {
       "calls": 205,
       "evidence_free_firings": 203,
+      "exit_NONE": 191,
+      "exit_SOME": 14,
       "parity": "IDENTICAL"
     },
     "OSC-032": {
       "calls": 46,
       "evidence_free_firings": 46,
+      "exit_NONE": 28,
+      "exit_SOME": 18,
       "parity": "IDENTICAL"
     },
     "OSC-033": {
       "calls": 46,
       "evidence_free_firings": 46,
+      "exit_NONE": 37,
+      "exit_SOME": 9,
       "parity": "IDENTICAL"
     },
     "OSC-034": {
       "calls": 200,
       "evidence_free_firings": 197,
+      "exit_NONE": 1,
+      "exit_SOME": 199,
       "parity": "IDENTICAL"
     }
   },
@@ -207,7 +268,7 @@
     "inreach": "let c4c_inreach:i32=view.units.iter().filter(|unit|unit.player==1&&bfs_distances(&view.walkable,&[unit.cell]).get(&plant.cell).map(|d|*d<=unit.stats.movement_speed.max(1)).unwrap_or(false)).map(|unit|unit.stats.chop_power).sum();",
     "on_tree": "let on_tree:i32=view.units.iter().filter(|unit|unit.player==1&&unit.cell==plant.cell).map(|unit|unit.stats.chop_power).sum();"
   },
-  "probe_sha256": "1ff8ca70bf412a2e4fa7ea3f98d402d2957c06bb62b3fffd11624f4863c2355b",
+  "probe_sha256": "10701175160aebb25b9f520b9aeb17202b4e4d7b5a0f36a9d32f87fcc74d0ca4",
   "subject": {
     "note": "cure C \u2014 the resident since the owner KEEP",
     "path": "cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs",
@@ -215,16 +276,18 @@
   },
   "task": "20260818-osc031-forecast-defect-fix",
   "tool_sha256": {
-    "builder": "ba08b5dc5c6296e29c19c6dfe34cc39b22894945d9dab6e5e1a28555143ba9e3",
+    "builder": "116f695d8af0e375882e01d4c76f6b0bdded946bd03a1b42581968c0b727d26e",
     "coverage": "96a9959355f850734eb4f0efcc8225bc092768ecfb8222033787f56e6dc50831",
     "fixture_harness": "ea1ed0af18b48875966db7bee4f8d2b7758b7111923bc0b7f8ad587972bbaa9a",
-    "runner": "898a0a42d054dafa5011a0728eaaab9ca1c3775a74b94548e658f04e8ea024e7"
+    "runner": "5cc0f16c401ce0f213235554dc9c2371441a595fa43cda77dcd029bb92ea6b0c"
   },
   "totals": {
     "admit_adjacent": 58,
     "admit_inreach": 58,
     "calls": 9900,
     "evidence_free_firings": 6166,
+    "exit_NONE": 650,
+    "exit_SOME": 9250,
     "on_tree_fires": 356
   }
 }

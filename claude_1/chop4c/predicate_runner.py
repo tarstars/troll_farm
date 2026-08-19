@@ -23,8 +23,13 @@ import coverage as C                    # noqa: E402
 import fixture_harness as H             # noqa: E402
 import make_predicate_probe as MPP      # noqa: E402
 
-ROW = re.compile(r"PRED cell=\S+ on_tree=(\d+) adjacent=(\d+) inreach=(\d+) damaged=(\w+) "
-                 r"health=(\d+)")
+# FULL-MATCH schemas for BOTH row kinds (r3 point 1). Anchored at both ends: a partial match
+# would let trailing garbage ride along unnoticed.
+PRED = re.compile(r"^PRED eval=(\d+) cell=(-?\d+),(-?\d+) on_tree=(\d+) adjacent=(\d+) "
+                  r"inreach=(\d+) damaged=(true|false) health=(-?\d+)$")
+WHY = re.compile(r"^WHY eval=(\d+) turn=(\d+) cell=(-?\d+),(-?\d+) exit=(NONE|SOME) "
+                 r"opp_chop=(-?\d+) start_health=(-?\d+) horizon=(-?\d+) .*$")
+EXPECTED_FIXTURES = [f"OSC-{i:03d}" for i in range(1, 35)]
 OUT = REPO / "claude_1/chop4c/predicate-comparison-2026-08-19.json"
 
 
@@ -46,6 +51,49 @@ def predicate_definitions(probe_src):
             raise RunnerError(f"predicate {name} not found in the probe — cannot document it")
         out[name] = line
     return out
+
+
+def reconcile(err):
+    """r3 point 2: exactly one PRED provenance row to exactly one subsequent WHY exit row per
+    `predict_tree` execution, in EMITTED ORDER, joined on the stable eval id AND the cell.
+
+    The previous runner counted PRED rows alone. That cannot detect a dropped, duplicated or
+    reordered exit row, so it could not support any claim about which evaluations were measured.
+    """
+    pairs, pending = [], {}
+    order = []
+    for ln in err.splitlines():
+        if ln.startswith("PRED "):
+            m = PRED.fullmatch(ln)
+            if not m:
+                raise RunnerError(f"UNPARSED PRED row: {ln!r}")
+            ev = int(m.group(1))
+            if ev in pending:
+                raise RunnerError(f"DUPLICATE provenance for eval {ev}")
+            pending[ev] = (int(m.group(2)), int(m.group(3)), int(m.group(4)), int(m.group(5)),
+                           int(m.group(6)), m.group(7))
+            order.append(ev)
+        elif ln.startswith("WHY "):
+            m = WHY.fullmatch(ln)
+            if not m:
+                raise RunnerError(f"UNPARSED WHY row: {ln!r}")
+            ev = int(m.group(1))
+            if ev not in pending:
+                raise RunnerError(f"exit row for eval {ev} with no preceding provenance row")
+            if order[len(pairs)] != ev:
+                raise RunnerError(f"REORDERED: expected eval {order[len(pairs)]}, got {ev}")
+            cx, cy, on, adj, inr, dam = pending.pop(ev)
+            if (cx, cy) != (int(m.group(3)), int(m.group(4))):
+                raise RunnerError(f"ALIEN identity: eval {ev} cell {(cx, cy)} vs "
+                                  f"{(int(m.group(3)), int(m.group(4)))}")
+            pairs.append({"eval": ev, "on_tree": on, "adjacent": adj, "inreach": inr,
+                          "damaged": dam, "exit": m.group(5)})
+    if pending:
+        raise RunnerError(f"{len(pending)} provenance rows never reached an exit row: "
+                          f"{sorted(pending)[:5]}")
+    if not pairs:
+        raise RunnerError("no reconciled pairs at all")
+    return pairs
 
 
 def parse_rows(err):
@@ -71,10 +119,13 @@ def parse_rows(err):
     return rows
 
 
-def tally(rows):
+def tally(pairs):
+    """r3 point 5: counts derived from RECONCILED PAIRS, not from the row list they came from."""
     c = collections.Counter()
-    for on, adj, inr, dam, _hp in rows:
+    for pr in pairs:
+        on, adj, inr, dam = pr["on_tree"], pr["adjacent"], pr["inreach"], pr["damaged"]
         c["calls"] += 1
+        c["exit_" + pr["exit"]] += 1
         if on > 0:
             c["on_tree_fires"] += 1
         elif dam == "true":
@@ -89,21 +140,32 @@ def tally(rows):
 
 
 def negative_controls(err):
-    """The parser MUST fail on corrupted input, or a clean run proves nothing."""
-    lines = [l for l in err.splitlines() if l.startswith("PRED ")]
+    """r3 point 4: every reconciliation failure mode must be OBSERVED failing."""
+    ls = [l for l in err.splitlines() if l.startswith(("PRED ", "WHY "))]
+    ip = next(i for i, l in enumerate(ls) if l.startswith("PRED "))
+    iw = next(i for i, l in enumerate(ls) if l.startswith("WHY "))
+    swap = ls[:]
+    for a in range(len(swap) - 3):
+        if swap[a].startswith("PRED") and swap[a + 2].startswith("PRED"):
+            swap[a], swap[a + 2] = swap[a + 2], swap[a]
+            break
     cases = {
-        "malformed row": "\n".join(lines[:1] + ["PRED cell=oops"] + lines[1:]),
-        "truncated row": "\n".join([lines[0].rsplit(" ", 1)[0]] + lines[1:]),
-        "non-integer field": "\n".join([lines[0].replace("on_tree=", "on_tree=x", 1)] + lines[1:]),
+        "dropped provenance": "\n".join(ls[:ip] + ls[ip + 1:]),
+        "duplicated provenance": "\n".join(ls[:ip + 1] + [ls[ip]] + ls[ip + 1:]),
+        "reordered provenance/exit": "\n".join(swap),
+        "alien identity": "\n".join([ls[iw].replace("cell=", "cell=99,99", 1)
+                                      if i == iw else l for i, l in enumerate(ls)]),
+        "trailing garbage on a row": "\n".join([l + " extra=1" if i == ip else l
+                                                for i, l in enumerate(ls)]),
         "no rows at all": "",
     }
     for name, corrupted in cases.items():
         try:
-            parse_rows(corrupted)
+            reconcile(corrupted)
         except RunnerError:
-            print(f"  negative control OK — parser rejects: {name}")
+            print(f"  negative control OK — reconciler rejects: {name}")
         else:
-            raise RunnerError(f"NEGATIVE CONTROL FAILED: parser accepted {name}")
+            raise RunnerError(f"NEGATIVE CONTROL FAILED: reconciler accepted {name}")
 
 
 def main():
@@ -122,12 +184,19 @@ def main():
 
     tot, byfix = collections.Counter(), {}
     controls_done = False
-    for sit in H.load_situations(None):
+    sits = H.load_situations(None)
+    got = sorted(s["id"] for s in sits)
+    if got != EXPECTED_FIXTURES:                          # r3 point 3
+        raise RunnerError(f"fixture set is not exactly OSC-001..OSC-034: missing "
+                          f"{sorted(set(EXPECTED_FIXTURES)-set(got))}, extra "
+                          f"{sorted(set(got)-set(EXPECTED_FIXTURES))}")
+    for sit in sits:
         err = C.check_parity(sit, cfg, plain, instr)      # point 2: raises on divergence
-        rows = parse_rows(err)                            # strict: no silent skips
-        c = tally(rows)
-        if c["calls"] != len(rows):
-            raise RunnerError(f"{sit['id']}: tally {c['calls']} != parsed rows {len(rows)}")
+        pairs = reconcile(err)                            # 1:1, ordered, identity-checked
+        c = tally(pairs)
+        if c["exit_NONE"] + c["exit_SOME"] != c["calls"]:
+            raise RunnerError(f"{sit['id']}: exits {c['exit_NONE']}+{c['exit_SOME']} != "
+                              f"calls {c['calls']}")
         byfix[sit["id"]] = {"parity": "IDENTICAL", **c}
         tot.update(c)
         if not controls_done:

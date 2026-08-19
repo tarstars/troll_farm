@@ -39,7 +39,7 @@ OPP_OLD = '''                if on_tree>0{
 OPP_NEW = '''                let c4c_adjacent:i32=view.units.iter().filter(|unit|unit.player==1&&is_adjacent(unit.cell,plant.cell)).map(|unit|unit.stats.chop_power).sum();
                 let c4c_inreach:i32=view.units.iter().filter(|unit|unit.player==1&&bfs_distances(&view.walkable,&[unit.cell]).get(&plant.cell).map(|d|*d<=unit.stats.movement_speed.max(1)).unwrap_or(false)).map(|unit|unit.stats.chop_power).sum();
                 let c4c_damaged=plant.health<tree_health(plant.kind,plant.size);
-                eprintln!("PRED cell={},{} on_tree={} adjacent={} inreach={} damaged={} health={}",plant.cell.0,plant.cell.1,on_tree,c4c_adjacent,c4c_inreach,c4c_damaged,plant.health);
+                eprintln!("PRED eval={} cell={},{} on_tree={} adjacent={} inreach={} damaged={} health={}",C4C_EVAL.load(std::sync::atomic::Ordering::Relaxed).saturating_sub(1),plant.cell.0,plant.cell.1,on_tree,c4c_adjacent,c4c_inreach,c4c_damaged,plant.health);
                 if on_tree>0{
                     return on_tree;
                     }
@@ -60,13 +60,19 @@ NONE_OLD = '''                for _ in 0..turns{
                             return None;
                             }
                         }'''
+PT_ENTRY_OLD = '''                let mut size=plant.size;
+                let mut health=plant.health;'''
+PT_ENTRY_NEW = '''                let c4c_eval=C4C_EVAL.fetch_add(1,std::sync::atomic::Ordering::Relaxed);
+                let mut size=plant.size;
+                let mut health=plant.health;'''
+
 NONE_NEW = '''                let mut hs_iter=0;
                 for _ in 0..turns{
                     hs_iter+=1;
                     if opp_chop>0{
                         health-=opp_chop;
                         if health<=0{
-                            eprintln!("WHY turn={} cell={},{} exit=NONE opp_chop={} start_health={} horizon={} died_at_iter={}",view.turn,plant.cell.0,plant.cell.1,opp_chop,plant.health,turns,hs_iter);
+                            eprintln!("WHY eval={} turn={} cell={},{} exit=NONE opp_chop={} start_health={} horizon={} died_at_iter={}",c4c_eval,view.turn,plant.cell.0,plant.cell.1,opp_chop,plant.health,turns,hs_iter);
                             return None;
                             }
                         }'''
@@ -77,14 +83,20 @@ SOME_OLD = '''                Some(PredictedTree{
                 }
                 )
             }'''
-SOME_NEW = '''                eprintln!("WHY turn={} cell={},{} exit=SOME opp_chop={} start_health={} horizon={} end_health={} end_size={}",view.turn,plant.cell.0,plant.cell.1,opp_chop,plant.health,turns,health,size);
+SOME_NEW = '''                eprintln!("WHY eval={} turn={} cell={},{} exit=SOME opp_chop={} start_health={} horizon={} end_health={} end_size={}",c4c_eval,view.turn,plant.cell.0,plant.cell.1,opp_chop,plant.health,turns,health,size);
                 Some(PredictedTree{
                     size,health,cooldown,
                 }
                 )
             }'''
 
-PATCHES = [("predicate measurement", OPP_OLD, OPP_NEW),
+STATIC_OLD = '''        struct MoisanBot;'''
+STATIC_NEW = '''        static C4C_EVAL:std::sync::atomic::AtomicUsize=std::sync::atomic::AtomicUsize::new(0);
+        struct MoisanBot;'''
+
+PATCHES = [("eval-id static", STATIC_OLD, STATIC_NEW),
+           ("predicate measurement", OPP_OLD, OPP_NEW),
+           ("eval-id counter", PT_ENTRY_OLD, PT_ENTRY_NEW),
            ("None exit", NONE_OLD, NONE_NEW),
            ("Some exit", SOME_OLD, SOME_NEW)]
 
@@ -105,7 +117,7 @@ def main():
                          if 'eprintln!("WHY' not in l and 'eprintln!("PRED' not in l
                          and "let mut hs_iter=0;" not in l and "hs_iter+=1;" not in l
                          and "let c4c_adjacent:" not in l and "let c4c_inreach:" not in l
-                         and "let c4c_damaged=" not in l)
+                         and "let c4c_damaged=" not in l and "C4C_EVAL" not in l and "let c4c_eval=" not in l)
     if stripped != src.rstrip("\n"):
         print("REFUSING: probe changed the subject beyond logging + the declared counter")
         return 1
