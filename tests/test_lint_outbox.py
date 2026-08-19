@@ -649,3 +649,62 @@ def test_deferred_prose_mention_not_flagged(repo):
     repo.write_worktree(path, body)
     result = lint(repo)
     assert result.returncode == 0, result.stdout
+
+
+# ---------------------------------------------------------------------------
+# Card-ack gate (protocol §10, corrected route 2026-08-19): a CARD: message is
+# discharged only by the delivery handoff or by a DEFERRED: replacement card;
+# a bare receipt-ack is refused. ack_for is the only discharge mechanism, so
+# the gate sits on the ack side.
+# ---------------------------------------------------------------------------
+
+def _publish_card(repo, stamp="20260807T113000Z"):
+    path = msg_path(PEER, stamp, "task-a", "policy")
+    body = v2_message(path, kind="policy", task="task-a", sender=PEER, to=ME,
+                      requires_ack=True)
+    body = body.replace("# body", "# body\n\nCARD: run the panels and deliver\n")
+    repo.commit(f"agent/{PEER}", {path: body})
+    return path
+
+
+def test_card_bare_receipt_ack_fails(repo):
+    card = _publish_card(repo)
+    path = msg_path(ME, STAMP, "task-a", "ack")
+    body = v2_message(path, kind="ack", task="task-a", sender=ME, to=PEER,
+                      ack_for=(card,))
+    repo.write_worktree(path, body)
+    result = lint(repo)
+    assert result.returncode == 2
+    assert "card ack" in result.stdout
+
+
+def test_card_delivery_handoff_clean(repo):
+    card = _publish_card(repo)
+    extra = _valid_handoff_extra(repo)
+    path = msg_path(ME, STAMP, "task-a", "handoff")
+    body = v2_message(path, kind="handoff", task="task-a", sender=ME, to=PEER,
+                      ack_for=(card,), extra_fields=extra)
+    repo.write_worktree(path, body)
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout
+
+
+def test_card_deferred_replacement_clean(repo):
+    card = _publish_card(repo)
+    path = msg_path(ME, STAMP, "task-a", "update")
+    body = v2_message(path, kind="update", task="task-a", sender=ME,
+                      to=f'["{ME}"]', requires_ack=True, ack_for=(card,))
+    body = body.replace("# body", "# body\n\nDEFERRED: panels — fresh session needed\n")
+    repo.write_worktree(path, body)
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout
+
+
+def test_non_card_ack_unaffected(repo):
+    target = publish_v2(repo, PEER, "20260807T113100Z", "task-a", "update", to=ME)
+    path = msg_path(ME, STAMP, "task-a", "ack")
+    body = v2_message(path, kind="ack", task="task-a", sender=ME, to=PEER,
+                      ack_for=(target,))
+    repo.write_worktree(path, body)
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout

@@ -516,14 +516,22 @@ Enforced sender-side by `deferral_shape_errors` in `scripts/lint_outbox.py`; pro
 mentions of the word "deferred" mid-line do not trigger the gate. Coordinator
 resume-orders remain the backstop for sessions that die before declaring.
 
-**Cards are acknowledged by DELIVERY, never by receipt (sharpened 2026-08-19,
-same day).** The first two resume-order cards were discharged by polite pickup
-acks and the session died before the work — queue empty, work uncarded, fourth
-stall shape. Rule: a message carrying a line-start **`CARD:`** marker is a
-standing work item; the assignee does NOT ack it on receipt. It stays in their
-queue (visible in every sweep) until the ack rides the DELIVERY handoff itself,
-or a self-addressed `DEFERRED:` card supersedes it in the same push. A bare
-receipt-ack of a `CARD:` message is a protocol violation even when sincere.
+**Cards are acknowledged by DELIVERY, never by a bare receipt (sharpened
+2026-08-19; route corrected same day after claude_1 proved the first wording
+unimplementable — `supersedes` is inert for discharge, `ack_for` is the only
+mechanism).** A message carrying a line-start **`CARD:`** marker is a standing
+work item; it stays in the assignee's queue until discharged by exactly one of:
+
+1. **the DELIVERY handoff** naming the card in its `ack_for`; or
+2. **a replacement `DEFERRED:` card** naming the original card in its
+   `ack_for` — legitimate because the discharge arrives WITH a successor queue
+   item in the same message (self-addressed, ack-required, per the deferral
+   gate); the queue never reads empty while work exists.
+
+A **bare receipt-ack** — one that discharges a `CARD:` while neither delivering
+nor replacing it — is the violation. Enforced sender-side by
+`card_ack_errors` in `scripts/lint_outbox.py`: an ack naming a `CARD:` message
+must be a handoff or itself carry a `DEFERRED:` line.
 
 **Ack is not delivery (adopted 2026-08-19, third stall shape in two days).**
 Acknowledging a message that ASSIGNS you work discharges the acknowledgement, not
