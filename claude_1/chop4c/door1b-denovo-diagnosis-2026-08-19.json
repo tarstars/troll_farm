@@ -2,15 +2,16 @@
   "five_none_orchard_eligible": true,
   "games": [
     {
+      "causal_order": "NOT ESTABLISHED \u2014 requires targeted replay (codex_1 correction)",
       "changed_by_1b_scope": false,
       "class": "choke_corridor",
       "detectors": {
         "D-1": 1
       },
       "map_id": "m021",
+      "opponent_stream": "identical",
       "opponent_stream_identical_to_floor": true,
       "orchard_eligible": false,
-      "order": "first-order (same world)",
       "profile": "idle",
       "properties": [
         "P1",
@@ -19,15 +20,16 @@
       "seat": 0
     },
     {
+      "causal_order": "NOT ESTABLISHED \u2014 requires targeted replay (codex_1 correction)",
       "changed_by_1b_scope": false,
       "class": "forest_dense",
       "detectors": {
         "D-1": 1
       },
       "map_id": "m040",
+      "opponent_stream": "diverged",
       "opponent_stream_identical_to_floor": false,
       "orchard_eligible": false,
-      "order": "second-order (world diverged)",
       "profile": "harvester",
       "properties": [
         "P1"
@@ -35,15 +37,16 @@
       "seat": 0
     },
     {
+      "causal_order": "NOT ESTABLISHED \u2014 requires targeted replay (codex_1 correction)",
       "changed_by_1b_scope": false,
       "class": "open_field",
       "detectors": {
         "D-1": 1
       },
       "map_id": "m063",
+      "opponent_stream": "diverged",
       "opponent_stream_identical_to_floor": false,
       "orchard_eligible": false,
-      "order": "second-order (world diverged)",
       "profile": "harvester",
       "properties": [
         "P1",
@@ -53,15 +56,16 @@
       "seat": 1
     },
     {
+      "causal_order": "NOT ESTABLISHED \u2014 requires targeted replay (codex_1 correction)",
       "changed_by_1b_scope": false,
       "class": "choke_corridor",
       "detectors": {
         "D-1": 1
       },
       "map_id": "m078",
+      "opponent_stream": "diverged",
       "opponent_stream_identical_to_floor": false,
       "orchard_eligible": false,
-      "order": "second-order (world diverged)",
       "profile": "chopper_aggressor",
       "properties": [
         "P1"
@@ -69,6 +73,7 @@
       "seat": 1
     },
     {
+      "causal_order": "NOT ESTABLISHED \u2014 requires targeted replay (codex_1 correction)",
       "changed_by_1b_scope": false,
       "class": "choke_corridor",
       "detectors": {
@@ -76,9 +81,9 @@
         "D-4": 1
       },
       "map_id": "m090",
+      "opponent_stream": "identical",
       "opponent_stream_identical_to_floor": true,
       "orchard_eligible": false,
-      "order": "first-order (same world)",
       "profile": "harvester",
       "properties": [
         "P1"
@@ -86,7 +91,7 @@
       "seat": 1
     }
   ],
-  "note": "Door-1b charter constraint 3: per-game diagnosis of the five non-P3 de-novo games.\n\n\"The panel will tell us\" is not a diagnosis. This measures two things per game, from the accepted\nPhase-2 artifacts, BEFORE any 1b panel is attempted:\n\n  ORDER  first-order  = the opponent's command stream is IDENTICAL to the floor's, so the world\n                        the candidate faced was the same and the divergence is the candidate's own\n                        choice -- the evidence rule acting directly.\n         second-order = the opponent's stream DIFFERS, so the candidate changed the world and the\n                        opponent reacted; the block may be a consequence of that changed world\n                        rather than of the rule at the blocking site.\n         The discriminator is necessary, not sufficient: identical opponent commands cannot prove\n         the internal cause, only that the world was not the cause. Stated so the limit traveIs\n         with the number.\n\n  SCOPE  does Door-1b's bound change this game? The 1b design alters behaviour ONLY on\n         orchard-eligible views. A game whose view is not orchard-eligible is bit-for-bit\n         unaffected: 1b == Door-1 there, the corpus is fixed, and games are independent.",
+  "note": "Door-1b charter constraint 3: per-game diagnosis of the five non-P3 de-novo games.\n\n\"The panel will tell us\" is not a diagnosis. This measures two things per game, from the accepted\nPhase-2 artifacts, BEFORE any 1b panel is attempted:\n\n  OPPONENT-STREAM EQUALITY (a measurement, NOT a causal label)\n         stream-identical = the opponent issued the same commands as in the floor run.\n         stream-diverged  = the opponent issued different commands.\n\n         CORRECTION (codex_1, 2026-08-19): an earlier version of this tool labelled these\n         \"first-order (same world)\" and \"second-order (world diverged)\". That overstated the\n         evidence and the correction is accepted. Equal opponent commands prove only that the\n         OPPONENT did the same thing; they do NOT establish that the candidate faced the same\n         world, because the candidate's own actions mutate state regardless of what the opponent\n         does. The measurement stands; the causal reading has been withdrawn. Establishing\n         first- vs second-order cause requires targeted replay, which this tool does not do and\n         no longer claims to.\n\n  SCOPE  does Door-1b's bound change this game? The 1b design alters behaviour ONLY on\n         orchard-eligible views. A game whose view is not orchard-eligible is bit-for-bit\n         unaffected: 1b == Door-1 there, the corpus is fixed, and games are independent.",
   "p3_four_all_orchard_eligible": true,
   "predicted_denovo_under_1b": 5,
   "prediction": "Door-1b erases the 4 P3 de-novo games by construction (all orchard-eligible) and changes NONE of the 5 non-P3 de-novo games (none orchard-eligible). Predicted de-novo under Door-1b: 5, against a frozen gate of ZERO. On this evidence the chartered 1b design does not reach ready-with-gates."

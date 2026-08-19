@@ -4,15 +4,18 @@
 "The panel will tell us" is not a diagnosis. This measures two things per game, from the accepted
 Phase-2 artifacts, BEFORE any 1b panel is attempted:
 
-  ORDER  first-order  = the opponent's command stream is IDENTICAL to the floor's, so the world
-                        the candidate faced was the same and the divergence is the candidate's own
-                        choice -- the evidence rule acting directly.
-         second-order = the opponent's stream DIFFERS, so the candidate changed the world and the
-                        opponent reacted; the block may be a consequence of that changed world
-                        rather than of the rule at the blocking site.
-         The discriminator is necessary, not sufficient: identical opponent commands cannot prove
-         the internal cause, only that the world was not the cause. Stated so the limit traveIs
-         with the number.
+  OPPONENT-STREAM EQUALITY (a measurement, NOT a causal label)
+         stream-identical = the opponent issued the same commands as in the floor run.
+         stream-diverged  = the opponent issued different commands.
+
+         CORRECTION (codex_1, 2026-08-19): an earlier version of this tool labelled these
+         "first-order (same world)" and "second-order (world diverged)". That overstated the
+         evidence and the correction is accepted. Equal opponent commands prove only that the
+         OPPONENT did the same thing; they do NOT establish that the candidate faced the same
+         world, because the candidate's own actions mutate state regardless of what the opponent
+         does. The measurement stands; the causal reading has been withdrawn. Establishing
+         first- vs second-order cause requires targeted replay, which this tool does not do and
+         no longer claims to.
 
   SCOPE  does Door-1b's bound change this game? The 1b design alters behaviour ONLY on
          orchard-eligible views. A game whose view is not orchard-eligible is bit-for-bit
@@ -40,7 +43,8 @@ def main():
             "map_id": k[0], "seat": k[1], "class": c["class"], "profile": c["profile"],
             "orchard_eligible": c["orchard_eligible"],
             "opponent_stream_identical_to_floor": same_world,
-            "order": "first-order (same world)" if same_world else "second-order (world diverged)",
+            "opponent_stream": "identical" if same_world else "diverged",
+            "causal_order": "NOT ESTABLISHED — requires targeted replay (codex_1 correction)",
             "properties": props,
             "detectors": {d: n for d, n in c["detector_counts"].items() if n},
             "changed_by_1b_scope": bool(c["orchard_eligible"]),
@@ -58,7 +62,7 @@ def main():
     Path(sys.argv[3]).write_text(json.dumps(out, indent=2, sort_keys=True) + "\n")
     for g in out["games"]:
         print(f"  {g['map_id']} s{g['seat']} [{g['class']}/{g['profile']}] "
-              f"{g['order']:<28} props={','.join(g['properties'])} "
+              f"opp-stream={g['opponent_stream']:<9} props={','.join(g['properties'])} "
               f"orchard={g['orchard_eligible']} changed_by_1b={g['changed_by_1b_scope']}")
     print(f"\n  P3 four all orchard-eligible : {out['p3_four_all_orchard_eligible']}")
     print(f"  five none orchard-eligible   : {out['five_none_orchard_eligible']}")
