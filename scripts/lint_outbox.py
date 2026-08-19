@@ -49,6 +49,7 @@ from __future__ import annotations
 
 import argparse
 import pathlib
+import re
 import sys
 
 try:  # invoked as `python3 scripts/lint_outbox.py`
@@ -232,6 +233,84 @@ def evidence_gate_errors(
     ]
 
 
+def cross_task_reference_errors(
+    msg: "inbox_sweep.Message", published_msgs: list["inbox_sweep.Message"]
+) -> list[str]:
+    """`supersedes`/`ack_for` entries must belong to this message's task.
+
+    A syntactically valid path to a REAL message of a DIFFERENT task passes
+    every shape and existence check; on 2026-08-18 such an entry falsely
+    superseded an unrelated August-15 handoff (built by substring search over
+    two tasks sharing a "phase1-handoff" name). The comparison is by the
+    referenced message's front-matter `task_id`, never by filename, because
+    filename middles are not full task ids. Escape hatch: an explicit
+    `cross-task:` marker in the body naming why the reference is deliberate.
+    Sender-side only, like every gate here.
+    """
+    if "cross-task:" in msg.body:
+        return []
+    own_task = msg.fields.get("task_id", "").strip()
+    if not own_task:
+        return []
+    by_path = {m.path: m for m in published_msgs}
+    errors: list[str] = []
+    for field in ("supersedes", "ack_for"):
+        try:
+            entries = inbox_sweep.parse_json_list(msg.fields.get(field, "[]"))
+        except Exception:
+            continue  # malformed arrays are validate_v2's finding, not ours
+        for entry in entries:
+            ref_msg = by_path.get(entry)
+            if ref_msg is None or not ref_msg.is_v2:
+                continue  # existence is validate_v2's job; legacy has no task_id
+            ref_task = ref_msg.fields.get("task_id", "").strip()
+            if ref_task and ref_task != own_task:
+                errors.append(
+                    f"cross-task reference: `{field}` names {entry!r} of task "
+                    f"{ref_task!r}, not this message's task {own_task!r}; "
+                    "same-task references only, or carry an explicit "
+                    "`cross-task:` marker in the body naming why "
+                    "(lint hardening 2026-08-18)"
+                )
+    return errors
+
+
+DEFERRED_LINE_RE = re.compile(r"^DEFERRED:", re.MULTILINE)
+
+
+def deferral_shape_errors(msg: "inbox_sweep.Message") -> list[str]:
+    """A declared deferral must BE a queue item (owner-adopted 2026-08-18).
+
+    Twice in one day a legitimate deferral left every inbox empty while open
+    work existed: the postponement lived in prose, but everyone polls the
+    queue. The rule: a message declaring a deferral (a body line starting with
+    the canonical marker `DEFERRED:`) must carry `requires_ack: true` and name
+    ITS OWN SENDER among `to`, so the deferring agent's next session finds the
+    postponed job as its first unacknowledged item and acknowledges it by
+    starting. Prose mentions of the word "deferred" mid-line do not trigger;
+    only the line-start marker does. Sender-side only, never retroactive.
+    """
+    if not DEFERRED_LINE_RE.search(msg.body):
+        return []
+    errors: list[str] = []
+    if inbox_sweep.parse_boolean(msg.fields.get("requires_ack", "")) is not True:
+        errors.append(
+            "deferral shape: body declares `DEFERRED:` but requires_ack is not "
+            "true — a deferral must be a queue item, not an announcement "
+            "(owner-adopted 2026-08-18)"
+        )
+    to_raw = msg.fields.get("to", "")
+    tokens = inbox_sweep.recipient_tokens(to_raw)
+    if msg.sender.lower() not in tokens:
+        errors.append(
+            f"deferral shape: body declares `DEFERRED:` but `to` {to_raw!r} "
+            f"does not include the sender {msg.sender!r} — self-address the "
+            "deferral so your own next sweep surfaces it "
+            "(owner-adopted 2026-08-18)"
+        )
+    return errors
+
+
 def current_branch() -> str:
     """Branch HEAD points at, or "" when detached.
 
@@ -405,6 +484,13 @@ def main() -> int:
                 errors.extend(
                     (path, error)
                     for error in evidence_gate_errors(gate_msg, remote_ref_names)
+                )
+                errors.extend(
+                    (path, error)
+                    for error in cross_task_reference_errors(gate_msg, published_msgs)
+                )
+                errors.extend(
+                    (path, error) for error in deferral_shape_errors(gate_msg)
                 )
 
     # A message present in HEAD but absent from the proposed tree would be
