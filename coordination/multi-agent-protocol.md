@@ -516,6 +516,16 @@ Enforced sender-side by `deferral_shape_errors` in `scripts/lint_outbox.py`; pro
 mentions of the word "deferred" mid-line do not trigger the gate. Coordinator
 resume-orders remain the backstop for sessions that die before declaring.
 
+**Ack is not delivery (adopted 2026-08-19, third stall shape in two days).**
+Acknowledging a message that ASSIGNS you work discharges the acknowledgement, not
+the work — and leaves the work with no queue item at all. Rule: a session that
+acks a work-assigning message (charter, verdict opening your next stage, directive)
+and ends without DELIVERING that work must leave a `DEFERRED:` card for it (the
+self-addressed ack-required shape above). "My build proceeds" inside an ack is
+prose; the card is the queue item. Note for the sentinel era: wake-on-work only
+sees CARDED work — an acked-and-uncarded assignment is invisible to the sentinel
+too, which makes this rule load-bearing, not cosmetic.
+
 **Evidence gate (owner decision 2026-08-17).** A handoff whose body asserts a chartered
 cause label (the audit vocabulary, e.g. `GENERATOR_GAP` — the registered set lives in
 `CAUSE_LABEL_TOKENS` in `scripts/lint_outbox.py`) must carry a `review_ref:` front-matter
