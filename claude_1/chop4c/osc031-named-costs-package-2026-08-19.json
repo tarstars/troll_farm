@@ -1,0 +1,299 @@
+{
+  "aggregate": {
+    "candidate_blocking": 47,
+    "floor_blocking": 53
+  },
+  "candidate_is": "the Door-1 PURE DELETION: the resident's flat-1 fictional-decay block at :514-520 replaced by 0. One hunk, no additions, no predicate, net-simpler.",
+  "candidate_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0",
+  "causal_order_status": "opponent-stream equality is reported as a MEASUREMENT only; first/second-order causal labels were withdrawn (codex_1 correction, 2026-08-19) and establishing cause needs targeted replay not performed here.",
+  "corpus": "c5-two-player-phase-merged-2026-08-11",
+  "floor_sha256": "ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1",
+  "games_per_arm": 240,
+  "healed": [
+    {
+      "class": "orchard_eligible",
+      "floor_properties": [
+        "P1"
+      ],
+      "map_id": "m025",
+      "seat": 1
+    },
+    {
+      "class": "forest_dense",
+      "floor_properties": [
+        "P1",
+        "P2"
+      ],
+      "map_id": "m040",
+      "seat": 1
+    },
+    {
+      "class": "choke_corridor",
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m050",
+      "seat": 1
+    },
+    {
+      "class": "forest_sparse",
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m060",
+      "seat": 0
+    },
+    {
+      "class": "orchard_eligible",
+      "floor_properties": [
+        "P1"
+      ],
+      "map_id": "m065",
+      "seat": 1
+    },
+    {
+      "class": "open_field",
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m071",
+      "seat": 0
+    },
+    {
+      "class": "open_field",
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m071",
+      "seat": 1
+    },
+    {
+      "class": "choke_corridor",
+      "floor_properties": [
+        "P1"
+      ],
+      "map_id": "m078",
+      "seat": 0
+    },
+    {
+      "class": "forest_sparse",
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m079",
+      "seat": 1
+    },
+    {
+      "class": "single_door_tent",
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m094",
+      "seat": 1
+    },
+    {
+      "class": "choke_corridor",
+      "floor_properties": [
+        "P4"
+      ],
+      "map_id": "m100",
+      "seat": 0
+    },
+    {
+      "class": "orchard_eligible",
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m104",
+      "seat": 1
+    },
+    {
+      "class": "choke_corridor",
+      "floor_properties": [
+        "P4"
+      ],
+      "map_id": "m106",
+      "seat": 0
+    },
+    {
+      "class": "orchard_eligible",
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m114",
+      "seat": 1
+    },
+    {
+      "class": "choke_corridor",
+      "floor_properties": [
+        "P1"
+      ],
+      "map_id": "m118",
+      "seat": 1
+    }
+  ],
+  "healed_count": 15,
+  "instrument": "fuzz-panel/5-two-player-phase-merged-referee",
+  "latency": {
+    "cureC-floor": {
+      "budget_ms": 50.0,
+      "max_ms": 0.0911,
+      "median_ms": 0.0327,
+      "met": true,
+      "p95_ms": 0.0407,
+      "warm_turns": 570
+    },
+    "door1-candidate": {
+      "budget_ms": 50.0,
+      "max_ms": 0.1139,
+      "median_ms": 0.0352,
+      "met": true,
+      "p95_ms": 0.0596,
+      "warm_turns": 570
+    }
+  },
+  "latency_limits": "Measured on this host under no competing load; timing includes the Python referee's own per-turn work, so it OVERSTATES the bot's cost rather than understating it. Three situations, not the full 240-game corpus.",
+  "named_cost_count": 9,
+  "named_costs": [
+    {
+      "class": "choke_corridor",
+      "detectors": {
+        "D-1": 1
+      },
+      "diagnosis": "oscillation detector episode (D-1 two-cell alternation); liveness floor: no own-inventory/own-cargo progress in a rolling window while work remained",
+      "map_id": "m021",
+      "orchard_eligible": false,
+      "profile": "idle",
+      "properties": [
+        "P1",
+        "P4"
+      ],
+      "seat": 0
+    },
+    {
+      "class": "orchard_eligible",
+      "detectors": {},
+      "diagnosis": "orchard-dormancy divergence: candidate commands differ from the parent on an orchard-eligible view, where byte-equality is required first divergence turn 7: candidate 'MOVE 0 4 5;CHOP 2' vs parent 'MOVE 0 3 4;MOVE 2 10 5'",
+      "map_id": "m025",
+      "orchard_eligible": true,
+      "profile": "chopper_aggressor",
+      "properties": [
+        "P3"
+      ],
+      "seat": 0
+    },
+    {
+      "class": "orchard_eligible",
+      "detectors": {},
+      "diagnosis": "orchard-dormancy divergence: candidate commands differ from the parent on an orchard-eligible view, where byte-equality is required first divergence turn 1: candidate 'MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 3;MOVE 2 6 3' vs parent 'MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 0 4;MOVE 2 6 3'",
+      "map_id": "m035",
+      "orchard_eligible": true,
+      "profile": "chopper_aggressor",
+      "properties": [
+        "P3"
+      ],
+      "seat": 0
+    },
+    {
+      "class": "forest_dense",
+      "detectors": {
+        "D-1": 1
+      },
+      "diagnosis": "oscillation detector episode (D-1 two-cell alternation)",
+      "map_id": "m040",
+      "orchard_eligible": false,
+      "profile": "harvester",
+      "properties": [
+        "P1"
+      ],
+      "seat": 0
+    },
+    {
+      "class": "orchard_eligible",
+      "detectors": {},
+      "diagnosis": "orchard-dormancy divergence: candidate commands differ from the parent on an orchard-eligible view, where byte-equality is required first divergence turn 25: candidate 'MOVE 0 2 1' vs parent 'MOVE 0 1 2'",
+      "map_id": "m054",
+      "orchard_eligible": true,
+      "profile": "idle",
+      "properties": [
+        "P3"
+      ],
+      "seat": 0
+    },
+    {
+      "class": "open_field",
+      "detectors": {
+        "D-1": 1
+      },
+      "diagnosis": "oscillation detector episode (D-1 two-cell alternation); R-5 full-cargo two-cell alternation without a cargo change; liveness floor: no own-inventory/own-cargo progress in a rolling window while work remained",
+      "map_id": "m063",
+      "orchard_eligible": false,
+      "profile": "harvester",
+      "properties": [
+        "P1",
+        "P2",
+        "P4"
+      ],
+      "seat": 1
+    },
+    {
+      "class": "choke_corridor",
+      "detectors": {
+        "D-1": 1
+      },
+      "diagnosis": "oscillation detector episode (D-1 two-cell alternation)",
+      "map_id": "m078",
+      "orchard_eligible": false,
+      "profile": "chopper_aggressor",
+      "properties": [
+        "P1"
+      ],
+      "seat": 1
+    },
+    {
+      "class": "choke_corridor",
+      "detectors": {
+        "D-1": 1,
+        "D-4": 1
+      },
+      "diagnosis": "oscillation detector episode (D-1 two-cell alternation)",
+      "map_id": "m090",
+      "orchard_eligible": false,
+      "profile": "harvester",
+      "properties": [
+        "P1"
+      ],
+      "seat": 1
+    },
+    {
+      "class": "orchard_eligible",
+      "detectors": {},
+      "diagnosis": "orchard-dormancy divergence: candidate commands differ from the parent on an orchard-eligible view, where byte-equality is required first divergence turn 14: candidate 'CHOP 0;MOVE 2 2 4' vs parent 'MOVE 0 11 3;MOVE 2 2 4'",
+      "map_id": "m104",
+      "orchard_eligible": true,
+      "profile": "idle",
+      "properties": [
+        "P3"
+      ],
+      "seat": 0
+    }
+  ],
+  "nothing_newly_measured": true,
+  "parity": {
+    "excluded_fields": [
+      "attempt"
+    ],
+    "field_comparisons": 8160,
+    "identical": true,
+    "rows": 240
+  },
+  "regime": "named-costs gate (owner ruling B, 2026-08-19). Zero-de-novo remains the gate for surgical additions; behaviour-changing candidates are judged on the M-1 paired night with their costs named."
+}
