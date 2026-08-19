@@ -57,7 +57,30 @@ resident file; the alternation is the chartered M-1 procedure itself.
 | A4 | A cure-C | 18:12:47Z | 41157565 | 6634457 | 20:58Z | 160 | 22.9 | 31/162 |
 | B4 | B resident | 20:59:11Z | 41158211 | 6634792 | 22:58Z | 160 | 22.3 | 34/162 |
 | A5 | A cure-C | 22:59:05Z | 41158573 | 6634986 | 00:58Z | 160 | 24.4 | 24/162 |
-| B5 | B resident | 00:59:03Z | 41158835 | (at read) | — due ~02:59Z, FINAL | — | — | — |
+| B5 | B resident | 00:59:03Z | 41158835 | 6635217 | 02:58Z | 161 | 21.8 | 36/172 |
+
+## BLOCK COMPLETE (02:58:45Z, n=5 pairs) — verdict object
+
+- Pairs (A−B, adjacent): **+1.3, +0.2, +0.4, +0.6, +2.6** → **mean Δ = +1.02**.
+  Cure C won ALL FIVE pairs. A-windows 25.2/23.0/23.2/22.9/24.4;
+  B-windows 23.9/22.8/22.8/22.3/21.8.
+- **Fixed rule (planning σ=1.501):** 1.96·SE = 1.861 → +1.02 is NOT a
+  statistical winner; ≥ the 1.0 materiality floor → NOT immaterial →
+  **M-1 prescribes: extend one ABAB block (pooled n=10, bar ≈1.32); max two
+  extensions.**
+- **Honesty clause:** empirical paired SD = 0.976 vs planning 2.123 — pairing
+  cancelled far more noise than planned (conservative direction; under the
+  empirical SE the mean would clear 1.96·SE = 0.855, but the rule fixed in
+  advance uses the planning σ and is not re-chosen after seeing the data).
+  Flag: re-measure σ for paired designs, separately from this verdict.
+- **Caveats, named:** pair 5 (+2.6, the largest) spans a visible ladder event
+  during B5's window (Legend 162→172 seats, boss bar 22.3→24.3); B-windows
+  declined monotonically all night (ladder deflation the pairing only partly
+  cancels within a sharp shift). m082 seat 1 (12→1) travels as the named
+  accepted cost. No submission after the B5 read: the RESIDENT COPY is the
+  live arena agent (6635217 / sub 41158835).
+- **KEEP / REVERT / EXTEND = the OWNER's ruling.** Resident file byte-sacred
+  throughout; nothing was touched.
 
 - A5 read 00:58Z (1h59m, 160 battles). Sample 7/12, avg margin +33.
   A-windows: 25.2, 23.0, 23.2, 22.9, 24.4. Pair 5 completes at B5's read —
