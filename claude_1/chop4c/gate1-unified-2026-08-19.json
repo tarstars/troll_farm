@@ -1,0 +1,478 @@
+{
+  "cure-C-resident": {
+    "by_fixture": {
+      "OSC-001": {
+        "eligible_calls": 200,
+        "terminal_ACCEPT": 200,
+        "terminals": 200
+      },
+      "OSC-002": {
+        "eligible_calls": 389,
+        "terminal_ACCEPT": 393,
+        "terminals": 393
+      },
+      "OSC-003": {
+        "EVIDENCE_BASED": 2,
+        "UNEXPLAINED": 2,
+        "eligible_calls": 391,
+        "opp_chop_mismatch": 2,
+        "terminal_ACCEPT": 117,
+        "terminal_PREDICT_TREE_NONE": 4,
+        "terminals": 121
+      },
+      "OSC-004": {
+        "EVIDENCE_BASED": 1,
+        "eligible_calls": 396,
+        "terminal_ACCEPT": 41,
+        "terminal_PREDICT_TREE_NONE": 1,
+        "terminals": 42
+      },
+      "OSC-005": {
+        "UNEXPLAINED": 5,
+        "eligible_calls": 371,
+        "opp_chop_mismatch": 5,
+        "terminal_ACCEPT": 150,
+        "terminal_PREDICT_TREE_NONE": 5,
+        "terminals": 155
+      },
+      "OSC-006": {
+        "EVIDENCE_BASED": 7,
+        "UNEXPLAINED": 4,
+        "eligible_calls": 395,
+        "opp_chop_mismatch": 4,
+        "terminal_ACCEPT": 85,
+        "terminal_PREDICT_TREE_NONE": 11,
+        "terminals": 96
+      },
+      "OSC-007": {
+        "EVIDENCE_BASED": 16,
+        "UNEXPLAINED": 22,
+        "eligible_calls": 389,
+        "opp_chop_mismatch": 22,
+        "terminal_ACCEPT": 44,
+        "terminal_PREDICT_TREE_NONE": 38,
+        "terminals": 82
+      },
+      "OSC-008": {
+        "EVIDENCE_BASED": 15,
+        "eligible_calls": 182,
+        "terminal_ACCEPT": 286,
+        "terminal_PREDICT_TREE_NONE": 15,
+        "terminals": 301
+      },
+      "OSC-009": {
+        "EVIDENCE_BASED": 18,
+        "UNEXPLAINED": 15,
+        "eligible_calls": 173,
+        "opp_chop_mismatch": 15,
+        "terminal_ACCEPT": 220,
+        "terminal_PREDICT_TREE_NONE": 33,
+        "terminals": 253
+      },
+      "OSC-010": {
+        "UNEXPLAINED": 75,
+        "eligible_calls": 283,
+        "opp_chop_mismatch": 75,
+        "terminal_ACCEPT": 1720,
+        "terminal_PREDICT_TREE_NONE": 75,
+        "terminals": 1795
+      },
+      "OSC-011": {
+        "EVIDENCE_BASED": 4,
+        "eligible_calls": 393,
+        "terminal_ACCEPT": 134,
+        "terminal_PREDICT_TREE_NONE": 4,
+        "terminals": 138
+      },
+      "OSC-012": {
+        "eligible_calls": 200,
+        "terminal_ACCEPT": 200,
+        "terminals": 200
+      },
+      "OSC-013": {
+        "UNEXPLAINED": 2,
+        "eligible_calls": 395,
+        "opp_chop_mismatch": 2,
+        "terminal_ACCEPT": 406,
+        "terminal_PREDICT_TREE_NONE": 2,
+        "terminals": 408
+      },
+      "OSC-014": {
+        "UNEXPLAINED": 11,
+        "eligible_calls": 395,
+        "opp_chop_mismatch": 11,
+        "terminal_ACCEPT": 468,
+        "terminal_PREDICT_TREE_NONE": 11,
+        "terminals": 479
+      },
+      "OSC-015": {
+        "UNEXPLAINED": 13,
+        "eligible_calls": 385,
+        "opp_chop_mismatch": 13,
+        "terminal_ACCEPT": 455,
+        "terminal_PREDICT_TREE_NONE": 13,
+        "terminals": 468
+      },
+      "OSC-016": {
+        "eligible_calls": 400,
+        "terminal_ACCEPT": 400,
+        "terminals": 400
+      },
+      "OSC-017": {
+        "eligible_calls": 396,
+        "terminal_ACCEPT": 396,
+        "terminals": 396
+      },
+      "OSC-018": {
+        "eligible_calls": 400,
+        "terminal_ACCEPT": 400,
+        "terminals": 400
+      },
+      "OSC-019": {
+        "UNEXPLAINED": 7,
+        "eligible_calls": 387,
+        "opp_chop_mismatch": 7,
+        "terminal_ACCEPT": 423,
+        "terminal_PREDICT_TREE_NONE": 7,
+        "terminals": 430
+      },
+      "OSC-020": {
+        "UNEXPLAINED": 2,
+        "eligible_calls": 384,
+        "opp_chop_mismatch": 2,
+        "terminal_ACCEPT": 411,
+        "terminal_PREDICT_TREE_NONE": 2,
+        "terminals": 413
+      },
+      "OSC-021": {
+        "UNEXPLAINED": 11,
+        "eligible_calls": 386,
+        "opp_chop_mismatch": 11,
+        "terminal_ACCEPT": 414,
+        "terminal_PREDICT_TREE_NONE": 11,
+        "terminals": 425
+      },
+      "OSC-022": {
+        "UNEXPLAINED": 35,
+        "eligible_calls": 389,
+        "opp_chop_mismatch": 35,
+        "terminal_ACCEPT": 438,
+        "terminal_PREDICT_TREE_NONE": 35,
+        "terminals": 473
+      },
+      "OSC-023": {
+        "UNEXPLAINED": 35,
+        "eligible_calls": 389,
+        "opp_chop_mismatch": 35,
+        "terminal_ACCEPT": 438,
+        "terminal_PREDICT_TREE_NONE": 35,
+        "terminals": 473
+      },
+      "OSC-024": {
+        "UNEXPLAINED": 2,
+        "eligible_calls": 393,
+        "opp_chop_mismatch": 2,
+        "terminal_ACCEPT": 142,
+        "terminal_PREDICT_TREE_NONE": 2,
+        "terminals": 144
+      },
+      "OSC-025": {
+        "EVIDENCE_BASED": 16,
+        "UNEXPLAINED": 1,
+        "eligible_calls": 395,
+        "opp_chop_mismatch": 1,
+        "terminal_ACCEPT": 91,
+        "terminal_PREDICT_TREE_NONE": 17,
+        "terminals": 108
+      },
+      "OSC-026": {
+        "EVIDENCE_BASED": 7,
+        "UNEXPLAINED": 2,
+        "eligible_calls": 186,
+        "opp_chop_mismatch": 2,
+        "terminal_ACCEPT": 27,
+        "terminal_PREDICT_TREE_NONE": 9,
+        "terminals": 36
+      },
+      "OSC-027": {
+        "eligible_calls": 197,
+        "terminal_ACCEPT": 22,
+        "terminals": 22
+      },
+      "OSC-028": {
+        "EVIDENCE_BASED": 18,
+        "UNEXPLAINED": 15,
+        "eligible_calls": 173,
+        "opp_chop_mismatch": 15,
+        "terminal_ACCEPT": 220,
+        "terminal_PREDICT_TREE_NONE": 33,
+        "terminals": 253
+      },
+      "OSC-029": {
+        "EVIDENCE_BASED": 16,
+        "UNEXPLAINED": 9,
+        "eligible_calls": 382,
+        "opp_chop_mismatch": 9,
+        "terminal_ACCEPT": 165,
+        "terminal_PREDICT_TREE_NONE": 25,
+        "terminals": 190
+      },
+      "OSC-030": {
+        "UNEXPLAINED": 5,
+        "eligible_calls": 361,
+        "opp_chop_mismatch": 5,
+        "terminal_ACCEPT": 104,
+        "terminal_PREDICT_TREE_NONE": 5,
+        "terminals": 109
+      },
+      "OSC-031": {
+        "UNEXPLAINED": 191,
+        "eligible_calls": 378,
+        "opp_chop_mismatch": 191,
+        "terminal_ACCEPT": 14,
+        "terminal_PREDICT_TREE_NONE": 191,
+        "terminals": 205
+      },
+      "OSC-032": {
+        "UNEXPLAINED": 28,
+        "eligible_calls": 139,
+        "opp_chop_mismatch": 28,
+        "terminal_ACCEPT": 18,
+        "terminal_PREDICT_TREE_NONE": 28,
+        "terminals": 46
+      },
+      "OSC-033": {
+        "UNEXPLAINED": 37,
+        "eligible_calls": 192,
+        "opp_chop_mismatch": 37,
+        "terminal_ACCEPT": 9,
+        "terminal_PREDICT_TREE_NONE": 37,
+        "terminals": 46
+      },
+      "OSC-034": {
+        "UNEXPLAINED": 1,
+        "eligible_calls": 391,
+        "opp_chop_mismatch": 1,
+        "terminal_ACCEPT": 199,
+        "terminal_PREDICT_TREE_NONE": 1,
+        "terminals": 200
+      }
+    },
+    "probe_sha256": "ce200651a2800dca57ac7f128d04aa968fd167efa8e356e267767c9bccb926e9",
+    "subject_sha256": "ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1",
+    "totals": {
+      "EVIDENCE_BASED": 120,
+      "UNEXPLAINED": 530,
+      "eligible_calls": 11255,
+      "opp_chop_mismatch": 530,
+      "terminal_ACCEPT": 9250,
+      "terminal_PREDICT_TREE_NONE": 650,
+      "terminals": 9900
+    }
+  },
+  "door1-candidate": {
+    "by_fixture": {
+      "OSC-001": {
+        "eligible_calls": 200,
+        "terminal_ACCEPT": 200,
+        "terminals": 200
+      },
+      "OSC-002": {
+        "eligible_calls": 389,
+        "terminal_ACCEPT": 393,
+        "terminals": 393
+      },
+      "OSC-003": {
+        "EVIDENCE_BASED": 1,
+        "eligible_calls": 392,
+        "terminal_ACCEPT": 70,
+        "terminal_PREDICT_TREE_NONE": 1,
+        "terminals": 71
+      },
+      "OSC-004": {
+        "EVIDENCE_BASED": 4,
+        "eligible_calls": 396,
+        "terminal_ACCEPT": 26,
+        "terminal_PREDICT_TREE_NONE": 4,
+        "terminals": 30
+      },
+      "OSC-005": {
+        "eligible_calls": 381,
+        "terminal_ACCEPT": 465,
+        "terminals": 465
+      },
+      "OSC-006": {
+        "EVIDENCE_BASED": 4,
+        "eligible_calls": 392,
+        "terminal_ACCEPT": 61,
+        "terminal_PREDICT_TREE_NONE": 4,
+        "terminals": 65
+      },
+      "OSC-007": {
+        "EVIDENCE_BASED": 12,
+        "eligible_calls": 389,
+        "terminal_ACCEPT": 34,
+        "terminal_PREDICT_TREE_NONE": 12,
+        "terminals": 46
+      },
+      "OSC-008": {
+        "EVIDENCE_BASED": 12,
+        "eligible_calls": 180,
+        "terminal_ACCEPT": 274,
+        "terminal_PREDICT_TREE_NONE": 12,
+        "terminals": 286
+      },
+      "OSC-009": {
+        "EVIDENCE_BASED": 13,
+        "eligible_calls": 164,
+        "terminal_ACCEPT": 254,
+        "terminal_PREDICT_TREE_NONE": 13,
+        "terminals": 267
+      },
+      "OSC-010": {
+        "eligible_calls": 268,
+        "terminal_ACCEPT": 1578,
+        "terminals": 1578
+      },
+      "OSC-011": {
+        "EVIDENCE_BASED": 4,
+        "eligible_calls": 393,
+        "terminal_ACCEPT": 134,
+        "terminal_PREDICT_TREE_NONE": 4,
+        "terminals": 138
+      },
+      "OSC-012": {
+        "eligible_calls": 200,
+        "terminal_ACCEPT": 200,
+        "terminals": 200
+      },
+      "OSC-013": {
+        "eligible_calls": 395,
+        "terminal_ACCEPT": 408,
+        "terminals": 408
+      },
+      "OSC-014": {
+        "eligible_calls": 392,
+        "terminal_ACCEPT": 148,
+        "terminals": 148
+      },
+      "OSC-015": {
+        "eligible_calls": 375,
+        "terminal_ACCEPT": 172,
+        "terminals": 172
+      },
+      "OSC-016": {
+        "eligible_calls": 398,
+        "terminal_ACCEPT": 26,
+        "terminals": 26
+      },
+      "OSC-017": {
+        "eligible_calls": 396,
+        "terminal_ACCEPT": 396,
+        "terminals": 396
+      },
+      "OSC-018": {
+        "eligible_calls": 397,
+        "terminal_ACCEPT": 28,
+        "terminals": 28
+      },
+      "OSC-019": {
+        "eligible_calls": 384,
+        "terminal_ACCEPT": 104,
+        "terminals": 104
+      },
+      "OSC-020": {
+        "eligible_calls": 381,
+        "terminal_ACCEPT": 71,
+        "terminals": 71
+      },
+      "OSC-021": {
+        "eligible_calls": 386,
+        "terminal_ACCEPT": 425,
+        "terminals": 425
+      },
+      "OSC-022": {
+        "eligible_calls": 389,
+        "terminal_ACCEPT": 109,
+        "terminals": 109
+      },
+      "OSC-023": {
+        "eligible_calls": 389,
+        "terminal_ACCEPT": 109,
+        "terminals": 109
+      },
+      "OSC-024": {
+        "eligible_calls": 393,
+        "terminal_ACCEPT": 144,
+        "terminals": 144
+      },
+      "OSC-025": {
+        "EVIDENCE_BASED": 16,
+        "eligible_calls": 395,
+        "terminal_ACCEPT": 92,
+        "terminal_PREDICT_TREE_NONE": 16,
+        "terminals": 108
+      },
+      "OSC-026": {
+        "EVIDENCE_BASED": 7,
+        "eligible_calls": 186,
+        "terminal_ACCEPT": 29,
+        "terminal_PREDICT_TREE_NONE": 7,
+        "terminals": 36
+      },
+      "OSC-027": {
+        "eligible_calls": 197,
+        "terminal_ACCEPT": 22,
+        "terminals": 22
+      },
+      "OSC-028": {
+        "EVIDENCE_BASED": 13,
+        "eligible_calls": 164,
+        "terminal_ACCEPT": 254,
+        "terminal_PREDICT_TREE_NONE": 13,
+        "terminals": 267
+      },
+      "OSC-029": {
+        "EVIDENCE_BASED": 17,
+        "eligible_calls": 382,
+        "terminal_ACCEPT": 163,
+        "terminal_PREDICT_TREE_NONE": 17,
+        "terminals": 180
+      },
+      "OSC-030": {
+        "eligible_calls": 374,
+        "terminal_ACCEPT": 419,
+        "terminals": 419
+      },
+      "OSC-031": {
+        "eligible_calls": 388,
+        "terminal_ACCEPT": 395,
+        "terminals": 395
+      },
+      "OSC-032": {
+        "eligible_calls": 139,
+        "terminal_ACCEPT": 41,
+        "terminals": 41
+      },
+      "OSC-033": {
+        "eligible_calls": 192,
+        "terminal_ACCEPT": 12,
+        "terminals": 12
+      },
+      "OSC-034": {
+        "eligible_calls": 393,
+        "terminal_ACCEPT": 9,
+        "terminals": 9
+      }
+    },
+    "probe_sha256": "71473709b28ebcb1658bd247c1d3d1ea003f3562882ee4f315a1073c367de5a6",
+    "subject_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0",
+    "totals": {
+      "EVIDENCE_BASED": 103,
+      "eligible_calls": 11229,
+      "terminal_ACCEPT": 7265,
+      "terminal_PREDICT_TREE_NONE": 103,
+      "terminals": 7368
+    }
+  }
+}
