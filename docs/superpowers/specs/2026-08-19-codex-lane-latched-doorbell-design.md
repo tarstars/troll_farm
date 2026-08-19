@@ -54,7 +54,7 @@ sentinel.py                     # blocking mode, unchanged contract
   ├─ every heartbeat interval → latch.heartbeat_seq += 1, rewrite latch
   ├─ work found      → latch{code:0, paths[...]}  → exit 0
   ├─ fetch failure   → latch{code:3}              → exit 3
-  ├─ keepalive exit  → latch{code:2}              → exit 2
+  ├─ keepalive exit  → latch{state:EXITED_KEEPALIVE, code:2} → exit 2
   └─ double start    → refuse, latch UNTOUCHED    → exit 1
 
 sentinel.py --check             # inert reader: no git, no network, no sweep, no writes
@@ -68,7 +68,7 @@ half-written record.
 
 ```json
 { "schema": 1,
-  "state": "QUIET" | "WORK" | "FETCH_FAIL",
+  "state": "QUIET" | "WORK" | "FETCH_FAIL" | "EXITED_KEEPALIVE",
   "code": 0 | 2 | 3,
   "heartbeat_seq": 1187,
   "heartbeat_utc": "2026-08-19T14:52:03Z",
@@ -100,10 +100,19 @@ an addressed verdict sat unread; and an `EXIT=0` that was `grep`'s status rather
 
 Therefore:
 
-1. **Liveness is judged by `heartbeat_seq`, not by wall-clock age.** Two reads a threshold apart
-   with an unchanged counter mean dead. Clock skew cannot fake this, and skew is not hypothetical
-   here — stamp drift of +4 to +42 minutes across nine messages is on record.
-   Wall-clock age is reported for humans but is not the decision variable.
+1. **Liveness = wall-clock age of `heartbeat_utc`, corroborated by `heartbeat_seq`.**
+   *Correction to an earlier draft of this document, which claimed the counter must be the
+   decision variable because clock skew could fake staleness.* That reasoning was wrong here: the
+   recorded skew incident (+4 to +42 minutes across nine messages) was **cross-host message
+   stamps**. The sentinel and `--check` run on the **same host against the same clock**, so
+   wall-clock age is sound, and a single stateless read can evaluate it — which the counter alone
+   cannot, since one invocation has nothing to compare against.
+
+   The counter still earns its place, for a case age cannot see: a **wedged sentinel** that keeps
+   rewriting the file while making no progress. Age looks healthy; `heartbeat_seq` frozen across
+   two invocations exposes it. `--check` therefore keeps its own tiny `check-state.json`
+   (last seq + when observed) — reader state, never the latch (see the no-write control in §5).
+   Threshold: `stale_after = 5 × heartbeat_interval`, generous on purpose.
 2. **`STALE` gates the CONCLUSION, not the TASK.** Exit 4 does not abort what the agent is doing —
    a suspended laptop must not kill a turn mid-work. It makes two specific conclusions
    unavailable until the sentinel is relaunched:
@@ -112,8 +121,15 @@ Therefore:
 
    This aims the guard at the actual failure. The danger was never *working* with a dead
    sentinel; it was *concluding there is nothing to work on*.
-3. **"Never started" and "stopped" stay distinct in the message**, sharing exit 4 but not their
-   text — they have different fixes (`launch it` vs `it died, relaunch and check why`).
+3. **Three distinct texts under exit 4**, because they share a code but not a diagnosis:
+   - `never started` — no latch file at all → *launch it*
+   - `exited normally (keepalive at T)` — `state: EXITED_KEEPALIVE`, a clean chartered exit →
+     *relaunch, nothing is wrong*
+   - `stopped` — latch present, heartbeat aged out with no keepalive record → *it died; relaunch
+     and find out why*
+
+   Collapsing the middle case into `stopped` would report a routine keepalive as a fault and
+   train the reader to ignore exit 4 — which is how a real death gets missed.
 
 ## 5. Controls — each observed firing, both directions
 
@@ -128,6 +144,8 @@ A control that has only ever passed is not evidence. Required, in the runner:
 | **`--check` inertness** | run with `GIT_DIR` pointed at a nonexistent path → still correct. A reader that cannot reach git **cannot** fetch; this makes inertness demonstrated, not intended |
 | `--check` never writes | latch bytes identical before/after (sha256 compared) |
 | half-written latch | truncated/corrupt JSON → exit 4, never a silent `QUIET` |
+| keepalive exit | `--check` → 4 `exited normally`, NOT `stopped` |
+| wedged sentinel | file rewritten, `heartbeat_seq` frozen across two `--check` runs → exit 4 |
 | `--check` vs double-start guard | with a sentinel running, `--check` still returns; it is never refused with 1 |
 
 ## 6. Unmeasured on Codex — must be probed, must not be assumed
