@@ -1,0 +1,178 @@
+{
+  "resident": "ad3bfefe",
+  "reach": "graph distance over view.walkable",
+  "totals": {
+    "calls": 9900,
+    "DAMAGED_FLAT1_fires": 6166,
+    "would_admit_adjacent": 58,
+    "would_admit_inreach": 58,
+    "on_tree_fires": 356
+  },
+  "by_fixture": {
+    "OSC-001": {
+      "calls": 200
+    },
+    "OSC-002": {
+      "calls": 393,
+      "DAMAGED_FLAT1_fires": 4
+    },
+    "OSC-003": {
+      "calls": 121,
+      "DAMAGED_FLAT1_fires": 89,
+      "would_admit_adjacent": 4,
+      "would_admit_inreach": 4,
+      "on_tree_fires": 16
+    },
+    "OSC-004": {
+      "calls": 42,
+      "DAMAGED_FLAT1_fires": 14,
+      "would_admit_adjacent": 2,
+      "would_admit_inreach": 2,
+      "on_tree_fires": 20
+    },
+    "OSC-005": {
+      "calls": 155,
+      "DAMAGED_FLAT1_fires": 60
+    },
+    "OSC-006": {
+      "calls": 96,
+      "DAMAGED_FLAT1_fires": 56,
+      "on_tree_fires": 18,
+      "would_admit_adjacent": 2,
+      "would_admit_inreach": 2
+    },
+    "OSC-007": {
+      "calls": 82,
+      "DAMAGED_FLAT1_fires": 56,
+      "would_admit_adjacent": 14,
+      "would_admit_inreach": 14,
+      "on_tree_fires": 17
+    },
+    "OSC-008": {
+      "calls": 301,
+      "DAMAGED_FLAT1_fires": 83,
+      "on_tree_fires": 40
+    },
+    "OSC-009": {
+      "calls": 253,
+      "DAMAGED_FLAT1_fires": 34,
+      "would_admit_adjacent": 3,
+      "would_admit_inreach": 3,
+      "on_tree_fires": 58
+    },
+    "OSC-010": {
+      "calls": 1795,
+      "DAMAGED_FLAT1_fires": 398
+    },
+    "OSC-011": {
+      "calls": 138,
+      "DAMAGED_FLAT1_fires": 64,
+      "would_admit_adjacent": 25,
+      "would_admit_inreach": 25,
+      "on_tree_fires": 44
+    },
+    "OSC-012": {
+      "calls": 200
+    },
+    "OSC-013": {
+      "calls": 408,
+      "DAMAGED_FLAT1_fires": 406
+    },
+    "OSC-014": {
+      "calls": 479,
+      "DAMAGED_FLAT1_fires": 419
+    },
+    "OSC-015": {
+      "calls": 468,
+      "DAMAGED_FLAT1_fires": 370
+    },
+    "OSC-016": {
+      "calls": 400,
+      "DAMAGED_FLAT1_fires": 396
+    },
+    "OSC-017": {
+      "calls": 396,
+      "DAMAGED_FLAT1_fires": 392
+    },
+    "OSC-018": {
+      "calls": 400,
+      "DAMAGED_FLAT1_fires": 394
+    },
+    "OSC-019": {
+      "calls": 430,
+      "DAMAGED_FLAT1_fires": 378
+    },
+    "OSC-020": {
+      "calls": 413,
+      "DAMAGED_FLAT1_fires": 391
+    },
+    "OSC-021": {
+      "calls": 425,
+      "DAMAGED_FLAT1_fires": 413
+    },
+    "OSC-022": {
+      "calls": 473,
+      "DAMAGED_FLAT1_fires": 461
+    },
+    "OSC-023": {
+      "calls": 473,
+      "DAMAGED_FLAT1_fires": 461
+    },
+    "OSC-024": {
+      "calls": 144,
+      "DAMAGED_FLAT1_fires": 142
+    },
+    "OSC-025": {
+      "calls": 108,
+      "on_tree_fires": 38,
+      "DAMAGED_FLAT1_fires": 44,
+      "would_admit_adjacent": 2,
+      "would_admit_inreach": 2
+    },
+    "OSC-026": {
+      "calls": 36,
+      "DAMAGED_FLAT1_fires": 15,
+      "would_admit_adjacent": 1,
+      "would_admit_inreach": 1,
+      "on_tree_fires": 7
+    },
+    "OSC-027": {
+      "calls": 22,
+      "DAMAGED_FLAT1_fires": 19
+    },
+    "OSC-028": {
+      "calls": 253,
+      "DAMAGED_FLAT1_fires": 34,
+      "would_admit_adjacent": 3,
+      "would_admit_inreach": 3,
+      "on_tree_fires": 58
+    },
+    "OSC-029": {
+      "calls": 190,
+      "DAMAGED_FLAT1_fires": 56,
+      "on_tree_fires": 40,
+      "would_admit_adjacent": 2,
+      "would_admit_inreach": 2
+    },
+    "OSC-030": {
+      "calls": 109,
+      "DAMAGED_FLAT1_fires": 25
+    },
+    "OSC-031": {
+      "calls": 205,
+      "DAMAGED_FLAT1_fires": 203
+    },
+    "OSC-032": {
+      "calls": 46,
+      "DAMAGED_FLAT1_fires": 46
+    },
+    "OSC-033": {
+      "calls": 46,
+      "DAMAGED_FLAT1_fires": 46
+    },
+    "OSC-034": {
+      "calls": 200,
+      "DAMAGED_FLAT1_fires": 197
+    }
+  }
+}

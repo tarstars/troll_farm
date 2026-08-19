@@ -509,7 +509,7 @@ mod bot{
             fn predicted_opp_chop(view:&GameState,plant:&Plant)->i32{
                 let on_tree:i32=view.units.iter().filter(|unit|unit.player==1&&unit.cell==plant.cell).map(|unit|unit.stats.chop_power).sum();
                 let c4c_adjacent:i32=view.units.iter().filter(|unit|unit.player==1&&is_adjacent(unit.cell,plant.cell)).map(|unit|unit.stats.chop_power).sum();
-                let c4c_inreach:i32=view.units.iter().filter(|unit|unit.player==1&&manhattan(unit.cell,plant.cell)<=unit.stats.movement_speed.max(1)).map(|unit|unit.stats.chop_power).sum();
+                let c4c_inreach:i32=view.units.iter().filter(|unit|unit.player==1&&bfs_distances(&view.walkable,&[unit.cell]).get(&plant.cell).map(|d|*d<=unit.stats.movement_speed.max(1)).unwrap_or(false)).map(|unit|unit.stats.chop_power).sum();
                 let c4c_damaged=plant.health<tree_health(plant.kind,plant.size);
                 eprintln!("PRED cell={},{} on_tree={} adjacent={} inreach={} damaged={} health={}",plant.cell.0,plant.cell.1,on_tree,c4c_adjacent,c4c_inreach,c4c_damaged,plant.health);
                 if on_tree>0{
@@ -1196,7 +1196,12 @@ mod bot{
                     }
                 let chops=Self::yamo_chop_candidates(view,unit,type_to_cut,opponent_eta_penalty,);
                 if idle_regeneration&&chops.is_empty(){
-                    return Self::endgame_candidates(view,unit,type_to_cut,safe_regeneration,opponent_eta_penalty,);
+                    let mut fallback=vec![MoisanBot::wait()];
+                    fallback.extend(Self::idle_harvest_candidates(view,unit));
+                    if unit.total_carried()>0{
+                        fallback.extend(Self::bank_candidates(view,unit));
+                        }
+                    return fallback;
                     }
                 if chops.is_empty()&&carried>0{
                     out.extend(Self::bank_candidates(view,unit));

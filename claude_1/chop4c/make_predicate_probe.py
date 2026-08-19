@@ -20,9 +20,9 @@ import hashlib, sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent.parent
-RESIDENT = REPO / "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs"
+RESIDENT = REPO / "cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs"  # cure C: the resident since the owner KEEP
 OUT = REPO / "claude_1/chop4c/predicate-probe.rs"
-RESIDENT_SHA = "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29"
+RESIDENT_SHA = "ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1"
 
 # 1. provenance inside predicted_opp_chop — which of the two sources supplied the value
 OPP_OLD = '''                if on_tree>0{
@@ -37,7 +37,7 @@ OPP_OLD = '''                if on_tree>0{
                 }
                 }'''
 OPP_NEW = '''                let c4c_adjacent:i32=view.units.iter().filter(|unit|unit.player==1&&is_adjacent(unit.cell,plant.cell)).map(|unit|unit.stats.chop_power).sum();
-                let c4c_inreach:i32=view.units.iter().filter(|unit|unit.player==1&&manhattan(unit.cell,plant.cell)<=unit.stats.movement_speed.max(1)).map(|unit|unit.stats.chop_power).sum();
+                let c4c_inreach:i32=view.units.iter().filter(|unit|unit.player==1&&bfs_distances(&view.walkable,&[unit.cell]).get(&plant.cell).map(|d|*d<=unit.stats.movement_speed.max(1)).unwrap_or(false)).map(|unit|unit.stats.chop_power).sum();
                 let c4c_damaged=plant.health<tree_health(plant.kind,plant.size);
                 eprintln!("PRED cell={},{} on_tree={} adjacent={} inreach={} damaged={} health={}",plant.cell.0,plant.cell.1,on_tree,c4c_adjacent,c4c_inreach,c4c_damaged,plant.health);
                 if on_tree>0{
