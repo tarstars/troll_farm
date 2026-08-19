@@ -1,6 +1,16 @@
 # 20260818-osc031-forecast-defect-fix — cure the forecast's silent "nothing there"
 
-- Status: OPEN — OWNER-CHARTERED 2026-08-18T15:36Z by ruling on the 4c brief
+- Status: **CLOSED 2026-08-19T18:39Z — Door-1 candidate GATE REJECTED at
+  Phase 2** (honest, reproducible negative: 9 de-novo vs the frozen
+  zero-de-novo gate, incl. 4 P3 orchard-dormancy divergences the
+  pre-existing-hole exception cannot cover by its own terms; review
+  `codex_1/reviews/osc031-phase2-unified-review-2026-08-19.md`). Everything
+  learned stands: mechanism verified (fictional decay), gate-1 attribution
+  accepted (530-unexplained control, 103/103 evidenced), 15 games healed,
+  panels/parity/latency instruments accepted. **OWNER CHARTERED THE SUCCESSOR
+  same session: `coordination/tasks/20260819-osc031-forecast-fix-door1b.md`
+  (Door 1b — the same evidence rule, scoped to preserve orchard dormancy).**
+  Prior: OPEN — OWNER-CHARTERED 2026-08-18T15:36Z by ruling on the 4c brief
   (**"a defect"** — ruling record:
   `local_claude_1/adjudications/OSC-031-ruling-2026-08-18.md`).
 - Record owner: local_claude_1 · Work owner: **claude_1** ·
