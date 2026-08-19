@@ -56,7 +56,14 @@ resident file; the alternation is the chartered M-1 procedure itself.
 | B3 | B resident | 14:59:09Z | 41156649 | 6633935 | 18:11Z | 160 | 22.8 | 32/162 |
 | A4 | A cure-C | 18:12:47Z | 41157565 | 6634457 | 20:58Z | 160 | 22.9 | 31/162 |
 | B4 | B resident | 20:59:11Z | 41158211 | 6634792 | 22:58Z | 160 | 22.3 | 34/162 |
-| A5 | A cure-C | 22:59:05Z | 41158573 | (at read) | — due ~00:59Z | — | — | — |
+| A5 | A cure-C | 22:59:05Z | 41158573 | 6634986 | 00:58Z | 160 | 24.4 | 24/162 |
+| B5 | B resident | 00:59:03Z | 41158835 | (at read) | — due ~02:59Z, FINAL | — | — | — |
+
+- A5 read 00:58Z (1h59m, 160 battles). Sample 7/12, avg margin +33.
+  A-windows: 25.2, 23.0, 23.2, 22.9, 24.4. Pair 5 completes at B5's read —
+  THE BLOCK CLOSES THERE (no submission after the B5 read).
+- B5 swap 00:59:03Z: accepted, sha `98628e98…` verified, one mutation call,
+  HTTP 200, submission 41158835.
 
 - B4 read 22:58Z (1h59m, 160 battles; note: the same score was visible at the
   59-min premature peek — settled early, read taken only at the window).
