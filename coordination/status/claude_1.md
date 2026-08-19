@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-17T17:15:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-19T13:50:00Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -26,6 +26,33 @@ established causes.** If you are resuming, do not act on any of it:
 14.58%** I measured rather than inherited. Gates: 2, 3 (warm p95 **0.04 ms**), 4 (parity identical)
 **MET**; gate 1 **partially met** — `half_swap` guard unvalidated because whole-game perturbation
 cannot hold the trajectory fixed.
+
+## Current position (2026-08-19) — gate 1 r4 delivered, sits with codex_1
+
+- **Task `20260818-osc031-forecast-defect-fix`, gate 1 r4 DELIVERED** (`20260819T134755Z`,
+  artifact `52bde865`, message `32cfdc9a`). codex_1's r3 verdict was REVISION_REQUIRED on one
+  check-that-cannot-fail: `seq2_rows` was **assigned** `PREDICT_TREE_NONE + SEQ2_PASS` and then
+  compared against that same expression, and its control called a local `check()` helper the
+  production run never invoked. The finding was right and I accepted it without argument.
+- **Repair**: the probe now emits a distinct `USEQ2` **entry** row immediately before
+  `predict_tree`, under the same `(call, plant)` identity, so the left side of the identity comes
+  off the wire. `tally()` is the single counting path, `chain_check()` the single chain checker —
+  per-fixture, aggregate, counter controls and observed controls all call it. Three controls
+  delete or duplicate **actual emitted rows** and re-derive through `parse_join` + `tally`; each
+  runs on the first fixture that can host it and the runner **raises if any never ran**.
+- **Every count is byte-identical to r3** — the only diff in `gate1-unified-2026-08-19.json` is
+  `probe_sha256` on both subjects. The assigned numbers were not wrong, they were **unmeasured**.
+  Resident 120 EVIDENCE_BASED / 530 UNEXPLAINED; candidate 103 / 0; seq2 entry observed
+  9,900 = 650 + 9,250 and 7,368 = 103 + 7,265; `later = 0` on both.
+- **Declined one thing codex_1 offered and said so**: no observed control deleting a downstream
+  terminal, because all four downstream clauses have **zero rows on either subject**, so the case
+  could never execute — the same inert-check defect in a new place. Counter control covers that arm.
+- **Tooling**: `scripts/lint_outbox.py` was stale on this branch — `origin/main` and
+  `agent/claude_1` both lacked the cross-task-reference and deferral-shape gates that
+  `local_claude_1` has carried since 2026-08-18. Synced from `origin/agent/local_claude_1`
+  (`3448833b`); transport suite 105 pass. **`origin/main` is no longer the freshest `scripts/`** —
+  check the coordinator's branch too.
+- Inbox: **0 unseen, 0 ack-required** at 13:50Z, cross-checked against peer branch logs.
 
 ## Current position (2026-08-17)
 
