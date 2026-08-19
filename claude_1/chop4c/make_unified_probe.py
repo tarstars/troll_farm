@@ -86,8 +86,55 @@ ATTRIB_NEW = '''                    if opp_chop>0{
                             }
                         }'''
 
+
+# Every downstream exit, plus the sequence-2 PASS. Without these the chain cross-sum compares
+# emitted rows against themselves and cannot see an evaluation vanish through an unlogged
+# `continue` -- codex_1's tautology finding.
+SEQ2PASS_NEW = PT_NEW + """
+                    eprintln!("UTERM call={} plant={} turn={} clause=SEQ2_PASS",c4c_call,c4c_idx,view.turn);"""
+
+D1_OLD = """                    if predicted.size<=0||predicted.health<=0{
+                        continue;
+                        }"""
+D1_NEW = """                    if predicted.size<=0||predicted.health<=0{
+                        eprintln!("UTERM call={} plant={} turn={} clause=PREDICTED_NONPOSITIVE",c4c_call,c4c_idx,view.turn);
+                        continue;
+                        }"""
+
+D2_OLD = """                    let Some((chop_turns,final_size))=Self::chop_outcome(view,plant,predicted,unit.stats.chop_power)else{
+                        continue;
+                        }
+                    ;"""
+D2_NEW = """                    let Some((chop_turns,final_size))=Self::chop_outcome(view,plant,predicted,unit.stats.chop_power)else{
+                        eprintln!("UTERM call={} plant={} turn={} clause=CHOP_OUTCOME_NONE",c4c_call,c4c_idx,view.turn);
+                        continue;
+                        }
+                    ;"""
+
+D3_OLD = """                    if turns>TOTAL_TURNS-view.turn+1{
+                        continue;
+                        }"""
+D3_NEW = """                    if turns>TOTAL_TURNS-view.turn+1{
+                        eprintln!("UTERM call={} plant={} turn={} clause=ROUND_TRIP_CLOCK",c4c_call,c4c_idx,view.turn);
+                        continue;
+                        }"""
+
+D4_OLD = """                    let wood=final_size.min(unit.free_capacity());
+                    if wood<=0{
+                        continue;
+                        }"""
+D4_NEW = """                    let wood=final_size.min(unit.free_capacity());
+                    if wood<=0{
+                        eprintln!("UTERM call={} plant={} turn={} clause=WOOD_NONPOSITIVE",c4c_call,c4c_idx,view.turn);
+                        continue;
+                        }"""
+
 PATCHES = [("statics", STATICS_OLD, STATICS_NEW), ("gate", GATE_OLD, GATE_NEW),
-           ("loop", LOOP_OLD, LOOP_NEW), ("predict_tree call", PT_OLD, PT_NEW),
+           ("loop", LOOP_OLD, LOOP_NEW), ("predict_tree call + seq2 pass", PT_OLD, SEQ2PASS_NEW),
+           ("predicted nonpositive", D1_OLD, D1_NEW),
+           ("chop outcome none", D2_OLD, D2_NEW),
+           ("round trip clock", D3_OLD, D3_NEW),
+           ("wood nonpositive", D4_OLD, D4_NEW),
            ("accept", ACCEPT_OLD, ACCEPT_NEW), ("attribution", ATTRIB_OLD, ATTRIB_NEW)]
 ADDED_MARKERS = ("eprintln!(\"U", "let c4c_call=", "C4C_CUR_CALL.store", "C4C_CUR_PLANT.store",
                  "let ot:i32=", "static C4C_")

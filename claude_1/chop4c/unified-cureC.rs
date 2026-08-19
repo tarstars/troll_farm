@@ -609,7 +609,9 @@ mod bot{
                         continue;
                         }
                     ;
+                    eprintln!("UTERM call={} plant={} turn={} clause=SEQ2_PASS",c4c_call,c4c_idx,view.turn);
                     if predicted.size<=0||predicted.health<=0{
+                        eprintln!("UTERM call={} plant={} turn={} clause=PREDICTED_NONPOSITIVE",c4c_call,c4c_idx,view.turn);
                         continue;
                         }
                     let return_turns=to_shack.get(&plant.cell).map(|d|Self::ceil_div(*d,unit.stats.movement_speed)).unwrap_or_else(||{
@@ -617,15 +619,18 @@ mod bot{
                     }
                     );
                     let Some((chop_turns,final_size))=Self::chop_outcome(view,plant,predicted,unit.stats.chop_power)else{
+                        eprintln!("UTERM call={} plant={} turn={} clause=CHOP_OUTCOME_NONE",c4c_call,c4c_idx,view.turn);
                         continue;
                         }
                     ;
                     let turns=(travel_turns+chop_turns+return_turns+1).max(1);
                     if turns>TOTAL_TURNS-view.turn+1{
+                        eprintln!("UTERM call={} plant={} turn={} clause=ROUND_TRIP_CLOCK",c4c_call,c4c_idx,view.turn);
                         continue;
                         }
                     let wood=final_size.min(unit.free_capacity());
                     if wood<=0{
+                        eprintln!("UTERM call={} plant={} turn={} clause=WOOD_NONPOSITIVE",c4c_call,c4c_idx,view.turn);
                         continue;
                         }
                     let mut score=1000.0*wood as f64/turns as f64;

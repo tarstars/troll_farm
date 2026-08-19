@@ -106,6 +106,34 @@ def controls(err):
             raise GateError(f"CONTROL FAILED: join accepted {name}")
 
 
+def chain_controls(counts):
+    """A cross-sum that has only ever balanced is not evidence. Falsify each side and require
+    the identity to break."""
+    def check(c):
+        later = sum(c["terminal_" + k] for k in ("PREDICTED_NONPOSITIVE", "CHOP_OUTCOME_NONE",
+                                                 "ROUND_TRIP_CLOCK", "WOOD_NONPOSITIVE"))
+        if c["terminal_SEQ2_PASS"] != c["terminal_ACCEPT"] + later:
+            raise GateError("chain identity broken")
+        if c["seq2_rows"] != c["terminal_PREDICT_TREE_NONE"] + c["terminal_SEQ2_PASS"]:
+            raise GateError("seq2 identity broken")
+    cases = {
+        "dropped downstream terminal": {"terminal_WOOD_NONPOSITIVE": -1},
+        "dropped ACCEPT terminal": {"terminal_ACCEPT": -1},
+        "falsified seq2 PASS": {"terminal_SEQ2_PASS": +1},
+        "falsified seq2 row count": {"seq2_rows": +1},
+    }
+    for name, delta in cases.items():
+        m = collections.Counter(counts)
+        for k, d in delta.items():
+            m[k] += d
+        try:
+            check(m)
+        except GateError:
+            print(f"    chain control OK — rejects: {name}")
+        else:
+            raise GateError(f"CHAIN CONTROL FAILED: accepted {name}")
+
+
 def main():
     cfg = json.loads(H.CONFIG.read_text())
     sits = H.load_situations(None)
@@ -143,12 +171,24 @@ def main():
                 c[j["verdict"]] += 1
                 if j["opp_chop"] != j["on_tree"]:
                     c["opp_chop_mismatch"] += 1
+            # CHAIN CLOSURE (codex_1): identities over DIFFERENT row classes, so a plant
+            # evaluation vanishing through an unlogged exit breaks them. The old
+            # terminals==sum(terminal_*) compared emitted rows with themselves and could not.
+            seq2_rows = c["terminal_PREDICT_TREE_NONE"] + c["terminal_SEQ2_PASS"]
+            later = sum(c["terminal_" + k] for k in ("PREDICTED_NONPOSITIVE",
+                                                     "CHOP_OUTCOME_NONE", "ROUND_TRIP_CLOCK",
+                                                     "WOOD_NONPOSITIVE"))
+            if c["terminal_SEQ2_PASS"] != c["terminal_ACCEPT"] + later:
+                raise GateError(f"{sit['id']}: chain open — seq2 PASS {c['terminal_SEQ2_PASS']} "
+                                f"!= ACCEPT {c['terminal_ACCEPT']} + later rejections {later}")
+            c["seq2_rows"] = seq2_rows; c["later_rejections"] = later
             # point 5: per-fixture cross-sums, fail closed
             if c["terminal_PREDICT_TREE_NONE"] != len(joined):
                 raise GateError(f"{sit['id']}: terminals != attributions")
             if c["EVIDENCE_BASED"] + c["UNEXPLAINED"] != len(joined):
                 raise GateError(f"{sit['id']}: verdicts do not sum to attributions")
             byfix[sit["id"]] = dict(c); tot.update(c)
+        chain_controls(tot)
         if not ctl_done:
             raise GateError(f"{label}: negative controls never ran — no fixture had attributions")
         s = sum(v for k, v in tot.items() if k.startswith("terminal_"))
@@ -157,6 +197,9 @@ def main():
         report[label] = {"totals": dict(tot), "by_fixture": byfix,
                          "subject_sha256": sha, "probe_sha256":
                          hashlib.sha256(pp.read_bytes()).hexdigest()}
+        print(f"    chain: seq2 rows {tot['seq2_rows']} = PTN {tot['terminal_PREDICT_TREE_NONE']}"
+              f" + seq2PASS {tot['terminal_SEQ2_PASS']}; seq2PASS = ACCEPT {tot['terminal_ACCEPT']}"
+              f" + later {tot['later_rejections']}")
         print(f"  {label}: eligible {tot['eligible_calls']} · terminals {tot['terminals']} "
               f"(ACCEPT {tot['terminal_ACCEPT']}, PREDICT_TREE_NONE "
               f"{tot['terminal_PREDICT_TREE_NONE']}) · EVIDENCE_BASED {tot['EVIDENCE_BASED']} · "
