@@ -598,6 +598,7 @@ mod bot{
                     let travel_turns=Self::ceil_div(from_unit[&plant.cell],unit.stats.movement_speed);
                     C4C_CUR_CALL.store(c4c_call,std::sync::atomic::Ordering::Relaxed);
                     C4C_CUR_PLANT.store(c4c_idx as isize,std::sync::atomic::Ordering::Relaxed);
+                    eprintln!("USEQ2 call={} plant={} turn={}",c4c_call,c4c_idx,view.turn);
                     let Some(predicted)=Self::predict_tree(view,plant,travel_turns)else{
                         eprintln!("UTERM call={} plant={} turn={} clause=PREDICT_TREE_NONE",c4c_call,c4c_idx,view.turn);
                         continue;

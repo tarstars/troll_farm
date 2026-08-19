@@ -53,8 +53,15 @@ PT_OLD = '''                    let Some(predicted)=Self::predict_tree(view,plan
                         continue;
                         }
                     ;'''
+# `USEQ2` is the sequence-2 ENTRY row, emitted immediately before the forecast call and under the
+# same `(call, plant)` identity. It exists so the runner can OBSERVE how many evaluations entered
+# the forecast instead of DEFINING that number as the sum of the two observed exits -- codex_1's
+# second tautology finding (2026-08-19): the previous `seq2_rows` was assigned, never measured, so
+# the identity it fed could not fail on real data. A distinct prefix (not `UTERM`) keeps it out of
+# the terminal cross-sums, where an entry marker does not belong.
 PT_NEW = '''                    C4C_CUR_CALL.store(c4c_call,std::sync::atomic::Ordering::Relaxed);
                     C4C_CUR_PLANT.store(c4c_idx as isize,std::sync::atomic::Ordering::Relaxed);
+                    eprintln!("USEQ2 call={} plant={} turn={}",c4c_call,c4c_idx,view.turn);
                     let Some(predicted)=Self::predict_tree(view,plant,travel_turns)else{
                         eprintln!("UTERM call={} plant={} turn={} clause=PREDICT_TREE_NONE",c4c_call,c4c_idx,view.turn);
                         continue;

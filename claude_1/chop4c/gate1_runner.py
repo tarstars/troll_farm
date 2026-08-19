@@ -8,7 +8,8 @@ codex_1's seven points, each enforced here and observable in the output:
  4. exact `OSC-001..OSC-034` assertion and per-fixture stdout parity;
  5. per-fixture and aggregate attribution + ACCEPT-opportunity cross-sums;
  6. the cure-C fictional-chop mismatch control observed firing;
- 7. runner, config and result committed together.
+ 7. runner, config and result committed together;
+ 8. sequence-2 ENTRY is OBSERVED (`USEQ2`), never assigned, so the identity it feeds can fail.
 
 Nothing is carried over from the withdrawn inline runs; every number below is derived here.
 """
@@ -25,6 +26,7 @@ GATE = re.compile(r"^UGATE call=(\d+) turn=(\d+) unit=(\d+) plants=(\d+) gate=(P
 TERM = re.compile(r"^UTERM call=(\d+) plant=(\d+) turn=(\d+) clause=(\w+)$")
 ATTR = re.compile(r"^UATTR call=(\d+) plant=(-?\d+) opp_chop=(-?\d+) on_tree_recomputed=(-?\d+) "
                   r"verdict=(EVIDENCE_BASED|UNEXPLAINED)$")
+SEQ2 = re.compile(r"^USEQ2 call=(\d+) plant=(\d+) turn=(\d+)$")
 FIXTURES = [f"OSC-{i:03d}" for i in range(1, 35)]
 SUBJECTS = {
     "cure-C-resident": ("cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs",
@@ -41,14 +43,21 @@ class GateError(RuntimeError):
 
 
 class _NoReorderPair(Exception):
-    """This fixture cannot host the reorder control; try the next one."""
+    """This fixture cannot host every control (no differing attribution pair, or a row kind the
+    observed controls must delete is absent); try the next one. Never a pass — `ctl_done` stays
+    False and main fails closed if no fixture ever hosts them."""
 
 
 def parse_join(err):
     """Point 1+2: join each PREDICT_TREE_NONE terminal to exactly one attribution, in order."""
-    gates, terms, attrs = [], [], []
+    gates, terms, attrs, seq2 = [], [], [], []
     for ln in err.splitlines():
-        if ln.startswith("UGATE "):
+        if ln.startswith("USEQ2 "):
+            m = SEQ2.fullmatch(ln)
+            if not m:
+                raise GateError(f"UNPARSED USEQ2: {ln!r}")
+            seq2.append((int(m.group(1)), int(m.group(2))))
+        elif ln.startswith("UGATE "):
             m = GATE.fullmatch(ln)
             if not m:
                 raise GateError(f"UNPARSED UGATE: {ln!r}")
@@ -82,12 +91,13 @@ def parse_join(err):
                             f"{expected}, row says {verdict}")
         joined.append({"call": rc, "plant": rp, "opp_chop": opp, "on_tree": ot,
                        "verdict": verdict})
-    return gates, terms, joined
+    return gates, terms, joined, seq2
 
 
 def controls(err):
     """Point 3: the join must reject each corruption."""
-    ls = [l for l in err.splitlines() if l.startswith(("UGATE ", "UTERM ", "UATTR "))]
+    ls = [l for l in err.splitlines()
+          if l.startswith(("UGATE ", "UTERM ", "UATTR ", "USEQ2 "))]
     ia = next(i for i, l in enumerate(ls) if l.startswith("UATTR "))
     alien = re.sub(r"call=\d+", "call=999999", ls[ia], count=1)
     # A swap of two IDENTICAL rows is a no-op and would "pass" while testing nothing. Require a
@@ -118,32 +128,129 @@ def controls(err):
             raise GateError(f"CONTROL FAILED: join accepted {name}")
 
 
+LATER = ("PREDICTED_NONPOSITIVE", "CHOP_OUTCOME_NONE", "ROUND_TRIP_CLOCK", "WOOD_NONPOSITIVE")
+
+
+def tally(gates, terms, joined, seq2):
+    """The ONE counting path. Production and every control derive their counters from here, so a
+    control cannot pass against arithmetic the real run never performs."""
+    c = collections.Counter()
+    c["eligible_calls"] = sum(1 for g in gates if g[1] == "PASS")
+    for _, _, clause in terms:
+        c["terminal_" + clause] += 1
+        c["terminals"] += 1
+    for j in joined:
+        c[j["verdict"]] += 1
+        if j["opp_chop"] != j["on_tree"]:
+            c["opp_chop_mismatch"] += 1
+    # OBSERVED, not assigned: one row per entry into sequence 2, emitted before the forecast call.
+    # The previous runner set this to PREDICT_TREE_NONE + SEQ2_PASS and then "checked" that sum
+    # against itself — codex_1 2026-08-19. Now the left side comes off the wire.
+    c["seq2_rows"] = len(seq2)
+    c["later_rejections"] = sum(c["terminal_" + k] for k in LATER)
+    return c
+
+
+def chain_check(c, where):
+    """THE production chain checker — called per fixture, on the aggregate, and by every control.
+
+    Both identities span DIFFERENT row classes, so an evaluation vanishing through an unlogged
+    exit breaks them:
+      entry identity: observed USEQ2 rows == PREDICT_TREE_NONE + SEQ2_PASS
+      exit identity : SEQ2_PASS         == ACCEPT + later rejections
+    """
+    if c["seq2_rows"] != c["terminal_PREDICT_TREE_NONE"] + c["terminal_SEQ2_PASS"]:
+        raise GateError(f"{where}: seq2 ENTRY identity broken — observed USEQ2 {c['seq2_rows']} "
+                        f"!= PREDICT_TREE_NONE {c['terminal_PREDICT_TREE_NONE']} + SEQ2_PASS "
+                        f"{c['terminal_SEQ2_PASS']}")
+    if c["terminal_SEQ2_PASS"] != c["terminal_ACCEPT"] + c["later_rejections"]:
+        raise GateError(f"{where}: chain open — SEQ2_PASS {c['terminal_SEQ2_PASS']} != ACCEPT "
+                        f"{c['terminal_ACCEPT']} + later rejections {c['later_rejections']}")
+
+
+def seq2_row_identity(terms, seq2, where):
+    """Stronger than the counts: every entry must be the SAME `(call, plant)` as its exit.
+
+    Counts alone survive an entry row swapped for an unrelated identity; this does not.
+    """
+    exits = collections.Counter((call, plant) for call, plant, clause in terms
+                                if clause in ("PREDICT_TREE_NONE", "SEQ2_PASS"))
+    if collections.Counter(seq2) != exits:
+        raise GateError(f"{where}: seq2 entry/exit identities differ — entries and "
+                        f"PREDICT_TREE_NONE+SEQ2_PASS exits are not the same (call, plant) multiset")
+
+
 def chain_controls(counts):
-    """A cross-sum that has only ever balanced is not evidence. Falsify each side and require
-    the identity to break."""
-    def check(c):
-        later = sum(c["terminal_" + k] for k in ("PREDICTED_NONPOSITIVE", "CHOP_OUTCOME_NONE",
-                                                 "ROUND_TRIP_CLOCK", "WOOD_NONPOSITIVE"))
-        if c["terminal_SEQ2_PASS"] != c["terminal_ACCEPT"] + later:
-            raise GateError("chain identity broken")
-        if c["seq2_rows"] != c["terminal_PREDICT_TREE_NONE"] + c["terminal_SEQ2_PASS"]:
-            raise GateError("seq2 identity broken")
+    """A cross-sum that has only ever balanced is not evidence. Falsify each side and require the
+    PRODUCTION checker — not a private copy — to break."""
     cases = {
-        "dropped downstream terminal": {"terminal_WOOD_NONPOSITIVE": -1},
+        "dropped downstream terminal": {"terminal_WOOD_NONPOSITIVE": -1, "later_rejections": -1},
         "dropped ACCEPT terminal": {"terminal_ACCEPT": -1},
         "falsified seq2 PASS": {"terminal_SEQ2_PASS": +1},
-        "falsified seq2 row count": {"seq2_rows": +1},
+        "falsified seq2 entry count": {"seq2_rows": +1},
     }
     for name, delta in cases.items():
         m = collections.Counter(counts)
         for k, d in delta.items():
             m[k] += d
         try:
-            check(m)
+            chain_check(m, "counter control")
         except GateError:
             print(f"    chain control OK — rejects: {name}")
         else:
             raise GateError(f"CHAIN CONTROL FAILED: accepted {name}")
+
+
+def observed_chain_controls(err, where, pending):
+    """Point 8: corrupt the REAL stream and require the REAL production path to reject it.
+
+    The counter controls above mutate a tally; these delete or duplicate actual emitted rows and
+    re-derive the counters through `parse_join` + `tally` — the same two calls the measured run
+    makes. Without this the entry identity would still be checked only against hand-built
+    arithmetic, which is the defect codex_1 raised on 2026-08-19.
+
+    A single fixture need not host every case: each runs on the first fixture whose stream
+    contains the row it needs, and `pending` is drained as they run. Main fails closed if any
+    case is still pending after all 34, so a control cannot pass by never executing. The four
+    downstream rejection clauses are deliberately NOT in this set — they have zero rows on either
+    subject (`later_rejections` == 0, measured), so a case deleting one could never execute and
+    would be exactly the inert check this repair exists to remove; the counter control covers
+    that arm instead.
+    """
+    ls = err.splitlines()
+    is_entry = lambda l: l.startswith("USEQ2 ")
+    is_pass = lambda l: l.startswith("UTERM ") and l.endswith("clause=SEQ2_PASS")
+
+    def drop(pred):
+        i = next(i for i, l in enumerate(ls) if pred(l))
+        return "\n".join(ls[:i] + ls[i + 1:])
+
+    def dup(pred):
+        i = next(i for i, l in enumerate(ls) if pred(l))
+        return "\n".join(ls[:i + 1] + [ls[i]] + ls[i + 1:])
+
+    builders = {
+        "dropped an ACTUAL SEQ2_ENTRY row": (is_entry, lambda: drop(is_entry)),
+        "duplicated an ACTUAL SEQ2_ENTRY row": (is_entry, lambda: dup(is_entry)),
+        "dropped an ACTUAL SEQ2_PASS exit": (is_pass, lambda: drop(is_pass)),
+    }
+    for name in list(pending):
+        pred, build = builders[name]
+        if not any(pred(l) for l in ls):
+            continue
+        try:
+            g, t, j, s2 = parse_join(build())
+            chain_check(tally(g, t, j, s2), "observed control")
+            seq2_row_identity(t, s2, "observed control")
+        except GateError:
+            print(f"    observed chain control OK on {where} — production path rejects: {name}")
+            pending.discard(name)
+        else:
+            raise GateError(f"OBSERVED CHAIN CONTROL FAILED: production path accepted {name}")
+
+
+OBSERVED_CASES = {"dropped an ACTUAL SEQ2_ENTRY row", "duplicated an ACTUAL SEQ2_ENTRY row",
+                  "dropped an ACTUAL SEQ2_PASS exit"}
 
 
 def main():
@@ -163,9 +270,10 @@ def main():
         instr = H.compile_candidate(pp, wd / "i")
         plain = H.compile_candidate(sp, wd / "p")
         tot, byfix, ctl_done = collections.Counter(), {}, False
+        pending_obs = set(OBSERVED_CASES)
         for sit in sits:
             err = C.check_parity(sit, cfg, plain, instr)            # point 4: parity per fixture
-            gates, terms, joined = parse_join(err)
+            gates, terms, joined, seq2 = parse_join(err)
             # controls need a fixture that actually contains attributions; OSC-001 has none,
             # and running them on an empty stream would "pass" while testing nothing.
             if not ctl_done and any(l.startswith("UATTR ") for l in err.splitlines()):
@@ -174,42 +282,35 @@ def main():
                     controls(err); ctl_done = True
                 except _NoReorderPair:
                     print(f"    {sit['id']} has no two differing attributions — trying next")
-            c = collections.Counter()
-            c["eligible_calls"] = sum(1 for g in gates if g[1] == "PASS")
-            for _, _, clause in terms:
-                c["terminal_" + clause] += 1
-                c["terminals"] += 1
-            for j in joined:
-                c[j["verdict"]] += 1
-                if j["opp_chop"] != j["on_tree"]:
-                    c["opp_chop_mismatch"] += 1
+            if pending_obs:
+                observed_chain_controls(err, sit["id"], pending_obs)
+            c = tally(gates, terms, joined, seq2)
             # CHAIN CLOSURE (codex_1): identities over DIFFERENT row classes, so a plant
             # evaluation vanishing through an unlogged exit breaks them. The old
             # terminals==sum(terminal_*) compared emitted rows with themselves and could not.
-            seq2_rows = c["terminal_PREDICT_TREE_NONE"] + c["terminal_SEQ2_PASS"]
-            later = sum(c["terminal_" + k] for k in ("PREDICTED_NONPOSITIVE",
-                                                     "CHOP_OUTCOME_NONE", "ROUND_TRIP_CLOCK",
-                                                     "WOOD_NONPOSITIVE"))
-            if c["terminal_SEQ2_PASS"] != c["terminal_ACCEPT"] + later:
-                raise GateError(f"{sit['id']}: chain open — seq2 PASS {c['terminal_SEQ2_PASS']} "
-                                f"!= ACCEPT {c['terminal_ACCEPT']} + later rejections {later}")
-            c["seq2_rows"] = seq2_rows; c["later_rejections"] = later
+            chain_check(c, sit["id"])
+            seq2_row_identity(terms, seq2, sit["id"])
             # point 5: per-fixture cross-sums, fail closed
             if c["terminal_PREDICT_TREE_NONE"] != len(joined):
                 raise GateError(f"{sit['id']}: terminals != attributions")
             if c["EVIDENCE_BASED"] + c["UNEXPLAINED"] != len(joined):
                 raise GateError(f"{sit['id']}: verdicts do not sum to attributions")
             byfix[sit["id"]] = dict(c); tot.update(c)
+        chain_check(tot, f"{label} aggregate")
         chain_controls(tot)
         if not ctl_done:
             raise GateError(f"{label}: negative controls never ran — no fixture had attributions")
+        if pending_obs:
+            raise GateError(f"{label}: observed chain controls never ran on any of the 34 "
+                            f"fixtures: {sorted(pending_obs)} — an unexecuted control is not a "
+                            f"control")
         s = sum(v for k, v in tot.items() if k.startswith("terminal_"))
         if s != tot["terminals"]:
             raise GateError(f"{label}: aggregate terminal cross-sum failed")
         report[label] = {"totals": dict(tot), "by_fixture": byfix,
                          "subject_sha256": sha, "probe_sha256":
                          hashlib.sha256(pp.read_bytes()).hexdigest()}
-        print(f"    chain: seq2 rows {tot['seq2_rows']} = PTN {tot['terminal_PREDICT_TREE_NONE']}"
+        print(f"    chain: seq2 ENTRY rows (observed) {tot['seq2_rows']} = PTN {tot['terminal_PREDICT_TREE_NONE']}"
               f" + seq2PASS {tot['terminal_SEQ2_PASS']}; seq2PASS = ACCEPT {tot['terminal_ACCEPT']}"
               f" + later {tot['later_rejections']}")
         print(f"  {label}: eligible {tot['eligible_calls']} · terminals {tot['terminals']} "
