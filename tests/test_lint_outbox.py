@@ -528,3 +528,183 @@ def test_evidence_gate_releases_pool3_vocabulary_with_review(repo):
 
     result = lint(repo)
     assert result.returncode == 0, result.stdout
+
+
+# ---------------------------------------------------------------------------
+# Cross-task reference gate (lint hardening 2026-08-18): supersedes/ack_for
+# must reference the message's own task unless the body carries an explicit
+# `cross-task:` marker. The defective real case was well-formed and pointed at
+# a real file, so the check compares front-matter task_id, not shape or
+# existence — and the fixture set includes a LEGITIMATE cross-task supersession
+# so the marker path is exercised, not just the rejection path.
+# ---------------------------------------------------------------------------
+
+def test_cross_task_supersedes_fails(repo):
+    target = publish_v2(repo, ME, "20260807T110000Z", "task-a", "update", to=PEER)
+    path = msg_path(ME, STAMP, "task-b", "correction")
+    body = v2_message(path, kind="correction", task="task-b", sender=ME,
+                      to=PEER, supersedes=(target,))
+    repo.write_worktree(path, body)
+
+    result = lint(repo)
+    assert result.returncode == 2
+    assert "cross-task reference" in result.stdout
+    assert "task-a" in result.stdout and "task-b" in result.stdout
+
+
+def test_cross_task_ack_for_fails(repo):
+    target = publish_v2(repo, ME, "20260807T110100Z", "task-a", "update", to=PEER)
+    path = msg_path(ME, STAMP, "task-b", "ack")
+    body = v2_message(path, kind="ack", task="task-b", sender=ME,
+                      to=PEER, ack_for=(target,))
+    repo.write_worktree(path, body)
+
+    result = lint(repo)
+    assert result.returncode == 2
+    assert "cross-task reference" in result.stdout
+    assert "`ack_for`" in result.stdout
+
+
+def test_cross_task_marker_allows_deliberate_supersession(repo):
+    target = publish_v2(repo, ME, "20260807T110200Z", "task-a", "update", to=PEER)
+    path = msg_path(ME, STAMP, "task-b", "correction")
+    body = v2_message(path, kind="correction", task="task-b", sender=ME,
+                      to=PEER, supersedes=(target,))
+    body = body.replace(
+        "# body",
+        "# body\n\ncross-task: deliberate supersession of the task-a update "
+        "(owner-approved consolidation)",
+    )
+    repo.write_worktree(path, body)
+
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout
+
+
+def test_same_task_supersedes_clean(repo):
+    target = publish_v2(repo, ME, "20260807T110300Z", "task-a", "update", to=PEER)
+    path = msg_path(ME, STAMP, "task-a", "correction")
+    body = v2_message(path, kind="correction", task="task-a", sender=ME,
+                      to=PEER, supersedes=(target,))
+    repo.write_worktree(path, body)
+
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout
+
+
+# ---------------------------------------------------------------------------
+# Deferral-shape gate (owner-adopted 2026-08-18): a message declaring a
+# deferral (line-start `DEFERRED:` marker) must be a queue item — ack-required
+# and self-addressed — so the deferring agent's own next sweep surfaces the
+# postponed job. Twice in one day a prose-only deferral left every inbox empty
+# beside open work; both times the owner caught it before the system did.
+# ---------------------------------------------------------------------------
+
+def _deferral_body(path: str, *, requires_ack: bool, to: str) -> str:
+    body = v2_message(path, kind="update", task="task-a", sender=ME, to=to,
+                      requires_ack=requires_ack)
+    return body.replace(
+        "# body",
+        "# body\n\nDEFERRED: predicate comparison — fresh session needed\n",
+    )
+
+
+def test_deferred_without_ack_fails(repo):
+    path = msg_path(ME, STAMP, "task-a", "update")
+    repo.write_worktree(path, _deferral_body(path, requires_ack=False,
+                                             to=f'["{ME}"]'))
+    result = lint(repo)
+    assert result.returncode == 2
+    assert "deferral shape" in result.stdout
+    assert "requires_ack" in result.stdout
+
+
+def test_deferred_without_self_recipient_fails(repo):
+    path = msg_path(ME, STAMP, "task-a", "update")
+    repo.write_worktree(path, _deferral_body(path, requires_ack=True,
+                                             to=f'["{PEER}"]'))
+    result = lint(repo)
+    assert result.returncode == 2
+    assert "deferral shape" in result.stdout
+    assert "self-address" in result.stdout
+
+
+def test_deferred_self_addressed_clean(repo):
+    path = msg_path(ME, STAMP, "task-a", "update")
+    repo.write_worktree(path, _deferral_body(path, requires_ack=True,
+                                             to=f'["{ME}", "{PEER}"]'))
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout
+
+
+def test_deferred_prose_mention_not_flagged(repo):
+    path = msg_path(ME, STAMP, "task-a", "update")
+    body = v2_message(path, kind="update", task="task-a", sender=ME, to=PEER,
+                      requires_ack=False)
+    body = body.replace(
+        "# body",
+        "# body\n\nthe comparison was deferred yesterday; status: deferred "
+        "work resumes next session\n",
+    )
+    repo.write_worktree(path, body)
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout
+
+
+# ---------------------------------------------------------------------------
+# Card-ack gate (protocol §10, corrected route 2026-08-19): a CARD: message is
+# discharged only by the delivery handoff or by a DEFERRED: replacement card;
+# a bare receipt-ack is refused. ack_for is the only discharge mechanism, so
+# the gate sits on the ack side.
+# ---------------------------------------------------------------------------
+
+def _publish_card(repo, stamp="20260807T113000Z"):
+    path = msg_path(PEER, stamp, "task-a", "policy")
+    body = v2_message(path, kind="policy", task="task-a", sender=PEER, to=ME,
+                      requires_ack=True)
+    body = body.replace("# body", "# body\n\nCARD: run the panels and deliver\n")
+    repo.commit(f"agent/{PEER}", {path: body})
+    return path
+
+
+def test_card_bare_receipt_ack_fails(repo):
+    card = _publish_card(repo)
+    path = msg_path(ME, STAMP, "task-a", "ack")
+    body = v2_message(path, kind="ack", task="task-a", sender=ME, to=PEER,
+                      ack_for=(card,))
+    repo.write_worktree(path, body)
+    result = lint(repo)
+    assert result.returncode == 2
+    assert "card ack" in result.stdout
+
+
+def test_card_delivery_handoff_clean(repo):
+    card = _publish_card(repo)
+    extra = _valid_handoff_extra(repo)
+    path = msg_path(ME, STAMP, "task-a", "handoff")
+    body = v2_message(path, kind="handoff", task="task-a", sender=ME, to=PEER,
+                      ack_for=(card,), extra_fields=extra)
+    repo.write_worktree(path, body)
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout
+
+
+def test_card_deferred_replacement_clean(repo):
+    card = _publish_card(repo)
+    path = msg_path(ME, STAMP, "task-a", "update")
+    body = v2_message(path, kind="update", task="task-a", sender=ME,
+                      to=f'["{ME}"]', requires_ack=True, ack_for=(card,))
+    body = body.replace("# body", "# body\n\nDEFERRED: panels — fresh session needed\n")
+    repo.write_worktree(path, body)
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout
+
+
+def test_non_card_ack_unaffected(repo):
+    target = publish_v2(repo, PEER, "20260807T113100Z", "task-a", "update", to=ME)
+    path = msg_path(ME, STAMP, "task-a", "ack")
+    body = v2_message(path, kind="ack", task="task-a", sender=ME, to=PEER,
+                      ack_for=(target,))
+    repo.write_worktree(path, body)
+    result = lint(repo)
+    assert result.returncode == 0, result.stdout

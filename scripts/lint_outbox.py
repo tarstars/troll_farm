@@ -311,6 +311,46 @@ def deferral_shape_errors(msg: "inbox_sweep.Message") -> list[str]:
     return errors
 
 
+CARD_LINE_RE = re.compile(r"^CARD:", re.MULTILINE)
+
+
+def card_ack_errors(
+    msg: "inbox_sweep.Message", published_msgs: list["inbox_sweep.Message"]
+) -> list[str]:
+    """A `CARD:` message is discharged by delivery or replacement, never by a
+    bare receipt-ack (protocol §10, corrected route 2026-08-19).
+
+    `ack_for` is the transport's only discharge mechanism (`supersedes` is
+    inert for acknowledgement — proven by claude_1 reading the sweep), so the
+    gate sits on the ACK side: a staged message that names a published `CARD:`
+    message in `ack_for` must either BE the delivery (kind handoff) or carry
+    its own line-start `DEFERRED:` replacement card. Anything else discharges
+    standing work while leaving no queue item — the fourth stall shape.
+    """
+    try:
+        targets = inbox_sweep.parse_json_list(msg.fields.get("ack_for", "[]"))
+    except Exception:
+        return []  # malformed arrays are validate_v2's finding
+    if not targets:
+        return []
+    by_path = {m.path: m for m in published_msgs}
+    card_targets = [
+        t for t in targets
+        if (ref := by_path.get(t)) is not None and ref.is_v2
+        and CARD_LINE_RE.search(ref.body)
+    ]
+    if not card_targets:
+        return []
+    if msg.kind == "handoff" or DEFERRED_LINE_RE.search(msg.body):
+        return []
+    return [
+        f"card ack: `ack_for` discharges CARD message(s) {card_targets!r} but "
+        "this message is neither the delivery handoff nor a DEFERRED: "
+        "replacement — bare receipt-acks of cards are forbidden "
+        "(protocol §10, 2026-08-19)"
+    ]
+
+
 def current_branch() -> str:
     """Branch HEAD points at, or "" when detached.
 
@@ -491,6 +531,10 @@ def main() -> int:
                 )
                 errors.extend(
                     (path, error) for error in deferral_shape_errors(gate_msg)
+                )
+                errors.extend(
+                    (path, error)
+                    for error in card_ack_errors(gate_msg, published_msgs)
                 )
 
     # A message present in HEAD but absent from the proposed tree would be
