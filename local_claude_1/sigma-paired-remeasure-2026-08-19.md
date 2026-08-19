@@ -1,5 +1,19 @@
 # σ for PAIRED arena nights — re-measure note (2026-08-19, integrator)
 
+**ADOPTED BY OWNER 2026-08-19 (~19:30Z, in session: "adopt paired sigma"),
+before any submission of the next paired night — pre-registration honest.**
+Operative from the Door-1-vs-cure-C night onward: σ_pair = 1.5 provisional;
+winner bar at n=5 pairs = 1.96·(1.5/√5) = **1.315**; materiality floor 1.0
+unchanged; every future paired night's differences pool into the running
+estimate below; at pooled df ≥ 9 the pooled value replaces 1.5 automatically,
+whatever it says. Unpaired per-read σ = 1.501 untouched.
+
+## Pooling ledger (append per night)
+
+| night | pairs (A−B) | df | pooled SD so far |
+|---|---|---:|---:|
+| 2026-08-18/19 cure-C vs 98628e98 | +1.3, +0.2, +0.4, +0.6, +2.6 | 4 | 0.976 |
+
 **Why this exists:** the cure-C night's honesty clause flagged it — the
 measured round-to-round spread of the PAIRED differences (0.976) came in far
 below the planning value (2.123 = 1.501·√2 built from unpaired per-read σ).

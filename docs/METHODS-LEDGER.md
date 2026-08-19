@@ -229,7 +229,11 @@ costs on the table. Gate class is chosen PER CHARTER, before any result.
   `docs/RULES-LEDGER.md`.
 - M-1 measurement rule for paired Arena nights (ABAB @~2 h, paired-difference
   95% CI, σ=1.501, 1.0 materiality floor, max two extensions, honesty clause):
-  `coordination/tasks/20260815-banana-farm-two-specs.md:103-117`.
+  `coordination/tasks/20260815-banana-farm-two-specs.md:103-117`. **AMENDED by
+  owner adoption 2026-08-19: paired designs use σ_pair = 1.5 provisional
+  (winner bar 1.315 at n=5), pooling forward per
+  `local_claude_1/sigma-paired-remeasure-2026-08-19.md`; unpaired per-read
+  σ = 1.501 unchanged.**
 - Plain-language rule for all owner-facing text:
   `coordination/multi-agent-protocol.md`.
 - WIP limit / evidence gate / canonical kinds / quarantine authority:
