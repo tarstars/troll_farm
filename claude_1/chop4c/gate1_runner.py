@@ -73,6 +73,13 @@ def parse_join(err):
         if (rc, rp) != (ac, ap):
             raise GateError(f"identity mismatch: terminal {(rc, rp)} vs attribution {(ac, ap)} "
                             f"— the join is not one-to-one and ordered")
+        # SEMANTIC CROSS-CHECK: the verdict must FOLLOW from the fields, not be trusted as a
+        # label. Without this a stream carrying `on_tree_recomputed=0 verdict=EVIDENCE_BASED`
+        # would report zero unexplained and pass the green condition.
+        expected = "EVIDENCE_BASED" if ot > 0 else "UNEXPLAINED"
+        if verdict != expected:
+            raise GateError(f"MISLABELED verdict at {(rc, rp)}: on_tree_recomputed={ot} implies "
+                            f"{expected}, row says {verdict}")
         joined.append({"call": rc, "plant": rp, "opp_chop": opp, "on_tree": ot,
                        "verdict": verdict})
     return gates, terms, joined
@@ -96,6 +103,11 @@ def controls(err):
         "duplicated attribution": ls[:ia + 1] + [ls[ia]] + ls[ia + 1:],
         "reordered attributions": swap,
         "alien identity": [alien if i == ia else l for i, l in enumerate(ls)],
+        "mislabeled verdict (fields say one thing, label another)":
+            [re.sub(r"verdict=\w+",
+                    "verdict=EVIDENCE_BASED" if "on_tree_recomputed=0 " in l
+                    else "verdict=UNEXPLAINED", l)
+             if i == ia else l for i, l in enumerate(ls)],
     }
     for name, lines in cases.items():
         try:
@@ -206,6 +218,16 @@ def main():
               f"UNEXPLAINED {tot['UNEXPLAINED']} · opp_chop mismatch {tot['opp_chop_mismatch']}")
 
     # point 6: the fictional-chop mismatch control must FIRE on cure C
+    # The intended relationship, asserted rather than left implicit: a row is UNEXPLAINED exactly
+    # when the two derivations disagree (returned opp_chop positive, recomputed on-tree zero).
+    for label, rep in report.items():
+        t = rep["totals"]
+        if t.get("UNEXPLAINED", 0) != t.get("opp_chop_mismatch", 0):
+            raise GateError(f"{label}: UNEXPLAINED {t.get('UNEXPLAINED', 0)} != opp_chop mismatch "
+                            f"{t.get('opp_chop_mismatch', 0)} — the two must coincide by "
+                            f"construction; a divergence means one of them is measuring "
+                            f"something else")
+    print("  UNEXPLAINED == opp_chop_mismatch on both subjects (relationship asserted)")
     if report["cure-C-resident"]["totals"].get("UNEXPLAINED", 0) == 0:
         raise GateError("cure-C mismatch control did NOT fire — attribution is not evidence")
     print("\n  cure-C mismatch control FIRED (unexplained rejections present on the resident)")
