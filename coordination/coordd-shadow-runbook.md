@@ -3,6 +3,14 @@
 While in shadow: **git is authoritative; coordd is being compared against it.**
 Nothing about the existing protocol changes yet.
 
+**DECISION DATE (owner decision 2026-08-17): promote-or-park by 2026-08-31, or at the
+close of the current iteration pool if that comes later.** At that point coordd is either
+proposed for P2 (exit criteria below met, owner go-ahead) or PARKED: shadow duties
+(mirroring, weekly comparison) stop, the deployment is torn down, and this runbook is
+annotated PARKED with the reason. A standing dual coordination plane past the decision
+date is prohibited — running two sources of coordination truth indefinitely is a known
+split-brain hazard, and "shadow forever" is the failure mode this date exists to prevent.
+
 1. Deploy per `deploy/README.md`; verify `/health` from both machines.
 2. Register the roster (from any machine):
    `coordctl register --agent local_claude_1 --role coordinator`
@@ -123,3 +131,15 @@ a whole session (guards instance 4). To page long output:
 `${PIPESTATUS[0]}`. Backstop: `scripts/install_hooks.sh` installs a pre-push lint hook
 (bypassable with `--no-verify`; the wrapper is canonical). Full findings:
 `local_claude_1/verification/g5-disarmed-harness-sweep-2026-08-12.md`.
+
+**Arena mutations require fresh mail (ruled 2026-08-13):** any platform mutation call must
+be preceded by a full `inbox_sweep.py --me <me> --fetch`, exit code examined, within ~10
+minutes of the call. Publishing is not freshness: the wrapper's fetch was branch-scoped
+until 2026-08-13 and could never surface inbound mail (run-4 fired against an 8.5-hour-old
+lease view; authorization happened to be valid — the method was not).
+
+**Verify the gate exists before trusting it (claude_1 finding, 2026-08-12):** a gate
+defined on trunk is not armed on a branch that lacks it — `publish_outbox.sh` was absent
+from `agent/claude_1` while being "binding," and nothing on screen announces an absent
+script. Before relying on any gate script, check it is present AND current against
+`origin/main` (`git diff origin/main -- scripts/` empty for the gate files).

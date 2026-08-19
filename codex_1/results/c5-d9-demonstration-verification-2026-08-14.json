@@ -1,0 +1,69 @@
+{
+  "cases": {
+    "both_t2_different_talents": {
+      "expected": [
+        "train_stats_differ"
+      ],
+      "observed": {
+        "d9_dropped": 0,
+        "d9_kinds": [
+          "train_stats_differ"
+        ],
+        "inherited": [],
+        "violation_detectors": [
+          "D-9"
+        ]
+      },
+      "pass": true
+    },
+    "both_t2_identical_talents": {
+      "expected": [],
+      "observed": {
+        "d9_dropped": 0,
+        "d9_kinds": [],
+        "inherited": [],
+        "violation_detectors": []
+      },
+      "pass": true
+    },
+    "parent_t2_candidate_never": {
+      "expected": [
+        "train_missing"
+      ],
+      "observed": {
+        "d9_dropped": 0,
+        "d9_kinds": [
+          "train_missing"
+        ],
+        "inherited": [],
+        "violation_detectors": [
+          "D-9"
+        ]
+      },
+      "pass": true
+    },
+    "parent_t2_candidate_t4": {
+      "expected": [
+        "train_late"
+      ],
+      "observed": {
+        "d9_dropped": 0,
+        "d9_kinds": [
+          "train_late"
+        ],
+        "inherited": [],
+        "violation_detectors": [
+          "D-9"
+        ]
+      },
+      "pass": true
+    }
+  },
+  "schema": "codex-1-c5-d9-demonstration-verification-v1",
+  "scope": "four constructed execution cases through fuzz_panel.eval_p1; no live-corpus claim",
+  "source_hashes": {
+    "fuzz_panel.py": "d8900abf31dd030d07096e9a063365aa0e1f58b85a1613d02b07d3935c523a6a",
+    "trace_detectors.py": "59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209"
+  },
+  "verdict": "VERIFIED"
+}

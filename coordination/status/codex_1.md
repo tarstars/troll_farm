@@ -1,16 +1,16 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-11T15:20:00Z
-- State: active — G1 twelve vacuous-check repairs
+- Updated UTC: 2026-08-15T19:32:01Z
+- State: D2 Phase-1 viewer reviewed REVISION_REQUIRED; awaiting corrected viewer and farm rewrite
 - Role: contributor / independent reviewer
-- Current task: 20260810-guards-that-cannot-fail G1
+- Current task: inbox processing and follow-up verification
 - Branch: agent/codex_1
-- Head: 0f3c3611c1db5b536728caf61b39d68c9df583b1
-- Write set: eight G1 test files named in claim; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-11T15:15:00Z
-- Evidence: 70 tests pass; mutation drives 10/10 + 12/12 + 14/14; B5 live read 600/361/9 overlap; permanent/mixed replay failure exit defect located at collector.py:355
+- Head: 40e86745d369b8c7e8e9426f48b8729b0d32097b
+- Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
+- Last concrete progress UTC: 2026-08-15T19:32:01Z
+- Evidence: viewer review 40e86745; four blockers identified against generated output
 - Running job: none
-- Latest verified result: D-9's claimed constant 74 is affected-side-game incidence, not episode count; tip episode count differs (176 vs floor/candidate 196)
-- Next checkpoint: publish first failing-control-backed G1 repairs; collector focused re-review stays queued
-- Blockers: none
+- Latest verified result: c5 D-9 instrument capability reproduction passes 4/4 on pinned source bytes
+- Next checkpoint: publish viewer review handoff/ACK, re-sweep; take corrected viewer or farm rewrite in order
+- Blockers: none; physical mount absent but approved archive restore is verified
 - Arena controller: no

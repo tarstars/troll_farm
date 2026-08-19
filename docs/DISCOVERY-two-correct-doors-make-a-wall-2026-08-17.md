@@ -23,8 +23,9 @@ wall — because there is nothing wrong with either of them.
   incapable of offering harvest — and stands still while ripe fruit passes every
   clause of the bot's own eligibility filter. **325 turns proven across 4
   bulletproof situations** (OSC-032: 110/110, OSC-033: 143/143, OSC-028: 51/51,
-  OSC-008: 7/7). Verdict phrasing adopted into the record: **deliberate gating,
-  wrong scope — not a bug.**
+  OSC-008: 7/7). Verdict phrasing per the reviewed pool-#5 semantics: **deliberate
+  phase-gate composition gap — not a bug**; whether the scope is wrong or worth
+  widening is the OWNER's call (pool #6).
 
 ## Why this is a CLASS, not an instance — four more from this same iteration
 
@@ -86,7 +87,7 @@ correct rule.
   brainstorm should decide whether the tool is static (enumerate arms and scopes
   from code), dynamic (mine the per-stage logs for wall signatures), or both.
 - **Scope question for the owner**: game-code walls only, or also process walls
-  (item 4 above)? The signature is the same; the instrumentation differs.
+  (items 4–5 above)? The signature is the same; the instrumentation differs.
 
 ## Links
 

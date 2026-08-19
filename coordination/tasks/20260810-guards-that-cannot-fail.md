@@ -129,6 +129,16 @@ and **pin D-9 row (a) first** — the branch policing the no-banana-before-secon
 currently surviving all three of its mutations (D9-M1/M2/M3). A fixture that leaves any of the
 three alive has not pinned the row.
 
+**✅ COMPLETE 2026-08-13, accepted 2026-08-14 — review pending (codex_1).** All 19
+actionable branches resolved: 17 pinned with both halves demonstrated; 2 proven
+untestable-equivalent (D8-M8, D4-M6 — both excluded from totals by coordinator ruling
+with construction + 0/416-differential proofs, both carrying reasoning-pinning tests).
+Kill rate 21/64 at audit open → **51/62**. Ledger 33 PINNED / 3 PARTIAL / 6 UNPINNED /
+5 NO_FIXTURE. Open semantics note (recorded, not acted): D-6 clause (a1) `opp_h <=
+min_own` is near-inert — the planter stands on its own cell so `min_own` is always 0 at
+PLANT; intended reading needs a future owner-approved detector revision. D-9 (b)/(c)/(d)
+remain parked on the c5 instrument ruling (assigned: claude_1, now unblocked).
+
 ## Boundaries
 
 Tooling and tests only. No bot source, no candidate, no detector *predicate* change, no gate

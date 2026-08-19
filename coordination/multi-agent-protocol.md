@@ -138,6 +138,33 @@ a non-empty `ack_for` and covers exactly the listed paths, nothing else; an ACK 
 set `requires_ack: true`, in which case the response targets that ACK's exact path.
 Filename timestamps are human-readable ordering hints only.
 
+## Owner-facing wording policy (owner directive, 2026-08-13)
+
+Any text the owner is expected to read — messages with `user` in `to:`/`cc:`, session
+summaries, reports, backlog/state presentations — follows these rules:
+
+1. **Plain language.** Short sentences. Say what a thing IS before what it is called.
+2. **No unexplained codes.** Every project abbreviation or codename (G6, H3a, D-9, σ,
+   CBF, …) gets a plain-language explanation at first use: *"the watchdog-test job
+   (G6)"*, *"the score-wobble number (σ, 'sigma')"*. A code the reader must look up is
+   a defect, not shorthand.
+3. **Numbers carry their meaning.** Not "σ = 1.501" alone, but "scores wobble by about
+   ±1.5 points — one test run proves nothing."
+4. **Describe, then name.** Prefer "the rule that no banana tricks happen before the
+   second troll is trained" over "the D-9(a) constraint."
+5. Inter-agent technical artifacts (task records, evidence files, code) keep full
+   precision and exact identifiers — this policy governs the owner-facing layer, not
+   the lab notebook. When one message serves both audiences, the owner-facing summary
+   comes first, the technical detail after.
+
+**Ack requirement is kind-based first, field-based second (ruled 2026-08-12, coordinator,
+after claude_1's finding):** the sweep's `ACK_REQUIRED_KINDS` (e.g. `policy`, `handoff`)
+makes those kinds ack-required regardless of front matter — `requires_ack: false` on a
+`policy` is inert and misleading; do not write it expecting an exemption. `requires_ack:
+true` can only ADD an obligation to a kind that lacks one (e.g. a `progress`); it never
+subtracts. Supersession does not discharge an ack, and retiring a message does not carry
+its `ack_for` — re-issue discharges explicitly (both learned live, 2026-08-12).
+
 A v2 `handoff` additionally carries `artifact_ref` (the sender's canonical branch,
 `agent/<sender-id>`), `artifact_commit` (a full 40-hex object), and `artifact_paths` (a
 single-line JSON array). **Canonical publication rule:** a v2 handoff is valid only when
@@ -456,6 +483,24 @@ ref, because the pinned paths span every agent branch.
 **The lint applies the baseline too.** It previously ignored it, so a published no-schema
 message outside the baseline linted clean and was rejected permanently by the receiver — the
 safety net failing in the one direction that costs a quarantine.
+
+**WIP limit (owner decision 2026-08-17).** One in-flight ack-requiring handoff per agent
+per task: do not publish handoff N+1 for a task while your handoff N still awaits
+acknowledgement. The canonical retirement is the integrator's ack; a correction naming the
+pending handoff in `supersedes` is always allowed (corrections are mandatory and exempt).
+Enforced sender-side by `scripts/lint_outbox.py` on NEW handoffs only — published messages
+are immutable and are never flagged retroactively. Rationale: crossings-in-flight were the
+largest measured coordination cost of 2026-08-16 (three handoffs crossed rulings, each
+crossing spawning a correction round).
+
+**Evidence gate (owner decision 2026-08-17).** A handoff whose body asserts a chartered
+cause label (the audit vocabulary, e.g. `GENERATOR_GAP` — the registered set lives in
+`CAUSE_LABEL_TOKENS` in `scripts/lint_outbox.py`) must carry a `review_ref:` front-matter
+field naming the review file that ACCEPTED the producing instrument, resolvable on an
+authoritative remote ref. Causal claims travel only with their instrument's acceptance;
+raw-data and instrument handoffs need nothing. This mechanizes the standing publication
+gate that was enforced only socially on 2026-08-16 (three headlines published ahead of
+review, all later withdrawn).
 
 **Migration to v2 (one-time, per agent).** Run from your own worktree, substituting your
 agent id — shown here for `claude_1`, `local_codex_1`, and `chatgpt_1`:

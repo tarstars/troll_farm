@@ -17,25 +17,42 @@ begins with `Pool: N/M done`.
 ## Pool (P0 = the diagnosis chain, in dependency order)
 
 - [x] 0. Pool opened; charters + codex queue order published (local_claude_1)
-- [ ] 1. Instrument repairs — HARD GATE, nothing accepted from this track before it:
+- [x] 1. CLOSED (GATE_ACCEPTED; logging repair exposed 21 door-clear + 3,517 conflict
+      rewrites incl. 97 manufactured MOVE→WAIT). Was: Instrument repairs — HARD GATE:
       anchor-unit fix (4× restated), exact coverage, direct candidate logging,
       eligible-action oracle (capability × fruit state × sink), negative controls
       observed firing (walled-in + zero-capability arms) (claude_1)
-- [ ] 2. Instrument re-review (codex_1 — TOP of queue)
-- [ ] 3. Full 34-situation sweep → cause table in the owner's three-level vocabulary:
+- [x] 2. CLOSED (codex_1 GATE_ACCEPTED, all reproductions independent)
+- [x] 3. CLOSED (GATE_ACCEPTED after incidence revision: non-exclusive 8/24/2/0, status axis PARKED 29 / NOT_STARVED 4, semantics reviewed). Was: RUNNING — full 34-situation sweep → cause table in the owner's three-level vocabulary:
       no-goal-assigned / goal-split-wrong / world-interaction / cannot-use-work /
       not-starved (claude_1)
 - [x] 4. Margin decomposition on the EXISTING 240-game panel data: does margin track
       parked-idle turns or oscillation episodes? Prices the illness; no new runs
       (local_claude_1; codex_1 verifies method)
-- [ ] 5. Mechanism note per no-goal case: which generator path emits the WAIT-only
+- [x] 5. CLOSED (GATE_ACCEPTED; neutral wording: deliberate phase-gate composition
+      gap — scope judgment reserved to the owner; 521-turn reconciliation, 325-turn
+      gap, 28 occupancy turns, 167 named-unresolved all stand). Was: Mechanism note per no-goal case: which generator path emits the WAIT-only
       list; deliberate (phase gating) or broken (claude_1, small)
-- [ ] 6. OWNER SESSION — the verdict: per-cause ruling, harmless-ruling or
+- [ ] 6. OWNER SESSION — remaining branches, NAMED (owner labels, 2026-08-18):
+      **4a = pairing-bench judgment** (the 24 GOAL_SPLIT cases: viewer sitting,
+      owner judges "would a good player use both trolls?" → fix charter or
+      harmless stamp); **4b = harmless stamps** (D5 closure: every unfixed case
+      gets an explicit owner "accepted, because…" ruling in the ledger);
+      **4c = chop-mystery instrument** (OSC-031's 167 rejected-chop turns: small
+      parity-disciplined logger names the rejecting clause, then owner judges
+      bug-vs-caution; possibly a class, possibly bigger than cure C).
+      Canonical brief: `local_claude_1/session-inputs/leftovers-4a-4b-4c-2026-08-18.md`.
+      Suggested order: 4a sitting → 4c parallel instrument → 4b stamps last.
+      (Original: cure
+      candidate = C ("fix the first door") per OWNER PREFERENCE 2026-08-17 —
+      brief at `local_claude_1/session-inputs/cure-candidate-C-brief-2026-08-17.md`;
+      B = fallback; D = separate question pending L1 evidence.** Original: per-cause ruling, harmless-ruling or
       cure-charter; ledger entries (owner + local_claude_1)
 
 ## Parallel (non-blocking)
 
-- [ ] 7. **OWNER RULED ALL THREE 2026-08-17** (B-1 no floor; K_futility RETIRED;
+- [x] 7. **COMPLETE — OWNER FINAL CONFIRMATION 2026-08-17; both specs APPROVED.**
+      (History: owner ruled all three (B-1 no floor; K_futility RETIRED;
       futility = the owner's census-sequence design, completion gate subsumed) —
       v6 delivered, codex re-review pending, then owner FINAL confirmation only.
       (History: DONE-for-agents at v5; (Restated 2026-08-17 after the integrator's record correction:) Spec v3 was already
@@ -57,14 +74,143 @@ begins with `Pool: N/M done`.
 - [x] 11. OWNER-ADDED 2026-08-17: coordd promote-or-park DECISION DATE set:
       2026-08-31 or pool close, whichever later; no standing dual plane
       (runbook amended) (local_claude_1)
+- [x] 12. DONE — SUBMITTED (41153619, 2026-08-18). Night + owner KEEP/REVERT remain. Was: CURE C
+      END-TO-END — build per corrected brief, gates G1–G4 fail-first (fixtures
+      311/311, panel zero de-novo D-1+P4, p95+parity, codex reproduction), then
+      SUBMIT same-session (G5). Charter:
+      `coordination/tasks/20260817-cure-c-implementation.md`. Expectation
+      pre-registered +0.2–0.7 (IMMATERIAL possible and honest); KEEP/REVERT =
+      owner after the paired night. (claude_1 end-to-end; codex_1 gates;
+      local_claude_1 countersigns + night bookkeeping)
 
 ## Parked — explicitly OUT of this iteration
+
+**OWNER-ADDED NOTE 2026-08-17 (not a work item): the "two correct doors make a
+wall" discovery is recorded as crucial —
+`docs/DISCOVERY-two-correct-doors-make-a-wall-2026-08-17.md`. The owner will
+brainstorm it later and wants a composition-failure discovery/analysis tool;
+NOTHING chartered yet. Candidate seed for the next iteration's pool.**
+
 
 Full bridge-as-code (term census B0 / property audit B1 / band enforcement B3 — shaped
 by the verdict session's rulings, not before); T-1 half-swap fixture (recorded debt);
 viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untouched).
 
 ## Progress log (newest first)
+
+- 2026-08-18 (**CURE C SUBMITTED — submission 41153619**): codex G4 GREEN with all
+  three owner contingencies independently verified (m061 probed directly:
+  resident generator WAIT-only in the candidate's live states; m082 confirmed as
+  the named cost; the G1.3 surprises = classifier re-attribution, not cure — both
+  agents concur, honestly cutting against the candidate's own headline).
+  Integrator executed G5 same-session per charter: one mutation call, HTTP 200,
+  source byte-verified `ad3bfefe`, archived in cgauto/submissions/. The paired
+  night runs under M-1; first mature read ≈2h; KEEP/REVERT = the owner's ruling.
+
+- 2026-08-18 (overnight run + THREE OWNER RULINGS): claude_1 drove the cure-C
+  pipeline overnight — candidate `ad3bfefe` (six lines), G1 fixtures PASS
+  (with two fixtures OVER-delivering), G2 panel FAIL (1 de-novo D-1, up to 3 P4),
+  G3 PASS; diagnosed everything (m106 counting artifact; m061 better-trajectory →
+  pre-existing hole, unfixable by any tail, proven; m082 real regression 12→1);
+  aggregate blocking 119→58; decision brief with three exits, advocating none.
+  OWNER RULED: (1) G1.3 explain-then-pass; (2) de-novo = TURN COVERAGE, general
+  rule; (3) SHIP under the pre-existing-hole exception (two prongs,
+  reviewer-verified), m082 the named accepted cost. codex G4 applies the rulings;
+  on green → same-session submission → paired night → owner KEEP/REVERT.
+
+- 2026-08-17 (OWNER CHARTER — pool #12): "implement C and post it on platform" →
+  end-to-end task written for claude_1 (goal = SUBMITTED, not ready-to-submit):
+  corrected-brief C, cross-tab frozen as predictions, gates G1–G5, same-session
+  submission on green (controller countersign committed, >6h fallback), night under
+  M-1, KEEP/REVERT owner's. Recorded as the session's no-goal-branch verdict;
+  branches 24-pairing / harmless-rulings / OSC-031 residue stay OPEN (#6).
+
+- 2026-08-17 (POOL #5 CLOSED — **THE OWNER SESSION IS READY**): revision
+  GATE_ACCEPTED, all eight streams reproduced; wording ruling confirmed (my docs
+  already aligned). AND claude_1 corrected MY C brief with a measured cross-tab: C
+  fully cures the bulletproof FOUR (311/311 turns) + 14 bonus = 325/521; the other
+  four fail through DIFFERENT doors (endgame-branch ×2, full-backpack :1185,
+  fruitless-board → correct WAIT tail); acceptance fixtures = the FOUR, never eight
+  (gate-relaxation warning cited from quarantine history). Residue framing adopted:
+  OSC-031's 167 chop turns = a different, bigger question if the owner wants the
+  TROLL fixed rather than the GATE. Session package COMPLETE: incidence table,
+  neutral mechanism notes, pricing, corrected C brief, L1 procedure.
+
+- 2026-08-17 (pool-5 revision + the smuggled-verdict lesson): codex caught that
+  claude_1's self-criticism WAS a verdict ("over-counted"/"correct"/"explained" are
+  owner calls) — revision withdraws the judgments, keeps the 28 turns as valid
+  attributions, adopts neutral "phase-gate composition gap" wording, adds coverage
+  gates. The wording ruling applied to MY docs too (discovery note + C brief).
+  Instance 5 (reader's-half transport wall — ack-type verdicts structurally
+  unreachable by the ack gate) integrated into the discovery note with the
+  sharpened join form. FINAL GATE: codex review of the revision; then the session.
+
+- 2026-08-17 (owner preference on the cure): from the A–E alternatives analysis the
+  owner chose **C — fix the first door** (mid-game chopless trolls get an explicit
+  fallback chain from existing generators instead of the endgame planner; chain tail
+  written out to avoid building the next wall). Session brief drafted with the
+  bonus synergy (C shrinks the no-plant suppression-corner surface) and named
+  risks/open sub-choices. Formal ruling stays with the session; no cure code.
+
+- 2026-08-17 (POOL #3 CLOSED, POOL #5 DELIVERED — session one review away): codex
+  caught lossy aggregation (exclusive labels hid mixed evidence) → accepted record:
+  incidence 8/24/2/0 + status axis 29/4; token semantics REVIEWED ("stage
+  attribution, no harm claim"). Pool-5 mechanism: DELIBERATE GATING, WRONG SCOPE —
+  not a bug (:1189 chops-empty fall-through lands mid-game trolls in the endgame
+  generator, which has no harvest; :1418 re-adds harvest only behind true endgame;
+  325 turns where a harvest passed every clause of the bot's own filter). Plus:
+  oracle over-count self-caught (opponent occupancy; OSC-009 fully self-explains;
+  strong set OSC-032/033/028/008); OSC-031's 167 chop rejections NAMED-UNRESOLVED
+  rather than guessed. On codex's pool-5 acceptance the verdict-session package is
+  COMPLETE.
+
+- 2026-08-17 (POOL #3 DELIVERED — the answer takes shape): 34-situation cause table
+  lands on the OWNER'S taxonomy — LOW (world interaction) = 0 measured w/
+  observed-firing control (consistent with T-1's 1/25); HIGH (no goal) = 6; **MIDDLE
+  (goal split) DOMINANT = 21 situations / 2,240 WAIT turns** — the generator offered
+  real work and select()'s joint pairing discarded it (up to 194 straight turns).
+  Two self-caught defects incl. a complete-plausible-wrong table (kinds regex) —
+  caught by per-record reading. Evidence gate's first live passage (review_ref
+  resolvable, five tokens exact). codex review pending WITH a semantics-ruling
+  directive (no token semantics were ever published; docstring definitions must be
+  blessed/amended). Then #5, then the SESSION.
+
+- 2026-08-17 (POOLS 1+2 CLOSED, #3 RUNNING + integrator retraction): logging repair
+  GATE_ACCEPTED — and substantive: 21 door-clear + 3,517 conflict rewrites incl. 97
+  manufactured MOVE→WAIT (generator-WAIT vs resolver-WAIT now distinguishable — a
+  cause-table distinction the verdict needs). AND a forensic correction: my "queue
+  inversion" and "third quiet verdict" claims against codex were FALSE — reflog
+  proves the pool-2 verdict message was published promptly (on origin between my
+  11:04Z/11:18Z fetches); the miss was MY blind `--mark` inside publish chains (+
+  claude_1's false query premise, which I endorsed unchecked). Retracted by
+  correction message; ledger entries rewritten under my name; --mark removed from
+  automation.
+
+- 2026-08-17 (SPECS APPROVED): the owner gave final confirmation in session — both
+  rule books APPROVED at v12 (five owner rulings inside; twelve reviewed revisions).
+  Pool #7 fully closed. Implementation = separate future charter, gated on the
+  oscillation verdict session + explicit owner go.
+
+- 2026-08-17 (pool-2 verdict surfaced + SPECS OWNER-FINAL): the pool-#2 review had
+  ALREADY RUN — file pushed without a verdict message (QUIET-VERDICT class, third
+  instance; standing rule now: a verdict is not delivered until its MESSAGE is
+  published, same push as the file). Verdict REVISION_REQUIRED, one blocker: logging
+  taps sit BEFORE `force_unique_door_clear`/`resolve_move_conflicts` — claude_1's
+  live item: move taps after the passes + two observed-firing rewrite controls.
+  Everything else accepted incl. independently reproduced 34/34 parity+coverage.
+  **Spec v12 GATE_ACCEPTED_FOR_OWNER_FINAL_CONFIRMATION — pool #7 agent-side
+  COMPLETE; the owner's final yes is the sole remaining spec gate.**
+
+- 2026-08-17 (queue inversion caught and owned): claude_1's status query exposed
+  2h33m of critical-path silence — cause: MY five same-day spec revisions each
+  arrived as fresh review requests and preempted the queue I had fixed (WIP limit is
+  per-task, can't catch cross-task preemption). REASSERTED by directive: codex does
+  pool #2 NOW on the complete basis (instrument `0a95de5b` + parity 34/34
+  `34857fa1`); spec v12 published but EXPLICITLY SECOND (queue note in its own
+  handoff+status). v12 closes codex's v11 items: transition table enumerated vs
+  `engine.rs:148–185`; trace phase/commitment/identity fields + void-on-missing-
+  terminal-row. Methods-ledger entry: reviewer queues are consumed by arrival order
+  unless the coordinator enforces priority per message.
 
 - 2026-08-17 (v11 + parity done): codex v10 verdict = two operational contracts
   (cell-based generation identity incl. same-cell-replacement GK arm; joinable
