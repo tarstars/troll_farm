@@ -48,6 +48,64 @@ def predicate_definitions(probe_src):
     return out
 
 
+def parse_rows(err):
+    """STRICT: every `PRED` line must parse, or nothing is counted.
+
+    A regex that silently skips malformed rows cannot tell "this case never occurred" from
+    "this row was dropped" — the defect that made the 4c clause table unable to support a
+    negative statement.
+    """
+    rows = []
+    for ln in err.splitlines():
+        if not ln.startswith("PRED "):
+            continue
+        m = ROW.match(ln)
+        if not m:
+            raise RunnerError(f"UNPARSED PRED row, refusing to count anything: {ln!r}")
+        on, adj, inr, dam, hp = m.groups()
+        if dam not in ("true", "false"):
+            raise RunnerError(f"non-boolean damaged flag: {ln!r}")
+        rows.append((int(on), int(adj), int(inr), dam, int(hp)))
+    if not rows:
+        raise RunnerError("no PRED rows at all — the probe emitted nothing to measure")
+    return rows
+
+
+def tally(rows):
+    c = collections.Counter()
+    for on, adj, inr, dam, _hp in rows:
+        c["calls"] += 1
+        if on > 0:
+            c["on_tree_fires"] += 1
+        elif dam == "true":
+            c["evidence_free_firings"] += 1
+            if adj > 0:
+                c["admit_adjacent"] += 1
+            if inr > 0:
+                c["admit_inreach"] += 1
+            if (adj > 0) != (inr > 0):
+                c["adjacent_inreach_disagree"] += 1
+    return c
+
+
+def negative_controls(err):
+    """The parser MUST fail on corrupted input, or a clean run proves nothing."""
+    lines = [l for l in err.splitlines() if l.startswith("PRED ")]
+    cases = {
+        "malformed row": "\n".join(lines[:1] + ["PRED cell=oops"] + lines[1:]),
+        "truncated row": "\n".join([lines[0].rsplit(" ", 1)[0]] + lines[1:]),
+        "non-integer field": "\n".join([lines[0].replace("on_tree=", "on_tree=x", 1)] + lines[1:]),
+        "no rows at all": "",
+    }
+    for name, corrupted in cases.items():
+        try:
+            parse_rows(corrupted)
+        except RunnerError:
+            print(f"  negative control OK — parser rejects: {name}")
+        else:
+            raise RunnerError(f"NEGATIVE CONTROL FAILED: parser accepted {name}")
+
+
 def main():
     if MPP.main() != 0:
         raise RunnerError("probe build refused")
@@ -63,23 +121,18 @@ def main():
     plain = H.compile_candidate(subject, wd / "p")
 
     tot, byfix = collections.Counter(), {}
+    controls_done = False
     for sit in H.load_situations(None):
         err = C.check_parity(sit, cfg, plain, instr)      # point 2: raises on divergence
-        c = collections.Counter()
-        for on, adj, inr, dam, _hp in (m.groups() for m in ROW.finditer(err)):
-            c["calls"] += 1
-            if int(on) > 0:
-                c["on_tree_fires"] += 1
-            elif dam == "true":
-                c["evidence_free_firings"] += 1
-                if int(adj) > 0:
-                    c["admit_adjacent"] += 1
-                if int(inr) > 0:
-                    c["admit_inreach"] += 1
-                if (int(adj) > 0) != (int(inr) > 0):
-                    c["adjacent_inreach_disagree"] += 1
+        rows = parse_rows(err)                            # strict: no silent skips
+        c = tally(rows)
+        if c["calls"] != len(rows):
+            raise RunnerError(f"{sit['id']}: tally {c['calls']} != parsed rows {len(rows)}")
         byfix[sit["id"]] = {"parity": "IDENTICAL", **c}
         tot.update(c)
+        if not controls_done:
+            controls_done = True
+            negative_controls(err)
 
     # point 5: cross-sums, failing closed
     if sum(v["calls"] for v in byfix.values()) != tot["calls"]:
@@ -92,6 +145,8 @@ def main():
     if tot["adjacent_inreach_disagree"] == 0 and tot["admit_adjacent"] != tot["admit_inreach"]:
         raise RunnerError("inconsistent: zero disagreements but unequal admit totals")
 
+    if not controls_done:
+        raise RunnerError("negative controls never ran — a clean result would prove nothing")
     doc = {
         "task": "20260818-osc031-forecast-defect-fix",
         "subject": {"path": str(subject.relative_to(REPO)), "sha256": sha(subject),
