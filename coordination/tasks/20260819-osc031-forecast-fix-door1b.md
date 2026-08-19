@@ -12,15 +12,32 @@
   (sentinel build moves to second).
 - Created UTC: 2026-08-19T18:39:26Z
 
-## OWNER DESIGN RULING — Door 1b
+## OWNER DESIGN RULING — TWO TRUTHS (2026-08-19, superseding the 1b scope
+design SAME SESSION, before any build; the owner rejected the scope carve-out
+as a patch: "our task is to simplify the program")
 
-The Door-1 evidence rule stands: the "someone is chopping this tree" inference
-fires only on an opponent actually observed on the tree. **New scope bound:**
-on **orchard-eligible views** — exactly the population the P3
-orchard-dormancy property gates — the candidate's behavior is preserved
-BYTE-EQUAL to the parent; the fictional decay dies everywhere else. By
-construction this erases the four P3 rejections; nothing else about the
-accepted mechanism or evidence changes.
+The one lie doing two jobs is replaced by two single-purpose truths:
+
+1. **The forecast tells only the truth.** `predict_tree` predicts from
+   observed evidence ONLY: an opponent actually on the tree counts
+   (`ON_TREE`); absent evidence, nothing decays. **`DAMAGED_FLAT1` is DELETED
+   OUTRIGHT — no scope, no carve-out, no regime split.** The provenance
+   branching collapses to evidence-or-nothing.
+2. **The orchard knowledge is said out loud, once.** A single explicit named
+   rule at the candidate level: orchard-context trees are excluded from chop
+   candidacy. Its predicate is THE canonical orchard-eligibility definition
+   the P3 panel property uses — imported or generated from it, never a second
+   implementation (one predicate systemwide).
+
+**Simplification is itself a deliverable:** the candidate diff must be
+net-simpler (the fiction fully gone — reviewer verifies no remnant of it
+anywhere), and each surviving rule must state its meaning.
+
+**Named risk, measured not hoped:** the explicit rule is BROADER than the
+accident it replaces (the fiction silenced only DAMAGED orchard trees; the
+rule silences healthy ones too). Panel divergences on healthy-orchard-chop
+games are expected findings; they fail the gate only where games become
+blocking (the gate keys harm, not difference).
 
 ## Design constraints (the day's lessons, made binding)
 
@@ -40,9 +57,9 @@ accepted mechanism or evidence changes.
 
 ## Gates (unchanged battery, fail-first)
 
-1. Gate-1 rerun on the 1b candidate with the ACCEPTED unified runner
-   (attribution split reported; the four P3 fixtures' dormancy byte-equality
-   demonstrated).
+1. Gate-1 rerun on the two-truths candidate with the ACCEPTED unified runner
+   (attribution split reported; on the four P3 fixtures the dormancy rule
+   observed excluding the previously-introduced chops).
 2. 240-game panels, fresh provenance, vs the cure-C matched floor: **zero
    de-novo by (map_id, seat), both directions exercised** — the frozen gate,
    unchanged.
