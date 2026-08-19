@@ -29,9 +29,33 @@ PRED = re.compile(r"^PRED eval=(\d+) cell=(-?\d+),(-?\d+) on_tree=(\d+) adjacent
                   r"inreach=(\d+) damaged=(true|false) health=(-?\d+)$")
 # Both tails enumerated exactly. The previous ` .*$` wildcard meant `fullmatch` proved nothing
 # about the end of the row — a strict-looking check that could not reject trailing fields.
-WHY = re.compile(r"^WHY eval=(\d+) turn=(\d+) cell=(-?\d+),(-?\d+) exit=(NONE|SOME) "
-                 r"opp_chop=(-?\d+) start_health=(-?\d+) horizon=(-?\d+) "
-                 r"(?:died_at_iter=-?\d+|end_health=-?\d+ end_size=-?\d+)$")
+# TWO FULL ROW SCHEMAS, one per exit, so the tail is COUPLED to the exit value. The previous
+# single pattern matched `exit=(NONE|SOME)` and then allowed either tail independently, which
+# accepted semantically crossed rows (`exit=NONE … end_health=…`). It looked strict and was not.
+_HEAD = (r"^WHY eval=(\d+) turn=(\d+) cell=(-?\d+),(-?\d+) exit={exit} "
+         r"opp_chop=(-?\d+) start_health=(-?\d+) horizon=(-?\d+) ")
+WHY_NONE = re.compile(_HEAD.format(exit="NONE") + r"died_at_iter=-?\d+$")
+WHY_SOME = re.compile(_HEAD.format(exit="SOME") + r"end_health=-?\d+ end_size=-?\d+$")
+
+
+class _WhyMatch:
+    """Uniform accessor so callers keep group numbering with the exit value re-inserted."""
+
+    def __init__(self, m, exit_):
+        self._m, self._exit = m, exit_
+
+    def group(self, n):
+        if n == 5:
+            return self._exit
+        return self._m.group(n if n < 5 else n - 1)
+
+
+def why_fullmatch(line):
+    for rx, ex in ((WHY_NONE, "NONE"), (WHY_SOME, "SOME")):
+        m = rx.fullmatch(line)
+        if m:
+            return _WhyMatch(m, ex)
+    return None
 EXPECTED_FIXTURES = [f"OSC-{i:03d}" for i in range(1, 35)]
 OUT = REPO / "claude_1/chop4c/predicate-comparison-2026-08-19.json"
 
@@ -77,7 +101,7 @@ def reconcile(err):
                            int(m.group(6)), m.group(7))
             order.append(ev)
         elif ln.startswith("WHY "):
-            m = WHY.fullmatch(ln)
+            m = why_fullmatch(ln)
             if not m:
                 raise RunnerError(f"UNPARSED WHY row: {ln!r}")
             ev = int(m.group(1))
@@ -121,15 +145,24 @@ def tally(pairs):
 
 def alien_why(line):
     """A syntactically VALID WHY row with the same eval id and a different two-number cell."""
-    m = WHY.fullmatch(line)
+    m = why_fullmatch(line)
     if not m:
         raise RunnerError(f"control setup failed: sample WHY row does not full-match: {line!r}")
     cx, cy = int(m.group(3)), int(m.group(4))
     out = line.replace(f"cell={cx},{cy}", f"cell={cx + 77},{cy + 77}", 1)
-    if not WHY.fullmatch(out):
+    if not why_fullmatch(out):
         raise RunnerError("control setup failed: alien row must remain schema-valid, else it "
                           "tests malformedness rather than identity")
     return out
+
+
+def crossed(line, want_exit):
+    """Build a row whose exit value carries the OTHER exit's tail."""
+    head, _, tail = line.partition(" opp_chop=")
+    head = re.sub(r"exit=(NONE|SOME)", f"exit={want_exit}", head)
+    keep = " opp_chop=" + tail.split(" died_at_iter=")[0].split(" end_health=")[0]
+    return head + keep + (" end_health=3 end_size=1" if want_exit == "NONE"
+                          else " died_at_iter=4")
 
 
 def negative_controls(err):
@@ -155,6 +188,11 @@ def negative_controls(err):
                                                      for i, l in enumerate(ls)]),
         "trailing garbage on a WHY row": "\n".join([l + " extra=1" if i == iw else l
                                                     for i, l in enumerate(ls)]),
+        # CROSSED tails: the exit value and its tail must agree. Accepting these was the r4 hole.
+        "crossed tail: exit=NONE with end_health/end_size": "\n".join(
+            [crossed(l, "NONE") if i == iw else l for i, l in enumerate(ls)]),
+        "crossed tail: exit=SOME with died_at_iter": "\n".join(
+            [crossed(l, "SOME") if i == iw else l for i, l in enumerate(ls)]),
         "no rows at all": "",
     }
     for name, corrupted in cases.items():
