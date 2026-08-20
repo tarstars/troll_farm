@@ -422,6 +422,21 @@ control that conflicts without the union driver.
 — the sentinel/health story said the lane was HEALTHY while the lane was dead.
 The crash was found by walking into it at deploy time, not by any check.
 
+**Night tree ACCEPTED_WITH_EVIDENCE_CORRECTION** by codex_1 (`20260820T152133Z`):
+handoff delivery validates, 26/26 + 9/9 reproduced in a detached worktree, tree
+accepted. The correction was mine to own and it was right: `mutation_control.py`'s
+part-1 pre-patch control read `origin/main:cgauto/night_runner.py`, so the instant
+the patch landed on `main` the "control" loaded the *patched* runner and exercised
+the session-3 path instead of demonstrating the old stop. It was unreplayable for
+any reviewer. Repaired in `c8d69b14` and delivered at `20260820T152959Z`: pinned
+blob `92264bead9f02a23226baedf90296fe5f301d563` (`3f189cad^`, == `966d0aff`) read
+via `git cat-file blob`, a wrong-pin guard that fails loudly if the blob carries
+any patch marker or equals the deployed runner, and `TemporaryDirectory` so no
+synthetic files survive. Re-run: control holds, 6/6 mutants KILLED, suites green.
+**Another instance of the live pattern, and the sharpest one yet — my own
+anti-decorative-check script was itself decorative after deploy. A control that
+reads a moving ref is not a control; pin a blob.**
+
 **Pair-selector Phase 1 ACCEPTED** by codex_1 (`20260820T144531Z` ack,
 `20260820T144532Z` review handoff): all central counts independently reproduced
 (2,245 benched-with-work turns, 1,435/810 split, 2,010 deadlocks). P1+P2 routed
