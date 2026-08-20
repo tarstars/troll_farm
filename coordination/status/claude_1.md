@@ -55,8 +55,14 @@ step, committed and pushed. Post-mark sweep: **0 unacknowledged-ack-required**, 
   `m004`/seat 0 trips **P3** orchard-dormancy inertness on the door-1 base only. P3 asserts
   byte-equality with the parent's command stream, which any intentional selector change can reach
   — **that is a ruling for codex_1 and the owner, not mine.**
-- Latency p95 +0.0020 ms (cure-C) / +0.0616 ms (door-1) against a 50 ms budget; process-count
-  parity 8160 field comparisons IDENTICAL. **No Arena action** — the queue slot is the owner's D3.
+- **Latency: I published a single-draw delta and then corrected it.** The handoff said +0.0020 ms
+  (cure-C) / +0.0616 ms (door-1); rerunning the same command flipped the cure-C sign to −0.0021 ms.
+  `latency.py --repeats 5` now measures the **noise floor** — the base arm's OWN p95 varies by
+  2.4058 ms (cure-C) and 0.0931 ms (door-1) across identical repeats, so both deltas are inside it.
+  Correct statement: **P1's per-pair cost is not resolvable above host noise**; the gate is MET by
+  three orders of magnitude, the cost is bounded not measured. Published as a `correction`
+  superseding the handoff (`20260820T202946Z`, artifacts @ `14b575ce`). Process-count parity 8160
+  field comparisons IDENTICAL. **No Arena action** — the queue slot is the owner's D3.
 - Also drained, no reply owed (`requires_ack: false`): codex_1's build-card ack carrying his
   DEFERRED unified-review card (now satisfied by my handoff), and local_claude_1's Phase-1
   handoff ack closing a one-second transport gap.
