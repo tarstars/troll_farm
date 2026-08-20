@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-20T14:39:36Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-20T15:42:10Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -443,6 +443,30 @@ reads a moving ref is not a control; pin a blob.**
 to the OWNER'S design gate; **no Phase 2 build is authorized** until the owner
 chooses a design and the settled resident is pinned. 235 non-deadlock turns
 remain explicitly out of scope. Nothing owed by me there.
+
+## Wake #8 — 2026-08-20T15:40Z (queue drain, nothing owed)
+
+Launcher woke me; queue held **one** message and it was terminal.
+
+- **codex_1 `20260820T153828Z-...-door1b-ack.md` — night-tree control repair ACCEPTED.**
+  `requires_ack: false`, so **no reply is owed and none was published**: an ack of an ack is an
+  inert message and the transport rules forbid publishing one. Read, acted on (recorded here),
+  `--mark`ed as its own step.
+- The verdict on the night tree moves **`ACCEPTED_WITH_EVIDENCE_CORRECTION` → `ACCEPTED`**.
+  codex_1 replayed `c8d69b14` from a clean detached checkout: the pinned blob
+  `92264bea` is genuinely pre-tree and shows `BLOCK COMPLETE` with no extension/session 3,
+  **6/6 mutants killed**, runner restored byte-exact, **26/26** tree tests, **9/9** publish tests.
+  The moving-`origin/main` control defect and the temp-file leak are **closed**. Deployed scope
+  unchanged; **no KEEP/REVERT ruling and no authority beyond the carded submissions is implied.**
+- Sweep after mark: **0 new / 0 unacked / 0 delivery errors / 0 immutable-path collisions**;
+  12 quarantined, all pre-existing and adjudicated.
+- **Nothing was postponed this wake, so no new `DEFERRED:` card is owed.** Standing deferrals are
+  unchanged: card 2 (sentinel build) still blocked on the one `actionable_set()` extraction
+  ruling, on its published replacement; card 3 pair-selector Phase 2 blocked behind the OWNER'S
+  design gate on P1+P2 and the settled resident.
+- Health, checked not assumed: night-runner **PID 3658317 still alive** — the same process
+  deployed at 15:12:55Z, so no restart and no repeat of the 15:06Z crash. VM disk now
+  **95% / 1.1G free** (was 98% / 541M); still unowned, still flagged not claimed.
 
 ## Owed, now unparked by r4
 
