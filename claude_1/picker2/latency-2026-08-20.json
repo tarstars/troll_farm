@@ -1,0 +1,37 @@
+{
+  "_limits": "Measured on this host under no competing load, on four situations rather than the 240-game corpus; the timing includes the Python referee's own per-turn work, so it OVERSTATES the bot's cost rather than understating it. The candidate and base arms play DIFFERENT games after P1 diverges, so the delta is a comparison of two trajectories, not of the same turns.",
+  "cureC-base": {
+    "budget_ms": 50.0,
+    "max_ms": 0.1643,
+    "median_ms": 0.0633,
+    "met": true,
+    "p95_ms": 0.1202,
+    "warm_turns": 760
+  },
+  "cureC-p1p2": {
+    "budget_ms": 50.0,
+    "max_ms": 0.1742,
+    "median_ms": 0.0891,
+    "met": true,
+    "p95_delta_vs_base_ms": 0.0061,
+    "p95_ms": 0.1263,
+    "warm_turns": 760
+  },
+  "door1-base": {
+    "budget_ms": 50.0,
+    "max_ms": 0.3933,
+    "median_ms": 0.0702,
+    "met": true,
+    "p95_ms": 0.1024,
+    "warm_turns": 760
+  },
+  "door1-p1p2": {
+    "budget_ms": 50.0,
+    "max_ms": 3.3164,
+    "median_ms": 0.0768,
+    "met": true,
+    "p95_delta_vs_base_ms": 0.1577,
+    "p95_ms": 0.2601,
+    "warm_turns": 760
+  }
+}

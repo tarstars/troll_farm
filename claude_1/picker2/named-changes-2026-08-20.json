@@ -1,0 +1,854 @@
+{
+  "bases": {
+    "cureC": {
+      "by_kind": {
+        "HEALED_BLOCK": 20,
+        "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME": 4
+      },
+      "changed_games": 24,
+      "games": [
+        {
+          "cand_block": true,
+          "cand_detectors": {
+            "D-4": 1
+          },
+          "cand_flags": [],
+          "cand_properties": [
+            "P1"
+          ],
+          "class": "single_door_tent",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1,
+            "D-4": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
+          "map_id": "m003",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "harvester",
+          "seat": 0
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "single_door_tent",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1,
+            "D-6": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m012",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "chopper_aggressor",
+          "seat": 1
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "orchard_eligible",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m014",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "idle",
+          "seat": 1
+        },
+        {
+          "cand_block": true,
+          "cand_detectors": {
+            "D-4": 1
+          },
+          "cand_flags": [
+            "r5-horizon"
+          ],
+          "cand_properties": [
+            "P1",
+            "P4"
+          ],
+          "class": "choke_corridor",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-4": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1"
+          ],
+          "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
+          "map_id": "m021",
+          "new_flags": [
+            "r5-horizon"
+          ],
+          "new_properties": [
+            "P4"
+          ],
+          "profile": "idle",
+          "seat": 1
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "orchard_eligible",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m025",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "chopper_aggressor",
+          "seat": 1
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "water_diagonal",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m028",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "chopper_aggressor",
+          "seat": 1
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "choke_corridor",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m046",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "harvester",
+          "seat": 0
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "choke_corridor",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m050",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "harvester",
+          "seat": 1
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "forest_sparse",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m060",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "harvester",
+          "seat": 0
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "orchard_eligible",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m065",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "chopper_aggressor",
+          "seat": 1
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "open_field",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m071",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "idle",
+          "seat": 0
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "open_field",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 2
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m071",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "idle",
+          "seat": 1
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "choke_corridor",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m073",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "harvester",
+          "seat": 0
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "choke_corridor",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m078",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "chopper_aggressor",
+          "seat": 0
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "forest_sparse",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m079",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "harvester",
+          "seat": 0
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "forest_sparse",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m079",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "harvester",
+          "seat": 1
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "single_door_tent",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m084",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "idle",
+          "seat": 1
+        },
+        {
+          "cand_block": true,
+          "cand_detectors": {
+            "D-1": 1
+          },
+          "cand_flags": [],
+          "cand_properties": [
+            "P1",
+            "P2"
+          ],
+          "class": "choke_corridor",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 2
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P2",
+            "P4"
+          ],
+          "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
+          "map_id": "m090",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "harvester",
+          "seat": 0
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "single_door_tent",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m094",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "idle",
+          "seat": 1
+        },
+        {
+          "cand_block": true,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [
+            "P4"
+          ],
+          "class": "choke_corridor",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
+          "map_id": "m099",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "harvester",
+          "seat": 1
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "choke_corridor",
+          "floor_block": true,
+          "floor_detectors": {},
+          "floor_flags": [],
+          "floor_properties": [
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m100",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "harvester",
+          "seat": 0
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "orchard_eligible",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m104",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "idle",
+          "seat": 1
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "orchard_eligible",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m114",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "idle",
+          "seat": 1
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "choke_corridor",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m118",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "chopper_aggressor",
+          "seat": 1
+        }
+      ]
+    },
+    "door1": {
+      "by_kind": {
+        "HEALED_BLOCK": 8,
+        "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME": 4
+      },
+      "changed_games": 12,
+      "games": [
+        {
+          "cand_block": true,
+          "cand_detectors": {
+            "D-1": 1
+          },
+          "cand_flags": [],
+          "cand_properties": [
+            "P1",
+            "P3"
+          ],
+          "class": "orchard_eligible",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 2
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
+          "map_id": "m004",
+          "new_flags": [],
+          "new_properties": [
+            "P3"
+          ],
+          "profile": "idle",
+          "seat": 0
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "single_door_tent",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1,
+            "D-6": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m012",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "chopper_aggressor",
+          "seat": 1
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "orchard_eligible",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m014",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "idle",
+          "seat": 1
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "choke_corridor",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m021",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "idle",
+          "seat": 0
+        },
+        {
+          "cand_block": true,
+          "cand_detectors": {
+            "D-4": 1
+          },
+          "cand_flags": [
+            "r5-horizon"
+          ],
+          "cand_properties": [
+            "P1",
+            "P4"
+          ],
+          "class": "choke_corridor",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-4": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1"
+          ],
+          "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
+          "map_id": "m021",
+          "new_flags": [
+            "r5-horizon"
+          ],
+          "new_properties": [
+            "P4"
+          ],
+          "profile": "idle",
+          "seat": 1
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "water_diagonal",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m028",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "chopper_aggressor",
+          "seat": 1
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "choke_corridor",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m046",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "harvester",
+          "seat": 0
+        },
+        {
+          "cand_block": true,
+          "cand_detectors": {
+            "D-1": 1
+          },
+          "cand_flags": [],
+          "cand_properties": [
+            "P1"
+          ],
+          "class": "choke_corridor",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 2
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
+          "map_id": "m070",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "harvester",
+          "seat": 1
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "choke_corridor",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m073",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "harvester",
+          "seat": 0
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "forest_sparse",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m079",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "harvester",
+          "seat": 0
+        },
+        {
+          "cand_block": false,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [],
+          "class": "single_door_tent",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "HEALED_BLOCK",
+          "map_id": "m084",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "idle",
+          "seat": 1
+        },
+        {
+          "cand_block": true,
+          "cand_detectors": {},
+          "cand_flags": [],
+          "cand_properties": [
+            "P4"
+          ],
+          "class": "choke_corridor",
+          "floor_block": true,
+          "floor_detectors": {
+            "D-1": 1
+          },
+          "floor_flags": [],
+          "floor_properties": [
+            "P1",
+            "P4"
+          ],
+          "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
+          "map_id": "m099",
+          "new_flags": [],
+          "new_properties": [],
+          "profile": "harvester",
+          "seat": 1
+        }
+      ]
+    }
+  },
+  "keyed_by": "(map_id, seat)",
+  "phase": 2,
+  "task": "20260820-pair-selector-anti-benching"
+}

@@ -1,0 +1,64 @@
+                     (Some(a),Some(b))if a==b=>inventory[a]>=2,_=>true,
+                 }
+                 }
++            fn move_dest(command:&str)->Option<Cell>{
++                let fields:Vec<_> =command.split_whitespace().collect();
++                if fields.len()!=4||!fields[0].eq_ignore_ascii_case("MOVE"){
++                    return None;
++                    }
++                match(fields[2].parse::<i32>(),fields[3].parse::<i32>()){
++                    (Ok(x),Ok(y))=>Some((x,y)),_=>None,
++                }
++                }
++            fn self_blocked(a_id:i32,a:&Candidate,b_id:i32,b:&Candidate,unit_cells:&BTreeMap<i32,Cell>,)->bool{
++                let blocks=|waiter:i32,mover:&Candidate|match(unit_cells.get(&waiter),Self::move_dest(&mover.command)){
++                    (Some(cell),Some(dest))=>*cell==dest,_=>false,
++                }
++                ;
++                (a.command=="WAIT"&&blocks(a_id,b))||(b.command=="WAIT"&&blocks(b_id,a))
++                }
++            fn wait_count(a:&Candidate,b:&Candidate)->usize{
++                (a.command=="WAIT")as usize+(b.command=="WAIT")as usize
++                }
+             fn select(candidates_by_id:BTreeMap<i32,Vec<Candidate>>,inventory:&[i32;
+-            6],)->Vec<String>{
++            6],unit_cells:&BTreeMap<i32,Cell>,)->Vec<String>{
+                 let ids:Vec<i32> =candidates_by_id.keys().copied().collect();
+                 if ids.is_empty(){
+                     return Vec::new();
+                 if ids.len()==2{
+                     let mut best_score=f64::NEG_INFINITY;
+                     let mut best_pair=None;
++                    let mut best_waits=usize::MAX;
+                     for a in&candidates_by_id[&ids[0]]{
+                         for b in&candidates_by_id[&ids[1]]{
+                             if!Self::compatible(a.target,b.target)||!Self::stock_compatible(a,b,inventory){
+                                 continue;
+                                 }
++                            if Self::self_blocked(ids[0],a,ids[1],b,unit_cells){
++                                continue;
++                                }
+                             let score=a.score+b.score;
+-                            if score>best_score{
++                            let waits=Self::wait_count(a,b);
++                            if score>best_score||(best_pair.is_some()&&score==best_score&&waits<best_waits){
+                                 best_score=score;
++                                best_waits=waits;
+                                 best_pair=Some((a.command.clone(),b.command.clone()));
+                                 }
+                             }
+                 let early=!self.opening_abandoned&&my_units.len()<2&&!train_now;
+                 let endgame=Self::endgame(view);
+                 let mut by_id=BTreeMap::new();
++                let unit_cells:BTreeMap<i32,Cell> =my_units.iter().map(|unit|(unit.id,unit.cell)).collect();
+                 for unit in my_units{
+                     let committed_regeneration=self.regeneration_commitments.contains_key(&unit.id);
+                     let mut candidates=if committed_regeneration{
+                 if self.door_unblocking{
+                     self.force_unique_door_clear(view,&mut by_id);
+                     }
+-                let mut selected=MoisanBot::select(by_id,&view.inventories[0]);
++                let mut selected=MoisanBot::select(by_id,&view.inventories[0],&unit_cells);
+                 MoisanBot::resolve_move_conflicts(view,&mut selected);
+                 self.remember_selected_regeneration(&selected);
+                 out.extend(selected);

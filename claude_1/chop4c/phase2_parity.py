@@ -39,7 +39,10 @@ def main():
     out = {"rows": len(a), "field_comparisons": compared, "excluded_fields": sorted(EXCLUDED),
            "identical": ok, "differing": [{"map_id": k[0], "seat": k[1], "field": f}
                                           for k, f in diffs]}
-    Path("claude_1/chop4c/osc031-phase2-parity-2026-08-19.json").write_text(
+    # argv[3] optional so a later task can reuse THIS comparison rather than copy it; the
+    # OSC-031 default is unchanged, so existing invocations behave exactly as before.
+    Path(sys.argv[3] if len(sys.argv) > 3
+         else "claude_1/chop4c/osc031-phase2-parity-2026-08-19.json").write_text(
         json.dumps(out, indent=2, sort_keys=True) + "\n")
     return 0 if ok else 1
 
