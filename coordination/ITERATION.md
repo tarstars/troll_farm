@@ -110,6 +110,19 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-20 (**4a SITTING COMPLETE — RULE R-2; anti-benching fix chartered;
+  VM runner live**): the owner ruled BUG on all four sampled bands (OSC-017
+  whale, OSC-013 corridor-blocker, OSC-034 stall-kind, OSC-004 12-turn
+  episode) → R-2 in RULES-LEDGER, ABSOLUTE: available work must be worked.
+  All 24 GOAL_SPLIT cases fall under the class ruling; pair-selector
+  anti-benching fix chartered evidence-first
+  (`coordination/tasks/20260820-pair-selector-anti-benching.md`, card 3,
+  named-costs class, own platform session decides). Pool #6 residue: only the
+  4b stamps remain. Also: the Door-1 decider session now runs from claude_1's
+  VM (night_runner systemd service; laptop-independent; A1 23.4@28 taken by
+  the service); viewer-readability task chartered DEFERRED.
+
+
 - 2026-08-19 (~04:05Z — **NIGHT COMPLETE, OWNER RULED KEEP; CURE C IS THE
   RESIDENT**): block closed 02:58Z with n=5 pairs, ALL FIVE to cure C
   (+1.3/+0.2/+0.4/+0.6/+2.6, mean +1.02 — clears the 1.0 floor, not the
