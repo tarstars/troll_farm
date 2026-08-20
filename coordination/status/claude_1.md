@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-20T12:19:07Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-20T12:53:28Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -26,6 +26,54 @@ established causes.** If you are resuming, do not act on any of it:
 14.58%** I measured rather than inherited. Gates: 2, 3 (warm p95 **0.04 ms**), 4 (parity identical)
 **MET**; gate 1 **partially met** — `half_swap` guard unvalidated because whole-game perturbation
 cannot hold the trajectory fixed.
+
+## Current position (2026-08-20, later) — proxy FIXED, launcher starves one layer up
+
+**Inbox drained to 0/0 and pushed.** Head `agent/claude_1` carries: tooling sync (suite **119/119**,
+was 105 — `agent_launcher.py` and the cc-ack narrowing were both missing here again), the `--mark`
+stranded by a starved launched session, two evidence artifacts, two blockers, two acks, and the
+quarantine registry resynced from the coordinator (I was one entry behind — my own 055011Z handoff).
+
+### What actually happened today, in the right order
+
+1. **The 403 was the PROXY, not auth** — the owner's memory, not any record. `/home/tarstars/bin/claude-proxy`
+   (egress `10.77.0.1:3128`) is the sanctioned wrapper; `docs/vm-proxy.md` now exists so it can never
+   be lost again. My credential-expiry diagnosis was **wrong**, and I cited `daemon-auth-status.json`
+   = `auth_required` as support. **That file still reads `auth_required` with a live authenticated
+   session running.** It was never evidence of what I used it for.
+2. **Wakes #1 (12:38:16Z) and #2 (12:47:15Z) both authenticated and both starved.** `claude -p` is
+   non-interactive: `git status/log/show/diff` allowed; `python3 …`, `git fetch`, `git commit`,
+   `git push` and **`Write`** denied. A woken session can read the queue and cannot sweep, `--mark`,
+   ack, publish, **or leave a DEFERRED card** — carding requires writing a file. Worse than the 403,
+   which at least died visibly in 3 s; this logs an ordinary `wake` and changes nothing.
+3. **The fix is tested, not proposed.** Per-lane `--allowedTools` on the launcher argv: Arm A ran
+   (`42`), Arm B with the flag removed was denied — same wrapper, same command, one minute apart.
+   Scoped to launcher sessions, not host-wide; push scoped to `agent/claude_1`, never
+   `--dangerously-skip-permissions`. **NOT APPLIED — owner's posture call**, on the machine holding
+   the Arena cookie. This is the one action that ends the starvation.
+4. **I corrected the round summary's attribution.** It credited wake #1 with "read, marked, synced
+   tooling". It read; it could not mark or sync. Those were mine, `mtime 12:29:33Z` vs the wake at
+   `12:38:16Z` — **nine minutes earlier**. Wake #1's own log made the same misread of my uncommitted
+   seen-state, and the summary compounded it. It matters because the repair aimed at it — sharpening
+   the ritual prompt to "end pushed" — **was tested by wake #2 and refused**: a prompt cannot lift a
+   permission denial. The ritual line is still right and still worth keeping; it is not what broke.
+
+### Standing
+
+- **The launcher card's bar — "a launched session DRAINS a real queue" — remains UNMET. I am not
+  claiming it.** The next launched session that completes sweep → mark → commit → push unattended
+  is the delivery, and it cannot happen before the allowlist lands.
+- Card 2 sentinel build: still blocked on the integrator's `actionable_set()` extraction ruling.
+  Note a precedent nobody has ruled on: `agent_launcher.py:58` gets the actionable set by running
+  `inbox_sweep.py` **as a subprocess and parsing its stdout section headers**. That route needs no
+  extraction ruling — and it is fragile in this project's signature way: reword a section header and
+  `SECTION_RE` matches nothing, `paths` comes back empty, and the launcher reports "no work" instead
+  of failing.
+- Card 3 pair-selector Phase 1: still deferred behind the OSC-031 KEEP/REVERT.
+- `night-runner` HEALTHY. **VM disk 98%, 541M free** — down from ~1.2G this morning; this has already
+  blocked one deploy with ENOSPC.
+- Trap re-hit and worth writing down again: `publish_outbox.sh` lints `--staged`, so running it with
+  nothing staged lints **0 files and passes**. A gate with an empty subject is not a gate.
 
 ## Current position (2026-08-20) — two services deployed on the VM; one blocked on auth
 
