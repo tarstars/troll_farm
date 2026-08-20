@@ -160,19 +160,32 @@ healed blocks, four per base changed within an already-blocked game:
 
 ## Gates 5 and 6 — latency and parity
 
-P1 adds a per-pair call in the hot loop; the card said measure it, not argue it. All four arms,
-760 warm turns each, `latency_probe.timed_run` imported rather than restated:
+P1 adds a per-pair call in the hot loop; the card said measure it, not argue it. So it is
+measured **five times per arm**, because the first version of this gate took one draw per arm and
+reported "+0.0020 ms on cure-C" — and the very next run of the same command turned that into
+**−0.0021 ms**. A single draw cannot separate a cost from host noise, and reporting one as if it
+could is how a number becomes a claim it never earned.
 
-| arm | median | p95 | max | budget | verdict |
-|---|---|---|---|---|---|
-| cure-C base | 0.0567 ms | 0.0730 ms | 0.1161 ms | 50 ms | MET |
-| cure-C P1+P2 | 0.0518 ms | **0.0750 ms** (+0.0020) | 0.1449 ms | 50 ms | MET |
-| door-1 base | 0.0561 ms | 0.0725 ms | 0.1240 ms | 50 ms | MET |
-| door-1 P1+P2 | 0.0611 ms | **0.1341 ms** (+0.0616) | 0.2071 ms | 50 ms | MET |
+Four arms, 760 warm turns per draw, `latency_probe.timed_run` imported rather than restated:
 
-The p95 cost is under two tenths of a millisecond against a 50 ms budget. **Limit, stated:** the
-candidate and base arms play different games once P1 diverges, so the delta compares two
-trajectories, not the same turns; and this is four situations on an unloaded host, not the corpus.
+| arm | p95 median of 5 draws | p95 range across draws | budget | verdict |
+|---|---|---|---|---|
+| cure-C base | 0.1486 ms | 0.0748 – 2.4806 ms | 50 ms | MET (every draw) |
+| cure-C P1+P2 | 0.1276 ms | 0.0750 – 0.1561 ms | 50 ms | MET (every draw) |
+| door-1 base | 0.0889 ms | 0.0751 – 0.1683 ms | 50 ms | MET (every draw) |
+| door-1 P1+P2 | 0.1285 ms | 0.0765 – 0.2107 ms | 50 ms | MET (every draw) |
+
+**The noise floor is measured, not assumed**: the *base* arm's own p95 varies by **2.4058 ms**
+(cure-C) and **0.0931 ms** (door-1) across identical repeats — one cure-C draw was a 2.48 ms
+outlier, presumably scheduler interference on this host. Against that, the candidate-vs-base
+deltas are **−0.0211 ms** and **+0.0396 ms**: both **inside** their base arm's own spread.
+
+**So the honest statement is not "P1 costs +0.002 ms". It is: P1's per-pair cost is not
+resolvable above host noise on this instrument, and every single draw of every arm sits three
+orders of magnitude under the 50 ms budget.** If a reviewer wants the cost resolved rather than
+bounded, that needs a quieter host or a per-call microbenchmark, and it is not in this package.
+**Limit, stated:** the candidate and base arms play different games once P1 diverges, so the
+delta compares two trajectories, not the same turns.
 
 **Process-count parity**: the cure-C candidate's 240 rows at 8 processes vs 1 process —
 **8160 field comparisons across 34 fields, IDENTICAL**. (`attempt` is excluded by the inherited

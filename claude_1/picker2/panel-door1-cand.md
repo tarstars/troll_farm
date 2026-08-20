@@ -9,7 +9,7 @@
 - parent: `../../claude_1/chop4c/candidate-door1.rs` (sha256 547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0)
 - seeds: [982451653, 15485863, 32452843, 49979687, 67867967, 86028121]
 - maps: 120 (x2 seats = 240 candidate games + 240 parent games), 200 turns each
-- wall time: 13.1 s
+- wall time: 9.4 s
 
 ## Verdict: BLOCK (candidate run)
 

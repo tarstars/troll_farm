@@ -9,7 +9,7 @@
 - parent: `../../cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs` (sha256 ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1)
 - seeds: [982451653, 15485863, 32452843, 49979687, 67867967, 86028121]
 - maps: 120 (x2 seats = 240 candidate games + 240 parent games), 200 turns each
-- wall time: 39.0 s
+- wall time: 17.6 s
 
 ## Verdict: BLOCK (candidate run)
 

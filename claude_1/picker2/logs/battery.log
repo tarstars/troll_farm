@@ -218,7 +218,28 @@ fuzz_panel: BLOCK [candidate run] (240 games, 33 blocking, 2 flagged, 0 gate-unr
 fuzz_panel: BLOCK [floor run] (240 games, 43 blocking, 1 flagged, 0 gate-unready, 9.5 s; report: claude_1/picker2/panel-door1-floor.md)
   OK       panel: door-1 matched floor (240) (exit 1)
   RUN      panel: door-1 candidate (240)
--08-20.json
+fuzz_panel: BLOCK [candidate run] (240 games, 35 blocking, 2 flagged, 0 gate-unready, 9.4 s; report: claude_1/picker2/panel-door1-cand.md)
+  OK       panel: door-1 candidate (240) (exit 1)
+  RUN      panel: cure-C candidate at 1 process (parity arm)
+fuzz_panel: BLOCK [candidate run] (240 games, 33 blocking, 2 flagged, 0 gate-unready, 17.6 s; report: claude_1/picker2/panel-cureC-cand-1proc.md)
+  OK       panel: cure-C candidate at 1 process (parity arm) (exit 1)
+  RUN      matched-floor check (the reused cure-C floor is THIS candidate's floor)
+  cureC (REUSED floor (not re-run tonight)): config diffs none; provenance diffs none; lineage OK -> MATCHED
+  door1 (floor re-run tonight): config diffs none; provenance diffs none; lineage OK -> MATCHED
+  matched-floor check: MET
+wrote /home/tarstars/prj/troll_farm-claude_1/claude_1/picker2/floor-match-2026-08-20.json
+  OK       matched-floor check (the reused cure-C floor is THIS candidate's floor) (exit 0)
+  RUN      decomposition (map_id, seat), cure-C
+  matched corpus gate PASS — 240 keyed games per arm; floor bot's stream byte-identical across arms on all 240 (corpus matched AND floor deterministic)
+  candidate changed opponent behaviour in 17 of 240 games
+  aggregate (CONTEXT, NOT THE GATE): candidate 33 vs floor 53 blocking
+  DE-NOVO (blocks under candidate, not under floor): 0
+  HEALED  (blocks under floor, not under candidate): 20
+  both directions exercised: False
+  de-novo by property: {}
+  wrote claude_1/picker2/decomposition-cureC-2026-08-20.json
+  OK       decomposition (map_id, seat), cure-C (exit 0)
+  RUN      decomposition (map_id, seat), door-1
   matched corpus gate PASS — 240 keyed games per arm; floor bot's stream byte-identical across arms on all 240 (corpus matched AND floor deterministic)
   candidate changed opponent behaviour in 8 of 240 games
   aggregate (CONTEXT, NOT THE GATE): candidate 35 vs floor 43 blocking
@@ -227,10 +248,14 @@ fuzz_panel: BLOCK [floor run] (240 games, 43 blocking, 1 flagged, 0 gate-unready
   both directions exercised: False
   de-novo by property: {}
   wrote claude_1/picker2/decomposition-door1-2026-08-20.json
+  OK       decomposition (map_id, seat), door-1 (exit 0)
+  RUN      de-novo DIRECTION control (swap the arms; healed must reappear as de-novo)
   cureC: real de-novo 0, real healed 20; arms swapped -> de-novo 20 (same keys as healed: True) -> direction OBSERVABLE
   door1: real de-novo 0, real healed 8; arms swapped -> de-novo 8 (same keys as healed: True) -> direction OBSERVABLE
   de-novo direction control: MET
 wrote /home/tarstars/prj/troll_farm-claude_1/claude_1/picker2/denovo-direction-control-2026-08-20.json
+  OK       de-novo DIRECTION control (swap the arms; healed must reappear as de-novo) (exit 0)
+  RUN      every behaviour change named
   cureC: 24 of 240 keyed games changed  {'PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME': 4, 'HEALED_BLOCK': 20}
     NAMED  m003 seat 0 [single_door_tent/harvester] PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME  new properties -  new flags -
     NAMED  m021 seat 1 [choke_corridor/idle] PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME  new properties ['P4']  new flags ['r5-horizon']
@@ -242,54 +267,22 @@ wrote /home/tarstars/prj/troll_farm-claude_1/claude_1/picker2/denovo-direction-c
     NAMED  m070 seat 1 [choke_corridor/harvester] PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME  new properties -  new flags -
     NAMED  m099 seat 1 [choke_corridor/harvester] PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME  new properties -  new flags -
 wrote /home/tarstars/prj/troll_farm-claude_1/claude_1/picker2/named-changes-2026-08-20.json
+  OK       every behaviour change named (exit 0)
+  RUN      process-count parity (8-proc vs 1-proc, 240 rows)
   excluded from comparison (timing, not result): ['attempt']
   compared 240 rows x 34 fields = 8160 field comparisons
   process-count parity (8-proc vs 1-proc): IDENTICAL
-  cureC-base  760 warm turns  median 0.0633 ms  p95 0.1202 ms  max 0.1643 ms  -> MET
-  cureC-p1p2  760 warm turns  median 0.0891 ms  p95 0.1263 ms  max 0.1742 ms  -> MET
-  door1-base  760 warm turns  median 0.0702 ms  p95 0.1024 ms  max 0.3933 ms  -> MET
-  door1-p1p2  760 warm turns  median 0.0768 ms  p95 0.2601 ms  max 3.3164 ms  -> MET
-  cureC: P1+P2 costs +0.0061 ms at p95 vs its own base
-  door1: P1+P2 costs +0.1577 ms at p95 vs its own base
-  latency gate (warm p95 < 50 ms, all four arms): MET
-wrote /home/tarstars/prj/troll_farm-claude_1/claude_1/picker2/latency-2026-08-20.json
-  RUN      build (one generator, two subjects, identical patch)
-  OK       build (one generator, two subjects, identical patch) (exit 0)
-  RUN      probes (both arms, both bases)
-  OK       probes (both arms, both bases) (exit 0)
-  RUN      gate 1a BENCHED — fail-first, parity + coverage + P1 liveness
-  OK       gate 1a BENCHED — fail-first, parity + coverage + P1 liveness (exit 0)
-  RUN      gate 1b employment cross-check (uninstrumented command stream)
-  OK       gate 1b employment cross-check (uninstrumented command stream) (exit 0)
-  RUN      all-34 sweep, cure-C base
-  OK       all-34 sweep, cure-C base (exit 0)
-  RUN      all-34 sweep, cure-C P1+P2
-  OK       all-34 sweep, cure-C P1+P2 (exit 0)
-  RUN      all-34 sweep, door-1 base
-  OK       all-34 sweep, door-1 base (exit 0)
-  RUN      all-34 sweep, door-1 P1+P2
-  OK       all-34 sweep, door-1 P1+P2 (exit 0)
-  RUN      panel: cure-C candidate (240)
-  OK       panel: cure-C candidate (240) (exit 1)
-  RUN      panel: door-1 matched floor (240)
-  OK       panel: door-1 matched floor (240) (exit 1)
-  RUN      panel: door-1 candidate (240)
-  OK       panel: door-1 candidate (240) (exit 1)
-  RUN      panel: cure-C candidate at 1 process (parity arm)
-  OK       panel: cure-C candidate at 1 process (parity arm) (exit 1)
-  RUN      matched-floor check (the reused cure-C floor is THIS candidate's floor)
-  OK       matched-floor check (the reused cure-C floor is THIS candidate's floor) (exit 0)
-  RUN      decomposition (map_id, seat), cure-C
-  OK       decomposition (map_id, seat), cure-C (exit 0)
-  RUN      decomposition (map_id, seat), door-1
-  OK       decomposition (map_id, seat), door-1 (exit 0)
-  RUN      de-novo DIRECTION control (swap the arms; healed must reappear as de-novo)
-  OK       de-novo DIRECTION control (swap the arms; healed must reappear as de-novo) (exit 0)
-  RUN      every behaviour change named
-  OK       every behaviour change named (exit 0)
-  RUN      process-count parity (8-proc vs 1-proc, 240 rows)
   OK       process-count parity (8-proc vs 1-proc, 240 rows) (exit 0)
   RUN      latency p95, all four arms
+  cureC-base  760 warm turns  median 0.0564 ms  p95 0.0785 ms  max 0.2457 ms  -> MET
+  cureC-p1p2  760 warm turns  median 0.0575 ms  p95 0.0764 ms  max 0.1729 ms  -> MET
+  door1-base  760 warm turns  median 0.0568 ms  p95 0.0718 ms  max 0.1183 ms  -> MET
+  door1-p1p2  760 warm turns  median 0.0659 ms  p95 0.0770 ms  max 0.1352 ms  -> MET
+  cureC: P1+P2 costs -0.0021 ms at p95 vs its own base
+  door1: P1+P2 costs +0.0052 ms at p95 vs its own base
+  latency gate (warm p95 < 50 ms, all four arms): MET
+wrote /home/tarstars/prj/troll_farm-claude_1/claude_1/picker2/latency-2026-08-20.json
   OK       latency p95, all four arms (exit 0)
 
   BATTERY: ALL STEPS OK
+K
