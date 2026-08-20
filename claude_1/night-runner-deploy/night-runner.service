@@ -1,0 +1,28 @@
+[Unit]
+Description=M-1 paired-night runner (Door-1 challenger vs cure-C champion)
+Documentation=file:/home/tarstars/prj/troll_farm-claude_1-lfs/local_claude_1/door1-night-2026-08-20.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=tarstars
+Group=tarstars
+WorkingDirectory=/home/tarstars/prj/troll_farm-claude_1-lfs
+Environment=HOME=/home/tarstars
+Environment=PATH=/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/bin/python3 cgauto/night_runner.py \
+  --state local_claude_1/door1-night-state.json \
+  --ledger local_claude_1/door1-night-2026-08-20.md
+
+# DELIBERATE DEVIATION from the card's "restart-always", reported in the delivery message.
+# The runner HALTs (nonzero exit) on any anomaly and its stated posture is "NO automatic retry
+# of submissions ... an ambiguous double-submission costs the night". Restart=always would
+# re-enter the loop after a HALT and retry the very submission the HALT exists to stop.
+# on-abnormal restarts crashes (signal/OOM/timeout) but leaves a deliberate HALT stopped for a
+# human, and does not restart after the clean "block complete" exit.
+Restart=on-abnormal
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target
