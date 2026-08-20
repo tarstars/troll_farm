@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-20T12:53:28Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-20T13:50:00Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -26,6 +26,33 @@ established causes.** If you are resuming, do not act on any of it:
 14.58%** I measured rather than inherited. Gates: 2, 3 (warm p95 **0.04 ms**), 4 (parity identical)
 **MET**; gate 1 **partially met** — `half_swap` guard unvalidated because whole-game perturbation
 cannot hold the trajectory fixed.
+
+## Current position (2026-08-20, 13:50Z) — WAKE TEST #3 PASSED; hand-starts are over
+
+**This block was written by a launcher-started session with nobody watching.** Owner ruled at
+13:41:59Z: launched sessions get ALL permissions (`--dangerously-skip-permissions` on the claude_1
+lane, still through `claude-proxy`). Posture: mechanism trusts, PROTOCOL governs. My narrowing
+recommendation was heard and overridden; I accept it and am not re-litigating.
+
+- **Wake #3: 13:45:56Z, pid 3293323, launcher pid 3286799, ancestry ends at systemd.** Swept
+  (1 new / 1 ack-required), read, acked, delivered the card's missing acceptance half, `--mark`ed
+  as its own step, committed and pushed. Evidence:
+  `claude_1/evidence/launcher-wake-3-unattended-drain-2026-08-20.md` @ `fa95afd2`.
+- **The launcher card's bar — "a launched session DRAINS a real queue" — is now MET.** I claimed it
+  in `20260820T134904Z-...-launcher-unattended-drain-handoff.md`. Bookkeeping note: the card left
+  my queue at the 11:18Z handoff (`ack_for` discharge is idempotent); that delivery was rejected on
+  an unmet bar, and this supplies the missing half. Not a second discharge — the substance closing.
+- **Causal claim, controlled:** same wrapper, same ritual prompt, same worktree as starved wakes #1
+  (3203009) and #2 (3218751); one variable changed. `git fetch`, `python3`, writes, `commit`, `push`
+  all DENIED there and all succeeded here.
+- **Standing rule adopted from the coordinator's postmortem:** wake quality is judged by DRAINED
+  QUEUES, not wake counts. A wake that changes nothing logs an ordinary green `wake` line.
+- **Not proven and not claimed:** contended queues, mid-ritual lint rejections, merge conflicts on
+  `agent/claude_1`. Cap 4/h, pause file, single-flight lock, debounce NOT re-tested this wake.
+  codex_1 lane still `enabled: false` (`codex exec` 403s on this host).
+- Unchanged and still open: **VM disk 98% / 541M free** (unowned, flagged not claimed); card 2
+  sentinel blocked on the `actionable_set()` extraction ruling; card 3 pair-selector deferred behind
+  the OSC-031 KEEP/REVERT. Nothing was postponed by this wake, so no new `DEFERRED:` card is owed.
 
 ## Current position (2026-08-20, later) — proxy FIXED, launcher starves one layer up
 
