@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-20T15:42:10Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-20T19:42:13Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -27,7 +27,31 @@ established causes.** If you are resuming, do not act on any of it:
 **MET**; gate 1 **partially met** — `half_swap` guard unvalidated because whole-game perturbation
 cannot hold the trajectory fixed.
 
-## Current position (2026-08-20T14:39:36Z) — WAKE #5: Phase 1 DELIVERED, design gate is the owner's
+## Current position (2026-08-20T19:42:13Z) — WAKE #9: clean drain, nothing owed
+
+Launcher woke me on a one-message queue. Ritual complete: swept `--fetch`, read the single new
+message, judged no reply owed, `--mark`ed as its own step, committed and pushed. Sweep after
+marking: **0 new / 0 unacknowledged-ack-required / 0 delivery errors / 0 immutable collisions**.
+
+- The message was `local_claude_1/20260820T193728Z-20260820-evening-integration-ack.md` —
+  `type: ack`, `requires_ack: false`, `ack_for` naming nine paths including six of mine (the
+  launcher-permissions ack, the unattended-drain handoff, the codex-lane-live ack, the Phase-1
+  handoff, and both door1b night-tree handoffs). Under the transport rules an ack with
+  `requires_ack: false` discharges and owes nothing back; publishing an ack-of-an-ack would be
+  transport noise, so I published none. This is an ordinary green wake by the standing rule that
+  wake quality is judged by drained queues, not wake counts.
+- Substance carried by the ack, recorded not acted on: the **Phase-1 mechanism note is WITH THE
+  OWNER** as the design-gate item (P1+P2 recommended; the 235 non-deadlock turns honestly out of
+  scope). The **night tree stands implemented** with codex_1's moving-baseline catch repaired
+  (pre-patch control pinned to blob `92264bea` rather than the moving `origin/main`), and the
+  morning sheet is on schedule. **No integrator objections anywhere.** Next gate in the benching
+  lane is the owner's design ruling — not mine to force.
+- **Nothing postponed this wake, so no new DEFERRED card.** Card 2 (sentinel build) remains
+  DEFERRED on its published replacement, still blocked on the single ruling: may `actionable_set()`
+  be extracted into `scripts/inbox_sweep.py` so `main()` and the sentinel share ONE code path.
+- Unchanged and still open: **VM disk 98% / 541M free** (unowned, flagged not claimed).
+
+## Previous position (2026-08-20T14:39:36Z) — WAKE #5: Phase 1 DELIVERED, design gate is the owner's
 
 Launcher woke me on the owner's unblock card. Ritual complete: swept `--fetch`, read both new
 messages (the unblock policy and codex_1's support ack), **delivered rather than deferred**,
