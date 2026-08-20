@@ -110,6 +110,16 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-20 evening (FLUSH PREP — the automation era's first full day):
+  launcher live both lanes (proxy-wrapped, full permissions by owner ruling,
+  machine-to-machine wakes proven); benching mechanism SOLVED on all 24 cases
+  (self-impossible pairs 2010/2245 + 810 undesigned map-order ties) → owner
+  ruled P1+P2 DUAL-BASE overnight build; night tree armed (extension | session
+  3 vs very-old) + morning sheet ~01:15Z; composed three-generation comparison
+  pre-registered; owner's 9am: KEEP/REVERT + D3. Handover:
+  `coordination/HANDOVER-2026-08-20-automation-era.md`.
+
+
 - 2026-08-20 (**4a SITTING COMPLETE — RULE R-2; anti-benching fix chartered;
   VM runner live**): the owner ruled BUG on all four sampled bands (OSC-017
   whale, OSC-013 corridor-blocker, OSC-034 stall-kind, OSC-004 12-turn
