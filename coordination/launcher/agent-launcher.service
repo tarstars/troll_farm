@@ -1,0 +1,13 @@
+[Unit]
+Description=Troll Farm agent launcher (wake-on-work doorbell, no-LLM)
+After=network-online.target
+
+[Service]
+Type=simple
+User=USER
+ExecStart=/usr/bin/python3 /home/USER/launcher-clone/scripts/agent_launcher.py --config /home/USER/launcher-config.json
+Restart=on-abnormal
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
