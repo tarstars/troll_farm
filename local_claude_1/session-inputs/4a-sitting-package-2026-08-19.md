@@ -41,7 +41,7 @@ Repeated YES on the whales alone already answers the charter question.
 
 | case | ruling (YES fix / NO harmless / UNSURE) | one-line reason |
 |---|---|---|
-| OSC-017 | | |
+| OSC-017 | **YES — BUG (owner, 2026-08-20)** | owner watched: one troll stale, other oscillating; "planner had job, but team-picker goes into unproductive oscillation is a bug for me" |
 | OSC-013 | | |
 | OSC-021 | | |
 | OSC-034 | | |
