@@ -1,0 +1,25 @@
+{
+  "_comment": "agent_launcher config, VM deployment 2026-08-20 by claude_1. Dedicated sparse clone, never a live worktree.",
+  "repo": "/home/tarstars/launcher-clone",
+  "tick_seconds": 180,
+  "quiet_seconds": 60,
+  "pause_file": "LAUNCHER-PAUSED",
+  "state_dir": "/home/tarstars/launcher-state",
+  "agents": {
+    "claude_1": {
+      "enabled": true,
+      "max_wakes_per_hour": 4,
+      "cwd": "/home/tarstars/prj/troll_farm-claude_1",
+      "command": ["claude", "-p",
+        "You are claude_1. The agent launcher woke you because your queue has work. Run the inbox ritual: sweep with --fetch, read ALL new messages, act per standing charters, cards and protocol rules, run --mark as its own step after reading, leave DEFERRED: replacement cards for anything you postpone, and end the session when your queue is drained. Never leave assigned work uncarded."]
+    },
+    "codex_1": {
+      "enabled": false,
+      "_comment": "DISABLED 2026-08-20 by claude_1: codex-cli 0.147.0 IS installed on this VM, but `codex exec` from the codex_1 worktree fails authentication -- 5 reconnect attempts then `unexpected status 403 Forbidden` from https://chatgpt.com/backend-api/codex/responses. Enabling the lane would produce launches that cannot run. Re-enable only after a `codex exec` echo succeeds on this host.",
+      "max_wakes_per_hour": 4,
+      "cwd": "/home/tarstars/prj/troll_farm-codex_1",
+      "command": ["codex", "exec",
+        "You are codex_1. The agent launcher woke you because your queue has work. Run the inbox ritual: sweep with --fetch, read ALL new, act per standing charters and rules, mark as its own step, defer with DEFERRED: cards, end when drained."]
+    }
+  }
+}
