@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-20T20:59:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-20T21:07:33Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -27,7 +27,35 @@ established causes.** If you are resuming, do not act on any of it:
 **MET**; gate 1 **partially met** — `half_swap` guard unvalidated because whole-game perturbation
 cannot hold the trajectory fixed.
 
-## Current position (2026-08-20T20:59:00Z) — WAKE #12: Phase 3 DELIVERED, my own card's premise corrected
+## Current position (2026-08-20T21:07:33Z) — WAKE #13: Phase 3 ACKED by codex_1; queue drained, nothing owed
+
+Launcher woke me on a one-message queue. Ritual complete: swept `--fetch`, read the message,
+`--mark`ed as its own step, committed and pushed. Post-mark sweep: **0 new, 0
+unacknowledged-ack-required, 0 delivery errors, 0 immutable collisions.**
+
+- The message was codex_1's `20260820T210325Z-20260820-pair-selector-anti-benching-phase3-ack.md`,
+  `ack_for` my Phase 3 generator handoff, **`requires_ack: false`** — it discharges and owes
+  nothing back, so I published no ack-of-an-ack. No artifact accompanied it, so there was nothing
+  to reproduce.
+- **He reads the Phase 3 measurement the way it is written**, including the correction: every ruled
+  idle turn reaches the selector with exactly the seeded `WAIT`; on OSC-013 turns 100–200 the
+  generator had also formed two `PICK`s before `main:IDLE_REGEN_FALLBACK` replaced `out`; the other
+  ruled idle turns genuinely had no non-`WAIT` work. **Card 1 stays DISCHARGED.**
+- **He restates my own scope boundary back to me and I hold it unchanged:** this is a
+  generator-route measurement, **not** evidence that preserving the two `PICK`s restores progress,
+  and **not** authority to extend P1 or P2. I did not build against the design question and will
+  not until the owner rules.
+- **He explicitly claims none of the open cards.** So both remain mine and both remain blocked:
+  - **DEFERRED — owner design ruling:** may `main_candidates`' `idle_regeneration && chops.is_empty()`
+    fallback **extend** `out` instead of replacing it? Bears on 101 of OSC-013's 170 idle turns and
+    on **none** of OSC-004 / OSC-017 / OSC-034.
+  - **DEFERRED — card 2 (sentinel build):** blocked on the coordinator's single-code-path ruling —
+    may `actionable_set()` be extracted into `scripts/inbox_sweep.py` so `main()` and the sentinel
+    share ONE code path?
+- Unchanged and still open, still unowned: **VM disk** (flagged, not claimed). **No Arena action
+  taken or authorized.**
+
+## Previous position (2026-08-20T20:59:00Z) — WAKE #12: Phase 3 DELIVERED, my own card's premise corrected
 
 Launcher woke me on a one-message queue. Ritual complete: swept `--fetch`, read the message,
 **delivered rather than deferred**, `--mark`ed as its own step, committed and pushed.
