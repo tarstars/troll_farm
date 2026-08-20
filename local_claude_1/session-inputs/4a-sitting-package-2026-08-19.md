@@ -42,11 +42,21 @@ Repeated YES on the whales alone already answers the charter question.
 | case | ruling (YES fix / NO harmless / UNSURE) | one-line reason |
 |---|---|---|
 | OSC-017 | **YES — BUG (owner, 2026-08-20)** | owner watched: one troll stale, other oscillating; "planner had job, but team-picker goes into unproductive oscillation is a bug for me" |
-| OSC-013 | | |
-| OSC-021 | | |
-| OSC-034 | | |
-| OSC-022 | | |
-| OSC-004 | | |
+| OSC-013 | **YES — BUG (owner, 2026-08-20)** | owner: "exactly like the previous one: when troll has a job to do, not doing it is a bug" (blocker-in-corridor structure confirmed by anchor rule; decision based on conversation+measurement more than the map — viewer readability task chartered) |
+| OSC-021 | **YES — BUG (class ruling)** | identical measured signature (169/169 turns usable work discarded); folded into the whale-class ruling |
+| OSC-034 | **YES — BUG (owner, 2026-08-20)** | the stall kind; 94/94 turns usable work discarded |
+| OSC-022 | **YES — BUG (class ruling)** | whale/middle class signature |
+| OSC-004 | **YES — BUG (owner, 2026-08-20)** | even the 12-turn case: "There is work to do, trolls can do this job — they can swap or whatever. We should fix it." |
+
+## SITTING COMPLETE 2026-08-20 — OWNER VERDICT: the pairing-bench is a DEFECT, class-wide
+
+The principle is ABSOLUTE (no materiality boundary): **a troll with available,
+doable work that is not doing it is a bug** — tested on the worst whale (194
+turns), the corridor-blocker, the stall kind, and the shortest episode (12
+turns); YES on all. All 24 GOAL_SPLIT cases fall under the class ruling.
+Consequence per the brief: charter the pair-selector anti-benching fix
+(evidence first — it touches the most sensitive code). Recorded as rule R-2 in
+`docs/RULES-LEDGER.md`.
 
 ## What happens after
 
