@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-20T19:42:13Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-20T20:20:00Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -27,7 +27,50 @@ established causes.** If you are resuming, do not act on any of it:
 **MET**; gate 1 **partially met** — `half_swap` guard unvalidated because whole-game perturbation
 cannot hold the trajectory fixed.
 
-## Current position (2026-08-20T19:42:13Z) — WAKE #9: clean drain, nothing owed
+## Current position (2026-08-20T20:20:00Z) — WAKE #10: Phase-2 DUAL-BASE package DELIVERED
+
+Launcher woke me on the owner's phase-two build card (D1 P1+P2, D2 dual-base). Ritual complete:
+swept `--fetch`, read every new message, **delivered rather than deferred**, `--mark`ed as its own
+step, committed and pushed. Post-mark sweep: **0 unacknowledged-ack-required**, 0 delivery errors,
+0 immutable collisions.
+
+- **`20260820-pair-selector-anti-benching` Phase 2 — DELIVERED** at
+  `coordination/messages/claude_1/20260820T201729Z-...-phase2-dual-base-handoff.md`, artifacts @
+  `5409ba13`. Report: `claude_1/picker2/phase2-package-2026-08-20.md`. Battery replays with one
+  command: `python3 claude_1/picker2/run_gates.py` — **19 of 19 steps OK**.
+- **The headline is half a success and is stated that way everywhere:** the bench is gone; the
+  situations are mostly not cured. Every ruled fixture red on its base goes benched → **0** and
+  D-1 falls silent, but on the standing grader (silent AND progress restored) three of four
+  cure-C fixtures are **detector-quiet-but-stalled**. All-34: cure-C **3 → 4** FIXED, door-1
+  **8 → 8**, nothing regressed.
+- **Panel, 240 games vs a floor verified field by field:** cure-C **53 → 33** blocking, door-1
+  **43 → 35**; **0 de-novo on both bases**, 20 and 8 healed. The 0 carries a liveness control —
+  swap the arms and the de-novo bucket refills with exactly the healed keys (20/20, 8/8).
+- **One generator, two subjects:** diff body byte-identical across bases (`af8f710ce50336e3`) and
+  the *patched* selection regions byte-identical too. P1 observed firing on every candidate arm.
+- **Two of the four ruled fixtures are NOT benched on the door-1 base** (the forecast hunk already
+  employs the unit). Redness is measured per base, never inherited — my first draft inherited it
+  and would have manufactured two failures.
+- **Named, not buried:** `m021`/seat 1 gains property P4 + an `r5-horizon` flag on both bases;
+  `m004`/seat 0 trips **P3** orchard-dormancy inertness on the door-1 base only. P3 asserts
+  byte-equality with the parent's command stream, which any intentional selector change can reach
+  — **that is a ruling for codex_1 and the owner, not mine.**
+- Latency p95 +0.0020 ms (cure-C) / +0.0616 ms (door-1) against a 50 ms budget; process-count
+  parity 8160 field comparisons IDENTICAL. **No Arena action** — the queue slot is the owner's D3.
+- Also drained, no reply owed (`requires_ack: false`): codex_1's build-card ack carrying his
+  DEFERRED unified-review card (now satisfied by my handoff), and local_claude_1's Phase-1
+  handoff ack closing a one-second transport gap.
+- **DEFERRED: why progress is not restored on the three detector-quiet-but-stalled fixtures.**
+  P1+P2 removes the pair that benched the unit; on cure-C OSC-013 the unit is then offered no work
+  at all on 170 of 187 window turns, which is a generator question, not a selector question, and
+  it is a separate phase. Replacement card: measure, on the P1+P2 candidate, why the anchor unit's
+  candidate list is empty on those turns — do NOT extend P1/P2 to cover it before that is known.
+- **Card 2 (sentinel build) remains DEFERRED**, unchanged, still blocked on the single ruling: may
+  `actionable_set()` be extracted into `scripts/inbox_sweep.py` so `main()` and the sentinel share
+  ONE code path.
+- Unchanged and still open: **VM disk 95% / ~1.1G free** (unowned, flagged not claimed).
+
+## Previous position (2026-08-20T19:42:13Z) — WAKE #9: clean drain, nothing owed
 
 Launcher woke me on a one-message queue. Ritual complete: swept `--fetch`, read the single new
 message, judged no reply owed, `--mark`ed as its own step, committed and pushed. Sweep after
