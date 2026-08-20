@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-19T13:50:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-20T12:19:07Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -26,6 +26,60 @@ established causes.** If you are resuming, do not act on any of it:
 14.58%** I measured rather than inherited. Gates: 2, 3 (warm p95 **0.04 ms**), 4 (parity identical)
 **MET**; gate 1 **partially met** — `half_swap` guard unvalidated because whole-game perturbation
 cannot hold the trajectory fixed.
+
+## Current position (2026-08-20) — two services deployed on the VM; one blocked on auth
+
+**SESSION FLUSHED HERE. Read this block, then `troll-farm-vm-services`, `troll-farm-transport-rules`
+and `troll-farm-osc031-state` in memory.**
+
+### Services I deployed on the VM (check both first: `systemctl is-active night-runner agent-launcher`)
+
+- **`night-runner.service` — HEALTHY, accepted.** Runs the M-1 decider night with no LLM from
+  `/home/tarstars/prj/troll_farm-claude_1-lfs` on branch `agent/local_claude_1` (the branch NAME
+  must match; the runner pushes that ref). Cookie `cgauto/cg_session.txt`, chmod 600, gitignored,
+  never committed. Handshake `local_claude_1/door1-night-owner.txt` = `vm-runner` ⇒ laptop cron
+  stood down. `Restart=on-abnormal`, deliberately NOT the card's `restart-always`, because
+  `always` would retry the submission a HALT exists to prevent. 3 of 10 marks taken unattended.
+- **`agent-launcher.service` — LIVE but REVIEW-REJECTED, and the reason is not code.** The
+  mechanism is proven end to end: 11:34:08Z it detected a real peer message, debounced, wrote the
+  pidfile, launched, logged `wake claude_1 n=1 pid=3107274`. **The session died in 3 s:
+  `403 Request not allowed`.** `~/.claude/daemon-auth-status.json` = `auth_required`; `claude -p`
+  reproduces the 403 by hand from an interactive shell; `codex exec` 403s too.
+  **OWNER ACTION: re-authenticate the VM.** Re-test = one `claude -p` echo returning text.
+  Service left active (cap 4/hour, sub-second failures); `LAUNCHER-PAUSED` silences it.
+
+### Things that will bite the next session if forgotten
+
+- **The launcher needs a FULL clone with ALL agent refs.** The card's "shallow ok" is wrong:
+  shallow gave **518 phantom would-wakes** (seen-state materialization silently no-ops without
+  `refs/remotes/origin/agent/*`) and made the quarantine registry reject as a set
+  (`delivery errors 98 · quarantine errors 1 · quarantined 0` vs the true `0 · 0 · 12`).
+- **VM disk is 19G and hit 100%**, blocking a deploy with ENOSPC. ~1.2G free now. Eight checkouts
+  live here; this recurs.
+- **A self-authored message never enters your own actionable set** — so the launcher card's
+  self-probe cannot trigger a wake, by construction.
+- **Only `ack_for` discharges; `supersedes` is inert.** A `CARD:` is discharged by the delivery
+  handoff or a `DEFERRED:` replacement naming it in `ack_for` — never a bare receipt-ack.
+- **Never `git commit` without a pathspec while a lint-rejected message is staged.** That is how
+  an invalid handoff of mine reached origin and had to be quarantined, which made all 12
+  quarantine entries reject for a sweep.
+- Sync `scripts/` **and** `tests/` each session; my suite read 105 when it should read **117**.
+
+### The OSC-031 lane
+
+Phase 2 REJECTED (9 de-novo). I proved **pre-build** that Door-1b could not pass and that
+two-truths was worse (5–14 vs a gate of 0) — no 240-game panel was spent on either. Owner then
+ruled **named-costs**; my package (9 costs named, 15 healed, 53→47, latency, parity) was ACCEPTED
+and reproduced byte-identically. **Decider night running**, pre-registered σ_pair 1.5 / bar 1.315
+at n=5. KEEP/REVERT is the owner's.
+
+### My open cards
+
+- **Card 2 sentinel build** — blocked on ONE ruling: may `actionable_set()` be extracted into the
+  coordinator's `inbox_sweep.py` so `main()` and the sentinel share one path? Not gated by the
+  launcher.
+- **Card 3 pair-selector Phase 1** — deferred; it is third and its subject rebases if tonight is
+  a KEEP.
 
 ## Current position (2026-08-19) — gate 1 r4 delivered, sits with codex_1
 
