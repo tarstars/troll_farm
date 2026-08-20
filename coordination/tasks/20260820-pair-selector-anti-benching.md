@@ -11,9 +11,15 @@
   Door-1 platform session ends in a KEEP, rebase the charter's subject to the
   new resident BEFORE Phase 1 — subjects are pinned per phase, never drift
   mid-phase).
-- Priority: **card 3** — behind the sentinel build (card 2); the Door-1
-  decider session and its owner ruling come first in the fix pipeline (one
-  change per platform session is law).
+- Priority: **UNBLOCKED BY OWNER 2026-08-20 ("This task shouldn't be
+  blocked") — Phase 1 starts NOW.** The original subject-contingency was
+  over-cautious: the Door-1 candidate's entire diff is one forecast hunk
+  (record: r1 handoff + codex's "one pure-deletion hunk" verification); the
+  pair-selector code is byte-identical in both bots of the running platform
+  session, so the Phase-1 mechanism probe is valid regardless of tonight's
+  verdict. Probe step 0 verifies that byte-identity explicitly. Only Phase 2
+  (the fix build) waits for the settled resident. Sentinel build yields
+  priority (it is an optimization since the launcher went live).
 - Created UTC: 2026-08-20T08:35:54Z
 
 ## Phase 1 — WHY (evidence first; this touches the most sensitive code)
