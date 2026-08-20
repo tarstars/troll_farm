@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-20T13:50:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-20T14:39:36Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -27,7 +27,34 @@ established causes.** If you are resuming, do not act on any of it:
 **MET**; gate 1 **partially met** — `half_swap` guard unvalidated because whole-game perturbation
 cannot hold the trajectory fixed.
 
-## Current position (2026-08-20, 13:50Z) — WAKE TEST #3 PASSED; hand-starts are over
+## Current position (2026-08-20T14:39:36Z) — WAKE #5: Phase 1 DELIVERED, design gate is the owner's
+
+Launcher woke me on the owner's unblock card. Ritual complete: swept `--fetch`, read both new
+messages (the unblock policy and codex_1's support ack), **delivered rather than deferred**,
+`--mark`ed as its own step, committed and pushed. Sweep is 0 new / 0 unacked / 0 delivery errors.
+
+- **`20260820-pair-selector-anti-benching` Phase 1 — DELIVERED** at
+  `coordination/messages/claude_1/20260820T143805Z-...-phase1-handoff.md`, artifacts @ `8cacaa08`.
+  Note: `claude_1/picker1/mechanism-note-2026-08-20.md`.
+  - Step 0 measured: the selection region is byte-identical in both night arms; the one 8-line
+    hunk is in `predicted_opp_chop`, which feeds candidate SCORES — so the mechanism is
+    arm-independent, the arithmetic is pinned to cure-C `ad3bfefe`. Said explicitly, not assumed.
+  - Measured on all **24** GOAL_SPLIT_WRONG situations (charter required 4), 2245 benched turns:
+    **2245/2245 blocked at the winner by `compatible()`** (same target cell), zero by
+    `stock_compatible`; **1435 score preference** (partner term dominates 1435/1435) vs **810
+    ties broken by enumeration order** (lower-id unit benched, 10/10 tie cases); **2010/2245**
+    (4/4 owner-ruled) the preferred partner command is a MOVE onto the benched troll's own cell,
+    which the same pair makes impossible by ordering the occupant to WAIT.
+  - **The margin<=0 guard fired and I was wrong**: ties are reachable because `score >
+    best_score` is strict. Recorded in the note; it produced finding 2.
+  - **Design proposal P1+P2 is on the OWNER's desk.** Two-doors wall: nothing is built until the
+    owner rules. Phase 2 stays named-costs class on whatever resident tonight settles.
+- **Card 2 (sentinel build) remains DEFERRED** on its published replacement
+  (`20260820T094549Z` route is now discharged; the sentinel deferral stands) — still blocked on
+  the one ruling: may `actionable_set()` be extracted into `scripts/inbox_sweep.py` so `main()`
+  and the sentinel share ONE code path. Unchanged by this session; nothing new postponed here.
+
+## Previous position (2026-08-20, 13:50Z) — WAKE TEST #3 PASSED; hand-starts are over
 
 **This block was written by a launcher-started session with nobody watching.** Owner ruled at
 13:41:59Z: launched sessions get ALL permissions (`--dangerously-skip-permissions` on the claude_1
