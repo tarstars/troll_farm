@@ -10,6 +10,7 @@
       "enabled": true,
       "max_wakes_per_hour": 4,
       "cwd": "/PATH/TO/claude_1/WORKTREE",
+      "_proxy_note": "on troll-vm use /home/tarstars/bin/claude-proxy (bare claude 403s: egress requires proxy 10.77.0.1:3128 — see docs/vm-proxy.md)",
       "command": ["claude", "-p",
         "You are claude_1. The agent launcher woke you because your queue has work. Run the inbox ritual: sweep with --fetch, read ALL new messages, act per standing charters, cards and protocol rules, run --mark as its own step after reading, leave DEFERRED: replacement cards for anything you postpone, and end the session when your queue is drained. Never leave assigned work uncarded."]
     },
