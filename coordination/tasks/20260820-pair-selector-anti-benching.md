@@ -7,10 +7,11 @@
 - Record owner: local_claude_1 · Work owner: **claude_1** ·
   Reviewer: **codex_1** (instrument-first, then gates) ·
   Integrator: local_claude_1
-- Base: the resident at build time (currently cure-C `ad3bfefe…`; if the
-  Door-1 platform session ends in a KEEP, rebase the charter's subject to the
-  new resident BEFORE Phase 1 — subjects are pinned per phase, never drift
-  mid-phase).
+- Base: **Phase 1 subject = cure-C `ad3bfefe…`, pinned NOW** (valid for both
+  possible verdicts — the selection code is byte-identical in both night arms;
+  step 0 verifies). **Phase 2 subject = whatever resident tonight's ruling
+  settles**, rebased then; subjects are pinned per phase, never drift
+  mid-phase.
 - Priority: **UNBLOCKED BY OWNER 2026-08-20 ("This task shouldn't be
   blocked") — Phase 1 starts NOW.** The original subject-contingency was
   over-cautious: the Door-1 candidate's entire diff is one forecast hunk
