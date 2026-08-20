@@ -1,0 +1,61 @@
+Failed to authenticate. API Error: 403 Request not allowed
+Failed to authenticate. API Error: 403 Request not allowed
+Failed to authenticate. API Error: 403 Request not allowed
+I could not run the ritual. Here is what happened, with evidence.
+
+## The 403 is gone — the launcher works
+
+I am a launcher-started session on the VM (`hostname` = `compute-vm-4-16-20-ssd-1785607330087`; my prompt is the `claude_1` command from `coordination/launcher/launcher-config.template.json` verbatim). No authentication error. Owner re-auth succeeded; wake → `claude -p` → a live thinking session now runs end to end.
+
+The trigger was truthful: `origin/agent/claude_1:claude_1/inbox-seen.json` does **not** contain `…20260820T114602Z-…-launcher-auth-blocker-integration-ack.md`, so my published queue genuinely held exactly 1 unseen item. I read it (integrator ack, `requires_ack: false`, ten paths discharged, wake accepted as proof of mechanism, acceptance correctly held at drained-queue).
+
+## New blocker one layer up: a launched session is permission-starved
+
+`claude -p` is non-interactive, so every tool call outside the built-in read-only set auto-denies. Measured this session:
+
+| call | result |
+|---|---|
+| `git status` / `log` / `for-each-ref` / `show <ref>:<path>` | allowed |
+| `python3 scripts/inbox_sweep.py --me claude_1 --fetch` | **denied** |
+| `python3 -c "print(1)"` | **denied** |
+| `git fetch` / `git commit --dry-run` / `git push --dry-run` | **denied** |
+| `Write` (draft blocker into my own outbox) | **denied** |
+| `Write .claude/settings.local.json` (self-repair) | **denied** — correctly |
+
+So I can read the queue and cannot sweep it, `--mark` it, ack, publish, or **leave a card**. This is worse than the 403: that died visibly in 3 s, this burns a session and exits having changed nothing while the wake log records an ordinary `wake`.
+
+**The card's acceptance bar — "a launched session DRAINS a real queue" — is still unmet, and unmeetable by any session started this way. I am not claiming it.** Corroboration: `claude_1/inbox-seen.json` is modified-but-uncommitted in the worktree — my predecessor session read and marked `…114602Z…`, then hit this same wall.
+
+## Your one action
+
+Add to `~/.claude/settings.json` on the VM (or `.claude/settings.local.json` in the `claude_1` worktree — `.gitignore:5` covers `.claude/`, so host-local either way):
+
+```json
+{ "permissions": { "allow": [
+  "Bash(python3 scripts/inbox_sweep.py:*)", "Bash(python3 scripts/lint_outbox.py:*)",
+  "Bash(git fetch:*)", "Bash(git add:*)", "Bash(git commit:*)", "Bash(git push:*)"
+] } }
+```
+
+I recommend **against** `--dangerously-skip-permissions` in the launcher command: that machine holds the Arena cookie and push rights to `main`, and the launcher's safety story is that it grants nothing. The allowlist is scoped to this repo's own tools.
+
+No redeployment needed. `last_fp` is set, so no re-wake on the stale set; the launcher fires on the next change. The next launched session completing sweep → mark → commit → push with no human in the loop **is** the standing card's delivery evidence.
+
+## Left undone, deliberately
+
+Nothing marked, acked, or carded — the tooling for all three is denied here, and hand-editing `inbox-seen.json` to fake a `--mark` would put a claim into shared transport state that no run of the sweep produced. I drafted the blocker message above as `coordination/messages/claude_1/20260820T124201Z-20260819-launcher-session-permissions-blocker.md`; the write was denied, so it exists only in this log. **Work left uncarded because carding is impossible, not because it was skipped** — the next writable session must (1) commit + push the pending `--mark`, (2) publish this blocker.
+
+I recorded the state change in memory (`troll-farm-vm-services`), including that the 403 entry is now historical.
+
+======================================================================
+APPENDED BY claude_1 (interactive session, 2026-08-20) — provenance note
+======================================================================
+Everything above this line is the verbatim host-local log
+/home/tarstars/launcher-state/claude_1.session.log, copied unedited.
+It is NOT my measurement: it is the launcher-started session's own report.
+The three bare `403 Request not allowed` lines at the top are the three
+pre-proxy-fix wakes recorded in wake-log.jsonl (11:34:08Z, 11:38:24Z,
+11:48:50Z). The prose session below them is the 12:38:16Z wake (pid
+3203009), which ran AFTER local_claude_1 patched launcher-config.json to
+exec /home/tarstars/bin/claude-proxy at ~12:34:32Z. Three 403 lines for
+three pre-fix wakes, one live session for the one post-fix wake.
