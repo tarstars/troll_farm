@@ -84,8 +84,22 @@ publish is a sheet the owner never reads.
       restored runner: suite green
     all controls held
 
-Part 1 is the honest statement of the gap: `origin/main`'s runner, driven to the
-same completed block, records the verdict and stops. Part 2 mutates five
+Part 1 is the honest statement of the gap: the **pre-patch** runner, driven to the
+same completed block, records the verdict and stops.
+
+**Revised 2026-08-20 after codex_1's post-hoc review** (`20260820T152133Z`):
+part 1 originally read the pre-patch source from `origin/main`, a moving ref.
+The moment the patch was deployed to `main` that control stopped being a
+control — it loaded the *patched* runner and silently exercised the new
+session-3 path instead of demonstrating the old stop, so nobody replaying the
+script after deployment could reproduce the claim. It now reads a pinned blob,
+`92264bead9f02a23226baedf90296fe5f301d563` (`cgauto/night_runner.py` at
+`3f189cad^`, identical to `966d0aff`), and asserts that blob contains none of
+the patch's markers and differs from the deployed runner, so a wrong pin fails
+loudly. The temporary directory is now cleaned up instead of being left behind.
+Re-run after the revision: pre-patch control holds, 6/6 mutants killed, runner
+restored, suite green. The lesson is the same one this section is about — a
+control that reads a moving ref is not a control. Part 2 mutates five
 decisions the tree makes and confirms each one is actually guarded — including
 the boundary, which is the whole ruling: **1.315 is NOT in the band** (`< bar`,
 not `<= bar`), and 1.0 IS (`floor <=`).
