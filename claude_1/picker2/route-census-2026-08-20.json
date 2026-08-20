@@ -1,0 +1,227 @@
+{
+  "arms": {
+    "cureC-p1p2": {
+      "situations": [
+        {
+          "employed_routes": {
+            "main:CHOPS": 7,
+            "main:FULL_BANK": 4
+          },
+          "id": "OSC-004",
+          "idle_discarded_candidates": {},
+          "idle_predicates": {
+            "carried=0 free_cap=2 safe_regen=True idle_regen=True": 3
+          },
+          "idle_route_detail": {
+            "bank=0 chops=0 discarded=1 discarded_real=0 idle_harvest=0 n=1": 3
+          },
+          "idle_routes": {
+            "main:IDLE_REGEN_FALLBACK": 3
+          },
+          "idle_turns": 3,
+          "turns": 14,
+          "unit": 0,
+          "window": [
+            9,
+            22
+          ]
+        },
+        {
+          "employed_routes": {
+            "main:CHOPS": 9,
+            "main:FULL_BANK": 8
+          },
+          "id": "OSC-013",
+          "idle_discarded_candidates": {
+            "PICK target=Cell((2, 1)) score=7499.0": 101,
+            "PICK target=Cell((2, 1)) score=7500.0": 101
+          },
+          "idle_predicates": {
+            "carried=0 free_cap=2 safe_regen=True idle_regen=True": 170
+          },
+          "idle_route_detail": {
+            "bank=0 chops=0 discarded=1 discarded_real=0 idle_harvest=0 n=1": 69,
+            "bank=0 chops=0 discarded=3 discarded_real=2 idle_harvest=0 n=1": 101
+          },
+          "idle_routes": {
+            "main:IDLE_REGEN_FALLBACK": 170
+          },
+          "idle_turns": 170,
+          "turns": 187,
+          "unit": 0,
+          "window": [
+            14,
+            200
+          ]
+        },
+        {
+          "employed_routes": {
+            "main:CHOPS": 3,
+            "main:FULL_BANK": 4
+          },
+          "id": "OSC-017",
+          "idle_discarded_candidates": {},
+          "idle_predicates": {
+            "carried=0 free_cap=2 safe_regen=True idle_regen=True": 187
+          },
+          "idle_route_detail": {
+            "bank=0 chops=0 discarded=1 discarded_real=0 idle_harvest=0 n=1": 187
+          },
+          "idle_routes": {
+            "main:IDLE_REGEN_FALLBACK": 187
+          },
+          "idle_turns": 187,
+          "turns": 194,
+          "unit": 0,
+          "window": [
+            7,
+            200
+          ]
+        },
+        {
+          "employed_routes": {
+            "main:CHOPS": 2,
+            "main:FULL_BANK": 2
+          },
+          "id": "OSC-034",
+          "idle_discarded_candidates": {},
+          "idle_predicates": {
+            "carried=0 free_cap=2 safe_regen=True idle_regen=True": 90
+          },
+          "idle_route_detail": {
+            "bank=0 chops=0 discarded=1 discarded_real=0 idle_harvest=0 n=1": 90
+          },
+          "idle_routes": {
+            "main:IDLE_REGEN_FALLBACK": 90
+          },
+          "idle_turns": 90,
+          "turns": 94,
+          "unit": 0,
+          "window": [
+            6,
+            99
+          ]
+        }
+      ],
+      "source": "claude_1/picker2/candidate-cureC-p1p2.rs",
+      "source_sha256": "d127cf861ad7f145e5693b0a595bcc8e3c870f424926b18bdbb3debec80b0412"
+    },
+    "door1-p1p2": {
+      "situations": [
+        {
+          "employed_routes": {
+            "main:CHOPS": 7,
+            "main:FULL_BANK": 4
+          },
+          "id": "OSC-004",
+          "idle_discarded_candidates": {},
+          "idle_predicates": {
+            "carried=0 free_cap=2 safe_regen=True idle_regen=True": 3
+          },
+          "idle_route_detail": {
+            "bank=0 chops=0 discarded=1 discarded_real=0 idle_harvest=0 n=1": 3
+          },
+          "idle_routes": {
+            "main:IDLE_REGEN_FALLBACK": 3
+          },
+          "idle_turns": 3,
+          "turns": 14,
+          "unit": 0,
+          "window": [
+            9,
+            22
+          ]
+        },
+        {
+          "employed_routes": {
+            "main:CHOPS": 9,
+            "main:FULL_BANK": 8
+          },
+          "id": "OSC-013",
+          "idle_discarded_candidates": {
+            "PICK target=Cell((2, 1)) score=7499.0": 101,
+            "PICK target=Cell((2, 1)) score=7500.0": 101
+          },
+          "idle_predicates": {
+            "carried=0 free_cap=2 safe_regen=True idle_regen=True": 170
+          },
+          "idle_route_detail": {
+            "bank=0 chops=0 discarded=1 discarded_real=0 idle_harvest=0 n=1": 69,
+            "bank=0 chops=0 discarded=3 discarded_real=2 idle_harvest=0 n=1": 101
+          },
+          "idle_routes": {
+            "main:IDLE_REGEN_FALLBACK": 170
+          },
+          "idle_turns": 170,
+          "turns": 187,
+          "unit": 0,
+          "window": [
+            14,
+            200
+          ]
+        },
+        {
+          "employed_routes": {
+            "main:CHOPS": 3,
+            "main:FULL_BANK": 4
+          },
+          "id": "OSC-017",
+          "idle_discarded_candidates": {},
+          "idle_predicates": {
+            "carried=0 free_cap=2 safe_regen=True idle_regen=True": 187
+          },
+          "idle_route_detail": {
+            "bank=0 chops=0 discarded=1 discarded_real=0 idle_harvest=0 n=1": 187
+          },
+          "idle_routes": {
+            "main:IDLE_REGEN_FALLBACK": 187
+          },
+          "idle_turns": 187,
+          "turns": 194,
+          "unit": 0,
+          "window": [
+            7,
+            200
+          ]
+        },
+        {
+          "employed_routes": {
+            "main:CHOPS": 2,
+            "main:FULL_BANK": 2
+          },
+          "id": "OSC-034",
+          "idle_discarded_candidates": {},
+          "idle_predicates": {
+            "carried=0 free_cap=2 safe_regen=True idle_regen=True": 90
+          },
+          "idle_route_detail": {
+            "bank=0 chops=0 discarded=1 discarded_real=0 idle_harvest=0 n=1": 90
+          },
+          "idle_routes": {
+            "main:IDLE_REGEN_FALLBACK": 90
+          },
+          "idle_turns": 90,
+          "turns": 94,
+          "unit": 0,
+          "window": [
+            6,
+            99
+          ]
+        }
+      ],
+      "source": "claude_1/picker2/candidate-door1-p1p2.rs",
+      "source_sha256": "5e1f4df406480f678ff03677cdda0f69d510c5c94efe90d4f0a8231b70c3339e"
+    }
+  },
+  "gates": [
+    "parity vs the uninstrumented candidate, for BOTH probes",
+    "exactly one PS3FINAL row per window turn for the anchor",
+    "PS3FINAL n == the selector probe's PS2CAND row count for the same unit/turn",
+    "exactly one route row per unit per turn"
+  ],
+  "phase": 3,
+  "question": "which return path of main_candidates/endgame_candidates hands back the seeded WAIT alone, and what did the generator see when it did?",
+  "scope": "measurement only; licenses no extension of P1 or P2",
+  "step": "2-generator-route",
+  "task": "20260820-pair-selector-anti-benching"
+}
