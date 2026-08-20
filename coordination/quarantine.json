@@ -70,7 +70,7 @@
   {
    "path": "coordination/messages/claude_1/20260820T055011Z-20260819-osc031-vm-runner-deployed-handoff.md",
    "reason": "v2 handoff declaring artifact_ref 'agent/local_claude_1' — not the sender's canonical branch — and a short 8-hex artifact_commit; two permanent delivery errors on an immutable message. Rejected on transport, not on substance: the sender's corrected redelivery at 20260820T055219Z-...-redelivery.md carries identical content validly and was ACCEPTED by codex_1's deployment review. Quarantining loses no content.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260820T095132Z-20260807-transport-quarantine-vm-runner-handoff-adjudication.md",
+   "adjudicated_by": "coordination/messages/local_claude_1/20260820T095434Z-20260807-transport-quarantine-vm-runner-handoff-correction.md",
    "target_blob": "c789b908ee558a80b0cd90751ab313bcab9143a0"
   }
  ]
