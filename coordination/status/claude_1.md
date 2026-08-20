@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-20T20:30:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-20T20:59:00Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -27,7 +27,55 @@ established causes.** If you are resuming, do not act on any of it:
 **MET**; gate 1 **partially met** — `half_swap` guard unvalidated because whole-game perturbation
 cannot hold the trajectory fixed.
 
-## Current position (2026-08-20T20:30:00Z) — WAKE #11: review received, verdict concurred
+## Current position (2026-08-20T20:59:00Z) — WAKE #12: Phase 3 DELIVERED, my own card's premise corrected
+
+Launcher woke me on a one-message queue. Ritual complete: swept `--fetch`, read the message,
+**delivered rather than deferred**, `--mark`ed as its own step, committed and pushed.
+
+- The message was codex_1's `20260820T204515Z-...-ack.md`, `requires_ack: false` — it discharges
+  and owes nothing back, so I published no ack-of-an-ack. Substance: he confirms he does not claim
+  or start either of my two deferrals, and receives my concurrence with his unified review.
+- **Card 1 was UNBLOCKED and is now DISCHARGED.** `20260820T205740Z-...-phase3-generator-handoff.md`,
+  artifacts @ `1c7aed39`. Report: `claude_1/picker2/phase3-generator-route-2026-08-20.md`.
+  Replay: `idle_shape.py`, `make_route_probe.py`, `route_census.py`.
+- **The card's premise was wrong and I corrected it rather than answering it.** I had written that
+  the anchor "is offered no work at all". `main_candidates` and `endgame_candidates` both open
+  `let mut out=vec![MoisanBot::wait()]`, so an empty list was never reachable. Measured: on every
+  idle turn of all four ruled fixtures, on **both** bases, the list is exactly **one** entry — the
+  seed. **Length 1, never 0**, with a cross-check (idle turn holding non-`WAIT` work) that is 0
+  everywhere, so this reader and `gate_bench.py` agree on which turns are idle.
+- **One route, 100% of those turns:** `main_candidates`' `idle_regeneration && chops.is_empty()`
+  fallback (`chops=0 idle_harvest=0 bank=0 carried=0 free_cap=2`). It returns a **fresh**
+  `vec![wait()]` rather than extending the `out` it built — and that discard is not harmless.
+- **OSC-013's 170 idle turns are TWO phenomena, not one.** Turns 31–99 (69, contiguous): the
+  generator had nothing. Turns 100–200 (**101**, contiguous): `out` held **two `PICK` candidates,
+  score 7500 / 7499, target Cell((2,1))** and they were thrown away. The split is exactly the
+  `view.turn>=100` guard on the safe-regeneration replant block. Identical on the door-1 base.
+- **Settles the location: the residual stall is NOT a selector defect.** The selector is handed a
+  one-element list and returns the only element. P1/P2 correctly untouched.
+- **NOT claimed, deliberately:** that keeping those `PICK`s restores progress (they would have to
+  be selected, be legal, and leave the cycle — the last is the grader's bar), or that the discard
+  is a defect at all. That is the owner's design question and I did **not** build against it. This
+  is the exact step that produced the claims about a generator gap I withdrew on 2026-08-17.
+- **Five gates, each fails the run rather than degrading it:** parity for BOTH probes per fixture
+  per arm; coverage (one `PS3FINAL` per window turn); **cross-probe agreement** — `PS3FINAL n` at
+  `by_id.insert` must equal the selector probe's `PS2CAND` count for the same unit/turn; one route
+  row per unit per turn; exact-once anchoring or the build is refused. All passed. The route tap
+  is not a constant — employed turns return `main:CHOPS` / `main:FULL_BANK`.
+- `run_gates.py` deliberately **unmodified** — codex_1 reproduced the Phase-2 package as it stands.
+- Two lint gates fired on my handoff and both were fixed, not bypassed: multi-line `artifact_paths`,
+  and the evidence gate catching the withdrawn cause label in my prose. I removed the bare label
+  rather than adding a `review_ref` for a claim I was not making. A third caught the pin before the
+  artifact commit was pushed — I pushed artifacts first, then pinned.
+- **DEFERRED: the owner's design question** — may the `idle_regeneration` fallback extend `out`
+  instead of replacing it? Scope stated in the card: it can bear on 101 of OSC-013's 170 idle turns
+  and on **none** of OSC-004 / OSC-017 / OSC-034.
+- **DEFERRED: card 2 (sentinel build)**, unchanged, still blocked on the one ruling — may
+  `actionable_set()` be extracted into `scripts/inbox_sweep.py` so `main()` and the sentinel share
+  ONE code path?
+- Unchanged and still open: **VM disk** (unowned, flagged not claimed). No Arena action.
+
+## Previous position (2026-08-20T20:30:00Z) — WAKE #11: review received, verdict concurred
 
 Launcher woke me on two codex_1 messages, neither owing me an ack. Ritual complete: swept
 `--fetch`, read both plus the review artifact they carry, published, `--mark`ed as its own step,
