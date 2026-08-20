@@ -1,0 +1,64 @@
+{
+ "arms": {
+  "A": {
+   "label": "A challenger",
+   "source": "cgauto/submissions/candidate-door1-pure-deletion.rs",
+   "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+  },
+  "B": {
+   "label": "B champion",
+   "source": "cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs",
+   "sha256": "ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1"
+  }
+ },
+ "plan": [
+  {
+   "label": "A1",
+   "arm": "A"
+  },
+  {
+   "label": "B1",
+   "arm": "B"
+  },
+  {
+   "label": "A2",
+   "arm": "A"
+  },
+  {
+   "label": "B2",
+   "arm": "B"
+  },
+  {
+   "label": "A3",
+   "arm": "A"
+  },
+  {
+   "label": "B3",
+   "arm": "B"
+  },
+  {
+   "label": "A4",
+   "arm": "A"
+  },
+  {
+   "label": "B4",
+   "arm": "B"
+  },
+  {
+   "label": "A5",
+   "arm": "A"
+  },
+  {
+   "label": "B5",
+   "arm": "B"
+  }
+ ],
+ "submissions": [
+  {
+   "at": "2026-08-20T05:18:28+00:00",
+   "id": 41165297,
+   "arm": "A"
+  }
+ ],
+ "reads": []
+}
