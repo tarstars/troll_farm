@@ -35,6 +35,19 @@ selection arithmetic; no reimplemented scoring (one-scoring-path rule).
 Deliverable: mechanism note + fix design PROPOSAL to the OWNER (design gate —
 the picker is planner core; two-doors-wall applies).
 
+## OWNER DESIGN RULING (2026-08-20 ~19:50Z): P1+P2 APPROVED, DUAL-BASE BUILD
+
+- **D1:** the candidate is **P1+P2** — refuse self-impossible pairs (a unit
+  MOVEs onto a cell whose occupant the same pair orders to WAIT) + break exact
+  ties toward fewer WAITs. P3/P4 stay named, unbuilt. The 235 non-deadlock
+  turns stay out of scope, stated.
+- **D2:** ONE patch, TWO candidates in parallel — base cure-C `ad3bfefe…` and
+  base door-1 `547fa706…` (selection region byte-identical in both, measured
+  at step 0). Both gated overnight; tomorrow's platform verdict selects which
+  enters the measuring queue.
+- **D3:** queue slot deferred to the owner tomorrow (default: after the
+  origin-comparison session; option: preempt when gates are green).
+
 ## Phase 2 — the fix (after the owner's design go)
 
 Per the approved design. Gate class per owner law: this is a
