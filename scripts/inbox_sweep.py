@@ -242,6 +242,27 @@ def addressed_to_me(body: str, me: str) -> bool:
     return bool({me.lower(), "both", "all"} & targets)
 
 
+def ack_obliged_to_me(body: str, me: str) -> bool:
+    """Ack OBLIGATION falls on `to` recipients only (ruling 2026-08-20).
+
+    `cc` is informational: a cc'd agent may ack as courtesy but never OWES
+    one — and for CARD:/DEFERRED: messages a cc bystander's ack is actively
+    forbidden (it could discharge another agent's queue anchor). Before this
+    rule the unacknowledged section demanded acks from every cc recipient,
+    which made a policy-clean empty inbox impossible for bystanders
+    (codex_1's 20260820T095149Z blocker, item 2).
+    """
+    yaml = yaml_front_matter(body)
+    if "to" in yaml:
+        values = [yaml["to"]]
+    elif "cc" in yaml:
+        values = []
+    else:
+        values = legacy_values(body, "To")
+    targets = set().union(set(), *(recipient_tokens(v) for v in values))
+    return bool({me.lower(), "both", "all"} & targets)
+
+
 def parse_boolean(value: str) -> bool | None:
     normalized = scalar_value(value).lower()
     if normalized in {"true", "yes", "1", "on"}:
@@ -1171,6 +1192,7 @@ def main() -> int:
         m
         for m in selection
         if requires_ack(m.body, m.kind)
+        and ack_obliged_to_me(m.body, args.me)
         and not is_acknowledged(m, acked_paths, legacy_latest)
     ]
 

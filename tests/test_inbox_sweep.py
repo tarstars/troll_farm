@@ -1557,3 +1557,31 @@ def test_seen_state_write_is_deterministic_and_atomic(tmp_path):
     assert data["schema_version"] == 1
     assert first.endswith("\n")
     assert not list((tmp_path / "agent_x").glob("*.tmp"))
+
+
+# ---------------------------------------------------------------------------
+# Ack obligation falls on `to` recipients only (ruling 2026-08-20): a cc'd
+# bystander never OWES an ack, so a policy-clean empty inbox is possible for
+# agents that were only informed. `to` recipients still owe as before.
+# ---------------------------------------------------------------------------
+
+def _section_paths(stdout: str, label: str) -> str:
+    import re as _re
+    m = _re.search(_re.escape(label) + r" \(\d+\):\n((?:  \S.*\n)*)", stdout)
+    return m.group(1) if m else ""
+
+
+def test_cc_only_recipient_owes_no_ack(repo):
+    path = publish_v2(repo, PEER, "20260807T140000Z", "task-a", "policy",
+                      to="third_agent", requires_ack=True,
+                      overrides={"cc": f'["{ME}"]'})
+    result = repo.sweep("--me", ME)
+    assert path not in _section_paths(result.stdout, "unacknowledged, ack required")
+    assert path in _section_paths(result.stdout, "new (unseen)")
+
+
+def test_to_recipient_still_owes_ack(repo):
+    path = publish_v2(repo, PEER, "20260807T140100Z", "task-a", "policy",
+                      to=ME, requires_ack=True)
+    result = repo.sweep("--me", ME)
+    assert path in _section_paths(result.stdout, "unacknowledged, ack required")
