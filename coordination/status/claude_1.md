@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-20T20:20:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-20T20:30:00Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -27,7 +27,42 @@ established causes.** If you are resuming, do not act on any of it:
 **MET**; gate 1 **partially met** — `half_swap` guard unvalidated because whole-game perturbation
 cannot hold the trajectory fixed.
 
-## Current position (2026-08-20T20:20:00Z) — WAKE #10: Phase-2 DUAL-BASE package DELIVERED
+## Current position (2026-08-20T20:30:00Z) — WAKE #11: review received, verdict concurred
+
+Launcher woke me on two codex_1 messages, neither owing me an ack. Ritual complete: swept
+`--fetch`, read both plus the review artifact they carry, published, `--mark`ed as its own step,
+committed and pushed. Post-mark: **0 unacknowledged-ack-required from peers**, 0 delivery errors,
+0 immutable collisions.
+
+- **codex_1's unified review of my Phase-2 dual-base package: `PACKAGE_REPRODUCED; BOTH CANDIDATES
+  BLOCKED AS QUALIFIED CURES`** (`codex_1/reviews/pair-selector-phase2-unified-review-2026-08-20.md`,
+  handoff addressed to local_claude_1, me on cc). He rebuilt both candidates from a detached
+  worktree at `5409ba13` with `run_gates.py --skip-panels` and reproduced every non-panel figure:
+  benched → 0 on every fixture red on its own base, FIXED `3 → 4` / `8 → 8`, blocking `53 → 33` /
+  `43 → 35`, de-novo/healed `0/20` and `0/8` with the swap control refilling exactly the healed
+  keys, 8,160-field process parity. His own single-draw latency rerun also moved the deltas,
+  independently corroborating my correction.
+- **I concurred; nothing to revise.** Published as `update` to codex_1 — the verdict is the same
+  reading my package states: the bench is gone, the situations are mostly not cured.
+- **The P3 question I escalated is answered, and answered against me.** I published door-1
+  `m004`/seat 0 P3 orchard-dormancy inertness as a reviewer ruling rather than a failure. The
+  review rules that the locked panel configuration makes P3 an **absolute** candidate-equals-parent
+  invariant that was explicitly kept, so an intentional selector edit does not make it
+  inapplicable: **door-1 carries a named absolute regression unless the owner changes the rule.**
+  Same for the `m021` P4 / `r5-horizon` addition — a game already blocked for another reason does
+  not absorb a new property violation. Settled; I will not re-litigate either.
+- **No Arena action taken or authorized.** Both artifacts sit on the shelf for the owner's D3.
+- **Both open cards re-published as a self-addressed queue item** (`...-progress.md`,
+  `requires_ack: true`) instead of living in this file only: (1) measure why the anchor unit's
+  candidate list is empty on the detector-quiet-but-stalled turns (cure-C OSC-013, 170/187 window
+  turns) — generator question, and P1/P2 must NOT be extended before it is measured; (2) sentinel
+  build, still blocked on the one ruling — may `actionable_set()` be extracted into
+  `scripts/inbox_sweep.py` so `main()` and the sentinel share ONE code path?
+- Unchanged and still open: **VM disk 95% / ~1.1G free** (unowned, flagged not claimed).
+- Stamp fix: my wake-#10 entry cited the latency correction as `20260820T202946Z`; the published
+  message is `20260820T202206Z`. Corrected in place below.
+
+## Previous position (2026-08-20T20:20:00Z) — WAKE #10: Phase-2 DUAL-BASE package DELIVERED
 
 Launcher woke me on the owner's phase-two build card (D1 P1+P2, D2 dual-base). Ritual complete:
 swept `--fetch`, read every new message, **delivered rather than deferred**, `--mark`ed as its own
@@ -61,7 +96,7 @@ step, committed and pushed. Post-mark sweep: **0 unacknowledged-ack-required**, 
   2.4058 ms (cure-C) and 0.0931 ms (door-1) across identical repeats, so both deltas are inside it.
   Correct statement: **P1's per-pair cost is not resolvable above host noise**; the gate is MET by
   three orders of magnitude, the cost is bounded not measured. Published as a `correction`
-  superseding the handoff (`20260820T202946Z`, artifacts @ `14b575ce`). Process-count parity 8160
+  superseding the handoff (`20260820T202206Z`, artifacts @ `14b575ce`). Process-count parity 8160
   field comparisons IDENTICAL. **No Arena action** — the queue slot is the owner's D3.
 - Also drained, no reply owed (`requires_ack: false`): codex_1's build-card ack carrying his
   DEFERRED unified-review card (now satisfied by my handoff), and local_claude_1's Phase-1
@@ -76,7 +111,7 @@ step, committed and pushed. Post-mark sweep: **0 unacknowledged-ack-required**, 
   ONE code path.
 - Unchanged and still open: **VM disk 95% / ~1.1G free** (unowned, flagged not claimed).
 
-## Previous position (2026-08-20T19:42:13Z) — WAKE #9: clean drain, nothing owed
+## Earlier position (2026-08-20T19:42:13Z) — WAKE #9: clean drain, nothing owed
 
 Launcher woke me on a one-message queue. Ritual complete: swept `--fetch`, read the single new
 message, judged no reply owed, `--mark`ed as its own step, committed and pushed. Sweep after
