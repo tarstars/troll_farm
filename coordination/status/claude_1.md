@@ -383,6 +383,52 @@ published when I wrote. **Re-sweep between reading an allocation and acting on i
 - **M2 rev 2** — accepted, nothing owed. **Fast-verification-executor requirements** — **PARKED** by the coordinator: its author is unreachable and nobody inherits an unowned spec. `coordination/tasks/20260811-fast-verification-executor-design.md` is `PROPOSED / BLOCKED ON REQUIREMENTS REVIEW`, owner unassigned.
 - **`20260807-transport-quarantine-and-outbox-lint`** — my execution review delivered 2026-08-13, handoff `20260813T012000Z`, artifact `afb6903a`: **`REVISION_REQUIRED`**. Accepted: the 41-message delta is exact, all 41 carry an explicit `ack_for` (verified from raw blobs, not via the tool under review), 92 tests pass, zero regressions. Blocking: `parse_json_list` is unguarded in `collect_my_acks`, so a malformed `ack_for` in the sweeping agent's **own** namespace crashes the sweep with an uncaught `JSONDecodeError` — exiting `1`, which collides with the documented "healthy but unacknowledged" status — and published messages are immutable, so it cannot be repaired without quarantine. No test reaches the changed branch.
 
+## Wake #6 — 2026-08-20 (night tree)
+
+**Card `20260820T144705Z-...-night-tree-card.md` DELIVERED**, ~10 h ahead of its
+clock deadline. Handoff `20260820T151421Z-...-handoff.md`, artifact commit
+`84d3624b` on `agent/claude_1`; deployed as `3f189cad` on
+`agent/local_claude_1` + `main`. The owner-approved post-B5 tree is live in the
+VM night-runner lane (PID 3658317 since 15:12:55Z): extension when |mean| is in
+[floor, bar), otherwise session 3 vs the very-old resident `98628e98…` in a
+fresh state+ledger with the process rebinding and continuing; owner morning
+sheet published in either branch, gated on `lint_outbox.py`'s exit status and
+never committed if rejected. 26 tree tests + 9 publish tests + 119 transport
+tests green; six mutants killed; pre-patch control shows `origin/main`'s runner
+records the verdict and stops. codex_1 reviews post-hoc (`20260820T150139Z` ack).
+
+**Changed rather than flagged:** the winner bar depends on the block size
+(pre-registered 1.315 at n=5, 0.930 at n=10) and the runner had it as a
+constant — an extended block would have been graded against the 5-pair bar and
+a true +1.0 reported as "between floor and bar" when at n=10 it is a WINNER.
+`bar_for(n)` now carries both literals. Consequence: at n=10 the bar sits BELOW
+the floor, so the band is empty and a second extension can never fire.
+
+**INCIDENT 15:06:34Z — the unattended lane died and nobody knew.** Not my patch:
+`origin/main`'s `git_publish` raised an uncaught `RuntimeError` when the A3
+publish hit a non-fast-forward push (the coordinator had appended the composed-
+comparison addendum to the SAME ledger) and its single `pull --rebase` retry
+conflicted append-vs-append. Exit 1, half-finished rebase left in the working
+tree, **no HALT block anywhere**, service dead ~10 minutes. `Restart=on-abnormal`
+was right not to restart it. **No double-submission exposure** — one traceback,
+six submissions, no duplicate id, verified before touching anything. Recovered
+keeping both sides in append order (`0e4953b4`). Hardened in the same delivery:
+`merge=union` on both night-ledger names, three publish attempts with a rebase
+between each, **any unsettleable rebase aborted** rather than left behind, and a
+publish failure now HALTs fail-closed. Reproduced against real git with a
+control that conflicts without the union driver.
+
+**Live pattern, another instance:** a green guard that cannot see what it covers
+— the sentinel/health story said the lane was HEALTHY while the lane was dead.
+The crash was found by walking into it at deploy time, not by any check.
+
+**Pair-selector Phase 1 ACCEPTED** by codex_1 (`20260820T144531Z` ack,
+`20260820T144532Z` review handoff): all central counts independently reproduced
+(2,245 benched-with-work turns, 1,435/810 split, 2,010 deadlocks). P1+P2 routed
+to the OWNER'S design gate; **no Phase 2 build is authorized** until the owner
+chooses a design and the settled resident is pinned. 235 non-deadlock turns
+remain explicitly out of scope. Nothing owed by me there.
+
 ## Owed, now unparked by r4
 
 M1 Decision Packet implementation (spec frozen against `98628e98`) · M3b adjudication (needs M1 + valid M3a) · P4 re-do on c5 evidence · D-4 repair · gate revision 3 execution review. **With the owner:** the D89a label; whether to fund a fresh 512-row corpus for U4.
