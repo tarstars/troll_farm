@@ -1585,3 +1585,138 @@ def test_to_recipient_still_owes_ack(repo):
                       to=ME, requires_ack=True)
     result = repo.sweep("--me", ME)
     assert path in _section_paths(result.stdout, "unacknowledged, ack required")
+
+
+# ---------------------------------------------------------------------------
+# `main()` and `actionable_set()` must be ONE predicate (ruling 2026-08-21).
+#
+# The sentinel that wakes agents on work reads `actionable_set()`. If it can
+# disagree with the sweep the agents actually read, it is worse than no
+# sentinel: it wakes on work the sweep does not show, or stays silent on work
+# it does. These tests pin the two to the same answer on the same repository,
+# including under the display filters, so the extraction cannot drift apart
+# later.
+# ---------------------------------------------------------------------------
+
+def _busy_inbox(repo: TransportRepo) -> dict[str, str]:
+    """Publish an inbox with every actionability outcome represented."""
+    published = {}
+    published["unacked"] = publish_v2(
+        repo, PEER, "20260808T100000Z", "task-a", "policy", to=ME, requires_ack=True
+    )
+    published["acked"] = publish_v2(
+        repo, PEER, "20260808T100100Z", "task-a", "question", to=ME, requires_ack=True
+    )
+    publish_v2(
+        repo, ME, "20260808T100200Z", "task-a", "ack", to=PEER,
+        ack_for=(published["acked"],),
+    )
+    published["no_ack_owed"] = publish_v2(
+        repo, THIRD, "20260808T100300Z", "task-b", "progress", to=ME
+    )
+    published["cc_only"] = publish_v2(
+        repo, THIRD, "20260808T100400Z", "task-b", "policy", to="someone_else",
+        requires_ack=True, overrides={"cc": f'["{ME}"]'},
+    )
+    published["not_mine"] = publish_v2(
+        repo, THIRD, "20260808T100500Z", "task-c", "policy", to=PEER,
+        requires_ack=True,
+    )
+    return published
+
+
+def _listed_paths(stdout: str, label: str) -> list[str]:
+    """The message paths a section printed, without their `[ref]` suffix."""
+    return sorted(
+        line.split()[0] for line in _section_paths(stdout, label).splitlines() if line.strip()
+    )
+
+
+def _state(repo: TransportRepo, monkeypatch, *, tasks=(), senders=()):
+    monkeypatch.chdir(repo.work)
+    return inbox_sweep.actionable_set(ME, repo.work, tasks, senders)
+
+
+def test_actionable_set_agrees_with_main_on_a_busy_inbox(repo, monkeypatch):
+    published = _busy_inbox(repo)
+
+    result = repo.sweep("--me", ME)
+    state = _state(repo, monkeypatch)
+
+    assert result.returncode == 1
+    assert [m.path for m in state.new_items] == _listed_paths(
+        result.stdout, "new (unseen)"
+    )
+    assert [m.path for m in state.unacked] == _listed_paths(
+        result.stdout, "unacknowledged, ack required"
+    )
+    # …and the answer is the substantive one, not two identical empties.
+    assert state.unacked and [m.path for m in state.unacked] == [published["unacked"]]
+    assert published["not_mine"] not in state.actionable_paths
+    assert published["cc_only"] in {m.path for m in state.new_items}
+    assert published["cc_only"] not in {m.path for m in state.unacked}
+    assert state.is_actionable and not state.transport_broken
+
+
+def test_actionable_set_agrees_with_main_after_mark_and_under_filters(
+    repo, monkeypatch
+):
+    published = _busy_inbox(repo)
+
+    marked = repo.sweep("--me", ME, "--mark")
+    assert marked.returncode == 1
+
+    # Marked: nothing is new any more, but the ack is still owed — so the
+    # sentinel must still consider this agent actionable.
+    state = _state(repo, monkeypatch)
+    after = repo.sweep("--me", ME)
+    assert counts(after.stdout)["new (unseen)"] == 0
+    assert state.new_items == []
+    assert [m.path for m in state.unacked] == [published["unacked"]]
+    assert state.is_actionable
+
+    # Filters move the selection identically on both paths (transport rule 6).
+    filtered_state = _state(repo, monkeypatch, tasks=("task-b",))
+    filtered = repo.sweep("--me", ME, "--task", "task-b")
+    assert filtered.returncode == 0
+    assert filtered_state.unacked == []
+    assert not filtered_state.is_actionable
+    assert [m.path for m in filtered_state.selection] == sorted(
+        [published["no_ack_owed"], published["cc_only"]]
+    )
+
+    sender_state = _state(repo, monkeypatch, senders=(THIRD,))
+    sender_cli = repo.sweep("--me", ME, "--sender", THIRD)
+    assert sender_cli.returncode == 0
+    assert [m.path for m in sender_state.selection] == sorted(
+        [published["no_ack_owed"], published["cc_only"]]
+    )
+
+
+def test_actionable_set_reports_a_broken_transport_as_actionable(repo, monkeypatch):
+    # Same path published with different bytes on two authoritative refs.
+    path = publish_v2(repo, PEER, "20260808T110000Z", "task-a", "policy", to=ME)
+    repo.commit(
+        f"agent/{THIRD}",
+        {path: v2_message(path, kind="policy", task="task-a", sender=PEER, to=ME)
+             + "\ndivergent\n"},
+    )
+
+    result = repo.sweep("--me", ME)
+    state = _state(repo, monkeypatch)
+
+    assert result.returncode == 2
+    assert state.transport_broken and state.is_actionable
+    assert [p for p, _ in state.collisions] == [path]
+
+
+def test_actionable_set_raises_sweep_failure_where_main_exits_2(repo, monkeypatch):
+    publish_v2(repo, PEER, "20260808T120000Z", "task-a", "policy", to=ME)
+    write_seen_state_file(repo, {"seen_message_paths": []})  # no schema_version
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+
+    monkeypatch.chdir(repo.work)
+    with pytest.raises(inbox_sweep.SweepFailure):
+        inbox_sweep.actionable_set(ME, repo.work)
