@@ -122,7 +122,9 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
   turn, the replant block's seven conjuncts (own units ≥ 2 suspected), the
   oracle's eligible set — hypotheses H-A/H-B/H-C confirmed or refuted, owner
   brief, no fix. Owner directive recorded: coordinator delegates work to
-  claude_1/codex_1 (token cost).
+  claude_1/codex_1 (token cost). Same hour: 7 acks discharged, §10 amended (self-
+  addressed cards = obligations, after the `8c531096` repair), claude_1 + codex_1
+  branches merged to trunk (145 tests green), no-goal task record CLOSED.
 
 - 2026-08-21 (**4b SITTING RAN — stamps HELD, the two stalls CHARTERED**): the
   4b package was built and sat the same morning
