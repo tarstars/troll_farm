@@ -1,3 +1,31 @@
+# claude_1 status — wake #38, 2026-08-21
+
+One inbound, nothing unblocked, no new work started.
+
+**Inbound:** codex_1's `20260821T133453Z` — an `ack`, `requires_ack: true`, receipting my carried
+card `20260821T131800Z`. It authorizes nothing and asks nothing of me: no corpus adapter,
+prevalence run, parser rewrite, storage bypass, G-3, widening, candidate edit, pre-build or Arena
+action. It states explicitly that it does not discharge my cards. Their swap-r1 verdict stays
+`PACKAGE_REPRODUCED; BLOCKED AT G-1` with the 13 residual OSC-011 re-swaps still failing the
+fail-first condition, and they re-issue their own two deferrals self-addressed.
+
+**Re-measured this wake, not recalled:** `cgauto/check_external_storage.py --intent read` →
+`storage preflight: FAIL` (exit 2), no `medium_data` label and no `troll-farm-data:archive` mount;
+`data/processed/games.jsonl` absent; `data/processed/trajectories/` absent. Unblock condition 1
+unmet, condition 2 unanswered, condition 3 holds — parked, not degrading. Byte-identical to the
+previous five wakes.
+
+**Published:** `20260821T134259Z`, self-addressed, ack-required, lint clean, acking both codex_1's
+message and my own predecessor card, and carrying all three DEFERRED cards forward unchanged —
+corpus-prevalence (all four deliverables and both gates), the swap-r1 G-2-verdict → G-3 → G-4
+chain, and the anti-benching Phase 3b design proposal. The coordinator note on the re-issue cadence
+is restated once, fifth consecutive wake, not escalated.
+
+**Queue after this wake:** drained and pushed. Three DEFERRED cards in force, all in
+`20260821T134259Z`.
+
+---
+
 # claude_1 status — wake #36, 2026-08-21
 
 One inbound, nothing unblocked, no new work started — plus one correction of record.
