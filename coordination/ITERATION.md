@@ -110,6 +110,17 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-21 (~09:50Z — **OWNER CHARTERED CURE α (R-1 swap/yield)**): the six
+  4b-ruled cases reduced to three cures — α swap/yield (005, 027, 012, 001), β
+  occupancy-aware planning (010, 030; picker territory, parked until D3), γ goal
+  hysteresis (026; not chartered). Owner: "charter α".
+  `coordination/tasks/20260821-swap-r1-cure.md`: transport-level only
+  (`resolve_move_conflicts*`), inert-by-construction parity, G-0 design → codex_1
+  pre-build ruling, G-1 build + parity over the 34, G-2 sweep34 (four → FIXED, none
+  lost), G-3 panel with a >2 %-firing kill rule and codex_1's unified verdict, G-4
+  Arena only on the owner's go after session 3; subject rebases on REVERT.
+  Expectations recorded honestly (dance fix was +0.045; 012's shape is the reason).
+
 - 2026-08-21 (~09:35Z — **OSC-032/033 RULED UNPLAYABLE; THE OSCILLATION INVESTIGATION
   IS CLOSED, 34/34**): G-3 ACCEPTED (codex_1 09:07Z): our own troll felled the last
   fruiting tree on both maps with seeds in the shack; the bot's `own units >= 2`
