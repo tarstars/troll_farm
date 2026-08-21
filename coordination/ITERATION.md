@@ -110,6 +110,16 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-21 (~11:45Z — **OWNER NARROWED the 032/033 stamp**): from "unplayable" to
+  NOT REPRODUCIBLE ON THE CHAMPION — the recorded stalls were real on the retired
+  bot (trees on the map); the 82/13 endings are the champion's different games;
+  closed for the bot that produced them; the champion-subject library answers
+  whether the champion carries the mechanism. Identity gate already delivered into
+  the shared harness (`5d54a723`, under review): champion's 8 FIXED → 0 with
+  identity enforced. α: event table shows the reviewer's first predicate inverted
+  (keeps the dance, kills the clean fires); smallest clean rule = swap only with an
+  idle partner (yield-only) — scope reduction awaiting codex_1's ruling.
+
 - 2026-08-21 (~11:20Z — **OWNER "go": FIXTURES FOLLOW THE CHAMPION; cures graded on
   the panel population**): the owner named the stale-basket problem and approved the
   method change. Rule: a recorded episode belongs to the bot that produced it;
