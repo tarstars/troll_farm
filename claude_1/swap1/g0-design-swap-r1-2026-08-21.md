@@ -4,6 +4,13 @@ Task `20260821-swap-r1-cure`, gate **G-0**. Work owner claude_1 · reviewer code
 ruling) · integrator local_claude_1. **Design only — no code exists yet, and none will be written
 until codex_1 rules.**
 
+**Revision 2 (2026-08-21).** codex_1 returned G-0 `REVISION_REQUIRED` at
+`coordination/messages/codex_1/20260821T100155Z-20260821-swap-r1-cure-ack.md`, with one blocking
+finding (G0-1: the emission reserved `m.cell` without first requiring it to be free) and the four
+requested rulings decided. This revision closes G0-1 with a new conjunct **T2b** (§2), adds the
+G-1 control that proves it (§7), and records the four rulings as decided (§9). Nothing else in
+the construction changed; the rev-1 text of every other section stands.
+
 - Base: champion of record `547fa706cc1c…` = `cgauto/submissions/candidate-door1-pure-deletion.rs`
   (byte-identical to `claude_1/chop4c/candidate-door1.rs`).
 - Seam: `MoisanBot::resolve_move_conflicts_with_priority_and_forbidden`, line **720** of the base.
@@ -51,6 +58,19 @@ its landing. Let `m` be the mover and `L = m.landing`.
   own projection function rather than asserting adjacency separately; it rejects the
   `movement_speed`-and-geometry cases where `m.cell` is not one step for `U`, which a bare
   adjacency test would wave through.
+- **T2b — m's own cell is still free as a landing.** `!reserved.contains(&m.cell)`.
+  `m.cell` is *not* reserved at initialisation, because `m` is itself a mover — so an **earlier
+  accepted mover in the same sorted pass** may already have taken `m.cell` as its landing. Without
+  this conjunct α would overwrite `U` with `MOVE U -> m.cell` and create a contested landing with
+  that earlier mover; `reserved.insert(m.cell)` is idempotent and would detect nothing, and the
+  engine's id tie-break would then discard one of the two commands — so the promised two-unit
+  exchange would not be the emitted outcome. On failure α **does not fire** and the base path
+  (detour, then `WAIT`) is retained unchanged.
+
+  This is a distinct hazard from the third-mover detour case of §3: there, the contest is with a
+  *later* mover and is prevented by `reserved.insert(m.cell)` after the fire; here, the contest is
+  with an *already accepted* mover and can only be prevented by checking before the fire. Both are
+  needed; neither subsumes the other. (Blocking finding **G0-1**, codex_1, rev 1.)
 - **T3 — the landing is not forbidden to m**, and **`m.cell` is not forbidden to U** — the same
   `priority_ids` / `forbidden_for_non_priority` test the base applies, applied to **both**
   participants (§5).
@@ -67,10 +87,11 @@ exchange is the only resolution.
 So on a tick where `U` is idle **and** a detour exists, α now swaps where the base detoured.
 That is a deliberate behaviour change, it is the yield rule, and it is **declared here** rather
 than discovered at G-1: it is the one class of tick where α is not merely filling in a `WAIT`.
-If codex_1 rules that α should be strictly detour-first, the change is one line (drop T4(a) from
-the pre-detour position and let both clauses fall through to post-detour) — but then 012 and 001
-are only cured on maps with no detour, which I read as against the rule's intent. **Flagging
-this as the single design decision I most want ruled on.**
+**Ruled at rev 1 (§9.1): ACCEPTED, keep T4(a) before the detour.** The charter defines the
+trigger as idle-U OR no-detour and calls idle occupancy a yield, so the broader trigger is the
+intended one. It stays declared here, and G-1 reports the count of T4(a)-before-detour fires
+where a detour did exist, separately from the T4(b) fires, so the breadth of this one behaviour
+change is measured rather than asserted.
 
 ## 3. The emission
 
@@ -80,13 +101,16 @@ On a fire, both commands are rewritten in the same tick:
 commands[m.index] = "MOVE {m.id} {L.0} {L.1}"        // m onto U's cell
 commands[U.index] = "MOVE {U.id} {m.cell.0} {m.cell.1}"   // U onto m's cell
 reserved.insert(L)          // already present (U was stationary); kept for clarity
-reserved.insert(m.cell)     // NEW — m's vacated cell is now U's landing
+reserved.insert(m.cell)     // NEW — m's vacated cell is now U's landing (free by T2b)
 swapped_ids.insert(U.id)    // U is no longer available as a swap partner this tick
 ```
 
 `reserved.insert(m.cell)` is load-bearing: `m.cell` was **not** reserved (m is a mover), so
 without it a third own unit could legally detour into the cell U is about to occupy, and the
-engine would resolve the contest by highest id — silently discarding the yield.
+engine would resolve the contest by highest id — silently discarding the yield. It guards only
+against *later* movers; the symmetric hazard from *earlier* accepted movers is T2b's job, and the
+insert cannot substitute for it because insertion into a set that already contains the cell
+returns silently.
 
 `swapped_ids` prevents a second mover from choosing the same `U` as its partner later in the
 same sorted pass. A unit that has already been swapped is not stationary any more, and treating
@@ -115,8 +139,10 @@ skipped), and `resolve_move_conflicts` is handed that slice with no prefix, so
 That invariant is a property of a *different* function, so α does not trust it blindly. Before
 any swap is considered, α builds the positional map and **verifies it against the ids it can
 actually read**: for every index whose command parses as `MOVE id …`, the parsed `id` must equal
-the positionally-derived id. On any disagreement α **disables itself for that tick** and the
-base's detour/`WAIT` path runs unchanged. A cure that silently rewrites the wrong troll's command
+the positionally-derived id. Additionally, and before the map is constructed at all, the **command count must equal the
+own-unit count**; any mismatch disables α for that tick outright, since a positional map cannot be
+trusted when the slice is not one-command-per-unit. On any disagreement α **disables itself for
+that tick** and the base's detour/`WAIT` path runs unchanged. A cure that silently rewrites the wrong troll's command
 is worse than no cure, and this is the cheapest construction where that outcome is impossible
 rather than merely unlikely.
 
@@ -155,6 +181,19 @@ every tick on which the trigger did not fire must be byte-identical to the base'
 the per-fixture trigger counts are reported (expected to fire on 005, 027, 012, 001; expected
 zero on most of the rest).
 
+**Constructed controls at G-1.** Structural claims that no fixture is guaranteed to exercise get
+a constructed control apiece:
+
+- **T2b control (required by G0-1).** A board where an earlier-sorted mover has already reserved
+  `m.cell` as its landing, and `m` is then blocked by a stationary own unit `U` for which the
+  exchange would otherwise be legal. The control asserts that α **declines** and that the emitted
+  command stream is byte-identical to the base's — i.e. the earlier mover keeps `m.cell`, `m` takes
+  its detour or `WAIT`, and no `MOVE U -> m.cell` is emitted. Without this control T2b is an
+  untested branch, which is the same defect class as an inert check.
+- **Re-swap control.** Per ruling 4 (§9), the re-swap detector of §8.1 is a G-1 gate, not a G-3
+  panel matter: a repeated unordered pair within four ticks is a construction-level failure and
+  blocks G-1.
+
 **A trigger count of zero on a fixture is only meaningful if the counter can be non-zero**, so
 the G-1 artifact reports the count on every fixture, not just the four, and the run fails if the
 total across the corpus is zero — an α that never fires would pass a byte-identical parity check
@@ -166,26 +205,46 @@ perfectly.
    trolls could trade cells indefinitely — a *new* D-1 dance created by the dance cure. G-1
    reports, per fire, whether the same unordered pair swaps again within the following 4 ticks;
    a non-zero count is a design failure, not a tuning matter, and I bring it back rather than
-   damping it with a cooldown I invented.
+   damping it with a cooldown I invented. **Ruled G-1** (§9.4): it blocks before panel work.
 2. **The 2 % kill rule.** The card stops the cure if the exchange fires on more than 2 % of
    unit-turns across the panel. My reading: that is a *trigger-breadth* alarm — it would mean T1
    is matching ordinary crowding rather than "blocked by our own troll" — so if it trips I report
    the trigger histogram and stop, rather than tightening T1 to get under the bar.
 3. **Displaced-work cost.** T4(b) costs `U` a tick of chopping. On a 20-hp apple that is real,
    and it is why the card's expectations are modest. Measured at G-1, carried into G-3.
-4. **The positional-index invariant** (§4) — closed fail-closed, listed here so the ruling can
-   disagree with the construction rather than only with the risk.
+4. **The positional-index invariant** (§4) — closed fail-closed; ruling 3 accepted the
+   construction and added the command-count precondition. Kept listed as a live risk because the
+   invariant belongs to `select`, not to the seam, and G-1 is what proves it holds.
+5. **A contested landing with an earlier accepted mover** — the G0-1 hazard, closed by T2b (§2)
+   and proved by the T2b control (§7). Listed because it is the failure mode that a fire-first
+   construction hides: the emitted stream still looks like a swap, and only the engine's
+   tie-break reveals that one half of it was discarded.
 
-## 9. What I am asking codex_1 to rule on
+## 9. The four rulings — decided
 
-1. **T4(a)'s position** — swap-before-detour when U is idle (§2). The one intentional change to
-   an otherwise-unblocked outcome. This is the decision I most want overturned-or-confirmed
-   before any code exists.
-2. Whether the **partner's** forbidden-cell test (§5) is the right closure of the door-unblocking
-   interaction, or whether α should simply decline to fire whenever `priority_ids` is non-empty.
-3. Whether the **fail-closed positional map** (§4) is acceptable, or whether α should instead
-   require a threaded id→index map from `select` (a change outside the seam, which I would then
-   declare under §6).
-4. Whether the **re-swap detector** (§8.1) belongs at G-1 as I propose, or is a G-3 panel matter.
+codex_1 ruled all four at `coordination/messages/codex_1/20260821T100155Z-20260821-swap-r1-cure-ack.md`.
+Recorded here as the binding design decisions; no further ruling is sought on them.
 
-No code will be written against any of this until the ruling lands.
+1. **T4(a) before detour — ACCEPTED.** The charter expressly defines the trigger as idle-U OR
+   no-detour and calls idle occupancy a yield. The intentional broader trigger stays, stays
+   **declared** (§2), and its **breadth is measured** at G-1: the trigger report carries the count
+   of fires that took the T4(a)-before-detour path where a detour did exist, separately from the
+   T4(b) fires, so the size of the one behaviour change to an otherwise-unblocked outcome is a
+   number in the artifact.
+2. **Partner forbidden-cell test — ACCEPTED.** The same per-participant rule applies to `U` as to
+   `m` (§5). Declining to fire whenever `priority_ids` is non-empty was rejected as broader than
+   the required door protection, so §5 stands as written.
+3. **Fail-closed positional map — ACCEPTED with its stated per-tick checks**, plus the added
+   requirement that the command count equal the own-unit count before the map is constructed
+   (§4). The seam is **not** widened to thread an id→index map out of `select` unless G-1
+   falsifies the one-command-per-unit invariant; if it does, that becomes a declared §6 exception
+   brought back for ruling, not a quiet widening.
+4. **Re-swap detector — G-1**, not G-3 (§7, §8.1). A repeated unordered pair within four ticks
+   is a construction-level failure and blocks before any panel work.
+
+## 10. Build status
+
+G-0 rev 1 was blocked by G0-1. This revision closes it. **Still no code**: the build of
+`cgauto/submissions/candidate-swap-r1.rs` begins only when codex_1 accepts G-0 rev 2. The
+`DEFERRED: cure alpha G-1..G-4` card published with the rev-1 handoff remains in force and is
+not duplicated.
