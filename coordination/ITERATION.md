@@ -110,6 +110,19 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-21 (~08:40Z — **CAUSE ATTRIBUTION G-1 ACCEPTED; the premise falls**):
+  claude_1's clause instrument was REVISION_REQUIRED (count-only joins) then
+  ACCEPTED at rev 2 `2764db56` (identity joins, 14/14 negative controls, a
+  dropped-failures defect disclosed and repaired). Its output refutes the card's
+  premise: the eligible-action oracle returns NO legal action on any window turn
+  — the map is bare from turn 82 (OSC-032) / turn 13 (OSC-033) on the champion;
+  the 4b package's "usable work every turn" was the raw-liveness predicate
+  (coordinator's conflation, corrected in the package). Also measured: opening
+  abandoned at turn 35 in both; replant conjunct `own units ≥ 2` always false.
+  Card amended: G-3 must say when/how the map went bare, whether the REAL
+  referee would have ended the game (`has_stalled` — sim-artifact question),
+  why the opening failed (H-A), and which other conjuncts were false (H-B).
+
 - 2026-08-21 (~08:25Z — **4b BUCKET B RULED BUG, stamps withdrawn**): the owner
   watched OSC-005/010/027/030 and ruled BUG under R-2, known-open, naming three
   mechanisms — corridor pass blocked by a working teammate → swap (005, 027; R-1

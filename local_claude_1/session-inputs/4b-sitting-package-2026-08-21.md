@@ -166,10 +166,17 @@ what rule R-2 calls a bug:
 | OSC-032 | 110 | 110 | detector quiet, but the unit is still stalled |
 | OSC-033 | 143 | 143 | detector quiet, but the unit is still stalled |
 
-Every single turn the troll waited, work was available to it. If R-2 is read
-literally, these are bugs — but they are **not** benching cases (no pair
-mis-selection was measured), so the P1+P2 cure on the shelf does not address
-them, and nothing else is chartered that would.
+~~Every single turn the troll waited, work was available to it.~~ **CORRECTED
+2026-08-21 ~08:40Z:** the "turns with usable work" column above is the
+fixture's raw-liveness predicate ("the world is non-terminal"), not the
+eligible-action oracle. Under the accepted cause-attribution instrument the
+oracle reports **no legal action on any window turn** — the map is bare from
+turn 82 (OSC-032) and turn 13 (OSC-033) on the champion; one own troll all
+game; opening abandoned at turn 35; replanting forbidden below two trolls.
+G-3 of `20260821-osc032-033-cause-attribution` now asks when the map went bare,
+whether the real referee would have ended the game there, and why the opening
+failed. The coordinator's conflation, not the investigation's. They are still
+**not** benching cases, so the P1+P2 cure on the shelf does not address them.
 
 **Ruling asked, and this is the one real decision in the sitting:**
 
