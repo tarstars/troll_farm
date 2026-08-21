@@ -737,6 +737,56 @@ Launcher woke me; queue held **one** message and it was terminal.
   deployed at 15:12:55Z, so no restart and no repeat of the 15:06Z crash. VM disk now
   **95% / 1.1G free** (was 98% / 541M); still unowned, still flagged not claimed.
 
+## Wake #16 — 2026-08-21T05:30Z (card 2 DELIVERED; a new card 4 deferred; one blocker raised)
+
+Queue held **three** messages. Two were terminal (`requires_ack: false`), one was a new CARD.
+
+- **codex_1 `20260821T051440Z` — the `actionable_set()` extraction ACCEPTED at exact `5ad46cbb`**
+  (123 tests replayed in an isolated detached worktree). No ack owed and none published. This
+  **discharged the single ruling card 2 was blocked on**, so card 2 became my live item and I built it.
+- **local_claude_1 `20260821T051241Z` — 4b package, `to: user`.** Read, no action owed; the
+  champion beats cure C on the frozen cases 8 FIXED to 3, and OSC-031 is still NOT FIXED (the
+  benching, not the chop). Recorded, not acted on.
+- **local_claude_1 `20260821T051959Z` — CARD 4, the OSC-032/033 no-goal instrument.** Landed
+  mid-ritual; **DEFERRED** with a live self-addressed replacement (`20260821T053050Z`), my first
+  item next wake.
+
+### Card 2 delivered — `scripts/sentinel.py` + `docs/sentinel.md` at `f538bd3c` (doc repair `ec02a55b`)
+
+Handoff `20260821T053024Z` to codex_1. **138 tests pass** (123 his + 15 new); **5 mutants run,
+5 killed**. The predicate is `inbox_sweep.actionable_set()` and nothing else, asserted against a
+live sweep rather than trusted at the call site. Controls fire both ways, including the one I rate
+hardest — **mail for a DIFFERENT agent keeps it hanging** — and the git verb set of a whole run is
+recorded by a PATH shim, not asserted in prose.
+
+The fifth mutant **survived my first attempt**: a wall-clock break-heal-break test cannot separate
+"the counter reset" from "the second failure never landed". Replaced with an in-process scripted
+fetch-outcome list, which kills it. A control that cannot fail is not a control.
+
+**Gate zero re-verified live this wake, not cited:** a real sentinel ran as a harness-tracked
+background task against the true origin, hung through four fetches of nine remote refs, exited 2 at
+the keepalive and removed its pidfile — and that exit re-invoked this session. Gate 1 stays
+**MIXED** (Codex harness falsified); `nohup`/`setsid`/systemd shapes remain **unverified**; no
+harness is proven to *notice*. Ruling requested on one widening: a `SweepFailure` is counted on the
+same budget as a fetch failure, so exit 3 means N consecutive fetch-**or-sweep** failures.
+
+### BLOCKER raised — the deferral queue anchor is inert (`20260821T053322Z`)
+
+Measured, not inferred: `inbox_sweep` builds `addressed` with `m.sender != me`, so a self-addressed
+`DEFERRED:` card is authoritative on origin, `requires_ack: true`, unacked — and **absent from its
+own owner's `actionable_paths`**. My "queue drained" notes at wakes #13 and #14 were honest and the
+sweep agreed with them while two cards were live; that agreement IS the defect. The sentinel
+inherits it (charter element 3 never fires) and I did **not** patch it there — a second predicate is
+what codex_1's boundary forbids. `docs/sentinel.md` states the gap in place. No patch proposed
+inside someone else's rule; the narrow question is the rule owner's.
+
+**Standing cards:** card 2 **DELIVERED**, awaiting review · card 3 closed, no replacement · **card 4
+the only live DEFERRED**, carried by this file and by `20260821T053322Z`, because by measurement the
+queue will not carry it.
+
+**Pre-existing and NOT mine:** `tests/test_doc_budgets.py` fails on `docs/STATE.md` (171 lines,
+budget 150); that file last moved 2026-08-14 and nothing this wake touches it.
+
 ## Owed, now unparked by r4
 
 M1 Decision Packet implementation (spec frozen against `98628e98`) · M3b adjudication (needs M1 + valid M3a) · P4 re-do on c5 evidence · D-4 repair · gate revision 3 execution review. **With the owner:** the D89a label; whether to fund a fresh 512-row corpus for U4.
