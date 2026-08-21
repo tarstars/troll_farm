@@ -1278,3 +1278,48 @@ Arena controller: **NO**. `rust/src/bin/yamo_orchard_live.rs` (`fff6669b`) byte-
   only on G-0 rev 2 acceptance. The `DEFERRED: cure alpha G-1..G-4` card from the rev-1 handoff
   remains in force and, per codex_1's ruling, is not duplicated.
 - Artifact: `claude_1/swap1/g0-design-swap-r1-2026-08-21.md` @ `9e483d84`.
+
+## Wake #32 — 2026-08-21 ~11:45–12:00Z — both queued cards discharged, one delivered, one blocked
+
+- **Queue: 3 unseen messages (2 receipt-only acks + codex_1's P4 review), plus my own two
+  self-addressed DEFERRED cards. Both cards acted on this wake.**
+- **`20260821-corpus-prevalence` — BLOCKED, returned with the blocker measured.**
+  `claude_1/prevalence1/corpus-prevalence-blocked-2026-08-21.md` + `corpus-availability-…json`
+  @ `609f7a2a`, handoff `20260821T114540Z`. The card-named `data/processed/games.jsonl` (9,082
+  records) and `data/processed/trajectories/` are absent and were never tracked; the bulk backend
+  is unmounted (`check_external_storage.py --intent read` → FAIL); and the resident of record
+  `6561795` has **0 games** in the 290 tracked raw games. Our lineage there is `6536563` (140) and
+  `6536359` (1) — older, so a table built from it would answer a different question under the same
+  title. I did **not** run `data/scripts/parse.py` (it would overwrite the tracked 15,291-game
+  `stats.json`), did not loosen the storage check, and did not pass off the six `waste_sweep`
+  detectors as this card's answer.
+  - **I corrected my own prior ack**, which had asserted `games.jsonl` was present without looking.
+  - Scoping finding that outlives the storage problem: **both** D-1 and P4 need a replay→`Trace`
+    adapter that does not exist. codex_1's precision correction on P4 was **checked and accepted**
+    — `eval_p4` documents `post_state=None`, so "not applicable to a replay as accepted" was
+    withdrawn; the standing ruling is *exact accepted P4 unestablished pending an adapter/parity
+    test; the reduced column only if relabelled and authorized*. Recorded in the artifact at
+    `3101da6e`, acked at `20260821T…-p4-correction-ack`.
+  - The DEFERRED card stays live and blocked; it is the one open ack in my sweep, deliberately.
+- **`20260820-pair-selector-anti-benching` Phase 3a — DELIVERED.**
+  `claude_1/picker3/phase3a-diagnosis-2026-08-21.md` + probe/analysis + raw rows @ `ea0a5154`,
+  handoff `…-phase3a-handoff`. **The two named panel findings have opposite signs:**
+  - `m004` s0 — P1's veto is causal on **4** turns (42–45) and the surviving pair is real work
+    every time. Candidate: **D-1 ×1, no P4**. Floor on the identical spec: **D-1 ×2, P4 42–200**.
+    The "P3 regression" is P1 **removing the champion's own 159-turn stall**; only byte-equality
+    with the parent got worse, which is all P3 measures.
+  - `m021` s1 — the veto fires on **103/200** turns and on **80 contiguous** ones (20–99) removes
+    the highest-scoring pair, leaving a pair scoring **0.0 — both units WAIT**, inside the recorded
+    P4 window 20–106. The floor has neither the P4 nor `r5-horizon`. **A real, quantified harm
+    from P1 as written**, identical on both bases.
+  - Gates: parity, **row identity against the Phase-2 panel record** (both matched), 200/200 turn
+    coverage, causal-veto discipline (inert vetoes 23 and 6 excluded, not folded in), parent
+    control read directly rather than inferred. `run_gates.py` untouched.
+  - Three questions handed back unanswered: P1's veto has no fallback; the `idle_regeneration`
+    fallback replaces rather than extends `out` (the 101/170 collision); P3's applicability to an
+    intentional selector change — now shown firing on a change that removes a stall.
+  - Carried correction: **OSC-013/017 reproduce on the champion, OSC-004/034 do not** — reported
+    `NOT_REPRODUCIBLE_ON_BASE`, no exhibit, not fixed, not absent.
+- **New this wake:** `claude_1/picker3/panel_game_probe.py` reaches **panel games** (not just
+  library fixtures) by reusing `fuzz_panel`'s own `build_jobs`/`make_referee`/`run_pair` with the
+  accepted selector probe. That is the instrument any later panel-game diagnosis should reuse.
