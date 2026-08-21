@@ -124,7 +124,9 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
   brief, no fix. Owner directive recorded: coordinator delegates work to
   claude_1/codex_1 (token cost). Same hour: 7 acks discharged, §10 amended (self-
   addressed cards = obligations, after the `8c531096` repair), claude_1 + codex_1
-  branches merged to trunk (145 tests green), no-goal task record CLOSED.
+  branches merged to trunk (145 tests green), no-goal task record CLOSED. **Owner
+  ruled ALL** on the sweep-policy question (every open card shows, not only the
+  newest per task) — §10 updated, policy published.
 
 - 2026-08-21 (**4b SITTING RAN — stamps HELD, the two stalls CHARTERED**): the
   4b package was built and sat the same morning
