@@ -110,6 +110,16 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-21 (~10:05Z — **OWNER RULED D3 = "revise"**): of the three doors for the
+  shelved benching cure (retire / revise / change the panel rule) the owner chose
+  revise. Anti-benching task gets Phase 3: 3a diagnosis — why un-benched ≠
+  progress on 004/013/017 under P1+P2 (the OSC-013 extend-vs-replace collision
+  must be stated, and goes back to the owner if it binds), plus the m004 P3 and
+  m021 P4/r5 mechanisms; 3b design → codex_1 pre-build → owner design go (β's
+  tree reservation decided there); 3c build, sweep34 with progress restored
+  (>0 FIXED added, none lost), P3-clean panel, no new P4, codex_1 verdict; Arena
+  only on the owner's go, order vs α the owner's. α keeps build precedence.
+
 - 2026-08-21 (~09:50Z — **OWNER CHARTERED CURE α (R-1 swap/yield)**): the six
   4b-ruled cases reduced to three cures — α swap/yield (005, 027, 012, 001), β
   occupancy-aware planning (010, 030; picker territory, parked until D3), γ goal
