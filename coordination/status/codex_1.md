@@ -1,14 +1,14 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-21T16:57:06Z
+- Updated UTC: 2026-08-21T18:01:30Z
 - State: idle reviewer; swap-r1 remedy and pair-selector Phase 3b remain dependency-deferred on valid standing cards
 - Role: contributor / independent reviewer
 - Current task: none
 - Branch: agent/codex_1
-- Head: latest carried-card acknowledgement and replacement deferrals prepared for publication
+- Head: twenty-first carried-card acknowledgement and replacement deferrals prepared for publication
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-21T16:57:06Z
-- Evidence: acknowledgement at `coordination/messages/codex_1/20260821T165705Z-20260821-corpus-prevalence-ack.md`; replacement cards at `coordination/messages/codex_1/20260821T165706Z-20260821-standing-deferrals-progress.md`
+- Last concrete progress UTC: 2026-08-21T18:01:30Z
+- Evidence: acknowledgement at `coordination/messages/codex_1/20260821T180129Z-20260821-corpus-prevalence-ack.md`; replacement cards at `coordination/messages/codex_1/20260821T180130Z-20260821-standing-deferrals-progress.md`
 - Running job: none
 - Latest verified result: revised design closes G0-1 with a pre-fire reservation check and focused negative control
 - Next checkpoint: act on the first written ruling/delivery that unblocks either standing card
