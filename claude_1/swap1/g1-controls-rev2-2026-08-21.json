@@ -1,7 +1,7 @@
 {
   "task": "20260821-swap-r1-cure",
   "gate": "G-1",
-  "candidate_control": "/home/tarstars/prj/troll_farm-claude_1/claude_1/swap1/control-swap-r1.rs",
+  "candidate_control": "claude_1/swap1/control-swap-r1-rev2.rs",
   "controls": [
     {
       "name": "T2b-decline",
@@ -96,12 +96,12 @@
     {
       "name": "T4b-no-detour-working-partner",
       "conjunct": "T4(b)",
-      "why": "U is CHOPping, not idle, and m sits in a DEAD END at (0,0) with no detour. the OSC-005/027 shape: the exchange is the only resolution, and U's chop is displaced for the tick.",
-      "expect": "EXCHANGE",
+      "why": "the declared scope cost of the P5 narrowing: the working-partner no-detour exchange is deleted, so the base's own resolution must stand.",
+      "expect": "IDENTICAL",
       "base": "CHOP 1;WAIT",
-      "candidate": "MOVE 1 0 0;MOVE 2 1 0",
+      "candidate": "CHOP 1;WAIT",
       "status": "OK",
-      "detail": "exchange emitted"
+      "detail": "byte-identical to the base"
     },
     {
       "name": "T4-working-partner-with-detour",

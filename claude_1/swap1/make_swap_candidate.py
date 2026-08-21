@@ -40,6 +40,7 @@ Run:  python3 claude_1/swap1/make_swap_candidate.py
 """
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import sys
@@ -51,11 +52,24 @@ REPO = HERE.parent.parent
 BASE = REPO / "cgauto/submissions/candidate-door1-pure-deletion.rs"
 BASE_SHA = "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
 
+# rev 1 (the accepted G-0 construction: yield path OR no-detour working-partner path) and
+# rev 2 (codex_1's construction ruling 20260821T110533Z: P5, the yield path ONLY) are built by
+# the SAME generator from the same patch text; only the fire predicate and the output names
+# differ, so the two revisions cannot silently drift apart.
 CANDIDATE = REPO / "cgauto/submissions/candidate-swap-r1.rs"
 PROBE = HERE / "probe-swap-r1.rs"
 CONTROL_BASE = HERE / "control-base.rs"
 CONTROL_CAND = HERE / "control-swap-r1.rs"
 MANIFEST = HERE / "build-manifest-2026-08-21.json"
+
+CANDIDATE_R2 = REPO / "cgauto/submissions/candidate-swap-r1-rev2.rs"
+PROBE_R2 = HERE / "probe-swap-r1-rev2.rs"
+CONTROL_CAND_R2 = HERE / "control-swap-r1-rev2.rs"
+MANIFEST_R2 = HERE / "build-manifest-rev2-2026-08-21.json"
+
+# The rev-1 fire predicate, verbatim as it appears in PARTNER below, and its rev-2 replacement.
+PREDICATE_R1 = "                        if yielding||detour.is_none(){"
+PREDICATE_R2 = "                        if yielding{"
 
 REGION_START = "            fn resolve_move_conflicts(view:&GameState,commands:&mut[String]){"
 REGION_END = "        impl YamoBot{"
@@ -142,7 +156,7 @@ FIRE_ROW += ('                            eprintln!("SW1SEAM turn={} m={} u={} m
              'target==landing,commands[u_index]);\n')
 
 
-def patch_candidate(base: str) -> str:
+def patch_candidate(base: str, predicate: str = PREDICATE_R1) -> str:
     out = base
     for anchor in (REGION_START, SEAM_HEAD, LOOP_ANCHOR, TAIL_ANCHOR):
         if out.count(anchor) != 1:
@@ -150,6 +164,10 @@ def patch_candidate(base: str) -> str:
     out = out.replace(SEAM_HEAD, HELPER + SEAM_HEAD)
     out = out.replace(LOOP_ANCHOR, LOOP_PREAMBLE + LOOP_ANCHOR)
     out = out.replace(TAIL_ANCHOR, PARTNER.replace("{FIRE_ROW}", ""))
+    if predicate != PREDICATE_R1:
+        if out.count(PREDICATE_R1) != 1:
+            raise SystemExit("the rev-1 fire predicate is not unique in the patched text")
+        out = out.replace(PREDICATE_R1, predicate, 1)
     return out
 
 
@@ -198,7 +216,17 @@ SHADOW_TAIL = '''                let mut swap_shadow:Vec<String> =swap_shadow_be
 '''
 
 
-def patch_probe(base: str, candidate: str) -> str:
+def partner_text(fire_row: str, predicate: str = PREDICATE_R1) -> str:
+    """The PARTNER block as it actually appears in a built artifact of this revision."""
+    text = PARTNER.replace("{FIRE_ROW}", fire_row)
+    if predicate != PREDICATE_R1:
+        if text.count(PREDICATE_R1) != 1:
+            raise SystemExit("the rev-1 fire predicate is not unique in PARTNER")
+        text = text.replace(PREDICATE_R1, predicate, 1)
+    return text
+
+
+def patch_probe(base: str, candidate: str, predicate: str = PREDICATE_R1) -> str:
     out = candidate
     # 1. the shadow copy of the base's own seam, inserted beside the helper
     out = out.replace(HELPER, shadow_from_base(base) + HELPER, 1)
@@ -209,14 +237,16 @@ def patch_probe(base: str, candidate: str) -> str:
     # 3. the per-turn row, after own_index exists
     out = out.replace(LOOP_PREAMBLE + LOOP_ANCHOR, LOOP_PREAMBLE + TURN_ROW + LOOP_ANCHOR, 1)
     # 4. the fire row, inside the fire branch and BEFORE the commands are rewritten
-    fired = PARTNER.replace("{FIRE_ROW}", "")
-    out = out.replace(fired, PARTNER.replace("{FIRE_ROW}", FIRE_ROW), 1)
+    fired = partner_text("", predicate)
+    if out.count(fired) != 1:
+        raise SystemExit("the fire branch is not unique in the candidate")
+    out = out.replace(fired, partner_text(FIRE_ROW, predicate), 1)
     # 5. the shadow comparison and the final command dump, at the end of the seam body
     tail_anchor = """                    ;
                     }
                 }
 """
-    idx = out.index(PARTNER.replace("{FIRE_ROW}", FIRE_ROW))
+    idx = out.index(partner_text(FIRE_ROW, predicate))
     rest = out[idx:]
     if rest.count(tail_anchor) < 1:
         raise SystemExit("seam tail anchor not found")
@@ -328,14 +358,26 @@ def control_from(src: str) -> str:
     return out[:idx] + CONTROL_MAIN.strip() + "\n"
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description="build cure alpha's artifacts")
+    ap.add_argument("--rev2", action="store_true",
+                    help="build the P5 (yield-path-only) revision codex_1 approved at "
+                         "20260821T110533Z, to the -rev2 output names; rev-1 outputs untouched")
+    args = ap.parse_args(argv)
+
+    predicate = PREDICATE_R2 if args.rev2 else PREDICATE_R1
+    candidate_path = CANDIDATE_R2 if args.rev2 else CANDIDATE
+    probe_path = PROBE_R2 if args.rev2 else PROBE
+    control_cand_path = CONTROL_CAND_R2 if args.rev2 else CONTROL_CAND
+    manifest_path = MANIFEST_R2 if args.rev2 else MANIFEST
+
     base = BASE.read_text()
     got = hashlib.sha256(base.encode()).hexdigest()
     if got != BASE_SHA:
         print(f"REFUSING: base sha256 {got[:16]}… != champion of record {BASE_SHA[:16]}…")
         return 1
 
-    candidate = patch_candidate(base)
+    candidate = patch_candidate(base, predicate)
 
     # guard 3: nothing outside the seam region changed
     def outside(text: str) -> tuple[str, str]:
@@ -346,23 +388,33 @@ def main() -> int:
         print("REFUSING: the patch changed bytes OUTSIDE the seam region")
         return 1
 
-    probe = patch_probe(base, candidate)
-    CANDIDATE.write_text(candidate)
-    PROBE.write_text(probe)
+    # guard 5 (rev 2 only): the ONLY difference from the rev-1 candidate is the fire predicate.
+    if args.rev2:
+        rev1 = patch_candidate(base, PREDICATE_R1)
+        if candidate != rev1.replace(PREDICATE_R1, PREDICATE_R2, 1):
+            print("REFUSING: rev 2 differs from rev 1 by more than the fire predicate")
+            return 1
+        print("rev 2 differs from rev 1 by exactly the fire predicate line: verified")
+
+    probe = patch_probe(base, candidate, predicate)
+    candidate_path.write_text(candidate)
+    probe_path.write_text(probe)
     CONTROL_BASE.write_text(control_from(base))
-    CONTROL_CAND.write_text(control_from(candidate))
+    control_cand_path.write_text(control_from(candidate))
 
     manifest = {
         "task": "20260821-swap-r1-cure", "gate": "G-1",
+        "revision": 2 if args.rev2 else 1,
+        "fire_predicate": predicate.strip(),
         "base": {"path": str(BASE.relative_to(REPO)), "sha256": got},
         "outputs": {},
     }
-    for path in (CANDIDATE, PROBE, CONTROL_BASE, CONTROL_CAND):
+    for path in (candidate_path, probe_path, CONTROL_BASE, control_cand_path):
         manifest["outputs"][str(path.relative_to(REPO))] = hashlib.sha256(
             path.read_bytes()).hexdigest()
         print(f"wrote {path.relative_to(REPO)}  sha256 "
               f"{manifest['outputs'][str(path.relative_to(REPO))][:16]}…")
-    MANIFEST.write_text(json.dumps(manifest, indent=2) + "\n")
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
 
     if hashlib.sha256(BASE.read_bytes()).hexdigest() != BASE_SHA:
         print("INTEGRITY FAILURE: the base file was modified")

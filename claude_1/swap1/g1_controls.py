@@ -37,6 +37,8 @@ Run:  python3 claude_1/swap1/g1_controls.py
 from __future__ import annotations
 
 import json
+import argparse
+import pathlib
 import subprocess
 import sys
 import tempfile
@@ -185,6 +187,13 @@ CONTROLS = [
             commands=["CHOP 1", "MOVE 2 4 0"]),
         "expect": "EXCHANGE",
         "exchange": ["MOVE 2 1 0", "MOVE 1 0 0"],
+        # rev 2 (P5, yield-path-only) DELETES this path by construction. The control is not
+        # removed and its expectation is not quietly relaxed: under --rev2 it is inverted to
+        # IDENTICAL, so the named scope cost of codex_1's narrowing is ASSERTED on a constructed
+        # board rather than merely being absent from the corpus.
+        "rev2_expect": "IDENTICAL",
+        "rev2_why": ("the declared scope cost of the P5 narrowing: the working-partner "
+                     "no-detour exchange is deleted, so the base's own resolution must stand."),
     },
     {
         "name": "T4-working-partner-with-detour",
@@ -208,14 +217,26 @@ def run(binary: Path, text: str) -> str:
     return done.stdout.strip()
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description="cure alpha's constructed-board controls")
+    ap.add_argument("--control", default=str(HERE / "control-swap-r1.rs"))
+    ap.add_argument("--json", default=str(OUT))
+    ap.add_argument("--rev2", action="store_true",
+                    help="grade the P5 (yield-path-only) revision: controls carrying a "
+                         "rev2_expect are graded against that inverted expectation")
+    args = ap.parse_args(argv)
+    out_path = pathlib.Path(args.json)
     results, ok = [], True
     with tempfile.TemporaryDirectory(prefix="swap-controls-") as wd:
         wd = Path(wd)
         base_bin, cand_bin = wd / "base.bin", wd / "cand.bin"
         sh.compile_text((HERE / "control-base.rs").read_text(), base_bin, crate="swap_control_base")
-        sh.compile_text((HERE / "control-swap-r1.rs").read_text(), cand_bin, crate="swap_control_cand")
+        sh.compile_text(pathlib.Path(args.control).read_text(), cand_bin, crate="swap_control_cand")
         for control in CONTROLS:
+            control = dict(control)
+            if args.rev2 and "rev2_expect" in control:
+                control["expect"] = control["rev2_expect"]
+                control["why"] = control["rev2_why"]
             base_out = run(base_bin, control["board"])
             cand_out = run(cand_bin, control["board"])
             identical = base_out == cand_out
@@ -233,9 +254,10 @@ def main() -> int:
                             "status": "OK" if good else "FAILED", "detail": detail})
             print(f"  {'OK    ' if good else 'FAILED'} {control['name']:<38} "
                   f"base[{base_out}] cand[{cand_out}]")
-    OUT.write_text(json.dumps({"task": "20260821-swap-r1-cure", "gate": "G-1",
-                               "controls": results, "all_ok": ok}, indent=2) + "\n")
-    print(f"\n  CONTROLS: {'ALL OK' if ok else 'A CONTROL FAILED'} -> {OUT.relative_to(REPO)}")
+    out_path.write_text(json.dumps({"task": "20260821-swap-r1-cure", "gate": "G-1",
+                                    "candidate_control": args.control,
+                                    "controls": results, "all_ok": ok}, indent=2) + "\n")
+    print(f"\n  CONTROLS: {'ALL OK' if ok else 'A CONTROL FAILED'} -> {out_path}")
     return 0 if ok else 1
 
 

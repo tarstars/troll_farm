@@ -1,6 +1,8 @@
 {
   "task": "20260821-swap-r1-cure",
   "gate": "G-1",
+  "revision": 1,
+  "fire_predicate": "if yielding||detour.is_none(){",
   "base": {
     "path": "cgauto/submissions/candidate-door1-pure-deletion.rs",
     "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"

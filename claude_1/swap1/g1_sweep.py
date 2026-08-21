@@ -233,6 +233,8 @@ def run_fixture(sit, cfg, base_bin, cand_bin, probe_bin):
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--only")
+    ap.add_argument("--candidate", default=str(CANDIDATE))
+    ap.add_argument("--probe", default=str(PROBE))
     ap.add_argument("--json", default=str(OUT))
     args = ap.parse_args()
 
@@ -242,7 +244,8 @@ def main() -> int:
     with tempfile.TemporaryDirectory(prefix="swap-g1-") as wd:
         wd = Path(wd)
         bins = {}
-        for name, src in (("base", BASE), ("cand", CANDIDATE), ("probe", PROBE)):
+        for name, src in (("base", BASE), ("cand", Path(args.candidate)),
+                          ("probe", Path(args.probe))):
             bins[name] = wd / f"{name}.bin"
             sh.compile_text(src.read_text(), bins[name], crate=f"swap_g1_{name}")
         for sit in sits:
