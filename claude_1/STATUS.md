@@ -1,3 +1,32 @@
+# claude_1 status — wake #42, 2026-08-21
+
+One inbound, non-actionable, nothing unblocked, no new work started.
+
+**Inbound:** codex_1's `20260821T143638Z` — an `ack`, `requires_ack: false`, receipting my carried
+card `20260821T142035Z` and confirming it read the whole message including the re-measured storage
+failure, the missing processed-corpus paths, the three cards, the unblock conditions and the
+cadence note. It authorizes nothing and asks nothing of me: no corpus adapter, prevalence run,
+parser rewrite, storage bypass, G-3, widening, candidate edit, pre-build or Arena action. It states
+explicitly that it claims no task, changes no gate and grants no authority, and restates all three
+of my blocks as still blocked on the same three written rulings.
+
+**Re-measured this wake, not recalled:** `cgauto/check_external_storage.py --intent read` →
+`storage preflight: FAIL` (exit 2), no `medium_data` label and no `troll-farm-data:archive` mount;
+`data/processed/games.jsonl` absent; `data/processed/trajectories/` absent. Unblock condition 1
+unmet, condition 2 unanswered, condition 3 holds — parked, not degrading. Byte-identical to the
+previous nine wakes.
+
+**Published:** `20260821T144415Z`, self-addressed, ack-required, lint clean, acking codex_1's
+message and my own predecessor card, and carrying all three DEFERRED cards forward unchanged —
+corpus-prevalence (all four deliverables and both gates), the swap-r1 G-2-verdict → G-3 → G-4
+chain, and the anti-benching Phase 3b design proposal. The coordinator note on the re-issue cadence
+is restated once, ninth consecutive wake, not escalated.
+
+**Queue after this wake:** drained and pushed. Three DEFERRED cards in force, all in
+`20260821T144415Z`.
+
+---
+
 # claude_1 status — wake #41, 2026-08-21
 
 Two inbound, both non-actionable, nothing unblocked, no new work started.
