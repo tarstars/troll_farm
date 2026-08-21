@@ -36,6 +36,7 @@ from __future__ import annotations
 
 import argparse
 import atexit
+import fcntl
 import json
 import os
 import pathlib
@@ -98,45 +99,63 @@ def poll_interval(base: float, metered_flag: pathlib.Path, metered: float) -> fl
 # Pidfile: one sentinel per agent per worktree
 # ---------------------------------------------------------------------------
 
-def _pid_alive(pid: int) -> bool:
-    try:
-        os.kill(pid, 0)
-    except ProcessLookupError:
-        return False
-    except PermissionError:
-        return True
-    return True
-
-
 class PidFile:
-    """Refuses to start beside a live sibling; breaks stale files loudly."""
+    """One sentinel per agent per worktree, enforced by the kernel.
+
+    Ownership is an exclusive `flock` on the pidfile, NOT the file's existence.
+    The first design checked `exists()`, read the recorded pid and tested its
+    liveness, then wrote the file later; two starters that both got past the
+    check before either wrote both believed they held it. Under a real barrier
+    release that reproduced immediately — and worse, since every starter staged
+    through the same `.pid.tmp` name, one starter's `replace()` pulled the
+    temporary file out from under another and crashed it (codex_1's card-2
+    review, blocking finding 2, 2026-08-21).
+
+    `flock` has no window: the kernel grants it to exactly one holder and drops
+    it when that process dies, however it dies, so an abandoned file needs no
+    liveness heuristic and no unlink race to break. The lock lives on the INODE,
+    which is why the payload is rewritten in place through the held descriptor
+    and never staged-and-replaced: replacing the file would leave this process
+    holding a lock on an unlinked inode while the next starter locked a brand
+    new one.
+    """
 
     def __init__(self, path: pathlib.Path, me: str, err) -> None:
         self.path = path
         self.me = me
         self.err = err
         self.held = False
+        self._fd: int | None = None
 
     def acquire(self) -> bool:
-        if self.path.exists():
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        fd = os.open(self.path, os.O_CREAT | os.O_RDWR, 0o644)
+        try:
+            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except OSError:
             holder = self._read_pid()
-            if holder is not None and _pid_alive(holder):
-                print(
-                    f"refusing to start: sentinel for {self.me} already running "
-                    f"as pid {holder} ({self.path})",
-                    file=self.err,
-                )
-                return False
+            print(
+                f"refusing to start: sentinel for {self.me} already running "
+                f"as {'pid ' + str(holder) if holder is not None else 'an unreadable pid'} "
+                f"({self.path})",
+                file=self.err,
+            )
+            os.close(fd)
+            return False
+        # We hold the lock, so anything already in the file was left by a
+        # process that is gone: say so rather than silently overwriting it.
+        if os.fstat(fd).st_size > 0:
+            holder = self._read_pid()
             print(
                 f"stale pidfile broken: {self.path} named "
                 f"{'pid ' + str(holder) if holder is not None else 'no readable pid'}, "
                 "which is not running",
                 file=self.err,
             )
-        self.path.parent.mkdir(parents=True, exist_ok=True)
-        self._write(ready=False)
+        self._fd = fd
         self.held = True
         atexit.register(self.release)
+        self._write(ready=False)
         return True
 
     def mark_ready(self) -> None:
@@ -150,15 +169,19 @@ class PidFile:
             self._write(ready=True)
 
     def _write(self, *, ready: bool) -> None:
+        """Rewrite the payload in place — never replace the locked inode."""
+        if self._fd is None:
+            return
         payload = {
             "pid": os.getpid(),
             "me": self.me,
             "started_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "ready": ready,
         }
-        tmp = self.path.with_suffix(".pid.tmp")
-        tmp.write_text(json.dumps(payload) + "\n", encoding="utf-8")
-        tmp.replace(self.path)
+        blob = (json.dumps(payload) + "\n").encode("utf-8")
+        os.lseek(self._fd, 0, os.SEEK_SET)
+        os.write(self._fd, blob)
+        os.ftruncate(self._fd, len(blob))
 
     def _read_pid(self) -> int | None:
         try:
@@ -170,11 +193,18 @@ class PidFile:
         if not self.held:
             return
         self.held = False
-        if self._read_pid() == os.getpid():
-            try:
+        try:
+            if self._read_pid() == os.getpid():
                 self.path.unlink()
-            except OSError:
-                pass
+        except OSError:
+            pass
+        finally:
+            if self._fd is not None:
+                try:
+                    os.close(self._fd)   # drops the lock
+                except OSError:
+                    pass
+                self._fd = None
 
 
 # ---------------------------------------------------------------------------

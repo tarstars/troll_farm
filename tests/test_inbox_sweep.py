@@ -164,6 +164,7 @@ def v2_message(
     supersedes: tuple[str, ...] = (),
     extra_fields: dict[str, str] | None = None,
     overrides: dict[str, str] | None = None,
+    body: str = "# body",
 ) -> str:
     if requires_ack is None:
         requires_ack = kind in inbox_sweep.ACK_REQUIRED_KINDS
@@ -182,7 +183,7 @@ def v2_message(
     }
     fields.update(extra_fields or {})
     fields.update(overrides or {})
-    lines = ["---"] + [f"{k}: {v}" for k, v in fields.items()] + ["---", "", "# body", ""]
+    lines = ["---"] + [f"{k}: {v}" for k, v in fields.items()] + ["---", "", body, ""]
     return "\n".join(lines)
 
 
@@ -1720,3 +1721,106 @@ def test_actionable_set_raises_sweep_failure_where_main_exits_2(repo, monkeypatc
     monkeypatch.chdir(repo.work)
     with pytest.raises(inbox_sweep.SweepFailure):
         inbox_sweep.actionable_set(ME, repo.work)
+
+
+# ---------------------------------------------------------------------------
+# Self-addressed DEFERRED cards: the one self-mail route that is actionable
+#
+# The deferral rule (owner-adopted 2026-08-18) says a postponed job must BE a
+# queue item: `requires_ack: true`, self-addressed, so the deferring agent's
+# next sweep surfaces it. That was prose, not mechanism — `actionable_set()`
+# dropped every self-authored message before addressing could matter, so two of
+# claude_1's wakes reported "queue drained" with live cards outstanding, and the
+# sweep agreed. codex_1 reproduced it in the shared predicate and made the
+# repair blocking (card-2 review, 2026-08-21): the replacement-card route must
+# become visible while ORDINARY self-mail stays inert.
+# ---------------------------------------------------------------------------
+
+DEFERRAL_BODY = (
+    "# DEFERRED card — the postponed job\n\n"
+    "DEFERRED: the instrument, postponed to my next wake.\n"
+)
+
+
+def publish_deferral_card(repo: TransportRepo, sender: str, stamp: str,
+                          task: str, **kwargs) -> str:
+    """A shape-valid deferral: DEFERRED: marker, requires_ack, self-addressed."""
+    return publish_v2(
+        repo, sender, stamp, task, "blocker",
+        to=sender, requires_ack=True, body=DEFERRAL_BODY, **kwargs
+    )
+
+
+def test_self_addressed_deferral_card_is_actionable_for_its_own_owner(repo, monkeypatch):
+    monkeypatch.chdir(repo.work)
+    publish_roster(repo)
+    card = publish_deferral_card(repo, ME, "20260821T060000Z", "task-deferred")
+
+    state = inbox_sweep.actionable_set(ME, repo.work)
+
+    assert card in state.actionable_paths, (
+        "a self-addressed DEFERRED card is invisible to the agent it is the "
+        "queue item for"
+    )
+    assert card in {m.path for m in state.unacked}, (
+        "the card must stay outstanding until it is discharged, not merely "
+        "until it is read once"
+    )
+    assert card not in {m.path for m in state.new_items}, (
+        "an agent has read what it wrote; routing its own card through 'new' "
+        "would let a single --mark retire a job that is still undone"
+    )
+
+
+def test_ordinary_self_addressed_mail_is_not_actionable(repo, monkeypatch):
+    """The negative control: only the DEFERRED route opens, not all self-mail."""
+    monkeypatch.chdir(repo.work)
+    publish_roster(repo)
+    plain = publish_v2(
+        repo, ME, "20260821T060100Z", "task-plain", "blocker",
+        to=ME, requires_ack=True,
+    )
+
+    state = inbox_sweep.actionable_set(ME, repo.work)
+
+    assert plain not in state.actionable_paths, (
+        "ordinary self-mail became actionable; an agent must not be able to "
+        "put arbitrary work in its own queue by writing to itself"
+    )
+
+
+def test_a_deferral_card_addressed_only_to_a_peer_stays_out_of_my_queue(repo, monkeypatch):
+    """Shape alone is not the ticket: the card must be addressed to me."""
+    monkeypatch.chdir(repo.work)
+    publish_roster(repo)
+    card = publish_v2(
+        repo, ME, "20260821T060200Z", "task-peer", "blocker",
+        to=PEER, requires_ack=True, body=DEFERRAL_BODY,
+    )
+
+    state = inbox_sweep.actionable_set(ME, repo.work)
+
+    assert card not in state.actionable_paths
+
+
+def test_self_addressed_deferral_card_is_discharged_by_its_delivery_handoff(repo, monkeypatch):
+    monkeypatch.chdir(repo.work)
+    publish_roster(repo)
+    card = publish_deferral_card(repo, ME, "20260821T060300Z", "task-deferred")
+    assert card in inbox_sweep.actionable_set(ME, repo.work).actionable_paths
+
+    commit = repo.tips[f"agent/{ME}"]
+    delivery = publish_v2(
+        repo, ME, "20260821T070000Z", "task-deferred", "handoff",
+        to=PEER, ack_for=(card,),
+        extra_fields=handoff_fields(f"agent/{ME}", commit, [card]),
+    )
+
+    state = inbox_sweep.actionable_set(ME, repo.work)
+
+    assert card not in state.actionable_paths, (
+        "the delivery handoff naming the card in ack_for did not discharge it"
+    )
+    assert delivery not in state.actionable_paths, (
+        "my own delivery handoff is not work for me"
+    )

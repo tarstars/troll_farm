@@ -67,8 +67,7 @@ set is:
 
 1. unseen messages addressed to the agent (`to` or `cc`);
 2. ack-required messages awaiting THAT agent's ack;
-3. the agent's own self-addressed `DEFERRED:` queue items, still unacked —
-   **charted but NOT currently delivered**, see the warning below;
+3. the agent's own self-addressed `DEFERRED:` queue items, still unacked;
 4. a broken transport — a collision, delivery error or quarantine error means
    no inbox state above it can be trusted, which is itself work.
 
@@ -78,16 +77,32 @@ boundary, 2026-08-21). A second predicate that disagrees with the sweep is
 worse than none: it wakes agents for work the sweep does not show, or stays
 silent on work it does.
 
-> **Item 3 does not fire today, and the sentinel inherits that.**
-> `inbox_sweep` builds its addressed set with `m.sender != me`, so a message an
-> agent sends to itself never enters that agent's own actionable set. Measured
-> 2026-08-21 on a live card: authoritative on origin, `requires_ack: true`,
-> addressed to `claude_1`, sent by `claude_1` — and absent from
-> `actionable_set("claude_1").actionable_paths`. **A DEFERRED card will
-> therefore never wake its owner.** The sentinel is not the right place to
-> patch this: a fix belongs in the one shared predicate or nowhere, which is
-> the whole point of the boundary. Raised as a blocker on the transport rule,
-> not worked around here.
+**Item 3 is the one self-mail route that is open, and it was closed until
+2026-08-21.** `inbox_sweep` built its addressed set with `m.sender != me`, so a
+message an agent sent to itself never entered that agent's own actionable set.
+Measured on a live card: authoritative on origin, `requires_ack: true`,
+addressed to `claude_1`, sent by `claude_1` — and absent from
+`actionable_set("claude_1").actionable_paths`. The deferral rule's "self-address
+it so your own next sweep surfaces it" was prose, not mechanism, and two of my
+wakes reported "queue drained" with live cards outstanding.
+
+Repaired in the shared predicate, never in the sentinel (codex_1's card-2
+review made both the defect and its location blocking). `inbox_sweep.is_deferral_card()`
+admits a self-authored message only when it has the full shape the outbox lint
+already enforces on publication — a line-start `DEFERRED:` marker,
+`requires_ack: true`, and its own sender among `to`. Both sides now read one
+definition of the marker so they cannot drift.
+
+Two consequences worth knowing:
+
+- **Ordinary self-mail stays inert.** An agent cannot put arbitrary work in its
+  own queue by writing to itself; only the deferral shape opens the route. A
+  negative-control test holds that line.
+- **Your own card is never "new", only outstanding.** An agent has read what it
+  wrote, so a self-authored message cannot enter the unseen set — otherwise one
+  `--mark` would retire a job that is still undone. The card leaves the
+  actionable set exactly when something of yours names it in `ack_for`: the
+  delivery handoff, or the next `DEFERRED:` replacement card.
 
 **Growth, not presence.** The baseline is snapshotted at start; the sentinel
 wakes only on paths that were not in it. Mail already sitting in the inbox when
@@ -125,8 +140,8 @@ reading bodies, which this tool will not do), and any channel other than
 | host offline, or asleep | nothing is lost; queues are durable git state and the next tick catches up |
 | fetch fails repeatedly | exit 3 after N; the agent reports rather than acting on stale state |
 | the sweep itself cannot compute | counted on the same budget as a fetch failure; exit 3 |
-| a stale pidfile from a killed sentinel | broken with a log line on stderr, then start proceeds |
-| two starts race | the loser exits 1 and touches nothing |
+| a stale pidfile from a killed sentinel | the lock died with its process, so the next start takes it; a log line on stderr names the pid that left it |
+| two starts race | ownership is an exclusive `flock`, so the kernel picks exactly one winner; every loser exits 1 and touches nothing |
 | killed with SIGTERM/SIGINT | pidfile removed; safe to kill at any moment |
 | transport breaks while hanging | exit 0 with a `transport:` line — that is work |
 | metered network | tick backs off to 10 min while `coordination/METERED-NETWORK` exists |
@@ -152,10 +167,30 @@ green test suite imply otherwise:
 
 ## Test evidence
 
-`tests/test_sentinel.py`, 15 tests, each control observed firing both ways
+`tests/test_sentinel.py`, 18 tests, each control observed firing both ways
 where the charter names both directions: work arrives → exit 0 with exactly
 the new paths; **mail for a different agent → keeps hanging**; keepalive → 2;
 injected fetch failure → 3; non-consecutive failures → *not* 3; double start →
 1 with the first instance untouched; stale pidfile → broken with a log line;
 `inbox-seen.json` byte-identical across a full run; the git verb set of a run
 is read-only; `snapshot()` equals the sweep's own `actionable_paths`.
+
+Three of those are the card-2 review's blocking findings, and each was watched
+failing against the unrepaired code before the repair existed:
+
+- **my own `DEFERRED:` card wakes me** — published after the baseline, observed
+  as exit 0 carrying exactly that path (against the old predicate: exit 2,
+  silence);
+- **ordinary self-mail does not wake me** — the negative control that keeps the
+  route narrow;
+- **32 simultaneous starters leave exactly one owner** — forked from a warm
+  interpreter and released from one barrier, because real interpreters cannot
+  align on a microsecond window. The old check-then-write scored two winners
+  and one crash (`W E W L L …`): every starter staged through the same
+  `.pid.tmp` name, so one starter's `replace()` pulled the file out from under
+  another.
+
+The shared predicate's own route is covered in `tests/test_inbox_sweep.py`: the
+card is actionable for its owner, is never merely "unseen", is discharged by the
+delivery handoff naming it in `ack_for`, and a deferral addressed only to a peer
+stays out of my queue.

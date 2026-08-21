@@ -34,6 +34,7 @@ from tests.test_inbox_sweep import (  # reuse the transport fixture verbatim
     PEER,
     THIRD,
     TransportRepo,
+    publish_deferral_card,
     publish_v2,
     repo,  # noqa: F401  (pytest fixture)
 )
@@ -369,3 +370,125 @@ def test_notify_mode_does_not_exit_on_work(repo, tmp_path):
     assert proc.returncode == 2, f"notify mode exited on work: {out!r} {err!r}"
     wait_for(log.exists, timeout=1.0, what="a notify-send delivery")
     assert "20260821T100800Z" in log.read_text(encoding="utf-8")
+
+
+# ---------------------------------------------------------------------------
+# The charter's element 3, end to end: my OWN deferral card must wake me
+#
+# codex_1 made this blocking in the card-2 review — the manual claimed the
+# self-addressed DEFERRED card was in the actionable set while `actionable_set()`
+# dropped all self-authored mail, and no test published one and observed a wake.
+# The sentinel is deliberately not repaired here: it inherits whatever the
+# shared predicate says, so this test passes only because the predicate was
+# fixed.
+# ---------------------------------------------------------------------------
+
+def test_publishing_my_own_deferral_card_wakes_me(repo):
+    proc = start(repo, "--max-lifetime", "60")
+    try:
+        wait_for(lambda: is_ready(repo), what="the sentinel baseline snapshot")
+        card = publish_deferral_card(repo, ME, "20260821T110000Z", "task-deferred")
+        out, err = proc.communicate(timeout=60)
+    except BaseException:
+        proc.kill()
+        raise
+    assert proc.returncode == 0, (
+        f"my own deferral card did not wake me: stdout={out!r} stderr={err!r}"
+    )
+    assert [line for line in out.splitlines() if line.strip()] == [card]
+
+
+def test_ordinary_self_mail_does_not_wake_me(repo):
+    """The negative control: writing to myself is not how I create my own work."""
+    proc = start(repo, "--max-lifetime", "3")
+    try:
+        wait_for(lambda: is_ready(repo), what="the sentinel baseline snapshot")
+        publish_v2(
+            repo, ME, "20260821T110100Z", "task-plain", "blocker",
+            to=ME, requires_ack=True,
+        )
+        out, err = proc.communicate(timeout=60)
+    except BaseException:
+        proc.kill()
+        raise
+    assert proc.returncode == 2, f"woke on ordinary self-mail: {out!r} {err!r}"
+    assert "coordination/messages" not in out
+
+
+# ---------------------------------------------------------------------------
+# The double-start race, actually raced
+#
+# `test_second_start_is_refused_...` waits until the first pidfile EXISTS before
+# launching the second, so it proves sequential refusal and nothing about the
+# charter's one-sentinel-per-agent exclusion. codex_1 made that blocking: the
+# original acquire() was an exists/read/liveness check followed later by a
+# write, and two starters that both got past the check before either wrote would
+# both believe they held the file.
+#
+# Racing real interpreters cannot align: process startup jitter is milliseconds
+# and the window is microseconds. Forking a warm interpreter and releasing every
+# child from one barrier does align, and calls the production acquire() with no
+# test hook in it. Losers must stay parked until the count is in, or a dead
+# loser's pid would make its own pidfile look legitimately stale to the next
+# child and manufacture a second winner.
+# ---------------------------------------------------------------------------
+
+RACERS = 32
+
+
+def test_simultaneous_starters_leave_exactly_one_pidfile_owner(tmp_path):
+    import io
+
+    path = tmp_path / "agent" / ".sentinel.pid"
+    ready_r, ready_w = os.pipe()
+    go_r, go_w = os.pipe()
+    result_r, result_w = os.pipe()
+    finish_r, finish_w = os.pipe()
+
+    children = []
+    for _ in range(RACERS):
+        pid = os.fork()
+        if pid == 0:  # pragma: no cover - child branch
+            outcome = b"E"
+            try:
+                os.write(ready_w, b"x")
+                os.read(go_r, 1)
+                won = sentinel.PidFile(path, "agent", io.StringIO()).acquire()
+                outcome = b"W" if won else b"L"
+            except BaseException:
+                pass  # reported as E; a racer must never leave the parent hanging
+            finally:
+                try:
+                    os.write(result_w, outcome)
+                    os.read(finish_r, 1)  # stay alive so my pid stays live
+                finally:
+                    os._exit(0)
+        children.append(pid)
+
+    try:
+        read_exactly(ready_r, RACERS)          # every child parked on the barrier
+        os.write(go_w, b"x" * RACERS)          # released together
+        outcomes = read_exactly(result_r, RACERS)
+    finally:
+        os.write(finish_w, b"x" * RACERS)
+        for pid in children:
+            os.waitpid(pid, 0)
+
+    assert outcomes.count(b"E") == 0, (
+        f"{outcomes.count(b'E')} of {RACERS} simultaneous starters crashed inside "
+        "acquire()"
+    )
+    assert outcomes.count(b"W") == 1, (
+        f"{outcomes.count(b'W')} of {RACERS} simultaneous starters each believed "
+        "they held the pidfile"
+    )
+    assert outcomes.count(b"L") == RACERS - 1
+
+
+def read_exactly(fd: int, count: int) -> bytes:
+    buf = b""
+    while len(buf) < count:
+        chunk = os.read(fd, count - len(buf))
+        assert chunk, "a racer died without reporting"
+        buf += chunk
+    return buf

@@ -298,6 +298,32 @@ def message_kind(body: str, fallback: str) -> str:
     return aliases.get(raw, fallback)
 
 
+DEFERRED_LINE_RE = re.compile(r"^DEFERRED:", re.MULTILINE)
+
+
+def is_deferral_card(msg: "Message") -> bool:
+    """True for the one self-mail shape that is a queue item, not an announcement.
+
+    The deferral rule (owner-adopted 2026-08-18) requires a postponed job to be
+    published as `requires_ack: true` and addressed to its own sender, so the
+    deferring agent's next sweep surfaces it. `lint_outbox.deferral_shape_errors`
+    enforces exactly this shape on the sending side; this is the same predicate
+    read back, and the two must not drift.
+
+    It exists because the rule was prose until 2026-08-21: `actionable_set()`
+    dropped every self-authored message before addressing could matter, so a
+    deferral card sat authoritative, unacked and self-addressed on origin and was
+    still absent from its owner's actionable set (claude_1's blocker
+    20260821T053322Z, reproduced by codex_1). Ordinary self-mail stays inert —
+    only this shape opens the route.
+    """
+    if not DEFERRED_LINE_RE.search(msg.body):
+        return False
+    if parse_boolean(msg.fields.get("requires_ack", "")) is not True:
+        return False
+    return msg.sender.lower() in recipient_tokens(msg.fields.get("to", ""))
+
+
 def requires_ack(body: str, kind: str) -> bool:
     yaml = yaml_front_matter(body)
     yaml_required = parse_boolean(yaml["requires_ack"]) if "requires_ack" in yaml else None
@@ -1184,10 +1210,12 @@ def actionable_set(
 
     # Addressed messages: validation runs on every addressed message; --task and
     # --sender affect display and --mark only (rule 6).
+    # Self-authored mail is inert with ONE exception: a shape-valid deferral
+    # card, which the deferral rule defines as its own sender's queue item.
     addressed = [
         m
         for m in messages.values()
-        if m.sender != me and addressed_to_me(m.body, me)
+        if (m.sender != me or is_deferral_card(m)) and addressed_to_me(m.body, me)
     ]
     delivery_errors: list[tuple[str, str]] = []
     for msg in addressed:
@@ -1230,7 +1258,12 @@ def actionable_set(
         return True
 
     selection = sorted((m for m in addressed if selected(m)), key=lambda m: m.path)
-    new_items = [m for m in selection if m.path not in seen_paths]
+    # An agent has read what it wrote, so its own deferral card is never
+    # "new". Its only actionable route is the outstanding obligation below —
+    # otherwise one --mark would retire a job that is still undone.
+    new_items = [
+        m for m in selection if m.path not in seen_paths and m.sender != me
+    ]
     unacked = [
         m
         for m in selection
