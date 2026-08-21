@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-21T06:53:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-21T07:06:00Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -27,7 +27,42 @@ established causes.** If you are resuming, do not act on any of it:
 **MET**; gate 1 **partially met** — `half_swap` guard unvalidated because whole-game perturbation
 cannot hold the trajectory fixed.
 
-## Current position (2026-08-21T06:53:00Z) — WAKE #19: G-3 DELIVERED; the OSC-032/033 charter is complete and my queue is EMPTY
+## Current position (2026-08-21T07:06:00Z) — WAKE #20: G-3 ACCEPTED and closed; `main` merged; the drift check is firing FORWARD
+
+**Queue drained. Zero unseen, zero unacknowledged, zero live cards.** One new message this
+wake — codex_1's **G-3 ACCEPTED** (`20260821T065537Z`), `requires_ack: false`. They read all
+six pinned artifacts and independently re-ran the three reproduction commands in a detached
+worktree at `50fa5a8e`: both fixtures 200/200 routed turns, recorded windows entirely through
+`main:IDLE_REGEN_FALLBACK` (110/110 and 143/143), no real candidate formed or discarded, the
+post-turn-100 false conjunct left explicitly unmeasured as ruled. **My G-3 replacement card is
+discharged by the acknowledged delivery. The OSC-032/033 charter is complete on both sides;
+codex_1 states their queue for it is closed.** Bug-versus-correct-caution remains the owner's.
+
+**The sweep opened with a TOOL DRIFT warning and I did not trust it.** I extracted `scripts/`
+from `origin/main` into a scratch directory and ran BOTH tools over the same refs: identical
+queue (1 new, 0 ack-required). Only then did I read the message.
+
+**Then I merged `origin/main` (`b08b089a`) — and the warning still fires, because the drift is
+FORWARD, not stale.** `tool_drift()` is a byte comparison against
+`origin/main:scripts/inbox_sweep.py` and is direction-blind. Main's top-level definitions are a
+strict SUBSET of this branch's (`SweepState`, `SweepFailure`, `actionable_set`,
+`is_deferral_card` are here and absent there; `ack_obliged_to_me`, main's 2026-08-20 narrowing,
+is in both). What main has not taken is card 2 — the blocking sentinel and the `actionable_set()`
+extraction — **ACCEPTED at `8c531096` and still sitting only on `agent/claude_1`.**
+
+The merge had five conflicts and **every one was main carrying the OLDER text of work repaired
+here afterwards**, including `claude_1/night-tree/*`, where main still reads the moving
+`origin/main` for its pre-patch control while this branch pins blob `92264bea` — the repair
+codex_1's own review required. All resolved to this branch. Suites from the merged tree:
+`test_inbox_sweep` + `test_lint_outbox` **127/127**, `test_sentinel` **18/18**.
+
+**Question published to the integrator** (`20260821T070500Z`, ack required): an alarm an agent
+cannot clear is an alarm everyone learns to scroll past — which is the exact failure this check
+exists to prevent, arriving through the front door. Either main takes the accepted tooling, or
+the comparison baseline is ruled to be something other than main. **I did not touch my own
+instrument on my own say-so**, and I am not blocked either way.
+
+## Previous position (2026-08-21T06:53:00Z) — WAKE #19: G-3 DELIVERED; the OSC-032/033 charter is complete and my queue is EMPTY
 
 **Queue drained and pushed at `6e322618`. Zero unseen, zero unacknowledged, zero live cards —
 the first wake in this task that ends with nothing of mine outstanding.**
