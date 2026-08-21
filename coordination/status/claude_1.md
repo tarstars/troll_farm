@@ -1170,3 +1170,40 @@ Arena controller: **NO**. `rust/src/bin/yamo_orchard_live.rs` (`fff6669b`) byte-
 - **Offered, not claimed.** `sweep34`'s grader re-detects on the candidate's own trace (sound) but
   takes its region of interest from the recorded window, which on 23 fixtures is not an interval
   of the game being graded. Not measured, not asserted; flagged because it touches cure α's G-2.
+
+## 2026-08-21T10:05Z — wake #28 (claude_1)
+
+- **Queue: 2 messages, both from codex_1, both drained.**
+- **`20260821-p4-stalls-real-end-regrade` — ACCEPTED and CLOSED.** codex_1 re-ran
+  `claude_1/regrade1/real_end_regrade.py` from detached commit `4502c655` and reproduced the
+  delivered artifact exactly on every decision-relevant number: subject identity 34/34, champion
+  identity 11/34, subject `REAL_THROUGHOUT` 34/34 with zero artifact windows, champion
+  `REPLAY_MISMATCH` 23/34 including OSC-032/033, and all four constructed predicate controls plus
+  corpus non-vacuity. G-1, G-2 and G-3 all ACCEPTED; the declared corpus-level non-vacuity delta
+  was ruled appropriate because a per-fixture raise would reject the valid answer "never stalls".
+  The two-part episode identity gate was ruled necessary and non-vacuous — command identity alone
+  genuinely accepts the all-`WAIT` OSC-032/033 windows, and only frozen entry-board identity
+  rejects the champion's different games. Q1 (whether the cross-game premise re-rules anything)
+  stays with the owner through the coordinator; my `sweep34` borrowed-region-of-interest
+  observation is explicitly **not** validated by this review and needs its own charter if pursued.
+- **`20260821-swap-r1-cure` G-0 — REVISION_REQUIRED, revised and resubmitted the same wake.**
+  One blocking finding, G0-1, and it is correct: the emission inserted `m.cell` into `reserved`
+  without first requiring it to be free. `m.cell` is not reserved at initialisation because `m`
+  is itself a mover, so an **earlier accepted mover** in the same sorted pass can already hold it
+  — and the insert is idempotent, so it would have detected nothing. The engine's id tie-break
+  would then discard one half of the exchange while the emitted stream still read as a swap.
+  Closed as pre-fire conjunct **T2b** (`!reserved.contains(&m.cell)`), declining to fire rather
+  than repairing, with the note stating why it is not subsumed by the existing third-mover guard:
+  that one protects against a *later* mover **after** the fire, T2b against an *earlier* one
+  **before** it. A focused G-1 control (prior mover holding `m.cell`; α must decline and emit a
+  byte-identical stream) is required so T2b is not an untested branch.
+- **The four rulings, all decided, now recorded as binding.** T4(a) before detour ACCEPTED —
+  broader trigger stays, and G-1 now reports T4(a)-with-detour-available fires separately so its
+  breadth is a number. Partner forbidden-cell test ACCEPTED per-participant, not a blanket
+  stand-down. Fail-closed positional map ACCEPTED plus a new precondition: command count must
+  equal own-unit count before the map is built. Re-swap detector ruled **G-1**, blocking before
+  panel work.
+- **Still no code.** `cgauto/submissions/candidate-swap-r1.rs` does not exist; the build begins
+  only on G-0 rev 2 acceptance. The `DEFERRED: cure alpha G-1..G-4` card from the rev-1 handoff
+  remains in force and, per codex_1's ruling, is not duplicated.
+- Artifact: `claude_1/swap1/g0-design-swap-r1-2026-08-21.md` @ `9e483d84`.
