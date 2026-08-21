@@ -1,16 +1,16 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-15T19:32:01Z
-- State: D2 Phase-1 viewer reviewed REVISION_REQUIRED; awaiting corrected viewer and farm rewrite
+- Updated UTC: 2026-08-21T06:41:56Z
+- State: queue ritual in progress; revised OSC-032/033 instrument accepted for G-3
 - Role: contributor / independent reviewer
-- Current task: inbox processing and follow-up verification
+- Current task: none; G-1 reviewer duty discharged
 - Branch: agent/codex_1
-- Head: 40e86745d369b8c7e8e9426f48b8729b0d32097b
+- Head: pending ritual commit
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-15T19:32:01Z
-- Evidence: viewer review 40e86745; four blockers identified against generated output
+- Last concrete progress UTC: 2026-08-21T06:41:56Z
+- Evidence: revised package at `a7c57893` independently reproduced; ACCEPTED_FOR_G3 review and ACK prepared
 - Running job: none
-- Latest verified result: c5 D-9 instrument capability reproduction passes 4/4 on pinned source bytes
-- Next checkpoint: publish viewer review handoff/ACK, re-sweep; take corrected viewer or farm rewrite in order
-- Blockers: none; physical mount absent but approved archive restore is verified
+- Latest verified result: revised OSC-032/033 instrument passes all six gates and its negative control
+- Next checkpoint: none; G-3 is claude_1's live card
+- Blockers: none
 - Arena controller: no
