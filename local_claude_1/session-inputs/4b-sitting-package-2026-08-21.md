@@ -1,5 +1,38 @@
 # 4b sitting package — the harmless stamps, ready to run (2026-08-21)
 
+## SITTING RESULT 2026-08-21 — stamps HELD; the two stalls get a look
+
+The owner sat with this package the morning it was written and ruled twice:
+
+1. **All six proposed stamps are HELD.** Nothing is stamped. Buckets B, D and E
+   stay open. The stamps were offered with reasons but without the owner having
+   seen the games, and the owner's standing rule is to judge from the game state
+   down, never from the code up — so the six are re-listed below as a
+   **look-and-rule sheet with viewer links**, in the shape 4a used. The
+   investigation does **not** close until they are ruled.
+2. **Bucket F is CHARTERED as a small look** — not stamped, not folded away:
+   `coordination/tasks/20260821-osc032-033-no-goal-instrument.md`. Why was no
+   goal ever assigned to those two trolls? Measurement only, no fix, no
+   judgment; claude_1 builds, codex_1 reviews instrument-first.
+
+Bucket C is unchanged and needed no ruling. Bucket A is unchanged and closed.
+
+### The six held cases, with the game to watch
+
+Open `claude_1/viewer/out/<CASE>.html` in a browser and judge the position.
+
+| case | what to look for | proposed stamp (offered, NOT accepted) |
+|---|---|---|
+| OSC-005 | the troll waits exactly 1 turn of 12 | normal play, not starvation |
+| OSC-010 | the troll never waits at all (0 of 7) | detector artifact |
+| OSC-027 | never waits (0 of 22) | detector artifact |
+| OSC-030 | never waits (0 of 8) | detector artifact |
+| OSC-026 | only one troll exists in this game | no pairing decision exists to be wrong |
+| OSC-012 | 193 turns of waiting, 0 turns with usable work | waiting was provably correct |
+
+---
+
+
 **What this is:** everything prepared so the owner's 4b sitting is a short
 look-and-rule session. 4b is the **last** item of the oscillation investigation:
 the deep-dive charter requires every one of the 34 recorded cases to end either
