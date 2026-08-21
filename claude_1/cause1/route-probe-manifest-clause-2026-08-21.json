@@ -1,0 +1,26 @@
+{
+  "door1-clause": {
+    "anchors": [
+      "commands/by_id.insert",
+      "main_candidates/entry",
+      "main_candidates/tail",
+      "endgame_candidates/fruit+chop",
+      "endgame_candidates/tail",
+      "early_candidates/entry",
+      "early_candidates/tail",
+      "chop_candidates/fn-guard",
+      "chop_candidates/plant-loop",
+      "idle_harvest_candidates/whole-fn",
+      "main_candidates/replant-conjuncts",
+      "commands/opening-state",
+      "enforce_training_deadline/entry",
+      "enforce_training_deadline/abandon"
+    ],
+    "arm": "base",
+    "name": "door1-clause",
+    "probe": "claude_1/picker2/routeprobe-door1-clause.rs",
+    "probe_sha256": "1156f3d5a490e32a6db46367fe10df8de6c03b2aade768e7de4d1623683a6d3a",
+    "source": "claude_1/chop4c/candidate-door1.rs",
+    "source_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+  }
+}

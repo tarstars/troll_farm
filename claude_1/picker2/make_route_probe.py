@@ -66,6 +66,15 @@ SUBJECTS = {
     # guard below proves that on every run.
     "door1-champion": (REPO / "claude_1/chop4c/candidate-door1.rs", "base",
                        "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"),
+    # The SAME champion source with the seven accepted anchors PLUS the clause tap, for task
+    # 20260821-osc032-033-cause-attribution. It is a separate subject name rather than a flag on
+    # `door1-champion` for exactly the reason the early anchors are per-subject: the predecessor
+    # task published `routeprobe-door1-champion.rs` and its manifest and had them accepted, and a
+    # later task must not mutate an earlier task's artifacts. With the new anchors "off" — i.e.
+    # building `door1-champion` — the accepted probe and manifest reproduce byte-identically, and
+    # `main --check-accepted` proves that rather than asserting it.
+    "door1-clause": (REPO / "claude_1/chop4c/candidate-door1.rs", "base",
+                     "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"),
 }
 OUT_MANIFEST = HERE / "route-probe-manifest-2026-08-20.json"
 # A bare run must keep reproducing the Phase-3 manifest BYTE-IDENTICALLY, so
@@ -239,10 +248,268 @@ EARLY_TAIL_NEW = """                if out.len()==1{
 EARLY_EDITS = [("early_candidates/entry", EARLY_ENTRY_OLD, EARLY_ENTRY_NEW),
                ("early_candidates/tail", EARLY_TAIL_OLD, EARLY_TAIL_NEW)]
 
+# ---- CLAUSE TAP (task 20260821-osc032-033-cause-attribution) ------------------------------------
+# Champion-only, opt-in through a SEPARATE subject name (`door1-clause`) so the accepted
+# `door1-champion` probe and its manifest keep reproducing byte-identically. Every edit below
+# either splits a `||` guard into its two named halves, or turns an iterator chain into the same
+# loop; no predicate is added, removed or reordered, and every row is an `eprintln!` that the
+# parity gate re-checks against the uninstrumented champion's command stream.
+#
+# The contract the reader enforces (fail-closed): for one unit on one turn, a call to
+# `chop_candidates` emits exactly ONE `PS4CHOPFN` row, and — when that row is `ENTERED` — exactly
+# ONE `PS4CHOP` row per entry of `view.plants`, whose `clause` is the source's own rejecting
+# condition or `ACCEPTED`. Same shape for `PS4HARVFN`/`PS4HARV`. A plant with no row, two rows,
+# or a row on a call that never entered, fails the run instead of being reported.
+
+CHOP_FN_OLD = '''            fn chop_candidates(view:&GameState,unit:&Unit,type_to_cut:Option<PlantKind>,)->Vec<Candidate>{
+                let mut out=Vec::new();
+                if unit.stats.chop_power<=0||unit.free_capacity()<=0{
+                    return out;
+                    }'''
+CHOP_FN_NEW = '''            fn chop_candidates(view:&GameState,unit:&Unit,type_to_cut:Option<PlantKind>,)->Vec<Candidate>{
+                let mut out=Vec::new();
+                if unit.stats.chop_power<=0{
+                    eprintln!("PS4CHOPFN unit={} turn={} clause=FN_NO_CHOP_POWER chop_power={} free_cap={} plants={}",unit.id,view.turn,unit.stats.chop_power,unit.free_capacity(),view.plants.len());
+                    return out;
+                    }
+                if unit.free_capacity()<=0{
+                    eprintln!("PS4CHOPFN unit={} turn={} clause=FN_NO_FREE_CAPACITY chop_power={} free_cap={} plants={}",unit.id,view.turn,unit.stats.chop_power,unit.free_capacity(),view.plants.len());
+                    return out;
+                    }
+                eprintln!("PS4CHOPFN unit={} turn={} clause=ENTERED chop_power={} free_cap={} plants={}",unit.id,view.turn,unit.stats.chop_power,unit.free_capacity(),view.plants.len());'''
+
+CHOP_LOOP_OLD = '''                for plant in&view.plants{
+                    if plant.health<=0||!from_unit.contains_key(&plant.cell){
+                        continue;
+                        }
+                    let travel_turns=Self::ceil_div(from_unit[&plant.cell],unit.stats.movement_speed);
+                    let Some(predicted)=Self::predict_tree(view,plant,travel_turns)else{
+                        continue;
+                        }
+                    ;
+                    if predicted.size<=0||predicted.health<=0{
+                        continue;
+                        }
+                    let return_turns=to_shack.get(&plant.cell).map(|d|Self::ceil_div(*d,unit.stats.movement_speed)).unwrap_or_else(||{
+                        Self::ceil_div(manhattan(plant.cell,view.shacks[0]),unit.stats.movement_speed,)
+                    }
+                    );
+                    let Some((chop_turns,final_size))=Self::chop_outcome(view,plant,predicted,unit.stats.chop_power)else{
+                        continue;
+                        }
+                    ;
+                    let turns=(travel_turns+chop_turns+return_turns+1).max(1);
+                    if turns>TOTAL_TURNS-view.turn+1{
+                        continue;
+                        }
+                    let wood=final_size.min(unit.free_capacity());
+                    if wood<=0{
+                        continue;
+                        }'''
+CHOP_LOOP_NEW = '''                for plant in&view.plants{
+                    if plant.health<=0{
+                        eprintln!("PS4CHOP unit={} turn={} plant={},{} kind={} clause=PLANT_DEAD health={} size={} fruits={}",unit.id,view.turn,plant.cell.0,plant.cell.1,plant.kind.as_str(),plant.health,plant.size,plant.fruits);
+                        continue;
+                        }
+                    if !from_unit.contains_key(&plant.cell){
+                        eprintln!("PS4CHOP unit={} turn={} plant={},{} kind={} clause=UNREACHABLE_FROM_UNIT health={} size={} fruits={}",unit.id,view.turn,plant.cell.0,plant.cell.1,plant.kind.as_str(),plant.health,plant.size,plant.fruits);
+                        continue;
+                        }
+                    let travel_turns=Self::ceil_div(from_unit[&plant.cell],unit.stats.movement_speed);
+                    let Some(predicted)=Self::predict_tree(view,plant,travel_turns)else{
+                        eprintln!("PS4CHOP unit={} turn={} plant={},{} kind={} clause=PREDICT_TREE_NONE travel={} opp_chop={} health={}",unit.id,view.turn,plant.cell.0,plant.cell.1,plant.kind.as_str(),travel_turns,Self::predicted_opp_chop(view,plant),plant.health);
+                        continue;
+                        }
+                    ;
+                    if predicted.size<=0{
+                        eprintln!("PS4CHOP unit={} turn={} plant={},{} kind={} clause=PREDICTED_SIZE_NONPOSITIVE travel={} pred_size={} pred_health={}",unit.id,view.turn,plant.cell.0,plant.cell.1,plant.kind.as_str(),travel_turns,predicted.size,predicted.health);
+                        continue;
+                        }
+                    if predicted.health<=0{
+                        eprintln!("PS4CHOP unit={} turn={} plant={},{} kind={} clause=PREDICTED_HEALTH_NONPOSITIVE travel={} pred_size={} pred_health={}",unit.id,view.turn,plant.cell.0,plant.cell.1,plant.kind.as_str(),travel_turns,predicted.size,predicted.health);
+                        continue;
+                        }
+                    let return_turns=to_shack.get(&plant.cell).map(|d|Self::ceil_div(*d,unit.stats.movement_speed)).unwrap_or_else(||{
+                        Self::ceil_div(manhattan(plant.cell,view.shacks[0]),unit.stats.movement_speed,)
+                    }
+                    );
+                    let Some((chop_turns,final_size))=Self::chop_outcome(view,plant,predicted,unit.stats.chop_power)else{
+                        eprintln!("PS4CHOP unit={} turn={} plant={},{} kind={} clause=CHOP_OUTCOME_NONE travel={} pred_size={} pred_health={} chop_power={}",unit.id,view.turn,plant.cell.0,plant.cell.1,plant.kind.as_str(),travel_turns,predicted.size,predicted.health,unit.stats.chop_power);
+                        continue;
+                        }
+                    ;
+                    let turns=(travel_turns+chop_turns+return_turns+1).max(1);
+                    if turns>TOTAL_TURNS-view.turn+1{
+                        eprintln!("PS4CHOP unit={} turn={} plant={},{} kind={} clause=TRIP_LONGER_THAN_GAME trip={} turns_left={} travel={} chop_turns={} return={}",unit.id,view.turn,plant.cell.0,plant.cell.1,plant.kind.as_str(),turns,TOTAL_TURNS-view.turn+1,travel_turns,chop_turns,return_turns);
+                        continue;
+                        }
+                    let wood=final_size.min(unit.free_capacity());
+                    if wood<=0{
+                        eprintln!("PS4CHOP unit={} turn={} plant={},{} kind={} clause=WOOD_NONPOSITIVE final_size={} free_cap={} trip={}",unit.id,view.turn,plant.cell.0,plant.cell.1,plant.kind.as_str(),final_size,unit.free_capacity(),turns);
+                        continue;
+                        }
+                    eprintln!("PS4CHOP unit={} turn={} plant={},{} kind={} clause=ACCEPTED wood={} trip={} travel={} chop_turns={} return={}",unit.id,view.turn,plant.cell.0,plant.cell.1,plant.kind.as_str(),wood,turns,travel_turns,chop_turns,return_turns);'''
+
+HARV_OLD = '''            fn idle_harvest_candidates(view:&GameState,unit:&Unit,)->Vec<Candidate>{
+                if unit.total_carried()!=0||unit.stats.harvest_power<=0{
+                    return Vec::new();
+                    }
+                let from_unit=bfs_distances(&view.walkable,&[unit.cell]);
+                let shack_starts:Vec<Cell> =ortho_neighbors(view.shacks[0]).into_iter().filter(|cell|view.walkable.contains(cell)).collect();
+                let to_shack=bfs_distances(&view.walkable,&shack_starts);
+                let turns_left=TOTAL_TURNS-view.turn+1;
+                view.plants.iter().filter(|plant|{
+                    plant.health>0&&plant.fruits>0&&(unit.cell==plant.cell||!view.units.iter().any(|other|{
+                        other.player==1&&other.cell==plant.cell&&other.total_carried()==0
+                    }
+                    ))&&from_unit.contains_key(&plant.cell)&&to_shack.contains_key(&plant.cell)
+                }
+                ).filter_map(|plant|{
+                    let travel=MoisanBot::ceil_div(from_unit[&plant.cell],unit.stats.movement_speed);
+                    let home=MoisanBot::ceil_div(to_shack[&plant.cell],unit.stats.movement_speed);
+                    let trip=travel+1+home+1;
+                    (trip<=turns_left).then(||Candidate{
+                        command:if unit.cell==plant.cell{
+                            format!("HARVEST {}",unit.id)
+                        }
+                        else{
+                            format!("MOVE {} {} {}",unit.id,plant.cell.0,plant.cell.1)
+                        }
+                        ,score:1.0/trip.max(1)as f64,target:Target::Tree(plant.cell),
+                    }
+                    )
+                }
+                ).collect()
+            }'''
+HARV_NEW = '''            fn idle_harvest_candidates(view:&GameState,unit:&Unit,)->Vec<Candidate>{
+                if unit.total_carried()!=0{
+                    eprintln!("PS4HARVFN unit={} turn={} clause=FN_CARRYING carried={} harvest_power={} plants={}",unit.id,view.turn,unit.total_carried(),unit.stats.harvest_power,view.plants.len());
+                    return Vec::new();
+                    }
+                if unit.stats.harvest_power<=0{
+                    eprintln!("PS4HARVFN unit={} turn={} clause=FN_NO_HARVEST_POWER carried=0 harvest_power={} plants={}",unit.id,view.turn,unit.stats.harvest_power,view.plants.len());
+                    return Vec::new();
+                    }
+                eprintln!("PS4HARVFN unit={} turn={} clause=ENTERED carried=0 harvest_power={} plants={}",unit.id,view.turn,unit.stats.harvest_power,view.plants.len());
+                let from_unit=bfs_distances(&view.walkable,&[unit.cell]);
+                let shack_starts:Vec<Cell> =ortho_neighbors(view.shacks[0]).into_iter().filter(|cell|view.walkable.contains(cell)).collect();
+                let to_shack=bfs_distances(&view.walkable,&shack_starts);
+                let turns_left=TOTAL_TURNS-view.turn+1;
+                let mut ps4_out:Vec<Candidate> =Vec::new();
+                for plant in view.plants.iter(){
+                    if !(plant.health>0){
+                        eprintln!("PS4HARV unit={} turn={} plant={},{} kind={} clause=PLANT_DEAD health={} fruits={}",unit.id,view.turn,plant.cell.0,plant.cell.1,plant.kind.as_str(),plant.health,plant.fruits);
+                        continue;
+                        }
+                    if !(plant.fruits>0){
+                        eprintln!("PS4HARV unit={} turn={} plant={},{} kind={} clause=NO_FRUITS health={} fruits={} cooldown={} size={}",unit.id,view.turn,plant.cell.0,plant.cell.1,plant.kind.as_str(),plant.health,plant.fruits,plant.cooldown,plant.size);
+                        continue;
+                        }
+                    if !(unit.cell==plant.cell||!view.units.iter().any(|other|{
+                        other.player==1&&other.cell==plant.cell&&other.total_carried()==0
+                    }
+                    )){
+                        eprintln!("PS4HARV unit={} turn={} plant={},{} kind={} clause=OPPONENT_EMPTY_HANDED_ON_CELL health={} fruits={}",unit.id,view.turn,plant.cell.0,plant.cell.1,plant.kind.as_str(),plant.health,plant.fruits);
+                        continue;
+                        }
+                    if !from_unit.contains_key(&plant.cell){
+                        eprintln!("PS4HARV unit={} turn={} plant={},{} kind={} clause=UNREACHABLE_FROM_UNIT health={} fruits={}",unit.id,view.turn,plant.cell.0,plant.cell.1,plant.kind.as_str(),plant.health,plant.fruits);
+                        continue;
+                        }
+                    if !to_shack.contains_key(&plant.cell){
+                        eprintln!("PS4HARV unit={} turn={} plant={},{} kind={} clause=NO_PATH_TO_SHACK_DOOR health={} fruits={}",unit.id,view.turn,plant.cell.0,plant.cell.1,plant.kind.as_str(),plant.health,plant.fruits);
+                        continue;
+                        }
+                    let travel=MoisanBot::ceil_div(from_unit[&plant.cell],unit.stats.movement_speed);
+                    let home=MoisanBot::ceil_div(to_shack[&plant.cell],unit.stats.movement_speed);
+                    let trip=travel+1+home+1;
+                    if !(trip<=turns_left){
+                        eprintln!("PS4HARV unit={} turn={} plant={},{} kind={} clause=TRIP_LONGER_THAN_GAME trip={} turns_left={} travel={} home={}",unit.id,view.turn,plant.cell.0,plant.cell.1,plant.kind.as_str(),trip,turns_left,travel,home);
+                        continue;
+                        }
+                    eprintln!("PS4HARV unit={} turn={} plant={},{} kind={} clause=ACCEPTED trip={} turns_left={} travel={} home={} fruits={}",unit.id,view.turn,plant.cell.0,plant.cell.1,plant.kind.as_str(),trip,turns_left,travel,home,plant.fruits);
+                    ps4_out.push(Candidate{
+                        command:if unit.cell==plant.cell{
+                            format!("HARVEST {}",unit.id)
+                        }
+                        else{
+                            format!("MOVE {} {} {}",unit.id,plant.cell.0,plant.cell.1)
+                        }
+                        ,score:1.0/trip.max(1)as f64,target:Target::Tree(plant.cell),
+                    }
+                    );
+                    }
+                ps4_out
+            }'''
+
+REPLANT_OLD = '''                if safe_regeneration&&carried==0&&view.turn>=100&&view.plants.len()<=2&&view.units.iter().filter(|unit|unit.player==0).count()>=2&&is_adjacent(unit.cell,view.shacks[0])&&view.plant_at(unit.cell).is_none(){'''
+REPLANT_NEW = '''                let ps4_r1=safe_regeneration;
+                let ps4_r2=carried==0;
+                let ps4_r3=view.turn>=100;
+                let ps4_r4=view.plants.len()<=2;
+                let ps4_r5=view.units.iter().filter(|unit|unit.player==0).count()>=2;
+                let ps4_r6=is_adjacent(unit.cell,view.shacks[0]);
+                let ps4_r7=view.plant_at(unit.cell).is_none();
+                eprintln!("PS4REPLANT unit={} turn={} c1_safe_regeneration={} c2_carried_zero={} c3_turn_ge_100={} c4_plants_le_2={} c5_own_units_ge_2={} c6_adjacent_shack={} c7_cell_free={} plants={} own_units={} all={}",unit.id,view.turn,ps4_r1,ps4_r2,ps4_r3,ps4_r4,ps4_r5,ps4_r6,ps4_r7,view.plants.len(),view.units.iter().filter(|unit|unit.player==0).count(),ps4_r1&&ps4_r2&&ps4_r3&&ps4_r4&&ps4_r5&&ps4_r6&&ps4_r7);
+                if ps4_r1&&ps4_r2&&ps4_r3&&ps4_r4&&ps4_r5&&ps4_r6&&ps4_r7{'''
+
+OPEN_OLD = '''                let desired=self.desired_second.map(|objective|objective.stats).unwrap_or_else(Self::fallback_second_troll);
+                let train_now=!self.opening_abandoned&&MoisanBot::can_train(view,desired);'''
+OPEN_NEW = '''                let desired=self.desired_second.map(|objective|objective.stats).unwrap_or_else(Self::fallback_second_troll);
+                let train_now=!self.opening_abandoned&&MoisanBot::can_train(view,desired);
+                let ps4_n=view.units.iter().filter(|unit|unit.player==0).count()as i32;
+                let ps4_cost=training_cost(ps4_n,desired.tuple());
+                eprintln!("PS4OPEN turn={} own_units={} opening_abandoned={} train_now={} can_train={} desired_second_set={} desired={},{},{},{} eta={} cost_plum={} cost_lemon={} cost_apple={} cost_iron={} inv_plum={} inv_lemon={} inv_apple={} inv_iron={} iron_on_map={} hard_train_turn={} require_preferred={}",view.turn,ps4_n,self.opening_abandoned,train_now,MoisanBot::can_train(view,desired),self.desired_second.is_some(),desired.movement_speed,desired.carry_capacity,desired.harvest_power,desired.chop_power,self.desired_second.map(|o|o.estimated_eta).unwrap_or(-1),ps4_cost[PLUM],ps4_cost[LEMON],ps4_cost[APPLE],ps4_cost[IRON],view.inventories[0][PLUM],view.inventories[0][LEMON],view.inventories[0][APPLE],view.inventories[0][IRON],!view.iron.is_empty(),self.opening_policy.hard_train_turn,self.opening_policy.require_preferred);'''
+
+DEADLINE_OLD = '''                let Some(objective)=self.desired_second else{
+                    self.opening_abandoned=true;
+                    return;
+                    }
+                ;
+                if Self::training_affordable(view,objective.stats){
+                    return;
+                    }'''
+DEADLINE_NEW = '''                eprintln!("PS4DEADLINE turn={} event=REACHED hard_train_turn={} own_units={} require_preferred={}",view.turn,self.opening_policy.hard_train_turn,view.units.iter().filter(|unit|unit.player==0).count(),self.opening_policy.require_preferred);
+                let Some(objective)=self.desired_second else{
+                    eprintln!("PS4DEADLINE turn={} event=ABANDONED reason=NO_DESIRED_SECOND",view.turn);
+                    self.opening_abandoned=true;
+                    return;
+                    }
+                ;
+                if Self::training_affordable(view,objective.stats){
+                    eprintln!("PS4DEADLINE turn={} event=AFFORDABLE_KEPT",view.turn);
+                    return;
+                    }'''
+
+DEADLINE2_OLD = '''                self.desired_second=Self::strongest_affordable(view,self.opening_policy);
+                if self.desired_second.is_none(){
+                    self.opening_abandoned=true;
+                    }
+                }'''
+DEADLINE2_NEW = '''                self.desired_second=Self::strongest_affordable(view,self.opening_policy);
+                if self.desired_second.is_none(){
+                    eprintln!("PS4DEADLINE turn={} event=ABANDONED reason=NO_AFFORDABLE_OPTION",view.turn);
+                    self.opening_abandoned=true;
+                    }
+                else{
+                    eprintln!("PS4DEADLINE turn={} event=DOWNGRADED_TO_AFFORDABLE",view.turn);
+                    }
+                }'''
+
+CLAUSE_EDITS = [("chop_candidates/fn-guard", CHOP_FN_OLD, CHOP_FN_NEW),
+                ("chop_candidates/plant-loop", CHOP_LOOP_OLD, CHOP_LOOP_NEW),
+                ("idle_harvest_candidates/whole-fn", HARV_OLD, HARV_NEW),
+                ("main_candidates/replant-conjuncts", REPLANT_OLD, REPLANT_NEW),
+                ("commands/opening-state", OPEN_OLD, OPEN_NEW),
+                ("enforce_training_deadline/entry", DEADLINE_OLD, DEADLINE_NEW),
+                ("enforce_training_deadline/abandon", DEADLINE2_OLD, DEADLINE2_NEW)]
+
+
 # Per-subject additions. The five EDITS above are the accepted Phase-3 set and are applied to
 # EVERY subject unchanged; only the champion gets the early anchors on top. See the module
 # docstring for why this is per-subject rather than global.
-EXTRA_EDITS = {"door1-champion": EARLY_EDITS}
+EXTRA_EDITS = {"door1-champion": EARLY_EDITS,
+               "door1-clause": EARLY_EDITS + CLAUSE_EDITS}
 
 EDITS = [("commands/by_id.insert", FINAL_OLD, FINAL_NEW),
          ("main_candidates/entry", MAIN_ENTRY_OLD, MAIN_ENTRY_NEW),
