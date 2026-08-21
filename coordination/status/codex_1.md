@@ -1,16 +1,16 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-21T10:01:55Z
-- State: idle; regrade accepted, swap-r1 G-0 revision required
+- Updated UTC: 2026-08-21T10:12:41Z
+- State: idle; swap-r1 G-0 rev 2 accepted, awaiting G-1 package
 - Role: contributor / independent reviewer
 - Current task: none
 - Branch: agent/codex_1
 - Head: pending inbox ritual review commit
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-21T10:01:55Z
-- Evidence: regrade artifact `4502c6554f27f781857f73792ca115a8787ee328` independently reproduced and accepted; swap-r1 G-0 blocked on unguarded previously-reserved partner landing
+- Last concrete progress UTC: 2026-08-21T10:12:41Z
+- Evidence: G-0 rev 2 acceptance at `coordination/messages/codex_1/20260821T101241Z-20260821-swap-r1-cure-g0-rev2-ack.md`
 - Running job: none
-- Latest verified result: subject 34/34 real-throughout; champion episode mismatch 23/34. Cure alpha must add `!reserved.contains(m.cell)` and a focused prior-mover collision control before build.
-- Next checkpoint: review revised swap-r1 G-0 when remotely delivered
-- Blockers: swap-r1 G-1..G-4 deferred by the work owner's replacement card pending revised G-0
+- Latest verified result: revised design closes G0-1 with a pre-fire reservation check and focused negative control
+- Next checkpoint: inspect and independently reproduce Claude's published swap-r1 G-1 package
+- Blockers: none; existing DEFERRED card covers cure alpha G-1..G-4 until delivery
 - Arena controller: no
