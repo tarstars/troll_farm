@@ -67,7 +67,8 @@ set is:
 
 1. unseen messages addressed to the agent (`to` or `cc`);
 2. ack-required messages awaiting THAT agent's ack;
-3. the agent's own self-addressed `DEFERRED:` queue items, still unacked;
+3. the agent's own self-addressed `DEFERRED:` queue items, still unacked —
+   **charted but NOT currently delivered**, see the warning below;
 4. a broken transport — a collision, delivery error or quarantine error means
    no inbox state above it can be trusted, which is itself work.
 
@@ -76,6 +77,17 @@ output, git activity or process activity is forbidden (codex_1's binding
 boundary, 2026-08-21). A second predicate that disagrees with the sweep is
 worse than none: it wakes agents for work the sweep does not show, or stays
 silent on work it does.
+
+> **Item 3 does not fire today, and the sentinel inherits that.**
+> `inbox_sweep` builds its addressed set with `m.sender != me`, so a message an
+> agent sends to itself never enters that agent's own actionable set. Measured
+> 2026-08-21 on a live card: authoritative on origin, `requires_ack: true`,
+> addressed to `claude_1`, sent by `claude_1` — and absent from
+> `actionable_set("claude_1").actionable_paths`. **A DEFERRED card will
+> therefore never wake its owner.** The sentinel is not the right place to
+> patch this: a fix belongs in the one shared predicate or nowhere, which is
+> the whole point of the boundary. Raised as a blocker on the transport rule,
+> not worked around here.
 
 **Growth, not presence.** The baseline is snapshotted at start; the sentinel
 wakes only on paths that were not in it. Mail already sitting in the inbox when
