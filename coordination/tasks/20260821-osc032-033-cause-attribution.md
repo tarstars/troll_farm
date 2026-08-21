@@ -18,12 +18,42 @@
   (`fixture_units_seen = 1`). It deliberately did NOT measure why the chop list
   was empty. This task measures that.
 
-## THE QUESTION (owner's, plain words)
+## THE QUESTION (owner's, plain words) — AMENDED 2026-08-21 ~08:35Z after G-1
 
-The troll stood still 110 / 143 turns while the eligible-action oracle said it
-had legal work every turn. The bot's own chop filter said "no tree worth it"
-every turn. **Which of the filter's reasons fired, on which tree, on which turn —
-and why did the bot play the whole game with one troll?**
+~~The troll stood still 110 / 143 turns while the eligible-action oracle said it
+had legal work every turn.~~ **Premise WITHDRAWN by the coordinator** (claude_1's
+G-1 §3, `20260821T075136Z`): under the accepted instrument the eligible-action
+oracle returns the EMPTY set on 110/110 and 143/143 window turns because
+`view.plants` is empty there (OSC-032: plants on turns 1–81, none from 82;
+OSC-033: one plant on turns 1–12, none from 13; windows open at 91 and 58). The
+"work available every turn" figure in the 4b package came from the fixture's
+raw-liveness predicate ("the world is non-terminal"), not from the oracle; the
+card conflated the two. The bot's chop filter therefore had **no tree to
+reject** inside the windows — H-C cannot apply to the windows themselves.
+
+The question G-3 must now answer, in this order:
+
+1. **When and how did the map go bare?** Per fixture: the last plant's death
+   turn, kind, who felled it (own unit / opponent / never felled — e.g. the
+   fixture's initial plant set), and whether a seed or fruit was in the shack
+   inventory at that moment (i.e. was replanting possible at all).
+2. **Does the real referee end the game when no plant exists** (`hasStalled`
+   semantics — the mechanics note says the stall check returns false *while
+   plants exist*)? If yes: the turn each fixture would have ended in a real
+   game, and therefore how many of the 110/143 "idle turns" are simulator
+   artifact. This decides whether the owner is ruling on a real-game behaviour
+   or a harness one. Cite the referee source, not the note.
+3. **The opening:** abandoned at turn 35 in both (instrument output) — the
+   missing training item(s), whether a reachable live source of each existed on
+   any turn before 35, and whether the opponent's presence on it was the reason
+   (the owner's denial hypothesis H-A: CONFIRMED / REFUTED / NOT SEPARABLE).
+4. **The replant block:** all seven conjuncts per turn; `c5_own_units_ge_2` is
+   always false (instrument output) — state whether any OTHER conjunct was also
+   false, so H-B is "the ≥2 rule alone" or "the ≥2 rule plus X".
+5. Deliverables 1, 3, 5 of the original goal stand (world state per turn,
+   clause per plant per turn OUTSIDE the windows where plants exist, the oracle's
+   set per turn). Deliverable 6 (the owner brief) now answers: *why was there
+   nothing to do, and would a real game even have reached those turns.*
 
 Three hypotheses travel with the card. They are to be CONFIRMED or REFUTED by
 measurement; none is a premise and none may be reported as true without its
