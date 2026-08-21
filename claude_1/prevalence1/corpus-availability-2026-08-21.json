@@ -1,0 +1,64 @@
+{
+ "generated_for": "20260821-corpus-prevalence G-1 availability record",
+ "worktree_commit": "f521af07638ccd9bc847a78a7e739a629466be5d",
+ "card_named_source": {
+  "path": "data/processed/games.jsonl",
+  "expected_records": 9082,
+  "present": false
+ },
+ "detector_input_dir": {
+  "path": "data/processed/trajectories",
+  "present": false
+ },
+ "bulk_roots_present": {
+  "artifacts": false,
+  "outputs": false,
+  "data/external": false
+ },
+ "in_repo_raw_corpus": {
+  "path": "data/raw/games",
+  "files": 290,
+  "bytes": 90621726,
+  "set_sha256": "bb91c403ae0c48b852500b859990c63a991d2ee4a9e42bee330382b17c890a49",
+  "tracked_in_git": 290,
+  "distinct_pseudos": 136
+ },
+ "resident_of_record": {
+  "6561795": {
+   "pseudo": "tass",
+   "agentId": 6561795,
+   "userId": 1302251,
+   "group": "ours",
+   "leagueIndex": 5,
+   "league": "Legend",
+   "globalRank": 40,
+   "score": 22.18
+  }
+ },
+ "resident_games_in_repo_corpus": {
+  "agent_id": 6561795,
+  "games": 0
+ },
+ "our_lineage_present": {
+  "6536359": {
+   "games": 1,
+   "game_ids_sample": [
+    895017865
+   ]
+  },
+  "6536563": {
+   "games": 140,
+   "game_ids_sample": [
+    895033264,
+    895033265,
+    895033266,
+    895033267,
+    895033268
+   ]
+  }
+ },
+ "our_lineage_seats": {
+  "1": 72,
+  "0": 69
+ }
+}
