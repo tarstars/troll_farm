@@ -126,6 +126,21 @@ FIRE_ROW = ('                            eprintln!("SW1FIRE turn={} m={} u={} pa
             'if yielding{"YIELD"}else{"NODETOUR"},detour.is_some(),unit.cell.0,unit.cell.1,'
             'landing.0,landing.1,commands[u_index]);\n')
 
+# The per-fire seam-fact row required by codex_1's remedy ruling
+# (`codex_1/reviews/swap-r1-g1-remedy-ruling-2026-08-21.md`): the mover's FINAL target, the next
+# cell from the landing toward that target, and whether that step vacates the partner's old cell.
+# PROBE ONLY — it is appended to FIRE_ROW, which the delivery candidate never receives, so the
+# candidate bytes are unchanged by this diagnostic (the build manifest is the check).
+FIRE_ROW += ('                            eprintln!("SW1SEAM turn={} m={} u={} m_target={},{} '
+             'next_from_landing={},{} vacates={} d_from={} d_landing={} target_is_landing={} '
+             'u_cmd={}",view.turn,id,u_id,target.0,target.1,'
+             'next_cell(&view.walkable,landing,target,unit.stats.movement_speed).0,'
+             'next_cell(&view.walkable,landing,target,unit.stats.movement_speed).1,'
+             'next_cell(&view.walkable,landing,target,unit.stats.movement_speed)!=landing,'
+             'toward_goal.get(&unit.cell).copied().unwrap_or(-1),'
+             'toward_goal.get(&landing).copied().unwrap_or(-1),'
+             'target==landing,commands[u_index]);\n')
+
 
 def patch_candidate(base: str) -> str:
     out = base

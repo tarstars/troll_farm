@@ -1,0 +1,3424 @@
+{
+  "task": "20260821-swap-r1-cure",
+  "gate": "G-1",
+  "fixtures": 34,
+  "harness_failures": [],
+  "total_fires": 52,
+  "total_unit_turns": 12981,
+  "corpus_fire_rate_of_unit_turns": 0.004005854710731068,
+  "fixtures_that_fired": [
+    "OSC-001",
+    "OSC-002",
+    "OSC-005",
+    "OSC-006",
+    "OSC-009",
+    "OSC-011",
+    "OSC-012",
+    "OSC-013",
+    "OSC-017",
+    "OSC-021",
+    "OSC-024",
+    "OSC-025",
+    "OSC-028",
+    "OSC-029",
+    "OSC-030",
+    "OSC-031"
+  ],
+  "zero_fire_fixtures": 18,
+  "zero_fire_fixtures_not_byte_identical": [],
+  "pre_first_fire_divergences": [],
+  "total_reswaps_within_4_ticks": 111,
+  "alpha_disabled_ticks_total": 0,
+  "rows": [
+    {
+      "id": "OSC-001",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 1,
+      "fire_rate_of_unit_turns": 0.0025,
+      "yield_path": 1,
+      "yield_path_with_detour_available": 1,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": false,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": 7,
+      "fire_detail": [
+        {
+          "turn": 7,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            5,
+            2
+          ],
+          "m_to": [
+            4,
+            2
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              3,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 3,
+            "bfs_from_landing": 2,
+            "target_is_landing": false,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        }
+      ]
+    },
+    {
+      "id": "OSC-002",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 2,
+      "fire_rate_of_unit_turns": 0.005,
+      "yield_path": 2,
+      "yield_path_with_detour_available": 2,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": false,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": 12,
+      "fire_detail": [
+        {
+          "turn": 12,
+          "m": 2,
+          "u": 0,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            9,
+            4
+          ],
+          "m_to": [
+            8,
+            4
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              2,
+              4
+            ],
+            "next_from_landing": [
+              7,
+              4
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 7,
+            "bfs_from_landing": 6,
+            "target_is_landing": false,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        },
+        {
+          "turn": 31,
+          "m": 2,
+          "u": 0,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            8,
+            4
+          ],
+          "m_to": [
+            9,
+            4
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              10,
+              4
+            ],
+            "next_from_landing": [
+              10,
+              4
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        }
+      ]
+    },
+    {
+      "id": "OSC-003",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    },
+    {
+      "id": "OSC-004",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    },
+    {
+      "id": "OSC-005",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 1,
+      "fire_rate_of_unit_turns": 0.0025,
+      "yield_path": 1,
+      "yield_path_with_detour_available": 1,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": false,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": 52,
+      "fire_detail": [
+        {
+          "turn": 52,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            2,
+            2
+          ],
+          "m_to": [
+            1,
+            2
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              1,
+              2
+            ],
+            "next_from_landing": [
+              1,
+              2
+            ],
+            "vacates_partner_cell": false,
+            "bfs_from_mover_cell": 1,
+            "bfs_from_landing": 0,
+            "target_is_landing": true,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        }
+      ]
+    },
+    {
+      "id": "OSC-006",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 27,
+      "fire_rate_of_unit_turns": 0.0675,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 27,
+      "displaced_work_fires": 27,
+      "resume_deltas": [
+        29,
+        27,
+        27,
+        25,
+        25,
+        23,
+        23,
+        21,
+        21,
+        19,
+        19,
+        17,
+        17,
+        15,
+        15,
+        13,
+        13,
+        11,
+        11,
+        9,
+        9,
+        7,
+        7,
+        5,
+        5,
+        3,
+        3
+      ],
+      "reswaps": [
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 2,
+          "again_turn": 3
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 2,
+          "again_turn": 4
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 3,
+          "again_turn": 4
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 2,
+          "again_turn": 5
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 3,
+          "again_turn": 5
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 4,
+          "again_turn": 5
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 2,
+          "again_turn": 6
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 3,
+          "again_turn": 6
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 4,
+          "again_turn": 6
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 5,
+          "again_turn": 6
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 3,
+          "again_turn": 7
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 4,
+          "again_turn": 7
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 5,
+          "again_turn": 7
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 6,
+          "again_turn": 7
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 4,
+          "again_turn": 8
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 5,
+          "again_turn": 8
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 6,
+          "again_turn": 8
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 7,
+          "again_turn": 8
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 5,
+          "again_turn": 9
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 6,
+          "again_turn": 9
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 7,
+          "again_turn": 9
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 8,
+          "again_turn": 9
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 6,
+          "again_turn": 10
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 7,
+          "again_turn": 10
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 8,
+          "again_turn": 10
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 9,
+          "again_turn": 10
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 7,
+          "again_turn": 11
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 8,
+          "again_turn": 11
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 9,
+          "again_turn": 11
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 10,
+          "again_turn": 11
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 8,
+          "again_turn": 12
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 9,
+          "again_turn": 12
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 10,
+          "again_turn": 12
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 11,
+          "again_turn": 12
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 9,
+          "again_turn": 13
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 10,
+          "again_turn": 13
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 11,
+          "again_turn": 13
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 12,
+          "again_turn": 13
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 10,
+          "again_turn": 14
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 11,
+          "again_turn": 14
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 12,
+          "again_turn": 14
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 13,
+          "again_turn": 14
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 11,
+          "again_turn": 15
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 12,
+          "again_turn": 15
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 13,
+          "again_turn": 15
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 14,
+          "again_turn": 15
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 12,
+          "again_turn": 16
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 13,
+          "again_turn": 16
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 14,
+          "again_turn": 16
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 15,
+          "again_turn": 16
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 13,
+          "again_turn": 17
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 14,
+          "again_turn": 17
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 15,
+          "again_turn": 17
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 16,
+          "again_turn": 17
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 14,
+          "again_turn": 18
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 15,
+          "again_turn": 18
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 16,
+          "again_turn": 18
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 17,
+          "again_turn": 18
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 15,
+          "again_turn": 19
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 16,
+          "again_turn": 19
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 17,
+          "again_turn": 19
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 18,
+          "again_turn": 19
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 16,
+          "again_turn": 20
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 17,
+          "again_turn": 20
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 18,
+          "again_turn": 20
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 19,
+          "again_turn": 20
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 17,
+          "again_turn": 21
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 18,
+          "again_turn": 21
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 19,
+          "again_turn": 21
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 20,
+          "again_turn": 21
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 18,
+          "again_turn": 22
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 19,
+          "again_turn": 22
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 20,
+          "again_turn": 22
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 21,
+          "again_turn": 22
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 19,
+          "again_turn": 23
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 20,
+          "again_turn": 23
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 21,
+          "again_turn": 23
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 22,
+          "again_turn": 23
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 20,
+          "again_turn": 24
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 21,
+          "again_turn": 24
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 22,
+          "again_turn": 24
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 23,
+          "again_turn": 24
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 21,
+          "again_turn": 25
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 22,
+          "again_turn": 25
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 23,
+          "again_turn": 25
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 24,
+          "again_turn": 25
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 22,
+          "again_turn": 26
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 23,
+          "again_turn": 26
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 24,
+          "again_turn": 26
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 25,
+          "again_turn": 26
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 23,
+          "again_turn": 27
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 24,
+          "again_turn": 27
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 25,
+          "again_turn": 27
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 26,
+          "again_turn": 27
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 24,
+          "again_turn": 28
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 25,
+          "again_turn": 28
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 26,
+          "again_turn": 28
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 27,
+          "again_turn": 28
+        }
+      ],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": false,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": 2,
+      "fire_detail": [
+        {
+          "turn": 2,
+          "m": 0,
+          "u": 2,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 2",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 2"
+          },
+          "displaced_work": true,
+          "resumed_turn": 31,
+          "resumed_after": 29
+        },
+        {
+          "turn": 3,
+          "m": 2,
+          "u": 0,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 0",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 0"
+          },
+          "displaced_work": true,
+          "resumed_turn": 30,
+          "resumed_after": 27
+        },
+        {
+          "turn": 4,
+          "m": 0,
+          "u": 2,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 2",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 2"
+          },
+          "displaced_work": true,
+          "resumed_turn": 31,
+          "resumed_after": 27
+        },
+        {
+          "turn": 5,
+          "m": 2,
+          "u": 0,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 0",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 0"
+          },
+          "displaced_work": true,
+          "resumed_turn": 30,
+          "resumed_after": 25
+        },
+        {
+          "turn": 6,
+          "m": 0,
+          "u": 2,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 2",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 2"
+          },
+          "displaced_work": true,
+          "resumed_turn": 31,
+          "resumed_after": 25
+        },
+        {
+          "turn": 7,
+          "m": 2,
+          "u": 0,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 0",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 0"
+          },
+          "displaced_work": true,
+          "resumed_turn": 30,
+          "resumed_after": 23
+        },
+        {
+          "turn": 8,
+          "m": 0,
+          "u": 2,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 2",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 2"
+          },
+          "displaced_work": true,
+          "resumed_turn": 31,
+          "resumed_after": 23
+        },
+        {
+          "turn": 9,
+          "m": 2,
+          "u": 0,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 0",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 0"
+          },
+          "displaced_work": true,
+          "resumed_turn": 30,
+          "resumed_after": 21
+        },
+        {
+          "turn": 10,
+          "m": 0,
+          "u": 2,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 2",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 2"
+          },
+          "displaced_work": true,
+          "resumed_turn": 31,
+          "resumed_after": 21
+        },
+        {
+          "turn": 11,
+          "m": 2,
+          "u": 0,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 0",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 0"
+          },
+          "displaced_work": true,
+          "resumed_turn": 30,
+          "resumed_after": 19
+        },
+        {
+          "turn": 12,
+          "m": 0,
+          "u": 2,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 2",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 2"
+          },
+          "displaced_work": true,
+          "resumed_turn": 31,
+          "resumed_after": 19
+        },
+        {
+          "turn": 13,
+          "m": 2,
+          "u": 0,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 0",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 0"
+          },
+          "displaced_work": true,
+          "resumed_turn": 30,
+          "resumed_after": 17
+        },
+        {
+          "turn": 14,
+          "m": 0,
+          "u": 2,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 2",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 2"
+          },
+          "displaced_work": true,
+          "resumed_turn": 31,
+          "resumed_after": 17
+        },
+        {
+          "turn": 15,
+          "m": 2,
+          "u": 0,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 0",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 0"
+          },
+          "displaced_work": true,
+          "resumed_turn": 30,
+          "resumed_after": 15
+        },
+        {
+          "turn": 16,
+          "m": 0,
+          "u": 2,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 2",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 2"
+          },
+          "displaced_work": true,
+          "resumed_turn": 31,
+          "resumed_after": 15
+        },
+        {
+          "turn": 17,
+          "m": 2,
+          "u": 0,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 0",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 0"
+          },
+          "displaced_work": true,
+          "resumed_turn": 30,
+          "resumed_after": 13
+        },
+        {
+          "turn": 18,
+          "m": 0,
+          "u": 2,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 2",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 2"
+          },
+          "displaced_work": true,
+          "resumed_turn": 31,
+          "resumed_after": 13
+        },
+        {
+          "turn": 19,
+          "m": 2,
+          "u": 0,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 0",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 0"
+          },
+          "displaced_work": true,
+          "resumed_turn": 30,
+          "resumed_after": 11
+        },
+        {
+          "turn": 20,
+          "m": 0,
+          "u": 2,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 2",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 2"
+          },
+          "displaced_work": true,
+          "resumed_turn": 31,
+          "resumed_after": 11
+        },
+        {
+          "turn": 21,
+          "m": 2,
+          "u": 0,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 0",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 0"
+          },
+          "displaced_work": true,
+          "resumed_turn": 30,
+          "resumed_after": 9
+        },
+        {
+          "turn": 22,
+          "m": 0,
+          "u": 2,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 2",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 2"
+          },
+          "displaced_work": true,
+          "resumed_turn": 31,
+          "resumed_after": 9
+        },
+        {
+          "turn": 23,
+          "m": 2,
+          "u": 0,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 0",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 0"
+          },
+          "displaced_work": true,
+          "resumed_turn": 30,
+          "resumed_after": 7
+        },
+        {
+          "turn": 24,
+          "m": 0,
+          "u": 2,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 2",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 2"
+          },
+          "displaced_work": true,
+          "resumed_turn": 31,
+          "resumed_after": 7
+        },
+        {
+          "turn": 25,
+          "m": 2,
+          "u": 0,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 0",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 0"
+          },
+          "displaced_work": true,
+          "resumed_turn": 30,
+          "resumed_after": 5
+        },
+        {
+          "turn": 26,
+          "m": 0,
+          "u": 2,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 2",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 2"
+          },
+          "displaced_work": true,
+          "resumed_turn": 31,
+          "resumed_after": 5
+        },
+        {
+          "turn": 27,
+          "m": 2,
+          "u": 0,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 0",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 0"
+          },
+          "displaced_work": true,
+          "resumed_turn": 30,
+          "resumed_after": 3
+        },
+        {
+          "turn": 28,
+          "m": 0,
+          "u": 2,
+          "path": "NODETOUR",
+          "detour_existed": false,
+          "m_from": [
+            1,
+            3
+          ],
+          "m_to": [
+            2,
+            3
+          ],
+          "u_displaced": "CHOP 2",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              2,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 2,
+            "bfs_from_landing": 1,
+            "target_is_landing": false,
+            "u_cmd": "CHOP 2"
+          },
+          "displaced_work": true,
+          "resumed_turn": 31,
+          "resumed_after": 3
+        }
+      ]
+    },
+    {
+      "id": "OSC-007",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    },
+    {
+      "id": "OSC-008",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    },
+    {
+      "id": "OSC-009",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 2,
+      "fire_rate_of_unit_turns": 0.005,
+      "yield_path": 2,
+      "yield_path_with_detour_available": 2,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": false,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": 53,
+      "fire_detail": [
+        {
+          "turn": 53,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            3,
+            2
+          ],
+          "m_to": [
+            3,
+            1
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              9,
+              0
+            ],
+            "next_from_landing": [
+              4,
+              1
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 8,
+            "bfs_from_landing": 7,
+            "target_is_landing": false,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        },
+        {
+          "turn": 71,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            4,
+            1
+          ],
+          "m_to": [
+            3,
+            1
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              3,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 3,
+            "bfs_from_landing": 2,
+            "target_is_landing": false,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        }
+      ]
+    },
+    {
+      "id": "OSC-010",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 381,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    },
+    {
+      "id": "OSC-011",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 6,
+      "fire_rate_of_unit_turns": 0.015,
+      "yield_path": 6,
+      "yield_path_with_detour_available": 6,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 27,
+          "again_turn": 28
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 27,
+          "again_turn": 29
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 28,
+          "again_turn": 29
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 27,
+          "again_turn": 30
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 28,
+          "again_turn": 30
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 29,
+          "again_turn": 30
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 27,
+          "again_turn": 31
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 28,
+          "again_turn": 31
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 29,
+          "again_turn": 31
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 30,
+          "again_turn": 31
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 29,
+          "again_turn": 33
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 30,
+          "again_turn": 33
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "first_turn": 31,
+          "again_turn": 33
+        }
+      ],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": false,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": 27,
+      "fire_detail": [
+        {
+          "turn": 27,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            8,
+            4
+          ],
+          "m_to": [
+            9,
+            4
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              9,
+              4
+            ],
+            "next_from_landing": [
+              9,
+              4
+            ],
+            "vacates_partner_cell": false,
+            "bfs_from_mover_cell": 1,
+            "bfs_from_landing": 0,
+            "target_is_landing": true,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        },
+        {
+          "turn": 28,
+          "m": 2,
+          "u": 0,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            8,
+            4
+          ],
+          "m_to": [
+            9,
+            4
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              9,
+              4
+            ],
+            "next_from_landing": [
+              9,
+              4
+            ],
+            "vacates_partner_cell": false,
+            "bfs_from_mover_cell": 1,
+            "bfs_from_landing": 0,
+            "target_is_landing": true,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        },
+        {
+          "turn": 29,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            8,
+            4
+          ],
+          "m_to": [
+            9,
+            4
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              9,
+              4
+            ],
+            "next_from_landing": [
+              9,
+              4
+            ],
+            "vacates_partner_cell": false,
+            "bfs_from_mover_cell": 1,
+            "bfs_from_landing": 0,
+            "target_is_landing": true,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        },
+        {
+          "turn": 30,
+          "m": 2,
+          "u": 0,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            8,
+            4
+          ],
+          "m_to": [
+            9,
+            4
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              9,
+              4
+            ],
+            "next_from_landing": [
+              9,
+              4
+            ],
+            "vacates_partner_cell": false,
+            "bfs_from_mover_cell": 1,
+            "bfs_from_landing": 0,
+            "target_is_landing": true,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        },
+        {
+          "turn": 31,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            8,
+            4
+          ],
+          "m_to": [
+            9,
+            4
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              9,
+              4
+            ],
+            "next_from_landing": [
+              9,
+              4
+            ],
+            "vacates_partner_cell": false,
+            "bfs_from_mover_cell": 1,
+            "bfs_from_landing": 0,
+            "target_is_landing": true,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        },
+        {
+          "turn": 33,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            9,
+            4
+          ],
+          "m_to": [
+            8,
+            4
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              8,
+              2
+            ],
+            "next_from_landing": [
+              8,
+              3
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 3,
+            "bfs_from_landing": 2,
+            "target_is_landing": false,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        }
+      ]
+    },
+    {
+      "id": "OSC-012",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 1,
+      "fire_rate_of_unit_turns": 0.0025,
+      "yield_path": 1,
+      "yield_path_with_detour_available": 1,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": false,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": 9,
+      "fire_detail": [
+        {
+          "turn": 9,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            10,
+            2
+          ],
+          "m_to": [
+            11,
+            2
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              11,
+              2
+            ],
+            "next_from_landing": [
+              11,
+              2
+            ],
+            "vacates_partner_cell": false,
+            "bfs_from_mover_cell": 1,
+            "bfs_from_landing": 0,
+            "target_is_landing": true,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        }
+      ]
+    },
+    {
+      "id": "OSC-013",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 1,
+      "fire_rate_of_unit_turns": 0.0025,
+      "yield_path": 1,
+      "yield_path_with_detour_available": 1,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": false,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": 14,
+      "fire_detail": [
+        {
+          "turn": 14,
+          "m": 2,
+          "u": 0,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            7,
+            2
+          ],
+          "m_to": [
+            8,
+            2
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              8,
+              2
+            ],
+            "next_from_landing": [
+              8,
+              2
+            ],
+            "vacates_partner_cell": false,
+            "bfs_from_mover_cell": 1,
+            "bfs_from_landing": 0,
+            "target_is_landing": true,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        }
+      ]
+    },
+    {
+      "id": "OSC-014",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    },
+    {
+      "id": "OSC-015",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    },
+    {
+      "id": "OSC-016",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    },
+    {
+      "id": "OSC-017",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 1,
+      "fire_rate_of_unit_turns": 0.0025,
+      "yield_path": 1,
+      "yield_path_with_detour_available": 1,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": false,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": 7,
+      "fire_detail": [
+        {
+          "turn": 7,
+          "m": 2,
+          "u": 0,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            10,
+            1
+          ],
+          "m_to": [
+            10,
+            0
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              10,
+              0
+            ],
+            "next_from_landing": [
+              10,
+              0
+            ],
+            "vacates_partner_cell": false,
+            "bfs_from_mover_cell": 1,
+            "bfs_from_landing": 0,
+            "target_is_landing": true,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        }
+      ]
+    },
+    {
+      "id": "OSC-018",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    },
+    {
+      "id": "OSC-019",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    },
+    {
+      "id": "OSC-020",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    },
+    {
+      "id": "OSC-021",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 2,
+      "fire_rate_of_unit_turns": 0.005,
+      "yield_path": 2,
+      "yield_path_with_detour_available": 2,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": false,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": 30,
+      "fire_detail": [
+        {
+          "turn": 30,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            8,
+            4
+          ],
+          "m_to": [
+            8,
+            5
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              8,
+              5
+            ],
+            "next_from_landing": [
+              8,
+              5
+            ],
+            "vacates_partner_cell": false,
+            "bfs_from_mover_cell": 1,
+            "bfs_from_landing": 0,
+            "target_is_landing": true,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        },
+        {
+          "turn": 41,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            8,
+            5
+          ],
+          "m_to": [
+            8,
+            4
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              10,
+              2
+            ],
+            "next_from_landing": [
+              8,
+              3
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 5,
+            "bfs_from_landing": 4,
+            "target_is_landing": false,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        }
+      ]
+    },
+    {
+      "id": "OSC-022",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    },
+    {
+      "id": "OSC-023",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    },
+    {
+      "id": "OSC-024",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 1,
+      "fire_rate_of_unit_turns": 0.0025,
+      "yield_path": 1,
+      "yield_path_with_detour_available": 1,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": false,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": 6,
+      "fire_detail": [
+        {
+          "turn": 6,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            2,
+            2
+          ],
+          "m_to": [
+            2,
+            1
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              2,
+              1
+            ],
+            "next_from_landing": [
+              2,
+              1
+            ],
+            "vacates_partner_cell": false,
+            "bfs_from_mover_cell": 1,
+            "bfs_from_landing": 0,
+            "target_is_landing": true,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        }
+      ]
+    },
+    {
+      "id": "OSC-025",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 1,
+      "fire_rate_of_unit_turns": 0.0025,
+      "yield_path": 1,
+      "yield_path_with_detour_available": 1,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": false,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": 13,
+      "fire_detail": [
+        {
+          "turn": 13,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            13,
+            2
+          ],
+          "m_to": [
+            13,
+            1
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              13,
+              1
+            ],
+            "next_from_landing": [
+              13,
+              1
+            ],
+            "vacates_partner_cell": false,
+            "bfs_from_mover_cell": 1,
+            "bfs_from_landing": 0,
+            "target_is_landing": true,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        }
+      ]
+    },
+    {
+      "id": "OSC-026",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 200,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    },
+    {
+      "id": "OSC-027",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    },
+    {
+      "id": "OSC-028",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 2,
+      "fire_rate_of_unit_turns": 0.005,
+      "yield_path": 2,
+      "yield_path_with_detour_available": 2,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": false,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": 53,
+      "fire_detail": [
+        {
+          "turn": 53,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            3,
+            2
+          ],
+          "m_to": [
+            3,
+            1
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              9,
+              0
+            ],
+            "next_from_landing": [
+              4,
+              1
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 8,
+            "bfs_from_landing": 7,
+            "target_is_landing": false,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        },
+        {
+          "turn": 71,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            4,
+            1
+          ],
+          "m_to": [
+            3,
+            1
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              2,
+              2
+            ],
+            "next_from_landing": [
+              3,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 3,
+            "bfs_from_landing": 2,
+            "target_is_landing": false,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        }
+      ]
+    },
+    {
+      "id": "OSC-029",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 1,
+      "fire_rate_of_unit_turns": 0.0025,
+      "yield_path": 1,
+      "yield_path_with_detour_available": 1,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": false,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": 29,
+      "fire_detail": [
+        {
+          "turn": 29,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            6,
+            3
+          ],
+          "m_to": [
+            6,
+            2
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              6,
+              0
+            ],
+            "next_from_landing": [
+              6,
+              1
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 3,
+            "bfs_from_landing": 2,
+            "target_is_landing": false,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        }
+      ]
+    },
+    {
+      "id": "OSC-030",
+      "kind": "D1_EPISODE",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 2,
+      "fire_rate_of_unit_turns": 0.005,
+      "yield_path": 2,
+      "yield_path_with_detour_available": 2,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": false,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": 53,
+      "fire_detail": [
+        {
+          "turn": 53,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            11,
+            2
+          ],
+          "m_to": [
+            12,
+            2
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              12,
+              2
+            ],
+            "next_from_landing": [
+              12,
+              2
+            ],
+            "vacates_partner_cell": false,
+            "bfs_from_mover_cell": 1,
+            "bfs_from_landing": 0,
+            "target_is_landing": true,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        },
+        {
+          "turn": 58,
+          "m": 0,
+          "u": 2,
+          "path": "YIELD",
+          "detour_existed": true,
+          "m_from": [
+            12,
+            2
+          ],
+          "m_to": [
+            11,
+            2
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              0,
+              2
+            ],
+            "next_from_landing": [
+              10,
+              2
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 12,
+            "bfs_from_landing": 11,
+            "target_is_landing": false,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        }
+      ]
+    },
+    {
+      "id": "OSC-031",
+      "kind": "P4_STALL",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 1,
+      "fire_rate_of_unit_turns": 0.0025,
+      "yield_path": 1,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": false,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": 11,
+      "fire_detail": [
+        {
+          "turn": 11,
+          "m": 2,
+          "u": 0,
+          "path": "YIELD",
+          "detour_existed": false,
+          "m_from": [
+            2,
+            3
+          ],
+          "m_to": [
+            2,
+            4
+          ],
+          "u_displaced": "WAIT",
+          "seam": {
+            "m_target": [
+              9,
+              3
+            ],
+            "next_from_landing": [
+              3,
+              4
+            ],
+            "vacates_partner_cell": true,
+            "bfs_from_mover_cell": 9,
+            "bfs_from_landing": 8,
+            "target_is_landing": false,
+            "u_cmd": "WAIT"
+          },
+          "displaced_work": false,
+          "resumed_turn": null,
+          "resumed_after": null
+        }
+      ]
+    },
+    {
+      "id": "OSC-032",
+      "kind": "P4_STALL",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 200,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    },
+    {
+      "id": "OSC-033",
+      "kind": "P4_STALL",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 200,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    },
+    {
+      "id": "OSC-034",
+      "kind": "P4_STALL",
+      "turns_observed": 200,
+      "alpha_disabled_ticks": [],
+      "unit_turns": 400,
+      "fires": 0,
+      "fire_rate_of_unit_turns": 0.0,
+      "yield_path": 0,
+      "yield_path_with_detour_available": 0,
+      "no_detour_path": 0,
+      "displaced_work_fires": 0,
+      "resume_deltas": [],
+      "reswaps": [],
+      "shadow_ticks_checked": 200,
+      "whole_game_identical_to_base": true,
+      "pre_first_fire_identical_to_base": true,
+      "first_fire_turn": null,
+      "fire_detail": []
+    }
+  ],
+  "gates": {
+    "probe parity and shadow inertness on every tick": true,
+    "zero-fire fixtures byte-identical to the base for the whole game": true,
+    "every fixture identical to the base before its first fire": true,
+    "the trigger fires somewhere in the corpus (an inert alpha fails)": true,
+    "no repeated unordered swap pair within 4 ticks (ruling 4)": false
+  },
+  "all_ok": false
+}

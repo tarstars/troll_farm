@@ -66,6 +66,10 @@ OUT = HERE / "g1-sweep-2026-08-21.json"
 RE_TURN = re.compile(r"^SW1TURN turn=(\d+) enabled=(\w+) own_units=(\d+)$")
 RE_FIRE = re.compile(r"^SW1FIRE turn=(\d+) m=(-?\d+) u=(-?\d+) path=(\w+) detour_existed=(\w+) "
                      r"m_from=(-?\d+),(-?\d+) m_to=(-?\d+),(-?\d+) u_displaced=(.*)$")
+RE_SEAM = re.compile(
+    r"^SW1SEAM turn=(\d+) m=(-?\d+) u=(-?\d+) m_target=(-?\d+),(-?\d+) "
+    r"next_from_landing=(-?\d+),(-?\d+) vacates=(\w+) d_from=(-?\d+) d_landing=(-?\d+) "
+    r"target_is_landing=(\w+) u_cmd=(.*)$")
 RE_SHADOW = re.compile(r"^SW1SHADOW turn=(\d+) identical=(\w+)$")
 RE_CMD = re.compile(r"^SW1CMD turn=(\d+) id=(-?\d+) idx=(\d+) cmd=(.*)$")
 
@@ -93,6 +97,25 @@ def parse(err: str):
                           "m_from": [int(m.group(6)), int(m.group(7))],
                           "m_to": [int(m.group(8)), int(m.group(9))],
                           "u_displaced": m.group(10)})
+            continue
+        m = RE_SEAM.match(line)
+        if m:
+            # the remedy-ruling diagnostic row; it rides beside the fire row it belongs to and
+            # never changes a gate. Order is guaranteed: both are emitted from the same branch.
+            if not fires:
+                raise GateError(f"SW1SEAM row with no preceding fire: {line}")
+            seam = {"m_target": [int(m.group(4)), int(m.group(5))],
+                    "next_from_landing": [int(m.group(6)), int(m.group(7))],
+                    "vacates_partner_cell": m.group(8) == "true",
+                    "bfs_from_mover_cell": int(m.group(9)),
+                    "bfs_from_landing": int(m.group(10)),
+                    "target_is_landing": m.group(11) == "true",
+                    "u_cmd": m.group(12)}
+            last = fires[-1]
+            if (last["turn"], last["m"], last["u"]) != (int(m.group(1)), int(m.group(2)),
+                                                        int(m.group(3))):
+                raise GateError(f"SW1SEAM row does not match its fire row: {line}")
+            last["seam"] = seam
             continue
         m = RE_SHADOW.match(line)
         if m:

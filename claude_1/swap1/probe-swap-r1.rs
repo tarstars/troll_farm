@@ -856,6 +856,7 @@ mod bot{
                         let yielding=commands[u_index]=="WAIT";
                         if yielding||detour.is_none(){
                             eprintln!("SW1FIRE turn={} m={} u={} path={} detour_existed={} m_from={},{} m_to={},{} u_displaced={}",view.turn,id,u_id,if yielding{"YIELD"}else{"NODETOUR"},detour.is_some(),unit.cell.0,unit.cell.1,landing.0,landing.1,commands[u_index]);
+                            eprintln!("SW1SEAM turn={} m={} u={} m_target={},{} next_from_landing={},{} vacates={} d_from={} d_landing={} target_is_landing={} u_cmd={}",view.turn,id,u_id,target.0,target.1,next_cell(&view.walkable,landing,target,unit.stats.movement_speed).0,next_cell(&view.walkable,landing,target,unit.stats.movement_speed).1,next_cell(&view.walkable,landing,target,unit.stats.movement_speed)!=landing,toward_goal.get(&unit.cell).copied().unwrap_or(-1),toward_goal.get(&landing).copied().unwrap_or(-1),target==landing,commands[u_index]);
                             reserved.insert(landing);
                             reserved.insert(unit.cell);
                             swapped_ids.insert(u_id);
