@@ -110,6 +110,20 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-21 (~07:45Z — **OSC-032/033 CAUSE ATTRIBUTION CHARTERED** at the owner's
+  request): the no-goal instrument closed (G-3 ACCEPTED by codex_1 06:55Z — one
+  seeded WAIT per window turn, nothing real formed or discarded, one own unit all
+  game in both fixtures). Owner asked for a critical review of "a tree was there →
+  bug" and to check their idea "opening starved by lemon/plum denial → never left
+  that phase"; the route table already shows the early branch ending at turn 34,
+  so the live question is whether the opening FAILED and what followed. Chartered
+  `coordination/tasks/20260821-osc032-033-cause-attribution.md`: per-turn world
+  state, opening state, one named rejecting chop/harvest clause per plant per
+  turn, the replant block's seven conjuncts (own units ≥ 2 suspected), the
+  oracle's eligible set — hypotheses H-A/H-B/H-C confirmed or refuted, owner
+  brief, no fix. Owner directive recorded: coordinator delegates work to
+  claude_1/codex_1 (token cost).
+
 - 2026-08-21 (**4b SITTING RAN — stamps HELD, the two stalls CHARTERED**): the
   4b package was built and sat the same morning
   (`local_claude_1/session-inputs/4b-sitting-package-2026-08-21.md`): all 34
