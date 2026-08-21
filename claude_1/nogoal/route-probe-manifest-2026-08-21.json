@@ -1,0 +1,17 @@
+{
+  "door1-champion": {
+    "anchors": [
+      "commands/by_id.insert",
+      "main_candidates/entry",
+      "main_candidates/tail",
+      "endgame_candidates/fruit+chop",
+      "endgame_candidates/tail"
+    ],
+    "arm": "base",
+    "name": "door1-champion",
+    "probe": "claude_1/picker2/routeprobe-door1-champion.rs",
+    "probe_sha256": "551da42459fa751173ad9533c2e3b506383e1e74c96d7c5919ddd62442fc5c51",
+    "source": "claude_1/chop4c/candidate-door1.rs",
+    "source_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+  }
+}

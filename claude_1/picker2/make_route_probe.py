@@ -30,19 +30,31 @@ EXACTLY once — an anchor that matches twice is refused rather than applied to 
 
 Run:  python3 claude_1/picker2/make_route_probe.py
 """
-import hashlib, json, sys
+import argparse, hashlib, json, sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent.parent
 
 SUBJECTS = {
-    "cureC-p1p2": (HERE / "candidate-cureC-p1p2.rs",
+    "cureC-p1p2": (HERE / "candidate-cureC-p1p2.rs", "p1p2",
                    "d127cf861ad7f145e5693b0a595bcc8e3c870f424926b18bdbb3debec80b0412"),
-    "door1-p1p2": (HERE / "candidate-door1-p1p2.rs",
+    "door1-p1p2": (HERE / "candidate-door1-p1p2.rs", "p1p2",
                    "5e1f4df406480f678ff03677cdda0f69d510c5c94efe90d4f0a8231b70c3339e"),
+    # The champion of record (Door-1 pure deletion, KEPT by the owner 2026-08-21)
+    # with NO selector work on top. Added for task
+    # 20260821-osc032-033-no-goal-instrument, whose charter is explicit that the
+    # Phase-3 probes are to be pointed at new fixtures rather than reinvented.
+    # All five anchors match it exactly once, unmodified — the same fail-closed
+    # guard below proves that on every run.
+    "door1-champion": (REPO / "claude_1/chop4c/candidate-door1.rs", "base",
+                       "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"),
 }
 OUT_MANIFEST = HERE / "route-probe-manifest-2026-08-20.json"
+# A bare run must keep reproducing the Phase-3 manifest BYTE-IDENTICALLY, so
+# the champion subject is opt-in via --subject. Building it by default
+# rewrites another task's published artifact, which I did once and reverted.
+DEFAULT_SUBJECTS = ("cureC-p1p2", "door1-p1p2")
 
 # ---- commands(): the list the selector actually receives, plus the branch predicates ----------
 FINAL_OLD = '''                    by_id.insert(unit.id,candidates);'''
@@ -184,7 +196,7 @@ class BuildError(Exception):
     """An anchor that does not match exactly once. Refused, never guessed at."""
 
 
-def build(name, path, want_digest):
+def build(name, path, arm, want_digest):
     src = path.read_text()
     got = hashlib.sha256(src.encode()).hexdigest()
     if got != want_digest:
@@ -197,19 +209,31 @@ def build(name, path, want_digest):
         src = src.replace(old, new)
     out = HERE / f"routeprobe-{name}.rs"
     out.write_text(src)
-    return {"name": name, "arm": "p1p2", "source": str(path.relative_to(REPO)),
+    return {"name": name, "arm": arm, "source": str(path.relative_to(REPO)),
             "source_sha256": want_digest, "probe": str(out.relative_to(REPO)),
             "probe_sha256": hashlib.sha256(src.encode()).hexdigest(),
             "anchors": [l for l, _, _ in EDITS]}
 
 
 def main():
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--subject", action="append", default=[], metavar="NAME",
+                    help="build only this subject; repeatable (default: all)")
+    ap.add_argument("--manifest", default=str(OUT_MANIFEST), metavar="PATH",
+                    help="where to write the manifest (default: the Phase-3 one)")
+    args = ap.parse_args()
+    wanted = args.subject or list(DEFAULT_SUBJECTS)
+    unknown = [n for n in wanted if n not in SUBJECTS]
+    if unknown:
+        raise BuildError(f"unknown subject(s) {unknown!r}; known: {sorted(SUBJECTS)!r}")
     man = {}
-    for name, (path, digest) in SUBJECTS.items():
-        man[name] = build(name, path, digest)
+    for name in wanted:
+        path, arm, digest = SUBJECTS[name]
+        man[name] = build(name, path, arm, digest)
         print(f"  built {man[name]['probe']}  ({len(EDITS)} anchors, each matched once)")
-    OUT_MANIFEST.write_text(json.dumps(man, indent=2, sort_keys=True) + "\n")
-    print(f"wrote {OUT_MANIFEST}")
+    manifest = Path(args.manifest)
+    manifest.write_text(json.dumps(man, indent=2, sort_keys=True) + "\n")
+    print(f"wrote {manifest}")
     return 0
 
 

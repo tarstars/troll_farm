@@ -1,0 +1,103 @@
+{
+  "base": {
+    "name": "door1-champion",
+    "note": "champion of record, Door-1 pure deletion, KEPT by the owner 2026-08-21; diagnostic copy only, no candidate, no Arena",
+    "source": "claude_1/chop4c/candidate-door1.rs",
+    "source_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+  },
+  "both_ways_supplied_by": [
+    "OSC-032"
+  ],
+  "fixtures": [
+    {
+      "audited_unit_employed_anywhere_in_game": true,
+      "employed_routes": {},
+      "fixture_employed_routes_all_units": {
+        "main:CHOPS": 29,
+        "main:FULL_BANK": 21,
+        "main:SAFE_REGEN_BANK": 6
+      },
+      "fixture_idle_routes_all_units": {
+        "main:IDLE_REGEN_FALLBACK": 110
+      },
+      "fixture_supplies_own_both_ways_control": true,
+      "fixture_units_seen": 1,
+      "id": "OSC-032",
+      "idle_discarded_candidates": {},
+      "idle_predicates": {
+        "carried=0 free_cap=2 safe_regen=True idle_regen=True": 110
+      },
+      "idle_route_detail": {
+        "bank=0 chops=0 discarded=1 discarded_real=0 idle_harvest=0 n=1": 110
+      },
+      "idle_routes": {
+        "main:IDLE_REGEN_FALLBACK": 110
+      },
+      "idle_turns": 110,
+      "outside_window_employed_routes": {
+        "main:CHOPS": 29,
+        "main:FULL_BANK": 21,
+        "main:SAFE_REGEN_BANK": 6
+      },
+      "outside_window_idle_routes": {},
+      "outside_window_unrouted_employed_turns": 34,
+      "outside_window_unrouted_idle_turns": 0,
+      "turns": 110,
+      "unit": 0,
+      "window": [
+        91,
+        200
+      ]
+    },
+    {
+      "audited_unit_employed_anywhere_in_game": true,
+      "employed_routes": {},
+      "fixture_employed_routes_all_units": {},
+      "fixture_idle_routes_all_units": {
+        "main:IDLE_REGEN_FALLBACK": 166
+      },
+      "fixture_supplies_own_both_ways_control": false,
+      "fixture_units_seen": 1,
+      "id": "OSC-033",
+      "idle_discarded_candidates": {},
+      "idle_predicates": {
+        "carried=0 free_cap=2 safe_regen=True idle_regen=True": 143
+      },
+      "idle_route_detail": {
+        "bank=0 chops=0 discarded=1 discarded_real=0 idle_harvest=0 n=1": 143
+      },
+      "idle_routes": {
+        "main:IDLE_REGEN_FALLBACK": 143
+      },
+      "idle_turns": 143,
+      "outside_window_employed_routes": {},
+      "outside_window_idle_routes": {
+        "main:IDLE_REGEN_FALLBACK": 23
+      },
+      "outside_window_unrouted_employed_turns": 20,
+      "outside_window_unrouted_idle_turns": 14,
+      "turns": 143,
+      "unit": 0,
+      "window": [
+        58,
+        200
+      ]
+    }
+  ],
+  "gates": [
+    "parity vs the uninstrumented champion, for BOTH probes",
+    "exactly one PS3FINAL row per window turn for the audited unit",
+    "PS3FINAL n == the selector probe's PS2CAND row count, same unit and turn",
+    "exactly one route row per unit per turn",
+    "both ways: at least one fixture in the run names non-idle routes on the identical binary, recorded per fixture; a fixture with no employed turn anywhere supplies no in-fixture control and says so"
+  ],
+  "probes": {
+    "generator": "claude_1/picker2/routeprobe-door1-champion.rs",
+    "generator_sha256": "551da42459fa751173ad9533c2e3b506383e1e74c96d7c5919ddd62442fc5c51",
+    "selector": "claude_1/picker2/probe-door1-base.rs",
+    "selector_sha256": "735fa6c23de50d4c08d646007f5f8f278392eb1d3dff1c683ba372cfb69a52cf"
+  },
+  "question": "on the champion base, which return path of main_candidates/endgame_candidates hands back the seeded WAIT alone on every turn of the OSC-032 and OSC-033 windows, and what did the generator see when it did?",
+  "scope": "measurement only; no fix, no candidate, no judgment; bug-versus-correct-caution is the owner's ruling",
+  "task": "20260821-osc032-033-no-goal-instrument"
+}
