@@ -76,6 +76,11 @@ NAMED_CONTROL_REQUIRED = ("OSC-032",)
 # The reject side is not testable on these two fixtures (see clause_tap.both_ways); this is the
 # corpus-wide control that tests it, and the run refuses to report a cause without it.
 CONTROL_ARTIFACT = HERE / "clause-control-2026-08-21.json"
+# The two joins codex_1's G-1 review rejected were both on cardinality; they are now on identity.
+# A gate that has only ever passed has not been shown to be capable of failing, so the negative
+# control that feeds each one the review's own same-count-wrong-cell corruption is a precondition
+# for reporting, exactly like the rejection-side control above.
+NEGATIVE_CONTROL = HERE / "gate-negative-control-2026-08-21.json"
 
 
 def route_rows_all_units(err):
@@ -135,6 +140,27 @@ def world_state(tr, t, uid):
     }
 
 
+def canonical_plant_record(cell, kind, health, size, fruits, cooldown):
+    """The ONE canonical spelling of a plant's identity and state, shared by both readers.
+
+    The probe emits exactly this string per entry of `view.plants` (see `PS4_STATE_LET` in
+    `make_route_probe.py`); this function builds it from the referee trace. One spelling, two
+    independent sources — that is the whole point, and it is why the comparison below is a
+    measurement rather than a restatement.
+    """
+    return (f"{cell[0]},{cell[1]}:{kind}:h{health}:s{size}:f{fruits}:cd{cooldown}")
+
+
+def trace_plant_records(st):
+    return [canonical_plant_record(p.cell, p.kind, p.health, p.size, p.fruits, p.cooldown)
+            for p in st.plants]
+
+
+def tap_plant_records(field):
+    """`state=` is `none` for an empty board, else the `|`-joined records in view.plants order."""
+    return [] if field in (None, "none") else field.split("|")
+
+
 def check_trace_agrees_with_tap(sid, parsed, tr, uid):
     """The gate that LICENSES joining the referee's view to the bot's clauses.
 
@@ -145,9 +171,19 @@ def check_trace_agrees_with_tap(sid, parsed, tr, uid):
     on every turn where the tap printed a call, the number of plants it saw must equal the
     number the trace holds, and the audited unit's capabilities must match too.
 
-    A mismatch means the join is meaningless and no cause is attributed.
+    Equal plant COUNTS do not carry this. Two boards with the same number of trees, in different
+    cells or different states, agree on the count and on nothing else, and a same-tree sentence
+    built on that join would be about two different trees. So the gate compares the CANONICAL
+    RECORD of every plant — cell, kind, health, size, fruits, cooldown — as a multiset, plus the
+    audited unit's own cell, which is what every reachability predicate on both sides is measured
+    from. A mismatch means the join is meaningless and no cause is attributed.
+
+    Ordering is reported, not required: the two readers iterate their own containers, and the
+    claim the join needs is "the same trees in the same state", not "in the same slot".
     """
     checked = 0
+    order_matched = 0
+    plants_compared = 0
     for label, groups, power in (("chop", parsed["chop"], "chop_power"),
                                  ("idle-harvest", parsed["harvest"], "harvest_power")):
         for (unit, turn), gs in sorted(groups.items()):
@@ -162,6 +198,38 @@ def check_trace_agrees_with_tap(sid, parsed, tr, uid):
                         f"referee trace holds {len(st.plants)}. The bot-side and referee-side "
                         f"readers are not describing the same turn, so the oracle's eligible set "
                         f"and the generator's clause may not be joined.")
+                tap_recs = tap_plant_records(g["fields"].get("state"))
+                if len(tap_recs) != want:
+                    raise CT.ClauseGateError(
+                        f"{sid} unit {unit} turn {turn}: the {label} tap printed plants={want} but "
+                        f"{len(tap_recs)} canonical state records. The tap's own two fields "
+                        f"disagree and neither may be trusted.")
+                trace_recs = trace_plant_records(st)
+                if sorted(tap_recs) != sorted(trace_recs):
+                    only_tap = sorted(set(tap_recs) - set(trace_recs))
+                    only_trace = sorted(set(trace_recs) - set(tap_recs))
+                    raise CT.ClauseGateError(
+                        f"{sid} unit {unit} turn {turn}: the {label} tap and the referee trace "
+                        f"hold {want} plants each but not the SAME plants in the same state. Only "
+                        f"the tap has {only_tap}; only the trace has {only_trace}. Equal counts "
+                        f"are not agreement: the oracle's eligible set and the generator's clause "
+                        f"would be two sentences about two different boards, so nothing is joined "
+                        f"and no cause is attributed.")
+                if tap_recs == trace_recs:
+                    order_matched += 1
+                plants_compared += len(tap_recs)
+                cell = g["fields"].get("unit_cell")
+                if cell is None:
+                    raise CT.ClauseGateError(
+                        f"{sid} unit {unit} turn {turn}: the {label} tap printed no unit_cell. "
+                        f"Every reachability predicate on both sides is measured from that cell, "
+                        f"so without it the two readers' reachability cannot be shown to agree.")
+                if u is not None and [int(x) for x in cell.split(",")] != list(u.cell):
+                    raise CT.ClauseGateError(
+                        f"{sid} unit {unit} turn {turn}: the {label} tap printed unit_cell={cell}, "
+                        f"the referee trace holds {list(u.cell)}. Reachability is computed from "
+                        f"the unit's cell on both sides; two different cells is two different "
+                        f"questions.")
                 got = g["fields"].get(power)
                 if got is not None and u is not None and int(got) != getattr(u, power):
                     raise CT.ClauseGateError(
@@ -172,7 +240,13 @@ def check_trace_agrees_with_tap(sid, parsed, tr, uid):
         raise CT.ClauseGateError(
             f"{sid}: no tap call could be cross-checked against the referee trace, so the "
             f"agreement gate is inert and proves nothing.")
-    return checked
+    if not plants_compared:
+        raise CT.ClauseGateError(
+            f"{sid}: every cross-checked call saw an empty board, so the identity half of the "
+            f"agreement gate compared nothing. An all-empty agreement is not agreement about "
+            f"trees and licenses no same-tree sentence.")
+    return {"calls_checked": checked, "plant_records_compared": plants_compared,
+            "calls_where_iteration_order_also_matched": order_matched}
 
 
 def call_shape(parsed, uid, lo, hi):
@@ -306,7 +380,7 @@ def main():
                 "opening_missing_items_at_abandon":
                     missing_items(parsed["opening"][flip]) if flip else None,
                 "deadline_events": parsed["deadline"],
-                "trace_tap_agreement_rows_checked": cross_checked,
+                "trace_tap_agreement": cross_checked,
                 "window_chop_entered_with_n_plants_on_board": chop_shape,
                 "window_idle_harvest_entered_with_n_plants_on_board": harv_shape,
                 "window_chop_clause_histogram": chop_hist,
@@ -356,6 +430,20 @@ def main():
     # not one rejecting clause has anything to reject and the in-fixture reject count is zero.
     # A tap that could ONLY say ACCEPTED would look identical here, so the corpus-wide control is
     # a precondition for reporting, not an optional extra.
+    if not NEGATIVE_CONTROL.exists():
+        failures.append(
+            f"the identity gates' negative control {NEGATIVE_CONTROL.name} has not been run. Both "
+            f"joins pass on this corpus; without a demonstration that they REJECT the same-count "
+            f"wrong-cell stream, passing means nothing.")
+    else:
+        neg = json.loads(NEGATIVE_CONTROL.read_text())["cases"]
+        misbehaved = [c for c in neg if c["rejected"] != c["must_be_rejected"]]
+        if misbehaved:
+            failures.append(
+                f"the negative control records {len(misbehaved)} gate case(s) that did not behave "
+                f"as required, first {misbehaved[0]['case']!r}.")
+        elif not any(c["must_be_rejected"] for c in neg):
+            failures.append("the negative control contains no corruption case at all.")
     if not CONTROL_ARTIFACT.exists():
         failures.append(
             f"the rejection-side control {CONTROL_ARTIFACT.name} has not been run. On these two "
@@ -371,6 +459,15 @@ def main():
         elif not {k: v for k, v in ctl["chop_clause_counts"].items() if k != "ACCEPTED"}:
             failures.append("the rejection-side control recorded no chop rejection clause firing "
                             "anywhere in the corpus.")
+    # FAIL-CLOSED, and it has to be here rather than after the write. Until 2026-08-21 this list
+    # was accumulated and then dropped: the both-ways control, the card's named window and the
+    # rejection-side control could each have failed and the run would still have written its
+    # artifact and exited 0. Found while wiring the identity gates' negative control in, and
+    # disclosed rather than quietly repaired — the five in-line gates above raise through
+    # ClauseGateError and did hold, but these four did not gate anything.
+    if failures:
+        raise CT.ClauseGateError(
+            "the control gates FAILED and no cause may be attributed:\n  " + "\n  ".join(failures))
     OUT.write_text(json.dumps({
         "task": "20260821-osc032-033-cause-attribution",
         "question": "which named clause of chop_candidates / idle_harvest_candidates rejected "
@@ -389,16 +486,27 @@ def main():
             "an ENTERED group names exactly one clause per plant on the board, no plant twice",
             "a group that returned at the function guard emits no plant rows",
             "clause names are a closed set taken from the source's own exits",
-            "cross-check: ACCEPTED count == the accepted route probe's chops= for the same call, "
-            "and a route that cannot reach chop_candidates has no group",
+            "per-plant identity: the ordered target cells of the vector the generator RETURNS "
+            "(read off `out` after the loop) equal the ordered cells of that call's own "
+            "clause=ACCEPTED rows — a count-only join cannot see acceptance attached to the wrong "
+            "cell, this can",
+            "cross-check: the returned vector's length == the accepted route probe's chops= for "
+            "the same call, and a route that cannot reach chop_candidates has no group",
             "full-game route coverage still exact on this subject (every PS3FINAL has one route)",
-            "referee/bot agreement: on every tapped call the trace's plant count and the audited "
-            "unit's chop/harvest power equal the tap's own printed fields, which is what licenses "
-            "joining the oracle's eligible set to the generator's clause",
+            "referee/bot agreement on IDENTITY, not count: on every tapped call the canonical "
+            "record of every plant (cell, kind, health, size, fruits, cooldown) matches between "
+            "the referee trace and the tap's own printed state, as does the audited unit's cell "
+            "and chop/harvest power, and at least one call must have compared a non-empty board. "
+            "Equal counts alone would leave the oracle's eligible set and the generator's clause "
+            "as two sentences about two different boards; this is what licenses joining them",
             "both ways PER FIXTURE: the tap is observed reporting ACCEPTED on the fixture's own "
             "employed turns outside the audited window, so a tap that can only say 'rejected' "
             "fails instead of passing; required additionally on the card's named window 35-90 "
             "for OSC-032",
+            "the two identity gates are shown to be CAPABLE of failing: "
+            "gate-negative-control-2026-08-21.json feeds each of them the same-count wrong-cell "
+            "stream codex_1's G-1 review named and requires rejection, and the run refuses to "
+            "report without it",
             "reject side, corpus-wide: clause-control-2026-08-21.json, on the SAME probe binary, "
             "must record a rejection clause firing — on these two fixtures view.plants is empty "
             "on the audited turns, so the reject direction is untestable here and a "
@@ -408,6 +516,9 @@ def main():
                  "bug-versus-correct-caution is the owner's ruling",
         "hypotheses_status": "NOT YET RULED — G-1 instrument review by codex_1 comes first; the "
                              "H-A/H-B/H-C verdicts are the G-3 deliverable",
+        "identity_gate_negative_control": {
+            "artifact": NEGATIVE_CONTROL.name,
+            "cases": json.loads(NEGATIVE_CONTROL.read_text())["cases"]},
         "reject_side_control": {
             "artifact": CONTROL_ARTIFACT.name,
             "chop_clause_counts": json.loads(CONTROL_ARTIFACT.read_text())["chop_clause_counts"],

@@ -1,0 +1,105 @@
+{
+  "cases": [
+    {
+      "case": "same count, cells SWAPPED \u2014 the review's exact case",
+      "gate": "returned-vector identity (gate 5)",
+      "gate_said": "NEGCTL unit 0 turn 7: chop named clause=ACCEPTED on [(5, 5), (6, 6)] but the vector it returned targets [(6, 6), (5, 5)]",
+      "must_be_rejected": true,
+      "rejected": true
+    },
+    {
+      "case": "same count, one accepted cell replaced by a cell never accepted",
+      "gate": "returned-vector identity (gate 5)",
+      "gate_said": "NEGCTL unit 0 turn 7: chop named clause=ACCEPTED on [(5, 5), (6, 6)] but the vector it returned targets [(5, 5), (9, 9)]",
+      "must_be_rejected": true,
+      "rejected": true
+    },
+    {
+      "case": "acceptance moved to the other plant, vector unchanged",
+      "gate": "returned-vector identity (gate 5)",
+      "gate_said": "NEGCTL unit 0 turn 7: chop named clause=ACCEPTED on [(5, 5)] but the vector it returned targets [(5, 5), (6, 6)]",
+      "must_be_rejected": true,
+      "rejected": true
+    },
+    {
+      "case": "an ENTERED call that emitted no list row",
+      "gate": "returned-vector identity (gate 5)",
+      "gate_said": "NEGCTL unit 0 turn 7: chop entered but emitted no PS4CHOPLIST row",
+      "must_be_rejected": true,
+      "rejected": true
+    },
+    {
+      "case": "a guard-return call that emitted a list row",
+      "gate": "returned-vector identity (gate 5)",
+      "gate_said": "NEGCTL unit 0 turn 7: chop returned at the function guard (FN_NO_CHOP_POWER) yet a returned-vector row was emitted \u2014 the list row belongs to a call that never built a list",
+      "must_be_rejected": true,
+      "rejected": true
+    },
+    {
+      "case": "a list row whose length does not match its elements",
+      "gate": "returned-vector identity (gate 5)",
+      "gate_said": "NEGCTL unit 0 turn 7: chop returned 3 candidates but 2 were listed \u2014 the list row and its elements disagree",
+      "must_be_rejected": true,
+      "rejected": true
+    },
+    {
+      "case": "returned-vector indices not in the vector's own order",
+      "gate": "returned-vector identity (gate 5)",
+      "gate_said": "NEGCTL unit 0 turn 7: chop returned-vector indices [1, 0] are not 0",
+      "must_be_rejected": true,
+      "rejected": true
+    },
+    {
+      "case": "the unmutated stream",
+      "gate": "returned-vector identity (gate 5)",
+      "gate_said": null,
+      "must_be_rejected": false,
+      "rejected": false
+    },
+    {
+      "case": "same count, one plant in a DIFFERENT CELL",
+      "gate": "referee/bot canonical identity agreement",
+      "gate_said": "NEGCTL unit 0 turn 7: the chop tap and the referee trace hold 2 plants each but not the SAME plants in the same state",
+      "must_be_rejected": true,
+      "rejected": true
+    },
+    {
+      "case": "same cells, one plant in a different STATE (health)",
+      "gate": "referee/bot canonical identity agreement",
+      "gate_said": "NEGCTL unit 0 turn 7: the chop tap and the referee trace hold 2 plants each but not the SAME plants in the same state",
+      "must_be_rejected": true,
+      "rejected": true
+    },
+    {
+      "case": "same cells and state, one plant a different KIND",
+      "gate": "referee/bot canonical identity agreement",
+      "gate_said": "NEGCTL unit 0 turn 7: the chop tap and the referee trace hold 2 plants each but not the SAME plants in the same state",
+      "must_be_rejected": true,
+      "rejected": true
+    },
+    {
+      "case": "same board, the audited unit standing somewhere else",
+      "gate": "referee/bot canonical identity agreement",
+      "gate_said": "NEGCTL unit 0 turn 7: the chop tap printed unit_cell=3,3, the referee trace holds [4, 4]",
+      "must_be_rejected": true,
+      "rejected": true
+    },
+    {
+      "case": "every cross-checked call saw an EMPTY board (inert gate)",
+      "gate": "referee/bot canonical identity agreement",
+      "gate_said": "NEGCTL: every cross-checked call saw an empty board, so the identity half of the agreement gate compared nothing",
+      "must_be_rejected": true,
+      "rejected": true
+    },
+    {
+      "case": "the unmutated stream against the matching trace",
+      "gate": "referee/bot canonical identity agreement",
+      "gate_said": null,
+      "must_be_rejected": false,
+      "rejected": false
+    }
+  ],
+  "task": "20260821-osc032-033-cause-attribution",
+  "what": "each identity gate is fed the corruption codex_1's G-1 review named \u2014 same count, wrong cell \u2014 and must reject it; the unmutated stream must pass",
+  "why": "a gate that has only ever passed has not been shown to be capable of failing"
+}

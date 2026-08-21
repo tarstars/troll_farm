@@ -4434,7 +4434,11 @@
         "turns_all_seven_true": [],
         "window_turns_measured": 110
       },
-      "trace_tap_agreement_rows_checked": 249,
+      "trace_tap_agreement": {
+        "calls_checked": 249,
+        "calls_where_iteration_order_also_matched": 249,
+        "plant_records_compared": 41
+      },
       "unit": 0,
       "window": [
         91,
@@ -20578,7 +20582,11 @@
         "turns_all_seven_true": [],
         "window_turns_measured": 143
       },
-      "trace_tap_agreement_rows_checked": 358,
+      "trace_tap_agreement": {
+        "calls_checked": 358,
+        "calls_where_iteration_order_also_matched": 358,
+        "plant_records_compared": 12
+      },
       "unit": 0,
       "window": [
         58,
@@ -31004,13 +31012,118 @@
     "an ENTERED group names exactly one clause per plant on the board, no plant twice",
     "a group that returned at the function guard emits no plant rows",
     "clause names are a closed set taken from the source's own exits",
-    "cross-check: ACCEPTED count == the accepted route probe's chops= for the same call, and a route that cannot reach chop_candidates has no group",
+    "per-plant identity: the ordered target cells of the vector the generator RETURNS (read off `out` after the loop) equal the ordered cells of that call's own clause=ACCEPTED rows \u2014 a count-only join cannot see acceptance attached to the wrong cell, this can",
+    "cross-check: the returned vector's length == the accepted route probe's chops= for the same call, and a route that cannot reach chop_candidates has no group",
     "full-game route coverage still exact on this subject (every PS3FINAL has one route)",
-    "referee/bot agreement: on every tapped call the trace's plant count and the audited unit's chop/harvest power equal the tap's own printed fields, which is what licenses joining the oracle's eligible set to the generator's clause",
+    "referee/bot agreement on IDENTITY, not count: on every tapped call the canonical record of every plant (cell, kind, health, size, fruits, cooldown) matches between the referee trace and the tap's own printed state, as does the audited unit's cell and chop/harvest power, and at least one call must have compared a non-empty board. Equal counts alone would leave the oracle's eligible set and the generator's clause as two sentences about two different boards; this is what licenses joining them",
     "both ways PER FIXTURE: the tap is observed reporting ACCEPTED on the fixture's own employed turns outside the audited window, so a tap that can only say 'rejected' fails instead of passing; required additionally on the card's named window 35-90 for OSC-032",
+    "the two identity gates are shown to be CAPABLE of failing: gate-negative-control-2026-08-21.json feeds each of them the same-count wrong-cell stream codex_1's G-1 review named and requires rejection, and the run refuses to report without it",
     "reject side, corpus-wide: clause-control-2026-08-21.json, on the SAME probe binary, must record a rejection clause firing \u2014 on these two fixtures view.plants is empty on the audited turns, so the reject direction is untestable here and a constant-ACCEPTED tap would be indistinguishable without it"
   ],
   "hypotheses_status": "NOT YET RULED \u2014 G-1 instrument review by codex_1 comes first; the H-A/H-B/H-C verdicts are the G-3 deliverable",
+  "identity_gate_negative_control": {
+    "artifact": "gate-negative-control-2026-08-21.json",
+    "cases": [
+      {
+        "case": "same count, cells SWAPPED \u2014 the review's exact case",
+        "gate": "returned-vector identity (gate 5)",
+        "gate_said": "NEGCTL unit 0 turn 7: chop named clause=ACCEPTED on [(5, 5), (6, 6)] but the vector it returned targets [(6, 6), (5, 5)]",
+        "must_be_rejected": true,
+        "rejected": true
+      },
+      {
+        "case": "same count, one accepted cell replaced by a cell never accepted",
+        "gate": "returned-vector identity (gate 5)",
+        "gate_said": "NEGCTL unit 0 turn 7: chop named clause=ACCEPTED on [(5, 5), (6, 6)] but the vector it returned targets [(5, 5), (9, 9)]",
+        "must_be_rejected": true,
+        "rejected": true
+      },
+      {
+        "case": "acceptance moved to the other plant, vector unchanged",
+        "gate": "returned-vector identity (gate 5)",
+        "gate_said": "NEGCTL unit 0 turn 7: chop named clause=ACCEPTED on [(5, 5)] but the vector it returned targets [(5, 5), (6, 6)]",
+        "must_be_rejected": true,
+        "rejected": true
+      },
+      {
+        "case": "an ENTERED call that emitted no list row",
+        "gate": "returned-vector identity (gate 5)",
+        "gate_said": "NEGCTL unit 0 turn 7: chop entered but emitted no PS4CHOPLIST row",
+        "must_be_rejected": true,
+        "rejected": true
+      },
+      {
+        "case": "a guard-return call that emitted a list row",
+        "gate": "returned-vector identity (gate 5)",
+        "gate_said": "NEGCTL unit 0 turn 7: chop returned at the function guard (FN_NO_CHOP_POWER) yet a returned-vector row was emitted \u2014 the list row belongs to a call that never built a list",
+        "must_be_rejected": true,
+        "rejected": true
+      },
+      {
+        "case": "a list row whose length does not match its elements",
+        "gate": "returned-vector identity (gate 5)",
+        "gate_said": "NEGCTL unit 0 turn 7: chop returned 3 candidates but 2 were listed \u2014 the list row and its elements disagree",
+        "must_be_rejected": true,
+        "rejected": true
+      },
+      {
+        "case": "returned-vector indices not in the vector's own order",
+        "gate": "returned-vector identity (gate 5)",
+        "gate_said": "NEGCTL unit 0 turn 7: chop returned-vector indices [1, 0] are not 0",
+        "must_be_rejected": true,
+        "rejected": true
+      },
+      {
+        "case": "the unmutated stream",
+        "gate": "returned-vector identity (gate 5)",
+        "gate_said": null,
+        "must_be_rejected": false,
+        "rejected": false
+      },
+      {
+        "case": "same count, one plant in a DIFFERENT CELL",
+        "gate": "referee/bot canonical identity agreement",
+        "gate_said": "NEGCTL unit 0 turn 7: the chop tap and the referee trace hold 2 plants each but not the SAME plants in the same state",
+        "must_be_rejected": true,
+        "rejected": true
+      },
+      {
+        "case": "same cells, one plant in a different STATE (health)",
+        "gate": "referee/bot canonical identity agreement",
+        "gate_said": "NEGCTL unit 0 turn 7: the chop tap and the referee trace hold 2 plants each but not the SAME plants in the same state",
+        "must_be_rejected": true,
+        "rejected": true
+      },
+      {
+        "case": "same cells and state, one plant a different KIND",
+        "gate": "referee/bot canonical identity agreement",
+        "gate_said": "NEGCTL unit 0 turn 7: the chop tap and the referee trace hold 2 plants each but not the SAME plants in the same state",
+        "must_be_rejected": true,
+        "rejected": true
+      },
+      {
+        "case": "same board, the audited unit standing somewhere else",
+        "gate": "referee/bot canonical identity agreement",
+        "gate_said": "NEGCTL unit 0 turn 7: the chop tap printed unit_cell=3,3, the referee trace holds [4, 4]",
+        "must_be_rejected": true,
+        "rejected": true
+      },
+      {
+        "case": "every cross-checked call saw an EMPTY board (inert gate)",
+        "gate": "referee/bot canonical identity agreement",
+        "gate_said": "NEGCTL: every cross-checked call saw an empty board, so the identity half of the agreement gate compared nothing",
+        "must_be_rejected": true,
+        "rejected": true
+      },
+      {
+        "case": "the unmutated stream against the matching trace",
+        "gate": "referee/bot canonical identity agreement",
+        "gate_said": null,
+        "must_be_rejected": false,
+        "rejected": false
+      }
+    ]
+  },
   "probe": {
     "anchors": [
       "commands/by_id.insert",
@@ -31022,6 +31135,7 @@
       "early_candidates/tail",
       "chop_candidates/fn-guard",
       "chop_candidates/plant-loop",
+      "chop_candidates/returned-list",
       "idle_harvest_candidates/whole-fn",
       "main_candidates/replant-conjuncts",
       "commands/opening-state",
@@ -31029,7 +31143,7 @@
       "enforce_training_deadline/abandon"
     ],
     "path": "claude_1/picker2/routeprobe-door1-clause.rs",
-    "sha256": "1156f3d5a490e32a6db46367fe10df8de6c03b2aade768e7de4d1623683a6d3a"
+    "sha256": "64094f36fa704b7aff697c4c4f368c8c57747a04908980124387da29dd3885ed"
   },
   "question": "which named clause of chop_candidates / idle_harvest_candidates rejected each plant on each window turn, which of the replant block's seven conjuncts were false, and when and why was the opening abandoned?",
   "reject_side_control": {

@@ -582,15 +582,23 @@ mod bot{
             }
             fn chop_candidates(view:&GameState,unit:&Unit,type_to_cut:Option<PlantKind>,)->Vec<Candidate>{
                 let mut out=Vec::new();
+                let ps4_recs:Vec<String> =view.plants.iter().map(|ps4_p|format!("{},{}:{}:h{}:s{}:f{}:cd{}",ps4_p.cell.0,ps4_p.cell.1,ps4_p.kind.as_str(),ps4_p.health,ps4_p.size,ps4_p.fruits,ps4_p.cooldown)).collect();
+                let ps4_state=if ps4_recs.is_empty(){
+                    "none".to_string()
+                }
+                else{
+                    ps4_recs.join("|")
+                }
+                ;
                 if unit.stats.chop_power<=0{
-                    eprintln!("PS4CHOPFN unit={} turn={} clause=FN_NO_CHOP_POWER chop_power={} free_cap={} plants={}",unit.id,view.turn,unit.stats.chop_power,unit.free_capacity(),view.plants.len());
+                    eprintln!("PS4CHOPFN unit={} turn={} clause=FN_NO_CHOP_POWER chop_power={} free_cap={} plants={} unit_cell={},{} state={}",unit.id,view.turn,unit.stats.chop_power,unit.free_capacity(),view.plants.len(),unit.cell.0,unit.cell.1,ps4_state);
                     return out;
                     }
                 if unit.free_capacity()<=0{
-                    eprintln!("PS4CHOPFN unit={} turn={} clause=FN_NO_FREE_CAPACITY chop_power={} free_cap={} plants={}",unit.id,view.turn,unit.stats.chop_power,unit.free_capacity(),view.plants.len());
+                    eprintln!("PS4CHOPFN unit={} turn={} clause=FN_NO_FREE_CAPACITY chop_power={} free_cap={} plants={} unit_cell={},{} state={}",unit.id,view.turn,unit.stats.chop_power,unit.free_capacity(),view.plants.len(),unit.cell.0,unit.cell.1,ps4_state);
                     return out;
                     }
-                eprintln!("PS4CHOPFN unit={} turn={} clause=ENTERED chop_power={} free_cap={} plants={}",unit.id,view.turn,unit.stats.chop_power,unit.free_capacity(),view.plants.len());
+                eprintln!("PS4CHOPFN unit={} turn={} clause=ENTERED chop_power={} free_cap={} plants={} unit_cell={},{} state={}",unit.id,view.turn,unit.stats.chop_power,unit.free_capacity(),view.plants.len(),unit.cell.0,unit.cell.1,ps4_state);
                 let from_unit=bfs_distances(&view.walkable,&[unit.cell]);
                 let shack_starts:Vec<Cell> =ortho_neighbors(view.shacks[0]).iter().filter(|cell|view.walkable.contains(cell)).copied().collect();
                 let to_shack=bfs_distances(&view.walkable,&shack_starts);
@@ -655,6 +663,14 @@ mod bot{
                     }
                     );
                     }
+                for(ps4_i,ps4_c)in out.iter().enumerate(){
+                    let ps4_t=match ps4_c.target{
+                        Target::Tree(ps4_cell)=>format!("{},{}",ps4_cell.0,ps4_cell.1),_=>"NOT_A_TREE".to_string(),
+                    }
+                    ;
+                    eprintln!("PS4CHOPOUT unit={} turn={} i={} target={} command={}",unit.id,view.turn,ps4_i,ps4_t,ps4_c.command.replace(' ',"_"));
+                    }
+                eprintln!("PS4CHOPLIST unit={} turn={} returned={}",unit.id,view.turn,out.len());
                 out
             }
             fn wait()->Candidate{
@@ -1406,15 +1422,23 @@ mod bot{
                 out
             }
             fn idle_harvest_candidates(view:&GameState,unit:&Unit,)->Vec<Candidate>{
+                let ps4_recs:Vec<String> =view.plants.iter().map(|ps4_p|format!("{},{}:{}:h{}:s{}:f{}:cd{}",ps4_p.cell.0,ps4_p.cell.1,ps4_p.kind.as_str(),ps4_p.health,ps4_p.size,ps4_p.fruits,ps4_p.cooldown)).collect();
+                let ps4_state=if ps4_recs.is_empty(){
+                    "none".to_string()
+                }
+                else{
+                    ps4_recs.join("|")
+                }
+                ;
                 if unit.total_carried()!=0{
-                    eprintln!("PS4HARVFN unit={} turn={} clause=FN_CARRYING carried={} harvest_power={} plants={}",unit.id,view.turn,unit.total_carried(),unit.stats.harvest_power,view.plants.len());
+                    eprintln!("PS4HARVFN unit={} turn={} clause=FN_CARRYING carried={} harvest_power={} plants={} unit_cell={},{} state={}",unit.id,view.turn,unit.total_carried(),unit.stats.harvest_power,view.plants.len(),unit.cell.0,unit.cell.1,ps4_state);
                     return Vec::new();
                     }
                 if unit.stats.harvest_power<=0{
-                    eprintln!("PS4HARVFN unit={} turn={} clause=FN_NO_HARVEST_POWER carried=0 harvest_power={} plants={}",unit.id,view.turn,unit.stats.harvest_power,view.plants.len());
+                    eprintln!("PS4HARVFN unit={} turn={} clause=FN_NO_HARVEST_POWER carried=0 harvest_power={} plants={} unit_cell={},{} state={}",unit.id,view.turn,unit.stats.harvest_power,view.plants.len(),unit.cell.0,unit.cell.1,ps4_state);
                     return Vec::new();
                     }
-                eprintln!("PS4HARVFN unit={} turn={} clause=ENTERED carried=0 harvest_power={} plants={}",unit.id,view.turn,unit.stats.harvest_power,view.plants.len());
+                eprintln!("PS4HARVFN unit={} turn={} clause=ENTERED carried=0 harvest_power={} plants={} unit_cell={},{} state={}",unit.id,view.turn,unit.stats.harvest_power,view.plants.len(),unit.cell.0,unit.cell.1,ps4_state);
                 let from_unit=bfs_distances(&view.walkable,&[unit.cell]);
                 let shack_starts:Vec<Cell> =ortho_neighbors(view.shacks[0]).into_iter().filter(|cell|view.walkable.contains(cell)).collect();
                 let to_shack=bfs_distances(&view.walkable,&shack_starts);
@@ -1463,6 +1487,14 @@ mod bot{
                     }
                     );
                     }
+                for(ps4_i,ps4_c)in ps4_out.iter().enumerate(){
+                    let ps4_t=match ps4_c.target{
+                        Target::Tree(ps4_cell)=>format!("{},{}",ps4_cell.0,ps4_cell.1),_=>"NOT_A_TREE".to_string(),
+                    }
+                    ;
+                    eprintln!("PS4HARVOUT unit={} turn={} i={} target={} command={}",unit.id,view.turn,ps4_i,ps4_t,ps4_c.command.replace(' ',"_"));
+                    }
+                eprintln!("PS4HARVLIST unit={} turn={} returned={}",unit.id,view.turn,ps4_out.len());
                 ps4_out
             }
             fn endgame(view:&GameState)->bool{

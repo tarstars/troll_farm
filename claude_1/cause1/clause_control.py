@@ -62,6 +62,7 @@ def main():
     chop = collections.Counter()
     harv = collections.Counter()
     per_fixture = {}
+    joined = 0
     with tempfile.TemporaryDirectory(prefix="cause1-ctl-") as wd:
         wd = Path(wd)
         for d in ("p", "c"):
@@ -75,6 +76,12 @@ def main():
             # is only allowed to print, everywhere it runs.
             err = C.check_parity(sit, cfg, plain, probe)
             parsed = CT.parse(err)
+            # The per-plant identity gate, run on EVERY situation. On the two audited fixtures the
+            # accepted side is thin; corpus-wide it is where the join between the generator's
+            # returned vector and the tap's ACCEPTED rows is actually exercised in bulk, so the
+            # count of records it joined is recorded rather than left implicit.
+            joined += CT.check_returned_lists(sid, "chop", parsed["chop"])
+            joined += CT.check_returned_lists(sid, "idle-harvest", parsed["harvest"])
             fc, fh = collections.Counter(), collections.Counter()
             for gs in parsed["chop"].values():
                 for g in gs:
@@ -104,6 +111,10 @@ def main():
     print(f"harvest NOT observed       {unobserved_harv}")
 
     failures = []
+    if not joined:
+        failures.append(
+            "the returned-vector identity gate joined ZERO candidates across the whole corpus, so "
+            "it never compared an accepted cell against anything and is inert.")
     if not chop_rejects:
         failures.append(
             "no rejection clause of `chop_candidates` fired anywhere in the 34-situation corpus, "
@@ -122,6 +133,11 @@ def main():
         "why": "on OSC-032 and OSC-033 the tap emitted ZERO rejection rows because view.plants "
                "was empty on the audited turns; the charter's both-ways control therefore tests "
                "only the ACCEPTED direction and leaves every rejecting clause unobserved",
+        "returned_vector_identity_join": {
+            "candidates_joined_corpus_wide": joined,
+            "gate": "for every call in every situation, the ordered target cells of the vector "
+                    "chop_candidates / idle_harvest_candidates RETURNED equal the ordered cells "
+                    "of that call's own clause=ACCEPTED rows"},
         "probe": {"path": man["probe"], "sha256": man["probe_sha256"]},
         "situations": [s["id"] for s in sits],
         "gate": "at least one rejection clause of each family must be OBSERVED firing; the "

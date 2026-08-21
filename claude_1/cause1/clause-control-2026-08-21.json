@@ -295,7 +295,11 @@
   },
   "probe": {
     "path": "claude_1/picker2/routeprobe-door1-clause.rs",
-    "sha256": "1156f3d5a490e32a6db46367fe10df8de6c03b2aade768e7de4d1623683a6d3a"
+    "sha256": "64094f36fa704b7aff697c4c4f368c8c57747a04908980124387da29dd3885ed"
+  },
+  "returned_vector_identity_join": {
+    "candidates_joined_corpus_wide": 7626,
+    "gate": "for every call in every situation, the ordered target cells of the vector chop_candidates / idle_harvest_candidates RETURNED equal the ordered cells of that call's own clause=ACCEPTED rows"
   },
   "situations": [
     "OSC-001",

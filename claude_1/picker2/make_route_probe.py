@@ -266,17 +266,33 @@ CHOP_FN_OLD = '''            fn chop_candidates(view:&GameState,unit:&Unit,type_
                 if unit.stats.chop_power<=0||unit.free_capacity()<=0{
                     return out;
                     }'''
+# The canonical plant-state token, emitted on EVERY function row of both taps. `PS4STATE` is one
+# `|`-joined record per entry of `view.plants`, in the source's own iteration order:
+#   <x>,<y>:<KIND>:h<health>:s<size>:f<fruits>:cd<cooldown>
+# It exists because equal plant COUNTS never established that the referee-side trace and the
+# bot-side tap were looking at the same trees in the same state, and without that the oracle's
+# eligible set and the generator's clause are two sentences about two different boards.
+PS4_STATE_LET = '''                let ps4_recs:Vec<String> =view.plants.iter().map(|ps4_p|format!("{},{}:{}:h{}:s{}:f{}:cd{}",ps4_p.cell.0,ps4_p.cell.1,ps4_p.kind.as_str(),ps4_p.health,ps4_p.size,ps4_p.fruits,ps4_p.cooldown)).collect();
+                let ps4_state=if ps4_recs.is_empty(){
+                    "none".to_string()
+                }
+                else{
+                    ps4_recs.join("|")
+                }
+                ;
+'''
+
 CHOP_FN_NEW = '''            fn chop_candidates(view:&GameState,unit:&Unit,type_to_cut:Option<PlantKind>,)->Vec<Candidate>{
                 let mut out=Vec::new();
-                if unit.stats.chop_power<=0{
-                    eprintln!("PS4CHOPFN unit={} turn={} clause=FN_NO_CHOP_POWER chop_power={} free_cap={} plants={}",unit.id,view.turn,unit.stats.chop_power,unit.free_capacity(),view.plants.len());
+''' + PS4_STATE_LET + '''                if unit.stats.chop_power<=0{
+                    eprintln!("PS4CHOPFN unit={} turn={} clause=FN_NO_CHOP_POWER chop_power={} free_cap={} plants={} unit_cell={},{} state={}",unit.id,view.turn,unit.stats.chop_power,unit.free_capacity(),view.plants.len(),unit.cell.0,unit.cell.1,ps4_state);
                     return out;
                     }
                 if unit.free_capacity()<=0{
-                    eprintln!("PS4CHOPFN unit={} turn={} clause=FN_NO_FREE_CAPACITY chop_power={} free_cap={} plants={}",unit.id,view.turn,unit.stats.chop_power,unit.free_capacity(),view.plants.len());
+                    eprintln!("PS4CHOPFN unit={} turn={} clause=FN_NO_FREE_CAPACITY chop_power={} free_cap={} plants={} unit_cell={},{} state={}",unit.id,view.turn,unit.stats.chop_power,unit.free_capacity(),view.plants.len(),unit.cell.0,unit.cell.1,ps4_state);
                     return out;
                     }
-                eprintln!("PS4CHOPFN unit={} turn={} clause=ENTERED chop_power={} free_cap={} plants={}",unit.id,view.turn,unit.stats.chop_power,unit.free_capacity(),view.plants.len());'''
+                eprintln!("PS4CHOPFN unit={} turn={} clause=ENTERED chop_power={} free_cap={} plants={} unit_cell={},{} state={}",unit.id,view.turn,unit.stats.chop_power,unit.free_capacity(),view.plants.len(),unit.cell.0,unit.cell.1,ps4_state);'''
 
 CHOP_LOOP_OLD = '''                for plant in&view.plants{
                     if plant.health<=0||!from_unit.contains_key(&plant.cell){
@@ -350,6 +366,35 @@ CHOP_LOOP_NEW = '''                for plant in&view.plants{
                         }
                     eprintln!("PS4CHOP unit={} turn={} plant={},{} kind={} clause=ACCEPTED wood={} trip={} travel={} chop_turns={} return={}",unit.id,view.turn,plant.cell.0,plant.cell.1,plant.kind.as_str(),wood,turns,travel_turns,chop_turns,return_turns);'''
 
+# The RETURNED LIST, read off `out` itself after the loop rather than off the loop's control
+# flow. This is what makes the accepted side a per-plant measurement: `chops=` cardinality can
+# survive while acceptance is attached to the wrong cell, so the reader joins the ordered target
+# cells of the vector the generator actually returns against the ordered cells of its own
+# `clause=ACCEPTED` rows. A pushed candidate with no ACCEPTED row, an ACCEPTED row on a plant that
+# was never pushed, or the same count on different cells, all fail the run.
+CHOP_TAIL_OLD = '''                    out.push(Candidate{
+                        command,score,target:Target::Tree(plant.cell),
+                    }
+                    );
+                    }
+                out
+            }'''
+CHOP_TAIL_NEW = '''                    out.push(Candidate{
+                        command,score,target:Target::Tree(plant.cell),
+                    }
+                    );
+                    }
+                for(ps4_i,ps4_c)in out.iter().enumerate(){
+                    let ps4_t=match ps4_c.target{
+                        Target::Tree(ps4_cell)=>format!("{},{}",ps4_cell.0,ps4_cell.1),_=>"NOT_A_TREE".to_string(),
+                    }
+                    ;
+                    eprintln!("PS4CHOPOUT unit={} turn={} i={} target={} command={}",unit.id,view.turn,ps4_i,ps4_t,ps4_c.command.replace(' ',"_"));
+                    }
+                eprintln!("PS4CHOPLIST unit={} turn={} returned={}",unit.id,view.turn,out.len());
+                out
+            }'''
+
 HARV_OLD = '''            fn idle_harvest_candidates(view:&GameState,unit:&Unit,)->Vec<Candidate>{
                 if unit.total_carried()!=0||unit.stats.harvest_power<=0{
                     return Vec::new();
@@ -382,15 +427,15 @@ HARV_OLD = '''            fn idle_harvest_candidates(view:&GameState,unit:&Unit,
                 ).collect()
             }'''
 HARV_NEW = '''            fn idle_harvest_candidates(view:&GameState,unit:&Unit,)->Vec<Candidate>{
-                if unit.total_carried()!=0{
-                    eprintln!("PS4HARVFN unit={} turn={} clause=FN_CARRYING carried={} harvest_power={} plants={}",unit.id,view.turn,unit.total_carried(),unit.stats.harvest_power,view.plants.len());
+''' + PS4_STATE_LET + '''                if unit.total_carried()!=0{
+                    eprintln!("PS4HARVFN unit={} turn={} clause=FN_CARRYING carried={} harvest_power={} plants={} unit_cell={},{} state={}",unit.id,view.turn,unit.total_carried(),unit.stats.harvest_power,view.plants.len(),unit.cell.0,unit.cell.1,ps4_state);
                     return Vec::new();
                     }
                 if unit.stats.harvest_power<=0{
-                    eprintln!("PS4HARVFN unit={} turn={} clause=FN_NO_HARVEST_POWER carried=0 harvest_power={} plants={}",unit.id,view.turn,unit.stats.harvest_power,view.plants.len());
+                    eprintln!("PS4HARVFN unit={} turn={} clause=FN_NO_HARVEST_POWER carried=0 harvest_power={} plants={} unit_cell={},{} state={}",unit.id,view.turn,unit.stats.harvest_power,view.plants.len(),unit.cell.0,unit.cell.1,ps4_state);
                     return Vec::new();
                     }
-                eprintln!("PS4HARVFN unit={} turn={} clause=ENTERED carried=0 harvest_power={} plants={}",unit.id,view.turn,unit.stats.harvest_power,view.plants.len());
+                eprintln!("PS4HARVFN unit={} turn={} clause=ENTERED carried=0 harvest_power={} plants={} unit_cell={},{} state={}",unit.id,view.turn,unit.stats.harvest_power,view.plants.len(),unit.cell.0,unit.cell.1,ps4_state);
                 let from_unit=bfs_distances(&view.walkable,&[unit.cell]);
                 let shack_starts:Vec<Cell> =ortho_neighbors(view.shacks[0]).into_iter().filter(|cell|view.walkable.contains(cell)).collect();
                 let to_shack=bfs_distances(&view.walkable,&shack_starts);
@@ -439,6 +484,14 @@ HARV_NEW = '''            fn idle_harvest_candidates(view:&GameState,unit:&Unit,
                     }
                     );
                     }
+                for(ps4_i,ps4_c)in ps4_out.iter().enumerate(){
+                    let ps4_t=match ps4_c.target{
+                        Target::Tree(ps4_cell)=>format!("{},{}",ps4_cell.0,ps4_cell.1),_=>"NOT_A_TREE".to_string(),
+                    }
+                    ;
+                    eprintln!("PS4HARVOUT unit={} turn={} i={} target={} command={}",unit.id,view.turn,ps4_i,ps4_t,ps4_c.command.replace(' ',"_"));
+                    }
+                eprintln!("PS4HARVLIST unit={} turn={} returned={}",unit.id,view.turn,ps4_out.len());
                 ps4_out
             }'''
 
@@ -498,6 +551,7 @@ DEADLINE2_NEW = '''                self.desired_second=Self::strongest_affordabl
 
 CLAUSE_EDITS = [("chop_candidates/fn-guard", CHOP_FN_OLD, CHOP_FN_NEW),
                 ("chop_candidates/plant-loop", CHOP_LOOP_OLD, CHOP_LOOP_NEW),
+                ("chop_candidates/returned-list", CHOP_TAIL_OLD, CHOP_TAIL_NEW),
                 ("idle_harvest_candidates/whole-fn", HARV_OLD, HARV_NEW),
                 ("main_candidates/replant-conjuncts", REPLANT_OLD, REPLANT_NEW),
                 ("commands/opening-state", OPEN_OLD, OPEN_NEW),

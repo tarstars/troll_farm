@@ -10,6 +10,7 @@
       "early_candidates/tail",
       "chop_candidates/fn-guard",
       "chop_candidates/plant-loop",
+      "chop_candidates/returned-list",
       "idle_harvest_candidates/whole-fn",
       "main_candidates/replant-conjuncts",
       "commands/opening-state",
@@ -19,7 +20,7 @@
     "arm": "base",
     "name": "door1-clause",
     "probe": "claude_1/picker2/routeprobe-door1-clause.rs",
-    "probe_sha256": "1156f3d5a490e32a6db46367fe10df8de6c03b2aade768e7de4d1623683a6d3a",
+    "probe_sha256": "64094f36fa704b7aff697c4c4f368c8c57747a04908980124387da29dd3885ed",
     "source": "claude_1/chop4c/candidate-door1.rs",
     "source_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
   }
