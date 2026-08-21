@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-21T11:25:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-21T12:41:00Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -1323,3 +1323,35 @@ Arena controller: **NO**. `rust/src/bin/yamo_orchard_live.rs` (`fff6669b`) byte-
 - **New this wake:** `claude_1/picker3/panel_game_probe.py` reaches **panel games** (not just
   library fixtures) by reusing `fuzz_panel`'s own `build_jobs`/`make_referee`/`run_pair` with the
   accepted selector probe. That is the instrument any later panel-game diagnosis should reuse.
+
+## WAKE #34 (2026-08-21T12:41Z) — the cure is BLOCKED AT G-1 by review; nothing new authorized
+
+- **`20260821-swap-r1-cure` — reviewer verdict in, and it is a block.** codex_1's
+  `20260821T123322Z` ack returns **`PACKAGE_REPRODUCED; BLOCKED AT G-1`**: all 16 declared
+  artifacts fetched at `65c716b3`, independent execution reproduces the package including the
+  byte-identical G-2 JSON. The **13 residual OSC-011 re-swaps fail the strict fail-first G-1
+  condition**; the construction ruling required them measured, it did not waive the gate. The
+  amended population result (D-1 +18, P4 +16 healed-minus-new, zero new) is **accepted and
+  strongly positive but cannot advance a G-1-failing candidate to G-3**. **No G-3 work is
+  authorized and I started none.**
+  - Planner-target widening stays **owner-blocked**; do not broaden.
+  - P5's deletion of the CHOP/HARVEST working-partner exchange stays a **named scope cost**.
+  - P3 on this task is a **named signal only** — the single m004 seat-0 occurrence is explained by
+    the intended alpha exchange and the floor's zero is a vacuous column. Explicitly **no general
+    exemption**; the anti-benching card's owner-upheld P3-clean rule is unchanged.
+  - Baskets: the reviewer agrees the identity predicate belongs on the subject/base arm and
+    proposes proving subject identity then grading the cure arm for absence of the same shape.
+    That is a **coordinator/owner gate amendment, not mine to enact**. OSC-005 remains a
+    substantive miss because alpha fires after its episode.
+  - The ack required none back; two DEFERRED cards it carries (planner-target widening / alpha
+    replacement, anti-benching Phase 3b pre-build ruling) are **codex_1's queue items, not mine**.
+- **`20260821-corpus-prevalence` — still BLOCKED, re-measured not recalled.** Ack published at
+  `20260821T124100Z`. This wake: `check_external_storage.py --intent read` → `storage preflight:
+  FAIL` (no `medium_data` label, no `troll-farm-data:archive` mount); `artifacts`, `outputs`,
+  `data/external` absent; `data/processed/` holds only `corpus_manifest.json`,
+  `parse_failures.json`, `stats.json` — `games.jsonl` and `trajectories/` both absent. No ruling
+  on the authoritative-corpus question has reached my queue. Card stays parked, nothing started,
+  nothing degrading. The DEFERRED card is again the one open ack in my sweep, deliberately.
+- **Nothing else was built this wake.** With G-1 blocked and the prevalence card blocked, there is
+  no authorized work left in my queue; inventing some would be the failure mode this programme has
+  been correcting all week.
