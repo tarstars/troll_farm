@@ -110,6 +110,25 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-21 (**4b SITTING RAN — stamps HELD, the two stalls CHARTERED**): the
+  4b package was built and sat the same morning
+  (`local_claude_1/session-inputs/4b-sitting-package-2026-08-21.md`): all 34
+  cases re-graded against the CHAMPION (not the frozen resident) — 8 FIXED, 18
+  already ruled BUG under R-2 with the cure on the shelf, 6 stamp candidates, 2
+  unexplained. Owner ruled: **all six stamps HELD** (offered with turn counts but
+  without the owner having watched the games — re-published as a look-and-rule
+  sheet with viewer links, 4a's shape; the investigation does NOT close yet) and
+  **bucket F CHARTERED as a look**, not folded away:
+  `coordination/tasks/20260821-osc032-033-no-goal-instrument.md` (OSC-032/033
+  waited 110/143 turns with work available on every one; claude_1 instrument
+  reusing the Phase-3 probes on the champion base, codex_1 instrument-first, no
+  fix / no judgment / no P1-P2 extension). Measured en route and worth keeping:
+  **on the frozen 34 the kept champion beats cure C 8 FIXED to 3 with no case
+  lost** (OSC-003/006/014/020/034 gained) — the Arena called the same step
+  immaterial and both readings are honest; and **OSC-031 is still NOT FIXED on
+  the champion** (the chop defect was cured; what still fires there is the
+  benching).
+
 - 2026-08-21 morning (**OWNER RULED: KEEP + D3 HOLD; the night graded itself**):
   session 2 finished unattended at 00:53Z — pairs [1.9, −0.6, 0.4, 1.1, −1.7],
   mean **+0.220**, IMMATERIAL below the 1.0 floor (empirical pair SD 1.413);
