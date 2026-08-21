@@ -1,0 +1,2274 @@
+{
+  "task": "20260821-episode-identity-regrade",
+  "deliverables": [
+    2,
+    3
+  ],
+  "scope": "measurement and tooling only; no fix to any bot, no re-ruling of any case",
+  "arms": {
+    "subject": {
+      "source": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+      "sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+      "reproduces": 34
+    },
+    "champion": {
+      "source": "claude_1/chop4c/candidate-door1.rs",
+      "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0",
+      "reproduces": 11
+    }
+  },
+  "prior_artifact": "claude_1/picker2/sweep34-door1-base.json",
+  "real_end_annotation_source": {
+    "artifact": "claude_1/regrade1/real-end-regrade-2026-08-21.json",
+    "task": "20260821-p4-stalls-real-end-regrade",
+    "arm": "subject",
+    "note": "read, not recomputed; annotation only"
+  },
+  "champion_reproduces": [
+    "OSC-001",
+    "OSC-002",
+    "OSC-005",
+    "OSC-012",
+    "OSC-013",
+    "OSC-017",
+    "OSC-021",
+    "OSC-024",
+    "OSC-026",
+    "OSC-027",
+    "OSC-030"
+  ],
+  "champion_does_not_reproduce": [
+    "OSC-003",
+    "OSC-004",
+    "OSC-006",
+    "OSC-007",
+    "OSC-008",
+    "OSC-009",
+    "OSC-010",
+    "OSC-011",
+    "OSC-014",
+    "OSC-015",
+    "OSC-016",
+    "OSC-018",
+    "OSC-019",
+    "OSC-020",
+    "OSC-022",
+    "OSC-023",
+    "OSC-025",
+    "OSC-028",
+    "OSC-029",
+    "OSC-031",
+    "OSC-032",
+    "OSC-033",
+    "OSC-034"
+  ],
+  "fixed_before_the_gate": [
+    "OSC-003",
+    "OSC-006",
+    "OSC-008",
+    "OSC-009",
+    "OSC-014",
+    "OSC-020",
+    "OSC-028",
+    "OSC-034"
+  ],
+  "fixed_with_identity_enforced": [],
+  "fixed_lost_to_the_gate": [
+    "OSC-003",
+    "OSC-006",
+    "OSC-008",
+    "OSC-009",
+    "OSC-014",
+    "OSC-020",
+    "OSC-028",
+    "OSC-034"
+  ],
+  "verdicts_changed": 23,
+  "table": [
+    {
+      "id": "OSC-001",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_FIXED",
+      "changed": false,
+      "reason": "unchanged",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-002",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_FIXED",
+      "changed": false,
+      "reason": "unchanged",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-003",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "23 of 23 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units, inventories)",
+      "real_end_annotation": {
+        "real_end_turn": 59,
+        "grace_only_end_turn": 59,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-004",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "14 of 14 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)",
+      "real_end_annotation": {
+        "real_end_turn": 45,
+        "grace_only_end_turn": 50,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-005",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_FIXED",
+      "changed": false,
+      "reason": "unchanged",
+      "real_end_annotation": {
+        "real_end_turn": 61,
+        "grace_only_end_turn": 61,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-006",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "9 of 9 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)",
+      "real_end_annotation": {
+        "real_end_turn": 46,
+        "grace_only_end_turn": 46,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-007",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "9 of 9 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)",
+      "real_end_annotation": {
+        "real_end_turn": 30,
+        "grace_only_end_turn": 35,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-008",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "8 of 8 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units, inventories)",
+      "real_end_annotation": {
+        "real_end_turn": 110,
+        "grace_only_end_turn": 147,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-009",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "7 of 7 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units, inventories)",
+      "real_end_annotation": {
+        "real_end_turn": 86,
+        "grace_only_end_turn": 96,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-010",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "7 of 7 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-011",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "1 of 7 frozen window command lines differ",
+      "real_end_annotation": {
+        "real_end_turn": 52,
+        "grace_only_end_turn": 52,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-012",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_FIXED",
+      "changed": false,
+      "reason": "unchanged",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-013",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_FIXED",
+      "changed": false,
+      "reason": "unchanged",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-014",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "167 of 168 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units, inventories)",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-015",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "157 of 157 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-016",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "194 of 194 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-017",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_FIXED",
+      "changed": false,
+      "reason": "unchanged",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-018",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "191 of 191 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-019",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "178 of 178 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-020",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "172 of 172 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units, inventories)",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-021",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_FIXED",
+      "changed": false,
+      "reason": "unchanged",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-022",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "95 of 95 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units, inventories)",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-023",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "74 of 74 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-024",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_FIXED",
+      "changed": false,
+      "reason": "unchanged",
+      "real_end_annotation": {
+        "real_end_turn": 80,
+        "grace_only_end_turn": 80,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-025",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "1 of 21 frozen window command lines differ",
+      "real_end_annotation": {
+        "real_end_turn": 46,
+        "grace_only_end_turn": 52,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-026",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_FIXED",
+      "changed": false,
+      "reason": "unchanged",
+      "real_end_annotation": {
+        "real_end_turn": 40,
+        "grace_only_end_turn": 45,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-027",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_FIXED",
+      "changed": false,
+      "reason": "unchanged",
+      "real_end_annotation": {
+        "real_end_turn": 37,
+        "grace_only_end_turn": 37,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-028",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "53 of 53 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (units)",
+      "real_end_annotation": {
+        "real_end_turn": 86,
+        "grace_only_end_turn": 96,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-029",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "17 of 17 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (units, inventories)",
+      "real_end_annotation": {
+        "real_end_turn": 61,
+        "grace_only_end_turn": 67,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-030",
+      "kind": "D1_EPISODE",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_FIXED",
+      "changed": false,
+      "reason": "unchanged",
+      "real_end_annotation": {
+        "real_end_turn": 46,
+        "grace_only_end_turn": 64,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-031",
+      "kind": "P4_STALL",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "1 of 190 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (units)",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-032",
+      "kind": "P4_STALL",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "the board at the window's first turn differs from the frozen entry state (plants, inventories)",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-033",
+      "kind": "P4_STALL",
+      "verdict_before_the_gate": "NOT_FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "the board at the window's first turn differs from the frozen entry state (plants, inventories)",
+      "real_end_annotation": {
+        "real_end_turn": null,
+        "grace_only_end_turn": null,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    },
+    {
+      "id": "OSC-034",
+      "kind": "P4_STALL",
+      "verdict_before_the_gate": "FIXED",
+      "verdict_with_identity_enforced": "NOT_REPRODUCIBLE_ON_BASE",
+      "changed": true,
+      "reason": "4 of 94 frozen window command lines differ",
+      "real_end_annotation": {
+        "real_end_turn": 115,
+        "grace_only_end_turn": 115,
+        "window_turns_past_the_real_end": 0,
+        "real_end_verdict": "REAL_THROUGHOUT"
+      }
+    }
+  ],
+  "subject_rows": [
+    {
+      "id": "OSC-001",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        6,
+        200
+      ],
+      "cells": [
+        [
+          6,
+          2
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-002",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        12,
+        200
+      ],
+      "cells": [
+        [
+          9,
+          4
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-003",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        25,
+        47
+      ],
+      "cells": [
+        [
+          10,
+          6
+        ],
+        [
+          9,
+          6
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-004",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        9,
+        22
+      ],
+      "cells": [
+        [
+          8,
+          1
+        ],
+        [
+          9,
+          1
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-005",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        7,
+        18
+      ],
+      "cells": [
+        [
+          10,
+          2
+        ],
+        [
+          9,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-006",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        12,
+        20
+      ],
+      "cells": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-007",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        8,
+        16
+      ],
+      "cells": [
+        [
+          7,
+          6
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-008",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        57,
+        64
+      ],
+      "cells": [
+        [
+          9,
+          2
+        ],
+        [
+          10,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-009",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        77,
+        83
+      ],
+      "cells": [
+        [
+          5,
+          0
+        ],
+        [
+          6,
+          0
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-010",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        80,
+        86
+      ],
+      "cells": [
+        [
+          4,
+          0
+        ],
+        [
+          3,
+          0
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-011",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        26,
+        32
+      ],
+      "cells": [
+        [
+          7,
+          4
+        ],
+        [
+          8,
+          4
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-012",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        8,
+        200
+      ],
+      "cells": [
+        [
+          9,
+          2
+        ],
+        [
+          10,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-013",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        14,
+        200
+      ],
+      "cells": [
+        [
+          7,
+          2
+        ],
+        [
+          6,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-014",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        33,
+        200
+      ],
+      "cells": [
+        [
+          11,
+          3
+        ],
+        [
+          11,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-015",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        44,
+        200
+      ],
+      "cells": [
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-016",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        7,
+        200
+      ],
+      "cells": [
+        [
+          11,
+          3
+        ],
+        [
+          10,
+          3
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-017",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        7,
+        200
+      ],
+      "cells": [
+        [
+          10,
+          1
+        ],
+        [
+          9,
+          1
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-018",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        10,
+        200
+      ],
+      "cells": [
+        [
+          7,
+          0
+        ],
+        [
+          6,
+          0
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-019",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        23,
+        200
+      ],
+      "cells": [
+        [
+          1,
+          3
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-020",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        29,
+        200
+      ],
+      "cells": [
+        [
+          11,
+          3
+        ],
+        [
+          10,
+          3
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-021",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        32,
+        200
+      ],
+      "cells": [
+        [
+          7,
+          5
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-022",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        106,
+        200
+      ],
+      "cells": [
+        [
+          10,
+          4
+        ],
+        [
+          11,
+          4
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-023",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        27,
+        100
+      ],
+      "cells": [
+        [
+          11,
+          4
+        ],
+        [
+          10,
+          4
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-024",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        5,
+        69
+      ],
+      "cells": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-025",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        12,
+        32
+      ],
+      "cells": [
+        [
+          12,
+          2
+        ],
+        [
+          13,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-026",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        17,
+        25
+      ],
+      "cells": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-027",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        3,
+        24
+      ],
+      "cells": [
+        [
+          5,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-028",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        2,
+        54
+      ],
+      "cells": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-029",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        28,
+        44
+      ],
+      "cells": [
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-030",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        24,
+        31
+      ],
+      "cells": [
+        [
+          8,
+          2
+        ],
+        [
+          9,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-031",
+      "kind": "P4_STALL",
+      "unit": 0,
+      "window": [
+        11,
+        200
+      ],
+      "cells": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "P4",
+      "d1_episodes_in_window": 0,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-032",
+      "kind": "P4_STALL",
+      "unit": 0,
+      "window": [
+        91,
+        200
+      ],
+      "cells": [
+        [
+          3,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "P4",
+      "d1_episodes_in_window": 0,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-033",
+      "kind": "P4_STALL",
+      "unit": 0,
+      "window": [
+        58,
+        200
+      ],
+      "cells": [
+        [
+          1,
+          3
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "P4",
+      "d1_episodes_in_window": 0,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-034",
+      "kind": "P4_STALL",
+      "unit": 0,
+      "window": [
+        6,
+        99
+      ],
+      "cells": [
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "P4",
+      "d1_episodes_in_window": 0,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    }
+  ],
+  "champion_rows": [
+    {
+      "id": "OSC-001",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        6,
+        200
+      ],
+      "cells": [
+        [
+          6,
+          2
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-002",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        12,
+        200
+      ],
+      "cells": [
+        [
+          9,
+          4
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-003",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        25,
+        47
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "23 of 23 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-004",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        9,
+        22
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "14 of 14 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-005",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        7,
+        18
+      ],
+      "cells": [
+        [
+          10,
+          2
+        ],
+        [
+          9,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-006",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        12,
+        20
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "9 of 9 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-007",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        8,
+        16
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "9 of 9 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-008",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        57,
+        64
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "8 of 8 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-009",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        77,
+        83
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "7 of 7 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-010",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        80,
+        86
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "7 of 7 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-011",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        26,
+        32
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "1 of 7 frozen window command lines differ"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-012",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        8,
+        200
+      ],
+      "cells": [
+        [
+          9,
+          2
+        ],
+        [
+          10,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-013",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        14,
+        200
+      ],
+      "cells": [
+        [
+          7,
+          2
+        ],
+        [
+          6,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-014",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        33,
+        200
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "167 of 168 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-015",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        44,
+        200
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "157 of 157 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-016",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        7,
+        200
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "194 of 194 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-017",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        7,
+        200
+      ],
+      "cells": [
+        [
+          10,
+          1
+        ],
+        [
+          9,
+          1
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-018",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        10,
+        200
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "191 of 191 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-019",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        23,
+        200
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "178 of 178 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-020",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        29,
+        200
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "172 of 172 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-021",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        32,
+        200
+      ],
+      "cells": [
+        [
+          7,
+          5
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-022",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        106,
+        200
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "95 of 95 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-023",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        27,
+        100
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "74 of 74 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-024",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        5,
+        69
+      ],
+      "cells": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 1,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-025",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        12,
+        32
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "1 of 21 frozen window command lines differ"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-026",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        17,
+        25
+      ],
+      "cells": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-027",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        3,
+        24
+      ],
+      "cells": [
+        [
+          5,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-028",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        2,
+        54
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "53 of 53 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (units)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-029",
+      "kind": "D1_EPISODE",
+      "unit": 0,
+      "window": [
+        28,
+        44
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "17 of 17 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (units, inventories)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-030",
+      "kind": "D1_EPISODE",
+      "unit": 2,
+      "window": [
+        24,
+        31
+      ],
+      "cells": [
+        [
+          8,
+          2
+        ],
+        [
+          9,
+          2
+        ]
+      ],
+      "reproduces_the_recorded_episode": true,
+      "detector_silent": false,
+      "detector_clause": "D-1",
+      "d1_episodes_in_window": 1,
+      "p4_violations_in_window": 0,
+      "progress_events": false,
+      "left_cycle": false,
+      "progress_restored": false,
+      "verdict": "NOT_FIXED",
+      "why": "detector still fires",
+      "identity_reasons": []
+    },
+    {
+      "id": "OSC-031",
+      "kind": "P4_STALL",
+      "unit": 0,
+      "window": [
+        11,
+        200
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "1 of 190 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (units)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-032",
+      "kind": "P4_STALL",
+      "unit": 0,
+      "window": [
+        91,
+        200
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "the board at the window's first turn differs from the frozen entry state (plants, inventories)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-033",
+      "kind": "P4_STALL",
+      "unit": 0,
+      "window": [
+        58,
+        200
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "the board at the window's first turn differs from the frozen entry state (plants, inventories)"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "id": "OSC-034",
+      "kind": "P4_STALL",
+      "unit": 0,
+      "window": [
+        6,
+        99
+      ],
+      "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "reproduces_the_recorded_episode": false,
+      "identity_reasons": [
+        "4 of 94 frozen window command lines differ"
+      ],
+      "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    }
+  ]
+}

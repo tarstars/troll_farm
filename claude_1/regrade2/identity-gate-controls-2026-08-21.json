@@ -1,0 +1,78 @@
+{
+  "task": "20260821-episode-identity-regrade",
+  "gate": "G-1/G-2",
+  "accepted_source": "claude_1/regrade1/real_end_regrade.py",
+  "accepted_sha256": "370122fada39ac852290ead952afc61e0c8ff2c0e3898bdbe72ce146c1a56fc2",
+  "lifted_functions": [
+    "check_window_commands",
+    "check_entry_state"
+  ],
+  "call_order": {
+    "identity_first_referenced_line": 344,
+    "gated_inputs_first_referenced": {
+      "d1_episodes": 368,
+      "p4_violations": 371,
+      "had_progress": 380,
+      "left_the_cycle": 381
+    },
+    "identity_read_first": true
+  },
+  "controls": [
+    {
+      "control": "check_window_commands in the harness is byte-identical to the accepted source",
+      "pass": true,
+      "detail": "1180 chars; accepted file sha256 370122fada39ac85\u2026"
+    },
+    {
+      "control": "check_entry_state in the harness is byte-identical to the accepted source",
+      "pass": true,
+      "detail": "2034 chars; accepted file sha256 370122fada39ac85\u2026"
+    },
+    {
+      "control": "the accepted source file is unchanged since the lift",
+      "pass": true,
+      "detail": "sha256 370122fada39ac852290ead952afc61e0c8ff2c0e3898bdbe72ce146c1a56fc2"
+    },
+    {
+      "control": "grade() reads the identity verdict BEFORE any recorded-window input",
+      "pass": true,
+      "detail": "{'identity_first_referenced_line': 344, 'gated_inputs_first_referenced': {'d1_episodes': 368, 'p4_violations': 371, 'had_progress': 380, 'left_the_cycle': 381}, 'identity_read_first': True}"
+    },
+    {
+      "control": "the champion is REJECTED on OSC-032 (all-WAIT window, different board)",
+      "pass": true,
+      "detail": "[\"the board at the window's first turn differs from the frozen entry state (plants, inventories)\"]"
+    },
+    {
+      "control": "and the window-command half ALONE would have accepted it (which is why both halves exist)",
+      "pass": true,
+      "detail": "{'window_turns_checked': 110, 'mismatches': 0, 'first_mismatches': []}"
+    },
+    {
+      "control": "the grader returns NOT_REPRODUCIBLE_ON_BASE, never FIXED or NOT_FIXED",
+      "pass": true,
+      "detail": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything"
+    },
+    {
+      "control": "the subject bot is ACCEPTED on its own recorded episode (the gate can say yes)",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "control": "a same-count/wrong-cell entry board is REJECTED",
+      "pass": true,
+      "detail": "[\"the board at the window's first turn differs from the frozen entry state (units)\"]"
+    },
+    {
+      "control": "an undecodable entry state FAILS CLOSED",
+      "pass": true,
+      "detail": "['the frozen entry state could not be compared: string index out of range']"
+    },
+    {
+      "control": "grade() without an identity verdict is REFUSED",
+      "pass": true,
+      "detail": "OSC-006: grade() was called without an episode-identity verdict. The gate is not optional \u2014 see `episode_identity` and card 20260821-episode-identity-regrade."
+    }
+  ],
+  "all_ok": true
+}

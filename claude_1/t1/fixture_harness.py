@@ -125,6 +125,122 @@ def spec_for(sit, cfg):
 
 
 # --------------------------------------------------------------------------------------
+# EPISODE IDENTITY — a window is a property of the bot that produced it
+#
+# Card `20260821-episode-identity-regrade`, chartered on the accepted finding that the champion
+# reproduces only 11 of the 34 recorded episodes. `spec_for` above refuses a wrong MAP; nothing
+# refused a wrong GAME, and the grader below then measured `progress_restored` over a recorded
+# window's turn bounds inside a run those bounds do not describe. All eight cases once graded
+# "FIXED on the champion" are among the 23 it does not reproduce.
+#
+# The two functions below are LIFTED VERBATIM from the accepted
+# `claude_1/regrade1/real_end_regrade.py` (task `20260821-p4-stalls-real-end-regrade`, codex_1
+# ACCEPTED `20260821T100154Z`). They are byte-identical to the accepted bytes, and
+# `claude_1/regrade2/identity_gate_controls.py` is the pinned test that says so — a copy that
+# quietly drifts from the gate a reviewer already accepted is worse than no lift at all.
+# `RegradeError` is aliased rather than renamed for exactly that reason: renaming it would have
+# changed the bytes.
+#
+# Neither function is called directly by the grader. `episode_identity` wraps them so that a
+# fixture whose identity CANNOT be established — no frozen window commands, an entry turn outside
+# the horizon, an entry state that cannot be decoded — is NOT_REPRODUCIBLE_ON_BASE rather than an
+# exception or, far worse, a silently graded row.
+
+
+class RegradeError(HarnessError):
+    """Alias, so the lifted bodies below are byte-identical to the accepted ones."""
+
+
+def check_window_commands(sid, sit, command_lines):
+    """The replay must be THIS recorded episode.
+
+    The library froze the command line the subject emitted on every turn of the window. If the
+    re-run emits a different line on any of them, the window's turn numbers and this run's end
+    turn belong to two different games and no comparison between them is meaningful.
+    """
+    recorded = sit["window"].get("commands") or []
+    if not recorded:
+        raise RegradeError(
+            f"{sid}: the frozen situation carries no window commands, so the replay cannot be "
+            f"shown to be this episode. Fail-closed rather than compare turn numbers across "
+            f"two possibly different games.")
+    bad = []
+    for entry in recorded:
+        t = int(entry["turn"])
+        if not 1 <= t <= len(command_lines):
+            bad.append((t, entry["line"], "<past the replayed horizon>"))
+            continue
+        got = command_lines[t - 1].strip()
+        if got != entry["line"].strip():
+            bad.append((t, entry["line"], got))
+    return {"window_turns_checked": len(recorded), "mismatches": len(bad),
+            "first_mismatches": bad[:5]}
+
+
+def check_entry_state(sid, sit, tr):
+    """The replay's board AT THE WINDOW'S FIRST TURN must be the board the library froze.
+
+    This is the gate the window-command comparison alone CANNOT be: on a window whose every
+    recorded line is `WAIT`, a completely different game replays the same commands and passes.
+    OSC-032 is exactly that case — the frozen entry state at turn 91 still carries a live PLUM,
+    while one of the two arms has had a bare board since turn 82, and both emit WAIT throughout.
+    A guard that agrees there is agreeing about nothing.
+    """
+    ws = sit["world_state_at_entry"]
+    e = int(ws["turn"])
+    lo = int(sit["window"]["turn_start"])
+    if e != lo:
+        raise RegradeError(f"{sid}: frozen entry state is turn {e} but the window starts at "
+                           f"{lo}; the two cannot be compared.")
+    if not 1 <= e <= tr.T:
+        raise RegradeError(f"{sid}: entry turn {e} lies outside the replayed horizon {tr.T}.")
+    st = tr.state(e)
+    diffs = []
+    want_p = sorted((p[0], p[1], p[2], p[3], p[4], p[5], p[6]) for p in ws["plants"])
+    got_p = sorted((p.kind, p.cell[0], p.cell[1], p.size, p.health, p.fruits, p.cooldown)
+                   for p in st.plants)
+    if want_p != got_p:
+        diffs.append({"field": "plants", "frozen": want_p, "replay": got_p})
+    want_u = sorted((u[0], u[1], u[2], u[3], u[4], u[5], u[6], u[7], tuple(u[8:]))
+                    for u in ws["units"])
+    got_u = sorted((u.id, u.player, u.cell[0], u.cell[1], u.speed, u.capacity, u.harvest_power,
+                    u.chop_power, tuple(u.carry)) for u in st.units)
+    if want_u != got_u:
+        diffs.append({"field": "units", "frozen": want_u, "replay": got_u})
+    want_i = [list(ws["inventories"]["own"]), list(ws["inventories"]["opponent"])]
+    got_i = [list(st.inventories[0]), list(st.inventories[1])]
+    if want_i != got_i:
+        diffs.append({"field": "inventories", "frozen": want_i, "replay": got_i})
+    return {"entry_turn": e, "matches": not diffs, "diffs": diffs}
+
+
+def episode_identity(sid, sit, tr, command_lines):
+    """Does this replay reproduce THIS recorded episode? Fail-closed, both parts.
+
+    Part (a) is the frozen window's command lines, part (b) the board at the window's first turn.
+    Neither alone is enough: on an all-WAIT window (a) agrees between two completely different
+    games — OSC-032 is that case — and (b) alone cannot see a divergence that starts later.
+    """
+    reasons, commands, entry = [], None, None
+    try:
+        commands = check_window_commands(sid, sit, command_lines)
+        if commands["mismatches"]:
+            reasons.append(f"{commands['mismatches']} of {commands['window_turns_checked']} "
+                           f"frozen window command lines differ")
+    except (RegradeError, HarnessError, KeyError, TypeError, ValueError) as exc:
+        reasons.append(f"the frozen window commands could not be compared: {exc}")
+    try:
+        entry = check_entry_state(sid, sit, tr)
+        if not entry["matches"]:
+            reasons.append("the board at the window's first turn differs from the frozen entry "
+                           "state (" + ", ".join(d["field"] for d in entry["diffs"]) + ")")
+    except (RegradeError, HarnessError, KeyError, TypeError, ValueError, IndexError) as exc:
+        reasons.append(f"the frozen entry state could not be compared: {exc}")
+    return {"reproduces_the_recorded_episode": not reasons, "reasons": reasons,
+            "window_commands": commands, "entry_state": entry}
+
+
+# --------------------------------------------------------------------------------------
 # grading
 
 
@@ -212,13 +328,34 @@ def check_replay_fidelity(sit, d1_episodes):
     return match[0]
 
 
-def grade(sit, tr, d1_episodes, p4_violations=()):
+def grade(sit, tr, d1_episodes, p4_violations=(), identity=None):
     """FIXED = detector silent over the window AND progress restored. Never one alone.
 
     "Detector" means D-1 for a D1_EPISODE situation and P4 liveness for a P4_STALL. Before
     stage 1b the P4 half did not exist, so the four stall situations were graded by the
     progress clause alone with a vacuously-silent detector clause beside it.
+
+    **Identity comes first.** `identity` is `episode_identity`'s verdict and it is read BEFORE a
+    single recorded turn bound, cell or unit id below it. A run that is not this episode gets
+    `NOT_REPRODUCIBLE_ON_BASE` — never FIXED, never NOT_FIXED — because both of those words are
+    claims about a window that this run does not contain. `identity=None` is a hard error rather
+    than a default: a caller that forgets the gate must not be able to obtain a verdict.
     """
+    if identity is None:
+        raise HarnessError(
+            f"{sit['id']}: grade() was called without an episode-identity verdict. The gate is "
+            f"not optional — see `episode_identity` and card 20260821-episode-identity-regrade.")
+    if not identity["reproduces_the_recorded_episode"]:
+        return {
+            "id": sit["id"], "kind": sit["kind"], "unit": sit["window"]["unit"],
+            "window": [sit["window"]["turn_start"], sit["window"]["turn_end"]],
+            "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+            "reproduces_the_recorded_episode": False,
+            "identity_reasons": identity["reasons"],
+            "why": ("this run is a different game on the same map: the recorded window's turn "
+                    "bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement "
+                    "about anything"),
+        }
     w = sit["window"]
     uid, lo, hi = w["unit"], w["turn_start"], w["turn_end"]
 
@@ -256,6 +393,7 @@ def grade(sit, tr, d1_episodes, p4_violations=()):
     return {
         "id": sit["id"], "kind": sit["kind"], "unit": uid,
         "window": [lo, hi], "cells": w["cells"],
+        "reproduces_the_recorded_episode": True,
         "detector_silent": silent,
         "detector_clause": "P4" if sit["kind"] == "P4_STALL" else "D-1",
         "d1_episodes_in_window": len(overlapping),
@@ -275,6 +413,13 @@ def grade(sit, tr, d1_episodes, p4_violations=()):
 
 
 def run_situation(sit, binary, cfg):
+    """Back-compatible 4-tuple. `run_situation_ex` is the one that also returns the command
+    lines the identity gate needs; callers that only want the trace are unaffected."""
+    tr, eps, p4, spec, _ = run_situation_ex(sit, binary, cfg)
+    return tr, eps, p4, spec
+
+
+def run_situation_ex(sit, binary, cfg):
     spec = spec_for(sit, cfg)
     ref = fp.make_referee(spec)
     transcript, commands = rt.run_binary_custom(Path(binary), ref, int(cfg["turns"]))
@@ -286,7 +431,7 @@ def run_situation(sit, binary, cfg):
     # `post_ct_state(ref)` supplies the world AFTER the final command set resolves, which is
     # what the post-C_T rule needs to judge turn T at all.
     p4 = fp.eval_p4(tr, tr, int(cfg["liveness_window"]), fp.post_ct_state(ref))
-    return tr, d1.get("episodes", []), p4, spec
+    return tr, d1.get("episodes", []), p4, spec, commands.rstrip("\n").split("\n")
 
 
 def compile_candidate(src: Path, workdir: Path) -> Path:
@@ -303,20 +448,34 @@ def run_all(candidate: Path, only=None, verbose=True, baseline=False):
     with tempfile.TemporaryDirectory(prefix="t1-fixtures-") as wd:
         binary = compile_candidate(candidate, Path(wd))
         for sit in sits:
-            tr, eps, p4, _ = run_situation(sit, binary, cfg)
+            tr, eps, p4, _, command_lines = run_situation_ex(sit, binary, cfg)
+            ident = episode_identity(sit["id"], sit, tr, command_lines)
             if baseline:
+                # The resident IS the library's subject bot, so on the baseline arm identity
+                # must hold for all 34. A baseline that fails it means the replay pipeline no
+                # longer reconstructs the recorded episodes and nothing below is trustworthy.
+                if not ident["reproduces_the_recorded_episode"]:
+                    raise HarnessError(
+                        f"{sit['id']}: the BASELINE arm does not reproduce the recorded "
+                        f"episode: {ident['reasons']}. The subject bot recorded it; if the "
+                        f"replay cannot reproduce it, no verdict in this sweep means anything.")
                 check_p4_fidelity(sit, p4)
                 # On the UNMODIFIED resident every D1 situation must reproduce. Under a
                 # candidate it must not be required -- curing the episode is the point.
                 check_replay_fidelity(sit, eps)
-            r = grade(sit, tr, eps, p4)
+            r = grade(sit, tr, eps, p4, ident)
             results.append(r)
             if verbose:
-                mark = "FIXED    " if r["verdict"] == "FIXED" else "NOT FIXED"
-                print(f"  {mark} {r['id']}  {r['kind']:<12} "
-                      f"turns {r['window'][0]}-{r['window'][1]}  "
-                      f"{r['detector_clause']:<4} silent={r['detector_silent']} "
-                      f"progress={r['progress_restored']}")
+                if r["verdict"] == "NOT_REPRODUCIBLE_ON_BASE":
+                    print(f"  NOT REPRO {r['id']}  {r['kind']:<12} "
+                          f"turns {r['window'][0]}-{r['window'][1]}  "
+                          f"{'; '.join(r['identity_reasons'])}")
+                else:
+                    mark = "FIXED    " if r["verdict"] == "FIXED" else "NOT FIXED"
+                    print(f"  {mark} {r['id']}  {r['kind']:<12} "
+                          f"turns {r['window'][0]}-{r['window'][1]}  "
+                          f"{r['detector_clause']:<4} silent={r['detector_silent']} "
+                          f"progress={r['progress_restored']}")
     return results
 
 
@@ -340,7 +499,9 @@ def main():
               "must reproduce)")
     results = run_all(cand, only, baseline=baseline)
     fixed = [r for r in results if r["verdict"] == "FIXED"]
-    print(f"\n{len(fixed)} FIXED / {len(results)} situations")
+    not_repro = [r for r in results if r["verdict"] == "NOT_REPRODUCIBLE_ON_BASE"]
+    print(f"\n{len(fixed)} FIXED / {len(results) - len(not_repro)} graded "
+          f"({len(not_repro)} NOT_REPRODUCIBLE_ON_BASE, not graded either way)")
     if args.json:
         Path(args.json).write_text(json.dumps(
             {"candidate": str(cand), "results": results}, indent=1, sort_keys=True) + "\n")
@@ -357,9 +518,12 @@ def _self_test():
 
     with tempfile.TemporaryDirectory(prefix="t1-selftest-") as wd:
         binary = compile_candidate(RESIDENT, Path(wd))
-        tr, eps, p4, spec = run_situation(sit, binary, cfg)
+        tr, eps, p4, spec, command_lines = run_situation_ex(sit, binary, cfg)
+        ident = episode_identity(sit["id"], sit, tr, command_lines)
+        cases.append(("identity gate ACCEPTS the subject bot on its own recorded episode",
+                      ident["reproduces_the_recorded_episode"], str(ident["reasons"])))
 
-        r = grade(sit, tr, eps, p4)
+        r = grade(sit, tr, eps, p4, ident)
         cases.append(("resident is NOT FIXED on its own frozen window",
                       r["verdict"] == "NOT_FIXED", r["why"]))
 
@@ -376,8 +540,9 @@ def _self_test():
                       f"k={ep['k']}" if ep else "no match"))
 
         stall = load_situations(["OSC-033"])[0]
-        tr_s, eps_s, p4_s, _ = run_situation(stall, binary, cfg)
-        rs = grade(stall, tr_s, eps_s, p4_s)
+        tr_s, eps_s, p4_s, _, stall_lines = run_situation_ex(stall, binary, cfg)
+        ident_s = episode_identity(stall["id"], stall, tr_s, stall_lines)
+        rs = grade(stall, tr_s, eps_s, p4_s, ident_s)
         cases.append(("P4 clause FIRES on a frozen stall (stage 1b, was inert)",
                       rs["detector_clause"] == "P4" and rs["detector_silent"] is False
                       and rs["p4_violations_in_window"] >= 1,
@@ -402,7 +567,8 @@ def _self_test():
             def state(self, t): return _StubState()
         fake = _FakeTr()
         third = {**sit, "window": {**sit["window"], "turn_start": 1, "turn_end": 30}}
-        rf = grade(third, fake, [], [])
+        rf = grade(third, fake, [], [], {"reproduces_the_recorded_episode": True,
+                                        "reasons": []})
         cases.append(("detector-quiet 3-cell loop with no progress is NOT FIXED",
                       rf["verdict"] == "NOT_FIXED",
                       f"left_cycle={rf['left_cycle']} progress={rf['progress_events']}"))
@@ -421,6 +587,29 @@ def _self_test():
             cases.append(("fidelity aborts on a K-only mismatch", False, "NO ERROR"))
         except HarnessError:
             cases.append(("fidelity aborts on a K-only mismatch", True, "aborted"))
+
+        # The identity gate's own controls: a wrong CELL in the frozen entry state must be
+        # rejected (a same-count board is not the same board), and a grade() call without a
+        # verdict must be refused outright rather than defaulting to "graded".
+        ws = sit["world_state_at_entry"]
+        if ws["units"]:
+            moved = [list(u) for u in ws["units"]]
+            moved[0][2] = moved[0][2] + 5
+            bent = {**sit, "world_state_at_entry": {**ws, "units": moved}}
+            bad = episode_identity(sit["id"], bent, tr, command_lines)
+            cases.append(("identity gate REJECTS a same-count board with one unit moved",
+                          not bad["reproduces_the_recorded_episode"], str(bad["reasons"])[:70]))
+        broken = {**sit, "world_state_at_entry": {**ws, "units": "not a board"}}
+        closed = episode_identity(sit["id"], broken, tr, command_lines)
+        cases.append(("identity gate FAILS CLOSED on an undecodable entry state",
+                      not closed["reproduces_the_recorded_episode"], str(closed["reasons"])[:70]))
+        try:
+            grade(sit, tr, eps, p4)
+            cases.append(("grade() REFUSES to run without an identity verdict", False,
+                          "NO ERROR RAISED"))
+        except HarnessError as e:
+            cases.append(("grade() REFUSES to run without an identity verdict",
+                          "not optional" in str(e), str(e)[:55]))
 
         try:
             check_p4_fidelity({**stall, "window": {**stall["window"],
@@ -447,13 +636,16 @@ def _self_test():
         late["window"] = dict(w)
         late["window"]["turn_start"] = max(1, w["turn_end"] + 5)
         late["window"]["turn_end"] = min(tr.T, w["turn_end"] + 40)
-        r2 = grade(late, tr, eps, p4)
+        # `ident` is passed through deliberately: this control moves the WINDOW on a trace
+        # whose episode identity was just established, so the gate is satisfied by the run and
+        # the control still measures the grader's ability to say FIXED.
+        r2 = grade(late, tr, eps, p4, ident)
         cases.append(("grader CAN return FIXED on a non-stuck window of the same trace",
                       r2["verdict"] == "FIXED", r2["why"]))
 
         # a window the unit never leaves its cycle in, with the detector muted by hand,
         # must still be NOT FIXED -- the quiet-but-stalled clause
-        r3 = grade(sit, tr, [], p4)
+        r3 = grade(sit, tr, [], p4, ident)
         cases.append(("detector silenced by hand is still NOT FIXED without progress",
                       r3["verdict"] == "NOT_FIXED", r3["why"]))
 
