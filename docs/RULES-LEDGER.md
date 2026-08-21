@@ -37,3 +37,10 @@ defect mechanism; the movement-level swap (R-1) treats only the symptom.
   (`coordination/tasks/20260820-pair-selector-anti-benching.md`), evidence
   first; sibling of the pool verdict rule's generator-coverage property, one
   level up (the picker must not discard what the generator offers).
+- 4b bucket B (owner rulings 2026-08-21, the four "harmless" stamps withdrawn):
+  OSC-005 and OSC-027 — pass blocked by a working teammate in a one-wide
+  corridor (the R-1 swap shape); OSC-010 — open-map pass blocked, a zero-cost
+  detour ignored (teammate-aware routing); OSC-030 — same tree wanted while a
+  teammate works it, a free tree two cells further (tree reservation, the
+  picker family). All four NOT FIXED on champion `547fa706`; no cure chartered.
+  Record: `local_claude_1/adjudications/4b-bucket-B-ruling-2026-08-21.md`.

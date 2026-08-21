@@ -17,6 +17,16 @@ The owner sat with this package the morning it was written and ruled twice:
 
 Bucket C is unchanged and needed no ruling. Bucket A is unchanged and closed.
 
+## SITTING RESULT 2 — 2026-08-21 ~08:20Z: bucket B RULED BUG, the four stamps WITHDRAWN
+
+The owner judged OSC-005/010/027/030 from the games and ruled **BUG under R-2,
+known-open**, naming three mechanisms (corridor pass → swap; open-map pass →
+route around; same tree wanted → tree reservation). All four are still NOT
+FIXED on the champion. The "harmless" stamps below were wrong — they judged
+the blocker instead of the dancer and read "never waits" as "works". Full
+record: `local_claude_1/adjudications/4b-bucket-B-ruling-2026-08-21.md`. No
+cure chartered (owner's call, open). **Remaining for 4b: OSC-026 and OSC-012.**
+
 ### The six held cases, with the game to watch
 
 Open `claude_1/viewer/out/<CASE>.html` in a browser and judge the position.
@@ -182,7 +192,7 @@ than assumed.
 
 | bucket | cases | ruling |
 |---|---|---|
-| B — not starved | OSC-005/010/027/030 | |
+| B — not starved | OSC-005/010/027/030 | **BUG / known-open (owner, 08-21 08:20Z)** — stamps withdrawn; corridor swap (005, 027), teammate-aware routing (010), tree reservation (030) |
 | C — benching | the 18 | |
 | C — OSC-031 specifically | | |
 | D — single troll | OSC-026 | |
