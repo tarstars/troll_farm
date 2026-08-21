@@ -26,10 +26,13 @@
    turn bound. A fixture that fails identity is graded **`NOT_REPRODUCIBLE_ON_BASE`**, never
    FIXED and never NOT_FIXED. Fail-closed: a fixture whose entry state cannot be compared is
    `NOT_REPRODUCIBLE_ON_BASE` too, and said so.
-2. **Re-grade the 34 on the champion with identity enforced**, side by side with the current
-   `sweep34-door1-base.json`: FIXED / NOT_FIXED / NOT_REPRODUCIBLE_ON_BASE per case, and for
-   each verdict that changes, the reason. Expected, to be measured not assumed: the 8 FIXED
-   become NOT_REPRODUCIBLE; the NOT_FIXED on the 11 reproduced cases stand.
+2. **Re-grade the 34 on the champion with identity enforced** — **DOWNGRADED 2026-08-21
+   ~11:15Z to an exhibit, after deliverable 1 and after `20260821-champion-subject-library`**
+   (the owner approved "fixtures follow the champion"; the old 34 are no longer a bar for
+   anything): side by side with `sweep34-door1-base.json`, FIXED / NOT_FIXED /
+   NOT_REPRODUCIBLE_ON_BASE per case. Expected, to be measured not assumed: the 8 FIXED
+   become NOT_REPRODUCIBLE; the NOT_FIXED on the 11 reproduced cases stand. Deliverable 1
+   (the gate itself) keeps its priority — the new library and both cure gates read it.
 3. **Real-end annotation** per graded row (the frozen `has_stalled` turn and the grace-only
    bound), as the re-grade card recommended — annotation, not a horizon cut.
 4. A short note for the owner: what "FIXED on the champion" meant before and after, and

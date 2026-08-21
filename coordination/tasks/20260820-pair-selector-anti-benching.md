@@ -115,9 +115,16 @@ routing (OSC-010) stays parked regardless (movement level, not picker).
 **Phase 3c — build + gates (ready-with-gates, named-costs class):**
 - R-1 build on the **champion of record at build time** (rebase clause: if
   session 3 ends in REVERT, rebase before R-2).
-- R-2 `sweep34`: benching fixtures turned FIXED (**progress restored, not merely
-  detector-quiet**) — target the four owner-ruled (004/013/017/034); minimum
-  bar: **> 0 added and no case lost**; every changed verdict listed.
+- R-2 fixture verdict, **AMENDED 2026-08-21 ~11:15Z (owner-approved method
+  change): the bar is the PANEL POPULATION, baskets are exhibits.** On the
+  matched panel, benched-and-work-available unit-turns (oracle-verified) and
+  benching episodes on base vs candidate: **healed − new positive, progress
+  restored** (banking / employment, not merely detector-quiet), every changed
+  game named. Basket evidence only through the episode-identity gate and on the
+  champion-subject library once it exists: of the four owner-ruled, **013 and
+  017 reproduce on the champion** and must turn FIXED there; 004 and 034 do not
+  reproduce and are reported as NOT_REPRODUCIBLE, never counted. Old
+  `sweep34` counts are not a bar.
 - R-3 panel: **P3-clean** (orchard inertness holds vs parent on the locked
   panel), **no new P4 / `r5-horizon`** violation, blocking totals not worse than
   P1+P2's; full named-costs decomposition both directions, every de-novo game
