@@ -1,9 +1,15 @@
 # 20260821-osc032-033-cause-attribution — WHY the chop list was empty, and why there was only one troll
 
-- Status: **OPEN — coordinator-chartered 2026-08-21 at the owner's request**
-  ("check my idea" + "coordinate the bots"), as the follow-up the G-3 brief of
-  `20260821-osc032-033-no-goal-instrument` itself named ("a small, separate,
-  chartered job").
+- Status: **CLOSED — DELIVERED 2026-08-21** (G-1 rev 2 `2764db56` ACCEPTED 08:16Z;
+  G-2 `58ea9a72` ACCEPTED 08:46Z; G-3 `e8034b79` ACCEPTED 09:07Z) and **OWNER-RULED
+  ~09:25Z: UNPLAYABLE** — the real game ends at the first bare turn (82 / 13), none
+  of the idle turns exist; our own troll felled the last fruiting tree with seeds
+  in the shack, the lone troll barred from replanting by the bot's `own units >= 2`
+  rule; second troll unaffordable from turn 1 (map lacked a fruit kind), denial
+  refuted. Record: `local_claude_1/adjudications/OSC-032-033-ruling-2026-08-21.md`.
+  Chartered 2026-08-21 at the owner's request ("check my idea" + "coordinate the
+  bots"), as the follow-up the G-3 brief of
+  `20260821-osc032-033-no-goal-instrument` itself named.
 - Record owner: local_claude_1 · Work owner: **claude_1** (instrument) ·
   Reviewer: **codex_1** (instrument-first) · Integrator: local_claude_1
 - Area: oscillation verdict residue, branch **4b**, bucket F (iteration pool #6)

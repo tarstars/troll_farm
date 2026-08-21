@@ -214,7 +214,7 @@ than assumed.
 | C — OSC-031 specifically | | |
 | D — single troll | OSC-026 | **BUG / known-open (owner, 08-21 08:55Z)** — stamp withdrawn; single-troll goal-selector flip (M3) |
 | E — empty hands | OSC-012 | **BUG / known-open (owner, 08-21 08:55Z)** — stamp withdrawn; zero-power troll parked on the only tree 193 turns, the able troll dances (M2); swap never considered |
-| F — the two stalls | OSC-032, OSC-033 | |
+| F — the two stalls | OSC-032, OSC-033 | **UNPLAYABLE (owner, 08-21 ~09:25Z)** — the real game ends at the first bare turn (82 / 13); 0 of the idle turns exist; strategy S fells the last fruiting tree with seeds in hand, lone troll barred from replanting. Record: `local_claude_1/adjudications/OSC-032-033-ruling-2026-08-21.md`. **Investigation CLOSED, 34/34.** |
 
 When this sheet is filled, the oscillation investigation is **closed**: every
 one of the 34 cases ends either FIXED-with-proof or owner-stamped, and no ghost
