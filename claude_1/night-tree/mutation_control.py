@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
 """Controls for the post-B5 tree tests: a check that cannot fail is not a check.
 
-Part 1 - the PRE-PATCH control: the runner as it stands on origin/main, driven
+Part 1 - the PRE-PATCH control: the runner as it stood BEFORE the patch, driven
 to the same completed block, records the verdict and STOPS. That is the gap the
 patch fills, demonstrated rather than asserted.
+
+The pre-patch source is read from a PINNED BLOB, not from origin/main. Reading
+the moving branch made this control unreplayable the moment the patch landed
+there: after deployment origin/main carries the patched runner, so the "control"
+silently exercised the new session-3 path instead of the old stop. Caught by
+codex_1's post-hoc review (20260820T152133Z). A control that reads a moving ref
+is not a control.
 
 Part 2 - MUTANTS: five one-line mutations of the patched runner, each of which
 must turn the suite red. A mutation that survives means the guard naming it is
@@ -25,6 +32,10 @@ import tempfile
 REPO = pathlib.Path(__file__).resolve().parents[2]
 RUNNER = REPO / "cgauto/night_runner.py"
 SUITE = REPO / "claude_1/night-tree/test_post_b5_tree.py"
+
+# cgauto/night_runner.py exactly as it stood at 3f189cad^ (== 966d0aff), the
+# last state before the post-B5 tree patch. Immutable: a blob, not a ref.
+PREPATCH_BLOB = "92264bead9f02a23226baedf90296fe5f301d563"
 
 MUTANTS = [
     ("band is closed at the bar",
@@ -53,11 +64,16 @@ def run_suite() -> tuple[int, str]:
     return proc.returncode, proc.stderr
 
 
-def prepatch_control() -> str:
-    """Drive origin/main's runner to a completed block; show that it stops."""
-    src = subprocess.run(["git", "show", "origin/main:cgauto/night_runner.py"],
+def prepatch_control(tmp: pathlib.Path) -> str:
+    """Drive the PINNED pre-patch runner to a completed block; show that it stops."""
+    src = subprocess.run(["git", "cat-file", "blob", PREPATCH_BLOB],
                          cwd=REPO, capture_output=True, text=True, check=True).stdout
-    tmp = pathlib.Path(tempfile.mkdtemp(prefix="prepatch-"))
+    # The blob must genuinely predate the patch, or this control is decorative.
+    for marker in ("EXTENSION_PAIRS", "PREREGISTERED_BARS", "session-3", "SESSION 3"):
+        assert marker not in src, (
+            f"pinned blob {PREPATCH_BLOB[:8]} already contains {marker!r}: "
+            "it is not a pre-patch source")
+    assert src != RUNNER.read_text(), "pinned blob equals the deployed runner"
     mod_path = tmp / "night_runner_prepatch.py"
     mod_path.write_text(src)
     spec = importlib.util.spec_from_file_location("nr_prepatch", mod_path)
@@ -97,7 +113,8 @@ def prepatch_control() -> str:
 
 def main() -> int:
     print("== part 1: pre-patch control ==")
-    print(" ", prepatch_control())
+    with tempfile.TemporaryDirectory(prefix="prepatch-") as tmpdir:
+        print(" ", prepatch_control(pathlib.Path(tmpdir)))
 
     print("\n== part 2: mutants (each must turn the suite red) ==")
     original = RUNNER.read_text()

@@ -1,0 +1,32 @@
+{
+  "cureC-p1p2": {
+    "anchors": [
+      "commands/by_id.insert",
+      "main_candidates/entry",
+      "main_candidates/tail",
+      "endgame_candidates/fruit+chop",
+      "endgame_candidates/tail"
+    ],
+    "arm": "p1p2",
+    "name": "cureC-p1p2",
+    "probe": "claude_1/picker2/routeprobe-cureC-p1p2.rs",
+    "probe_sha256": "c10af1f04ab331120046cdf30d64bf3a220517558137125badae891ad3c515e0",
+    "source": "claude_1/picker2/candidate-cureC-p1p2.rs",
+    "source_sha256": "d127cf861ad7f145e5693b0a595bcc8e3c870f424926b18bdbb3debec80b0412"
+  },
+  "door1-p1p2": {
+    "anchors": [
+      "commands/by_id.insert",
+      "main_candidates/entry",
+      "main_candidates/tail",
+      "endgame_candidates/fruit+chop",
+      "endgame_candidates/tail"
+    ],
+    "arm": "p1p2",
+    "name": "door1-p1p2",
+    "probe": "claude_1/picker2/routeprobe-door1-p1p2.rs",
+    "probe_sha256": "5b92a0ad9c134b2a587f84029a19112011fed751579b0aba8e6b68c2c993aaf7",
+    "source": "claude_1/picker2/candidate-door1-p1p2.rs",
+    "source_sha256": "5e1f4df406480f678ff03677cdda0f69d510c5c94efe90d4f0a8231b70c3339e"
+  }
+}

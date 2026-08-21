@@ -1,0 +1,39 @@
+{
+  "branch_flags_observed": [
+    "early=true endgame=false committed=false train_now=false"
+  ],
+  "claim": "every turn the five-anchor Phase-3 probe left unrouted took the 'early' branch of commands(), i.e. early_candidates, which those anchors do not tap",
+  "fixtures": [
+    {
+      "branch_flags": {
+        "early=true endgame=false committed=false train_now=false": 34
+      },
+      "final_rows": 200,
+      "id": "OSC-032",
+      "unrouted": 34,
+      "unrouted_employed": 34,
+      "unrouted_idle": 0,
+      "unrouted_turn_range": [
+        1,
+        34
+      ]
+    },
+    {
+      "branch_flags": {
+        "early=true endgame=false committed=false train_now=false": 34
+      },
+      "final_rows": 200,
+      "id": "OSC-033",
+      "unrouted": 34,
+      "unrouted_employed": 20,
+      "unrouted_idle": 14,
+      "unrouted_turn_range": [
+        1,
+        34
+      ]
+    }
+  ],
+  "probe": "the PRE-REVISION five-anchor build, rebuilt by this script and restored",
+  "task": "20260821-osc032-033-no-goal-instrument",
+  "verdict": "CONFIRMED \u2014 one branch combination accounts for every unrouted turn in both fixtures"
+}

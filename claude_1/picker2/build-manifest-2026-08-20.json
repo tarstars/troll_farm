@@ -1,0 +1,22 @@
+{
+  "_patch": {
+    "diff_body_identical_across_bases": true,
+    "diff_body_sha256": "af8f710ce50336e3d4b63df4a8d29da91fcdb2baefee0638b7883686119305fe",
+    "patched_regions_identical_across_bases": true,
+    "path": "claude_1/picker2/p1p2.diff"
+  },
+  "cureC": {
+    "base": "cureC",
+    "base_sha256": "ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1",
+    "cand_sha256": "d127cf861ad7f145e5693b0a595bcc8e3c870f424926b18bdbb3debec80b0412",
+    "changed_lines": 32,
+    "out": "claude_1/picker2/candidate-cureC-p1p2.rs"
+  },
+  "door1": {
+    "base": "door1",
+    "base_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0",
+    "cand_sha256": "5e1f4df406480f678ff03677cdda0f69d510c5c94efe90d4f0a8231b70c3339e",
+    "changed_lines": 32,
+    "out": "claude_1/picker2/candidate-door1-p1p2.rs"
+  }
+}

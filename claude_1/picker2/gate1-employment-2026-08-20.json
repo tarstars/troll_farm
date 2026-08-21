@@ -1,0 +1,217 @@
+{
+  "authority": "gate_bench.py measures BENCHED (WAIT while the unit's own candidate list held work) on both arms with one probe; this gate is the uninstrumented cross-check on the command stream that actually reaches the referee",
+  "bases": {
+    "cureC": [
+      {
+        "base_benched_turns_per_gate_bench": 12,
+        "base_wait_turns": 12,
+        "cand_distinct_commands": [
+          "CHOP 0",
+          "DROP 0",
+          "MOVE 0 11 1",
+          "MOVE 0 12 1",
+          "MOVE 0 13 1",
+          "WAIT"
+        ],
+        "cand_employed_turns": 11,
+        "cand_employment_rate": 0.7857,
+        "cand_wait_turns": 3,
+        "first_employed_command": "turn 9: CHOP 0",
+        "fixture_red_on_this_base": true,
+        "id": "OSC-004",
+        "turns": 14,
+        "unit": 0,
+        "verdict": "PASS",
+        "window": [
+          9,
+          22
+        ]
+      },
+      {
+        "base_benched_turns_per_gate_bench": 187,
+        "base_wait_turns": 187,
+        "cand_distinct_commands": [
+          "CHOP 0",
+          "DROP 0",
+          "MOVE 0 2 1",
+          "MOVE 0 2 2",
+          "MOVE 0 3 2",
+          "MOVE 0 4 2"
+        ],
+        "cand_employed_turns": 17,
+        "cand_employment_rate": 0.0909,
+        "cand_wait_turns": 170,
+        "first_employed_command": "turn 14: CHOP 0",
+        "fixture_red_on_this_base": true,
+        "id": "OSC-013",
+        "turns": 187,
+        "unit": 0,
+        "verdict": "PASS",
+        "window": [
+          14,
+          200
+        ]
+      },
+      {
+        "base_benched_turns_per_gate_bench": 194,
+        "base_wait_turns": 194,
+        "cand_distinct_commands": [
+          "CHOP 0",
+          "DROP 0",
+          "MOVE 0 11 0",
+          "MOVE 0 12 0",
+          "MOVE 0 13 0",
+          "WAIT"
+        ],
+        "cand_employed_turns": 7,
+        "cand_employment_rate": 0.0361,
+        "cand_wait_turns": 187,
+        "first_employed_command": "turn 7: CHOP 0",
+        "fixture_red_on_this_base": true,
+        "id": "OSC-017",
+        "turns": 194,
+        "unit": 0,
+        "verdict": "PASS",
+        "window": [
+          7,
+          200
+        ]
+      },
+      {
+        "base_benched_turns_per_gate_bench": 94,
+        "base_wait_turns": 94,
+        "cand_distinct_commands": [
+          "CHOP 0",
+          "DROP 0",
+          "MOVE 0 2 2",
+          "WAIT"
+        ],
+        "cand_employed_turns": 4,
+        "cand_employment_rate": 0.0426,
+        "cand_wait_turns": 90,
+        "first_employed_command": "turn 6: CHOP 0",
+        "fixture_red_on_this_base": true,
+        "id": "OSC-034",
+        "turns": 94,
+        "unit": 0,
+        "verdict": "PASS",
+        "window": [
+          6,
+          99
+        ]
+      }
+    ],
+    "door1": [
+      {
+        "base_benched_turns_per_gate_bench": 0,
+        "base_wait_turns": 3,
+        "cand_distinct_commands": [
+          "CHOP 0",
+          "DROP 0",
+          "MOVE 0 11 1",
+          "MOVE 0 12 1",
+          "MOVE 0 13 1",
+          "WAIT"
+        ],
+        "cand_employed_turns": 11,
+        "cand_employment_rate": 0.7857,
+        "cand_wait_turns": 3,
+        "first_employed_command": "turn 9: CHOP 0",
+        "fixture_red_on_this_base": false,
+        "id": "OSC-004",
+        "turns": 14,
+        "unit": 0,
+        "verdict": "NOT_APPLICABLE_ON_THIS_BASE",
+        "window": [
+          9,
+          22
+        ]
+      },
+      {
+        "base_benched_turns_per_gate_bench": 187,
+        "base_wait_turns": 187,
+        "cand_distinct_commands": [
+          "CHOP 0",
+          "DROP 0",
+          "MOVE 0 2 1",
+          "MOVE 0 2 2",
+          "MOVE 0 3 2",
+          "MOVE 0 4 2"
+        ],
+        "cand_employed_turns": 17,
+        "cand_employment_rate": 0.0909,
+        "cand_wait_turns": 170,
+        "first_employed_command": "turn 14: CHOP 0",
+        "fixture_red_on_this_base": true,
+        "id": "OSC-013",
+        "turns": 187,
+        "unit": 0,
+        "verdict": "PASS",
+        "window": [
+          14,
+          200
+        ]
+      },
+      {
+        "base_benched_turns_per_gate_bench": 194,
+        "base_wait_turns": 194,
+        "cand_distinct_commands": [
+          "CHOP 0",
+          "DROP 0",
+          "MOVE 0 11 0",
+          "MOVE 0 12 0",
+          "MOVE 0 13 0",
+          "WAIT"
+        ],
+        "cand_employed_turns": 7,
+        "cand_employment_rate": 0.0361,
+        "cand_wait_turns": 187,
+        "first_employed_command": "turn 7: CHOP 0",
+        "fixture_red_on_this_base": true,
+        "id": "OSC-017",
+        "turns": 194,
+        "unit": 0,
+        "verdict": "PASS",
+        "window": [
+          7,
+          200
+        ]
+      },
+      {
+        "base_benched_turns_per_gate_bench": 0,
+        "base_wait_turns": 90,
+        "cand_distinct_commands": [
+          "CHOP 0",
+          "DROP 0",
+          "MOVE 0 2 2",
+          "WAIT"
+        ],
+        "cand_employed_turns": 4,
+        "cand_employment_rate": 0.0426,
+        "cand_wait_turns": 90,
+        "first_employed_command": "turn 6: CHOP 0",
+        "fixture_red_on_this_base": false,
+        "id": "OSC-034",
+        "turns": 94,
+        "unit": 0,
+        "verdict": "NOT_APPLICABLE_ON_THIS_BASE",
+        "window": [
+          6,
+          99
+        ]
+      }
+    ]
+  },
+  "fixtures": [
+    "OSC-004",
+    "OSC-013",
+    "OSC-017",
+    "OSC-034"
+  ],
+  "gate": "1-employment",
+  "met": true,
+  "phase": 2,
+  "red_from": "claude_1/picker2/gate1-bench-2026-08-20.json (base arm BENCHED counts)",
+  "rule": "per base: the fixture must be BENCHED on that base per gate_bench (fail-first RED, measured on THAT base, never inherited from the other); the candidate must WAIT on strictly fewer window turns; every own unit must be accounted for on every window turn on both arms",
+  "task": "20260820-pair-selector-anti-benching"
+}

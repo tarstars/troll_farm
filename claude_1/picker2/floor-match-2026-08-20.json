@@ -1,0 +1,71 @@
+{
+  "bases": {
+    "cureC": {
+      "candidate_parent_sha256": "ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1",
+      "compared_config_fields": [
+        "class_mix",
+        "corpus_version",
+        "instrument_invalid_rows",
+        "instrument_version",
+        "liveness_window",
+        "maps",
+        "margin_collapse_threshold",
+        "max_generation_attempts",
+        "opponent_mix",
+        "seeds",
+        "turns"
+      ],
+      "config_differences": [],
+      "excluded_identity_fields": [
+        "bin_cache_dir",
+        "candidate",
+        "games_dir",
+        "notes",
+        "parent",
+        "processes",
+        "run_identity",
+        "task"
+      ],
+      "floor_is_self_judged_parent_of_candidate": true,
+      "floor_sha256": "ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1",
+      "matched": true,
+      "note": "REUSED floor (not re-run tonight)",
+      "result_provenance_differences": []
+    },
+    "door1": {
+      "candidate_parent_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0",
+      "compared_config_fields": [
+        "class_mix",
+        "corpus_version",
+        "instrument_invalid_rows",
+        "instrument_version",
+        "liveness_window",
+        "maps",
+        "margin_collapse_threshold",
+        "max_generation_attempts",
+        "opponent_mix",
+        "seeds",
+        "turns"
+      ],
+      "config_differences": [],
+      "excluded_identity_fields": [
+        "bin_cache_dir",
+        "candidate",
+        "games_dir",
+        "notes",
+        "parent",
+        "processes",
+        "run_identity",
+        "task"
+      ],
+      "floor_is_self_judged_parent_of_candidate": true,
+      "floor_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0",
+      "matched": true,
+      "note": "floor re-run tonight",
+      "result_provenance_differences": []
+    }
+  },
+  "met": true,
+  "phase": 2,
+  "task": "20260820-pair-selector-anti-benching"
+}

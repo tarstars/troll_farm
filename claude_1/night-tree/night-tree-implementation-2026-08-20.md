@@ -84,8 +84,22 @@ publish is a sheet the owner never reads.
       restored runner: suite green
     all controls held
 
-Part 1 is the honest statement of the gap: `origin/main`'s runner, driven to the
-same completed block, records the verdict and stops. Part 2 mutates five
+Part 1 is the honest statement of the gap: the **pre-patch** runner, driven to the
+same completed block, records the verdict and stops.
+
+**Revised 2026-08-20 after codex_1's post-hoc review** (`20260820T152133Z`):
+part 1 originally read the pre-patch source from `origin/main`, a moving ref.
+The moment the patch was deployed to `main` that control stopped being a
+control — it loaded the *patched* runner and silently exercised the new
+session-3 path instead of demonstrating the old stop, so nobody replaying the
+script after deployment could reproduce the claim. It now reads a pinned blob,
+`92264bead9f02a23226baedf90296fe5f301d563` (`cgauto/night_runner.py` at
+`3f189cad^`, identical to `966d0aff`), and asserts that blob contains none of
+the patch's markers and differs from the deployed runner, so a wrong pin fails
+loudly. The temporary directory is now cleaned up instead of being left behind.
+Re-run after the revision: pre-patch control holds, 6/6 mutants killed, runner
+restored, suite green. The lesson is the same one this section is about — a
+control that reads a moving ref is not a control. Part 2 mutates five
 decisions the tree makes and confirms each one is actually guarded — including
 the boundary, which is the whole ruling: **1.315 is NOT in the band** (`< bar`,
 not `<= bar`), and 1.0 IS (`floor <=`).
@@ -111,3 +125,74 @@ not `<= bar`), and 1.0 IS (`floor <=`).
   card fixed; the sheet says so in plain words rather than implying more.
 - No arena action, no resident change, and no owner decision is taken by this
   patch. KEEP/REVERT remains the owner's, on the score with the named costs.
+
+## The night was down when I arrived to deploy — incident 15:06:34Z
+
+Deploying required a quiet window, so I waited for the A3 read to land before
+touching the checkout. It landed at 15:06:19Z and the runner **died four
+seconds later**, `Active: failed`, with a half-finished rebase in its working
+tree. This was not caused by my patch — the crash is in `origin/main`'s runner —
+but it would have recurred at the B5 read tonight, so it is fixed in the same
+delivery.
+
+**Cause, verified from the journal and the tree, not inferred.** The A3 read and
+the B3 submission both succeeded. Publishing them did not: the coordinator had
+pushed two commits to `agent/local_claude_1` (the composed-comparison addendum,
+which appends to the same ledger, and the night-tree card) so the push was
+non-fast-forward; the single `pull --rebase` retry conflicted on the ledger
+(addendum-append vs row-append); the second push was rejected again; and
+`git_publish`'s `RuntimeError` had nothing to catch it. Exit 1 with a live
+rebase and **no HALT block anywhere**. `Restart=on-abnormal` correctly did not
+restart it — a nonzero exit is not "abnormal" to systemd — which is why the
+service sat dead rather than looping.
+
+**Double-submission exposure: none, checked before touching anything.** One
+traceback in the journal, six submissions in the state, no duplicate id. The
+read happened once and the swap happened once.
+
+**Recovery.** Conflict resolved keeping BOTH sides in append order,
+`rebase --continue`, pushed to `agent/local_claude_1` and `main` as `0e4953b4`.
+Nothing was discarded and no history was rewritten beyond the runner's own
+unpushed commit, which is what a rebase is for.
+
+**Three fixes so it cannot recur tonight:**
+
+1. `merge=union` on `local_claude_1/door1-night-*.md` and `door1-vs-old-*.md`.
+   The ledgers are append-only and have two writers; union is the correct
+   driver and keeps both appends.
+2. `git_publish` retries three times with a rebase between each, and **aborts
+   any rebase it cannot settle** — the 15:06Z tree was left mid-rebase, which
+   is what turned a failed push into a stuck checkout.
+3. A publish failure now HALTs fail-closed — block written, committed locally,
+   exit 2 — instead of raising through `main`. `halt(publish=False)` exists for
+   exactly this case: pushing again when pushing is what failed only raises
+   again.
+
+    $ python3 claude_1/night-tree/test_publish_recovery.py
+    Ran 9 tests ... OK
+
+Nine tests, including the collision **reproduced against real git** in a scratch
+repository — coordinator appends upstream, runner appends locally, runner
+rebases — with the control that matters: **without** the union driver that
+rebase conflicts and leaves `<<<<<<<` in the ledger; **with** it, both appends
+survive. `git check-attr merge` is asserted on the real repository too, because
+an attributes line that never resolved a real conflict is a claim, not a
+defence.
+
+## Deployment (VM `compute-vm-4-16-20-ssd-1785607330087`)
+
+    checkout  /home/tarstars/prj/troll_farm-claude_1-lfs on agent/local_claude_1
+    commit    3f189cad, pushed to agent/local_claude_1 AND main
+    identity  sha256 f4f14c61...79816b9, byte-identical to the tested file
+    attrs     git check-attr merge -> union, on BOTH ledger names, in the
+              deployed tree
+    suites    26/26 and 9/9 green run FROM the deployed checkout, not only mine
+    dry-run   python3 cgauto/night_runner.py --state ... --ledger ... --once
+              --dry-run  ->  "not due: 6m elapsed"  (exit 0)
+    service   restarted 15:12:55Z, active (running), Main PID 3658317, unit
+              unchanged (Restart=on-abnormal stands, for the reason above)
+    next read B3 at ~17:01Z; B5, where the tree fires, at ~01:20Z
+
+The restart was taken deliberately in the ~2 h gap immediately after a read and
+its swap, when the state file is settled and no submission is in flight — a
+restart mid-submit is the one thing that could cost the night.

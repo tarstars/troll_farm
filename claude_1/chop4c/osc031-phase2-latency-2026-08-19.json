@@ -1,0 +1,19 @@
+{
+  "_limits": "Measured on this host under no competing load; timing includes the Python referee's own per-turn work, so it OVERSTATES the bot's cost rather than understating it. Three situations, not the full 240-game corpus.",
+  "cureC-floor": {
+    "budget_ms": 50.0,
+    "max_ms": 0.0911,
+    "median_ms": 0.0327,
+    "met": true,
+    "p95_ms": 0.0407,
+    "warm_turns": 570
+  },
+  "door1-candidate": {
+    "budget_ms": 50.0,
+    "max_ms": 0.1139,
+    "median_ms": 0.0352,
+    "met": true,
+    "p95_ms": 0.0596,
+    "warm_turns": 570
+  }
+}

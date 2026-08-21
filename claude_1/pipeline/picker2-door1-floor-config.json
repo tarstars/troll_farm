@@ -1,0 +1,92 @@
+{
+  "bin_cache_dir": "/tmp/claude-1000/-home-tarstars-prj-troll-farm-claude-1/picker2/bin",
+  "candidate": {
+    "crate": "ps2_door1_floor_seat_a",
+    "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0",
+    "source": "../../claude_1/chop4c/candidate-door1.rs"
+  },
+  "class_mix": {
+    "choke_corridor": 0.25,
+    "forest_dense": 0.08,
+    "forest_sparse": 0.07,
+    "multi_door": 0.1,
+    "open_field": 0.15,
+    "orchard_eligible": 0.1,
+    "single_door_tent": 0.1,
+    "water_diagonal": 0.15
+  },
+  "corpus_version": "c5-two-player-phase-merged-2026-08-11",
+  "games_dir": "/tmp/claude-1000/-home-tarstars-prj-troll-farm-claude-1/picker2/games-door1-floor",
+  "instrument_invalid_rows": [
+    {
+      "corpus_version": "c4-engine-conformant-referee-2026-08-10",
+      "eligible_for_calibration": false,
+      "map_id": "*",
+      "reason": "The c4 referee applied only the candidate's phases and then let a scripted policy mutate opponent units directly (review B2), read only the candidate's execution status when rendering the aggregate (B3), and stripped/capped the raw command evidence (B4). Opponent-sensitive detector, score and margin evidence came from a world transition engine.rs::step cannot produce.",
+      "seat": -1,
+      "status": "instrument_invalid"
+    },
+    {
+      "corpus_version": "c1-silent-train-2026-08-09",
+      "eligible_for_calibration": false,
+      "map_id": "m040",
+      "reason": "The c1 referee silently discarded TRAIN and MINE. m040 seat 0 emitted TRAIN on 166 of 200 turns because the own worker count never rose, and the game still scored CLEAN (D-1..D-9 all zero). The row measured a world that never happened.",
+      "seat": 0,
+      "status": "instrument_invalid"
+    },
+    {
+      "corpus_version": "c1-silent-train-2026-08-09",
+      "eligible_for_calibration": false,
+      "map_id": "m040",
+      "reason": "As seat 0: TRAIN emitted on 182 of 200 turns under the c1 silent dispatcher, scored CLEAN.",
+      "seat": 1,
+      "status": "instrument_invalid"
+    },
+    {
+      "corpus_version": "c2-train-repair-2026-08-09",
+      "eligible_for_calibration": false,
+      "map_id": "*",
+      "reason": "The c2 referee derived TRAIN legality from MoisanBot::can_train (a bot's self-restraint) rather than engine.rs::apply_train, so it forbade what the engine permits.",
+      "seat": -1,
+      "status": "instrument_invalid"
+    },
+    {
+      "corpus_version": "c3-train-engine-authority-2026-08-09",
+      "eligible_for_calibration": false,
+      "map_id": "*",
+      "reason": "The c3 referee executed command fragments in textual order with only TRAIN repositioned, kept the inherited silent dispatcher for MOVE/HARVEST/PLANT/CHOP/PICK/DROP, and coerced malformed TRAIN talents to zero. Rejected by chatgpt_1/referee-train-repair-r2-review-2026-08-10.md (blockers B1-B11).",
+      "seat": -1,
+      "status": "instrument_invalid"
+    }
+  ],
+  "instrument_version": "fuzz-panel/5-two-player-phase-merged-referee",
+  "liveness_window": 60,
+  "maps": 120,
+  "margin_collapse_threshold": 100,
+  "max_generation_attempts": 64,
+  "notes": [
+    "THE MATCHED FLOOR for the door-1 base. Runs 547fa706 against ITSELF over the identical 240-game corpus the door-1 candidate config uses. Its blocking count is the instrument's own baseline on this base."
+  ],
+  "opponent_mix": {
+    "chopper_aggressor": 0.3,
+    "harvester": 0.4,
+    "idle": 0.3
+  },
+  "parent": {
+    "crate": "ps2_door1_floor_seat_b",
+    "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0",
+    "source": "../../claude_1/chop4c/candidate-door1.rs"
+  },
+  "processes": 8,
+  "run_identity": "floor",
+  "seeds": [
+    982451653,
+    15485863,
+    32452843,
+    49979687,
+    67867967,
+    86028121
+  ],
+  "task": "20260820-pair-selector-anti-benching Phase-2 panel FLOOR (door-1 547fa706 judged against itself)",
+  "turns": 200
+}

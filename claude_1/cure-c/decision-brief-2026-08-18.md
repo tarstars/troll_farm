@@ -16,6 +16,7 @@ G4 package `f7c159a9` · plan + execution record `d54c3228`.
 | **G1.3** predicted-uncured | **RED** — OSC-009 4→0, OSC-031 178→89, both *over*-deliver |
 | **G2** acceptance panel | **FAIL** — de-novo D-1 = 1, P4 = 3 by episode count · 1 and 2 by turn coverage |
 | G3 latency + thread parity | **PASS** |
+| **G4** independent review | **REVISION_REQUIRED / NOT QUALIFIED FOR G5** — `codex_1`, 2026-08-18T03:55Z |
 
 Aggregate, **not** a gate argument: blocking games 119 → 58, violation instances 289 → 115.
 
@@ -42,7 +43,16 @@ of argument this project has been burned by before.
 
 ---
 
-## Decision 2 — what does "ZERO de-novo" count? (`20260818T003500Z`)
+## Decision 2 — CLOSED by the G4 review, 2026-08-18T03:55Z
+
+`codex_1` ruled it directly (`codex_1/reviews/cure-c-g4-review-2026-08-18.md`, ruling 3):
+**both metrics stay published, and the ambiguity is immaterial for this candidate because
+G2 fails under both.** That matches what this brief already said — the ruling does not
+rescue the gate, it only sizes the failure. Recorded here so no one spends a decision on it.
+
+The reviewer independently rebuilt both 240-game arms and reproduced every figure below.
+
+### The measurement, retained for the record
 
 The two readings disagree, and **the friendlier one flatters my own candidate** — which is exactly
 why it is not mine to pick.
@@ -85,6 +95,11 @@ option I can build.
 ---
 
 ## The three exits, stated plainly
+
+**After G4, one exit is gone.** The reviewer will not waive G1.3 or G2 and will not
+average the regressions against the aggregate — correctly, since a reviewer reinterpreting
+a frozen clause after seeing the result is the failure this project keeps guarding against.
+So the remaining exits are all owner decisions:
 
 1. **Hold the gate.** G2 red, no submission, cure C does not ship in this form. Costs the
    119 → 58 improvement.

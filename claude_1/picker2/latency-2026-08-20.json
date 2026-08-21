@@ -1,0 +1,81 @@
+{
+  "_limits": "Repeated measurements on this host, on four situations rather than the 240-game corpus; the timing includes the Python referee's own per-turn work, so it OVERSTATES the bot's cost rather than understating it. The candidate and base arms play DIFFERENT games after P1 diverges, so the delta is a comparison of two trajectories, not of the same turns.",
+  "cureC-base": {
+    "budget_ms": 50.0,
+    "max_ms": 6.5261,
+    "median_ms_median_of_draws": 0.0736,
+    "met": true,
+    "p95_ms_max": 2.4806,
+    "p95_ms_median_of_draws": 0.1486,
+    "p95_ms_min": 0.0748,
+    "p95_ms_per_draw": [
+      0.1773,
+      0.1486,
+      0.0748,
+      0.0772,
+      2.4806
+    ],
+    "repeats": 5,
+    "warm_turns": 760
+  },
+  "cureC-p1p2": {
+    "base_arm_p95_noise_span_ms": 2.4058,
+    "budget_ms": 50.0,
+    "delta_exceeds_base_noise_span": false,
+    "max_ms": 0.2408,
+    "median_ms_median_of_draws": 0.0641,
+    "met": true,
+    "p95_delta_vs_base_ms": -0.0211,
+    "p95_ms_max": 0.1561,
+    "p95_ms_median_of_draws": 0.1276,
+    "p95_ms_min": 0.075,
+    "p95_ms_per_draw": [
+      0.075,
+      0.1292,
+      0.1276,
+      0.1213,
+      0.1561
+    ],
+    "repeats": 5,
+    "warm_turns": 760
+  },
+  "door1-base": {
+    "budget_ms": 50.0,
+    "max_ms": 0.2661,
+    "median_ms_median_of_draws": 0.0593,
+    "met": true,
+    "p95_ms_max": 0.1683,
+    "p95_ms_median_of_draws": 0.0889,
+    "p95_ms_min": 0.0751,
+    "p95_ms_per_draw": [
+      0.0889,
+      0.0852,
+      0.0751,
+      0.1683,
+      0.1192
+    ],
+    "repeats": 5,
+    "warm_turns": 760
+  },
+  "door1-p1p2": {
+    "base_arm_p95_noise_span_ms": 0.0931,
+    "budget_ms": 50.0,
+    "delta_exceeds_base_noise_span": false,
+    "max_ms": 3.171,
+    "median_ms_median_of_draws": 0.0664,
+    "met": true,
+    "p95_delta_vs_base_ms": 0.0396,
+    "p95_ms_max": 0.2107,
+    "p95_ms_median_of_draws": 0.1285,
+    "p95_ms_min": 0.0765,
+    "p95_ms_per_draw": [
+      0.1235,
+      0.1285,
+      0.0765,
+      0.1349,
+      0.2107
+    ],
+    "repeats": 5,
+    "warm_turns": 760
+  }
+}

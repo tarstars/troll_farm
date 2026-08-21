@@ -275,7 +275,11 @@ def cross_task_reference_errors(
     return errors
 
 
-DEFERRED_LINE_RE = re.compile(r"^DEFERRED:", re.MULTILINE)
+# One definition of the marker, shared with the reader side: the lint gates
+# the deferral SHAPE on publication and `inbox_sweep.is_deferral_card`
+# reads the same shape back as the one actionable self-mail route. Two
+# copies could drift into a card that lints clean and never wakes anyone.
+DEFERRED_LINE_RE = inbox_sweep.DEFERRED_LINE_RE
 
 
 def deferral_shape_errors(msg: "inbox_sweep.Message") -> list[str]:

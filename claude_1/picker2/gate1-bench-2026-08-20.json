@@ -1,0 +1,323 @@
+{
+  "arms": {
+    "cureC-base": {
+      "arm": "base",
+      "p1_clause_live": true,
+      "p1_pairs_dropped_total": 0,
+      "situations": [
+        {
+          "counts": {
+            "BENCHED": 12,
+            "EMPLOYED": 2
+          },
+          "id": "OSC-004",
+          "p1_pairs_dropped": 0,
+          "turn_blocks": 200,
+          "unit": 0,
+          "window": [
+            9,
+            22
+          ]
+        },
+        {
+          "counts": {
+            "BENCHED": 187
+          },
+          "id": "OSC-013",
+          "p1_pairs_dropped": 0,
+          "turn_blocks": 200,
+          "unit": 0,
+          "window": [
+            14,
+            200
+          ]
+        },
+        {
+          "counts": {
+            "BENCHED": 194
+          },
+          "id": "OSC-017",
+          "p1_pairs_dropped": 0,
+          "turn_blocks": 200,
+          "unit": 0,
+          "window": [
+            7,
+            200
+          ]
+        },
+        {
+          "counts": {
+            "BENCHED": 94
+          },
+          "id": "OSC-034",
+          "p1_pairs_dropped": 0,
+          "turn_blocks": 200,
+          "unit": 0,
+          "window": [
+            6,
+            99
+          ]
+        }
+      ],
+      "source": "cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs",
+      "source_sha256": "ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1"
+    },
+    "cureC-p1p2": {
+      "arm": "p1p2",
+      "p1_clause_live": true,
+      "p1_pairs_dropped_total": 12,
+      "situations": [
+        {
+          "counts": {
+            "EMPLOYED": 11,
+            "IDLE_NO_WORK_OFFERED": 3
+          },
+          "id": "OSC-004",
+          "p1_pairs_dropped": 3,
+          "turn_blocks": 200,
+          "unit": 0,
+          "window": [
+            9,
+            22
+          ]
+        },
+        {
+          "counts": {
+            "EMPLOYED": 17,
+            "IDLE_NO_WORK_OFFERED": 170
+          },
+          "id": "OSC-013",
+          "p1_pairs_dropped": 5,
+          "turn_blocks": 200,
+          "unit": 0,
+          "window": [
+            14,
+            200
+          ]
+        },
+        {
+          "counts": {
+            "EMPLOYED": 7,
+            "IDLE_NO_WORK_OFFERED": 187
+          },
+          "id": "OSC-017",
+          "p1_pairs_dropped": 3,
+          "turn_blocks": 200,
+          "unit": 0,
+          "window": [
+            7,
+            200
+          ]
+        },
+        {
+          "counts": {
+            "EMPLOYED": 4,
+            "IDLE_NO_WORK_OFFERED": 90
+          },
+          "id": "OSC-034",
+          "p1_pairs_dropped": 1,
+          "turn_blocks": 200,
+          "unit": 0,
+          "window": [
+            6,
+            99
+          ]
+        }
+      ],
+      "source": "claude_1/picker2/candidate-cureC-p1p2.rs",
+      "source_sha256": "d127cf861ad7f145e5693b0a595bcc8e3c870f424926b18bdbb3debec80b0412"
+    },
+    "door1-base": {
+      "arm": "base",
+      "p1_clause_live": true,
+      "p1_pairs_dropped_total": 0,
+      "situations": [
+        {
+          "counts": {
+            "EMPLOYED": 11,
+            "IDLE_NO_WORK_OFFERED": 3
+          },
+          "id": "OSC-004",
+          "p1_pairs_dropped": 0,
+          "turn_blocks": 200,
+          "unit": 0,
+          "window": [
+            9,
+            22
+          ]
+        },
+        {
+          "counts": {
+            "BENCHED": 187
+          },
+          "id": "OSC-013",
+          "p1_pairs_dropped": 0,
+          "turn_blocks": 200,
+          "unit": 0,
+          "window": [
+            14,
+            200
+          ]
+        },
+        {
+          "counts": {
+            "BENCHED": 194
+          },
+          "id": "OSC-017",
+          "p1_pairs_dropped": 0,
+          "turn_blocks": 200,
+          "unit": 0,
+          "window": [
+            7,
+            200
+          ]
+        },
+        {
+          "counts": {
+            "EMPLOYED": 4,
+            "IDLE_NO_WORK_OFFERED": 90
+          },
+          "id": "OSC-034",
+          "p1_pairs_dropped": 0,
+          "turn_blocks": 200,
+          "unit": 0,
+          "window": [
+            6,
+            99
+          ]
+        }
+      ],
+      "source": "claude_1/chop4c/candidate-door1.rs",
+      "source_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+    },
+    "door1-p1p2": {
+      "arm": "p1p2",
+      "p1_clause_live": true,
+      "p1_pairs_dropped_total": 17,
+      "situations": [
+        {
+          "counts": {
+            "EMPLOYED": 11,
+            "IDLE_NO_WORK_OFFERED": 3
+          },
+          "id": "OSC-004",
+          "p1_pairs_dropped": 3,
+          "turn_blocks": 200,
+          "unit": 0,
+          "window": [
+            9,
+            22
+          ]
+        },
+        {
+          "counts": {
+            "EMPLOYED": 17,
+            "IDLE_NO_WORK_OFFERED": 170
+          },
+          "id": "OSC-013",
+          "p1_pairs_dropped": 9,
+          "turn_blocks": 200,
+          "unit": 0,
+          "window": [
+            14,
+            200
+          ]
+        },
+        {
+          "counts": {
+            "EMPLOYED": 7,
+            "IDLE_NO_WORK_OFFERED": 187
+          },
+          "id": "OSC-017",
+          "p1_pairs_dropped": 3,
+          "turn_blocks": 200,
+          "unit": 0,
+          "window": [
+            7,
+            200
+          ]
+        },
+        {
+          "counts": {
+            "EMPLOYED": 4,
+            "IDLE_NO_WORK_OFFERED": 90
+          },
+          "id": "OSC-034",
+          "p1_pairs_dropped": 2,
+          "turn_blocks": 200,
+          "unit": 0,
+          "window": [
+            6,
+            99
+          ]
+        }
+      ],
+      "source": "claude_1/picker2/candidate-door1-p1p2.rs",
+      "source_sha256": "5e1f4df406480f678ff03677cdda0f69d510c5c94efe90d4f0a8231b70c3339e"
+    }
+  },
+  "definition": "benched(t) := selector returned WAIT for the anchor unit while that unit's own candidate list held at least one non-WAIT candidate",
+  "fail_first": {
+    "cureC": [
+      {
+        "base_benched": 12,
+        "cand_benched": 0,
+        "id": "OSC-004",
+        "verdict": "REPAIRED"
+      },
+      {
+        "base_benched": 187,
+        "cand_benched": 0,
+        "id": "OSC-013",
+        "verdict": "REPAIRED"
+      },
+      {
+        "base_benched": 194,
+        "cand_benched": 0,
+        "id": "OSC-017",
+        "verdict": "REPAIRED"
+      },
+      {
+        "base_benched": 94,
+        "cand_benched": 0,
+        "id": "OSC-034",
+        "verdict": "REPAIRED"
+      }
+    ],
+    "door1": [
+      {
+        "base_benched": 0,
+        "cand_benched": 0,
+        "id": "OSC-004",
+        "verdict": "NOT_RED_ON_THIS_BASE"
+      },
+      {
+        "base_benched": 187,
+        "cand_benched": 0,
+        "id": "OSC-013",
+        "verdict": "REPAIRED"
+      },
+      {
+        "base_benched": 194,
+        "cand_benched": 0,
+        "id": "OSC-017",
+        "verdict": "REPAIRED"
+      },
+      {
+        "base_benched": 0,
+        "cand_benched": 0,
+        "id": "OSC-034",
+        "verdict": "NOT_RED_ON_THIS_BASE"
+      }
+    ]
+  },
+  "gate": "1-benched",
+  "gates": [
+    "parity vs regression_tests.run_binary_custom on the uninstrumented arm",
+    "one PS2TURN block per window turn, no gaps or duplicates",
+    "P1 clause observed firing on each candidate arm"
+  ],
+  "instrument_live": true,
+  "phase": 2,
+  "task": "20260820-pair-selector-anti-benching"
+}

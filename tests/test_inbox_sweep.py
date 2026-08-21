@@ -164,6 +164,7 @@ def v2_message(
     supersedes: tuple[str, ...] = (),
     extra_fields: dict[str, str] | None = None,
     overrides: dict[str, str] | None = None,
+    body: str = "# body",
 ) -> str:
     if requires_ack is None:
         requires_ack = kind in inbox_sweep.ACK_REQUIRED_KINDS
@@ -182,7 +183,7 @@ def v2_message(
     }
     fields.update(extra_fields or {})
     fields.update(overrides or {})
-    lines = ["---"] + [f"{k}: {v}" for k, v in fields.items()] + ["---", "", "# body", ""]
+    lines = ["---"] + [f"{k}: {v}" for k, v in fields.items()] + ["---", "", body, ""]
     return "\n".join(lines)
 
 
@@ -1585,3 +1586,241 @@ def test_to_recipient_still_owes_ack(repo):
                       to=ME, requires_ack=True)
     result = repo.sweep("--me", ME)
     assert path in _section_paths(result.stdout, "unacknowledged, ack required")
+
+
+# ---------------------------------------------------------------------------
+# `main()` and `actionable_set()` must be ONE predicate (ruling 2026-08-21).
+#
+# The sentinel that wakes agents on work reads `actionable_set()`. If it can
+# disagree with the sweep the agents actually read, it is worse than no
+# sentinel: it wakes on work the sweep does not show, or stays silent on work
+# it does. These tests pin the two to the same answer on the same repository,
+# including under the display filters, so the extraction cannot drift apart
+# later.
+# ---------------------------------------------------------------------------
+
+def _busy_inbox(repo: TransportRepo) -> dict[str, str]:
+    """Publish an inbox with every actionability outcome represented."""
+    published = {}
+    published["unacked"] = publish_v2(
+        repo, PEER, "20260808T100000Z", "task-a", "policy", to=ME, requires_ack=True
+    )
+    published["acked"] = publish_v2(
+        repo, PEER, "20260808T100100Z", "task-a", "question", to=ME, requires_ack=True
+    )
+    publish_v2(
+        repo, ME, "20260808T100200Z", "task-a", "ack", to=PEER,
+        ack_for=(published["acked"],),
+    )
+    published["no_ack_owed"] = publish_v2(
+        repo, THIRD, "20260808T100300Z", "task-b", "progress", to=ME
+    )
+    published["cc_only"] = publish_v2(
+        repo, THIRD, "20260808T100400Z", "task-b", "policy", to="someone_else",
+        requires_ack=True, overrides={"cc": f'["{ME}"]'},
+    )
+    published["not_mine"] = publish_v2(
+        repo, THIRD, "20260808T100500Z", "task-c", "policy", to=PEER,
+        requires_ack=True,
+    )
+    return published
+
+
+def _listed_paths(stdout: str, label: str) -> list[str]:
+    """The message paths a section printed, without their `[ref]` suffix."""
+    return sorted(
+        line.split()[0] for line in _section_paths(stdout, label).splitlines() if line.strip()
+    )
+
+
+def _state(repo: TransportRepo, monkeypatch, *, tasks=(), senders=()):
+    monkeypatch.chdir(repo.work)
+    return inbox_sweep.actionable_set(ME, repo.work, tasks, senders)
+
+
+def test_actionable_set_agrees_with_main_on_a_busy_inbox(repo, monkeypatch):
+    published = _busy_inbox(repo)
+
+    result = repo.sweep("--me", ME)
+    state = _state(repo, monkeypatch)
+
+    assert result.returncode == 1
+    assert [m.path for m in state.new_items] == _listed_paths(
+        result.stdout, "new (unseen)"
+    )
+    assert [m.path for m in state.unacked] == _listed_paths(
+        result.stdout, "unacknowledged, ack required"
+    )
+    # …and the answer is the substantive one, not two identical empties.
+    assert state.unacked and [m.path for m in state.unacked] == [published["unacked"]]
+    assert published["not_mine"] not in state.actionable_paths
+    assert published["cc_only"] in {m.path for m in state.new_items}
+    assert published["cc_only"] not in {m.path for m in state.unacked}
+    assert state.is_actionable and not state.transport_broken
+
+
+def test_actionable_set_agrees_with_main_after_mark_and_under_filters(
+    repo, monkeypatch
+):
+    published = _busy_inbox(repo)
+
+    marked = repo.sweep("--me", ME, "--mark")
+    assert marked.returncode == 1
+
+    # Marked: nothing is new any more, but the ack is still owed — so the
+    # sentinel must still consider this agent actionable.
+    state = _state(repo, monkeypatch)
+    after = repo.sweep("--me", ME)
+    assert counts(after.stdout)["new (unseen)"] == 0
+    assert state.new_items == []
+    assert [m.path for m in state.unacked] == [published["unacked"]]
+    assert state.is_actionable
+
+    # Filters move the selection identically on both paths (transport rule 6).
+    filtered_state = _state(repo, monkeypatch, tasks=("task-b",))
+    filtered = repo.sweep("--me", ME, "--task", "task-b")
+    assert filtered.returncode == 0
+    assert filtered_state.unacked == []
+    assert not filtered_state.is_actionable
+    assert [m.path for m in filtered_state.selection] == sorted(
+        [published["no_ack_owed"], published["cc_only"]]
+    )
+
+    sender_state = _state(repo, monkeypatch, senders=(THIRD,))
+    sender_cli = repo.sweep("--me", ME, "--sender", THIRD)
+    assert sender_cli.returncode == 0
+    assert [m.path for m in sender_state.selection] == sorted(
+        [published["no_ack_owed"], published["cc_only"]]
+    )
+
+
+def test_actionable_set_reports_a_broken_transport_as_actionable(repo, monkeypatch):
+    # Same path published with different bytes on two authoritative refs.
+    path = publish_v2(repo, PEER, "20260808T110000Z", "task-a", "policy", to=ME)
+    repo.commit(
+        f"agent/{THIRD}",
+        {path: v2_message(path, kind="policy", task="task-a", sender=PEER, to=ME)
+             + "\ndivergent\n"},
+    )
+
+    result = repo.sweep("--me", ME)
+    state = _state(repo, monkeypatch)
+
+    assert result.returncode == 2
+    assert state.transport_broken and state.is_actionable
+    assert [p for p, _ in state.collisions] == [path]
+
+
+def test_actionable_set_raises_sweep_failure_where_main_exits_2(repo, monkeypatch):
+    publish_v2(repo, PEER, "20260808T120000Z", "task-a", "policy", to=ME)
+    write_seen_state_file(repo, {"seen_message_paths": []})  # no schema_version
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 2
+
+    monkeypatch.chdir(repo.work)
+    with pytest.raises(inbox_sweep.SweepFailure):
+        inbox_sweep.actionable_set(ME, repo.work)
+
+
+# ---------------------------------------------------------------------------
+# Self-addressed DEFERRED cards: the one self-mail route that is actionable
+#
+# The deferral rule (owner-adopted 2026-08-18) says a postponed job must BE a
+# queue item: `requires_ack: true`, self-addressed, so the deferring agent's
+# next sweep surfaces it. That was prose, not mechanism — `actionable_set()`
+# dropped every self-authored message before addressing could matter, so two of
+# claude_1's wakes reported "queue drained" with live cards outstanding, and the
+# sweep agreed. codex_1 reproduced it in the shared predicate and made the
+# repair blocking (card-2 review, 2026-08-21): the replacement-card route must
+# become visible while ORDINARY self-mail stays inert.
+# ---------------------------------------------------------------------------
+
+DEFERRAL_BODY = (
+    "# DEFERRED card — the postponed job\n\n"
+    "DEFERRED: the instrument, postponed to my next wake.\n"
+)
+
+
+def publish_deferral_card(repo: TransportRepo, sender: str, stamp: str,
+                          task: str, **kwargs) -> str:
+    """A shape-valid deferral: DEFERRED: marker, requires_ack, self-addressed."""
+    return publish_v2(
+        repo, sender, stamp, task, "blocker",
+        to=sender, requires_ack=True, body=DEFERRAL_BODY, **kwargs
+    )
+
+
+def test_self_addressed_deferral_card_is_actionable_for_its_own_owner(repo, monkeypatch):
+    monkeypatch.chdir(repo.work)
+    publish_roster(repo)
+    card = publish_deferral_card(repo, ME, "20260821T060000Z", "task-deferred")
+
+    state = inbox_sweep.actionable_set(ME, repo.work)
+
+    assert card in state.actionable_paths, (
+        "a self-addressed DEFERRED card is invisible to the agent it is the "
+        "queue item for"
+    )
+    assert card in {m.path for m in state.unacked}, (
+        "the card must stay outstanding until it is discharged, not merely "
+        "until it is read once"
+    )
+    assert card not in {m.path for m in state.new_items}, (
+        "an agent has read what it wrote; routing its own card through 'new' "
+        "would let a single --mark retire a job that is still undone"
+    )
+
+
+def test_ordinary_self_addressed_mail_is_not_actionable(repo, monkeypatch):
+    """The negative control: only the DEFERRED route opens, not all self-mail."""
+    monkeypatch.chdir(repo.work)
+    publish_roster(repo)
+    plain = publish_v2(
+        repo, ME, "20260821T060100Z", "task-plain", "blocker",
+        to=ME, requires_ack=True,
+    )
+
+    state = inbox_sweep.actionable_set(ME, repo.work)
+
+    assert plain not in state.actionable_paths, (
+        "ordinary self-mail became actionable; an agent must not be able to "
+        "put arbitrary work in its own queue by writing to itself"
+    )
+
+
+def test_a_deferral_card_addressed_only_to_a_peer_stays_out_of_my_queue(repo, monkeypatch):
+    """Shape alone is not the ticket: the card must be addressed to me."""
+    monkeypatch.chdir(repo.work)
+    publish_roster(repo)
+    card = publish_v2(
+        repo, ME, "20260821T060200Z", "task-peer", "blocker",
+        to=PEER, requires_ack=True, body=DEFERRAL_BODY,
+    )
+
+    state = inbox_sweep.actionable_set(ME, repo.work)
+
+    assert card not in state.actionable_paths
+
+
+def test_self_addressed_deferral_card_is_discharged_by_its_delivery_handoff(repo, monkeypatch):
+    monkeypatch.chdir(repo.work)
+    publish_roster(repo)
+    card = publish_deferral_card(repo, ME, "20260821T060300Z", "task-deferred")
+    assert card in inbox_sweep.actionable_set(ME, repo.work).actionable_paths
+
+    commit = repo.tips[f"agent/{ME}"]
+    delivery = publish_v2(
+        repo, ME, "20260821T070000Z", "task-deferred", "handoff",
+        to=PEER, ack_for=(card,),
+        extra_fields=handoff_fields(f"agent/{ME}", commit, [card]),
+    )
+
+    state = inbox_sweep.actionable_set(ME, repo.work)
+
+    assert card not in state.actionable_paths, (
+        "the delivery handoff naming the card in ack_for did not discharge it"
+    )
+    assert delivery not in state.actionable_paths, (
+        "my own delivery handoff is not work for me"
+    )

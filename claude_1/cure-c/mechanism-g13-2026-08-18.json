@@ -1,0 +1,200 @@
+{
+  "surprises": [
+    {
+      "situation": "OSC-009",
+      "predicted_residual": 4,
+      "resident_no_goal_turns": 4,
+      "candidate_no_goal_turns": 0,
+      "observed_residual": 0,
+      "matched_prediction": false,
+      "resident_no_goal_branches": [
+        "ENDGAME"
+      ],
+      "registry_said_endgame_only": "all 4 turns are ENDGAME-branch; C alters only the non-endgame fall-through and never runs",
+      "first_no_goal_turn": 80,
+      "first_divergent_turn": 1,
+      "diverges_before_first_no_goal": true,
+      "predivergence_same_state_cured": 0,
+      "predivergence_examples": [],
+      "postdivergence_cured_pairs": 4,
+      "postdivergence_note": "turn/unit pairs matched after divergence are NOT the same world; they cannot distinguish the two mechanisms and are excluded from the verdict",
+      "window": [
+        77,
+        83
+      ],
+      "seed_search_visible": false,
+      "seed_search_limit": "divergence at turn 1 precedes the window [77, 83]; the classifier records no rows there, so the seed is NOT OBSERVABLE with this instrument \u2014 absence of a seed here is a limit of the probe, not evidence that none exists",
+      "divergence_seed": [],
+      "resident_no_goal_turns_became": {
+        "CANNOT_USE_WORK": 4
+      },
+      "mechanism": "M-TRAJ"
+    },
+    {
+      "situation": "OSC-031",
+      "predicted_residual": 178,
+      "resident_no_goal_turns": 189,
+      "candidate_no_goal_turns": 89,
+      "observed_residual": 89,
+      "matched_prediction": false,
+      "resident_no_goal_branches": [
+        "ENDGAME",
+        "MAIN"
+      ],
+      "registry_said_endgame_only": "167 fruitless-board turns reach the explicit WAIT tail with C behaving exactly as specified; the chop-side rejection is the unresolved residue",
+      "first_no_goal_turn": 11,
+      "first_divergent_turn": 18,
+      "diverges_before_first_no_goal": false,
+      "predivergence_same_state_cured": 1,
+      "predivergence_examples": [
+        {
+          "turn": 18,
+          "unit": 0,
+          "res_branch": "MAIN",
+          "cand_branch": "MAIN",
+          "cand_gen": [
+            "WAIT",
+            "MOVE"
+          ],
+          "cand_final": "WAIT"
+        }
+      ],
+      "postdivergence_cured_pairs": 99,
+      "postdivergence_note": "turn/unit pairs matched after divergence are NOT the same world; they cannot distinguish the two mechanisms and are excluded from the verdict",
+      "window": [
+        11,
+        200
+      ],
+      "seed_search_visible": true,
+      "seed_search_limit": null,
+      "divergence_seed": [
+        {
+          "turn": 18,
+          "unit": 0,
+          "res_branch": "MAIN",
+          "cand_branch": "MAIN",
+          "res_gen": [
+            "WAIT"
+          ],
+          "cand_gen": [
+            "WAIT",
+            "MOVE"
+          ],
+          "res_final": "WAIT",
+          "cand_final": "WAIT"
+        }
+      ],
+      "resident_no_goal_turns_became": {
+        "NO_GOAL_ASSIGNED": 89,
+        "GOAL_SPLIT_WRONG": 6,
+        "CANNOT_USE_WORK": 94
+      },
+      "mechanism": "M-SEEDED-TRAJ"
+    }
+  ],
+  "controls": [
+    {
+      "situation": "OSC-001",
+      "predicted_residual": 13,
+      "resident_no_goal_turns": 16,
+      "candidate_no_goal_turns": 13,
+      "observed_residual": 13,
+      "matched_prediction": true,
+      "resident_no_goal_branches": [
+        "ENDGAME",
+        "MAIN"
+      ],
+      "registry_said_endgame_only": "12 turns are ENDGAME-branch; opponent occupancy declines most of the rest",
+      "first_no_goal_turn": 49,
+      "first_divergent_turn": null,
+      "diverges_before_first_no_goal": false,
+      "predivergence_same_state_cured": 3,
+      "predivergence_examples": [
+        {
+          "turn": 49,
+          "unit": 2,
+          "res_branch": "MAIN",
+          "cand_branch": "MAIN",
+          "cand_gen": [
+            "WAIT",
+            "MOVE"
+          ],
+          "cand_final": "WAIT"
+        },
+        {
+          "turn": 55,
+          "unit": 2,
+          "res_branch": "MAIN",
+          "cand_branch": "MAIN",
+          "cand_gen": [
+            "WAIT",
+            "MOVE"
+          ],
+          "cand_final": "WAIT"
+        },
+        {
+          "turn": 61,
+          "unit": 2,
+          "res_branch": "MAIN",
+          "cand_branch": "MAIN",
+          "cand_gen": [
+            "WAIT",
+            "MOVE"
+          ],
+          "cand_final": "WAIT"
+        }
+      ],
+      "postdivergence_cured_pairs": 0,
+      "postdivergence_note": "turn/unit pairs matched after divergence are NOT the same world; they cannot distinguish the two mechanisms and are excluded from the verdict",
+      "window": [
+        6,
+        200
+      ],
+      "seed_search_visible": false,
+      "seed_search_limit": "divergence at turn None precedes the window [6, 200]; the classifier records no rows there, so the seed is NOT OBSERVABLE with this instrument \u2014 absence of a seed here is a limit of the probe, not evidence that none exists",
+      "divergence_seed": [],
+      "resident_no_goal_turns_became": {
+        "GOAL_SPLIT_WRONG": 3,
+        "NO_GOAL_ASSIGNED": 13
+      },
+      "mechanism": "UNDETERMINED"
+    },
+    {
+      "situation": "OSC-005",
+      "predicted_residual": 1,
+      "resident_no_goal_turns": 1,
+      "candidate_no_goal_turns": 1,
+      "observed_residual": 1,
+      "matched_prediction": true,
+      "resident_no_goal_branches": [
+        "MAIN"
+      ],
+      "registry_said_endgame_only": "unit at full capacity returns at :1185, before the :1189 door C rewrites",
+      "first_no_goal_turn": 17,
+      "first_divergent_turn": null,
+      "diverges_before_first_no_goal": false,
+      "predivergence_same_state_cured": 0,
+      "predivergence_examples": [],
+      "postdivergence_cured_pairs": 0,
+      "postdivergence_note": "turn/unit pairs matched after divergence are NOT the same world; they cannot distinguish the two mechanisms and are excluded from the verdict",
+      "window": [
+        7,
+        18
+      ],
+      "seed_search_visible": false,
+      "seed_search_limit": "divergence at turn None precedes the window [7, 18]; the classifier records no rows there, so the seed is NOT OBSERVABLE with this instrument \u2014 absence of a seed here is a limit of the probe, not evidence that none exists",
+      "divergence_seed": [],
+      "resident_no_goal_turns_became": {
+        "NO_GOAL_ASSIGNED": 1
+      },
+      "mechanism": "UNDETERMINED"
+    }
+  ],
+  "control_verdict": {
+    "surprises_claiming_M-TRAJ": [
+      "OSC-009"
+    ],
+    "controls_with_same_signature": [],
+    "discriminates": true
+  }
+}

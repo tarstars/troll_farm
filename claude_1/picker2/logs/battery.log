@@ -1,0 +1,288 @@
+  RUN      build (one generator, two subjects, identical patch)
+  cureC  base ad3bfefe4b2326f4…  ->  candidate d127cf861ad7f145…  32 changed lines  claude_1/picker2/candidate-cureC-p1p2.rs
+  door1  base 547fa706cc1c684a…  ->  candidate 5e1f4df406480f67…  32 changed lines  claude_1/picker2/candidate-door1-p1p2.rs
+  generated diff body identical across bases: YES (sha256 af8f710ce50336e3… vs af8f710ce50336e3…)
+    hunk offsets (excluded from the comparison, shown not hidden): cureC ['@@ -662,8 +662,27 @@', '@@ -675,14 +694,20 @@', '@@ -1397,6 +1422,7 @@', '@@ -1434,7 +1460,7 @@'] vs door1 ['@@ -656,8 +656,27 @@', '@@ -669,14 +688,20 @@', '@@ -1391,6 +1416,7 @@', '@@ -1428,7 +1454,7 @@']
+    patched region select_block   IDENTICAL  sha256=61854e3c7c8ec1fc bytes=5054
+    patched region assembly       IDENTICAL  sha256=298c3fbd6e2761e4 bytes=2619
+  OK       build (one generator, two subjects, identical patch) (exit 0)
+  RUN      probes (both arms, both bases)
+  cureC-base  arm=base  claude_1/picker2/probe-cureC-base.rs  sha256=b9ee39941cb0e4f9…
+  door1-base  arm=base  claude_1/picker2/probe-door1-base.rs  sha256=735fa6c23de50d4c…
+  cureC-p1p2  arm=p1p2  claude_1/picker2/probe-cureC-p1p2.rs  sha256=b5dcdc54a7d799fa…
+  door1-p1p2  arm=p1p2  claude_1/picker2/probe-door1-p1p2.rs  sha256=2128ae51d3fdc881…
+  OK       probes (both arms, both bases) (exit 0)
+  RUN      gate 1a BENCHED — fail-first, parity + coverage + P1 liveness
+  cureC-base  OSC-004  turns  200  {'BENCHED': 12, 'EMPLOYED': 2}  p1drop=0
+  cureC-base  OSC-013  turns  200  {'BENCHED': 187}  p1drop=0
+  cureC-base  OSC-017  turns  200  {'BENCHED': 194}  p1drop=0
+  cureC-base  OSC-034  turns  200  {'BENCHED': 94}  p1drop=0
+  cureC-p1p2  OSC-004  turns  200  {'EMPLOYED': 11, 'IDLE_NO_WORK_OFFERED': 3}  p1drop=3
+  cureC-p1p2  OSC-013  turns  200  {'EMPLOYED': 17, 'IDLE_NO_WORK_OFFERED': 170}  p1drop=5
+  cureC-p1p2  OSC-017  turns  200  {'EMPLOYED': 7, 'IDLE_NO_WORK_OFFERED': 187}  p1drop=3
+  cureC-p1p2  OSC-034  turns  200  {'EMPLOYED': 4, 'IDLE_NO_WORK_OFFERED': 90}  p1drop=1
+  door1-base  OSC-004  turns  200  {'EMPLOYED': 11, 'IDLE_NO_WORK_OFFERED': 3}  p1drop=0
+  door1-base  OSC-013  turns  200  {'BENCHED': 187}  p1drop=0
+  door1-base  OSC-017  turns  200  {'BENCHED': 194}  p1drop=0
+  door1-base  OSC-034  turns  200  {'EMPLOYED': 4, 'IDLE_NO_WORK_OFFERED': 90}  p1drop=0
+  door1-p1p2  OSC-004  turns  200  {'EMPLOYED': 11, 'IDLE_NO_WORK_OFFERED': 3}  p1drop=3
+  door1-p1p2  OSC-013  turns  200  {'EMPLOYED': 17, 'IDLE_NO_WORK_OFFERED': 170}  p1drop=9
+  door1-p1p2  OSC-017  turns  200  {'EMPLOYED': 7, 'IDLE_NO_WORK_OFFERED': 187}  p1drop=3
+  door1-p1p2  OSC-034  turns  200  {'EMPLOYED': 4, 'IDLE_NO_WORK_OFFERED': 90}  p1drop=2
+  cureC: OSC-004  benched 12 -> 0  REPAIRED
+  cureC: OSC-013  benched 187 -> 0  REPAIRED
+  cureC: OSC-017  benched 194 -> 0  REPAIRED
+  cureC: OSC-034  benched 94 -> 0  REPAIRED
+  door1: OSC-004  benched 0 -> 0  NOT_RED_ON_THIS_BASE
+  door1: OSC-013  benched 187 -> 0  REPAIRED
+  door1: OSC-017  benched 194 -> 0  REPAIRED
+  door1: OSC-034  benched 0 -> 0  NOT_RED_ON_THIS_BASE
+wrote /home/tarstars/prj/troll_farm-claude_1/claude_1/picker2/gate1-bench-2026-08-20.json
+  OK       gate 1a BENCHED — fail-first, parity + coverage + P1 liveness (exit 0)
+  RUN      gate 1b employment cross-check (uninstrumented command stream)
+  cureC/OSC-004  unit 0  turns 14  base WAIT 12/14 (RED)  cand WAIT 3/14  employed 11  -> PASS
+  cureC/OSC-013  unit 0  turns 187  base WAIT 187/187 (RED)  cand WAIT 170/187  employed 17  -> PASS
+  cureC/OSC-017  unit 0  turns 194  base WAIT 194/194 (RED)  cand WAIT 187/194  employed 7  -> PASS
+  cureC/OSC-034  unit 0  turns 94  base WAIT 94/94 (RED)  cand WAIT 90/94  employed 4  -> PASS
+  door1/OSC-004  unit 0  turns 14  base WAIT 3/14 (NOT RED)  cand WAIT 3/14  employed 11  -> NOT_APPLICABLE_ON_THIS_BASE
+  door1/OSC-013  unit 0  turns 187  base WAIT 187/187 (RED)  cand WAIT 170/187  employed 17  -> PASS
+  door1/OSC-017  unit 0  turns 194  base WAIT 194/194 (RED)  cand WAIT 187/194  employed 7  -> PASS
+  door1/OSC-034  unit 0  turns 94  base WAIT 90/94 (NOT RED)  cand WAIT 90/94  employed 4  -> NOT_APPLICABLE_ON_THIS_BASE
+  gate 1 (fail-first employment, both bases): MET
+wrote /home/tarstars/prj/troll_farm-claude_1/claude_1/picker2/gate1-employment-2026-08-20.json
+  OK       gate 1b employment cross-check (uninstrumented command stream) (exit 0)
+  RUN      all-34 sweep, cure-C base
+candidate: cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs
+  NOT FIXED OSC-001  D1_EPISODE   turns 6-200  D-1  silent=False progress=False
+  NOT FIXED OSC-002  D1_EPISODE   turns 12-200  D-1  silent=False progress=False
+  NOT FIXED OSC-003  D1_EPISODE   turns 25-47  D-1  silent=False progress=False
+  NOT FIXED OSC-004  D1_EPISODE   turns 9-22  D-1  silent=False progress=False
+  NOT FIXED OSC-005  D1_EPISODE   turns 7-18  D-1  silent=False progress=False
+  NOT FIXED OSC-006  D1_EPISODE   turns 12-20  D-1  silent=False progress=False
+  NOT FIXED OSC-007  D1_EPISODE   turns 8-16  D-1  silent=False progress=False
+  FIXED     OSC-008  D1_EPISODE   turns 57-64  D-1  silent=True progress=True
+  FIXED     OSC-009  D1_EPISODE   turns 77-83  D-1  silent=True progress=True
+  NOT FIXED OSC-010  D1_EPISODE   turns 80-86  D-1  silent=False progress=False
+  NOT FIXED OSC-011  D1_EPISODE   turns 26-32  D-1  silent=False progress=False
+  NOT FIXED OSC-012  D1_EPISODE   turns 8-200  D-1  silent=False progress=False
+  NOT FIXED OSC-013  D1_EPISODE   turns 14-200  D-1  silent=False progress=False
+  NOT FIXED OSC-014  D1_EPISODE   turns 33-200  D-1  silent=False progress=False
+  NOT FIXED OSC-015  D1_EPISODE   turns 44-200  D-1  silent=False progress=False
+  NOT FIXED OSC-016  D1_EPISODE   turns 7-200  D-1  silent=False progress=False
+  NOT FIXED OSC-017  D1_EPISODE   turns 7-200  D-1  silent=False progress=False
+  NOT FIXED OSC-018  D1_EPISODE   turns 10-200  D-1  silent=False progress=False
+  NOT FIXED OSC-019  D1_EPISODE   turns 23-200  D-1  silent=False progress=False
+  NOT FIXED OSC-020  D1_EPISODE   turns 29-200  D-1  silent=False progress=False
+  NOT FIXED OSC-021  D1_EPISODE   turns 32-200  D-1  silent=False progress=False
+  NOT FIXED OSC-022  D1_EPISODE   turns 106-200  D-1  silent=False progress=False
+  NOT FIXED OSC-023  D1_EPISODE   turns 27-100  D-1  silent=False progress=False
+  NOT FIXED OSC-024  D1_EPISODE   turns 5-69  D-1  silent=False progress=False
+  NOT FIXED OSC-025  D1_EPISODE   turns 12-32  D-1  silent=False progress=False
+  NOT FIXED OSC-026  D1_EPISODE   turns 17-25  D-1  silent=False progress=False
+  NOT FIXED OSC-027  D1_EPISODE   turns 3-24  D-1  silent=False progress=False
+  FIXED     OSC-028  D1_EPISODE   turns 2-54  D-1  silent=True progress=True
+  NOT FIXED OSC-029  D1_EPISODE   turns 28-44  D-1  silent=False progress=False
+  NOT FIXED OSC-030  D1_EPISODE   turns 24-31  D-1  silent=False progress=False
+  NOT FIXED OSC-031  P4_STALL     turns 11-200  P4   silent=False progress=False
+  NOT FIXED OSC-032  P4_STALL     turns 91-200  P4   silent=True progress=False
+  NOT FIXED OSC-033  P4_STALL     turns 58-200  P4   silent=True progress=False
+  NOT FIXED OSC-034  P4_STALL     turns 6-99  P4   silent=False progress=False
+
+3 FIXED / 34 situations
+wrote claude_1/picker2/sweep34-cureC-base.json
+  OK       all-34 sweep, cure-C base (exit 0)
+  RUN      all-34 sweep, cure-C P1+P2
+candidate: claude_1/picker2/candidate-cureC-p1p2.rs
+  NOT FIXED OSC-001  D1_EPISODE   turns 6-200  D-1  silent=False progress=False
+  NOT FIXED OSC-002  D1_EPISODE   turns 12-200  D-1  silent=False progress=False
+  NOT FIXED OSC-003  D1_EPISODE   turns 25-47  D-1  silent=True progress=False
+  NOT FIXED OSC-004  D1_EPISODE   turns 9-22  D-1  silent=True progress=False
+  NOT FIXED OSC-005  D1_EPISODE   turns 7-18  D-1  silent=False progress=False
+  NOT FIXED OSC-006  D1_EPISODE   turns 12-20  D-1  silent=True progress=False
+  NOT FIXED OSC-007  D1_EPISODE   turns 8-16  D-1  silent=True progress=False
+  FIXED     OSC-008  D1_EPISODE   turns 57-64  D-1  silent=True progress=True
+  FIXED     OSC-009  D1_EPISODE   turns 77-83  D-1  silent=True progress=True
+  NOT FIXED OSC-010  D1_EPISODE   turns 80-86  D-1  silent=False progress=False
+  NOT FIXED OSC-011  D1_EPISODE   turns 26-32  D-1  silent=True progress=False
+  NOT FIXED OSC-012  D1_EPISODE   turns 8-200  D-1  silent=True progress=False
+  NOT FIXED OSC-013  D1_EPISODE   turns 14-200  D-1  silent=True progress=False
+  NOT FIXED OSC-014  D1_EPISODE   turns 33-200  D-1  silent=True progress=False
+  NOT FIXED OSC-015  D1_EPISODE   turns 44-200  D-1  silent=True progress=False
+  NOT FIXED OSC-016  D1_EPISODE   turns 7-200  D-1  silent=True progress=False
+  NOT FIXED OSC-017  D1_EPISODE   turns 7-200  D-1  silent=True progress=False
+  NOT FIXED OSC-018  D1_EPISODE   turns 10-200  D-1  silent=True progress=False
+  NOT FIXED OSC-019  D1_EPISODE   turns 23-200  D-1  silent=True progress=False
+  NOT FIXED OSC-020  D1_EPISODE   turns 29-200  D-1  silent=True progress=False
+  NOT FIXED OSC-021  D1_EPISODE   turns 32-200  D-1  silent=True progress=False
+  NOT FIXED OSC-022  D1_EPISODE   turns 106-200  D-1  silent=True progress=False
+  NOT FIXED OSC-023  D1_EPISODE   turns 27-100  D-1  silent=True progress=False
+  NOT FIXED OSC-024  D1_EPISODE   turns 5-69  D-1  silent=True progress=False
+  NOT FIXED OSC-025  D1_EPISODE   turns 12-32  D-1  silent=True progress=False
+  NOT FIXED OSC-026  D1_EPISODE   turns 17-25  D-1  silent=False progress=False
+  NOT FIXED OSC-027  D1_EPISODE   turns 3-24  D-1  silent=False progress=False
+  FIXED     OSC-028  D1_EPISODE   turns 2-54  D-1  silent=True progress=True
+  NOT FIXED OSC-029  D1_EPISODE   turns 28-44  D-1  silent=False progress=False
+  NOT FIXED OSC-030  D1_EPISODE   turns 24-31  D-1  silent=False progress=False
+  NOT FIXED OSC-031  P4_STALL     turns 11-200  P4   silent=False progress=False
+  NOT FIXED OSC-032  P4_STALL     turns 91-200  P4   silent=True progress=False
+  NOT FIXED OSC-033  P4_STALL     turns 58-200  P4   silent=True progress=False
+  FIXED     OSC-034  P4_STALL     turns 6-99  P4   silent=True progress=True
+
+4 FIXED / 34 situations
+wrote claude_1/picker2/sweep34-cureC-p1p2.json
+  OK       all-34 sweep, cure-C P1+P2 (exit 0)
+  RUN      all-34 sweep, door-1 base
+candidate: claude_1/chop4c/candidate-door1.rs
+  NOT FIXED OSC-001  D1_EPISODE   turns 6-200  D-1  silent=False progress=False
+  NOT FIXED OSC-002  D1_EPISODE   turns 12-200  D-1  silent=False progress=False
+  FIXED     OSC-003  D1_EPISODE   turns 25-47  D-1  silent=True progress=True
+  NOT FIXED OSC-004  D1_EPISODE   turns 9-22  D-1  silent=True progress=False
+  NOT FIXED OSC-005  D1_EPISODE   turns 7-18  D-1  silent=False progress=False
+  FIXED     OSC-006  D1_EPISODE   turns 12-20  D-1  silent=True progress=True
+  NOT FIXED OSC-007  D1_EPISODE   turns 8-16  D-1  silent=True progress=False
+  FIXED     OSC-008  D1_EPISODE   turns 57-64  D-1  silent=True progress=True
+  FIXED     OSC-009  D1_EPISODE   turns 77-83  D-1  silent=True progress=True
+  NOT FIXED OSC-010  D1_EPISODE   turns 80-86  D-1  silent=True progress=False
+  NOT FIXED OSC-011  D1_EPISODE   turns 26-32  D-1  silent=False progress=False
+  NOT FIXED OSC-012  D1_EPISODE   turns 8-200  D-1  silent=False progress=False
+  NOT FIXED OSC-013  D1_EPISODE   turns 14-200  D-1  silent=False progress=False
+  FIXED     OSC-014  D1_EPISODE   turns 33-200  D-1  silent=True progress=True
+  NOT FIXED OSC-015  D1_EPISODE   turns 44-200  D-1  silent=True progress=False
+  NOT FIXED OSC-016  D1_EPISODE   turns 7-200  D-1  silent=True progress=False
+  NOT FIXED OSC-017  D1_EPISODE   turns 7-200  D-1  silent=False progress=False
+  NOT FIXED OSC-018  D1_EPISODE   turns 10-200  D-1  silent=True progress=False
+  NOT FIXED OSC-019  D1_EPISODE   turns 23-200  D-1  silent=True progress=False
+  FIXED     OSC-020  D1_EPISODE   turns 29-200  D-1  silent=True progress=True
+  NOT FIXED OSC-021  D1_EPISODE   turns 32-200  D-1  silent=False progress=False
+  NOT FIXED OSC-022  D1_EPISODE   turns 106-200  D-1  silent=True progress=False
+  NOT FIXED OSC-023  D1_EPISODE   turns 27-100  D-1  silent=True progress=False
+  NOT FIXED OSC-024  D1_EPISODE   turns 5-69  D-1  silent=False progress=False
+  NOT FIXED OSC-025  D1_EPISODE   turns 12-32  D-1  silent=False progress=False
+  NOT FIXED OSC-026  D1_EPISODE   turns 17-25  D-1  silent=False progress=False
+  NOT FIXED OSC-027  D1_EPISODE   turns 3-24  D-1  silent=False progress=False
+  FIXED     OSC-028  D1_EPISODE   turns 2-54  D-1  silent=True progress=True
+  NOT FIXED OSC-029  D1_EPISODE   turns 28-44  D-1  silent=False progress=False
+  NOT FIXED OSC-030  D1_EPISODE   turns 24-31  D-1  silent=False progress=False
+  NOT FIXED OSC-031  P4_STALL     turns 11-200  P4   silent=False progress=False
+  NOT FIXED OSC-032  P4_STALL     turns 91-200  P4   silent=True progress=False
+  NOT FIXED OSC-033  P4_STALL     turns 58-200  P4   silent=True progress=False
+  FIXED     OSC-034  P4_STALL     turns 6-99  P4   silent=True progress=True
+
+8 FIXED / 34 situations
+wrote claude_1/picker2/sweep34-door1-base.json
+  OK       all-34 sweep, door-1 base (exit 0)
+  RUN      all-34 sweep, door-1 P1+P2
+candidate: claude_1/picker2/candidate-door1-p1p2.rs
+  NOT FIXED OSC-001  D1_EPISODE   turns 6-200  D-1  silent=False progress=False
+  NOT FIXED OSC-002  D1_EPISODE   turns 12-200  D-1  silent=False progress=False
+  FIXED     OSC-003  D1_EPISODE   turns 25-47  D-1  silent=True progress=True
+  NOT FIXED OSC-004  D1_EPISODE   turns 9-22  D-1  silent=True progress=False
+  NOT FIXED OSC-005  D1_EPISODE   turns 7-18  D-1  silent=False progress=False
+  FIXED     OSC-006  D1_EPISODE   turns 12-20  D-1  silent=True progress=True
+  NOT FIXED OSC-007  D1_EPISODE   turns 8-16  D-1  silent=True progress=False
+  FIXED     OSC-008  D1_EPISODE   turns 57-64  D-1  silent=True progress=True
+  FIXED     OSC-009  D1_EPISODE   turns 77-83  D-1  silent=True progress=True
+  NOT FIXED OSC-010  D1_EPISODE   turns 80-86  D-1  silent=True progress=False
+  NOT FIXED OSC-011  D1_EPISODE   turns 26-32  D-1  silent=True progress=False
+  NOT FIXED OSC-012  D1_EPISODE   turns 8-200  D-1  silent=True progress=False
+  NOT FIXED OSC-013  D1_EPISODE   turns 14-200  D-1  silent=True progress=False
+  FIXED     OSC-014  D1_EPISODE   turns 33-200  D-1  silent=True progress=True
+  NOT FIXED OSC-015  D1_EPISODE   turns 44-200  D-1  silent=True progress=False
+  NOT FIXED OSC-016  D1_EPISODE   turns 7-200  D-1  silent=True progress=False
+  NOT FIXED OSC-017  D1_EPISODE   turns 7-200  D-1  silent=True progress=False
+  NOT FIXED OSC-018  D1_EPISODE   turns 10-200  D-1  silent=True progress=False
+  NOT FIXED OSC-019  D1_EPISODE   turns 23-200  D-1  silent=True progress=False
+  FIXED     OSC-020  D1_EPISODE   turns 29-200  D-1  silent=True progress=True
+  NOT FIXED OSC-021  D1_EPISODE   turns 32-200  D-1  silent=True progress=False
+  NOT FIXED OSC-022  D1_EPISODE   turns 106-200  D-1  silent=True progress=False
+  NOT FIXED OSC-023  D1_EPISODE   turns 27-100  D-1  silent=True progress=False
+  NOT FIXED OSC-024  D1_EPISODE   turns 5-69  D-1  silent=True progress=False
+  NOT FIXED OSC-025  D1_EPISODE   turns 12-32  D-1  silent=True progress=False
+  NOT FIXED OSC-026  D1_EPISODE   turns 17-25  D-1  silent=False progress=False
+  NOT FIXED OSC-027  D1_EPISODE   turns 3-24  D-1  silent=False progress=False
+  FIXED     OSC-028  D1_EPISODE   turns 2-54  D-1  silent=True progress=True
+  NOT FIXED OSC-029  D1_EPISODE   turns 28-44  D-1  silent=False progress=False
+  NOT FIXED OSC-030  D1_EPISODE   turns 24-31  D-1  silent=False progress=False
+  NOT FIXED OSC-031  P4_STALL     turns 11-200  P4   silent=False progress=False
+  NOT FIXED OSC-032  P4_STALL     turns 91-200  P4   silent=True progress=False
+  NOT FIXED OSC-033  P4_STALL     turns 58-200  P4   silent=True progress=False
+  FIXED     OSC-034  P4_STALL     turns 6-99  P4   silent=True progress=True
+
+8 FIXED / 34 situations
+wrote claude_1/picker2/sweep34-door1-p1p2.json
+  OK       all-34 sweep, door-1 P1+P2 (exit 0)
+  RUN      panel: cure-C candidate (240)
+fuzz_panel: BLOCK [candidate run] (240 games, 33 blocking, 2 flagged, 0 gate-unready, 9.5 s; report: claude_1/picker2/panel-cureC-cand.md)
+  OK       panel: cure-C candidate (240) (exit 1)
+  RUN      panel: door-1 matched floor (240)
+fuzz_panel: BLOCK [floor run] (240 games, 43 blocking, 1 flagged, 0 gate-unready, 9.5 s; report: claude_1/picker2/panel-door1-floor.md)
+  OK       panel: door-1 matched floor (240) (exit 1)
+  RUN      panel: door-1 candidate (240)
+fuzz_panel: BLOCK [candidate run] (240 games, 35 blocking, 2 flagged, 0 gate-unready, 9.4 s; report: claude_1/picker2/panel-door1-cand.md)
+  OK       panel: door-1 candidate (240) (exit 1)
+  RUN      panel: cure-C candidate at 1 process (parity arm)
+fuzz_panel: BLOCK [candidate run] (240 games, 33 blocking, 2 flagged, 0 gate-unready, 17.6 s; report: claude_1/picker2/panel-cureC-cand-1proc.md)
+  OK       panel: cure-C candidate at 1 process (parity arm) (exit 1)
+  RUN      matched-floor check (the reused cure-C floor is THIS candidate's floor)
+  cureC (REUSED floor (not re-run tonight)): config diffs none; provenance diffs none; lineage OK -> MATCHED
+  door1 (floor re-run tonight): config diffs none; provenance diffs none; lineage OK -> MATCHED
+  matched-floor check: MET
+wrote /home/tarstars/prj/troll_farm-claude_1/claude_1/picker2/floor-match-2026-08-20.json
+  OK       matched-floor check (the reused cure-C floor is THIS candidate's floor) (exit 0)
+  RUN      decomposition (map_id, seat), cure-C
+  matched corpus gate PASS — 240 keyed games per arm; floor bot's stream byte-identical across arms on all 240 (corpus matched AND floor deterministic)
+  candidate changed opponent behaviour in 17 of 240 games
+  aggregate (CONTEXT, NOT THE GATE): candidate 33 vs floor 53 blocking
+  DE-NOVO (blocks under candidate, not under floor): 0
+  HEALED  (blocks under floor, not under candidate): 20
+  both directions exercised: False
+  de-novo by property: {}
+  wrote claude_1/picker2/decomposition-cureC-2026-08-20.json
+  OK       decomposition (map_id, seat), cure-C (exit 0)
+  RUN      decomposition (map_id, seat), door-1
+  matched corpus gate PASS — 240 keyed games per arm; floor bot's stream byte-identical across arms on all 240 (corpus matched AND floor deterministic)
+  candidate changed opponent behaviour in 8 of 240 games
+  aggregate (CONTEXT, NOT THE GATE): candidate 35 vs floor 43 blocking
+  DE-NOVO (blocks under candidate, not under floor): 0
+  HEALED  (blocks under floor, not under candidate): 8
+  both directions exercised: False
+  de-novo by property: {}
+  wrote claude_1/picker2/decomposition-door1-2026-08-20.json
+  OK       decomposition (map_id, seat), door-1 (exit 0)
+  RUN      de-novo DIRECTION control (swap the arms; healed must reappear as de-novo)
+  cureC: real de-novo 0, real healed 20; arms swapped -> de-novo 20 (same keys as healed: True) -> direction OBSERVABLE
+  door1: real de-novo 0, real healed 8; arms swapped -> de-novo 8 (same keys as healed: True) -> direction OBSERVABLE
+  de-novo direction control: MET
+wrote /home/tarstars/prj/troll_farm-claude_1/claude_1/picker2/denovo-direction-control-2026-08-20.json
+  OK       de-novo DIRECTION control (swap the arms; healed must reappear as de-novo) (exit 0)
+  RUN      every behaviour change named
+  cureC: 24 of 240 keyed games changed  {'PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME': 4, 'HEALED_BLOCK': 20}
+    NAMED  m003 seat 0 [single_door_tent/harvester] PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME  new properties -  new flags -
+    NAMED  m021 seat 1 [choke_corridor/idle] PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME  new properties ['P4']  new flags ['r5-horizon']
+    NAMED  m090 seat 0 [choke_corridor/harvester] PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME  new properties -  new flags -
+    NAMED  m099 seat 1 [choke_corridor/harvester] PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME  new properties -  new flags -
+  door1: 12 of 240 keyed games changed  {'PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME': 4, 'HEALED_BLOCK': 8}
+    NAMED  m004 seat 0 [orchard_eligible/idle] PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME  new properties ['P3']  new flags -
+    NAMED  m021 seat 1 [choke_corridor/idle] PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME  new properties ['P4']  new flags ['r5-horizon']
+    NAMED  m070 seat 1 [choke_corridor/harvester] PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME  new properties -  new flags -
+    NAMED  m099 seat 1 [choke_corridor/harvester] PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME  new properties -  new flags -
+wrote /home/tarstars/prj/troll_farm-claude_1/claude_1/picker2/named-changes-2026-08-20.json
+  OK       every behaviour change named (exit 0)
+  RUN      process-count parity (8-proc vs 1-proc, 240 rows)
+  excluded from comparison (timing, not result): ['attempt']
+  compared 240 rows x 34 fields = 8160 field comparisons
+  process-count parity (8-proc vs 1-proc): IDENTICAL
+  OK       process-count parity (8-proc vs 1-proc, 240 rows) (exit 0)
+  RUN      latency p95, all four arms
+  cureC-base  760 warm turns  median 0.0564 ms  p95 0.0785 ms  max 0.2457 ms  -> MET
+  cureC-p1p2  760 warm turns  median 0.0575 ms  p95 0.0764 ms  max 0.1729 ms  -> MET
+  door1-base  760 warm turns  median 0.0568 ms  p95 0.0718 ms  max 0.1183 ms  -> MET
+  door1-p1p2  760 warm turns  median 0.0659 ms  p95 0.0770 ms  max 0.1352 ms  -> MET
+  cureC: P1+P2 costs -0.0021 ms at p95 vs its own base
+  door1: P1+P2 costs +0.0052 ms at p95 vs its own base
+  latency gate (warm p95 < 50 ms, all four arms): MET
+wrote /home/tarstars/prj/troll_farm-claude_1/claude_1/picker2/latency-2026-08-20.json
+  OK       latency p95, all four arms (exit 0)
+
+  BATTERY: ALL STEPS OK
+K
