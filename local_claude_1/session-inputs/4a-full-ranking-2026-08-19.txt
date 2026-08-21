@@ -1,0 +1,28 @@
+# 4a full ranking — all 24 GOAL_SPLIT cases by benched turns
+# source: claude_1/hstarve1/cause-table-pool3-2026-08-17.json (accepted pool-3 table)
+# columns: case  benched_turns  kind  unit  window
+
+OSC-017   194  D1_EPISODE  unit=0  window=[7, 200]
+OSC-016   194  D1_EPISODE  unit=0  window=[7, 200]
+OSC-018   191  D1_EPISODE  unit=0  window=[10, 200]
+OSC-002   189  D1_EPISODE  unit=0  window=[12, 200]
+OSC-013   187  D1_EPISODE  unit=0  window=[14, 200]
+OSC-019   178  D1_EPISODE  unit=0  window=[23, 200]
+OSC-020   172  D1_EPISODE  unit=0  window=[29, 200]
+OSC-021   169  D1_EPISODE  unit=2  window=[32, 200]
+OSC-014   168  D1_EPISODE  unit=0  window=[33, 200]
+OSC-015   157  D1_EPISODE  unit=0  window=[44, 200]
+OSC-022    95  D1_EPISODE  unit=0  window=[106, 200]
+OSC-034    94  P4_STALL    unit=0  window=[6, 99]
+OSC-023    73  D1_EPISODE  unit=0  window=[27, 100]
+OSC-024    64  D1_EPISODE  unit=2  window=[5, 69]
+OSC-001    23  D1_EPISODE  unit=2  window=[6, 200]
+OSC-003    21  D1_EPISODE  unit=2  window=[25, 47]
+OSC-025    20  D1_EPISODE  unit=2  window=[12, 32]
+OSC-029    14  D1_EPISODE  unit=2  window=[28, 44]
+OSC-004    12  D1_EPISODE  unit=0  window=[9, 22]
+OSC-007     8  D1_EPISODE  unit=0  window=[8, 16]
+OSC-006     7  D1_EPISODE  unit=0  window=[12, 20]
+OSC-011     6  D1_EPISODE  unit=2  window=[26, 32]
+OSC-009     3  D1_EPISODE  unit=2  window=[77, 83]
+OSC-031     1  P4_STALL    unit=0  window=[11, 200]

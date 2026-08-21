@@ -1,6 +1,10 @@
 # 20260817-cure-c-implementation: implement cure C, pass every gate, submit to the platform
 
-- Status: **G5 DONE — SUBMITTED 2026-08-18T~04:35Z, submission 41153619, source
+- Status: **CLOSED — OWNER RULED KEEP 2026-08-19T~04:00Z on the M-1 night
+  (5/5 pairs to cure C: +1.3/+0.2/+0.4/+0.6/+2.6, mean +1.02; ledger
+  `local_claude_1/cure-c-night-2026-08-18.md`). Cure C is THE RESIDENT
+  (sub 41159334, sha `ad3bfefe…`); docs/STATE.md §1 updated; m082 the
+  permanently accepted cost.** Prior: **G5 DONE — SUBMITTED 2026-08-18T~04:35Z, submission 41153619, source
   `ad3bfefe…` (75,844 B), one mutation call, archived at
   `cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs`. G4 was GREEN with all
   owner contingencies independently verified (codex probed the resident generator

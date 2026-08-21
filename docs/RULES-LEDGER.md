@@ -16,3 +16,24 @@ the ONLY resolution (yielding has nowhere to go).
   expected to bear on the 11 M1 corridor episodes.
 - Origin: owner statement in the first adjudication, 2026-08-16; early written trace
   `docs/reference/2026-07-11-yannbot-design.md:55`.
+
+## R-2 — A troll with available work must be employed (owner-approved 2026-08-20)
+
+There is work to do and the troll can do it — not doing it is a bug. No
+materiality boundary: the rule was tested at the 4a sitting on the worst case
+(194 benched turns), the corridor-blocker shape, the whole-bot stall shape,
+and the shortest episode (12 turns), and the owner ruled BUG on all four. The
+team-picker (joint pairing) discarding a troll's available work is the named
+defect mechanism; the movement-level swap (R-1) treats only the symptom.
+
+- Supporting situations: OSC-017, OSC-013, OSC-034, OSC-004 (owner rulings in
+  `local_claude_1/session-inputs/4a-sitting-package-2026-08-19.md`); the
+  class = all 24 GOAL_SPLIT cases of the pool-3 table (oracle-verified usable
+  work on every benched turn).
+- Origin: owner statements at the 4a sitting, 2026-08-20 ("when troll has a
+  job to do, not doing it is a bug"; "there is work to do, trolls can do this
+  job — they can swap or whatever. We should fix it").
+- Consequence: pair-selector anti-benching fix chartered
+  (`coordination/tasks/20260820-pair-selector-anti-benching.md`), evidence
+  first; sibling of the pool verdict rule's generator-coverage property, one
+  level up (the picker must not discard what the generator offers).

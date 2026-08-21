@@ -41,6 +41,10 @@ begins with `Pool: N/M done`.
       **4c = chop-mystery instrument** (OSC-031's 167 rejected-chop turns: small
       parity-disciplined logger names the rejecting clause, then owner judges
       bug-vs-caution; possibly a class, possibly bigger than cure C).
+      **4c CHARTERED 2026-08-18 (owner: "put it in action") —
+      `coordination/tasks/20260818-osc031-chop-clause-instrument.md`, claude_1
+      instrument / codex_1 instrument-first review; owner moment stays the
+      bug-vs-caution ruling after G-4c.3. 4a and 4b remain owner sittings.**
       Canonical brief: `local_claude_1/session-inputs/leftovers-4a-4b-4c-2026-08-18.md`.
       Suggested order: 4a sitting → 4c parallel instrument → 4b stamps last.
       (Original: cure
@@ -64,7 +68,13 @@ begins with `Pool: N/M done`.
       K_futility=10 labelled a heuristic + constructed long-in-flight-chop negative
       case (or a real bound). 7b: codex_1 re-review in queue gaps. Then owner
       approval. No new design decisions.
-- [ ] 8. Methods ledger consolidation `docs/METHODS-LEDGER.md` (local_claude_1, ~1 h)
+- [x] 8. DONE 2026-08-18 — `docs/METHODS-LEDGER.md` created: 13 slugged entries
+      (shared-runners, observed-failing, matched-floors, verdict-equals-message,
+      never-blind-mark, no-unchecked-endorsement, self-audit-is-not-the-gate,
+      smuggled-verdict, arrival-order-queues, turn-coverage-de-novo,
+      pre-existing-hole, probe-the-live-states, clock-read-timestamps), each with
+      origin incident + exact-path citation; owner-law entries marked; credited
+      verbatims kept. Was: Methods ledger consolidation (local_claude_1, ~1 h)
 - [x] 9. OWNER-ADDED 2026-08-17: WIP limit — one in-flight ack-requiring handoff per
       agent per task; protocol §10 rule + sender-side lint check, tests observed
       firing (local_claude_1)
@@ -74,7 +84,9 @@ begins with `Pool: N/M done`.
 - [x] 11. OWNER-ADDED 2026-08-17: coordd promote-or-park DECISION DATE set:
       2026-08-31 or pool close, whichever later; no standing dual plane
       (runbook amended) (local_claude_1)
-- [x] 12. DONE — SUBMITTED (41153619, 2026-08-18). Night + owner KEEP/REVERT remain. Was: CURE C
+- [x] 12. **FULLY CLOSED — OWNER KEEP 2026-08-19** (night 5/5 pairs, mean
+      +1.02; cure C is the resident, sub 41159334, sha `ad3bfefe…`; STATE §1
+      updated; m082 accepted). Was: DONE — SUBMITTED (41153619, 2026-08-18). Night + owner KEEP/REVERT remain. Was: CURE C
       END-TO-END — build per corrected brief, gates G1–G4 fail-first (fixtures
       311/311, panel zero de-novo D-1+P4, p95+parity, codex reproduction), then
       SUBMIT same-session (G5). Charter:
@@ -97,6 +109,151 @@ by the verdict session's rulings, not before); T-1 half-swap fixture (recorded d
 viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untouched).
 
 ## Progress log (newest first)
+
+- 2026-08-21 (**4b SITTING RAN — stamps HELD, the two stalls CHARTERED**): the
+  4b package was built and sat the same morning
+  (`local_claude_1/session-inputs/4b-sitting-package-2026-08-21.md`): all 34
+  cases re-graded against the CHAMPION (not the frozen resident) — 8 FIXED, 18
+  already ruled BUG under R-2 with the cure on the shelf, 6 stamp candidates, 2
+  unexplained. Owner ruled: **all six stamps HELD** (offered with turn counts but
+  without the owner having watched the games — re-published as a look-and-rule
+  sheet with viewer links, 4a's shape; the investigation does NOT close yet) and
+  **bucket F CHARTERED as a look**, not folded away:
+  `coordination/tasks/20260821-osc032-033-no-goal-instrument.md` (OSC-032/033
+  waited 110/143 turns with work available on every one; claude_1 instrument
+  reusing the Phase-3 probes on the champion base, codex_1 instrument-first, no
+  fix / no judgment / no P1-P2 extension). Measured en route and worth keeping:
+  **on the frozen 34 the kept champion beats cure C 8 FIXED to 3 with no case
+  lost** (OSC-003/006/014/020/034 gained) — the Arena called the same step
+  immaterial and both readings are honest; and **OSC-031 is still NOT FIXED on
+  the champion** (the chop defect was cured; what still fires there is the
+  benching).
+
+- 2026-08-21 morning (**OWNER RULED: KEEP + D3 HOLD; the night graded itself**):
+  session 2 finished unattended at 00:53Z — pairs [1.9, −0.6, 0.4, 1.1, −1.7],
+  mean **+0.220**, IMMATERIAL below the 1.0 floor (empirical pair SD 1.413);
+  night_runner took the owner-approved branch by itself and opened **session 3**
+  (challenger vs very-old `98628e98…`, gold standard for the composed +1.240),
+  then wrote the morning sheet at 00:54Z with no human in the loop. Owner's two
+  rulings, taken with the coordinator at 07:40 MSK:
+  **(1) KEEP** — `547fa706…` is the champion of record; cure-C `ad3bfefe…`
+  retired; the anti-benching task's subject rebases to the door-1 base per its
+  own charter clause; session 3's verdict remains a separate owner moment.
+  **(2) D3 = HOLD, no Arena slot** — the pre-emption condition was "gates green"
+  and codex_1's unified review (claude_1 concurring) is `PACKAGE_REPRODUCED;
+  BOTH CANDIDATES BLOCKED AS QUALIFIED CURES` (1 of 4 cured on cure-C, 0 added
+  on door-1, P3 absolute regression, P4/`r5-horizon` in `m021`). Both packages
+  stay on the shelf. Coordinator ruling same session: **`actionable_set()` MAY
+  be extracted into `scripts/inbox_sweep.py`** as a pure refactor with a test
+  pinning `main()` and the function to one answer — sentinel card unblocked.
+  Phase 3 accepted as measurement: the candidate list is **never empty** (one
+  seeded `WAIT`); OSC-013's 170 idle turns split 69 genuinely-empty / 101 where
+  `main:IDLE_REGEN_FALLBACK` discarded two formed `PICK`s. New **OWNER CARD,
+  open**: may that fallback extend `out` instead of replacing it (scope: the
+  101 turns only). Rulings message:
+  `coordination/messages/local_claude_1/20260821T044224Z-20260819-osc031-forecast-fix-door1b-policy.md`.
+
+- 2026-08-20 evening (FLUSH PREP — the automation era's first full day):
+  launcher live both lanes (proxy-wrapped, full permissions by owner ruling,
+  machine-to-machine wakes proven); benching mechanism SOLVED on all 24 cases
+  (self-impossible pairs 2010/2245 + 810 undesigned map-order ties) → owner
+  ruled P1+P2 DUAL-BASE overnight build; night tree armed (extension | session
+  3 vs very-old) + morning sheet ~01:15Z; composed three-generation comparison
+  pre-registered; owner's 9am: KEEP/REVERT + D3. Handover:
+  `coordination/HANDOVER-2026-08-20-automation-era.md`.
+
+
+- 2026-08-20 (**4a SITTING COMPLETE — RULE R-2; anti-benching fix chartered;
+  VM runner live**): the owner ruled BUG on all four sampled bands (OSC-017
+  whale, OSC-013 corridor-blocker, OSC-034 stall-kind, OSC-004 12-turn
+  episode) → R-2 in RULES-LEDGER, ABSOLUTE: available work must be worked.
+  All 24 GOAL_SPLIT cases fall under the class ruling; pair-selector
+  anti-benching fix chartered evidence-first
+  (`coordination/tasks/20260820-pair-selector-anti-benching.md`, card 3,
+  named-costs class, own platform session decides). Pool #6 residue: only the
+  4b stamps remain. Also: the Door-1 decider session now runs from claude_1's
+  VM (night_runner systemd service; laptop-independent; A1 23.4@28 taken by
+  the service); viewer-readability task chartered DEFERRED.
+
+
+- 2026-08-19 (~04:05Z — **NIGHT COMPLETE, OWNER RULED KEEP; CURE C IS THE
+  RESIDENT**): block closed 02:58Z with n=5 pairs, ALL FIVE to cure C
+  (+1.3/+0.2/+0.4/+0.6/+2.6, mean +1.02 — clears the 1.0 floor, not the
+  planning 1.86 winner bar; M-1's prescribed extension presented, owner chose
+  KEEP, which is the owner's call). Honesty on record: empirical pair SD 0.976
+  vs planning 2.123 (re-measure σ for paired designs = follow-up); pair-5
+  ladder-event caveat; m082 (12→1) permanently accepted. Cure C re-submitted
+  on the ruling (41159334); STATE §1 rewritten (resident sha `ad3bfefe…`,
+  restore target updated). The oscillation programme's first shipped cure is
+  now the resident. Pool: #6 remainder = 4a sitting + 4b stamps; the forecast
+  defect-fix task (Door 1) continues independently.
+
+- 2026-08-18 (~15:36Z — **4c COMPLETE, OWNER RULED "A DEFECT"; fix chartered**):
+  the full 4c chain closed in one day: instrument (3 review rounds) → controls
+  + compiled proofs (5 rounds, 80.5M tuples) → distribution vs the pinned 167
+  manifest (2 rounds) → owner brief (2 rounds, accepted for delivery) →
+  DELIVERED → owner ruling **DEFECT** (record:
+  `local_claude_1/adjudications/OSC-031-ruling-2026-08-18.md`). Final measured
+  attribution: 315/315 evaluations terminate at `PREDICT_TREE_NONE`;
+  pre-forecast checks reached-and-passed; post-forecast never reached.
+  Successor task chartered:
+  `coordination/tasks/20260818-osc031-forecast-defect-fix.md` (Phase 1
+  diagnose-WHY → owner design go → Phase 2 fix, ready-with-gates; NO Arena —
+  the night owns it). OSC-031 exits the 4b stamp list. Pool #6 remainder: 4a
+  sitting + 4b stamps + the new fix task's owner design gate.
+
+- 2026-08-18 (~11:47Z, G-4c.2 one blocker from done + NORM ADOPTED): r2 closed
+  three of four blockers reviewer-verified (travel enumerated in full —
+  80,523,520 tuples 0 violations; exact per-predicate cardinalities; third
+  mutation 6.8M); the last blocker = saturation cutoffs must be a MECHANICALLY
+  CHECKED reduction (author disclosed, reviewer held). Pre-build ruling
+  approved the subject-identity construction WITH a binding refinement that
+  caught a real hole (bound must cover post-growth `PredictedTree.health`, not
+  initial health) — third straight catch from posting constructions pre-build.
+  claude_1 DEFERRED to a fresh session, published as a status. PROTOCOL §10
+  gains the adopted norm: queue-changing messages carry requires_ack;
+  deferral is a status, not a silence. Night: A2 23.0@30 (A-arm spread
+  25.2→23.0); B2 window running (41155368), pair 2 completes ~13:04Z; cron now
+  hourly-guarded.
+
+- 2026-08-18 (4c instrument ACCEPTED at r3 + manifest closed; night pair 1):
+  G-4c.1 GATE_ACCEPTED after three same-morning review rounds (r1: terminal-only
+  logging + 3 more; r2: sort-before-check reconciler + a docstring-asserted
+  control that did not exist — "a claim carried by prose instead of by
+  execution", now an observed-failing ledger instance; r3: five negative
+  controls all observed failing, counterexamples replayed). The 167-turn
+  manifest: derivation PINNED by the record owner (accepted-stack shas, closed
+  predicate, pre-registered count + STOP rule) → derived 167 exactly →
+  codex_1 byte-identical reproduction → SHA-PINNED in the task record
+  (`b9eed4c2…`). Amendment 1: coverage structural, 167 = named subset.
+  G-4c.2: compiled-domain proof method APPROVED (no replicas admissible), two
+  observed-firing controls specified (island, turn-300). **CORRECTION 09:31Z —
+  "in build" was the integrator's unverified inference: the approval went out
+  no-ack, the implementer was on record holding for it, both queues were
+  correctly empty (owner caught the contradiction). GO directive issued
+  requires_ack (`20260818T093139Z`); verdict-equals-message Instance 3 in the
+  ledger.** G-4c.3 unauthorized until G-4c.2. Night: pair 1 = A 25.2 − B 23.9
+  = +1.3 (no claim, n=1); A2 window running (sub 41154515).
+
+- 2026-08-18 (**4c CHARTERED**, owner in session): the OSC-031 chop-mystery
+  instrument is live work — task
+  `coordination/tasks/20260818-osc031-chop-clause-instrument.md` (claude_1
+  builds the clause-logger on the h-starve-1 toolkit; codex_1 reviews the
+  instrument BEFORE findings; parity + both-ways controls + exact 167-turn
+  coverage are gates; NO fix, NO judgment — bug-vs-caution stays the owner's
+  ruling). Runs fully local, in parallel with the M-1 night; Arena untouched by
+  this task. Night mark 1 was executed on schedule (A1 25.2 @ 18/160; B swap
+  41154017); B1 read due ~08:33Z.
+
+- 2026-08-18 (night running + pool #8 CLOSED): transport gap closed (formal ack of
+  claude_1's green handoff — my G5 update predated it by 47 s and could not name
+  it). Night bookkeeping live: ledger `local_claude_1/cure-c-night-2026-08-18.md`
+  (arms byte-verified, M-1 arithmetic fixed in advance, per-mark ritual), liveness
+  04:52Z = 23.1 @ rank 32/160 Legend, 111 battles, fresh agent 6631618; reads at
+  ~2 h marks, block of 5 pairs → owner numbers. **Pool #8 DONE:**
+  `docs/METHODS-LEDGER.md` — 13 slugged method entries with origins, incl. the two
+  owner measurement laws (turn-coverage-de-novo, pre-existing-hole) and the two
+  fresh 08-18 lessons (probe-the-live-states, clock-read-timestamps).
 
 - 2026-08-18 (**CURE C SUBMITTED — submission 41153619**): codex G4 GREEN with all
   three owner contingencies independently verified (m061 probed directly:

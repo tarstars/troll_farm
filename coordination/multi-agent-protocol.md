@@ -493,6 +493,56 @@ are immutable and are never flagged retroactively. Rationale: crossings-in-fligh
 largest measured coordination cost of 2026-08-16 (three handoffs crossed rulings, each
 crossing spawning a correction round).
 
+**Queue-changing messages require acknowledgement (adopted 2026-08-18).** Any message
+that changes another party's task list carries `requires_ack: true` toward that party —
+verdicts on ack-required handoffs (REVISION_REQUIRED reopens the implementer's queue;
+ACCEPTED often opens the next stage's), approvals a party is on record waiting for,
+rulings that reopen or redirect work. Proposed by the integrator after the 2026-08-18
+G-4c.2 stall (a no-ack method approval left the implementer truthfully idle while the
+record said "in build"); codex_1 endorsed in writing and practiced it the same hour;
+no objections. Companion rule from the same incident: **a deferral is a status, not a
+silence** — an agent that decides not to start unblocked work publishes "not started,
+deferred, because X" the moment the decision is made; a truthful empty inbox is not a
+status. Instances and full history: `docs/METHODS-LEDGER.md`, verdict-equals-message.
+
+**A deferral is also a QUEUE ITEM (owner-adopted 2026-08-18).** Prose is not enough:
+twice in one day a correctly-published deferral left every inbox empty beside open
+work, because everyone polls the queue, not the diary. A deferral message declares
+itself with a body line starting with the canonical marker `DEFERRED:` and must carry
+`requires_ack: true` with the SENDER among its own `to` recipients — the deferring
+agent's next session then finds the postponed job as its first unacknowledged item and
+acknowledges it by starting (or by publishing a further deferral of the same shape).
+Enforced sender-side by `deferral_shape_errors` in `scripts/lint_outbox.py`; prose
+mentions of the word "deferred" mid-line do not trigger the gate. Coordinator
+resume-orders remain the backstop for sessions that die before declaring.
+
+**Cards are acknowledged by DELIVERY, never by a bare receipt (sharpened
+2026-08-19; route corrected same day after claude_1 proved the first wording
+unimplementable — `supersedes` is inert for discharge, `ack_for` is the only
+mechanism).** A message carrying a line-start **`CARD:`** marker is a standing
+work item; it stays in the assignee's queue until discharged by exactly one of:
+
+1. **the DELIVERY handoff** naming the card in its `ack_for`; or
+2. **a replacement `DEFERRED:` card** naming the original card in its
+   `ack_for` — legitimate because the discharge arrives WITH a successor queue
+   item in the same message (self-addressed, ack-required, per the deferral
+   gate); the queue never reads empty while work exists.
+
+A **bare receipt-ack** — one that discharges a `CARD:` while neither delivering
+nor replacing it — is the violation. Enforced sender-side by
+`card_ack_errors` in `scripts/lint_outbox.py`: an ack naming a `CARD:` message
+must be a handoff or itself carry a `DEFERRED:` line.
+
+**Ack is not delivery (adopted 2026-08-19, third stall shape in two days).**
+Acknowledging a message that ASSIGNS you work discharges the acknowledgement, not
+the work — and leaves the work with no queue item at all. Rule: a session that
+acks a work-assigning message (charter, verdict opening your next stage, directive)
+and ends without DELIVERING that work must leave a `DEFERRED:` card for it (the
+self-addressed ack-required shape above). "My build proceeds" inside an ack is
+prose; the card is the queue item. Note for the sentinel era: wake-on-work only
+sees CARDED work — an acked-and-uncarded assignment is invisible to the sentinel
+too, which makes this rule load-bearing, not cosmetic.
+
 **Evidence gate (owner decision 2026-08-17).** A handoff whose body asserts a chartered
 cause label (the audit vocabulary, e.g. `GENERATOR_GAP` — the registered set lives in
 `CAUSE_LABEL_TOKENS` in `scripts/lint_outbox.py`) must carry a `review_ref:` front-matter

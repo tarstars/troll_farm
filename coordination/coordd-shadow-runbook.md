@@ -31,6 +31,17 @@ split-brain hazard, and "shadow forever" is the failure mode this date exists to
    conflict and confirm the client sees a proper 4xx JSON error, not a dropped
    connection (regression check for the 2026-08-10 fix wave).
 
+## Doorbell design (owner-requested 2026-08-19) — candidate promotion case
+
+The owner asked for wake-on-work automation of the inbox pump ("I don't like
+simple polling, it wastes tokens"). Full design SAVED, not activated:
+`docs/superpowers/specs/2026-08-19-doorbell-wake-on-work-design.md` — a
+no-LLM watcher polls git bytes, wakes an agent headless only on a non-empty
+changed actionable set (unseen ∪ ack-owed ∪ self-addressed DEFERRED), burst
+debounce, wake caps, owner-notification channel for rulings, pause file,
+Arena excluded. This is the concrete promotion case for the 2026-08-31
+promote-or-park decision.
+
 ## Known items the P2 plan must own (from the 2026-08-10 final review + fix wave)
 
 Two Important, reviewer-endorsed as named P2 tasks with tests — do not let P2

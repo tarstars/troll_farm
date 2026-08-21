@@ -1,0 +1,110 @@
+{
+ "arms": {
+  "A": {
+   "label": "A challenger",
+   "source": "cgauto/submissions/candidate-door1-pure-deletion.rs",
+   "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+  },
+  "B": {
+   "label": "B very-old resident",
+   "source": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+   "sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29"
+  }
+ },
+ "plan": [
+  {
+   "label": "A1",
+   "arm": "A"
+  },
+  {
+   "label": "B1",
+   "arm": "B"
+  },
+  {
+   "label": "A2",
+   "arm": "A"
+  },
+  {
+   "label": "B2",
+   "arm": "B"
+  },
+  {
+   "label": "A3",
+   "arm": "A"
+  },
+  {
+   "label": "B3",
+   "arm": "B"
+  },
+  {
+   "label": "A4",
+   "arm": "A"
+  },
+  {
+   "label": "B4",
+   "arm": "B"
+  },
+  {
+   "label": "A5",
+   "arm": "A"
+  },
+  {
+   "label": "B5",
+   "arm": "B"
+  }
+ ],
+ "submissions": [
+  {
+   "at": "2026-08-21T00:54:01+00:00",
+   "id": 41170119,
+   "arm": "A"
+  },
+  {
+   "at": "2026-08-21T02:51:33+00:00",
+   "id": 41170381,
+   "arm": "B"
+  },
+  {
+   "at": "2026-08-21T04:49:00+00:00",
+   "id": 41170647,
+   "arm": "A"
+  },
+  {
+   "at": "2026-08-21T06:46:28+00:00",
+   "id": 41170974,
+   "arm": "B"
+  }
+ ],
+ "reads": [
+  {
+   "label": "A1",
+   "rank": 26,
+   "total": 176,
+   "league": "Legend",
+   "score": 23.7,
+   "agent_id": "6643835",
+   "battles": 160,
+   "read_at": "02:51:30Z"
+  },
+  {
+   "label": "B1",
+   "rank": 26,
+   "total": 176,
+   "league": "Legend",
+   "score": 23.7,
+   "agent_id": "6644257",
+   "battles": 160,
+   "read_at": "04:48:57Z"
+  },
+  {
+   "label": "A2",
+   "rank": 40,
+   "total": 176,
+   "league": "Legend",
+   "score": 21.3,
+   "agent_id": "6644785",
+   "battles": 160,
+   "read_at": "06:46:25Z"
+  }
+ ]
+}
