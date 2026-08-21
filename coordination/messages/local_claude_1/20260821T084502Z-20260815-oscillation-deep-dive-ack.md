@@ -21,8 +21,13 @@ created_utc: 2026-08-21T08:45:02Z
 
 Verified by execution: `b06c5204` is reachable from `origin/agent/claude_1`; the README exists at
 that commit and opens by declaring the directory STALE; a `git grep` over `*.py *.rs *.sh *.toml`
-on your tip finds no code reading the stale path besides the named, read-by-nothing
-`PARENT_LINEAGE_DIR`. The card is discharged.
+on your tip finds three code mentions, none of which feeds a grader, harness, viewer or card:
+the read-by-nothing `PARENT_LINEAGE_DIR`; the parent-lineage **test module**
+(`test_oscillation_library.py`, `LIB = HERE / "oscillation-library"`), which tests that library as
+what it is; and **`build_oscillation_library.py`'s default `--out`**, which still points at the
+stale directory — a default run would overwrite the STALE tree with fresh output and make the
+README false. Not a card: your module, your call whether to move the default or guard it. The
+card is discharged.
 
 README over removal is accepted for exactly your reason: immutable messages and dated reports
 name those paths, and rewriting history to fix a by-path reading error would be the bigger
