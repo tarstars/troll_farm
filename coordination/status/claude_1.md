@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-21T00:59:39Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-21T05:12:00Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -27,7 +27,57 @@ established causes.** If you are resuming, do not act on any of it:
 **MET**; gate 1 **partially met** — `half_swap` guard unvalidated because whole-game perturbation
 cannot hold the trajectory fixed.
 
-## Current position (2026-08-21T00:59:39Z) — WAKE #14: the owner's morning sheet; informational, nothing owed
+## Current position (2026-08-21T05:12:00Z) — WAKE #15: owner rulings acked; `actionable_set()` extracted and handed off
+
+Launcher woke me on a three-message queue. Ritual complete: swept `--fetch`, read all messages,
+published two messages, `--mark`ed as its own step, committed and pushed. Post-mark sweep: **0
+unacknowledged-ack-required, 0 delivery errors, 0 immutable collisions**; 12 quarantined, all
+pre-existing and adjudicated.
+
+- **The owner ruled twice** (`local_claude_1/20260821T044224Z-...-policy.md`, ack required, acked
+  at `20260821T050909Z`). **KEEP** — `547fa706…` (door-1 pure deletion) is the champion of record
+  and cure-C `ad3bfefe…` is history. **The KEEP does not claim a gain**: the step is IMMATERIAL,
+  +0.220 over n=5, under the 1.0 floor. That clause travels with the number every time I cite it.
+  **D3 = HOLD**, no Arena slot for the anti-benching package now or after session 3, because its
+  own pre-registered condition ("when its gates are green") is not met.
+- **Consequence applied:** the subject of `20260820-pair-selector-anti-benching` is now the
+  door-1 base. The dual-base build already covers it, so no rebuild is owed; from here the live
+  column is the door-1 one — **named absolute P3 regression on `m004` seat 0, FIXED 8 → 8**. The
+  cure-C column is historical context, not an option.
+- **Card 3 CLOSED as discharged-by-events, with no replacement.** The coordinator asked me to name
+  any residual Phase-1 question rather than assume one. Checked: Phase 3 answered the route and
+  Phase 2 answered the cost; what is left is the owner's own design question, carded to the owner.
+  So I filed nothing.
+- **Card 2 is UNBLOCKED and step 1 is delivered.** The coordinator ruled YES on extracting
+  `actionable_set()`. Landed as its own change at **`5ad46cbb`** — `main()` now only parses args,
+  fetches and prints; all computation moved into `actionable_set(me, root, tasks, senders)`
+  returning a frozen `SweepState`, with `SweepFailure` carrying the four inline `return 2` paths.
+  **One predicate, one code path**, so a sentinel cannot disagree with the sweep.
+  - Evidence: the full sweep of this repository is **byte-identical** to the pre-refactor script on
+    stdout and stderr, except the `TOOL DRIFT` banner — which fires *correctly*. Suite **118 → 123
+    green** (`uvx pytest`).
+  - **The weakness I disclosed in my own handoff:** a pure `main()`-vs-`actionable_set()` output
+    equality assertion **cannot fail by construction** now that `main()` derives from it — the
+    "mechanism that cannot fail" shape. What bites is the substantive assertions beside it, which I
+    verified by two mutants applied **alone** to a clean tree (dropping `ack_obliged_to_me` → 2
+    failures; ignoring the seen-state → 1 failure). Nothing in the change *forces* a future
+    sentinel through that door; only review does, which is what I asked codex_1 to attack.
+  - Handed off at `20260821T050910Z`, requires_ack, per the ruling's condition 4. **The sentinel is
+    not started and nothing is built on top of this until codex_1 answers.**
+- **`*** TOOL DRIFT` now fires on my branch and this is EXPECTED**: `scripts/inbox_sweep.py` on
+  `agent/claude_1` (`c2437a55…`) intentionally differs from `origin/main` (`bd0fb63e…`) until the
+  refactor is reviewed and adopted. It is not the stale-tooling hazard the banner usually means —
+  but the banner cannot tell the two apart, so anyone sweeping from my branch should read this line
+  before dismissing it. Both tools matched all three refs at the start of this wake.
+- **Two messages arrived mid-ritual and were read, not just marked**: codex_1's ack of the same
+  rulings (he will review the refactor when published — it now is), and the coordinator's update
+  closing the VM disk item he claimed, **95% → 66%, 1.0 G → 6.5 G free**, by reaping 7.1 G of
+  `/tmp` agent scratch older than a day, with unpushed work preserved as a bundle first. A
+  scratch-reaper is named as future work and explicitly **unclaimed**; I have not taken it.
+- **DEFERRED cards after this wake:** card 2 (sentinel build) only — unblocked by the ruling,
+  step 1 delivered, now gated on codex_1's review of `5ad46cbb`; still mine, still not urgent.
+
+## Previous position (2026-08-21T00:59:39Z) — WAKE #14: the owner's morning sheet; informational, nothing owed
 
 Launcher woke me on a one-message queue. Ritual complete: swept `--fetch`, read the message,
 `--mark`ed as its own step, committed and pushed. Post-mark sweep: **0 new, 0
