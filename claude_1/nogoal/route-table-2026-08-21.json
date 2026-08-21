@@ -1,0 +1,6165 @@
+{
+  "base": {
+    "name": "door1-champion",
+    "note": "champion of record, Door-1 pure deletion, KEPT by the owner 2026-08-21; diagnostic copy only, no candidate, no Arena",
+    "source": "claude_1/chop4c/candidate-door1.rs",
+    "source_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+  },
+  "fixtures": [
+    {
+      "audited_unit": 0,
+      "id": "OSC-032",
+      "runs": [
+        {
+          "idle": false,
+          "in_window": false,
+          "route": "early:EARLY_GATHER",
+          "turn_end": 13,
+          "turn_start": 1,
+          "turns": 13,
+          "unit": 0
+        },
+        {
+          "idle": false,
+          "in_window": false,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn_end": 22,
+          "turn_start": 14,
+          "turns": 9,
+          "unit": 0
+        },
+        {
+          "idle": false,
+          "in_window": false,
+          "route": "early:EARLY_GATHER",
+          "turn_end": 31,
+          "turn_start": 23,
+          "turns": 9,
+          "unit": 0
+        },
+        {
+          "idle": false,
+          "in_window": false,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn_end": 34,
+          "turn_start": 32,
+          "turns": 3,
+          "unit": 0
+        },
+        {
+          "idle": false,
+          "in_window": false,
+          "route": "main:SAFE_REGEN_BANK",
+          "turn_end": 40,
+          "turn_start": 35,
+          "turns": 6,
+          "unit": 0
+        },
+        {
+          "idle": false,
+          "in_window": false,
+          "route": "main:CHOPS",
+          "turn_end": 52,
+          "turn_start": 41,
+          "turns": 12,
+          "unit": 0
+        },
+        {
+          "idle": false,
+          "in_window": false,
+          "route": "main:FULL_BANK",
+          "turn_end": 64,
+          "turn_start": 53,
+          "turns": 12,
+          "unit": 0
+        },
+        {
+          "idle": false,
+          "in_window": false,
+          "route": "main:CHOPS",
+          "turn_end": 81,
+          "turn_start": 65,
+          "turns": 17,
+          "unit": 0
+        },
+        {
+          "idle": false,
+          "in_window": false,
+          "route": "main:FULL_BANK",
+          "turn_end": 90,
+          "turn_start": 82,
+          "turns": 9,
+          "unit": 0
+        },
+        {
+          "idle": true,
+          "in_window": true,
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn_end": 200,
+          "turn_start": 91,
+          "turns": 110,
+          "unit": 0
+        }
+      ],
+      "turns": [
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 1,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 2,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 3,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 4,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 5,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 6,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 7,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 8,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 9,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 10,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 11,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 12,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=4",
+          "idle": false,
+          "in_window": false,
+          "n": 4,
+          "route": "early:EARLY_GATHER",
+          "turn": 13,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=4 n=5",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 14,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=4 n=5",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 15,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=4 n=5",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 16,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=4 n=5",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 17,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=4 n=5",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 18,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=4 n=5",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 19,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=4 n=5",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 20,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=4 n=5",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 21,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=4 n=5",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 22,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 23,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 24,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 25,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 26,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 27,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 28,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 29,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_GATHER",
+          "turn": 30,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "n=4",
+          "idle": false,
+          "in_window": false,
+          "n": 4,
+          "route": "early:EARLY_GATHER",
+          "turn": 31,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=4 n=5",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 32,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=4 n=5",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 33,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=4 n=5",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 34,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 1,
+            "free_cap": 1,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:SAFE_REGEN_BANK",
+          "turn": 35,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 1,
+            "free_cap": 1,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:SAFE_REGEN_BANK",
+          "turn": 36,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 1,
+            "free_cap": 1,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:SAFE_REGEN_BANK",
+          "turn": 37,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 1,
+            "free_cap": 1,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:SAFE_REGEN_BANK",
+          "turn": 38,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 1,
+            "free_cap": 1,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:SAFE_REGEN_BANK",
+          "turn": 39,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 1,
+            "free_cap": 1,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:SAFE_REGEN_BANK",
+          "turn": 40,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 41,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 42,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 43,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 44,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 45,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 46,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 47,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 48,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 49,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 50,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 51,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 52,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 53,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 54,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 55,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 56,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 57,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 58,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 59,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 60,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 61,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 62,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 63,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 9,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 64,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 65,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 66,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 67,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 68,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 69,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 70,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 71,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 72,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 73,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 74,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 75,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 76,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 77,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 78,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 79,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 80,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:CHOPS",
+          "turn": 81,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 82,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 83,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 84,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 85,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 86,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 87,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 88,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 5,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 89,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "bank=4",
+          "idle": false,
+          "in_window": false,
+          "n": 9,
+          "preds": {
+            "carried": 2,
+            "free_cap": 0,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:FULL_BANK",
+          "turn": 90,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 91,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 92,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 93,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 94,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 95,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 96,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 97,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 98,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 99,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 100,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 101,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 102,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 103,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 104,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 105,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 106,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 107,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 108,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 109,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 110,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 111,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 112,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 113,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 114,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 115,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 116,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 117,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 118,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 119,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 120,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 121,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 122,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 123,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 124,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 125,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 126,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 127,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 128,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 129,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 130,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 131,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 132,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 133,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 134,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 135,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 136,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 137,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 138,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 139,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 140,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 141,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 142,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 143,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 144,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 145,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 146,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 147,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 148,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 149,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 150,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 151,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 152,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 153,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 154,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 155,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 156,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 157,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 158,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 159,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 160,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 161,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 162,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 163,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 164,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 165,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 166,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 167,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 168,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 169,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 170,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 171,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 172,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 173,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 174,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 175,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 176,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 177,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 178,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 179,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 180,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 181,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 182,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 183,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 184,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 185,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 186,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 187,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 188,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 189,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 190,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 191,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 192,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 193,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 194,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 195,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 196,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 197,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 198,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 199,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 200,
+          "unit": 0
+        }
+      ],
+      "turns_named": 200,
+      "units_seen": 1,
+      "window": [
+        91,
+        200
+      ]
+    },
+    {
+      "audited_unit": 0,
+      "id": "OSC-033",
+      "runs": [
+        {
+          "idle": false,
+          "in_window": false,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn_end": 12,
+          "turn_start": 1,
+          "turns": 12,
+          "unit": 0
+        },
+        {
+          "idle": false,
+          "in_window": false,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn_end": 20,
+          "turn_start": 13,
+          "turns": 8,
+          "unit": 0
+        },
+        {
+          "idle": true,
+          "in_window": false,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn_end": 34,
+          "turn_start": 21,
+          "turns": 14,
+          "unit": 0
+        },
+        {
+          "idle": true,
+          "in_window": false,
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn_end": 200,
+          "turn_start": 35,
+          "turns": 166,
+          "unit": 0
+        }
+      ],
+      "turns": [
+        {
+          "branch": "early",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 1,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 2,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 3,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 4,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 5,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 6,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 7,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 8,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 9,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 10,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 11,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=1 n=2",
+          "idle": false,
+          "in_window": false,
+          "n": 2,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 12,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 13,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 14,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 15,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 16,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 17,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 18,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 19,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "bank=2 n=3",
+          "idle": false,
+          "in_window": false,
+          "n": 3,
+          "route": "early:EARLY_CARRY_BANK",
+          "turn": 20,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=0 n=1",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 21,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=0 n=1",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 22,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=0 n=1",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 23,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=0 n=1",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 24,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=0 n=1",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 25,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=0 n=1",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 26,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=0 n=1",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 27,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=0 n=1",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 28,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=0 n=1",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 29,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=0 n=1",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 30,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=0 n=1",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 31,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=0 n=1",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 32,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=0 n=1",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 33,
+          "unit": 0
+        },
+        {
+          "branch": "early",
+          "detail": "chops=0 n=1",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "route": "early:EARLY_CHOP_FALLBACK",
+          "turn": 34,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 35,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 36,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 37,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 38,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 39,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 40,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 41,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 42,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 43,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 44,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 45,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 46,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 47,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 48,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 49,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 50,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 51,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 52,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 53,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 54,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 55,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 56,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": false,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 57,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 58,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 59,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 60,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 61,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 62,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 63,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 64,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 65,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 66,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 67,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 68,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 69,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 70,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 71,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 72,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 73,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 74,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 75,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 76,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 77,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 78,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 79,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 80,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 81,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 82,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 83,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 84,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 85,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 86,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 87,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 88,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 89,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 90,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 91,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 92,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 93,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 94,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 95,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 96,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 97,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 98,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 99,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 100,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 101,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 102,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 103,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 104,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 105,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 106,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 107,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 108,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 109,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 110,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 111,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 112,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 113,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 114,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 115,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 116,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 117,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 118,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 119,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 120,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 121,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 122,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 123,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 124,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 125,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 126,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 127,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 128,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 129,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 130,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 131,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 132,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 133,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 134,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 135,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 136,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 137,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 138,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 139,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 140,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 141,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 142,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 143,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 144,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 145,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 146,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 147,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 148,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 149,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 150,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 151,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 152,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 153,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 154,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 155,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 156,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 157,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 158,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 159,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 160,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 161,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 162,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 163,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 164,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 165,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 166,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 167,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 168,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 169,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 170,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 171,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 172,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 173,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 174,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 175,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 176,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 177,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 178,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 179,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 180,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 181,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 182,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 183,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 184,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 185,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 186,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 187,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 188,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 189,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 190,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 191,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 192,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 193,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 194,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 195,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 196,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 197,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 198,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 199,
+          "unit": 0
+        },
+        {
+          "branch": "main",
+          "detail": "chops=0 idle_harvest=0 bank=0 n=1 discarded=1 discarded_real=0",
+          "idle": true,
+          "in_window": true,
+          "n": 1,
+          "preds": {
+            "carried": 0,
+            "free_cap": 2,
+            "idle_regen": true,
+            "safe_regen": true
+          },
+          "route": "main:IDLE_REGEN_FALLBACK",
+          "turn": 200,
+          "unit": 0
+        }
+      ],
+      "turns_named": 200,
+      "units_seen": 1,
+      "window": [
+        58,
+        200
+      ]
+    }
+  ],
+  "gate": "G-3 \u2014 the per-turn route table",
+  "instrument": "the G-1/G-2 package ACCEPTED_FOR_G3 by codex_1 2026-08-21; this file adds no tap and no gate, it reports the accepted probe per turn",
+  "not_claimed": "which conjunct of the view.turn>=100 replant block is false is NOT measured here and is not attributed; codex_1 ruled the seven-conjunct probe not required (2026-08-21)",
+  "probe": {
+    "generator": "claude_1/picker2/routeprobe-door1-champion.rs",
+    "generator_sha256": "4a7f88fe4efdc1e582150119aa3be8ee2a21c909d2de42cf31e4aef615081163"
+  },
+  "scope": "measurement only; no fix, no candidate, no judgment, no class-wide claim; bug-versus-correct-caution is the owner's ruling",
+  "task": "20260821-osc032-033-no-goal-instrument"
+}
