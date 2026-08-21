@@ -1,9 +1,14 @@
 # 20260820-pair-selector-anti-benching — employ the benched troll (rule R-2)
 
-- Status: OPEN — OWNER-CHARTERED 2026-08-20 at the 4a sitting ("We should fix
-  it"), consequence of rule R-2 (`docs/RULES-LEDGER.md`). The 24-case
-  GOAL_SPLIT class is the target: the team-picker's joint pairing discards a
-  troll's oracle-verified available work, up to 194 turns per game.
+- Status: **OPEN — PHASE 3 (REVISION), OWNER-RULED 2026-08-21 ~10:00Z: D3 = "revise"**
+  (the 08-21 morning ruling was D3 = HOLD, no Arena slot, because codex_1's
+  unified verdict was `PACKAGE_REPRODUCED; BOTH CANDIDATES BLOCKED AS QUALIFIED
+  CURES`; today the owner chose door 2 of three — revise, not retire, not change
+  the panel rule). Phase 3 section at the end of this card. Originally
+  OWNER-CHARTERED 2026-08-20 at the 4a sitting ("We should fix it"),
+  consequence of rule R-2 (`docs/RULES-LEDGER.md`). The 24-case GOAL_SPLIT
+  class is the target: the team-picker's joint pairing discards a troll's
+  oracle-verified available work, up to 194 turns per game.
 - Record owner: local_claude_1 · Work owner: **claude_1** ·
   Reviewer: **codex_1** (instrument-first, then gates) ·
   Integrator: local_claude_1
@@ -65,3 +70,64 @@ owner ruling; only the MECHANISM of compliance is designable. All standing
 transport rules (cards, deferrals, evidence gate, WIP) apply.
 
 - Authority: owner rulings at the 4a sitting, 2026-08-20.
+
+## Phase 3 — REVISION (owner D3 ruling 2026-08-21: "revise")
+
+**What blocked P1+P2, exactly** (codex_1 unified review
+`codex_1/reviews/pair-selector-phase2-unified-review-2026-08-20.md`, package
+`14b575ce`):
+
+- **B1 — un-benched is not cured.** Benched turns fell to zero on every fixture
+  and panel blocking totals fell (53→33 cure-C, 43→35 door-1: the mechanism is
+  real), but the standing FIXED grader moved **3→4 on cure-C (only OSC-034) and
+  8→8 on door-1**: OSC-004/013/017 went detector-quiet with
+  `progress_restored = false` — the troll stopped being benched and still made
+  no progress.
+- **B2 — P3 absolute regression on door-1 `m004` seat 0.** The locked panel
+  configuration makes P3 (candidate-equals-parent orchard inertness) an absolute
+  invariant; an intentional selector edit does not exempt it (codex_1 ruling,
+  upheld by the coordinator 08-21). The revision must be **P3-clean**; the owner
+  chose not to change the rule.
+- **B3 — new P4 + `r5-horizon` on `m021`** (inside an already-blocked game): a
+  new property violation is a cost even when the game-block count does not move.
+
+**Phase 3a — WHY un-benched ≠ progress (diagnosis, no code).** On the champion
+base with P1+P2 applied, for OSC-004/013/017: per turn, what the un-benched troll
+does instead of progressing — which route its candidate list comes back through,
+and what is formed and discarded. Reuse the accepted route probes
+(`claude_1/picker2/make_route_probe.py`, the p1p2 subjects already exist) and the
+G-1-accepted clause tap where a chop list is empty. **Expected collision, to be
+stated not assumed:** Phase 3 of this task already found that on OSC-013 the
+`idle_regeneration` fallback discards two formed `PICK`s on 101 of 170 idle
+turns — the owner's **open extend-vs-replace question**. If progress on 013 (or
+004/017) turns out to require that change, the diagnosis says so and **the
+question goes back to the owner with the evidence; nothing is built against it
+until ruled.** Also in 3a: the mechanism of the `m004` P3 regression and of the
+`m021` P4/`r5-horizon` cost under P1+P2 — named, with the turn.
+
+**Phase 3b — design proposal → codex_1 pre-build ruling → OWNER design go.**
+The picker is planner core; two-doors-wall applies; the owner approved P1+P2's
+design and approves the revision's. The design states whether OSC-030's shape
+(same tree wanted while a teammate works it — the 4b "tree reservation"
+mechanism, β) is covered by the revised picker or stays parked; teammate-aware
+routing (OSC-010) stays parked regardless (movement level, not picker).
+
+**Phase 3c — build + gates (ready-with-gates, named-costs class):**
+- R-1 build on the **champion of record at build time** (rebase clause: if
+  session 3 ends in REVERT, rebase before R-2).
+- R-2 `sweep34`: benching fixtures turned FIXED (**progress restored, not merely
+  detector-quiet**) — target the four owner-ruled (004/013/017/034); minimum
+  bar: **> 0 added and no case lost**; every changed verdict listed.
+- R-3 panel: **P3-clean** (orchard inertness holds vs parent on the locked
+  panel), **no new P4 / `r5-horizon`** violation, blocking totals not worse than
+  P1+P2's; full named-costs decomposition both directions, every de-novo game
+  diagnosed and named; codex_1 `PACKAGE_REPRODUCED` + unified verdict
+  QUALIFIED / BLOCKED.
+- R-4 Arena **only on the owner's explicit go**; sequence versus cure α decided
+  by the owner when both are qualified; one standard 5-pair block each, never
+  composed before each is measured alone.
+
+**Priority:** cure α (`20260821-swap-r1-cure`) keeps precedence for **building**;
+Phase 3a is read-only and may run alongside it. Phase 3b/3c start after α's G-1
+is delivered or α is blocked, whichever comes first. Work owner claude_1,
+reviewer codex_1, integrator local_claude_1, as before.
