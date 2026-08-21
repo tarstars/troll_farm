@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-21T05:12:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-21T06:17:00Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -27,7 +27,72 @@ established causes.** If you are resuming, do not act on any of it:
 **MET**; gate 1 **partially met** — `half_swap` guard unvalidated because whole-game perturbation
 cannot hold the trajectory fixed.
 
-## Current position (2026-08-21T05:12:00Z) — WAKE #15: owner rulings acked; `actionable_set()` extracted and handed off
+## Current position (2026-08-21T06:17:00Z) — WAKE #17: card 2 ACCEPTED, card 4 G-1 delivered, the revealed backlog closed
+
+Launcher woke me on a three-message queue (codex_1's card-2 review plus two acks). Ritual
+complete: swept `--fetch`, read every message, published five, `--mark`ed as its own step,
+committed and pushed. **Ending state: 0 unseen, 1 unacknowledged — the G-3 card, which is
+blocked on a peer by design.**
+
+- **Card 2 is ACCEPTED** (`codex_1/20260821T060749Z`). Their `REVISION_REQUIRED` named two
+  blocking findings and both are repaired at **`8c531096`**, delivered at `20260821T060111Z`.
+  Suite **138 → 145**; each new test was watched failing against the unrepaired code first.
+  - **Self-addressed `DEFERRED:` cards can now wake their owner.** Repaired in the SHARED
+    predicate, never in the sentinel: `inbox_sweep.is_deferral_card()` admits a self-authored
+    message only with the exact shape the outbox lint already enforces (line-start `DEFERRED:`,
+    `requires_ack: true`, own sender in `to`), and `lint_outbox` now imports that marker rather
+    than defining a second copy. Ordinary self-mail stays inert, held by a negative control.
+    Self-authored mail is also out of `new_items` — an agent has read what it wrote, so one
+    `--mark` can no longer retire a job that is still undone.
+  - **Pidfile ownership is now an exclusive `flock`**, written in place through the held
+    descriptor. The old check-then-write scored **two winners AND a crash** under a 32-process
+    barrier (`W E W L L …`): every starter staged through the same `.pid.tmp` name.
+  - **Gate 1 remains MIXED.** No rollout, no protocol amendment, no notify activation.
+- **The repair's first act was to indict my own reporting.** Turning the route on took my
+  unacknowledged count from **0 to 12** — twelve of my own cards, authoritative on origin,
+  never discharged, invisible because nothing could see them. Wakes #13 and #14 recorded
+  "queue drained" while they were live and the instrument agreed. **That agreement was the
+  defect**, the [[troll-farm-instrument-failure-modes]] shape at the transport layer.
+- **All twelve are now closed.** Three by the card-2 handoff; the other nine triaged against
+  their artifacts at `20260821T061633Z` — for each, the later same-task message that delivers
+  what the card deferred, with **eleven pinned commits verified reachable** by
+  `git merge-base --is-ancestor`, not by recollection.
+  - **The pair-selector card is the rule caught live:** its Phase-1 delivery
+    (`20260820T143805Z`) named the card in **`supersedes`**, not `ack_for`. The work shipped
+    and was reviewed; the card stayed open, because `supersedes` is inert and only `ack_for`
+    discharges. I have that sentence in my own memory and still published it that way.
+- **Card 4 (OSC-032/033 no-goal instrument): G-1 DELIVERED** at **`c0bdb4d6`**, handoff
+  `20260821T061245Z`. Not deferred a second time.
+  - **The Phase-3 probes were reused unmodified** — all five `make_route_probe.py` anchors match
+    the champion `547fa706…` exactly once. I added a subject, a `--subject`/`--manifest` CLI,
+    and the controls. A bare run still reproduces task 20260820's manifest byte-identically;
+    my first version rewrote it and that is reverted.
+  - **Measured, pending G-1, NOT a finding:** both fixtures take `main:IDLE_REGEN_FALLBACK` on
+    **110/110** and **143/143** window turns, with identical predicates every turn
+    (`carried=0 free_cap=2 safe_regen=true idle_regen=true`) and identical sub-generator sizes
+    (`idle_harvest=0 bank=0 chops=0 n=1 discarded=1 discarded_real=0`).
+  - **Phase 3's OSC-013 result does NOT carry across.** There the same fallback discarded two
+    real `PICK`s on 101 of 170 turns; here `discarded_real=0` everywhere — nothing real was
+    formed, so nothing was thrown away. The charter warned against carrying it as a premise.
+  - **The both-ways gate had to change shape and this is the reviewer's to weigh.** OSC-033
+    can NAME no non-idle route (its 20 employed turns outside the window all take a path the
+    five anchors do not name), so the gate is now instrument-level with per-fixture recording.
+    **OSC-033 carries no in-fixture both-ways evidence.**
+  - **I published a wrong version of that internally first** — "OSC-033 is idle on all 200
+    turns". It is not; the artifact's own `outside_window_unrouted_employed_turns: 20` caught
+    me, and the note records the correction rather than the tidy version.
+  - **Not measured and not inferred:** which conjunct of the `view.turn>=100` replant block is
+    false. It pushed nothing on any turn *including 100–200*, so the turn guard alone does not
+    explain these windows. There is a suggestive one-unit observation and it stays an
+    observation — proxy-for-the-thing is an error I have published before.
+- **Open rule question for the owner, unanswered:** should a green sweep include ALL open
+  commitments or only the newest card per task? The repair implements the former. I did not
+  narrow it to my own preference; a narrower route is a one-line change if they prefer it.
+- **DEFERRED cards after this wake: exactly one** — G-3 of the no-goal instrument
+  (`20260821T061246Z`), blocked on codex_1's G-1 review of `c0bdb4d6` and correctly not
+  startable by me.
+
+## Previous position (2026-08-21T05:12:00Z) — WAKE #15: owner rulings acked; `actionable_set()` extracted and handed off
 
 Launcher woke me on a three-message queue. Ritual complete: swept `--fetch`, read all messages,
 published two messages, `--mark`ed as its own step, committed and pushed. Post-mark sweep: **0
