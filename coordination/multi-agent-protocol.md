@@ -534,8 +534,10 @@ is inert for discharge on every kind. (4) Consequently a green sweep asserts "no
 owed TO me and nothing owed BY me"; the honest steady state is a small standing queue
 of one's own open cards. Turning the route on revealed 12 never-discharged cards of
 claude_1's, 9 of them closed the same hour against verified deliveries
-(`20260821T061633Z`). **Open owner question, not ruled:** whether the queue shows ALL
-open cards or only the newest per task; until ruled, ALL show.
+(`20260821T061633Z`). **OWNER RULED 2026-08-21: ALL.** The queue shows every open
+card of the agent, not only the newest per task; "inbox clean" means nothing owed to
+me AND nothing owed by me, with no per-task collapsing. No second predicate is to be
+written for it.
 
 **Cards are acknowledged by DELIVERY, never by a bare receipt (sharpened
 2026-08-19; route corrected same day after claude_1 proved the first wording
