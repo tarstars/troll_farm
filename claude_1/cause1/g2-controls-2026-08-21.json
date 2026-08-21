@@ -1,0 +1,237 @@
+{
+ "base": {
+  "champion_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0",
+  "probe_sha256": "64094f36fa704b7aff697c4c4f368c8c57747a04908980124387da29dd3885ed",
+  "subject": "door1-clause"
+ },
+ "checks": [
+  "parity: the uninstrumented and instrumented command streams hash IDENTICALLY on both fixtures; the digests are recorded, and an empty stream is refused",
+  "coverage: exactly one chop and one idle_harvest call group per audited-unit window turn, window read from the fixture's own situation record, no borrowed constant",
+  "coverage: each ENTERED call emits exactly one clause row per entry of the `view.plants` count that call itself printed, and no cell twice",
+  "coverage: a call that returned at the function guard emits zero plant rows",
+  "both ways: every turn routed through main:CHOPS carries an ACCEPTED tree in the tap (set containment, re-derived from the same run's route rows, not an existence test)",
+  "both ways: a tap that never reported ACCEPTED anywhere in the game fails the run",
+  "cross-fixture: at least one fixture must actually carry main:CHOPS, so the card's named evidence is shown to exist rather than assumed",
+  "card cross-check: the measured main:CHOPS turn count is COMPARED with the count the card names, and a disagreement fails rather than being silently matched to"
+ ],
+ "fixtures": [
+  {
+   "both_ways": {
+    "accepted_in_window": [],
+    "accepted_turns_not_routed_through_main_chops": [],
+    "main_chops_subset_of_accepted": true,
+    "main_chops_turns": [
+     41,
+     42,
+     43,
+     44,
+     45,
+     46,
+     47,
+     48,
+     49,
+     50,
+     51,
+     52,
+     65,
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79,
+     80,
+     81
+    ],
+    "tap_accepted_turns": [
+     41,
+     42,
+     43,
+     44,
+     45,
+     46,
+     47,
+     48,
+     49,
+     50,
+     51,
+     52,
+     65,
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79,
+     80,
+     81
+    ]
+   },
+   "card_cross_check": {
+    "agrees": true,
+    "card_main_chops_turns": 29,
+    "card_named_window": [
+     35,
+     90
+    ],
+    "measured_main_chops_turns": 29
+   },
+   "coverage_chop": {
+    "calls": 110,
+    "calls_by_plants_on_board": {
+     "0": 110
+    },
+    "plant_rows": 0,
+    "window": [
+     91,
+     200
+    ],
+    "window_turns": 110
+   },
+   "coverage_idle_harvest": {
+    "calls": 110,
+    "calls_by_plants_on_board": {
+     "0": 110
+    },
+    "plant_rows": 0,
+    "window": [
+     91,
+     200
+    ],
+    "window_turns": 110
+   },
+   "id": "OSC-032",
+   "parity": {
+    "command_stream_bytes": 1531,
+    "identical": true,
+    "instrumented_command_sha256": "84b88f49f9adcc43dbe87e1656196fcb4b66fcba08d2469e4fa68e0d254e5e90",
+    "uninstrumented_command_sha256": "84b88f49f9adcc43dbe87e1656196fcb4b66fcba08d2469e4fa68e0d254e5e90"
+   },
+   "unit": 0,
+   "window": [
+    91,
+    200
+   ]
+  },
+  {
+   "both_ways": {
+    "accepted_in_window": [],
+    "accepted_turns_not_routed_through_main_chops": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "main_chops_subset_of_accepted": true,
+    "main_chops_turns": [],
+    "tap_accepted_turns": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ]
+   },
+   "coverage_chop": {
+    "calls": 143,
+    "calls_by_plants_on_board": {
+     "0": 143
+    },
+    "plant_rows": 0,
+    "window": [
+     58,
+     200
+    ],
+    "window_turns": 143
+   },
+   "coverage_idle_harvest": {
+    "calls": 143,
+    "calls_by_plants_on_board": {
+     "0": 143
+    },
+    "plant_rows": 0,
+    "window": [
+     58,
+     200
+    ],
+    "window_turns": 143
+   },
+   "id": "OSC-033",
+   "parity": {
+    "command_stream_bytes": 1142,
+    "identical": true,
+    "instrumented_command_sha256": "660ad1e38eff70b0f7f219c8d3c8535ecc106beefbfcfc4c494b5a222f49f6dc",
+    "uninstrumented_command_sha256": "660ad1e38eff70b0f7f219c8d3c8535ecc106beefbfcfc4c494b5a222f49f6dc"
+   },
+   "unit": 0,
+   "window": [
+    58,
+    200
+   ]
+  }
+ ],
+ "fixtures_carrying_the_accept_side_via_main_chops": [
+  "OSC-032"
+ ],
+ "g1": {
+  "ack": "coordination/messages/codex_1/20260821T081645Z-20260821-osc032-033-cause-attribution-ack.md",
+  "at_commit": "2764db56d093c965abe21eb6b276caf7147d7c56",
+  "verdict": "ACCEPTED by codex_1 2026-08-21"
+ },
+ "gate": "G-2 controls: parity, coverage, both ways",
+ "honest_limits": [
+  "In-window coverage is VACUOUS on the per-plant direction: on every audited window turn of both fixtures `view.plants` is empty, so 'one clause row per plant' is satisfied by zero plants. The non-vacuous coverage evidence is outside the window (OSC-032 turns 35-90) and corpus-wide in clause-control-2026-08-21.json.",
+  "OSC-033 never routes through main:CHOPS on any turn, so the card's named both-ways evidence does not exist on that fixture. Its accept side comes from the early branch's chop calls on turns 1-12 instead, and that is a weaker instance of the same direction, not the card's own.",
+  "The reject side fires on neither fixture: zero rejection rows in either window because there is nothing to reject. It is carried entirely by the corpus-wide control over all 34 situations and by the negative control, both of which cause_attribution.py requires before it will report."
+ ],
+ "negative_control": {
+  "all_behaved": true,
+  "artifact": "g2-negative-control-2026-08-21.json",
+  "clean_streams_accepted": 5,
+  "corruptions_rejected": 12,
+  "gates_exercised": [
+   "both ways",
+   "card",
+   "coverage",
+   "parity"
+  ]
+ },
+ "not_claimed": [
+  "No hypothesis verdict. H-A/H-B/H-C are the G-3 deliverable and nothing here rules on them.",
+  "No claim that the measured routes or clauses are right or wrong; bug-versus-correct-caution is the owner's ruling.",
+  "No claim about any situation other than OSC-032 and OSC-033."
+ ],
+ "scope": "measurement only; no fix, no candidate, no hypothesis verdict, no harm/benefit judgment, no class-wide claim. G-3 is a separate gate.",
+ "task": "20260821-osc032-033-cause-attribution"
+}
