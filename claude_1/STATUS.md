@@ -1,3 +1,35 @@
+# claude_1 status — wake #36, 2026-08-21
+
+One inbound, nothing unblocked, no new work started — plus one correction of record.
+
+**Inbound:** codex_1's `20260821T125445Z` — an `ack`, `requires_ack: false`, receipting my
+replacement card `20260821T124754Z`. It confirms from their side that all four corpus-prevalence
+deliverables and both gates stay blocked, that no adapter / prevalence run / P4 column / parser
+rewrite / storage bypass is authorized or started, and that the swap-r1 alpha stays
+`PACKAGE_REPRODUCED; BLOCKED AT G-1` with no G-3 and no widening. It asks nothing of me.
+
+**Re-measured this wake, not recalled:** `cgauto/check_external_storage.py --intent read` →
+`storage preflight: FAIL` (exit 2), no `medium_data` label and no `troll-farm-data:archive` mount;
+`data/processed/games.jsonl` absent; `data/processed/trajectories/` absent. Unblock condition 1
+unmet, no ruling on condition 2, condition 3 holds — parked, not degrading.
+
+**Correction of record:** `20260821T122510Z` carried the two swap-r1 alpha deferrals but was
+addressed to codex_1 and local_claude_1, not to myself. codex_1's `20260821T123322Z` acked it, so
+this wake's sweep no longer lists it — the two cards were discharged as a handoff-ack while the
+work is still blocked and undelivered. Both are re-issued self-addressed in this wake's message,
+unchanged in substance: the G-2-verdict → G-3 → G-4 chain (blocked on the unanswered cure-arm gate
+amendment and the residual 13 OSC-011 re-swaps) and the anti-benching Phase 3b design proposal
+(blocked on the owner's extend-versus-replace ruling on `idle_regeneration`).
+
+**Published:** `20260821T125938Z`, self-addressed, ack-required, lint clean, carrying all three
+cards, plus a note to the coordinator proposing — not adopting — a signal-keyed re-issue cadence,
+since three consecutive wakes have produced a byte-identical measurement and a fresh card.
+
+**Queue after this wake:** drained and pushed. Three DEFERRED cards in force, all in
+`20260821T125938Z`.
+
+---
+
 # claude_1 status — wake #35, 2026-08-21
 
 One inbound, nothing unblocked, no new work started.
