@@ -2,8 +2,9 @@
 
 `scripts/sentinel.py` is the doorbell. An agent starts it in its session
 background as the last action of a turn-cycle; it blocks, costing nothing,
-while the inbox is quiet, and **exits the moment that agent's actionable set
-grows** — printing the triggering message paths. The harness sees a background
+while the inbox is quiet, and **exits the moment that agent's wake set grows**
+— printing the triggering message paths. The wake set is news from someone
+else, not the whole queue: see *What wakes it*, below. The harness sees a background
 process finish and re-invokes the agent, warm, with the paths already on
 stdout.
 
@@ -58,12 +59,14 @@ On exit 2, sweep first (the keepalive proves nothing arrived, not that
 nothing is owed), then restart. On exit 3, do not restart blindly: find out
 what is wrong with the transport first.
 
-## What "actionable" means — and why it is not defined here
+## What wakes it — and why that is not the whole queue
 
 The sentinel does **not** decide what counts as work. It calls
 `inbox_sweep.actionable_set()`, the same function the sweep's own report is
-computed from, and reads `SweepState.actionable_paths` / `is_actionable`. That
-set is:
+computed from, and reads `SweepState.wake_paths` — the **wake set**, printed by
+the sweep CLI under `wake set (N):`.
+
+Two different questions, one sweep. `actionable_paths` answers *what do I owe*:
 
 1. unseen messages addressed to the agent (`to` or `cc`);
 2. ack-required messages awaiting THAT agent's ack;
@@ -71,15 +74,53 @@ set is:
 4. a broken transport — a collision, delivery error or quarantine error means
    no inbox state above it can be trusted, which is itself work.
 
-Reconstructing this from `scan_authoritative()`, raw message fields, sweep CLI
-output, git activity or process activity is forbidden (codex_1's binding
-boundary, 2026-08-21). A second predicate that disagrees with the sweep is
-worse than none: it wakes agents for work the sweep does not show, or stays
+`wake_paths` answers *is there news*, and is always a **strict subset**: nothing
+may wake an agent that the sweep would not also show it. Per the owner rule of
+2026-08-21 (*"claude shouldn't awake without incoming emails"*, protocol §5.1),
+`inbox_sweep.wakes_recipient()` drops four classes:
+
+1. **anything the agent wrote itself.** Its own `DEFERRED:` cards stay in its
+   queue as obligations and never ring its own bell. An obligation is not news.
+2. **`cc`-only mail.** A `cc` recipient owes no ack (ruling 2026-08-20); waking
+   it to read what it does not owe contradicts the same ruling. It reads the cc
+   on its next real wake.
+3. **an `ack` with `requires_ack: false`** — a courtesy receipt. A verdict,
+   ruling or authorization changes the recipient's queue and must be published
+   ack-required toward that party (the 2026-08-18 queue-changing rule); published
+   that way it wakes. Published as a bare receipt it is read next wake, and peer
+   receipt ping-pong terminates instead of sustaining itself.
+4. **any shape-valid `DEFERRED:` card, for everyone**, including the peers it
+   names in `to`. No peer can discharge another agent's card — only a later
+   message of the same agent naming it in `ack_for` does — so the obligation such
+   a card appears to place on a peer is one the peer cannot act on. The card
+   stays fully visible to everyone as status. An assignment (`CARD:`) addressed
+   to its assignee is a different shape and still wakes.
+
+The defect this closes is a composition, not a broken rule. A postponed job must
+be a self-addressed ack-required card (08-18); a card is discharged only by
+delivering it or by a replacement card (08-19); self-addressed cards became
+visible to the sweep (`8c531096`, 08-21). So the discharge of a card is another
+card, which re-enters its author's own trigger set. While work is blocked that
+set has no fixed point — measured as eight `claude_1` wakes in 102 minutes on
+2026-08-21, every one of them legally mail-triggered by its own mail.
+
+Both consumers take the same wake set from the same sweep — `snapshot()` here,
+and the `wake set` section of the CLI in `scripts/agent_launcher.py` (which read
+`new` + `unacknowledged` before `b6e771f3`). One predicate, so the doorbell, the
+launcher and the queue cannot drift.
+
+Reconstructing either set from `scan_authoritative()`, raw message fields,
+sweep CLI output, git activity or process activity is forbidden (codex_1's
+binding boundary, 2026-08-21). A second predicate that disagrees with the sweep
+is worse than none: it wakes agents for work the sweep does not show, or stays
 silent on work it does.
 
-**Item 3 is the one self-mail route that is open, and it was closed until
-2026-08-21.** `inbox_sweep` built its addressed set with `m.sender != me`, so a
-message an agent sent to itself never entered that agent's own actionable set.
+**Actionable item 3 is the one self-mail route that is open, and it was closed
+until 2026-08-21.** It is a queue route, never a wake route — exclusion 1 above
+keeps a card out of its own author's bell.
+
+`inbox_sweep` built its addressed set with `m.sender != me`, so a message an
+agent sent to itself never entered that agent's own actionable set.
 Measured on a live card: authoritative on origin, `requires_ack: true`,
 addressed to `claude_1`, sent by `claude_1` — and absent from
 `actionable_set("claude_1").actionable_paths`. The deferral rule's "self-address
@@ -102,10 +143,14 @@ Two consequences worth knowing:
   wrote, so a self-authored message cannot enter the unseen set — otherwise one
   `--mark` would retire a job that is still undone. The card leaves the
   actionable set exactly when something of yours names it in `ack_for`: the
-  delivery handoff, or the next `DEFERRED:` replacement card.
+  delivery handoff, or the next `DEFERRED:` replacement card. It never enters
+  the wake set at all, and since 2026-08-21 an unchanged standing card is left
+  standing rather than re-issued per wake: a blocked card names its
+  `UNBLOCK-SIGNAL:` and is replaced when that observable changes, when work
+  starts, or once per 24 h.
 
-**Growth, not presence.** The baseline is snapshotted at start; the sentinel
-wakes only on paths that were not in it. Mail already sitting in the inbox when
+**Growth, not presence.** The baseline is the wake set snapshotted at start;
+the sentinel wakes only on paths that were not in it. Mail already sitting in the inbox when
 the sentinel starts never wakes anyone — the agent was already looking at it.
 A set that *shrinks* is not a wake either.
 
@@ -173,14 +218,15 @@ the new paths; **mail for a different agent → keeps hanging**; keepalive → 2
 injected fetch failure → 3; non-consecutive failures → *not* 3; double start →
 1 with the first instance untouched; stale pidfile → broken with a log line;
 `inbox-seen.json` byte-identical across a full run; the git verb set of a run
-is read-only; `snapshot()` equals the sweep's own `actionable_paths`.
+is read-only; `snapshot()` equals the sweep's own wake set.
 
 Three of those are the card-2 review's blocking findings, and each was watched
 failing against the unrepaired code before the repair existed:
 
-- **my own `DEFERRED:` card wakes me** — published after the baseline, observed
-  as exit 0 carrying exactly that path (against the old predicate: exit 2,
-  silence);
+- **my own `DEFERRED:` card enters my queue** — published after the baseline,
+  observed in `actionable_paths` (against the old predicate: absent). It was
+  also a wake until the owner rule of 2026-08-21 retired that half; the sweep
+  tests now pin both directions, queue yes and bell no;
 - **ordinary self-mail does not wake me** — the negative control that keeps the
   route narrow;
 - **32 simultaneous starters leave exactly one owner** — forked from a warm
@@ -193,4 +239,6 @@ failing against the unrepaired code before the repair existed:
 The shared predicate's own route is covered in `tests/test_inbox_sweep.py`: the
 card is actionable for its owner, is never merely "unseen", is discharged by the
 delivery handoff naming it in `ack_for`, and a deferral addressed only to a peer
-stays out of my queue.
+stays out of my queue. Six further tests pin the wake set against the four
+exclusions, and `tests/test_agent_launcher.py` carries a regression pin that the
+OLD parser sees a card and the new one does not.

@@ -3,10 +3,18 @@
 
 The wake-on-work design's launcher lane (doorbell spec 2026-08-19 + hybrid
 redirect): a plain loop that polls git bytes, computes each configured agent's
-actionable queue with the SAME sweep tool the agents themselves trust (run as
+WAKE SET with the SAME sweep tool the agents themselves trust (run as
 a subprocess — never a reimplemented scan), and launches that agent's headless
-session when, and only when, the queue is non-empty and CHANGED since the last
+session when, and only when, that set is non-empty and CHANGED since the last
 wake. Zero LLM cost while idle; launches cost exactly the work they do.
+
+The wake set is NOT the whole actionable queue (protocol §5.1, owner rule
+2026-08-21). It is news from someone else: it excludes the agent's own standing
+cards, cc-only mail, and courtesy receipts. Those stay in the agent's queue —
+they are obligations, and an obligation is not news. Ringing on the full queue
+made a blocked agent wake itself: its card could only be discharged by another
+card, which re-entered its own set, which rang this bell. Measured 2026-08-21,
+eight no-op wakes in 102 minutes.
 
 Guards: per-agent wake cap per hour, per-agent single-flight lock (no second
 session while one runs), quiet-period debounce (one wake per burst), a pause
@@ -40,8 +48,7 @@ import subprocess
 import sys
 import time
 
-SECTION_RE = re.compile(
-    r"new \(unseen\) \((\d+)\):|unacknowledged, ack required \((\d+)\):")
+SECTION_RE = re.compile(r"wake set \((\d+)\):")
 
 
 def utcnow() -> dt.datetime:
@@ -55,9 +62,35 @@ def log(state_dir: pathlib.Path, record: dict) -> None:
     print(record, flush=True)
 
 
-def actionable(repo: pathlib.Path, agent: str) -> tuple[list[str], str]:
-    """The agent's actionable paths + a stable fingerprint, via the shared
-    sweep run as a subprocess (shared-runners rule: never re-scan ourselves).
+def parse_wake_paths(text: str) -> list[str]:
+    """Message paths under the sweep's `wake set` section (protocol §5.1).
+
+    Pure text in, paths out, so the launcher's whole decision can be tested
+    without git — reading the WRONG section is precisely the defect this
+    replaced, and a defect in a section name is invisible until it costs a
+    night of no-op wakes.
+    """
+    paths: list[str] = []
+    take = False
+    for line in text.splitlines():
+        m = SECTION_RE.match(line.strip())
+        if m is not None:
+            take = int(m.group(1)) > 0
+            continue
+        if take:
+            stripped = line.strip()
+            if stripped.startswith("coordination/messages/"):
+                paths.append(stripped.split()[0])
+            elif not stripped:
+                take = False
+    return sorted(set(paths))
+
+
+def wake_set(repo: pathlib.Path, agent: str) -> tuple[list[str], str]:
+    """The agent's WAKE SET + a stable fingerprint, via the shared sweep run as
+    a subprocess (shared-runners rule: never re-scan ourselves).
+
+    Not the agent's whole queue: see the module docstring and protocol §5.1.
 
     The sweep reads `<agent>/inbox-seen.json` from the WORKTREE, so the
     launcher first materializes the agent's CURRENT seen-state from their own
@@ -77,22 +110,7 @@ def actionable(repo: pathlib.Path, agent: str) -> tuple[list[str], str]:
     proc = subprocess.run(
         [sys.executable, "scripts/inbox_sweep.py", "--me", agent],
         cwd=repo, capture_output=True, text=True, timeout=300)
-    text = proc.stdout
-    paths: list[str] = []
-    take = False
-    for line in text.splitlines():
-        m = SECTION_RE.match(line.strip())
-        if m is not None:
-            count = int(m.group(1) or m.group(2))
-            take = count > 0
-            continue
-        if take:
-            stripped = line.strip()
-            if stripped.startswith("coordination/messages/"):
-                paths.append(stripped.split()[0])
-            elif not stripped:
-                take = False
-    paths = sorted(set(paths))
+    paths = parse_wake_paths(proc.stdout)
     fp = hashlib.sha256("\n".join(paths).encode()).hexdigest()[:16]
     return paths, fp
 
@@ -154,7 +172,7 @@ def main() -> int:
         for agent, acfg in cfg["agents"].items():
             if not acfg.get("enabled"):
                 continue
-            paths, fp = actionable(repo, agent)
+            paths, fp = wake_set(repo, agent)
             if not paths:
                 state["last_fp"][agent] = ""
                 continue
@@ -172,7 +190,7 @@ def main() -> int:
             time.sleep(cfg.get("quiet_seconds", 60))
             subprocess.run(["git", "fetch", "origin", "-q"], cwd=repo,
                            timeout=180)
-            paths, fp = actionable(repo, agent)
+            paths, fp = wake_set(repo, agent)
             if not paths:
                 continue
             if args.dry_run:

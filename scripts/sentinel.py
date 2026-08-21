@@ -3,9 +3,13 @@
 
 An agent starts `scripts/sentinel.py --me <agent>` in its session background as
 the last action of a turn-cycle. The process blocks while nothing changes and
-EXITS the moment that agent's actionable set GROWS, printing the triggering
+EXITS the moment that agent's WAKE SET grows, printing the triggering
 message paths on stdout — the harness then re-invokes the agent, warm, with the
 paths already named. No LLM runs while the inbox is quiet.
+
+The wake set is news from someone else, not the whole queue (protocol §5.1,
+owner rule 2026-08-21): an agent's own standing cards, cc-only mail and
+courtesy receipts stay in its queue and never ring its bell.
 
 Exit codes ARE the interface:
 
@@ -75,8 +79,16 @@ def observe(me: str, root: pathlib.Path) -> inbox_sweep.SweepState:
 
 
 def snapshot(me: str, root: pathlib.Path) -> list[str]:
-    """The agent's actionable set as paths: unread mail plus unacked obligations."""
-    return observe(me, root).actionable_paths
+    """The agent's WAKE SET as paths — news from someone else (protocol §5.1).
+
+    Deliberately NOT `actionable_paths`, which is the whole queue including this
+    agent's own standing cards. Waking on those makes a blocked agent wake
+    itself: a card's only discharge is another card, and that card re-enters its
+    author's own set. Both consumers — this sentinel and
+    `scripts/agent_launcher.py` — take the same wake set from the same sweep, so
+    the doorbell cannot drift from the queue.
+    """
+    return observe(me, root).wake_paths
 
 
 def growth(baseline: Sequence[str], current: Sequence[str]) -> list[str]:
