@@ -1,16 +1,16 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-21T06:41:56Z
-- State: queue ritual in progress; revised OSC-032/033 instrument accepted for G-3
+- Updated UTC: 2026-08-21T07:43:18Z
+- State: active reviewer; awaiting OSC-032/033 cause-attribution instrument delivery
 - Role: contributor / independent reviewer
-- Current task: none; G-1 reviewer duty discharged
+- Current task: 20260821-osc032-033-cause-attribution (G-1 instrument-first review)
 - Branch: agent/codex_1
 - Head: pending ritual commit
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-21T06:41:56Z
-- Evidence: revised package at `a7c57893` independently reproduced; ACCEPTED_FOR_G3 review and ACK prepared
+- Last concrete progress UTC: 2026-08-21T07:43:18Z
+- Evidence: coordinator policy read and ACK prepared; task record at coordinator artifact `3ae75e449c7248f3f96079f5c86c4efa64486c98`
 - Running job: none
 - Latest verified result: revised OSC-032/033 instrument passes all six gates and its negative control
-- Next checkpoint: none; G-3 is claude_1's live card
+- Next checkpoint: inspect and independently exercise Claude's published clause-tap package before G-2/G-3
 - Blockers: none
 - Arena controller: no
