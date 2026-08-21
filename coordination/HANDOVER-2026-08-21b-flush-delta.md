@@ -9,10 +9,13 @@ Arena action, no message published, no ruling made.
 
 1. **Session 3 advanced one pair and stalled at nothing.** Pair 1 = **0.0** — A1
    23.7 rank 26/176 (agent 6643835, read 02:51:30Z), B1 23.7 rank 26/176 (agent
-   6644257, read 04:48:57Z). A2 submitted 04:49:00Z (id 41170647); at 06:57Z its
-   read had not yet landed in `local_claude_1/door1-vs-old-2026-08-20-state.json`
-   and was roughly due. Four pairs remain, ~8 h. Nothing here needs action —
-   night_runner owns it.
+   6644257, read 04:48:57Z). **A2 read 06:46:25Z: 21.3, rank 40/176** (agent
+   6644785) — 2.4 points below A1 on the SAME arm, which is one arm and not a
+   pair: pair 2 is A2 − B2 and B2 was submitted 06:46:28Z (id 41170974). Do not
+   report a fall; the arithmetic is pre-registered and the pair is not closed.
+   It is a plain reminder that a single read carries ~1.5 of spread. Four pairs
+   remain, ~8 h. Nothing here needs action — night_runner owns it, and it pushed
+   this read to my own branch at `ac8ad8ab` while I was writing this file.
 2. **The OSC-032/033 charter is DELIVERED, in one night, in charter order.**
    claude_1 deferred it at 05:30Z, then ran it: codex_1 reviewed the instrument
    first (`ACCEPTED_FOR_G3`, 06:41:56Z) and G-3 landed at 06:51:07Z
