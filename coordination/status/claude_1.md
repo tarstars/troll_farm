@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-21T07:18:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-21T07:55:30Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -1095,3 +1095,40 @@ are not the same event.
 ## Standing constraints
 
 Arena controller: **NO**. `rust/src/bin/yamo_orchard_live.rs` (`fff6669b`) byte-untouchable; `engine.rs` (`7c240abf`) is the authority, not any bot's self-restraint. `trace_detectors.py` is `local_claude_1`'s. No CI anywhere.
+
+## Wake #22 (2026-08-21) — cause-attribution G-1 delivered; a premise in the card refuted
+
+- **Card taken and answered at G-1.** `20260821-osc032-033-cause-attribution` (chartered 07:32:56Z
+  at the owner's request). Delivered the instrument package at `20260821T075136Z`, artifacts at
+  `eb697462`. **G-2 and G-3 are NOT claimed** — the card puts codex_1's instrument review first
+  and I held to it. codex_1 had already ACKed the reviewer duty at 07:43:18Z noting no package
+  was published yet; it is published now.
+- **What was built.** The clause tap: 7 new anchors on a NEW subject `door1-clause`, so the
+  predecessor's accepted `door1-champion` probe and both manifests still reproduce
+  byte-identically (observed via `git status` on every build). All 14 anchors match exactly once.
+  Every edit splits an `a||b` guard into its named halves or turns one iterator chain into the
+  same loop — no predicate added, removed, weakened or reordered. Nine fail-closed gates, all
+  green, including the cross-check against the ACCEPTED route probe's `chops=` and a referee/bot
+  agreement gate (249 + 358 rows, 0 mismatches) that licenses joining the oracle to the clauses.
+- **The control the first run forced.** Across both fixtures, on all 607 tapped calls, the tap
+  emitted **zero rejection rows** — so the card's both-ways control tests only the ACCEPTED
+  direction, and a constant-ACCEPTED tap would look identical. Added `clause_control.py`: same
+  probe binary over all 34 situations, parity re-checked on each; the runner refuses to attribute
+  a cause without it. Reject side observed firing (`PREDICT_TREE_NONE` ×103, `NO_FRUITS` ×425,
+  `FN_NO_HARVEST_POWER` ×991, `FN_NO_CHOP_POWER` ×1091, `OPPONENT_EMPTY_HANDED_ON_CELL` ×77).
+  **Eleven clauses were never observed firing anywhere in the corpus and are recorded as
+  UNOBSERVED, not as exercised** — gating on all sixteen would gate the corpus, not the tap.
+- **A premise in the card is refuted, and I did NOT act on it.** The card's THE QUESTION says the
+  eligible-action oracle reported legal work every window turn. `oracle.py`, under the agreement
+  gate, returns the **empty set** 110/110 and 143/143 — `view.plants` is empty there (OSC-032 has
+  a plant on turns 1-81 only, OSC-033 on 1-12 only; the windows open at 91 and 58). The claim
+  traces to the fixture's P4 record wording, *"work remains … [RAW liveness: every stall window
+  over a non-terminal world blocks]"*, which is a different predicate — `oracle.py` exists because
+  the earlier work-oracle conflated exactly these two. Raised to local_claude_1 at G-1 because it
+  bears on what G-3 should be asked; **no hypothesis marked, no cause attributed, no judgment on
+  the fixtures' classification.**
+- **Queue drained.** Four more messages arrived mid-wake, all `requires_ack: false` acks/rulings.
+  Acked the deferral-rule ruling (`policy` is in `ACK_REQUIRED_KINDS`, so a policy cannot opt out
+  by front matter — named once, no change requested). **TOOL DRIFT has CLEARED**: local_claude_1
+  ruled option 1 and merged `agent/claude_1` to `main`, so the instrument is untouched and the
+  red line is gone. Transport suites 145/145 on this tree.
