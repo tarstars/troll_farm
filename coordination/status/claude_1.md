@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-21T10:33:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-21T11:25:00Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -27,7 +27,52 @@ established causes.** If you are resuming, do not act on any of it:
 **MET**; gate 1 **partially met** — `half_swap` guard unvalidated because whole-game perturbation
 cannot hold the trajectory fixed.
 
-## Current position (2026-08-21T10:33:00Z) — WAKE #29: cure α is BUILT, and its own re-swap gate blocks it
+## Current position (2026-08-21T11:25:00Z) — WAKE #31: the champion has its own fixtures
+
+Queue drained and pushed. Four new messages: three owner-approved cards/amendments from the
+coordinator and one receipt. **The champion-subject library is DELIVERED**
+(`20260821T112200Z`, commit `5f057e9d`), which is the ack of its card; the gate amendment is
+acked at `20260821T110800Z`; `20260821-corpus-prevalence` is acked and **DEFERRED with its
+replacement card** at `20260821T110900Z`, exactly where the coordinator's priority order puts it.
+
+**`claude_1/banana-restoration-r2/oscillation-library-547fa706/` — 21 situations from 28
+episodes**, `library_sha256` `4d3b3655…`, subject the champion of record `547fa706…` judged
+against itself at `run_identity: floor` over a panel config that is a mechanical copy of the
+`98628e98` library's (only subject and output paths differ; `panel-config-diff.json` proves it
+field by field). The accepted builder is imported unmodified and its digest is checked before
+anything is harvested. **Episode identity is recorded per case** and verified the hard way:
+`verify_identity.py` recompiles the champion, rebuilds each game from its own provenance and puts
+the run through the shared gate — **21/21 reproduce, 0 failures**. The accepted M3a suite,
+retargeted, is 24/24 with `OSC_LIB_REPLAY=1`.
+
+**8/8 controls, and one of them found something.** The old library's `panel-config.json` on disk
+hashes `49bb3551…`, not the `eca5cb32…` recorded inside all 34 frozen situations: the
+source-portability repair of 2026-08-12 (`07cb2bd7`) edited a file the library had already
+pinned, **after** its acceptance. Benign and measured to be so — every window, board, command
+line, classification and histogram rebuilds identically, and restoring the frozen digest
+reproduces all 34 `content_sha256` exactly. The library's own pin is what made that a paragraph
+instead of a week.
+
+**The carry-over table's headline: benching is still the champion's most common recorded shape —
+15 of 21 cases, 1,751 benched unit-turns** under the accepted eligible-action oracle, worst case
+new `OSC-021` at 380. "Same tree wanted → reservation" has **no exhibit**, which is written as no
+exhibit and never as fixed. Case numbers do not carry across libraries (old 013 → new 011, old
+017 → new 010, old 012 → new 009); 17 old cases have no champion case on their game.
+
+**One tooling change, flagged**: `build_viewer.py` gained two optional, default-preserving
+parameters, because its subject line was the hard-coded string `readable__no_orchard` and
+champion pages would otherwise have lied about whose episodes they show. Self-test green, old
+tree still builds; codex_1 may have it reverted in favour of a separate generator.
+
+**Also published**: an update answering the narrowed OSC-032/033 stamp's closing question —
+`m091 s0` and `m087 s0` produce **no** champion case, and that is *no exhibit*, partly a
+consequence of those games ending at 82 and 13, not evidence about the planner.
+
+**Owed / next**: α stays BLOCKED on codex_1's G-1 remedy ruling (yield-only predicate; OSC-011
+needs an owner-approved seam widening). Then `20260821-corpus-prevalence`, then anti-benching
+Phase 3a. Two self-addressed deferral cards are live and discharge by doing the work.
+
+## Previous position (2026-08-21T10:33:00Z) — WAKE #29: cure α is BUILT, and its own re-swap gate blocks it
 
 codex_1 ACCEPTED G-0 rev 2 (`20260821T101241Z`, `requires_ack: false`) — build authorised. Built
 `cgauto/submissions/candidate-swap-r1.rs` from the champion of record `547fa706…`, every edit
