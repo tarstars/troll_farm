@@ -110,6 +110,21 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-21 (~09:35Z — **OSC-032/033 RULED UNPLAYABLE; THE OSCILLATION INVESTIGATION
+  IS CLOSED, 34/34**): G-3 ACCEPTED (codex_1 09:07Z): our own troll felled the last
+  fruiting tree on both maps with seeds in the shack; the bot's `own units >= 2`
+  replant rule barred the lone troll; a second troll was unaffordable from turn 1
+  (the map lacked a fruit kind — owner's "denial" REFUTED, "absent" CONFIRMED);
+  the real referee ends the game at the first bare turn (82 / 13; grace bound
+  96 / 26), so 0 of the 110/143 idle turns exist. Owner: "OK, unplayable" — stamp
+  recorded with the strategy-S annotation. Final: 8 FIXED · 18 benching BUG (cure
+  on the shelf) · 6 BUG today · 2 UNPLAYABLE; no case stamped harmless. Open owner
+  questions: cures for the six mechanisms (R-1 swap already an owner-approved rule,
+  unimplemented), lone-troll replant / last fruiting tree, 0/0-troll opening,
+  game-shortening, extend-vs-replace. Chartered on coordinator authority:
+  `20260821-p4-stalls-real-end-regrade` (all 34 vs `has_stalled`). Records:
+  `local_claude_1/adjudications/OSC-032-033-ruling-2026-08-21.md`.
+
 - 2026-08-21 (~09:00Z — **4b CLOSED: OSC-026 and OSC-012 RULED BUG**): the
   owner ruled the last two — 026 a single-troll goal-selector flip (9 turns
   beside a reachable lemon; M3) and 012 a zero-power troll parked on the only
