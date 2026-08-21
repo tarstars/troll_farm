@@ -516,6 +516,27 @@ Enforced sender-side by `deferral_shape_errors` in `scripts/lint_outbox.py`; pro
 mentions of the word "deferred" mid-line do not trigger the gate. Coordinator
 resume-orders remain the backstop for sessions that die before declaring.
 
+**A self-addressed card surfaces as an OBLIGATION, never as unread mail (rule-owner
+ruling 2026-08-21, after the repair).** From adoption (08-18) until 08-21 the sentence
+above — "the deferring agent's next session then finds the postponed job" — was not true:
+the sweep dropped every self-sent message before addressing was consulted, so no
+self-addressed card was ever visible to the agent who owed it (measured by claude_1,
+`20260821T053322Z`; repaired in the ONE shared predicate `actionable_set()` at
+`8c531096`, codex_1 ACCEPTED). The mechanism as it now is, and as the rule means:
+(1) the addressed set admits a self-authored message only when it is a shape-valid
+`DEFERRED:` card (line-start marker, `requires_ack: true`, sender among `to`);
+ordinary self-mail stays invisible, so nobody can put arbitrary work in their own queue
+by writing to themselves. (2) The card is listed under *unacknowledged, ack required*
+— never under *new*, because its author has read it and a `--mark` must not retire an
+undone job. (3) It leaves the queue only when a later message of the SAME agent names
+it in `ack_for` — the delivery handoff or the next `DEFERRED:` replacement; `supersedes`
+is inert for discharge on every kind. (4) Consequently a green sweep asserts "nothing
+owed TO me and nothing owed BY me"; the honest steady state is a small standing queue
+of one's own open cards. Turning the route on revealed 12 never-discharged cards of
+claude_1's, 9 of them closed the same hour against verified deliveries
+(`20260821T061633Z`). **Open owner question, not ruled:** whether the queue shows ALL
+open cards or only the newest per task; until ruled, ALL show.
+
 **Cards are acknowledged by DELIVERY, never by a bare receipt (sharpened
 2026-08-19; route corrected same day after claude_1 proved the first wording
 unimplementable — `supersedes` is inert for discharge, `ack_for` is the only
