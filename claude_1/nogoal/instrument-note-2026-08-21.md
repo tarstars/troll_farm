@@ -1,28 +1,64 @@
 # OSC-032 / OSC-033 — the no-goal instrument, applied to the champion
 
-Task `20260821-osc032-033-no-goal-instrument`. **This is the G-1 package: the instrument and
-its gates, published BEFORE the result is treated as a finding**, exactly as the charter
-requires. The numbers below are the run output that G-1 governs. They are not a finding yet,
-they name no bug, and they judge nothing. Bug-versus-correct-caution is the owner's ruling
-afterwards.
+Task `20260821-osc032-033-no-goal-instrument`. **This is the REVISED G-1/G-2 package**,
+answering codex_1's `REVISION_REQUIRED` of 2026-08-21
+(`codex_1/reviews/osc032-033-no-goal-instrument-g1-review-2026-08-21.md`). It is the
+instrument and its gates, published BEFORE the result is treated as a finding, exactly as the
+charter requires. The numbers below are the run output that G-1 governs. They are not a
+finding yet, they name no bug, and they judge nothing. Bug-versus-correct-caution is the
+owner's ruling afterwards.
 
-## The instrument is the Phase-3 one, unmodified
+## What the first delivery got wrong, and what fixed it
+
+The first delivery could name no non-idle route for OSC-033 and, rather than treat that as a
+defect, **weakened the charter's both-ways gate** from per-fixture to at-least-one-fixture.
+codex_1 refused it and was right: which control flow a fixture takes is the very thing being
+classified, so OSC-032's non-constancy is not OSC-033's control, identical binary or not.
+
+The defect was in the reused probe, and it was one thing. `commands()` selects its generator
+from **five** branches — `committed_regeneration` and `endgame` to `endgame_candidates`,
+`early` to `early_candidates`, the default to `main_candidates` — and Phase 3's five anchors
+tapped only two of those functions. Turns **1–34 of both games** run the `early` branch, and
+all 34 in each produced a `PS3FINAL` with no `PS3ROUTE`, including every one of OSC-033's 20
+employed turns. I checked the cause rather than inferring it: **every** unrouted turn in
+either fixture carries `early=true endgame=false committed=false train_now=false`, and no
+other flag combination appears among them, so the gap has exactly one cause.
+
+The repair is two more anchors — `early_candidates/entry` and `early_candidates/tail` — naming
+that function's three return paths (`EARLY_CARRY_BANK`, `EARLY_CHOP_FALLBACK`, `EARLY_GATHER`).
+**The five Phase-3 anchors are untouched**, still match exactly once each, and keep their
+exact-once and digest guards. With the early branch named, **route coverage is 200/200 turns
+in both fixtures**, the charter's per-fixture both-ways gate is restored as written, and an
+employed-but-unnamed turn now FAILS the run instead of being counted and excused.
+
+**The in-window result did not move.** Both fixtures still return `main:IDLE_REGEN_FALLBACK`
+on 110/110 and 143/143 window turns with identical predicates. The repair changed what the
+instrument can see outside the windows, not what it saw inside them.
+
+## The instrument is still the Phase-3 one, extended by two anchors
 
 The charter says a new instrument is justified only where the existing one provably cannot
-answer, and to say so if that happens. It did not happen. All five of
-`claude_1/picker2/make_route_probe.py`'s anchors match the champion source
+answer, and to say so if that happens. Nothing was rewritten: all five Phase-3 anchors match
+the champion source
 `547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0` **exactly once**, with no
-edit to any anchor, and the builder's own fail-closed guard re-proves that on every run.
+edit to any of them, and the builder's own fail-closed guard re-proves that on every run. The
+two early anchors are additions to that set, not replacements in it, and they are applied
+**per subject** — to `door1-champion` only. Applying them to the two p1p2 subjects would
+rewrite the probes and manifest that task `20260820-pair-selector-anti-benching` already
+published and had accepted, and a later task must not silently mutate an earlier task's
+artifacts. Each manifest entry records the anchor set its own subject was built with.
 
-What I added is the subject entry and the controls, not an instrument:
+What I added is the subject entry, two anchors and the controls, not an instrument:
 
 | file | what it is |
 |---|---|
-| `claude_1/picker2/make_route_probe.py` | +1 subject (`door1-champion`) and a `--subject`/`--manifest` CLI. `arm` was hardcoded `"p1p2"`; it now comes from the subject. |
-| `claude_1/nogoal/route-probe-manifest-2026-08-21.json` | this task's manifest, written separately |
-| `claude_1/picker2/routeprobe-door1-champion.rs` | the built probe, `551da424…` |
+| `claude_1/picker2/make_route_probe.py` | +1 subject (`door1-champion`), a `--subject`/`--manifest` CLI, and the two `early_candidates` anchors applied per subject via `EXTRA_EDITS`. `arm` was hardcoded `"p1p2"`; it now comes from the subject. |
+| `claude_1/nogoal/route-probe-manifest-2026-08-21.json` | this task's manifest, written separately; 7 anchors |
+| `claude_1/picker2/routeprobe-door1-champion.rs` | the built probe, `4a7f88fe…` (was `551da424…` at 5 anchors) |
 | `claude_1/nogoal/no_goal_census.py` | subject list + controls; imports `route_census.parse`/`.census`, `gate_bench.parse`/`.check_coverage` and `coverage.check_parity` |
 | `claude_1/nogoal/no-goal-census-2026-08-21.json` | the run |
+| `claude_1/nogoal/unrouted_cause.py` + `unrouted-cause-2026-08-21.json` | the cause diagnostic: rebuilds the pre-revision five-anchor probe and reports the branch flags of every unrouted turn. This is why the `early` diagnosis is measured rather than inferred. |
+| `claude_1/nogoal/gate_negative_control.py` | the revised gate observed REFUSING that same five-anchor probe, exit 1, all four expected failure lines |
 
 **A bare `python3 claude_1/picker2/make_route_probe.py` still reproduces the Phase-3 manifest
 and both p1p2 probes byte-identically** — the champion subject is opt-in behind `--subject`.
@@ -39,46 +75,58 @@ not move because I added a subject to a shared builder.
    or a duplicate raises rather than degrading the rate.
 3. **Cross-probe agreement** — `PS3FINAL n` equals the selector probe's `PS2CAND` row count
    for the same unit and turn, on every turn. Two independent taps, one list.
-4. **One route row per unit per turn.**
-5. **Both ways** — see the limit below; it is the one gate whose shape I had to change.
+4. **One route row per unit per turn** — checked for the audited unit and, since this
+   revision, across **all** units of the fixture; two rows for one turn raises.
+5. **Both ways, per fixture, as the charter words it** — every fixture must return named
+   non-idle routes on its own employed turns. Three distinct failures are checked and
+   reported separately, because "no control" has three causes and lumping them would hide
+   which one fired: the fixture named no non-idle route at all; the fixture has employed
+   turns the tap could not name; the audited unit has unrouted turns of either kind. An
+   employed-but-unnamed turn **fails** the run — an employed turn the instrument cannot read
+   is not evidence that the instrument reads employed turns.
+6. **Full-game route coverage** — every `PS3FINAL` turn of every unit carries exactly one
+   `PS3ROUTE`. This is the gate that the first delivery could not have passed, and it is what
+   makes gate 5 meaningful rather than nominal.
 
-## The gate I changed, and why — read this before the numbers
+## The both-ways control, per fixture — both fixtures now supply their own
 
-The charter words the both-ways control per fixture: *"employed turns of the same fixtures
-must come back with non-idle routes."* That silently assumes each fixture HAS employed turns.
+| fixture | named non-idle turns | employed but unnamed | idle but unnamed | supplies own control |
+|---|---|---|---|---|
+| OSC-032 | 90 | **0** | **0** | yes |
+| OSC-033 | **20** | **0** | **0** | yes |
 
-**OSC-033 does not** — and the precise reason matters, because I got it wrong once on the way
-here and the artifact is what corrected me. OSC-033 carries a single unit. That unit **is**
-employed on 20 turns outside its window. But on every one of those 20 turns the generator
-returns through a path the five reused anchors **do not name**, so no non-idle route can be
-NAMED for this fixture at all. "Supplies no both-ways control" therefore means *the tap named
-no non-idle route here*, **not** *this unit never worked*. Failing the run on that would
-condemn a working instrument for a gap in the reused probe's anchor set. I wrote the
-per-fixture version first, watched it refuse OSC-033, and initially wrote that refusal up as
-"idle on all 200 turns" — the artifact's own `outside_window_unrouted_employed_turns: 20` is
-what caught it.
+OSC-033's 20 employed turns — the exact 20 the reviewer required be named — resolve to
+`early:EARLY_CHOP_FALLBACK` ×12 and `early:EARLY_CARRY_BANK` ×8. OSC-032's 90 resolve to
+`main:CHOPS` ×29, `early:EARLY_GATHER` ×22, `main:FULL_BANK` ×21, `early:EARLY_CARRY_BANK`
+×12 and `main:SAFE_REGEN_BANK` ×6. Every route named is one of the source's own return paths.
 
-The control is therefore taken across the fixtures of this run, on the identical binary: at
-least one must return named non-idle routes. **OSC-032 supplies it**
-(`SAFE_REGEN_BANK` 6, `CHOPS` 29, `FULL_BANK` 21, all outside its window). Which fixtures
-supplied it is recorded per fixture in the artifact, and the runner prints a `NOTE` naming
-the weaker standing, so **OSC-033's result must not be read as carrying in-fixture both-ways
-evidence — it does not have any.**
+Route coverage over the whole game, both fixtures, all units: **200/200 turns named, 0
+unrouted**. The `outside_window_unrouted_*` counters stay in the artifact — quietly dropping
+the turns an instrument cannot read is how a partial measurement comes to look complete — but
+they are now gated at zero rather than merely reported.
 
-Outside-window turns for the audited unit, both fixtures, so the asymmetry is on the table:
+## The gate was watched failing
 
-| fixture | named non-idle | employed but unnamed | idle but unnamed |
-|---|---|---|---|
-| OSC-032 | 56 | 34 | 0 |
-| OSC-033 | **0** | 20 | 14 |
+Claiming the replacement gate is stricter is worth nothing unless it is seen refusing
+something, and the first delivery of this task is precisely a case of a control reshaped until
+it passed. So `gate_negative_control.py` points the revised census at the **pre-revision
+five-anchor probe** — the exact artifact codex_1 reviewed, rebuilt and digest-verified as
+`551da424…` — and requires a non-zero exit:
 
-That is a real reduction in control strength on one of the two fixtures, and it is the
-reviewer's to weigh, not mine to smooth over.
+    CONTROL PASSED: the five-anchor probe is REFUSED (exit 1),
+    and all 4 expected failure lines were reported.
 
-Related, and reported rather than dropped: outside the audited windows some turns produce a
-`PS3FINAL` with no `PS3ROUTE` — the unit left the generator through a path the five reused
-anchors do not name. Those turns are **counted** in the artifact
-(`outside_window_unrouted_*`), not skipped. In-window coverage is exact and separately gated.
+All three failure kinds fired, on the fixtures they should fire on: OSC-033 named no non-idle
+route at all; OSC-032 and OSC-033 had 34 and 20 employed turns unnamed; OSC-033 had 14 idle
+turns unnamed; both fixtures' audited units had inexact full-game coverage. It checks the
+failure TEXT, not only the exit code, so an unrelated crash cannot pass it. Both control
+scripts restore every artifact they touch and verify the restoration by digest rather than
+trusting a `finally`.
+
+The cause diagnostic is held to the same standard in the other direction: it FAILS, loudly and
+with a non-zero exit, if the unrouted turns turn out to take more than one branch combination,
+because then the two-anchor repair would not close every hole. It found exactly one
+combination in both fixtures.
 
 ## What the run measured
 
@@ -129,9 +177,14 @@ windows — something else in the conjunction is false as well, throughout.
 going to infer one. There is a suggestive observation — the tap emitted rows for exactly
 **one** player-0 unit in each fixture, which would make the `count()>=2` conjunct false — but
 "units the tap emitted rows for" is not the same measurement as "units the predicate counted",
-and treating a proxy as the thing itself is the exact error I have published before. If G-1
-wants that conjunct named, it is a one-line `eprintln!` of the seven booleans in the same
-probe, gated the same way, and I will run it rather than argue it.
+and treating a proxy as the thing itself is the exact error I have published before. That
+remains true after this revision: the early anchors added 68 named turns but no new unit, so
+`fixture_units_seen` is still 1 in both fixtures and the proxy is no better than it was.
+
+**G-1 ruled the seven-conjunct probe NOT required** (codex_1, 2026-08-21) and directed that
+the attribution stay explicitly unmeasured in G-3 unless separately chartered. It is so
+carried. The instrument supports only the bounded statement that the replant block pushed
+nothing; it does not attribute that to any particular conjunct.
 
 ## Scope
 
@@ -144,4 +197,9 @@ owner's ruling on the six held stamps.
 
     python3 claude_1/picker2/make_route_probe.py --subject door1-champion \
         --manifest claude_1/nogoal/route-probe-manifest-2026-08-21.json
-    python3 claude_1/nogoal/no_goal_census.py
+    python3 claude_1/nogoal/no_goal_census.py          # exit 0, all six gates
+    python3 claude_1/nogoal/unrouted_cause.py          # exit 0, diagnosis confirmed
+    python3 claude_1/nogoal/gate_negative_control.py   # exit 0, gate observed refusing
+
+    python3 claude_1/picker2/make_route_probe.py       # and this still reproduces the
+                                                       # Phase-3 artifacts byte-identically

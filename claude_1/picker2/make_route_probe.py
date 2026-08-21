@@ -24,6 +24,23 @@ The route names are the source's own return paths, not a taxonomy I invented:
 
   main:     SAFE_REGEN_BANK  FULL_BANK  IDLE_REGEN_FALLBACK  NOCHOP_BANK  CHOPS
   endgame:  PLANT_SITES  CARRIED_FRUIT_BANK  CARRIED_BANK  CHOP_CURRENT  CONVERSION_TAIL
+  early:    EARLY_CARRY_BANK  EARLY_CHOP_FALLBACK  EARLY_GATHER
+
+`commands()` picks its generator from FIVE branches, not two: `committed_regeneration` and
+`endgame` route to `endgame_candidates`, the default routes to `main_candidates`, and `early`
+(`!opening_abandoned && my_units.len()<2 && !train_now`) routes to `early_candidates`. Phase 3's
+fixtures never entered the early branch inside their audited windows, so its five anchors named
+every route those fixtures took and the omission was invisible. On the OSC-032/033 fixtures it is
+not invisible: turns 1-34 of BOTH games are `early=true`, and all 34 produce a `PS3FINAL` with no
+`PS3ROUTE` at all. Those are exactly the turns that left OSC-033 unable to name a non-idle route
+and cost the G-1 package its per-fixture both-ways control (codex_1 review, 2026-08-21).
+
+`EARLY_EDITS` closes that hole. It is applied PER SUBJECT, via `EXTRA_EDITS`, and only to
+`door1-champion`. Applying it to the two p1p2 subjects would rewrite the probes and manifest that
+task `20260820-pair-selector-anti-benching` already published and had accepted; a later task must
+not silently mutate an earlier task's artifacts. So a bare run still reproduces the Phase-3
+manifest and both p1p2 probes byte-identically, and `anchors` in each manifest entry records the
+set that subject was actually built with rather than a global that no longer describes it.
 
 Guards, all fail-closed: the subject digest must be in the allowlist, and every anchor must match
 EXACTLY once — an anchor that matches twice is refused rather than applied to a guess.
@@ -185,6 +202,48 @@ EG_TAIL_NEW = '''                out.extend(chops);
             }
             fn idle_harvest_candidates'''
 
+# ---- early_candidates: the fifth generator branch in commands(), untapped by Phase 3 ----------
+EARLY_ENTRY_OLD = """            fn early_candidates(view:&GameState,unit:&Unit,desired:Stats)->Vec<Candidate>{
+                let mut out=vec![Self::wait()];
+                if Self::carrying_any(unit)||unit.free_capacity()<=0{
+                    out.extend(Self::bank_candidates(view,unit));
+                    return out;
+                    }"""
+EARLY_ENTRY_NEW = """            fn early_candidates(view:&GameState,unit:&Unit,desired:Stats)->Vec<Candidate>{
+                let mut out=vec![Self::wait()];
+                if Self::carrying_any(unit)||unit.free_capacity()<=0{
+                    let ps3_bank=Self::bank_candidates(view,unit);
+                    eprintln!("PS3ROUTE unit={} turn={} fn=early route=EARLY_CARRY_BANK bank={} n={}",unit.id,view.turn,ps3_bank.len(),out.len()+ps3_bank.len());
+                    out.extend(ps3_bank);
+                    return out;
+                    }"""
+
+EARLY_TAIL_OLD = """                if out.len()==1{
+                    out.extend(Self::chop_candidates(view,unit,None));
+                    }
+                out
+            }
+            fn fruit_candidates"""
+EARLY_TAIL_NEW = """                if out.len()==1{
+                    let ps3_chops=Self::chop_candidates(view,unit,None);
+                    eprintln!("PS3ROUTE unit={} turn={} fn=early route=EARLY_CHOP_FALLBACK chops={} n={}",unit.id,view.turn,ps3_chops.len(),out.len()+ps3_chops.len());
+                    out.extend(ps3_chops);
+                    }
+                else{
+                    eprintln!("PS3ROUTE unit={} turn={} fn=early route=EARLY_GATHER n={}",unit.id,view.turn,out.len());
+                    }
+                out
+            }
+            fn fruit_candidates"""
+
+EARLY_EDITS = [("early_candidates/entry", EARLY_ENTRY_OLD, EARLY_ENTRY_NEW),
+               ("early_candidates/tail", EARLY_TAIL_OLD, EARLY_TAIL_NEW)]
+
+# Per-subject additions. The five EDITS above are the accepted Phase-3 set and are applied to
+# EVERY subject unchanged; only the champion gets the early anchors on top. See the module
+# docstring for why this is per-subject rather than global.
+EXTRA_EDITS = {"door1-champion": EARLY_EDITS}
+
 EDITS = [("commands/by_id.insert", FINAL_OLD, FINAL_NEW),
          ("main_candidates/entry", MAIN_ENTRY_OLD, MAIN_ENTRY_NEW),
          ("main_candidates/tail", MAIN_TAIL_OLD, MAIN_TAIL_NEW),
@@ -202,7 +261,8 @@ def build(name, path, arm, want_digest):
     if got != want_digest:
         raise BuildError(f"{name}: digest {got} is not the allowlisted {want_digest}. The subject "
                          f"moved under the probe; refusing to instrument an unknown source.")
-    for label, old, new in EDITS:
+    edits = EDITS + EXTRA_EDITS.get(name, [])
+    for label, old, new in edits:
         n = src.count(old)
         if n != 1:
             raise BuildError(f"{name}: anchor {label!r} matched {n} times, need exactly 1.")
@@ -212,7 +272,7 @@ def build(name, path, arm, want_digest):
     return {"name": name, "arm": arm, "source": str(path.relative_to(REPO)),
             "source_sha256": want_digest, "probe": str(out.relative_to(REPO)),
             "probe_sha256": hashlib.sha256(src.encode()).hexdigest(),
-            "anchors": [l for l, _, _ in EDITS]}
+            "anchors": [l for l, _, _ in edits]}
 
 
 def main():
@@ -230,7 +290,8 @@ def main():
     for name in wanted:
         path, arm, digest = SUBJECTS[name]
         man[name] = build(name, path, arm, digest)
-        print(f"  built {man[name]['probe']}  ({len(EDITS)} anchors, each matched once)")
+        print(f"  built {man[name]['probe']}  "
+              f"({len(man[name]['anchors'])} anchors, each matched once)")
     manifest = Path(args.manifest)
     manifest.write_text(json.dumps(man, indent=2, sort_keys=True) + "\n")
     print(f"wrote {manifest}")

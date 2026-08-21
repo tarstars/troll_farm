@@ -432,7 +432,9 @@ mod bot{
             fn early_candidates(view:&GameState,unit:&Unit,desired:Stats)->Vec<Candidate>{
                 let mut out=vec![Self::wait()];
                 if Self::carrying_any(unit)||unit.free_capacity()<=0{
-                    out.extend(Self::bank_candidates(view,unit));
+                    let ps3_bank=Self::bank_candidates(view,unit);
+                    eprintln!("PS3ROUTE unit={} turn={} fn=early route=EARLY_CARRY_BANK bank={} n={}",unit.id,view.turn,ps3_bank.len(),out.len()+ps3_bank.len());
+                    out.extend(ps3_bank);
                     return out;
                     }
                 let n=view.units.iter().filter(|unit|unit.player==0).count()as i32;
@@ -456,7 +458,12 @@ mod bot{
                         }
                     }
                 if out.len()==1{
-                    out.extend(Self::chop_candidates(view,unit,None));
+                    let ps3_chops=Self::chop_candidates(view,unit,None);
+                    eprintln!("PS3ROUTE unit={} turn={} fn=early route=EARLY_CHOP_FALLBACK chops={} n={}",unit.id,view.turn,ps3_chops.len(),out.len()+ps3_chops.len());
+                    out.extend(ps3_chops);
+                    }
+                else{
+                    eprintln!("PS3ROUTE unit={} turn={} fn=early route=EARLY_GATHER n={}",unit.id,view.turn,out.len());
                     }
                 out
             }

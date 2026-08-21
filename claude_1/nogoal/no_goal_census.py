@@ -26,18 +26,36 @@ gate from the Phase-3 modules:
   * `coverage.check_parity` — both probes' command streams against the
     uninstrumented champion.
 
-## The control the reused census cannot supply here
+## The both-ways control, per fixture (revised after G-1)
 
 Phase 3's fixtures had employed turns INSIDE the audited window, so its
 `employed_routes` bucket was its own both-ways control. These two windows are
 all-`WAIT` by construction — that is what makes them the cases nobody can
 explain — so an in-window employed bucket is expected to be empty, and an empty
-bucket must not be read as "the tap fired both ways". The both-ways control is
-therefore taken across the fixtures of the run on the identical binary: at least
-one must NAME a non-idle route, and which ones did is recorded per fixture. A
-fixture where the tap named none supplies nothing here even if its unit was
-employed, because an employed turn the instrument cannot read is not evidence
-that the instrument reads employed turns.
+bucket must not be read as "the tap fired both ways". The control therefore has
+to come from the employed turns each fixture has OUTSIDE its window.
+
+The first version of this file could not take it that way and weakened the gate
+instead, from "each fixture names a non-idle route" to "at least one fixture in
+the run does". codex_1 refused that at G-1 (2026-08-21) and was right to: which
+control flow a fixture takes is the very thing being classified, so OSC-032
+proving non-constancy cannot stand in for OSC-033, identical binary or not.
+
+The real defect was in the reused probe, not in the charter. `commands()`
+chooses its generator from FIVE branches and Phase 3's five anchors tapped only
+`main_candidates` and `endgame_candidates`. Turns 1-34 of BOTH games run the
+`early` branch, and all 34 in each produced a `PS3FINAL` with no `PS3ROUTE` —
+including every one of OSC-033's 20 employed turns. Every unrouted turn in
+either fixture was `early=true` and no other flag combination appeared, so the
+gap had exactly one cause. `make_route_probe.py` now carries two more anchors,
+`early_candidates/entry` and `early_candidates/tail`, applied to the champion
+subject only; the five Phase-3 anchors are untouched and still match exactly
+once each.
+
+With the early branch named, coverage is exact over the WHOLE game rather than
+only in-window, so both gates below are now real: every fixture supplies its own
+both-ways control, and an employed-but-unnamed turn fails the run instead of
+being counted and excused.
 
 Run:  python3 claude_1/nogoal/no_goal_census.py
 """
@@ -69,14 +87,15 @@ OUT = HERE / "no-goal-census-2026-08-21.json"
 
 
 def unit_outside_window(sid, rt, uid, window):
-    """What the AUDITED unit did on the rest of its game. Informational, not a gate.
+    """What the AUDITED unit did on the rest of its game — and, since G-1, a GATE.
 
-    Outside the window the probe's five anchors do not cover every turn — some
-    turns produce a `PS3FINAL` with no `PS3ROUTE` at all, i.e. the unit left the
-    generator through a return path this instrument does not name. Those turns
-    are COUNTED and reported rather than skipped: quietly dropping the turns an
-    instrument cannot read is how a partial measurement comes to look complete.
-    In-window coverage is exact and gated separately by `route_census.census`.
+    The unrouted counters stay in the artifact because quietly dropping the
+    turns an instrument cannot read is how a partial measurement comes to look
+    complete. They are no longer expected to be non-zero: with the `early`
+    anchors added, the seven anchors name every return path of every generator
+    `commands()` can call, so any unrouted turn means a route this instrument
+    still cannot see. `main` gates them at zero. In-window coverage remains
+    exact and gated separately by `route_census.census`.
     """
     lo, hi = window
     idle, employed = collections.Counter(), collections.Counter()
@@ -112,14 +131,13 @@ def fixture_both_ways(sid, rerr):
     of the same fixtures must come back with non-idle routes") rather than
     across the audited unit alone.
 
-    What this can and cannot see is worth stating exactly, because the two are
-    easy to confuse and I confused them once already. A turn contributes here
-    only when the tap NAMED a route on it. A fixture can therefore have plenty
-    of employed turns and still supply nothing: OSC-033's unit is employed on 20
-    turns outside its window, and on every one of them the generator returned
-    through a path these five anchors do not name. "Supplies no control" means
-    "named no non-idle route", NOT "was never employed" — the artifact records
-    the employed-but-unnamed turns separately so the difference is visible.
+    A turn contributes here only when the tap NAMED a route on it, so the two
+    ways a fixture can fail this control are kept apart and both reported:
+    `fixture_employed_turns_unnamed` counts turns whose list was longer than one
+    and which produced no route row at all. Before G-1 that counter stood at 20
+    for OSC-033 — an employed turn the instrument cannot read is not evidence
+    that the instrument reads employed turns, and `main` now fails on it rather
+    than recording it as an excused omission.
     """
     finals, routes = {}, {}
     for line in rerr.splitlines():
@@ -132,11 +150,30 @@ def fixture_both_ways(sid, rerr):
             routes.setdefault((int(m.group(1)), int(m.group(2))), []).append(
                 f"{m.group(3)}:{m.group(4)}")
     employed, idle = collections.Counter(), collections.Counter()
+    unnamed_employed = unnamed_idle = 0
+    multi = []
     for key, n in finals.items():
-        for tag in routes.get(key, []):
+        tags = routes.get(key, [])
+        if len(tags) > 1:
+            multi.append((key, tags))
+        if not tags:
+            if n == 1:
+                unnamed_idle += 1
+            else:
+                unnamed_employed += 1
+        for tag in tags:
             (idle if n == 1 else employed)[tag] += 1
+    if multi:
+        unit, turn = multi[0][0]
+        raise RC.GateError(
+            f"{sid} unit {unit} turn {turn}: {len(multi[0][1])} route rows ({multi[0][1]}) for a "
+            f"single turn, and {len(multi)} such turns in the fixture. A unit takes ONE return "
+            f"path per turn, so more than one row means the tap double-counts and no route may "
+            f"be reported.")
     return {"fixture_employed_routes_all_units": dict(employed),
             "fixture_supplies_own_both_ways_control": bool(employed),
+            "fixture_employed_turns_unnamed": unnamed_employed,
+            "fixture_idle_turns_unnamed": unnamed_idle,
             "fixture_idle_routes_all_units": dict(idle),
             "fixture_units_seen": len({u for u, _ in finals})}
 
@@ -188,39 +225,57 @@ def main():
                 print(f"      detail    {k}  x{v}")
             for k, v in row["idle_discarded_candidates"].items():
                 print(f"      DISCARDED {k}  x{v}")
-    # G-2 both-ways, gated at the INSTRUMENT level.
+    # G-2 both-ways, gated PER FIXTURE, as the charter words it.
     #
-    # The charter words this control per fixture ("employed turns of the same
-    # fixtures must come back with non-idle routes"), which silently assumes
-    # each fixture HAS employed turns. OSC-033 does not: it carries a single
-    # unit, and while that unit IS employed on 20 turns outside its window, the
-    # generator returns through a path these five anchors do not name on every
-    # one of them — so no non-idle route can be NAMED for that fixture. Failing
-    # the run on that would condemn a working instrument for a gap in the reused
-    # probe's anchor set.
+    # The first delivery weakened this to an instrument-level gate (">=1 fixture
+    # names a non-idle route") because OSC-033 could name none. codex_1 refused
+    # that at G-1 and the refusal was correct: fixture-dependent control flow is
+    # the thing being classified, so one fixture's non-constancy is not the
+    # other's control even on the identical binary. The repair was to the probe,
+    # not to the gate — see the module docstring.
     #
-    # The control is therefore taken across the fixtures this instrument ran,
-    # on the IDENTICAL binary: at least one must come back with named non-idle
-    # routes. Which fixtures did is recorded per fixture, so the weaker
-    # standing of OSC-033 is visible in the artifact and cannot be read as
-    # in-fixture evidence it does not have.
-    supplying = [r["id"] for r in rows if r["fixture_supplies_own_both_ways_control"]]
-    if not supplying:
-        raise RC.GateError(
-            "no fixture in this run named a route on any turn whose list was longer than one. A "
-            "tap that only ever reports the idle path is a constant, and a constant cannot name "
-            "a route. Nothing is reported.")  # employed-but-unnamed turns do not count here
+    # Three separate failures are checked, because "no control" has three causes
+    # and lumping them would hide which one fired:
+    #   (a) the fixture named no non-idle route at all -> the tap may be a constant;
+    #   (b) the fixture HAS employed turns the tap could not name -> coverage hole;
+    #   (c) the audited unit has unrouted turns of either kind -> same hole, per unit.
+    failures = []
     for r in rows:
         if not r["fixture_supplies_own_both_ways_control"]:
-            print(f"  NOTE {r['id']}: the tap named NO non-idle route anywhere in this fixture "
-                  f"({r['outside_window_unrouted_employed_turns']} employed turns outside the "
-                  f"window took an unnamed return path), so it supplies NO in-fixture both-ways "
-                  f"control. The tap's non-constancy rests on {supplying}, same binary.")
+            failures.append(
+                f"{r['id']}: the tap named NO non-idle route anywhere in this fixture, so the "
+                f"fixture supplies no both-ways control and the tap cannot be shown to be "
+                f"anything but a constant on it.")
+        if r["fixture_employed_turns_unnamed"]:
+            failures.append(
+                f"{r['id']}: {r['fixture_employed_turns_unnamed']} employed turns produced no "
+                f"route row. An employed turn the instrument cannot read is not evidence that "
+                f"the instrument reads employed turns; it may not satisfy the both-ways gate.")
+        if r["fixture_idle_turns_unnamed"]:
+            failures.append(
+                f"{r['id']}: {r['fixture_idle_turns_unnamed']} idle turns produced no route row, "
+                f"so the idle side of this fixture is not fully named either.")
+        unrouted = (r["outside_window_unrouted_employed_turns"]
+                    + r["outside_window_unrouted_idle_turns"])
+        if unrouted:
+            failures.append(
+                f"{r['id']}: the audited unit has {unrouted} turns outside its window with no "
+                f"route row, so full-game coverage for the audited unit is not exact.")
+    if failures:
+        raise RC.GateError(
+            "the both-ways / coverage control failed and NOTHING is reported:\n  "
+            + "\n  ".join(failures))
+    supplying = [r["id"] for r in rows if r["fixture_supplies_own_both_ways_control"]]
+    for r in rows:
+        print(f"  both-ways {r['id']}: OWN control, "
+              f"{sum(r['fixture_employed_routes_all_units'].values())} named employed turns, "
+              f"0 unnamed")
 
     OUT.write_text(json.dumps(
         {"task": "20260821-osc032-033-no-goal-instrument",
          "question": "on the champion base, which return path of main_candidates/"
-                     "endgame_candidates hands back the seeded WAIT alone on every turn of the "
+                     "endgame_candidates/early_candidates hands back the seeded WAIT alone on "
+                     "every turn of the "
                      "OSC-032 and OSC-033 windows, and what did the generator see when it did?",
          "base": {"name": ROUTE_ARM, "source": rman["source"],
                   "source_sha256": rman["source_sha256"],
@@ -232,9 +287,11 @@ def main():
                    "exactly one PS3FINAL row per window turn for the audited unit",
                    "PS3FINAL n == the selector probe's PS2CAND row count, same unit and turn",
                    "exactly one route row per unit per turn",
-                   "both ways: at least one fixture in the run names non-idle routes on the "
-                   "identical binary, recorded per fixture; a fixture with no employed turn "
-                   "anywhere supplies no in-fixture control and says so"],
+                   "both ways, PER FIXTURE: every fixture names non-idle routes on its own "
+                   "employed turns, and an employed-but-unnamed turn fails the run instead of "
+                   "satisfying the gate",
+                   "full-game route coverage: every PS3FINAL turn of every unit carries exactly "
+                   "one PS3ROUTE, so no generator return path is unobservable"],
          "both_ways_supplied_by": supplying,
          "scope": "measurement only; no fix, no candidate, no judgment; "
                   "bug-versus-correct-caution is the owner's ruling",

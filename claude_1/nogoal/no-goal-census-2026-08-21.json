@@ -6,20 +6,25 @@
     "source_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
   },
   "both_ways_supplied_by": [
-    "OSC-032"
+    "OSC-032",
+    "OSC-033"
   ],
   "fixtures": [
     {
       "audited_unit_employed_anywhere_in_game": true,
       "employed_routes": {},
       "fixture_employed_routes_all_units": {
+        "early:EARLY_CARRY_BANK": 12,
+        "early:EARLY_GATHER": 22,
         "main:CHOPS": 29,
         "main:FULL_BANK": 21,
         "main:SAFE_REGEN_BANK": 6
       },
+      "fixture_employed_turns_unnamed": 0,
       "fixture_idle_routes_all_units": {
         "main:IDLE_REGEN_FALLBACK": 110
       },
+      "fixture_idle_turns_unnamed": 0,
       "fixture_supplies_own_both_ways_control": true,
       "fixture_units_seen": 1,
       "id": "OSC-032",
@@ -35,12 +40,14 @@
       },
       "idle_turns": 110,
       "outside_window_employed_routes": {
+        "early:EARLY_CARRY_BANK": 12,
+        "early:EARLY_GATHER": 22,
         "main:CHOPS": 29,
         "main:FULL_BANK": 21,
         "main:SAFE_REGEN_BANK": 6
       },
       "outside_window_idle_routes": {},
-      "outside_window_unrouted_employed_turns": 34,
+      "outside_window_unrouted_employed_turns": 0,
       "outside_window_unrouted_idle_turns": 0,
       "turns": 110,
       "unit": 0,
@@ -52,11 +59,17 @@
     {
       "audited_unit_employed_anywhere_in_game": true,
       "employed_routes": {},
-      "fixture_employed_routes_all_units": {},
+      "fixture_employed_routes_all_units": {
+        "early:EARLY_CARRY_BANK": 8,
+        "early:EARLY_CHOP_FALLBACK": 12
+      },
+      "fixture_employed_turns_unnamed": 0,
       "fixture_idle_routes_all_units": {
+        "early:EARLY_CHOP_FALLBACK": 14,
         "main:IDLE_REGEN_FALLBACK": 166
       },
-      "fixture_supplies_own_both_ways_control": false,
+      "fixture_idle_turns_unnamed": 0,
+      "fixture_supplies_own_both_ways_control": true,
       "fixture_units_seen": 1,
       "id": "OSC-033",
       "idle_discarded_candidates": {},
@@ -70,12 +83,16 @@
         "main:IDLE_REGEN_FALLBACK": 143
       },
       "idle_turns": 143,
-      "outside_window_employed_routes": {},
+      "outside_window_employed_routes": {
+        "early:EARLY_CARRY_BANK": 8,
+        "early:EARLY_CHOP_FALLBACK": 12
+      },
       "outside_window_idle_routes": {
+        "early:EARLY_CHOP_FALLBACK": 14,
         "main:IDLE_REGEN_FALLBACK": 23
       },
-      "outside_window_unrouted_employed_turns": 20,
-      "outside_window_unrouted_idle_turns": 14,
+      "outside_window_unrouted_employed_turns": 0,
+      "outside_window_unrouted_idle_turns": 0,
       "turns": 143,
       "unit": 0,
       "window": [
@@ -89,15 +106,16 @@
     "exactly one PS3FINAL row per window turn for the audited unit",
     "PS3FINAL n == the selector probe's PS2CAND row count, same unit and turn",
     "exactly one route row per unit per turn",
-    "both ways: at least one fixture in the run names non-idle routes on the identical binary, recorded per fixture; a fixture with no employed turn anywhere supplies no in-fixture control and says so"
+    "both ways, PER FIXTURE: every fixture names non-idle routes on its own employed turns, and an employed-but-unnamed turn fails the run instead of satisfying the gate",
+    "full-game route coverage: every PS3FINAL turn of every unit carries exactly one PS3ROUTE, so no generator return path is unobservable"
   ],
   "probes": {
     "generator": "claude_1/picker2/routeprobe-door1-champion.rs",
-    "generator_sha256": "551da42459fa751173ad9533c2e3b506383e1e74c96d7c5919ddd62442fc5c51",
+    "generator_sha256": "4a7f88fe4efdc1e582150119aa3be8ee2a21c909d2de42cf31e4aef615081163",
     "selector": "claude_1/picker2/probe-door1-base.rs",
     "selector_sha256": "735fa6c23de50d4c08d646007f5f8f278392eb1d3dff1c683ba372cfb69a52cf"
   },
-  "question": "on the champion base, which return path of main_candidates/endgame_candidates hands back the seeded WAIT alone on every turn of the OSC-032 and OSC-033 windows, and what did the generator see when it did?",
+  "question": "on the champion base, which return path of main_candidates/endgame_candidates/early_candidates hands back the seeded WAIT alone on every turn of the OSC-032 and OSC-033 windows, and what did the generator see when it did?",
   "scope": "measurement only; no fix, no candidate, no judgment; bug-versus-correct-caution is the owner's ruling",
   "task": "20260821-osc032-033-no-goal-instrument"
 }
