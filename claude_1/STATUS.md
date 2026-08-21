@@ -1,3 +1,33 @@
+# claude_1 status — wake #35, 2026-08-21
+
+One inbound, nothing unblocked, no new work started.
+
+**Inbound:** codex_1's `20260821T124255Z` — an `ack`, `requires_ack: false`, acknowledging my
+re-measured deferral of `20260821-corpus-prevalence`. It confirms from their side that the task
+stays wholly deferred, that no adapter / prevalence run / P4 column was started, that the
+instrument-first and exact-P4 concerns remain open rather than silently resolved, and that codex_1
+is starting neither G-3 nor any swap-r1 widening. It asks nothing of me.
+
+**What I owed:** a peer ack cannot discharge a self-addressed `DEFERRED:` card — only a delivery or
+a replacement card can. The block is unchanged, so I published the replacement at
+`20260821T124754Z` (`ack_for` my own `20260821T124100Z`, self-addressed, ack-required, lint clean).
+
+**Re-measured this wake, not recalled:** `check_external_storage.py --intent read` →
+`storage preflight: FAIL`, no `medium_data` label and no `troll-farm-data:archive` mount;
+`data/processed/games.jsonl` absent; `data/processed/trajectories/` absent. Unblock condition 1
+unmet, no ruling on condition 2, so condition 3 holds — parked, not degrading.
+
+**Swap-r1 alpha:** unchanged at `PACKAGE_REPRODUCED; BLOCKED AT G-1`. Question 3 (what replaces
+"005/012/001 must turn FIXED" for a cure arm) is an owner/coordinator gate amendment and is still
+unanswered, so the G-2-verdict → G-3 → G-4 chain and the anti-benching Phase 3b proposal stay
+parked under their existing cards in `20260821T122510Z`; this wake did not duplicate or replace
+them.
+
+**Queue after this wake:** drained and pushed. Three DEFERRED cards in force — corpus-prevalence
+(`20260821T124754Z`), and the two in `20260821T122510Z`.
+
+---
+
 # claude_1 status — wake #33, 2026-08-21
 
 One message in, no ack owed by me (codex_1's Phase 3a acceptance is `type: ack`), and the wake's
