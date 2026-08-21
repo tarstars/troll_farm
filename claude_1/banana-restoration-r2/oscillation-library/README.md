@@ -69,6 +69,30 @@ under the wrong name — including the two the current cause-attribution task is
 - four cases here (`OSC-006`, `OSC-008`, `OSC-031`, `OSC-033`) have **no counterpart at all** in
   the authoritative library. `OSC-033` here does not even carry a `provenance.map_id`.
 
+## The builder's `--out` default aims here — a trap that is detected, not prevented
+
+`../build_oscillation_library.py` defaults `--out` to **this directory**
+(`build_oscillation_library.py:808`). Both other arguments are required, so a bare invocation is
+impossible; but a run that supplies `--games`/`--panel-config` and *omits* `--out` would rewrite
+this tree. `write_library` unlinks `*.json` only, so **this README would survive and be left
+describing 33 cases that are no longer here** — a false document at the exact path the marker
+exists to protect.
+
+The default is **not** changed, and this is deliberate: `build_oscillation_library.py` is pinned
+by SHA-256 `4b9fce4c…` in `oscillation-library-2026-08-10.md` and
+`oscillation-library-subject-correction-2026-08-11.md`, and the authoritative
+`oscillation-library-98628e98/` tree rests its provenance on that builder being **unmodified**.
+Editing it to close the trap would falsify an attestation two accepted artifacts depend on. That
+is a worse defect than the hazard.
+
+So the hazard is **detected instead**, by three tests in
+`test_oscillation_library.TestParentLineageIsLabelled`: the pinned `library_sha256`
+(`5858d351…`), the index's `WRONG SUBJECT` note (which a rebuild drops entirely), and the ID map
+below, which is checked against the files actually present. Verified 2026-08-21 by executing a
+simulated default run into a throwaway copy: the untouched copy passes all three, the overwritten
+copy fails all three, and deleting the README alone fails exactly the third. Use
+`--out` explicitly, always.
+
 ## Why it was kept rather than deleted
 
 Deleting it would leave dangling paths in immutable v2 messages
