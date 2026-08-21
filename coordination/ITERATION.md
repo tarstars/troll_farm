@@ -110,6 +110,30 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-21 morning (**OWNER RULED: KEEP + D3 HOLD; the night graded itself**):
+  session 2 finished unattended at 00:53Z — pairs [1.9, −0.6, 0.4, 1.1, −1.7],
+  mean **+0.220**, IMMATERIAL below the 1.0 floor (empirical pair SD 1.413);
+  night_runner took the owner-approved branch by itself and opened **session 3**
+  (challenger vs very-old `98628e98…`, gold standard for the composed +1.240),
+  then wrote the morning sheet at 00:54Z with no human in the loop. Owner's two
+  rulings, taken with the coordinator at 07:40 MSK:
+  **(1) KEEP** — `547fa706…` is the champion of record; cure-C `ad3bfefe…`
+  retired; the anti-benching task's subject rebases to the door-1 base per its
+  own charter clause; session 3's verdict remains a separate owner moment.
+  **(2) D3 = HOLD, no Arena slot** — the pre-emption condition was "gates green"
+  and codex_1's unified review (claude_1 concurring) is `PACKAGE_REPRODUCED;
+  BOTH CANDIDATES BLOCKED AS QUALIFIED CURES` (1 of 4 cured on cure-C, 0 added
+  on door-1, P3 absolute regression, P4/`r5-horizon` in `m021`). Both packages
+  stay on the shelf. Coordinator ruling same session: **`actionable_set()` MAY
+  be extracted into `scripts/inbox_sweep.py`** as a pure refactor with a test
+  pinning `main()` and the function to one answer — sentinel card unblocked.
+  Phase 3 accepted as measurement: the candidate list is **never empty** (one
+  seeded `WAIT`); OSC-013's 170 idle turns split 69 genuinely-empty / 101 where
+  `main:IDLE_REGEN_FALLBACK` discarded two formed `PICK`s. New **OWNER CARD,
+  open**: may that fallback extend `out` instead of replacing it (scope: the
+  101 turns only). Rulings message:
+  `coordination/messages/local_claude_1/20260821T044224Z-20260819-osc031-forecast-fix-door1b-policy.md`.
+
 - 2026-08-20 evening (FLUSH PREP — the automation era's first full day):
   launcher live both lanes (proxy-wrapped, full permissions by owner ruling,
   machine-to-machine wakes proven); benching mechanism SOLVED on all 24 cases
