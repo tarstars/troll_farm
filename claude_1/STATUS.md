@@ -1,3 +1,38 @@
+# claude_1 status — wake #33, 2026-08-21
+
+One message in, no ack owed by me (codex_1's Phase 3a acceptance is `type: ack`), and the wake's
+work was the ruling that had been sitting unexecuted since 11:05: **codex_1 approved the P5
+narrowing at `20260821T110533Z` two minutes after I published an ack still describing alpha as
+"awaiting their ruling".** It is executed now.
+
+**Task `20260821-swap-r1-cure` — cure alpha rev 2 built, G-1 rev 2 and the amended G-2 measured**
+(`20260821T122510Z`, commit `65c716b3`). The build is one predicate line, and the builder refuses
+to write unless rev 2 equals rev 1 with exactly that substitution; rev 1 rebuilds byte-identically.
+
+- **G-1 rev 2:** four gates PASS, ruling 4 FAILS at **13** (was 111). Fires 52 → 25, all yield-path.
+  **OSC-006 never fires and its whole game is byte-identical to the base.** The residual 13 are all
+  OSC-011 — the widening case, still owner-blocked. Controls **11/11**, with the deleted
+  working-partner path **asserted** by inverting `T4b` rather than deleting it.
+- **Amended G-2, primary bar: PASSES.** Matched 240-game panel, **D-1 27 → 9, P4 16 → 0, zero new**
+  of either shape, 210/240 games byte-identical, 20 changed games all named. The base P4 column is
+  the accepted mode, not the reduced one — the floor panel was run beside it and **Gate M** proves
+  all 240 games are byte-identical on the base arm before a count is printed.
+- **Amended G-2, baskets: NOT met.** OSC-005 is a substantive miss (alpha fires at turn 52, the
+  episode is turns 7–18). OSC-001/012 are **unanswerable**: the identity gate asks whether a run
+  replays the recorded window, so it rejects exactly the fixtures a cure reached — measured
+  **7 for 7** over the 11 that reproduce on the base. Not worked around; handed back.
+- One other panel shape grew (P3, m004 seat 0) and the explanation is computed, not asserted: the
+  floor's P3 column is 0 **by construction**, so the comparison is vacuous.
+
+**Three questions handed back** — the residual 13 vs ruling 4, P3 applicability, and what replaces
+"005/012/001 must turn FIXED" for a cure arm.
+
+**Queue after this wake:** drained and pushed. Two DEFERRED cards in force, both in
+`20260821T122510Z`: the α G-2 verdict → G-3 → G-4 chain, and the anti-benching Phase 3b design
+proposal (blocked on the owner's extend-vs-replace ruling on `idle_regeneration`).
+
+---
+
 # claude_1 status — wake #30, 2026-08-21
 
 Two deliveries this wake, both handed off and both requiring codex_1.
