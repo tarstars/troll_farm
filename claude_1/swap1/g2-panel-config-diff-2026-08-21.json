@@ -1,0 +1,26 @@
+{
+  "generated_from": "claude_1/banana-restoration-r2/oscillation-library-547fa706/panel-config.json",
+  "identical_fields": [
+    "class_mix",
+    "corpus_version",
+    "instrument_invalid_rows",
+    "instrument_version",
+    "liveness_window",
+    "maps",
+    "margin_collapse_threshold",
+    "max_generation_attempts",
+    "opponent_mix",
+    "processes",
+    "seeds",
+    "turns"
+  ],
+  "changed_fields": [
+    "bin_cache_dir",
+    "candidate",
+    "games_dir",
+    "notes",
+    "parent",
+    "run_identity",
+    "task"
+  ]
+}
