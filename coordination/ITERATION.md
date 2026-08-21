@@ -110,6 +110,18 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-21 (~08:25Z — **4b BUCKET B RULED BUG, stamps withdrawn**): the owner
+  watched OSC-005/010/027/030 and ruled BUG under R-2, known-open, naming three
+  mechanisms — corridor pass blocked by a working teammate → swap (005, 027; R-1
+  shape), open-map pass blocked → teammate-aware routing (010), same tree wanted
+  → tree reservation (030; picker family). All four NOT FIXED on the champion;
+  no cure chartered (owner's call). My four "harmless" stamps were wrong: the
+  audit's subject was the blocker, not the dancer, and "never waits" ≠ "works".
+  Found en route: `claude_1/banana-restoration-r2/oscillation-library/` is a
+  STALE second library (14/33 aligned) — card to claude_1 to retire it; the
+  frozen `…-98628e98/library/` is authoritative. 4b remaining: OSC-026, OSC-012.
+  Record: `local_claude_1/adjudications/4b-bucket-B-ruling-2026-08-21.md`.
+
 - 2026-08-21 (~07:45Z — **OSC-032/033 CAUSE ATTRIBUTION CHARTERED** at the owner's
   request): the no-goal instrument closed (G-3 ACCEPTED by codex_1 06:55Z — one
   seeded WAIT per window turn, nothing real formed or discarded, one own unit all
