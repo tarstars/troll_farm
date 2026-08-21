@@ -1132,3 +1132,41 @@ Arena controller: **NO**. `rust/src/bin/yamo_orchard_live.rs` (`fff6669b`) byte-
   by front matter — named once, no change requested). **TOOL DRIFT has CLEARED**: local_claude_1
   ruled option 1 and merged `agent/claude_1` to `main`, so the instrument is untouched and the
   red line is gone. Transport suites 145/145 on this tree.
+
+## wake #27 — 2026-08-21 ~09:50Z — real-end re-grade DELIVERED; cure α G-0 DELIVERED, G-1..G-4 deferred
+
+- **Queue.** Two cards arrived and a third message set landed mid-wake. Both cards are
+  acked and delivered in this wake: `20260821-p4-stalls-real-end-regrade` (all four
+  deliverables) and `20260821-swap-r1-cure` G-0 (design note, no code). Nothing outstanding
+  except G-1..G-4, which carry a DEFERRED replacement card gate-blocked on codex_1's ruling.
+- **The re-grade answer: none of the 34 recorded windows is artifact.** Not one turn. On the
+  bot that produced them, 18 of 34 games never reach `has_stalled` inside the 200-turn horizon,
+  and the other 16 end +3 to +46 turns AFTER their window closes (tightest OSC-009, +3). Zero
+  wholly artifact, zero partly. OSC-031's window is real end to end; OSC-034's game ends 16
+  turns after its window closes.
+- **The finding that produced it, and it corrects my own G-3 from this morning.** The card's
+  premise — "on the champion re-run" — re-runs a bot that did NOT record the windows. The
+  library's provenance names its subject as `98628e98…`; the champion is `547fa706…`. Two arms:
+  the subject reproduces **34/34** recorded episodes, the champion **11/34**. OSC-032/033 are
+  among the 23 it does not: their window commands are all `WAIT` so a command comparison passes,
+  but at OSC-032's window entry the frozen board still carries a live PLUM while the champion's
+  replay has been bare since turn 82. **The G-3 numbers are right about the champion's game and
+  wrong to be identified with the recorded windows** — the cross-game figure error, mine, from
+  four hours earlier. Put to the owner as a question; no re-ruling proposed.
+- **The gate that caught it, and the gate that did not.** Window-command identity alone is an
+  inert check on an all-`WAIT` window — it passed OSC-032/033 while the boards differed. The
+  frozen `world_state_at_entry` comparison is what fires. The run now REQUIRES the pair to
+  accept 34/34 on the subject arm and reject ≥1 on the champion arm, so neither can go quiet.
+- **Adapter reuse.** G-3's `to_sim_state` / `check_adapter_fidelity` / `stall_negative_control`
+  imported unmodified, digest in the artifact. One declared delta: G-3's per-fixture non-vacuity
+  raise lifted to the corpus, because "never ends inside the horizon" is the correct answer on 18
+  of 34 and a per-fixture raise would make it unreportable.
+- **Cure α G-0.** Design only, per the card — the seam is `resolve_move_conflicts_*` line 720 and
+  nothing else. Four decisions put to codex_1 rather than built: T4(a) swap-before-detour (the
+  one place α changes a non-`WAIT` outcome), the partner's forbidden-cell test, the fail-closed
+  positional index map (`commands` carries no unit id for `WAIT`), and where the re-swap detector
+  belongs. G-1 will fail if the corpus-wide trigger count is zero — an α that never fires would
+  pass a byte-identical parity check perfectly.
+- **Offered, not claimed.** `sweep34`'s grader re-detects on the candidate's own trace (sound) but
+  takes its region of interest from the recorded window, which on 23 fixtures is not an interval
+  of the game being graded. Not measured, not asserted; flagged because it touches cure α's G-2.
