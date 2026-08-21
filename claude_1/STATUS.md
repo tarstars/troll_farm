@@ -1,102 +1,77 @@
-# claude_1 status — wake #25, 2026-08-21
+# claude_1 status — wake #26, 2026-08-21
 
-Task `20260821-osc032-033-cause-attribution`: **ALL THREE GATES DELIVERED.** G-1 ACCEPTED, G-2
-ACCEPTED, **G-3 delivered this wake** at `e8034b79` (handoff `20260821T090248Z`, commit
-`62b0520d`). Queue drained: 0 new, 0 ack-required, and — for the first time in three wakes — no
-card of mine outstanding.
+Task `20260821-osc032-033-cause-attribution`: **CLOSED — all three gates ACCEPTED.** codex_1
+returned **G-3 ACCEPTED** this wake (`20260821T090757Z`), reproduced from a detached worktree at
+`e8034b79`, all three generated JSON artifacts byte-identical to the pin. Their `ack_for` names my
+G-3 handoff exactly, which retires my r3 card; they declared **no deferrals and no replacement
+card**. Queue drained: 1 new, 0 ack-required, no card of mine outstanding.
 
-## What arrived, and what it unblocked
+Task `20260815-oscillation-deep-dive`: the one item I carried open from wake #25 is now
+**dispositioned and published** (`20260821T091400Z`, commit `3a690980`).
 
-Five messages, none ack-required, all read in full:
+## What arrived
 
-- **codex_1 `20260821T084613Z` — G-2 ACCEPTED.** Reproduced `58ea9a72` independently. Ruled all
-  three of my G-2 questions: the card's named both-ways control is OSC-032's 29 `main:CHOPS`
-  turns and their route set equals the tap's accepted-tree set exactly; OSC-033's 12
-  early-branch accepted rows are **valid supplementary evidence, not the card's named control**,
-  and I must not describe them as such; the empty audited boards make in-window per-plant
-  coverage **vacuous but not incomplete**; the count-preserving cell mutation and the
-  out-of-window planted control are correctly constructed and honestly scoped. That ack also
-  discharged the three deferred cards visible to them.
-- **codex_1 `20260821T084614Z`** — stale-library README disposition read and recorded; nothing
-  assigned.
-- **local_claude_1 `20260821T084501Z`** — receipts on all three G-3 cards; r3 is the live one;
-  the G-2 questions are codex_1's to rule and the coordinator withholds an opinion. My
-  `supersedes`-only retirements noted, no action.
-- **local_claude_1 `20260821T084502Z`** — stale-library card DELIVERED and accepted, verified by
-  execution. One thing for me, explicitly **not** a card: `build_oscillation_library.py`'s default
-  `--out` still points at the STALE tree, so a default run would overwrite it and make the README
-  false. My module, my call. **Open, carried to the next wake.**
-- **local_claude_1 `20260821T084239Z`** — 4b CLOSED; OSC-026 and OSC-012 ruled BUG by the owner;
-  all six 4b candidates were bugs and no "harmless" stamp was issued. Nothing chartered.
+One message, not ack-required, read in full:
 
-## G-3 delivered — the finding
+- **codex_1 `20260821T090757Z` — G-3 ACCEPTED.** The amended questions are answered and the
+  controls bite. They record, explicitly, that the accepted scope is **measurement only**: it does
+  not decide bug versus correct caution, does not explain OSC-032's unbanked reachable plum, and
+  authorizes no fix, no candidate, no class-wide claim and no Arena action. Their review is
+  `codex_1/reviews/osc032-033-cause-attribution-g3-review-2026-08-21.md`. One thing to carry: they
+  state the opponent-independent grace-only bound as **at most 5/110 and 0/143** real window
+  turns; my note states the same bound as 105/110 and 143/143 turns *excluded*. Same measurement,
+  complementary phrasing — 110 − 5 = 105. No discrepancy.
 
-Artifacts `claude_1/cause1/g3_finding.py`, `g3-finding-2026-08-21.json`,
-`g3-finding-note-2026-08-21.md` at `e8034b79`. Measurement only; no fix, no candidate, no
-class-wide claim, and **no bug-versus-correct-caution ruling** — the owner's.
+## The carried-open item, closed by DETECTION rather than a source fix
 
-**In one sentence:** on both fixtures our own troll felled the last tree on the map, it could not
-replant because replanting needs two trolls and a second troll was impossible from turn 1, and
-**no real game would have reached either audited window.**
+`build_oscillation_library.py:808` defaults `--out` to the **STALE** parent-lineage tree.
 
-- **Map went bare.** OSC-032: LEMON `(8,5)`, health 1, 3 fruits on it, felled turn 81, bare from
-  82. OSC-033: APPLE `(8,3)`, health 1, 3 fruits — **the only plant of the whole game** — felled
-  turn 12, bare from 13. Both `OWN_UNIT_CHOP`, evidenced by the trace command `CHOP 0` with the
-  unit on the plant's own cell. Standing on the tree is not accepted as evidence, and the
-  opponent is never named a feller: our transcript carries our side's commands only. Shack held
-  seed material both times (LEMON 2 + BANANA 1; APPLE 1 + BANANA 1).
-- **The referee's own end turn**, from the frozen `sim.engine.has_stalled` (`sim/engine.py:71`,
-  Rust original `rust/src/game/engine.rs:819`), unmodified and unwrapped: **82** and **13**,
-  reason `mercy_player_1`, 14 / 13 grace turns still in hand. Harness horizon 200 → **118 / 187
-  turns past the end**; **0 of 110 and 0 of 143 window turns** would have been played. The
-  conservative **grace-only bound** (which does not depend on the opponent) is **96** and **26**,
-  giving 105/110 and 143/143. I quote the conservative one where the opponent could matter — the
-  mercy clause turns on this replay's opponent having `chop_power 0` on all 200 unit-turns.
-- **H-A CONFIRMED in its "absent" half, REFUTED in its "denied" half.** Source-derived floor: any
-  second troll costs at least PLUM 2 / LEMON 2 / APPLE 1 (`opening_options` ms 1..3 / cc 1..max /
-  chop 1..max with harvest_power 0, × `training_cost` `n + stat²`, n=1; iron uncharged, both maps
-  ironless). OSC-032 has **no apple tree ever**; OSC-033 has **no plum and no lemon ever**. 0 of
-  34 pre-deadline turns had an opponent on a source.
-- **H-B CONFIRMED.** `c5_own_units_ge_2` false 160/160 and 166/166, the only always-false
-  conjunct, all seven never simultaneously true — but it was the **sole** false conjunct on only
-  101 turns of each; on the other 59 / 65 `c3_turn_ge_100` (and on OSC-032 `c6_adjacent_shack`,
-  `c2_carried_zero`, `c7_cell_free`) was also false. "The ≥2 rule alone" on 101, "plus X" on the rest.
-- **H-C REFUTED where observed, UNOBSERVED on 52 turns.** Zero rejected plant rows anywhere on
-  either fixture. OSC-033 complete (12 of 12 plant-bearing turns asked, all accepted); OSC-032
-  asked on 29 of 81, the other 52 spent on productive routes so the clause question was never
-  put. The eleven unobserved clauses remain a binding limit.
+**I did not change the default, and that is the substantive decision.** The file's SHA-256
+`4b9fce4c…` is pinned in the artifact tables of `oscillation-library-2026-08-10.md` and
+`oscillation-library-subject-correction-2026-08-11.md`, and the **authoritative**
+`oscillation-library-98628e98/` tree rests its provenance on that builder being *unmodified*
+(`oscillation-library-98628e98/README.md:28`; `build_subject_library.py` imports it and reuses
+`harvest`/`dedupe`/`write_library` verbatim). Making `--out` required would falsify an attestation
+two already-accepted artifacts depend on — a worse defect than the hazard. Builder verified
+byte-identical to the pin after this wake's work.
 
-**Controls.** The stall projection carries three, because it is the whole of question 2:
-per-turn adapter fidelity against the referee trace (plants by canonical record, units by
-`(id, player, cell, ms, carry)`, both inventories), non-vacuity per fixture (must be seen both
-False-with-plants and True-when-bare), and a 4-case predicate control covering the grace counter,
-grace expiry, the fruit-held escape and both-stuck. All raise before the write.
+**The hazard, measured.** Both other arguments are `required=True`, so a bare invocation is
+impossible; the trap needs `--games`/`--panel-config` supplied and `--out` omitted. `write_library`
+unlinks `*.json` **only**, so README.md *survives* the overwrite and is left describing 33 cases
+that are gone — a false document at the exact path the marker exists to protect.
 
-**One label I got wrong and fixed before publishing**, disclosed: the min-cost block first put
-OSC-032's PLUM under "items the map could never pay". False — a fruiting plum was reachable all
-34 pre-deadline turns and the shack simply never held one. `items_the_shack_never_held_enough_of`
-and `items_no_live_source_ever_existed_for` are now kept strictly apart; collapsing them made H-A
-look stronger than it is. Why no plum was banked is **not measured and not claimed**.
+**Detection was already two-thirds built.** `TestParentLineageIsLabelled` already pinned
+`library_sha256` to `5858d351…` and asserted the index's `WRONG SUBJECT` note (which a rebuild
+drops, since `write_library` never writes that field). Neither covers the README. I added
+`test_the_stale_readme_still_describes_the_tree_it_sits_in`, which ties the README's ID-map rows to
+the `OSC-*.json` files actually present.
 
-## Transport — the `ack_for` rule, applied correctly this time
+**Three controls executed against throwaway `tempfile` copies — the real tree was never written:**
 
-The r3 card was discharged by naming it in the delivery handoff's **`ack_for`**, and the post-mark
-sweep reads 0 ack-required. Twice on 2026-08-21 I retired a card with `supersedes` alone, which is
-inert. The countermeasure that worked is mechanical, not cognitive: read the predecessor's path
-back out of `ack_for` before publishing. `supersedes` is bookkeeping with no transport effect.
+| control | expected | observed |
+|---|---|---|
+| untouched copy | all 4 pass | all 4 pass, hash matches pin, 33 cases |
+| default-run overwrite (5 cases) | tree tests **and** README test fire | all 3 fire: `8bd2a0f4…` ≠ pin, `subject_note` KeyError, ID map 5 ≠ 33 |
+| README deleted, tree intact | **only** the new test fires | exactly the new test fires |
 
-The lint also refused this handoff once, correctly: a line-start `DEFERRED:` in the body triggers
-the deferral-shape gate (self-address required) even when the sentence says "none". Use
-"Deferrals: none." Suite 127 pass (`uvx pytest tests/test_inbox_sweep.py tests/test_lint_outbox.py`);
-`scripts/` and `tests/` verified identical to **both** `origin/main` and
-`origin/agent/local_claude_1` at the start of this wake.
+The third is the one that earns the test: it proves the new leg is not redundant with the two that
+already existed. Full suite **95 tests OK, 2 skipped** (opt-in `rustc` replay); the two
+`INTEGRITY FAILURE` lines in that output are fail-closed tests passing.
 
-## Open, carried forward — no card needed, no card outstanding
+**Scope, stated honestly.** This is containment, not prevention. The overwrite remains possible;
+it can no longer happen quietly. The stale README now carries the trap and the reason the default
+was not fixed, at its head.
 
-- **`build_oscillation_library.py`'s default `--out` points at the STALE parent-lineage tree.**
-  Raised by the coordinator as explicitly not a card. A default run would overwrite the STALE
-  directory with fresh output and make its README false. Mine to move or guard.
-- **G-3 is under review by codex_1.** If it returns REVISION_REQUIRED I card the revision then;
-  until then there is nothing deferred and nothing owed.
-- Not authorised by anything this wake: any fix, candidate, behaviour change, class-wide claim or
-  Arena action. The bug-versus-correct-caution ruling on OSC-032/033 is the owner's.
+## Standing limits that survive this wake
+
+- G-3's accepted scope is **measurement only**. Bug versus correct caution is the owner's ruling,
+  not mine and not codex_1's.
+- The eleven unobserved plant-rejection clauses, and OSC-032's 52 turns where H-C's generator was
+  never entered, remain UNOBSERVED — not refuted.
+- OSC-032's unbanked reachable plum is **not measured and not claimed**.
+- `items_the_shack_never_held_enough_of` and `items_no_live_source_ever_existed_for` stay strictly
+  apart; collapsing them overstates H-A.
+
+## Open
+
+Nothing. No card outstanding, none deferred, none requested. Queue drained and pushed.
