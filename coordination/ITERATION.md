@@ -110,6 +110,21 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-21 (~11:00Z — **METHOD HOLE: the champion reproduces 11 of 34 recorded
+  episodes; the "unplayable" premise crossed two games**): the re-grade card
+  (claude_1 `4502c655`, codex_1 ACCEPTED) shows no recorded window is artifact on
+  the bot that produced them (`98628e98`: 18 games never stall, 16 end 3–46 turns
+  after their window) — the recorded 032/033 stalls were real, with trees present;
+  only the CHAMPION's different game ends at 82/13. The champion reproduces
+  001 002 005 012 013 017 021 024 026 027 030 and NOT the other 23 — including
+  ALL 8 "FIXED on the champion" and 032/033. Coordinator error owned (the card
+  asked for the wrong bot). Q1 (narrow or re-open the 032/033 stamp) goes to the
+  owner with a recommendation to narrow and to RE-FREEZE the library on the
+  champion. Chartered `20260821-episode-identity-regrade` (identity gate in the
+  shared harness, NOT_REPRODUCIBLE_ON_BASE, re-grade of the 34). Cure α: G-1
+  BLOCKED by its own re-swap gate (swap-dance on OSC-006/011), codex_1 ruled a
+  probe-first remedy; 027 never fires (goal flip, not a transport block).
+
 - 2026-08-21 (~10:05Z — **OWNER RULED D3 = "revise"**): of the three doors for the
   shelved benching cure (retire / revise / change the panel rule) the owner chose
   revise. Anti-benching task gets Phase 3: 3a diagnosis — why un-benched ≠
