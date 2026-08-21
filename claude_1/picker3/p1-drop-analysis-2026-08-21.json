@@ -1,0 +1,44 @@
+{
+ "source": "probe-stderr.log",
+ "note": "Phase 3a analysis \u2014 what P1's `self_blocked` veto did on the two named panel games.",
+ "games": {
+  "m004-s0": {
+   "recorded_finding": "P3 (first divergence turn 42); candidate has D-1 x1 and NO P4, the floor has D-1 x2 and P4 42-200",
+   "window": [
+    42,
+    200
+   ],
+   "turns_total": 200,
+   "turns_P1_vetoed_a_pair": 10,
+   "turns_the_veto_changed_the_winner": 4,
+   "turns_the_veto_changed_the_winner_inside_the_window": 4,
+   "of_those_the_selected_pair_scored_zero_both_units_WAIT": 0,
+   "turns_the_veto_removed_an_already_losing_pair": 6,
+   "causal_turn_runs": [
+    [
+     42,
+     45
+    ]
+   ]
+  },
+  "m021-s1": {
+   "recorded_finding": "P4 20-106 + flag r5-horizon on unit 2; the floor has neither",
+   "window": [
+    20,
+    106
+   ],
+   "turns_total": 200,
+   "turns_P1_vetoed_a_pair": 103,
+   "turns_the_veto_changed_the_winner": 80,
+   "turns_the_veto_changed_the_winner_inside_the_window": 80,
+   "of_those_the_selected_pair_scored_zero_both_units_WAIT": 80,
+   "turns_the_veto_removed_an_already_losing_pair": 23,
+   "causal_turn_runs": [
+    [
+     20,
+     99
+    ]
+   ]
+  }
+ }
+}

@@ -1,0 +1,127 @@
+{
+ "task": "20260820-pair-selector-anti-benching Phase 3a \u2014 m004 P3 and m021 P4/r5-horizon",
+ "config": "claude_1/pipeline/picker2-door1-cand-config.json",
+ "instrument_version": "fuzz-panel/5-two-player-phase-merged-referee",
+ "corpus_version": "c5-two-player-phase-merged-2026-08-11",
+ "probe_source": "claude_1/picker2/probe-door1-p1p2.rs",
+ "plain_source": "claude_1/picker2/candidate-door1-p1p2.rs",
+ "parent_source": "claude_1/chop4c/candidate-door1.rs",
+ "games": {
+  "m004-s0": {
+   "spec": {
+    "map_id": "m004",
+    "seat": 0,
+    "class": "orchard_eligible",
+    "profile": "idle",
+    "seed": 67867967,
+    "attempt": 0,
+    "orchard_eligible": true
+   },
+   "parity_command_streams_identical": true,
+   "row_identity_vs_phase2_panel": "MATCH",
+   "violations": [
+    {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         8,
+         2
+        ],
+        [
+         9,
+         2
+        ]
+       ],
+       "k": 3,
+       "turn_end": 31,
+       "turn_start": 24,
+       "unit": 2
+      }
+     ],
+     "property": "P1"
+    },
+    {
+     "detail": {
+      "candidate": "WAIT;CHOP 2",
+      "first_divergence_turn": 42,
+      "parent": "MOVE 0 1 2;WAIT"
+     },
+     "property": "P3"
+    }
+   ],
+   "flags": [],
+   "detector_counts": {
+    "D-1": 1,
+    "D-2": 0,
+    "D-3": 0,
+    "D-4": 0,
+    "D-5": 0,
+    "D-6": 0,
+    "D-7": 0,
+    "D-8": 0,
+    "D-9": 0
+   },
+   "commands_sha_len": 2566
+  },
+  "m021-s1": {
+   "spec": {
+    "map_id": "m021",
+    "seat": 1,
+    "class": "choke_corridor",
+    "profile": "idle",
+    "seed": 49979687,
+    "attempt": 0,
+    "orchard_eligible": false
+   },
+   "parity_command_streams_identical": true,
+   "row_identity_vs_phase2_panel": "MATCH",
+   "violations": [
+    {
+     "count": 1,
+     "detector": "D-4",
+     "episodes": [
+      {
+       "kind": "no_progress",
+       "turn_end": 17,
+       "turn_start": 15,
+       "unit": 2
+      }
+     ],
+     "property": "P1"
+    },
+    {
+     "detail": {
+      "live_end": 106,
+      "terminal_from": 135,
+      "why": "candidate makes no own-inventory/own-cargo progress over turns 20-106 while work remains through turn 106 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]",
+      "window_end": 106,
+      "window_start": 20
+     },
+     "property": "P4"
+    }
+   ],
+   "flags": [
+    {
+     "detail": "full wood carrier since turn 12 never DROPs at a door within the bounded banking horizon of 30 turns - I-21 forced banking violated",
+     "flag": "r5-horizon",
+     "unit": 2
+    }
+   ],
+   "detector_counts": {
+    "D-1": 0,
+    "D-2": 0,
+    "D-3": 0,
+    "D-4": 1,
+    "D-5": 0,
+    "D-6": 0,
+    "D-7": 0,
+    "D-8": 0,
+    "D-9": 0
+   },
+   "commands_sha_len": 2432
+  }
+ }
+}
