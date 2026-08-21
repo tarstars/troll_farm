@@ -25,7 +25,17 @@ route around; same tree wanted → tree reservation). All four are still NOT
 FIXED on the champion. The "harmless" stamps below were wrong — they judged
 the blocker instead of the dancer and read "never waits" as "works". Full
 record: `local_claude_1/adjudications/4b-bucket-B-ruling-2026-08-21.md`. No
-cure chartered (owner's call, open). **Remaining for 4b: OSC-026 and OSC-012.**
+cure chartered (owner's call, open). ~~**Remaining for 4b: OSC-026 and OSC-012.**~~
+
+## SITTING RESULT 3 — 2026-08-21 ~08:55Z: OSC-026 and OSC-012 RULED BUG — **4b CLOSED**
+
+The owner ruled OSC-026 (single-troll goal flip, 9 turns beside a reachable
+lemon) and OSC-012 (a troll with no chop/harvest power parked on the only tree
+for 193 turns while the able troll danced in front of it) **BUG under R-2,
+known-open**; both stamps withdrawn. All six 4b candidates are now ruled, none
+was stamped harmless. Record and the 34-case tally:
+`local_claude_1/adjudications/4b-buckets-D-E-ruling-2026-08-21.md`. Only
+OSC-032/033 remain, in the cause-attribution measurement.
 
 ### The six held cases, with the game to watch
 
@@ -202,8 +212,8 @@ than assumed.
 | B — not starved | OSC-005/010/027/030 | **BUG / known-open (owner, 08-21 08:20Z)** — stamps withdrawn; corridor swap (005, 027), teammate-aware routing (010), tree reservation (030) |
 | C — benching | the 18 | |
 | C — OSC-031 specifically | | |
-| D — single troll | OSC-026 | |
-| E — empty hands | OSC-012 | |
+| D — single troll | OSC-026 | **BUG / known-open (owner, 08-21 08:55Z)** — stamp withdrawn; single-troll goal-selector flip (M3) |
+| E — empty hands | OSC-012 | **BUG / known-open (owner, 08-21 08:55Z)** — stamp withdrawn; zero-power troll parked on the only tree 193 turns, the able troll dances (M2); swap never considered |
 | F — the two stalls | OSC-032, OSC-033 | |
 
 When this sheet is filled, the oscillation investigation is **closed**: every

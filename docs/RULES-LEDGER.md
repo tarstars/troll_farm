@@ -44,3 +44,11 @@ defect mechanism; the movement-level swap (R-1) treats only the symptom.
   teammate works it, a free tree two cells further (tree reservation, the
   picker family). All four NOT FIXED on champion `547fa706`; no cure chartered.
   Record: `local_claude_1/adjudications/4b-bucket-B-ruling-2026-08-21.md`.
+- 4b buckets D/E (owner rulings 2026-08-21, stamps withdrawn; 4b CLOSED):
+  OSC-026 — a single troll flips between two nearly-tied jobs for 9 turns with
+  a reachable lemon on the map (goal-selector flip, M3); OSC-012 — a troll with
+  no chop/harvest power parks on the only tree for 193 turns while the able
+  troll dances in front of it (idle occupier invisible to the compatibility
+  check, M2; a swap would have resolved it at turn 8). Both NOT FIXED on the
+  champion; no cure chartered. Record:
+  `local_claude_1/adjudications/4b-buckets-D-E-ruling-2026-08-21.md`.

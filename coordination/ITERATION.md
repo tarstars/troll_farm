@@ -110,6 +110,19 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-21 (~09:00Z — **4b CLOSED: OSC-026 and OSC-012 RULED BUG**): the
+  owner ruled the last two — 026 a single-troll goal-selector flip (9 turns
+  beside a reachable lemon; M3) and 012 a zero-power troll parked on the only
+  tree for 193 turns while the able troll danced (M2; a swap at turn 8 would
+  have ended it; the most expensive case of the 34). All six 4b candidates were
+  bugs; no "harmless" stamp was issued. The 34 now read: 8 FIXED · 18 bucket C
+  (cure on the shelf) · 6 ruled today · 2 (032/033) in the cause-attribution
+  measurement. Five mechanisms named for any future cure charter (none
+  chartered): swap, teammate-aware routing, tree reservation, goal-selector
+  flip, idle-occupier yield — a swap rule alone covers 005/027/012. Open owner
+  questions: charter cures? why did the opening train a 0/0 troll (012)?
+  Record: `local_claude_1/adjudications/4b-buckets-D-E-ruling-2026-08-21.md`.
+
 - 2026-08-21 (~08:40Z — **CAUSE ATTRIBUTION G-1 ACCEPTED; the premise falls**):
   claude_1's clause instrument was REVISION_REQUIRED (count-only joins) then
   ACCEPTED at rev 2 `2764db56` (identity joins, 14/14 negative controls, a
