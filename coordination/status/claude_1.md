@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-21T06:35:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-21T06:53:00Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -27,7 +27,71 @@ established causes.** If you are resuming, do not act on any of it:
 **MET**; gate 1 **partially met** — `half_swap` guard unvalidated because whole-game perturbation
 cannot hold the trajectory fixed.
 
-## Current position (2026-08-21T06:35:00Z) — WAKE #18: G-1 REVISION_REQUIRED answered; the repair was the probe, not the gate
+## Current position (2026-08-21T06:53:00Z) — WAKE #19: G-3 DELIVERED; the OSC-032/033 charter is complete and my queue is EMPTY
+
+**Queue drained and pushed at `6e322618`. Zero unseen, zero unacknowledged, zero live cards —
+the first wake in this task that ends with nothing of mine outstanding.**
+
+One new message: codex_1's **`ACCEPTED_FOR_G3`** on the revised G-1/G-2 package
+(`20260821T064156Z`). They re-ran all five reproduction commands in a detached worktree and
+confirmed the two subject-local early anchors repair the coverage gap without touching the five
+Phase-3 anchors or weakening the per-fixture gate. G-3 resumed **on that acceptance, not before
+it**, which is what the card said it would do.
+
+**G-3 delivered at `50fa5a8e`, handed off at `20260821T065107Z`.** Charter gates G-1, G-2, G-3
+are now all delivered.
+
+- **New code is one file, and it is a reporter, not an instrument.**
+  `claude_1/nogoal/route_table.py` adds **no tap and no gate** — it re-runs parity and
+  one-route-per-turn and refuses to print if either fails — and emits the row the charter's G-3
+  names but the census does not carry: **one row per unit per turn, all 200 turns of both full
+  games**, plus contiguous spans. Kept **out of** `no_goal_census.py` deliberately: that file is
+  the artifact codex_1 reviewed, and **a later gate must not edit an accepted instrument to
+  produce its own deliverable** — the same rule that kept the champion subject opt-in rather
+  than rewriting task `20260820`'s manifest.
+- **The finding.** `main:IDLE_REGEN_FALLBACK` on **110/110** and **143/143** window turns, with
+  `carried=0 free_cap=2 safe_regen=true idle_regen=true` and
+  `idle_harvest=0 bank=0 chops=0 n=1 discarded=1 discarded_real=0` identical on every one of
+  them. **Nothing real was formed, so nothing real was discarded** — the one thing thrown away
+  each turn is the seeded `WAIT` the fallback had just created. **Phase 3's finding does not
+  carry across**: on OSC-013 that same fallback discarded two real `PICK` candidates on 101 of
+  170 idle turns. Same route, different event, exactly as the charter warned not to assume.
+- **Two facts the per-turn table produced that the histogram could not.**
+  1. **OSC-032's stall onset matches its recorded window exactly** — works through turn 90
+     (`main:FULL_BANK`, banks a full load), idle from 91, the window's first turn.
+  2. **OSC-033's does not.** On the champion that unit stops at **turn 21**, 37 turns before its
+     recorded window opens, and its first 14 idle turns come back through a **second** route,
+     `early:EARLY_CHOP_FALLBACK` with `chops=0 n=1`, until the `early` branch ends after turn 34.
+     Its idle run here is **180** turns, of which the recorded 143 are the tail. The recorded
+     window came from an older bot; **no conclusion drawn from the difference**. This is only
+     visible because the early anchors exist — the pre-revision probe could not have seen it.
+- **The not-claimed statement is explicit and it held.** No bug named; lone-`WAIT`-when-nothing-
+  applies may be correct caution or a defect and that is the **owner's** ruling.
+  **Which conjunct of the `view.turn>=100` replant block is false stays unmeasured** — the block
+  pushed nothing on any turn including both windows' turns 100–200, so the turn guard alone does
+  not explain them, but the probe does not tap the conjuncts and `fixture_units_seen` is a
+  **proxy**, not the predicate's own count. codex_1 ruled the seven-conjunct probe not required.
+  No class-wide claim, no causal claim about why `yamo_chop_candidates` was empty, nothing
+  touching P1/P2 or the open extend-versus-replace question.
+- **Owner brief in plain words** at `claude_1/nogoal/owner-brief-2026-08-21.md`, readable without
+  opening an artifact. Its one line: **somebody did give it a job, and the job was "wait"** — the
+  silence is produced in the **generator**, not the selector.
+- Both reproduction commands re-run to completion on this tree **before** the message was
+  written, not after.
+
+**Lint caught one thing worth remembering:** a handoff whose body said `DEFERRED: none.` failed
+`deferral_shape_errors` — the marker is line-start-matched and does not care that the word after
+it is "none". Say **`Deferrals: none.`** when you mean nothing is deferred.
+
+**Tooling note, unchanged from #18:** the `TOOL DRIFT` banner is still a false alarm here. I
+re-checked it by **marker**, not by date: `main`'s `inbox_sweep.py` blob is exactly the one this
+branch synced at `16ec22c9`, and this branch is **ahead** of it via `5ad46cbb` and the ACCEPTED
+`8c531096`. Do not act on the banner alone; do not dismiss it either.
+
+**What is not mine now:** the owner's bug-versus-correct-caution ruling on these two cases, any
+follow-up they charter from it, and the six held stamps.
+
+## Previous position (2026-08-21T06:35:00Z) — WAKE #18: G-1 REVISION_REQUIRED answered; the repair was the probe, not the gate
 
 **Queue drained and pushed at `45d64099`. One live card, mine, by design.**
 
@@ -90,7 +154,7 @@ narrowing into this branch; `deferral_shape_errors`, `card_ack_errors`, the cros
 `ack_obliged_to_me` are all present, and `publish_outbox.sh`/`agent_launcher.py` are
 byte-identical to `main`. Transport suite 145/145.
 
-## Previous position (2026-08-21T06:17:00Z) — WAKE #17: card 2 ACCEPTED, card 4 G-1 delivered, the revealed backlog closed
+## Earlier position (2026-08-21T06:17:00Z) — WAKE #17: card 2 ACCEPTED, card 4 G-1 delivered, the revealed backlog closed
 
 Launcher woke me on a three-message queue (codex_1's card-2 review plus two acks). Ritual
 complete: swept `--fetch`, read every message, published five, `--mark`ed as its own step,
