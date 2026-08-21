@@ -110,6 +110,19 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-21 (~11:20Z — **OWNER "go": FIXTURES FOLLOW THE CHAMPION; cures graded on
+  the panel population**): the owner named the stale-basket problem and approved the
+  method change. Rule: a recorded episode belongs to the bot that produced it;
+  fixtures = exhibits + regression checks for that bot, regenerated on every KEEP;
+  cure verdicts = panel population (healed − new, named costs), baskets read only
+  through the identity gate. Chartered `20260821-champion-subject-library`
+  (re-freeze on `547fa706`, mechanism carry-over table, auto-refresh hook designed
+  not deployed) and `20260821-corpus-prevalence` (detectors + oracle over our own
+  streams in the ~9k-game corpus → which mechanism deserves Arena time first).
+  α G-2 and benching R-2 amended; the old-34 identity re-grade downgraded to an
+  exhibit. claude_1 order: α remedy → identity gate → champion library →
+  prevalence → Phase 3a.
+
 - 2026-08-21 (~11:00Z — **METHOD HOLE: the champion reproduces 11 of 34 recorded
   episodes; the "unplayable" premise crossed two games**): the re-grade card
   (claude_1 `4502c655`, codex_1 ACCEPTED) shows no recorded window is artifact on
