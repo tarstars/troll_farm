@@ -264,6 +264,48 @@ def ack_obliged_to_me(body: str, me: str) -> bool:
     return bool({me.lower(), "both", "all"} & targets)
 
 
+def wakes_recipient(msg: "Message", me: str) -> bool:
+    """Does this message ring `me`'s doorbell? (protocol §5.1, owner 2026-08-21)
+
+    The actionable set answers "what do I owe"; this answers "is there news".
+    Three exclusions, each a measured failure of 2026-08-21, the day claude_1
+    woke eight times in 102 minutes with every wake legally mail-triggered:
+
+    1. `msg.sender == me` — an agent has read what it wrote. Its own DEFERRED
+       card stays an OBLIGATION in the queue and never rings its own bell.
+       Without this the discharge of a card is another card, that card enters
+       its author's own set, and a blocked agent wakes itself forever.
+    2. not addressed in `to` — a `cc` recipient owes no ack (ruling 2026-08-20),
+       so waking it to read what it does not owe contradicts the same ruling.
+       It reads the cc on its next real wake.
+    3. a courtesy receipt — an `ack` carrying no acknowledgement obligation of
+       its own. A verdict, ruling or authorization CHANGES the recipient's
+       queue and must be published `requires_ack: true` toward that party (the
+       2026-08-18 queue-changing rule); published that way it wakes. Published
+       as a bare receipt it is read next wake, and peer receipt ping-pong
+       terminates instead of sustaining itself.
+    4. a shape-valid `DEFERRED:` card — wakes NOBODY, not even the peers it
+       names in `to`. Both live agents address their own cards to each other,
+       and a peer cannot discharge another agent's card: only a later message
+       of the SAME agent naming it in `ack_for` does. The obligation such a
+       card appears to place on a peer is therefore one the peer cannot act
+       on, and waking anyone for it is noise by construction. The card stays
+       visible to everyone as status — "a deferral is a status, not a
+       silence" is about publishing it, never about interrupting a peer.
+       An assignment (`CARD:`) addressed to its assignee is a different shape
+       and still wakes.
+    """
+    if msg.sender == me:
+        return False
+    if not ack_obliged_to_me(msg.body, me):
+        return False
+    if msg.kind == "ack" and not requires_ack(msg.body, msg.kind):
+        return False
+    if is_deferral_card(msg):
+        return False
+    return True
+
+
 def parse_boolean(value: str) -> bool | None:
     normalized = scalar_value(value).lower()
     if normalized in {"true", "yes", "1", "on"}:
@@ -1076,6 +1118,7 @@ class SweepState:
     selection: list[Message]
     new_items: list[Message]
     unacked: list[Message]
+    wake_items: list[Message]
 
     @property
     def transport_broken(self) -> bool:
@@ -1085,6 +1128,16 @@ class SweepState:
     def actionable_paths(self) -> list[str]:
         """Selected message paths that are unread or owe an acknowledgement."""
         return sorted({m.path for m in self.new_items} | {m.path for m in self.unacked})
+
+    @property
+    def wake_paths(self) -> list[str]:
+        """The subset of `actionable_paths` that may WAKE this agent (§5.1).
+
+        Always a subset: nothing wakes an agent that the sweep would not also
+        show it. What it drops is the agent's own mail, `cc`-only mail, and
+        courtesy receipts — see `wakes_recipient`.
+        """
+        return sorted({m.path for m in self.wake_items})
 
     @property
     def is_actionable(self) -> bool:
@@ -1271,6 +1324,16 @@ def actionable_set(
         and ack_obliged_to_me(m.body, me)
         and not is_acknowledged(m, acked_paths, legacy_latest)
     ]
+    # The doorbell (protocol §5.1). A strict subset of the actionable set:
+    # what is NEWS from someone else, as opposed to what I merely owe.
+    wake_seen: set[str] = set()
+    wake_items: list[Message] = []
+    for msg in [*new_items, *unacked]:
+        if msg.path in wake_seen or not wakes_recipient(msg, me):
+            continue
+        wake_seen.add(msg.path)
+        wake_items.append(msg)
+    wake_items.sort(key=lambda m: m.path)
 
     return SweepState(
         me=me,
@@ -1295,6 +1358,7 @@ def actionable_set(
         selection=selection,
         new_items=new_items,
         unacked=unacked,
+        wake_items=wake_items,
     )
 
 
@@ -1415,6 +1479,13 @@ def main() -> int:
 
     print(f"\nunacknowledged, ack required ({len(state.unacked)}):")
     for msg in state.unacked:
+        print(f"  {msg.path}   [{msg.ref}]")
+
+    # The doorbell, protocol §5.1: the subset of everything above that may WAKE
+    # this agent. Read by scripts/agent_launcher.py; the rest of this report is
+    # the queue, which is a different question.
+    print(f"\nwake set ({len(state.wake_items)}):")
+    for msg in state.wake_items:
         print(f"  {msg.path}   [{msg.ref}]")
 
     if args.include_local:
