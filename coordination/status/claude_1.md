@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-20T21:07:33Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-21T00:59:39Z (REAL clock, `date -u`)
 
 ## READ THIS FIRST — what is WITHDRAWN (2026-08-17)
 
@@ -27,7 +27,42 @@ established causes.** If you are resuming, do not act on any of it:
 **MET**; gate 1 **partially met** — `half_swap` guard unvalidated because whole-game perturbation
 cannot hold the trajectory fixed.
 
-## Current position (2026-08-20T21:07:33Z) — WAKE #13: Phase 3 ACKED by codex_1; queue drained, nothing owed
+## Current position (2026-08-21T00:59:39Z) — WAKE #14: the owner's morning sheet; informational, nothing owed
+
+Launcher woke me on a one-message queue. Ritual complete: swept `--fetch`, read the message,
+`--mark`ed as its own step, committed and pushed. Post-mark sweep: **0 new, 0
+unacknowledged-ack-required, 0 delivery errors, 0 immutable collisions**; 12 quarantined, all
+pre-existing and adjudicated.
+
+- The message was `local_claude_1/20260821T005401Z-20260819-osc031-forecast-fix-door1b-progress.md`
+  — `type: progress`, **`to: ["user"]`** with me only on `cc`, **`requires_ack: false`**. It is the
+  night-runner's unattended OWNER MORNING SHEET. Nothing is addressed to me and nothing is owed, so
+  I published no ack and took no action on its content.
+- **What it reports, recorded not endorsed** (no artifact was pinned for me to reproduce, and I ran
+  no verification of these numbers): session-2 title fight, Door-1 challenger vs the cure-C
+  resident, pairs [1.9, -0.6, 0.4, 1.1, -1.7], mean **+0.220** over n=5 — **IMMATERIAL**, below
+  the pre-registered 1.0 materiality floor and the 1.315 winner bar. Composed three-generation
+  distance **+1.240** (night 1 **+1.02** plus tonight), carrying its own author's caveat that
+  composition chains ACROSS nights and the ladder moved (Legend 160 → 176 seats) between them —
+  **evidence, not gold**. Branch taken: **SESSION3**, the direct Door-1-vs-`98628e98` block, 1 of
+  10 marks submitted at the time of writing.
+- **KEEP/REVERT is the owner's, and the sheet says so itself.** I assert no verdict on cure C, on
+  Door-1, or on the composed number, and the nine named costs travel with any verdict
+  (`codex_1/reviews/osc031-named-costs-package-review-2026-08-19.md`).
+- **Nothing was postponed this wake, so no new `DEFERRED:` card is owed.** Standing deferrals
+  unchanged and still unclaimed by peers: card 2 (sentinel build) blocked on the one
+  `actionable_set()` extraction ruling; card 3 (pair-selector Phase 2) blocked behind the OWNER'S
+  design gate on P1+P2 and the settled resident.
+- **Tool digests re-verified against `origin/main` this wake, and BOTH HAD MOVED under me since
+  wake #13** — `inbox_sweep.py` `be8251c4…` → **`7952be44…`**, `lint_outbox.py` `f3c47b70…` →
+  **`40b71c4c…`**. Local matches `main` on both. This is the third time the tooling has changed
+  beneath a sweep of mine; nothing on screen announces it. Re-check every wake.
+- **Seen-state note:** `--mark` recorded **871** selected addressed paths, not one. The seen state
+  is exact-path membership now, so a mark covers the whole current selection rather than advancing
+  a timestamp — the old "watermark deliberately NOT advanced" hazard does not apply, but the
+  count is large and worth reading before assuming a one-message mark.
+
+## Previous position (2026-08-20T21:07:33Z) — WAKE #13: Phase 3 ACKED by codex_1; queue drained, nothing owed
 
 Launcher woke me on a one-message queue. Ritual complete: swept `--fetch`, read the message,
 `--mark`ed as its own step, committed and pushed. Post-mark sweep: **0 new, 0
@@ -677,7 +712,7 @@ The `+12.453/+76.508` D89a split (`UNRESOLVED`, TSVs never committed) · `oscill
 
 **`pytest` is absent from the host but the transport suite requires it** — `tests/test_inbox_sweep.py` does `import pytest`, so `python3 -m unittest` cannot run it. Use `uvx pytest tests/…` (92 pass). The old "use `python3 -m unittest`" guidance holds only for suites that do not import pytest.
 
-**Tooling: `inbox_sweep.py` `be8251c4…`, `lint_outbox.py` `f3c47b70…`, both matching `main`.** `lint_outbox.py` had been **absent from this branch entirely** — the publish gate did not exist where I was publishing from, which is the mechanical cause of all three of my quarantined messages.
+**Tooling: `inbox_sweep.py` `7952be44…`, `lint_outbox.py` `40b71c4c…`, both matching `main` as of wake #14** (they were `be8251c4…`/`f3c47b70…` through wake #13; both moved under me). `lint_outbox.py` had been **absent from this branch entirely** — the publish gate did not exist where I was publishing from, which is the mechanical cause of all three of my quarantined messages.
 
 **Verify your tool digest against `origin/main` before trusting any sweep — every time, not once.** I went stale twice in one cycle: first at `12b27e9c…`, which reported **56** unacknowledged against the true **16** and printed no quarantine section at all; then again the same day when `main` moved to `be8251c4…` under me, so a handoff I had genuinely acknowledged still showed as outstanding. Nothing on screen announces a stale tool. Re-check after every `main` movement.
 
