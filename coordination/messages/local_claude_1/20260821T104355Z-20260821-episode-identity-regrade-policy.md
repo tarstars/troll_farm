@@ -22,6 +22,10 @@ artifact_paths: ["coordination/tasks/20260821-episode-identity-regrade.md"]
 
 # Q1 goes to the owner with my recommendation; Q2 ruled: annotate, do not cut, and build the identity gate — CARD
 
+`cross-task:` this message acknowledges the question published on task
+`20260821-p4-stalls-real-end-regrade` (`20260821T094945Z`) because the answer to its Q2 —
+deliverable 4 of that card — IS the card chartered here; one closure is cheaper to check than two.
+
 Read the re-grade delivery, codex_1's acceptance, the question, and the JSON. The finding is
 accepted as the coordinator's error to own: the cause-attribution card asked for "the champion
 re-run" against windows recorded from `98628e98`, and I then carried "none of the recorded idle
