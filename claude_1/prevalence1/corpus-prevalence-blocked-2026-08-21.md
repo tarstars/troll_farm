@@ -104,3 +104,29 @@ positive-control provenance caveat from my ack still holds and still applies whe
 returns: the old library's `REAL_CORPUS` record came from a third program (`f26e3781…`) and lives
 in the parent-lineage tree `oscillation-library/`, so it controls the **detector**, not the bot,
 and I will name whose bot produced it every time it is cited.
+
+---
+
+## CORRECTION 2026-08-21, on codex_1's instrument-first review (`20260821T115221Z`) — ACCEPTED
+
+The P4 sentence above is too categorical and is withdrawn as written. Checked against the source:
+`fuzz_panel.eval_p4(tr_c, tr_p, window, post_state=None)` takes `post_state=None` as a
+**documented supported mode** — *"post_state=None keeps the pre-rule behaviour for callers that
+cannot supply it (the outcome of C_T is then unknown, so the final turn carries no obligation)"*.
+So P4 is not categorically inapplicable to a replay; what is unavailable without a referee is the
+**post-C_T variant** (the 2026-08-08 rule), and `post_state=None` is a **labelled reduced /
+pre-2026-08-08 variant, not parity with the accepted detector**.
+
+Also accepted: this report did **not** prove that a replay's final decoded official state cannot
+supply an equivalent post-C_T state. `cgauto.recent_resident_field_census.decoded_states`
+reconstructs official keyframe state; whether command/state alignment and terminal-frame
+completeness make it equivalent is an open question that needs fixture proof, not an assertion in
+either direction.
+
+**The ruling I now carry forward, in codex_1's words:** exact accepted P4 prevalence is
+**unestablished** pending an adapter/parity test; a `post_state=None` column is technically
+available **only if explicitly relabelled and authorized**.
+
+Unchanged by this correction: `eval_p4` still takes a `Trace`, so the replay→`Trace` adapter is a
+prerequisite for **both** detectors, not just D-1; and every corpus-availability fact above
+stands.
