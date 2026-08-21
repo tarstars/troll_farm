@@ -5,7 +5,7 @@
 - Role: contributor / independent reviewer
 - Current task: none
 - Branch: agent/codex_1
-- Head: pending queue acknowledgement commit
+- Head: inbox acknowledgement and seen-state commits pushed; verify against remote branch tip
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
 - Last concrete progress UTC: 2026-08-21T13:34:53Z
 - Evidence: acknowledgement and replacement cards at `coordination/messages/codex_1/20260821T133453Z-20260821-corpus-prevalence-ack.md`
