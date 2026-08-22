@@ -213,6 +213,7 @@ COLL_LATE_ROW = (
     '                        }\n')
 
 
+
 def patch_candidate(base: str, predicate: str = PREDICATE_R1) -> str:
     out = base
     for anchor in (REGION_START, SEAM_HEAD, LOOP_ANCHOR, TAIL_ANCHOR):
@@ -234,6 +235,216 @@ def patch_candidate(base: str, predicate: str = PREDICATE_R1) -> str:
 SEAM_HEAD = ("            fn resolve_move_conflicts_with_priority_and_forbidden("
              "view:&GameState,commands:&mut[String],priority_ids:&BTreeSet<i32>,"
              "forbidden_for_non_priority:&BTreeSet<Cell>,){")
+
+
+# ---------------------------------------------------------------------------------------
+# REV 3 — PEEK (task `20260822-peek-planner-target-map`), built to codex_1's step-2 construction
+# ruling (`peek-planner-target-map-construction-ruling-2026-08-22.md`, agent/codex_1@fc332164)
+# as SCOPED by the step-2 scope ruling (`…-step2-scope-ruling-2026-08-22.md`, @9ac11dd0):
+# BRANCH 1 — the fail-closed predicate stands and rev 3 is scoped to the 13 residual OSC-011
+# re-swaps. It fires on NONE of the 15 corrected OSC-005/027 busy-blocker rows, by design.
+#
+# The predicate, from the ruling:
+#   genuine mover pass-through, PLUS a partner target present in THIS `commands()` call, PLUS
+#   that target different from BOTH the mover's final target AND the landing cell being taken.
+#   Missing/`None` fails toward NOT displacing.
+#
+# It REPLACES rev 2's `yielding` clause rather than joining it: rev 2 fired whenever the partner
+# was `WAIT`, which is exactly how the 13 re-swaps were produced (the displaced troll was idle for
+# one tick and walked straight back). `_yielding` is still bound because the probe reports it.
+#
+# The value's lifetime, as ruled: a `BTreeMap<i32,Target>` created inside one `commands()` call,
+# filled by the SAME selection that produced the commands, borrowed by the resolver, and dropped
+# at the end of that call. It is never a field, never returned, never survives a turn.
+
+SEAM_HEAD_R3 = SEAM_HEAD.replace(
+    "forbidden_for_non_priority:&BTreeSet<Cell>,){",
+    "forbidden_for_non_priority:&BTreeSet<Cell>,peek_targets:Option<&BTreeMap<i32,Target>>,){")
+
+WRAPPER_OLD = """            fn resolve_move_conflicts_with_priority(view:&GameState,commands:&mut[String],priority_ids:&BTreeSet<i32>,){
+                Self::resolve_move_conflicts_with_priority_and_forbidden(view,commands,priority_ids,&BTreeSet::new(),);
+                }
+"""
+
+# every pre-existing entry point keeps its signature and passes `None`, so every caller that has
+# no target map — the constructed-board controls included — is fail-closed by construction.
+WRAPPER_NEW = """            fn resolve_move_conflicts_with_priority(view:&GameState,commands:&mut[String],priority_ids:&BTreeSet<i32>,){
+                Self::resolve_move_conflicts_with_priority_and_forbidden(view,commands,priority_ids,&BTreeSet::new(),None,);
+                }
+            fn resolve_move_conflicts_with_peek(view:&GameState,commands:&mut[String],peek_targets:&BTreeMap<i32,Target>,){
+                Self::resolve_move_conflicts_with_priority_and_forbidden(view,commands,&BTreeSet::new(),&BTreeSet::new(),Some(peek_targets),);
+                }
+"""
+
+PEEK_HELPERS = """            fn peek_target_cell(view:&GameState,target:Target)->Option<Cell>{
+                match target{
+                    Target::None=>None,
+                    Target::Shack=>Some(view.shacks[0]),
+                    Target::Bank(cell)|Target::Cell(cell)|Target::Tree(cell)=>Some(cell),
+                }
+                }
+            fn peek_swap_allowed(view:&GameState,peek_targets:Option<&BTreeMap<i32,Target>>,partner_id:i32,mover_target:Cell,landing:Cell,mover_speed:i32,)->bool{
+                let Some(map)=peek_targets else{
+                    return false
+                }
+                ;
+                if mover_target==landing{
+                    return false;
+                    }
+                if next_cell(&view.walkable,landing,mover_target,mover_speed)==landing{
+                    return false;
+                    }
+                let Some(partner_target)=map.get(&partner_id).copied()else{
+                    return false
+                }
+                ;
+                let Some(partner_cell)=Self::peek_target_cell(view,partner_target)else{
+                    return false
+                }
+                ;
+                partner_cell!=mover_target&&partner_cell!=landing
+                }
+"""
+
+YIELDING_OLD = '                        let yielding=commands[u_index]=="WAIT";\n'
+YIELDING_R3 = '                        let _yielding=commands[u_index]=="WAIT";\n'
+
+PREDICATE_R3 = ("                        if Self::peek_swap_allowed(view,peek_targets,u_id,target,"
+                "landing,unit.stats.movement_speed){")
+
+# out-of-region edits — PROPAGATION ONLY. Step 1's grant permits exactly this and nothing else:
+# "A change outside `resolve_move_conflicts*` other than making that value reachable is out of
+# scope." Every anchor must occur exactly once, and the builder re-derives the whole
+# out-of-region diff and compares it line-for-line to the declared lists below.
+SELECT_SIG_OLD = """            fn select(candidates_by_id:BTreeMap<i32,Vec<Candidate>>,inventory:&[i32;
+            6],)->Vec<String>{
+"""
+SELECT_SIG_NEW = """            fn select(candidates_by_id:BTreeMap<i32,Vec<Candidate>>,inventory:&[i32;
+            6],)->Vec<String>{
+                let mut peek_discarded:BTreeMap<i32,Target> =BTreeMap::new();
+                Self::select_recording(candidates_by_id,inventory,&mut peek_discarded)
+                }
+            fn select_recording(candidates_by_id:BTreeMap<i32,Vec<Candidate>>,inventory:&[i32;
+            6],peek_chosen:&mut BTreeMap<i32,Target>,)->Vec<String>{
+"""
+
+SELECT_ONE_OLD = """                    let best=candidates_by_id[&ids[0]].iter().max_by(|a,b|a.score.total_cmp(&b.score)).unwrap();
+                    return vec![best.command.clone()];
+"""
+SELECT_ONE_NEW = """                    let best=candidates_by_id[&ids[0]].iter().max_by(|a,b|a.score.total_cmp(&b.score)).unwrap();
+                    peek_chosen.insert(ids[0],best.target);
+                    return vec![best.command.clone()];
+"""
+
+SELECT_PAIR_OLD = """                                best_pair=Some((a.command.clone(),b.command.clone()));
+"""
+SELECT_PAIR_NEW = """                                best_pair=Some((a.command.clone(),b.command.clone(),a.target,b.target,));
+"""
+
+SELECT_PAIR_RET_OLD = """                    if let Some((a,b))=best_pair{
+                        return vec![a,b];
+"""
+SELECT_PAIR_RET_NEW = """                    if let Some((a,b,a_target,b_target))=best_pair{
+                        peek_chosen.insert(ids[0],a_target);
+                        peek_chosen.insert(ids[1],b_target);
+                        return vec![a,b];
+"""
+
+SELECT_LOOP_OLD = """                    used_targets.push(best.target);
+"""
+SELECT_LOOP_NEW = """                    peek_chosen.insert(id,best.target);
+                    used_targets.push(best.target);
+"""
+
+COMMANDS_OLD = """                let mut selected=MoisanBot::select(by_id,&view.inventories[0]);
+                MoisanBot::resolve_move_conflicts(view,&mut selected);
+"""
+COMMANDS_NEW = """                let mut peek_targets:BTreeMap<i32,Target> =BTreeMap::new();
+                let mut selected=MoisanBot::select_recording(by_id,&view.inventories[0],&mut peek_targets);
+                MoisanBot::resolve_move_conflicts_with_peek(view,&mut selected,&peek_targets);
+"""
+
+PROPAGATION = (
+    (SELECT_SIG_OLD, SELECT_SIG_NEW),
+    (SELECT_ONE_OLD, SELECT_ONE_NEW),
+    (SELECT_PAIR_OLD, SELECT_PAIR_NEW),
+    (SELECT_PAIR_RET_OLD, SELECT_PAIR_RET_NEW),
+    (SELECT_LOOP_OLD, SELECT_LOOP_NEW),
+    (COMMANDS_OLD, COMMANDS_NEW),
+)
+
+# The complete set of lines the propagation may add and remove OUTSIDE the seam region. Guard 3
+# cannot be "nothing changed outside the region" for rev 3, so it becomes "exactly this changed,
+# and nothing else" — the same fail-closed shape, with the licence written down.
+PROPAGATION_EXPECTED_ADDED = [
+    "                let mut peek_discarded:BTreeMap<i32,Target> =BTreeMap::new();",
+    "                Self::select_recording(candidates_by_id,inventory,&mut peek_discarded)",
+    "                }",
+    "            fn select_recording(candidates_by_id:BTreeMap<i32,Vec<Candidate>>,inventory:&[i32;",
+    "            6],peek_chosen:&mut BTreeMap<i32,Target>,)->Vec<String>{",
+    "                    peek_chosen.insert(ids[0],best.target);",
+    "                                best_pair=Some((a.command.clone(),b.command.clone(),a.target,b.target,));",
+    "                    if let Some((a,b,a_target,b_target))=best_pair{",
+    "                        peek_chosen.insert(ids[0],a_target);",
+    "                        peek_chosen.insert(ids[1],b_target);",
+    "                    peek_chosen.insert(id,best.target);",
+    "                let mut peek_targets:BTreeMap<i32,Target> =BTreeMap::new();",
+    "                let mut selected=MoisanBot::select_recording(by_id,&view.inventories[0],&mut peek_targets);",
+    "                MoisanBot::resolve_move_conflicts_with_peek(view,&mut selected,&peek_targets);",
+]
+PROPAGATION_EXPECTED_REMOVED = [
+    "                                best_pair=Some((a.command.clone(),b.command.clone()));",
+    "                    if let Some((a,b))=best_pair{",
+    "                let mut selected=MoisanBot::select(by_id,&view.inventories[0]);",
+    "                MoisanBot::resolve_move_conflicts(view,&mut selected);",
+]
+
+CANDIDATE_R3 = REPO / "cgauto/submissions/candidate-swap-r1-rev3.rs"
+PROBE_R3 = HERE / "probe-swap-r1-rev3.rs"
+CONTROL_CAND_R3 = HERE / "control-swap-r1-rev3.rs"
+MANIFEST_R3 = HERE / "build-manifest-rev3-2026-08-22.json"
+
+# probe-only: one row per partner encounter, whether or not the predicate admits it. This is the
+# row that says WHY rev 3 declined, which is the whole reason the decline census had to exist.
+PEEK_ROW = (
+    '                        eprintln!("SW1PEEK turn={} m={} u={} map_present={} partner_target={} '
+    'partner_cell={} mover_target={},{} landing={},{} passthrough={} allowed={} u_cmd={}",'
+    'view.turn,id,u_id,peek_targets.is_some(),'
+    'peek_targets.and_then(|map|map.get(&u_id)).map(|t|format!("{:?}",t)).unwrap_or_else(||String::from("ABSENT")),'
+    'peek_targets.and_then(|map|map.get(&u_id).copied()).and_then(|t|Self::peek_target_cell(view,t))'
+    '.map(|cell|format!("{},{}",cell.0,cell.1)).unwrap_or_else(||String::from("NONE")),'
+    'target.0,target.1,landing.0,landing.1,'
+    'target!=landing&&next_cell(&view.walkable,landing,target,unit.stats.movement_speed)!=landing,'
+    'Self::peek_swap_allowed(view,peek_targets,u_id,target,landing,unit.stats.movement_speed),'
+    'commands[u_index]);\n')
+
+FIRE_ROW_R3 = FIRE_ROW.replace('if yielding{"YIELD"}else{"NODETOUR"}',
+                               'if _yielding{"PEEK_WAIT"}else{"PEEK_BUSY"}')
+
+
+def patch_rev3_seam(candidate: str) -> str:
+    """The in-region half: the extra read-only parameter, the peek entry point, the helpers."""
+    out = candidate
+    for anchor in (SEAM_HEAD, WRAPPER_OLD, YIELDING_OLD, HELPER):
+        if out.count(anchor) != 1:
+            raise SystemExit(f"rev-3 seam anchor is not unique ({out.count(anchor)}x): "
+                             f"{anchor[:60]!r}")
+    out = out.replace(WRAPPER_OLD, WRAPPER_NEW, 1)
+    out = out.replace(SEAM_HEAD, SEAM_HEAD_R3, 1)
+    out = out.replace(YIELDING_OLD, YIELDING_R3, 1)
+    out = out.replace(HELPER, PEEK_HELPERS + HELPER, 1)
+    return out
+
+
+def patch_rev3_propagation(candidate: str) -> str:
+    """The out-of-region half: make the selected target reachable at the seam. Nothing else."""
+    out = candidate
+    for anchor, replacement in PROPAGATION:
+        if out.count(anchor) != 1:
+            raise SystemExit(f"rev-3 propagation anchor is not unique ({out.count(anchor)}x): "
+                             f"{anchor[:60]!r}")
+        out = out.replace(anchor, replacement, 1)
+    return out
 
 
 def seam_text(src: str) -> str:
@@ -273,37 +484,44 @@ SHADOW_TAIL = '''                let mut swap_shadow:Vec<String> =swap_shadow_be
 '''
 
 
-def partner_text(fire_row: str, predicate: str = PREDICATE_R1) -> str:
+def partner_text(fire_row: str, predicate: str = PREDICATE_R1, rev3: bool = False) -> str:
     """The PARTNER block as it actually appears in a built artifact of this revision."""
     text = PARTNER.replace("{FIRE_ROW}", fire_row)
     if predicate != PREDICATE_R1:
         if text.count(PREDICATE_R1) != 1:
             raise SystemExit("the rev-1 fire predicate is not unique in PARTNER")
         text = text.replace(PREDICATE_R1, predicate, 1)
+    if rev3:
+        if text.count(YIELDING_OLD) != 1:
+            raise SystemExit("the yielding binding is not unique in PARTNER")
+        text = text.replace(YIELDING_OLD, YIELDING_R3, 1)
     return text
 
 
-def patch_probe(base: str, candidate: str, predicate: str = PREDICATE_R1) -> str:
+def patch_probe(base: str, candidate: str, predicate: str = PREDICATE_R1,
+                rev3: bool = False) -> str:
     out = candidate
+    seam_head = SEAM_HEAD_R3 if rev3 else SEAM_HEAD
+    fire_row = FIRE_ROW_R3 if rev3 else FIRE_ROW
     # 1. the shadow copy of the base's own seam, inserted beside the helper
     out = out.replace(HELPER, shadow_from_base(base) + HELPER, 1)
     # 2. capture the pre-resolve command vector at the very top of the seam
-    if out.count(SEAM_HEAD) != 1:
+    if out.count(seam_head) != 1:
         raise SystemExit("seam signature not unique in the candidate")
-    out = out.replace(SEAM_HEAD, SEAM_HEAD + "\n" + SHADOW_CALL, 1)
+    out = out.replace(seam_head, seam_head + "\n" + SHADOW_CALL, 1)
     # 3. the per-turn row, after own_index exists
     out = out.replace(LOOP_PREAMBLE + LOOP_ANCHOR, LOOP_PREAMBLE + TURN_ROW + LOOP_ANCHOR, 1)
     # 4. the fire row, inside the fire branch and BEFORE the commands are rewritten
-    fired = partner_text("", predicate)
+    fired = partner_text("", predicate, rev3)
     if out.count(fired) != 1:
         raise SystemExit("the fire branch is not unique in the candidate")
-    out = out.replace(fired, partner_text(FIRE_ROW, predicate), 1)
+    out = out.replace(fired, partner_text(fire_row, predicate, rev3), 1)
     # 5. the shadow comparison and the final command dump, at the end of the seam body
     tail_anchor = """                    ;
                     }
                 }
 """
-    idx = out.index(partner_text(FIRE_ROW, predicate))
+    idx = out.index(partner_text(fire_row, predicate, rev3))
     rest = out[idx:]
     if rest.count(tail_anchor) < 1:
         raise SystemExit("seam tail anchor not found")
@@ -314,7 +532,7 @@ def patch_probe(base: str, candidate: str, predicate: str = PREDICATE_R1) -> str
     # 6. the decline census (task 20260822-peek-planner-target-map). Both anchors occur TWICE in
     # the probe — once in the shadow copy of the base's seam, once in the patched seam — so the
     # edit is confined to the text at or after the PATCHED seam's signature, which is unique.
-    seam_at = out.index(SEAM_HEAD)
+    seam_at = out.index(seam_head)
     head, tail = out[:seam_at], out[seam_at:]
     for anchor, row in ((COLL_EARLY_ANCHOR, COLL_EARLY_ROW), (COLL_LATE_ANCHOR, COLL_LATE_ROW)):
         if tail.count(anchor) != 1:
@@ -322,6 +540,12 @@ def patch_probe(base: str, candidate: str, predicate: str = PREDICATE_R1) -> str
                              f"({tail.count(anchor)}x): {anchor[:60]!r}")
         tail = tail.replace(anchor, anchor + row, 1)
     out = head + tail
+    # 7. rev 3 only: the per-encounter PEEK row, immediately after the partner binding, so a
+    #    DECLINE carries the same fields a fire does and the two are gradable side by side.
+    if rev3:
+        if out.count(YIELDING_R3) != 1:
+            raise SystemExit("the rev-3 partner binding is not unique in the probe")
+        out = out.replace(YIELDING_R3, YIELDING_R3 + PEEK_ROW, 1)
     return out
 
 
@@ -410,7 +634,7 @@ CONTROL_HOOK = """    pub fn swap_control_resolve(view:&crate::game::GameState,c
 MAIN_HEAD = "fn main(){\n    let stdin=io::stdin();"
 
 
-def control_from(src: str) -> str:
+def control_from(src: str, rev3: bool = False) -> str:
     """Same source, `main` replaced by the constructed-board driver, plus a pub hook.
 
     The seam is a private associated fn, so the driver cannot reach it from the crate root; the
@@ -420,25 +644,98 @@ def control_from(src: str) -> str:
     anchor = "        impl YamoBot{"
     if src.count(anchor) != 1:
         raise SystemExit("YamoBot impl anchor not unique")
-    out = src.replace(anchor, CONTROL_HOOK + anchor, 1)
+    hook = CONTROL_HOOK
+    if rev3:
+        # the control drives the seam with NO target map: `None` is the fail-closed value, so the
+        # constructed-board control of rev 3 must reproduce the base's output exactly.
+        hook = hook.replace("priority_ids,forbidden,);", "priority_ids,forbidden,None,);")
+    out = src.replace(anchor, hook + anchor, 1)
     if out.count(MAIN_HEAD) != 1:
         raise SystemExit("main anchor not unique")
     idx = out.index(MAIN_HEAD)
     return out[:idx] + CONTROL_MAIN.strip() + "\n"
 
 
+# ---------------------------------------------------------------------------------------
+# rev-3 constructed-board controls WITH a target map.
+#
+# The plain rev-3 control passes `None` and therefore can only ever show the fail-closed side.
+# A predicate that is only ever observed DECLINING is an untested branch — the exact defect class
+# this programme has shipped before — so rev 3 gets a second driver that accepts the map:
+#
+#   peek: <id> <kind> <x> <y>     kind 0=None 1=Shack 2=Bank 3=Cell 4=Tree
+#
+# and a BASE twin with the same driver whose hook ignores the map entirely. Same board, same
+# parser, same seam call; the only variable is whether the fact is there and what it says.
+CONTROL_MAIN_PEEK = CONTROL_MAIN.replace(
+    '''    let mut forbidden:BTreeSet<Cell> =BTreeSet::new();''',
+    '''    let mut forbidden:BTreeSet<Cell> =BTreeSet::new();
+    let mut peek:Vec<(i32,i32,i32,i32)> =Vec::new();''', 1).replace(
+    '''            other=>panic!("unknown control key {}",other),''',
+    '''            "peek"=>{
+                let f=nums(rest);
+                peek.push((f[0],f[1],f[2],f[3]));
+                }
+            other=>panic!("unknown control key {}",other),''', 1).replace(
+    '''    crate::bot::moisan::swap_control_resolve(&view,&mut commands,&priority,&forbidden);''',
+    '''    crate::bot::moisan::swap_control_resolve_peek(&view,&mut commands,&priority,&forbidden,&peek,);''', 1)
+
+CONTROL_HOOK_PEEK_BASE = """    pub fn swap_control_resolve_peek(view:&crate::game::GameState,commands:&mut [String],priority_ids:&std::collections::BTreeSet<i32>,forbidden:&std::collections::BTreeSet<crate::game::types::Cell>,_peek:&[(i32,i32,i32,i32)],){
+        MoisanBot::resolve_move_conflicts_with_priority_and_forbidden(view,commands,priority_ids,forbidden,);
+        }
+"""
+
+CONTROL_HOOK_PEEK_R3 = """    pub fn swap_control_resolve_peek(view:&crate::game::GameState,commands:&mut [String],priority_ids:&std::collections::BTreeSet<i32>,forbidden:&std::collections::BTreeSet<crate::game::types::Cell>,peek:&[(i32,i32,i32,i32)],){
+        let mut map:std::collections::BTreeMap<i32,Target> =std::collections::BTreeMap::new();
+        for(id,kind,x,y)in peek{
+            let target=match kind{
+                0=>Target::None,1=>Target::Shack,2=>Target::Bank((*x,*y)),3=>Target::Cell((*x,*y)),_=>Target::Tree((*x,*y)),
+            }
+            ;
+            map.insert(*id,target);
+            }
+        MoisanBot::resolve_move_conflicts_with_priority_and_forbidden(view,commands,priority_ids,forbidden,Some(&map),);
+        }
+"""
+
+CONTROL_BASE_PEEK_R3 = HERE / "control-base-peek-rev3.rs"
+CONTROL_CAND_PEEK_R3 = HERE / "control-swap-r1-peek-rev3.rs"
+
+
+def control_peek_from(src: str, hook: str) -> str:
+    """The peek driver. Same shape as `control_from`, different hook and different `main`."""
+    anchor = "        impl YamoBot{"
+    if src.count(anchor) != 1:
+        raise SystemExit("YamoBot impl anchor not unique")
+    out = src.replace(anchor, hook + anchor, 1)
+    if out.count(MAIN_HEAD) != 1:
+        raise SystemExit("main anchor not unique")
+    idx = out.index(MAIN_HEAD)
+    return out[:idx] + CONTROL_MAIN_PEEK.strip() + "\n"
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="build cure alpha's artifacts")
+    ap.add_argument("--rev3", action="store_true",
+                    help="build PEEK rev 3 (task 20260822-peek-planner-target-map) to the -rev3 "
+                         "output names; rev-1 and rev-2 outputs untouched")
     ap.add_argument("--rev2", action="store_true",
                     help="build the P5 (yield-path-only) revision codex_1 approved at "
                          "20260821T110533Z, to the -rev2 output names; rev-1 outputs untouched")
     args = ap.parse_args(argv)
 
-    predicate = PREDICATE_R2 if args.rev2 else PREDICATE_R1
-    candidate_path = CANDIDATE_R2 if args.rev2 else CANDIDATE
-    probe_path = PROBE_R2 if args.rev2 else PROBE
-    control_cand_path = CONTROL_CAND_R2 if args.rev2 else CONTROL_CAND
-    manifest_path = MANIFEST_R2 if args.rev2 else MANIFEST
+    if args.rev2 and args.rev3:
+        print("REFUSING: --rev2 and --rev3 build different candidates; pick one")
+        return 1
+    if args.rev3:
+        predicate, candidate_path, probe_path = PREDICATE_R3, CANDIDATE_R3, PROBE_R3
+        control_cand_path, manifest_path = CONTROL_CAND_R3, MANIFEST_R3
+    elif args.rev2:
+        predicate, candidate_path, probe_path = PREDICATE_R2, CANDIDATE_R2, PROBE_R2
+        control_cand_path, manifest_path = CONTROL_CAND_R2, MANIFEST_R2
+    else:
+        predicate, candidate_path, probe_path = PREDICATE_R1, CANDIDATE, PROBE
+        control_cand_path, manifest_path = CONTROL_CAND, MANIFEST
 
     base = BASE.read_text()
     got = hashlib.sha256(base.encode()).hexdigest()
@@ -447,13 +744,62 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     candidate = patch_candidate(base, predicate)
+    if args.rev3:
+        candidate = patch_rev3_propagation(patch_rev3_seam(candidate))
 
     # guard 3: nothing outside the seam region changed
     def outside(text: str) -> tuple[str, str]:
         s = text.index("            fn resolve_move_conflicts(view:&GameState")
         e = text.index(REGION_END, s)
         return text[:s], text[e:]
-    if outside(candidate) != outside(base):
+    if args.rev3:
+        # Guard 3, rev-3 form. PEEK cannot be built without making the selected target reachable,
+        # which is out-of-region by construction and which step 1 grants in exactly one sentence.
+        # So the guard is not "nothing changed" but "EXACTLY the declared lines changed": the
+        # out-of-region diff is re-derived from the bytes and compared line-for-line to the
+        # declaration. Any extra hunk — a mis-anchored replace, a stray edit — fails the build.
+        import difflib
+        added, removed = [], []
+        for side in (0, 1):
+            for line in difflib.unified_diff(outside(base)[side].splitlines(),
+                                             outside(candidate)[side].splitlines(), n=0):
+                if line.startswith("+++") or line.startswith("---") or line.startswith("@@"):
+                    continue
+                if line.startswith("+"):
+                    added.append(line[1:])
+                elif line.startswith("-"):
+                    removed.append(line[1:])
+        if sorted(added) != sorted(PROPAGATION_EXPECTED_ADDED) or \
+                sorted(removed) != sorted(PROPAGATION_EXPECTED_REMOVED):
+            print("REFUSING: the out-of-region diff is not the declared propagation")
+            print("  unexpected added:   ", sorted(set(added) - set(PROPAGATION_EXPECTED_ADDED)))
+            print("  unexpected removed: ", sorted(set(removed) - set(PROPAGATION_EXPECTED_REMOVED)))
+            print("  declared but absent:", sorted(
+                (set(PROPAGATION_EXPECTED_ADDED) - set(added))
+                | (set(PROPAGATION_EXPECTED_REMOVED) - set(removed))))
+            return 1
+        print(f"rev 3 out-of-region diff is exactly the declared propagation "
+              f"(+{len(added)} / -{len(removed)} lines): verified")
+        # Guard 5, rev-3 form: reverse every declared edit and the rev-1 candidate must come back
+        # byte for byte. That is what proves rev 3 is rev 1 PLUS the declared edits and nothing
+        # else — including inside the seam region, where guard 3 cannot see.
+        back = candidate
+        for anchor, replacement in PROPAGATION:
+            if back.count(replacement) != 1:
+                print(f"REFUSING: reverse-apply found {back.count(replacement)} of a declared "
+                      f"propagation replacement")
+                return 1
+            back = back.replace(replacement, anchor, 1)
+        back = back.replace(PEEK_HELPERS, "", 1)
+        back = back.replace(SEAM_HEAD_R3, SEAM_HEAD, 1)
+        back = back.replace(WRAPPER_NEW, WRAPPER_OLD, 1)
+        back = back.replace(YIELDING_R3, YIELDING_OLD, 1)
+        back = back.replace(PREDICATE_R3, PREDICATE_R1, 1)
+        if back != patch_candidate(base, PREDICATE_R1):
+            print("REFUSING: rev 3 does not reverse to the rev-1 candidate")
+            return 1
+        print("rev 3 reverses to the rev-1 candidate byte for byte: verified")
+    elif outside(candidate) != outside(base):
         print("REFUSING: the patch changed bytes OUTSIDE the seam region")
         return 1
 
@@ -465,20 +811,27 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         print("rev 2 differs from rev 1 by exactly the fire predicate line: verified")
 
-    probe = patch_probe(base, candidate, predicate)
+    probe = patch_probe(base, candidate, predicate, rev3=args.rev3)
     candidate_path.write_text(candidate)
     probe_path.write_text(probe)
     CONTROL_BASE.write_text(control_from(base))
-    control_cand_path.write_text(control_from(candidate))
+    control_cand_path.write_text(control_from(candidate, rev3=args.rev3))
+    if args.rev3:
+        CONTROL_BASE_PEEK_R3.write_text(control_peek_from(base, CONTROL_HOOK_PEEK_BASE))
+        CONTROL_CAND_PEEK_R3.write_text(control_peek_from(candidate, CONTROL_HOOK_PEEK_R3))
 
     manifest = {
-        "task": "20260821-swap-r1-cure", "gate": "G-1",
-        "revision": 2 if args.rev2 else 1,
+        "task": "20260822-peek-planner-target-map" if args.rev3 else "20260821-swap-r1-cure",
+        "gate": "G-1",
+        "revision": 3 if args.rev3 else (2 if args.rev2 else 1),
         "fire_predicate": predicate.strip(),
         "base": {"path": str(BASE.relative_to(REPO)), "sha256": got},
         "outputs": {},
     }
-    for path in (candidate_path, probe_path, CONTROL_BASE, control_cand_path):
+    emitted = [candidate_path, probe_path, CONTROL_BASE, control_cand_path]
+    if args.rev3:
+        emitted += [CONTROL_BASE_PEEK_R3, CONTROL_CAND_PEEK_R3]
+    for path in emitted:
         manifest["outputs"][str(path.relative_to(REPO))] = hashlib.sha256(
             path.read_bytes()).hexdigest()
         print(f"wrote {path.relative_to(REPO)}  sha256 "

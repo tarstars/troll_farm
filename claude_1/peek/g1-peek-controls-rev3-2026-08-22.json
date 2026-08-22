@@ -1,0 +1,78 @@
+{
+  "task": "20260822-peek-planner-target-map",
+  "gate": "G-1",
+  "revision": 3,
+  "controls": [
+    {
+      "name": "peek-fire-partner-target-elsewhere",
+      "clause": "all three clauses satisfied",
+      "why": "the partner is stationary, its selected target is (5,0) \u2014 neither the landing (1,0) nor the mover's target (3,0) \u2014 and the mover genuinely passes through. This is the ONLY shape rev 3 admits, and it must be shown admitting.",
+      "expect": "FIRE",
+      "base": "WAIT;WAIT",
+      "candidate": "MOVE 0 1 0;MOVE 2 0 0",
+      "status": "OK",
+      "detail": "the exchange was emitted"
+    },
+    {
+      "name": "peek-decline-partner-target-is-the-landing",
+      "clause": "partner target != landing",
+      "why": "one fact changed from the fire twin: the partner's target is the contested cell itself. This is the standing-chopper shape \u2014 29 of the corpus's 989 encounters.",
+      "expect": "IDENTICAL",
+      "base": "WAIT;WAIT",
+      "candidate": "WAIT;WAIT",
+      "status": "OK",
+      "detail": "byte-identical to the base"
+    },
+    {
+      "name": "peek-decline-partner-target-is-the-mover-target",
+      "clause": "partner target != mover target",
+      "why": "both units want (3,0). This is the OSC-006 dance the pass-through test alone could not tell from a real pass-through.",
+      "expect": "IDENTICAL",
+      "base": "WAIT;WAIT",
+      "candidate": "WAIT;WAIT",
+      "status": "OK",
+      "detail": "byte-identical to the base"
+    },
+    {
+      "name": "peek-decline-partner-target-none",
+      "clause": "missing/None fails toward not displacing",
+      "why": "the partner is WAIT and `Self::wait()` sets `target:Target::None`. 960 of the corpus's 989 encounters are this row, so this control is the corpus result.",
+      "expect": "IDENTICAL",
+      "base": "WAIT;WAIT",
+      "candidate": "WAIT;WAIT",
+      "status": "OK",
+      "detail": "byte-identical to the base"
+    },
+    {
+      "name": "peek-decline-partner-absent-from-map",
+      "clause": "missing fails toward not displacing",
+      "why": "no entry at all for the partner \u2014 the shape a stale or incomplete map produces. It must behave exactly like Target::None, not like an unconstrained fire.",
+      "expect": "IDENTICAL",
+      "base": "WAIT;WAIT",
+      "candidate": "WAIT;WAIT",
+      "status": "OK",
+      "detail": "byte-identical to the base"
+    },
+    {
+      "name": "peek-decline-empty-map",
+      "clause": "missing fails toward not displacing",
+      "why": "the map exists but is empty. Fail-closed must not depend on the map being absent.",
+      "expect": "IDENTICAL",
+      "base": "WAIT;WAIT",
+      "candidate": "WAIT;WAIT",
+      "status": "OK",
+      "detail": "byte-identical to the base"
+    },
+    {
+      "name": "peek-decline-mover-arrives-and-stays",
+      "clause": "genuine mover pass-through",
+      "why": "same admitting partner target as the fire twin, but the mover's own target IS the landing, so it is not passing through \u2014 it is taking the cell to keep it.",
+      "expect": "IDENTICAL",
+      "base": "WAIT;WAIT",
+      "candidate": "WAIT;WAIT",
+      "status": "OK",
+      "detail": "byte-identical to the base"
+    }
+  ],
+  "all_ok": true
+}

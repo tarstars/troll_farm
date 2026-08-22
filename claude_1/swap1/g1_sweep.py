@@ -72,6 +72,15 @@ RE_SEAM = re.compile(
     r"target_is_landing=(\w+) u_cmd=(.*)$")
 RE_SHADOW = re.compile(r"^SW1SHADOW turn=(\d+) identical=(\w+)$")
 RE_CMD = re.compile(r"^SW1CMD turn=(\d+) id=(-?\d+) idx=(\d+) cmd=(.*)$")
+# PEEK rev 3 (task 20260822-peek-planner-target-map): one row per partner encounter, fired or
+# not, carrying the partner's tick-local selected target and the predicate's own verdict. Rev-1
+# and rev-2 probes emit none, so this is additive and those runs are unchanged.
+RE_PEEK = re.compile(
+    # `partner_target` is a `{:?}` of `Target`, which contains spaces — `Tree((8, 2))` — so it
+    # is matched non-greedily up to the next field name rather than as a \S+ run.
+    r"^SW1PEEK turn=(\d+) m=(-?\d+) u=(-?\d+) map_present=(\w+) partner_target=(.+?) "
+    r"partner_cell=(\S+) mover_target=(-?\d+),(-?\d+) landing=(-?\d+),(-?\d+) "
+    r"passthrough=(\w+) allowed=(\w+) u_cmd=(.*)$")
 
 RESWAP_WINDOW = 4
 
@@ -82,6 +91,7 @@ class GateError(Exception):
 
 def parse(err: str):
     turns, fires, shadow, cmds = {}, [], {}, collections.defaultdict(dict)
+    peeks, collisions = [], []
     for line in err.splitlines():
         if not line.startswith("SW1"):
             continue
@@ -125,8 +135,25 @@ def parse(err: str):
         if m:
             cmds[int(m.group(1))][int(m.group(2))] = m.group(4)
             continue
+        if line.startswith("SW1COLL0 ") or line.startswith("SW1COLL1 "):
+            # the decline-census rows (task 20260822-peek-planner-target-map, wake #63). They are
+            # probe-only, they are graded by `claude_1/peek/decline_census.py`, and no gate here
+            # reads them — but they must not fall through to the unparsed-row error, which would
+            # fail every fixture the seam ever saw a collision on.
+            collisions.append(line)
+            continue
+        m = RE_PEEK.match(line)
+        if m:
+            peeks.append({"turn": int(m.group(1)), "m": int(m.group(2)), "u": int(m.group(3)),
+                          "map_present": m.group(4) == "true", "partner_target": m.group(5),
+                          "partner_cell": m.group(6),
+                          "mover_target": [int(m.group(7)), int(m.group(8))],
+                          "landing": [int(m.group(9)), int(m.group(10))],
+                          "passthrough": m.group(11) == "true",
+                          "allowed": m.group(12) == "true", "u_cmd": m.group(13)})
+            continue
         raise GateError(f"unparsed instrumentation row: {line}")
-    return turns, fires, shadow, cmds
+    return turns, fires, shadow, cmds, peeks, collisions
 
 
 def verb(command: str) -> str:
@@ -183,7 +210,7 @@ def run_fixture(sit, cfg, base_bin, cand_bin, probe_bin):
         raise GateError(f"{sit['id']}: the PROBE diverges from the plain candidate. The "
                         f"instrumented run is a different bot; no row from it means anything.")
 
-    t_rows, fires, shadow, cmds = parse(err)
+    t_rows, fires, shadow, cmds, peeks, collisions = parse(err)
     fire_turns = {f["turn"] for f in fires}
 
     # 2. shadow inertness, exact in both directions, on every tick
@@ -206,6 +233,27 @@ def run_fixture(sit, cfg, base_bin, cand_bin, probe_bin):
         whole_game_identical = base_lines == cand_lines
         pre_divergence_identical = base_lines[:pre] == cand_lines[:pre]
 
+    # PEEK: every partner encounter the seam saw, and why the predicate answered as it did. On a
+    # rev-1/rev-2 probe this list is empty and every field below is 0/[] — the row shape does not
+    # change between revisions, so the two are comparable side by side.
+    peek_declines = [row for row in peeks if not row["allowed"]]
+    peek_reasons = collections.Counter()
+    for row in peek_declines:
+        if not row["map_present"]:
+            peek_reasons["no_target_map"] += 1
+        elif row["partner_target"] == "ABSENT":
+            peek_reasons["partner_absent_from_map"] += 1
+        elif row["partner_cell"] == "NONE":
+            peek_reasons["partner_target_has_no_cell"] += 1
+        elif not row["passthrough"]:
+            peek_reasons["mover_not_a_pass_through"] += 1
+        elif row["partner_cell"] == f"{row['landing'][0]},{row['landing'][1]}":
+            peek_reasons["partner_target_is_the_landing"] += 1
+        elif row["partner_cell"] == f"{row['mover_target'][0]},{row['mover_target'][1]}":
+            peek_reasons["partner_target_is_the_mover_target"] += 1
+        else:
+            peek_reasons["unclassified"] += 1
+
     unit_turns = sum(row["own_units"] for row in t_rows.values())
     detailed = resume_turns(fires, cmds)
     return {
@@ -223,6 +271,12 @@ def run_fixture(sit, cfg, base_bin, cand_bin, probe_bin):
         "resume_deltas": [f["resumed_after"] for f in detailed if f["displaced_work"]],
         "reswaps": reswaps(fires),
         "shadow_ticks_checked": len(shadow),
+        "seam_collisions_seen": len(collisions),
+        "peek_encounters": len(peeks),
+        "peek_allowed": sum(1 for row in peeks if row["allowed"]),
+        "peek_declines": len(peek_declines),
+        "peek_decline_reasons": dict(peek_reasons),
+        "peek_rows": peeks,
         "whole_game_identical_to_base": whole_game_identical,
         "pre_first_fire_identical_to_base": pre_divergence_identical,
         "first_fire_turn": first_fire,
