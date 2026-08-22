@@ -1,0 +1,139 @@
+{
+  "card": "20260822-alpha-progress-regrade",
+  "gate": "G-1",
+  "controls": [
+    {
+      "control": "C1 predicate imported from the accepted harness, unmodified",
+      "harness": "claude_1/t1/fixture_harness.py",
+      "harness_sha256": "6fd8f2b3284fbe19e3009b670a957e754d6cebb69747c1f07e72629b0bc470cf",
+      "harness_sha256_matches_pin": true,
+      "function_source_sha256": {
+        "grade": "eeaa55a35da4cabe806d887f973ec28c7988e6cfff60ffdd3e88acc885fa996b",
+        "had_progress": "c184f0c62cf5bc3f1e11b64e04eb911c6ca1d0e47979ed361316a1bdf760430f",
+        "left_the_cycle": "49de1289cf12a6a02a2274d2f404a8bd71294ca2a12704c46a00318c8b4832a4",
+        "unit_positions": "da1af87f74aac82b57914a5ac5bda05b6db7939f56efea32953e052dbbd2c90e"
+      },
+      "function_source_matches_pin": {
+        "grade": true,
+        "had_progress": true,
+        "left_the_cycle": true,
+        "unit_positions": true
+      },
+      "grade_is_the_imported_object": true,
+      "adapter_defines_no_grade": true
+    },
+    {
+      "control": "C2 grade() refuses without an identity verdict",
+      "refused": true,
+      "error": "C2: grade() was called without an episode-identity verdict. The gate is not optional \u2014 see `episode_identity` and card 20260821-episode-identity-regrade."
+    },
+    {
+      "control": "C3 WINDOW_ABSENT reachable and never folded",
+      "game": {
+        "map_id": "m000",
+        "seat": 0
+      },
+      "cases": [
+        {
+          "case": "C3-past-horizon",
+          "bucket": "WINDOW_ABSENT",
+          "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+          "reasons": [
+            "the candidate run ends at turn 200, before the base window's last turn 220; the window is not contained in this run",
+            "unit 0 is absent from the candidate run on every turn of 205-200"
+          ]
+        },
+        {
+          "case": "C3-absent-unit",
+          "bucket": "WINDOW_ABSENT",
+          "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+          "reasons": [
+            "unit 999 is absent from the candidate run on every turn of 1-10"
+          ]
+        }
+      ],
+      "both_window_absent": true
+    },
+    {
+      "control": "C4 detector clause live: every base event, graded against the BASE arm, must still fire",
+      "games": 240,
+      "base_events": 43,
+      "buckets": {
+        "STILL_FIRING": 43
+      },
+      "offenders": [],
+      "all_still_firing": true
+    },
+    {
+      "control": "C5 both ways on the card's named fixtures",
+      "cure_arm": "claude_1/picker2/candidate-cureC-p1p2.rs",
+      "through_the_FIXTURE_identity_gate": [
+        {
+          "id": "OSC-004",
+          "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+          "reasons": [
+            "14 of 14 frozen window command lines differ"
+          ]
+        },
+        {
+          "id": "OSC-013",
+          "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+          "reasons": [
+            "187 of 187 frozen window command lines differ"
+          ]
+        },
+        {
+          "id": "OSC-017",
+          "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+          "reasons": [
+            "194 of 194 frozen window command lines differ"
+          ]
+        },
+        {
+          "id": "OSC-034",
+          "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+          "reasons": [
+            "4 of 94 frozen window command lines differ"
+          ]
+        }
+      ],
+      "fixture_gate_refuses_the_cure_arm": true,
+      "through_the_ADAPTER_identity_question": [
+        {
+          "id": "OSC-004",
+          "bucket": "QUIET_BUT_STALLED",
+          "detector_silent": true,
+          "progress_restored": false,
+          "ruled": "QUIET_BUT_STALLED",
+          "agrees": true
+        },
+        {
+          "id": "OSC-013",
+          "bucket": "QUIET_BUT_STALLED",
+          "detector_silent": true,
+          "progress_restored": false,
+          "ruled": "QUIET_BUT_STALLED",
+          "agrees": true
+        },
+        {
+          "id": "OSC-017",
+          "bucket": "QUIET_BUT_STALLED",
+          "detector_silent": true,
+          "progress_restored": false,
+          "ruled": "QUIET_BUT_STALLED",
+          "agrees": true
+        },
+        {
+          "id": "OSC-034",
+          "bucket": "HEALED_WITH_PROGRESS",
+          "detector_silent": true,
+          "progress_restored": true,
+          "ruled": "HEALED_WITH_PROGRESS",
+          "agrees": true
+        }
+      ],
+      "reproduces_the_ruled_buckets": true,
+      "fired_both_ways": true
+    }
+  ]
+}
