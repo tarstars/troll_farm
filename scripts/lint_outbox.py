@@ -21,7 +21,16 @@ Checks, for every `coordination/messages/<me>/**.md`:
    message announcing them);
 4. a message whose path is already published is byte-identical to what was
    published — published messages are immutable, and editing one rewrites the
-   record instead of correcting it.
+   record instead of correcting it;
+5. WIP limit (owner decision 2026-08-17): a NEW handoff is rejected while the
+   sender's previous ack-requiring handoff for the same task is still awaiting
+   acknowledgement — publish after the ack lands, or name the pending handoff
+   in `supersedes`. Sender-side only: published messages are immutable, so this
+   can never fire retroactively;
+6. evidence gate (owner decision 2026-08-17): a NEW handoff whose body asserts
+   a registered cause label (`CAUSE_LABEL_TOKENS`) must carry a `review_ref:`
+   front-matter field naming a review file that exists on an authoritative
+   remote ref — cause claims travel only with their accepted instrument review.
 
 Already-published messages are otherwise the sweep's business and are skipped
 unless `--all` is given. Because ack/handoff targets are validated against
@@ -40,6 +49,7 @@ from __future__ import annotations
 
 import argparse
 import pathlib
+import re
 import sys
 
 try:  # invoked as `python3 scripts/lint_outbox.py`
@@ -107,6 +117,242 @@ def classify(path: str) -> str:
 
 def published_bodies(per_path: dict[str, dict[str, list[str]]], path: str) -> list[str]:
     return [inbox_sweep.git("cat-file", "blob", oid) for oid in per_path[path]]
+
+
+# ---------------------------------------------------------------------------
+# Iteration-pool gates (owner decision 2026-08-17). Sender-side ONLY: published
+# messages are immutable, so neither check can ever fire retroactively.
+# ---------------------------------------------------------------------------
+
+# The chartered cause vocabulary of the standing-troll audit
+# (coordination/tasks/20260816-h-starve-1-standing-troll-audit.md). A handoff
+# asserting any of these is making a causal claim, and causal claims travel
+# only with the review that accepted the instrument producing them. Extend the
+# set when a task charters new cause labels.
+CAUSE_LABEL_TOKENS = frozenset({
+    # Legacy first-instrument vocabulary (withdrawn tables; kept so older
+    # threads stay gated):
+    "GENERATOR_GAP", "NO_WORK_ON_MAP", "UNIT_CANNOT_REACH_WORK",
+    "STUCK_COMMITMENT", "ALL_WAIT_CAUSE_UNDETERMINED",
+    # Pool-#3 vocabulary (owner's three-level taxonomy, iteration 2026-08-17;
+    # gap found by codex_1's gates review — the new labels could bypass the
+    # gate entirely). Cause tables MUST serialize with exactly these tokens:
+    "NO_GOAL_ASSIGNED", "GOAL_SPLIT_WRONG", "WORLD_INTERACTION",
+    "CANNOT_USE_WORK", "NOT_STARVED",
+})
+
+
+def parse_published_messages(
+    per_path: dict[str, list[str]]
+) -> list["inbox_sweep.Message"]:
+    """Parse every single-body authoritative message. Collision paths (more
+    than one body) are already reported elsewhere and are skipped here."""
+    out = []
+    for path, oid_map in sorted(per_path.items()):
+        # per_path maps path -> {blob oid -> refs}; >1 oid is a collision,
+        # reported elsewhere.
+        if len(oid_map) != 1:
+            continue
+        try:
+            body = inbox_sweep.git("cat-file", "blob", next(iter(oid_map)))
+        except inbox_sweep.GitError:
+            continue
+        out.append(inbox_sweep.Message(path, "authoritative", body))
+    return out
+
+
+def _own_supersedes(msg: "inbox_sweep.Message") -> set[str]:
+    try:
+        return set(inbox_sweep.parse_json_list(msg.fields.get("supersedes", "[]")))
+    except Exception:
+        return set()
+
+
+def wip_limit_errors(
+    msg: "inbox_sweep.Message",
+    published_msgs: list["inbox_sweep.Message"],
+    batch_msgs: list["inbox_sweep.Message"],
+) -> list[str]:
+    """One in-flight ack-requiring handoff per sender per task.
+
+    A prior handoff is retired when ANY published message names it in `ack_for`
+    or `supersedes`, or when the staged message itself supersedes it. The
+    protocol's canonical retirement is the integrator's ack; the lint accepts
+    any published ack because it is a tripwire, not a court.
+    """
+    if msg.kind != "handoff":
+        return []
+    retired: set[str] = set()
+    for m in published_msgs:
+        for field in ("ack_for", "supersedes"):
+            try:
+                retired |= set(inbox_sweep.parse_json_list(m.fields.get(field, "[]")))
+            except Exception:
+                continue
+    retired |= _own_supersedes(msg)
+    pending = [
+        m.path
+        for m in published_msgs + batch_msgs
+        if m.kind == "handoff" and m.sender == msg.sender and m.task == msg.task
+        and m.path != msg.path and m.stamp < msg.stamp
+        and inbox_sweep.requires_ack(m.body, m.kind)
+        and m.path not in retired
+    ]
+    if pending:
+        return [
+            f"WIP limit: prior ack-requiring handoff for task {msg.task!r} is still "
+            f"awaiting acknowledgement ({pending[-1]!r}); publish after it is acked, "
+            "or name it in `supersedes` (owner decision 2026-08-17)"
+        ]
+    return []
+
+
+def evidence_gate_errors(
+    msg: "inbox_sweep.Message", remote_ref_names: set[str]
+) -> list[str]:
+    """A handoff asserting a chartered cause label must carry `review_ref:`
+    naming a review file that exists on an authoritative remote ref."""
+    if msg.kind != "handoff":
+        return []
+    tokens = sorted(t for t in CAUSE_LABEL_TOKENS if t in msg.body)
+    if not tokens:
+        return []
+    review_ref = msg.fields.get("review_ref", "").strip().strip('"').strip("'")
+    if not review_ref:
+        return [
+            f"evidence gate: handoff asserts cause label(s) {', '.join(tokens)} "
+            "without a `review_ref:` front-matter field naming the accepted "
+            "instrument review (owner decision 2026-08-17)"
+        ]
+    for ref in sorted(remote_ref_names):
+        if inbox_sweep.run_git("cat-file", "-e", f"{ref}:{review_ref}").returncode == 0:
+            return []
+    return [
+        f"evidence gate: review_ref {review_ref!r} not found on any "
+        "authoritative remote ref — publish the review before the claim"
+    ]
+
+
+def cross_task_reference_errors(
+    msg: "inbox_sweep.Message", published_msgs: list["inbox_sweep.Message"]
+) -> list[str]:
+    """`supersedes`/`ack_for` entries must belong to this message's task.
+
+    A syntactically valid path to a REAL message of a DIFFERENT task passes
+    every shape and existence check; on 2026-08-18 such an entry falsely
+    superseded an unrelated August-15 handoff (built by substring search over
+    two tasks sharing a "phase1-handoff" name). The comparison is by the
+    referenced message's front-matter `task_id`, never by filename, because
+    filename middles are not full task ids. Escape hatch: an explicit
+    `cross-task:` marker in the body naming why the reference is deliberate.
+    Sender-side only, like every gate here.
+    """
+    if "cross-task:" in msg.body:
+        return []
+    own_task = msg.fields.get("task_id", "").strip()
+    if not own_task:
+        return []
+    by_path = {m.path: m for m in published_msgs}
+    errors: list[str] = []
+    for field in ("supersedes", "ack_for"):
+        try:
+            entries = inbox_sweep.parse_json_list(msg.fields.get(field, "[]"))
+        except Exception:
+            continue  # malformed arrays are validate_v2's finding, not ours
+        for entry in entries:
+            ref_msg = by_path.get(entry)
+            if ref_msg is None or not ref_msg.is_v2:
+                continue  # existence is validate_v2's job; legacy has no task_id
+            ref_task = ref_msg.fields.get("task_id", "").strip()
+            if ref_task and ref_task != own_task:
+                errors.append(
+                    f"cross-task reference: `{field}` names {entry!r} of task "
+                    f"{ref_task!r}, not this message's task {own_task!r}; "
+                    "same-task references only, or carry an explicit "
+                    "`cross-task:` marker in the body naming why "
+                    "(lint hardening 2026-08-18)"
+                )
+    return errors
+
+
+# One definition of the marker, shared with the reader side: the lint gates
+# the deferral SHAPE on publication and `inbox_sweep.is_deferral_card`
+# reads the same shape back as the one actionable self-mail route. Two
+# copies could drift into a card that lints clean and never wakes anyone.
+DEFERRED_LINE_RE = inbox_sweep.DEFERRED_LINE_RE
+
+
+def deferral_shape_errors(msg: "inbox_sweep.Message") -> list[str]:
+    """A declared deferral must BE a queue item (owner-adopted 2026-08-18).
+
+    Twice in one day a legitimate deferral left every inbox empty while open
+    work existed: the postponement lived in prose, but everyone polls the
+    queue. The rule: a message declaring a deferral (a body line starting with
+    the canonical marker `DEFERRED:`) must carry `requires_ack: true` and name
+    ITS OWN SENDER among `to`, so the deferring agent's next session finds the
+    postponed job as its first unacknowledged item and acknowledges it by
+    starting. Prose mentions of the word "deferred" mid-line do not trigger;
+    only the line-start marker does. Sender-side only, never retroactive.
+    """
+    if not DEFERRED_LINE_RE.search(msg.body):
+        return []
+    errors: list[str] = []
+    if inbox_sweep.parse_boolean(msg.fields.get("requires_ack", "")) is not True:
+        errors.append(
+            "deferral shape: body declares `DEFERRED:` but requires_ack is not "
+            "true — a deferral must be a queue item, not an announcement "
+            "(owner-adopted 2026-08-18)"
+        )
+    to_raw = msg.fields.get("to", "")
+    tokens = inbox_sweep.recipient_tokens(to_raw)
+    if msg.sender.lower() not in tokens:
+        errors.append(
+            f"deferral shape: body declares `DEFERRED:` but `to` {to_raw!r} "
+            f"does not include the sender {msg.sender!r} — self-address the "
+            "deferral so your own next sweep surfaces it "
+            "(owner-adopted 2026-08-18)"
+        )
+    return errors
+
+
+CARD_LINE_RE = re.compile(r"^CARD:", re.MULTILINE)
+
+
+def card_ack_errors(
+    msg: "inbox_sweep.Message", published_msgs: list["inbox_sweep.Message"]
+) -> list[str]:
+    """A `CARD:` message is discharged by delivery or replacement, never by a
+    bare receipt-ack (protocol §10, corrected route 2026-08-19).
+
+    `ack_for` is the transport's only discharge mechanism (`supersedes` is
+    inert for acknowledgement — proven by claude_1 reading the sweep), so the
+    gate sits on the ACK side: a staged message that names a published `CARD:`
+    message in `ack_for` must either BE the delivery (kind handoff) or carry
+    its own line-start `DEFERRED:` replacement card. Anything else discharges
+    standing work while leaving no queue item — the fourth stall shape.
+    """
+    try:
+        targets = inbox_sweep.parse_json_list(msg.fields.get("ack_for", "[]"))
+    except Exception:
+        return []  # malformed arrays are validate_v2's finding
+    if not targets:
+        return []
+    by_path = {m.path: m for m in published_msgs}
+    card_targets = [
+        t for t in targets
+        if (ref := by_path.get(t)) is not None and ref.is_v2
+        and CARD_LINE_RE.search(ref.body)
+    ]
+    if not card_targets:
+        return []
+    if msg.kind == "handoff" or DEFERRED_LINE_RE.search(msg.body):
+        return []
+    return [
+        f"card ack: `ack_for` discharges CARD message(s) {card_targets!r} but "
+        "this message is neither the delivery handoff nor a DEFERRED: "
+        "replacement — bare receipt-acks of cards are forbidden "
+        "(protocol §10, 2026-08-19)"
+    ]
 
 
 def current_branch() -> str:
@@ -204,6 +450,16 @@ def main() -> int:
     errors: list[tuple[str, str]] = []
     linted = 0
 
+    # Iteration-pool gates (owner decision 2026-08-17) need the published
+    # corpus parsed once, plus the new messages of this very batch so two
+    # same-task handoffs staged together cannot slip past the WIP limit.
+    published_msgs = parse_published_messages(per_path)
+    batch_msgs = [
+        inbox_sweep.Message(p, source, t)
+        for p, t in sorted(tree.items())
+        if classify(p) == "message" and p not in authoritative_paths
+    ]
+
     # A v2 message is delivered only from `agent/<sender>`. The lint cannot check
     # that for an unpublished message — but it CAN check that publishing from
     # HERE would satisfy it. Three of the six real quarantine entries exist
@@ -262,6 +518,28 @@ def main() -> int:
                 legacy_baseline, baseline_present
             )
         )
+        if not published:
+            gate_msg = inbox_sweep.Message(path, source, text)
+            if gate_msg.is_v2:
+                errors.extend(
+                    (path, error)
+                    for error in wip_limit_errors(gate_msg, published_msgs, batch_msgs)
+                )
+                errors.extend(
+                    (path, error)
+                    for error in evidence_gate_errors(gate_msg, remote_ref_names)
+                )
+                errors.extend(
+                    (path, error)
+                    for error in cross_task_reference_errors(gate_msg, published_msgs)
+                )
+                errors.extend(
+                    (path, error) for error in deferral_shape_errors(gate_msg)
+                )
+                errors.extend(
+                    (path, error)
+                    for error in card_ack_errors(gate_msg, published_msgs)
+                )
 
     # A message present in HEAD but absent from the proposed tree would be
     # deleted by this commit. Enumerating only existing files hid that entirely

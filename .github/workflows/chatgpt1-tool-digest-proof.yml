@@ -1,0 +1,22 @@
+name: chatgpt1-tool-digest-proof
+
+on:
+  push:
+    branches:
+      - agent/chatgpt_1
+  workflow_dispatch:
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact branch commit
+        uses: actions/checkout@v4
+      - name: Publish tool object IDs and content SHA-256
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf 'workflow_head=%s\n' "$(git rev-parse HEAD)"
+          printf 'inbox_sweep_git_blob=%s\n' "$(git hash-object scripts/inbox_sweep.py)"
+          printf 'lint_outbox_git_blob=%s\n' "$(git hash-object scripts/lint_outbox.py)"
+          sha256sum scripts/inbox_sweep.py scripts/lint_outbox.py

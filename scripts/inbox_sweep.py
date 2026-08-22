@@ -62,6 +62,8 @@ ack-required messages in the current selection; 2 transport/schema/delivery erro
 from __future__ import annotations
 
 import argparse
+import dataclasses
+import hashlib
 import json
 import os
 import pathlib
@@ -69,6 +71,7 @@ import re
 import subprocess
 import sys
 import tempfile
+import traceback
 from collections.abc import Iterable
 
 NAMESPACE = "coordination/messages/"
@@ -240,6 +243,69 @@ def addressed_to_me(body: str, me: str) -> bool:
     return bool({me.lower(), "both", "all"} & targets)
 
 
+def ack_obliged_to_me(body: str, me: str) -> bool:
+    """Ack OBLIGATION falls on `to` recipients only (ruling 2026-08-20).
+
+    `cc` is informational: a cc'd agent may ack as courtesy but never OWES
+    one — and for CARD:/DEFERRED: messages a cc bystander's ack is actively
+    forbidden (it could discharge another agent's queue anchor). Before this
+    rule the unacknowledged section demanded acks from every cc recipient,
+    which made a policy-clean empty inbox impossible for bystanders
+    (codex_1's 20260820T095149Z blocker, item 2).
+    """
+    yaml = yaml_front_matter(body)
+    if "to" in yaml:
+        values = [yaml["to"]]
+    elif "cc" in yaml:
+        values = []
+    else:
+        values = legacy_values(body, "To")
+    targets = set().union(set(), *(recipient_tokens(v) for v in values))
+    return bool({me.lower(), "both", "all"} & targets)
+
+
+def wakes_recipient(msg: "Message", me: str) -> bool:
+    """Does this message ring `me`'s doorbell? (protocol §5.1, owner 2026-08-21)
+
+    The actionable set answers "what do I owe"; this answers "is there news".
+    Three exclusions, each a measured failure of 2026-08-21, the day claude_1
+    woke eight times in 102 minutes with every wake legally mail-triggered:
+
+    1. `msg.sender == me` — an agent has read what it wrote. Its own DEFERRED
+       card stays an OBLIGATION in the queue and never rings its own bell.
+       Without this the discharge of a card is another card, that card enters
+       its author's own set, and a blocked agent wakes itself forever.
+    2. not addressed in `to` — a `cc` recipient owes no ack (ruling 2026-08-20),
+       so waking it to read what it does not owe contradicts the same ruling.
+       It reads the cc on its next real wake.
+    3. a courtesy receipt — an `ack` carrying no acknowledgement obligation of
+       its own. A verdict, ruling or authorization CHANGES the recipient's
+       queue and must be published `requires_ack: true` toward that party (the
+       2026-08-18 queue-changing rule); published that way it wakes. Published
+       as a bare receipt it is read next wake, and peer receipt ping-pong
+       terminates instead of sustaining itself.
+    4. a shape-valid `DEFERRED:` card — wakes NOBODY, not even the peers it
+       names in `to`. Both live agents address their own cards to each other,
+       and a peer cannot discharge another agent's card: only a later message
+       of the SAME agent naming it in `ack_for` does. The obligation such a
+       card appears to place on a peer is therefore one the peer cannot act
+       on, and waking anyone for it is noise by construction. The card stays
+       visible to everyone as status — "a deferral is a status, not a
+       silence" is about publishing it, never about interrupting a peer.
+       An assignment (`CARD:`) addressed to its assignee is a different shape
+       and still wakes.
+    """
+    if msg.sender == me:
+        return False
+    if not ack_obliged_to_me(msg.body, me):
+        return False
+    if msg.kind == "ack" and not requires_ack(msg.body, msg.kind):
+        return False
+    if is_deferral_card(msg):
+        return False
+    return True
+
+
 def parse_boolean(value: str) -> bool | None:
     normalized = scalar_value(value).lower()
     if normalized in {"true", "yes", "1", "on"}:
@@ -272,6 +338,32 @@ def message_kind(body: str, fallback: str) -> str:
         "correction": "correction",
     }
     return aliases.get(raw, fallback)
+
+
+DEFERRED_LINE_RE = re.compile(r"^DEFERRED:", re.MULTILINE)
+
+
+def is_deferral_card(msg: "Message") -> bool:
+    """True for the one self-mail shape that is a queue item, not an announcement.
+
+    The deferral rule (owner-adopted 2026-08-18) requires a postponed job to be
+    published as `requires_ack: true` and addressed to its own sender, so the
+    deferring agent's next sweep surfaces it. `lint_outbox.deferral_shape_errors`
+    enforces exactly this shape on the sending side; this is the same predicate
+    read back, and the two must not drift.
+
+    It exists because the rule was prose until 2026-08-21: `actionable_set()`
+    dropped every self-authored message before addressing could matter, so a
+    deferral card sat authoritative, unacked and self-addressed on origin and was
+    still absent from its owner's actionable set (claude_1's blocker
+    20260821T053322Z, reproduced by codex_1). Ordinary self-mail stays inert —
+    only this shape opens the route.
+    """
+    if not DEFERRED_LINE_RE.search(msg.body):
+        return False
+    if parse_boolean(msg.fields.get("requires_ack", "")) is not True:
+        return False
+    return msg.sender.lower() in recipient_tokens(msg.fields.get("to", ""))
 
 
 def requires_ack(body: str, kind: str) -> bool:
@@ -459,6 +551,15 @@ def validate_v2(
         errors.append("v2 ack has an empty ack_for array")
     if msg.kind == "correction" and not lists.get("supersedes", []) and "supersedes" in lists:
         errors.append("v2 correction has an empty supersedes array")
+    # NOTE (2026-08-12): `ack_for` on a non-`ack` kind is deliberately NOT an
+    # error.  It used to be inert -- collect_my_acks skipped every kind but
+    # `ack`, so a handoff or policy naming ack_for acknowledged nothing while
+    # looking to its author exactly like an acknowledgement.  Rejecting it was
+    # tried and reverted: 33 already-published immutable messages carry the
+    # pattern, mostly `handoff`s that ack the request they answer, and an
+    # invalid published message can never be cleared.  The fix went the other
+    # way -- collect_my_acks now honours ack_for on every kind -- so the
+    # declaration means what its authors always intended.
 
     # Canonical presence: a v2 message is delivered only from the sender's
     # canonical branch refs/remotes/origin/agent/<from>.
@@ -547,8 +648,31 @@ def collect_my_acks(
     legacy_latest: dict[str, str] = {}
     warnings: list[str] = []
     for msg in my_messages:
+        # Any kind may discharge an acknowledgement by naming exact paths in
+        # `ack_for`, not only kind `ack`.  Restricting it to `ack` made the
+        # declaration silently inert everywhere else: a `handoff` that acks the
+        # request it answers, or a `policy` that acks the question it rules on,
+        # left its targets ack-required forever while the author believed they
+        # were discharged, and the lint could not see it either.  33 published
+        # messages already use the pattern.  `ack` still MUST carry a non-empty
+        # ack_for (validate_v2); the difference is only that others MAY.
+        # Guarded, because parse_json_list RAISES on malformed input and this
+        # walks my OWN namespace: an unguarded call let one bad `ack_for` of
+        # mine crash my own sweep, and published messages are immutable, so I
+        # could not repair it (claude_1 execution review, 2026-08-13).  A
+        # malformed declaration must acknowledge nothing and say so, exactly as
+        # validate_v2 already treats the same field.
         if msg.kind != "ack":
-            continue
+            try:
+                declared = parse_json_list(msg.fields.get("ack_for", "[]"))
+            except (ValueError, json.JSONDecodeError) as exc:
+                warnings.append(
+                    f"my v2 {msg.kind} {msg.path} has a malformed ack_for and "
+                    f"acknowledges nothing: {exc}"
+                )
+                continue
+            if not declared:
+                continue
         if msg.is_v2:
             errors = validate_v2(
                 msg, authoritative_paths, canonical_paths_by_agent, remote_ref_names
@@ -681,6 +805,43 @@ def read_authoritative_blob(ref: str, path: str) -> tuple[str, str] | None:
         return None
     oid = probe.stdout.strip()
     return oid, git("cat-file", "blob", oid)
+
+
+def tool_drift() -> str | None:
+    """Report if the running sweep differs from the authoritative copy.
+
+    A sweep that is itself stale reports confidently wrong inbox state, and it
+    is the one error the sweep cannot otherwise surface: every other check it
+    performs is only as current as the code performing it.  This bit twice in
+    one cycle -- `claude_1` synced `scripts/` from `main`, published the digest,
+    and was stale again within the day because `main` moved under it; the prior
+    occurrence nearly reported 56 unacknowledged messages against a true 16, and
+    the second silently dropped an acknowledgement it had genuinely made.
+
+    Suggested by `claude_1` (2026-08-13) and it costs one blob read, since
+    `origin/main` is already consulted for the roster.
+
+    Returns None when the tool matches, or when the comparison cannot be made --
+    absent ref, unreadable blob, running from stdin.  Never fatal: a tool that
+    refused to run because it could not verify itself would be worse than one
+    that runs and says so.
+    """
+    try:
+        mine = pathlib.Path(__file__).read_bytes()
+    except (OSError, NameError):
+        return None
+    found = read_authoritative_blob(ROSTER_REF, "scripts/inbox_sweep.py")
+    if found is None:
+        return None
+    _, authoritative = found
+    mine_digest = hashlib.sha256(mine).hexdigest()
+    theirs_digest = hashlib.sha256(authoritative.encode()).hexdigest()
+    if mine_digest == theirs_digest:
+        return None
+    return (
+        f"running {mine_digest[:8]}…, {ROSTER_REF} has {theirs_digest[:8]}… — "
+        "THIS SWEEP MAY BE WRONG. Sync scripts/ before trusting anything below."
+    )
 
 
 def load_quarantine(coordinator_ref: str) -> tuple[list[dict[str, str]], str]:
@@ -906,6 +1067,301 @@ def validate_quarantine(
 # Main sweep
 # ---------------------------------------------------------------------------
 
+class SweepFailure(Exception):
+    """A transport failure that stops the sweep before any inbox state exists.
+
+    Carries the exact stderr text and whether the inbox must additionally be
+    labeled stale on stdout, so that `main()` reproduces byte-for-byte the
+    output it printed when this computation lived inline in `main()`
+    (claude_1, 2026-08-21: behaviour-preserving extraction of
+    `actionable_set()`).
+    """
+
+    def __init__(self, detail: str, *, stale: bool = False) -> None:
+        super().__init__(detail)
+        self.detail = detail
+        self.stale = stale
+
+
+@dataclasses.dataclass(frozen=True)
+class SweepState:
+    """Everything one authoritative sweep computed, before any printing.
+
+    `new_items` and `unacked` together with `transport_broken` ARE the
+    actionability predicate. Anything that needs to know whether an agent has
+    work -- the sweep's own report, a wake-on-work sentinel -- must read them
+    from here rather than re-compose the primitives, because a second
+    implementation of the predicate that disagrees with the sweep is worse
+    than none: it wakes agents for work the sweep does not show, or stays
+    silent on work it does (coordinator ruling, 2026-08-21).
+    """
+
+    me: str
+    root: pathlib.Path
+    refs: list[str]
+    authoritative_paths: set[str]
+    messages: dict[str, Message]
+    collisions: list[tuple[str, dict[str, list[str]]]]
+    delivery_errors: list[tuple[str, str]]
+    coordinator: str | None
+    coordinator_ref: str
+    quarantine_blob: str
+    quarantine_errors: list[str]
+    quarantined: dict[str, dict[str, str]]
+    quarantine_drift: str
+    legacy_baseline: dict[str, str]
+    baseline_present: bool
+    ack_warnings: list[str]
+    seen_paths: set[str]
+    seen_source: str
+    migrated_watermark: str
+    selection: list[Message]
+    new_items: list[Message]
+    unacked: list[Message]
+    wake_items: list[Message]
+
+    @property
+    def transport_broken(self) -> bool:
+        return bool(self.collisions or self.delivery_errors or self.quarantine_errors)
+
+    @property
+    def actionable_paths(self) -> list[str]:
+        """Selected message paths that are unread or owe an acknowledgement."""
+        return sorted({m.path for m in self.new_items} | {m.path for m in self.unacked})
+
+    @property
+    def wake_paths(self) -> list[str]:
+        """The subset of `actionable_paths` that may WAKE this agent (§5.1).
+
+        Always a subset: nothing wakes an agent that the sweep would not also
+        show it. What it drops is the agent's own mail, `cc`-only mail, and
+        courtesy receipts — see `wakes_recipient`.
+        """
+        return sorted({m.path for m in self.wake_items})
+
+    @property
+    def is_actionable(self) -> bool:
+        """True when this agent has something to do: mail, or a broken transport.
+
+        A broken transport counts: exit 2 means no inbox state above it can be
+        trusted, which is itself work.
+        """
+        return bool(self.actionable_paths) or self.transport_broken
+
+
+def actionable_set(
+    me: str,
+    root: pathlib.Path,
+    tasks: Iterable[str] = (),
+    senders: Iterable[str] = (),
+) -> SweepState:
+    """Compute one authoritative sweep for `me` and return its full state.
+
+    Pure computation over `refs/remotes/origin/**` plus `me`'s seen-state file:
+    it fetches nothing, prints nothing and writes nothing. Raises
+    `SweepFailure` where the sweep cannot know its own state at all.
+
+    `tasks`/`senders` are the exact-match display filters; per transport rule 6
+    they affect the selection (and therefore `--mark`), never validation.
+    """
+    tasks = list(tasks)
+    senders = list(senders)
+
+    try:
+        refs, per_path = scan_authoritative()
+    except GitError as exc:
+        raise SweepFailure(
+            f"git error while scanning remote refs: {exc}", stale=True
+        ) from exc
+    remote_ref_names = set(refs)
+
+    # Immutable-path collision detection (rule 3).
+    collisions: list[tuple[str, dict[str, list[str]]]] = []
+    for path in sorted(per_path):
+        if len(per_path[path]) > 1:
+            collisions.append((path, per_path[path]))
+    collided = {path for path, _ in collisions}
+    authoritative_paths = set(per_path)
+
+    # Materialize authoritative messages (one body per unique path). This runs
+    # before quarantine because an adjudication is itself a message that must be
+    # parsed and validated before it can authorize anything.
+    messages: dict[str, Message] = {}
+    blob_by_path: dict[str, str] = {}
+    for path in sorted(per_path):
+        if path in collided:
+            continue
+        (oid, refs_for_path), = per_path[path].items()
+        blob_by_path[path] = oid
+        body = git("cat-file", "blob", oid)
+        messages[path] = Message(
+            path, display_ref(path, refs_for_path, sender_of(path)), body
+        )
+
+    # Canonical presence is derived from the single authoritative scan above —
+    # no second per-ref tree lookup.
+    canonical_paths_by_agent: dict[str, set[str]] = {}
+    agent_ref_prefix = REMOTE_PREFIX + "agent/"
+    for path, oids in per_path.items():
+        for refs_for_oid in oids.values():
+            for ref in refs_for_oid:
+                if ref.startswith(agent_ref_prefix):
+                    agent = ref[len(agent_ref_prefix):]
+                    if "/" not in agent:
+                        canonical_paths_by_agent.setdefault(agent, set()).add(path)
+
+    # Quarantine (rule 7). Authority is the coordinator's canonical ref, never
+    # the worktree: a local file must not be able to change shared inbox truth.
+    try:
+        coordinator = coordinator_agent()
+    except ValueError as exc:
+        raise SweepFailure(str(exc)) from exc
+    if coordinator is None:
+        coordinator_ref = ""
+        quarantine_entries, quarantine_blob = [], ""
+        legacy_baseline, baseline_present = {}, False
+    else:
+        coordinator_ref = f"{REMOTE_PREFIX}agent/{coordinator}"
+        try:
+            quarantine_entries, quarantine_blob = load_quarantine(coordinator_ref)
+            legacy_baseline, baseline_present = load_legacy_baseline(coordinator_ref)
+        except ValueError as exc:
+            raise SweepFailure(str(exc)) from exc
+    quarantine_errors = validate_quarantine(
+        quarantine_entries, authoritative_paths, messages, blob_by_path,
+        coordinator, canonical_paths_by_agent, collided
+    )
+    if baseline_present:
+        quarantine_errors.extend(
+            verify_legacy_baseline(coordinator_ref, legacy_baseline))
+    # A broken or unauthorized quarantine suppresses nothing.
+    quarantined: dict[str, dict[str, str]] = (
+        {} if quarantine_errors else {e["path"]: e for e in quarantine_entries}
+    )
+    for path in quarantined:
+        messages.pop(path, None)
+
+    local_quarantine = root / QUARANTINE_FILE
+    quarantine_drift = ""
+    if local_quarantine.exists():
+        local_oid = run_git("hash-object", str(local_quarantine))
+        if local_oid.returncode == 0 and local_oid.stdout.strip() != quarantine_blob:
+            quarantine_drift = (
+                f"local quarantine differs from the authoritative blob "
+                f"({local_oid.stdout.strip()[:12] or 'none'} vs "
+                f"{quarantine_blob[:12] or 'none'}); the authoritative copy governs"
+            )
+    elif quarantine_blob:
+        quarantine_drift = (
+            "local quarantine differs from the authoritative blob (absent locally); "
+            "the authoritative copy governs"
+        )
+    my_msgs = [m for m in messages.values() if m.sender == me]
+    acked_paths, legacy_latest, ack_warnings = collect_my_acks(
+        my_msgs, authoritative_paths, canonical_paths_by_agent, remote_ref_names
+    )
+
+    # Addressed messages: validation runs on every addressed message; --task and
+    # --sender affect display and --mark only (rule 6).
+    # Self-authored mail is inert with ONE exception: a shape-valid deferral
+    # card, which the deferral rule defines as its own sender's queue item.
+    addressed = [
+        m
+        for m in messages.values()
+        if (m.sender != me or is_deferral_card(m)) and addressed_to_me(m.body, me)
+    ]
+    delivery_errors: list[tuple[str, str]] = []
+    for msg in addressed:
+        if msg.is_v2:
+            for error in validate_v2(
+                msg, authoritative_paths, canonical_paths_by_agent, remote_ref_names
+            ):
+                delivery_errors.append((msg.path, error))
+        elif baseline_present:
+            # Rule 5 grandfathers historical legacy messages, but only the exact
+            # pinned ones: otherwise a sender bypasses v2 entirely by omitting
+            # `schema_version`, and a backdated filename defeats a date cutoff
+            # (finding TQ-3).
+            pinned = legacy_baseline.get(msg.path)
+            if pinned is None:
+                delivery_errors.append((
+                    msg.path,
+                    "legacy message not in the frozen legacy baseline; messages "
+                    "published after the v2 migration must declare schema_version: 2",
+                ))
+            elif pinned != blob_by_path.get(msg.path, ""):
+                delivery_errors.append((
+                    msg.path,
+                    f"legacy baseline blob mismatch: pinned {pinned[:12]} but found "
+                    f"{blob_by_path.get(msg.path, '')[:12]}",
+                ))
+
+    try:
+        seen_paths, migrated_watermark, seen_source = load_seen_state(
+            root, me, addressed
+        )
+    except ValueError as exc:
+        raise SweepFailure(str(exc)) from exc
+
+    def selected(msg: Message) -> bool:
+        if tasks and msg.task not in tasks:
+            return False
+        if senders and msg.sender not in senders:
+            return False
+        return True
+
+    selection = sorted((m for m in addressed if selected(m)), key=lambda m: m.path)
+    # An agent has read what it wrote, so its own deferral card is never
+    # "new". Its only actionable route is the outstanding obligation below —
+    # otherwise one --mark would retire a job that is still undone.
+    new_items = [
+        m for m in selection if m.path not in seen_paths and m.sender != me
+    ]
+    unacked = [
+        m
+        for m in selection
+        if requires_ack(m.body, m.kind)
+        and ack_obliged_to_me(m.body, me)
+        and not is_acknowledged(m, acked_paths, legacy_latest)
+    ]
+    # The doorbell (protocol §5.1). A strict subset of the actionable set:
+    # what is NEWS from someone else, as opposed to what I merely owe.
+    wake_seen: set[str] = set()
+    wake_items: list[Message] = []
+    for msg in [*new_items, *unacked]:
+        if msg.path in wake_seen or not wakes_recipient(msg, me):
+            continue
+        wake_seen.add(msg.path)
+        wake_items.append(msg)
+    wake_items.sort(key=lambda m: m.path)
+
+    return SweepState(
+        me=me,
+        root=root,
+        refs=refs,
+        authoritative_paths=authoritative_paths,
+        messages=messages,
+        collisions=collisions,
+        delivery_errors=delivery_errors,
+        coordinator=coordinator,
+        coordinator_ref=coordinator_ref,
+        quarantine_blob=quarantine_blob,
+        quarantine_errors=quarantine_errors,
+        quarantined=quarantined,
+        quarantine_drift=quarantine_drift,
+        legacy_baseline=legacy_baseline,
+        baseline_present=baseline_present,
+        ack_warnings=ack_warnings,
+        seen_paths=seen_paths,
+        seen_source=seen_source,
+        migrated_watermark=migrated_watermark,
+        selection=selection,
+        new_items=new_items,
+        unacked=unacked,
+        wake_items=wake_items,
+    )
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--me", required=True, help="my agent id, e.g. claude_1")
@@ -951,166 +1407,25 @@ def main() -> int:
             return 2
 
     try:
-        refs, per_path = scan_authoritative()
-    except GitError as exc:
-        print(f"git error while scanning remote refs: {exc}", file=sys.stderr)
-        print("inbox: STALE / NOT AUTHORITATIVE")
-        return 2
-    remote_ref_names = set(refs)
-
-    # Immutable-path collision detection (rule 3).
-    collisions: list[tuple[str, dict[str, list[str]]]] = []
-    for path in sorted(per_path):
-        if len(per_path[path]) > 1:
-            collisions.append((path, per_path[path]))
-    collided = {path for path, _ in collisions}
-    authoritative_paths = set(per_path)
-
-    # Materialize authoritative messages (one body per unique path). This runs
-    # before quarantine because an adjudication is itself a message that must be
-    # parsed and validated before it can authorize anything.
-    messages: dict[str, Message] = {}
-    blob_by_path: dict[str, str] = {}
-    for path in sorted(per_path):
-        if path in collided:
-            continue
-        (oid, refs_for_path), = per_path[path].items()
-        blob_by_path[path] = oid
-        body = git("cat-file", "blob", oid)
-        messages[path] = Message(
-            path, display_ref(path, refs_for_path, sender_of(path)), body
-        )
-
-    # Canonical presence is derived from the single authoritative scan above —
-    # no second per-ref tree lookup.
-    canonical_paths_by_agent: dict[str, set[str]] = {}
-    agent_ref_prefix = REMOTE_PREFIX + "agent/"
-    for path, oids in per_path.items():
-        for refs_for_oid in oids.values():
-            for ref in refs_for_oid:
-                if ref.startswith(agent_ref_prefix):
-                    agent = ref[len(agent_ref_prefix):]
-                    if "/" not in agent:
-                        canonical_paths_by_agent.setdefault(agent, set()).add(path)
-
-    # Quarantine (rule 7). Authority is the coordinator's canonical ref, never
-    # the worktree: a local file must not be able to change shared inbox truth.
-    try:
-        coordinator = coordinator_agent()
-    except ValueError as exc:
-        print(str(exc), file=sys.stderr)
-        return 2
-    if coordinator is None:
-        coordinator_ref = ""
-        quarantine_entries, quarantine_blob = [], ""
-        legacy_baseline, baseline_present = {}, False
-    else:
-        coordinator_ref = f"{REMOTE_PREFIX}agent/{coordinator}"
-        try:
-            quarantine_entries, quarantine_blob = load_quarantine(coordinator_ref)
-            legacy_baseline, baseline_present = load_legacy_baseline(coordinator_ref)
-        except ValueError as exc:
-            print(str(exc), file=sys.stderr)
-            return 2
-    quarantine_errors = validate_quarantine(
-        quarantine_entries, authoritative_paths, messages, blob_by_path,
-        coordinator, canonical_paths_by_agent, collided
-    )
-    if baseline_present:
-        quarantine_errors.extend(
-            verify_legacy_baseline(coordinator_ref, legacy_baseline))
-    # A broken or unauthorized quarantine suppresses nothing.
-    quarantined: dict[str, dict[str, str]] = (
-        {} if quarantine_errors else {e["path"]: e for e in quarantine_entries}
-    )
-    for path in quarantined:
-        messages.pop(path, None)
-
-    local_quarantine = root / QUARANTINE_FILE
-    quarantine_drift = ""
-    if local_quarantine.exists():
-        local_oid = run_git("hash-object", str(local_quarantine))
-        if local_oid.returncode == 0 and local_oid.stdout.strip() != quarantine_blob:
-            quarantine_drift = (
-                f"local quarantine differs from the authoritative blob "
-                f"({local_oid.stdout.strip()[:12] or 'none'} vs "
-                f"{quarantine_blob[:12] or 'none'}); the authoritative copy governs"
-            )
-    elif quarantine_blob:
-        quarantine_drift = (
-            "local quarantine differs from the authoritative blob (absent locally); "
-            "the authoritative copy governs"
-        )
-    my_msgs = [m for m in messages.values() if m.sender == args.me]
-    acked_paths, legacy_latest, ack_warnings = collect_my_acks(
-        my_msgs, authoritative_paths, canonical_paths_by_agent, remote_ref_names
-    )
-
-    # Addressed messages: validation runs on every addressed message; --task and
-    # --sender affect display and --mark only (rule 6).
-    addressed = [
-        m
-        for m in messages.values()
-        if m.sender != args.me and addressed_to_me(m.body, args.me)
-    ]
-    delivery_errors: list[tuple[str, str]] = []
-    for msg in addressed:
-        if msg.is_v2:
-            for error in validate_v2(
-                msg, authoritative_paths, canonical_paths_by_agent, remote_ref_names
-            ):
-                delivery_errors.append((msg.path, error))
-        elif baseline_present:
-            # Rule 5 grandfathers historical legacy messages, but only the exact
-            # pinned ones: otherwise a sender bypasses v2 entirely by omitting
-            # `schema_version`, and a backdated filename defeats a date cutoff
-            # (finding TQ-3).
-            pinned = legacy_baseline.get(msg.path)
-            if pinned is None:
-                delivery_errors.append((
-                    msg.path,
-                    "legacy message not in the frozen legacy baseline; messages "
-                    "published after the v2 migration must declare schema_version: 2",
-                ))
-            elif pinned != blob_by_path.get(msg.path, ""):
-                delivery_errors.append((
-                    msg.path,
-                    f"legacy baseline blob mismatch: pinned {pinned[:12]} but found "
-                    f"{blob_by_path.get(msg.path, '')[:12]}",
-                ))
-
-    try:
-        seen_paths, migrated_watermark, seen_source = load_seen_state(
-            root, args.me, addressed
-        )
-    except ValueError as exc:
-        print(str(exc), file=sys.stderr)
+        state = actionable_set(args.me, root, args.task, args.sender)
+    except SweepFailure as failure:
+        print(failure.detail, file=sys.stderr)
+        if failure.stale:
+            print("inbox: STALE / NOT AUTHORITATIVE")
         return 2
 
-    def selected(msg: Message) -> bool:
-        if args.task and msg.task not in args.task:
-            return False
-        if args.sender and msg.sender not in args.sender:
-            return False
-        return True
-
-    selection = sorted((m for m in addressed if selected(m)), key=lambda m: m.path)
-    new_items = [m for m in selection if m.path not in seen_paths]
-    unacked = [
-        m
-        for m in selection
-        if requires_ack(m.body, m.kind)
-        and not is_acknowledged(m, acked_paths, legacy_latest)
-    ]
-
+    messages = state.messages
     v2_count = sum(1 for m in messages.values() if m.is_v2)
     print(f"agent: {args.me}")
     print(
-        f"authority: {REMOTE_PREFIX}** ({len(refs)} remote refs); "
-        f"scanned {len(authoritative_paths)} authoritative messages "
+        f"authority: {REMOTE_PREFIX}** ({len(state.refs)} remote refs); "
+        f"scanned {len(state.authoritative_paths)} authoritative messages "
         f"({len(messages) - v2_count} legacy, {v2_count} v2)"
     )
-    print(f"seen-state: {seen_source}")
+    print(f"seen-state: {state.seen_source}")
+    drift = tool_drift()
+    if drift:
+        print(f"\n*** TOOL DRIFT: {drift}\n")
     if args.task or args.sender:
         print(
             "filters: "
@@ -1119,17 +1434,17 @@ def main() -> int:
             )
         )
 
-    print(f"\nimmutable-path collisions ({len(collisions)}):")
-    for path, oids in collisions:
+    print(f"\nimmutable-path collisions ({len(state.collisions)}):")
+    for path, oids in state.collisions:
         print(f"  {path}")
         for oid, oid_refs in sorted(oids.items()):
             print(f"    {oid} on {', '.join(sorted(oid_refs))}")
 
-    print(f"\ndelivery errors ({len(delivery_errors)}):")
-    for path, error in delivery_errors:
+    print(f"\ndelivery errors ({len(state.delivery_errors)}):")
+    for path, error in state.delivery_errors:
         print(f"  {path}: {error}")
 
-    if coordinator is None:
+    if state.coordinator is None:
         print(
             f"\nquarantine authority: NONE — no authoritative roster at "
             f"{ROSTER_REF}:{ROSTER_FILE}; quarantine is DISABLED and nothing is "
@@ -1137,43 +1452,50 @@ def main() -> int:
         )
     else:
         print(
-            f"\nquarantine authority: coordinator {coordinator!r} per "
-            f"{ROSTER_REF}:{ROSTER_FILE}; {coordinator_ref}:{QUARANTINE_FILE} "
-            f"blob {quarantine_blob[:12] or 'absent'}; legacy baseline "
-            + (f"{len(legacy_baseline)} pinned paths" if baseline_present
+            f"\nquarantine authority: coordinator {state.coordinator!r} per "
+            f"{ROSTER_REF}:{ROSTER_FILE}; {state.coordinator_ref}:{QUARANTINE_FILE} "
+            f"blob {state.quarantine_blob[:12] or 'absent'}; legacy baseline "
+            + (f"{len(state.legacy_baseline)} pinned paths" if state.baseline_present
                else "ABSENT — legacy messages are not pinned")
         )
-    if quarantine_drift:
-        print(f"warning: {quarantine_drift}")
+    if state.quarantine_drift:
+        print(f"warning: {state.quarantine_drift}")
 
-    print(f"\nquarantine errors ({len(quarantine_errors)}):")
-    for error in quarantine_errors:
+    print(f"\nquarantine errors ({len(state.quarantine_errors)}):")
+    for error in state.quarantine_errors:
         print(f"  {QUARANTINE_FILE}: {error}")
 
-    print(f"\nquarantined ({len(quarantined)}):")
-    for path in sorted(quarantined):
-        entry = quarantined[path]
+    print(f"\nquarantined ({len(state.quarantined)}):")
+    for path in sorted(state.quarantined):
+        entry = state.quarantined[path]
         print(f"  {path}: {entry['reason']}   [{entry['adjudicated_by']}]")
 
-    for warning in ack_warnings:
+    for warning in state.ack_warnings:
         print(f"\nwarning: {warning}")
 
-    print(f"\nnew (unseen) ({len(new_items)}):")
-    for msg in new_items:
+    print(f"\nnew (unseen) ({len(state.new_items)}):")
+    for msg in state.new_items:
         print(f"  {msg.path}   [{msg.ref}]")
 
-    print(f"\nunacknowledged, ack required ({len(unacked)}):")
-    for msg in unacked:
+    print(f"\nunacknowledged, ack required ({len(state.unacked)}):")
+    for msg in state.unacked:
+        print(f"  {msg.path}   [{msg.ref}]")
+
+    # The doorbell, protocol §5.1: the subset of everything above that may WAKE
+    # this agent. Read by scripts/agent_launcher.py; the rest of this report is
+    # the queue, which is a different question.
+    print(f"\nwake set ({len(state.wake_items)}):")
+    for msg in state.wake_items:
         print(f"  {msg.path}   [{msg.ref}]")
 
     if args.include_local:
         diagnostics: list[tuple[str, str]] = []
         for ref in local_refs():
             for path in tree_messages(ref):
-                if path not in authoritative_paths:
+                if path not in state.authoritative_paths:
                     diagnostics.append((path, ref))
         for path, src in messages_in_worktree(root):
-            if path not in authoritative_paths:
+            if path not in state.authoritative_paths:
                 diagnostics.append((path, src))
         unique = sorted(set(diagnostics))
         print(
@@ -1182,15 +1504,15 @@ def main() -> int:
         for path, src in unique:
             print(f"  {path}   [{src}]")
 
-    transport_broken = bool(collisions or delivery_errors or quarantine_errors)
+    transport_broken = state.transport_broken
 
     if args.mark:
         if transport_broken:
             print("\nmark skipped: transport/delivery errors present (exit 2)")
         else:
-            marked = {m.path for m in selection}
+            marked = {m.path for m in state.selection}
             state_file = write_seen_state(
-                root, args.me, seen_paths | marked, migrated_watermark
+                root, args.me, state.seen_paths | marked, state.migrated_watermark
             )
             print(
                 f"\nmarked {len(marked)} selected addressed paths seen in "
@@ -1199,8 +1521,37 @@ def main() -> int:
 
     if transport_broken:
         return 2
-    return 1 if unacked else 0
+    return 1 if state.unacked else 0
+
+
+def run_cli() -> int:
+    """Run main(), mapping any unexpected failure to exit 2.
+
+    Exit 1 is defined by this protocol as "healthy inbox, unacknowledged
+    ack-required messages present", so an uncaught traceback -- which Python
+    also exits 1 -- is indistinguishable from a normal result to anything
+    gating on exit status, which this project mandates.  Any unexpected
+    failure is exit 2, the same status every other hard error here uses
+    (claude_1 execution review, 2026-08-13).
+
+    Extracted from the `__main__` block so it can be tested: inline there it
+    was unreachable by any test, which is how it shipped unexercised
+    (codex_1 second review, RQ-3).
+    """
+    try:
+        return main()
+    except SystemExit as exc:
+        code = exc.code
+        return code if isinstance(code, int) else (0 if code is None else 1)
+    except BaseException:
+        traceback.print_exc()
+        print(
+            "\nsweep FAILED with an unexpected error (exit 2). This is not "
+            "'you have mail' -- no inbox state above should be trusted.",
+            file=sys.stderr,
+        )
+        return 2
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(run_cli())
