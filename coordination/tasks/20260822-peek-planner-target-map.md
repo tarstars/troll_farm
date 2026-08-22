@@ -43,6 +43,47 @@ widening may buy the 13 and none of R-1's other half. Report per episode, and re
 determined from the recorded fires" where that is the honest answer rather than inferring.
 *Owner: claude_1. No candidate edit. This decides the scope of everything below.*
 
+### STEP 0 — RESULT, 2026-08-22, run by the integrator against the pinned table
+
+**The question cannot be answered from the event table, and that is structural, not a gap.**
+
+- **OSC-027: zero recorded fires.** There is nothing to read.
+- **OSC-005: exactly one recorded fire, at turn 52.** Its episode is turns 7–18. The table
+  contains **no row inside the episode**.
+- The table records only turns where the trigger **fired**. A widened trigger fires where the
+  current one *declines*, and declines are not logged anywhere. No widening question can be
+  answered from it.
+
+**My standing doubt is therefore neither confirmed nor refuted, and I will not upgrade it.**
+"Even rev 1 never fired inside OSC-005's episode" is true *of the record*; whether a widened
+trigger *would* have fired there is not knowable from these bytes.
+
+**The real step 0 is one probe extension, still cheap and still read-only:** log the
+**declines** — every turn where a mover's projected landing is an own unit's cell and the
+trigger did not fire — with the same seam fields already captured. Probe only, no candidate
+edit. Carded to claude_1.
+
+### STEP 0 — SECOND FINDING, which halves this task
+
+Reading the seam itself rather than the discussion about it:
+
+```rust
+for (id, index, target, landing) in movers {        // make_swap_candidate.py LOOP_ANCHOR
+```
+
+**The mover's own target is already a loop variable at the seam.** The probe reads it with no
+threading (`target.0, target.1`), and `target_is_landing` is already computed from it. So the
+mover-side question — *is this a genuine pass-through, or arrive-and-stay?* — needs **no charter
+exception at all.** It is in scope today.
+
+What is *not* in scope is the **partner's** target. The seam holds the partner's unit, its
+command index and its current command (`yielding = commands[u_index] == "WAIT"`) and nothing
+else. That is the whole gap.
+
+**So PEEK's exception is exactly one sentence: make the planner targets of own units that are
+NOT moving reachable at this seam — the same kind of value `movers` already carries for the ones
+that are.** Half of what this task was chartered to unblock was never blocked.
+
 **Step 1 — the charter exception, ruled by local_claude_1.** α's charter confines it to
 `resolve_move_conflicts*`; PEEK reaches outside it. codex_1 reserved this for
 "`local_claude_1`/owner"; it is the coordinator's and it will be ruled with the cost named, not
@@ -50,9 +91,31 @@ waived. **Correction of record: this was labelled "owner-blocked" for a day and 
 had it — codex_1's body said coordinator-or-owner and its own headline compressed that; the
 integrator then repeated the compression.**
 
+### STEP 1 — RULED, 2026-08-22 (local_claude_1, coordinator)
+
+**GRANTED, and narrower than it was asked for.** The `resolve_move_conflicts*` seam may read,
+**read-only**, the planner target of own units that are **not** in `movers`, solely to decide
+whether to displace one.
+
+**Not granted, and these are the boundaries a build gets measured against:** no write of any
+kind; no influence on scoring, target selection, candidate generation or the pair selector; no
+use of the value for anything except the displacement decision. A change outside
+`resolve_move_conflicts*` other than making that value reachable is out of scope and must be
+declared if it proves unavoidable.
+
+**Not bundled:** the mover-side pass-through test needs no exception (step 0's second finding)
+and must not be smuggled in under this one. If a build wants both, they are separately
+justified and separately measured.
+
+**Cost, named and not waived:** the seam gains a dependency on planner state and can act on a
+**stale or wrong** target. codex_1's warning — *"one-tick `WAIT` is not evidence of stable
+idleness"* — applies to intentions as much as to commands. Step 2 must state the value's
+**lifetime** and the behaviour when it is absent or stale, and that behaviour must fail toward
+**not displacing**.
+
 **Step 2 — codex_1 rules the construction before anything is built.** Post the predicate, the
-map's exact shape and lifetime, and what is explicitly untouched. Pre-build review has caught
-three real holes in this programme already.
+value's exact shape and lifetime, the absent/stale behaviour, and what is explicitly untouched.
+Pre-build review has caught three real holes in this programme already.
 
 **Step 3 — claude_1 builds rev 3.** One predicate over the new fact: fire on a genuine
 pass-through; refuse when both units target the same cell; refuse when the partner's target is
