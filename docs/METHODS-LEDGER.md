@@ -222,6 +222,30 @@ costs on the table. Gate class is chosen PER CHARTER, before any result.
   and the five-game diagnosis proved the dead end. Task:
   `coordination/tasks/20260819-osc031-forecast-fix-door1b.md`.
 
+## paired-order-carries-the-drift — alternate the PAIR ORDER; pairing cancels noise, not trend
+
+A paired night run as ABAB and scored on adjacent (A, the next B) pairs puts arm A in the
+**earlier slot of every pair**. Pairing removes noise; it does not remove a within-night
+trend, which enters every difference with a fixed sign. Re-pairing the same reads the other
+way — each A against the B **before** it — costs nothing, brackets the true difference, and
+its average with the primary cancels a linear drift.
+
+Measured 2026-08-22 across all three recorded nights: the night with no slope is stable
+under re-pairing (+0.22 → +0.30); **both nights with a downward slope roughly halve**
+(+1.02 → +0.43; +0.55 → +0.13). The first of those is the number that cleared the 1.0
+materiality floor and carried the cure-C KEEP of 2026-08-19 — symmetrised it is +0.72,
+below the floor. With 4–5 pairs, and two pairings sharing reads, this does **not** overturn
+that ruling; what stands is the design fault, which needs no estimate: **with a fixed
+A-then-B order, drift has nowhere to cancel.**
+
+Rule: alternate the order between pairs (ABBA), or report both pairings beside the primary.
+**A verdict landing within about 0.3 of the floor or the bar is not reportable from a single
+pairing.**
+
+- Origin: `docs/DISCUSSION-architecture-over-score-2026-08-22.md` §4 — owner session; the
+  owner asked whether the delta measurement was sound, and on this axis it was not.
+- Amends the ABAB element of the M-1 measurement rule cross-referenced below.
+
 ## Cross-references (law living elsewhere)
 
 - Owner top-down judgment rule (judge from game state down, never from code up;
