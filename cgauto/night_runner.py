@@ -201,15 +201,36 @@ def halt(state_path, ledger, state, reason: str, publish: bool = True) -> None:
 
 def pair_stats(state) -> dict:
     """Adjacent-pair differences and their spread — the single arithmetic used
-    by the verdict block, the decision tree and the morning sheet."""
+    by the verdict block, the decision tree and the morning sheet.
+
+    The difference is always **A minus B, whichever slot A occupies** (owner
+    ruling 2026-08-22).  Subtracting by POSITION was safe only while arm A led
+    every pair, and that was itself the defect: with a fixed A-then-B order any
+    within-night trend enters every difference with a fixed sign, so pairing
+    cancelled noise but never drift.  Measured over three nights — the night
+    with no slope was stable under re-pairing (+0.22 -> +0.30); both nights with
+    a downward slope roughly halved (+1.02 -> +0.43, +0.55 -> +0.13).  The plan
+    now alternates the order (ABBA), which makes reading the arm off the label
+    load-bearing rather than cosmetic: a positional subtraction would silently
+    invert every reversed pair, which is worse than the bias it repairs.
+    `docs/METHODS-LEDGER.md`, `paired-order-carries-the-drift`.
+    """
     pairs = []
+    a_first = 0
     reads = state["reads"]
     for i in range(0, len(reads) - 1, 2):
-        pairs.append(round(reads[i]["score"] - reads[i + 1]["score"], 2))
+        first, second = reads[i], reads[i + 1]
+        if first["label"].startswith("A"):
+            a_first += 1
+            diff = first["score"] - second["score"]
+        else:
+            diff = second["score"] - first["score"]
+        pairs.append(round(diff, 2))
     n = len(pairs)
     mean = sum(pairs) / n if n else 0.0
     var = sum((p - mean) ** 2 for p in pairs) / (n - 1) if n > 1 else 0.0
-    return {"pairs": pairs, "n": n, "mean": mean, "sd": var ** 0.5}
+    return {"pairs": pairs, "n": n, "mean": mean, "sd": var ** 0.5,
+            "a_first": a_first, "b_first": n - a_first}
 
 
 def verdict_block(state) -> str:
@@ -251,22 +272,34 @@ def post_b5_branch(mean: float, n: int = 5) -> str:
 
 
 def extend_plan(state) -> list:
-    """Append pairs A6..B10 to the plan, same arms.  Returns the added rows."""
+    """Append pairs 6..10 to the plan, same arms, continuing the ABBA
+    alternation so that at n=10 each arm has led exactly five pairs."""
     first = len(state["plan"]) // 2 + 1
     added = []
     for i in range(first, first + EXTENSION_PAIRS):
-        added.append({"label": f"A{i}", "arm": "A"})
-        added.append({"label": f"B{i}", "arm": "B"})
+        added.extend(ordered_pair(i))
     state["plan"].extend(added)
     return added
+
+
+def ordered_pair(i: int) -> list:
+    """Pair `i` with its arms in ABBA order: A leads odd pairs, B leads even.
+
+    Owner ruling 2026-08-22. A fixed A-then-B order put arm A in the earlier
+    slot of every pair, so a within-night trend biased every difference the same
+    way (`pair_stats`). Alternating spreads the trend across both arms; at n=10
+    each arm leads exactly five pairs. The labels keep naming their own arm, and
+    `pair_stats` subtracts by arm, so a reversed pair cannot invert its sign.
+    """
+    rows = [{"label": f"A{i}", "arm": "A"}, {"label": f"B{i}", "arm": "B"}]
+    return rows if i % 2 else rows[::-1]
 
 
 def session3_state() -> dict:
     """Fresh state for session 3 — Door-1 challenger vs the VERY-OLD resident."""
     plan = []
     for i in range(1, 6):
-        plan.append({"label": f"A{i}", "arm": "A"})
-        plan.append({"label": f"B{i}", "arm": "B"})
+        plan.extend(ordered_pair(i))
     return {"arms": json.loads(json.dumps(SESSION3_ARMS)),
             "plan": plan, "submissions": [], "reads": []}
 
