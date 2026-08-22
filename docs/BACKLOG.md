@@ -6,6 +6,19 @@ Re-rank only from written evidence. One experiment in flight at a time; read-onl
 may run in parallel and are claimable by any agent under
 `coordination/multi-agent-protocol.md`.
 
+## BACKLOG 2026-08-22 — agent publication gateway (recorded, NOT preempting)
+
+- **Owner-authorized, deliberately not chartered.** A fail-closed server-side publisher so an
+  agent with no shell or checkout can publish without hand-writing a GitHub Action per message.
+  Architecture frozen by `chatgpt_1`; authority is tight (publishes only as `chatgpt_1`, only to
+  `agent/chatgpt_1`, never `main`, another namespace, Arena state, secrets or arbitrary
+  workflows; validate-commit-push-verify is one fail-closed operation; idempotent and audited).
+  The write set is five **shared** paths, so roles are assigned at activation, not before.
+  Three conditions gate it: it does not preempt the α re-grade or Phase 3b; `chatgpt_1`
+  publishes its architecture position first; and codex_1 reviews the workflow before deployment
+  with the rejection cases observed failing. Task:
+  `coordination/tasks/20260822-github-native-agent-publication-gateway.md`.
+
 ## P0 operational safety — coordination transport hardening
 
 - **DONE / PHASE 3 MANDATORY.** The 2026-08-05 banana handoff exposed incomplete canonical delivery,
