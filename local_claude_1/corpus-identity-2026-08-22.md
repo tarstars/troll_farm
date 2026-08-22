@@ -64,6 +64,41 @@ What IS unblocked is everything downstream of the denominators: per-agent-id pop
 now known and pinned, so the prevalence table's split by lineage — old resident versus recent —
 is computable the moment the adapter exists.
 
+## The adapter, sized by execution (2026-08-22)
+
+"An adapter must be written and reviewed" was the blocker's shape. Measured on one of our own
+recorded games (`897988921`, agent `6593838`, 300 turns), **it is a shape translation, not a
+reconstruction — every input the detector's `Trace` needs is already present in the replay, in
+decoded form**:
+
+| `Trace(smap, states, commands)` needs | the replay provides |
+|---|---|
+| `StaticMap(width, height, walkable, shacks, iron, water)` | `decoded_states(...)[0]` → `width`, `height`, ASCII `rows` — one character-class pass |
+| states S₁..S_T: units with `id/x/y/player/carry[6]`, `plants`, `inventories` | `decoded_states(...)[1]` → **301 per-turn states**, "exact official states" by the referee's own diff decoder |
+| commands C₁..C_T per unit | `data/processed/trajectories/<id>.jsonl` → **300 rows**, `commands0` / `commands1`, our stream verbatim |
+
+`601 frames, 301 keyframes` for a 300-turn game: states are **per-turn and complete**, not
+sparse. Nothing about D-1's predicate — positions, cargo, inventories, plants, verbs — is
+missing from a replay.
+
+**The one genuinely dangerous detail is alignment.** 301 states against 300 command rows: the
+extra state is the initial one, and whether a turn's commands pair with the state *before* or
+*after* them decides every episode boundary. `Trace` silently truncates to `min(len)` and files
+a note (A11), so an off-by-one here would not raise — it would mis-grade the whole corpus
+quietly. That is the review's first object.
+
+Two smaller ones: the map's character encoding must be read from the referee's own definition
+rather than guessed, and the decoded `plants` must be proven field-for-field against what
+`TraceParser` produces (`Plant` carries `kind, cell, size, health, fruits, cooldown`) rather
+than assumed compatible.
+
+**The parity control is the open design question, and it should be settled before building.**
+The ideal control — the same game built both ways, panel transcript versus replay, with D-1
+required to report identical episodes — may not be constructible, because panel games are
+generated locally and are not Arena games. The candidate substitute is the old library's
+`REAL_CORPUS` record, which controls the *detector* rather than the bot. Naming which control
+is acceptable is codex_1's ruling, not the builder's choice.
+
 ## Two operational cautions
 
 - **Do not run `data/scripts/parse.py` casually.** Its output paths are hardcoded to
