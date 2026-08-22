@@ -1,0 +1,65 @@
+{
+  "schema": "troll-farm-b3-7-crop-fate-state-reconciliation-v1",
+  "verdict": "ALREADY_COMPLETE_CONVERSION_BY_DESIGN",
+  "source_result_date": "2026-07-29",
+  "source_commit": "4a1772e",
+  "resident": {
+    "games": 220,
+    "crops": 2433,
+    "fates_pct": {
+      "self_chopped": 98.97,
+      "harvested_by_resident": 0.9,
+      "taken_by_opponent": 0.12,
+      "alive_at_end": 0.0
+    },
+    "self_chopped_never_bore_fruit_pct": 96.8,
+    "live_crops_per_harvest_capable_worker_turn_25_to_300": [
+      0.08,
+      0.4
+    ],
+    "trained_workers_harvest_power_zero_count": 220,
+    "trained_workers_harvest_power_zero_pct": 100.0,
+    "true_residual_ripe_episodes": 41,
+    "true_residual_median_turns": 2,
+    "capable_worker_in_reach_pct": 87.4,
+    "capable_worker_in_reach_excluding_mother_reserve_pct": 73.2,
+    "true_capacity_waste_pct": 1.6,
+    "ripening_crops_alive_at_end": 1
+  },
+  "top_five": {
+    "games": 200,
+    "crops": 8913,
+    "selected_fates_pct": {
+      "harvested_by_owner": 29.81,
+      "self_chopped": 42.98,
+      "chopped_by_opponent": 15.71,
+      "alive_at_end": 11.28
+    },
+    "live_crops_per_harvest_capable_worker": [
+      2.5,
+      3.0
+    ],
+    "harvest_power_zero_worker_pct": 9.5,
+    "true_residual_ripe_episodes": 3922,
+    "true_residual_median_turns": 19,
+    "ripening_crops_alive_at_end": 1010
+  },
+  "theft_boundary": {
+    "opponent_wood_share_on_contested_self_chopped_resident_trees_pct": 18.2,
+    "opponent_wood_per_resident_game": 2.6,
+    "interpretation": "real but secondary"
+  },
+  "decision": {
+    "resident_orchard_is_conversion_by_design": true,
+    "resident_is_not_racing_own_orchard": true,
+    "resident_is_not_harvest_capacity_limited": true,
+    "plant_pacing_describes_top_five_not_resident": true,
+    "planting_or_capability_successor_authorized": false
+  },
+  "actions": {
+    "analyzer_rerun": false,
+    "bulk_artifact_read_or_write": false,
+    "source_or_frozen_artifact_change": false,
+    "map_panel_candidate_or_platform_action": false
+  }
+}

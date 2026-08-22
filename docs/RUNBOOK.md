@@ -10,9 +10,11 @@ Written by Fable (`claude_1`); cheap sessions execute, they do not redesign.
 > immutable thresholds — a kill rule firing is a successful outcome. Follow
 > `coordination/multi-agent-protocol.md`: check the inbox, claim before working, keep
 > your write set. Never perform any arena/platform write, submission, or TestSession —
-> and no new platform-read categories — without explicit user authorization in this
-> session. Stop at any failed gate, STOP marker, or owner-level decision (H2 go/no-go,
-> anything touching the arena).
+> and no new platform-read categories — unless the standing authorization in
+> `docs/STATE.md` §3 covers it AND its conditions are met (QUALIFIED verdict, gain above
+> the noise band, full runbook, owner notified). Autonomous sessions do not exercise the
+> arena-controller role; leave a STOP marker instead. Stop at any failed gate, STOP marker,
+> or owner-level decision.
 
 ## Read order at session start
 
@@ -58,7 +60,9 @@ Written by Fable (`claude_1`); cheap sessions execute, they do not redesign.
 - Any integrity-gate failure without a mechanics-only repair authorized in the
   protocol's own text.
 - Any ambiguity requiring a design decision; any CONSTRAINTS conflict.
-- Anything touching the arena, submissions, or sealed partitions.
+- Sealed partitions, always. **Arena/submissions:** an autonomous session never exercises
+  the arena-controller role even though standing authorization exists — leave a STOP marker
+  and let an integrator session decide.
 - The H2 Architecture-2 go/no-go and any owner-taxonomy change.
 
 ## Cheap filler tasks (safe any time)

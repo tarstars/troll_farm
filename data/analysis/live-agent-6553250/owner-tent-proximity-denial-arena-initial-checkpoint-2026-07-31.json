@@ -1,0 +1,119 @@
+{
+ "schema": 1,
+ "observed_at": "2026-07-31T07:08:07.702012+00:00",
+ "result_audit_completed_at": "2026-07-31T07:08:10.354379+00:00",
+ "role": "owner-tent-proximity-initial",
+ "agent_id": 6585739,
+ "submission_id": 41070944,
+ "arena": {
+  "agent_id": 6585739,
+  "rank": 112,
+  "total": 113,
+  "score": 0.0,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6585739,
+  "rank": 111,
+  "score": 12.6,
+  "division_index": 5
+ },
+ "battle_rows_listed": 10,
+ "matching_rows": 10,
+ "matching_finished": 7,
+ "matching_pending": 3,
+ "unexpected_rows": [],
+ "parsed_results": 7,
+ "fetch_failures": [],
+ "summary": {
+  "games": 7,
+  "wins": 3,
+  "ties": 0,
+  "losses": 4,
+  "mean_margin": -31.714285714285715,
+  "catastrophic_losses": 2,
+  "catastrophic_rate": 0.2857142857142857,
+  "negative_margin_mass": 428.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 897552505,
+   "opponent": "FRHT",
+   "opponent_agent_id": 6535596,
+   "our_score": 216.0,
+   "opponent_score": 242.0,
+   "margin": -26.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897552503,
+   "opponent": "Lanfeust",
+   "opponent_agent_id": 6488464,
+   "our_score": 154.0,
+   "opponent_score": 282.0,
+   "margin": -128.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897552502,
+   "opponent": "abdelmathin",
+   "opponent_agent_id": 6479931,
+   "our_score": 108.0,
+   "opponent_score": 98.0,
+   "margin": 10.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897552501,
+   "opponent": "AndreMarasca",
+   "opponent_agent_id": 6481269,
+   "our_score": 160.0,
+   "opponent_score": 150.0,
+   "margin": 10.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897552499,
+   "opponent": "m4l0s4n",
+   "opponent_agent_id": 6480544,
+   "our_score": 109.0,
+   "opponent_score": 305.0,
+   "margin": -196.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897552497,
+   "opponent": "aangairbender",
+   "opponent_agent_id": 6479532,
+   "our_score": 228.0,
+   "opponent_score": 42.0,
+   "margin": 186.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897552495,
+   "opponent": "norxondor_gorgonax",
+   "opponent_agent_id": 6480540,
+   "our_score": 132.0,
+   "opponent_score": 210.0,
+   "margin": -78.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": true
+}

@@ -1,0 +1,64 @@
+{
+ "schema": 1,
+ "observed_at": "2026-07-31T08:22:53.939577+00:00",
+ "result_audit_completed_at": "2026-07-31T08:22:54.610811+00:00",
+ "role": "onsite-tree-owner-initial",
+ "agent_id": 6585801,
+ "submission_id": 41071204,
+ "arena": {
+  "agent_id": 6585801,
+  "rank": 112,
+  "total": 113,
+  "score": 0.0,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6585801,
+  "rank": 112,
+  "score": 0.0,
+  "division_index": 5
+ },
+ "battle_rows_listed": 10,
+ "matching_rows": 10,
+ "matching_finished": 2,
+ "matching_pending": 8,
+ "unexpected_rows": [],
+ "parsed_results": 2,
+ "fetch_failures": [],
+ "summary": {
+  "games": 2,
+  "wins": 2,
+  "ties": 0,
+  "losses": 0,
+  "mean_margin": 88.5,
+  "catastrophic_losses": 0,
+  "catastrophic_rate": 0.0,
+  "negative_margin_mass": 0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 897559372,
+   "opponent": "yveslacroix83400",
+   "opponent_agent_id": 6493051,
+   "our_score": 136.0,
+   "opponent_score": 22.0,
+   "margin": 114.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897559369,
+   "opponent": "OccitanieFreelancer",
+   "opponent_agent_id": 6480996,
+   "our_score": 97.0,
+   "opponent_score": 34.0,
+   "margin": 63.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": true
+}

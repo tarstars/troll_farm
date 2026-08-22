@@ -1,0 +1,1890 @@
+{
+ "composition_shift": {
+  "early_unique_identities": 38,
+  "early_unique_pseudos": 38,
+  "late_new_identity_game_share": 1.0,
+  "late_new_identity_games": 60,
+  "late_new_pseudo_game_share": 0.1,
+  "late_new_pseudo_games": 6,
+  "late_new_unique_identities": 16,
+  "late_new_unique_pseudos": 2,
+  "late_unique_identities": 16,
+  "late_unique_pseudos": 4,
+  "score_bin_js_divergence_bits": 0.3373903258010976
+ },
+ "early_60": {
+  "current_active": {
+   "game_share": 0.9166666666666666,
+   "games": 55,
+   "unique_identities": 36
+  },
+  "current_active_lineage": {
+   "game_share": 1,
+   "games": 60,
+   "unique_pseudos": 38
+  },
+  "descriptive_terminal_outcomes": {
+   "mean_margin": 23.9,
+   "mean_turns": 258.1166666666667,
+   "mean_win": 0.625
+  },
+  "exact_identity": {
+   "effective_count": 31.578947368421066,
+   "hhi": 0.031666666666666655,
+   "repeat_game_share": 0.36666666666666664,
+   "unique": 38
+  },
+  "game_id_max": 896350020,
+  "game_id_min": 896347357,
+  "games": 60,
+  "initial_trees": {
+   "mean": 15.8,
+   "median": 16.0
+  },
+  "map_dimension_fractions": {
+   "16x8": 0.18333333333333332,
+   "18x9": 0.2,
+   "20x10": 0.3,
+   "22x11": 0.31666666666666665
+  },
+  "opponent_minus_resident_mean": 0.11716666666666722,
+  "opponent_score": {
+   "mean": 22.297166666666666,
+   "median": 22.325000000000003,
+   "q10": 20.139000000000003,
+   "q25": 21.1325,
+   "q75": 23.5375,
+   "q90": 24.360000000000003
+  },
+  "pseudo_lineage": {
+   "effective_count": 31.578947368421066,
+   "hhi": 0.031666666666666655,
+   "repeat_game_share": 0.36666666666666664,
+   "unique": 38
+  },
+  "relative_score_fractions": {
+   "above_by_gt_0_5": 0.38333333333333336,
+   "below_by_gt_0_5": 0.3333333333333333,
+   "within_0_5": 0.2833333333333333
+  },
+  "resident_score_mean": 22.18,
+  "score_bin_fractions": {
+   "20_to_lt_22": 0.3333333333333333,
+   "22_to_lt_24": 0.36666666666666664,
+   "24_to_lt_26": 0.13333333333333333,
+   "ge_26": 0.06666666666666667,
+   "lt_20": 0.1
+  },
+  "seat_fractions": {
+   "0": 0.4666666666666667,
+   "1": 0.5333333333333333
+  }
+ },
+ "failed_material_drift_gates": [
+  "absolute_mean_drift_at_least_0_50",
+  "block_bootstrap_ci_excludes_zero",
+  "circular_shift_p_at_most_0_05",
+  "median_same_sign_and_at_least_0_25"
+ ],
+ "full_panel": {
+  "current_active": {
+   "game_share": 0.6597510373443983,
+   "games": 159,
+   "unique_identities": 46
+  },
+  "current_active_lineage": {
+   "game_share": 1,
+   "games": 241,
+   "unique_pseudos": 48
+  },
+  "descriptive_terminal_outcomes": {
+   "mean_margin": 0.08713692946058091,
+   "mean_turns": 265.32365145228215,
+   "mean_win": 0.470954356846473
+  },
+  "exact_identity": {
+   "effective_count": 42.991117690599594,
+   "hhi": 0.023260618790998756,
+   "repeat_game_share": 0.7012448132780082,
+   "unique": 72
+  },
+  "game_id_max": 897324011,
+  "game_id_min": 896347357,
+  "games": 241,
+  "initial_trees": {
+   "mean": 15.908713692946058,
+   "median": 16
+  },
+  "map_dimension_fractions": {
+   "16x8": 0.17842323651452283,
+   "18x9": 0.2697095435684647,
+   "20x10": 0.2987551867219917,
+   "22x11": 0.25311203319502074
+  },
+  "opponent_minus_resident_mean": 0.6539834024896274,
+  "opponent_score": {
+   "mean": 22.833983402489626,
+   "median": 22.35,
+   "q10": 21.2,
+   "q25": 22.17,
+   "q75": 23.44,
+   "q90": 26.62
+  },
+  "pseudo_lineage": {
+   "effective_count": 10.466930978554698,
+   "hhi": 0.0955389886537766,
+   "repeat_game_share": 0.8008298755186722,
+   "unique": 48
+  },
+  "relative_score_fractions": {
+   "above_by_gt_0_5": 0.36099585062240663,
+   "below_by_gt_0_5": 0.12448132780082988,
+   "within_0_5": 0.5145228215767634
+  },
+  "resident_score_mean": 22.18,
+  "score_bin_fractions": {
+   "20_to_lt_22": 0.16597510373443983,
+   "22_to_lt_24": 0.6182572614107884,
+   "24_to_lt_26": 0.07468879668049792,
+   "ge_26": 0.11203319502074689,
+   "lt_20": 0.029045643153526972
+  },
+  "seat_fractions": {
+   "0": 0.5228215767634855,
+   "1": 0.47717842323651455
+  }
+ },
+ "late_60": {
+  "current_active": {
+   "game_share": 0.21666666666666667,
+   "games": 13,
+   "unique_identities": 2
+  },
+  "current_active_lineage": {
+   "game_share": 1,
+   "games": 60,
+   "unique_pseudos": 4
+  },
+  "descriptive_terminal_outcomes": {
+   "mean_margin": -6.066666666666666,
+   "mean_turns": 263.48333333333335,
+   "mean_win": 0.38333333333333336
+  },
+  "exact_identity": {
+   "effective_count": 11.392405063291138,
+   "hhi": 0.08777777777777779,
+   "repeat_game_share": 0.7333333333333333,
+   "unique": 16
+  },
+  "game_id_max": 897324011,
+  "game_id_min": 896529307,
+  "games": 60,
+  "initial_trees": {
+   "mean": 15.666666666666666,
+   "median": 16.0
+  },
+  "map_dimension_fractions": {
+   "16x8": 0.25,
+   "18x9": 0.23333333333333334,
+   "20x10": 0.3,
+   "22x11": 0.21666666666666667
+  },
+  "opponent_minus_resident_mean": 0.5551666666666685,
+  "opponent_score": {
+   "mean": 22.735166666666668,
+   "median": 22.17,
+   "q10": 22.17,
+   "q25": 22.17,
+   "q75": 22.17,
+   "q90": 26.91
+  },
+  "pseudo_lineage": {
+   "effective_count": 1.5761821366024518,
+   "hhi": 0.6344444444444445,
+   "repeat_game_share": 0.9333333333333333,
+   "unique": 4
+  },
+  "relative_score_fractions": {
+   "above_by_gt_0_5": 0.2,
+   "below_by_gt_0_5": 0.016666666666666666,
+   "within_0_5": 0.7833333333333333
+  },
+  "resident_score_mean": 22.18,
+  "score_bin_fractions": {
+   "20_to_lt_22": 0.0,
+   "22_to_lt_24": 0.8666666666666667,
+   "24_to_lt_26": 0.0,
+   "ge_26": 0.11666666666666667,
+   "lt_20": 0.016666666666666666
+  },
+  "seat_fractions": {
+   "0": 0.5166666666666667,
+   "1": 0.48333333333333334
+  }
+ },
+ "material_drift_gates": {
+  "absolute_mean_drift_at_least_0_50": false,
+  "block_bootstrap_ci_excludes_zero": false,
+  "both_seats_same_sign": true,
+  "circular_shift_p_at_most_0_05": false,
+  "leave_one_exact_opponent_out_same_sign": true,
+  "median_same_sign_and_at_least_0_25": false,
+  "opponent_minus_resident_gap_same_sign": true,
+  "source_and_endpoint_support": true,
+  "window_40_and_80_same_sign_at_least_0_25": true
+ },
+ "opponents": [
+  {
+   "current_active": true,
+   "current_rank": 27,
+   "current_score": 23.53,
+   "first_game_id": 896347981,
+   "games_early_60": 2,
+   "games_full": 3,
+   "games_late_60": 0,
+   "last_game_id": 896352625,
+   "mean_contemporaneous_score": 23.62,
+   "opponent_id": 6479385,
+   "pseudos": "Meruem"
+  },
+  {
+   "current_active": true,
+   "current_rank": 59,
+   "current_score": 20.09,
+   "first_game_id": 896348809,
+   "games_early_60": 1,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896348809,
+   "mean_contemporaneous_score": 20.47,
+   "opponent_id": 6479388,
+   "pseudos": "Kheopsian"
+  },
+  {
+   "current_active": true,
+   "current_rank": 32,
+   "current_score": 23.02,
+   "first_game_id": 896347518,
+   "games_early_60": 2,
+   "games_full": 2,
+   "games_late_60": 0,
+   "last_game_id": 896347795,
+   "mean_contemporaneous_score": 21.87,
+   "opponent_id": 6479532,
+   "pseudos": "aangairbender"
+  },
+  {
+   "current_active": true,
+   "current_rank": 28,
+   "current_score": 23.45,
+   "first_game_id": 896349895,
+   "games_early_60": 1,
+   "games_full": 2,
+   "games_late_60": 0,
+   "last_game_id": 896350131,
+   "mean_contemporaneous_score": 23.51,
+   "opponent_id": 6479542,
+   "pseudos": "xSkyline"
+  },
+  {
+   "current_active": true,
+   "current_rank": 45,
+   "current_score": 21.76,
+   "first_game_id": 896347586,
+   "games_early_60": 2,
+   "games_full": 3,
+   "games_late_60": 0,
+   "last_game_id": 896351244,
+   "mean_contemporaneous_score": 20.8,
+   "opponent_id": 6479553,
+   "pseudos": "Wld"
+  },
+  {
+   "current_active": true,
+   "current_rank": 44,
+   "current_score": 21.93,
+   "first_game_id": 896351124,
+   "games_early_60": 0,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896351124,
+   "mean_contemporaneous_score": 20.99,
+   "opponent_id": 6479658,
+   "pseudos": "eulerscheZahl"
+  },
+  {
+   "current_active": true,
+   "current_rank": 35,
+   "current_score": 22.83,
+   "first_game_id": 896348265,
+   "games_early_60": 1,
+   "games_full": 6,
+   "games_late_60": 0,
+   "last_game_id": 896351902,
+   "mean_contemporaneous_score": 22.3,
+   "opponent_id": 6479750,
+   "pseudos": "mehdi_ayari"
+  },
+  {
+   "current_active": true,
+   "current_rank": 16,
+   "current_score": 24.7,
+   "first_game_id": 896350293,
+   "games_early_60": 0,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896350293,
+   "mean_contemporaneous_score": 24.61,
+   "opponent_id": 6479814,
+   "pseudos": "yamo"
+  },
+  {
+   "current_active": true,
+   "current_rank": 26,
+   "current_score": 23.61,
+   "first_game_id": 896350156,
+   "games_early_60": 0,
+   "games_full": 3,
+   "games_late_60": 0,
+   "last_game_id": 896352683,
+   "mean_contemporaneous_score": 23.5,
+   "opponent_id": 6479840,
+   "pseudos": "siman"
+  },
+  {
+   "current_active": true,
+   "current_rank": 53,
+   "current_score": 20.63,
+   "first_game_id": 896348868,
+   "games_early_60": 1,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896348868,
+   "mean_contemporaneous_score": 20.96,
+   "opponent_id": 6479842,
+   "pseudos": "icecuber"
+  },
+  {
+   "current_active": true,
+   "current_rank": 38,
+   "current_score": 22.67,
+   "first_game_id": 896351071,
+   "games_early_60": 0,
+   "games_full": 8,
+   "games_late_60": 0,
+   "last_game_id": 896352494,
+   "mean_contemporaneous_score": 22.54,
+   "opponent_id": 6479863,
+   "pseudos": "R1FA"
+  },
+  {
+   "current_active": true,
+   "current_rank": 29,
+   "current_score": 23.27,
+   "first_game_id": 896352056,
+   "games_early_60": 0,
+   "games_full": 4,
+   "games_late_60": 0,
+   "last_game_id": 896352596,
+   "mean_contemporaneous_score": 22.74,
+   "opponent_id": 6479914,
+   "pseudos": "FinkPloyd"
+  },
+  {
+   "current_active": true,
+   "current_rank": 46,
+   "current_score": 21.49,
+   "first_game_id": 896348456,
+   "games_early_60": 2,
+   "games_full": 2,
+   "games_late_60": 0,
+   "last_game_id": 896348671,
+   "mean_contemporaneous_score": 20.88,
+   "opponent_id": 6480507,
+   "pseudos": "RinSakamichi"
+  },
+  {
+   "current_active": true,
+   "current_rank": 33,
+   "current_score": 22.98,
+   "first_game_id": 896349986,
+   "games_early_60": 1,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896349986,
+   "mean_contemporaneous_score": 23.1,
+   "opponent_id": 6480515,
+   "pseudos": "FredericBautista"
+  },
+  {
+   "current_active": true,
+   "current_rank": 34,
+   "current_score": 22.87,
+   "first_game_id": 896350195,
+   "games_early_60": 0,
+   "games_full": 5,
+   "games_late_60": 0,
+   "last_game_id": 896352541,
+   "mean_contemporaneous_score": 21.93,
+   "opponent_id": 6480516,
+   "pseudos": "Ztrk"
+  },
+  {
+   "current_active": true,
+   "current_rank": 9,
+   "current_score": 25.57,
+   "first_game_id": 896349736,
+   "games_early_60": 2,
+   "games_full": 4,
+   "games_late_60": 0,
+   "last_game_id": 896350102,
+   "mean_contemporaneous_score": 25.62,
+   "opponent_id": 6480520,
+   "pseudos": "skotz"
+  },
+  {
+   "current_active": true,
+   "current_rank": 7,
+   "current_score": 26.62,
+   "first_game_id": 896347357,
+   "games_early_60": 1,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896347357,
+   "mean_contemporaneous_score": 26.62,
+   "opponent_id": 6480541,
+   "pseudos": "yaichi"
+  },
+  {
+   "current_active": true,
+   "current_rank": 60,
+   "current_score": 20.04,
+   "first_game_id": 896348623,
+   "games_early_60": 1,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896348623,
+   "mean_contemporaneous_score": 20.46,
+   "opponent_id": 6480544,
+   "pseudos": "m4l0s4n"
+  },
+  {
+   "current_active": true,
+   "current_rank": 31,
+   "current_score": 23.02,
+   "first_game_id": 896349546,
+   "games_early_60": 2,
+   "games_full": 5,
+   "games_late_60": 0,
+   "last_game_id": 896352634,
+   "mean_contemporaneous_score": 22.74,
+   "opponent_id": 6480545,
+   "pseudos": "BoatBuilder"
+  },
+  {
+   "current_active": true,
+   "current_rank": 43,
+   "current_score": 22.17,
+   "first_game_id": 896348043,
+   "games_early_60": 3,
+   "games_full": 16,
+   "games_late_60": 0,
+   "last_game_id": 896352580,
+   "mean_contemporaneous_score": 22.37,
+   "opponent_id": 6480943,
+   "pseudos": "Dridriun"
+  },
+  {
+   "current_active": true,
+   "current_rank": 62,
+   "current_score": 19.81,
+   "first_game_id": 896349002,
+   "games_early_60": 1,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896349002,
+   "mean_contemporaneous_score": 20.5,
+   "opponent_id": 6480945,
+   "pseudos": "Halphas"
+  },
+  {
+   "current_active": true,
+   "current_rank": 30,
+   "current_score": 23.23,
+   "first_game_id": 896350530,
+   "games_early_60": 0,
+   "games_full": 5,
+   "games_late_60": 0,
+   "last_game_id": 896352675,
+   "mean_contemporaneous_score": 22.85,
+   "opponent_id": 6480947,
+   "pseudos": "khanh-alice"
+  },
+  {
+   "current_active": true,
+   "current_rank": 67,
+   "current_score": 19.62,
+   "first_game_id": 896347649,
+   "games_early_60": 2,
+   "games_full": 2,
+   "games_late_60": 0,
+   "last_game_id": 896348742,
+   "mean_contemporaneous_score": 19.68,
+   "opponent_id": 6480948,
+   "pseudos": "dabino"
+  },
+  {
+   "current_active": true,
+   "current_rank": 21,
+   "current_score": 24.14,
+   "first_game_id": 896349970,
+   "games_early_60": 1,
+   "games_full": 2,
+   "games_late_60": 0,
+   "last_game_id": 896350026,
+   "mean_contemporaneous_score": 24.03,
+   "opponent_id": 6481139,
+   "pseudos": "uta_ccc"
+  },
+  {
+   "current_active": true,
+   "current_rank": 20,
+   "current_score": 24.28,
+   "first_game_id": 896348189,
+   "games_early_60": 3,
+   "games_full": 6,
+   "games_late_60": 0,
+   "last_game_id": 896352760,
+   "mean_contemporaneous_score": 24.22,
+   "opponent_id": 6481142,
+   "pseudos": "XSpace"
+  },
+  {
+   "current_active": true,
+   "current_rank": 37,
+   "current_score": 22.78,
+   "first_game_id": 896347930,
+   "games_early_60": 1,
+   "games_full": 3,
+   "games_late_60": 0,
+   "last_game_id": 896351828,
+   "mean_contemporaneous_score": 21.83,
+   "opponent_id": 6481143,
+   "pseudos": "Pafin"
+  },
+  {
+   "current_active": true,
+   "current_rank": 52,
+   "current_score": 20.88,
+   "first_game_id": 896347362,
+   "games_early_60": 1,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896347362,
+   "mean_contemporaneous_score": 20.19,
+   "opponent_id": 6481144,
+   "pseudos": "Sequo"
+  },
+  {
+   "current_active": true,
+   "current_rank": 24,
+   "current_score": 23.66,
+   "first_game_id": 896349841,
+   "games_early_60": 1,
+   "games_full": 2,
+   "games_late_60": 0,
+   "last_game_id": 896352724,
+   "mean_contemporaneous_score": 23.76,
+   "opponent_id": 6481225,
+   "pseudos": "mikmak"
+  },
+  {
+   "current_active": true,
+   "current_rank": 48,
+   "current_score": 21.24,
+   "first_game_id": 896351310,
+   "games_early_60": 0,
+   "games_full": 2,
+   "games_late_60": 0,
+   "last_game_id": 896352461,
+   "mean_contemporaneous_score": 21.96,
+   "opponent_id": 6481252,
+   "pseudos": "DaNinja"
+  },
+  {
+   "current_active": true,
+   "current_rank": 70,
+   "current_score": 19.52,
+   "first_game_id": 896347363,
+   "games_early_60": 1,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896347363,
+   "mean_contemporaneous_score": 19.21,
+   "opponent_id": 6481269,
+   "pseudos": "AndreMarasca"
+  },
+  {
+   "current_active": true,
+   "current_rank": 25,
+   "current_score": 23.61,
+   "first_game_id": 896349382,
+   "games_early_60": 1,
+   "games_full": 6,
+   "games_late_60": 0,
+   "last_game_id": 896352750,
+   "mean_contemporaneous_score": 23.44,
+   "opponent_id": 6481270,
+   "pseudos": "zasmu"
+  },
+  {
+   "current_active": true,
+   "current_rank": 22,
+   "current_score": 23.92,
+   "first_game_id": 896349904,
+   "games_early_60": 2,
+   "games_full": 5,
+   "games_late_60": 0,
+   "last_game_id": 896352586,
+   "mean_contemporaneous_score": 24.08,
+   "opponent_id": 6481547,
+   "pseudos": "bl4sterino"
+  },
+  {
+   "current_active": true,
+   "current_rank": 40,
+   "current_score": 22.49,
+   "first_game_id": 896347359,
+   "games_early_60": 3,
+   "games_full": 5,
+   "games_late_60": 0,
+   "last_game_id": 896352189,
+   "mean_contemporaneous_score": 22.77,
+   "opponent_id": 6482016,
+   "pseudos": "DoubtinGiyov"
+  },
+  {
+   "current_active": true,
+   "current_rank": 41,
+   "current_score": 22.23,
+   "first_game_id": 896349042,
+   "games_early_60": 1,
+   "games_full": 6,
+   "games_late_60": 0,
+   "last_game_id": 896352273,
+   "mean_contemporaneous_score": 22.35,
+   "opponent_id": 6483325,
+   "pseudos": "Pech1"
+  },
+  {
+   "current_active": true,
+   "current_rank": 58,
+   "current_score": 20.1,
+   "first_game_id": 896347361,
+   "games_early_60": 1,
+   "games_full": 2,
+   "games_late_60": 0,
+   "last_game_id": 896351292,
+   "mean_contemporaneous_score": 21.19,
+   "opponent_id": 6483491,
+   "pseudos": "VINCE_MX"
+  },
+  {
+   "current_active": true,
+   "current_rank": 68,
+   "current_score": 19.59,
+   "first_game_id": 896347364,
+   "games_early_60": 1,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896347364,
+   "mean_contemporaneous_score": 19.28,
+   "opponent_id": 6491198,
+   "pseudos": "Renatys"
+  },
+  {
+   "current_active": true,
+   "current_rank": 50,
+   "current_score": 21.12,
+   "first_game_id": 896348573,
+   "games_early_60": 2,
+   "games_full": 2,
+   "games_late_60": 0,
+   "last_game_id": 896349215,
+   "mean_contemporaneous_score": 21.62,
+   "opponent_id": 6491404,
+   "pseudos": "daaskare"
+  },
+  {
+   "current_active": true,
+   "current_rank": 8,
+   "current_score": 26.5,
+   "first_game_id": 896349920,
+   "games_early_60": 1,
+   "games_full": 2,
+   "games_late_60": 0,
+   "last_game_id": 896350051,
+   "mean_contemporaneous_score": 26.41,
+   "opponent_id": 6491563,
+   "pseudos": "Stounate"
+  },
+  {
+   "current_active": true,
+   "current_rank": 42,
+   "current_score": 22.18,
+   "first_game_id": 896349174,
+   "games_early_60": 1,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896349174,
+   "mean_contemporaneous_score": 21.83,
+   "opponent_id": 6491567,
+   "pseudos": "_H3R0_"
+  },
+  {
+   "current_active": true,
+   "current_rank": 103,
+   "current_score": 16.48,
+   "first_game_id": 896347366,
+   "games_early_60": 1,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896347366,
+   "mean_contemporaneous_score": 16.23,
+   "opponent_id": 6493247,
+   "pseudos": "sZoom"
+  },
+  {
+   "current_active": true,
+   "current_rank": 104,
+   "current_score": 16.34,
+   "first_game_id": 896347365,
+   "games_early_60": 1,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896347365,
+   "mean_contemporaneous_score": 16.77,
+   "opponent_id": 6499915,
+   "pseudos": "LeRenard"
+  },
+  {
+   "current_active": true,
+   "current_rank": 36,
+   "current_score": 22.82,
+   "first_game_id": 896348406,
+   "games_early_60": 2,
+   "games_full": 8,
+   "games_late_60": 0,
+   "last_game_id": 896352205,
+   "mean_contemporaneous_score": 21.2,
+   "opponent_id": 6512040,
+   "pseudos": "celeria"
+  },
+  {
+   "current_active": true,
+   "current_rank": 39,
+   "current_score": 22.62,
+   "first_game_id": 896347360,
+   "games_early_60": 3,
+   "games_full": 7,
+   "games_late_60": 0,
+   "last_game_id": 896351874,
+   "mean_contemporaneous_score": 22.44,
+   "opponent_id": 6512056,
+   "pseudos": "a76a44"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896350059,
+   "games_early_60": 0,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896350059,
+   "mean_contemporaneous_score": 23.28,
+   "opponent_id": 6520935,
+   "pseudos": "goq"
+  },
+  {
+   "current_active": true,
+   "current_rank": 57,
+   "current_score": 20.12,
+   "first_game_id": 896347862,
+   "games_early_60": 2,
+   "games_full": 4,
+   "games_late_60": 0,
+   "last_game_id": 896352110,
+   "mean_contemporaneous_score": 21.72,
+   "opponent_id": 6541379,
+   "pseudos": "GoodDevel"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896347358,
+   "games_early_60": 2,
+   "games_full": 2,
+   "games_late_60": 0,
+   "last_game_id": 896350020,
+   "mean_contemporaneous_score": 26.91,
+   "opponent_id": 6557104,
+   "pseudos": "Bubaptik"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896349330,
+   "games_early_60": 3,
+   "games_full": 10,
+   "games_late_60": 0,
+   "last_game_id": 896352481,
+   "mean_contemporaneous_score": 22.17,
+   "opponent_id": 6557848,
+   "pseudos": "FreZzz"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896399089,
+   "games_early_60": 0,
+   "games_full": 4,
+   "games_late_60": 0,
+   "last_game_id": 896399705,
+   "mean_contemporaneous_score": 26.91,
+   "opponent_id": 6563190,
+   "pseudos": "Bubaptik"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896409635,
+   "games_early_60": 0,
+   "games_full": 2,
+   "games_late_60": 0,
+   "last_game_id": 896410101,
+   "mean_contemporaneous_score": 26.91,
+   "opponent_id": 6563484,
+   "pseudos": "Bubaptik"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896420875,
+   "games_early_60": 0,
+   "games_full": 4,
+   "games_late_60": 0,
+   "last_game_id": 896422596,
+   "mean_contemporaneous_score": 26.91,
+   "opponent_id": 6563637,
+   "pseudos": "Bubaptik"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896423810,
+   "games_early_60": 0,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896423810,
+   "mean_contemporaneous_score": 26.91,
+   "opponent_id": 6563744,
+   "pseudos": "Bubaptik"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896478463,
+   "games_early_60": 0,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896478463,
+   "mean_contemporaneous_score": 26.91,
+   "opponent_id": 6565274,
+   "pseudos": "Bubaptik"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896484682,
+   "games_early_60": 0,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896484682,
+   "mean_contemporaneous_score": 26.91,
+   "opponent_id": 6565503,
+   "pseudos": "Bubaptik"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896491787,
+   "games_early_60": 0,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896491787,
+   "mean_contemporaneous_score": 26.91,
+   "opponent_id": 6565556,
+   "pseudos": "Bubaptik"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896504994,
+   "games_early_60": 0,
+   "games_full": 1,
+   "games_late_60": 0,
+   "last_game_id": 896504994,
+   "mean_contemporaneous_score": 26.91,
+   "opponent_id": 6565654,
+   "pseudos": "Bubaptik"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896525380,
+   "games_early_60": 0,
+   "games_full": 7,
+   "games_late_60": 0,
+   "last_game_id": 896526856,
+   "mean_contemporaneous_score": 22.17,
+   "opponent_id": 6566050,
+   "pseudos": "FreZzz"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896529307,
+   "games_early_60": 0,
+   "games_full": 1,
+   "games_late_60": 1,
+   "last_game_id": 896529307,
+   "mean_contemporaneous_score": 17.35,
+   "opponent_id": 6566077,
+   "pseudos": "IlyaPol"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896547892,
+   "games_early_60": 0,
+   "games_full": 3,
+   "games_late_60": 3,
+   "last_game_id": 896548356,
+   "mean_contemporaneous_score": 22.17,
+   "opponent_id": 6566112,
+   "pseudos": "FreZzz"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896569360,
+   "games_early_60": 0,
+   "games_full": 1,
+   "games_late_60": 1,
+   "last_game_id": 896569360,
+   "mean_contemporaneous_score": 26.91,
+   "opponent_id": 6566509,
+   "pseudos": "Bubaptik"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896580977,
+   "games_early_60": 0,
+   "games_full": 1,
+   "games_late_60": 1,
+   "last_game_id": 896580977,
+   "mean_contemporaneous_score": 26.91,
+   "opponent_id": 6567585,
+   "pseudos": "Bubaptik"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896585749,
+   "games_early_60": 0,
+   "games_full": 2,
+   "games_late_60": 2,
+   "last_game_id": 896586095,
+   "mean_contemporaneous_score": 26.91,
+   "opponent_id": 6567667,
+   "pseudos": "Bubaptik"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896588124,
+   "games_early_60": 0,
+   "games_full": 2,
+   "games_late_60": 2,
+   "last_game_id": 896588235,
+   "mean_contemporaneous_score": 26.91,
+   "opponent_id": 6567772,
+   "pseudos": "Bubaptik"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896606028,
+   "games_early_60": 0,
+   "games_full": 1,
+   "games_late_60": 1,
+   "last_game_id": 896606028,
+   "mean_contemporaneous_score": 26.91,
+   "opponent_id": 6567909,
+   "pseudos": "Bubaptik"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896626900,
+   "games_early_60": 0,
+   "games_full": 4,
+   "games_late_60": 4,
+   "last_game_id": 896629488,
+   "mean_contemporaneous_score": 22.17,
+   "opponent_id": 6568027,
+   "pseudos": "FreZzz"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896648845,
+   "games_early_60": 0,
+   "games_full": 5,
+   "games_late_60": 5,
+   "last_game_id": 896649188,
+   "mean_contemporaneous_score": 22.17,
+   "opponent_id": 6568324,
+   "pseudos": "FreZzz"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 896651228,
+   "games_early_60": 0,
+   "games_full": 3,
+   "games_late_60": 3,
+   "last_game_id": 896651429,
+   "mean_contemporaneous_score": 22.17,
+   "opponent_id": 6568588,
+   "pseudos": "FreZzz"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 897186510,
+   "games_early_60": 0,
+   "games_full": 5,
+   "games_late_60": 5,
+   "last_game_id": 897188452,
+   "mean_contemporaneous_score": 22.17,
+   "opponent_id": 6579750,
+   "pseudos": "FreZzz"
+  },
+  {
+   "current_active": true,
+   "current_rank": 54,
+   "current_score": 20.44,
+   "first_game_id": 897218489,
+   "games_early_60": 0,
+   "games_full": 5,
+   "games_late_60": 5,
+   "last_game_id": 897219440,
+   "mean_contemporaneous_score": 23.28,
+   "opponent_id": 6580001,
+   "pseudos": "goq"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 897230691,
+   "games_early_60": 0,
+   "games_full": 5,
+   "games_late_60": 5,
+   "last_game_id": 897243738,
+   "mean_contemporaneous_score": 22.17,
+   "opponent_id": 6580130,
+   "pseudos": "FreZzz"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 897263984,
+   "games_early_60": 0,
+   "games_full": 5,
+   "games_late_60": 5,
+   "last_game_id": 897265726,
+   "mean_contemporaneous_score": 22.17,
+   "opponent_id": 6581650,
+   "pseudos": "FreZzz"
+  },
+  {
+   "current_active": false,
+   "current_rank": null,
+   "current_score": null,
+   "first_game_id": 897303947,
+   "games_early_60": 0,
+   "games_full": 9,
+   "games_late_60": 9,
+   "last_game_id": 897309299,
+   "mean_contemporaneous_score": 22.17,
+   "opponent_id": 6582020,
+   "pseudos": "FreZzz"
+  },
+  {
+   "current_active": true,
+   "current_rank": 51,
+   "current_score": 21.05,
+   "first_game_id": 897320189,
+   "games_early_60": 0,
+   "games_full": 8,
+   "games_late_60": 8,
+   "last_game_id": 897324011,
+   "mean_contemporaneous_score": 22.17,
+   "opponent_id": 6582186,
+   "pseudos": "FreZzz"
+  }
+ ],
+ "primary_contrast": {
+  "block_bootstrap_ci95": [
+   -0.8645041666666627,
+   1.866541666666665
+  ],
+  "circular_shift_two_sided_p": 0.8838174273858921,
+  "mean_margin_descriptive": -29.966666666666665,
+  "mean_opponent_minus_resident_gap": 0.4380000000000013,
+  "mean_opponent_score": 0.4380000000000024,
+  "mean_win_descriptive": -0.24166666666666664,
+  "median_opponent_score": -0.15500000000000114
+ },
+ "protocol": {
+  "block_length": 10,
+  "bootstrap_reps": 20000,
+  "chronology": "game_id_then_record_index",
+  "primary_estimand": "late_minus_early_mean_opponent_arena_score",
+  "primary_window": 60,
+  "seed": 20260730,
+  "sensitivity_windows": [
+   40,
+   80
+  ]
+ },
+ "sensitivities": {
+  "active_current_only": {
+   "early_games": 55,
+   "late_games": 13,
+   "mean_opponent_score_drift": 0.4605594405594431
+  },
+  "first_half_second_half": {
+   "first_games": 120,
+   "mean_opponent_score_drift": 0.7553326446280977,
+   "second_games": 121
+  },
+  "leave_one_exact_opponent_out": [
+   {
+    "early_games": 58,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.48361494252873527,
+    "omitted_opponent_id": 6479385
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.4070310734463298,
+    "omitted_opponent_id": 6479388
+   },
+   {
+    "early_games": 58,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.42327011494252886,
+    "omitted_opponent_id": 6479532
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.4585564971751417,
+    "omitted_opponent_id": 6479542
+   },
+   {
+    "early_games": 58,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.3863735632183918,
+    "omitted_opponent_id": 6479553
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.43804802259887055,
+    "omitted_opponent_id": 6479750
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.41533615819209047,
+    "omitted_opponent_id": 6479842
+   },
+   {
+    "early_games": 58,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.38913218390804616,
+    "omitted_opponent_id": 6480507
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.4516073446327695,
+    "omitted_opponent_id": 6480515
+   },
+   {
+    "early_games": 58,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.552580459770116,
+    "omitted_opponent_id": 6480520
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.5112683615819229,
+    "omitted_opponent_id": 6480541
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.4068615819209036,
+    "omitted_opponent_id": 6480544
+   },
+   {
+    "early_games": 58,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.45327011494253,
+    "omitted_opponent_id": 6480545
+   },
+   {
+    "early_games": 57,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.4418333333333351,
+    "omitted_opponent_id": 6480943
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.4075395480226014,
+    "omitted_opponent_id": 6480945
+   },
+   {
+    "early_games": 58,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.3477528735632198,
+    "omitted_opponent_id": 6480948
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.46737005649717744,
+    "omitted_opponent_id": 6481139
+   },
+   {
+    "early_games": 57,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.5392017543859673,
+    "omitted_opponent_id": 6481142
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.43008192090395525,
+    "omitted_opponent_id": 6481143
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.40228531073446305,
+    "omitted_opponent_id": 6481144
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.4627937853107369,
+    "omitted_opponent_id": 6481225
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.3856751412429382,
+    "omitted_opponent_id": 6481269
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.4573700564971759,
+    "omitted_opponent_id": 6481270
+   },
+   {
+    "early_games": 58,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.4994770114942533,
+    "omitted_opponent_id": 6481547
+   },
+   {
+    "early_games": 57,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.4628859649122816,
+    "omitted_opponent_id": 6482016
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.438895480225991,
+    "omitted_opponent_id": 6483325
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.4192344632768368,
+    "omitted_opponent_id": 6483491
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.38686158192090403,
+    "omitted_opponent_id": 6491198
+   },
+   {
+    "early_games": 58,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.41464942528735804,
+    "omitted_opponent_id": 6491404
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.5077090395480255,
+    "omitted_opponent_id": 6491563
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.43008192090395525,
+    "omitted_opponent_id": 6491567
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.3351666666666695,
+    "omitted_opponent_id": 6493247
+   },
+   {
+    "early_games": 59,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.3443192090395506,
+    "omitted_opponent_id": 6499915
+   },
+   {
+    "early_games": 58,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.4001666666666672,
+    "omitted_opponent_id": 6512040
+   },
+   {
+    "early_games": 57,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.44551754385965125,
+    "omitted_opponent_id": 6512056
+   },
+   {
+    "early_games": 58,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.4180977011494278,
+    "omitted_opponent_id": 6541379
+   },
+   {
+    "early_games": 58,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.5970632183908045,
+    "omitted_opponent_id": 6557104
+   },
+   {
+    "early_games": 57,
+    "late_games": 60,
+    "mean_opponent_score_drift": 0.4313070175438618,
+    "omitted_opponent_id": 6557848
+   },
+   {
+    "early_games": 60,
+    "late_games": 59,
+    "mean_opponent_score_drift": 0.5292740112994387,
+    "omitted_opponent_id": 6566077
+   },
+   {
+    "early_games": 60,
+    "late_games": 57,
+    "mean_opponent_score_drift": 0.4677456140350884,
+    "omitted_opponent_id": 6566112
+   },
+   {
+    "early_games": 60,
+    "late_games": 59,
+    "mean_opponent_score_drift": 0.36724011299435233,
+    "omitted_opponent_id": 6566509
+   },
+   {
+    "early_games": 60,
+    "late_games": 59,
+    "mean_opponent_score_drift": 0.36724011299435233,
+    "omitted_opponent_id": 6567585
+   },
+   {
+    "early_games": 60,
+    "late_games": 58,
+    "mean_opponent_score_drift": 0.2940402298850593,
+    "omitted_opponent_id": 6567667
+   },
+   {
+    "early_games": 60,
+    "late_games": 58,
+    "mean_opponent_score_drift": 0.2940402298850593,
+    "omitted_opponent_id": 6567772
+   },
+   {
+    "early_games": 60,
+    "late_games": 59,
+    "mean_opponent_score_drift": 0.36724011299435233,
+    "omitted_opponent_id": 6567909
+   },
+   {
+    "early_games": 60,
+    "late_games": 56,
+    "mean_opponent_score_drift": 0.47836904761905075,
+    "omitted_opponent_id": 6568027
+   },
+   {
+    "early_games": 60,
+    "late_games": 55,
+    "mean_opponent_score_drift": 0.48937878787879185,
+    "omitted_opponent_id": 6568324
+   },
+   {
+    "early_games": 60,
+    "late_games": 57,
+    "mean_opponent_score_drift": 0.4677456140350884,
+    "omitted_opponent_id": 6568588
+   },
+   {
+    "early_games": 60,
+    "late_games": 55,
+    "mean_opponent_score_drift": 0.48937878787879185,
+    "omitted_opponent_id": 6579750
+   },
+   {
+    "early_games": 60,
+    "late_games": 55,
+    "mean_opponent_score_drift": 0.38846969696970035,
+    "omitted_opponent_id": 6580001
+   },
+   {
+    "early_games": 60,
+    "late_games": 55,
+    "mean_opponent_score_drift": 0.48937878787879185,
+    "omitted_opponent_id": 6580130
+   },
+   {
+    "early_games": 60,
+    "late_games": 55,
+    "mean_opponent_score_drift": 0.48937878787879185,
+    "omitted_opponent_id": 6581650
+   },
+   {
+    "early_games": 60,
+    "late_games": 51,
+    "mean_opponent_score_drift": 0.537735294117649,
+    "omitted_opponent_id": 6582020
+   },
+   {
+    "early_games": 60,
+    "late_games": 52,
+    "mean_opponent_score_drift": 0.5249487179487211,
+    "omitted_opponent_id": 6582186
+   }
+  ],
+  "seats": {
+   "0": {
+    "early_games": 28,
+    "late_games": 31,
+    "mean_opponent_score_drift": 0.5001958525345636
+   },
+   "1": {
+    "early_games": 32,
+    "late_games": 29,
+    "mean_opponent_score_drift": 0.4204956896551728
+   }
+  },
+  "windows": {
+   "40": {
+    "contrast": {
+     "mean_margin_descriptive": -35.775,
+     "mean_opponent_minus_resident_gap": 0.7412500000000014,
+     "mean_opponent_score": 0.7412500000000044,
+     "mean_win_descriptive": -0.25,
+     "median_opponent_score": 0.5
+    },
+    "early": {
+     "current_active": {
+      "game_share": 0.95,
+      "games": 38,
+      "unique_identities": 28
+     },
+     "current_active_lineage": {
+      "game_share": 1,
+      "games": 40,
+      "unique_pseudos": 30
+     },
+     "descriptive_terminal_outcomes": {
+      "mean_margin": 32.3,
+      "mean_turns": 257.625,
+      "mean_win": 0.65
+     },
+     "exact_identity": {
+      "effective_count": 26.666666666666647,
+      "hhi": 0.037500000000000026,
+      "repeat_game_share": 0.25,
+      "unique": 30
+     },
+     "game_id_max": 896349490,
+     "game_id_min": 896347357,
+     "games": 40,
+     "initial_trees": {
+      "mean": 15.4,
+      "median": 16.0
+     },
+     "map_dimension_fractions": {
+      "16x8": 0.225,
+      "18x9": 0.2,
+      "20x10": 0.275,
+      "22x11": 0.3
+     },
+     "opponent_minus_resident_mean": -0.6124999999999995,
+     "opponent_score": {
+      "mean": 21.5675,
+      "median": 21.67,
+      "q10": 19.64,
+      "q25": 20.725,
+      "q75": 22.37,
+      "q90": 23.68
+     },
+     "pseudo_lineage": {
+      "effective_count": 26.666666666666647,
+      "hhi": 0.037500000000000026,
+      "repeat_game_share": 0.25,
+      "unique": 30
+     },
+     "relative_score_fractions": {
+      "above_by_gt_0_5": 0.175,
+      "below_by_gt_0_5": 0.5,
+      "within_0_5": 0.325
+     },
+     "resident_score_mean": 22.18,
+     "score_bin_fractions": {
+      "20_to_lt_22": 0.5,
+      "22_to_lt_24": 0.25,
+      "24_to_lt_26": 0.05,
+      "ge_26": 0.05,
+      "lt_20": 0.15
+     },
+     "seat_fractions": {
+      "0": 0.525,
+      "1": 0.475
+     }
+    },
+    "late": {
+     "current_active": {
+      "game_share": 0.325,
+      "games": 13,
+      "unique_identities": 2
+     },
+     "current_active_lineage": {
+      "game_share": 1,
+      "games": 40,
+      "unique_pseudos": 2
+     },
+     "descriptive_terminal_outcomes": {
+      "mean_margin": -3.475,
+      "mean_turns": 255.15,
+      "mean_win": 0.4
+     },
+     "exact_identity": {
+      "effective_count": 6.299212598425196,
+      "hhi": 0.15875,
+      "repeat_game_share": 0.825,
+      "unique": 7
+     },
+     "game_id_max": 897324011,
+     "game_id_min": 896651228,
+     "games": 40,
+     "initial_trees": {
+      "mean": 15,
+      "median": 14.0
+     },
+     "map_dimension_fractions": {
+      "16x8": 0.275,
+      "18x9": 0.225,
+      "20x10": 0.25,
+      "22x11": 0.25
+     },
+     "opponent_minus_resident_mean": 0.12875000000000192,
+     "opponent_score": {
+      "mean": 22.308750000000003,
+      "median": 22.17,
+      "q10": 22.17,
+      "q25": 22.17,
+      "q75": 22.17,
+      "q90": 23.28
+     },
+     "pseudo_lineage": {
+      "effective_count": 1.28,
+      "hhi": 0.78125,
+      "repeat_game_share": 0.95,
+      "unique": 2
+     },
+     "relative_score_fractions": {
+      "above_by_gt_0_5": 0.125,
+      "below_by_gt_0_5": 0.0,
+      "within_0_5": 0.875
+     },
+     "resident_score_mean": 22.18,
+     "score_bin_fractions": {
+      "20_to_lt_22": 0.0,
+      "22_to_lt_24": 1.0,
+      "24_to_lt_26": 0.0,
+      "ge_26": 0.0,
+      "lt_20": 0.0
+     },
+     "seat_fractions": {
+      "0": 0.55,
+      "1": 0.45
+     }
+    },
+    "window": 40
+   },
+   "80": {
+    "contrast": {
+     "mean_margin_descriptive": -10.8625,
+     "mean_opponent_minus_resident_gap": 0.7177500000000011,
+     "mean_opponent_score": 0.7177500000000023,
+     "mean_win_descriptive": -0.16874999999999996,
+     "median_opponent_score": -0.41999999999999815
+    },
+    "early": {
+     "current_active": {
+      "game_share": 0.925,
+      "games": 74,
+      "unique_identities": 40
+     },
+     "current_active_lineage": {
+      "game_share": 1,
+      "games": 80,
+      "unique_pseudos": 43
+     },
+     "descriptive_terminal_outcomes": {
+      "mean_margin": 6.9125,
+      "mean_turns": 262.175,
+      "mean_win": 0.54375
+     },
+     "exact_identity": {
+      "effective_count": 31.999999999999986,
+      "hhi": 0.031250000000000014,
+      "repeat_game_share": 0.4625,
+      "unique": 43
+     },
+     "game_id_max": 896350624,
+     "game_id_min": 896347357,
+     "games": 80,
+     "initial_trees": {
+      "mean": 15.725,
+      "median": 16.0
+     },
+     "map_dimension_fractions": {
+      "16x8": 0.2,
+      "18x9": 0.225,
+      "20x10": 0.275,
+      "22x11": 0.3
+     },
+     "opponent_minus_resident_mean": 0.46637500000000054,
+     "opponent_score": {
+      "mean": 22.646375,
+      "median": 22.59,
+      "q10": 20.468999999999998,
+      "q25": 21.695,
+      "q75": 23.8275,
+      "q90": 25.62
+     },
+     "pseudo_lineage": {
+      "effective_count": 31.999999999999986,
+      "hhi": 0.031250000000000014,
+      "repeat_game_share": 0.4625,
+      "unique": 43
+     },
+     "relative_score_fractions": {
+      "above_by_gt_0_5": 0.5,
+      "below_by_gt_0_5": 0.25,
+      "within_0_5": 0.25
+     },
+     "resident_score_mean": 22.18,
+     "score_bin_fractions": {
+      "20_to_lt_22": 0.2625,
+      "22_to_lt_24": 0.4125,
+      "24_to_lt_26": 0.1875,
+      "ge_26": 0.0625,
+      "lt_20": 0.075
+     },
+     "seat_fractions": {
+      "0": 0.5,
+      "1": 0.5
+     }
+    },
+    "late": {
+     "current_active": {
+      "game_share": 0.1625,
+      "games": 13,
+      "unique_identities": 2
+     },
+     "current_active_lineage": {
+      "game_share": 1,
+      "games": 80,
+      "unique_pseudos": 4
+     },
+     "descriptive_terminal_outcomes": {
+      "mean_margin": -3.95,
+      "mean_turns": 269.225,
+      "mean_win": 0.375
+     },
+     "exact_identity": {
+      "effective_count": 16.243654822335024,
+      "hhi": 0.061562500000000006,
+      "repeat_game_share": 0.6875,
+      "unique": 25
+     },
+     "game_id_max": 897324011,
+     "game_id_min": 896399501,
+     "games": 80,
+     "initial_trees": {
+      "mean": 15.875,
+      "median": 16.0
+     },
+     "map_dimension_fractions": {
+      "16x8": 0.225,
+      "18x9": 0.3,
+      "20x10": 0.2375,
+      "22x11": 0.2375
+     },
+     "opponent_minus_resident_mean": 1.1841250000000016,
+     "opponent_score": {
+      "mean": 23.364125,
+      "median": 22.17,
+      "q10": 22.17,
+      "q25": 22.17,
+      "q75": 24.1875,
+      "q90": 26.91
+     },
+     "pseudo_lineage": {
+      "effective_count": 1.9150209455415919,
+      "hhi": 0.5221875,
+      "repeat_game_share": 0.95,
+      "unique": 4
+     },
+     "relative_score_fractions": {
+      "above_by_gt_0_5": 0.3125,
+      "below_by_gt_0_5": 0.0125,
+      "within_0_5": 0.675
+     },
+     "resident_score_mean": 22.18,
+     "score_bin_fractions": {
+      "20_to_lt_22": 0.0,
+      "22_to_lt_24": 0.7375,
+      "24_to_lt_26": 0.0,
+      "ge_26": 0.25,
+      "lt_20": 0.0125
+     },
+     "seat_fractions": {
+      "0": 0.4875,
+      "1": 0.5125
+     }
+    },
+    "window": 80
+   }
+  }
+ },
+ "source": {
+  "count_checks": {
+   "clean_games": true,
+   "exact_opponents": true,
+   "records": true,
+   "resident_games": true,
+   "seat_0_games": true,
+   "seat_1_games": true
+  },
+  "counts": {
+   "clean_games": 9018,
+   "exact_opponents": 72,
+   "records": 9082,
+   "resident_games": 241,
+   "seat_0_games": 126,
+   "seat_1_games": 115
+  },
+  "expected_hash": "12f72265c2af19d69ddf9dad053ccc33b3c7f799182b23ca973210429500a73d",
+  "expected_leaderboard_hash": "7f6cdaa2b4fbce31ca5a4adbe5c78d59a9a16b56e76faac838b0a4b062c66815",
+  "game_id_range": [
+   891153730,
+   897326497
+  ],
+  "game_id_range_check": true,
+  "hash_check": true,
+  "leaderboard_hash_check": true,
+  "leaderboard_path": "/home/tarstars/prj/troll_farm/data/raw/snapshots/20260730T021701Z-d61p-wide/leaderboard.json",
+  "observed_hash": "12f72265c2af19d69ddf9dad053ccc33b3c7f799182b23ca973210429500a73d",
+  "observed_leaderboard_hash": "7f6cdaa2b4fbce31ca5a4adbe5c78d59a9a16b56e76faac838b0a4b062c66815",
+  "path": "/home/tarstars/prj/troll_farm/data/processed/games.jsonl"
+ },
+ "support_gates": {
+  "endpoint_windows_60_each": true,
+  "resident_panel_241": true,
+  "source_integrity": true
+ },
+ "temporal_null": {
+  "null_max": 2.294500000000003,
+  "null_min": -1.881333333333334,
+  "observed": 0.4380000000000024,
+  "rotations": 241,
+  "two_sided_p": 0.8838174273858921
+ },
+ "trend": {
+  "ols_change_over_full_normalized_ordinal": 1.0251603168615628,
+  "spearman_rho": 0.05210334167817243
+ },
+ "verdict": "NO_MATERIAL_MATCHMAKING_DRIFT"
+}

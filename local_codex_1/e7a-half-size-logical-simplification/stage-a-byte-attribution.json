@@ -1,0 +1,355 @@
+{
+  "baseline": {
+    "bytes": 62820,
+    "required_removal_bytes": 31410,
+    "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595",
+    "target_bytes": 31410
+  },
+  "groups": [
+    {
+      "baseline_fraction": 0.2249124482648838,
+      "bytes": 14129,
+      "items": [
+        {
+          "bytes": 57,
+          "end": 47985,
+          "marker": "enum OrchardPhase",
+          "start": 47928
+        },
+        {
+          "bytes": 102,
+          "end": 48109,
+          "marker": "struct OrchardGeometry",
+          "start": 48007
+        },
+        {
+          "bytes": 54,
+          "end": 48203,
+          "marker": "struct OrchardCycle",
+          "start": 48149
+        },
+        {
+          "bytes": 302,
+          "end": 48505,
+          "marker": "pub struct SecureOrchardBot",
+          "start": 48203
+        },
+        {
+          "bytes": 10241,
+          "end": 58746,
+          "marker": "impl SecureOrchardBot",
+          "start": 48505
+        },
+        {
+          "bytes": 3373,
+          "end": 62119,
+          "marker": "impl Bot for SecureOrchardBot",
+          "start": 58746
+        }
+      ],
+      "name": "secure_orchard"
+    },
+    {
+      "baseline_fraction": 0.08764724609996816,
+      "bytes": 5506,
+      "items": [
+        {
+          "bytes": 219,
+          "end": 39604,
+          "marker": "fn carried_fruit(",
+          "start": 39385
+        },
+        {
+          "bytes": 312,
+          "end": 39916,
+          "marker": "fn inventory_fruits(",
+          "start": 39604
+        },
+        {
+          "bytes": 557,
+          "end": 40473,
+          "marker": "fn conversion_chop_turns(",
+          "start": 39916
+        },
+        {
+          "bytes": 3095,
+          "end": 43568,
+          "marker": "fn endgame_candidates(",
+          "start": 40473
+        },
+        {
+          "bytes": 1194,
+          "end": 44762,
+          "marker": "fn idle_harvest_candidates(",
+          "start": 43568
+        },
+        {
+          "bytes": 129,
+          "end": 44891,
+          "marker": "fn endgame(view:",
+          "start": 44762
+        }
+      ],
+      "name": "endgame_and_idle_harvest"
+    },
+    {
+      "baseline_fraction": 0.10409105380452086,
+      "bytes": 6539,
+      "items": [
+        {
+          "bytes": 260,
+          "end": 8974,
+          "marker": "pub struct YamoOpeningPolicy",
+          "start": 8714
+        },
+        {
+          "bytes": 55,
+          "end": 9312,
+          "marker": "struct OpeningObjective",
+          "start": 9257
+        },
+        {
+          "bytes": 265,
+          "end": 23719,
+          "marker": "fn ensure_opening(",
+          "start": 23454
+        },
+        {
+          "bytes": 829,
+          "end": 24548,
+          "marker": "fn collection_eta(",
+          "start": 23719
+        },
+        {
+          "bytes": 514,
+          "end": 25062,
+          "marker": "fn opening_objective(",
+          "start": 24548
+        },
+        {
+          "bytes": 411,
+          "end": 25473,
+          "marker": "fn opening_key(",
+          "start": 25062
+        },
+        {
+          "bytes": 473,
+          "end": 25946,
+          "marker": "fn opening_options(",
+          "start": 25473
+        },
+        {
+          "bytes": 1711,
+          "end": 27657,
+          "marker": "fn choose_second_troll(",
+          "start": 25946
+        },
+        {
+          "bytes": 370,
+          "end": 28027,
+          "marker": "fn training_affordable(",
+          "start": 27657
+        },
+        {
+          "bytes": 365,
+          "end": 28392,
+          "marker": "fn strongest_affordable(",
+          "start": 28027
+        },
+        {
+          "bytes": 1181,
+          "end": 29573,
+          "marker": "fn enforce_training_deadline(",
+          "start": 28392
+        },
+        {
+          "bytes": 105,
+          "end": 29678,
+          "marker": "fn fallback_second_troll(",
+          "start": 29573
+        }
+      ],
+      "name": "opening_specification_planner"
+    },
+    {
+      "baseline_fraction": 0.07866921362623368,
+      "bytes": 4942,
+      "items": [
+        {
+          "bytes": 254,
+          "end": 17923,
+          "marker": "fn compatible(",
+          "start": 17669
+        },
+        {
+          "bytes": 198,
+          "end": 18121,
+          "marker": "fn picked_item(",
+          "start": 17923
+        },
+        {
+          "bytes": 191,
+          "end": 18312,
+          "marker": "fn stock_compatible(",
+          "start": 18121
+        },
+        {
+          "bytes": 1329,
+          "end": 19641,
+          "marker": "fn select(",
+          "start": 18312
+        },
+        {
+          "bytes": 265,
+          "end": 19906,
+          "marker": "fn move_command(",
+          "start": 19641
+        },
+        {
+          "bytes": 141,
+          "end": 20047,
+          "marker": "fn resolve_move_conflicts(",
+          "start": 19906
+        },
+        {
+          "bytes": 212,
+          "end": 20259,
+          "marker": "fn resolve_move_conflicts_with_priority(",
+          "start": 20047
+        },
+        {
+          "bytes": 2352,
+          "end": 22611,
+          "marker": "fn resolve_move_conflicts_with_priority_and_forbidden(",
+          "start": 20259
+        }
+      ],
+      "name": "joint_assignment_and_movement"
+    },
+    {
+      "baseline_fraction": 0.10630372492836676,
+      "bytes": 6678,
+      "items": [
+        {
+          "bytes": 207,
+          "end": 30194,
+          "marker": "fn unique_shack_door(",
+          "start": 29987
+        },
+        {
+          "bytes": 156,
+          "end": 30350,
+          "marker": "fn forced_move(",
+          "start": 30194
+        },
+        {
+          "bytes": 146,
+          "end": 30496,
+          "marker": "fn carries_committed_fruit(",
+          "start": 30350
+        },
+        {
+          "bytes": 540,
+          "end": 31036,
+          "marker": "fn planned_egress(",
+          "start": 30496
+        },
+        {
+          "bytes": 4803,
+          "end": 35839,
+          "marker": "fn force_unique_door_clear(",
+          "start": 31036
+        },
+        {
+          "bytes": 435,
+          "end": 36274,
+          "marker": "fn reconcile_regeneration_commitments(",
+          "start": 35839
+        },
+        {
+          "bytes": 391,
+          "end": 36665,
+          "marker": "fn remember_selected_regeneration(",
+          "start": 36274
+        }
+      ],
+      "name": "door_and_regeneration_coordination"
+    },
+    {
+      "baseline_fraction": 0.07484877427570838,
+      "bytes": 4702,
+      "items": [
+        {
+          "bytes": 294,
+          "end": 14565,
+          "marker": "fn predicted_opp_chop(",
+          "start": 14271
+        },
+        {
+          "bytes": 700,
+          "end": 15265,
+          "marker": "fn predict_tree(",
+          "start": 14565
+        },
+        {
+          "bytes": 631,
+          "end": 15896,
+          "marker": "fn chop_outcome(",
+          "start": 15265
+        },
+        {
+          "bytes": 1683,
+          "end": 17579,
+          "marker": "fn chop_candidates(",
+          "start": 15896
+        },
+        {
+          "bytes": 1394,
+          "end": 38059,
+          "marker": "fn yamo_chop_candidates(",
+          "start": 36665
+        }
+      ],
+      "name": "tree_forecast_and_chop_valuation"
+    },
+    {
+      "baseline_fraction": 0.05571474052849411,
+      "bytes": 3500,
+      "items": [
+        {
+          "bytes": 806,
+          "end": 12903,
+          "marker": "fn early_candidates(",
+          "start": 12097
+        },
+        {
+          "bytes": 775,
+          "end": 13678,
+          "marker": "fn fruit_candidates(",
+          "start": 12903
+        },
+        {
+          "bytes": 593,
+          "end": 14271,
+          "marker": "fn iron_candidates(",
+          "start": 13678
+        },
+        {
+          "bytes": 1326,
+          "end": 39385,
+          "marker": "fn main_candidates(",
+          "start": 38059
+        }
+      ],
+      "name": "fruit_iron_and_main_candidate_generation"
+    }
+  ],
+  "method": "exact compact-source item spans found by unique semantic markers and balanced Rust braces; no rustfmt/minification or identifier transformation credited",
+  "schema": "troll-farm-e7a-byte-attribution-v1",
+  "totals": {
+    "additional_net_removal_after_orchard_required": 17281,
+    "attributed_nonoverlapping_bytes": 45996,
+    "secure_orchard_removal_ceiling_bytes": 14129,
+    "unattributed_parser_state_and_orchestration_bytes": 16824
+  }
+}

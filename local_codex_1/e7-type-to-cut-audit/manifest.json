@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "task": "20260731-e7-type-to-cut-audit",
+  "verdict": "HINDSIGHT_RESIDUAL_ONLY",
+  "runs": {
+    "jobs_8": "python3 cgauto/e7_type_to_cut_audit.py --jobs 8 --output /tmp/e7-type-to-cut-j8.json",
+    "jobs_1": "python3 cgauto/e7_type_to_cut_audit.py --jobs 1 --output /tmp/e7-type-to-cut-j1.json",
+    "value_cells": 360,
+    "value_games": 1440
+  },
+  "artifacts": {
+    "analyzer": {
+      "path": "cgauto/e7_type_to_cut_audit.py",
+      "sha256": "519c68a0b639bfd944e43b354ab3933ea312cd21a1a8d4385d52f037df341159"
+    },
+    "tests": {
+      "path": "tests/test_e7_type_to_cut_audit.py",
+      "sha256": "14ab365c26145c1970af1a20d5689cdaa178ae0ee133dfd59b903b29e5a0fc6b"
+    },
+    "protocol": {
+      "path": "docs/e7-type-to-cut-audit-protocol-2026-07-31.md",
+      "sha256": "247178d6e343f14ae10d296ab9c9a67f0f6f422b7eddabb4c3eaf820995e1d64"
+    },
+    "implementation_lock": {
+      "path": "local_codex_1/e7-type-to-cut-audit/implementation-lock.json",
+      "sha256": "fac9ff28e96e65c238ec2b41117ae65b73d3ce1f4c47897eaf45c87c2af8332c"
+    },
+    "compact_result": {
+      "path": "data/analysis/live-agent-6553250/e7-type-to-cut-audit-result-2026-07-31.json",
+      "sha256": "ee59b57f9d8ea8b2391f3408e9ec2470b1fdecbbcf2ebea59baa3c6ab021e829"
+    },
+    "report": {
+      "path": "data/analysis/live-agent-6553250/e7-type-to-cut-audit-result-2026-07-31.md",
+      "sha256": "95c664c748552880555caae065b78f2e9aef3eb5e4e5b165ea56727126b4d849"
+    }
+  },
+  "validation": {
+    "focused_tests": "7 passed",
+    "self_test": "ok",
+    "coverage_complete": true,
+    "geometry_symmetric_seeds": "60/60",
+    "first_divergences_exact_prefix": true,
+    "opponent_leading_divergences": 0,
+    "unexpected_stderr_bytes": 0,
+    "malformed_commands": 0,
+    "value_rows_sha256": "d3f3687945983c4809518388a0269db97d8a50c6ba6917fc12c63ef418410c76",
+    "geometry_rows_sha256": "cf22b763f5fa738a8bd31ac6f4eabc79c58a4a79c4572e696579d3c91a64461a",
+    "divergence_rows_sha256": "220e4b7f0d790ca8bd5f04dca5ef9a2e61a76c9a5ad4b430cfaf95703e4c4e02",
+    "oracle_rows_sha256": "0ed6247f419c986e45a8fcbf78a6102a63c1ae9876f8e1befdcba4ce4949dba1",
+    "jobs_8_full_json_sha256": "18648731768f0756c787ddc52fe83a547213e60e2f35e993b80d2fd45c7fea14",
+    "jobs_1_full_json_sha256": "288cd0a0d21dcf2437553b94dba936878f32ac3fe3380d38901476ec7aa26ca8",
+    "normalized_payload_sha256": "c7a9d614ca607227b1dfb9649783a034212b4446cf5838250768695dff0044a5",
+    "normalized_payloads_excluding_jobs_exact": true,
+    "sacred_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "result": {
+    "mechanism": "ACTIVE_FOCUS",
+    "direct_flip_paired_margin": -12.17361111111111,
+    "seed_hindsight_gain": 10.509722222222223,
+    "preferred_flip_seeds": 24,
+    "positive_leave_one_family_out": 6
+  },
+  "decision": {
+    "keep_current_default": true,
+    "persistent_flip": false,
+    "selector": false,
+    "candidate": false,
+    "arena_action": false,
+    "successor": "E7a prospective-selector decision, gated on peer acceptance"
+  }
+}

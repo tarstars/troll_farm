@@ -1,0 +1,65 @@
+{
+  "schema": "troll-farm-b3-10-near-camp-harvest-scope-audit-v1",
+  "verdict": "CLOSED_BY_EXISTING_VALUE_AND_ROBUSTNESS_EVIDENCE",
+  "population_games": 205,
+  "b3_8": {
+    "near_camp_individual_fruit_units": 1144,
+    "near_camp_bill_relevant_units": 956,
+    "outside_d173b_chop_shadow_fraction": 0.718,
+    "optimistic_walking_detour_le_2_units": 496,
+    "optimistic_walking_detour_le_2_bill_relevant_units": 425,
+    "walking_detour_definition_omits_harvest_and_drop_actions": true,
+    "stock_accounting_not_causal_action_value": true
+  },
+  "direct_value_bounds_per_resident_game": {
+    "own_score_all_496_banked": 2.4195121951219513,
+    "deny_plus_capture_all_496": 4.839024390243903,
+    "current_residual_materiality_reference_margin": 20.0,
+    "generous_margin_headroom_to_reference": -15.160975609756097
+  },
+  "prior_interventions": {
+    "d173a": {
+      "overall_mean_margin_delta": 2.93505859375,
+      "map_clustered_95pct_ci": [
+        1.3461249912183233,
+        4.523992196281677
+      ],
+      "worst_family": "compact_gold",
+      "worst_family_mean_margin_delta": -2.0625,
+      "candidate_catastrophes": 54,
+      "control_catastrophes": 49,
+      "negative_margin_mass_ratio": 1.0958506549533298,
+      "mechanism_gate_pass": false,
+      "value_gate_pass": false
+    },
+    "d173b": {
+      "overall_mean_margin_delta": 1.0625,
+      "map_clustered_95pct_ci": [
+        -0.056151226435769086,
+        2.181151226435769
+      ],
+      "worst_family": "compact_gold",
+      "worst_family_mean_margin_delta": -1.390625,
+      "candidate_catastrophes": 52,
+      "control_catastrophes": 49,
+      "negative_margin_mass_ratio": 1.0811828378696369,
+      "mechanism_gate_pass": false,
+      "value_gate_pass": false
+    }
+  },
+  "gates": {
+    "premise_counts_reconciled": true,
+    "outside_prior_scope_not_treated_as_action_value": true,
+    "scaling_rationale_excluded": true,
+    "direct_gross_margin_ceiling_below_20": true,
+    "both_prior_harvest_arms_fail_family_catastrophe_and_negative_mass_gates": true,
+    "new_intervention_justified": false
+  },
+  "actions": {
+    "analyzer_run": false,
+    "source_or_input_artifact_write": false,
+    "map_or_panel_read": false,
+    "candidate_or_platform_action": false,
+    "successor_protocol_authorized": false
+  }
+}

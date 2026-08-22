@@ -1,0 +1,3734 @@
+{
+  "frozen_inputs": {
+    "accepted_result": {
+      "path": "data/analysis/live-agent-6553250/d159a-current-resident-all-finished-effect-refresh-result.json",
+      "sha256": "bd3fe4571aec423cdb57d514a2f610c0dcfe9845099b5500a6721e98d72965ac"
+    },
+    "data_root": "data",
+    "game_ids": 200,
+    "manifest": {
+      "path": "data/analysis/live-agent-6553250/d159a-current-resident-all-finished-effect-refresh-raw.json",
+      "sha256": "97dc82a730b5a691f2bf63036834b1a9ed23bc186b00d09b874ac092efddf443"
+    },
+    "resident_source": {
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+      "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+    }
+  },
+  "integrity": {
+    "error_count": 0,
+    "errors": [],
+    "gates": {
+      "accepted_result_hash_exact": true,
+      "all_200_games_decoded": true,
+      "all_named_raw_games_present": true,
+      "all_named_trajectories_present": true,
+      "exact_200_unique_ids": true,
+      "manifest_hash_exact": true,
+      "outside_game_ids_read": 0,
+      "resident_source_hash_exact": true,
+      "zero_decode_or_transition_errors": true
+    },
+    "pass": true
+  },
+  "interpretation_limits": [
+    "event-study timing is observational and cannot prove intervention value",
+    "third-worker TRAIN may proxy other opponent-policy changes",
+    "matching uses pregame observables but cannot remove hidden confounding",
+    "a positive result still requires conditioned, always-on, and unchanged arms"
+  ],
+  "schema": "troll-farm-h3-numeric-pressure-contact-causality-v1",
+  "summary": {
+    "cohorts": {
+      "complete_primary_scaled_games": 70,
+      "main_matched_pairs": 70,
+      "main_resident_seats": [
+        0,
+        1
+      ],
+      "main_scaled_opponent_identities": 29,
+      "no_scale_games": 123,
+      "preloss_matched_pairs": 69,
+      "preloss_resident_seats": [
+        0,
+        1
+      ],
+      "preloss_scaled_opponent_identities": 28,
+      "scaled_games": 77
+    },
+    "coverage": {
+      "bootstrap": {
+        "ci95_percentage_points": [
+          -18.828397637557444,
+          -5.854996857372252
+        ],
+        "replicates": 10000,
+        "seed": 20260731,
+        "unit": "game, independently within cohort"
+      },
+      "no_scale": {
+        "contacts": 1131,
+        "coverage": 0.47761824324324326,
+        "crops": 2368,
+        "games": 123
+      },
+      "scaled": {
+        "contacts": 814,
+        "coverage": 0.3537592351151673,
+        "crops": 2301,
+        "games": 77
+      },
+      "scaled_minus_no_scale_percentage_points": -12.385900812807593
+    },
+    "descriptive_margin": {
+      "no_scale_mean": 31.650406504065042,
+      "scaled_mean": -46.23376623376623
+    },
+    "matching": {
+      "after_smd": {
+        "fruit_total": -0.027094435334238196,
+        "opponent_ladder_score": -0.05389030947642573,
+        "opponent_private_fruit": -0.05877277150358098,
+        "own_private_fruit": -0.05877277150358098,
+        "shack_door_distance": 0.18053233096690496,
+        "tree_health_total": 0.08565509629961557,
+        "tree_total": 0.025021296713373626,
+        "water_adjacent_cells": -0.009363407792879697
+      },
+      "before_smd": {
+        "fruit_total": -0.03289514100200189,
+        "opponent_ladder_score": -0.1726642133548467,
+        "opponent_private_fruit": 0.023229763346005745,
+        "own_private_fruit": 0.023229763346005745,
+        "shack_door_distance": 0.49382047591179645,
+        "tree_health_total": 0.29671527392433045,
+        "tree_total": 0.31293572989761453,
+        "water_adjacent_cells": -0.044152654633091336
+      },
+      "features": [
+        "opponent_ladder_score",
+        "fruit_total",
+        "tree_health_total",
+        "tree_total",
+        "shack_door_distance",
+        "own_private_fruit",
+        "opponent_private_fruit",
+        "water_adjacent_cells"
+      ],
+      "maximum_control_reuse": 5,
+      "unique_controls": 45,
+      "with_replacement": true
+    },
+    "materiality_gates": {
+      "coverage_ci_upper_below_zero": true,
+      "coverage_drop_at_least_5pp": true,
+      "main_did_ci_upper_below_1": true,
+      "main_did_ratio_le_0_80": true,
+      "preloss_did_ci_upper_below_1": true,
+      "preloss_did_ratio_le_0_80": true
+    },
+    "materiality_pass": true,
+    "pairs": [
+      {
+        "anchor_turn": 114,
+        "control_features": {
+          "fruit_total": 14.0,
+          "opponent_ladder_score": 16.77,
+          "opponent_private_fruit": 7.0,
+          "own_private_fruit": 7.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 214.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 22.0
+        },
+        "control_game_id": 896347365,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 0
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 10
+          }
+        },
+        "distance": 0.4422650540961623,
+        "permanent_crossover_turn": 165,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 16.18,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 10.0,
+          "tree_health_total": 222.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 22.0
+        },
+        "scaled_game_id": 896347366,
+        "scaled_opponent_agent_id": 6493247,
+        "scaled_windows": {
+          "post": {
+            "events": 4,
+            "exposure": 218
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 37
+          }
+        }
+      },
+      {
+        "anchor_turn": 208,
+        "control_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 24.22,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 7.0,
+          "tree_health_total": 148.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 56.0
+        },
+        "control_game_id": 896352760,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 0
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 0
+          }
+        },
+        "distance": 9.198808681353071,
+        "permanent_crossover_turn": 293,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 2.0,
+          "opponent_ladder_score": 20.54,
+          "opponent_private_fruit": 1.0,
+          "own_private_fruit": 1.0,
+          "shack_door_distance": 14.0,
+          "tree_health_total": 164.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 62.0
+        },
+        "scaled_game_id": 896347586,
+        "scaled_opponent_agent_id": 6479553,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 298
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 275
+          }
+        }
+      },
+      {
+        "anchor_turn": 106,
+        "control_features": {
+          "fruit_total": 6.0,
+          "opponent_ladder_score": 22.54,
+          "opponent_private_fruit": 3.0,
+          "own_private_fruit": 3.0,
+          "shack_door_distance": 10.0,
+          "tree_health_total": 152.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 26.0
+        },
+        "control_game_id": 896351931,
+        "control_windows": {
+          "post": {
+            "events": 2,
+            "exposure": 151
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 200
+          }
+        },
+        "distance": 2.290898824861183,
+        "permanent_crossover_turn": 231,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 6.0,
+          "opponent_ladder_score": 23.62,
+          "opponent_private_fruit": 3.0,
+          "own_private_fruit": 3.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 144.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 42.0
+        },
+        "scaled_game_id": 896347981,
+        "scaled_opponent_agent_id": 6479385,
+        "scaled_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 285
+          },
+          "pre": {
+            "events": 4,
+            "exposure": 273
+          }
+        }
+      },
+      {
+        "anchor_turn": 154,
+        "control_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 23.28,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 130.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 24.0
+        },
+        "control_game_id": 896350059,
+        "control_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 72
+          },
+          "pre": {
+            "events": 5,
+            "exposure": 232
+          }
+        },
+        "distance": 0.8068925418089422,
+        "permanent_crossover_turn": 254,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 24.22,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 13.0,
+          "tree_health_total": 154.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 28.0
+        },
+        "scaled_game_id": 896348189,
+        "scaled_opponent_agent_id": 6481142,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 495
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 135
+          }
+        }
+      },
+      {
+        "anchor_turn": 65,
+        "control_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 22.4,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 4.0,
+          "tree_health_total": 214.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 22.0
+        },
+        "control_game_id": 896349687,
+        "control_windows": {
+          "post": {
+            "events": 8,
+            "exposure": 143
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 111
+          }
+        },
+        "distance": 1.6279809771195664,
+        "permanent_crossover_turn": 185,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 22.62,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 6.0,
+          "tree_health_total": 230.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 26.0
+        },
+        "scaled_game_id": 896349042,
+        "scaled_opponent_agent_id": 6483325,
+        "scaled_windows": {
+          "post": {
+            "events": 4,
+            "exposure": 282
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 133
+          }
+        }
+      },
+      {
+        "anchor_turn": 235,
+        "control_features": {
+          "fruit_total": 14.0,
+          "opponent_ladder_score": 16.77,
+          "opponent_private_fruit": 7.0,
+          "own_private_fruit": 7.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 214.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 22.0
+        },
+        "control_game_id": 896347365,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 23
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 0
+          }
+        },
+        "distance": 1.5323700529088622,
+        "permanent_crossover_turn": 295,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 7.0,
+          "tree_health_total": 220.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 24.0
+        },
+        "scaled_game_id": 896349330,
+        "scaled_opponent_agent_id": 6557848,
+        "scaled_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 25
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 50
+          }
+        }
+      },
+      {
+        "anchor_turn": 81,
+        "control_features": {
+          "fruit_total": 4.0,
+          "opponent_ladder_score": 20.79,
+          "opponent_private_fruit": 2.0,
+          "own_private_fruit": 2.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 118.0,
+          "tree_total": 10.0,
+          "water_adjacent_cells": 32.0
+        },
+        "control_game_id": 896348456,
+        "control_windows": {
+          "post": {
+            "events": 5,
+            "exposure": 82
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 44
+          }
+        },
+        "distance": 2.5984606833475747,
+        "permanent_crossover_turn": 191,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 2.0,
+          "opponent_ladder_score": 23.44,
+          "opponent_private_fruit": 1.0,
+          "own_private_fruit": 1.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 128.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 36.0
+        },
+        "scaled_game_id": 896349382,
+        "scaled_opponent_agent_id": 6481270,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 102
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 108
+          }
+        }
+      },
+      {
+        "anchor_turn": 144,
+        "control_features": {
+          "fruit_total": 14.0,
+          "opponent_ladder_score": 21.61,
+          "opponent_private_fruit": 7.0,
+          "own_private_fruit": 7.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 240.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 54.0
+        },
+        "control_game_id": 896352205,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 0
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 47
+          }
+        },
+        "distance": 1.985761442990113,
+        "permanent_crossover_turn": 207,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 16.0,
+          "opponent_ladder_score": 22.55,
+          "opponent_private_fruit": 8.0,
+          "own_private_fruit": 8.0,
+          "shack_door_distance": 13.0,
+          "tree_health_total": 218.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 48.0
+        },
+        "scaled_game_id": 896349605,
+        "scaled_opponent_agent_id": 6480545,
+        "scaled_windows": {
+          "post": {
+            "events": 3,
+            "exposure": 342
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 100
+          }
+        }
+      },
+      {
+        "anchor_turn": 75,
+        "control_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 19.68,
+          "opponent_private_fruit": 9.0,
+          "own_private_fruit": 9.0,
+          "shack_door_distance": 1.0,
+          "tree_health_total": 216.0,
+          "tree_total": 22.0,
+          "water_adjacent_cells": 24.0
+        },
+        "control_game_id": 896348742,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 0
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 0
+          }
+        },
+        "distance": 2.9674487501178133,
+        "permanent_crossover_turn": 213,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 16.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 8.0,
+          "own_private_fruit": 8.0,
+          "shack_door_distance": 3.0,
+          "tree_health_total": 234.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 34.0
+        },
+        "scaled_game_id": 896349759,
+        "scaled_opponent_agent_id": 6557848,
+        "scaled_windows": {
+          "post": {
+            "events": 3,
+            "exposure": 74
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 63
+          }
+        }
+      },
+      {
+        "anchor_turn": 140,
+        "control_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 22.62,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 14.0,
+          "tree_health_total": 218.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 40.0
+        },
+        "control_game_id": 896352273,
+        "control_windows": {
+          "post": {
+            "events": 2,
+            "exposure": 846
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 413
+          }
+        },
+        "distance": 6.832640085629429,
+        "permanent_crossover_turn": 212,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 218.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 54.0
+        },
+        "scaled_game_id": 896349795,
+        "scaled_opponent_agent_id": 6557848,
+        "scaled_windows": {
+          "post": {
+            "events": 2,
+            "exposure": 157
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 55
+          }
+        }
+      },
+      {
+        "anchor_turn": 110,
+        "control_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 24.22,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 7.0,
+          "tree_health_total": 148.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 56.0
+        },
+        "control_game_id": 896352760,
+        "control_windows": {
+          "post": {
+            "events": 4,
+            "exposure": 65
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 236
+          }
+        },
+        "distance": 1.48653166983653,
+        "permanent_crossover_turn": 301,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 23.62,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 5.0,
+          "tree_health_total": 116.0,
+          "tree_total": 12.0,
+          "water_adjacent_cells": 50.0
+        },
+        "scaled_game_id": 896349964,
+        "scaled_opponent_agent_id": 6479385,
+        "scaled_windows": {
+          "post": {
+            "events": 6,
+            "exposure": 113
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 112
+          }
+        }
+      },
+      {
+        "anchor_turn": 101,
+        "control_features": {
+          "fruit_total": 6.0,
+          "opponent_ladder_score": 22.55,
+          "opponent_private_fruit": 3.0,
+          "own_private_fruit": 3.0,
+          "shack_door_distance": 5.0,
+          "tree_health_total": 136.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 34.0
+        },
+        "control_game_id": 896349546,
+        "control_windows": {
+          "post": {
+            "events": 5,
+            "exposure": 184
+          },
+          "pre": {
+            "events": 5,
+            "exposure": 198
+          }
+        },
+        "distance": 1.1565170547575552,
+        "permanent_crossover_turn": 301,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 6.0,
+          "opponent_ladder_score": 24.03,
+          "opponent_private_fruit": 3.0,
+          "own_private_fruit": 3.0,
+          "shack_door_distance": 3.0,
+          "tree_health_total": 158.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 32.0
+        },
+        "scaled_game_id": 896350026,
+        "scaled_opponent_agent_id": 6481139,
+        "scaled_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 53
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 47
+          }
+        }
+      },
+      {
+        "anchor_turn": 112,
+        "control_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 22.62,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 14.0,
+          "tree_health_total": 218.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 40.0
+        },
+        "control_game_id": 896352273,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 628
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 201
+          }
+        },
+        "distance": 2.0080029416577148,
+        "permanent_crossover_turn": 125,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 23.55,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 216.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 50.0
+        },
+        "scaled_game_id": 896350131,
+        "scaled_opponent_agent_id": 6479542,
+        "scaled_windows": {
+          "post": {
+            "events": 3,
+            "exposure": 200
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 203
+          }
+        }
+      },
+      {
+        "anchor_turn": 61,
+        "control_features": {
+          "fruit_total": 28.0,
+          "opponent_ladder_score": 21.83,
+          "opponent_private_fruit": 14.0,
+          "own_private_fruit": 14.0,
+          "shack_door_distance": 6.0,
+          "tree_health_total": 248.0,
+          "tree_total": 22.0,
+          "water_adjacent_cells": 26.0
+        },
+        "control_game_id": 896349215,
+        "control_windows": {
+          "post": {
+            "events": 5,
+            "exposure": 392
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 100
+          }
+        },
+        "distance": 3.539138272454811,
+        "permanent_crossover_turn": 142,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 28.0,
+          "opponent_ladder_score": 21.74,
+          "opponent_private_fruit": 14.0,
+          "own_private_fruit": 14.0,
+          "shack_door_distance": 13.0,
+          "tree_health_total": 256.0,
+          "tree_total": 22.0,
+          "water_adjacent_cells": 32.0
+        },
+        "scaled_game_id": 896350195,
+        "scaled_opponent_agent_id": 6480516,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 102
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 16
+          }
+        }
+      },
+      {
+        "anchor_turn": 53,
+        "control_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 22.54,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 144.0,
+          "tree_total": 12.0,
+          "water_adjacent_cells": 34.0
+        },
+        "control_game_id": 896350476,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 54
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 3
+          }
+        },
+        "distance": 1.8692319662509855,
+        "permanent_crossover_turn": 124,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 14.0,
+          "opponent_ladder_score": 22.55,
+          "opponent_private_fruit": 7.0,
+          "own_private_fruit": 7.0,
+          "shack_door_distance": 13.0,
+          "tree_health_total": 104.0,
+          "tree_total": 10.0,
+          "water_adjacent_cells": 36.0
+        },
+        "scaled_game_id": 896350273,
+        "scaled_opponent_agent_id": 6480545,
+        "scaled_windows": {
+          "post": {
+            "events": 3,
+            "exposure": 247
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 37
+          }
+        }
+      },
+      {
+        "anchor_turn": 79,
+        "control_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 22.82,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 144.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 38.0
+        },
+        "control_game_id": 896352596,
+        "control_windows": {
+          "post": {
+            "events": 6,
+            "exposure": 292
+          },
+          "pre": {
+            "events": 5,
+            "exposure": 228
+          }
+        },
+        "distance": 0.7339388746258948,
+        "permanent_crossover_turn": 253,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 23.44,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 10.0,
+          "tree_health_total": 156.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 38.0
+        },
+        "scaled_game_id": 896350365,
+        "scaled_opponent_agent_id": 6481270,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 217
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 187
+          }
+        }
+      },
+      {
+        "anchor_turn": 76,
+        "control_features": {
+          "fruit_total": 14.0,
+          "opponent_ladder_score": 22.16,
+          "opponent_private_fruit": 7.0,
+          "own_private_fruit": 7.0,
+          "shack_door_distance": 14.0,
+          "tree_health_total": 148.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 24.0
+        },
+        "control_game_id": 896352175,
+        "control_windows": {
+          "post": {
+            "events": 5,
+            "exposure": 498
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 470
+          }
+        },
+        "distance": 1.6226922307348606,
+        "permanent_crossover_turn": 164,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 23.61,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 14.0,
+          "tree_health_total": 136.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 20.0
+        },
+        "scaled_game_id": 896350499,
+        "scaled_opponent_agent_id": 6479840,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 729
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 420
+          }
+        }
+      },
+      {
+        "anchor_turn": 159,
+        "control_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 14.0,
+          "tree_health_total": 130.0,
+          "tree_total": 12.0,
+          "water_adjacent_cells": 30.0
+        },
+        "control_game_id": 896350822,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 36
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 36
+          }
+        },
+        "distance": 1.6467336340835477,
+        "permanent_crossover_turn": 225,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 10.0,
+          "tree_health_total": 130.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 24.0
+        },
+        "scaled_game_id": 896350706,
+        "scaled_opponent_agent_id": 6557848,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 44
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 84
+          }
+        }
+      },
+      {
+        "anchor_turn": 70,
+        "control_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 22.62,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 14.0,
+          "tree_health_total": 218.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 40.0
+        },
+        "control_game_id": 896352273,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 246
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 150
+          }
+        },
+        "distance": 1.0216064252286525,
+        "permanent_crossover_turn": 121,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 21.61,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 13.0,
+          "tree_health_total": 192.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 36.0
+        },
+        "scaled_game_id": 896350916,
+        "scaled_opponent_agent_id": 6512040,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 66
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 50
+          }
+        }
+      },
+      {
+        "anchor_turn": 127,
+        "control_features": {
+          "fruit_total": 22.0,
+          "opponent_ladder_score": 21.66,
+          "opponent_private_fruit": 11.0,
+          "own_private_fruit": 11.0,
+          "shack_door_distance": 7.0,
+          "tree_health_total": 208.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 54.0
+        },
+        "control_game_id": 896351310,
+        "control_windows": {
+          "post": {
+            "events": 7,
+            "exposure": 380
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 354
+          }
+        },
+        "distance": 2.313603294035158,
+        "permanent_crossover_turn": 211,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 20.0,
+          "opponent_ladder_score": 23.44,
+          "opponent_private_fruit": 10.0,
+          "own_private_fruit": 10.0,
+          "shack_door_distance": 7.0,
+          "tree_health_total": 254.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 46.0
+        },
+        "scaled_game_id": 896350925,
+        "scaled_opponent_agent_id": 6481270,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 54
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 138
+          }
+        }
+      },
+      {
+        "anchor_turn": 103,
+        "control_features": {
+          "fruit_total": 4.0,
+          "opponent_ladder_score": 20.79,
+          "opponent_private_fruit": 2.0,
+          "own_private_fruit": 2.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 118.0,
+          "tree_total": 10.0,
+          "water_adjacent_cells": 32.0
+        },
+        "control_game_id": 896348456,
+        "control_windows": {
+          "post": {
+            "events": 4,
+            "exposure": 105
+          },
+          "pre": {
+            "events": 4,
+            "exposure": 61
+          }
+        },
+        "distance": 2.266058305594885,
+        "permanent_crossover_turn": 171,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 21.74,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 14.0,
+          "tree_health_total": 118.0,
+          "tree_total": 12.0,
+          "water_adjacent_cells": 30.0
+        },
+        "scaled_game_id": 896350956,
+        "scaled_opponent_agent_id": 6480516,
+        "scaled_windows": {
+          "post": {
+            "events": 3,
+            "exposure": 225
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 60
+          }
+        }
+      },
+      {
+        "anchor_turn": 73,
+        "control_features": {
+          "fruit_total": 20.0,
+          "opponent_ladder_score": 22.4,
+          "opponent_private_fruit": 8.0,
+          "own_private_fruit": 8.0,
+          "shack_door_distance": 6.0,
+          "tree_health_total": 154.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 18.0
+        },
+        "control_game_id": 896350456,
+        "control_windows": {
+          "post": {
+            "events": 6,
+            "exposure": 195
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 167
+          }
+        },
+        "distance": 4.3629019699935885,
+        "permanent_crossover_turn": 209,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 22.62,
+          "opponent_private_fruit": 9.0,
+          "own_private_fruit": 9.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 112.0,
+          "tree_total": 10.0,
+          "water_adjacent_cells": 18.0
+        },
+        "scaled_game_id": 896351022,
+        "scaled_opponent_agent_id": 6483325,
+        "scaled_windows": {
+          "post": {
+            "events": 4,
+            "exposure": 455
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 76
+          }
+        }
+      },
+      {
+        "anchor_turn": 69,
+        "control_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 22.57,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 160.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 34.0
+        },
+        "control_game_id": 896347359,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 43
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 37
+          }
+        },
+        "distance": 1.9490476824306269,
+        "permanent_crossover_turn": 127,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 21.61,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 12.0,
+          "tree_health_total": 182.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 46.0
+        },
+        "scaled_game_id": 896351274,
+        "scaled_opponent_agent_id": 6512040,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 61
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 58
+          }
+        }
+      },
+      {
+        "anchor_turn": 138,
+        "control_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 9.0,
+          "own_private_fruit": 9.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 186.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 58.0
+        },
+        "control_game_id": 896526595,
+        "control_windows": {
+          "post": {
+            "events": 3,
+            "exposure": 51
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 42
+          }
+        },
+        "distance": 1.9736672795886094,
+        "permanent_crossover_turn": 301,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 22.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 11.0,
+          "own_private_fruit": 11.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 176.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 62.0
+        },
+        "scaled_game_id": 896351376,
+        "scaled_opponent_agent_id": 6557848,
+        "scaled_windows": {
+          "post": {
+            "events": 2,
+            "exposure": 146
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 73
+          }
+        }
+      },
+      {
+        "anchor_turn": 156,
+        "control_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 22.82,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 144.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 38.0
+        },
+        "control_game_id": 896352596,
+        "control_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 153
+          },
+          "pre": {
+            "events": 5,
+            "exposure": 276
+          }
+        },
+        "distance": 0.8666716964287073,
+        "permanent_crossover_turn": 226,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 22.16,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 13.0,
+          "tree_health_total": 174.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 36.0
+        },
+        "scaled_game_id": 896351409,
+        "scaled_opponent_agent_id": 6479863,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 544
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 393
+          }
+        }
+      },
+      {
+        "anchor_turn": 94,
+        "control_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 22.57,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 160.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 34.0
+        },
+        "control_game_id": 896347359,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 22
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 40
+          }
+        },
+        "distance": 1.3404339704312243,
+        "permanent_crossover_turn": 136,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 22.62,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 8.0,
+          "tree_health_total": 198.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 42.0
+        },
+        "scaled_game_id": 896351446,
+        "scaled_opponent_agent_id": 6483325,
+        "scaled_windows": {
+          "post": {
+            "events": 3,
+            "exposure": 279
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 105
+          }
+        }
+      },
+      {
+        "anchor_turn": 59,
+        "control_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 22.39,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 10.0,
+          "tree_health_total": 172.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 28.0
+        },
+        "control_game_id": 896351609,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 0
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 7
+          }
+        },
+        "distance": 1.3354553326983791,
+        "permanent_crossover_turn": 301,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 16.0,
+          "opponent_ladder_score": 21.61,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 12.0,
+          "tree_health_total": 206.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 26.0
+        },
+        "scaled_game_id": 896351520,
+        "scaled_opponent_agent_id": 6512040,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 50
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 46
+          }
+        }
+      },
+      {
+        "anchor_turn": 58,
+        "control_features": {
+          "fruit_total": 14.0,
+          "opponent_ladder_score": 21.74,
+          "opponent_private_fruit": 7.0,
+          "own_private_fruit": 7.0,
+          "shack_door_distance": 8.0,
+          "tree_health_total": 216.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 26.0
+        },
+        "control_game_id": 896352418,
+        "control_windows": {
+          "post": {
+            "events": 2,
+            "exposure": 67
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 50
+          }
+        },
+        "distance": 0.7338172730946239,
+        "permanent_crossover_turn": 259,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 14.0,
+          "opponent_ladder_score": 22.62,
+          "opponent_private_fruit": 7.0,
+          "own_private_fruit": 7.0,
+          "shack_door_distance": 7.0,
+          "tree_health_total": 216.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 20.0
+        },
+        "scaled_game_id": 896351539,
+        "scaled_opponent_agent_id": 6483325,
+        "scaled_windows": {
+          "post": {
+            "events": 4,
+            "exposure": 496
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 193
+          }
+        }
+      },
+      {
+        "anchor_turn": 76,
+        "control_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 21.92,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 4.0,
+          "tree_health_total": 194.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 42.0
+        },
+        "control_game_id": 896351828,
+        "control_windows": {
+          "post": {
+            "events": 4,
+            "exposure": 183
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 202
+          }
+        },
+        "distance": 1.1574345666806214,
+        "permanent_crossover_turn": 284,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 14.0,
+          "opponent_ladder_score": 22.16,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 6.0,
+          "tree_health_total": 196.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 48.0
+        },
+        "scaled_game_id": 896351694,
+        "scaled_opponent_agent_id": 6479863,
+        "scaled_windows": {
+          "post": {
+            "events": 5,
+            "exposure": 171
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 160
+          }
+        }
+      },
+      {
+        "anchor_turn": 69,
+        "control_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 22.4,
+          "opponent_private_fruit": 9.0,
+          "own_private_fruit": 9.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 210.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 54.0
+        },
+        "control_game_id": 896351874,
+        "control_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 122
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 64
+          }
+        },
+        "distance": 2.2509124618558833,
+        "permanent_crossover_turn": 301,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 21.61,
+          "opponent_private_fruit": 9.0,
+          "own_private_fruit": 9.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 180.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 40.0
+        },
+        "scaled_game_id": 896351758,
+        "scaled_opponent_agent_id": 6512040,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 57
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 50
+          }
+        }
+      },
+      {
+        "anchor_turn": 164,
+        "control_features": {
+          "fruit_total": 14.0,
+          "opponent_ladder_score": 16.77,
+          "opponent_private_fruit": 7.0,
+          "own_private_fruit": 7.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 214.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 22.0
+        },
+        "control_game_id": 896347365,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 0
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 0
+          }
+        },
+        "distance": 4.708221090120921,
+        "permanent_crossover_turn": 263,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 20.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 10.0,
+          "own_private_fruit": 10.0,
+          "shack_door_distance": 4.0,
+          "tree_health_total": 226.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 28.0
+        },
+        "scaled_game_id": 896351773,
+        "scaled_opponent_agent_id": 6557848,
+        "scaled_windows": {
+          "post": {
+            "events": 2,
+            "exposure": 54
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 137
+          }
+        }
+      },
+      {
+        "anchor_turn": 79,
+        "control_features": {
+          "fruit_total": 6.0,
+          "opponent_ladder_score": 22.54,
+          "opponent_private_fruit": 3.0,
+          "own_private_fruit": 3.0,
+          "shack_door_distance": 10.0,
+          "tree_health_total": 152.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 26.0
+        },
+        "control_game_id": 896351931,
+        "control_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 189
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 184
+          }
+        },
+        "distance": 0.8527314233133356,
+        "permanent_crossover_turn": 150,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 4.0,
+          "opponent_ladder_score": 21.61,
+          "opponent_private_fruit": 2.0,
+          "own_private_fruit": 2.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 136.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 32.0
+        },
+        "scaled_game_id": 896351912,
+        "scaled_opponent_agent_id": 6512040,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 8
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 0
+          }
+        }
+      },
+      {
+        "anchor_turn": 140,
+        "control_features": {
+          "fruit_total": 4.0,
+          "opponent_ladder_score": 20.79,
+          "opponent_private_fruit": 2.0,
+          "own_private_fruit": 2.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 118.0,
+          "tree_total": 10.0,
+          "water_adjacent_cells": 32.0
+        },
+        "control_game_id": 896348456,
+        "control_windows": {
+          "post": {
+            "events": 2,
+            "exposure": 52
+          },
+          "pre": {
+            "events": 4,
+            "exposure": 97
+          }
+        },
+        "distance": 4.593474550389974,
+        "permanent_crossover_turn": 229,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 6.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 3.0,
+          "own_private_fruit": 3.0,
+          "shack_door_distance": 13.0,
+          "tree_health_total": 140.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 26.0
+        },
+        "scaled_game_id": 896351921,
+        "scaled_opponent_agent_id": 6557848,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 50
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 94
+          }
+        }
+      },
+      {
+        "anchor_turn": 163,
+        "control_features": {
+          "fruit_total": 4.0,
+          "opponent_ladder_score": 20.91,
+          "opponent_private_fruit": 2.0,
+          "own_private_fruit": 2.0,
+          "shack_door_distance": 3.0,
+          "tree_health_total": 124.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 28.0
+        },
+        "control_game_id": 896347361,
+        "control_windows": {
+          "post": {
+            "events": 6,
+            "exposure": 199
+          },
+          "pre": {
+            "events": 6,
+            "exposure": 164
+          }
+        },
+        "distance": 2.784618944235536,
+        "permanent_crossover_turn": 263,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 0.0,
+          "opponent_ladder_score": 23.44,
+          "opponent_private_fruit": 0.0,
+          "own_private_fruit": 0.0,
+          "shack_door_distance": 4.0,
+          "tree_health_total": 144.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 34.0
+        },
+        "scaled_game_id": 896352075,
+        "scaled_opponent_agent_id": 6481270,
+        "scaled_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 12
+          },
+          "pre": {
+            "events": 4,
+            "exposure": 53
+          }
+        }
+      },
+      {
+        "anchor_turn": 110,
+        "control_features": {
+          "fruit_total": 14.0,
+          "opponent_ladder_score": 22.34,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 6.0,
+          "tree_health_total": 148.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 22.0
+        },
+        "control_game_id": 896347795,
+        "control_windows": {
+          "post": {
+            "events": 5,
+            "exposure": 331
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 133
+          }
+        },
+        "distance": 2.80230986948268,
+        "permanent_crossover_turn": 220,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 22.62,
+          "opponent_private_fruit": 3.0,
+          "own_private_fruit": 3.0,
+          "shack_door_distance": 10.0,
+          "tree_health_total": 176.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 12.0
+        },
+        "scaled_game_id": 896352236,
+        "scaled_opponent_agent_id": 6483325,
+        "scaled_windows": {
+          "post": {
+            "events": 4,
+            "exposure": 332
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 152
+          }
+        }
+      },
+      {
+        "anchor_turn": 108,
+        "control_features": {
+          "fruit_total": 20.0,
+          "opponent_ladder_score": 22.94,
+          "opponent_private_fruit": 10.0,
+          "own_private_fruit": 10.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 168.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 44.0
+        },
+        "control_game_id": 896350530,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 10
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 0
+          }
+        },
+        "distance": 1.6576766867382862,
+        "permanent_crossover_turn": 240,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 20.0,
+          "opponent_ladder_score": 22.16,
+          "opponent_private_fruit": 10.0,
+          "own_private_fruit": 10.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 164.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 58.0
+        },
+        "scaled_game_id": 896352322,
+        "scaled_opponent_agent_id": 6479863,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 317
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 263
+          }
+        }
+      },
+      {
+        "anchor_turn": 68,
+        "control_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 22.16,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 1.0,
+          "tree_health_total": 136.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 62.0
+        },
+        "control_game_id": 896352010,
+        "control_windows": {
+          "post": {
+            "events": 7,
+            "exposure": 33
+          },
+          "pre": {
+            "events": 5,
+            "exposure": 63
+          }
+        },
+        "distance": 2.1114684859449495,
+        "permanent_crossover_turn": 154,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 4.0,
+          "opponent_ladder_score": 23.44,
+          "opponent_private_fruit": 2.0,
+          "own_private_fruit": 2.0,
+          "shack_door_distance": 1.0,
+          "tree_health_total": 158.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 58.0
+        },
+        "scaled_game_id": 896352379,
+        "scaled_opponent_agent_id": 6481270,
+        "scaled_windows": {
+          "post": {
+            "events": 3,
+            "exposure": 146
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 113
+          }
+        }
+      },
+      {
+        "anchor_turn": 140,
+        "control_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 22.4,
+          "opponent_private_fruit": 9.0,
+          "own_private_fruit": 9.0,
+          "shack_door_distance": 7.0,
+          "tree_health_total": 170.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 18.0
+        },
+        "control_game_id": 896350846,
+        "control_windows": {
+          "post": {
+            "events": 2,
+            "exposure": 91
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 177
+          }
+        },
+        "distance": 11.177091107029074,
+        "permanent_crossover_turn": 239,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 26.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 13.0,
+          "own_private_fruit": 13.0,
+          "shack_door_distance": 6.0,
+          "tree_health_total": 130.0,
+          "tree_total": 12.0,
+          "water_adjacent_cells": 20.0
+        },
+        "scaled_game_id": 896352474,
+        "scaled_opponent_agent_id": 6557848,
+        "scaled_windows": {
+          "post": {
+            "events": 2,
+            "exposure": 36
+          },
+          "pre": {
+            "events": 5,
+            "exposure": 230
+          }
+        }
+      },
+      {
+        "anchor_turn": 170,
+        "control_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 19.68,
+          "opponent_private_fruit": 9.0,
+          "own_private_fruit": 9.0,
+          "shack_door_distance": 1.0,
+          "tree_health_total": 216.0,
+          "tree_total": 22.0,
+          "water_adjacent_cells": 24.0
+        },
+        "control_game_id": 896348742,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 17
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 9
+          }
+        },
+        "distance": 4.930602368000344,
+        "permanent_crossover_turn": 296,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 24.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 12.0,
+          "own_private_fruit": 12.0,
+          "shack_door_distance": 3.0,
+          "tree_health_total": 242.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 22.0
+        },
+        "scaled_game_id": 896352481,
+        "scaled_opponent_agent_id": 6557848,
+        "scaled_windows": {
+          "post": {
+            "events": 4,
+            "exposure": 72
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 104
+          }
+        }
+      },
+      {
+        "anchor_turn": 77,
+        "control_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 23.28,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 130.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 24.0
+        },
+        "control_game_id": 896350059,
+        "control_windows": {
+          "post": {
+            "events": 5,
+            "exposure": 340
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 181
+          }
+        },
+        "distance": 0.6128124737846653,
+        "permanent_crossover_turn": 181,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 22.16,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 150.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 30.0
+        },
+        "scaled_game_id": 896352494,
+        "scaled_opponent_agent_id": 6479863,
+        "scaled_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 361
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 120
+          }
+        }
+      },
+      {
+        "anchor_turn": 170,
+        "control_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 22.16,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 5.0,
+          "tree_health_total": 162.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 56.0
+        },
+        "control_game_id": 896351071,
+        "control_windows": {
+          "post": {
+            "events": 3,
+            "exposure": 57
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 48
+          }
+        },
+        "distance": 0.9230910945628592,
+        "permanent_crossover_turn": 301,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 21.74,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 5.0,
+          "tree_health_total": 168.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 62.0
+        },
+        "scaled_game_id": 896352541,
+        "scaled_opponent_agent_id": 6480516,
+        "scaled_windows": {
+          "post": {
+            "events": 4,
+            "exposure": 53
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 18
+          }
+        }
+      },
+      {
+        "anchor_turn": 110,
+        "control_features": {
+          "fruit_total": 20.0,
+          "opponent_ladder_score": 21.21,
+          "opponent_private_fruit": 10.0,
+          "own_private_fruit": 10.0,
+          "shack_door_distance": 12.0,
+          "tree_health_total": 174.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 44.0
+        },
+        "control_game_id": 896352110,
+        "control_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 18
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 32
+          }
+        },
+        "distance": 2.152225093247078,
+        "permanent_crossover_turn": 205,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 24.0,
+          "opponent_ladder_score": 22.94,
+          "opponent_private_fruit": 12.0,
+          "own_private_fruit": 12.0,
+          "shack_door_distance": 13.0,
+          "tree_health_total": 156.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 42.0
+        },
+        "scaled_game_id": 896352675,
+        "scaled_opponent_agent_id": 6480947,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 224
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 189
+          }
+        }
+      },
+      {
+        "anchor_turn": 62,
+        "control_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 22.57,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 160.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 34.0
+        },
+        "control_game_id": 896347359,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 42
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 36
+          }
+        },
+        "distance": 2.947533514318443,
+        "permanent_crossover_turn": 147,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 4.0,
+          "opponent_ladder_score": 23.44,
+          "opponent_private_fruit": 2.0,
+          "own_private_fruit": 2.0,
+          "shack_door_distance": 10.0,
+          "tree_health_total": 180.0,
+          "tree_total": 22.0,
+          "water_adjacent_cells": 34.0
+        },
+        "scaled_game_id": 896352750,
+        "scaled_opponent_agent_id": 6481270,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 183
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 92
+          }
+        }
+      },
+      {
+        "anchor_turn": 201,
+        "control_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 2.0,
+          "tree_health_total": 188.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 40.0
+        },
+        "control_game_id": 896350020,
+        "control_windows": {
+          "post": {
+            "events": 6,
+            "exposure": 237
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 145
+          }
+        },
+        "distance": 4.47259914192572,
+        "permanent_crossover_turn": 301,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 16.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 2.0,
+          "tree_health_total": 210.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 18.0
+        },
+        "scaled_game_id": 896399089,
+        "scaled_opponent_agent_id": 6563190,
+        "scaled_windows": {
+          "post": {
+            "events": 5,
+            "exposure": 262
+          },
+          "pre": {
+            "events": 4,
+            "exposure": 118
+          }
+        }
+      },
+      {
+        "anchor_turn": 133,
+        "control_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 22.82,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 144.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 38.0
+        },
+        "control_game_id": 896352596,
+        "control_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 210
+          },
+          "pre": {
+            "events": 6,
+            "exposure": 288
+          }
+        },
+        "distance": 2.7750418656199933,
+        "permanent_crossover_turn": 173,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 13.0,
+          "tree_health_total": 148.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 40.0
+        },
+        "scaled_game_id": 896399172,
+        "scaled_opponent_agent_id": 6563190,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 248
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 221
+          }
+        }
+      },
+      {
+        "anchor_turn": 163,
+        "control_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 2.0,
+          "tree_health_total": 188.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 40.0
+        },
+        "control_game_id": 896350020,
+        "control_windows": {
+          "post": {
+            "events": 5,
+            "exposure": 185
+          },
+          "pre": {
+            "events": 4,
+            "exposure": 73
+          }
+        },
+        "distance": 2.3255333758028263,
+        "permanent_crossover_turn": 233,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 3.0,
+          "tree_health_total": 200.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 22.0
+        },
+        "scaled_game_id": 896399501,
+        "scaled_opponent_agent_id": 6563190,
+        "scaled_windows": {
+          "post": {
+            "events": 4,
+            "exposure": 384
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 223
+          }
+        }
+      },
+      {
+        "anchor_turn": 95,
+        "control_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 22.54,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 144.0,
+          "tree_total": 12.0,
+          "water_adjacent_cells": 34.0
+        },
+        "control_game_id": 896350476,
+        "control_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 42
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 49
+          }
+        },
+        "distance": 3.207051733274303,
+        "permanent_crossover_turn": 193,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 14.0,
+          "tree_health_total": 160.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 36.0
+        },
+        "scaled_game_id": 896399705,
+        "scaled_opponent_agent_id": 6563190,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 209
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 224
+          }
+        }
+      },
+      {
+        "anchor_turn": 143,
+        "control_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 9.0,
+          "own_private_fruit": 9.0,
+          "shack_door_distance": 13.0,
+          "tree_health_total": 178.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 28.0
+        },
+        "control_game_id": 896410101,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 350
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 255
+          }
+        },
+        "distance": 2.2540938113435582,
+        "permanent_crossover_turn": 193,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 16.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 8.0,
+          "own_private_fruit": 8.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 212.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 18.0
+        },
+        "scaled_game_id": 896420875,
+        "scaled_opponent_agent_id": 6563637,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 309
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 300
+          }
+        }
+      },
+      {
+        "anchor_turn": 118,
+        "control_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 24.22,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 150.0,
+          "tree_total": 12.0,
+          "water_adjacent_cells": 10.0
+        },
+        "control_game_id": 896350224,
+        "control_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 16
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 86
+          }
+        },
+        "distance": 2.9221997486397453,
+        "permanent_crossover_turn": 301,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 10.0,
+          "tree_health_total": 178.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 16.0
+        },
+        "scaled_game_id": 896421371,
+        "scaled_opponent_agent_id": 6563637,
+        "scaled_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 270
+          },
+          "pre": {
+            "events": 5,
+            "exposure": 102
+          }
+        }
+      },
+      {
+        "anchor_turn": 115,
+        "control_features": {
+          "fruit_total": 24.0,
+          "opponent_ladder_score": 25.56,
+          "opponent_private_fruit": 10.0,
+          "own_private_fruit": 10.0,
+          "shack_door_distance": 8.0,
+          "tree_health_total": 226.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 28.0
+        },
+        "control_game_id": 896350071,
+        "control_windows": {
+          "post": {
+            "events": 4,
+            "exposure": 167
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 35
+          }
+        },
+        "distance": 1.8600656711754064,
+        "permanent_crossover_turn": 195,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 24.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 12.0,
+          "own_private_fruit": 12.0,
+          "shack_door_distance": 5.0,
+          "tree_health_total": 206.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 26.0
+        },
+        "scaled_game_id": 896478463,
+        "scaled_opponent_agent_id": 6565274,
+        "scaled_windows": {
+          "post": {
+            "events": 2,
+            "exposure": 121
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 78
+          }
+        }
+      },
+      {
+        "anchor_turn": 82,
+        "control_features": {
+          "fruit_total": 14.0,
+          "opponent_ladder_score": 22.54,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 2.0,
+          "tree_health_total": 190.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 26.0
+        },
+        "control_game_id": 896350789,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 0
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 8
+          }
+        },
+        "distance": 4.500202783656773,
+        "permanent_crossover_turn": 220,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 3.0,
+          "tree_health_total": 150.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 38.0
+        },
+        "scaled_game_id": 896491787,
+        "scaled_opponent_agent_id": 6565556,
+        "scaled_windows": {
+          "post": {
+            "events": 8,
+            "exposure": 179
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 228
+          }
+        }
+      },
+      {
+        "anchor_turn": 133,
+        "control_features": {
+          "fruit_total": 20.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 10.0,
+          "own_private_fruit": 10.0,
+          "shack_door_distance": 3.0,
+          "tree_health_total": 190.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 30.0
+        },
+        "control_game_id": 896422596,
+        "control_windows": {
+          "post": {
+            "events": 5,
+            "exposure": 147
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 0
+          }
+        },
+        "distance": 1.9396234435170012,
+        "permanent_crossover_turn": 192,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 9.0,
+          "own_private_fruit": 9.0,
+          "shack_door_distance": 6.0,
+          "tree_health_total": 162.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 24.0
+        },
+        "scaled_game_id": 896504994,
+        "scaled_opponent_agent_id": 6565654,
+        "scaled_windows": {
+          "post": {
+            "events": 3,
+            "exposure": 324
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 219
+          }
+        }
+      },
+      {
+        "anchor_turn": 126,
+        "control_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 22.16,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 5.0,
+          "tree_health_total": 162.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 56.0
+        },
+        "control_game_id": 896351071,
+        "control_windows": {
+          "post": {
+            "events": 2,
+            "exposure": 60
+          },
+          "pre": {
+            "events": 4,
+            "exposure": 23
+          }
+        },
+        "distance": 4.538407096980214,
+        "permanent_crossover_turn": 273,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 3.0,
+          "tree_health_total": 182.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 54.0
+        },
+        "scaled_game_id": 896525380,
+        "scaled_opponent_agent_id": 6566050,
+        "scaled_windows": {
+          "post": {
+            "events": 3,
+            "exposure": 95
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 48
+          }
+        }
+      },
+      {
+        "anchor_turn": 140,
+        "control_features": {
+          "fruit_total": 22.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 11.0,
+          "own_private_fruit": 11.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 216.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 46.0
+        },
+        "control_game_id": 896649188,
+        "control_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 100
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 74
+          }
+        },
+        "distance": 1.9938075729111564,
+        "permanent_crossover_turn": 239,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 22.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 11.0,
+          "own_private_fruit": 11.0,
+          "shack_door_distance": 7.0,
+          "tree_health_total": 212.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 30.0
+        },
+        "scaled_game_id": 896525888,
+        "scaled_opponent_agent_id": 6566050,
+        "scaled_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 48
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 35
+          }
+        }
+      },
+      {
+        "anchor_turn": 158,
+        "control_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 7.0,
+          "tree_health_total": 184.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 18.0
+        },
+        "control_game_id": 896526856,
+        "control_windows": {
+          "post": {
+            "events": 4,
+            "exposure": 59
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 84
+          }
+        },
+        "distance": 0.457627265258023,
+        "permanent_crossover_turn": 246,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 172.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 22.0
+        },
+        "scaled_game_id": 896526301,
+        "scaled_opponent_agent_id": 6566050,
+        "scaled_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 67
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 51
+          }
+        }
+      },
+      {
+        "anchor_turn": 64,
+        "control_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 20.3,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 8.0,
+          "tree_health_total": 224.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 38.0
+        },
+        "control_game_id": 896348809,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 0
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 0
+          }
+        },
+        "distance": 3.4746507179184807,
+        "permanent_crossover_turn": 223,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 6.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 3.0,
+          "own_private_fruit": 3.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 226.0,
+          "tree_total": 22.0,
+          "water_adjacent_cells": 32.0
+        },
+        "scaled_game_id": 896526481,
+        "scaled_opponent_agent_id": 6566050,
+        "scaled_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 83
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 20
+          }
+        }
+      },
+      {
+        "anchor_turn": 117,
+        "control_features": {
+          "fruit_total": 14.0,
+          "opponent_ladder_score": 16.77,
+          "opponent_private_fruit": 7.0,
+          "own_private_fruit": 7.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 214.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 22.0
+        },
+        "control_game_id": 896347365,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 0
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 10
+          }
+        },
+        "distance": 2.4804555589136497,
+        "permanent_crossover_turn": 301,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 9.0,
+          "own_private_fruit": 9.0,
+          "shack_door_distance": 6.0,
+          "tree_health_total": 234.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 30.0
+        },
+        "scaled_game_id": 896548198,
+        "scaled_opponent_agent_id": 6566112,
+        "scaled_windows": {
+          "post": {
+            "events": 3,
+            "exposure": 143
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 118
+          }
+        }
+      },
+      {
+        "anchor_turn": 140,
+        "control_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 22.82,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 6.0,
+          "tree_health_total": 174.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 30.0
+        },
+        "control_game_id": 896352340,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 0
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 38
+          }
+        },
+        "distance": 7.550099436046187,
+        "permanent_crossover_turn": 272,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 6.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 1.0,
+          "own_private_fruit": 1.0,
+          "shack_door_distance": 8.0,
+          "tree_health_total": 202.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 28.0
+        },
+        "scaled_game_id": 896548356,
+        "scaled_opponent_agent_id": 6566112,
+        "scaled_windows": {
+          "post": {
+            "events": 2,
+            "exposure": 33
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 106
+          }
+        }
+      },
+      {
+        "anchor_turn": 168,
+        "control_features": {
+          "fruit_total": 24.0,
+          "opponent_ladder_score": 25.56,
+          "opponent_private_fruit": 10.0,
+          "own_private_fruit": 10.0,
+          "shack_door_distance": 8.0,
+          "tree_health_total": 226.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 28.0
+        },
+        "control_game_id": 896350071,
+        "control_windows": {
+          "post": {
+            "events": 5,
+            "exposure": 217
+          },
+          "pre": {
+            "events": 4,
+            "exposure": 170
+          }
+        },
+        "distance": 4.122530068914836,
+        "permanent_crossover_turn": 218,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 20.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 10.0,
+          "own_private_fruit": 10.0,
+          "shack_door_distance": 5.0,
+          "tree_health_total": 270.0,
+          "tree_total": 24.0,
+          "water_adjacent_cells": 20.0
+        },
+        "scaled_game_id": 896569360,
+        "scaled_opponent_agent_id": 6566509,
+        "scaled_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 231
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 150
+          }
+        }
+      },
+      {
+        "anchor_turn": 82,
+        "control_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 22.57,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 160.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 34.0
+        },
+        "control_game_id": 896347359,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 32
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 38
+          }
+        },
+        "distance": 4.038538874025128,
+        "permanent_crossover_turn": 202,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 10.0,
+          "tree_health_total": 210.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 30.0
+        },
+        "scaled_game_id": 896580977,
+        "scaled_opponent_agent_id": 6567585,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 299
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 272
+          }
+        }
+      },
+      {
+        "anchor_turn": 83,
+        "control_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 23.76,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 14.0,
+          "tree_health_total": 206.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 22.0
+        },
+        "control_game_id": 896352724,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 133
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 31
+          }
+        },
+        "distance": 2.806452402973359,
+        "permanent_crossover_turn": 215,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 10.0,
+          "tree_health_total": 192.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 22.0
+        },
+        "scaled_game_id": 896585749,
+        "scaled_opponent_agent_id": 6567667,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 496
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 278
+          }
+        }
+      },
+      {
+        "anchor_turn": 111,
+        "control_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 22.62,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 14.0,
+          "tree_health_total": 218.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 40.0
+        },
+        "control_game_id": 896352273,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 619
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 196
+          }
+        },
+        "distance": 4.769836408866967,
+        "permanent_crossover_turn": 232,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 14.0,
+          "tree_health_total": 192.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 24.0
+        },
+        "scaled_game_id": 896586095,
+        "scaled_opponent_agent_id": 6567667,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 373
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 323
+          }
+        }
+      },
+      {
+        "anchor_turn": 70,
+        "control_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 9.0,
+          "own_private_fruit": 9.0,
+          "shack_door_distance": 13.0,
+          "tree_health_total": 178.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 28.0
+        },
+        "control_game_id": 896410101,
+        "control_windows": {
+          "post": {
+            "events": 3,
+            "exposure": 215
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 197
+          }
+        },
+        "distance": 3.1765407726059025,
+        "permanent_crossover_turn": 279,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 9.0,
+          "own_private_fruit": 9.0,
+          "shack_door_distance": 14.0,
+          "tree_health_total": 166.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 48.0
+        },
+        "scaled_game_id": 896588124,
+        "scaled_opponent_agent_id": 6567772,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 294
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 292
+          }
+        }
+      },
+      {
+        "anchor_turn": 179,
+        "control_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 24.22,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 150.0,
+          "tree_total": 12.0,
+          "water_adjacent_cells": 10.0
+        },
+        "control_game_id": 896350224,
+        "control_windows": {
+          "post": {
+            "events": 3,
+            "exposure": 44
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 5
+          }
+        },
+        "distance": 4.19555263213093,
+        "permanent_crossover_turn": 216,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 3.0,
+          "own_private_fruit": 3.0,
+          "shack_door_distance": 12.0,
+          "tree_health_total": 194.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 16.0
+        },
+        "scaled_game_id": 896588235,
+        "scaled_opponent_agent_id": 6567772,
+        "scaled_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 290
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 229
+          }
+        }
+      },
+      {
+        "anchor_turn": 128,
+        "control_features": {
+          "fruit_total": 20.0,
+          "opponent_ladder_score": 24.08,
+          "opponent_private_fruit": 10.0,
+          "own_private_fruit": 10.0,
+          "shack_door_distance": 5.0,
+          "tree_health_total": 196.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 42.0
+        },
+        "control_game_id": 896349942,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 0
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 44
+          }
+        },
+        "distance": 1.9435257739697234,
+        "permanent_crossover_turn": 222,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 20.0,
+          "opponent_ladder_score": 26.91,
+          "opponent_private_fruit": 10.0,
+          "own_private_fruit": 10.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 194.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 42.0
+        },
+        "scaled_game_id": 896606028,
+        "scaled_opponent_agent_id": 6567909,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 291
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 151
+          }
+        }
+      },
+      {
+        "anchor_turn": 106,
+        "control_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 22.54,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 170.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 26.0
+        },
+        "control_game_id": 896351955,
+        "control_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 21
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 48
+          }
+        },
+        "distance": 6.777911198282625,
+        "permanent_crossover_turn": 162,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 10.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 5.0,
+          "own_private_fruit": 5.0,
+          "shack_door_distance": 10.0,
+          "tree_health_total": 130.0,
+          "tree_total": 12.0,
+          "water_adjacent_cells": 14.0
+        },
+        "scaled_game_id": 896626900,
+        "scaled_opponent_agent_id": 6568027,
+        "scaled_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 72
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 114
+          }
+        }
+      },
+      {
+        "anchor_turn": 139,
+        "control_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 9.0,
+          "own_private_fruit": 9.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 186.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 58.0
+        },
+        "control_game_id": 896526595,
+        "control_windows": {
+          "post": {
+            "events": 3,
+            "exposure": 51
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 41
+          }
+        },
+        "distance": 3.76493782329523,
+        "permanent_crossover_turn": 263,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 9.0,
+          "own_private_fruit": 9.0,
+          "shack_door_distance": 12.0,
+          "tree_health_total": 142.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 48.0
+        },
+        "scaled_game_id": 896627113,
+        "scaled_opponent_agent_id": 6568027,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 1
+          },
+          "pre": {
+            "events": 1,
+            "exposure": 30
+          }
+        }
+      },
+      {
+        "anchor_turn": 140,
+        "control_features": {
+          "fruit_total": 18.0,
+          "opponent_ladder_score": 20.79,
+          "opponent_private_fruit": 9.0,
+          "own_private_fruit": 9.0,
+          "shack_door_distance": 3.0,
+          "tree_health_total": 164.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 36.0
+        },
+        "control_game_id": 896348671,
+        "control_windows": {
+          "post": {
+            "events": 8,
+            "exposure": 65
+          },
+          "pre": {
+            "events": 5,
+            "exposure": 79
+          }
+        },
+        "distance": 2.9939954013265138,
+        "permanent_crossover_turn": 272,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 20.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 10.0,
+          "own_private_fruit": 10.0,
+          "shack_door_distance": 4.0,
+          "tree_health_total": 174.0,
+          "tree_total": 14.0,
+          "water_adjacent_cells": 28.0
+        },
+        "scaled_game_id": 896628425,
+        "scaled_opponent_agent_id": 6568027,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 0
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 46
+          }
+        }
+      },
+      {
+        "anchor_turn": 117,
+        "control_features": {
+          "fruit_total": 12.0,
+          "opponent_ladder_score": 20.33,
+          "opponent_private_fruit": 6.0,
+          "own_private_fruit": 6.0,
+          "shack_door_distance": 4.0,
+          "tree_health_total": 196.0,
+          "tree_total": 16.0,
+          "water_adjacent_cells": 20.0
+        },
+        "control_game_id": 896347362,
+        "control_windows": {
+          "post": {
+            "events": 1,
+            "exposure": 7
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 23
+          }
+        },
+        "distance": 5.063137855340373,
+        "permanent_crossover_turn": 258,
+        "resident_seat": 1,
+        "scaled_features": {
+          "fruit_total": 8.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 4.0,
+          "own_private_fruit": 4.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 182.0,
+          "tree_total": 18.0,
+          "water_adjacent_cells": 22.0
+        },
+        "scaled_game_id": 896648983,
+        "scaled_opponent_agent_id": 6568324,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 48
+          },
+          "pre": {
+            "events": 2,
+            "exposure": 53
+          }
+        }
+      },
+      {
+        "anchor_turn": 144,
+        "control_features": {
+          "fruit_total": 14.0,
+          "opponent_ladder_score": 16.77,
+          "opponent_private_fruit": 7.0,
+          "own_private_fruit": 7.0,
+          "shack_door_distance": 9.0,
+          "tree_health_total": 214.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 22.0
+        },
+        "control_game_id": 896347365,
+        "control_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 0
+          },
+          "pre": {
+            "events": 0,
+            "exposure": 0
+          }
+        },
+        "distance": 0.5406132111578982,
+        "permanent_crossover_turn": 288,
+        "resident_seat": 0,
+        "scaled_features": {
+          "fruit_total": 14.0,
+          "opponent_ladder_score": 16.37,
+          "opponent_private_fruit": 7.0,
+          "own_private_fruit": 7.0,
+          "shack_door_distance": 11.0,
+          "tree_health_total": 198.0,
+          "tree_total": 20.0,
+          "water_adjacent_cells": 26.0
+        },
+        "scaled_game_id": 896649146,
+        "scaled_opponent_agent_id": 6568324,
+        "scaled_windows": {
+          "post": {
+            "events": 0,
+            "exposure": 47
+          },
+          "pre": {
+            "events": 3,
+            "exposure": 84
+          }
+        }
+      }
+    ],
+    "preloss_20_turn": {
+      "bootstrap": {
+        "ci95": [
+          0.29282384865769195,
+          0.840743208782317
+        ],
+        "replicates": 10000,
+        "seed": 20260731,
+        "unit": "matched scaled game/control pair"
+      },
+      "control": {
+        "post": {
+          "events": 64,
+          "exposure": 3360,
+          "raw_hazard_per_1000": 19.04761904761905,
+          "smoothed_hazard": 0.01919071704849747
+        },
+        "pre": {
+          "events": 60,
+          "exposure": 3130,
+          "raw_hazard_per_1000": 19.169329073482427,
+          "smoothed_hazard": 0.019322900031938678
+        }
+      },
+      "control_post_pre_ratio": 0.9931592575015797,
+      "did_hazard_ratio": 0.510266437502987,
+      "pairs": 69,
+      "scaled": {
+        "post": {
+          "events": 29,
+          "exposure": 4754,
+          "raw_hazard_per_1000": 6.100126209507783,
+          "smoothed_hazard": 0.006203995793901157
+        },
+        "pre": {
+          "events": 44,
+          "exposure": 3634,
+          "raw_hazard_per_1000": 12.107870115575125,
+          "smoothed_hazard": 0.012242090784044016
+        }
+      },
+      "scaled_post_pre_ratio": 0.5067758361984428
+    },
+    "preloss_scaled_game_ids": [
+      896347366,
+      896347586,
+      896347981,
+      896348189,
+      896349042,
+      896349330,
+      896349382,
+      896349605,
+      896349759,
+      896349795,
+      896349964,
+      896350026,
+      896350195,
+      896350273,
+      896350365,
+      896350499,
+      896350706,
+      896350916,
+      896350925,
+      896350956,
+      896351022,
+      896351274,
+      896351376,
+      896351409,
+      896351446,
+      896351520,
+      896351539,
+      896351694,
+      896351758,
+      896351773,
+      896351912,
+      896351921,
+      896352075,
+      896352236,
+      896352322,
+      896352379,
+      896352474,
+      896352481,
+      896352494,
+      896352541,
+      896352675,
+      896352750,
+      896399089,
+      896399172,
+      896399501,
+      896399705,
+      896420875,
+      896421371,
+      896478463,
+      896491787,
+      896504994,
+      896525380,
+      896525888,
+      896526301,
+      896526481,
+      896548198,
+      896548356,
+      896569360,
+      896580977,
+      896585749,
+      896586095,
+      896588124,
+      896588235,
+      896606028,
+      896626900,
+      896627113,
+      896628425,
+      896648983,
+      896649146
+    ],
+    "primary_50_turn": {
+      "bootstrap": {
+        "ci95": [
+          0.41003771975239733,
+          0.8953883901310522
+        ],
+        "replicates": 10000,
+        "seed": 20260731,
+        "unit": "matched scaled game/control pair"
+      },
+      "control": {
+        "post": {
+          "events": 157,
+          "exposure": 9389,
+          "raw_hazard_per_1000": 16.72169560123549,
+          "smoothed_hazard": 0.016773162939297124
+        },
+        "pre": {
+          "events": 121,
+          "exposure": 7143,
+          "raw_hazard_per_1000": 16.939661206775867,
+          "smoothed_hazard": 0.017007278835386337
+        }
+      },
+      "control_post_pre_ratio": 0.9862343706859149,
+      "did_hazard_ratio": 0.6060526004698841,
+      "pairs": 70,
+      "scaled": {
+        "post": {
+          "events": 110,
+          "exposure": 13652,
+          "raw_hazard_per_1000": 8.057427483152653,
+          "smoothed_hazard": 0.008093459312971509
+        },
+        "pre": {
+          "events": 127,
+          "exposure": 9415,
+          "raw_hazard_per_1000": 13.489113117365905,
+          "smoothed_hazard": 0.013540781648258284
+        }
+      },
+      "scaled_post_pre_ratio": 0.5977099050269783
+    },
+    "support_gates": {
+      "all_post_match_abs_smd_le_0_25": true,
+      "main_at_least_12_opponent_identities": true,
+      "main_at_least_40_pairs": true,
+      "main_both_seats": true,
+      "nonzero_events_and_exposure_all_cells": true,
+      "preloss_at_least_20_pairs": true,
+      "preloss_at_least_8_opponent_identities": true,
+      "preloss_both_seats": true
+    },
+    "support_pass": true
+  },
+  "task_id": "20260731-h3-numeric-pressure-contact-causality",
+  "verdict": "TEMPORALLY_ORDERED_PRESSURE_SIGNAL_PREFLIGHT_ONLY"
+}

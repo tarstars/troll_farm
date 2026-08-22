@@ -1,0 +1,36 @@
+{
+  "task_id": "20260731-h3a-pressure-treatment-reconstruction",
+  "verdict": "TREATMENT_REPRODUCIBLE",
+  "inputs": {
+    "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+    "cgauto/submissions/candidate-agent6553250-opponent-crop-dual-value-e6-slim.min.rs": "083107f53e412be49fa06163f511a1453f7dc5447baed51ecda6d567785044cf",
+    "cgauto/submissions/candidate-agent6553250-opponent-crop-dual-value-e6-slim.min.rs.sha256": "9811fb4f0d2ed3112b5eeef399f8ec36fc9b0a2a296f9ee1ca01fbe9415b249c",
+    "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage.min.rs": "da53b0f66a0224bf9c8d5796d69905a9bebcf1e71ee97e4b65e72a2fdea046e9",
+    "chatgpt_1/h3a_pressure_treatment_reconstruction.py": "60073fa609f735ff8217f0f56ae2ac6a48a2f509033c35c7fc22b018ea637667",
+    "tests/test_h3a_pressure_treatment_reconstruction.py": "8daf6645cbd8f0f8c104ddc488ae8a71c4a59b528979dbdd781f8872d5f70e68"
+  },
+  "outputs": {
+    "data/analysis/live-agent-6553250/h3a-pressure-treatment-reconstruction-result-2026-07-31.json": "36868cf87be0f881ab7f24363c54ff4eafb24cf1756baea714033ffec124ad0c",
+    "chatgpt_1/h3a-pressure-treatment-reconstruction-result.md": "ab753cef483275446efd7c3b0b94be60f3e8efc4e41e18b0c2ab3f127eafe82d"
+  },
+  "validation": {
+    "json_valid": true,
+    "python_compile": true,
+    "self_test": true,
+    "focused_pytest": "14 passed",
+    "direct_no_compile_results_byte_identical": true,
+    "full_compiled_results_byte_identical": true,
+    "decision_evidence_semantic_check": "11 records; 6 closures excluding void; 1 void premise",
+    "decision_evidence_pytest": "25 passed",
+    "git_diff_check": true,
+    "state_lines": 150,
+    "ledger_bytes": 58383,
+    "sacred_resident_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "actions": {
+    "existing_source_edit": false,
+    "map_or_range_read": false,
+    "runner_or_panel_created": false,
+    "candidate_or_platform_action": false
+  }
+}

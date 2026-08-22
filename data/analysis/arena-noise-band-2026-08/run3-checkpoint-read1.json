@@ -1,0 +1,2599 @@
+{
+ "schema": 1,
+ "observed_at": "2026-08-12T19:54:53.205942+00:00",
+ "result_audit_completed_at": "2026-08-12T19:54:53.206170+00:00",
+ "role": "sigma-run3-read1",
+ "agent_id": 6604529,
+ "submission_id": 41128302,
+ "arena": {
+  "agent_id": 6612307,
+  "rank": 31,
+  "total": 147,
+  "score": 23.65,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6612307,
+  "rank": 31,
+  "score": 23.64,
+  "division_index": 5
+ },
+ "battle_rows_listed": 99,
+ "matching_rows": 0,
+ "matching_finished": 0,
+ "matching_pending": 0,
+ "unexpected_rows": [
+  {
+   "game_id": 898784773,
+   "done": false,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898784638,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479814,
+     "position": 1,
+     "userId": 154935,
+     "nickname": "yamo",
+     "publicHandle": "ac2d137258e2a4fef87ec64dcdd1b5eb539451",
+     "avatar": 13357218751473,
+     "testSessionHandle": "76952603e3dc214d016a6ab6c5bf6b0334a90389",
+     "submissionId": 40706161
+    }
+   ]
+  },
+  {
+   "game_id": 898784585,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6479863,
+     "position": 0,
+     "userId": 3686887,
+     "nickname": "R1FA",
+     "publicHandle": "fa3c13fc1b0bbb004e400be12d2a1cb37886863",
+     "avatar": 43807526086874,
+     "testSessionHandle": "769526852d59376d457d8216e94d2cd0507c8766",
+     "submissionId": 40707957
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898784509,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479842,
+     "position": 1,
+     "userId": 2950978,
+     "nickname": "icecuber",
+     "publicHandle": "e8c28f95e3e32c69f8a08476678c8cfb8790592",
+     "avatar": 22740742148777,
+     "testSessionHandle": "76952647f0af0c5e995bb55c43d6b34c27bcb045",
+     "submissionId": 40701933
+    }
+   ]
+  },
+  {
+   "game_id": 898784431,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6479542,
+     "position": 0,
+     "userId": 1334166,
+     "nickname": "xSkyline",
+     "publicHandle": "8ab4ac2c73792ce290b57b137bb240ae6614331",
+     "avatar": 95591782381811,
+     "testSessionHandle": "7695214472fc0aaa79cec05c5ff74135716d3102",
+     "submissionId": 40707465
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898784369,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479385,
+     "position": 1,
+     "userId": 1802967,
+     "nickname": "Meruem",
+     "publicHandle": "bc9723d362c929d55b5f66013583b2a87692081",
+     "avatar": 31992166318610,
+     "testSessionHandle": "76951879ffb7fc4524dd8bdca29269e413feb666",
+     "submissionId": 40706460
+    }
+   ]
+  },
+  {
+   "game_id": 898784325,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6482167,
+     "position": 1,
+     "userId": 862919,
+     "nickname": "Astrobytes",
+     "publicHandle": "f76499818f5cfc3f3fa8c0eb31e13344919268",
+     "avatar": 60413902297900,
+     "testSessionHandle": "769539151bd45cac8fa6e624422bea0286973411",
+     "submissionId": 40752249
+    }
+   ]
+  },
+  {
+   "game_id": 898784313,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479814,
+     "position": 1,
+     "userId": 154935,
+     "nickname": "yamo",
+     "publicHandle": "ac2d137258e2a4fef87ec64dcdd1b5eb539451",
+     "avatar": 13357218751473,
+     "testSessionHandle": "76952603e3dc214d016a6ab6c5bf6b0334a90389",
+     "submissionId": 40706161
+    }
+   ]
+  },
+  {
+   "game_id": 898784294,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6479385,
+     "position": 0,
+     "userId": 1802967,
+     "nickname": "Meruem",
+     "publicHandle": "bc9723d362c929d55b5f66013583b2a87692081",
+     "avatar": 31992166318610,
+     "testSessionHandle": "76951879ffb7fc4524dd8bdca29269e413feb666",
+     "submissionId": 40706460
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898784251,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6482167,
+     "position": 0,
+     "userId": 862919,
+     "nickname": "Astrobytes",
+     "publicHandle": "f76499818f5cfc3f3fa8c0eb31e13344919268",
+     "avatar": 60413902297900,
+     "testSessionHandle": "769539151bd45cac8fa6e624422bea0286973411",
+     "submissionId": 40752249
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898784241,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6482016,
+     "position": 0,
+     "userId": 1881651,
+     "nickname": "DoubtinGiyov",
+     "publicHandle": "9e31ed144e4939309714edf34a1198851561881",
+     "avatar": 18050664099663,
+     "testSessionHandle": "76954630fc71225df6871b55e0e30abae6a83ece",
+     "submissionId": 40751228
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898784204,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479863,
+     "position": 1,
+     "userId": 3686887,
+     "nickname": "R1FA",
+     "publicHandle": "fa3c13fc1b0bbb004e400be12d2a1cb37886863",
+     "avatar": 43807526086874,
+     "testSessionHandle": "769526852d59376d457d8216e94d2cd0507c8766",
+     "submissionId": 40707957
+    }
+   ]
+  },
+  {
+   "game_id": 898784179,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6481225,
+     "position": 0,
+     "userId": 3918583,
+     "nickname": "mikmak",
+     "publicHandle": "f9bbfea0c4a031ce1857249bb7a5245c3858193",
+     "avatar": 48134583112917,
+     "testSessionHandle": "7695506932c38452fd32f6a6e09bd13597e385a5",
+     "submissionId": 40708730
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898784168,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6482016,
+     "position": 0,
+     "userId": 1881651,
+     "nickname": "DoubtinGiyov",
+     "publicHandle": "9e31ed144e4939309714edf34a1198851561881",
+     "avatar": 18050664099663,
+     "testSessionHandle": "76954630fc71225df6871b55e0e30abae6a83ece",
+     "submissionId": 40751228
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898784126,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6483545,
+     "position": 0,
+     "userId": 1300254,
+     "nickname": "Escdemon",
+     "publicHandle": "b6b3d2af46caf704ac2bf95c40920e9e4520031",
+     "avatar": 10836573287384,
+     "testSessionHandle": "769539026b40a2504d19088caa492fc14ab1d46f",
+     "submissionId": 40757230
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898784094,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6481225,
+     "position": 1,
+     "userId": 3918583,
+     "nickname": "mikmak",
+     "publicHandle": "f9bbfea0c4a031ce1857249bb7a5245c3858193",
+     "avatar": 48134583112917,
+     "testSessionHandle": "7695506932c38452fd32f6a6e09bd13597e385a5",
+     "submissionId": 40708730
+    }
+   ]
+  },
+  {
+   "game_id": 898784080,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6479542,
+     "position": 0,
+     "userId": 1334166,
+     "nickname": "xSkyline",
+     "publicHandle": "8ab4ac2c73792ce290b57b137bb240ae6614331",
+     "avatar": 95591782381811,
+     "testSessionHandle": "7695214472fc0aaa79cec05c5ff74135716d3102",
+     "submissionId": 40707465
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898784043,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6481270,
+     "position": 0,
+     "userId": 880353,
+     "nickname": "zasmu",
+     "publicHandle": "ead53cf9dd9808aee051326b776081d2353088",
+     "avatar": 22237226756102,
+     "testSessionHandle": "76955143dc3e87b100b5493605ff7670fe916342",
+     "submissionId": 40705977
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898784024,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6479542,
+     "position": 0,
+     "userId": 1334166,
+     "nickname": "xSkyline",
+     "publicHandle": "8ab4ac2c73792ce290b57b137bb240ae6614331",
+     "avatar": 95591782381811,
+     "testSessionHandle": "7695214472fc0aaa79cec05c5ff74135716d3102",
+     "submissionId": 40707465
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898783912,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479814,
+     "position": 1,
+     "userId": 154935,
+     "nickname": "yamo",
+     "publicHandle": "ac2d137258e2a4fef87ec64dcdd1b5eb539451",
+     "avatar": 13357218751473,
+     "testSessionHandle": "76952603e3dc214d016a6ab6c5bf6b0334a90389",
+     "submissionId": 40706161
+    }
+   ]
+  },
+  {
+   "game_id": 898783899,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6479863,
+     "position": 0,
+     "userId": 3686887,
+     "nickname": "R1FA",
+     "publicHandle": "fa3c13fc1b0bbb004e400be12d2a1cb37886863",
+     "avatar": 43807526086874,
+     "testSessionHandle": "769526852d59376d457d8216e94d2cd0507c8766",
+     "submissionId": 40707957
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898783864,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479814,
+     "position": 1,
+     "userId": 154935,
+     "nickname": "yamo",
+     "publicHandle": "ac2d137258e2a4fef87ec64dcdd1b5eb539451",
+     "avatar": 13357218751473,
+     "testSessionHandle": "76952603e3dc214d016a6ab6c5bf6b0334a90389",
+     "submissionId": 40706161
+    }
+   ]
+  },
+  {
+   "game_id": 898783838,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6559862,
+     "position": 0,
+     "userId": 4067707,
+     "nickname": "therealbeef",
+     "publicHandle": "ecad91b9a50d51a3d9515d303487dd7c7077604",
+     "avatar": 54066924332220,
+     "testSessionHandle": "76952871b57281c4af9eba68ef4186d9552a3797",
+     "submissionId": 41010502
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898783825,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479420,
+     "position": 1,
+     "userId": 841085,
+     "nickname": "Risen",
+     "publicHandle": "c14bcc11abf612c6372e5b12ae46a813580148",
+     "avatar": 1840452387524,
+     "testSessionHandle": "7695193614ed134372bf005cf195ea3cf9edbfc2",
+     "submissionId": 40708915
+    }
+   ]
+  },
+  {
+   "game_id": 898783815,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479385,
+     "position": 1,
+     "userId": 1802967,
+     "nickname": "Meruem",
+     "publicHandle": "bc9723d362c929d55b5f66013583b2a87692081",
+     "avatar": 31992166318610,
+     "testSessionHandle": "76951879ffb7fc4524dd8bdca29269e413feb666",
+     "submissionId": 40706460
+    }
+   ]
+  },
+  {
+   "game_id": 898783805,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6512040,
+     "position": 1,
+     "userId": 6350218,
+     "nickname": "celeria",
+     "publicHandle": "c33f7a97d3621aeef399b30f7cae32088120536",
+     "avatar": 133470886510046,
+     "testSessionHandle": "76954515a710eb1d9c2a53fee1b224266d4d6a38",
+     "submissionId": 40851046
+    }
+   ]
+  },
+  {
+   "game_id": 898783790,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479840,
+     "position": 1,
+     "userId": 580424,
+     "nickname": "siman",
+     "publicHandle": "a1ced13f7e049a38aeeaf04965447aa3424085",
+     "avatar": 7464902754297,
+     "testSessionHandle": "76952645b4547cfbfae66a12511ec12f2c2fbc7d",
+     "submissionId": 40707649
+    }
+   ]
+  },
+  {
+   "game_id": 898783761,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6480947,
+     "position": 0,
+     "userId": 979569,
+     "nickname": "khanh-alice",
+     "publicHandle": "25b4969bee0553a348b3bf3b53f5722e965979",
+     "avatar": 159204229382633,
+     "testSessionHandle": "7695464059e4cd30f171c88fae2b740c2a7bb441",
+     "submissionId": 40705790
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898783758,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6480947,
+     "position": 1,
+     "userId": 979569,
+     "nickname": "khanh-alice",
+     "publicHandle": "25b4969bee0553a348b3bf3b53f5722e965979",
+     "avatar": 159204229382633,
+     "testSessionHandle": "7695464059e4cd30f171c88fae2b740c2a7bb441",
+     "submissionId": 40705790
+    }
+   ]
+  },
+  {
+   "game_id": 898783749,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6481139,
+     "position": 1,
+     "userId": 5872336,
+     "nickname": "uta_ccc",
+     "publicHandle": "d81bf4c2f3ead186a3dc82fd513175796332785",
+     "avatar": 116605764974552,
+     "testSessionHandle": "7695495224c175b52a3a4a61a369bd1ba29de34a",
+     "submissionId": 40709105
+    }
+   ]
+  },
+  {
+   "game_id": 898783738,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6559862,
+     "position": 1,
+     "userId": 4067707,
+     "nickname": "therealbeef",
+     "publicHandle": "ecad91b9a50d51a3d9515d303487dd7c7077604",
+     "avatar": 54066924332220,
+     "testSessionHandle": "76952871b57281c4af9eba68ef4186d9552a3797",
+     "submissionId": 41010502
+    }
+   ]
+  },
+  {
+   "game_id": 898783726,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6559862,
+     "position": 0,
+     "userId": 4067707,
+     "nickname": "therealbeef",
+     "publicHandle": "ecad91b9a50d51a3d9515d303487dd7c7077604",
+     "avatar": 54066924332220,
+     "testSessionHandle": "76952871b57281c4af9eba68ef4186d9552a3797",
+     "submissionId": 41010502
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898783712,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6559862,
+     "position": 0,
+     "userId": 4067707,
+     "nickname": "therealbeef",
+     "publicHandle": "ecad91b9a50d51a3d9515d303487dd7c7077604",
+     "avatar": 54066924332220,
+     "testSessionHandle": "76952871b57281c4af9eba68ef4186d9552a3797",
+     "submissionId": 41010502
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898783691,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6481139,
+     "position": 1,
+     "userId": 5872336,
+     "nickname": "uta_ccc",
+     "publicHandle": "d81bf4c2f3ead186a3dc82fd513175796332785",
+     "avatar": 116605764974552,
+     "testSessionHandle": "7695495224c175b52a3a4a61a369bd1ba29de34a",
+     "submissionId": 40709105
+    }
+   ]
+  },
+  {
+   "game_id": 898783676,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6479420,
+     "position": 0,
+     "userId": 841085,
+     "nickname": "Risen",
+     "publicHandle": "c14bcc11abf612c6372e5b12ae46a813580148",
+     "avatar": 1840452387524,
+     "testSessionHandle": "7695193614ed134372bf005cf195ea3cf9edbfc2",
+     "submissionId": 40708915
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898783667,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6479385,
+     "position": 0,
+     "userId": 1802967,
+     "nickname": "Meruem",
+     "publicHandle": "bc9723d362c929d55b5f66013583b2a87692081",
+     "avatar": 31992166318610,
+     "testSessionHandle": "76951879ffb7fc4524dd8bdca29269e413feb666",
+     "submissionId": 40706460
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898783654,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6481142,
+     "position": 1,
+     "userId": 6585226,
+     "nickname": "XSpace",
+     "publicHandle": "23053e4b8860536288bd4ad8ed47d9bf6225856",
+     "testSessionHandle": "769549547b8f97de6ee9e388ea7f2251d1d01c77",
+     "submissionId": 40706773
+    }
+   ]
+  },
+  {
+   "game_id": 898783633,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6481139,
+     "position": 1,
+     "userId": 5872336,
+     "nickname": "uta_ccc",
+     "publicHandle": "d81bf4c2f3ead186a3dc82fd513175796332785",
+     "avatar": 116605764974552,
+     "testSessionHandle": "7695495224c175b52a3a4a61a369bd1ba29de34a",
+     "submissionId": 40709105
+    }
+   ]
+  },
+  {
+   "game_id": 898783617,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6481547,
+     "position": 1,
+     "userId": 814862,
+     "nickname": "bl4sterino",
+     "publicHandle": "1e1813c97dfafefe6037bda226d823a7268418",
+     "avatar": 161762908233095,
+     "testSessionHandle": "76954642993a33fcf842dbd467285336a741d08b",
+     "submissionId": 40749176
+    }
+   ]
+  },
+  {
+   "game_id": 898783591,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6480947,
+     "position": 1,
+     "userId": 979569,
+     "nickname": "khanh-alice",
+     "publicHandle": "25b4969bee0553a348b3bf3b53f5722e965979",
+     "avatar": 159204229382633,
+     "testSessionHandle": "7695464059e4cd30f171c88fae2b740c2a7bb441",
+     "submissionId": 40705790
+    }
+   ]
+  },
+  {
+   "game_id": 898783576,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6512040,
+     "position": 1,
+     "userId": 6350218,
+     "nickname": "celeria",
+     "publicHandle": "c33f7a97d3621aeef399b30f7cae32088120536",
+     "avatar": 133470886510046,
+     "testSessionHandle": "76954515a710eb1d9c2a53fee1b224266d4d6a38",
+     "submissionId": 40851046
+    }
+   ]
+  },
+  {
+   "game_id": 898783538,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6479814,
+     "position": 0,
+     "userId": 154935,
+     "nickname": "yamo",
+     "publicHandle": "ac2d137258e2a4fef87ec64dcdd1b5eb539451",
+     "avatar": 13357218751473,
+     "testSessionHandle": "76952603e3dc214d016a6ab6c5bf6b0334a90389",
+     "submissionId": 40706161
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898783525,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6481139,
+     "position": 1,
+     "userId": 5872336,
+     "nickname": "uta_ccc",
+     "publicHandle": "d81bf4c2f3ead186a3dc82fd513175796332785",
+     "avatar": 116605764974552,
+     "testSessionHandle": "7695495224c175b52a3a4a61a369bd1ba29de34a",
+     "submissionId": 40709105
+    }
+   ]
+  },
+  {
+   "game_id": 898783497,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6559862,
+     "position": 0,
+     "userId": 4067707,
+     "nickname": "therealbeef",
+     "publicHandle": "ecad91b9a50d51a3d9515d303487dd7c7077604",
+     "avatar": 54066924332220,
+     "testSessionHandle": "76952871b57281c4af9eba68ef4186d9552a3797",
+     "submissionId": 41010502
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898783493,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6559862,
+     "position": 0,
+     "userId": 4067707,
+     "nickname": "therealbeef",
+     "publicHandle": "ecad91b9a50d51a3d9515d303487dd7c7077604",
+     "avatar": 54066924332220,
+     "testSessionHandle": "76952871b57281c4af9eba68ef4186d9552a3797",
+     "submissionId": 41010502
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898783488,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479542,
+     "position": 1,
+     "userId": 1334166,
+     "nickname": "xSkyline",
+     "publicHandle": "8ab4ac2c73792ce290b57b137bb240ae6614331",
+     "avatar": 95591782381811,
+     "testSessionHandle": "7695214472fc0aaa79cec05c5ff74135716d3102",
+     "submissionId": 40707465
+    }
+   ]
+  },
+  {
+   "game_id": 898783473,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479840,
+     "position": 1,
+     "userId": 580424,
+     "nickname": "siman",
+     "publicHandle": "a1ced13f7e049a38aeeaf04965447aa3424085",
+     "avatar": 7464902754297,
+     "testSessionHandle": "76952645b4547cfbfae66a12511ec12f2c2fbc7d",
+     "submissionId": 40707649
+    }
+   ]
+  },
+  {
+   "game_id": 898783454,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6480947,
+     "position": 0,
+     "userId": 979569,
+     "nickname": "khanh-alice",
+     "publicHandle": "25b4969bee0553a348b3bf3b53f5722e965979",
+     "avatar": 159204229382633,
+     "testSessionHandle": "7695464059e4cd30f171c88fae2b740c2a7bb441",
+     "submissionId": 40705790
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898783445,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6481142,
+     "position": 1,
+     "userId": 6585226,
+     "nickname": "XSpace",
+     "publicHandle": "23053e4b8860536288bd4ad8ed47d9bf6225856",
+     "testSessionHandle": "769549547b8f97de6ee9e388ea7f2251d1d01c77",
+     "submissionId": 40706773
+    }
+   ]
+  },
+  {
+   "game_id": 898783434,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479914,
+     "position": 1,
+     "userId": 1872557,
+     "nickname": "FinkPloyd",
+     "publicHandle": "f1e484c6c64c3278370dcc50f19dbae77552781",
+     "avatar": 159185249705376,
+     "testSessionHandle": "76952780965730dd1cbd8863258487760ce94ea9",
+     "submissionId": 40680297
+    }
+   ]
+  },
+  {
+   "game_id": 898783410,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6480947,
+     "position": 1,
+     "userId": 979569,
+     "nickname": "khanh-alice",
+     "publicHandle": "25b4969bee0553a348b3bf3b53f5722e965979",
+     "avatar": 159204229382633,
+     "testSessionHandle": "7695464059e4cd30f171c88fae2b740c2a7bb441",
+     "submissionId": 40705790
+    }
+   ]
+  },
+  {
+   "game_id": 898783381,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6480947,
+     "position": 0,
+     "userId": 979569,
+     "nickname": "khanh-alice",
+     "publicHandle": "25b4969bee0553a348b3bf3b53f5722e965979",
+     "avatar": 159204229382633,
+     "testSessionHandle": "7695464059e4cd30f171c88fae2b740c2a7bb441",
+     "submissionId": 40705790
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898783334,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6481270,
+     "position": 0,
+     "userId": 880353,
+     "nickname": "zasmu",
+     "publicHandle": "ead53cf9dd9808aee051326b776081d2353088",
+     "avatar": 22237226756102,
+     "testSessionHandle": "76955143dc3e87b100b5493605ff7670fe916342",
+     "submissionId": 40705977
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898783289,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6512040,
+     "position": 0,
+     "userId": 6350218,
+     "nickname": "celeria",
+     "publicHandle": "c33f7a97d3621aeef399b30f7cae32088120536",
+     "avatar": 133470886510046,
+     "testSessionHandle": "76954515a710eb1d9c2a53fee1b224266d4d6a38",
+     "submissionId": 40851046
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898783232,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479385,
+     "position": 1,
+     "userId": 1802967,
+     "nickname": "Meruem",
+     "publicHandle": "bc9723d362c929d55b5f66013583b2a87692081",
+     "avatar": 31992166318610,
+     "testSessionHandle": "76951879ffb7fc4524dd8bdca29269e413feb666",
+     "submissionId": 40706460
+    }
+   ]
+  },
+  {
+   "game_id": 898783188,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6580001,
+     "position": 1,
+     "userId": 392581,
+     "nickname": "goq",
+     "publicHandle": "98f4659b3d9069806cfa03ccd9a897da185293",
+     "avatar": 85461929693200,
+     "testSessionHandle": "7695212773b2f4323e2a1c32d257959121f2b2a2",
+     "submissionId": 41059538
+    }
+   ]
+  },
+  {
+   "game_id": 898783125,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479483,
+     "position": 1,
+     "userId": 4618693,
+     "nickname": "cedricdd",
+     "publicHandle": "20f5f88d86185be4439fc7297df0aa073968164",
+     "avatar": 85418008807758,
+     "testSessionHandle": "76952034c627d4478d1fab261329d33d3d918c1c",
+     "submissionId": 40707367
+    }
+   ]
+  },
+  {
+   "game_id": 898782967,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6480516,
+     "position": 1,
+     "userId": 2363657,
+     "nickname": "Ztrk",
+     "publicHandle": "71febeb982e3aa2325576d924b2d87e07563632",
+     "avatar": 83078647386848,
+     "testSessionHandle": "76953905bb8adf03d7650a20eddd3a68be115ee7",
+     "submissionId": 40707262
+    }
+   ]
+  },
+  {
+   "game_id": 898782867,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6481139,
+     "position": 0,
+     "userId": 5872336,
+     "nickname": "uta_ccc",
+     "publicHandle": "d81bf4c2f3ead186a3dc82fd513175796332785",
+     "avatar": 116605764974552,
+     "testSessionHandle": "7695495224c175b52a3a4a61a369bd1ba29de34a",
+     "submissionId": 40709105
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898782785,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6580001,
+     "position": 1,
+     "userId": 392581,
+     "nickname": "goq",
+     "publicHandle": "98f4659b3d9069806cfa03ccd9a897da185293",
+     "avatar": 85461929693200,
+     "testSessionHandle": "7695212773b2f4323e2a1c32d257959121f2b2a2",
+     "submissionId": 41059538
+    }
+   ]
+  },
+  {
+   "game_id": 898782698,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6481252,
+     "position": 1,
+     "userId": 3513265,
+     "nickname": "DaNinja",
+     "publicHandle": "c989a5597d46ef37ec056d273a7975045623153",
+     "avatar": 35022107863170,
+     "testSessionHandle": "769551203f71ff295146435072fb84e335db0817",
+     "submissionId": 40702285
+    }
+   ]
+  },
+  {
+   "game_id": 898782574,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6481252,
+     "position": 1,
+     "userId": 3513265,
+     "nickname": "DaNinja",
+     "publicHandle": "c989a5597d46ef37ec056d273a7975045623153",
+     "avatar": 35022107863170,
+     "testSessionHandle": "769551203f71ff295146435072fb84e335db0817",
+     "submissionId": 40702285
+    }
+   ]
+  },
+  {
+   "game_id": 898782492,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6481143,
+     "position": 1,
+     "userId": 6662598,
+     "nickname": "Pafin",
+     "publicHandle": "e57726b9e6e875c86acfb9398bf838108952666",
+     "avatar": 146570184568124,
+     "testSessionHandle": "7695495554c285b43549ae4c0855782a121bd754",
+     "submissionId": 40706379
+    }
+   ]
+  },
+  {
+   "game_id": 898782272,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6483325,
+     "position": 0,
+     "userId": 4859352,
+     "nickname": "Pech1",
+     "publicHandle": "f6d5e276777ae66211f40db75cffb3f32539584",
+     "testSessionHandle": "769546789e86cdd74d399f4b7b074416f0ee4e50",
+     "submissionId": 40708752
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898782173,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6480950,
+     "position": 1,
+     "userId": 2451535,
+     "nickname": "Epigene",
+     "publicHandle": "6d876caeb248ed83b73b7f6dfa3bde265351542",
+     "avatar": 16991293548759,
+     "testSessionHandle": "76954643237e9c637459136f68678604818ec1a3",
+     "submissionId": 40705395
+    }
+   ]
+  },
+  {
+   "game_id": 898782063,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479388,
+     "position": 1,
+     "userId": 3573721,
+     "nickname": "Kheopsian",
+     "publicHandle": "a47a9ce27913a60ee514c8bc70869f991273753",
+     "avatar": 47496100144083,
+     "testSessionHandle": "7695188210085d941e612e1527bc4d1b41c577f4",
+     "submissionId": 40707808
+    }
+   ]
+  },
+  {
+   "game_id": 898781930,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6604638,
+     "position": 1,
+     "userId": 1290569,
+     "nickname": "a76a44",
+     "publicHandle": "55bff456af6afebf5c0bfa82ae983a799650921",
+     "avatar": 42968987928916,
+     "testSessionHandle": "76954909bb1532b32484a87aa1cb913917da2942",
+     "submissionId": 41113814
+    }
+   ]
+  },
+  {
+   "game_id": 898781811,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479421,
+     "position": 1,
+     "userId": 1162034,
+     "nickname": "krakeusz",
+     "publicHandle": "0cc23d8c7bf11aaff77ec61891ff40f94302611",
+     "avatar": 7186898628736,
+     "testSessionHandle": "76951937346526ab3cee96775bc52bc8d136a08d",
+     "submissionId": 40705776
+    }
+   ]
+  },
+  {
+   "game_id": 898781625,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6479658,
+     "position": 1,
+     "userId": 1500515,
+     "nickname": "eulerscheZahl",
+     "publicHandle": "8374201b6f1d19eb99d61c80351465b65150051",
+     "avatar": 43135502422075,
+     "testSessionHandle": "769523367db06a18aaa5f9b68faaa6faf6e062ec",
+     "submissionId": 40700655
+    }
+   ]
+  },
+  {
+   "game_id": 898781540,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6488390,
+     "position": 0,
+     "userId": 2536538,
+     "nickname": "Pduhard-",
+     "publicHandle": "6ee6afd198f8e23059d9169425ca1cfe8356352",
+     "avatar": 141372882868918,
+     "testSessionHandle": "76953019c989fb03c6a6fb8e4074df7674c00579",
+     "submissionId": 40751031
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898781424,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6481252,
+     "position": 0,
+     "userId": 3513265,
+     "nickname": "DaNinja",
+     "publicHandle": "c989a5597d46ef37ec056d273a7975045623153",
+     "avatar": 35022107863170,
+     "testSessionHandle": "769551203f71ff295146435072fb84e335db0817",
+     "submissionId": 40702285
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898781242,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6483325,
+     "position": 0,
+     "userId": 4859352,
+     "nickname": "Pech1",
+     "publicHandle": "f6d5e276777ae66211f40db75cffb3f32539584",
+     "testSessionHandle": "769546789e86cdd74d399f4b7b074416f0ee4e50",
+     "submissionId": 40708752
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898781134,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6483491,
+     "position": 0,
+     "userId": 7242363,
+     "nickname": "VINCE_MX",
+     "publicHandle": "386810081da8910e124bb190b3c289cf3632427",
+     "avatar": 161417400084021,
+     "testSessionHandle": "769545216b8e060b80c1795c008cfae580070b22",
+     "submissionId": 40756564
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898781059,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6488390,
+     "position": 1,
+     "userId": 2536538,
+     "nickname": "Pduhard-",
+     "publicHandle": "6ee6afd198f8e23059d9169425ca1cfe8356352",
+     "avatar": 141372882868918,
+     "testSessionHandle": "76953019c989fb03c6a6fb8e4074df7674c00579",
+     "submissionId": 40751031
+    }
+   ]
+  },
+  {
+   "game_id": 898780970,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6491567,
+     "position": 1,
+     "userId": 5802287,
+     "nickname": "_H3R0_",
+     "publicHandle": "509ac1c733bdcdabf6e337072359f8e97822085",
+     "avatar": 159627866051081,
+     "testSessionHandle": "76952328e34bcfd7c6126608711e9b9f58bdcee7",
+     "submissionId": 40782415
+    }
+   ]
+  },
+  {
+   "game_id": 898780867,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6481252,
+     "position": 0,
+     "userId": 3513265,
+     "nickname": "DaNinja",
+     "publicHandle": "c989a5597d46ef37ec056d273a7975045623153",
+     "avatar": 35022107863170,
+     "testSessionHandle": "769551203f71ff295146435072fb84e335db0817",
+     "submissionId": 40702285
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898780777,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6480943,
+     "position": 1,
+     "userId": 2373953,
+     "nickname": "Dridriun",
+     "publicHandle": "4eb32b9afb1e4e01424f1ea2edbe52853593732",
+     "avatar": 64609504937617,
+     "testSessionHandle": "76954635b2216c63d7b5453f44daa6ccdaac7857",
+     "submissionId": 40708449
+    }
+   ]
+  },
+  {
+   "game_id": 898780628,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6480948,
+     "position": 1,
+     "userId": 648751,
+     "nickname": "dabino",
+     "publicHandle": "aefa30db4c16e84ff341b4f289deffc9157846",
+     "avatar": 2122731796199,
+     "testSessionHandle": "76954641d1fd23220d316b590f5cf423c10f67eb",
+     "submissionId": 40701997
+    }
+   ]
+  },
+  {
+   "game_id": 898780542,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6541379,
+     "position": 0,
+     "userId": 4316649,
+     "nickname": "GoodDevel",
+     "publicHandle": "a983e55a5a8ef991c2100660533078b89466134",
+     "avatar": 115898580548213,
+     "testSessionHandle": "76954534a6acd661e3d28b452d81e467ee1b16f1",
+     "submissionId": 40843172
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898780445,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6483491,
+     "position": 0,
+     "userId": 7242363,
+     "nickname": "VINCE_MX",
+     "publicHandle": "386810081da8910e124bb190b3c289cf3632427",
+     "avatar": 161417400084021,
+     "testSessionHandle": "769545216b8e060b80c1795c008cfae580070b22",
+     "submissionId": 40756564
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898780303,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6604638,
+     "position": 1,
+     "userId": 1290569,
+     "nickname": "a76a44",
+     "publicHandle": "55bff456af6afebf5c0bfa82ae983a799650921",
+     "avatar": 42968987928916,
+     "testSessionHandle": "76954909bb1532b32484a87aa1cb913917da2942",
+     "submissionId": 41113814
+    }
+   ]
+  },
+  {
+   "game_id": 898780185,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6480943,
+     "position": 1,
+     "userId": 2373953,
+     "nickname": "Dridriun",
+     "publicHandle": "4eb32b9afb1e4e01424f1ea2edbe52853593732",
+     "avatar": 64609504937617,
+     "testSessionHandle": "76954635b2216c63d7b5453f44daa6ccdaac7857",
+     "submissionId": 40708449
+    }
+   ]
+  },
+  {
+   "game_id": 898780082,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6483514,
+     "position": 1,
+     "userId": 4146143,
+     "nickname": "Zabym",
+     "publicHandle": "d61a7782739635a98c2d333c49dde0a53416414",
+     "testSessionHandle": "76952273b68c09cfdf894a47fb7ec3ebba5c7221",
+     "submissionId": 40756960
+    }
+   ]
+  },
+  {
+   "game_id": 898779976,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6483321,
+     "position": 1,
+     "userId": 4322671,
+     "nickname": "xMizar",
+     "publicHandle": "2b96d13fec858a112fd41f3df8a617a31762234",
+     "avatar": 63551420883748,
+     "testSessionHandle": "76954911f384ab01d58988711b3d2f67371523b8",
+     "submissionId": 40707106
+    }
+   ]
+  },
+  {
+   "game_id": 898779888,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6480944,
+     "position": 1,
+     "userId": 4377445,
+     "nickname": "abderrazzak_",
+     "publicHandle": "d43cbf8bc166347ce56cddba61dd59fd5447734",
+     "avatar": 159552968860375,
+     "testSessionHandle": "76954636eca85441b4363fdee08a151a49270ed4",
+     "submissionId": 40707936
+    }
+   ]
+  },
+  {
+   "game_id": 898779764,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6502964,
+     "position": 0,
+     "userId": 3461753,
+     "nickname": "oidrissi",
+     "publicHandle": "4d69c01aea407ba41f4f384b804a7fb53571643",
+     "avatar": 159456566452818,
+     "testSessionHandle": "76953911137f37e74ea56b81695def1512f7872f",
+     "submissionId": 40823799
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898779597,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6480944,
+     "position": 1,
+     "userId": 4377445,
+     "nickname": "abderrazzak_",
+     "publicHandle": "d43cbf8bc166347ce56cddba61dd59fd5447734",
+     "avatar": 159552968860375,
+     "testSessionHandle": "76954636eca85441b4363fdee08a151a49270ed4",
+     "submissionId": 40707936
+    }
+   ]
+  },
+  {
+   "game_id": 898779470,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6575565,
+     "position": 1,
+     "userId": 2907009,
+     "nickname": "Arnaud.Net",
+     "publicHandle": "e00d301d629e668b7365a8d6053ef90d9007092",
+     "avatar": 43971600119231,
+     "testSessionHandle": "76954960246f2d0db6f6e8d863d981206134c928",
+     "submissionId": 40708668
+    }
+   ]
+  },
+  {
+   "game_id": 898779335,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6588480,
+     "position": 1,
+     "userId": 2750377,
+     "nickname": "gybson_samara",
+     "publicHandle": "a2d73df4a7fecd347f585f1ab96911c57730572",
+     "avatar": 43664722637895,
+     "testSessionHandle": "76952502bd0d80a184a84821d7f077bde617c278",
+     "submissionId": 40767265
+    }
+   ]
+  },
+  {
+   "game_id": 898779133,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6579288,
+     "position": 0,
+     "userId": 6989005,
+     "nickname": "conioon",
+     "publicHandle": "125354f2cf6be5f19d2074e8f80fe18b5009896",
+     "testSessionHandle": "76952207dbe7728b6588f403522db0ac7a85c998",
+     "submissionId": 40706065
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898779132,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6596448,
+     "position": 1,
+     "userId": 1815974,
+     "nickname": "tvv766",
+     "publicHandle": "b6dc97ecb949792ba5504023a6d5323e4795181",
+     "avatar": 13576621735241,
+     "testSessionHandle": "7695201695f42e10838a40666b03383690f74f1c",
+     "submissionId": 40694109
+    }
+   ]
+  },
+  {
+   "game_id": 898779131,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6593720,
+     "position": 1,
+     "userId": 3882996,
+     "nickname": "Gr0zamir",
+     "publicHandle": "be087988d2e555e980b183fe3ada1c7c6992883",
+     "avatar": 121366664573166,
+     "testSessionHandle": "76952325adb2c0a3cddcabba8cbdfca1c9f714a0",
+     "submissionId": 41088894
+    }
+   ]
+  },
+  {
+   "game_id": 898779130,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6591737,
+     "position": 1,
+     "userId": 3235897,
+     "nickname": "Zylo",
+     "publicHandle": "e5d7ff0ed3b703ae2529902a9d58e7207985323",
+     "avatar": 25779784253696,
+     "testSessionHandle": "76954519c0e4e399759012db073922721dc43254",
+     "submissionId": 41083824
+    }
+   ]
+  },
+  {
+   "game_id": 898779129,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6489542,
+     "position": 1,
+     "userId": 4856475,
+     "nickname": "aaaaaaaaaa2230",
+     "publicHandle": "756f08cffb260b135c21a1b22747c83d5746584",
+     "testSessionHandle": "76952779f8442d2ace27e8b09ddfc6ff850014f0",
+     "submissionId": 40709376
+    }
+   ]
+  },
+  {
+   "game_id": 898779128,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6543596,
+     "position": 1,
+     "userId": 3971358,
+     "nickname": "OldJohn",
+     "publicHandle": "031c1432ace69f928112bcfafb45e20d8531793",
+     "avatar": 63565949763225,
+     "testSessionHandle": "76952032b3f525804880ee928440081c4573550f",
+     "submissionId": 40967368
+    }
+   ]
+  },
+  {
+   "game_id": 898779127,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6480507,
+     "position": 1,
+     "userId": 5246622,
+     "nickname": "RinSakamichi",
+     "publicHandle": "ddd7ecc418334ce9a2507b6dfadd3dcb2266425",
+     "avatar": 95551565543088,
+     "testSessionHandle": "76953896079b88efdc8f4854f0440ee7944b1eb9",
+     "submissionId": 40702132
+    }
+   ]
+  },
+  {
+   "game_id": 898779126,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6481143,
+     "position": 0,
+     "userId": 6662598,
+     "nickname": "Pafin",
+     "publicHandle": "e57726b9e6e875c86acfb9398bf838108952666",
+     "avatar": 146570184568124,
+     "testSessionHandle": "7695495554c285b43549ae4c0855782a121bd754",
+     "submissionId": 40706379
+    },
+    {
+     "playerAgentId": 6612307,
+     "position": 1,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    }
+   ]
+  },
+  {
+   "game_id": 898779125,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6481547,
+     "position": 1,
+     "userId": 814862,
+     "nickname": "bl4sterino",
+     "publicHandle": "1e1813c97dfafefe6037bda226d823a7268418",
+     "avatar": 161762908233095,
+     "testSessionHandle": "76954642993a33fcf842dbd467285336a741d08b",
+     "submissionId": 40749176
+    }
+   ]
+  },
+  {
+   "game_id": 898779124,
+   "done": true,
+   "players": [
+    {
+     "playerAgentId": 6612307,
+     "position": 0,
+     "userId": 1302251,
+     "nickname": "tass",
+     "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+     "avatar": 17938130361895,
+     "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+     "submissionId": 41128302
+    },
+    {
+     "playerAgentId": 6481504,
+     "position": 1,
+     "userId": 4063805,
+     "nickname": "viewlagoon",
+     "publicHandle": "8e59fb2d0a82fbf8dad243d7ddcf1ba75083604",
+     "avatar": 106899386459507,
+     "testSessionHandle": "769549979631dae636dd9f96f01fa51329e3709d",
+     "submissionId": 40749015
+    }
+   ]
+  }
+ ],
+ "parsed_results": 0,
+ "fetch_failures": [],
+ "summary": {
+  "games": 0,
+  "wins": 0,
+  "ties": 0,
+  "losses": 0,
+  "mean_margin": null,
+  "catastrophic_losses": 0,
+  "catastrophic_rate": null,
+  "negative_margin_mass": 0,
+  "validity_runtime_signals": []
+ },
+ "rows": [],
+ "identity_clean": false
+}

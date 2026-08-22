@@ -1,0 +1,6302 @@
+[
+  {
+    "commands0": "TRAIN 2 2 2 2;MOVE 0 8 6",
+    "commands1": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 11 2",
+    "inv0": [
+      8,
+      8,
+      7,
+      4,
+      7,
+      0
+    ],
+    "inv1": [
+      8,
+      8,
+      7,
+      4,
+      7,
+      0
+    ],
+    "t": 1
+  },
+  {
+    "commands0": "PICK 0 PLUM;MOVE 2 7 7",
+    "commands1": "HARVEST 1",
+    "inv0": [
+      3,
+      3,
+      2,
+      4,
+      2,
+      0
+    ],
+    "inv1": [
+      8,
+      8,
+      7,
+      4,
+      7,
+      0
+    ],
+    "t": 2
+  },
+  {
+    "commands0": "PLANT 0 PLUM;HARVEST 2",
+    "commands1": "DROP 1",
+    "inv0": [
+      2,
+      3,
+      2,
+      4,
+      2,
+      0
+    ],
+    "inv1": [
+      8,
+      8,
+      7,
+      4,
+      7,
+      0
+    ],
+    "t": 3
+  },
+  {
+    "commands0": "MOVE 0 8 5;MOVE 2 8 7",
+    "commands1": "WAIT",
+    "inv0": [
+      2,
+      3,
+      2,
+      4,
+      2,
+      0
+    ],
+    "inv1": [
+      8,
+      9,
+      7,
+      4,
+      7,
+      0
+    ],
+    "t": 4
+  },
+  {
+    "commands0": "PLANT 2 APPLE;MOVE 0 7 5",
+    "commands1": "WAIT",
+    "inv0": [
+      2,
+      3,
+      2,
+      4,
+      2,
+      0
+    ],
+    "inv1": [
+      8,
+      9,
+      7,
+      4,
+      7,
+      0
+    ],
+    "t": 5
+  },
+  {
+    "commands0": "PICK 0 BANANA;MOVE 2 7 7",
+    "commands1": "WAIT",
+    "inv0": [
+      2,
+      3,
+      2,
+      4,
+      2,
+      0
+    ],
+    "inv1": [
+      8,
+      9,
+      7,
+      4,
+      7,
+      0
+    ],
+    "t": 6
+  },
+  {
+    "commands0": "PLANT 0 BANANA;MOVE 2 6 6",
+    "commands1": "WAIT",
+    "inv0": [
+      2,
+      3,
+      2,
+      3,
+      2,
+      0
+    ],
+    "inv1": [
+      8,
+      9,
+      7,
+      4,
+      7,
+      0
+    ],
+    "t": 7
+  },
+  {
+    "commands0": "HARVEST 2;MOVE 0 6 5",
+    "commands1": "WAIT",
+    "inv0": [
+      2,
+      3,
+      2,
+      3,
+      2,
+      0
+    ],
+    "inv1": [
+      8,
+      9,
+      7,
+      4,
+      7,
+      0
+    ],
+    "t": 8
+  },
+  {
+    "commands0": "DROP 2;MOVE 0 5 5",
+    "commands1": "HARVEST 1",
+    "inv0": [
+      2,
+      3,
+      2,
+      3,
+      2,
+      0
+    ],
+    "inv1": [
+      8,
+      9,
+      7,
+      4,
+      7,
+      0
+    ],
+    "t": 9
+  },
+  {
+    "commands0": "MINE 0;MOVE 2 4 6",
+    "commands1": "DROP 1",
+    "inv0": [
+      2,
+      4,
+      3,
+      3,
+      2,
+      0
+    ],
+    "inv1": [
+      8,
+      9,
+      7,
+      4,
+      7,
+      0
+    ],
+    "t": 10
+  },
+  {
+    "commands0": "MINE 2;MOVE 0 6 5",
+    "commands1": "TRAIN 2 3 0 2;MOVE 1 11 3",
+    "inv0": [
+      2,
+      4,
+      3,
+      3,
+      2,
+      0
+    ],
+    "inv1": [
+      8,
+      10,
+      7,
+      4,
+      7,
+      0
+    ],
+    "t": 11
+  },
+  {
+    "commands0": "MOVE 0 7 5;MOVE 2 6 6",
+    "commands1": "MOVE 1 10 3;MOVE 3 9 3",
+    "inv0": [
+      2,
+      4,
+      3,
+      3,
+      2,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      0
+    ],
+    "t": 12
+  },
+  {
+    "commands0": "DROP 0;DROP 2",
+    "commands1": "MOVE 1 9 3;MOVE 3 7 3",
+    "inv0": [
+      2,
+      4,
+      3,
+      3,
+      2,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      0
+    ],
+    "t": 13
+  },
+  {
+    "commands0": "MOVE 0 6 5;MOVE 2 7 5",
+    "commands1": "MOVE 1 8 3;CHOP 3",
+    "inv0": [
+      2,
+      4,
+      3,
+      3,
+      5,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      0
+    ],
+    "t": 14
+  },
+  {
+    "commands0": "MOVE 0 6 6;MOVE 2 7 3",
+    "commands1": "MOVE 1 8 4;CHOP 3",
+    "inv0": [
+      2,
+      4,
+      3,
+      3,
+      5,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      0
+    ],
+    "t": 15
+  },
+  {
+    "commands0": "HARVEST 0;HARVEST 2",
+    "commands1": "MOVE 1 8 5;CHOP 3",
+    "inv0": [
+      2,
+      4,
+      3,
+      3,
+      5,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      0
+    ],
+    "t": 16
+  },
+  {
+    "commands0": "DROP 0;MOVE 2 7 5",
+    "commands1": "MOVE 1 8 6;CHOP 3",
+    "inv0": [
+      2,
+      4,
+      3,
+      3,
+      5,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      0
+    ],
+    "t": 17
+  },
+  {
+    "commands0": "HARVEST 0;DROP 2",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      2,
+      5,
+      3,
+      3,
+      5,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      0
+    ],
+    "t": 18
+  },
+  {
+    "commands0": "DROP 0;MOVE 2 8 6",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      4,
+      5,
+      3,
+      3,
+      5,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      0
+    ],
+    "t": 19
+  },
+  {
+    "commands0": "HARVEST 2;MOVE 0 6 7",
+    "commands1": "CHOP 1;MOVE 3 9 3",
+    "inv0": [
+      4,
+      6,
+      3,
+      3,
+      5,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      0
+    ],
+    "t": 20
+  },
+  {
+    "commands0": "DROP 2;MOVE 0 7 7",
+    "commands1": "CHOP 1;MOVE 3 10 3",
+    "inv0": [
+      4,
+      6,
+      3,
+      3,
+      5,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      0
+    ],
+    "t": 21
+  },
+  {
+    "commands0": "MOVE 0 8 7;MOVE 2 7 5",
+    "commands1": "CHOP 1;DROP 3",
+    "inv0": [
+      6,
+      6,
+      3,
+      3,
+      5,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      0
+    ],
+    "t": 22
+  },
+  {
+    "commands0": "MOVE 0 8 6;MOVE 2 5 5",
+    "commands1": "CHOP 1;MOVE 3 10 5",
+    "inv0": [
+      6,
+      6,
+      3,
+      3,
+      5,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      3
+    ],
+    "t": 23
+  },
+  {
+    "commands0": "HARVEST 0;MINE 2",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      6,
+      6,
+      3,
+      3,
+      5,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      3
+    ],
+    "t": 24
+  },
+  {
+    "commands0": "DROP 0;MOVE 2 6 6",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      6,
+      6,
+      3,
+      3,
+      5,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      3
+    ],
+    "t": 25
+  },
+  {
+    "commands0": "HARVEST 0;DROP 2",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      7,
+      6,
+      3,
+      3,
+      5,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      3
+    ],
+    "t": 26
+  },
+  {
+    "commands0": "DROP 0;HARVEST 2",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      7,
+      6,
+      3,
+      3,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      3
+    ],
+    "t": 27
+  },
+  {
+    "commands0": "HARVEST 0;DROP 2",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      8,
+      6,
+      3,
+      3,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      3
+    ],
+    "t": 28
+  },
+  {
+    "commands0": "DROP 0;MOVE 2 7 7",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      8,
+      7,
+      3,
+      3,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      3
+    ],
+    "t": 29
+  },
+  {
+    "commands0": "PICK 0 LEMON;PICK 2 PLUM",
+    "commands1": "MOVE 1 8 5;MOVE 3 10 3",
+    "inv0": [
+      9,
+      7,
+      3,
+      3,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      3
+    ],
+    "t": 30
+  },
+  {
+    "commands0": "PLANT 0 LEMON;MOVE 2 6 6",
+    "commands1": "MOVE 1 8 4;DROP 3",
+    "inv0": [
+      8,
+      6,
+      3,
+      3,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      3
+    ],
+    "t": 31
+  },
+  {
+    "commands0": "MOVE 0 8 7;MOVE 2 7 5",
+    "commands1": "MOVE 1 9 4;MOVE 3 8 3",
+    "inv0": [
+      8,
+      6,
+      3,
+      3,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      6
+    ],
+    "t": 32
+  },
+  {
+    "commands0": "MOVE 0 7 7;MOVE 2 7 3",
+    "commands1": "MOVE 1 9 3;MOVE 3 7 4",
+    "inv0": [
+      8,
+      6,
+      3,
+      3,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      6
+    ],
+    "t": 33
+  },
+  {
+    "commands0": "PLANT 2 PLUM;MOVE 0 6 7",
+    "commands1": "MOVE 1 10 3;MOVE 3 7 5",
+    "inv0": [
+      8,
+      6,
+      3,
+      3,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      6
+    ],
+    "t": 34
+  },
+  {
+    "commands0": "MOVE 0 6 6;MOVE 2 5 3",
+    "commands1": "DROP 1;CHOP 3",
+    "inv0": [
+      8,
+      6,
+      3,
+      3,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      6
+    ],
+    "t": 35
+  },
+  {
+    "commands0": "HARVEST 0;MOVE 2 3 3",
+    "commands1": "MOVE 1 9 3;CHOP 3",
+    "inv0": [
+      8,
+      6,
+      3,
+      3,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      7
+    ],
+    "t": 36
+  },
+  {
+    "commands0": "DROP 0;MOVE 2 3 1",
+    "commands1": "MOVE 1 8 3;CHOP 3",
+    "inv0": [
+      8,
+      6,
+      3,
+      3,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      7
+    ],
+    "t": 37
+  },
+  {
+    "commands0": "PICK 0 BANANA;HARVEST 2",
+    "commands1": "MOVE 1 8 4;MOVE 3 7 3",
+    "inv0": [
+      8,
+      7,
+      3,
+      3,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      7
+    ],
+    "t": 38
+  },
+  {
+    "commands0": "MOVE 0 6 5;MOVE 2 4 2",
+    "commands1": "MOVE 1 7 4;MOVE 3 9 3",
+    "inv0": [
+      8,
+      7,
+      3,
+      2,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      7
+    ],
+    "t": 39
+  },
+  {
+    "commands0": "MOVE 0 7 5;MOVE 2 5 3",
+    "commands1": "MOVE 1 7 3;MOVE 3 10 3",
+    "inv0": [
+      8,
+      7,
+      3,
+      2,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      7
+    ],
+    "t": 40
+  },
+  {
+    "commands0": "PLANT 0 BANANA;MOVE 2 6 4",
+    "commands1": "CHOP 1;DROP 3",
+    "inv0": [
+      8,
+      7,
+      3,
+      2,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      7
+    ],
+    "t": 41
+  },
+  {
+    "commands0": "MOVE 0 6 5;MOVE 2 7 5",
+    "commands1": "MOVE 1 7 4;MOVE 3 8 3",
+    "inv0": [
+      8,
+      7,
+      3,
+      2,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      10
+    ],
+    "t": 42
+  },
+  {
+    "commands0": "DROP 2;MOVE 0 6 6",
+    "commands1": "MOVE 1 7 5;MOVE 3 7 3",
+    "inv0": [
+      8,
+      7,
+      3,
+      2,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      10
+    ],
+    "t": 43
+  },
+  {
+    "commands0": "MOVE 0 6 7;MOVE 2 8 6",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      8,
+      9,
+      3,
+      2,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      10
+    ],
+    "t": 44
+  },
+  {
+    "commands0": "MOVE 0 6 8;MOVE 2 8 8",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      8,
+      9,
+      3,
+      2,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      10
+    ],
+    "t": 45
+  },
+  {
+    "commands0": "MOVE 0 7 8;MOVE 2 10 8",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      8,
+      9,
+      3,
+      2,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      10
+    ],
+    "t": 46
+  },
+  {
+    "commands0": "HARVEST 2;MOVE 0 8 8",
+    "commands1": "MOVE 1 7 4;CHOP 3",
+    "inv0": [
+      8,
+      9,
+      3,
+      2,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      10
+    ],
+    "t": 47
+  },
+  {
+    "commands0": "MOVE 0 9 8;MOVE 2 8 8",
+    "commands1": "MOVE 1 8 4;CHOP 3",
+    "inv0": [
+      8,
+      9,
+      3,
+      2,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      10
+    ],
+    "t": 48
+  },
+  {
+    "commands0": "MOVE 0 10 8;MOVE 2 8 6",
+    "commands1": "MOVE 1 8 3;CHOP 3",
+    "inv0": [
+      8,
+      9,
+      3,
+      2,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      10
+    ],
+    "t": 49
+  },
+  {
+    "commands0": "HARVEST 0;DROP 2",
+    "commands1": "MOVE 1 8 4;MOVE 3 9 3",
+    "inv0": [
+      8,
+      9,
+      3,
+      2,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      10
+    ],
+    "t": 50
+  },
+  {
+    "commands0": "HARVEST 2;MOVE 0 9 8",
+    "commands1": "MOVE 1 8 3;MOVE 3 9 2",
+    "inv0": [
+      10,
+      9,
+      3,
+      2,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      10
+    ],
+    "t": 51
+  },
+  {
+    "commands0": "DROP 2;MOVE 0 8 8",
+    "commands1": "MOVE 1 9 3;DROP 3",
+    "inv0": [
+      10,
+      9,
+      3,
+      2,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      10
+    ],
+    "t": 52
+  },
+  {
+    "commands0": "PICK 2 BANANA;MOVE 0 7 8",
+    "commands1": "MOVE 1 10 3;MOVE 3 9 0",
+    "inv0": [
+      10,
+      11,
+      3,
+      2,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      13
+    ],
+    "t": 53
+  },
+  {
+    "commands0": "MOVE 0 7 7;MOVE 2 7 5",
+    "commands1": "DROP 1;MOVE 3 7 0",
+    "inv0": [
+      10,
+      11,
+      3,
+      1,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      13
+    ],
+    "t": 54
+  },
+  {
+    "commands0": "DROP 0;PLANT 2 BANANA",
+    "commands1": "MOVE 1 9 3;CHOP 3",
+    "inv0": [
+      10,
+      11,
+      3,
+      1,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      14
+    ],
+    "t": 55
+  },
+  {
+    "commands0": "TRAIN 3 3 1 2;MOVE 0 8 7;MOVE 2 6 6",
+    "commands1": "MOVE 1 8 3;CHOP 3",
+    "inv0": [
+      11,
+      11,
+      3,
+      1,
+      7,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      14
+    ],
+    "t": 56
+  },
+  {
+    "commands0": "HARVEST 2;MOVE 0 8 6;MOVE 4 5 5",
+    "commands1": "MOVE 1 7 3;CHOP 3",
+    "inv0": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      14
+    ],
+    "t": 57
+  },
+  {
+    "commands0": "HARVEST 0;DROP 2;MINE 4",
+    "commands1": "MOVE 1 7 4;CHOP 3",
+    "inv0": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      14
+    ],
+    "t": 58
+  },
+  {
+    "commands0": "DROP 0;MINE 4;MOVE 2 4 6",
+    "commands1": "MOVE 1 7 5;CHOP 3",
+    "inv0": [
+      0,
+      2,
+      0,
+      1,
+      1,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      14
+    ],
+    "t": 59
+  },
+  {
+    "commands0": "HARVEST 0;MINE 2;MOVE 4 7 5",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      3,
+      0,
+      1,
+      1,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      14
+    ],
+    "t": 60
+  },
+  {
+    "commands0": "DROP 0;DROP 4;MOVE 2 6 6",
+    "commands1": "CHOP 1;MOVE 3 9 0",
+    "inv0": [
+      0,
+      3,
+      0,
+      1,
+      1,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      14
+    ],
+    "t": 61
+  },
+  {
+    "commands0": "HARVEST 0;DROP 2;MOVE 4 5 5",
+    "commands1": "CHOP 1;MOVE 3 10 1",
+    "inv0": [
+      0,
+      4,
+      0,
+      1,
+      4,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      14
+    ],
+    "t": 62
+  },
+  {
+    "commands0": "DROP 0;MINE 4;MOVE 2 7 7",
+    "commands1": "CHOP 1;DROP 3",
+    "inv0": [
+      0,
+      4,
+      0,
+      1,
+      6,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      14
+    ],
+    "t": 63
+  },
+  {
+    "commands0": "HARVEST 0;MINE 4;MOVE 2 8 8",
+    "commands1": "MOVE 1 7 4;MOVE 3 11 2",
+    "inv0": [
+      0,
+      5,
+      0,
+      1,
+      6,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      17
+    ],
+    "t": 64
+  },
+  {
+    "commands0": "DROP 0;MOVE 2 10 8;MOVE 4 7 5",
+    "commands1": "MOVE 1 7 3;CHOP 3",
+    "inv0": [
+      0,
+      5,
+      0,
+      1,
+      6,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      17
+    ],
+    "t": 65
+  },
+  {
+    "commands0": "HARVEST 0;HARVEST 2;DROP 4",
+    "commands1": "MOVE 1 8 3;CHOP 3",
+    "inv0": [
+      0,
+      6,
+      0,
+      1,
+      6,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      17
+    ],
+    "t": 66
+  },
+  {
+    "commands0": "DROP 0;MOVE 2 8 8;MOVE 4 5 5",
+    "commands1": "MOVE 1 9 3;CHOP 3",
+    "inv0": [
+      0,
+      6,
+      0,
+      1,
+      9,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      17
+    ],
+    "t": 67
+  },
+  {
+    "commands0": "HARVEST 0;MINE 4;MOVE 2 8 7",
+    "commands1": "MOVE 1 10 3;CHOP 3",
+    "inv0": [
+      0,
+      7,
+      0,
+      1,
+      9,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      17
+    ],
+    "t": 68
+  },
+  {
+    "commands0": "DROP 0;MINE 4;MOVE 2 8 5",
+    "commands1": "DROP 1;CHOP 3",
+    "inv0": [
+      0,
+      7,
+      0,
+      1,
+      9,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      17
+    ],
+    "t": 69
+  },
+  {
+    "commands0": "HARVEST 0;MOVE 2 7 5;MOVE 4 6 6",
+    "commands1": "MOVE 1 9 3;CHOP 3",
+    "inv0": [
+      0,
+      8,
+      0,
+      1,
+      9,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      18
+    ],
+    "t": 70
+  },
+  {
+    "commands0": "DROP 0;PLANT 2 PLUM;DROP 4",
+    "commands1": "MOVE 1 8 3;DROP 3",
+    "inv0": [
+      0,
+      8,
+      0,
+      1,
+      9,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      18
+    ],
+    "t": 71
+  },
+  {
+    "commands0": "HARVEST 0;DROP 2;HARVEST 4",
+    "commands1": "MOVE 1 8 4;MOVE 3 10 3",
+    "inv0": [
+      0,
+      9,
+      0,
+      1,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      21
+    ],
+    "t": 72
+  },
+  {
+    "commands0": "DROP 0;HARVEST 4;MOVE 2 8 5",
+    "commands1": "MOVE 1 7 4;MOVE 3 8 3",
+    "inv0": [
+      1,
+      9,
+      0,
+      1,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      21
+    ],
+    "t": 73
+  },
+  {
+    "commands0": "HARVEST 0;HARVEST 4;MOVE 2 8 7",
+    "commands1": "MOVE 1 7 5;MOVE 3 8 5",
+    "inv0": [
+      1,
+      10,
+      0,
+      1,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      21
+    ],
+    "t": 74
+  },
+  {
+    "commands0": "DROP 0;DROP 4;MOVE 2 9 8",
+    "commands1": "CHOP 1;MOVE 3 8 6",
+    "inv0": [
+      1,
+      10,
+      0,
+      1,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      21
+    ],
+    "t": 75
+  },
+  {
+    "commands0": "PICK 0 BANANA;MOVE 2 10 8;MOVE 4 6 3",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      1,
+      14,
+      0,
+      1,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      21
+    ],
+    "t": 76
+  },
+  {
+    "commands0": "HARVEST 2;MOVE 0 8 5;MOVE 4 3 3",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      1,
+      14,
+      0,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      21
+    ],
+    "t": 77
+  },
+  {
+    "commands0": "PLANT 0 BANANA;MOVE 2 8 8;MOVE 4 0 3",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      1,
+      14,
+      0,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      21
+    ],
+    "t": 78
+  },
+  {
+    "commands0": "HARVEST 4;MOVE 0 8 6;MOVE 2 7 7",
+    "commands1": "MOVE 1 8 5;CHOP 3",
+    "inv0": [
+      1,
+      14,
+      0,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      21
+    ],
+    "t": 79
+  },
+  {
+    "commands0": "HARVEST 0;DROP 2;HARVEST 4",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      1,
+      14,
+      0,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      21
+    ],
+    "t": 80
+  },
+  {
+    "commands0": "DROP 0;HARVEST 2;HARVEST 4",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      3,
+      14,
+      0,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      21
+    ],
+    "t": 81
+  },
+  {
+    "commands0": "PICK 0 PLUM;DROP 2;MOVE 4 3 3",
+    "commands1": "CHOP 1;MOVE 3 8 4",
+    "inv0": [
+      3,
+      15,
+      0,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      21
+    ],
+    "t": 82
+  },
+  {
+    "commands0": "PLANT 0 PLUM;MOVE 2 8 8;MOVE 4 5 4",
+    "commands1": "MOVE 1 8 4;MOVE 3 9 3",
+    "inv0": [
+      2,
+      15,
+      2,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      21
+    ],
+    "t": 83
+  },
+  {
+    "commands0": "MOVE 0 8 7;MOVE 2 10 8;MOVE 4 6 6",
+    "commands1": "MOVE 1 8 3;MOVE 3 9 2",
+    "inv0": [
+      2,
+      15,
+      2,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      21
+    ],
+    "t": 84
+  },
+  {
+    "commands0": "HARVEST 2;DROP 4;MOVE 0 8 8",
+    "commands1": "MOVE 1 9 3;DROP 3",
+    "inv0": [
+      2,
+      15,
+      2,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      21
+    ],
+    "t": 85
+  },
+  {
+    "commands0": "MOVE 0 9 8;MOVE 2 8 8;MOVE 4 6 3",
+    "commands1": "MOVE 1 10 3;MOVE 3 8 3",
+    "inv0": [
+      5,
+      15,
+      2,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      24
+    ],
+    "t": 86
+  },
+  {
+    "commands0": "MOVE 0 10 8;MOVE 2 7 7;MOVE 4 3 3",
+    "commands1": "DROP 1;MOVE 3 7 4",
+    "inv0": [
+      5,
+      15,
+      2,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      24
+    ],
+    "t": 87
+  },
+  {
+    "commands0": "HARVEST 0;DROP 2;MOVE 4 0 3",
+    "commands1": "MOVE 1 9 3;MOVE 3 7 5",
+    "inv0": [
+      5,
+      15,
+      2,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      25
+    ],
+    "t": 88
+  },
+  {
+    "commands0": "HARVEST 4;MOVE 0 9 8;MOVE 2 6 6",
+    "commands1": "MOVE 1 8 3;CHOP 3",
+    "inv0": [
+      6,
+      15,
+      2,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      25
+    ],
+    "t": 89
+  },
+  {
+    "commands0": "HARVEST 2;HARVEST 4;MOVE 0 8 8",
+    "commands1": "MOVE 1 8 4;CHOP 3",
+    "inv0": [
+      6,
+      15,
+      2,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      25
+    ],
+    "t": 90
+  },
+  {
+    "commands0": "DROP 2;MOVE 0 7 8;MOVE 4 2 4",
+    "commands1": "MOVE 1 8 5;CHOP 3",
+    "inv0": [
+      6,
+      15,
+      2,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      25
+    ],
+    "t": 91
+  },
+  {
+    "commands0": "MOVE 0 7 7;MOVE 2 6 7;MOVE 4 5 4",
+    "commands1": "MOVE 1 8 6;MOVE 3 7 3",
+    "inv0": [
+      6,
+      17,
+      2,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      25
+    ],
+    "t": 92
+  },
+  {
+    "commands0": "DROP 0;MOVE 2 8 7;MOVE 4 7 5",
+    "commands1": "CHOP 1;MOVE 3 9 3",
+    "inv0": [
+      6,
+      17,
+      2,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      25
+    ],
+    "t": 93
+  },
+  {
+    "commands0": "HARVEST 0;HARVEST 2;DROP 4",
+    "commands1": "CHOP 1;MOVE 3 10 3",
+    "inv0": [
+      7,
+      17,
+      2,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      25
+    ],
+    "t": 94
+  },
+  {
+    "commands0": "DROP 0;MOVE 2 8 6;MOVE 4 10 5",
+    "commands1": "CHOP 1;DROP 3",
+    "inv0": [
+      9,
+      17,
+      2,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      25
+    ],
+    "t": 95
+  },
+  {
+    "commands0": "DROP 2;MOVE 0 8 7;MOVE 4 13 5",
+    "commands1": "MOVE 1 8 7;MOVE 3 8 3",
+    "inv0": [
+      9,
+      17,
+      3,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      28
+    ],
+    "t": 96
+  },
+  {
+    "commands0": "MOVE 0 8 7;MOVE 2 8 8;MOVE 4 10 5",
+    "commands1": "CHOP 1;MOVE 3 8 5",
+    "inv0": [
+      9,
+      17,
+      5,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      28
+    ],
+    "t": 97
+  },
+  {
+    "commands0": "MOVE 0 8 6;MOVE 2 10 8;MOVE 4 8 5",
+    "commands1": "CHOP 1;MOVE 3 8 6",
+    "inv0": [
+      9,
+      17,
+      5,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      28
+    ],
+    "t": 98
+  },
+  {
+    "commands0": "HARVEST 0;MOVE 2 11 8;MOVE 4 8 8",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      9,
+      17,
+      5,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      28
+    ],
+    "t": 99
+  },
+  {
+    "commands0": "DROP 0;HARVEST 2;MOVE 4 10 8",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      9,
+      17,
+      5,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      28
+    ],
+    "t": 100
+  },
+  {
+    "commands0": "HARVEST 0;HARVEST 4;MOVE 2 9 8",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      10,
+      17,
+      5,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      28
+    ],
+    "t": 101
+  },
+  {
+    "commands0": "DROP 0;MOVE 2 8 7;MOVE 4 7 8",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      10,
+      17,
+      5,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      28
+    ],
+    "t": 102
+  },
+  {
+    "commands0": "MOVE 0 8 5;MOVE 2 8 6;MOVE 4 7 7",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      11,
+      17,
+      5,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      28
+    ],
+    "t": 103
+  },
+  {
+    "commands0": "DROP 2;DROP 4;MOVE 0 7 5",
+    "commands1": "CHOP 1;MOVE 3 8 4",
+    "inv0": [
+      11,
+      17,
+      5,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      28
+    ],
+    "t": 104
+  },
+  {
+    "commands0": "TRAIN 3 4 0 3;PICK 2 APPLE;MOVE 0 6 5;MOVE 4 9 8",
+    "commands1": "CHOP 1;MOVE 3 9 3",
+    "inv0": [
+      12,
+      19,
+      5,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      28
+    ],
+    "t": 105
+  },
+  {
+    "commands0": "MOVE 0 5 5;MOVE 2 7 7;MOVE 4 10 8;MOVE 5 4 6",
+    "commands1": "CHOP 1;MOVE 3 10 3",
+    "inv0": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      28
+    ],
+    "t": 106
+  },
+  {
+    "commands0": "MINE 0;HARVEST 4;MINE 5;MOVE 2 6 6",
+    "commands1": "CHOP 1;DROP 3",
+    "inv0": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      28
+    ],
+    "t": 107
+  },
+  {
+    "commands0": "HARVEST 2;MINE 5;MOVE 0 5 6;MOVE 4 8 7",
+    "commands1": "MOVE 1 7 7;MOVE 3 8 3",
+    "inv0": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      31
+    ],
+    "t": 108
+  },
+  {
+    "commands0": "MOVE 0 5 6;MOVE 2 7 7;MOVE 4 7 5;MOVE 5 6 6",
+    "commands1": "MOVE 1 6 7;MOVE 3 8 5",
+    "inv0": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      31
+    ],
+    "t": 109
+  },
+  {
+    "commands0": "PLANT 4 PLUM;DROP 5;MOVE 0 5 6;MOVE 2 8 6",
+    "commands1": "MOVE 1 6 6;MOVE 3 8 7",
+    "inv0": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      31
+    ],
+    "t": 110
+  },
+  {
+    "commands0": "PLANT 2 LEMON;MOVE 0 5 6;MOVE 4 5 5;MOVE 5 4 6",
+    "commands1": "MOVE 1 6 5;CHOP 3",
+    "inv0": [
+      0,
+      0,
+      1,
+      0,
+      4,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      31
+    ],
+    "t": 111
+  },
+  {
+    "commands0": "DROP 2;MINE 4;MINE 5;MOVE 0 6 6",
+    "commands1": "MOVE 1 7 5;CHOP 3",
+    "inv0": [
+      0,
+      0,
+      1,
+      0,
+      4,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      31
+    ],
+    "t": 112
+  },
+  {
+    "commands0": "DROP 0;MINE 4;MINE 5;MOVE 2 8 8",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      0,
+      2,
+      0,
+      4,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      31
+    ],
+    "t": 113
+  },
+  {
+    "commands0": "HARVEST 0;MOVE 2 10 8;MOVE 4 7 5;MOVE 5 6 5",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      0,
+      2,
+      0,
+      5,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      31
+    ],
+    "t": 114
+  },
+  {
+    "commands0": "DROP 0;DROP 4;MOVE 2 11 8;MOVE 5 7 7",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      0,
+      2,
+      0,
+      5,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      31
+    ],
+    "t": 115
+  },
+  {
+    "commands0": "HARVEST 0;HARVEST 2;DROP 5;MOVE 4 5 4",
+    "commands1": "CHOP 1;MOVE 3 8 5",
+    "inv0": [
+      0,
+      1,
+      2,
+      0,
+      8,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      31
+    ],
+    "t": 116
+  },
+  {
+    "commands0": "DROP 0;PICK 5 APPLE;MOVE 2 9 8;MOVE 4 3 3",
+    "commands1": "CHOP 1;MOVE 3 8 3",
+    "inv0": [
+      0,
+      1,
+      2,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      31
+    ],
+    "t": 117
+  },
+  {
+    "commands0": "MOVE 0 5 6;MOVE 2 7 8;MOVE 4 3 1;MOVE 5 8 7",
+    "commands1": "CHOP 1;MOVE 3 10 3",
+    "inv0": [
+      0,
+      2,
+      1,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      31
+    ],
+    "t": 118
+  },
+  {
+    "commands0": "HARVEST 4;PLANT 5 APPLE;MOVE 0 6 6;MOVE 2 7 7",
+    "commands1": "MOVE 1 7 4;DROP 3",
+    "inv0": [
+      0,
+      2,
+      1,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      31
+    ],
+    "t": 119
+  },
+  {
+    "commands0": "DROP 2;HARVEST 4;MOVE 0 6 7;MOVE 5 10 8",
+    "commands1": "MOVE 1 7 3;MOVE 3 8 3",
+    "inv0": [
+      0,
+      2,
+      1,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      34
+    ],
+    "t": 120
+  },
+  {
+    "commands0": "HARVEST 4;MOVE 0 6 6;MOVE 2 8 8;MOVE 5 11 8",
+    "commands1": "MOVE 1 8 3;MOVE 3 8 5",
+    "inv0": [
+      0,
+      4,
+      1,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      34
+    ],
+    "t": 121
+  },
+  {
+    "commands0": "HARVEST 0;CHOP 5;MOVE 2 10 8;MOVE 4 4 3",
+    "commands1": "MOVE 1 9 3;MOVE 3 8 6",
+    "inv0": [
+      0,
+      4,
+      1,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      34
+    ],
+    "t": 122
+  },
+  {
+    "commands0": "DROP 0;HARVEST 2;CHOP 5;MOVE 4 6 4",
+    "commands1": "MOVE 1 10 3;CHOP 3",
+    "inv0": [
+      0,
+      4,
+      1,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      34
+    ],
+    "t": 123
+  },
+  {
+    "commands0": "CHOP 5;MOVE 0 6 7;MOVE 2 8 8;MOVE 4 6 6",
+    "commands1": "DROP 1;CHOP 3",
+    "inv0": [
+      0,
+      5,
+      1,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      34
+    ],
+    "t": 124
+  },
+  {
+    "commands0": "DROP 4;CHOP 5;MOVE 0 7 7;MOVE 2 8 6",
+    "commands1": "MOVE 1 9 3;CHOP 3",
+    "inv0": [
+      0,
+      5,
+      1,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      35
+    ],
+    "t": 125
+  },
+  {
+    "commands0": "MOVE 0 8 7;MOVE 2 7 5;MOVE 4 6 3;MOVE 5 8 8",
+    "commands1": "MOVE 1 8 3;CHOP 3",
+    "inv0": [
+      0,
+      8,
+      1,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      35
+    ],
+    "t": 126
+  },
+  {
+    "commands0": "PLANT 2 PLUM;MOVE 0 8 6;MOVE 4 4 2;MOVE 5 7 7",
+    "commands1": "MOVE 1 8 4;CHOP 3",
+    "inv0": [
+      0,
+      8,
+      1,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      35
+    ],
+    "t": 127
+  },
+  {
+    "commands0": "HARVEST 0;DROP 2;DROP 5;MOVE 4 3 1",
+    "commands1": "MOVE 1 7 4;CHOP 3",
+    "inv0": [
+      0,
+      8,
+      1,
+      0,
+      12,
+      0
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      35
+    ],
+    "t": 128
+  },
+  {
+    "commands0": "PLANT 0 LEMON;HARVEST 4;MOVE 2 6 6;MOVE 5 9 8",
+    "commands1": "MOVE 1 7 5;MOVE 3 8 4",
+    "inv0": [
+      1,
+      8,
+      1,
+      0,
+      12,
+      4
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      35
+    ],
+    "t": 129
+  },
+  {
+    "commands0": "HARVEST 2;HARVEST 4;MOVE 0 8 7;MOVE 5 10 8",
+    "commands1": "CHOP 1;MOVE 3 9 3",
+    "inv0": [
+      1,
+      8,
+      1,
+      0,
+      12,
+      4
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      35
+    ],
+    "t": 130
+  },
+  {
+    "commands0": "HARVEST 0;DROP 2;HARVEST 4;CHOP 5",
+    "commands1": "CHOP 1;MOVE 3 10 3",
+    "inv0": [
+      1,
+      8,
+      1,
+      0,
+      12,
+      4
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      35
+    ],
+    "t": 131
+  },
+  {
+    "commands0": "CHOP 5;MOVE 0 7 7;MOVE 2 5 5;MOVE 4 3 4",
+    "commands1": "CHOP 1;DROP 3",
+    "inv0": [
+      1,
+      9,
+      1,
+      0,
+      12,
+      4
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      35
+    ],
+    "t": 132
+  },
+  {
+    "commands0": "DROP 0;CHOP 5;MOVE 2 4 4;MOVE 4 5 5",
+    "commands1": "CHOP 1;MOVE 3 8 3",
+    "inv0": [
+      1,
+      9,
+      1,
+      0,
+      12,
+      4
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      38
+    ],
+    "t": 133
+  },
+  {
+    "commands0": "HARVEST 0;CHOP 5;MOVE 2 4 2;MOVE 4 7 5",
+    "commands1": "CHOP 1;MOVE 3 8 5",
+    "inv0": [
+      1,
+      9,
+      2,
+      0,
+      12,
+      4
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      38
+    ],
+    "t": 134
+  },
+  {
+    "commands0": "DROP 0;DROP 4;MOVE 2 3 1;MOVE 5 8 7",
+    "commands1": "CHOP 1;MOVE 3 8 6",
+    "inv0": [
+      1,
+      9,
+      2,
+      0,
+      12,
+      4
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      38
+    ],
+    "t": 135
+  },
+  {
+    "commands0": "PICK 0 PLUM;HARVEST 2;MOVE 4 10 5;MOVE 5 7 5",
+    "commands1": "MOVE 1 7 4;CHOP 3",
+    "inv0": [
+      1,
+      12,
+      3,
+      0,
+      12,
+      4
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      38
+    ],
+    "t": 136
+  },
+  {
+    "commands0": "DROP 5;MOVE 0 8 7;MOVE 2 4 2;MOVE 4 13 5",
+    "commands1": "MOVE 1 7 3;CHOP 3",
+    "inv0": [
+      0,
+      12,
+      3,
+      0,
+      12,
+      4
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      38
+    ],
+    "t": 137
+  },
+  {
+    "commands0": "MOVE 0 8 6;MOVE 2 5 3;MOVE 4 14 7;MOVE 5 6 6",
+    "commands1": "MOVE 1 8 3;CHOP 3",
+    "inv0": [
+      0,
+      12,
+      3,
+      0,
+      12,
+      8
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      38
+    ],
+    "t": 138
+  },
+  {
+    "commands0": "HARVEST 4;CHOP 5;MOVE 0 8 5;MOVE 2 6 4",
+    "commands1": "MOVE 1 9 3;CHOP 3",
+    "inv0": [
+      0,
+      12,
+      3,
+      0,
+      12,
+      8
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      38
+    ],
+    "t": 139
+  },
+  {
+    "commands0": "HARVEST 4;CHOP 5;MOVE 0 7 5;MOVE 2 7 4",
+    "commands1": "MOVE 1 10 3;CHOP 3",
+    "inv0": [
+      0,
+      12,
+      3,
+      0,
+      12,
+      8
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      38
+    ],
+    "t": 140
+  },
+  {
+    "commands0": "PLANT 0 PLUM;HARVEST 4;CHOP 5;MOVE 2 6 5",
+    "commands1": "DROP 1;CHOP 3",
+    "inv0": [
+      0,
+      12,
+      3,
+      0,
+      12,
+      8
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      38
+    ],
+    "t": 141
+  },
+  {
+    "commands0": "MOVE 0 7 5;MOVE 2 8 5;MOVE 4 13 5;MOVE 5 6 3",
+    "commands1": "MOVE 1 9 3;MOVE 3 8 4",
+    "inv0": [
+      0,
+      12,
+      3,
+      0,
+      12,
+      8
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      39
+    ],
+    "t": 142
+  },
+  {
+    "commands0": "MOVE 0 7 5;MOVE 2 8 6;MOVE 4 10 5;MOVE 5 6 6",
+    "commands1": "MOVE 1 8 3;MOVE 3 9 3",
+    "inv0": [
+      0,
+      12,
+      3,
+      0,
+      12,
+      8
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      39
+    ],
+    "t": 143
+  },
+  {
+    "commands0": "PLANT 2 LEMON;CHOP 5;MOVE 0 8 5;MOVE 4 7 5",
+    "commands1": "MOVE 1 7 3;MOVE 3 10 3",
+    "inv0": [
+      0,
+      12,
+      3,
+      0,
+      12,
+      8
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      39
+    ],
+    "t": 144
+  },
+  {
+    "commands0": "DROP 2;DROP 4;DROP 5;MOVE 0 8 5",
+    "commands1": "MOVE 1 7 4;DROP 3",
+    "inv0": [
+      0,
+      12,
+      3,
+      0,
+      12,
+      8
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      39
+    ],
+    "t": 145
+  },
+  {
+    "commands0": "MOVE 0 8 5;MOVE 2 7 7;MOVE 4 5 4;MOVE 5 6 3",
+    "commands1": "MOVE 1 7 5;MOVE 3 8 3",
+    "inv0": [
+      0,
+      16,
+      3,
+      0,
+      12,
+      12
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      42
+    ],
+    "t": 146
+  },
+  {
+    "commands0": "HARVEST 2;MOVE 0 8 6;MOVE 4 3 3;MOVE 5 4 2",
+    "commands1": "CHOP 1;MOVE 3 8 5",
+    "inv0": [
+      0,
+      16,
+      3,
+      0,
+      12,
+      12
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      42
+    ],
+    "t": 147
+  },
+  {
+    "commands0": "DROP 2;MOVE 0 8 7;MOVE 4 0 3;MOVE 5 2 1",
+    "commands1": "CHOP 1;MOVE 3 8 6",
+    "inv0": [
+      0,
+      16,
+      3,
+      0,
+      12,
+      12
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      42
+    ],
+    "t": 148
+  },
+  {
+    "commands0": "HARVEST 0;HARVEST 4;MOVE 2 8 6;MOVE 5 1 1",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      16,
+      5,
+      0,
+      12,
+      12
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      42
+    ],
+    "t": 149
+  },
+  {
+    "commands0": "HARVEST 4;CHOP 5;MOVE 0 7 7;MOVE 2 9 5",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      16,
+      5,
+      0,
+      12,
+      12
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      42
+    ],
+    "t": 150
+  },
+  {
+    "commands0": "DROP 0;HARVEST 4;CHOP 5;MOVE 2 11 5",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      16,
+      5,
+      0,
+      12,
+      12
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      42
+    ],
+    "t": 151
+  },
+  {
+    "commands0": "HARVEST 0;MOVE 2 13 5;MOVE 4 3 3;MOVE 5 1 4",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      16,
+      6,
+      0,
+      12,
+      12
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      42
+    ],
+    "t": 152
+  },
+  {
+    "commands0": "DROP 0;MOVE 2 15 5;MOVE 4 5 4;MOVE 5 4 4",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      16,
+      6,
+      0,
+      12,
+      12
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      42
+    ],
+    "t": 153
+  },
+  {
+    "commands0": "PICK 0 LEMON;MOVE 2 17 5;MOVE 4 7 5;MOVE 5 5 6",
+    "commands1": "CHOP 1;MOVE 3 8 4",
+    "inv0": [
+      0,
+      16,
+      7,
+      0,
+      12,
+      12
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      42
+    ],
+    "t": 154
+  },
+  {
+    "commands0": "HARVEST 2;MOVE 0 6 7;MOVE 4 8 6;MOVE 5 7 7",
+    "commands1": "MOVE 1 7 4;MOVE 3 9 3",
+    "inv0": [
+      0,
+      15,
+      7,
+      0,
+      12,
+      12
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      42
+    ],
+    "t": 155
+  },
+  {
+    "commands0": "PLANT 4 PLUM;DROP 5;MOVE 0 6 6;MOVE 2 15 5",
+    "commands1": "MOVE 1 7 3;MOVE 3 9 2",
+    "inv0": [
+      0,
+      15,
+      7,
+      0,
+      12,
+      12
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      42
+    ],
+    "t": 156
+  },
+  {
+    "commands0": "PLANT 0 LEMON;DROP 4;CHOP 5;MOVE 2 13 5",
+    "commands1": "MOVE 1 8 3;DROP 3",
+    "inv0": [
+      0,
+      15,
+      7,
+      0,
+      12,
+      16
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      42
+    ],
+    "t": 157
+  },
+  {
+    "commands0": "CHOP 5;MOVE 0 5 6;MOVE 2 11 5;MOVE 4 10 5",
+    "commands1": "MOVE 1 9 3;MOVE 3 8 3",
+    "inv0": [
+      2,
+      15,
+      7,
+      0,
+      12,
+      16
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      45
+    ],
+    "t": 158
+  },
+  {
+    "commands0": "CHOP 5;MOVE 0 5 5;MOVE 2 9 5;MOVE 4 13 5",
+    "commands1": "MOVE 1 10 3;MOVE 3 8 5",
+    "inv0": [
+      2,
+      15,
+      7,
+      0,
+      12,
+      16
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      45
+    ],
+    "t": 159
+  },
+  {
+    "commands0": "CHOP 5;MOVE 0 5 4;MOVE 2 7 5;MOVE 4 14 7",
+    "commands1": "DROP 1;MOVE 3 8 6",
+    "inv0": [
+      2,
+      15,
+      7,
+      0,
+      12,
+      16
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      45
+    ],
+    "t": 160
+  },
+  {
+    "commands0": "DROP 2;HARVEST 4;CHOP 5;MOVE 0 5 3",
+    "commands1": "MOVE 1 9 3;CHOP 3",
+    "inv0": [
+      2,
+      15,
+      7,
+      0,
+      12,
+      16
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      46
+    ],
+    "t": 161
+  },
+  {
+    "commands0": "HARVEST 4;CHOP 5;MOVE 0 4 3;MOVE 2 9 5",
+    "commands1": "MOVE 1 8 3;CHOP 3",
+    "inv0": [
+      4,
+      15,
+      7,
+      0,
+      12,
+      16
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      46
+    ],
+    "t": 162
+  },
+  {
+    "commands0": "HARVEST 4;CHOP 5;MOVE 0 4 2;MOVE 2 9 3",
+    "commands1": "MOVE 1 7 3;CHOP 3",
+    "inv0": [
+      4,
+      15,
+      7,
+      0,
+      12,
+      16
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      46
+    ],
+    "t": 163
+  },
+  {
+    "commands0": "DROP 5;MOVE 0 3 2;MOVE 2 9 1;MOVE 4 13 5",
+    "commands1": "MOVE 1 6 3;CHOP 3",
+    "inv0": [
+      4,
+      15,
+      7,
+      0,
+      12,
+      16
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      46
+    ],
+    "t": 164
+  },
+  {
+    "commands0": "MOVE 0 3 1;MOVE 2 8 0;MOVE 4 10 5;MOVE 5 8 5",
+    "commands1": "MOVE 1 6 4;CHOP 3",
+    "inv0": [
+      4,
+      15,
+      7,
+      0,
+      12,
+      20
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      46
+    ],
+    "t": 165
+  },
+  {
+    "commands0": "HARVEST 0;MOVE 2 6 0;MOVE 4 8 6;MOVE 5 7 5",
+    "commands1": "MOVE 1 6 5;MOVE 3 8 4",
+    "inv0": [
+      4,
+      15,
+      7,
+      0,
+      12,
+      20
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      46
+    ],
+    "t": 166
+  },
+  {
+    "commands0": "HARVEST 2;PLANT 4 LEMON;PICK 5 PLUM;MOVE 0 3 2",
+    "commands1": "MOVE 1 6 6;MOVE 3 9 3",
+    "inv0": [
+      4,
+      15,
+      7,
+      0,
+      12,
+      20
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      46
+    ],
+    "t": 167
+  },
+  {
+    "commands0": "DROP 4;PLANT 5 PLUM;MOVE 0 3 3;MOVE 2 8 0",
+    "commands1": "CHOP 1;MOVE 3 10 3",
+    "inv0": [
+      3,
+      15,
+      7,
+      0,
+      12,
+      20
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      46
+    ],
+    "t": 168
+  },
+  {
+    "commands0": "MOVE 0 4 3;MOVE 2 9 1;MOVE 4 6 5;MOVE 5 10 5",
+    "commands1": "CHOP 1;DROP 3",
+    "inv0": [
+      3,
+      17,
+      7,
+      0,
+      12,
+      20
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      46
+    ],
+    "t": 169
+  },
+  {
+    "commands0": "MOVE 0 5 3;MOVE 2 9 3;MOVE 4 6 6;MOVE 5 13 5",
+    "commands1": "MOVE 1 6 5;MOVE 3 8 3",
+    "inv0": [
+      3,
+      17,
+      7,
+      0,
+      12,
+      20
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      49
+    ],
+    "t": 170
+  },
+  {
+    "commands0": "CHOP 4;MOVE 0 6 3;MOVE 2 9 5;MOVE 5 14 7",
+    "commands1": "MOVE 1 6 6;MOVE 3 8 5",
+    "inv0": [
+      3,
+      17,
+      7,
+      0,
+      12,
+      20
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      49
+    ],
+    "t": 171
+  },
+  {
+    "commands0": "CHOP 4;MOVE 0 7 3;MOVE 2 8 6;MOVE 5 16 7",
+    "commands1": "CHOP 1;MOVE 3 8 6",
+    "inv0": [
+      3,
+      17,
+      7,
+      0,
+      12,
+      20
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      49
+    ],
+    "t": 172
+  },
+  {
+    "commands0": "DROP 2;CHOP 4;CHOP 5;MOVE 0 7 4",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      3,
+      17,
+      7,
+      0,
+      12,
+      20
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      49
+    ],
+    "t": 173
+  },
+  {
+    "commands0": "DROP 4;CHOP 5;MOVE 0 7 5;MOVE 2 9 5",
+    "commands1": "MOVE 1 6 5;CHOP 3",
+    "inv0": [
+      3,
+      19,
+      7,
+      0,
+      12,
+      20
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      49
+    ],
+    "t": 174
+  },
+  {
+    "commands0": "DROP 0;MOVE 2 11 5;MOVE 4 5 4;MOVE 5 15 5",
+    "commands1": "MOVE 1 6 4;CHOP 3",
+    "inv0": [
+      3,
+      19,
+      7,
+      0,
+      12,
+      21
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      49
+    ],
+    "t": 175
+  },
+  {
+    "commands0": "MOVE 0 6 5;MOVE 2 13 5;MOVE 4 2 4;MOVE 5 12 5",
+    "commands1": "MOVE 1 6 3;CHOP 3",
+    "inv0": [
+      3,
+      20,
+      7,
+      0,
+      12,
+      21
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      49
+    ],
+    "t": 176
+  },
+  {
+    "commands0": "MOVE 0 5 5;MOVE 2 15 5;MOVE 4 0 3;MOVE 5 9 5",
+    "commands1": "MOVE 1 7 3;CHOP 3",
+    "inv0": [
+      3,
+      20,
+      7,
+      0,
+      12,
+      21
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      49
+    ],
+    "t": 177
+  },
+  {
+    "commands0": "HARVEST 4;MOVE 0 5 4;MOVE 2 17 5;MOVE 5 8 6",
+    "commands1": "MOVE 1 8 3;CHOP 3",
+    "inv0": [
+      3,
+      20,
+      7,
+      0,
+      12,
+      21
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      49
+    ],
+    "t": 178
+  },
+  {
+    "commands0": "HARVEST 2;HARVEST 4;DROP 5;MOVE 0 5 3",
+    "commands1": "MOVE 1 9 3;MOVE 3 8 4",
+    "inv0": [
+      3,
+      20,
+      7,
+      0,
+      12,
+      21
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      49
+    ],
+    "t": 179
+  },
+  {
+    "commands0": "HARVEST 4;PICK 5 APPLE;MOVE 0 4 3;MOVE 2 15 5",
+    "commands1": "MOVE 1 10 3;MOVE 3 9 3",
+    "inv0": [
+      3,
+      20,
+      7,
+      0,
+      12,
+      25
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      49
+    ],
+    "t": 180
+  },
+  {
+    "commands0": "PLANT 5 APPLE;MOVE 0 4 2;MOVE 2 13 5;MOVE 4 3 3",
+    "commands1": "DROP 1;MOVE 3 9 2",
+    "inv0": [
+      3,
+      20,
+      6,
+      0,
+      12,
+      25
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      49
+    ],
+    "t": 181
+  },
+  {
+    "commands0": "MOVE 0 4 3;MOVE 2 12 4;MOVE 4 5 4;MOVE 5 10 5",
+    "commands1": "MOVE 1 9 3;DROP 3",
+    "inv0": [
+      3,
+      20,
+      6,
+      0,
+      12,
+      25
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      50
+    ],
+    "t": 182
+  },
+  {
+    "commands0": "PLANT 2 PLUM;MOVE 0 5 3;MOVE 4 7 5;MOVE 5 13 5",
+    "commands1": "MOVE 1 9 4;MOVE 3 8 3",
+    "inv0": [
+      3,
+      20,
+      6,
+      0,
+      12,
+      25
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      53
+    ],
+    "t": 183
+  },
+  {
+    "commands0": "CHOP 2;DROP 4;MOVE 0 5 4;MOVE 5 14 7",
+    "commands1": "MOVE 1 8 4;MOVE 3 7 4",
+    "inv0": [
+      3,
+      20,
+      6,
+      0,
+      12,
+      25
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      53
+    ],
+    "t": 184
+  },
+  {
+    "commands0": "CHOP 2;CHOP 4;CHOP 5;MOVE 0 6 4",
+    "commands1": "MOVE 1 8 5;MOVE 3 7 5",
+    "inv0": [
+      6,
+      20,
+      6,
+      0,
+      12,
+      25
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      53
+    ],
+    "t": 185
+  },
+  {
+    "commands0": "CHOP 2;CHOP 4;CHOP 5;MOVE 0 6 5",
+    "commands1": "MOVE 1 8 6;CHOP 3",
+    "inv0": [
+      6,
+      20,
+      6,
+      0,
+      12,
+      25
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      53
+    ],
+    "t": 186
+  },
+  {
+    "commands0": "CHOP 4;CHOP 5;MOVE 0 6 6;MOVE 2 10 4",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      6,
+      20,
+      6,
+      0,
+      12,
+      25
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      53
+    ],
+    "t": 187
+  },
+  {
+    "commands0": "PICK 0 LEMON;DROP 4;CHOP 5;MOVE 2 9 5",
+    "commands1": "MOVE 1 8 7;MOVE 3 8 6",
+    "inv0": [
+      6,
+      20,
+      6,
+      0,
+      12,
+      25
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      53
+    ],
+    "t": 188
+  },
+  {
+    "commands0": "PLANT 0 LEMON;PLANT 2 PLUM;MOVE 4 6 3;MOVE 5 13 5",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      6,
+      19,
+      6,
+      0,
+      12,
+      27
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      53
+    ],
+    "t": 189
+  },
+  {
+    "commands0": "CHOP 0;MOVE 2 8 6;MOVE 4 3 3;MOVE 5 10 5",
+    "commands1": "MOVE 1 7 7;MOVE 3 9 5",
+    "inv0": [
+      6,
+      19,
+      6,
+      0,
+      12,
+      27
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      53
+    ],
+    "t": 190
+  },
+  {
+    "commands0": "CHOP 0;DROP 2;MOVE 4 0 3;MOVE 5 7 5",
+    "commands1": "MOVE 1 6 7;CHOP 3",
+    "inv0": [
+      6,
+      19,
+      6,
+      0,
+      12,
+      27
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      53
+    ],
+    "t": 191
+  },
+  {
+    "commands0": "PICK 0 PLUM;CHOP 4;DROP 5;MOVE 2 9 5",
+    "commands1": "MOVE 1 6 6;CHOP 3",
+    "inv0": [
+      6,
+      19,
+      6,
+      0,
+      12,
+      28
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      53
+    ],
+    "t": 192
+  },
+  {
+    "commands0": "CHOP 2;CHOP 4;MOVE 0 6 7;MOVE 5 5 4",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      5,
+      19,
+      6,
+      0,
+      12,
+      32
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      53
+    ],
+    "t": 193
+  },
+  {
+    "commands0": "CHOP 2;CHOP 4;MOVE 0 7 7;MOVE 5 3 3",
+    "commands1": "CHOP 1;MOVE 3 9 3",
+    "inv0": [
+      5,
+      19,
+      6,
+      0,
+      12,
+      32
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      53
+    ],
+    "t": 194
+  },
+  {
+    "commands0": "PLANT 0 PLUM;CHOP 4;MOVE 2 7 5;MOVE 5 3 1",
+    "commands1": "CHOP 1;MOVE 3 10 3",
+    "inv0": [
+      5,
+      19,
+      6,
+      0,
+      12,
+      32
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      53
+    ],
+    "t": 195
+  },
+  {
+    "commands0": "PICK 0 LEMON;DROP 2;CHOP 4;CHOP 5",
+    "commands1": "CHOP 1;DROP 3",
+    "inv0": [
+      5,
+      19,
+      6,
+      0,
+      12,
+      32
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      53
+    ],
+    "t": 196
+  },
+  {
+    "commands0": "DROP 0;PICK 2 LEMON;CHOP 4;CHOP 5",
+    "commands1": "MOVE 1 6 5;MOVE 3 8 3",
+    "inv0": [
+      5,
+      18,
+      6,
+      0,
+      12,
+      33
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      56
+    ],
+    "t": 197
+  },
+  {
+    "commands0": "PICK 0 PLUM;PLANT 2 LEMON;CHOP 5;MOVE 4 3 3",
+    "commands1": "MOVE 1 6 4;MOVE 3 8 5",
+    "inv0": [
+      5,
+      18,
+      6,
+      0,
+      12,
+      33
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      56
+    ],
+    "t": 198
+  },
+  {
+    "commands0": "DROP 0;CHOP 5;MOVE 2 8 6;MOVE 4 6 3",
+    "commands1": "MOVE 1 6 3;MOVE 3 8 6",
+    "inv0": [
+      4,
+      18,
+      6,
+      0,
+      12,
+      33
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      56
+    ],
+    "t": 199
+  },
+  {
+    "commands0": "PICK 0 PLUM;MOVE 2 8 7;MOVE 4 6 6;MOVE 5 4 3",
+    "commands1": "MOVE 1 7 3;CHOP 3",
+    "inv0": [
+      5,
+      18,
+      6,
+      0,
+      12,
+      33
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      56
+    ],
+    "t": 200
+  },
+  {
+    "commands0": "DROP 4;MOVE 0 6 7;MOVE 2 7 7;MOVE 5 5 5",
+    "commands1": "MOVE 1 8 3;CHOP 3",
+    "inv0": [
+      4,
+      18,
+      6,
+      0,
+      12,
+      33
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      56
+    ],
+    "t": 201
+  },
+  {
+    "commands0": "CHOP 2;MOVE 0 6 7;MOVE 4 8 5;MOVE 5 7 5",
+    "commands1": "MOVE 1 9 3;CHOP 3",
+    "inv0": [
+      4,
+      18,
+      6,
+      0,
+      12,
+      36
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      56
+    ],
+    "t": 202
+  },
+  {
+    "commands0": "CHOP 2;DROP 5;MOVE 0 6 6;MOVE 4 11 5",
+    "commands1": "MOVE 1 10 3;CHOP 3",
+    "inv0": [
+      4,
+      18,
+      6,
+      0,
+      12,
+      36
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      56
+    ],
+    "t": 203
+  },
+  {
+    "commands0": "PLANT 0 PLUM;CHOP 2;MOVE 4 8 5;MOVE 5 8 7",
+    "commands1": "DROP 1;CHOP 3",
+    "inv0": [
+      4,
+      18,
+      6,
+      0,
+      12,
+      40
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      56
+    ],
+    "t": 204
+  },
+  {
+    "commands0": "PICK 0 LEMON;CHOP 2;CHOP 5;MOVE 4 7 5",
+    "commands1": "MOVE 1 9 3;CHOP 3",
+    "inv0": [
+      4,
+      18,
+      6,
+      0,
+      12,
+      40
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      57
+    ],
+    "t": 205
+  },
+  {
+    "commands0": "DROP 2;CHOP 4;CHOP 5;MOVE 0 6 7",
+    "commands1": "MOVE 1 8 3;CHOP 3",
+    "inv0": [
+      4,
+      17,
+      6,
+      0,
+      12,
+      40
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      57
+    ],
+    "t": 206
+  },
+  {
+    "commands0": "PICK 2 APPLE;CHOP 4;CHOP 5;MOVE 0 6 7",
+    "commands1": "MOVE 1 8 4;CHOP 3",
+    "inv0": [
+      4,
+      17,
+      6,
+      0,
+      12,
+      42
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      57
+    ],
+    "t": 207
+  },
+  {
+    "commands0": "CHOP 4;CHOP 5;MOVE 0 6 7;MOVE 2 6 8",
+    "commands1": "MOVE 1 8 5;CHOP 3",
+    "inv0": [
+      4,
+      17,
+      5,
+      0,
+      12,
+      42
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      57
+    ],
+    "t": 208
+  },
+  {
+    "commands0": "CHOP 4;CHOP 5;MOVE 0 7 7;MOVE 2 8 8",
+    "commands1": "MOVE 1 8 6;MOVE 3 8 4",
+    "inv0": [
+      4,
+      17,
+      5,
+      0,
+      12,
+      42
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      57
+    ],
+    "t": 209
+  },
+  {
+    "commands0": "PLANT 0 LEMON;DROP 4;CHOP 5;MOVE 2 8 6",
+    "commands1": "MOVE 1 8 7;MOVE 3 9 3",
+    "inv0": [
+      4,
+      17,
+      5,
+      0,
+      12,
+      42
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      57
+    ],
+    "t": 210
+  },
+  {
+    "commands0": "CHOP 0;PLANT 2 APPLE;CHOP 5;MOVE 4 6 6",
+    "commands1": "CHOP 1;MOVE 3 10 3",
+    "inv0": [
+      4,
+      17,
+      5,
+      0,
+      12,
+      44
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      57
+    ],
+    "t": 211
+  },
+  {
+    "commands0": "PICK 0 PLUM;CHOP 4;MOVE 2 9 5;MOVE 5 8 6",
+    "commands1": "MOVE 1 8 6;DROP 3",
+    "inv0": [
+      4,
+      17,
+      5,
+      0,
+      12,
+      44
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      57
+    ],
+    "t": 212
+  },
+  {
+    "commands0": "CHOP 4;DROP 5;MOVE 0 8 7;MOVE 2 8 5",
+    "commands1": "MOVE 1 8 5;MOVE 3 8 3",
+    "inv0": [
+      3,
+      17,
+      5,
+      0,
+      12,
+      44
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      60
+    ],
+    "t": 213
+  },
+  {
+    "commands0": "PLANT 0 PLUM;CHOP 4;MOVE 2 8 5;MOVE 5 10 5",
+    "commands1": "MOVE 1 8 4;MOVE 3 8 5",
+    "inv0": [
+      3,
+      17,
+      5,
+      0,
+      12,
+      47
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      60
+    ],
+    "t": 214
+  },
+  {
+    "commands0": "CHOP 4;MOVE 0 8 6;MOVE 2 8 7;MOVE 5 13 5",
+    "commands1": "MOVE 1 8 3;MOVE 3 8 7",
+    "inv0": [
+      3,
+      17,
+      5,
+      0,
+      12,
+      47
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      60
+    ],
+    "t": 215
+  },
+  {
+    "commands0": "PICK 0 LEMON;DROP 4;MOVE 2 7 7;MOVE 5 16 5",
+    "commands1": "MOVE 1 9 3;CHOP 3",
+    "inv0": [
+      3,
+      17,
+      5,
+      0,
+      12,
+      47
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      60
+    ],
+    "t": 216
+  },
+  {
+    "commands0": "CHOP 2;MOVE 0 8 5;MOVE 4 8 7;MOVE 5 17 5",
+    "commands1": "MOVE 1 10 3;CHOP 3",
+    "inv0": [
+      3,
+      16,
+      5,
+      0,
+      12,
+      49
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      60
+    ],
+    "t": 217
+  },
+  {
+    "commands0": "CHOP 2;CHOP 4;CHOP 5;MOVE 0 7 5",
+    "commands1": "DROP 1;CHOP 3",
+    "inv0": [
+      3,
+      16,
+      5,
+      0,
+      12,
+      49
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      60
+    ],
+    "t": 218
+  },
+  {
+    "commands0": "PLANT 0 LEMON;CHOP 2;CHOP 5;MOVE 4 6 6",
+    "commands1": "MOVE 1 9 3;MOVE 3 7 7",
+    "inv0": [
+      3,
+      16,
+      5,
+      0,
+      12,
+      49
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      61
+    ],
+    "t": 219
+  },
+  {
+    "commands0": "CHOP 0;CHOP 2;DROP 4;CHOP 5",
+    "commands1": "MOVE 1 8 3;CHOP 3",
+    "inv0": [
+      3,
+      16,
+      5,
+      0,
+      12,
+      49
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      61
+    ],
+    "t": 220
+  },
+  {
+    "commands0": "CHOP 0;DROP 2;PICK 4 PLUM;CHOP 5",
+    "commands1": "MOVE 1 8 4;MOVE 3 6 6",
+    "inv0": [
+      3,
+      16,
+      5,
+      0,
+      12,
+      50
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      61
+    ],
+    "t": 221
+  },
+  {
+    "commands0": "CHOP 0;PICK 2 LEMON;PLANT 4 PLUM;MOVE 5 14 5",
+    "commands1": "MOVE 1 8 5;MOVE 3 7 5",
+    "inv0": [
+      2,
+      16,
+      5,
+      0,
+      12,
+      51
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      61
+    ],
+    "t": 222
+  },
+  {
+    "commands0": "CHOP 0;MOVE 2 8 7;MOVE 4 8 5;MOVE 5 11 5",
+    "commands1": "MOVE 1 7 5;MOVE 3 6 6",
+    "inv0": [
+      2,
+      15,
+      5,
+      0,
+      12,
+      51
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      61
+    ],
+    "t": 223
+  },
+  {
+    "commands0": "CHOP 0;PLANT 2 LEMON;MOVE 4 9 3;MOVE 5 8 5",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      2,
+      15,
+      5,
+      0,
+      12,
+      51
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      61
+    ],
+    "t": 224
+  },
+  {
+    "commands0": "DROP 0;MOVE 2 7 7;MOVE 4 9 0;MOVE 5 6 6",
+    "commands1": "MOVE 1 7 4;CHOP 3",
+    "inv0": [
+      2,
+      15,
+      5,
+      0,
+      12,
+      51
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      61
+    ],
+    "t": 225
+  },
+  {
+    "commands0": "PICK 0 PLUM;DROP 5;MOVE 2 8 7;MOVE 4 6 0",
+    "commands1": "MOVE 1 7 3;CHOP 3",
+    "inv0": [
+      2,
+      15,
+      5,
+      0,
+      12,
+      52
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      61
+    ],
+    "t": 226
+  },
+  {
+    "commands0": "PLANT 0 PLUM;CHOP 2;CHOP 4;MOVE 5 8 5",
+    "commands1": "MOVE 1 8 3;MOVE 3 6 4",
+    "inv0": [
+      1,
+      15,
+      5,
+      0,
+      12,
+      56
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      61
+    ],
+    "t": 227
+  },
+  {
+    "commands0": "PICK 0 LEMON;CHOP 2;CHOP 4;MOVE 5 9 3",
+    "commands1": "MOVE 1 9 3;MOVE 3 7 3",
+    "inv0": [
+      1,
+      15,
+      5,
+      0,
+      12,
+      56
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      61
+    ],
+    "t": 228
+  },
+  {
+    "commands0": "CHOP 2;CHOP 4;MOVE 0 6 5;MOVE 5 10 1",
+    "commands1": "MOVE 1 10 3;MOVE 3 9 3",
+    "inv0": [
+      1,
+      14,
+      5,
+      0,
+      12,
+      56
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      61
+    ],
+    "t": 229
+  },
+  {
+    "commands0": "CHOP 2;CHOP 4;CHOP 5;MOVE 0 6 6",
+    "commands1": "DROP 1;MOVE 3 9 2",
+    "inv0": [
+      1,
+      14,
+      5,
+      0,
+      12,
+      56
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      61
+    ],
+    "t": 230
+  },
+  {
+    "commands0": "PLANT 0 LEMON;CHOP 4;CHOP 5;MOVE 2 8 6",
+    "commands1": "MOVE 1 9 3;DROP 3",
+    "inv0": [
+      1,
+      14,
+      5,
+      0,
+      12,
+      56
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      62
+    ],
+    "t": 231
+  },
+  {
+    "commands0": "PICK 0 PLUM;DROP 2;CHOP 4;CHOP 5",
+    "commands1": "MOVE 1 8 3;MOVE 3 10 1",
+    "inv0": [
+      1,
+      14,
+      5,
+      0,
+      12,
+      56
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      65
+    ],
+    "t": 232
+  },
+  {
+    "commands0": "CHOP 5;MOVE 0 6 7;MOVE 2 7 5;MOVE 4 9 0",
+    "commands1": "MOVE 1 7 3;CHOP 3",
+    "inv0": [
+      0,
+      14,
+      5,
+      0,
+      12,
+      58
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      65
+    ],
+    "t": 233
+  },
+  {
+    "commands0": "CHOP 2;CHOP 5;MOVE 0 7 7;MOVE 4 9 3",
+    "commands1": "MOVE 1 7 4;CHOP 3",
+    "inv0": [
+      0,
+      14,
+      5,
+      0,
+      12,
+      58
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      65
+    ],
+    "t": 234
+  },
+  {
+    "commands0": "CHOP 2;CHOP 5;MOVE 0 8 7;MOVE 4 8 5",
+    "commands1": "MOVE 1 7 5;CHOP 3",
+    "inv0": [
+      0,
+      14,
+      5,
+      0,
+      12,
+      58
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      65
+    ],
+    "t": 235
+  },
+  {
+    "commands0": "PLANT 0 PLUM;CHOP 2;MOVE 4 7 7;MOVE 5 9 3",
+    "commands1": "CHOP 1;DROP 3",
+    "inv0": [
+      0,
+      14,
+      5,
+      0,
+      12,
+      58
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      65
+    ],
+    "t": 236
+  },
+  {
+    "commands0": "CHOP 2;DROP 4;MOVE 0 8 6;MOVE 5 7 4",
+    "commands1": "CHOP 1;MOVE 3 9 2",
+    "inv0": [
+      0,
+      14,
+      5,
+      0,
+      12,
+      58
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      67
+    ],
+    "t": 237
+  },
+  {
+    "commands0": "HARVEST 0;DROP 2;PICK 4 LEMON;MOVE 5 6 6",
+    "commands1": "MOVE 1 7 4;MOVE 3 8 3",
+    "inv0": [
+      0,
+      14,
+      5,
+      0,
+      12,
+      61
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      67
+    ],
+    "t": 238
+  },
+  {
+    "commands0": "DROP 0;DROP 5;MOVE 2 8 5;MOVE 4 6 5",
+    "commands1": "MOVE 1 7 3;MOVE 3 8 5",
+    "inv0": [
+      0,
+      13,
+      5,
+      0,
+      12,
+      62
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      67
+    ],
+    "t": 239
+  },
+  {
+    "commands0": "PICK 0 LEMON;CHOP 5;MOVE 2 8 7;MOVE 4 7 5",
+    "commands1": "MOVE 1 8 3;MOVE 3 8 7",
+    "inv0": [
+      0,
+      13,
+      6,
+      0,
+      12,
+      64
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      67
+    ],
+    "t": 240
+  },
+  {
+    "commands0": "DROP 0;CHOP 2;PLANT 4 LEMON;CHOP 5",
+    "commands1": "MOVE 1 9 3;CHOP 3",
+    "inv0": [
+      0,
+      12,
+      6,
+      0,
+      12,
+      64
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      67
+    ],
+    "t": 241
+  },
+  {
+    "commands0": "HARVEST 0;CHOP 2;PICK 4 LEMON;CHOP 5",
+    "commands1": "MOVE 1 10 3;CHOP 3",
+    "inv0": [
+      0,
+      13,
+      6,
+      0,
+      12,
+      64
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      67
+    ],
+    "t": 242
+  },
+  {
+    "commands0": "DROP 0;CHOP 4;DROP 5;MOVE 2 7 7",
+    "commands1": "DROP 1;MOVE 3 8 5",
+    "inv0": [
+      0,
+      12,
+      6,
+      0,
+      12,
+      64
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      67
+    ],
+    "t": 243
+  },
+  {
+    "commands0": "HARVEST 0;DROP 2;CHOP 4;PICK 5 LEMON",
+    "commands1": "PICK 1 BANANA;MOVE 3 7 5",
+    "inv0": [
+      0,
+      12,
+      7,
+      0,
+      12,
+      66
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      4,
+      2,
+      68
+    ],
+    "t": 244
+  },
+  {
+    "commands0": "DROP 0;PICK 2 LEMON;CHOP 4;MOVE 5 6 4",
+    "commands1": "PLANT 1 BANANA;MOVE 3 7 3",
+    "inv0": [
+      0,
+      11,
+      7,
+      0,
+      12,
+      67
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      3,
+      2,
+      68
+    ],
+    "t": 245
+  },
+  {
+    "commands0": "HARVEST 0;DROP 4;MOVE 2 8 7;MOVE 5 6 6",
+    "commands1": "CHOP 1;MOVE 3 9 3",
+    "inv0": [
+      0,
+      10,
+      8,
+      0,
+      12,
+      67
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      3,
+      2,
+      68
+    ],
+    "t": 246
+  },
+  {
+    "commands0": "DROP 0;PLANT 2 LEMON;DROP 5;MOVE 4 8 3",
+    "commands1": "CHOP 1;MOVE 3 9 2",
+    "inv0": [
+      0,
+      11,
+      8,
+      0,
+      12,
+      68
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      3,
+      2,
+      68
+    ],
+    "t": 247
+  },
+  {
+    "commands0": "HARVEST 0;MOVE 2 8 7;MOVE 4 7 5;MOVE 5 7 7",
+    "commands1": "CHOP 1;DROP 3",
+    "inv0": [
+      0,
+      12,
+      9,
+      0,
+      12,
+      68
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      3,
+      2,
+      68
+    ],
+    "t": 248
+  },
+  {
+    "commands0": "DROP 0;PICK 4 LEMON;MOVE 2 8 5;MOVE 5 8 7",
+    "commands1": "DROP 1;MOVE 3 8 3",
+    "inv0": [
+      0,
+      12,
+      9,
+      0,
+      12,
+      68
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      3,
+      2,
+      69
+    ],
+    "t": 249
+  },
+  {
+    "commands0": "HARVEST 0;CHOP 5;MOVE 2 8 5;MOVE 4 6 6",
+    "commands1": "MOVE 1 9 3;MOVE 3 8 5",
+    "inv0": [
+      0,
+      11,
+      10,
+      0,
+      12,
+      68
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      3,
+      2,
+      70
+    ],
+    "t": 250
+  },
+  {
+    "commands0": "DROP 0;PLANT 4 LEMON;CHOP 5;MOVE 2 8 5",
+    "commands1": "MOVE 1 10 3;MOVE 3 8 3",
+    "inv0": [
+      0,
+      11,
+      10,
+      0,
+      12,
+      68
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      3,
+      2,
+      70
+    ],
+    "t": 251
+  },
+  {
+    "commands0": "HARVEST 0;PICK 4 LEMON;CHOP 5;MOVE 2 8 5",
+    "commands1": "PICK 1 BANANA;MOVE 3 9 2",
+    "inv0": [
+      0,
+      11,
+      11,
+      0,
+      12,
+      68
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      3,
+      2,
+      70
+    ],
+    "t": 252
+  },
+  {
+    "commands0": "MOVE 0 8 6;MOVE 2 8 5;MOVE 4 7 7;MOVE 5 6 6",
+    "commands1": "PLANT 1 BANANA;PICK 3 BANANA",
+    "inv0": [
+      0,
+      10,
+      11,
+      0,
+      12,
+      68
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      2,
+      2,
+      70
+    ],
+    "t": 253
+  },
+  {
+    "commands0": "DROP 0;DROP 5;MOVE 2 7 5;MOVE 4 8 7",
+    "commands1": "CHOP 1;PLANT 3 BANANA",
+    "inv0": [
+      0,
+      10,
+      11,
+      0,
+      12,
+      68
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      1,
+      2,
+      70
+    ],
+    "t": 254
+  },
+  {
+    "commands0": "HARVEST 0;PICK 2 LEMON;PLANT 4 LEMON;CHOP 5",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      10,
+      12,
+      0,
+      12,
+      70
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      1,
+      2,
+      70
+    ],
+    "t": 255
+  },
+  {
+    "commands0": "DROP 0;PLANT 2 LEMON;MOVE 4 7 7;MOVE 5 8 7",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      9,
+      12,
+      0,
+      12,
+      70
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      1,
+      2,
+      70
+    ],
+    "t": 256
+  },
+  {
+    "commands0": "HARVEST 0;CHOP 2;PICK 4 LEMON;CHOP 5",
+    "commands1": "DROP 1;DROP 3",
+    "inv0": [
+      0,
+      9,
+      13,
+      0,
+      12,
+      70
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      1,
+      2,
+      70
+    ],
+    "t": 257
+  },
+  {
+    "commands0": "CHOP 2;PLANT 4 LEMON;CHOP 5;MOVE 0 8 5",
+    "commands1": "PICK 1 BANANA;PICK 3 PLUM",
+    "inv0": [
+      0,
+      8,
+      13,
+      0,
+      12,
+      70
+    ],
+    "inv1": [
+      3,
+      0,
+      6,
+      1,
+      2,
+      72
+    ],
+    "t": 258
+  },
+  {
+    "commands0": "CHOP 2;PICK 4 LEMON;MOVE 0 8 6;MOVE 5 6 6",
+    "commands1": "PLANT 1 BANANA;PLANT 3 PLUM",
+    "inv0": [
+      0,
+      8,
+      13,
+      0,
+      12,
+      70
+    ],
+    "inv1": [
+      2,
+      0,
+      6,
+      0,
+      2,
+      72
+    ],
+    "t": 259
+  },
+  {
+    "commands0": "DROP 0;DROP 2;CHOP 5;MOVE 4 8 7",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      7,
+      13,
+      0,
+      12,
+      70
+    ],
+    "inv1": [
+      2,
+      0,
+      6,
+      0,
+      2,
+      72
+    ],
+    "t": 260
+  },
+  {
+    "commands0": "HARVEST 0;PLANT 4 LEMON;CHOP 5;MOVE 2 8 5",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      7,
+      14,
+      0,
+      12,
+      71
+    ],
+    "inv1": [
+      2,
+      0,
+      6,
+      0,
+      2,
+      72
+    ],
+    "t": 261
+  },
+  {
+    "commands0": "DROP 0;DROP 5;MOVE 2 8 5;MOVE 4 9 5",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      7,
+      14,
+      0,
+      12,
+      71
+    ],
+    "inv1": [
+      2,
+      0,
+      6,
+      0,
+      2,
+      72
+    ],
+    "t": 262
+  },
+  {
+    "commands0": "HARVEST 0;PICK 5 LEMON;MOVE 2 8 7;MOVE 4 8 5",
+    "commands1": "DROP 1;DROP 3",
+    "inv0": [
+      0,
+      7,
+      15,
+      0,
+      12,
+      74
+    ],
+    "inv1": [
+      2,
+      0,
+      6,
+      0,
+      2,
+      72
+    ],
+    "t": 263
+  },
+  {
+    "commands0": "DROP 0;DROP 5;MOVE 2 7 7;MOVE 4 8 7",
+    "commands1": "PICK 1 PLUM;PICK 3 PLUM",
+    "inv0": [
+      0,
+      6,
+      15,
+      0,
+      12,
+      74
+    ],
+    "inv1": [
+      2,
+      0,
+      6,
+      0,
+      2,
+      74
+    ],
+    "t": 264
+  },
+  {
+    "commands0": "HARVEST 0;CHOP 2;CHOP 4;PICK 5 LEMON",
+    "commands1": "PLANT 1 PLUM;PLANT 3 PLUM",
+    "inv0": [
+      0,
+      7,
+      16,
+      0,
+      12,
+      74
+    ],
+    "inv1": [
+      0,
+      0,
+      6,
+      0,
+      2,
+      74
+    ],
+    "t": 265
+  },
+  {
+    "commands0": "DROP 0;CHOP 2;CHOP 4;MOVE 5 6 3",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      6,
+      16,
+      0,
+      12,
+      74
+    ],
+    "inv1": [
+      0,
+      0,
+      6,
+      0,
+      2,
+      74
+    ],
+    "t": 266
+  },
+  {
+    "commands0": "PICK 0 LEMON;CHOP 2;CHOP 4;MOVE 5 9 3",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      6,
+      17,
+      0,
+      12,
+      74
+    ],
+    "inv1": [
+      0,
+      0,
+      6,
+      0,
+      2,
+      74
+    ],
+    "t": 267
+  },
+  {
+    "commands0": "CHOP 2;CHOP 4;MOVE 0 8 5;MOVE 5 9 2",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      5,
+      17,
+      0,
+      12,
+      74
+    ],
+    "inv1": [
+      0,
+      0,
+      6,
+      0,
+      2,
+      74
+    ],
+    "t": 268
+  },
+  {
+    "commands0": "DROP 2;CHOP 4;MOVE 0 9 5;MOVE 5 10 3",
+    "commands1": "CHOP 1;DROP 3",
+    "inv0": [
+      0,
+      5,
+      17,
+      0,
+      12,
+      74
+    ],
+    "inv1": [
+      0,
+      0,
+      6,
+      0,
+      2,
+      74
+    ],
+    "t": 269
+  },
+  {
+    "commands0": "PLANT 0 LEMON;MOVE 2 8 6;MOVE 4 7 7;MOVE 5 10 5",
+    "commands1": "CHOP 1;PICK 3 APPLE",
+    "inv0": [
+      0,
+      5,
+      17,
+      0,
+      12,
+      76
+    ],
+    "inv1": [
+      0,
+      0,
+      6,
+      0,
+      2,
+      75
+    ],
+    "t": 270
+  },
+  {
+    "commands0": "HARVEST 2;DROP 4;MOVE 0 8 5;MOVE 5 10 4",
+    "commands1": "CHOP 1;PLANT 3 APPLE",
+    "inv0": [
+      0,
+      5,
+      17,
+      0,
+      12,
+      76
+    ],
+    "inv1": [
+      0,
+      0,
+      5,
+      0,
+      2,
+      75
+    ],
+    "t": 271
+  },
+  {
+    "commands0": "DROP 2;MOVE 0 8 5;MOVE 4 6 5;MOVE 5 9 2",
+    "commands1": "DROP 1;CHOP 3",
+    "inv0": [
+      0,
+      5,
+      17,
+      0,
+      12,
+      79
+    ],
+    "inv1": [
+      0,
+      0,
+      5,
+      0,
+      2,
+      75
+    ],
+    "t": 272
+  },
+  {
+    "commands0": "PICK 2 LEMON;CHOP 5;MOVE 0 8 5;MOVE 4 9 5",
+    "commands1": "PICK 1 APPLE;CHOP 3",
+    "inv0": [
+      0,
+      5,
+      19,
+      0,
+      12,
+      79
+    ],
+    "inv1": [
+      0,
+      0,
+      5,
+      0,
+      2,
+      76
+    ],
+    "t": 273
+  },
+  {
+    "commands0": "CHOP 4;CHOP 5;MOVE 0 8 5;MOVE 2 8 7",
+    "commands1": "PLANT 1 APPLE;CHOP 3",
+    "inv0": [
+      0,
+      4,
+      19,
+      0,
+      12,
+      79
+    ],
+    "inv1": [
+      0,
+      0,
+      4,
+      0,
+      2,
+      76
+    ],
+    "t": 274
+  },
+  {
+    "commands0": "PLANT 2 LEMON;CHOP 4;CHOP 5;MOVE 0 8 6",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      4,
+      19,
+      0,
+      12,
+      79
+    ],
+    "inv1": [
+      0,
+      0,
+      4,
+      0,
+      2,
+      76
+    ],
+    "t": 275
+  },
+  {
+    "commands0": "PICK 0 LEMON;CHOP 4;MOVE 2 8 5;MOVE 5 7 3",
+    "commands1": "CHOP 1;DROP 3",
+    "inv0": [
+      0,
+      4,
+      19,
+      0,
+      12,
+      79
+    ],
+    "inv1": [
+      0,
+      0,
+      4,
+      0,
+      2,
+      76
+    ],
+    "t": 276
+  },
+  {
+    "commands0": "DROP 0;CHOP 4;MOVE 2 8 7;MOVE 5 10 3",
+    "commands1": "CHOP 1;PICK 3 APPLE",
+    "inv0": [
+      0,
+      3,
+      19,
+      0,
+      12,
+      79
+    ],
+    "inv1": [
+      0,
+      0,
+      4,
+      0,
+      2,
+      77
+    ],
+    "t": 277
+  },
+  {
+    "commands0": "PICK 0 LEMON;CHOP 2;CHOP 4;CHOP 5",
+    "commands1": "CHOP 1;PLANT 3 APPLE",
+    "inv0": [
+      0,
+      4,
+      19,
+      0,
+      12,
+      79
+    ],
+    "inv1": [
+      0,
+      0,
+      3,
+      0,
+      2,
+      77
+    ],
+    "t": 278
+  },
+  {
+    "commands0": "CHOP 2;CHOP 5;MOVE 0 8 5;MOVE 4 8 6",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      3,
+      19,
+      0,
+      12,
+      79
+    ],
+    "inv1": [
+      0,
+      0,
+      3,
+      0,
+      2,
+      77
+    ],
+    "t": 279
+  },
+  {
+    "commands0": "DROP 4;MOVE 0 7 5;MOVE 2 8 7;MOVE 5 9 5",
+    "commands1": "DROP 1;CHOP 3",
+    "inv0": [
+      0,
+      3,
+      19,
+      0,
+      12,
+      79
+    ],
+    "inv1": [
+      0,
+      0,
+      3,
+      0,
+      2,
+      77
+    ],
+    "t": 280
+  },
+  {
+    "commands0": "MOVE 0 6 5;MOVE 2 8 7;MOVE 4 9 4;MOVE 5 7 5",
+    "commands1": "PICK 1 APPLE;CHOP 3",
+    "inv0": [
+      0,
+      3,
+      19,
+      0,
+      12,
+      82
+    ],
+    "inv1": [
+      0,
+      0,
+      3,
+      0,
+      2,
+      78
+    ],
+    "t": 281
+  },
+  {
+    "commands0": "DROP 5;MOVE 0 6 5;MOVE 2 8 6;MOVE 4 9 2",
+    "commands1": "PLANT 1 APPLE;CHOP 3",
+    "inv0": [
+      0,
+      3,
+      19,
+      0,
+      12,
+      82
+    ],
+    "inv1": [
+      0,
+      0,
+      2,
+      0,
+      2,
+      78
+    ],
+    "t": 282
+  },
+  {
+    "commands0": "HARVEST 2;CHOP 4;MOVE 0 6 5;MOVE 5 8 7",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      4,
+      19,
+      0,
+      12,
+      84
+    ],
+    "inv1": [
+      0,
+      0,
+      2,
+      0,
+      2,
+      78
+    ],
+    "t": 283
+  },
+  {
+    "commands0": "DROP 2;CHOP 4;CHOP 5;MOVE 0 7 5",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      4,
+      19,
+      0,
+      12,
+      84
+    ],
+    "inv1": [
+      0,
+      0,
+      2,
+      0,
+      2,
+      78
+    ],
+    "t": 284
+  },
+  {
+    "commands0": "PLANT 0 LEMON;CHOP 4;CHOP 5;MOVE 2 9 5",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      4,
+      21,
+      0,
+      12,
+      84
+    ],
+    "inv1": [
+      0,
+      0,
+      2,
+      0,
+      2,
+      78
+    ],
+    "t": 285
+  },
+  {
+    "commands0": "CHOP 0;CHOP 5;MOVE 2 9 3;MOVE 4 8 4",
+    "commands1": "CHOP 1;DROP 3",
+    "inv0": [
+      0,
+      4,
+      21,
+      0,
+      12,
+      84
+    ],
+    "inv1": [
+      0,
+      0,
+      2,
+      0,
+      2,
+      78
+    ],
+    "t": 286
+  },
+  {
+    "commands0": "CHOP 0;MOVE 2 10 3;MOVE 4 8 6;MOVE 5 6 6",
+    "commands1": "CHOP 1;PICK 3 APPLE",
+    "inv0": [
+      0,
+      4,
+      21,
+      0,
+      12,
+      84
+    ],
+    "inv1": [
+      0,
+      0,
+      2,
+      0,
+      2,
+      80
+    ],
+    "t": 287
+  },
+  {
+    "commands0": "CHOP 0;CHOP 2;DROP 4;DROP 5",
+    "commands1": "CHOP 1;PLANT 3 APPLE",
+    "inv0": [
+      0,
+      4,
+      21,
+      0,
+      12,
+      84
+    ],
+    "inv1": [
+      0,
+      0,
+      1,
+      0,
+      2,
+      80
+    ],
+    "t": 288
+  },
+  {
+    "commands0": "CHOP 0;CHOP 2;PICK 4 LEMON;MOVE 5 7 4",
+    "commands1": "CHOP 1;CHOP 3",
+    "inv0": [
+      0,
+      4,
+      21,
+      0,
+      12,
+      90
+    ],
+    "inv1": [
+      0,
+      0,
+      1,
+      0,
+      2,
+      80
+    ],
+    "t": 289
+  },
+  {
+    "commands0": "CHOP 0;MOVE 2 8 3;MOVE 4 8 7;MOVE 5 9 3",
+    "commands1": "DROP 1;CHOP 3",
+    "inv0": [
+      0,
+      3,
+      21,
+      0,
+      12,
+      90
+    ],
+    "inv1": [
+      0,
+      0,
+      1,
+      0,
+      2,
+      80
+    ],
+    "t": 290
+  },
+  {
+    "commands0": "CHOP 0;PLANT 4 LEMON;MOVE 2 8 5;MOVE 5 9 2",
+    "commands1": "WAIT;CHOP 3",
+    "inv0": [
+      0,
+      3,
+      21,
+      0,
+      12,
+      90
+    ],
+    "inv1": [
+      0,
+      0,
+      1,
+      0,
+      2,
+      81
+    ],
+    "t": 291
+  },
+  {
+    "commands0": "DROP 0;CHOP 5;MOVE 2 8 6;MOVE 4 6 6",
+    "commands1": "WAIT;CHOP 3",
+    "inv0": [
+      0,
+      3,
+      21,
+      0,
+      12,
+      90
+    ],
+    "inv1": [
+      0,
+      0,
+      1,
+      0,
+      2,
+      81
+    ],
+    "t": 292
+  },
+  {
+    "commands0": "DROP 2;PICK 4 LEMON;CHOP 5;MOVE 0 8 5",
+    "commands1": "WAIT;CHOP 3",
+    "inv0": [
+      0,
+      3,
+      21,
+      0,
+      12,
+      91
+    ],
+    "inv1": [
+      0,
+      0,
+      1,
+      0,
+      2,
+      81
+    ],
+    "t": 293
+  },
+  {
+    "commands0": "CHOP 5;MOVE 0 8 5;MOVE 2 8 7;MOVE 4 6 3",
+    "commands1": "WAIT;CHOP 3",
+    "inv0": [
+      0,
+      2,
+      21,
+      0,
+      12,
+      92
+    ],
+    "inv1": [
+      0,
+      0,
+      1,
+      0,
+      2,
+      81
+    ],
+    "t": 294
+  },
+  {
+    "commands0": "CHOP 2;MOVE 0 8 6;MOVE 4 6 6;MOVE 5 7 3",
+    "commands1": "WAIT;DROP 3",
+    "inv0": [
+      0,
+      2,
+      21,
+      0,
+      12,
+      92
+    ],
+    "inv1": [
+      0,
+      0,
+      1,
+      0,
+      2,
+      81
+    ],
+    "t": 295
+  },
+  {
+    "commands0": "HARVEST 0;CHOP 2;PLANT 4 LEMON;MOVE 5 7 5",
+    "commands1": "WAIT;WAIT",
+    "inv0": [
+      0,
+      2,
+      21,
+      0,
+      12,
+      92
+    ],
+    "inv1": [
+      0,
+      0,
+      1,
+      0,
+      2,
+      83
+    ],
+    "t": 296
+  },
+  {
+    "commands0": "DROP 0;CHOP 2;CHOP 4;DROP 5",
+    "commands1": "WAIT;WAIT",
+    "inv0": [
+      0,
+      2,
+      21,
+      0,
+      12,
+      92
+    ],
+    "inv1": [
+      0,
+      0,
+      1,
+      0,
+      2,
+      83
+    ],
+    "t": 297
+  },
+  {
+    "commands0": "HARVEST 0;CHOP 2;CHOP 4;PICK 5 LEMON",
+    "commands1": "WAIT;WAIT",
+    "inv0": [
+      0,
+      2,
+      22,
+      0,
+      12,
+      94
+    ],
+    "inv1": [
+      0,
+      0,
+      1,
+      0,
+      2,
+      83
+    ],
+    "t": 298
+  },
+  {
+    "commands0": "CHOP 2;CHOP 4;PLANT 5 LEMON;MOVE 0 8 5",
+    "commands1": "WAIT;WAIT",
+    "inv0": [
+      0,
+      1,
+      22,
+      0,
+      12,
+      94
+    ],
+    "inv1": [
+      0,
+      0,
+      1,
+      0,
+      2,
+      83
+    ],
+    "t": 299
+  },
+  {
+    "commands0": "DROP 4;CHOP 5;MOVE 0 8 6;MOVE 2 7 7",
+    "commands1": "WAIT;WAIT",
+    "inv0": [
+      0,
+      1,
+      22,
+      0,
+      12,
+      94
+    ],
+    "inv1": [
+      0,
+      0,
+      1,
+      0,
+      2,
+      83
+    ],
+    "t": 300
+  }
+]

@@ -1,0 +1,85 @@
+{
+  "arm_counts": {
+    "control": 512,
+    "high": 512,
+    "low": 512
+  },
+  "arms": {
+    "high": {
+      "arm": "high",
+      "command_divergence_tasks": 273,
+      "common_state_directionally_comparable_divergences": 77,
+      "directional_focus_divergences": 12,
+      "eligible": false,
+      "gates": {
+        "both_seats_positive": true,
+        "command_divergence_ge_5pct": true,
+        "directional_first_divergence_ge_60pct": false,
+        "issue_and_terminal_integrity": true,
+        "paired_mean_positive": true,
+        "paired_tasks_complete": true,
+        "six_families_positive": false
+      },
+      "margin_delta_by_family": {
+        "0": -0.9375,
+        "1": 2.359375,
+        "2": -1.28125,
+        "3": 1.5625,
+        "4": 7.078125,
+        "5": -2.265625,
+        "6": -2.703125,
+        "7": 0.65625
+      },
+      "margin_delta_by_seat": {
+        "0": 0.4140625,
+        "1": 0.703125
+      },
+      "paired_mean_margin_delta": 0.55859375,
+      "paired_mean_opponent_score_delta": 0.271484375,
+      "paired_mean_own_score_delta": 0.830078125,
+      "paired_tasks": 512,
+      "weight": 1800
+    },
+    "low": {
+      "arm": "low",
+      "command_divergence_tasks": 378,
+      "common_state_directionally_comparable_divergences": 97,
+      "directional_focus_divergences": 15,
+      "eligible": false,
+      "gates": {
+        "both_seats_positive": false,
+        "command_divergence_ge_5pct": true,
+        "directional_first_divergence_ge_60pct": false,
+        "issue_and_terminal_integrity": true,
+        "paired_mean_positive": false,
+        "paired_tasks_complete": true,
+        "six_families_positive": false
+      },
+      "margin_delta_by_family": {
+        "0": -1.25,
+        "1": -3.40625,
+        "2": 3.625,
+        "3": 1,
+        "4": -4.78125,
+        "5": 0.359375,
+        "6": -0.609375,
+        "7": -0.96875
+      },
+      "margin_delta_by_seat": {
+        "0": -1.11328125,
+        "1": -0.39453125
+      },
+      "paired_mean_margin_delta": -0.75390625,
+      "paired_mean_opponent_score_delta": 0.787109375,
+      "paired_mean_own_score_delta": 0.033203125,
+      "paired_tasks": 512,
+      "weight": 450
+    }
+  },
+  "duplicates": [],
+  "observed_tasks": 512,
+  "schema": "troll-farm-n6-development-v1",
+  "selected_arm": null,
+  "source_integrity": true,
+  "verdict": "CLOSED_AT_DEVELOPMENT"
+}

@@ -1,0 +1,197 @@
+{
+  "task": "20260731-s3-putibuzu-rollout-beam-scope-audit",
+  "generated_utc": "2026-07-31T00:54:02Z",
+  "base_commit": "a4b010ccbc10036d925de89419e10ea7b195fafd",
+  "protocol": "docs/s3-putibuzu-rollout-beam-scope-protocol-2026-07-31.md",
+  "protocol_sha256": "50fc59e36dc8c7dbb7d9784d6087d42bc7221ed95c2100a0805b3ee72d0f3b59",
+  "public_source": {
+    "author": "putibuzu",
+    "published_date": "2026-05-25",
+    "url": "https://forum.codingame.com/t/spring-challenge-2026-troll-farm-feedback-strategies/208241/5",
+    "retrieved_utc": "2026-07-31T00:51:00Z",
+    "status": "architectural prose, not exact source",
+    "shape": {
+      "joint_candidates_approx": 30,
+      "candidate_basis": "top-three tree targets plus local actions per troll",
+      "rollout_depths_turns": [
+        3,
+        5,
+        7,
+        9,
+        12
+      ],
+      "depth_aggregation": "average",
+      "large_map_selector": "three-ply beam summarized as 5→3→all",
+      "small_map_selector": "explicit opponent candidates and maximin payoff selection",
+      "continuation": "one greedy policy for action generation and both sides, with a different opponent training order",
+      "evaluation": [
+        "score differential",
+        "distance-discounted carried resources",
+        "tree proximity weighted by ownership",
+        "future tree production"
+      ]
+    },
+    "not_specified": [
+      "evaluation weights",
+      "candidate scoring and deduplication",
+      "tie-breaking",
+      "precise 5→3→all beam semantics",
+      "whether depth checkpoints share one trajectory",
+      "map-size boundary",
+      "opponent-candidate breadth and pruning",
+      "simulator chance handling"
+    ]
+  },
+  "evidence_matrix": [
+    {
+      "id": "PHASES_3_8_OPENING",
+      "sources": [
+        "docs/archive/legend/hierarchical-controller-roadmap-2026-07-17.md#phase-3--full-information-policy-league-and-selector",
+        "data/analysis/live-agent-6553250/compact-gold-rollout-arena-verdict-2026-07-18.md"
+      ],
+      "root_scope": "turn one only",
+      "action_grammar": "resident plus dynamic max-bank option and 27 fixed harvest-0 first-worker options; 29-option robust library",
+      "direct_work_mutable": "only the isolated opening option",
+      "horizon": "terminal/stall",
+      "opponent_treatment": "one CompactGold continuation initially; eight heterogeneous continuations and six process realizations in the robust follow-up",
+      "selector": "guarded one-option choice, then robust minimax/mean/LCB abstaining rules; no beam",
+      "value_latency_transfer": "local +2.717; first-turn p95 184.07 ms under the first-turn budget; live candidate 21.7 versus 24.1 control; all three diagnosed activations lost; robust 29-option selectors selected nothing",
+      "relation_to_s3": "overlap only: terminal rollout and opponent robustness are present, but it is a single turn-one choice without repeated joint local-action search or multi-ply beam"
+    },
+    {
+      "id": "GOLDELITE_RESIDUAL",
+      "sources": [
+        "docs/archive/legend/residual-search-iteration-2026-07-16.md"
+      ],
+      "root_scope": "warm turns after turn 79 and after a chop-capable worker exists",
+      "action_grammar": "one role-preserving MOVE-target deviation from GoldElite; direct work immutable",
+      "direct_work_mutable": "no",
+      "horizon": "all candidates four turns; top four candidates sixteen turns",
+      "opponent_treatment": "GoldElite and Scheduler continuations with a conjunctive value floor",
+      "selector": "two-stage top-four residual screen; no multi-ply joint beam",
+      "value_latency_transfer": "+15.906 equal-weight untouched-holdout margin; isolated release p95 28.53 ms and max 49.67 ms; never established around the live resident",
+      "relation_to_s3": "nearest structural subset: staged pruning and rollout fit with a lightweight baseline, but the action grammar, policy owner, and sequence depth are much narrower"
+    },
+    {
+      "id": "PHASE_11_SHARED_STATE",
+      "sources": [
+        "data/analysis/live-agent-6553250/norxondor-shared-state-monte-carlo-2026-07-18.md"
+      ],
+      "root_scope": "one shared turn-three state",
+      "action_grammar": "two complete macro continuations: resident versus exact-three-worker",
+      "direct_work_mutable": "whole continuation differs",
+      "horizon": "terminal teacher; 240-turn liquid-value approximation",
+      "opponent_treatment": "observable-prefix-compatible subset of eight local opponent models; minimax terminal teacher",
+      "selector": "binary macro selection; no beam",
+      "value_latency_transfer": "terminal validation +26.081 margin and +15.194 score; 240-turn proxy precision 88.33% below 90%; median 209.487 ms, p95 279.460 ms, 0/80 within 50 ms",
+      "relation_to_s3": "strict action-count subset with longer horizons and model filtering; it tests model-conditioned macro value, not recurrent broad joint search"
+    },
+    {
+      "id": "PHASE_16_RESIDENT_MOVE",
+      "sources": [
+        "data/analysis/live-agent-6553250/resident-residual-search-2026-07-18.md"
+      ],
+      "root_scope": "resident-produced warm states after turn 79",
+      "action_grammar": "at most 14 joint commands, each changing at most one MOVE target; all direct actions immutable",
+      "direct_work_mutable": "no",
+      "horizon": "four-turn screen, top four sixteen-turn continuations, eight-turn target commitment",
+      "opponent_treatment": "GoldElite and Scheduler ambiguity models",
+      "selector": "two-stage residual screen with exact resident abstention; no multi-ply beam",
+      "value_latency_transfer": "broad +1.200 margin at 130.047 ms p95; bank-only +0.508 margin at 92.852 ms p95; both effect and timing gates failed",
+      "relation_to_s3": "nearest exact-resident strict subset: it already misses 50 ms at smaller breadth, but it cannot answer whether a new lightweight greedy policy could execute the public shape"
+    },
+    {
+      "id": "D36_RESIDENT_OVERLAY",
+      "sources": [
+        "data/analysis/live-agent-6553250/legend-top3-experiment-cycle-2026-07-18.md#2026-07-21-d36-resident-anchored-constrained-joint-upper-bound"
+      ],
+      "root_scope": "exact resident first-two-worker state and up to four later completion boundaries",
+      "action_grammar": "joint provenance-aware full work bundles, up to two targets per kind and unit",
+      "direct_work_mutable": "yes, within bounded bundles",
+      "horizon": "terminal exact-resident continuation after each bounded bundle",
+      "opponent_treatment": "frozen opponent family cells and a +65 opponent-score suppression ceiling",
+      "selector": "offline terminal upper-bound selection and replanning; no online beam",
+      "value_latency_transfer": "active in 112/128 tasks; repeated overlay +19.617 own and +10.633 margin versus +68/+25 gates; closed",
+      "relation_to_s3": "overlaps joint semantic sequences and repeated replanning, but is an offline constrained upper bound rather than primitive local-action beam search"
+    },
+    {
+      "id": "D84_THREATENED_RESPONSE",
+      "sources": [
+        "data/analysis/live-agent-6553250/d84a-truncated-counterfactual-feasibility-result-2026-07-21.md"
+      ],
+      "root_scope": "sparse threatened-own-crop roots",
+      "action_grammar": "control plus at most three semantic responses",
+      "direct_work_mutable": "yes, within the threat-response arm",
+      "horizon": "1, 2, 4, 8, 16, and 32 post-root macro decisions",
+      "opponent_treatment": "actual local opponent continuation, an optimistic information advantage",
+      "selector": "coefficient-free banked-plus-carried liquid value; no beam",
+      "value_latency_transfer": "best +3.160 at horizon 32 versus +5.620 required; ideal-parallel p95/max 64.840/133.114 ms and serial p95 210.166 ms",
+      "relation_to_s3": "strict semantic/root subset with a multi-horizon diagnostic; useful value arrives too late here, but the timings are not a direct lower bound for a different lightweight h12 policy"
+    },
+    {
+      "id": "S1_EXACT_ENDGAME",
+      "sources": [
+        "data/analysis/live-agent-6553250/s1-endgame-solver-feasibility-result-2026-07-31.json"
+      ],
+      "root_scope": "turns 251, 276, and 291 in exact resident games",
+      "action_grammar": "exact movement-only simultaneous one-ply outcomes; non-MOVE branches omitted",
+      "direct_work_mutable": "not represented",
+      "horizon": "one exact movement ply measured; full 10–50-turn game scoped",
+      "opponent_treatment": "both players exact in the scoped branch count; external policy processes not cloneable",
+      "selector": "none",
+      "value_latency_transfer": "movement-only one-ply median 600 and maximum 6400 outcomes; full exact search infeasible",
+      "relation_to_s3": "not a duplicate; it proves that pruning to about 30 candidates is an approximation and cannot be relabeled exact"
+    }
+  ],
+  "novelty_adjudication": {
+    "combination_previously_tested": false,
+    "materially_distinct_components": [
+      "repeated joint candidate combinations that include local direct actions rather than one MOVE residual",
+      "five-depth average rather than one terminal or one liquid checkpoint",
+      "three-ply beam sequence selection",
+      "map-size-dependent switch between own-action beam and explicit-opponent maximin",
+      "a dedicated lightweight full greedy continuation rather than exact resident continuation"
+    ],
+    "qualification": "Most individual ingredients overlap prior work; novelty belongs to their combination and policy ownership, not to rollout, pruning, maximin, or task-level actions separately."
+  },
+  "blockers": {
+    "specification": {
+      "binding": true,
+      "strength": "direct",
+      "reason": "The primary prose omits the definitions needed for a reproducible candidate, beam, and evaluator. Filling them in would create a clean-room S3-shaped design, not reproduce putibuzu."
+    },
+    "model": {
+      "binding": true,
+      "strength": "direct",
+      "reason": "The exact public greedy/opponent policies are unavailable. The project's single-continuation live rollout fell from 24.1 control to 21.7, and the eight-model repair had no robust selection; local opening agreement peaked at 8/60 and no model matched failed-activation first targets."
+    },
+    "runtime": {
+      "binding": true,
+      "strength": "provisional for the public lightweight policy, direct for exact-resident reuse",
+      "reason": "The exact-resident strict subset costs 92.852–130.047 ms p95. D84's optimistic h32 subset costs 64.840 ms ideal-parallel p95. A lightweight GoldElite subset fit at 28.53 ms p95, so a new optimized policy is not proven impossible, but no integrated S3-width path currently meets 50 ms."
+    }
+  },
+  "verdict": "DISTINCT_MULTI_GATED",
+  "decision": "Do not implement, simulate, or value-test S3. The public combination is outside the strict closures, but specification and opponent/value modeling are directly blocked and runtime is unresolved under a new lightweight policy.",
+  "peer_review_gated_successor": {
+    "id": "S3a",
+    "name": "search-kernel specification and latency preflight",
+    "authorized": false,
+    "first_decision": "After N4 Phase A review, choose explicitly between resident candidate pairs (which overlaps N4) and a clean-room broad greedy policy (which is a new controller).",
+    "minimum_scope_if_authorized": [
+      "freeze candidate grammar, beam semantics, evaluator, opponent candidates, chance handling, and map-size rule before code",
+      "label the intervention clean-room S3-shaped unless exact source is obtained",
+      "use only already-consumed states for a deterministic command-legality and warm-latency microbenchmark",
+      "require latency qualification before any score panel or new map block",
+      "preserve exact resident abstention and forbid Arena action"
+    ]
+  },
+  "integrity": {
+    "new_source_files": 0,
+    "new_analyzers_or_tests": 0,
+    "new_maps_or_games": 0,
+    "arena_actions": 0,
+    "sacred_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "exact_resident_control_sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+  }
+}

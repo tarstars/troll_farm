@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "task": "20260731-s1-endgame-exact-solver-scope-audit",
+  "verdict": "FULL_EXACT_INFEASIBLE",
+  "runs": {
+    "jobs_8": "python3 cgauto/s1_endgame_solver_feasibility.py --jobs 8 --output /tmp/s1-endgame-solver-j8.json",
+    "jobs_1": "python3 cgauto/s1_endgame_solver_feasibility.py --jobs 1 --output /tmp/s1-endgame-solver-j1.json",
+    "games": 720,
+    "roots": 589
+  },
+  "artifacts": {
+    "analyzer": {
+      "path": "cgauto/s1_endgame_solver_feasibility.py",
+      "sha256": "a1bc3175ddbae9b0628c970b318446d16ee484cbc37d0b889f8b6a1b7bdaf3cb"
+    },
+    "tests": {
+      "path": "tests/test_s1_endgame_solver_feasibility.py",
+      "sha256": "2acb4ec93e8a19b3ae3f5abb15f4b03b814c62b561b200924dc6d75bf53cbbd0"
+    },
+    "protocol": {
+      "path": "docs/s1-endgame-exact-solver-scope-protocol-2026-07-31.md",
+      "sha256": "45e1ad715654f81560d5d6457e952c83bb44b12f6526a7232a46f54c1b58cea1"
+    },
+    "implementation_lock": {
+      "path": "local_codex_1/s1-endgame-solver-feasibility/implementation-lock.json",
+      "sha256": "b80f33fde5c0f774002d90aa70d083f28a05148553df78e2347e6f5285517b5a"
+    },
+    "compact_result": {
+      "path": "data/analysis/live-agent-6553250/s1-endgame-solver-feasibility-result-2026-07-31.json",
+      "sha256": "3341616796b470dd23bb4bbf7b51118cd140135c25c71661f21c4da0f01270b2"
+    },
+    "report": {
+      "path": "data/analysis/live-agent-6553250/s1-endgame-solver-feasibility-result-2026-07-31.md",
+      "sha256": "06ba2d8386b7a7bf876f8b9a94147a1b4686dcb136236315c3be7bc5afabb439"
+    }
+  },
+  "validation": {
+    "focused_tests": "6 passed",
+    "self_test": "ok",
+    "coverage_complete": true,
+    "movement_resolver_engine_equivalence": true,
+    "unexpected_stderr_bytes": 0,
+    "malformed_commands": 0,
+    "game_rows_sha256": "79fdcd8bbc46a51752247174552bc6a0b151cff787370340ba2bcec64e424e62",
+    "root_rows_sha256": "4b4b776692e4028c9850af22f7f01d0a335441c8372d3ee201df5a7948f90054",
+    "jobs_8_full_json_sha256": "2b7749a9cfc6b1edbdfc05d80fbe3839db8fe5ddc845a6cf752dcd60bb85b20d",
+    "jobs_1_full_json_sha256": "b0006c8bf279ada0b9de4447b8582d9212283865a25883f05ed0cb4364e2dcf6",
+    "normalized_payload_sha256": "d8aafbc51df48dd16e66e5143974b724db556b35a431763d3d960b7dfebb5f51",
+    "normalized_payloads_excluding_jobs_exact": true,
+    "sacred_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "result": {
+    "turn_251_reach": "246/720",
+    "turn_291_reach": "155/720",
+    "movement_only_joint_outcome_median": 600,
+    "movement_only_joint_outcome_maximum": 6400,
+    "full_game_distinct": true,
+    "known_policy_cloneable": false,
+    "candidate_restriction_novel": false
+  },
+  "decision": {
+    "solver_implementation": false,
+    "policy_change": false,
+    "candidate": false,
+    "arena_action": false,
+    "n4_unchanged": true,
+    "s3_unchanged": true
+  }
+}

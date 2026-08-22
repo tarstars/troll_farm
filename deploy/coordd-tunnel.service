@@ -1,0 +1,16 @@
+# deploy/coordd-tunnel.service — user unit on project_host at ~/.config/systemd/user/
+[Unit]
+Description=SSH tunnel to coordd on the Yandex Cloud VM
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Replace VM_ALIAS with the ssh config alias for the Yandex Cloud VM.
+ExecStart=/usr/bin/ssh -N -o ServerAliveInterval=30 -o ServerAliveCountMax=3 \
+  -o ExitOnForwardFailure=yes -L 7077:127.0.0.1:7077 VM_ALIAS
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

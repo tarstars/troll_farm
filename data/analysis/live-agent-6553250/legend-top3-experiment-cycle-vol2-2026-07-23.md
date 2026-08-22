@@ -175,6 +175,304 @@ clean answer. Full record: `d172a-dense-counterfactual-option-policy-*` (lock, p
 results, corpus manifest, result docs); new machinery committed
 (`d172a_dense_counterfactual_corpus.rs`, train/analyze scripts).
 
+## 2026-07-29: H13 — one real fidelity defect (oscillation, 6.4× yamo's rate), and the 2.94 headline is deflated
+
+**The correction first, because the integrator over-claimed.** I opened H13 on the framing
+that 2.94 points separate us from our own source design and that the gap is "by
+construction not architectural". H13's attribution says otherwise: only one deviation
+carries a real number (D171a's measured +0.53 on its activated subset), the optimistic sum
+of everything found is **≈1 point — well under half of 2.94**, and several checked
+deviations (typeToCut concentration, contested-chop rate, planting timing) show **no gap or
+a reversed one**. The honest residual is large and most plausibly **score maturity**:
+STATE's own documented effect is that fresh reads sit 3–4 points below matured ones, our
+agent was submitted 2026-07-19 while yamo has been on the ladder since May. **A 3–4-point
+maturity effect fully covers a 2.94-point observed gap** — meaning our code may already
+match or exceed yamo's, and the "we underperform our source" framing must not be repeated
+without a maturity-controlled measurement. Recorded as a correction to my own H5 entry.
+
+**What is nonetheless real: the oscillation defect, now with a reference ceiling.**
+Deviation classes found: **2 validated improvements** — idle-harvest KEEP, and the
+single-mother orchard mechanism (arena **+3.0**, promoted; structurally an *active* analog
+of a "sweet spot" idea yamo describes but says he left **disabled**); **4 unvalidated
+changes** — denial-bonus weight, funding-spec tie-break, a dormant risk-avoidance term, the
+PICK-dedup rule; **3 unintended divergences**; plus **4 accretions confirmed structurally
+dead** by tracing `main()`'s construction chain — `ScarceIntent`, `banana_factory`,
+`task_market`, and the opponent-crop scoring family **cannot fire at all** (any prior
+description treating these as live behaviour needs re-checking).
+
+The headline divergence is **same-two-cell oscillation**, and the comparison is stark:
+**40/220 = 18.2% of our games oscillate, worst case 133 turns, against 4/140 = 2.9% of
+yamo's, worst case 6 turns** — 6.4× the incidence and 22× the severity. The irony is
+recorded: yamo's postmortem *admits* this weakness ("I only set the destination… trolls
+occasionally blocked each other") and leaves it; we deliberately engineered around it
+(`resolve_move_conflicts_with_priority_and_forbidden`, detour tie-break L1513–1521, zero
+cross-turn memory) and ended up 6× worse. Second candidate: the **missing endgame
+opponent-plant contest** — the postmortem's "park adjacent to the opponent's shack… contest
+any last-minute planting" is confirmed absent (`view.shacks[1]` appears at only three
+unrelated lines); opponents plant while we lead in 43.3% of our endgame games vs 35.9% of
+yamo's (directional, not significant at n≈260). Third: the **denial-bonus weight**
+`900/(1+dist)`, never swept despite the reproduction plan's own G1 requiring it
+(placebo-adjusted signal 1.24 ours vs 1.64 yamo's).
+
+**Adjudication.** H13 closes as an audit. Its one actionable output is a **sanctioned
+successor to D171a** — sanctioned because D171a's own closure recorded successor
+requirements (bounded arm lifetime, echo-stop disarm, ≤2 forced choices per arming, or
+preference-based tie-breaking rather than prohibition), and because H13 supplies genuinely
+new evidence rather than a threshold retune: a *measured achievable ceiling from a
+same-architecture reference bot* (2.9% incidence, ≤6-turn worst case). Expected value is
+honestly marginal — D171a's partial 45.7% cure was worth +0.53 activated, so even a good
+successor plausibly returns ~+0.1 overall — but it is execution-class, the only family that
+has ever transferred, and the machinery exists. Frozen as **D176**. Report in session
+scratch `h13-fidelity-gap-report.md`; script `cgauto/fidelity_gap_audit.py`.
+
+## 2026-07-29: H1 CLOSED (C) — the joint economy package cannot pay, even at its upper bound
+
+**Verdict (C) immaterial or negative; the H1 bundle is dead on measured grounds rather
+than on the methodological objection alone.** *(Characterisation corrected 2026-07-29 by
+chatgpt_1's independent review, adopted: this is a **grounded finite-windfall accounting
+stress test on one modelled package**, NOT a formal upper bound over every four-lever
+complementarity; and the reported CI is conditional on fixed pricing constants — it does
+not propagate structural uncertainty. Cite it accordingly.)* A net accounting bound
+computed on all 220 resident games (`cgauto/joint_economy_upper_bound.py`): gross recoverable fruit **23.64
+units/game** — an independent match to B3.8's 23.8 — falling to **19.03/game** net of
+bill-spending. Bounded early planting adds only **+0.067/game** on grounded terms, exactly
+as D175a's real intervention implied; the aspirational peer-shape bracket (+4.02/game)
+requires a fifth, unmodelled lever and is not credited.
+
+**Bill side, using the real bill and post-move legality** (both H8 corrections applied;
+worker-2 talents source-verified as the same bill the live code reuses for workers 3–4
+once `can_train`'s cap is lifted, and cross-checked against D174a's independently published
+mean): **worker 3 becomes affordable in 81/220 games (36.8%), median turn 78** — materially
+better than B3.8/B3.9's ~10% under their synthetic spec, because the accounting is now
+correct. **Worker 4: 0/220. Never.** The reason is structural and new: *the credited fruit
+and iron are a one-time windfall from a finite tree population, not a renewable stream.*
+
+**Displacement was priced, not waved away, and the model was calibrated.** Against this
+corpus's own value-per-chop-turn (1.026, consistent with B4.4's 172.9 wood-score/game), the
+model reproduces D175a's measured own-side effect (predicted −4.32 vs actual −5.41, ratio
+0.80) — it passes on sign and magnitude. The honest caveat is recorded by the audit itself:
+the opponent-side ratio is transferred from D175a by construction and extrapolated to a
+5–25× larger diversion regime, which is the dominant uncertainty.
+
+**Net figure: −21.33 rating [−22.76, −19.89], 0 of 220 games positive.** But the
+**load-bearing rejection is the own-side-only sensitivity — −2.49 rating [−2.78, −2.21],
+6/220 positive** — because that variant drops the extrapolated D175a opponent ratio
+entirely and is still negative. Quote −2.49, not −21.33: the larger figure inherits an
+opponent-side term transferred by construction into a 5–25× larger diversion regime.
+(Correction adopted from chatgpt_1's independent review.)
+Per-lever attribution: **harvest capability contributes most** (all direct fruit credit,
+and it is what makes worker 3 affordable at all); **bounded early planting contributes
+least** (≈0 on its own measured terms); worker 4's promise never materialises.
+
+**Adjudication.** This closes H1 completely: a patch on the existing scheduler cannot pay
+even at best, which confirms the review's rejection of the four-lever bundle on measured
+grounds and not merely on attribution methodology. It does **not** settle H2. The audit's
+argument — that a from-scratch design draws harvest and mining time from *added* capacity
+rather than cannibalised chop capacity, so the displacement term that dominates this bound
+would not apply the same way — is sound in principle, and the displacement term is indeed
+what makes the number negative. But it now inherits a hard design constraint: **crediting a
+finite tree windfall never affords a fourth worker, while the top cohort demonstrably runs
+3.55.** The difference must be a genuinely *renewable* resource base — continuous planting
+and reaping that grows the base rather than consuming it (the top cohort holds 5–6
+concurrent crops and reaps 15–29%). "Where does the renewable base come from, and does it
+close before the game does?" is therefore the **first** question any Architecture-2 design
+must answer, ahead of scheduler or roster questions. Report in session scratch
+`h1-joint-upper-bound-report.md`.
+
+## 2026-07-30: ★★★ A2 Phase 0a — verdict EXISTS (qualified): a sub-critical, LABOR-limited base
+
+**CORRECTION FIRST (integrator error, second of the day).** The entry that follows was
+written from a partial `report.json` while the executing agent was down after a machine
+suspend; the agent recovered and finished with data I did not have, and its verdict is
+**EXISTS (qualified) — K1 does NOT fire.** What I got wrong: I claimed no cohort grows its
+base. In fact **natural-origin trees can only shrink** (chopping is the sole removal
+mechanic) yet **top-5 population rises 16 → 23.5 by turn 150 with 64.7% of turn-300 trees
+planted, not inherited** — which mechanically rules out the "faster windfall consumption"
+reading I adopted. I generalized ranks 6–20's collapsing aggregate to every cohort; theirs
+does collapse late, the top five's holds. Corrected findings: **R ≈ 0.75 [0.73–0.77]** for
+top-5 and **broad-based** (98.8% of games harvest ≥1 self-planted tree); the resident's
+naive pooled 0.94 is a **mega-tree artifact** — only 23/242 games ever harvest anything and
+those supply **94%** of all fruit it has harvested, so its honest median R is 0. **The
+binding constraint is LABOR to service crops, not tree capacity**: realized 0.40 fruit/turn
+against a labor-unconstrained ceiling of **2.5–6.8**, peak ~20 concurrent fruiting trees at
+turn 75–100 then declining. That is the most important design fact for A2 — more
+harvest-capable labour raises throughput, which is precisely the compounding a scaling
+economy requires. Also discovered: an **undocumented per-player starting bank of ~24 fruit
+and ~6 iron** (per-game random, verified in `official_mapgen.rs`, **absent from
+`docs/mechanics.md`**) — an input to every affordability calculation ever run here, and
+exactly the class of gap X1 exists to find. Finally: **K1 did not fire**, so my amendment
+stands as a better-specified gate rather than as the rescue I described it as. The
+worker-3/4 reach and currency-provenance figures below are correct and unaffected.
+
+## 2026-07-30 (superseded framing): the partial-data reading
+
+**The renewable base does not exist, for any cohort.** Reproduction ratio R (new plantable
+seeds per harvested generation, net) median: resident **0.00**, ranks 6–20 **0.77**, top-5
+**0.75** — below 1 everywhere, with only **1.2%** of top-5 games ever reaching R ≥ 1.
+Independently confirmed by population growth: all cohorts start at ~16 trees and end far
+below (net **−11.97** resident, **−8.95** ranks 6–20), with only 6.6%/10.3% of games ending
+above their initial count. The resident is the extreme: zero harvest in **57.9%** of games
+and **0.05** of its own planted trees alive at the end (vs 2.17 for ranks 6–20). **Nobody on
+this ladder grows their base; planting is sub-critical for everyone.**
+
+**And yet the A2 target is demonstrably reached.** Worker 3: resident **0/242**, ranks 6–20
+89/300 (29.7%, earliest t28, median t85), top-5 **189/250 (75.6%**, earliest t34, median
+t106). Worker 4: resident 0/242, ranks 6–20 42/300 (14.0%), top-5 **104/250 (41.6%**,
+earliest t55, median t137). Bill-currency provenance is the decisive part: for the top five,
+**self-planted crops supply 37.2% of the third worker and 49.7% of the fourth**, while the
+endowment's share *falls* 39.9% → 26.9%. Farming funds scaling without ever replacing
+itself. Mined iron scales **5.99 → 16.05** between workers 3 and 4 — a hard requirement that
+directly conflicts with the resident's `own_units < 2` mining gate (D174a).
+
+**Synthesis: the top cohort runs a sub-critical but strongly productive economy** — not
+renewal, not windfall consumption, but *conversion*: extracting far more from a finite
+declining base, fast enough to fund 3–4 workers before it runs out. Maturation costs ~31.6
+turns dry vs ~11.8 watered, so water access sets how many generations fit in a game.
+
+**Kill rule K1 fires as written, and has been amended with the error recorded as mine.** K1
+assumed renewal was the necessary condition for reaching 3–4 workers; the measured necessary
+condition is **conversion efficiency of a finite endowment**, and two cohorts demonstrate the
+target from a depleting base. Killing A2 on that rule would discard an achievable objective
+because I described its mechanism wrongly. Amended: **stop if Phase 1 cannot fund a third
+worker in ≥40% of fresh-map games by turn ~110.** Third gate-specification error of the week
+(after D176a's two) and the same shape — a threshold anchored to the wrong quantity.
+
+Provenance: full compute completed (792 occurrences, 100% decode across three cohorts);
+the agent died in a trailing print when the machine was suspended during a physical
+relocation, and the integrator assembled the result from its `report.json`. Record:
+`a2-phase0a-renewable-base-result-2026-07-30.md`; script `cgauto/renewable_base_feasibility.py`.
+
+## 2026-07-30: OWNER DECISION — goal re-scoped from rank ≤3 to a mature score ≥ 25.40
+
+Presented with (a) keep rank ≤3, (b) re-scope to a target the evidence can reach, or (c)
+drop the rank target and optimize for knowledge, the owner chose **(b)**. Recorded target:
+**mature score ≥ 25.40** (the top-10 boundary; Escdemon 25.37) = **+3.64** from the frozen
+21.76, with an interim checkpoint at **24.70** — yamo's score, the published design this bot
+reproduces, so passing it means the reproduction surpasses its original. Completion rule
+unchanged: mature read plus a later confirmation.
+
+Reasoning of record: rank ≤3 (28.22) was set while passive maturity was believed to be a
+live lever. That belief died — the ladder recomputes fresh-agent scores rarely, so our score
+is source-side frozen — and the target was never revisited, with the effect that every
+result since has been measured against a bar no identified path reaches. The re-scoped
+target is chosen to be *architecturally demonstrated* (25 Legend agents reach ranks 7–54 at
+our exact two-worker roster) and *decision-bearing*: H13 puts the maturity effect at 3–4
+points, so ≥25.40 may be reachable with no code change, and N1 becomes a decision procedure
+rather than an interesting audit. Score rather than rank is used deliberately because the
+pool strengthens under us (22.0 → 21.76 with no code change), which would make a rank
+goalpost drift the wrong way.
+
+**Consequence: H2 Architecture-2 is demoted from goal-required to optional upside.** It
+remains an open owner decision on its own merits, gated on N1 and N3, and contested by H5's
+finding that the contest's #2 and #3 finishers both ran two-worker rosters.
+
+## 2026-07-29: D176a CLOSED-AT-MECHANISM — the fix largely works; two of my gates were mis-specified
+
+**Verdict CLOSED-AT-MECHANISM, as recorded by the analyzer and not reinterpreted.** But the
+result is far more nuanced than a failure, and the record should say so plainly.
+
+**Integrity: all pass**, including 1-vs-20-thread byte identity (jobs1 ran 1,210 s, the
+expected ratio). Trigger fidelity **100.0% on n=152** — and the agent earned that number: it
+first measured 95.4%, refused to accept a pass at face value, investigated the seven
+apparent failures, and found a genuine indexing bug **in its own verification script** (a
+mid-game-trained unit leaves gaps in `state["u"]`, silently misaligning an append-only
+history list). It fixed the script rather than the fix and re-ran clean.
+
+**Mechanism: 2 of 4 sub-gates pass.** ≥10-turn task rate **8.50% → 2.88%** (gate ≤6.0%) —
+*below yamo's 2.9% reference*; de-novo oscillation **0.0%, zero tasks** (gate ≤1.0%; D171a
+manufactured 72). Failing: 5–9-turn runs 213 → 825 (+287%, gate ≤+10%) and worst-case run
+length 247 → 247 turns (gate ≤20).
+
+**Value: all six gates pass.** Overall **+0.045** margin, CI [−0.024, +0.114]; activated
+subset **+0.612** over 152 tasks; catastrophes **73 vs 73**; mass ratio 0.999; worst family
+0.000. Nothing is harmed anywhere.
+
+**Two gate-specification errors, both mine, recorded as such.** (1) I anchored the
+worst-case gate to H13's *real-corpus* 133 turns, but **the control's own worst run on this
+panel is 247** — identical to the candidate's. The fix did not worsen the tail; it failed a
+threshold the control misses by 12×, calibrated on a different population. (2) I inherited
+the 5–9-turn displacement gate from D171a, where +117% accompanied *manufactured*
+oscillation. Here de-novo is **zero**, so +287% short runs cannot be manufacture — fewer
+long runs, more short runs, no new oscillation in clean tasks is the arithmetic signature of
+**long runs being fragmented**, i.e. the mechanism working. The gate cannot distinguish
+fragmentation from manufacture; the de-novo gate can, and it passed.
+
+**Why the line still closes, on better grounds.** Read charitably, the intervention works —
+and it is still worth **+0.045 overall with a CI straddling zero**, roughly 0.005 rating.
+The activated +0.61 across 18% of games is real and rounds to nothing at ladder level. So
+D176a closes not because the fix fails but because a *working* version is not worth a
+promotion cycle. The protocol's "two designed attempts is enough" disposition stands, and
+arrives at the same place by a sounder road. Oscillation is closed permanently.
+
+**Durable lesson for protocol design (now CONSTRAINTS):** calibrate a mechanism gate on the
+same population the panel measures, never on a corpus statistic from elsewhere; and ensure
+each gate can distinguish the intervention's intended *mechanism of action* from the failure
+mode it was inherited to catch.
+
+**Process note:** the executing agent was killed by transient API errors three times —
+after the panel, after the resume, and after the byte-identity check. All substantive work
+survived on disk (complete `result.json` with every gate), and the result document was
+assembled by the integrator from that file. Phase markers plus artifacts-on-disk made a
+thrice-failed agent fully recoverable; this is the third such recovery this week.
+
+## 2026-07-29: ★★★ H5 — the resident IS a #3-Legend published design, and it underperforms its own source by 2.94
+
+**Verdict (b) strongly confirms + (c) a few uncatalogued mechanisms — but the incidental
+finding outweighs both.** Public sources are thin and honestly so: two CodinGame forum
+threads (~29 named authors), plus three write-ups — delineate's gist (#1 Legend), Yann
+Moisan / `yamo`'s blog (#3 Legend), and Astrobytes' README. Nothing on Reddit, YouTube or
+X. `norxondor_gorgonax`, our ladder #2, is a CodinGame **auto-generated anonymous
+pseudonym**, so no postmortem can structurally exist; `MSz` published nothing. Both are
+verified absences, not search failures.
+
+**The finding: our own resident is a reproduction of the #3 finisher's published bot, and
+the project had lost track of this.** Commit `0307012` (2026-07-11) archived Yann Moisan's
+postmortem and a `yannbot` design spec; that lineage became `MoisanBot`/`YamoOpeningPolicy`
+and, after execution polish, **is the live resident today**. Verified directly: the
+postmortem describes scoring chops as "wood per turn — collectible wood divided by the full
+round-trip cost" (our `1000·wood/turns` in `chop_candidates`), a first-turn `typeToCut`
+chosen by cluster-nearest-shack, an endgame that plants leftover fruit for points, and —
+decisively — "when a tree matches `typeToCut` and **the opponent has at most 2 trolls**, the
+bot uses a different scoring formula that rewards trees near the opponent's shack… cut
+trees that will prevent the opponent from training." That gate is
+`yamo_orchard_live.rs:1102`, `opponent_trolls <= 2`, byte-identical in intent. **Both
+documents had been lost from the tree during a reorganization and are restored to
+`docs/reference/`.**
+
+**The number that matters.** Current ladder (2026-07-29T02:17Z snapshot): delineate 31.00,
+MSz 28.22, Escdemon 25.37, therealbeef 25.24, **yamo 24.70 (rank 15)**, mehdi_ayari 22.83,
+Pafin 22.25, **tass 21.76 (rank 45)**. We are **2.94 points below the very design we
+reproduce**, at the same fixed 2-troll roster. That gap is by construction **not
+architectural** — it is implementation fidelity, accreted divergence, or meta drift. It is
+also 45% of our 6.46-point gap to the bar, and it has a directly studiable target: yamo
+plays on our ladder and we hold 140 of its games. Opened as **H13**, now the strongest
+cheap lead on the board.
+
+**Field mechanisms recovered, and what they do to our theses.** (1) yamo (#3) ran a **fixed
+2-troll roster for the entire contest**, with denial-biased chop targeting only while the
+opponent has ≤2 trolls, and an endgame plant-to-extend at turn > 250 when behind.
+(2) **putibuzu (#2) explicitly rejected a third troll for "unfavorable cost scaling."**
+(3) delineate (#1) runs a **trained neural network with no turn search at all** — 2–3 ms of
+the 50 ms budget. (4) putibuzu also ran **real rollout to depth 12 plus a 3-ply beam
+search**. So: the field's top is **split on lookahead**, not uniformly greedy — which
+corrects H6's premise while strengthening its opportunity; and two of the top three
+finishers independently endorse exactly our roster, which **contests the premise under H2**
+that scaling is the answer. Our own measurements (B4.3 +48.2 margin/worker within-agent;
+H8 worker-3 timing +42.6) still stand as ladder facts; they now sit in explicit tension
+with the contest field's own reasoning, and that tension is unresolved rather than settled
+either way.
+
+**Two further consequences.** Nobody in any source describes *recovering* from numeric
+disadvantage — the field's only answer is **prevention** (deny while small; throttle
+aggression against disruptive opponents). That reinforces the terminal synthesis and
+deflates the H3 contact-coverage residual further. And a flagged tension: yamo's own
+postmortem places its planting at turn > 250, which sits badly against B4.4's "all 25
+two-worker peers plant by turn 21–29" — the figure that motivated D175a. Not adjudicable
+from public sources; recorded for re-verification, and combined with H3's four corrections
+it means B4.4's tempo measurements should not be cited until re-checked. Report in session
+scratch `h5-postmortem-intelligence-report.md`; primary sources restored to
+`docs/reference/`.
+
 ## 2026-07-29: H3 CLOSED (C) — the quartet's "survival edge" does not survive controls; B4.4 corrected on four counts
 
 **Verdict (C) mixed/underdetermined; no transferable mechanism confirmed.** Cohort
@@ -968,3 +1266,123 @@ guards, and a 424,896,968-byte md5-verified mirror of the whole `legacy-data-ana
 tree uploaded to `//home/delivery_ml/research/tarstars/troll_farm/mirrors/`. Local repo
 23.5 → 2.76 GB; Python suite unchanged at its documented baseline (1,163 passed / 3 known
 pre-existing failures).
+
+## 2026-07-30: X1 source-backed mechanics re-derivation — core match, two A2 obligations
+
+The public referee was pinned at
+`290129129db7a7539d98739ebdb0ed63ee6ceb50`; SHA-256 identities for 16 core Java
+files plus semantic anchors were checked against the maintained Python simulator,
+the frozen Rust engine, and D33's official generator. Result:
+**CORE_MATCH_WITH_TWO_A2_PARITY_OBLIGATIONS** — zero source failures, zero dynamic
+failures, zero unexpected mismatches. Focused tests 6/6; broader maintained Python
+mechanics tests 37/37; direct Rust game-module tests 2/2; D33 remains 120/120 exact.
+The resident remains byte-exact at SHA prefix `fff6669b`.
+
+The Legend starting state is now explicit: map height 8..11, width twice height;
+each of PLUM/LEMON/APPLE/BANANA/IRON independently uniform 2..10; the same bank is
+assigned to both players; expected fruit 24 and iron 6; initial score includes the
+fruit; starter talents `(1,1,1,1)`. This was missing documentation, **not** missing
+implementation: replay states and `official_mapgen.rs` already carried the bank, so
+no rerun is required solely for X1.
+
+Two local/referee boundaries are binding for A2-0b. `Board.getNextCell` randomly
+chooses among equal-best cells using the same RNG continued from map generation,
+whereas both local engines choose lexicographically and `generate_official` discards
+the post-map RNG state. The local parsers also omit the referee's full ownership,
+league, skill, syntax, and critical-error validation. Paired local deltas remain
+internally paired under their shared deterministic substrate, but they are not
+absolute referee-parity evidence where tied moves or invalid commands occur.
+Full record:
+`docs/reviews/2026-07-30-local_codex_1-x1-mechanics-rederivation.md`.
+
+## 2026-07-30: A2-0b referee/evaluation parity — QUALIFIED
+
+The first frozen v1 protocol stopped correctly before lock: ordinary deterministic play
+emits source-defined noncritical referee failures, so a zero-error gate was invalid. R1
+froze 24 supported noncritical reasons with exact state-effect tests and complete
+own/opponent/phase/reason accounting; critical and unclassified outcomes remained
+zero-gated. The implementation was remotely locked at commit
+`cd424a19a1f746d72afcfc8b7c824284cdda4012` before confirmation.
+
+The consumed D173b calibration matrix (seeds 9,854,000–127, two seats, eight families)
+completed at one and 20 threads: 2,048/2,048 terminal rows, byte-identical TSV SHA
+`3f8071978cedf82c991562bb893bc1990bfc371077d3563f85fed4294b7bee2b`.
+The legacy arm reproduces the preregistered control exactly: **49 catastrophes / 12,749
+negative-margin mass**. Legality gates pass: legacy checker 88,615 supported issues
+(440 own), referee path 86,363 (229 own), with **zero critical and zero unclassified**
+in both. All own issues are simultaneous mixed-type opponent planting, where both
+commands are source-defined failures.
+
+External storage preflight passed on the labeled `medium_data` volume before the
+trajectory write. Exactly 2,048 legacy plus 2,048 referee NDJSON records were decoded,
+with no duplicates/errors and all six standing detectors executed. Continued post-map
+RNG changes 1,781/2,048 trajectories (first divergence turn 1–283, mean 15.37). Referee
+calibration ends at 53 catastrophes / 13,646 negative mass and mean margin −1.888 versus
+legacy; this is the preregistered semantics-change description, **not** an A2 value
+estimate. It demonstrates why Phase 1 must use the locked referee path and fresh ranges;
+legacy is historical control only.
+
+Scientific verdict: **QUALIFIED**. Reviewer acknowledgement is pending, so protocol
+closure and any Phase 1 panel wait. Full records:
+`a2-0b-r1-{implementation-lock,referee-parity-result}.json` and dated Markdown companions.
+
+## 2026-07-30: N1 maturity curve closes waiting; X1/A2-0b reviews close
+
+`chatgpt_1` reviewed the host-executed seven-snapshot N1 panel and published the canonical
+verdict: **PARTIAL identification / IMMATERIAL remaining maturity**. Exact `agentId`
+identity is stable; 1,008 agents repeat, 41 within-agent age-bin crossings exist, and all
+2,549 score-changing intervals advance `updateTime`. Lifetime games played remains
+unidentified because battle lists are right-censored.
+
+At the latest snapshot the resident is score **21.47**, age **10.356d**. Estimated
+remaining uplift is **−0.1612**, agent-cluster bootstrap 95% CI
+**[−0.7525,+0.4567]**, projected mature score **21.3088**, gaps **3.3912** to 24.70 and
+**4.0912** to 25.40. Zero is inside the interval; the upper edge is only **0.0433** below
+the frozen +0.500 cutoff. Thus the label is boundary-sensitive and does not prove negative
+aging, but it decisively retires the anecdotal +3–4-point passive-maturity budget.
+
+The same review branch accepted X1's
+`CORE_MATCH_WITH_TWO_A2_PARITY_OBLIGATIONS` and confirmed both obligations implemented by
+A2-0b r1. It also accepted A2-0b as **QUALIFIED**. A2-0b is now protocol-closed; A2-1
+inherits locked referee mode, fresh ranges, a policy-owned command-quality gate, and
+legacy-as-control-only. No Phase 1 panel or Arena action occurred.
+
+## 2026-07-30: A2-1 economy skeleton — FAILED K1; Architecture-2 stops
+
+The first new Architecture-2 policy was built from scratch against the locked A2-0b
+referee path. It owns planting, own-generation reconstruction, harvest/bank provenance,
+real worker bills, in-route-only mining, collision-safe one-step movement, crop servicing,
+and late fruit-to-wood liquidation. The resident, A2-0b sources, module registry, and
+sealed data remained byte-exact; no Arena or TestSession action occurred.
+
+Development used fresh seeds 9,880,000–031. The first probe reached 202/512 = 39.45%;
+the one preregistered architecture repair kept distinct pre-worker-3 workers attached to
+distinct owned crops rather than resuming distant chops. The official repaired block
+narrowly passed at **206/512 = 40.23%**. One/20-thread TSVs were byte-identical, all six
+detectors covered 512 trajectories, and command quality passed. The exact implementation
+was remotely locked at commit `2357ec672c971a23f8225ce63f8f1ff4c9214913`.
+
+The single fresh confirmation look used seeds 9,881,000–127, two seats, and all eight
+families. It is a clean **FAILED_K1**:
+
+- fruit-funded worker 3 by post-step turn ≤110: **582/2,048 = 28.42%**, gate 40%;
+- own bill fruit: 128,979 harvested and 127,614 banked;
+- mined iron: 755 at roster 2 and 840 at roster 3+; zero iron-directed moves;
+- one/20-thread TSV SHA:
+  `efd793552a9a535de94a9429eb73fc82db69e11eaf282e83a8ef5ccc2cffe2fa`;
+- critical/unclassified issues: 0; A2-owned issues 198/1,365,709, all allowed
+  simultaneous `opponent_plant_blocking`;
+- all six detectors cover all 2,048 trajectories; repeated failed command 0;
+- family rates are uniformly low (27.34–31.25%), so no family-selection rescue exists.
+
+Descriptive value is also far from candidate level (mean margin −113.11; 1,368
+catastrophes), though Phase 1 did not gate on it. The charter's amended K1 now fires:
+**stop the A2 programme before Phase 2; do not retune on consumed ranges.** Full records:
+`a2-1-{development-result,implementation-lock,confirmation-result}.json` and dated
+Markdown companions. No candidate was built for promotion.
+
+## 2026-07-30: volume 2 frozen
+
+The A2-1 closeout carries this volume past its 100 KB rotation threshold. Volume 2 is now
+frozen; the live ledger continues in
+`legend-top3-experiment-cycle-vol3-2026-07-30.md`.

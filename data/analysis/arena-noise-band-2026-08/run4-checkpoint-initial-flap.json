@@ -1,0 +1,196 @@
+{
+ "schema": 1,
+ "observed_at": "2026-08-13T05:26:17.630782+00:00",
+ "result_audit_completed_at": "2026-08-13T05:26:21.832583+00:00",
+ "role": "sigma-run4-initial",
+ "agent_id": 6614096,
+ "submission_id": 41129543,
+ "arena": {
+  "agent_id": 6604529,
+  "rank": 35,
+  "total": 140,
+  "score": 22.46,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6614096,
+  "rank": 81,
+  "score": 18.68,
+  "division_index": 5
+ },
+ "battle_rows_listed": 15,
+ "matching_rows": 15,
+ "matching_finished": 14,
+ "matching_pending": 1,
+ "unexpected_rows": [],
+ "parsed_results": 14,
+ "fetch_failures": [],
+ "summary": {
+  "games": 14,
+  "wins": 10,
+  "ties": 0,
+  "losses": 4,
+  "mean_margin": 49.5,
+  "catastrophic_losses": 0,
+  "catastrophic_rate": 0.0,
+  "negative_margin_mass": 137.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 898842669,
+   "opponent": "Mmdrlol",
+   "opponent_agent_id": 6588478,
+   "our_score": 136.0,
+   "opponent_score": 108.0,
+   "margin": 28.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898842657,
+   "opponent": "Lanfeust",
+   "opponent_agent_id": 6488464,
+   "our_score": 256.0,
+   "opponent_score": 171.0,
+   "margin": 85.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898842624,
+   "opponent": "IlyaPol",
+   "opponent_agent_id": 6566109,
+   "our_score": 96.0,
+   "opponent_score": 80.0,
+   "margin": 16.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898842608,
+   "opponent": "timothee1910",
+   "opponent_agent_id": 6559646,
+   "our_score": 179.0,
+   "opponent_score": 196.0,
+   "margin": -17.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898842564,
+   "opponent": "conioon",
+   "opponent_agent_id": 6579288,
+   "our_score": 224.0,
+   "opponent_score": 96.0,
+   "margin": 128.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898842563,
+   "opponent": "pbou",
+   "opponent_agent_id": 6608666,
+   "our_score": 292.0,
+   "opponent_score": 155.0,
+   "margin": 137.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898842562,
+   "opponent": "Kenshi235",
+   "opponent_agent_id": 6588454,
+   "our_score": 261.0,
+   "opponent_score": 163.0,
+   "margin": 98.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898842561,
+   "opponent": "Zylo",
+   "opponent_agent_id": 6591737,
+   "our_score": 202.0,
+   "opponent_score": 48.0,
+   "margin": 154.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898842560,
+   "opponent": "NOIIICE",
+   "opponent_agent_id": 6488436,
+   "our_score": 154.0,
+   "opponent_score": 49.0,
+   "margin": 105.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898842559,
+   "opponent": "abdelmathin",
+   "opponent_agent_id": 6479931,
+   "our_score": 138.0,
+   "opponent_score": 68.0,
+   "margin": 70.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898842558,
+   "opponent": "VINCE_MX",
+   "opponent_agent_id": 6483491,
+   "our_score": 160.0,
+   "opponent_score": 232.0,
+   "margin": -72.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898842557,
+   "opponent": "aangairbender",
+   "opponent_agent_id": 6479532,
+   "our_score": 172.0,
+   "opponent_score": 163.0,
+   "margin": 9.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898842556,
+   "opponent": "Astrobytes",
+   "opponent_agent_id": 6482167,
+   "our_score": 182.0,
+   "opponent_score": 225.0,
+   "margin": -43.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 898842555,
+   "opponent": "FreZzz",
+   "opponent_agent_id": 6600770,
+   "our_score": 168.0,
+   "opponent_score": 173.0,
+   "margin": -5.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": false
+}

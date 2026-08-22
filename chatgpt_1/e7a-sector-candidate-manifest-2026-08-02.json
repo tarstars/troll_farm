@@ -1,0 +1,75 @@
+{
+  "arena_authorized": false,
+  "candidate": {
+    "bytes": 62820,
+    "delta_bytes": 95,
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+    "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+  },
+  "compilation": {
+    "binary_bytes": 13577088,
+    "rustc": "rustc 1.75.0 (82e1608df 2023-12-21) (built from a source tarball)",
+    "stderr": "",
+    "stdout": ""
+  },
+  "parent": {
+    "bytes": 62725,
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+    "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+  },
+  "schema": "troll-farm-e7a-sector-candidate/1",
+  "sector": {
+    "descriptive_precision": 0.7692307692307693,
+    "distance_source": "BFS from resident shack walkable orthogonal doors",
+    "root_count": 60,
+    "rule": "default LEMON and plum_distance_sum - lemon_distance_sum <= 8",
+    "selected_count": 13,
+    "selected_nonpositive_count": 3,
+    "selected_nonpositive_seeds": [
+      27,
+      29,
+      35
+    ],
+    "selected_positive_count": 10,
+    "selected_positive_seeds": [
+      17,
+      18,
+      20,
+      25,
+      32,
+      45,
+      50,
+      52,
+      56,
+      57
+    ],
+    "selected_seeds": [
+      17,
+      18,
+      20,
+      25,
+      27,
+      29,
+      32,
+      35,
+      45,
+      50,
+      52,
+      56,
+      57
+    ],
+    "unreachable_penalty": 10000
+  },
+  "task": "20260802-e7a-sector-candidate",
+  "transform": {
+    "changed_function": "MoisanBot::focus_type",
+    "inverse_exact": true,
+    "new_anchor_count_candidate": 1,
+    "new_anchor_sha256": "d749528c0da34157200a81a7b85aad3faf23c0aeb43e87bb256f287ed3919903",
+    "old_anchor_count_parent": 1,
+    "old_anchor_sha256": "4ce46d2b06294b325907b6c48620be4d1ce2c0d486806f0f9b2df0c062dc8f56",
+    "other_behavior_changes": false
+  },
+  "value_qualification": false,
+  "verdict": "MATERIALIZED_EXACT_SOURCE_TRANSFORM"
+}

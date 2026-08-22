@@ -1,0 +1,41 @@
+{
+ "schema": 1,
+ "observed_at": "2026-07-31T08:55:45.242166+00:00",
+ "result_audit_completed_at": "2026-07-31T08:55:45.242257+00:00",
+ "role": "funding-first-diagonal-initial",
+ "agent_id": 6585846,
+ "submission_id": 41071360,
+ "arena": {
+  "agent_id": 6585801,
+  "rank": 110,
+  "total": 113,
+  "score": 14.07,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6585846,
+  "rank": 112,
+  "score": 0.0,
+  "division_index": 5
+ },
+ "battle_rows_listed": 10,
+ "matching_rows": 10,
+ "matching_finished": 0,
+ "matching_pending": 10,
+ "unexpected_rows": [],
+ "parsed_results": 0,
+ "fetch_failures": [],
+ "summary": {
+  "games": 0,
+  "wins": 0,
+  "ties": 0,
+  "losses": 0,
+  "mean_margin": null,
+  "catastrophic_losses": 0,
+  "catastrophic_rate": null,
+  "negative_margin_mass": 0,
+  "validity_runtime_signals": []
+ },
+ "rows": [],
+ "identity_clean": false
+}

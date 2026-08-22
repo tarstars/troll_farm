@@ -51,13 +51,13 @@ def find_source(payload: object) -> str:
     return found[0]
 
 
-def fetch_source(test_session_handle: str) -> str:
+def fetch_source(test_session_handle: str, session_file: Path = SESSION_FILE) -> str:
     request = urllib.request.Request(
         ENDPOINT,
         data=json.dumps([test_session_handle]).encode(),
         headers={
             "Content-Type": "application/json",
-            "Cookie": remember_me_cookie(),
+            "Cookie": remember_me_cookie(session_file),
             "User-Agent": "Mozilla/5.0",
         },
     )
@@ -85,6 +85,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("output", type=Path, help="path for the exact recovered source")
     parser.add_argument("--test-session", default=DEFAULT_TSH)
+    parser.add_argument("--session-file", type=Path, default=SESSION_FILE)
     parser.add_argument("--expected-sha256", help="abort if the recovered source changed")
     parser.add_argument("--force", action="store_true")
     return parser.parse_args()
@@ -92,7 +93,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    source = fetch_source(args.test_session)
+    source = fetch_source(args.test_session, args.session_file)
     digest = hashlib.sha256(source.encode()).hexdigest()
     if args.expected_sha256 and digest != args.expected_sha256:
         raise SystemExit(

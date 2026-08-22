@@ -1,0 +1,19 @@
+{
+  "canonical_token_stream_identical": true,
+  "compacted": {
+    "bytes": 55799,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r36-delete-orphaned-carry-total.rs",
+    "sha256": "2caac7c6e71e8dcc613a2275fe8129cdf9aec2c1230e50f7dfdec79908528381"
+  },
+  "compacted_file_byte_identical": false,
+  "difference_is_trailing_newline_only": true,
+  "formatter": "rustfmt (reorder_imports=false, max_width=100) + inserted-comma removal",
+  "readable": {
+    "bytes": 113427,
+    "lines": 2552,
+    "path": "claude_1/readable-source/e7a-r36-readable.rs",
+    "sha256": "d3d6d7f086d3d08121bdf429d8b8ff81d0c5672c91dd14ea1328d123947ada95"
+  },
+  "schema": "troll-farm-readable-source-v2",
+  "verdict": "READABLE_SOURCE_ROUND_TRIP_EXACT"
+}

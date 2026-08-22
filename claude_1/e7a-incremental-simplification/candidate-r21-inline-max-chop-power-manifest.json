@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 56949,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r21-inline-max-chop-power.rs",
+    "removed_from_initial_62278": 5329,
+    "removed_this_round": 97,
+    "sha256": "a1fb6fea6968dfd30b57aae2ab35f9114f62202d1e19ee0be682b4f32a01db3e"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact offline live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "inline the sole-value max_chop_power 3 at its two opening_options arguments and one clamp bound and delete the field and TUNED_CARRY initializer; the opening_options parameter and locals are untouched",
+  "minification": false,
+  "parent": {
+    "bytes": 57046,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r20-inline-max-carry-capacity.rs",
+    "sha256": "e314cc2ee025f6d7c47da61447e07b3bd1247424a66a75baa19e622e3b68647b"
+  },
+  "round": 21,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}

@@ -1,0 +1,206 @@
+{
+  "task": "20260820-pair-selector-anti-benching",
+  "phase": 1,
+  "subject_sha256": "ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1",
+  "referee_rule": "sim/engine.py:134-150 \u2014 a MOVE into an occupied cell is dropped unless the occupant vacates",
+  "totals": {
+    "turns": 2245,
+    "onto_benched_cell": 2010,
+    "other_move": 235,
+    "not_a_move": 0
+  },
+  "situations": [
+    {
+      "id": "OSC-001",
+      "unit": 2,
+      "benched_turns": 26,
+      "onto_benched_cell": 0,
+      "other_move": 26,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-002",
+      "unit": 0,
+      "benched_turns": 189,
+      "onto_benched_cell": 0,
+      "other_move": 189,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-003",
+      "unit": 2,
+      "benched_turns": 21,
+      "onto_benched_cell": 21,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-004",
+      "unit": 0,
+      "benched_turns": 12,
+      "onto_benched_cell": 12,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-006",
+      "unit": 0,
+      "benched_turns": 7,
+      "onto_benched_cell": 7,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-007",
+      "unit": 0,
+      "benched_turns": 8,
+      "onto_benched_cell": 8,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-009",
+      "unit": 2,
+      "benched_turns": 0,
+      "onto_benched_cell": 0,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-011",
+      "unit": 2,
+      "benched_turns": 6,
+      "onto_benched_cell": 6,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-013",
+      "unit": 0,
+      "benched_turns": 187,
+      "onto_benched_cell": 187,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-014",
+      "unit": 0,
+      "benched_turns": 168,
+      "onto_benched_cell": 168,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-015",
+      "unit": 0,
+      "benched_turns": 157,
+      "onto_benched_cell": 157,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-016",
+      "unit": 0,
+      "benched_turns": 194,
+      "onto_benched_cell": 194,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-017",
+      "unit": 0,
+      "benched_turns": 194,
+      "onto_benched_cell": 194,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-018",
+      "unit": 0,
+      "benched_turns": 191,
+      "onto_benched_cell": 191,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-019",
+      "unit": 0,
+      "benched_turns": 178,
+      "onto_benched_cell": 178,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-020",
+      "unit": 0,
+      "benched_turns": 172,
+      "onto_benched_cell": 172,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-021",
+      "unit": 2,
+      "benched_turns": 169,
+      "onto_benched_cell": 169,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-022",
+      "unit": 0,
+      "benched_turns": 95,
+      "onto_benched_cell": 95,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-023",
+      "unit": 0,
+      "benched_turns": 73,
+      "onto_benched_cell": 73,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-024",
+      "unit": 2,
+      "benched_turns": 64,
+      "onto_benched_cell": 64,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-025",
+      "unit": 2,
+      "benched_turns": 20,
+      "onto_benched_cell": 20,
+      "other_move": 0,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-029",
+      "unit": 2,
+      "benched_turns": 14,
+      "onto_benched_cell": 0,
+      "other_move": 14,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-031",
+      "unit": 0,
+      "benched_turns": 6,
+      "onto_benched_cell": 0,
+      "other_move": 6,
+      "not_a_move": 0
+    },
+    {
+      "id": "OSC-034",
+      "unit": 0,
+      "benched_turns": 94,
+      "onto_benched_cell": 94,
+      "other_move": 0,
+      "not_a_move": 0
+    }
+  ]
+}

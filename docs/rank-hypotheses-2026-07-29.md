@@ -26,7 +26,18 @@ crops, peers 15–17%, top-3 24.16%; the top cohort trains first at median turn 
 
 ---
 
-## H1. The joint economy package — all four levers at once
+## H1. The joint economy package — ❌ CLOSED 2026-07-29, verdict (C) immaterial/negative
+
+> **Result:** the sanctioned read-only upper bound came back negative in every credible
+> setting — NET −21.33 rating [−22.76,−19.89] with 0/220 games positive, and −2.49
+> [−2.78,−2.21] with 6/220 even when the opponent-side displacement term is dropped
+> entirely. The displacement model reproduces D175a's measured own-side effect (−4.32 vs
+> −5.41), so it is calibrated rather than assumed. Harvest capability carries almost all
+> the value; bounded early planting ≈0. Under the real bill worker 3 is affordable in
+> 36.8% of games — but worker 4 **never**, because the credited resources are a one-time
+> windfall from a finite tree population. Ledger + CONSTRAINTS (h). Original below.
+
+## H1 (original). The joint economy package — all four levers at once
 
 **Hypothesis.** Lifting `harvest_power: 0`, the `can_train` two-worker cap, bounded early
 planting, and banking support **together** produces a viable economy where each lever
@@ -113,7 +124,19 @@ is load-bearing. **First step.** Read-only: in catastrophe games, measure what c
 the opponent's worker-3 bill actually consumed and whether it was deniable (reachable by
 our units in the window). **Cost:** audit one session; experiment 1–2 more.
 
-## H5. Postmortem intelligence — read what the top players wrote
+## H5. Postmortem intelligence — ✅ DONE 2026-07-29, verdict (b) confirms + (c)
+
+> **Result:** thin but real sources. Strongly confirms our model — the #2 and #3 finishers
+> independently endorse a 2-troll roster and denial-first play, and #2 explicitly rejected
+> a third troll for "unfavorable cost scaling". Corrects H6: the field is *split* on
+> lookahead (#1 delineate is a trained NN with no search at 2–3 ms; #2 putibuzu ran
+> depth-12 rollout + 3-ply beam). Nobody describes recovering from numeric disadvantage —
+> only preventing it. **Incidental and decisive: our resident is a reproduction of yamo's
+> #3-Legend published design, and yamo outranks us by 2.94 at the same roster** → opened
+> as H13, now the top cheap lead. Primary sources restored to `docs/reference/`.
+> Ledger + CONSTRAINTS (h). Original text preserved below.
+
+## H5 (original). Postmortem intelligence — read what the top players wrote
 
 **Hypothesis.** The contest ended 2026-05-25; CodinGame top players routinely publish
 postmortems (forum, blogs, GitHub). delineate, norxondor_gorgonax, and MSz's own

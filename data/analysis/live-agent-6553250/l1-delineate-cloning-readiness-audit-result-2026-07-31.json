@@ -1,0 +1,207 @@
+{
+  "schema": 1,
+  "task": "20260731-l1-delineate-cloning-readiness-audit",
+  "generated_utc": "2026-07-31T01:28:00Z",
+  "verdict": "DISTINCT_PRIMITIVE_ONLY",
+  "scope": "Read-only readiness audit of exact-agent delineate replay coverage, observable behavior-cloning labels, prior imitation overlap, and the minimum closed-loop successor gate.",
+  "corpus": {
+    "source": "data/processed/games.jsonl",
+    "source_sha256": "12f72265c2af19d69ddf9dad053ccc33b3c7f799182b23ca973210429500a73d",
+    "stats_sha256": "21211747abfc7d03d30a48db726d2ff5ab16f8d873a897ebee92e993b1a039bc",
+    "all_games": 9082,
+    "all_games_parsed": 9082,
+    "parse_failures": 0,
+    "agent_id": 6479768,
+    "pseudo": "delineate",
+    "arena_score_in_parsed_rows": 30.99,
+    "games": 199,
+    "old_phase9_games": 26,
+    "old_phase9_games_retained": 26,
+    "new_games_beyond_phase9": 173,
+    "game_id_min": 891153730,
+    "game_id_max": 897319413,
+    "seats": {
+      "0": 98,
+      "1": 101
+    },
+    "distinct_opponents": 53,
+    "turns": 59403,
+    "raw_replays_present": 199,
+    "raw_replays_missing": 0,
+    "raw_replay_bytes": 67053448,
+    "trajectory_bytes": 7978463,
+    "current_battle_window": {
+      "battle_rows": 147,
+      "unique_game_ids": 147,
+      "done_rows": 147,
+      "agent_ids": [
+        6479768
+      ],
+      "submission_ids": [
+        40707878
+      ],
+      "battle_metadata_sha256": "b7cee2d72052d7c97528f4844f979c99197eecc1e2fe366c553a06b8f2ae0a18",
+      "note": "The battle window is right-censored and is not the cumulative corpus."
+    }
+  },
+  "decoder_quality": {
+    "games": 199,
+    "turn_count_matches": 199,
+    "decoded_turns": 59403,
+    "trajectory_turns": 59403,
+    "unknown_diff_updates": 0,
+    "per_unit_rows": 145448
+  },
+  "observable_labels": {
+    "explicit_output_commands": {
+      "CHOP": 34806,
+      "DROP": 19097,
+      "HARVEST": 15511,
+      "MINE": 1582,
+      "MOVE": 62409,
+      "PICK": 3045,
+      "PLANT": 7762,
+      "TRAIN": 378,
+      "WAIT": 53
+    },
+    "explicit_primitive_unit_commands": 144265,
+    "actual_train_events_and_specs": 378,
+    "message_commands": 0,
+    "unique_exact_command_strings": 1784,
+    "objective_rows_including_implicit_wait": {
+      "CHOP": 34806,
+      "DROP": 19097,
+      "HARVEST": 15511,
+      "MINE": 1582,
+      "MOVE_OTHER": 29913,
+      "MOVE_TREE": 14875,
+      "MOVE_TREE_RIPE": 17621,
+      "PICK_APPLE": 168,
+      "PICK_BANANA": 1710,
+      "PICK_LEMON": 660,
+      "PICK_PLUM": 507,
+      "PLANT_APPLE": 393,
+      "PLANT_BANANA": 3653,
+      "PLANT_LEMON": 2211,
+      "PLANT_PLUM": 1505,
+      "WAIT": 1236
+    }
+  },
+  "identifiability": {
+    "observable": [
+      "player-relative public map and complete pre-action state",
+      "final ordered command sequence for every turn",
+      "primitive verb, unit id, target coordinate, and resource kind",
+      "actual TRAIN timing and four-stat specification",
+      "past emitted actions, if a successor deliberately includes history"
+    ],
+    "latent": [
+      "train-plan target selected on turns before an actual TRAIN",
+      "previous internal train target used by the public plan head",
+      "3290 policy logits and their calibration",
+      "per-unit top-X alternative actions",
+      "joint-action beam alternatives, invalidations, and probabilities",
+      "PPO rewards, advantages, value targets, weights, and curriculum states"
+    ],
+    "boundary": "The corpus exactly identifies final primitive/joint outputs on teacher states. It does not identify delineate's hidden planner or action distribution, and teacher-state labels alone do not identify closed-loop value."
+  },
+  "public_architecture": {
+    "source": "https://gist.github.com/delineate/93ba9d48102e442e764db39d85ac44a3",
+    "revision": "e8a005ddd7568d71bf1523a8c62202511e55bd86",
+    "raw_sha256": "18265467b11b8f08828985aaef8c7d33716404e6b950fb3f9a4ff3470962fc36",
+    "training": "PPO curriculum, not behavior cloning",
+    "observation": "104 x 11 x 22",
+    "network": "four-block ResNet with spatial action head and shared 144-candidate train-plan head",
+    "policy_logits": 3290,
+    "inference": "one plan inference plus one inference per troll, followed by a joint-action beam",
+    "parameters_excluding_value_heads_approx": 101000,
+    "submission_characters_approx": 98000,
+    "reported_runtime_ms_per_turn": "2-3",
+    "project_submission_character_gate": 100000
+  },
+  "prior_work": [
+    {
+      "evidence": "Phase 9",
+      "teacher": "top five, including delineate",
+      "delineate_coverage": "26 games / 17,743 per-worker rows",
+      "target": "18 coarse objectives",
+      "representation": "13 coarse state features with nested lookup backoff",
+      "validation": "held game",
+      "result": "delineate 60.413% accuracy / 0.329 macro F1; failed macro-F1 gate",
+      "relation": "negative prior, not duplicate: L1 has 7.65x games, exact primitive targets, and a spatial/full-state representation"
+    },
+    {
+      "evidence": "Phase 9 complete Escdemon gate",
+      "teacher": "Escdemon",
+      "target": "objective, target, and rendered command continuation",
+      "representation": "tree/rules",
+      "validation": "held game then autoregressive rendering",
+      "result": "52.12% MOVE-target accuracy after integration",
+      "relation": "closed-loop warning from a different teacher"
+    },
+    {
+      "evidence": "Phase 14",
+      "teacher": "Norxondor",
+      "target": "intent plus goal rankers and workforce ladder",
+      "representation": "107-node intent tree plus compact rankers",
+      "validation": "held game then complete native controller",
+      "result": "76.937% held-game intent accuracy but -172.663 paired margin closed-loop",
+      "relation": "direct warning that teacher-state accuracy is not a value gate; different teacher and labels"
+    },
+    {
+      "evidence": "D41a",
+      "teacher": "synthetic deterministic D40 policy",
+      "target": "candidate index under exact conditional lexicographic ordering",
+      "representation": "44 features and a 1,985-parameter independent scorer",
+      "validation": "held teacher decisions",
+      "result": "84.386-84.960% versus a 99% floor; exact decoder 85,047/85,047",
+      "relation": "function-class warning, not duplicate: teacher, action surface, and representation differ"
+    },
+    {
+      "evidence": "delineate public postmortem",
+      "teacher": "none",
+      "target": "PPO policy and train-plan heads",
+      "representation": "104-plane ResNet",
+      "validation": "closed-loop self-play and leaderboard",
+      "result": "rank one; about 101k policy parameters, 98k-character submission, 2-3 ms",
+      "relation": "demonstrates feasibility of the architecture class but publishes neither weights nor hidden labels"
+    }
+  ],
+  "successor": {
+    "id": "L1a",
+    "status": "peer-review-gated",
+    "first_phase": "Compose-only exact-agent state/final-command extractor and parity report on the 199 consumed games.",
+    "target": "Final per-unit primitive command plus actual TRAIN event/spec; no inferred train-plan, logits, beam alternatives, or task grammar.",
+    "partitions": [
+      "group exclusively by whole game",
+      "retain an ordered temporal block because newest games are opponent-concentrated",
+      "report held-opponent sensitivity separately from held-game metrics"
+    ],
+    "diagnostic_metrics": [
+      "exact whole-turn joint command",
+      "exact per-unit command",
+      "verb macro F1",
+      "conditional target-coordinate/resource accuracy",
+      "TRAIN timing and spec accuracy",
+      "legality and deterministic replay parity"
+    ],
+    "mandatory_value_gate": "No trained clone advances from teacher-forced metrics. A separately frozen closed-loop official-map panel must beat the exact resident on score and margin, transfer by opponent family, satisfy runtime/source-size gates, and either preserve the resident fallback or first establish same-panel dominance.",
+    "not_authorized": [
+      "extractor implementation",
+      "bulk dataset write",
+      "model or fit",
+      "GPU or YT job",
+      "TestSession or new map range",
+      "candidate, source integration, submission, or Arena action"
+    ]
+  },
+  "integrity": {
+    "phase9_result_sha256": "7ee3002414d467478ac5ac63d98f25a35c65c9f3f58a16e97c09cc6dccbceda1",
+    "phase14_report_sha256": "3c7751656c47a299271390a5750fb0fe3b9c29186b006d499037f7ef38bb55c9",
+    "d41a_result_sha256": "9cb8905a75d408c71658068c6b09bb48937cc65e3e1307cea4e917849ae4b68d",
+    "decoder_sha256": "f8d20e9e401dad18ca03a3b62ec5ee8ff62a527d86eb44b5e32d07ad852f3fba",
+    "command_parser_sha256": "7a29292677cb310cdc94ffcd4035f5b28744d704f970aac1e855d911dd858fcd",
+    "sacred_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "arena_action": false
+  }
+}

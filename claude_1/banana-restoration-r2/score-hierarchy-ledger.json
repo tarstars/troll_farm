@@ -1,0 +1,1424 @@
+{
+  "_comment": [
+    "Frozen ledger for the score-hierarchy audit method packet (item M2).",
+    "Companion document: score-hierarchy-audit-method-2026-08-10.md.",
+    "Every 'range' and every 'assumption' below is a HUMAN claim with a citation and a",
+    "proof method. The checker does arithmetic and drift detection only; it does not",
+    "derive bounds from Rust source and must never be described as if it did.",
+    "Citations: R:n = line n of the subject (sha256 98628e98...)."
+  ],
+  "ledger_version": "2.0.0",
+  "created_utc": "2026-08-10T00:00:00Z",
+  "subject": {
+    "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+    "git_ref": "origin/main:cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+    "sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+    "role": "AUTHORITATIVE for every question about what the shipped candidate scores",
+    "line_count": 1475
+  },
+  "companion": {
+    "path": "rust/src/bin/yamo_orchard_live.rs",
+    "sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "role": "AUTHORITATIVE only for questions about the dev-side sacred resident; NOT a source of evidence about the subject",
+    "note": "Different program from the subject. Routinely cited interchangeably in project documents. Any claim carrying a Y: citation is out of scope for a subject-level finding."
+  },
+  "rules_authority": {
+    "path": "rust/src/game/engine.rs",
+    "sha256": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+    "role": "AUTHORITATIVE for what the engine does with an emitted command"
+  },
+  "census": [
+    {
+      "line": 319,
+      "op": ":",
+      "text": "command:String,score:f64,target:Target,",
+      "fingerprint": "b51e3a6d5c307fc2"
+    },
+    {
+      "line": 382,
+      "op": ":",
+      "text": ",score:ifat_drop{",
+      "fingerprint": "c92252d500f664a4"
+    },
+    {
+      "line": 394,
+      "op": ":",
+      "text": "command:format!(\"MOVE{}{}{}\",unit.id,view.shacks[0].0,view.shacks[0].1),score:7_000.0,target:Target::Shack,",
+      "fingerprint": "d19d8c551674ed5f"
+    },
+    {
+      "line": 467,
+      "op": ":",
+      "text": "command:format!(\"HARVEST{}\",unit.id),score:base_score+900.0,target:Target::Tree(unit.cell),",
+      "fingerprint": "268706c4399e5788"
+    },
+    {
+      "line": 479,
+      "op": ":",
+      "text": "command:format!(\"MOVE{}{}{}\",unit.id,plant.cell.0,plant.cell.1),score:base_score-(travel+wait)asf64,target:Target::Tree(plant.cell),",
+      "fingerprint": "6174baec2069c9ab"
+    },
+    {
+      "line": 489,
+      "op": ":",
+      "text": "command:format!(\"MINE{}\",unit.id),score:base_score+900.0,target:Target::Cell(unit.cell),",
+      "fingerprint": "9d7bba8fee8bb746"
+    },
+    {
+      "line": 501,
+      "op": ":",
+      "text": "command:format!(\"MOVE{}{}{}\",unit.id,cell.0,cell.1),score:base_score-*dasf64,target:Target::Cell(cell),",
+      "fingerprint": "1c6c3490ad7d15a0"
+    },
+    {
+      "line": 619,
+      "op": "=",
+      "text": "letmutscore=1000.0*woodasf64/turnsasf64;",
+      "fingerprint": "ed40e7ed39348dba"
+    },
+    {
+      "line": 622,
+      "op": "+=",
+      "text": "score+=900.0/(1+opponent_distance)asf64;",
+      "fingerprint": "a2797d6719f2552a"
+    },
+    {
+      "line": 640,
+      "op": ":",
+      "text": "command:\"WAIT\".to_string(),score:0.0,target:Target::None,",
+      "fingerprint": "cb56e9cd8b5ed03b"
+    },
+    {
+      "line": 683,
+      "op": "=",
+      "text": "letscore=a.score+b.score;",
+      "fingerprint": "88726cd81d8582b8"
+    },
+    {
+      "line": 962,
+      "op": ":",
+      "text": "command:format!(\"MOVE{}{}{}\",unit.id,cell.0,cell.1),score:20_000.0,target:Target::Cell(cell),",
+      "fingerprint": "6ba8b3dc5f6d68e4"
+    },
+    {
+      "line": 987,
+      "op": ":",
+      "text": "command:format!(\"DROP{}\",blocker.id),score:20_000.0,target:Target::Cell(door),",
+      "fingerprint": "c370c9ba4d7629ad"
+    },
+    {
+      "line": 1059,
+      "op": ":",
+      "text": "command:format!(\"DROP{}\",blocker.id),score:20_000.0,target:Target::Cell(door),",
+      "fingerprint": "c370c9ba4d7629ad"
+    },
+    {
+      "line": 1163,
+      "op": "-=",
+      "text": "candidate.score-=opponent_eta_penaltyasf64*risk;",
+      "fingerprint": "34e5d37a9efc8307"
+    },
+    {
+      "line": 1180,
+      "op": ":",
+      "text": "command:format!(\"PICK{}{}\",unit.id,kind.as_str()),score:7500.0-priorityasf64,target:Target::Cell(unit.cell),",
+      "fingerprint": "f8f6529771903532"
+    },
+    {
+      "line": 1261,
+      "op": ":",
+      "text": ",score:ifat_target{",
+      "fingerprint": "c5cd864d5d596fd9"
+    },
+    {
+      "line": 1283,
+      "op": "=",
+      "text": "current.score=10_000.0;",
+      "fingerprint": "63f0f679d61b1173"
+    },
+    {
+      "line": 1299,
+      "op": ":",
+      "text": "command:format!(\"PICK{}{}\",unit.id,kind.as_str()),score:conversion_score,target:Target::Cell(unit.cell),",
+      "fingerprint": "24ea433d4ef4a898"
+    },
+    {
+      "line": 1331,
+      "op": ":",
+      "text": "command:format!(\"MOVE{}{}{}\",unit.id,cell.0,cell.1),score:conversion_score,target:Target::Cell(*cell),",
+      "fingerprint": "707a4250e171c60b"
+    },
+    {
+      "line": 1365,
+      "op": ":",
+      "text": ",score:1.0/trip.max(1)asf64,target:Target::Tree(plant.cell),",
+      "fingerprint": "c460d6c48625c3bd"
+    },
+    {
+      "line": 1422,
+      "op": ":",
+      "text": "command:format!(\"MOVE{}{}{}\",unit.id,cell.0,cell.1),score:6_500.0,target:Target::Cell(cell),",
+      "fingerprint": "e85035c65412f241"
+    }
+  ],
+  "pipeline_anchors_comment": [
+    "Correction 7 / chatgpt_1 review B7. The `census` above only sees lines carrying the",
+    "token `score`. Five of the ten findings (X5, X6, X8, X9, X10) do not live on such a",
+    "line, so the census could stay green while they changed. Each anchor below freezes a",
+    "whole function body, located structurally by name + definition line and fingerprinted",
+    "over the whitespace-stripped RAW body text. Drift in a node INVALIDATES every finding",
+    "listed in its `findings` field: that record must be re-derived before it is restated.",
+    "Coverage is per-node, not per-program: a load-bearing node not listed here is not",
+    "covered, and adding one is a manual step (method packet S6 step 5)."
+  ],
+  "pipeline_anchors": [
+    {
+      "id": "PN-01",
+      "fn": "fruit_candidates",
+      "def_line": 463,
+      "end_line": 484,
+      "kind": "scoring",
+      "role": "EQUIP-FRUIT scoring generator; source of the RM-2 site R:479",
+      "findings": [
+        "X4"
+      ],
+      "fingerprint": "59c6cda203208553",
+      "range_models": [
+        "RM-2n",
+        "RM-2x"
+      ]
+    },
+    {
+      "id": "PN-02",
+      "fn": "iron_candidates",
+      "def_line": 485,
+      "end_line": 508,
+      "kind": "scoring",
+      "role": "EQUIP-IRON scoring generator; source of the RM-3 site R:501 (raw cells)",
+      "findings": [
+        "X4"
+      ],
+      "fingerprint": "28158387ace12420",
+      "range_models": [
+        "RM-3"
+      ]
+    },
+    {
+      "id": "PN-03",
+      "fn": "ticks_until_fruit",
+      "def_line": 409,
+      "end_line": 431,
+      "kind": "scoring",
+      "role": "producer of the ticks_until_fruit leaf bound used by RM-2",
+      "findings": [
+        "X4"
+      ],
+      "fingerprint": "a08a48de2d6a571b",
+      "range_models": [
+        "RM-2n",
+        "RM-2x"
+      ]
+    },
+    {
+      "id": "PN-04",
+      "fn": "chop_outcome",
+      "def_line": 556,
+      "end_line": 581,
+      "kind": "scoring",
+      "role": "producer of the chop_turns invariant that RM-1 propagates",
+      "findings": [],
+      "fingerprint": "01faae7c21e68f87",
+      "range_models": [
+        "RM-1",
+        "RM-1r"
+      ]
+    },
+    {
+      "id": "PN-05",
+      "fn": "chop_candidates",
+      "def_line": 582,
+      "end_line": 637,
+      "kind": "scoring",
+      "role": "HARVEST-WOOD scoring site R:611/R:615-623; holds the dead .max(1)",
+      "findings": [
+        "ZX-1"
+      ],
+      "fingerprint": "c36ee7fd3b38e5a8",
+      "range_models": [
+        "RM-1",
+        "RM-1r"
+      ]
+    },
+    {
+      "id": "PN-06",
+      "fn": "wait",
+      "def_line": 638,
+      "end_line": 642,
+      "kind": "arbitration",
+      "role": "the Target::None fallback candidate that makes `compatible` return true",
+      "findings": [
+        "X5",
+        "X9"
+      ],
+      "fingerprint": "9df056700ccd0fe4",
+      "range_models": []
+    },
+    {
+      "id": "PN-07",
+      "fn": "compatible",
+      "def_line": 643,
+      "end_line": 654,
+      "kind": "compatibility",
+      "role": "the only cross-unit target constraint; returns true on Target::None",
+      "findings": [
+        "X5",
+        "X9"
+      ],
+      "fingerprint": "0f9d9dfc559e9d31",
+      "range_models": []
+    },
+    {
+      "id": "PN-08",
+      "fn": "picked_item",
+      "def_line": 655,
+      "end_line": 658,
+      "kind": "filter",
+      "role": "command-text filter feeding stock_compatible and the fallback path",
+      "findings": [
+        "X5"
+      ],
+      "fingerprint": "a3f33807959ca3d7",
+      "range_models": []
+    },
+    {
+      "id": "PN-09",
+      "fn": "stock_compatible",
+      "def_line": 659,
+      "end_line": 664,
+      "kind": "compatibility",
+      "role": "inventory-side pair constraint",
+      "findings": [
+        "X5"
+      ],
+      "fingerprint": "47f1bd68abd835c0",
+      "range_models": []
+    },
+    {
+      "id": "PN-10",
+      "fn": "select",
+      "def_line": 665,
+      "end_line": 712,
+      "kind": "arbitration",
+      "role": "pair-sum arbitrator (R:683) and the >=3-unit greedy branch (R:694-711)",
+      "findings": [
+        "X5",
+        "X9",
+        "ZX-2"
+      ],
+      "fingerprint": "3ec1a429e758d21a",
+      "range_models": []
+    },
+    {
+      "id": "PN-11",
+      "fn": "move_command",
+      "def_line": 713,
+      "end_line": 719,
+      "kind": "resolver",
+      "role": "command parser used by the move resolver and by planned_egress",
+      "findings": [
+        "X5"
+      ],
+      "fingerprint": "0198d6ce9318aa58",
+      "range_models": []
+    },
+    {
+      "id": "PN-12",
+      "fn": "resolve_move_conflicts",
+      "def_line": 720,
+      "end_line": 722,
+      "kind": "resolver",
+      "role": "post-selection move rewriting entry point",
+      "findings": [
+        "X5"
+      ],
+      "fingerprint": "230b3b7a314f1b94",
+      "range_models": []
+    },
+    {
+      "id": "PN-13",
+      "fn": "resolve_move_conflicts_with_priority",
+      "def_line": 723,
+      "end_line": 725,
+      "kind": "resolver",
+      "role": "post-selection move rewriting, priority form",
+      "findings": [
+        "X5"
+      ],
+      "fingerprint": "78170a542b426b5f",
+      "range_models": []
+    },
+    {
+      "id": "PN-14",
+      "fn": "resolve_move_conflicts_with_priority_and_forbidden",
+      "def_line": 726,
+      "end_line": 778,
+      "kind": "resolver",
+      "role": "post-selection move rewriting body; can realise an outcome no score expressed",
+      "findings": [
+        "X5"
+      ],
+      "fingerprint": "d7969d5f85b9be1f",
+      "range_models": []
+    },
+    {
+      "id": "PN-15",
+      "fn": "bank_candidates",
+      "def_line": 371,
+      "end_line": 399,
+      "kind": "admission",
+      "role": "MoisanBot BANK generator whose non-empty result the YamoBot filter can empty",
+      "findings": [
+        "X6"
+      ],
+      "fingerprint": "7c5d87670ecdde96",
+      "range_models": []
+    },
+    {
+      "id": "PN-16",
+      "fn": "bank_candidates",
+      "def_line": 947,
+      "end_line": 955,
+      "kind": "filter",
+      "role": "YamoBot BANK filter (R:947-955): the admission suppression of X6",
+      "findings": [
+        "X6"
+      ],
+      "fingerprint": "4790e654b1682862",
+      "range_models": []
+    },
+    {
+      "id": "PN-17",
+      "fn": "unique_shack_door",
+      "def_line": 956,
+      "end_line": 959,
+      "kind": "replacement",
+      "role": "door predicate gating the forced-replacement path",
+      "findings": [
+        "X7"
+      ],
+      "fingerprint": "0642c980c26821b0",
+      "range_models": []
+    },
+    {
+      "id": "PN-18",
+      "fn": "forced_move",
+      "def_line": 960,
+      "end_line": 964,
+      "kind": "replacement",
+      "role": "forced 20_000 MOVE candidate (R:962)",
+      "findings": [
+        "X7"
+      ],
+      "fingerprint": "383a4505a28ca639",
+      "range_models": []
+    },
+    {
+      "id": "PN-19",
+      "fn": "planned_egress",
+      "def_line": 968,
+      "end_line": 977,
+      "kind": "replacement",
+      "role": "egress chooser used by the forced-replacement path",
+      "findings": [
+        "X7"
+      ],
+      "fingerprint": "7ca255f22f3bf3af",
+      "range_models": []
+    },
+    {
+      "id": "PN-20",
+      "fn": "force_unique_door_clear",
+      "def_line": 978,
+      "end_line": 1093,
+      "kind": "replacement",
+      "role": "forced list replacement at 20_000 (R:987, R:1059); the DX half of X7",
+      "findings": [
+        "X7"
+      ],
+      "fingerprint": "cf3f3ec5ff30d71b",
+      "range_models": []
+    },
+    {
+      "id": "PN-21",
+      "fn": "yamo_chop_candidates",
+      "def_line": 1128,
+      "end_line": 1166,
+      "kind": "scoring",
+      "role": "holds the opponent_eta_penalty subtraction R:1163",
+      "findings": [
+        "X8",
+        "ZX-3"
+      ],
+      "fingerprint": "b4ca64277d31456f",
+      "range_models": []
+    },
+    {
+      "id": "PN-22",
+      "fn": "main_candidates",
+      "def_line": 1167,
+      "end_line": 1200,
+      "kind": "admission",
+      "role": "non-endgame candidate assembly",
+      "findings": [
+        "X10"
+      ],
+      "fingerprint": "a2819fcf9df474e3",
+      "range_models": []
+    },
+    {
+      "id": "PN-23",
+      "fn": "inventory_fruits",
+      "def_line": 1204,
+      "end_line": 1206,
+      "kind": "filter",
+      "role": "producer of the priority index used by the CONVERT sites",
+      "findings": [
+        "X1"
+      ],
+      "fingerprint": "e3a021568debe980",
+      "range_models": []
+    },
+    {
+      "id": "PN-24",
+      "fn": "conversion_chop_turns",
+      "def_line": 1207,
+      "end_line": 1232,
+      "kind": "scoring",
+      "role": "producer of conversion_turns, incl. the 10_000 sentinel (Appendix B)",
+      "findings": [
+        "X1",
+        "X2"
+      ],
+      "fingerprint": "8c0238b1227d113e",
+      "range_models": [
+        "RM-A1a",
+        "RM-A1b"
+      ]
+    },
+    {
+      "id": "PN-25",
+      "fn": "endgame_candidates",
+      "def_line": 1233,
+      "end_line": 1339,
+      "kind": "scoring",
+      "role": "holds R:1261-1265 (X3), R:1282-1286 (X8), R:1290-1303 (X2) and the turn>250 branch R:1291-1327 (X1)",
+      "findings": [
+        "X1",
+        "X2",
+        "X3",
+        "X8"
+      ],
+      "fingerprint": "726f636c1159a9fa",
+      "range_models": [
+        "RM-A1a",
+        "RM-A1b"
+      ]
+    },
+    {
+      "id": "PN-26",
+      "fn": "idle_harvest_candidates",
+      "def_line": 1340,
+      "end_line": 1370,
+      "kind": "admission",
+      "role": "the IDLE-HARVEST generator gated by R:1413",
+      "findings": [
+        "X10"
+      ],
+      "fingerprint": "2d06e82888a04aa6",
+      "range_models": []
+    },
+    {
+      "id": "PN-27",
+      "fn": "endgame",
+      "def_line": 1371,
+      "end_line": 1373,
+      "kind": "admission",
+      "role": "the clock predicate selecting the endgame branch",
+      "findings": [
+        "X1"
+      ],
+      "fingerprint": "db6f2c7a139addd3",
+      "range_models": []
+    },
+    {
+      "id": "PN-28",
+      "fn": "commands",
+      "def_line": 1376,
+      "end_line": 1440,
+      "kind": "admission",
+      "role": "driver: idle-harvest admission R:1413, CLEAR-FOR-TRAIN soft 6_500 R:1422, door-clear and resolver calls",
+      "findings": [
+        "X7",
+        "X10"
+      ],
+      "fingerprint": "a8857c8cb88e99c5",
+      "range_models": []
+    }
+  ],
+  "bindings": [
+    {
+      "fn": "fruit_candidates",
+      "arg_index": 3,
+      "expect_calls": [
+        455
+      ],
+      "expect_literal_args": [
+        "6_000.0"
+      ],
+      "claim": "one TEXTUAL call site under the bare-use side condition; at that occurrence base_score is bound to the literal 6_000.0",
+      "evidence_state": "SOURCE_PROVED",
+      "expect_verdict": "ONE_TEXTUAL_CALL_SITE_LITERAL_BINDING",
+      "reachability_status": "UNPROVED",
+      "reachability_note": "Whether the guard chain above this occurrence can hold is a control-flow question this checker cannot decide (method packet S7.1). SOURCE_PROVED here means the binding exists in the pinned source, NOT that the site executes."
+    },
+    {
+      "fn": "iron_candidates",
+      "arg_index": 2,
+      "expect_calls": [
+        448
+      ],
+      "expect_literal_args": [
+        "6_100.0"
+      ],
+      "claim": "one TEXTUAL call site under the bare-use side condition; at that occurrence base_score is bound to the literal 6_100.0",
+      "evidence_state": "SOURCE_PROVED",
+      "expect_verdict": "ONE_TEXTUAL_CALL_SITE_LITERAL_BINDING",
+      "reachability_status": "UNPROVED",
+      "reachability_note": "Whether the guard chain above this occurrence can hold is a control-flow question this checker cannot decide (method packet S7.1). SOURCE_PROVED here means the binding exists in the pinned source, NOT that the site executes."
+    },
+    {
+      "fn": "chop_outcome",
+      "expect_calls": [
+        607
+      ],
+      "claim": "one TEXTUAL call site; the textual producer of chop_turns for the RM-1 range model",
+      "evidence_state": "SOURCE_PROVED",
+      "expect_verdict": "ONE_TEXTUAL_CALL_SITE",
+      "reachability_status": "UNPROVED",
+      "reachability_note": "Whether the guard chain above this occurrence can hold is a control-flow question this checker cannot decide (method packet S7.1). SOURCE_PROVED here means the binding exists in the pinned source, NOT that the site executes."
+    },
+    {
+      "fn": "ticks_until_fruit",
+      "expect_calls": [
+        477,
+        821
+      ],
+      "claim": "two TEXTUAL call sites; only the occurrence at R:477 feeds a score expression (RM-2); which of the two executes is not established here",
+      "evidence_state": "SOURCE_PROVED",
+      "expect_verdict": "MULTIPLE_TEXTUAL_CALL_SITES",
+      "reachability_status": "UNPROVED",
+      "reachability_note": "Whether the guard chain above this occurrence can hold is a control-flow question this checker cannot decide (method packet S7.1). SOURCE_PROVED here means the binding exists in the pinned source, NOT that the site executes."
+    }
+  ],
+  "range_models": [
+    {
+      "id": "RM-1",
+      "site": "R:611,R:615-623 (S16 HARVEST-WOOD, chop / move-to-tree)",
+      "note": "Worked example A of the method packet. Reproduces the corrected chop bound (1500 base / 2400 with the absolute denial term). NOTE: the .max(1) clamp is reported DEAD whether or not chop_turns>=1 is propagated, because the `+1` literal alone forces the operand >= 1. Clamp-deadness is therefore NOT what catches the original manifest error; the propagated attainable interval of `turns` ([2,inf) vs [1,inf), giving 2400 vs 3900) is. See the packet, S2.5.",
+      "expr": [
+        "+",
+        [
+          "/",
+          [
+            "*",
+            1000,
+            "wood"
+          ],
+          "turns"
+        ],
+        [
+          "/",
+          900,
+          [
+            "+",
+            1,
+            "opponent_distance"
+          ]
+        ]
+      ],
+      "attainable": "(0, 2400]",
+      "inputs": {
+        "travel_turns": {
+          "range": "[0, inf)",
+          "citation": "R:595",
+          "method": "producer-invariant",
+          "assumption": "ceil_div(BFS distance, movement_speed) >= 0"
+        },
+        "chop_turns": {
+          "range": "[1, 100]",
+          "citation": "R:566-570 via the single call site R:607",
+          "method": "producer-invariant by loop-bound enumeration",
+          "assumption": "chop_outcome returns Some((turns,_)) only at R:569, inside `for turns in 1..=100` (R:566); every other path returns None and R:607 `let Some(..) else { continue }` discards it. THIS IS THE PRODUCER INVARIANT THE ORIGINAL MANIFEST FAILED TO PROPAGATE."
+        },
+        "return_turns": {
+          "range": "[0, inf)",
+          "citation": "R:603-606",
+          "method": "producer-invariant",
+          "assumption": "ceil_div of a BFS distance or of a Manhattan fallback; both >= 0"
+        },
+        "wood": {
+          "range": "[1, 3]",
+          "citation": "R:615-617",
+          "method": "guard + preset",
+          "assumption": "wood = final_size.min(free_capacity); `if wood<=0 { continue }` gives >=1; carry_capacity <= 3 from the shipped preset TUNED_CARRY max_carry_capacity:3 (R:327) and clamp(1,3) at R:850. UNRESOLVED for an initial roster shipping capacity > 3: then wood <= 4 (tree size cap, R:576) and the base bound rises to 2000."
+        },
+        "opponent_distance": {
+          "range": "[0, inf)",
+          "citation": "R:621",
+          "method": "producer-invariant",
+          "assumption": "manhattan(plant.cell, view.shacks[1]) >= 0; the value 0 requires a tree standing on the enemy shack cell."
+        }
+      },
+      "clamps": [
+        {
+          "site": "R:611",
+          "op": "max",
+          "bound": 1,
+          "expect": "DEAD",
+          "operand": [
+            "+",
+            "travel_turns",
+            "chop_turns",
+            "return_turns",
+            1
+          ],
+          "reading": "`.max(1)` cannot change a value whose attainable interval starts at 2"
+        }
+      ],
+      "derived": [
+        {
+          "name": "turns",
+          "expr": [
+            "max",
+            [
+              "+",
+              "travel_turns",
+              "chop_turns",
+              "return_turns",
+              1
+            ],
+            1
+          ],
+          "citation": "R:611",
+          "method": "producer-invariant propagation; expanded inline so the checker sees leaf variables"
+        }
+      ],
+      "reachability_status": "UNPROVED",
+      "endpoint_witnessed": "NONE"
+    },
+    {
+      "id": "RM-1r",
+      "site": "R:615-623, realistic variant (opponent_distance >= 1)",
+      "note": "Same model with the enemy shack not itself a tree cell. Reproduces the audit's <= 1950.",
+      "expr": [
+        "+",
+        [
+          "/",
+          [
+            "*",
+            1000,
+            "wood"
+          ],
+          "turns"
+        ],
+        [
+          "/",
+          900,
+          [
+            "+",
+            1,
+            "opponent_distance"
+          ]
+        ]
+      ],
+      "attainable": "(0, 1950]",
+      "inputs": {
+        "travel_turns": {
+          "range": "[0, inf)",
+          "citation": "R:595",
+          "method": "producer-invariant",
+          "assumption": "ceil_div(BFS distance, movement_speed) >= 0"
+        },
+        "chop_turns": {
+          "range": "[1, 100]",
+          "citation": "R:566-570 via the single call site R:607",
+          "method": "producer-invariant by loop-bound enumeration",
+          "assumption": "chop_outcome returns Some((turns,_)) only at R:569, inside `for turns in 1..=100` (R:566); every other path returns None and R:607 `let Some(..) else { continue }` discards it. THIS IS THE PRODUCER INVARIANT THE ORIGINAL MANIFEST FAILED TO PROPAGATE."
+        },
+        "return_turns": {
+          "range": "[0, inf)",
+          "citation": "R:603-606",
+          "method": "producer-invariant",
+          "assumption": "ceil_div of a BFS distance or of a Manhattan fallback; both >= 0"
+        },
+        "wood": {
+          "range": "[1, 3]",
+          "citation": "R:615-617",
+          "method": "guard + preset",
+          "assumption": "wood = final_size.min(free_capacity); `if wood<=0 { continue }` gives >=1; carry_capacity <= 3 from the shipped preset TUNED_CARRY max_carry_capacity:3 (R:327) and clamp(1,3) at R:850. UNRESOLVED for an initial roster shipping capacity > 3: then wood <= 4 (tree size cap, R:576) and the base bound rises to 2000."
+        },
+        "opponent_distance": {
+          "range": "[1, inf)",
+          "citation": "R:621",
+          "method": "assumption (stated, not proved): no tree occupies the enemy shack cell"
+        }
+      },
+      "derived": [
+        {
+          "name": "turns",
+          "expr": [
+            "max",
+            [
+              "+",
+              "travel_turns",
+              "chop_turns",
+              "return_turns",
+              1
+            ],
+            1
+          ],
+          "citation": "R:611",
+          "method": "producer-invariant propagation; expanded inline so the checker sees leaf variables"
+        }
+      ],
+      "reachability_status": "UNPROVED",
+      "endpoint_witnessed": "NONE"
+    },
+    {
+      "id": "RM-2n",
+      "site": "R:479 (S15 EQUIP, MOVE toward a fruit tree) -- NAIVE form",
+      "note": "Worked example B, step 1. `travel` occurs twice, so interval arithmetic loses precision; the checker labels this OVER_APPROX. The computed lower end 5817 is NOT proved attainable.",
+      "expr": [
+        "-",
+        "base_score",
+        [
+          "+",
+          "travel",
+          [
+            "max",
+            [
+              "-",
+              "ticks_until_fruit",
+              "travel"
+            ],
+            0
+          ]
+        ]
+      ],
+      "attainable": "[5817, 6000]",
+      "inputs": {
+        "base_score": {
+          "range": "[6000, 6000]",
+          "citation": "R:455",
+          "method": "call-graph binding (see bindings/fruit_candidates)"
+        },
+        "travel": {
+          "range": "[0, 83]",
+          "citation": "R:476",
+          "method": "panel-bounded assumption: corpus maps are <= 14x6 (fuzz/failures/m085-s0/candidate-transcript.txt:1-6), so a BFS distance is <= 83 cells and movement_speed >= 1"
+        },
+        "ticks_until_fruit": {
+          "range": "[0, 100]",
+          "citation": "R:409-431",
+          "method": "producer-invariant by loop-bound enumeration: returns 0 at R:411, or `turns` from `for turns in 1..=100` (R:416) at R:426, or the literal 100 at R:430"
+        }
+      },
+      "clamps": [
+        {
+          "site": "R:477",
+          "op": "max",
+          "bound": 0,
+          "expect": "NOT_PROVED_DEAD",
+          "operand": [
+            "-",
+            "ticks_until_fruit",
+            "travel"
+          ]
+        }
+      ],
+      "reachability_status": "UNPROVED",
+      "endpoint_witnessed": "NONE"
+    },
+    {
+      "id": "RM-2x",
+      "site": "R:479 (S15) -- SINGLE-OCCURRENCE rewrite",
+      "note": "Worked example B, step 2. travel + max(ticks - travel, 0) == max(ticks, travel), so each variable occurs once and the checker reports EXACT. Both forms refute a closed 6000 lower boundary for the upper tier (chatgpt_1 review C3).",
+      "expr": [
+        "-",
+        "base_score",
+        [
+          "max",
+          "ticks_until_fruit",
+          "travel"
+        ]
+      ],
+      "attainable": "[5900, 6000]",
+      "inputs": {
+        "base_score": {
+          "range": "[6000, 6000]",
+          "citation": "R:455",
+          "method": "call-graph binding"
+        },
+        "travel": {
+          "range": "[0, 83]",
+          "citation": "R:476",
+          "method": "panel-bounded assumption"
+        },
+        "ticks_until_fruit": {
+          "range": "[0, 100]",
+          "citation": "R:409-431",
+          "method": "producer-invariant by loop-bound enumeration: returns 0 at R:411, or `turns` from `for turns in 1..=100` (R:416) at R:426, or the literal 100 at R:430"
+        }
+      },
+      "reachability_status": "UNPROVED",
+      "endpoint_witnessed": "NONE"
+    },
+    {
+      "id": "RM-3",
+      "site": "R:501 (S13 EQUIP, MOVE toward iron)",
+      "note": "Companion to RM-2x. Penalty is in RAW CELLS, not turns (X4). Included so the two EQUIP site ranges are re-derivable side by side after the code moves.",
+      "expr": [
+        "-",
+        "base_score",
+        "d"
+      ],
+      "attainable": "[6017, 6100]",
+      "inputs": {
+        "base_score": {
+          "range": "[6100, 6100]",
+          "citation": "R:448",
+          "method": "call-graph binding (see bindings/iron_candidates)"
+        },
+        "d": {
+          "range": "[0, 83]",
+          "citation": "R:493-499",
+          "method": "panel-bounded assumption; raw BFS cell count, NOT divided by movement_speed"
+        }
+      },
+      "reachability_status": "UNPROVED",
+      "endpoint_witnessed": "NONE"
+    },
+    {
+      "id": "RM-A1a",
+      "status": "APPENDIX_ONLY -- not part of the ratified M2 finding count",
+      "site": "R:1295 (S17 CONVERT PICK, turn <= 250), normal branch",
+      "note": "Appendix B of the method packet. conversion_turns from the loop branch of conversion_chop_turns (R:1216-1229).",
+      "expr": [
+        "-",
+        [
+          "/",
+          750,
+          [
+            "+",
+            "conversion_turns",
+            3
+          ]
+        ],
+        [
+          "/",
+          "priority",
+          100
+        ]
+      ],
+      "inputs": {
+        "conversion_turns": {
+          "range": "[1, 100]",
+          "citation": "R:1217-1220",
+          "method": "producer-invariant by loop-bound enumeration",
+          "assumption": "the `for turns in 1..=100` branch (R:1217) returns turns in [1,100] at R:1220"
+        },
+        "priority": {
+          "range": "[0, 3]",
+          "citation": "R:1287 with producer R:1203-1205",
+          "method": "producer-invariant by literal enumeration",
+          "assumption": "priority is the enumerate() index over inventory_fruits(view), which is built by filtering a 4-element array literal [BANANA, PLUM, LEMON, APPLE], so 0 <= priority <= 3."
+        }
+      },
+      "attainable": "[7.25155339806, 187.5]",
+      "reachability_status": "UNPROVED",
+      "endpoint_witnessed": "NONE"
+    },
+    {
+      "id": "RM-A1b",
+      "status": "APPENDIX_ONLY -- not part of the ratified M2 finding count",
+      "site": "R:1295 (S17 CONVERT PICK, turn <= 250), sentinel branch",
+      "note": "Appendix B. conversion_chop_turns also returns the SENTINEL 10_000 at R:1208 (chop<=0) and at R:1230 (loop exhausted). The audit's stated floor of 7.28 for this site assumed the loop branch only. REACHABILITY OF THE SENTINEL AT THIS SITE IS UNRESOLVED -- this is a range-model observation, not a new finding.",
+      "expr": [
+        "-",
+        [
+          "/",
+          750,
+          [
+            "+",
+            "conversion_turns",
+            3
+          ]
+        ],
+        [
+          "/",
+          "priority",
+          100
+        ]
+      ],
+      "inputs": {
+        "conversion_turns": {
+          "range": "[10000, 10000]",
+          "citation": "R:1208-1209, R:1231",
+          "method": "literal return values",
+          "assumption": "sentinel branch taken when chop power <= 0 or the tree survives 100 chop turns"
+        },
+        "priority": {
+          "range": "[0, 3]",
+          "citation": "R:1287 with producer R:1203-1205",
+          "method": "producer-invariant by literal enumeration",
+          "assumption": "priority is the enumerate() index over inventory_fruits(view), which is built by filtering a 4-element array literal [BANANA, PLUM, LEMON, APPLE], so 0 <= priority <= 3."
+        }
+      },
+      "attainable": "[0.044977506748, 0.074977506748]",
+      "reachability_status": "UNPROVED",
+      "endpoint_witnessed": "NONE"
+    }
+  ],
+  "intentions_comment": [
+    "Frozen intention registry (method packet S4.1). ELEVEN labels -- the audit's prose said nine",
+    "and then listed eleven (chatgpt_1 C5). Assignment of a site to a label is a HUMAN judgement,",
+    "frozen here so two auditors agree by reading the same ledger rather than by judging alike.",
+    "Disagreement is resolved by amending this section and re-running, never by re-arguing in prose."
+  ],
+  "intentions": [
+    {
+      "id": "UNBLOCK",
+      "sites": [
+        "R:1059"
+      ],
+      "gloss": "clear a unit off the unique shack door by forced DROP"
+    },
+    {
+      "id": "COMMIT-CHOP",
+      "sites": [
+        "R:1163",
+        "R:1283"
+      ],
+      "gloss": "keep chopping the committed tree"
+    },
+    {
+      "id": "REGENERATE",
+      "sites": [
+        "R:1180"
+      ],
+      "gloss": "PICK a fruit to replant the orchard"
+    },
+    {
+      "id": "BANK",
+      "sites": [
+        "R:382",
+        "R:394"
+      ],
+      "gloss": "deposit carried goods at the shack"
+    },
+    {
+      "id": "SEED",
+      "sites": [
+        "R:1261-1265"
+      ],
+      "gloss": "PLANT a fruit at a shack-adjacent cell"
+    },
+    {
+      "id": "CONVERT",
+      "sites": [
+        "R:1291-1295",
+        "R:1299",
+        "R:1323-1327",
+        "R:1331"
+      ],
+      "gloss": "endgame PICK/MOVE that converts inventory into score"
+    },
+    {
+      "id": "EQUIP",
+      "sites": [
+        "R:467",
+        "R:479",
+        "R:489",
+        "R:501"
+      ],
+      "gloss": "acquire the material a unit is missing",
+      "sub_goals": [
+        "EQUIP-FRUIT (R:467, R:479)",
+        "EQUIP-IRON (R:489, R:501)"
+      ]
+    },
+    {
+      "id": "CLEAR-FOR-TRAIN",
+      "sites": [
+        "R:962",
+        "R:987",
+        "R:1422"
+      ],
+      "gloss": "vacate the shack cell so a TRAIN can be issued"
+    },
+    {
+      "id": "HARVEST-WOOD",
+      "sites": [
+        "R:619",
+        "R:622"
+      ],
+      "gloss": "chop a tree for wood and return it"
+    },
+    {
+      "id": "IDLE-HARVEST",
+      "sites": [
+        "R:1365"
+      ],
+      "gloss": "harvest fruit when there is nothing else to do"
+    },
+    {
+      "id": "NOTHING",
+      "sites": [
+        "R:640"
+      ],
+      "gloss": "the WAIT fallback candidate"
+    }
+  ],
+  "priority": {
+    "declared": false,
+    "relation": [],
+    "note": "NO priority relation over the eleven intentions is declared by the subject, by the audit, or by the owner. Consequence, and it is load-bearing: any two intentions are INCOMPARABLE, so no claim of the form 'J outranks I' is admissible from this ledger. Every finding below is therefore a statement about mechanism and range, not about a violated ordering. Declaring a relation is an owner action, not an agent action."
+  },
+  "witnesses_comment": [
+    "EMPTY, and that is the finding (chatgpt_1 B3). A STATE_WITNESSED label requires a committed",
+    "packet pinned to the exact subject 98628e98: literal input state, the FULL candidate surface at",
+    "that state, the selection result, the candidate identity, the extraction method and a content",
+    "hash. No such packet exists for this subject. The episode names cited by the audit (m085-s0,",
+    "m014-s1) are saved transcripts of different candidate identities. X2 and X9 are therefore",
+    "DEMOTED to SOURCE_PROVED here. validate_ledger() fails the run if any finding claims",
+    "STATE_WITNESSED without a witness record whose subject_sha256 is the pinned subject."
+  ],
+  "witnesses": [],
+  "findings_comment": [
+    "Typed X1-X10 records (method packet S4.4). `rule_answers` are the HUMAN answers to the eight",
+    "S4.3 predicates; the checker applies the fixed first-match order to them and REJECTS the ledger",
+    "if the declared `class`/`rule` is not what that order produces. The order is thus mechanical and",
+    "auditable; the predicates are not, and nothing here pretends otherwise.",
+    "`anchors` names the frozen pipeline nodes (see pipeline_anchors) whose drift invalidates the record."
+  ],
+  "findings": [
+    {
+      "id": "X1",
+      "class": "TX",
+      "rule": 5,
+      "reason": "rule 5 -- one intention (CONVERT) priced by two branches of a clock test: `view.turn>250` at R:1291 and R:1323 selects 7_000-priority / 6_000-priority-travel against the pre-250 750/(turns+3) form, whose modelled range is (0, 187.5]",
+      "citations": [
+        "R:1291-1295",
+        "R:1323-1327"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": false,
+        "post_scoring_stage": false,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": true,
+        "own_position_or_null_progress_branch": false,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "SOURCE_PROVED",
+      "anchors": [
+        "PN-23",
+        "PN-24",
+        "PN-25",
+        "PN-27"
+      ]
+    },
+    {
+      "id": "X2",
+      "class": "SX",
+      "rule": 6,
+      "reason": "rule 6 -- the same CONVERT label is priced by two branches selected on the agent's own position: the R:1290 on-door branch prices only `unit.cell`, the R:1303 off-door branch prices every shack-start cell. Rule 2 does not fire: the label is present in both branches, so this is a target-set restriction, not an admission suppression",
+      "citations": [
+        "R:1290",
+        "R:1298-1301",
+        "R:1303-1334"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": false,
+        "post_scoring_stage": false,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": true,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "SOURCE_PROVED",
+      "demoted_from": "STATE_WITNESSED",
+      "promotion_requires": "a committed exact-98628e98 witness packet: literal input state, full candidate surface at that state, the selection result, the candidate identity and the SHA of the tool that produced them. The earlier `m085-s0` citation is a saved transcript of a different candidate identity and is not admissible (chatgpt_1 B3)",
+      "anchors": [
+        "PN-24",
+        "PN-25"
+      ]
+    },
+    {
+      "id": "X3",
+      "class": "SX",
+      "rule": 6,
+      "reason": "rule 6 -- one SEED site R:1261-1265 branching on `at_target = unit.cell == *cell`: 9_000 in place versus 8_000 - dist when moving",
+      "citations": [
+        "R:1253",
+        "R:1261-1265"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": false,
+        "post_scoring_stage": false,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": true,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "SOURCE_PROVED",
+      "anchors": [
+        "PN-25"
+      ]
+    },
+    {
+      "id": "X4",
+      "class": "UX",
+      "rule": 8,
+      "reason": "rule 4 does not fire (EQUIP-IRON and EQUIP-FRUIT are different goals) and rule 7 does not fire (no accumulation within one expression); rule 8 -- R:501 subtracts a RAW BFS cell count while R:479 subtracts turns, so two sites of neighbouring bands are denominated in different units with no declared separator",
+      "citations": [
+        "R:479",
+        "R:493-499",
+        "R:501"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": false,
+        "post_scoring_stage": false,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": false,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": true
+      },
+      "evidence_state": "SOURCE_PROVED",
+      "anchors": [
+        "PN-01",
+        "PN-02",
+        "PN-03"
+      ]
+    },
+    {
+      "id": "X5",
+      "class": "BX",
+      "rule": 3,
+      "reason": "rule 3 -- the discontinuity is in the post-scoring stage: `select` maximises a.score + b.score over compatible pairs at R:683, so a pair of two mid-priced candidates can beat a pair containing the highest-priced one",
+      "citations": [
+        "R:675-692",
+        "R:683"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": false,
+        "post_scoring_stage": true,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": false,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "REACHABILITY_HYPOTHESIS",
+      "anchors": [
+        "PN-06",
+        "PN-07",
+        "PN-08",
+        "PN-09",
+        "PN-10",
+        "PN-11",
+        "PN-12",
+        "PN-13",
+        "PN-14"
+      ]
+    },
+    {
+      "id": "X6",
+      "class": "MX",
+      "rule": 2,
+      "reason": "rule 2 -- the BANK label can be absent from the candidate set entirely: the YamoBot filter at R:947-955 can empty a set that MoisanBot::bank_candidates guaranteed non-empty",
+      "citations": [
+        "R:371-399",
+        "R:947-955"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": true,
+        "post_scoring_stage": false,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": false,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "REACHABILITY_HYPOTHESIS",
+      "anchors": [
+        "PN-15",
+        "PN-16"
+      ]
+    },
+    {
+      "id": "X7",
+      "class": "DX",
+      "rule": 4,
+      "reason": "rule 4 -- one intention-and-goal, CLEAR-FOR-TRAIN, is priced at two distinct sites by two different mechanisms: a soft 6_500 candidate appended at R:1422 and a forced 20_000 whole-list replacement at R:962/R:987. Rule 2 does not fire because the label is present on both paths",
+      "citations": [
+        "R:962",
+        "R:987",
+        "R:1419-1425"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": false,
+        "post_scoring_stage": false,
+        "two_sites_one_intention_goal": true,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": false,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "SOURCE_PROVED",
+      "note": "the separate claim that the forced 20_000 outranks six other intentions is REACHABILITY_HYPOTHESIS and is not asserted here (chatgpt_1 C7)",
+      "anchors": [
+        "PN-17",
+        "PN-18",
+        "PN-19",
+        "PN-20",
+        "PN-28"
+      ]
+    },
+    {
+      "id": "X8",
+      "class": "MX",
+      "rule": 2,
+      "reason": "rule 2 -- R:1282-1286 overwrites the CHOP candidate's score to 10_000 and returns immediately, so every other intention label is absent from the candidate set for that unit on that turn",
+      "citations": [
+        "R:1281-1286"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": true,
+        "post_scoring_stage": false,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": false,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "SOURCE_PROVED",
+      "evidence_flags": [
+        "OWNER_POLICY_QUESTION"
+      ],
+      "anchors": [
+        "PN-21",
+        "PN-25"
+      ]
+    },
+    {
+      "id": "X9",
+      "class": "BX",
+      "rule": 3,
+      "reason": "rule 3 -- the post-scoring compatibility filter R:643-646 returns true whenever either target is Target::None, so the only cross-unit constraint vanishes for WAIT-targeted candidates",
+      "citations": [
+        "R:638-642",
+        "R:643-646"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": false,
+        "post_scoring_stage": true,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": false,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "SOURCE_PROVED",
+      "demoted_from": "STATE_WITNESSED",
+      "promotion_requires": "a committed exact-98628e98 witness packet as for X2; the earlier `m014-s1` citation is a saved transcript of a different candidate identity and is not admissible (chatgpt_1 B3)",
+      "anchors": [
+        "PN-06",
+        "PN-07",
+        "PN-10"
+      ]
+    },
+    {
+      "id": "X10",
+      "class": "MX",
+      "rule": 2,
+      "reason": "rule 2 -- R:1413 admits the IDLE-HARVEST label only when every already-built candidate has Target::None, so the label is absent by control flow in every other state",
+      "citations": [
+        "R:1413-1415",
+        "R:1340-1370"
+      ],
+      "rule_answers": {
+        "dead_or_no_value_change": false,
+        "label_absent_by_control_flow": true,
+        "post_scoring_stage": false,
+        "two_sites_one_intention_goal": false,
+        "clock_branch": false,
+        "own_position_or_null_progress_branch": false,
+        "accumulation_within_one_expression": false,
+        "incommensurable_units_or_scale": false
+      },
+      "evidence_state": "SOURCE_PROVED",
+      "anchors": [
+        "PN-22",
+        "PN-26",
+        "PN-28"
+      ]
+    }
+  ],
+  "dead_regions_comment": [
+    "Counted SEPARATELY from crossings (S4.2, class ZX). Two of the three are preset- or",
+    "roster-conditional and say so; neither is promoted beyond the strength the audit gave it."
+  ],
+  "dead_regions": [
+    {
+      "id": "ZX-1",
+      "site": "R:611",
+      "citation": "R:611",
+      "reason": "`.max(1)` cannot change a value whose attainable interval starts at 2; the `+1` literal alone already forces the operand >= 1",
+      "evidence_state": "SOURCE_PROVED",
+      "derived_by": "range model RM-1 clamp check",
+      "anchor": "PN-05"
+    },
+    {
+      "id": "ZX-2",
+      "site": "R:694-711",
+      "citation": "R:665-712",
+      "reason": "the greedy fallback branch of `select` is entered only when the candidate map holds three or more unit ids",
+      "evidence_state": "REACHABILITY_HYPOTHESIS",
+      "derived_by": "audit S-select; NOT re-derived in this method packet",
+      "note": "UNRESOLVED: deadness depends on the shipped roster size, which this packet does not establish. Carried at the audit's own strength, not promoted.",
+      "anchor": "PN-10"
+    },
+    {
+      "id": "ZX-3",
+      "site": "R:1163",
+      "citation": "R:1130,R:1163",
+      "reason": "`yamo_chop_candidates` returns before the penalty loop when `opponent_eta_penalty <= 0` (R:1130), so the subtraction at R:1163 cannot change any score under a preset that leaves the penalty at 0",
+      "evidence_state": "SOURCE_PROVED",
+      "note": "UNRESOLVED for any preset shipping opponent_eta_penalty > 0; the deadness is preset-conditional, not unconditional.",
+      "anchor": "PN-21"
+    }
+  ]
+}

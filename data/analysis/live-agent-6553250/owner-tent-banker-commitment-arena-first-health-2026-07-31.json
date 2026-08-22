@@ -1,0 +1,174 @@
+{
+ "schema": 1,
+ "observed_at": "2026-07-31T07:46:54.070635+00:00",
+ "result_audit_completed_at": "2026-07-31T07:46:58.612480+00:00",
+ "role": "owner-tent-banker-first-health",
+ "agent_id": 6585765,
+ "submission_id": 41071067,
+ "arena": {
+  "agent_id": 6585765,
+  "rank": 111,
+  "total": 113,
+  "score": 9.64,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6585765,
+  "rank": 111,
+  "score": 11.38,
+  "division_index": 5
+ },
+ "battle_rows_listed": 13,
+ "matching_rows": 13,
+ "matching_finished": 12,
+ "matching_pending": 1,
+ "unexpected_rows": [],
+ "parsed_results": 12,
+ "fetch_failures": [],
+ "summary": {
+  "games": 12,
+  "wins": 2,
+  "ties": 1,
+  "losses": 9,
+  "mean_margin": -91.58333333333333,
+  "catastrophic_losses": 4,
+  "catastrophic_rate": 0.3333333333333333,
+  "negative_margin_mass": 1159.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 897556392,
+   "opponent": "Dapps",
+   "opponent_agent_id": 6553375,
+   "our_score": 110.0,
+   "opponent_score": 205.0,
+   "margin": -95.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897556343,
+   "opponent": "conioon",
+   "opponent_agent_id": 6579288,
+   "our_score": 77.0,
+   "opponent_score": 342.0,
+   "margin": -265.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897556200,
+   "opponent": "Arnaud.Net",
+   "opponent_agent_id": 6575565,
+   "our_score": 157.0,
+   "opponent_score": 205.0,
+   "margin": -48.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897556199,
+   "opponent": "DamienLi",
+   "opponent_agent_id": 6579809,
+   "our_score": 156.0,
+   "opponent_score": 107.0,
+   "margin": 49.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897556197,
+   "opponent": "Yohann62",
+   "opponent_agent_id": 6498661,
+   "our_score": 92.0,
+   "opponent_score": 104.0,
+   "margin": -12.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897556195,
+   "opponent": "PonyPonyCodeCode",
+   "opponent_agent_id": 6541377,
+   "our_score": 103.0,
+   "opponent_score": 168.0,
+   "margin": -65.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897556194,
+   "opponent": "AndreMarasca",
+   "opponent_agent_id": 6481269,
+   "our_score": 128.0,
+   "opponent_score": 145.0,
+   "margin": -17.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897556193,
+   "opponent": "Sequo",
+   "opponent_agent_id": 6481144,
+   "our_score": 116.0,
+   "opponent_score": 105.0,
+   "margin": 11.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897556192,
+   "opponent": "Pech1",
+   "opponent_agent_id": 6483325,
+   "our_score": 128.0,
+   "opponent_score": 512.0,
+   "margin": -384.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897556191,
+   "opponent": "R1FA",
+   "opponent_agent_id": 6479863,
+   "our_score": 208.0,
+   "opponent_score": 332.0,
+   "margin": -124.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897556190,
+   "opponent": "yamo",
+   "opponent_agent_id": 6479814,
+   "our_score": 132.0,
+   "opponent_score": 132.0,
+   "margin": 0.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897556189,
+   "opponent": "MSz",
+   "opponent_agent_id": 6479460,
+   "our_score": 110.0,
+   "opponent_score": 259.0,
+   "margin": -149.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": true
+}

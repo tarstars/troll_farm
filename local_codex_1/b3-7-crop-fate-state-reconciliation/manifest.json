@@ -1,0 +1,27 @@
+{
+  "task_id": "20260731-b3-7-crop-fate-state-reconciliation",
+  "verdict": "ALREADY_COMPLETE_CONVERSION_BY_DESIGN",
+  "inputs": {
+    "cgauto/crop_fate_census.py": "f21030010dc5293309381da7a1a08d1f339fe1ea51e002741cb7140197c684a7",
+    "data/analysis/live-agent-6553250/legend-top3-experiment-cycle-vol2-2026-07-23.md": "dabfab8b6e0f8d1af9c3aea3ced6205b21079eecc45846f5ed3cccefe2db775b"
+  },
+  "outputs": {
+    "data/analysis/live-agent-6553250/b3-7-crop-fate-state-reconciliation-result-2026-07-31.json": "a4b547164a42ca9e2a72f924221538c95e420fccac3ed21e1a4e9495f7a357b9",
+    "data/analysis/live-agent-6553250/b3-7-crop-fate-state-reconciliation-result-2026-07-31.md": "ce8a4b04413e0397c20eacd3efa6b76fa46c7fa6bec666aec4a4cc9019d5c12c"
+  },
+  "validation": {
+    "json_valid": true,
+    "git_diff_check": true,
+    "decision_evidence_semantic_check": "11 records; 6 closures excluding void; 1 void premise",
+    "decision_evidence_pytest": "25 passed",
+    "state_lines": 150,
+    "ledger_bytes": 56819,
+    "sacred_resident_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "actions": {
+    "analyzer_rerun": false,
+    "bulk_artifact_read_or_write": false,
+    "source_or_frozen_artifact_change": false,
+    "map_panel_candidate_or_platform_action": false
+  }
+}

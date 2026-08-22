@@ -1,0 +1,66 @@
+{
+  "schema": "troll-farm-banana-r2-stable-gate/1",
+  "task_id": "20260802-banana-restoration-r2",
+  "policy": {
+    "attribution_is_diagnostic_only": true,
+    "d1_two_cell_oscillation_max": 0,
+    "d4_wood_commitment_failure_max": 0,
+    "d1_d4_inherited_exemption": false,
+    "raw_detector_output_required": true,
+    "sha_binding_required": true,
+    "independent_rerun_required": true
+  },
+  "panel": {
+    "source_commit": "b16f44d62caa9802253adaf255eb07b98273421b",
+    "maps": 120,
+    "seats_per_map": 2,
+    "candidate_games": 240,
+    "turns": 200,
+    "seeds": [982451653, 15485863, 32452843, 49979687, 67867967, 86028121],
+    "fuzz_panel_sha256": "45d40344b32c3a4b263a225748ddc3f2",
+    "fuzz_config_sha256": "686057b046b3b1e7f04253df31bc913a",
+    "trace_detectors_sha256": "59dce10dc87797bc6b1b8da0f628f4dd",
+    "conversion_race_oracle_sha256": "e0896e3f7cb2c7ac4ced35350469d704"
+  },
+  "hard_gates": {
+    "build_inverse": "PASS",
+    "byte_limit": 100000,
+    "compile": "PASS",
+    "empty_input_smoke": "PASS",
+    "trace_detector_unit_tests": "PASS",
+    "candidate_lifecycle": "PASS",
+    "D-1": 0,
+    "D-4": 0,
+    "D-5_outside_ring": 0,
+    "D-5_concurrent_over_ring": 0,
+    "D-6_opp_harvested_ours": 0,
+    "D-7_unresolved_loss": 0,
+    "D-8_forbidden_mother_damage": 0,
+    "D-9_funding_displacement": 0
+  },
+  "result_binding": {
+    "required_sha256_fields": [
+      "candidate",
+      "parent",
+      "gate_contract",
+      "panel",
+      "effective_config",
+      "trace_detectors",
+      "conversion_race_oracle",
+      "gate_runner"
+    ],
+    "required_outputs": [
+      "raw_games",
+      "raw_detector_counts",
+      "raw_episodes",
+      "hard_gate_summary",
+      "environment"
+    ]
+  },
+  "review": {
+    "implementer": "chatgpt_1",
+    "independent_reviewer": "claude_1",
+    "coordinator": "local_claude_1",
+    "arena_controller": "local_claude_1"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "task_id": "20260731-h4-opponent-bill-deniability-census",
+  "agent": "local_codex_1",
+  "date": "2026-07-31",
+  "verdict": "NO_MATERIAL_DENIABLE_BILL",
+  "base_commit": "7aec7104afcd9e2e89207ab5c4eef9bf09e6255c",
+  "claim_commit": "19805c3b9d598eff7e655c85e77b76ac87b4d2ac",
+  "files": {
+    "protocol": {
+      "path": "docs/h4-opponent-bill-deniability-census-protocol-2026-07-31.md",
+      "sha256": "73296cef23631365b3110dbc9a9c12e2de47851464403362e45f7f752d5ee435"
+    },
+    "task_claim": {
+      "path": "coordination/tasks/20260731-h4-opponent-bill-deniability-census.md",
+      "sha256": "4c7616d9749fb5948efa101959ee449fc9e762a3c90379c253ac6a007aabca72"
+    },
+    "claim_message": {
+      "path": "coordination/messages/local_codex_1/20260731T021032Z-20260731-h4-opponent-bill-deniability-claim.md",
+      "sha256": "899d0cbfd375dff0faeaf8ac5a1388a3915e8d50b4a3efc8d73cb310c1848579"
+    },
+    "analyzer": {
+      "path": "cgauto/h4_opponent_bill_deniability_census.py",
+      "sha256": "c67fe25e8f93de59ad51e8d6b3b4e87ceb6ba1cf594377f0f8ab1e597306d3de"
+    },
+    "tests": {
+      "path": "tests/test_h4_opponent_bill_deniability_census.py",
+      "sha256": "9e068b45e7693b700d2079456f3b50687afeca86acf473a64b7276f958f68d9f"
+    },
+    "result": {
+      "path": "data/analysis/live-agent-6553250/h4-opponent-bill-deniability-census-result-2026-07-31.json",
+      "sha256": "bf7ebfa6e210f636b70d668301e326a33133ce49bb42c14e62521e29423626f8"
+    },
+    "report": {
+      "path": "data/analysis/live-agent-6553250/h4-opponent-bill-deniability-census-result-2026-07-31.md",
+      "sha256": "b19db397410e57a649f4abef4f62c44997a5055c4032f23df8c4a773b79588f1"
+    }
+  },
+  "frozen_inputs": {
+    "d159_manifest": {
+      "path": "data/analysis/live-agent-6553250/d159a-current-resident-all-finished-effect-refresh-raw.json",
+      "sha256": "97dc82a730b5a691f2bf63036834b1a9ed23bc186b00d09b874ac092efddf443"
+    },
+    "d159_accepted_result": {
+      "path": "data/analysis/live-agent-6553250/d159a-current-resident-all-finished-effect-refresh-result.json",
+      "sha256": "bd3fe4571aec423cdb57d514a2f610c0dcfe9845099b5500a6721e98d72965ac"
+    },
+    "resident_source": {
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+      "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+    }
+  },
+  "validation": {
+    "py_compile": "pass",
+    "self_test": "self-test: ok",
+    "pytest": "8 passed",
+    "repeat_output_byte_identical": true
+  },
+  "decisive_counts": {
+    "frozen_games": 200,
+    "catastrophes": 20,
+    "primary_games": 17,
+    "primary_opponent_identities": 12,
+    "mandatory_post_start_deposit_games": 17,
+    "external_acquisition_batches": 455,
+    "definitely_deposited_batches": 407,
+    "reachable_fruit_upper_bound_batches": 371,
+    "individually_mandatory_bill_batches": 73,
+    "mandatory_fruit_batches": 30,
+    "same_turn_resident_colocated_mandatory_fruit_batches": 1,
+    "legal_same_turn_harvest_mandatory_fruit_batches": 0,
+    "prior_lethal_chop_mandatory_fruit_batches": 0,
+    "strict_one_action_blockable_games": 0
+  },
+  "actions_not_taken": [
+    "raw or processed data write",
+    "alternative terminal simulation",
+    "source policy or simulator edit",
+    "map or game",
+    "candidate or submission",
+    "Arena action"
+  ]
+}

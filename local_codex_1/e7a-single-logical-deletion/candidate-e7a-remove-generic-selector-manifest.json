@@ -1,0 +1,25 @@
+{
+  "arm": "REMOVE_UNREACHABLE_GENERIC_SELECTOR",
+  "baseline": {
+    "bytes": 62820,
+    "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+  },
+  "candidate": {
+    "bytes": 62278,
+    "reduction_fraction": 0.00862782553326966,
+    "removed_bytes": 542,
+    "sha256": "ab0934740171cc7f5f4cd65cdfb8cf879ca92d8236c9505903e4741e0a7c57c2"
+  },
+  "compression": false,
+  "evidence_boundary": "candidate generation only; compile, semantic, replay, development, and untouched equality gates remain required",
+  "formatting_reduction": false,
+  "identifier_renaming": false,
+  "logical_change": "delete the generic greedy action selector for friendly rosters above two; preserve the exact zero/one/two-worker selector and return one WAIT per worker if the impossible larger-roster state is observed",
+  "minification": false,
+  "schema": "troll-farm-e7a-single-logical-deletion-v1",
+  "supported_state_argument": {
+    "maximum_friendly_roster": 2,
+    "orchard_wrapper_can_train": false,
+    "training_cap_preserved": "if n>=2||TOTAL_TURNS-view.turn<=20{return false;}"
+  }
+}

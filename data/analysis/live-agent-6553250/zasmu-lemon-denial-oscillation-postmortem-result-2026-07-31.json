@@ -1,0 +1,392 @@
+{
+  "schema": "troll-farm-zasmu-lemon-denial-oscillation-postmortem-v1",
+  "date": "2026-07-31",
+  "task_id": "20260731-zasmu-lemon-denial-oscillation-postmortem",
+  "game": {
+    "game_id": 896352750,
+    "resolved_turns": 217,
+    "resident": {
+      "player": 1,
+      "agent_id": 6561795,
+      "pseudo": "tass",
+      "score": 206,
+      "shack": [
+        14,
+        3
+      ]
+    },
+    "opponent": {
+      "player": 0,
+      "agent_id": 6481270,
+      "pseudo": "zasmu",
+      "score": 184,
+      "shack": [
+        5,
+        6
+      ]
+    },
+    "unknown_replay_updates": 0,
+    "raw_sha256": "c7209f23ad36bb9fa363a57cfd0152c71a7aea5a30fbf38c13c48aff3521a817",
+    "trajectory_sha256": "a62b5b48aad1f4e5d2250f8ec7ef477f937001208aad72053ae11a27466e424d"
+  },
+  "opening_oscillation": {
+    "definition": "maximal consecutive resolved-state sequence with position[t] == position[t-2] and position[t] != position[t-1]",
+    "opening_cutoff_turn": 100,
+    "resident_position_episodes_total": 5,
+    "resident_position_episodes_through_turn_100": 3,
+    "longest_episode_states": 4,
+    "b3_2_sustained_threshold_states": 10,
+    "episodes_at_or_above_b3_2_threshold": 0,
+    "affected_unit_ids": [
+      1
+    ],
+    "episodes": [
+      {
+        "resolved_turn_start": 61,
+        "resolved_turn_end": 63,
+        "state_count": 3,
+        "cells": [
+          [
+            5,
+            8
+          ],
+          [
+            6,
+            8
+          ]
+        ],
+        "opening": true
+      },
+      {
+        "resolved_turn_start": 66,
+        "resolved_turn_end": 68,
+        "state_count": 3,
+        "cells": [
+          [
+            5,
+            7
+          ],
+          [
+            4,
+            7
+          ]
+        ],
+        "opening": true
+      },
+      {
+        "resolved_turn_start": 90,
+        "resolved_turn_end": 92,
+        "state_count": 3,
+        "cells": [
+          [
+            12,
+            5
+          ],
+          [
+            11,
+            5
+          ]
+        ],
+        "opening": true
+      },
+      {
+        "resolved_turn_start": 123,
+        "resolved_turn_end": 125,
+        "state_count": 3,
+        "cells": [
+          [
+            15,
+            2
+          ],
+          [
+            14,
+            2
+          ]
+        ],
+        "opening": false
+      },
+      {
+        "resolved_turn_start": 153,
+        "resolved_turn_end": 156,
+        "state_count": 4,
+        "cells": [
+          [
+            6,
+            4
+          ],
+          [
+            7,
+            4
+          ]
+        ],
+        "opening": false
+      }
+    ],
+    "interpretation": {
+      "opening_return_edges": 3,
+      "opening_motion_failures": 0,
+      "opening_teammate_adjacency_at_episode_states": 0,
+      "causal_waste_identified": false,
+      "reason": "The owner-visible churn is real as three short A-B-A returns through turn 100, but none reaches the frozen >=10-state sustained-oscillation class; the exact replay does not identify their counterfactual task value."
+    }
+  },
+  "lemon_population": {
+    "initial_tree_count": 6,
+    "initial_health_total": 40,
+    "initial_fruit_total": 0,
+    "planted_generation_count": 4,
+    "zasmu_planted_generation_count": 2,
+    "resident_planted_generation_count": 2,
+    "generation_count_total": 10,
+    "initial_generations": [
+      {
+        "cell": [
+          8,
+          6
+        ],
+        "resident_door_bfs": 8,
+        "zasmu_door_bfs": 2,
+        "first_resident_chop_turn": 26,
+        "resident_chop_commands": 12,
+        "removed_turn": 37,
+        "fruit_at_removal": 3,
+        "resident_wood_collected": 1
+      },
+      {
+        "cell": [
+          11,
+          3
+        ],
+        "resident_door_bfs": 2,
+        "zasmu_door_bfs": 8,
+        "first_resident_chop_turn": 28,
+        "resident_chop_commands": 4,
+        "removed_turn": 31,
+        "fruit_at_removal": 2,
+        "resident_wood_collected": 2
+      },
+      {
+        "cell": [
+          3,
+          4
+        ],
+        "resident_door_bfs": 11,
+        "zasmu_door_bfs": 3,
+        "first_resident_chop_turn": 40,
+        "resident_chop_commands": 4,
+        "removed_turn": 43,
+        "fruit_at_removal": 2,
+        "resident_wood_collected": 2
+      },
+      {
+        "cell": [
+          16,
+          5
+        ],
+        "resident_door_bfs": 3,
+        "zasmu_door_bfs": 11,
+        "first_resident_chop_turn": 54,
+        "resident_chop_commands": 4,
+        "removed_turn": 57,
+        "fruit_at_removal": 3,
+        "resident_wood_collected": 2
+      },
+      {
+        "cell": [
+          16,
+          0
+        ],
+        "resident_door_bfs": 4,
+        "zasmu_door_bfs": 16,
+        "first_resident_chop_turn": 64,
+        "resident_chop_commands": 4,
+        "removed_turn": 67,
+        "fruit_at_removal": 3,
+        "resident_wood_collected": 2
+      },
+      {
+        "cell": [
+          3,
+          9
+        ],
+        "resident_door_bfs": 16,
+        "zasmu_door_bfs": 4,
+        "first_resident_chop_turn": null,
+        "resident_chop_commands": 0,
+        "zasmu_harvests": 6,
+        "zasmu_self_chop_commands": 6,
+        "removed_turn": 112
+      }
+    ],
+    "planted_generations": [
+      {
+        "owner": "zasmu",
+        "planted_turn": 6,
+        "cell": [
+          7,
+          8
+        ],
+        "resident_door_bfs": 17,
+        "zasmu_door_bfs": 3,
+        "seed_source": "starting endowment seed picked on turn 1",
+        "first_harvest_turn": 26,
+        "last_harvest_turn": 95,
+        "zasmu_harvests": 19,
+        "net_seed_reproduction_before_conversion": 18,
+        "resident_chop_commands": 0,
+        "zasmu_self_chop_commands": 12,
+        "removed_turn": 119
+      },
+      {
+        "owner": "zasmu",
+        "planted_turn": 97,
+        "cell": [
+          5,
+          7
+        ],
+        "resident_door_bfs": 14,
+        "zasmu_door_bfs": 0,
+        "seed_source": "one of two lemons carried by unit 2 after turns 93-94 harvests at (3,9)",
+        "first_harvest_turn": null,
+        "zasmu_harvests": 0,
+        "resident_chop_commands": 0,
+        "zasmu_self_chop_commands": 5,
+        "removed_turn": 120
+      },
+      {
+        "owner": "resident",
+        "planted_turn": 205,
+        "cell": [
+          14,
+          4
+        ],
+        "harvests": 0,
+        "resident_self_chop_commands": 6,
+        "removed_turn": 211
+      },
+      {
+        "owner": "resident",
+        "planted_turn": 207,
+        "cell": [
+          13,
+          3
+        ],
+        "harvests": 0,
+        "resident_self_chop_commands": 2,
+        "removed_turn": 209
+      }
+    ]
+  },
+  "denial_accounting": {
+    "first_resident_lemon_chop_turn": 26,
+    "fifth_initial_lemon_removed_turn": 67,
+    "elapsed_turns_first_contact_through_fifth_removal_inclusive": 42,
+    "resident_initial_lemon_chop_commands": 28,
+    "resident_initial_lemon_damage": 60,
+    "initial_lemon_generations_removed_by_resident": 5,
+    "initial_lemon_generations_left_for_zasmu": 1,
+    "fruit_stock_destroyed_at_resident_removals": 13,
+    "resident_wood_collected_from_those_removals": 9,
+    "state_before_first_chop": {
+      "resolved_turn": 25,
+      "standing_lemon_trees": 7,
+      "standing_lemon_health": 84,
+      "standing_lemon_fruit": 7
+    },
+    "impossible_no_travel_full_clear_lower_bound_turns": 21,
+    "lower_bound_basis": "84 health / (resident chop_power 1 + trained worker chop_power 3)",
+    "actual_at_turn_67": {
+      "standing_lemon_trees": 2,
+      "standing_lemon_health": 24,
+      "standing_lemon_fruit": 6
+    },
+    "all_lemon_trees_gone_turn": 120,
+    "all_gone_cause": "zasmu self-converted the three surviving/created trees after harvesting; the resident never achieved species extinction"
+  },
+  "zasmu_resource_loop": {
+    "successful_lemon_harvests_total": 25,
+    "resident_successful_lemon_harvests_total": 0,
+    "harvests_from_turn_6_planted_tree": 19,
+    "harvests_from_surviving_initial_tree": 6,
+    "successful_lemon_replants_from_harvested_stock": 1,
+    "training": [
+      {
+        "turn": 2,
+        "resulting_worker_count": 2,
+        "lemon_bill": 5,
+        "lemon_bank_before": 6,
+        "lemon_bank_after": 1
+      },
+      {
+        "turn": 62,
+        "resulting_worker_count": 3,
+        "lemon_bill": 11,
+        "lemon_bank_before": 11,
+        "lemon_bank_after": 0,
+        "provenance": "10 post-turn-2 harvests from the turn-6 planted tree plus the one banked lemon left after turn 2"
+      },
+      {
+        "turn": 106,
+        "resulting_worker_count": 4,
+        "lemon_bill": 12,
+        "lemon_bank_before": 14,
+        "lemon_bank_after": 2,
+        "provenance": "15 later harvests minus the one harvested seed replanted on turn 97"
+      }
+    ],
+    "post_turn_2_training_lemon_spend": 23,
+    "post_turn_2_replant_lemon_spend": 1,
+    "lemon_bank_after_fourth_worker": 2,
+    "interpretation": "The observed natural-tree sweep did not deny either later lemon bill. A single protected planted tree generated the complete ten-lemon increment needed for the turn-62 bill, and later harvest plus one replant still left enough for the turn-106 bill."
+  },
+  "causal_boundary": {
+    "observed": [
+      "short resident A-B-A position returns",
+      "28 resident lemon chop commands and five initial removals",
+      "13 fruit present at those removals",
+      "9 resident wood collected from those removals",
+      "25 successful zasmu lemon harvests",
+      "one zasmu replant from harvested lemon stock",
+      "zasmu worker counts three at turn 62 and four at turn 106"
+    ],
+    "not_identified": [
+      "terminal value of suppressing the denial bonus",
+      "counterfactual harvests if the resident attacked (7,8)",
+      "opportunity cost of travel and chopping",
+      "causal score value of the 13 destroyed fruit or 9 collected wood",
+      "population frequency of this feasibility failure"
+    ],
+    "dual_value_warning": "LEMON chopping is production as well as denial: the five removals yielded nine resident wood, so this game cannot justify forbidding those chops."
+  },
+  "prior_evidence_boundary": {
+    "d176a": "The exact game has zero >=10-state same-two-cell runs; D176a already reduced that class below yamo incidence but had only +0.045 overall value, so no oscillation successor follows.",
+    "e7": "Blanket LEMON/PLUM focus inversion lost -12.1736; the default focus cannot be flipped from this game.",
+    "n6": "The 900 denial-distance scalar and its broad weight sweep are closed; a read-only feasibility predicate is distinct only if it tests whether any denial bonus can beat liquid stock, regeneration, kill burden, and bill timing.",
+    "h4": "Reachability is not causal bill denial. This game adds exact realized replenishment/accounting, not permission for a timed controller."
+  },
+  "successor_boundary": {
+    "allowed": "separately reviewed read-only existing-corpus feasibility precheck",
+    "candidate_predicate_inputs": [
+      "opponent lemon bank and carried stock",
+      "standing target-species health",
+      "resident chop power and travel-to-clear lower bound",
+      "opponent harvest capacity and protected replant cells",
+      "time and amount missing from the next observable training bill",
+      "base wood value separated from the denial bonus"
+    ],
+    "not_allowed": [
+      "source edit",
+      "denial-weight retune",
+      "focus inversion",
+      "oscillation breaker",
+      "simulation",
+      "runner",
+      "panel",
+      "candidate",
+      "submission",
+      "TestSession",
+      "Arena action"
+    ]
+  },
+  "verdict": "NARROWED_TO_FEASIBILITY_PRECHECK"
+}

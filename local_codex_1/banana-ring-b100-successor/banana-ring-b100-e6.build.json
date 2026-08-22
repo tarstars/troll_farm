@@ -1,0 +1,28 @@
+{
+  "schema": "troll-farm-banana-ring-b100-e6-research-build-v1",
+  "status": "research_only_not_submission_ready",
+  "inputs": {
+    "source": "rust/src/bin/yamo_orchard_live.rs",
+    "source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "control": "cgauto/submissions/candidate-agent6553250-opponent-crop-b100-e6-slim.min.rs",
+    "control_sha256": "6f992a5a4d58e5f3f78478322ab0f3ce6cf8706d5aa9bb57d10f8264b03a3f19"
+  },
+  "intervention": {
+    "constructor": "banana_ring_opponent_crop_b100_e6",
+    "banana_ring": true,
+    "opponent_crop_bonus": 100,
+    "opponent_crop_eta_limit": 6
+  },
+  "outputs": {
+    "research": {
+      "path": "local_codex_1/banana-ring-b100-successor/banana-ring-b100-e6.research.rs",
+      "sha256": "957880f20f882041ec1bec3dfc55307a4252fb8f5c27724347308a3ed5fcef3b",
+      "bytes": 309847
+    },
+    "compact": {
+      "path": "local_codex_1/banana-ring-b100-successor/banana-ring-b100-e6.compact.rs",
+      "sha256": "f5c4caeab431e02a2faa60d92faed4e55e353f66bd5e177bf382c56e7bcd85e4",
+      "bytes": 165667
+    }
+  }
+}

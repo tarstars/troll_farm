@@ -102,6 +102,46 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   pressure. Lineage-boundary ablation changes only 19/256 tasks; yaichi's ATTACK is an
   exhaustion-time bank blockade, mostly inert; first-boundary factory selectors fail map
   transfer (selection on 5/16 maps). [D88–D91]
+- **The 2026-08-02 live banana publications do not test that architectural result.** The
+  unbounded factory violates the owner's bounded gate/collection lifecycle, while the bounded-ring
+  successor has exact long period-2 movement episodes in live replay `897829265` despite passing a
+  small stream-equality/smoke packet. Classify both as `IMPLEMENTATION_INVALID`, not evidence that
+  banana production is harmful. A restoration must start from the exact stable parent, preserve
+  parent commands outside declared activation, prove research/compact equality on broad open and
+  live-counterexample streams, and zero-gate target oscillation, same-cell contention, lost banking,
+  unbounded planting, opponent-favored fruit creation, and second-worker funding displacement before
+  any score or Arena result is scientifically interpretable. [banana restoration r2, 2026-08-02]
+- **Banana R2 candidate `f29efd0e...` is implementation-invalid before value or host replay
+  testing.** Its own closed-loop lifecycle trace harvests two bananas and replants both before
+  banking, contradicting the one-seed/surplus-bank invariant. Its contested-mother source handles
+  only ready fruit and never implements the reviewed convert-or-abandon transition for unripe
+  opponent-owned fruit; its static-opponent trace cannot test capture. The handoff also lacks a
+  complete compilable readable source for research/compact equality. Do not submit, value-test,
+  or reuse these exact bytes. [banana restoration R2 host review, 2026-08-04]
+- **Banana R2 successor `280ed777...` is also implementation-invalid before value or host replay
+  testing.** It repairs surplus banking, the ownership-loss state, and the readable artifact, but
+  its conversion test uses `ceil(current_health/chop_power)` and ignores health gained when a
+  banana grows during chopping. It can therefore choose conversion without completing strictly
+  before the opponent. Its passing convert trace uses a pre-existing mother and is vacuous for the
+  still exemption-free D-8 prohibition on chopping an own-planted diagonal mother. The ruled
+  contract permits exact feasible conversion only after ownership really flips; it continues to
+  forbid discretionary chops while owned. Require a growth-aware red/green boundary and a
+  non-vacuous own-planted flip trace before resuming gates. [banana restoration R2 successor host
+  review, 2026-08-05]
+- **Banana R2 round-3 candidate `2f58edef...` remains implementation-invalid.** It replaces static
+  chop division with exact tree transitions and passes its reported regression ladder, but the
+  own-planted flip/conversion trace is a scripted policy: the real candidate on that scenario
+  plants then waits, never exercising the response. I-10a, candidate code, and D-8 use inconsistent
+  arrival/ripening deadlines and time origins, and the candidate-level R-3 scenario does not make
+  growth-added health flip the decision. Require one exact absolute-time oracle against the
+  opponent's earliest executable HARVEST and candidate-driven own-planted flip/conversion evidence
+  before host replay or value gates. [banana restoration R2 round-3 host review, 2026-08-05]
+- **Banana R2 round-4 candidate `9f5ef833...` remains implementation-invalid despite repairing the
+  conversion oracle and real flip response.** On consumed map `9,854,000`, seat 0, versus
+  `gold_adaptive`, the trained worker carries two wood while alternating `(8,4)<->(8,3)` for
+  turns 34--258: 225 no-progress turns with no DROP or cargo loss. This falsifies its own
+  I-19/I-20/I-21 and D-1 gates; stop banana-live, `897829265`, value, and Arena work for these
+  exact bytes. [banana restoration R2 round-4 host review, 2026-08-05]
 - D89 funds nothing: zero legal training turns in 256 tasks (terminal 92.8 WOOD vs 1.4
   PLUM / 0.6 LEMON / 0.4 IRON) — it validates BANANA→WOOD production, not TRAIN funding. The
   existing-stock late bridge trains worker-3 in 147 tasks yet loses 91.6 margin (47,707 turns
@@ -127,6 +167,16 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   worker-3 — secure renewable supply before scaling. The recurring serial-scheduler defect is
   the starter abandoning planting to fund worker-3, then competing with the new worker for a
   remaining seed. [curriculum D5–D9]
+- **Architecture-2 Phase 1 is CLOSED by its preregistered K1.** The first from-scratch
+  economy scheduler proves the component mechanics (128,979 unambiguous own bill fruit
+  harvested, 127,614 banked; iron mined at rosters 2 and 3+; zero iron-directed moves),
+  but fruit-funded worker 3 by turn ≤110 transfers from a selection-block
+  **206/512 = 40.23%** to only **582/2,048 = 28.42%** on locked confirmation (gate 40%).
+  All families lie at 27.34–31.25%; thread parity, referee quality, source locks, and all
+  six detectors pass, so this is scientific failure rather than evaluator ambiguity.
+  Do not retune the service threshold, worker spec, deadline, crop catalog, or mining quota
+  on consumed ranges. Reopening requires an owner-authorized new programme and a materially
+  different closed-loop representation. [A2-1, 2026-07-30]
 
 ## (b) Imitation & offline value learning
 
@@ -150,6 +200,11 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 - Native imitation of a complete macro teacher loses −172.663 paired margin through
   autoregressive covariate shift; a complete controller must be optimized and validated
   closed-loop, never fit on teacher states alone. [Phases 12–14; vol 1]
+- Exact-agent delineate replay cloning is not duplicate-closed, but its honest target is
+  primitive-only: 199 games yield 145,448 exactly decoded per-unit rows with zero unknown
+  updates, while the internal train plan, logits, alternatives, and joint beam are not
+  replay labels. L1a must begin with extractor parity; teacher-forced metrics remain
+  diagnostic until a frozen closed-loop official-map value gate. [L1 readiness]
 - The short feed-forward batch-option PPO recipe is closed: it learns state-dependent
   probability mass but changes 0/512 deterministic probe decisions. Retain the exact
   679-transition/s environment; require current-field replay evidence before choosing a
@@ -189,6 +244,23 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   family is closed. Recorded-command continuation is also invalid (86.85% command match,
   57/80 exact streams). `generate_official` (SHA1PRNG port, 120/120 untouched confirmation)
   is the accepted official-map substrate. [D29c/D30/D31/D33]
+- **X1 referee-parity boundary:** the core Python/Rust mechanics audit found zero unexpected
+  mismatches, and the undocumented Legend starting bank (four independent 2..10 fruit draws
+  plus 2..10 iron, symmetric between players; expected 24 fruit / 6 iron) was already
+  implemented by the D33 official generator. No rerun is required solely for that
+  documentation omission. Two gaps remain A2-blocking: local movement selects the
+  lexicographic equal-best cell while `Board.getNextCell` uses the referee's continuing RNG,
+  and local parsers do not reproduce strict ownership/league/skill/syntax/error semantics.
+  A referee-parity harness must preserve post-map RNG state and validate commands. [X1,
+  `docs/reviews/2026-07-30-local_codex_1-x1-mechanics-rederivation.md`]
+- **A2-0b referee substrate:** only the implementation locked at
+  `a2-0b-r1-implementation-lock.json` may underlie A2 evaluations. It reproduces the
+  legacy control exactly (49 catastrophes / 12,749 negative mass), but continued referee
+  RNG changes 1,781/2,048 trajectories and the referee tail is 53 / 13,646. Therefore the
+  legacy engine is a historical control, never an absolute A2 value substrate. Every
+  supported noncritical referee failure must remain reason/phase/owner-accounted; critical
+  and unclassified outcomes are zero-gated. Phase 1 needs fresh ranges and its own
+  policy-owned command-quality gate. [A2-0b r1]
 - Exact field maps do not rescue legacy local evaluation: actual score/margin range coverage
   is 2/5 and 1/5, and the old zoo funds worker-3 in 15/16 cells on maps where real opponents
   prevent it. The zoo is for parity/mechanism tests only, never promotion evidence. [vol 1]
@@ -249,20 +321,56 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   architecture's comparative advantage. Do not retune the planting window, concurrency cap,
   or distance bound; do not reopen production without first changing harvest capability AND
   demonstrating denial is preserved. [D175a]
-- ★★ The resident plants at median turn 191.5; all 25 two-worker Legend peers plant by
-  turn 21–29 (6.6–9× delay, not resource-constrained). Reap rate 0.93% vs STRONG 15.3% /
-  PEER-WEAK 17.2% / top-3 24.16% — the reap gap separates us from EVERY other two-worker
-  agent. At equal roster we are at exact parity with the strong cohort (58.2% vs 58.3%);
-  the whole deficit is scale-asymmetry survival (vs 3-worker: −37.1 us vs −1.8 them; vs
-  4+: 5.0% vs 13.7% wins), which is downstream of having no sustained plant-reap loop.
-  [CORRECTED by B4.5 — the DEPLOYED slim artifact contains ZERO occurrences of
-  `banana_factory`/`ScarceIntent` (pruned as provably-dead code in the 07-17 slimming);
-  the real gate is priority, not a disabled subsystem: PLANT is reachable only once a
-  worker has nothing left to CHOP. The claim below describes the dev copy only.]
-  The dev copy contains the tested `banana_factory_*` loop defaulting to
-  `enabled: false` behind a one-shot board-richness selector (D89/D91 lineage: D89's FULL
-  factory was safety-rejected at +82.9 opponent score, D91's selector fired on 5/16 maps).
-  The middle ground — early, moderate, sustained planting — is untested. [B4.4]
+- ★★ **B4.4 is corrected claim by claim; do not cite its “all/every peer,” no-loop, or
+  causal-survival wording.** Its tracked 8,131-game provenance gives 23 peers/2,700
+  occurrences, not the published 25/2,787; only one inferred 8,395-record prefix matches
+  those anchors, and the original report/manifest is missing. Conditional group first-plant
+  medians do reproduce (resident 191.5, strong 29, weak 21), but the 25 agent medians span
+  **3–254**. Pooled reap reproduces (0.928%/15.322%/17.198%), but yamo, therealbeef and
+  LeRenard are 0% and mehdi_ayari 0.189%, below the resident. Every group instead has a
+  near-universal self-plant→self-chop wood loop (100%/97.62%/93.09% of games). Outcomes
+  directly separate purposes: resident early crops include 18/23 self-harvested with
+  2,022 fruit gained; all 1,027 post-250 crops are self-chopped for 1,060 wood with zero
+  self-harvest. Early orchard establishment and late fruit-to-wood conversion are
+  compatible, not contradictory. The dev factory source facts do not explain historical
+  causality, and the deployed slim artifact pruned that subsystem. H3's controlled
+  survival/wood-purity corrections and D175a's harmful intervention remain binding. [N2;
+  corrects B4.4]
+- **Opponent-specific behavior has no currently actionable target.** Only 3/72 exact
+  opponent identities clear the frozen activity/games/seats/control gates. R1FA's matched
+  margin residual is −31.62 but CI [−81.02,+22.24], Holm p 0.229, and win residual −0.087
+  fail actionability. BoatBuilder's −73.18 reverses by seat and is imprecise; a76a44 is
+  positive. Do not build an identity-specific branch or infer a mechanism. Reopen only
+  after materially more exact games or a stronger contemporaneous control design. [M2,
+  2026-07-30]
+- **Seat-specific behavior has no supported target.** Same-exact-opponent matching gives
+  seat-1 minus seat-0 margin +10.09, but CI [−16.81,+38.91], p 0.484, below the frozen
+  20-point materiality gate. Raw and matched checks point toward seat 0 being worse, while
+  the identity-equal fixed-opponent contrast flips to −1.37. Do not create a seat branch
+  or infer a mechanism. Reopen only with a materially larger exact panel that clears the
+  frozen magnitude, uncertainty, and stability gates. [M3, 2026-07-30]
+- **Matchmaking strength drift is not established, but version-lineage concentration is
+  binding.** Newest-minus-oldest-60 mean opponent score is +0.438, CI
+  [−0.865,+1.867], p 0.884, while the median moves −0.155. The newest 60 games are
+  47 FreZzz, 7 Bubaptik, 5 goq, 1 IlyaPol: 16 exact IDs but only four pseudonyms. All late
+  exact IDs are absent early, yet only 6/60 games use a new pseudonym and active-lineage
+  share is 100%. Use exact IDs for version-specific claims and pseudonyms for longitudinal
+  composition; never interpret inactive version IDs as vanished lineages. [M4, 2026-07-30]
+- **Turn-300 games do not define a resident-wide loss mechanism.** In 241 resident games,
+  125 reach the cap. Ninety-seven matched cap targets give margin residual −1.44, CI
+  [−26.25,+25.11], p 0.710, while win residual is +0.184. Seats (+0.72/−3.47), early/late
+  targets (−14.53/+11.38), same-pseudonym (+11.85), same-exact-opponent (+3.87), and
+  lineage omissions reverse signs. Duration is post-game; do not build a cap-conditioned
+  policy or call this a causal turn-limit effect. H3's narrower contact-coverage lead
+  retains its cause-versus-symptom and always-on-control gates. [M5, 2026-07-30]
+- **Late opponent planting arithmetic is supported; its N5 correction awaits narrow re-review.**
+  Exact lineage finds 388 opponent generations planted after
+  turn 250 while the resident leads, in 78/170 endgame-reaching games. The resident
+  contacts only 51; opponents extract 1,487 carried score-equivalent units versus 241.
+  Yet a generous deny-plus-capture factor-two ceiling averages 11.99 across all 242
+  resident games, whole-game bootstrap CI [8.73,15.76], below 20. Extracted cargo is not
+  banked score and the bound is replay-conditioned, not causal. Enemy units can share
+  cells, so never describe this as body-blocking or reopen H7. Twelve semantic tests and literal post-birth ETA preserve the primary result; await narrow re-review. [N5 correction, 2026-07-31]
 - ★★ The resident is HARD-CAPPED at two workers: `MoisanBot::can_train` has
   `if n >= 2 { return false }` unconditionally, before any affordability check (0/64
   preflight trials trained with a fully credited bank). Any scaling work must lift this
@@ -301,6 +409,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   Rosters: resident 2.00, top-5 3.55, ranks 6–20 2.50. Our efficiency is the efficiency of
   a small economy. Take cheap positive execution fixes, but do not expect a large vein and
   do not frame waste as the gap. [comparative baseline 2026-07-28]
+- **The resident orchard is conversion-by-design, not a paced fruit farm.** Across 220
+  games / 2,433 resident crops, 98.97% are self-chopped, 0.90% self-harvested, 0.12%
+  opponent-taken, and none survive; 96.8% of self-chopped crops never bear fruit. Every
+  one of 220 trained resident workers has harvest power zero. The top five are genuinely
+  mixed (29.81% harvest, 42.98% self-chop, 15.71% opponent-chop, 11.28% alive), but their
+  pacing problem does not transfer. Theft is secondary at 2.60 wood/resident game. Do not
+  add a resident plant-pacing rule or infer harvest-capacity shortage. [B3.7, 2026-07-29]
 - ★ Worker-3 scaling is IRON-limited, not fruit-limited: crediting EVERY uncollected
   reachable fruit (ours + opponent's) opens a cheap-helper window in only ~10% of games
   and the balanced spec in 0/205 ever, while IRON limits 97.3–100% of remaining failures
@@ -318,6 +433,24 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   (+5 / +3), negative mass (1.096 / 1.081) — so delaying wood for fruit carries a real,
   trigger-independent cost against specific opponents. Any successor must budget for it.
   [D173a, D173b]
+- **Near-camp opportunistic harvest is CLOSED by direct-value headroom.** B3.8's 496
+  “capturable” observations are individual one-point fruit units across 205 games and use
+  an optimistic ≤2-turn walking detour that explicitly omits HARVEST, DROP, and scheduling
+  displacement. Full own credit is only 2.42 score/game; factor-two deny-plus-capture is
+  4.84 margin/game, still below the current residual experiment bar. D173a/b already show
+  the omitted cost through the same compact_gold, catastrophe, and negative-mass failures.
+  Outside chop-shadow scope is not action value; do not add a target or tune distance.
+  [B3.10 scope audit, 2026-07-31]
+- **One exact Dridriun game provisionally narrows a relative fruit-control precheck; its correction
+  awaits narrow re-review and does not reopen broad arms.** In game `896352129`, nine opponent-door APPLE generations
+  received 83 opponent HARVEST commands; the first waited 60 turns for resident contact.
+  Four resident door-APPLE generations ripened while being converted: 22 resident
+  ripe-CHOP commands, zero resident HARVEST, and eight fruit present at final removal.
+  The opponent harvest-capable troll could reach/collocate, but actually harvested zero
+  resident-created apples. Preserve actual capture versus reach and observed flow versus
+  causal savings. Only a read-only corpus frequency/joint-predicate precheck may follow;
+  do not retune Phase 21/D173, edit policy/capability, or create a runner/panel.
+  All 83 HARVEST commands yield 83 units; exact joint-removal, decisive-state, and BFS/ETA rows are published. Await narrow re-review. [B3.11 correction, 2026-07-31]
 - `idle_with_work` is CLOSED as a fix target: ~78% of its turn-mass is benign transit,
   correct full-capacity behaviour, or a detector artifact; genuine ceiling ≤0.6 pts/game
   across ~20 mechanism-less incidents, flat across wins/losses. The "contested wood-race"
@@ -331,6 +464,23 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   preference-based tie-breaking instead of prohibition. Also binding: the dev copy is
   library-visible as `troll_farm::resident_policy` (lib.rs `#[path]`) — controls must
   snapshot it; never leave working-tree diffs on it during concurrent runs. [D171a]
+- **Immediate banking-route correction is CLOSED; only a small hindsight tie-break
+  residual remains.** E2 binds 11,260 exact-live deposits across 400 side-games:
+  4,855/4,855 identifiable door moves have minimum immediate ETA, 64/64 simultaneous
+  carrier assignments are jointly optimal, and zero confirmed returns change door.
+  Conditioning on the later observed task, an ETA-tied alternate door saves one movement
+  turn in 134/10,597 bound wood returns (134 total = 0.335/side-game; max one). This is a
+  static future-conditioned ceiling, not causal score or rating. Do not build an immediate
+  router or persistence fix; any lookahead successor first needs causal terminal value
+  clearing the experiment bar. [E2]
+- **Tree-cluster chop ordering is already CLOSED by stronger exact-resident terminal
+  oracles.** The one-job audit executes `FELL_BANK` through travel/chop/drop and returns to
+  exact resident; its selected-root mean is +18.584 below +20 and explicitly closes larger
+  target catalogs. D36 then enumerates up to two targets/kind/unit, jointly executes full
+  bundles, and replans at completion up to four times: 87/128 tasks use ≥2 bundles, yet the
+  upper bound is only +10.633 margin versus +25 and +19.617 own score versus +68. Do not
+  reopen with cluster definitions, two-tree permutations, commitment bonuses, more targets,
+  or overlay depth. [E3; bundle-job oracle; D36]
 - Field-rate corrections from the 8,1xx-game corpus (2026-07-28, frozen verdicts stand):
   the D164 top-5 P→S→P motif POPULATION rate is ≈49.7% (435/875), not the 72% measured on
   recent-10 windows — a sampling-completeness artifact (old windows over-sampled peer
@@ -348,6 +498,17 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   states on the official substrate (D29's approach, killed pre-D33 by the map-domain
   artifact, never retried) — reopening requires an owner decision citing this entry.
   [D172a]
+- **H10a cannot reuse the Level-1 104-channel tensor verbatim.** Only 72 channels have
+  generic current-state meanings after controlled-seat relabeling/canonical rotation;
+  14 encode one selected unit, 2 encode Level-1 episode progress, 15 encode its fixed
+  training recipe/deficits, and 1 encodes previous primitive-action history. D172 has no
+  single outcome-blind definition for those 32 channels. Its exact substrate is otherwise
+  ready: 79,997 labels over 27,392 unique post-D33 official-map state keys, with zero
+  duplicate state/arm keys. The only sanctioned correction is a 72-channel player-relative
+  state tensor plus D172's unchanged 17-field decision block, under the same 13 arms,
+  budget-1 semantics, τ, partitions, gates, veto, confirmation, and 12,288-parameter cap.
+  H10a-r1 requires peer acceptance and exporter parity before fitting; D29/D18 are negative
+  priors on different decisions, not duplicate closures. [H10a readiness, 2026-07-31]
 - On-policy terminal-reward closed-loop training over the budget-1 resident option space
   is CLOSED: with valid mechanics and all 13 arms live, all four objectives (pooled,
   capped, own-protected, group-DRO+protection) converged to always-KEEP (P(invoke) ≤3.3%,
@@ -381,21 +542,35 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   reversing the "most wood-concentrated" claim; and wood/chop efficiency, tree size at
   felling, specs and banking latency are statistically indistinguishable across all five.
   Do not cite the −1.8-vs-−37.1 survival gap. [H3, 2026-07-29; corrects B4.4]
-- Opponent-crop **contact-coverage stability under numeric pressure** (resident 41.3%→35.3%
-  when outnumbered, −14.5% relative, while the quartet holds flat; whole margin gap sits in
-  full-300-turn games) is a LEAD, not a candidate. Any conditional opponent-crop targeting
-  change is Phase-21-adjacent and requires, before implementation: causality established
-  (cause vs symptom-of-losing) and an always-on control arm proving the conditioning is
-  load-bearing. [H3; gated by the same standard as H4]
+- Opponent-crop **contact coverage has a temporally ordered numeric-pressure signal, but
+  no intervention value yet.** In exact D159, eventual coverage is 35.38% after successful
+  opponent third-worker scaling versus 47.76% without it (−12.39 pp, game-cluster CI
+  [−18.83,−5.85]). Same-seat, pregame-matched event studies show a 50-turn DiD contact
+  hazard ratio 0.606, CI [0.410,0.895], and an entirely pre-permanent-loss 20-turn ratio
+  0.510, CI [0.293,0.841]. This rules out “only already-lost late turns” as a sufficient
+  explanation, but remains observational: TRAIN may proxy broader opponent state/policy.
+  Do not implement a conditional opponent-crop bonus or cite value. Any H3a preflight must
+  freeze conditioned, identical always-on, and unchanged-control arms and show the
+  conditioning itself is load-bearing. [H3′, 2026-07-31]
+- **The exact H3a treatment is source-reproducible, not value-qualified.** Frozen fallback
+  `a8eb3b2b...` transforms byte-exactly into treatment `083107f5...` through seven fully
+  classified provenance/lifecycle/existing-tree scoring edits (+1,811 bytes); inverse and
+  archived-generator equality pass and both compile. The scoring operation remains exactly
+  `candidate.score += candidate.score` for tracked existing tree targets at ETA ≤6.
+  This satisfies only the reconstruction prerequisite. Do not create a runner/panel or
+  cite value without a separate conditioned vs identical-always-on vs unchanged protocol.
+  [H3a reconstruction, 2026-07-31]
 - ★ **Cross-player physical interference does not exist in this game.** Movement
   collisions resolve within each player's own units separately; **enemy units may share a
   cell with ours**, and units never block BFS distance. Body-blocking, door camping and
   path denial against the opponent are therefore mechanically impossible — do not propose,
-  audit, or build a controller for them. What is real and unaudited is *action*
-  contention: co-location on the same harvest/chop target, last-fruit duplication, race
-  timing, and target disappearance causing wasted travel. [`docs/mechanics.md:42-45`,
-  verified against `sim/engine.py:134-150`; falsification of hypothesis H7 by chatgpt_1,
-  2026-07-29, confirmed independently by claude_1]
+  audit, or build a controller for them. H7′ confirms real *action* contention is
+  ubiquitous (180/200 games; 3,662 dual CHOP turns; 598 duplicated wood), but not a
+  strong-agent signature: top-20 event prevalence 97.22% vs rank-41+ 91.46%, difference
+  +5.76 pp with opponent-identity-cluster CI [−1.64,+14.49], while event rate is lower
+  (47.87 vs 78.93/1k turns). The 11.97/game duplicated-item ceiling is shared created
+  material, not opponent-attributed or causal margin. Do not build an action-contention
+  controller or reopen body-blocking. [`docs/mechanics.md:42-45`, H7′, 2026-07-31]
 - Exact 1:1 dual-value opponent-crop scoring is closed: 111/131 admissible official-prefix
   activations, all pre-arena gates passed — and −7.77 rating at the clean 63-game arena
   checkpoint. Do not tune its multiplier or ETA; prefix coverage is not complete-policy
@@ -489,6 +664,15 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   Stage-1 positives died at n=200). Early-bank wood detours are closed (only 10/429
   uncollected wood units recoverable; conversion is workforce quality: trained workers 0.349
   wood/chop vs starter 0.135). [Phases 1–5; archive/legend/session-handoff-2026-07-16.md]
+- **The denial-distance scalar is CLOSED after its one permitted nonzero sweep.** On
+  512 paired development tasks per arm, LOW 450 changes commands in 378 tasks but gains
+  only 15/97 intended comparable first divergences and loses −0.754 margin (both seats
+  negative; 3/8 families positive). HIGH 1800 changes 273 tasks and gains +0.559 margin
+  with both seats positive, but only 12/77 comparable divergences move in the intended
+  direction and 4/8 families are positive. Neither clears the frozen 60% mechanism or
+  six-family gates; confirmation maps remain unused. Keep 900; do not retry zero,
+  capable-only, intermediate weights, or a retuned grid. [N6,
+  `data/analysis/live-agent-6553250/n6-denial-weight-sweep-result-2026-07-30.md`]
 
 ## (f) Wrappers, residuals, online-search latency
 
@@ -500,11 +684,63 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   29-option harvest-0 first-worker library has no opponent-robust activation across eight
   continuations and six process realizations — isolated turn-one Monte Carlo is closed.
   [Phases 6–8]
+- **E1 is narrowed, not a fresh “exhaustive short-horizon” opening programme.** Complete
+  first-worker enumeration, fixed opening prefixes, one/two-batch semantic sequences, and
+  a terminal-valued turn-one rollout already exist and are closed. A 3–5-turn reward is
+  invalid because observed opening recovery is around +68 turns. The only distinct residual
+  is a short sequence over exact resident candidate pairs followed by terminal resident
+  continuation; it depends on accepted N4 Phase A instrumentation and remains a diagnostic
+  oracle, not a selector/book or candidate. [E1 scope audit, 2026-07-30]
+- **N4's exact compatible-pair publication is runtime-closed.** Generated Rust, sacred
+  materialization, exact frozen-command reconstruction (0/4,028 failures), and normalized
+  1/20-thread parity pass on the accepted one-root diagnostic. But exhaustive candidate
+  export plus one-tick boundary reconstruction is 210.408/333.157 ms p95 versus the frozen
+  5 ms close, and one root emits 268,168 rows / 83.3 MB. The projected 10.7 GB full census
+  was correctly stopped. This does not prove pair value absent; it closes the current
+  exhaustive surface, Phase B, N4-dependent L2/L3, and E1 reuse. A compact surface would
+  require a new protocol, not output pruning after observation. [N4, 2026-07-31]
+- **S2 opening-book implementation is dependency-gated and representation-blocked.** Every
+  implemented opening library is closed: the 27-worker grid, opening macros, turn-one
+  terminal rollout, fixed prefixes, recurrent portfolio, and one/two-batch sequences.
+  The former resident-native multi-turn prefix route is closed by N4's runtime gate and
+  has no terminal labels.
+  Independently, pre-action map selection fails transfer: D63 AUC 0.830→0.479; D91
+  selects only 5/16 maps; Phase 15's best forest is 47.059% precision / −0.277 margin;
+  D153 falls from +14–17 training value to +1.820 held with 44.44% harmful choices.
+  These results do not prove every future representation impossible, but no accepted
+  representation currently supplies a book. Do not enumerate sequences, fit classes,
+  reuse consumed labels, or open a book panel. Reopen only after material N4→E1 terminal
+  value and a genuinely new pre-action representation transfer on disjoint official maps
+  and held opponents. [S2 scope audit, 2026-07-31]
 - Signature-only late switching is path-dependent and prospectively loses (−6.169 margin on
   seeds 270–299); do not retune its four consumed signature regions. [Phase 10]
 - Broad and bank-only resident MOVE residual search is closed: the prospective bank-only
   replication gains just +0.508 margin at 92.852 ms p95. Primitive command mutation and short
   asset-bonus horizons remain closed for macro decisions. [Phase 16]
+- **The complete putibuzu-shaped rollout-plus-beam combination is distinct but not
+  implementation-ready.** Its public description joins about 30 joint task/local-action
+  candidates, 3/5/7/9/12-depth averaging, a three-ply `5→3→all` beam, and small-map
+  explicit-opponent maximin under a lightweight greedy policy. No existing project family
+  combines those dimensions, so do not call it a duplicate. But the prose omits the
+  evaluator weights, candidate/tie rules, exact beam semantics, map cutoff, opponent breadth,
+  and chance handling. The project's continuation substrate is also unsafe: the live
+  single-model rollout scored 21.7 versus 24.1 control and the eight-model repair selected
+  nothing robustly. Exact-resident strict subsets cost 92.852–130.047 ms p95; an old
+  lightweight GoldElite subset reached 28.53 ms p95, so runtime for a new lightweight
+  policy is unresolved rather than impossible. S3a requires peer acceptance and the N4
+  ownership fork before even a specification/latency preflight. Do not build a simulator,
+  panel, source, candidate, or Arena action from S3. [S3, 2026-07-31]
+- **A full exact last-N-turn solver is infeasible under the current representation and
+  50 ms runtime contract; do not relabel a candidate restriction as exact.** On 720 reused
+  exact-live games, 246 (34.17%) reach t251 and 155 (21.53%) reach t291. Across 589 roots,
+  exact movement-only simultaneous one-ply position outcomes are median 600/max 6,400
+  (t291 median 450 with ten turns left); this omits every non-MOVE/resource/tree branch.
+  Full exactness must additionally branch both players and referee chance across 10–50
+  turns. External known-policy processes are not serializable/forkable, while resident-
+  candidate restriction duplicates N4/D36/S3. Existing strict subsets already cost
+  92.852–279.46 ms p95. Reopen only with proof-preserving compact full-game state
+  reduction and an exact chance model, not a deeper horizon/beam, wrapper, or process replay.
+  [S1, 2026-07-31]
 - Resident-local persistent one-job redirection is closed: the exact hindsight oracle selects
   broadly but averages +18.584 on selected roots vs the frozen +20.0 floor (median +11.5). No
   target-count/checkpoint tuning, no selector fitting on this grammar. [vol 1]
@@ -565,12 +801,45 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   signal is upstream: opponent scaling past two workers precedes the crossover by 42–125
   turns in 84% of catastrophes (83% of catastrophic mass) and the resident never
   conditions on it. [B3.1 audit 2026-07-27, vol 2]
+- **Opponent worker-three bill denial is CLOSED at the read-only census.** B3.1 timing
+  reproduces in 17/20 catastrophes (12 identities, both seats; median 70-turn scale lead),
+  and all 17 exact bills require post-start supply after earlier TRAIN payments. Of 455
+  acquisitions / 407 definite deposits, 73 batches are individually mandatory: 43 are
+  non-deniable IRON, while among 30 fruit batches only one has a resident co-located, that
+  unit cannot legally HARVEST, and none has a prior one-command lethal CHOP. Thus strict
+  blocks are **0/17** even though 371 fruit batches pass a loose reachability upper bound.
+  Do not implement timed denial or treat BFS reachability as causal bill control. [H4]
+- **The exact 31,407-byte tree-edge half-size source is transfer-rejected on tail safety,
+  not central value or liveness.** On untouched seeds 9,866,000--042 it gains +6.293 mean
+  with lower -1.347, five/six nonnegative families, both seats positive, and period-2 >=6
+  reduced 103 -> 0, but catastrophes worsen 12 -> 16 and negative mass 4,567 -> 4,826.
+  Nine new catastrophes outweigh five rescues. Do not rerun, remove seed 9,866,014, relax
+  the tail gates, or submit hash `acbada47...`; a successor needs distinct logic and a new
+  untouched lock. [E7a half-size tree-edge, 2026-08-03]
 
 ## (g) Arena measurement & platform behavior
 
+- **A direct wins-per-rating-point conversion is NOT identified by the stored panel.**
+  M1 hash-verified 8,014 raw games and obtained 307/329 outcome-complete internal score
+  transitions (93.31%) across 45 agents; all 2,549 leaderboard score changes coincide with
+  advancing `updateTime`. Yet the best held-agent Elo-like rule has MAE **0.477313** versus
+  **0.478583** for predicting zero change (only 0.27% better; frozen gates require ≤0.05
+  and ≥50% improvement), while affine and net-win models are worse. Do not invert their
+  coefficients or convert terminal margin to rating. Reopen only with exact platform
+  recomputation membership plus documented pre/post score, or the platform formula. [M1,
+  `data/analysis/live-agent-6553250/m1-rating-system-dynamics-result-2026-07-30.md`]
 - Fresh submissions read 3–4 points below matured ones; a failed same-code A/A (16.1 → 19.9
   vs prior 26.3) proves the artifact. Never churn submissions; require capacity A/A before
   candidate trials. [vol 1 07-16 arena section; archive/legend/session-handoff-2026-07-16.md]
+  **[no-churn clause SUBSTANTIALLY WEAKENED — see `docs/STATE.md` §3 B0.3]** The
+  fresh-vs-matured gap stands; the operational prohibition does not. A mature 160-game
+  read costs ~2 h at current ladder rates, not days of standing, so "never churn" is no
+  longer a binding cost argument. The A/A capacity requirement also no longer applies as
+  written — the per-candidate gate was lifted by the owner 2026-07-30 and the noise-band
+  gate removed by owner ruling. Read STATE §3 before quoting this bullet as a live rule.
+  *Marked 2026-08-10 during hygiene cleanup: the weakening was recorded only in STATE, so
+  this bullet still read as binding to anyone following the reading order in
+  `coordination/peer-prompt.md` §1, which reaches CONSTRAINTS before STATE's standing rules.*
 - Verdicts are deltas against a same-window control, never absolute levels or cross-hour
   comparisons. [archive/bronze-to-gold/arena-queue.md, measurement policy v2]
 - Field evidence comes from authorized passive replay collection with immutable snapshots,
@@ -579,6 +848,233 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 
 ## (h) Meta-lessons
 
+- ★★★ **LABEL DISCIPLINE — every status label names its AXIS and its EVIDENCE CLASS.**
+  Owner-directed 2026-08-10 after four label failures in one week. A label is a claim; a claim
+  that does not say what backs it is how all four happened.
+
+  **The failures being fixed.** (1) `LIVE` claimed legal-game reachability its synthetic corpus
+  could not witness → renamed `PROBE_SENSITIVE`. (2) `VALIDATED_BY_DEFINITION` recorded a *spec
+  stipulation* in the column reserved for *evidence about the world*, and made the audit
+  contradict its own safety sentence → retired. (3) `INSTRUMENT_UNSUPPORTED` on D-9 (b)–(d) was
+  true of the bite-test harness and false of the production panel, and one label covering two
+  instruments hid that three blocking clauses run untested. (4) "no data" is currently spelled
+  **five** different ways — `NO_FIXTURE`, `INSTRUMENT_UNSUPPORTED`, `UNWITNESSED`,
+  `NO_WITNESSED_POPULATION`, `UNRESOLVED` — with nothing saying which is which.
+
+  **Rule 1 — one axis per label, and the axis is part of the name.** The four axes are
+  *contract authority* (do the specs agree?), *implementation validity* (is the code pinned by
+  tests?), *applicability* (can this instrument run it?), *truth validity* (is the predicate the
+  right property?). A value may appear on exactly one axis. `UNRESOLVED` currently appears as a
+  truth-validity value and colloquially everywhere else; only the former is legal.
+
+  **Rule 2 — every label carries an evidence class**, from this closed set:
+  `MEASURED` (instrument executed on real referee data) · `CONSTRUCTED` (executed on synthetic
+  or fixture data) · `STIPULATED` (asserted by spec or owner ruling; no observation) ·
+  `REPORTED` (another agent's claim, not reproduced here) · `ABSENT` (no evidence exists).
+  Written `STATUS/EVIDENCE`, e.g. `PINNED/CONSTRUCTED`, `NO_POPULATION/MEASURED`.
+  A `STIPULATED` label may **never** be tallied alongside `MEASURED` ones — that was failure (2).
+
+  **Rule 3 — "no data" must say WHY**, because the three cases have different remedies:
+  `ABSENT/NO_INSTRUMENT` the tool cannot produce it (build the tool) ·
+  `ABSENT/NO_FIXTURE` the tool could but no input exists (build the input) ·
+  `NO_POPULATION/MEASURED` the tool ran and nothing occurred (**a finding, not a gap** — and it
+  must carry the corpus bound, e.g. "720 referee games, 3 corpora", because zero observed is
+  never "cannot occur").
+
+  **Rule 4 — a label naming an instrument names WHICH instrument.** Failure (3) was one label
+  spanning the bite-test harness and the production panel.
+
+  **Rule 5 — labels invented mid-flight get registered here.** Mine from 2026-08-12/13 were not:
+  `RECORDED/UNREPLICATED` → now `REPORTED`; `STRUCTURALLY_VERIFIED / RUNTIME_REPORTED` → split
+  into per-claim `MEASURED` and `REPORTED`; `SINGLE_REVIEWER_DEGRADED` is **not** a label at all
+  but a review-process note, and stays out of every status column.
+
+  **Migration is not urgent and must not be silent.** Existing labels stay valid until a row is
+  touched for another reason; re-tallying wholesale would repeat failure (2) at scale. Any
+  retally runs through `render_branch_ledger.py --check`, never by hand.
+  [owner-directed; D-9; LIVE→PROBE_SENSITIVE; VALIDATED_BY_DEFINITION retirement]
+
+- ★★★ **OWNER RULE 2026-08-10, STRICT AND BINDING: NO BANANA MANIPULATION BEFORE THE SECOND
+  TROLL IS TRAINED.** Owner wording: *"For now I want to set strict rule 'no banana manipulation
+  before train the second troll'."* Threshold **0**, no exemption, no affordability trade.
+  Operationally this is detector **D-9 branch (a)** `banana_before_train`: any `PLANT`/`PICK
+  BANANA` issued before the candidate's first `TRAIN` while `|own units| == 1` is a **blocking**
+  violation. Marked "for now" by the owner — interim, revisable, but binding while it stands.
+  **What it settles:** the D-9 affordability question, which had been referred out of
+  `codex_1`'s gate review and left unowned when `local_codex_1` went dormant, is **dissolved
+  rather than answered** — there is no affordable delay to price, because the permitted number
+  of pre-TRAIN banana commands is zero. Blocker 3's semantics dependency is discharged.
+  **What it does NOT settle:** D-9's paired branches (b) `train_late`, (c) `train_missing`,
+  (d) `train_stats_differ` still carry a stale `INSTRUMENT_UNSUPPORTED` label from before c5 and
+  still need recalibration. They catch TRAIN displacement by routes other than bananas.
+  ⚠ **The rule now rests on the least-verified branch of the four.** Row (a) is
+  `impl_validity: UNPINNED`, and per the audit ledger **D9-M1, D9-M2 and D9-M3 all SURVIVED**
+  mutation (only D9-M4 was caught). The detector that enforces this rule currently fails to
+  notice three separate mutations of itself. **A strict rule policed by an unpinned detector is
+  a rule in name only** — pinning row (a) is now the highest-priority item in the bite-test
+  audit, ahead of recalibrating (b)–(d). [owner ruling; D-9; bite-test r2 blocker 3]
+
+- ★★ **EVERY PUBLISHED COUNT NAMES ITS UNIT — standing rule, added 2026-08-12 from repeated
+  cost.** A bare integer in an artifact, message, table or commit message is not a measurement;
+  the unit is part of the value. Write "74 side-games with at least one D-9 record" or
+  "196 D-9 episodes", never "D-9 fires 74 times". This is not style. Evidence, all inside one
+  week: **`claude_1` has logged eight instances of its own "a figure changes meaning at a
+  boundary" failure, five of them specifically at the games-versus-episodes boundary.** The
+  D-9 `74` versus `196` dispute looked like two agents disagreeing, consumed a scope item of an
+  independent review, and needed three separate re-derivations before it resolved into *both
+  numbers being correct measurements of different quantities*. `claude_1`'s M3a restatement had
+  to spell out that `20` counts **terminal episodes** and is "not comparable to the 34 / 46 / 32
+  figures on the sibling extraction, which count situations, represented episodes and source
+  games respectively" — four different units in one paragraph of one task.
+  **The integrator is not exempt and has been the worst offender.** On 2026-08-12 I asserted
+  five figures or states without opening the artifact: task records described as assigned while
+  unpushed; a roster fix announced as in place while absent from the ref that reads it; peer
+  reviews declared missing that had been delivered; a completed task marked incomplete; and
+  `api_submit.py`'s stale default reported as `2caac7c6…` when it was `a8eb3b2b…`. Same family:
+  a claim true of one artifact asserted of another.
+  **Practical rules.** (1) Name the unit at every use, not once per document. (2) When two
+  figures disagree, the *first* hypothesis is different units or different subjects, not error
+  by either party — it has been the true explanation every time so far. (3) State the subject
+  identity by hash, not by name: `98628e98` versus parent `a8eb3b2b` has already produced one
+  wrong-subject retraction. (4) Before reporting a discrepancy, confirm what you actually ran;
+  hashing a nonexistent path returns `e3b0c442…`, the SHA-256 of the empty string, and it looks
+  exactly like agreement.
+
+- ★★★ **IDENTITY: the resident is a reproduction of Yann Moisan (`yamo`)'s #3-Legend
+  published bot**, not an independently evolved architecture. Postmortem archived in
+  commit `0307012` (2026-07-11) → `yannbot` spec → `MoisanBot`/`YamoOpeningPolicy` → the
+  live source. Verified correspondences: `1000·wood/turns` round-trip chop scoring; first
+  turn `typeToCut` by cluster-nearest-shack; endgame plant-for-points; and the denial gate
+  `opponent_trolls <= 2` (`yamo_orchard_live.rs:1102`) matching the postmortem verbatim in
+  intent. Primary sources: `docs/reference/yann-moisan-postmortem-2026-05-26.txt` and
+  `docs/reference/2026-07-11-yannbot-design.md` (both were lost in a reorganization and
+  restored 2026-07-29). **Consequence: "our architecture's ceiling" arguments must account
+  for the fact that this architecture finished #3 in the contest.** [H5]
+- **[maturity attribution overturned by N1]** ★★ **We score 2.94 below our own source design** — yamo 24.70 (rank 15) vs tass 21.76
+  (rank 45), 2026-07-29 snapshot, same fixed 2-troll roster. **[qualified by H13: this is
+  most plausibly MATURITY, not code.]** H13 could attribute at most ≈1 point to code
+  deviations and found several checked behaviours equal or reversed; the documented
+  fresh-vs-mature effect is 3–4 points and our agent has been live only since 2026-07-19
+  while yamo has played since May. **Do not cite "we underperform our source" as a code
+  claim without a maturity-controlled measurement** — on current evidence our code may
+  already match or exceed yamo's. [H5, corrected by H13]
+- ★★★ **Passive remaining maturity is CLOSED as a planning lever.** N1's exact-agent,
+  seven-snapshot fixed-effects panel has PARTIAL identification support: 41 within-agent
+  age-bin crossings, 1,008 repeated agents, and no score change without advancing
+  `updateTime`, but lifetime battle accumulation is censored. At resident age 10.356d and
+  score 21.47, estimated remaining uplift is **−0.1612**, agent-cluster bootstrap 95% CI
+  **[−0.7525,+0.4567]**, projected mature score **21.3088**. The upper edge is only 0.0433
+  below the frozen +0.500 cutoff, so the categorical verdict is boundary-sensitive:
+  **do not claim negative aging**, but do not budget the anecdotal +3–4 points or wait for
+  maturation. [N1, `chatgpt_1/n1-maturity-canonical-result-2026-07-30.md`]
+- **Four accretions in the dev copy are structurally DEAD** — `ScarceIntent`,
+  `banana_factory`, `task_market`, and the opponent-crop scoring family cannot fire at all
+  under `main()`'s construction chain. Any analysis that treats them as live behaviour is
+  wrong and must be re-checked. [H13]
+- **Dead from `main()` does not authorize deletion from the sacred source.** N7 finds all
+  four H13 families already absent from the **62,725-byte live deploy**, so its additional
+  deletion ceiling is exactly **0 bytes / 0%**. The 275,377-byte sacred file is
+  byte-identical with the D171a snapshot, exposed as `resident_policy`, and retained by
+  direct experimental callers and embedded tests. Keep both fixtures byte-exact; any
+  future maintainability migration must create a separate versioned module rather than
+  clean the sacred file in place. [N7]
+- **Oscillation is a real fidelity defect with a measured achievable ceiling.** We
+  oscillate in **40/220 games (18.2%), worst 133 turns**; yamo, the same architecture,
+  in **4/140 (2.9%), worst 6 turns** — 6.4× incidence, 22× severity. His postmortem admits
+  the weakness and leaves it unfixed; our engineered fix
+  (`resolve_move_conflicts_with_priority_and_forbidden`, tie-break L1513–1521, no
+  cross-turn memory) is what made it worse. Also confirmed absent from our code: the
+  postmortem's endgame "park adjacent to the opponent's shack and contest last-minute
+  planting" (opponents plant while we lead in 43.3% of our endgame games vs 35.9% of his,
+  directional only at n≈260). And the denial-bonus weight `900/(1+dist)` was never swept
+  despite the reproduction plan's own G1 requiring it. [H13]
+- **The contest field's top finishers contest the scaling premise.** yamo (#3) ran a fixed
+  2-troll roster all contest; **putibuzu (#2) explicitly rejected a third troll for
+  "unfavorable cost scaling."** Our ladder measurements (B4.3 +48.2 margin/worker
+  within-agent; H8 worker-3 timing +42.6, worker-4 +60.1) stand as ladder facts and are
+  now in explicit, unresolved tension with that reasoning. Do not present scaling as the
+  settled answer in either direction. [H5]
+- **The field is SPLIT on lookahead, not uniformly greedy.** delineate (#1) runs a trained
+  NN with **no turn search**, using 2–3 ms of 50 ms; **putibuzu (#2) ran real rollout to
+  depth 12 plus a 3-ply beam search.** H6's premise ("the field doesn't search") is
+  therefore wrong, while the opportunity it names is corroborated by a top-2 finisher.
+  Also: nobody in any public source describes *recovering* from numeric disadvantage — the
+  field's answer is prevention only. [H5]
+- **Oscillation is CLOSED permanently after two designed attempts.** D176a's preference
+  tie-break with bounded arming largely worked — ≥10-turn task rate 8.50% → **2.88%**,
+  *below yamo's 2.9% reference*, with **zero** de-novo oscillation and **all six value
+  gates passing** — and it is still worth only **+0.045 overall margin (CI [−0.024,+0.114],
+  ≈0.005 rating)**. A working version of this fix does not justify a promotion cycle. Do not
+  reopen. [D176a; D171a]
+  *(Reproducibility note, 2026-08-10: the code behind this closure —
+  `rust/src/bin/d176a_oscillation_breaker_panel.rs` (`6fcbaef3`) and
+  `cgauto/analyze_d176a_oscillation_breaker.py` (`874f027c`) — sat UNTRACKED from 2026-07-29
+  until 2026-08-10. For twelve days the strongest closure in this document rested on evidence
+  only the authoring worktree could regenerate, which made it unfalsifiable in practice: nobody
+  else could re-run it to disagree. Now committed. The verdict is unchanged; what changed is
+  that it can be contradicted.)*
+- ~~**No renewable resource base exists on these maps — for ANY cohort.**~~
+  **[OVERTURNED 2026-07-30 by the completed A2 Phase 0a analysis — the integrator drew this
+  from partial output before the audit finished. See the corrected bullet below.]** The
+  reproduction ratios were right (median 0.00 resident / 0.74 ranks 6–20 / 0.75 top-5) but
+  the population claim was wrong: it generalized ranks 6–20's collapsing aggregate to all
+  cohorts.
+- ★★★ **A renewable base EXISTS but is SUB-CRITICAL and LABOR-limited (corrected).**
+  Reproduction ratio R ≈ **0.75 [0.73–0.77]** for the top five — sub-critical, so not
+  exponential — but **broad-based**: 98.8% of their games harvest at least one self-planted
+  tree. The mechanically decisive fact: **natural-origin trees can only shrink** (chopping is
+  the sole removal mechanic), yet **top-5 total population RISES 16 → 23.5 by turn 150, and
+  64.7% of their turn-300 population is planted rather than inherited.** That rules out
+  "faster consumption of the same windfall." Ranks 6–20 start the loop and it collapses in
+  the endgame; the top five's holds. **The binding constraint is LABOR to service crops, not
+  tree capacity** — realized throughput 0.40 fruit/turn against a labor-unconstrained ceiling
+  of 2.5–6.8, with peak concurrent fruiting ~20 trees at turn 75–100 then declining. Design
+  consequence: more harvest-capable labour raises throughput, which is exactly the compounding
+  a scaling economy needs. The resident's median R = 0; its naive pooled 0.94 is a mega-tree
+  artifact (only 23/242 games ever harvest anything, and those 23 supply 94% of all fruit it
+  has ever harvested). [A2 Phase 0a, completed]
+- ★★ **UNDOCUMENTED MECHANIC found: each player starts with a per-game-random bank of ~24
+  fruit and ~6 iron.** Verified in `official_mapgen.rs`; **absent from `docs/mechanics.md`**.
+  This is a live input to every affordability calculation ever done here, and it is exactly
+  the class of gap X1 (systematic mechanics re-derivation) exists to find. [A2 Phase 0a]
+- ★★★ **But 3–4 workers ARE reachable from the depleting base, and the binding variable is
+  CONVERSION EFFICIENCY, not renewal.** Top-5 reach worker 3 in **75.6%** of games (median
+  t106) and worker 4 in **41.6%** (median t137); ranks 6–20 in 29.7%/14.0%; resident
+  **0/242, ever**. Self-planted crops supply **37.2%** of the top cohort's third worker and
+  **49.7%** of its fourth, while the endowment's share falls 39.9% → 26.9%. Mined iron
+  scales **5.99 → 16.05** from worker 3 to 4, so any scaling design must mine throughout —
+  the resident's `own_units < 2` mining gate would be fatal. Maturation ~31.6 turns dry vs
+  ~11.8 watered sets the generational clock. [A2 Phase 0a]
+- ★ **Specify a gate against the variable the intervention actually moves.** A2's K1 was
+  written against "renewal"; the measured binding variable is conversion efficiency /
+  servicing labour. **Correction: K1 did NOT fire** — the completed audit found a base does
+  exist (sub-critical) — so the integrator's mid-flight claim that it had fired was itself
+  wrong. The amendment stands on its own merits as the better-specified gate, not as a rescue.
+  [A2 Phase 0a; D176a]
+- ★ **Gate-design rules, learned by getting both wrong in D176a.** (1) Calibrate a mechanism
+  gate on the **same population the panel measures** — D176a's ≤20-turn worst-case gate came
+  from a real-corpus statistic (133) while the panel's own control runs 247, so the control
+  fails the gate by 12×. (2) A gate must distinguish the intervention's intended **mechanism
+  of action** from the failure mode it was inherited to catch — the 5–9-turn displacement
+  gate (from D171a's *manufactured* oscillation) could not tell manufacture from the
+  fragmentation of long runs that this design exists to produce; the de-novo gate could, and
+  passed at zero. [D176a]
+- ★ **Displacement is the default explanation for a mechanism that "should" pay.** Across
+  the 2026-07-29 sweep, five independent candidates each looked materially positive on
+  gross accounting and each priced out at or below zero once the turns they consume were
+  charged against what those turns currently produce: D175a planting (−26.44 measured,
+  Δopponent +21.09), D174a mining (−10.76 with the mechanism delivered at 10.6×), H1's
+  whole economy package (−2.49 own-side-only, 0–6 of 220 games positive), plus H3's and
+  H8's gaps dissolving under control. **A proposal that does not price displacement is not
+  yet an estimate.** Corollary: the calibration standard is to reproduce a known measured
+  result (H1's model recovered D175a's −5.41 as −4.32); a displacement model that cannot
+  do that is not trustworthy. [D174a, D175a, H1, H3, H8]
+- **Measure before you build, and re-verify the premise first.** Of six hypotheses examined
+  on 2026-07-29, **four had false or stale premises** — H7's mechanic does not exist in the
+  game, H8's tempo figure came from a superseded census, H6's "the field doesn't search" was
+  wrong (the #2 finisher ran depth-12 rollout), and H13's headline gap is most likely score
+  maturity rather than code. Cheap premise-checks retired more work than any experiment did.
+  [H5, H6-preflight, H7, H8, H13]
 - Across the whole project, only execution-class changes (waste cuts, geometry, packaging)
   have transferred to the arena; every wrapper, transplant, imitation, offline-value
   selector, and economy re-architecture failed held-out gates or arena. [vol 1; archive
@@ -591,6 +1087,30 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   evidence — static map/opening features already failed workforce-policy selection
   (discovery AUC 0.830 → validation 0.479, D63) and D91's map selector lacked cluster
   support. [D63, D91; misclassification caught in the H11 review, 2026-07-29]
+- **Generic H11 map-conditioned configuration is decomposed and closed.** D63/D64 close
+  map-to-workforce selection and D91 lacks cluster support on an already harmful factory.
+  The only named map-conditioned children are E7a's binary `typeToCut` selector question
+  and S2's representation/value-blocked opening book. F1, H3a, H10a, and N4 use observed
+  behavior or current decision state and must not be relabelled as map classes. Reopening
+  requires an exact non-closed finite intervention, a material map-conditional terminal
+  oracle, outcome-blind predecision features, root-grouped splits, static baselines, and
+  prospective value above the best static configuration. [H11, 2026-07-31]
+- ★★ **The joint economy package cannot pay on this scheduler.** Measured as a grounded
+  finite-windfall accounting stress test (NOT a formal upper bound over all
+  complementarities; CI conditional on fixed pricing constants — correction adopted from
+  chatgpt_1's review): headline −21.33 rating [−22.76,−19.89], 0/220 positive, but the
+  **load-bearing figure is the own-side-only sensitivity, −2.49 [−2.78,−2.21], 6/220** —
+  quote that one, since it drops the extrapolated opponent term and is still negative; the most optimistic
+  credible variant (own-side displacement only) is still −2.49 [−2.78,−2.21], 6/220. The
+  displacement model was calibrated against D175a and reproduces its own-side effect
+  (−4.32 predicted vs −5.41 actual). Per-lever: harvest capability contributes most,
+  bounded early planting ≈0 on measured terms. With the real bill and post-move legality,
+  worker 3 is affordable in 36.8% of games (median turn 78) — but **worker 4 in 0/220,
+  ever**, because credited fruit and iron are a **one-time windfall from a finite tree
+  population, not a renewable stream**. Any future economy design must therefore answer
+  "where does the renewable base come from, and does it close in time?" FIRST — the top
+  cohort runs 3.55 workers on 5–6 concurrent crops at 15–29% reap, i.e. a base that grows
+  rather than depletes. [H1, 2026-07-29]
 - **Multi-lever bundles on the resident are not a valid first experiment.** Changing
   several subsystems at once destroys attribution (a loss teaches nothing; a win does not
   identify the minimal causal package) and re-creates the graft pattern the 2026-07-29
@@ -602,3 +1122,127 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   suppression end to end, optimized closed-loop — every partial composition tested (overlay,
   transplant, wrapper, imitation, fixed grammar) landed far beneath the field gap. [vol 1
   D36/D37 conclusions; Phases 12–14]
+- **The secure-orchard equal-best mother tie is closed: keep lexicographic order.** The
+  comparator is active on all 10 reused tied seeds, in both seats, and against all six
+  frozen opponent families, but reversing it loses −8.55 paired margin conditional on tied
+  maps and −0.0855 across the exact 1,000-map census. Both seat means and all six family
+  means are negative (worst −26.65). Do not reverse, tune, persist, or promote this tie.
+  [E4, 2026-07-30]
+- **The on-site unripe-fruit wait is closed: keep it.** Removing only that candidate and
+  selecting the resident's next-best task activates in 33/360 reused seed/opponent cells,
+  both seats, and all six families, but gains just +0.1056 margin. Seat 0 is −0.200,
+  motion/race are negative, and 346/360 cells are unchanged. Do not rewrite arbitrary
+  WAITs, tune the predicate, persist the alternate, or promote it. [E5, 2026-07-30]
+- **Seed-carry choice is already closed by D167/D168.** Acquisition is 135/135 local
+  BANK_SEED; field BANK_SEED/pre-carry rates are 67.5%/40.5%. Exact-resident post-return
+  and pre-carry controllers activate the same 164/1,024 tasks across both seats and seven
+  families but lose −6.732/−8.207; every active family is negative. D168 includes a frozen
+  species tie-break and dynamic destination checks. `DROP` is generic banking, not a
+  seed-specific disposal decision. Do not retune species, horizons, or carry timing.
+  [D167, D168, E6]
+- **Do not blanket-invert the resident's once-per-game `typeToCut`; retain the current
+  default.** Exact LEMON↔PLUM inversion activates all 360 reused seed/opponent cells but
+  loses −12.1736 margin; both seats (−7.400/−16.947) and all six families are negative.
+  A seed-level six-opponent hindsight oracle nevertheless gains +10.5097, chooses FLIP on
+  24/60 seeds, and stays positive in 6/6 leave-one-family-out evaluations. This is a real
+  binary decision residual, not a deployable selector: the labels are consumed local
+  hindsight on synthetic maps. Reopening is only an E7a prospective-selector decision
+  after peer review, with disjoint-map validation and the static-feature/field-substrate
+  constraints binding; no direct label fit, persistent flip, candidate, or Arena action.
+  [E7, 2026-07-31]
+- **L2 learned tie-breaking is gated on N4, not an independent experiment.** The exact
+  live resident's only non-closed material multi-worker ranker exhaustively maximizes the
+  summed score of compatible two-worker pairs; N4 owns its coverage, reconstruction,
+  boundary, and latency census. Exact-score ties have no value label before that census,
+  and unequal-score reranking additionally needs a separately authorized material
+  terminal-value Phase B. Single-worker ranking overlaps the N4-gated E1 prefix and
+  primitive learning; greater-than-two ranking is unreachable; D171/D176, E2, and E4
+  close the live path/orchard tie families; broad scorers remain closed by
+  D18/D41a/D79-D84/D97-D172. Do not create L2a, export pairs, or fit first. [L2, N4]
+- **L3 learned evaluation is also gated on N4; “same action space” is not locality.**
+  Live scores rank only hard-generated/filtered candidates and cannot directly change
+  TRAIN, legality, the roster cap, collision rewrites, or orchard invariants. But a fitted
+  score can change the compatible command pair on every ordinary turn and thereby replace
+  the whole trajectory. Regressing resident scores/actions establishes fidelity only;
+  D16-D19 close exact-resident single-state terminal-advantage distillation; D36,
+  D41-D44, D79-D84, D97-D172 close or strongly bind broad repeated evaluators. The only
+  unconsumed exact-live label is compatible-pair continuation value owned by N4. Do not
+  create L3a; if material N4 Phase B ever clears, replace L2/L3 with one bounded pair
+  residual item. [L3, N4]
+- **Species focus is not evidence that species denial is feasible.** In exact game
+  `896352750`, seven mature lemons held 84 health at the first resident chop; five
+  removals consumed 28 CHOP commands over 42 elapsed turns while zasmu harvested 25
+  lemons, replanted one harvested seed, and funded workers 3/4. But those removals also
+  yielded nine resident wood, so the game does not justify forbidding LEMON chops or
+  changing the default focus. Any successor must first be a read-only corpus precheck
+  separating base wood/conversion value from the `900/(1+distance)` denial bonus and
+  comparing liquid currency plus protected regeneration against travel/chop clear time
+  and the next bill. E7's blanket inversion, N6's scalar retune, H4's reachability logic,
+  and D176a's oscillation line remain closed. **Owner exception result:** the explicitly
+  directed threshold-3 candidate, agent `6585578` / submission `41070584`, terminates
+  cleanly at 160 games, score 22.99 and rank 34/113: +1.09 over the 21.9 pre-trial row
+  but below 24.70/25.40. Keep it as the active resident, but do not treat this uncontrolled
+  live result as evidence that the precheck or closed broad arms passed. The cycle is
+  terminal; any successor needs a distinct serialized task. [B3.12, 2026-07-31]
+- **Local mechanism coherence did not qualify the broad tent-adjacent coordination
+  layer.** B3.13 passed five compiled boundaries, exact teacher-forced replay, and eight
+  smokes, yet its owner-directed live agent `6585739` / submission `41070944` terminated
+  at 101 clean games with score **11.96**, rank 111/113, mean margin −38.881,
+  **25 catastrophes (24.75%)**, and negative-margin mass 6,669. Do not resubmit the
+  unmodified coordination layer or cite the local gates as field value. [B3.13,
+  2026-07-31]
+- **Sticky productive banking is an incident correction, not yet a value claim.** Exact
+  Adler3D game `897552551` proves the productive carrier can forget its return role and
+  enter a 42-WAIT/41-MOVE full-cargo loop. B3.14 preserves that worker's bank commitment
+  until `DROP` or empty cargo; eight focused tests and replay/smoke checks pass. The owner
+  directed its live submission as `6585765`/`41071067` and explicitly rejected automatic
+  restoration. Its first 12-game checkpoint is identity-clean but only 9.64 at rank
+  111/113 with four catastrophes. Treat this as immature monitoring evidence; do not
+  generalize it to banking-route value, tree-order persistence, or broad oscillation
+  reopening. [B3.14, 2026-07-31]
+- **A capable worker already on a live tree owns that tree for the current decision.**
+  Exact Elost game `897556967` proves the inherited selector can instead give the tree
+  to a faster off-tree worker: the occupant emits ten WAITs while the mover targets the
+  same cell and ping-pongs across eight states. B3.15 removes that chop candidate only
+  from other workers; it does not retie different trees or add cross-turn memory. Exact
+  replay, 11 compiled boundaries, and eight unsealed smokes pass. The owner directed
+  submission `6585801`/`41071204`; its first 14-game health is clean but weak at 11.53,
+  rank 111/113. Treat this as mechanism correction and monitoring evidence only, not
+  field value or permission to reopen global ordering/oscillation. [B3.15, 2026-07-31]
+- **Second-worker opening collection precedes the tent-denial wrapper.** Exact B3.15
+  game `897560637` proves B3.13's post-planner layer overwrites 18 active sole-worker
+  collection decisions and defers TRAIN to the turn-35 downgrade. In the fixed 40-game
+  slice, 14/21 full games with early cardinal activation TRAIN at 35 versus 0/14 without
+  it. B3.16 returns the inner command only while roster <2 and the opening is active;
+  after worker 2 or abandonment, denial resumes over the full eight-neighbor enemy-tent
+  ring, including diagonals. Five new plus 11 inherited tests pass; local smoke TRAIN is
+  earlier in 7/8 and never later. Live `6585846`/`41071360` starts clean at 16.97/95
+  over 11 games. Do not generalize this precedence fix into arbitrary TRAIN timing or
+  global denial suppression. [B3.16, 2026-07-31]
+- **Do not remove the secure-orchard layer globally.** The owner-directed pure-Yamo
+  passthrough ablation `6592097`/`41085842` terminated cleanly at 160 games, score
+  **23.27**, rank **34/137**, versus the exact E7a pre-trial row at 25.3/rank 12:
+  −2.03 score and 22 places, outside the live-noise allowance. Its catastrophe rate was
+  lower (10.0% versus 21.875%), but opponent queues differ, so that tail contrast is not
+  a paired causal estimate. Reject blanket deletion; future orchard work must be bounded
+  activation or coordination refinement. Exact E7a was restored source-exact as
+  `6592131`/`41086057`. [20260803-owner-no-orchard-ablation-arena]
+- **Banana round-5 SHA `47c98f53...` is withdrawn and must not enter host/value/Arena gates.**
+  A deterministic 240-game candidate panel blocks 141 games; removing mother cells from the
+  movement-forbidden set fixed only one carrier-livelock mechanism, while stationary resident
+  occupancy reproduced the same class in 37 games. Round-6 `eac2eb36...` is a non-handoff
+  stabilization baseline with 47/240 blocks. Reopening implementation requires the reviewed FSM
+  revision: atomic concurrent-event priority, one exact harvester/chopper asset-survival oracle,
+  aligned-prefix plus channel-telemetry attribution, an enforcing carrier-yield rule, bounded
+  post-release edits, impossible-commitment exits, and a frozen coverage manifest. Do not infer a
+  value verdict about banana production from these implementation failures. [banana R2 rounds
+  5/6 and FSM review, 2026-08-06]
+- **Canonical human-readable format (owner ruling 2026-08-11): pinned rustfmt via
+  `claude_1/readable-source/format_readable.py`** (`reorder_imports=false`, `max_width=100`,
+  trailing-comma reconciliation, mandatory round-trip to the exact minified parent hash;
+  rustfmt 1.9.0-stable at ruling). Readable-LOC figures are formatting-dependent: **bytes are
+  canonical** (E7a orchard strip = 15,013 B = 23.9%), and any line figure names its expander
+  (375 = the 2026-08-04 task expander; 586 = the stricter stranded expander, archived on
+  `archive/local_codex_1-stranded-20260810`). In-place formatting of hash-locked sources
+  remains forbidden. Full text: `docs/readable-format.md`. [e7a LOC-cost reconciliation,
+  2026-08-11]

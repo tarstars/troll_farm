@@ -1,0 +1,3458 @@
+{
+ "covered_count": 132,
+ "derivation": {
+  "arbitration": "every `.max_by` / `.min_by` / `.sort`",
+  "early_return": "every `return`",
+  "filter": "every `.filter(` / `.retain(` / `continue`",
+  "generator": "every `fn` definition",
+  "noncode_stripped": "string literals and // comments removed before matching",
+  "score_term": "every `Candidate{` construction"
+ },
+ "inventory_sha256": "55fcc10e1835e28ecc2d173a1a80b179fd22e7fb4849e7f3292c1a6f575176c2",
+ "required": [
+  {
+   "derived_id": "GEN__parse__23",
+   "fn": "parse",
+   "fn_end": 27,
+   "fn_start": 23,
+   "klass": "GEN",
+   "line": 23,
+   "text": "pub fn parse(value:&str)->Option<PlantKind>{"
+  },
+  {
+   "derived_id": "GEN__as_str__28",
+   "fn": "as_str",
+   "fn_end": 32,
+   "fn_start": 28,
+   "klass": "GEN",
+   "line": 28,
+   "text": "pub fn as_str(self)->&'static str{"
+  },
+  {
+   "derived_id": "GEN__item_index__33",
+   "fn": "item_index",
+   "fn_end": 42,
+   "fn_start": 33,
+   "klass": "GEN",
+   "line": 33,
+   "text": "pub fn item_index(self)->usize{"
+  },
+  {
+   "derived_id": "GEN__tuple__43",
+   "fn": "tuple",
+   "fn_end": 50,
+   "fn_start": 43,
+   "klass": "GEN",
+   "line": 43,
+   "text": "pub fn tuple(self)->(i32,i32,i32,i32){"
+  },
+  {
+   "derived_id": "GEN__total_carried__51",
+   "fn": "total_carried",
+   "fn_end": 53,
+   "fn_start": 51,
+   "klass": "GEN",
+   "line": 51,
+   "text": "pub fn total_carried(&self)->i32{"
+  },
+  {
+   "derived_id": "GEN__free_capacity__54",
+   "fn": "free_capacity",
+   "fn_end": 67,
+   "fn_start": 54,
+   "klass": "GEN",
+   "line": 54,
+   "text": "pub fn free_capacity(&self)->i32{"
+  },
+  {
+   "derived_id": "GEN__plant_at__68",
+   "fn": "plant_at",
+   "fn_end": 70,
+   "fn_start": 68,
+   "klass": "GEN",
+   "line": 68,
+   "text": "pub fn plant_at(&self,cell:Cell)->Option<usize>{"
+  },
+  {
+   "derived_id": "GEN__unit__71",
+   "fn": "unit",
+   "fn_end": 82,
+   "fn_start": 71,
+   "klass": "GEN",
+   "line": 71,
+   "text": "pub fn unit(&self,id:i32)->Option<&Unit>{"
+  },
+  {
+   "derived_id": "GEN__plant_cooldown__83",
+   "fn": "plant_cooldown",
+   "fn_end": 87,
+   "fn_start": 83,
+   "klass": "GEN",
+   "line": 83,
+   "text": "pub fn plant_cooldown(kind:PlantKind)->i32{"
+  },
+  {
+   "derived_id": "GEN__water_boost__88",
+   "fn": "water_boost",
+   "fn_end": 92,
+   "fn_start": 88,
+   "klass": "GEN",
+   "line": 88,
+   "text": "pub fn water_boost(kind:PlantKind)->i32{"
+  },
+  {
+   "derived_id": "GEN__tree_health_params__93",
+   "fn": "tree_health_params",
+   "fn_end": 97,
+   "fn_start": 93,
+   "klass": "GEN",
+   "line": 93,
+   "text": "pub fn tree_health_params(kind:PlantKind)->(i32,i32){"
+  },
+  {
+   "derived_id": "GEN__tree_health__98",
+   "fn": "tree_health",
+   "fn_end": 101,
+   "fn_start": 98,
+   "klass": "GEN",
+   "line": 98,
+   "text": "pub fn tree_health(kind:PlantKind,size:i32)->i32{"
+  },
+  {
+   "derived_id": "GEN__effective_cooldown__102",
+   "fn": "effective_cooldown",
+   "fn_end": 109,
+   "fn_start": 102,
+   "klass": "GEN",
+   "line": 102,
+   "text": "pub fn effective_cooldown(kind:PlantKind,near_water:bool)->i32{"
+  },
+  {
+   "derived_id": "GEN__training_cost__110",
+   "fn": "training_cost",
+   "fn_end": 119,
+   "fn_start": 110,
+   "klass": "GEN",
+   "line": 110,
+   "text": "pub fn training_cost(n:i32,talents:(i32,i32,i32,i32))->Stock{"
+  },
+  {
+   "derived_id": "GEN__score__120",
+   "fn": "score",
+   "fn_end": 122,
+   "fn_start": 120,
+   "klass": "GEN",
+   "line": 120,
+   "text": "pub fn score(inventory:&Stock)->i32{"
+  },
+  {
+   "derived_id": "GEN__item_index__123",
+   "fn": "item_index",
+   "fn_end": 136,
+   "fn_start": 123,
+   "klass": "GEN",
+   "line": 123,
+   "text": "pub fn item_index(name:&str)->Option<usize>{"
+  },
+  {
+   "derived_id": "GEN__manhattan__137",
+   "fn": "manhattan",
+   "fn_end": 139,
+   "fn_start": 137,
+   "klass": "GEN",
+   "line": 137,
+   "text": "pub fn manhattan(a:Cell,b:Cell)->i32{"
+  },
+  {
+   "derived_id": "GEN__ortho_neighbors__140",
+   "fn": "ortho_neighbors",
+   "fn_end": 143,
+   "fn_start": 140,
+   "klass": "GEN",
+   "line": 140,
+   "text": "pub fn ortho_neighbors(cell:Cell)->[Cell;"
+  },
+  {
+   "derived_id": "GEN__is_adjacent__144",
+   "fn": "is_adjacent",
+   "fn_end": 146,
+   "fn_start": 144,
+   "klass": "GEN",
+   "line": 144,
+   "text": "pub fn is_adjacent(a:Cell,b:Cell)->bool{"
+  },
+  {
+   "derived_id": "GEN__bfs_distances__147",
+   "fn": "bfs_distances",
+   "fn_end": 166,
+   "fn_start": 147,
+   "klass": "GEN",
+   "line": 147,
+   "text": "pub fn bfs_distances(walkable:&BTreeSet<Cell>,sources:&[Cell])->BTreeMap<Cell,i32>{"
+  },
+  {
+   "derived_id": "GEN__next_cell__167",
+   "fn": "next_cell",
+   "fn_end": 200,
+   "fn_start": 167,
+   "klass": "GEN",
+   "line": 167,
+   "text": "pub fn next_cell(walkable:&BTreeSet<Cell>,current:Cell,target:Cell,speed:i32)->Cell{"
+  },
+  {
+   "derived_id": "EARLYRET__next_cell__1",
+   "fn": "next_cell",
+   "fn_end": 200,
+   "fn_start": 167,
+   "klass": "EARLYRET",
+   "line": 171,
+   "text": "return target;"
+  },
+  {
+   "derived_id": "EARLYRET__next_cell__2",
+   "fn": "next_cell",
+   "fn_end": 200,
+   "fn_start": 167,
+   "klass": "EARLYRET",
+   "line": 176,
+   "text": "return current;"
+  },
+  {
+   "derived_id": "FILTER__next_cell__1",
+   "fn": "next_cell",
+   "fn_end": 200,
+   "fn_start": 167,
+   "klass": "FILTER",
+   "line": 179,
+   "text": "let goals:Vec<Cell> =from_current.keys().filter(|cell|manhattan(target,**cell)==best_manhattan).copied().collect();"
+  },
+  {
+   "derived_id": "ARBITRATE__next_cell__1",
+   "fn": "next_cell",
+   "fn_end": 200,
+   "fn_start": 167,
+   "klass": "ARBITRATE",
+   "line": 186,
+   "text": "from_current.iter().filter(|(cell,distance)|**distance<=speed&&to_target.contains_key(*cell)).map(|(cell,_)|*cell).min_by_key(|cell|(to_target[cell],*cell)).unw"
+  },
+  {
+   "derived_id": "FILTER__next_cell__2",
+   "fn": "next_cell",
+   "fn_end": 200,
+   "fn_start": 167,
+   "klass": "FILTER",
+   "line": 186,
+   "text": "from_current.iter().filter(|(cell,distance)|**distance<=speed&&to_target.contains_key(*cell)).map(|(cell,_)|*cell).min_by_key(|cell|(to_target[cell],*cell)).unw"
+  },
+  {
+   "derived_id": "GEN__read_line__201",
+   "fn": "read_line",
+   "fn_end": 206,
+   "fn_start": 201,
+   "klass": "GEN",
+   "line": 201,
+   "text": "pub fn read_line(reader:&mut impl BufRead)->Option<String>{"
+  },
+  {
+   "derived_id": "GEN__read_static_map__207",
+   "fn": "read_static_map",
+   "fn_end": 217,
+   "fn_start": 207,
+   "klass": "GEN",
+   "line": 207,
+   "text": "pub fn read_static_map(reader:&mut impl BufRead)->Option<StaticMap>{"
+  },
+  {
+   "derived_id": "GEN__parse_static_map__218",
+   "fn": "parse_static_map",
+   "fn_end": 244,
+   "fn_start": 218,
+   "klass": "GEN",
+   "line": 218,
+   "text": "pub fn parse_static_map(width:i32,height:i32,rows:&[String])->StaticMap{"
+  },
+  {
+   "derived_id": "GEN__read_turn__245",
+   "fn": "read_turn",
+   "fn_end": 340,
+   "fn_start": 245,
+   "klass": "GEN",
+   "line": 245,
+   "text": "pub fn read_turn(reader:&mut impl BufRead,map:&StaticMap,turn:i32)->Option<GameState>{"
+  },
+  {
+   "derived_id": "EARLYRET__read_turn__1",
+   "fn": "read_turn",
+   "fn_end": 340,
+   "fn_start": 245,
+   "klass": "EARLYRET",
+   "line": 253,
+   "text": "return None;"
+  },
+  {
+   "derived_id": "EARLYRET__read_turn__2",
+   "fn": "read_turn",
+   "fn_end": 340,
+   "fn_start": 245,
+   "klass": "EARLYRET",
+   "line": 263,
+   "text": "return None;"
+  },
+  {
+   "derived_id": "EARLYRET__read_turn__3",
+   "fn": "read_turn",
+   "fn_end": 340,
+   "fn_start": 245,
+   "klass": "EARLYRET",
+   "line": 277,
+   "text": "return None;"
+  },
+  {
+   "derived_id": "TERM__read_turn__1",
+   "fn": "read_turn",
+   "fn_end": 340,
+   "fn_start": 245,
+   "klass": "TERM",
+   "line": 318,
+   "text": "#[derive(Clone,Debug)]struct Candidate{"
+  },
+  {
+   "derived_id": "GEN__focus_type__341",
+   "fn": "focus_type",
+   "fn_end": 356,
+   "fn_start": 341,
+   "klass": "GEN",
+   "line": 341,
+   "text": "fn focus_type(view:&GameState)->PlantKind{"
+  },
+  {
+   "derived_id": "FILTER__focus_type__1",
+   "fn": "focus_type",
+   "fn_end": 356,
+   "fn_start": 341,
+   "klass": "FILTER",
+   "line": 342,
+   "text": "let starts:Vec<Cell> =ortho_neighbors(view.shacks[0]).iter().filter(|cell|view.walkable.contains(cell)).copied().collect();"
+  },
+  {
+   "derived_id": "FILTER__focus_type__2",
+   "fn": "focus_type",
+   "fn_end": 356,
+   "fn_start": 341,
+   "klass": "FILTER",
+   "line": 344,
+   "text": "let sum=|kind:PlantKind|view.plants.iter().filter(|plant|plant.kind==kind).map(|plant|dist.get(&plant.cell).copied().unwrap_or(10_000)).sum::<i32>();"
+  },
+  {
+   "derived_id": "GEN__ceil_div__357",
+   "fn": "ceil_div",
+   "fn_end": 364,
+   "fn_start": 357,
+   "klass": "GEN",
+   "line": 357,
+   "text": "fn ceil_div(a:i32,b:i32)->i32{"
+  },
+  {
+   "derived_id": "GEN__carry_total__365",
+   "fn": "carry_total",
+   "fn_end": 367,
+   "fn_start": 365,
+   "klass": "GEN",
+   "line": 365,
+   "text": "fn carry_total(unit:&Unit)->i32{"
+  },
+  {
+   "derived_id": "GEN__carrying_any__368",
+   "fn": "carrying_any",
+   "fn_end": 370,
+   "fn_start": 368,
+   "klass": "GEN",
+   "line": 368,
+   "text": "fn carrying_any(unit:&Unit)->bool{"
+  },
+  {
+   "derived_id": "GEN__bank_candidates__371",
+   "fn": "bank_candidates",
+   "fn_end": 399,
+   "fn_start": 371,
+   "klass": "GEN",
+   "line": 371,
+   "text": "fn bank_candidates(view:&GameState,unit:&Unit)->Vec<Candidate>{"
+  },
+  {
+   "derived_id": "FILTER__bank_candidates__1",
+   "fn": "bank_candidates",
+   "fn_end": 399,
+   "fn_start": 371,
+   "klass": "FILTER",
+   "line": 373,
+   "text": "let mut out:Vec<Candidate> =ortho_neighbors(view.shacks[0]).into_iter().filter(|cell|view.walkable.contains(cell)&&dist.contains_key(cell)).map(|cell|{"
+  },
+  {
+   "derived_id": "TERM__bank_candidates__1",
+   "fn": "bank_candidates",
+   "fn_end": 399,
+   "fn_start": 371,
+   "klass": "TERM",
+   "line": 375,
+   "text": "Candidate{"
+  },
+  {
+   "derived_id": "TERM__bank_candidates__2",
+   "fn": "bank_candidates",
+   "fn_end": 399,
+   "fn_start": 371,
+   "klass": "TERM",
+   "line": 393,
+   "text": "out.push(Candidate{"
+  },
+  {
+   "derived_id": "GEN__can_train__400",
+   "fn": "can_train",
+   "fn_end": 408,
+   "fn_start": 400,
+   "klass": "GEN",
+   "line": 400,
+   "text": "fn can_train(view:&GameState,stats:Stats)->bool{"
+  },
+  {
+   "derived_id": "FILTER__can_train__1",
+   "fn": "can_train",
+   "fn_end": 408,
+   "fn_start": 400,
+   "klass": "FILTER",
+   "line": 401,
+   "text": "let n=view.units.iter().filter(|unit|unit.player==0).count()as i32;"
+  },
+  {
+   "derived_id": "EARLYRET__can_train__1",
+   "fn": "can_train",
+   "fn_end": 408,
+   "fn_start": 400,
+   "klass": "EARLYRET",
+   "line": 403,
+   "text": "return false;"
+  },
+  {
+   "derived_id": "GEN__ticks_until_fruit__409",
+   "fn": "ticks_until_fruit",
+   "fn_end": 431,
+   "fn_start": 409,
+   "klass": "GEN",
+   "line": 409,
+   "text": "fn ticks_until_fruit(view:&GameState,plant:&Plant)->i32{"
+  },
+  {
+   "derived_id": "EARLYRET__ticks_until_fruit__1",
+   "fn": "ticks_until_fruit",
+   "fn_end": 431,
+   "fn_start": 409,
+   "klass": "EARLYRET",
+   "line": 411,
+   "text": "return 0;"
+  },
+  {
+   "derived_id": "EARLYRET__ticks_until_fruit__2",
+   "fn": "ticks_until_fruit",
+   "fn_end": 431,
+   "fn_start": 409,
+   "klass": "EARLYRET",
+   "line": 426,
+   "text": "return turns;"
+  },
+  {
+   "derived_id": "GEN__early_candidates__432",
+   "fn": "early_candidates",
+   "fn_end": 462,
+   "fn_start": 432,
+   "klass": "GEN",
+   "line": 432,
+   "text": "fn early_candidates(view:&GameState,unit:&Unit,desired:Stats)->Vec<Candidate>{"
+  },
+  {
+   "derived_id": "EARLYRET__early_candidates__1",
+   "fn": "early_candidates",
+   "fn_end": 462,
+   "fn_start": 432,
+   "klass": "EARLYRET",
+   "line": 436,
+   "text": "return out;"
+  },
+  {
+   "derived_id": "FILTER__early_candidates__1",
+   "fn": "early_candidates",
+   "fn_end": 462,
+   "fn_start": 432,
+   "klass": "FILTER",
+   "line": 438,
+   "text": "let n=view.units.iter().filter(|unit|unit.player==0).count()as i32;"
+  },
+  {
+   "derived_id": "FILTER__early_candidates__2",
+   "fn": "early_candidates",
+   "fn_end": 462,
+   "fn_start": 432,
+   "klass": "FILTER",
+   "line": 442,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "FILTER__early_candidates__3",
+   "fn": "early_candidates",
+   "fn_end": 462,
+   "fn_start": 432,
+   "klass": "FILTER",
+   "line": 445,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "GEN__fruit_candidates__463",
+   "fn": "fruit_candidates",
+   "fn_end": 484,
+   "fn_start": 463,
+   "klass": "GEN",
+   "line": 463,
+   "text": "fn fruit_candidates(view:&GameState,unit:&Unit,kind:PlantKind,base_score:f64,)->Vec<Candidate>{"
+  },
+  {
+   "derived_id": "TERM__fruit_candidates__1",
+   "fn": "fruit_candidates",
+   "fn_end": 484,
+   "fn_start": 463,
+   "klass": "TERM",
+   "line": 466,
+   "text": "out.push(Candidate{"
+  },
+  {
+   "derived_id": "FILTER__fruit_candidates__1",
+   "fn": "fruit_candidates",
+   "fn_end": 484,
+   "fn_start": 463,
+   "klass": "FILTER",
+   "line": 474,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "TERM__fruit_candidates__2",
+   "fn": "fruit_candidates",
+   "fn_end": 484,
+   "fn_start": 463,
+   "klass": "TERM",
+   "line": 478,
+   "text": "out.push(Candidate{"
+  },
+  {
+   "derived_id": "GEN__iron_candidates__485",
+   "fn": "iron_candidates",
+   "fn_end": 508,
+   "fn_start": 485,
+   "klass": "GEN",
+   "line": 485,
+   "text": "fn iron_candidates(view:&GameState,unit:&Unit,base_score:f64)->Vec<Candidate>{"
+  },
+  {
+   "derived_id": "TERM__iron_candidates__1",
+   "fn": "iron_candidates",
+   "fn_end": 508,
+   "fn_start": 485,
+   "klass": "TERM",
+   "line": 488,
+   "text": "out.push(Candidate{"
+  },
+  {
+   "derived_id": "FILTER__iron_candidates__1",
+   "fn": "iron_candidates",
+   "fn_end": 508,
+   "fn_start": 485,
+   "klass": "FILTER",
+   "line": 497,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "TERM__iron_candidates__2",
+   "fn": "iron_candidates",
+   "fn_end": 508,
+   "fn_start": 485,
+   "klass": "TERM",
+   "line": 500,
+   "text": "out.push(Candidate{"
+  },
+  {
+   "derived_id": "GEN__predicted_opp_chop__509",
+   "fn": "predicted_opp_chop",
+   "fn_end": 521,
+   "fn_start": 509,
+   "klass": "GEN",
+   "line": 509,
+   "text": "fn predicted_opp_chop(view:&GameState,plant:&Plant)->i32{"
+  },
+  {
+   "derived_id": "FILTER__predicted_opp_chop__1",
+   "fn": "predicted_opp_chop",
+   "fn_end": 521,
+   "fn_start": 509,
+   "klass": "FILTER",
+   "line": 510,
+   "text": "let on_tree:i32=view.units.iter().filter(|unit|unit.player==1&&unit.cell==plant.cell).map(|unit|unit.stats.chop_power).sum();"
+  },
+  {
+   "derived_id": "EARLYRET__predicted_opp_chop__1",
+   "fn": "predicted_opp_chop",
+   "fn_end": 521,
+   "fn_start": 509,
+   "klass": "EARLYRET",
+   "line": 512,
+   "text": "return on_tree;"
+  },
+  {
+   "derived_id": "GEN__predict_tree__522",
+   "fn": "predict_tree",
+   "fn_end": 555,
+   "fn_start": 522,
+   "klass": "GEN",
+   "line": 522,
+   "text": "fn predict_tree(view:&GameState,plant:&Plant,turns:i32)->Option<PredictedTree>{"
+  },
+  {
+   "derived_id": "EARLYRET__predict_tree__1",
+   "fn": "predict_tree",
+   "fn_end": 555,
+   "fn_start": 522,
+   "klass": "EARLYRET",
+   "line": 533,
+   "text": "return None;"
+  },
+  {
+   "derived_id": "GEN__chop_outcome__556",
+   "fn": "chop_outcome",
+   "fn_end": 581,
+   "fn_start": 556,
+   "klass": "GEN",
+   "line": 556,
+   "text": "fn chop_outcome(view:&GameState,plant:&Plant,predicted:PredictedTree,chop_power:i32,)->Option<(i32,i32)>{"
+  },
+  {
+   "derived_id": "EARLYRET__chop_outcome__1",
+   "fn": "chop_outcome",
+   "fn_end": 581,
+   "fn_start": 556,
+   "klass": "EARLYRET",
+   "line": 558,
+   "text": "return None;"
+  },
+  {
+   "derived_id": "EARLYRET__chop_outcome__2",
+   "fn": "chop_outcome",
+   "fn_end": 581,
+   "fn_start": 556,
+   "klass": "EARLYRET",
+   "line": 569,
+   "text": "return Some((turns,size));"
+  },
+  {
+   "derived_id": "GEN__chop_candidates__582",
+   "fn": "chop_candidates",
+   "fn_end": 637,
+   "fn_start": 582,
+   "klass": "GEN",
+   "line": 582,
+   "text": "fn chop_candidates(view:&GameState,unit:&Unit,type_to_cut:Option<PlantKind>,)->Vec<Candidate>{"
+  },
+  {
+   "derived_id": "EARLYRET__chop_candidates__1",
+   "fn": "chop_candidates",
+   "fn_end": 637,
+   "fn_start": 582,
+   "klass": "EARLYRET",
+   "line": 585,
+   "text": "return out;"
+  },
+  {
+   "derived_id": "FILTER__chop_candidates__1",
+   "fn": "chop_candidates",
+   "fn_end": 637,
+   "fn_start": 582,
+   "klass": "FILTER",
+   "line": 588,
+   "text": "let shack_starts:Vec<Cell> =ortho_neighbors(view.shacks[0]).iter().filter(|cell|view.walkable.contains(cell)).copied().collect();"
+  },
+  {
+   "derived_id": "FILTER__chop_candidates__2",
+   "fn": "chop_candidates",
+   "fn_end": 637,
+   "fn_start": 582,
+   "klass": "FILTER",
+   "line": 590,
+   "text": "let opponent_trolls=view.units.iter().filter(|unit|unit.player==1).count();"
+  },
+  {
+   "derived_id": "FILTER__chop_candidates__3",
+   "fn": "chop_candidates",
+   "fn_end": 637,
+   "fn_start": 582,
+   "klass": "FILTER",
+   "line": 593,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "FILTER__chop_candidates__4",
+   "fn": "chop_candidates",
+   "fn_end": 637,
+   "fn_start": 582,
+   "klass": "FILTER",
+   "line": 597,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "FILTER__chop_candidates__5",
+   "fn": "chop_candidates",
+   "fn_end": 637,
+   "fn_start": 582,
+   "klass": "FILTER",
+   "line": 601,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "FILTER__chop_candidates__6",
+   "fn": "chop_candidates",
+   "fn_end": 637,
+   "fn_start": 582,
+   "klass": "FILTER",
+   "line": 608,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "FILTER__chop_candidates__7",
+   "fn": "chop_candidates",
+   "fn_end": 637,
+   "fn_start": 582,
+   "klass": "FILTER",
+   "line": 613,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "FILTER__chop_candidates__8",
+   "fn": "chop_candidates",
+   "fn_end": 637,
+   "fn_start": 582,
+   "klass": "FILTER",
+   "line": 617,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "TERM__chop_candidates__1",
+   "fn": "chop_candidates",
+   "fn_end": 637,
+   "fn_start": 582,
+   "klass": "TERM",
+   "line": 631,
+   "text": "out.push(Candidate{"
+  },
+  {
+   "derived_id": "GEN__wait__638",
+   "fn": "wait",
+   "fn_end": 642,
+   "fn_start": 638,
+   "klass": "GEN",
+   "line": 638,
+   "text": "fn wait()->Candidate{"
+  },
+  {
+   "derived_id": "TERM__wait__1",
+   "fn": "wait",
+   "fn_end": 642,
+   "fn_start": 638,
+   "klass": "TERM",
+   "line": 638,
+   "text": "fn wait()->Candidate{"
+  },
+  {
+   "derived_id": "TERM__wait__2",
+   "fn": "wait",
+   "fn_end": 642,
+   "fn_start": 638,
+   "klass": "TERM",
+   "line": 639,
+   "text": "Candidate{"
+  },
+  {
+   "derived_id": "GEN__compatible__643",
+   "fn": "compatible",
+   "fn_end": 654,
+   "fn_start": 643,
+   "klass": "GEN",
+   "line": 643,
+   "text": "fn compatible(a:Target,b:Target)->bool{"
+  },
+  {
+   "derived_id": "EARLYRET__compatible__1",
+   "fn": "compatible",
+   "fn_end": 654,
+   "fn_start": 643,
+   "klass": "EARLYRET",
+   "line": 645,
+   "text": "return true;"
+  },
+  {
+   "derived_id": "GEN__picked_item__655",
+   "fn": "picked_item",
+   "fn_end": 658,
+   "fn_start": 655,
+   "klass": "GEN",
+   "line": 655,
+   "text": "fn picked_item(command:&str)->Option<usize>{"
+  },
+  {
+   "derived_id": "GEN__stock_compatible__659",
+   "fn": "stock_compatible",
+   "fn_end": 664,
+   "fn_start": 659,
+   "klass": "GEN",
+   "line": 659,
+   "text": "fn stock_compatible(a:&Candidate,b:&Candidate,inventory:&[i32;"
+  },
+  {
+   "derived_id": "GEN__select__665",
+   "fn": "select",
+   "fn_end": 712,
+   "fn_start": 665,
+   "klass": "GEN",
+   "line": 665,
+   "text": "fn select(candidates_by_id:BTreeMap<i32,Vec<Candidate>>,inventory:&[i32;"
+  },
+  {
+   "derived_id": "EARLYRET__select__1",
+   "fn": "select",
+   "fn_end": 712,
+   "fn_start": 665,
+   "klass": "EARLYRET",
+   "line": 669,
+   "text": "return Vec::new();"
+  },
+  {
+   "derived_id": "ARBITRATE__select__1",
+   "fn": "select",
+   "fn_end": 712,
+   "fn_start": 665,
+   "klass": "ARBITRATE",
+   "line": 672,
+   "text": "let best=candidates_by_id[&ids[0]].iter().max_by(|a,b|a.score.total_cmp(&b.score)).unwrap();"
+  },
+  {
+   "derived_id": "EARLYRET__select__2",
+   "fn": "select",
+   "fn_end": 712,
+   "fn_start": 665,
+   "klass": "EARLYRET",
+   "line": 673,
+   "text": "return vec![best.command.clone()];"
+  },
+  {
+   "derived_id": "FILTER__select__1",
+   "fn": "select",
+   "fn_end": 712,
+   "fn_start": 665,
+   "klass": "FILTER",
+   "line": 681,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "EARLYRET__select__3",
+   "fn": "select",
+   "fn_end": 712,
+   "fn_start": 665,
+   "klass": "EARLYRET",
+   "line": 691,
+   "text": "return vec![a,b];"
+  },
+  {
+   "derived_id": "ARBITRATE__select__2",
+   "fn": "select",
+   "fn_end": 712,
+   "fn_start": 665,
+   "klass": "ARBITRATE",
+   "line": 700,
+   "text": "candidates.sort_by(|a,b|b.score.total_cmp(&a.score));"
+  },
+  {
+   "derived_id": "GEN__move_command__713",
+   "fn": "move_command",
+   "fn_end": 719,
+   "fn_start": 713,
+   "klass": "GEN",
+   "line": 713,
+   "text": "fn move_command(command:&str)->Option<(i32,Cell)>{"
+  },
+  {
+   "derived_id": "EARLYRET__move_command__1",
+   "fn": "move_command",
+   "fn_end": 719,
+   "fn_start": 713,
+   "klass": "EARLYRET",
+   "line": 716,
+   "text": "return None;"
+  },
+  {
+   "derived_id": "GEN__resolve_move_conflicts__720",
+   "fn": "resolve_move_conflicts",
+   "fn_end": 722,
+   "fn_start": 720,
+   "klass": "GEN",
+   "line": 720,
+   "text": "fn resolve_move_conflicts(view:&GameState,commands:&mut[String]){"
+  },
+  {
+   "derived_id": "GEN__resolve_move_conflicts_with_priority__723",
+   "fn": "resolve_move_conflicts_with_priority",
+   "fn_end": 725,
+   "fn_start": 723,
+   "klass": "GEN",
+   "line": 723,
+   "text": "fn resolve_move_conflicts_with_priority(view:&GameState,commands:&mut[String],priority_ids:&BTreeSet<i32>,){"
+  },
+  {
+   "derived_id": "GEN__resolve_move_conflicts_with_priority_and_forbidden__726",
+   "fn": "resolve_move_conflicts_with_priority_and_forbidden",
+   "fn_end": 780,
+   "fn_start": 726,
+   "klass": "GEN",
+   "line": 726,
+   "text": "fn resolve_move_conflicts_with_priority_and_forbidden(view:&GameState,commands:&mut[String],priority_ids:&BTreeSet<i32>,forbidden_for_non_priority:&BTreeSet<Cel"
+  },
+  {
+   "derived_id": "FILTER__resolve_move_conflicts_with_priority_and_forbidden__1",
+   "fn": "resolve_move_conflicts_with_priority_and_forbidden",
+   "fn_end": 780,
+   "fn_start": 726,
+   "klass": "FILTER",
+   "line": 735,
+   "text": "let moving_ids:BTreeSet<i32> =projections.iter().filter(|(_,_,current,_,landing)|landing!=current).map(|(id,_,_,_,_)|*id).collect();"
+  },
+  {
+   "derived_id": "FILTER__resolve_move_conflicts_with_priority_and_forbidden__2",
+   "fn": "resolve_move_conflicts_with_priority_and_forbidden",
+   "fn_end": 780,
+   "fn_start": 726,
+   "klass": "FILTER",
+   "line": 736,
+   "text": "let occupied_now:BTreeSet<Cell> =view.units.iter().filter(|unit|unit.player==0).map(|unit|unit.cell).collect();"
+  },
+  {
+   "derived_id": "FILTER__resolve_move_conflicts_with_priority_and_forbidden__3",
+   "fn": "resolve_move_conflicts_with_priority_and_forbidden",
+   "fn_end": 780,
+   "fn_start": 726,
+   "klass": "FILTER",
+   "line": 737,
+   "text": "let mut reserved:BTreeSet<Cell> =view.units.iter().filter(|unit|unit.player==0&&!moving_ids.contains(&unit.id)).map(|unit|unit.cell).collect();"
+  },
+  {
+   "derived_id": "FILTER__resolve_move_conflicts_with_priority_and_forbidden__4",
+   "fn": "resolve_move_conflicts_with_priority_and_forbidden",
+   "fn_end": 780,
+   "fn_start": 726,
+   "klass": "FILTER",
+   "line": 743,
+   "text": "let mut movers:Vec<(i32,usize,Cell,Cell)> =projections.into_iter().filter(|(_,_,current,_,landing)|landing!=current).map(|(id,index,_,target,landing)|(id,index,"
+  },
+  {
+   "derived_id": "ARBITRATE__resolve_move_conflicts_with_priority_and_forbidden__1",
+   "fn": "resolve_move_conflicts_with_priority_and_forbidden",
+   "fn_end": 780,
+   "fn_start": 726,
+   "klass": "ARBITRATE",
+   "line": 744,
+   "text": "movers.sort_by(|a,b|{"
+  },
+  {
+   "derived_id": "FILTER__resolve_move_conflicts_with_priority_and_forbidden__5",
+   "fn": "resolve_move_conflicts_with_priority_and_forbidden",
+   "fn_end": 780,
+   "fn_start": 726,
+   "klass": "FILTER",
+   "line": 752,
+   "text": "continue"
+  },
+  {
+   "derived_id": "FILTER__resolve_move_conflicts_with_priority_and_forbidden__6",
+   "fn": "resolve_move_conflicts_with_priority_and_forbidden",
+   "fn_end": 780,
+   "fn_start": 726,
+   "klass": "FILTER",
+   "line": 759,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "FILTER__resolve_move_conflicts_with_priority_and_forbidden__10",
+   "fn": "resolve_move_conflicts_with_priority_and_forbidden",
+   "fn_end": 780,
+   "fn_start": 726,
+   "klass": "FILTER",
+   "line": 762,
+   "text": "let detour=ortho_neighbors(unit.cell).into_iter().filter(|cell|view.walkable.contains(cell)).filter(|cell|!reserved.contains(cell)).filter(|cell|!occupied_now.c"
+  },
+  {
+   "derived_id": "FILTER__resolve_move_conflicts_with_priority_and_forbidden__7",
+   "fn": "resolve_move_conflicts_with_priority_and_forbidden",
+   "fn_end": 780,
+   "fn_start": 726,
+   "klass": "FILTER",
+   "line": 762,
+   "text": "let detour=ortho_neighbors(unit.cell).into_iter().filter(|cell|view.walkable.contains(cell)).filter(|cell|!reserved.contains(cell)).filter(|cell|!occupied_now.c"
+  },
+  {
+   "derived_id": "FILTER__resolve_move_conflicts_with_priority_and_forbidden__8",
+   "fn": "resolve_move_conflicts_with_priority_and_forbidden",
+   "fn_end": 780,
+   "fn_start": 726,
+   "klass": "FILTER",
+   "line": 762,
+   "text": "let detour=ortho_neighbors(unit.cell).into_iter().filter(|cell|view.walkable.contains(cell)).filter(|cell|!reserved.contains(cell)).filter(|cell|!occupied_now.c"
+  },
+  {
+   "derived_id": "FILTER__resolve_move_conflicts_with_priority_and_forbidden__9",
+   "fn": "resolve_move_conflicts_with_priority_and_forbidden",
+   "fn_end": 780,
+   "fn_start": 726,
+   "klass": "FILTER",
+   "line": 762,
+   "text": "let detour=ortho_neighbors(unit.cell).into_iter().filter(|cell|view.walkable.contains(cell)).filter(|cell|!reserved.contains(cell)).filter(|cell|!occupied_now.c"
+  },
+  {
+   "derived_id": "ARBITRATE__resolve_move_conflicts_with_priority_and_forbidden__2",
+   "fn": "resolve_move_conflicts_with_priority_and_forbidden",
+   "fn_end": 780,
+   "fn_start": 726,
+   "klass": "ARBITRATE",
+   "line": 765,
+   "text": ").min_by_key(|cell|{"
+  },
+  {
+   "derived_id": "GEN__with_opening_policy__781",
+   "fn": "with_opening_policy",
+   "fn_end": 785,
+   "fn_start": 781,
+   "klass": "GEN",
+   "line": 781,
+   "text": "pub fn with_opening_policy(opening_policy:YamoOpeningPolicy)->Self{"
+  },
+  {
+   "derived_id": "GEN__tuned_carry_regeneration_transit_idle_harvest__786",
+   "fn": "tuned_carry_regeneration_transit_idle_harvest",
+   "fn_end": 795,
+   "fn_start": 786,
+   "klass": "GEN",
+   "line": 786,
+   "text": "pub fn tuned_carry_regeneration_transit_idle_harvest()->Self{"
+  },
+  {
+   "derived_id": "GEN__ensure_opening__796",
+   "fn": "ensure_opening",
+   "fn_end": 804,
+   "fn_start": 796,
+   "klass": "GEN",
+   "line": 796,
+   "text": "fn ensure_opening(&mut self,view:&GameState){"
+  },
+  {
+   "derived_id": "GEN__collection_eta__805",
+   "fn": "collection_eta",
+   "fn_end": 826,
+   "fn_start": 805,
+   "klass": "GEN",
+   "line": 805,
+   "text": "fn collection_eta(view:&GameState,item:usize,missing:i32)->i32{"
+  },
+  {
+   "derived_id": "EARLYRET__collection_eta__1",
+   "fn": "collection_eta",
+   "fn_end": 826,
+   "fn_start": 805,
+   "klass": "EARLYRET",
+   "line": 807,
+   "text": "return 0;"
+  },
+  {
+   "derived_id": "FILTER__collection_eta__1",
+   "fn": "collection_eta",
+   "fn_end": 826,
+   "fn_start": 805,
+   "klass": "FILTER",
+   "line": 809,
+   "text": "let starts:Vec<Cell> =ortho_neighbors(view.shacks[0]).into_iter().filter(|cell|view.walkable.contains(cell)).collect();"
+  },
+  {
+   "derived_id": "EARLYRET__collection_eta__2",
+   "fn": "collection_eta",
+   "fn_end": 826,
+   "fn_start": 805,
+   "klass": "EARLYRET",
+   "line": 813,
+   "text": "return best.map_or(10_000,|d|missing*(2*d+2));"
+  },
+  {
+   "derived_id": "EARLYRET__collection_eta__3",
+   "fn": "collection_eta",
+   "fn_end": 826,
+   "fn_start": 805,
+   "klass": "EARLYRET",
+   "line": 816,
+   "text": "PLUM=>PlantKind::Plum,LEMON=>PlantKind::Lemon,APPLE=>PlantKind::Apple,BANANA=>PlantKind::Banana,_=>return 10_000,"
+  },
+  {
+   "derived_id": "FILTER__collection_eta__2",
+   "fn": "collection_eta",
+   "fn_end": 826,
+   "fn_start": 805,
+   "klass": "FILTER",
+   "line": 819,
+   "text": "view.plants.iter().filter(|plant|plant.kind==kind&&plant.health>0).filter_map(|plant|{"
+  },
+  {
+   "derived_id": "GEN__opening_objective__827",
+   "fn": "opening_objective",
+   "fn_end": 837,
+   "fn_start": 827,
+   "klass": "GEN",
+   "line": 827,
+   "text": "fn opening_objective(view:&GameState,stats:Stats)->OpeningObjective{"
+  },
+  {
+   "derived_id": "FILTER__opening_objective__1",
+   "fn": "opening_objective",
+   "fn_end": 837,
+   "fn_start": 827,
+   "klass": "FILTER",
+   "line": 828,
+   "text": "let n=view.units.iter().filter(|unit|unit.player==0).count()as i32;"
+  },
+  {
+   "derived_id": "GEN__opening_key__838",
+   "fn": "opening_key",
+   "fn_end": 847,
+   "fn_start": 838,
+   "klass": "GEN",
+   "line": 838,
+   "text": "fn opening_key(objective:&OpeningObjective,policy:YamoOpeningPolicy,)->(i32,i32,i32,i32,i32){"
+  },
+  {
+   "derived_id": "GEN__opening_options__848",
+   "fn": "opening_options",
+   "fn_end": 864,
+   "fn_start": 848,
+   "klass": "GEN",
+   "line": 848,
+   "text": "fn opening_options(view:&GameState,max_carry_capacity:i32,max_chop_power:i32,)->Vec<OpeningObjective>{"
+  },
+  {
+   "derived_id": "GEN__choose_second_troll__865",
+   "fn": "choose_second_troll",
+   "fn_end": 898,
+   "fn_start": 865,
+   "klass": "GEN",
+   "line": 865,
+   "text": "fn choose_second_troll(view:&GameState,policy:YamoOpeningPolicy)->OpeningObjective{"
+  },
+  {
+   "derived_id": "ARBITRATE__choose_second_troll__1",
+   "fn": "choose_second_troll",
+   "fn_end": 898,
+   "fn_start": 865,
+   "klass": "ARBITRATE",
+   "line": 867,
+   "text": "let baseline=options.iter().filter(|objective|objective.estimated_eta<=policy.train_horizon).max_by_key(|objective|Self::opening_key(objective,policy)).copied()"
+  },
+  {
+   "derived_id": "FILTER__choose_second_troll__1",
+   "fn": "choose_second_troll",
+   "fn_end": 898,
+   "fn_start": 865,
+   "klass": "FILTER",
+   "line": 867,
+   "text": "let baseline=options.iter().filter(|objective|objective.estimated_eta<=policy.train_horizon).max_by_key(|objective|Self::opening_key(objective,policy)).copied()"
+  },
+  {
+   "derived_id": "FILTER__choose_second_troll__2",
+   "fn": "choose_second_troll",
+   "fn_end": 898,
+   "fn_start": 865,
+   "klass": "FILTER",
+   "line": 877,
+   "text": "let preferred=options.iter().filter(|objective|{"
+  },
+  {
+   "derived_id": "ARBITRATE__choose_second_troll__2",
+   "fn": "choose_second_troll",
+   "fn_end": 898,
+   "fn_start": 865,
+   "klass": "ARBITRATE",
+   "line": 881,
+   "text": "return preferred.clone().filter(|objective|objective.estimated_eta<=policy.train_horizon).max_by_key(|objective|Self::opening_key(objective,policy)).or_else(||{"
+  },
+  {
+   "derived_id": "EARLYRET__choose_second_troll__1",
+   "fn": "choose_second_troll",
+   "fn_end": 898,
+   "fn_start": 865,
+   "klass": "EARLYRET",
+   "line": 881,
+   "text": "return preferred.clone().filter(|objective|objective.estimated_eta<=policy.train_horizon).max_by_key(|objective|Self::opening_key(objective,policy)).or_else(||{"
+  },
+  {
+   "derived_id": "FILTER__choose_second_troll__3",
+   "fn": "choose_second_troll",
+   "fn_end": 898,
+   "fn_start": 865,
+   "klass": "FILTER",
+   "line": 881,
+   "text": "return preferred.clone().filter(|objective|objective.estimated_eta<=policy.train_horizon).max_by_key(|objective|Self::opening_key(objective,policy)).or_else(||{"
+  },
+  {
+   "derived_id": "ARBITRATE__choose_second_troll__3",
+   "fn": "choose_second_troll",
+   "fn_end": 898,
+   "fn_start": 865,
+   "klass": "ARBITRATE",
+   "line": 882,
+   "text": "preferred.max_by_key(|objective|{"
+  },
+  {
+   "derived_id": "EARLYRET__choose_second_troll__2",
+   "fn": "choose_second_troll",
+   "fn_end": 898,
+   "fn_start": 865,
+   "klass": "EARLYRET",
+   "line": 890,
+   "text": "return baseline;"
+  },
+  {
+   "derived_id": "FILTER__choose_second_troll__4",
+   "fn": "choose_second_troll",
+   "fn_end": 898,
+   "fn_start": 865,
+   "klass": "FILTER",
+   "line": 894,
+   "text": "options.iter().filter(|objective|{"
+  },
+  {
+   "derived_id": "ARBITRATE__choose_second_troll__4",
+   "fn": "choose_second_troll",
+   "fn_end": 898,
+   "fn_start": 865,
+   "klass": "ARBITRATE",
+   "line": 897,
+   "text": ").max_by_key(|objective|Self::opening_key(objective,policy)).copied().unwrap_or(baseline)"
+  },
+  {
+   "derived_id": "GEN__training_affordable__899",
+   "fn": "training_affordable",
+   "fn_end": 906,
+   "fn_start": 899,
+   "klass": "GEN",
+   "line": 899,
+   "text": "fn training_affordable(view:&GameState,stats:Stats)->bool{"
+  },
+  {
+   "derived_id": "FILTER__training_affordable__1",
+   "fn": "training_affordable",
+   "fn_end": 906,
+   "fn_start": 899,
+   "klass": "FILTER",
+   "line": 900,
+   "text": "let n=view.units.iter().filter(|unit|unit.player==0).count()as i32;"
+  },
+  {
+   "derived_id": "EARLYRET__training_affordable__1",
+   "fn": "training_affordable",
+   "fn_end": 906,
+   "fn_start": 899,
+   "klass": "EARLYRET",
+   "line": 902,
+   "text": "return false;"
+  },
+  {
+   "derived_id": "GEN__strongest_affordable__907",
+   "fn": "strongest_affordable",
+   "fn_end": 913,
+   "fn_start": 907,
+   "klass": "GEN",
+   "line": 907,
+   "text": "fn strongest_affordable(view:&GameState,policy:YamoOpeningPolicy,)->Option<OpeningObjective>{"
+  },
+  {
+   "derived_id": "FILTER__strongest_affordable__1",
+   "fn": "strongest_affordable",
+   "fn_end": 913,
+   "fn_start": 907,
+   "klass": "FILTER",
+   "line": 908,
+   "text": "Self::opening_options(view,policy.max_carry_capacity,policy.max_chop_power).into_iter().filter(|objective|Self::training_affordable(view,objective.stats)).map(|"
+  },
+  {
+   "derived_id": "ARBITRATE__strongest_affordable__1",
+   "fn": "strongest_affordable",
+   "fn_end": 913,
+   "fn_start": 907,
+   "klass": "ARBITRATE",
+   "line": 912,
+   "text": ").max_by_key(|objective|Self::opening_key(objective,policy))"
+  },
+  {
+   "derived_id": "GEN__enforce_training_deadline__914",
+   "fn": "enforce_training_deadline",
+   "fn_end": 941,
+   "fn_start": 914,
+   "klass": "GEN",
+   "line": 914,
+   "text": "fn enforce_training_deadline(&mut self,view:&GameState){"
+  },
+  {
+   "derived_id": "FILTER__enforce_training_deadline__1",
+   "fn": "enforce_training_deadline",
+   "fn_end": 941,
+   "fn_start": 914,
+   "klass": "FILTER",
+   "line": 915,
+   "text": "if self.opening_abandoned||view.turn<self.opening_policy.hard_train_turn||view.units.iter().filter(|unit|unit.player==0).count()>=2{"
+  },
+  {
+   "derived_id": "EARLYRET__enforce_training_deadline__1",
+   "fn": "enforce_training_deadline",
+   "fn_end": 941,
+   "fn_start": 914,
+   "klass": "EARLYRET",
+   "line": 916,
+   "text": "return;"
+  },
+  {
+   "derived_id": "EARLYRET__enforce_training_deadline__2",
+   "fn": "enforce_training_deadline",
+   "fn_end": 941,
+   "fn_start": 914,
+   "klass": "EARLYRET",
+   "line": 920,
+   "text": "return;"
+  },
+  {
+   "derived_id": "EARLYRET__enforce_training_deadline__3",
+   "fn": "enforce_training_deadline",
+   "fn_end": 941,
+   "fn_start": 914,
+   "klass": "EARLYRET",
+   "line": 924,
+   "text": "return;"
+  },
+  {
+   "derived_id": "FILTER__enforce_training_deadline__2",
+   "fn": "enforce_training_deadline",
+   "fn_end": 941,
+   "fn_start": 914,
+   "klass": "FILTER",
+   "line": 929,
+   "text": "if let Some(affordable)=Self::opening_options(view,self.opening_policy.max_carry_capacity,self.opening_policy.max_chop_power,).into_iter().filter(|candidate|{"
+  },
+  {
+   "derived_id": "ARBITRATE__enforce_training_deadline__1",
+   "fn": "enforce_training_deadline",
+   "fn_end": 941,
+   "fn_start": 914,
+   "klass": "ARBITRATE",
+   "line": 932,
+   "text": ").max_by_key(|objective|Self::opening_key(objective,self.opening_policy)){"
+  },
+  {
+   "derived_id": "EARLYRET__enforce_training_deadline__4",
+   "fn": "enforce_training_deadline",
+   "fn_end": 941,
+   "fn_start": 914,
+   "klass": "EARLYRET",
+   "line": 935,
+   "text": "return;"
+  },
+  {
+   "derived_id": "GEN__fallback_second_troll__942",
+   "fn": "fallback_second_troll",
+   "fn_end": 946,
+   "fn_start": 942,
+   "klass": "GEN",
+   "line": 942,
+   "text": "fn fallback_second_troll()->Stats{"
+  },
+  {
+   "derived_id": "GEN__bank_candidates__947",
+   "fn": "bank_candidates",
+   "fn_end": 955,
+   "fn_start": 947,
+   "klass": "GEN",
+   "line": 947,
+   "text": "fn bank_candidates(view:&GameState,unit:&Unit)->Vec<Candidate>{"
+  },
+  {
+   "derived_id": "FILTER__bank_candidates__2",
+   "fn": "bank_candidates",
+   "fn_end": 955,
+   "fn_start": 947,
+   "klass": "FILTER",
+   "line": 948,
+   "text": "MoisanBot::bank_candidates(view,unit).into_iter().filter(|candidate|match candidate.target{"
+  },
+  {
+   "derived_id": "GEN__unique_shack_door__956",
+   "fn": "unique_shack_door",
+   "fn_end": 959,
+   "fn_start": 956,
+   "klass": "GEN",
+   "line": 956,
+   "text": "fn unique_shack_door(view:&GameState)->Option<Cell>{"
+  },
+  {
+   "derived_id": "FILTER__unique_shack_door__1",
+   "fn": "unique_shack_door",
+   "fn_end": 959,
+   "fn_start": 956,
+   "klass": "FILTER",
+   "line": 957,
+   "text": "let doors:Vec<Cell> =ortho_neighbors(view.shacks[0]).into_iter().filter(|cell|view.walkable.contains(cell)).collect();"
+  },
+  {
+   "derived_id": "GEN__forced_move__960",
+   "fn": "forced_move",
+   "fn_end": 964,
+   "fn_start": 960,
+   "klass": "GEN",
+   "line": 960,
+   "text": "fn forced_move(unit:&Unit,cell:Cell)->Candidate{"
+  },
+  {
+   "derived_id": "TERM__forced_move__1",
+   "fn": "forced_move",
+   "fn_end": 964,
+   "fn_start": 960,
+   "klass": "TERM",
+   "line": 960,
+   "text": "fn forced_move(unit:&Unit,cell:Cell)->Candidate{"
+  },
+  {
+   "derived_id": "TERM__forced_move__2",
+   "fn": "forced_move",
+   "fn_end": 964,
+   "fn_start": 960,
+   "klass": "TERM",
+   "line": 961,
+   "text": "Candidate{"
+  },
+  {
+   "derived_id": "GEN__carries_committed_fruit__965",
+   "fn": "carries_committed_fruit",
+   "fn_end": 967,
+   "fn_start": 965,
+   "klass": "GEN",
+   "line": 965,
+   "text": "fn carries_committed_fruit(&self,unit:&Unit)->bool{"
+  },
+  {
+   "derived_id": "GEN__planned_egress__968",
+   "fn": "planned_egress",
+   "fn_end": 977,
+   "fn_start": 968,
+   "klass": "GEN",
+   "line": 968,
+   "text": "fn planned_egress(view:&GameState,unit:&Unit,options:&[Candidate],forbidden:&BTreeSet<Cell>,)->Option<(Cell,Target)>{"
+  },
+  {
+   "derived_id": "ARBITRATE__planned_egress__1",
+   "fn": "planned_egress",
+   "fn_end": 977,
+   "fn_start": 968,
+   "klass": "ARBITRATE",
+   "line": 969,
+   "text": "let candidate=options.iter().max_by(|a,b|a.score.total_cmp(&b.score))?;"
+  },
+  {
+   "derived_id": "GEN__force_unique_door_clear__978",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "GEN",
+   "line": 978,
+   "text": "fn force_unique_door_clear(&self,view:&GameState,candidates:&mut BTreeMap<i32,Vec<Candidate>>,){"
+  },
+  {
+   "derived_id": "EARLYRET__force_unique_door_clear__1",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "EARLYRET",
+   "line": 980,
+   "text": "return;"
+  },
+  {
+   "derived_id": "ARBITRATE__force_unique_door_clear__1",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "ARBITRATE",
+   "line": 984,
+   "text": "if let(Some(blocker),Some(transit))=(blocker_at_door,view.units.iter().filter(|unit|unit.player==0&&unit.cell==view.shacks[0]).min_by_key(|unit|unit.id),){"
+  },
+  {
+   "derived_id": "FILTER__force_unique_door_clear__1",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "FILTER",
+   "line": 984,
+   "text": "if let(Some(blocker),Some(transit))=(blocker_at_door,view.units.iter().filter(|unit|unit.player==0&&unit.cell==view.shacks[0]).min_by_key(|unit|unit.id),){"
+  },
+  {
+   "derived_id": "TERM__force_unique_door_clear__1",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "TERM",
+   "line": 986,
+   "text": "candidates.insert(blocker.id,vec![Candidate{"
+  },
+  {
+   "derived_id": "EARLYRET__force_unique_door_clear__2",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "EARLYRET",
+   "line": 991,
+   "text": "return;"
+  },
+  {
+   "derived_id": "EARLYRET__force_unique_door_clear__3",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "EARLYRET",
+   "line": 997,
+   "text": "return;"
+  },
+  {
+   "derived_id": "FILTER__force_unique_door_clear__2",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "FILTER",
+   "line": 999,
+   "text": "let occupied:BTreeSet<Cell> =view.units.iter().filter(|unit|unit.player==0&&unit.id!=blocker.id).map(|unit|unit.cell).collect();"
+  },
+  {
+   "derived_id": "FILTER__force_unique_door_clear__3",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "FILTER",
+   "line": 1000,
+   "text": "if let Some(egress)=ortho_neighbors(door).into_iter().filter(|cell|view.walkable.contains(cell)&&!occupied.contains(cell)).min(){"
+  },
+  {
+   "derived_id": "EARLYRET__force_unique_door_clear__4",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "EARLYRET",
+   "line": 1004,
+   "text": "return;"
+  },
+  {
+   "derived_id": "FILTER__force_unique_door_clear__4",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "FILTER",
+   "line": 1007,
+   "text": "let Some(carrier)=view.units.iter().filter(|unit|unit.player==0&&unit.cell!=door).filter(|unit|unit.total_carried()>0).filter(|unit|{"
+  },
+  {
+   "derived_id": "FILTER__force_unique_door_clear__5",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "FILTER",
+   "line": 1007,
+   "text": "let Some(carrier)=view.units.iter().filter(|unit|unit.player==0&&unit.cell!=door).filter(|unit|unit.total_carried()>0).filter(|unit|{"
+  },
+  {
+   "derived_id": "FILTER__force_unique_door_clear__6",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "FILTER",
+   "line": 1007,
+   "text": "let Some(carrier)=view.units.iter().filter(|unit|unit.player==0&&unit.cell!=door).filter(|unit|unit.total_carried()>0).filter(|unit|{"
+  },
+  {
+   "derived_id": "EARLYRET__force_unique_door_clear__5",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "EARLYRET",
+   "line": 1009,
+   "text": "return true;"
+  },
+  {
+   "derived_id": "ARBITRATE__force_unique_door_clear__2",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "ARBITRATE",
+   "line": 1021,
+   "text": ").filter(|unit|!self.carries_committed_fruit(unit)).filter(|unit|from_door.contains_key(&unit.cell)).min_by_key(|unit|{"
+  },
+  {
+   "derived_id": "FILTER__force_unique_door_clear__7",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "FILTER",
+   "line": 1021,
+   "text": ").filter(|unit|!self.carries_committed_fruit(unit)).filter(|unit|from_door.contains_key(&unit.cell)).min_by_key(|unit|{"
+  },
+  {
+   "derived_id": "FILTER__force_unique_door_clear__8",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "FILTER",
+   "line": 1021,
+   "text": ").filter(|unit|!self.carries_committed_fruit(unit)).filter(|unit|from_door.contains_key(&unit.cell)).min_by_key(|unit|{"
+  },
+  {
+   "derived_id": "EARLYRET__force_unique_door_clear__6",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "EARLYRET",
+   "line": 1025,
+   "text": "return;"
+  },
+  {
+   "derived_id": "EARLYRET__force_unique_door_clear__7",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "EARLYRET",
+   "line": 1034,
+   "text": "return;"
+  },
+  {
+   "derived_id": "FILTER__force_unique_door_clear__9",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "FILTER",
+   "line": 1040,
+   "text": "if candidates.get(&blocker.id).and_then(|options|Self::planned_egress(view,blocker,options,&forbidden)).filter(|(_,target)|MoisanBot::compatible(*target,Target:"
+  },
+  {
+   "derived_id": "EARLYRET__force_unique_door_clear__8",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "EARLYRET",
+   "line": 1041,
+   "text": "return;"
+  },
+  {
+   "derived_id": "EARLYRET__force_unique_door_clear__9",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "EARLYRET",
+   "line": 1047,
+   "text": "return;"
+  },
+  {
+   "derived_id": "EARLYRET__force_unique_door_clear__10",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "EARLYRET",
+   "line": 1054,
+   "text": "return;"
+  },
+  {
+   "derived_id": "TERM__force_unique_door_clear__2",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "TERM",
+   "line": 1058,
+   "text": "candidates.insert(blocker.id,vec![Candidate{"
+  },
+  {
+   "derived_id": "EARLYRET__force_unique_door_clear__11",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "EARLYRET",
+   "line": 1065,
+   "text": "return;"
+  },
+  {
+   "derived_id": "FILTER__force_unique_door_clear__10",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "FILTER",
+   "line": 1067,
+   "text": "let occupied:BTreeSet<Cell> =view.units.iter().filter(|unit|unit.player==0&&unit.id!=blocker.id).map(|unit|unit.cell).collect();"
+  },
+  {
+   "derived_id": "EARLYRET__force_unique_door_clear__12",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "EARLYRET",
+   "line": 1071,
+   "text": "return;"
+  },
+  {
+   "derived_id": "EARLYRET__force_unique_door_clear__13",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "EARLYRET",
+   "line": 1077,
+   "text": "return;"
+  },
+  {
+   "derived_id": "ARBITRATE__force_unique_door_clear__3",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "ARBITRATE",
+   "line": 1080,
+   "text": "let egress=ortho_neighbors(door).into_iter().filter(|cell|view.walkable.contains(cell)).filter(|cell|!occupied.contains(cell)).min_by_key(|cell|{"
+  },
+  {
+   "derived_id": "FILTER__force_unique_door_clear__11",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "FILTER",
+   "line": 1080,
+   "text": "let egress=ortho_neighbors(door).into_iter().filter(|cell|view.walkable.contains(cell)).filter(|cell|!occupied.contains(cell)).min_by_key(|cell|{"
+  },
+  {
+   "derived_id": "FILTER__force_unique_door_clear__12",
+   "fn": "force_unique_door_clear",
+   "fn_end": 1093,
+   "fn_start": 978,
+   "klass": "FILTER",
+   "line": 1080,
+   "text": "let egress=ortho_neighbors(door).into_iter().filter(|cell|view.walkable.contains(cell)).filter(|cell|!occupied.contains(cell)).min_by_key(|cell|{"
+  },
+  {
+   "derived_id": "GEN__reconcile_regeneration_commitments__1094",
+   "fn": "reconcile_regeneration_commitments",
+   "fn_end": 1111,
+   "fn_start": 1094,
+   "klass": "GEN",
+   "line": 1094,
+   "text": "fn reconcile_regeneration_commitments(&mut self,view:&GameState){"
+  },
+  {
+   "derived_id": "EARLYRET__reconcile_regeneration_commitments__1",
+   "fn": "reconcile_regeneration_commitments",
+   "fn_end": 1111,
+   "fn_start": 1094,
+   "klass": "EARLYRET",
+   "line": 1097,
+   "text": "return;"
+  },
+  {
+   "derived_id": "FILTER__reconcile_regeneration_commitments__1",
+   "fn": "reconcile_regeneration_commitments",
+   "fn_end": 1111,
+   "fn_start": 1094,
+   "klass": "FILTER",
+   "line": 1099,
+   "text": "self.regeneration_commitments.retain(|id,kind|{"
+  },
+  {
+   "derived_id": "EARLYRET__reconcile_regeneration_commitments__2",
+   "fn": "reconcile_regeneration_commitments",
+   "fn_end": 1111,
+   "fn_start": 1094,
+   "klass": "EARLYRET",
+   "line": 1101,
+   "text": "return false;"
+  },
+  {
+   "derived_id": "GEN__remember_selected_regeneration__1112",
+   "fn": "remember_selected_regeneration",
+   "fn_end": 1127,
+   "fn_start": 1112,
+   "klass": "GEN",
+   "line": 1112,
+   "text": "fn remember_selected_regeneration(&mut self,commands:&[String]){"
+  },
+  {
+   "derived_id": "EARLYRET__remember_selected_regeneration__1",
+   "fn": "remember_selected_regeneration",
+   "fn_end": 1127,
+   "fn_start": 1112,
+   "klass": "EARLYRET",
+   "line": 1114,
+   "text": "return;"
+  },
+  {
+   "derived_id": "FILTER__remember_selected_regeneration__1",
+   "fn": "remember_selected_regeneration",
+   "fn_end": 1127,
+   "fn_start": 1112,
+   "klass": "FILTER",
+   "line": 1119,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "FILTER__remember_selected_regeneration__2",
+   "fn": "remember_selected_regeneration",
+   "fn_end": 1127,
+   "fn_start": 1112,
+   "klass": "FILTER",
+   "line": 1122,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "GEN__yamo_chop_candidates__1128",
+   "fn": "yamo_chop_candidates",
+   "fn_end": 1166,
+   "fn_start": 1128,
+   "klass": "GEN",
+   "line": 1128,
+   "text": "fn yamo_chop_candidates(view:&GameState,unit:&Unit,type_to_cut:Option<PlantKind>,opponent_eta_penalty:i32,)->Vec<Candidate>{"
+  },
+  {
+   "derived_id": "EARLYRET__yamo_chop_candidates__1",
+   "fn": "yamo_chop_candidates",
+   "fn_end": 1166,
+   "fn_start": 1128,
+   "klass": "EARLYRET",
+   "line": 1131,
+   "text": "return candidates;"
+  },
+  {
+   "derived_id": "FILTER__yamo_chop_candidates__1",
+   "fn": "yamo_chop_candidates",
+   "fn_end": 1166,
+   "fn_start": 1128,
+   "klass": "FILTER",
+   "line": 1134,
+   "text": "let opponents:Vec<_> =view.units.iter().filter(|opponent|{"
+  },
+  {
+   "derived_id": "FILTER__yamo_chop_candidates__2",
+   "fn": "yamo_chop_candidates",
+   "fn_end": 1166,
+   "fn_start": 1128,
+   "klass": "FILTER",
+   "line": 1140,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "FILTER__yamo_chop_candidates__3",
+   "fn": "yamo_chop_candidates",
+   "fn_end": 1166,
+   "fn_start": 1128,
+   "klass": "FILTER",
+   "line": 1144,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "FILTER__yamo_chop_candidates__4",
+   "fn": "yamo_chop_candidates",
+   "fn_end": 1166,
+   "fn_start": 1128,
+   "klass": "FILTER",
+   "line": 1148,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "EARLYRET__yamo_chop_candidates__2",
+   "fn": "yamo_chop_candidates",
+   "fn_end": 1166,
+   "fn_start": 1128,
+   "klass": "EARLYRET",
+   "line": 1156,
+   "text": "return None;"
+  },
+  {
+   "derived_id": "GEN__main_candidates__1167",
+   "fn": "main_candidates",
+   "fn_end": 1200,
+   "fn_start": 1167,
+   "klass": "GEN",
+   "line": 1167,
+   "text": "fn main_candidates(view:&GameState,unit:&Unit,type_to_cut:Option<PlantKind>,idle_regeneration:bool,safe_regeneration:bool,opponent_eta_penalty:i32,)->Vec<Candid"
+  },
+  {
+   "derived_id": "EARLYRET__main_candidates__1",
+   "fn": "main_candidates",
+   "fn_end": 1200,
+   "fn_start": 1167,
+   "klass": "EARLYRET",
+   "line": 1172,
+   "text": "return out;"
+  },
+  {
+   "derived_id": "FILTER__main_candidates__1",
+   "fn": "main_candidates",
+   "fn_end": 1200,
+   "fn_start": 1167,
+   "klass": "FILTER",
+   "line": 1177,
+   "text": "if safe_regeneration&&carried==0&&view.turn>=100&&view.plants.len()<=2&&view.units.iter().filter(|unit|unit.player==0).count()>=2&&is_adjacent(unit.cell,view.sh"
+  },
+  {
+   "derived_id": "TERM__main_candidates__1",
+   "fn": "main_candidates",
+   "fn_end": 1200,
+   "fn_start": 1167,
+   "klass": "TERM",
+   "line": 1179,
+   "text": "out.push(Candidate{"
+  },
+  {
+   "derived_id": "EARLYRET__main_candidates__2",
+   "fn": "main_candidates",
+   "fn_end": 1200,
+   "fn_start": 1167,
+   "klass": "EARLYRET",
+   "line": 1187,
+   "text": "return out;"
+  },
+  {
+   "derived_id": "EARLYRET__main_candidates__3",
+   "fn": "main_candidates",
+   "fn_end": 1200,
+   "fn_start": 1167,
+   "klass": "EARLYRET",
+   "line": 1191,
+   "text": "return Self::endgame_candidates(view,unit,type_to_cut,safe_regeneration,opponent_eta_penalty,);"
+  },
+  {
+   "derived_id": "GEN__carried_fruit__1201",
+   "fn": "carried_fruit",
+   "fn_end": 1203,
+   "fn_start": 1201,
+   "klass": "GEN",
+   "line": 1201,
+   "text": "fn carried_fruit(unit:&Unit)->Option<PlantKind>{"
+  },
+  {
+   "derived_id": "GEN__inventory_fruits__1204",
+   "fn": "inventory_fruits",
+   "fn_end": 1206,
+   "fn_start": 1204,
+   "klass": "GEN",
+   "line": 1204,
+   "text": "fn inventory_fruits(view:&GameState)->Vec<PlantKind>{"
+  },
+  {
+   "derived_id": "FILTER__inventory_fruits__1",
+   "fn": "inventory_fruits",
+   "fn_end": 1206,
+   "fn_start": 1204,
+   "klass": "FILTER",
+   "line": 1205,
+   "text": "[(view.inventories[0][BANANA],PlantKind::Banana),(view.inventories[0][PLUM],PlantKind::Plum),(view.inventories[0][LEMON],PlantKind::Lemon),(view.inventories[0]["
+  },
+  {
+   "derived_id": "GEN__conversion_chop_turns__1207",
+   "fn": "conversion_chop_turns",
+   "fn_end": 1232,
+   "fn_start": 1207,
+   "klass": "GEN",
+   "line": 1207,
+   "text": "fn conversion_chop_turns(view:&GameState,cell:Cell,kind:PlantKind,chop:i32)->i32{"
+  },
+  {
+   "derived_id": "EARLYRET__conversion_chop_turns__1",
+   "fn": "conversion_chop_turns",
+   "fn_end": 1232,
+   "fn_start": 1207,
+   "klass": "EARLYRET",
+   "line": 1209,
+   "text": "return 10_000;"
+  },
+  {
+   "derived_id": "EARLYRET__conversion_chop_turns__2",
+   "fn": "conversion_chop_turns",
+   "fn_end": 1232,
+   "fn_start": 1207,
+   "klass": "EARLYRET",
+   "line": 1220,
+   "text": "return turns;"
+  },
+  {
+   "derived_id": "GEN__endgame_candidates__1233",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "GEN",
+   "line": 1233,
+   "text": "fn endgame_candidates(view:&GameState,unit:&Unit,type_to_cut:Option<PlantKind>,safe_regeneration:bool,opponent_eta_penalty:i32,)->Vec<Candidate>{"
+  },
+  {
+   "derived_id": "FILTER__endgame_candidates__1",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "FILTER",
+   "line": 1236,
+   "text": "let shack_starts:Vec<Cell> =ortho_neighbors(view.shacks[0]).into_iter().filter(|cell|view.walkable.contains(cell)).collect();"
+  },
+  {
+   "derived_id": "FILTER__endgame_candidates__2",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "FILTER",
+   "line": 1240,
+   "text": "for cell in view.walkable.iter().filter(|cell|{"
+  },
+  {
+   "derived_id": "FILTER__endgame_candidates__3",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "FILTER",
+   "line": 1251,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "TERM__endgame_candidates__1",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "TERM",
+   "line": 1254,
+   "text": "out.push(Candidate{"
+  },
+  {
+   "derived_id": "EARLYRET__endgame_candidates__1",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "EARLYRET",
+   "line": 1272,
+   "text": "return out;"
+  },
+  {
+   "derived_id": "EARLYRET__endgame_candidates__2",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "EARLYRET",
+   "line": 1275,
+   "text": "return out;"
+  },
+  {
+   "derived_id": "EARLYRET__endgame_candidates__3",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "EARLYRET",
+   "line": 1279,
+   "text": "return out;"
+  },
+  {
+   "derived_id": "EARLYRET__endgame_candidates__4",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "EARLYRET",
+   "line": 1285,
+   "text": "return out;"
+  },
+  {
+   "derived_id": "TERM__endgame_candidates__2",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "TERM",
+   "line": 1298,
+   "text": "out.push(Candidate{"
+  },
+  {
+   "derived_id": "FILTER__endgame_candidates__4",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "FILTER",
+   "line": 1306,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "FILTER__endgame_candidates__5",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "FILTER",
+   "line": 1310,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "FILTER__endgame_candidates__6",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "FILTER",
+   "line": 1316,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "FILTER__endgame_candidates__7",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "FILTER",
+   "line": 1321,
+   "text": "continue;"
+  },
+  {
+   "derived_id": "TERM__endgame_candidates__3",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "TERM",
+   "line": 1330,
+   "text": "out.push(Candidate{"
+  },
+  {
+   "derived_id": "GEN__idle_harvest_candidates__1340",
+   "fn": "idle_harvest_candidates",
+   "fn_end": 1370,
+   "fn_start": 1340,
+   "klass": "GEN",
+   "line": 1340,
+   "text": "fn idle_harvest_candidates(view:&GameState,unit:&Unit,)->Vec<Candidate>{"
+  },
+  {
+   "derived_id": "EARLYRET__idle_harvest_candidates__1",
+   "fn": "idle_harvest_candidates",
+   "fn_end": 1370,
+   "fn_start": 1340,
+   "klass": "EARLYRET",
+   "line": 1342,
+   "text": "return Vec::new();"
+  },
+  {
+   "derived_id": "FILTER__idle_harvest_candidates__1",
+   "fn": "idle_harvest_candidates",
+   "fn_end": 1370,
+   "fn_start": 1340,
+   "klass": "FILTER",
+   "line": 1345,
+   "text": "let shack_starts:Vec<Cell> =ortho_neighbors(view.shacks[0]).into_iter().filter(|cell|view.walkable.contains(cell)).collect();"
+  },
+  {
+   "derived_id": "FILTER__idle_harvest_candidates__2",
+   "fn": "idle_harvest_candidates",
+   "fn_end": 1370,
+   "fn_start": 1340,
+   "klass": "FILTER",
+   "line": 1348,
+   "text": "view.plants.iter().filter(|plant|{"
+  },
+  {
+   "derived_id": "TERM__idle_harvest_candidates__1",
+   "fn": "idle_harvest_candidates",
+   "fn_end": 1370,
+   "fn_start": 1340,
+   "klass": "TERM",
+   "line": 1358,
+   "text": "(trip<=turns_left).then(||Candidate{"
+  },
+  {
+   "derived_id": "GEN__endgame__1371",
+   "fn": "endgame",
+   "fn_end": 1375,
+   "fn_start": 1371,
+   "klass": "GEN",
+   "line": 1371,
+   "text": "fn endgame(view:&GameState)->bool{"
+  },
+  {
+   "derived_id": "GEN__commands__1376",
+   "fn": "commands",
+   "fn_end": 1444,
+   "fn_start": 1376,
+   "klass": "GEN",
+   "line": 1376,
+   "text": "fn commands(&mut self,view:&GameState)->Vec<String>{"
+  },
+  {
+   "derived_id": "FILTER__commands__1",
+   "fn": "commands",
+   "fn_end": 1444,
+   "fn_start": 1376,
+   "klass": "FILTER",
+   "line": 1390,
+   "text": "let mut my_units:Vec<&Unit> =view.units.iter().filter(|unit|unit.player==0).collect();"
+  },
+  {
+   "derived_id": "ARBITRATE__commands__1",
+   "fn": "commands",
+   "fn_end": 1444,
+   "fn_start": 1376,
+   "klass": "ARBITRATE",
+   "line": 1391,
+   "text": "my_units.sort_by_key(|unit|unit.id);"
+  },
+  {
+   "derived_id": "FILTER__commands__2",
+   "fn": "commands",
+   "fn_end": 1444,
+   "fn_start": 1376,
+   "klass": "FILTER",
+   "line": 1417,
+   "text": "candidates.retain(|candidate|!candidate.command.starts_with(\"PICK \"));"
+  },
+  {
+   "derived_id": "TERM__commands__1",
+   "fn": "commands",
+   "fn_end": 1444,
+   "fn_start": 1376,
+   "klass": "TERM",
+   "line": 1421,
+   "text": "candidates.push(Candidate{"
+  },
+  {
+   "derived_id": "GEN__commands__1445",
+   "fn": "commands",
+   "fn_end": 1457,
+   "fn_start": 1445,
+   "klass": "GEN",
+   "line": 1445,
+   "text": "fn commands(&mut self,view:&GameState)->Vec<String>;"
+  },
+  {
+   "derived_id": "GEN__main__1458",
+   "fn": "main",
+   "fn_end": 1476,
+   "fn_start": 1458,
+   "klass": "GEN",
+   "line": 1458,
+   "text": "fn main(){"
+  },
+  {
+   "derived_id": "EARLYRET__main__1",
+   "fn": "main",
+   "fn_end": 1476,
+   "fn_start": 1458,
+   "klass": "EARLYRET",
+   "line": 1464,
+   "text": "return;"
+  }
+ ],
+ "required_count": 249,
+ "schema": "troll-farm-decision-packet-inventory/v1",
+ "status": "PROPOSAL_FOR_INDEPENDENT_REVIEW",
+ "status_note": "Derived mechanically from the subject; NOT curated and NOT certified. The class matchers are stated proxies (a `continue` that skips a malformed row is not a semantic filter, and this module cannot tell the difference). Whoever curates this must not be its author.",
+ "subject": {
+  "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+  "sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29"
+ },
+ "totals": {
+  "ARBITRATE": {
+   "covered": 12,
+   "total": 16
+  },
+  "EARLYRET": {
+   "covered": 34,
+   "total": 58
+  },
+  "FILTER": {
+   "covered": 52,
+   "total": 76
+  },
+  "GEN": {
+   "covered": 22,
+   "total": 79
+  },
+  "TERM": {
+   "covered": 12,
+   "total": 20
+  }
+ },
+ "uncovered": [
+  {
+   "covered_by": null,
+   "derived_id": "GEN__parse__23",
+   "fn": "parse",
+   "fn_end": 27,
+   "fn_start": 23,
+   "klass": "GEN",
+   "line": 23,
+   "text": "pub fn parse(value:&str)->Option<PlantKind>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__as_str__28",
+   "fn": "as_str",
+   "fn_end": 32,
+   "fn_start": 28,
+   "klass": "GEN",
+   "line": 28,
+   "text": "pub fn as_str(self)->&'static str{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__item_index__33",
+   "fn": "item_index",
+   "fn_end": 42,
+   "fn_start": 33,
+   "klass": "GEN",
+   "line": 33,
+   "text": "pub fn item_index(self)->usize{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__tuple__43",
+   "fn": "tuple",
+   "fn_end": 50,
+   "fn_start": 43,
+   "klass": "GEN",
+   "line": 43,
+   "text": "pub fn tuple(self)->(i32,i32,i32,i32){"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__total_carried__51",
+   "fn": "total_carried",
+   "fn_end": 53,
+   "fn_start": 51,
+   "klass": "GEN",
+   "line": 51,
+   "text": "pub fn total_carried(&self)->i32{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__free_capacity__54",
+   "fn": "free_capacity",
+   "fn_end": 67,
+   "fn_start": 54,
+   "klass": "GEN",
+   "line": 54,
+   "text": "pub fn free_capacity(&self)->i32{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__plant_at__68",
+   "fn": "plant_at",
+   "fn_end": 70,
+   "fn_start": 68,
+   "klass": "GEN",
+   "line": 68,
+   "text": "pub fn plant_at(&self,cell:Cell)->Option<usize>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__unit__71",
+   "fn": "unit",
+   "fn_end": 82,
+   "fn_start": 71,
+   "klass": "GEN",
+   "line": 71,
+   "text": "pub fn unit(&self,id:i32)->Option<&Unit>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__plant_cooldown__83",
+   "fn": "plant_cooldown",
+   "fn_end": 87,
+   "fn_start": 83,
+   "klass": "GEN",
+   "line": 83,
+   "text": "pub fn plant_cooldown(kind:PlantKind)->i32{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__water_boost__88",
+   "fn": "water_boost",
+   "fn_end": 92,
+   "fn_start": 88,
+   "klass": "GEN",
+   "line": 88,
+   "text": "pub fn water_boost(kind:PlantKind)->i32{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__tree_health_params__93",
+   "fn": "tree_health_params",
+   "fn_end": 97,
+   "fn_start": 93,
+   "klass": "GEN",
+   "line": 93,
+   "text": "pub fn tree_health_params(kind:PlantKind)->(i32,i32){"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__tree_health__98",
+   "fn": "tree_health",
+   "fn_end": 101,
+   "fn_start": 98,
+   "klass": "GEN",
+   "line": 98,
+   "text": "pub fn tree_health(kind:PlantKind,size:i32)->i32{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__effective_cooldown__102",
+   "fn": "effective_cooldown",
+   "fn_end": 109,
+   "fn_start": 102,
+   "klass": "GEN",
+   "line": 102,
+   "text": "pub fn effective_cooldown(kind:PlantKind,near_water:bool)->i32{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__training_cost__110",
+   "fn": "training_cost",
+   "fn_end": 119,
+   "fn_start": 110,
+   "klass": "GEN",
+   "line": 110,
+   "text": "pub fn training_cost(n:i32,talents:(i32,i32,i32,i32))->Stock{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__score__120",
+   "fn": "score",
+   "fn_end": 122,
+   "fn_start": 120,
+   "klass": "GEN",
+   "line": 120,
+   "text": "pub fn score(inventory:&Stock)->i32{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__item_index__123",
+   "fn": "item_index",
+   "fn_end": 136,
+   "fn_start": 123,
+   "klass": "GEN",
+   "line": 123,
+   "text": "pub fn item_index(name:&str)->Option<usize>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__manhattan__137",
+   "fn": "manhattan",
+   "fn_end": 139,
+   "fn_start": 137,
+   "klass": "GEN",
+   "line": 137,
+   "text": "pub fn manhattan(a:Cell,b:Cell)->i32{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__ortho_neighbors__140",
+   "fn": "ortho_neighbors",
+   "fn_end": 143,
+   "fn_start": 140,
+   "klass": "GEN",
+   "line": 140,
+   "text": "pub fn ortho_neighbors(cell:Cell)->[Cell;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__is_adjacent__144",
+   "fn": "is_adjacent",
+   "fn_end": 146,
+   "fn_start": 144,
+   "klass": "GEN",
+   "line": 144,
+   "text": "pub fn is_adjacent(a:Cell,b:Cell)->bool{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__bfs_distances__147",
+   "fn": "bfs_distances",
+   "fn_end": 166,
+   "fn_start": 147,
+   "klass": "GEN",
+   "line": 147,
+   "text": "pub fn bfs_distances(walkable:&BTreeSet<Cell>,sources:&[Cell])->BTreeMap<Cell,i32>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__next_cell__167",
+   "fn": "next_cell",
+   "fn_end": 200,
+   "fn_start": 167,
+   "klass": "GEN",
+   "line": 167,
+   "text": "pub fn next_cell(walkable:&BTreeSet<Cell>,current:Cell,target:Cell,speed:i32)->Cell{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__next_cell__1",
+   "fn": "next_cell",
+   "fn_end": 200,
+   "fn_start": 167,
+   "klass": "EARLYRET",
+   "line": 171,
+   "text": "return target;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__next_cell__2",
+   "fn": "next_cell",
+   "fn_end": 200,
+   "fn_start": 167,
+   "klass": "EARLYRET",
+   "line": 176,
+   "text": "return current;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__next_cell__1",
+   "fn": "next_cell",
+   "fn_end": 200,
+   "fn_start": 167,
+   "klass": "FILTER",
+   "line": 179,
+   "text": "let goals:Vec<Cell> =from_current.keys().filter(|cell|manhattan(target,**cell)==best_manhattan).copied().collect();"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__next_cell__2",
+   "fn": "next_cell",
+   "fn_end": 200,
+   "fn_start": 167,
+   "klass": "FILTER",
+   "line": 186,
+   "text": "from_current.iter().filter(|(cell,distance)|**distance<=speed&&to_target.contains_key(*cell)).map(|(cell,_)|*cell).min_by_key(|cell|(to_target[cell],*cell)).unw"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "ARBITRATE__next_cell__1",
+   "fn": "next_cell",
+   "fn_end": 200,
+   "fn_start": 167,
+   "klass": "ARBITRATE",
+   "line": 186,
+   "text": "from_current.iter().filter(|(cell,distance)|**distance<=speed&&to_target.contains_key(*cell)).map(|(cell,_)|*cell).min_by_key(|cell|(to_target[cell],*cell)).unw"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__read_line__201",
+   "fn": "read_line",
+   "fn_end": 206,
+   "fn_start": 201,
+   "klass": "GEN",
+   "line": 201,
+   "text": "pub fn read_line(reader:&mut impl BufRead)->Option<String>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__read_static_map__207",
+   "fn": "read_static_map",
+   "fn_end": 217,
+   "fn_start": 207,
+   "klass": "GEN",
+   "line": 207,
+   "text": "pub fn read_static_map(reader:&mut impl BufRead)->Option<StaticMap>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__parse_static_map__218",
+   "fn": "parse_static_map",
+   "fn_end": 244,
+   "fn_start": 218,
+   "klass": "GEN",
+   "line": 218,
+   "text": "pub fn parse_static_map(width:i32,height:i32,rows:&[String])->StaticMap{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__read_turn__245",
+   "fn": "read_turn",
+   "fn_end": 340,
+   "fn_start": 245,
+   "klass": "GEN",
+   "line": 245,
+   "text": "pub fn read_turn(reader:&mut impl BufRead,map:&StaticMap,turn:i32)->Option<GameState>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__read_turn__1",
+   "fn": "read_turn",
+   "fn_end": 340,
+   "fn_start": 245,
+   "klass": "EARLYRET",
+   "line": 253,
+   "text": "return None;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__read_turn__2",
+   "fn": "read_turn",
+   "fn_end": 340,
+   "fn_start": 245,
+   "klass": "EARLYRET",
+   "line": 263,
+   "text": "return None;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__read_turn__3",
+   "fn": "read_turn",
+   "fn_end": 340,
+   "fn_start": 245,
+   "klass": "EARLYRET",
+   "line": 277,
+   "text": "return None;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "TERM__read_turn__1",
+   "fn": "read_turn",
+   "fn_end": 340,
+   "fn_start": 245,
+   "klass": "TERM",
+   "line": 318,
+   "text": "#[derive(Clone,Debug)]struct Candidate{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__focus_type__341",
+   "fn": "focus_type",
+   "fn_end": 356,
+   "fn_start": 341,
+   "klass": "GEN",
+   "line": 341,
+   "text": "fn focus_type(view:&GameState)->PlantKind{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__focus_type__1",
+   "fn": "focus_type",
+   "fn_end": 356,
+   "fn_start": 341,
+   "klass": "FILTER",
+   "line": 342,
+   "text": "let starts:Vec<Cell> =ortho_neighbors(view.shacks[0]).iter().filter(|cell|view.walkable.contains(cell)).copied().collect();"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__focus_type__2",
+   "fn": "focus_type",
+   "fn_end": 356,
+   "fn_start": 341,
+   "klass": "FILTER",
+   "line": 344,
+   "text": "let sum=|kind:PlantKind|view.plants.iter().filter(|plant|plant.kind==kind).map(|plant|dist.get(&plant.cell).copied().unwrap_or(10_000)).sum::<i32>();"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__ceil_div__357",
+   "fn": "ceil_div",
+   "fn_end": 364,
+   "fn_start": 357,
+   "klass": "GEN",
+   "line": 357,
+   "text": "fn ceil_div(a:i32,b:i32)->i32{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__carry_total__365",
+   "fn": "carry_total",
+   "fn_end": 367,
+   "fn_start": 365,
+   "klass": "GEN",
+   "line": 365,
+   "text": "fn carry_total(unit:&Unit)->i32{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__carrying_any__368",
+   "fn": "carrying_any",
+   "fn_end": 370,
+   "fn_start": 368,
+   "klass": "GEN",
+   "line": 368,
+   "text": "fn carrying_any(unit:&Unit)->bool{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__can_train__400",
+   "fn": "can_train",
+   "fn_end": 408,
+   "fn_start": 400,
+   "klass": "GEN",
+   "line": 400,
+   "text": "fn can_train(view:&GameState,stats:Stats)->bool{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__can_train__1",
+   "fn": "can_train",
+   "fn_end": 408,
+   "fn_start": 400,
+   "klass": "FILTER",
+   "line": 401,
+   "text": "let n=view.units.iter().filter(|unit|unit.player==0).count()as i32;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__can_train__1",
+   "fn": "can_train",
+   "fn_end": 408,
+   "fn_start": 400,
+   "klass": "EARLYRET",
+   "line": 403,
+   "text": "return false;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__ticks_until_fruit__409",
+   "fn": "ticks_until_fruit",
+   "fn_end": 431,
+   "fn_start": 409,
+   "klass": "GEN",
+   "line": 409,
+   "text": "fn ticks_until_fruit(view:&GameState,plant:&Plant)->i32{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__ticks_until_fruit__1",
+   "fn": "ticks_until_fruit",
+   "fn_end": 431,
+   "fn_start": 409,
+   "klass": "EARLYRET",
+   "line": 411,
+   "text": "return 0;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__ticks_until_fruit__2",
+   "fn": "ticks_until_fruit",
+   "fn_end": 431,
+   "fn_start": 409,
+   "klass": "EARLYRET",
+   "line": 426,
+   "text": "return turns;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__predicted_opp_chop__509",
+   "fn": "predicted_opp_chop",
+   "fn_end": 521,
+   "fn_start": 509,
+   "klass": "GEN",
+   "line": 509,
+   "text": "fn predicted_opp_chop(view:&GameState,plant:&Plant)->i32{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__predicted_opp_chop__1",
+   "fn": "predicted_opp_chop",
+   "fn_end": 521,
+   "fn_start": 509,
+   "klass": "FILTER",
+   "line": 510,
+   "text": "let on_tree:i32=view.units.iter().filter(|unit|unit.player==1&&unit.cell==plant.cell).map(|unit|unit.stats.chop_power).sum();"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__predicted_opp_chop__1",
+   "fn": "predicted_opp_chop",
+   "fn_end": 521,
+   "fn_start": 509,
+   "klass": "EARLYRET",
+   "line": 512,
+   "text": "return on_tree;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__predict_tree__522",
+   "fn": "predict_tree",
+   "fn_end": 555,
+   "fn_start": 522,
+   "klass": "GEN",
+   "line": 522,
+   "text": "fn predict_tree(view:&GameState,plant:&Plant,turns:i32)->Option<PredictedTree>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__predict_tree__1",
+   "fn": "predict_tree",
+   "fn_end": 555,
+   "fn_start": 522,
+   "klass": "EARLYRET",
+   "line": 533,
+   "text": "return None;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__chop_outcome__556",
+   "fn": "chop_outcome",
+   "fn_end": 581,
+   "fn_start": 556,
+   "klass": "GEN",
+   "line": 556,
+   "text": "fn chop_outcome(view:&GameState,plant:&Plant,predicted:PredictedTree,chop_power:i32,)->Option<(i32,i32)>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__chop_outcome__1",
+   "fn": "chop_outcome",
+   "fn_end": 581,
+   "fn_start": 556,
+   "klass": "EARLYRET",
+   "line": 558,
+   "text": "return None;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__chop_outcome__2",
+   "fn": "chop_outcome",
+   "fn_end": 581,
+   "fn_start": 556,
+   "klass": "EARLYRET",
+   "line": 569,
+   "text": "return Some((turns,size));"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__picked_item__655",
+   "fn": "picked_item",
+   "fn_end": 658,
+   "fn_start": 655,
+   "klass": "GEN",
+   "line": 655,
+   "text": "fn picked_item(command:&str)->Option<usize>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__move_command__713",
+   "fn": "move_command",
+   "fn_end": 719,
+   "fn_start": 713,
+   "klass": "GEN",
+   "line": 713,
+   "text": "fn move_command(command:&str)->Option<(i32,Cell)>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__move_command__1",
+   "fn": "move_command",
+   "fn_end": 719,
+   "fn_start": 713,
+   "klass": "EARLYRET",
+   "line": 716,
+   "text": "return None;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__with_opening_policy__781",
+   "fn": "with_opening_policy",
+   "fn_end": 785,
+   "fn_start": 781,
+   "klass": "GEN",
+   "line": 781,
+   "text": "pub fn with_opening_policy(opening_policy:YamoOpeningPolicy)->Self{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__tuned_carry_regeneration_transit_idle_harvest__786",
+   "fn": "tuned_carry_regeneration_transit_idle_harvest",
+   "fn_end": 795,
+   "fn_start": 786,
+   "klass": "GEN",
+   "line": 786,
+   "text": "pub fn tuned_carry_regeneration_transit_idle_harvest()->Self{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__collection_eta__805",
+   "fn": "collection_eta",
+   "fn_end": 826,
+   "fn_start": 805,
+   "klass": "GEN",
+   "line": 805,
+   "text": "fn collection_eta(view:&GameState,item:usize,missing:i32)->i32{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__collection_eta__1",
+   "fn": "collection_eta",
+   "fn_end": 826,
+   "fn_start": 805,
+   "klass": "EARLYRET",
+   "line": 807,
+   "text": "return 0;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__collection_eta__1",
+   "fn": "collection_eta",
+   "fn_end": 826,
+   "fn_start": 805,
+   "klass": "FILTER",
+   "line": 809,
+   "text": "let starts:Vec<Cell> =ortho_neighbors(view.shacks[0]).into_iter().filter(|cell|view.walkable.contains(cell)).collect();"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__collection_eta__2",
+   "fn": "collection_eta",
+   "fn_end": 826,
+   "fn_start": 805,
+   "klass": "EARLYRET",
+   "line": 813,
+   "text": "return best.map_or(10_000,|d|missing*(2*d+2));"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__collection_eta__3",
+   "fn": "collection_eta",
+   "fn_end": 826,
+   "fn_start": 805,
+   "klass": "EARLYRET",
+   "line": 816,
+   "text": "PLUM=>PlantKind::Plum,LEMON=>PlantKind::Lemon,APPLE=>PlantKind::Apple,BANANA=>PlantKind::Banana,_=>return 10_000,"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__collection_eta__2",
+   "fn": "collection_eta",
+   "fn_end": 826,
+   "fn_start": 805,
+   "klass": "FILTER",
+   "line": 819,
+   "text": "view.plants.iter().filter(|plant|plant.kind==kind&&plant.health>0).filter_map(|plant|{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__opening_objective__827",
+   "fn": "opening_objective",
+   "fn_end": 837,
+   "fn_start": 827,
+   "klass": "GEN",
+   "line": 827,
+   "text": "fn opening_objective(view:&GameState,stats:Stats)->OpeningObjective{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__opening_objective__1",
+   "fn": "opening_objective",
+   "fn_end": 837,
+   "fn_start": 827,
+   "klass": "FILTER",
+   "line": 828,
+   "text": "let n=view.units.iter().filter(|unit|unit.player==0).count()as i32;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__opening_key__838",
+   "fn": "opening_key",
+   "fn_end": 847,
+   "fn_start": 838,
+   "klass": "GEN",
+   "line": 838,
+   "text": "fn opening_key(objective:&OpeningObjective,policy:YamoOpeningPolicy,)->(i32,i32,i32,i32,i32){"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__opening_options__848",
+   "fn": "opening_options",
+   "fn_end": 864,
+   "fn_start": 848,
+   "klass": "GEN",
+   "line": 848,
+   "text": "fn opening_options(view:&GameState,max_carry_capacity:i32,max_chop_power:i32,)->Vec<OpeningObjective>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__training_affordable__899",
+   "fn": "training_affordable",
+   "fn_end": 906,
+   "fn_start": 899,
+   "klass": "GEN",
+   "line": 899,
+   "text": "fn training_affordable(view:&GameState,stats:Stats)->bool{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__training_affordable__1",
+   "fn": "training_affordable",
+   "fn_end": 906,
+   "fn_start": 899,
+   "klass": "FILTER",
+   "line": 900,
+   "text": "let n=view.units.iter().filter(|unit|unit.player==0).count()as i32;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__training_affordable__1",
+   "fn": "training_affordable",
+   "fn_end": 906,
+   "fn_start": 899,
+   "klass": "EARLYRET",
+   "line": 902,
+   "text": "return false;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__strongest_affordable__907",
+   "fn": "strongest_affordable",
+   "fn_end": 913,
+   "fn_start": 907,
+   "klass": "GEN",
+   "line": 907,
+   "text": "fn strongest_affordable(view:&GameState,policy:YamoOpeningPolicy,)->Option<OpeningObjective>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__strongest_affordable__1",
+   "fn": "strongest_affordable",
+   "fn_end": 913,
+   "fn_start": 907,
+   "klass": "FILTER",
+   "line": 908,
+   "text": "Self::opening_options(view,policy.max_carry_capacity,policy.max_chop_power).into_iter().filter(|objective|Self::training_affordable(view,objective.stats)).map(|"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "ARBITRATE__strongest_affordable__1",
+   "fn": "strongest_affordable",
+   "fn_end": 913,
+   "fn_start": 907,
+   "klass": "ARBITRATE",
+   "line": 912,
+   "text": ").max_by_key(|objective|Self::opening_key(objective,policy))"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__fallback_second_troll__942",
+   "fn": "fallback_second_troll",
+   "fn_end": 946,
+   "fn_start": 942,
+   "klass": "GEN",
+   "line": 942,
+   "text": "fn fallback_second_troll()->Stats{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__unique_shack_door__956",
+   "fn": "unique_shack_door",
+   "fn_end": 959,
+   "fn_start": 956,
+   "klass": "GEN",
+   "line": 956,
+   "text": "fn unique_shack_door(view:&GameState)->Option<Cell>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__unique_shack_door__1",
+   "fn": "unique_shack_door",
+   "fn_end": 959,
+   "fn_start": 956,
+   "klass": "FILTER",
+   "line": 957,
+   "text": "let doors:Vec<Cell> =ortho_neighbors(view.shacks[0]).into_iter().filter(|cell|view.walkable.contains(cell)).collect();"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__forced_move__960",
+   "fn": "forced_move",
+   "fn_end": 964,
+   "fn_start": 960,
+   "klass": "GEN",
+   "line": 960,
+   "text": "fn forced_move(unit:&Unit,cell:Cell)->Candidate{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "TERM__forced_move__1",
+   "fn": "forced_move",
+   "fn_end": 964,
+   "fn_start": 960,
+   "klass": "TERM",
+   "line": 960,
+   "text": "fn forced_move(unit:&Unit,cell:Cell)->Candidate{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "TERM__forced_move__2",
+   "fn": "forced_move",
+   "fn_end": 964,
+   "fn_start": 960,
+   "klass": "TERM",
+   "line": 961,
+   "text": "Candidate{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__carries_committed_fruit__965",
+   "fn": "carries_committed_fruit",
+   "fn_end": 967,
+   "fn_start": 965,
+   "klass": "GEN",
+   "line": 965,
+   "text": "fn carries_committed_fruit(&self,unit:&Unit)->bool{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__planned_egress__968",
+   "fn": "planned_egress",
+   "fn_end": 977,
+   "fn_start": 968,
+   "klass": "GEN",
+   "line": 968,
+   "text": "fn planned_egress(view:&GameState,unit:&Unit,options:&[Candidate],forbidden:&BTreeSet<Cell>,)->Option<(Cell,Target)>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "ARBITRATE__planned_egress__1",
+   "fn": "planned_egress",
+   "fn_end": 977,
+   "fn_start": 968,
+   "klass": "ARBITRATE",
+   "line": 969,
+   "text": "let candidate=options.iter().max_by(|a,b|a.score.total_cmp(&b.score))?;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__carried_fruit__1201",
+   "fn": "carried_fruit",
+   "fn_end": 1203,
+   "fn_start": 1201,
+   "klass": "GEN",
+   "line": 1201,
+   "text": "fn carried_fruit(unit:&Unit)->Option<PlantKind>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__inventory_fruits__1204",
+   "fn": "inventory_fruits",
+   "fn_end": 1206,
+   "fn_start": 1204,
+   "klass": "GEN",
+   "line": 1204,
+   "text": "fn inventory_fruits(view:&GameState)->Vec<PlantKind>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__inventory_fruits__1",
+   "fn": "inventory_fruits",
+   "fn_end": 1206,
+   "fn_start": 1204,
+   "klass": "FILTER",
+   "line": 1205,
+   "text": "[(view.inventories[0][BANANA],PlantKind::Banana),(view.inventories[0][PLUM],PlantKind::Plum),(view.inventories[0][LEMON],PlantKind::Lemon),(view.inventories[0]["
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__conversion_chop_turns__1207",
+   "fn": "conversion_chop_turns",
+   "fn_end": 1232,
+   "fn_start": 1207,
+   "klass": "GEN",
+   "line": 1207,
+   "text": "fn conversion_chop_turns(view:&GameState,cell:Cell,kind:PlantKind,chop:i32)->i32{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__conversion_chop_turns__1",
+   "fn": "conversion_chop_turns",
+   "fn_end": 1232,
+   "fn_start": 1207,
+   "klass": "EARLYRET",
+   "line": 1209,
+   "text": "return 10_000;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__conversion_chop_turns__2",
+   "fn": "conversion_chop_turns",
+   "fn_end": 1232,
+   "fn_start": 1207,
+   "klass": "EARLYRET",
+   "line": 1220,
+   "text": "return turns;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__endgame_candidates__1233",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "GEN",
+   "line": 1233,
+   "text": "fn endgame_candidates(view:&GameState,unit:&Unit,type_to_cut:Option<PlantKind>,safe_regeneration:bool,opponent_eta_penalty:i32,)->Vec<Candidate>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__endgame_candidates__1",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "FILTER",
+   "line": 1236,
+   "text": "let shack_starts:Vec<Cell> =ortho_neighbors(view.shacks[0]).into_iter().filter(|cell|view.walkable.contains(cell)).collect();"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__endgame_candidates__2",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "FILTER",
+   "line": 1240,
+   "text": "for cell in view.walkable.iter().filter(|cell|{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__endgame_candidates__3",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "FILTER",
+   "line": 1251,
+   "text": "continue;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "TERM__endgame_candidates__1",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "TERM",
+   "line": 1254,
+   "text": "out.push(Candidate{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__endgame_candidates__1",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "EARLYRET",
+   "line": 1272,
+   "text": "return out;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__endgame_candidates__2",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "EARLYRET",
+   "line": 1275,
+   "text": "return out;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__endgame_candidates__3",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "EARLYRET",
+   "line": 1279,
+   "text": "return out;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__endgame_candidates__4",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "EARLYRET",
+   "line": 1285,
+   "text": "return out;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "TERM__endgame_candidates__2",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "TERM",
+   "line": 1298,
+   "text": "out.push(Candidate{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__endgame_candidates__4",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "FILTER",
+   "line": 1306,
+   "text": "continue;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__endgame_candidates__5",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "FILTER",
+   "line": 1310,
+   "text": "continue;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__endgame_candidates__6",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "FILTER",
+   "line": 1316,
+   "text": "continue;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__endgame_candidates__7",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "FILTER",
+   "line": 1321,
+   "text": "continue;"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "TERM__endgame_candidates__3",
+   "fn": "endgame_candidates",
+   "fn_end": 1339,
+   "fn_start": 1233,
+   "klass": "TERM",
+   "line": 1330,
+   "text": "out.push(Candidate{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__idle_harvest_candidates__1340",
+   "fn": "idle_harvest_candidates",
+   "fn_end": 1370,
+   "fn_start": 1340,
+   "klass": "GEN",
+   "line": 1340,
+   "text": "fn idle_harvest_candidates(view:&GameState,unit:&Unit,)->Vec<Candidate>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "EARLYRET__idle_harvest_candidates__1",
+   "fn": "idle_harvest_candidates",
+   "fn_end": 1370,
+   "fn_start": 1340,
+   "klass": "EARLYRET",
+   "line": 1342,
+   "text": "return Vec::new();"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__idle_harvest_candidates__1",
+   "fn": "idle_harvest_candidates",
+   "fn_end": 1370,
+   "fn_start": 1340,
+   "klass": "FILTER",
+   "line": 1345,
+   "text": "let shack_starts:Vec<Cell> =ortho_neighbors(view.shacks[0]).into_iter().filter(|cell|view.walkable.contains(cell)).collect();"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__idle_harvest_candidates__2",
+   "fn": "idle_harvest_candidates",
+   "fn_end": 1370,
+   "fn_start": 1340,
+   "klass": "FILTER",
+   "line": 1348,
+   "text": "view.plants.iter().filter(|plant|{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "TERM__idle_harvest_candidates__1",
+   "fn": "idle_harvest_candidates",
+   "fn_end": 1370,
+   "fn_start": 1340,
+   "klass": "TERM",
+   "line": 1358,
+   "text": "(trip<=turns_left).then(||Candidate{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__endgame__1371",
+   "fn": "endgame",
+   "fn_end": 1375,
+   "fn_start": 1371,
+   "klass": "GEN",
+   "line": 1371,
+   "text": "fn endgame(view:&GameState)->bool{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__commands__1376",
+   "fn": "commands",
+   "fn_end": 1444,
+   "fn_start": 1376,
+   "klass": "GEN",
+   "line": 1376,
+   "text": "fn commands(&mut self,view:&GameState)->Vec<String>{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__commands__1",
+   "fn": "commands",
+   "fn_end": 1444,
+   "fn_start": 1376,
+   "klass": "FILTER",
+   "line": 1390,
+   "text": "let mut my_units:Vec<&Unit> =view.units.iter().filter(|unit|unit.player==0).collect();"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "ARBITRATE__commands__1",
+   "fn": "commands",
+   "fn_end": 1444,
+   "fn_start": 1376,
+   "klass": "ARBITRATE",
+   "line": 1391,
+   "text": "my_units.sort_by_key(|unit|unit.id);"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "FILTER__commands__2",
+   "fn": "commands",
+   "fn_end": 1444,
+   "fn_start": 1376,
+   "klass": "FILTER",
+   "line": 1417,
+   "text": "candidates.retain(|candidate|!candidate.command.starts_with(\"PICK \"));"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "TERM__commands__1",
+   "fn": "commands",
+   "fn_end": 1444,
+   "fn_start": 1376,
+   "klass": "TERM",
+   "line": 1421,
+   "text": "candidates.push(Candidate{"
+  },
+  {
+   "covered_by": null,
+   "derived_id": "GEN__commands__1445",
+   "fn": "commands",
+   "fn_end": 1457,
+   "fn_start": 1445,
+   "klass": "GEN",
+   "line": 1445,
+   "text": "fn commands(&mut self,view:&GameState)->Vec<String>;"
+  }
+ ],
+ "uncovered_count": 117
+}

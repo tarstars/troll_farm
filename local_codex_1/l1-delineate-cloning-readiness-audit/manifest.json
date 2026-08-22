@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "task": "20260731-l1-delineate-cloning-readiness-audit",
+  "generated_utc": "2026-07-31T01:30:00Z",
+  "base_commit": "e892d3ab6eca7e439ba3d0123edea6a4e83fd61b",
+  "verdict": "DISTINCT_PRIMITIVE_ONLY",
+  "inputs": {
+    "data/processed/games.jsonl": "12f72265c2af19d69ddf9dad053ccc33b3c7f799182b23ca973210429500a73d",
+    "data/processed/stats.json": "21211747abfc7d03d30a48db726d2ff5ab16f8d873a897ebee92e993b1a039bc",
+    "data/raw/battles/6479768.json": "b7cee2d72052d7c97528f4844f979c99197eecc1e2fe366c553a06b8f2ae0a18",
+    "data/raw/leaderboard.json": "36975cacc03d272cff2e0a12a98758704693552aea565ba448e21620e89500dc",
+    "data/analysis/live-agent-6553250/top-policy-objective-study-2026-07-18.json": "7ee3002414d467478ac5ac63d98f25a35c65c9f3f58a16e97c09cc6dccbceda1",
+    "data/analysis/live-agent-6553250/norxondor-offline-distillation-and-native-controller-2026-07-18.md": "3c7751656c47a299271390a5750fb0fe3b9c29186b006d499037f7ef38bb55c9",
+    "data/analysis/live-agent-6553250/d41a-macro-bc-result.json": "9cb8905a75d408c71658068c6b09bb48937cc65e3e1307cea4e917849ae4b68d",
+    "delineate-gist-e8a005ddd7568d71bf1523a8c62202511e55bd86": "18265467b11b8f08828985aaef8c7d33716404e6b950fb3f9a4ff3470962fc36",
+    "cgauto/top_policy_objective_study.py": "f8d20e9e401dad18ca03a3b62ec5ee8ff62a527d86eb44b5e32d07ad852f3fba",
+    "cgauto/top_player_opening_analysis.py": "7a29292677cb310cdc94ffcd4035f5b28744d704f970aac1e855d911dd858fcd",
+    "rust/src/bin/yamo_orchard_live.rs": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "artifacts": {
+    "docs/l1-delineate-cloning-readiness-protocol-2026-07-31.md": "dff3ef1dcadfb89885135321adc8bd78e8c439b5c5b16757a766d73ddad12bdd",
+    "data/analysis/live-agent-6553250/l1-delineate-cloning-readiness-audit-result-2026-07-31.json": "7c296490ba55a68731fd1b73ec4995c05ebae08774ca7c81caa598f66f46fdd3",
+    "data/analysis/live-agent-6553250/l1-delineate-cloning-readiness-audit-result-2026-07-31.md": "ff56b770d205705692652eb08056bbe5685b6bbdaa803e6e0331bd50864df035"
+  },
+  "execution": {
+    "mode": "read-only",
+    "decoder_games": 199,
+    "turn_matches": 199,
+    "unknown_diff_updates": 0,
+    "bulk_write": false,
+    "model_or_fit": false,
+    "game_or_testsession": false,
+    "source_change": false,
+    "arena_action": false
+  }
+}

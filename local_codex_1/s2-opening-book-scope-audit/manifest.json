@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "task": "20260731-s2-opening-book-scope-audit",
+  "verdict": "DEPENDENCY_GATED_REPRESENTATION_BLOCKED",
+  "method": "canonical written-evidence matrix; no game, fit, source, or map execution",
+  "artifacts": {
+    "protocol": {
+      "path": "docs/s2-opening-book-scope-protocol-2026-07-31.md",
+      "sha256": "a3b69565329821da9392af289c65491e3182b9fa35569fce6ba4d227dba7ebf7"
+    },
+    "compact_result": {
+      "path": "data/analysis/live-agent-6553250/s2-opening-book-scope-audit-result-2026-07-31.json",
+      "sha256": "928c6a1d877ef930d89c4bdda50e016084718f5cf3b342d719e3282c9da6d7b3"
+    },
+    "report": {
+      "path": "data/analysis/live-agent-6553250/s2-opening-book-scope-audit-result-2026-07-31.md",
+      "sha256": "e3cec0b20ea41a058201c948a0fc4c218a05af8cff817f8c6b699925e0696406"
+    }
+  },
+  "validation": {
+    "json_parse": "ok",
+    "action_library_rows": 7,
+    "map_representation_rows": 5,
+    "canonical_citations_present": true,
+    "opponent_families_relabelled_as_map_classes": false,
+    "consumed_panels_relabelled_as_holdouts": false,
+    "exact_control_sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+    "sacred_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "requirements": {
+    "non_closed_sequence_library_with_terminal_value": false,
+    "pre_action_map_representation_with_prospective_transfer": false,
+    "runtime_lookup_is_current_blocker": false
+  },
+  "decision": {
+    "opening_enumeration": false,
+    "feature_fit": false,
+    "book": false,
+    "source_change": false,
+    "candidate": false,
+    "arena_action": false,
+    "reopen_after": "material N4-to-E1 terminal sequence value plus new representation transfer on disjoint official maps and held opponents"
+  }
+}

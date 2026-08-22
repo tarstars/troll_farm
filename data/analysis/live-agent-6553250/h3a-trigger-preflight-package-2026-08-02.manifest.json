@@ -1,0 +1,328 @@
+{
+  "cohorts": {
+    "catastrophe": [
+      897780891,
+      897781216,
+      897781413,
+      897781719,
+      897781840,
+      897781987,
+      897782076,
+      897782213,
+      897782302,
+      897782366
+    ],
+    "matched_win": [
+      897782128,
+      897782246,
+      897781650,
+      897781674,
+      897782379,
+      897782201,
+      897782068
+    ]
+  },
+  "created_utc": "2026-08-02T14:40:13Z",
+  "current_agent_id": 6589709,
+  "exact_ids_only": true,
+  "files": {
+    "h3a-trigger-preflight-package-2026-08-02.games.jsonl.gz": {
+      "bytes": 702144,
+      "compression": "gzip; deterministic mtime=0",
+      "jsonl_uncompressed_bytes": 4959740,
+      "rows": 17,
+      "sha256": "e3029c7e506e3da23c7d2dba5547cbb219df435b9924208db0c3a01701d2c49b",
+      "uncompressed_sha256": "ab7fa9a33fa052f3a0cdb5b20e8a77e4e2b6091d5f338cb8013b2e1afee00210"
+    }
+  },
+  "games": [
+    {
+      "agent_ids": [
+        6493247,
+        6589709
+      ],
+      "cohort": "catastrophe",
+      "current_seat": 1,
+      "exported_frames": 601,
+      "final_margin": -166,
+      "game_id": 897780891,
+      "logical_raw_path": "data/raw/games/897780891.json",
+      "raw_bytes": 336584,
+      "raw_sha256": "bf44b27f2a0058523e861fd9dbca7fab2e9ba5cc52f6fba6c6ce2de648183a16",
+      "split": "discovery",
+      "turns": 300
+    },
+    {
+      "agent_ids": [
+        6505284,
+        6589709
+      ],
+      "cohort": "catastrophe",
+      "current_seat": 1,
+      "exported_frames": 601,
+      "final_margin": -126,
+      "game_id": 897781216,
+      "logical_raw_path": "data/raw/games/897781216.json",
+      "raw_bytes": 312863,
+      "raw_sha256": "f5d40d9b9ff95541dd15e9b3e299b50daf9b2a9acf4ab239f855fa3285c0eed0",
+      "split": "calibration_only",
+      "turns": 300
+    },
+    {
+      "agent_ids": [
+        6589709,
+        6479842
+      ],
+      "cohort": "catastrophe",
+      "current_seat": 0,
+      "exported_frames": 601,
+      "final_margin": -219,
+      "game_id": 897781413,
+      "logical_raw_path": "data/raw/games/897781413.json",
+      "raw_bytes": 328755,
+      "raw_sha256": "fd817ecba9a0cb951afb0a329b69941d286215ff665c9cbdb5957b85c8fe5f59",
+      "split": "calibration_only",
+      "turns": 300
+    },
+    {
+      "agent_ids": [
+        6589709,
+        6479553
+      ],
+      "cohort": "catastrophe",
+      "current_seat": 0,
+      "exported_frames": 601,
+      "final_margin": -416,
+      "game_id": 897781719,
+      "logical_raw_path": "data/raw/games/897781719.json",
+      "raw_bytes": 338256,
+      "raw_sha256": "e209309dfd60d8c4b482ca8f6d83e8665bbe4aa0ea0cafe15e9a976833045cb3",
+      "split": "validation",
+      "turns": 300
+    },
+    {
+      "agent_ids": [
+        6479842,
+        6589709
+      ],
+      "cohort": "catastrophe",
+      "current_seat": 1,
+      "exported_frames": 601,
+      "final_margin": -141,
+      "game_id": 897781840,
+      "logical_raw_path": "data/raw/games/897781840.json",
+      "raw_bytes": 370323,
+      "raw_sha256": "be9b8f7caf569e4cadc70a7e0bf01573174dac18ba5dd432cc0f506433622e9e",
+      "split": "discovery",
+      "turns": 300
+    },
+    {
+      "agent_ids": [
+        6479863,
+        6589709
+      ],
+      "cohort": "catastrophe",
+      "current_seat": 1,
+      "exported_frames": 601,
+      "final_margin": -100,
+      "game_id": 897781987,
+      "logical_raw_path": "data/raw/games/897781987.json",
+      "raw_bytes": 301796,
+      "raw_sha256": "50f0ebdcb88caf4c546308a60367594927aed3805e7b9225885b0f0ccea9dc9e",
+      "split": "calibration_only",
+      "turns": 300
+    },
+    {
+      "agent_ids": [
+        6480515,
+        6589709
+      ],
+      "cohort": "catastrophe",
+      "current_seat": 1,
+      "exported_frames": 601,
+      "final_margin": -115,
+      "game_id": 897782076,
+      "logical_raw_path": "data/raw/games/897782076.json",
+      "raw_bytes": 337377,
+      "raw_sha256": "18a22b3df8164838d3deeb96033bf849cd5b0289fccfcb3e7e6a5e04ae6c7278",
+      "split": "discovery",
+      "turns": 300
+    },
+    {
+      "agent_ids": [
+        6589709,
+        6491567
+      ],
+      "cohort": "catastrophe",
+      "current_seat": 0,
+      "exported_frames": 601,
+      "final_margin": -113,
+      "game_id": 897782213,
+      "logical_raw_path": "data/raw/games/897782213.json",
+      "raw_bytes": 276473,
+      "raw_sha256": "07c08bd6347edb4437c934cd6449d78c6287162495442b861acd89af232b7282",
+      "split": "discovery",
+      "turns": 300
+    },
+    {
+      "agent_ids": [
+        6589709,
+        6483325
+      ],
+      "cohort": "catastrophe",
+      "current_seat": 0,
+      "exported_frames": 601,
+      "final_margin": -169,
+      "game_id": 897782302,
+      "logical_raw_path": "data/raw/games/897782302.json",
+      "raw_bytes": 297964,
+      "raw_sha256": "bd4e1ba7eed658e9fd80d9ade30ca977e3dd3a0e6d3163a39171129ff9b33a74",
+      "split": "calibration_only",
+      "turns": 300
+    },
+    {
+      "agent_ids": [
+        6589709,
+        6479863
+      ],
+      "cohort": "catastrophe",
+      "current_seat": 0,
+      "exported_frames": 601,
+      "final_margin": -109,
+      "game_id": 897782366,
+      "logical_raw_path": "data/raw/games/897782366.json",
+      "raw_bytes": 309965,
+      "raw_sha256": "1a19508cab51ff1f2732c518336bc66c3de8d986139d3339e1f3dd9cbc967937",
+      "split": "calibration_only",
+      "turns": 300
+    },
+    {
+      "agent_ids": [
+        6589709,
+        6479553
+      ],
+      "cohort": "matched_win",
+      "current_seat": 0,
+      "exported_frames": 601,
+      "final_margin": 158,
+      "game_id": 897782128,
+      "logical_raw_path": "data/raw/games/897782128.json",
+      "raw_bytes": 231251,
+      "raw_sha256": "c2b24650099d0a2adc789245553bd2c10314163ff0074824b91fd38c21a0e2f5",
+      "split": "calibration_only",
+      "turns": 300
+    },
+    {
+      "agent_ids": [
+        6479553,
+        6589709
+      ],
+      "cohort": "matched_win",
+      "current_seat": 1,
+      "exported_frames": 601,
+      "final_margin": 157,
+      "game_id": 897782246,
+      "logical_raw_path": "data/raw/games/897782246.json",
+      "raw_bytes": 220688,
+      "raw_sha256": "7a3f1d95428174f2512b72333170072fde2a51010cd06672e200ec2f5e33a7ab",
+      "split": "validation",
+      "turns": 300
+    },
+    {
+      "agent_ids": [
+        6479553,
+        6589709
+      ],
+      "cohort": "matched_win",
+      "current_seat": 1,
+      "exported_frames": 601,
+      "final_margin": 194,
+      "game_id": 897781650,
+      "logical_raw_path": "data/raw/games/897781650.json",
+      "raw_bytes": 225515,
+      "raw_sha256": "481cfceca70335c8349dc80562870decda2ea82bb6183cc1b6aa1328d09529c3",
+      "split": "calibration_only",
+      "turns": 300
+    },
+    {
+      "agent_ids": [
+        6479553,
+        6589709
+      ],
+      "cohort": "matched_win",
+      "current_seat": 1,
+      "exported_frames": 601,
+      "final_margin": 91,
+      "game_id": 897781674,
+      "logical_raw_path": "data/raw/games/897781674.json",
+      "raw_bytes": 304359,
+      "raw_sha256": "ed44f203375caf398f2ae3c4f51fa1575c21ce21f56d9e85345e9d549d2880dd",
+      "split": "calibration_only",
+      "turns": 300
+    },
+    {
+      "agent_ids": [
+        6589709,
+        6479553
+      ],
+      "cohort": "matched_win",
+      "current_seat": 0,
+      "exported_frames": 601,
+      "final_margin": 207,
+      "game_id": 897782379,
+      "logical_raw_path": "data/raw/games/897782379.json",
+      "raw_bytes": 278072,
+      "raw_sha256": "0b2d696c684d4e264c53f6d6764d701bb787b62384f1e6d89a7a6081e2d1d64f",
+      "split": "calibration_only",
+      "turns": 300
+    },
+    {
+      "agent_ids": [
+        6589709,
+        6491567
+      ],
+      "cohort": "matched_win",
+      "current_seat": 0,
+      "exported_frames": 601,
+      "final_margin": 147,
+      "game_id": 897782201,
+      "logical_raw_path": "data/raw/games/897782201.json",
+      "raw_bytes": 215895,
+      "raw_sha256": "65525c08bb0c3e24dcaa1dd64300403d0e120abd24acbe9a1997ff20cb21815c",
+      "split": "calibration_only",
+      "turns": 300
+    },
+    {
+      "agent_ids": [
+        6589709,
+        6491567
+      ],
+      "cohort": "matched_win",
+      "current_seat": 0,
+      "exported_frames": 601,
+      "final_margin": 119,
+      "game_id": 897782068,
+      "logical_raw_path": "data/raw/games/897782068.json",
+      "raw_bytes": 278092,
+      "raw_sha256": "b2663d3e078c7f9b702939a94dfed03cdf0b298471c22c51fff378f258eb9f0f",
+      "split": "calibration_only",
+      "turns": 300
+    }
+  ],
+  "membership_csv": {
+    "logical_path": "data/analysis/live-agent-6553250/top-player-new-games-shared-2026-08-02.sides.csv",
+    "sha256": "e4e4923446b6449dca35999fc83e6883cdc78b24fa4f2d17b957e394c1068883"
+  },
+  "omitted_raw_fields": [
+    "agents[].codingamer.userId",
+    "agents[].codingamer.avatar",
+    "metadata",
+    "tooltips"
+  ],
+  "raw_total_bytes": 4964228,
+  "schema": "One JSON object per exact game. Public referee input and ordered frames are preserved; agent identity is reduced to index, agentId, pseudonym, arena score, and validity.",
+  "schema_version": 1,
+  "sealed_data_included": false,
+  "source_logical_root": "data/raw/games",
+  "task_id": "20260802-h3a-conditioned-value-unblock"
+}

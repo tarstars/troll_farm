@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "scope": "compact exact-live comparator-only deterministic local audit summary; not an Arena predictor or candidate",
+  "verdict": "KEEP_LEXICOGRAPHIC",
+  "control": {
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+    "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+  },
+  "alternate": {
+    "persistent": false,
+    "replacement_count": 1,
+    "from": ".then_with(||a.cmp(b))",
+    "to": ".then_with(||b.cmp(a))",
+    "sha256": "34b4d0dcb185a4d2f4a056fd6030c9ba0ab5c3ba744dd2ac20cf82091732a6a5"
+  },
+  "runtime": {
+    "child_only_determinization": true,
+    "clock_quantum_ns": 1000000,
+    "deterministic_entropy": true,
+    "shim_source_sha256": "52a879df0a3c034c202d18ded300c634feb822e17c9f335946e64552ab71bf2a",
+    "bot_source_mutation": false
+  },
+  "census": {
+    "seed_range": [
+      0,
+      999
+    ],
+    "geometry_eligible_seeds_per_seat": 57,
+    "geometry_eligible_sides": 114,
+    "unique_best_sides": 94,
+    "two_way_tied_sides": 20,
+    "tied_seeds": [
+      31,
+      91,
+      246,
+      364,
+      405,
+      568,
+      598,
+      652,
+      932,
+      966
+    ],
+    "seat_symmetric": true
+  },
+  "coverage": {
+    "paired_rows": 152,
+    "tied_rows": 120,
+    "sentinel_rows": 32,
+    "unique_keys": 152,
+    "complete": true,
+    "stderr_bytes": 0,
+    "malformed_commands": 0
+  },
+  "sentinel_integrity": {
+    "sentinel_seeds": 16,
+    "exact": 16,
+    "mismatches": 0
+  },
+  "mechanism": {
+    "status": "ACTIVE_TIE",
+    "divergent_seeds": 10,
+    "divergent_policy_cells_by_seat": [
+      51,
+      44
+    ],
+    "divergent_families": 6,
+    "all_gates_pass": true
+  },
+  "value": {
+    "tied_panel_mean_margin_delta": -8.55,
+    "exact_1000_map_weighted_margin_delta": -0.0855,
+    "tied_panel_seat_margin_deltas": [
+      -7.666666666666667,
+      -9.433333333333334
+    ],
+    "family_margin_deltas": {
+      "motion": -2.3,
+      "taskplan": -6.05,
+      "race": -0.8,
+      "yield": -1.6,
+      "ringfix3": -26.65,
+      "chopharvest": -13.9
+    },
+    "positive_families": 0,
+    "worst_family_margin_delta": -26.65,
+    "tied_panel_own_score_delta": -10.8,
+    "exact_1000_map_weighted_own_score_delta": -0.108,
+    "tied_panel_opponent_score_delta": -2.25,
+    "exact_1000_map_weighted_opponent_score_delta": -0.0225,
+    "tied_panel_wood_edge_delta": 0.13333333333333333,
+    "exact_1000_map_weighted_wood_edge_delta": 0.0013333333333333333
+  },
+  "integrity_hashes": {
+    "tied_rows_sha256": "1bf99fbc9cd949004390d872037aaf554a1db137f7cf155702a9a09f6de9e70f",
+    "sentinel_rows_sha256": "d4a100297d9a538869c021e6c031fdaa407c9262f2096c1b9c686385a6f7d6fc",
+    "delta_records_sha256": "aa66041cacd7e9ed3340f281fb8e2833096af184280fb64fd73edea74772418e",
+    "jobs_8_full_json_sha256": "28109c744cfe1b84619e31e5fd0f99d3a145edd6d95d413b8cf0c1053c6d0ec2",
+    "jobs_1_full_json_sha256": "0ed4a49d6896a5cf9b01c698687a5ad2698728444e0484719f4fe99cf7d1d629",
+    "normalized_payloads_excluding_jobs_exact": true
+  },
+  "decision": {
+    "keep_current_lexicographic_tie_break": true,
+    "candidate_authorized": false,
+    "arena_action_authorized": false,
+    "fresh_or_sealed_maps_opened": false
+  }
+}

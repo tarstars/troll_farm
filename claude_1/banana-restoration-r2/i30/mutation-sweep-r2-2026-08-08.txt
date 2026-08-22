@@ -1,0 +1,58 @@
+I-30 revision r2 -- mutation sweep
+Date: 2026-08-08
+Ruling: chatgpt_1/i30-d1-d5-spec-ruling-2026-08-08.md
+
+Method: each mutation is applied to a scratch copy of the four I-30 modules,
+then 'python3 -m unittest test_i30_invariant' is run against the copy. The
+working tree is never mutated.
+
+== A. the new D1/D5 logic (this revision) ==
+
+M1 split tie-break restored (D5)                           CAUGHT    FAILED (failures=2)
+        by test_multi_source_deposit_with_concurrent_withdrawal_is_unknown
+        by test_same_turn_deposit_and_withdrawal_is_unknown
+M2 FIFO partial-take tie-break restored (D5)               CAUGHT    FAILED (failures=1)
+        by test_class_swap_pair_is_indistinguishable_so_both_are_unknown
+M3 unit-id assignment tie-break restored (D5)              CAUGHT    FAILED (failures=1)
+        by test_deposit_unit_assignment_across_two_units_is_unknown
+M4 drop the non-identifiable gate (D5)                     CAUGHT    FAILED (failures=4)
+        by test_class_swap_pair_is_indistinguishable_so_both_are_unknown
+        by test_deposit_unit_assignment_across_two_units_is_unknown
+        by test_multi_source_deposit_with_concurrent_withdrawal_is_unknown
+        by test_same_turn_deposit_and_withdrawal_is_unknown
+M5 poison only the taken atoms, not the multiset (D5)      CAUGHT    FAILED (failures=1)
+        by test_class_swap_pair_is_indistinguishable_so_both_are_unknown
+M6 dep_* silently redefined as net again (D1)              CAUGHT    FAILED (failures=1)
+        by test_run_ledger_names_gross_withdrawal_and_net_separately
+M7 identity back on gross instead of net (D1)              CAUGHT    FAILED (failures=2)
+        by test_gross_production_is_a_separate_mandatory_diagnostic
+        by test_run_ledger_exercises_a_real_withdrawal
+M8 unqualified bound metric name accepted again (D1)       CAUGHT    FAILED (failures=2)
+        by test_an_ambiguous_metric_makes_the_pair_gate_unready
+        by test_unqualified_metric_names_are_rejected
+M9 unknown-gross clause dropped from the provenance gate (D1) CAUGHT    FAILED (failures=1)
+        by test_cancelling_unknown_deposit_and_withdrawal_still_fails_closed
+M10 schema version not bumped                              CAUGHT    FAILED (failures=1)
+        by test_result_schema_is_versioned_and_bumped
+M11 PLANT seed no longer excluded from bank-flow candidates CAUGHT    FAILED (failures=2)
+        by test_a_plant_seed_at_a_bank_cell_does_not_trip_the_gate
+        by test_the_valid_fixtures_are_unaffected_by_the_hooks
+
+== B. controls carried over from the first implementation ==
+
+L1 WOOD score weight 4 -> 1                                CAUGHT    FAILED (failures=1)
+L2 CHOP wood always natural                                CAUGHT    FAILED (failures=1)
+L3 opponent assets classified natural                      CAUGHT    FAILED (failures=5)
+L4 drop the unknown-provenance gate                        CAUGHT    FAILED (failures=4)
+L5 drop the conservation-residual gate                     CAUGHT    FAILED (failures=1)
+L6 drop the pair-identity gate                             CAUGHT    FAILED (failures=1)
+L7 allow PASS without owner freeze                         CAUGHT    FAILED (failures=2)
+L8 TRAIN bill not charged                                  CAUGHT    FAILED (failures=2)
+L9 windfall drops the -D_TRAIN term                        CAUGHT    FAILED (failures=1)
+L10 dead asset may launder a later atom                    CAUGHT    FAILED (failures=1)
+L11 mixed planter occupancy resolved to opponent           CAUGHT    FAILED (failures=1)
+L12 withdrawals ignored entirely (pre-D1 gross-only identity) CAUGHT    FAILED (failures=9)
+
+23 of 23 mutations caught. L10 and L11 were reported UNRESOLVED in the
+first implementation report (hardening justified by reasoning, not by any
+fixture); the new a4 and a5 fixtures now cover them.

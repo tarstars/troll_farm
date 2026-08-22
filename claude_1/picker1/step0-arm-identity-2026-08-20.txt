@@ -1,0 +1,22 @@
+cure-C (Door-1 floor, Phase-1 pinned subject)
+  cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs
+  sha256 ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1
+Door-1 candidate (challenger)
+  claude_1/chop4c/candidate-door1.rs
+  sha256 547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0
+
+whole-file diff:
+  changed lines: 8  hunks: 1
+
+selection-region identity:
+  IDENTICAL  select() block  (fn wait .. fn move_command) sha256=8978fca0f9e8375b bytes=3626
+  IDENTICAL  candidate assembly (by_id .. select call)    sha256=f7227b5d8cc18f3d bytes=2498
+  IDENTICAL  Candidate/Target types                       sha256=7e7ec38954f68d49 bytes=270
+
+reach of the premise, stated precisely:
+  The selection CODE is identical in both arms. The one changed hunk is in
+  `predicted_opp_chop`, which feeds `predict_tree`, which feeds candidate SCORES —
+  so select()'s INPUTS can differ between arms wherever that forecast participates.
+  The mechanism (which clause benches, which term dominates) is therefore arm-
+  independent; the per-turn ARITHMETIC below is pinned to the cure-C subject, which
+  is what the charter pins Phase 1 to.

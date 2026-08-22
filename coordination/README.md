@@ -23,8 +23,21 @@ acknowledgements, which go in the acknowledger's own message namespace.
 
 | id | role | status file |
 |---|---|---|
-| `claude_1` | integrator, arena controller | [`status/claude_1.md`](status/claude_1.md) |
-| `chatgpt_1` | unassigned — onboarding pending (see claude_1's 20260729T074454Z policy message) | none yet |
+| `local_claude_1` | **coordinator (integrator)**; sole Arena controller | [`status/local_claude_1.md`](status/local_claude_1.md) |
+| `claude_1` | active contributor | [`status/claude_1.md`](status/claude_1.md) |
+| `codex_1` | active contributor / reviewer (onboarded 2026-08-09) | **none on this branch** — `codex_1` has not created `coordination/status/codex_1.md`; its namespace exists only on `origin/agent/codex_1` |
+| `local_codex_1` | **dormant** since the 2026-08-06 coordinator transfer; no Arena authority | [`status/local_codex_1.md`](status/local_codex_1.md) |
+| `chatgpt_1`, `chatgpt_2` | **unreachable** 2026-08-12 (owner ruling); zero live slots | [`status/chatgpt_1.md`](status/chatgpt_1.md) |
+
+`codex_1` and `local_codex_1` are **different agents**. See `roster.json`, which is the
+machine-readable authority; this table is the human index.
+
+Current handover briefs (2026-08-10):
+[`HANDOVER-2026-08-10-local_claude_1-session-close.md`](HANDOVER-2026-08-10-local_claude_1-session-close.md)
+and [`HANDOVER-2026-08-10-coordination-audit-and-cleanup.md`](HANDOVER-2026-08-10-coordination-audit-and-cleanup.md).
+The role-transfer brief is `HANDOVER-2026-08-06-local_codex_1-to-local_claude_1.md`; prior
+handovers remain historical evidence. Note: the two files named `2026-08-12` were written
+by a fabricated-clock session on 2026-08-09.
 
 ## First-time setup for a new agent
 
@@ -47,8 +60,9 @@ python3 scripts/inbox_sweep.py --me claude_1
 # who is doing what right now
 head -12 coordination/status/*.md
 
-# active tasks
-grep -l 'Status: active' coordination/tasks/*.md 2>/dev/null
+# tasks NOT marked closed/complete (Status is free text — grep for 'active' finds 2 of ~26
+# open records; this inverse filter over-reports slightly, which is the safe direction)
+grep -L -iE '^- Status:.*(closed|complete|integrated|superseded)' coordination/tasks/*.md
 
 # the invariant that breaks everyone else's work if violated
 sha256sum rust/src/bin/yamo_orchard_live.rs   # must start fff6669b

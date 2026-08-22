@@ -1,0 +1,3681 @@
+{
+  "causal_boundary": {
+    "causal_policy_value_identified": false,
+    "contest_is_body_block": false,
+    "enemy_units_can_share_cells": true,
+    "extracted_resource_is_banked_score": false,
+    "material_verdict_authorizes_only_new_simulation_protocol": true
+  },
+  "cohorts": {
+    "resident": {
+      "agent_id": 6561795,
+      "all_game_missed_contact_swing_ceiling": {
+        "mean": 10.314049586776859
+      },
+      "all_game_observed_yield_swing_ceiling": {
+        "ci_hi": 15.760330578512397,
+        "ci_lo": 8.727272727272727,
+        "mean": 11.991735537190083,
+        "reps": 20000,
+        "seed": 20260730
+      },
+      "breakdowns": {
+        "birth_turn_band": {
+          "251_274": 239,
+          "275_300": 149
+        },
+        "opponent_shack_distance": {
+          "1": 135,
+          "2": 152,
+          "3": 44,
+          "4": 20,
+          "5": 24,
+          "6": 4,
+          "7": 5,
+          "8": 4
+        },
+        "seat": {
+          "0": 161,
+          "1": 227
+        },
+        "species": {
+          "APPLE": 79,
+          "BANANA": 158,
+          "LEMON": 88,
+          "PLUM": 63
+        }
+      },
+      "failures": [],
+      "games_decoded": 242,
+      "games_failed": 0,
+      "games_reaching_turn_gt_250": 170,
+      "games_requested": 242,
+      "label": "resident",
+      "mean_targets_per_game_reaching_window": 2.2823529411764705,
+      "opponent_extracted_score_equivalent_total": 1487,
+      "positive_opponent_yield_games": 75,
+      "positive_opponent_yield_targets": 262,
+      "quality_totals": {
+        "opponent": {
+          "actor_births": 5487,
+          "opponent_births": 2740
+        },
+        "subject": {
+          "actor_births": 2740,
+          "opponent_births": 5487
+        }
+      },
+      "subject_contacted_targets": 51,
+      "subject_eta_le_one_targets": 24,
+      "subject_eta_zero_targets": 0,
+      "subject_extracted_score_equivalent_total": 241,
+      "subject_reachable_within_remaining_targets": 366,
+      "target_game_observed_yield_swing_ceiling_mean": 37.205128205128204,
+      "target_game_share_of_reaching_window": 0.4588235294117647,
+      "target_games": 78,
+      "target_generations": 388,
+      "target_integrity_failures": []
+    },
+    "yamo": {
+      "agent_id": 6479814,
+      "all_game_missed_contact_swing_ceiling": {
+        "mean": 6.871428571428571
+      },
+      "all_game_observed_yield_swing_ceiling": {
+        "ci_hi": 12.100357142857112,
+        "ci_lo": 5.257142857142857,
+        "mean": 8.471428571428572,
+        "reps": 20000,
+        "seed": 20260730
+      },
+      "breakdowns": {
+        "birth_turn_band": {
+          "251_274": 115,
+          "275_300": 90
+        },
+        "opponent_shack_distance": {
+          "1": 98,
+          "2": 59,
+          "3": 19,
+          "4": 8,
+          "5": 9,
+          "6": 7,
+          "7": 3,
+          "8": 1,
+          "9": 1
+        },
+        "seat": {
+          "0": 103,
+          "1": 102
+        },
+        "species": {
+          "APPLE": 19,
+          "BANANA": 40,
+          "LEMON": 49,
+          "PLUM": 97
+        }
+      },
+      "failures": [],
+      "games_decoded": 140,
+      "games_failed": 0,
+      "games_reaching_turn_gt_250": 103,
+      "games_requested": 140,
+      "label": "yamo",
+      "mean_targets_per_game_reaching_window": 1.9902912621359223,
+      "opponent_extracted_score_equivalent_total": 597,
+      "positive_opponent_yield_games": 27,
+      "positive_opponent_yield_targets": 133,
+      "quality_totals": {
+        "opponent": {
+          "actor_births": 3593,
+          "opponent_births": 1473
+        },
+        "subject": {
+          "actor_births": 1473,
+          "opponent_births": 3593
+        }
+      },
+      "subject_contacted_targets": 35,
+      "subject_eta_le_one_targets": 31,
+      "subject_eta_zero_targets": 5,
+      "subject_extracted_score_equivalent_total": 156,
+      "subject_reachable_within_remaining_targets": 199,
+      "target_game_observed_yield_swing_ceiling_mean": 32.054054054054056,
+      "target_game_share_of_reaching_window": 0.3592233009708738,
+      "target_games": 37,
+      "target_generations": 205,
+      "target_integrity_failures": []
+    }
+  },
+  "coverage": {
+    "cross_cohort_game_ids": [
+      896350293
+    ],
+    "decoded_occurrences": 382,
+    "requested_occurrences": 382,
+    "unique_games": 381
+  },
+  "gates": {
+    "ci_lower_ge_20": false,
+    "ci_upper_lt_20": true,
+    "decode_integrity": true,
+    "material_pass": false,
+    "resident_positive_games_ge_10": true,
+    "resident_positive_targets_ge_20": true,
+    "resident_target_games_ge_20": true,
+    "resident_targets_ge_30": true,
+    "source_integrity": true,
+    "support_pass": true,
+    "target_integrity": true
+  },
+  "parameters": {
+    "bootstrap_reps": 20000,
+    "bootstrap_seed": 20260730,
+    "endgame_turn_exclusive": 250,
+    "material_margin": 20.0
+  },
+  "per_game": {
+    "resident": [
+      {
+        "game_id": 896347357,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896347358,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896347359,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896347360,
+        "missed_contact_swing_ceiling": 64,
+        "observed_yield_swing_ceiling": 64,
+        "opponent_extracted_score_equivalent": 32,
+        "positive_yield_targets": 4,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 5
+      },
+      {
+        "game_id": 896347361,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896347362,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896347363,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896347364,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896347365,
+        "missed_contact_swing_ceiling": 32,
+        "observed_yield_swing_ceiling": 32,
+        "opponent_extracted_score_equivalent": 20,
+        "positive_yield_targets": 5,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 6
+      },
+      {
+        "game_id": 896347366,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896347518,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 6
+      },
+      {
+        "game_id": 896347586,
+        "missed_contact_swing_ceiling": 258,
+        "observed_yield_swing_ceiling": 258,
+        "opponent_extracted_score_equivalent": 129,
+        "positive_yield_targets": 9,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 14
+      },
+      {
+        "game_id": 896347649,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896347795,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 11
+      },
+      {
+        "game_id": 896347862,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896347930,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 6,
+        "opponent_extracted_score_equivalent": 3,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 8,
+        "targets": 5
+      },
+      {
+        "game_id": 896347981,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896348043,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896348136,
+        "missed_contact_swing_ceiling": 16,
+        "observed_yield_swing_ceiling": 16,
+        "opponent_extracted_score_equivalent": 8,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 4
+      },
+      {
+        "game_id": 896348189,
+        "missed_contact_swing_ceiling": 16,
+        "observed_yield_swing_ceiling": 16,
+        "opponent_extracted_score_equivalent": 8,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 1
+      },
+      {
+        "game_id": 896348265,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896348308,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896348406,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896348456,
+        "missed_contact_swing_ceiling": 16,
+        "observed_yield_swing_ceiling": 16,
+        "opponent_extracted_score_equivalent": 8,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 1
+      },
+      {
+        "game_id": 896348522,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896348573,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896348623,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896348671,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896348742,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896348809,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896348868,
+        "missed_contact_swing_ceiling": 4,
+        "observed_yield_swing_ceiling": 4,
+        "opponent_extracted_score_equivalent": 2,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 1
+      },
+      {
+        "game_id": 896348944,
+        "missed_contact_swing_ceiling": 2,
+        "observed_yield_swing_ceiling": 2,
+        "opponent_extracted_score_equivalent": 1,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 1
+      },
+      {
+        "game_id": 896349002,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349042,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349139,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349174,
+        "missed_contact_swing_ceiling": 4,
+        "observed_yield_swing_ceiling": 4,
+        "opponent_extracted_score_equivalent": 2,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 8
+      },
+      {
+        "game_id": 896349215,
+        "missed_contact_swing_ceiling": 112,
+        "observed_yield_swing_ceiling": 112,
+        "opponent_extracted_score_equivalent": 56,
+        "positive_yield_targets": 7,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 10
+      },
+      {
+        "game_id": 896349276,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349330,
+        "missed_contact_swing_ceiling": 24,
+        "observed_yield_swing_ceiling": 24,
+        "opponent_extracted_score_equivalent": 12,
+        "positive_yield_targets": 3,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 3
+      },
+      {
+        "game_id": 896349382,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349490,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 8,
+        "opponent_extracted_score_equivalent": 4,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 4,
+        "targets": 3
+      },
+      {
+        "game_id": 896349546,
+        "missed_contact_swing_ceiling": 8,
+        "observed_yield_swing_ceiling": 8,
+        "opponent_extracted_score_equivalent": 4,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 1
+      },
+      {
+        "game_id": 896349605,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349687,
+        "missed_contact_swing_ceiling": 40,
+        "observed_yield_swing_ceiling": 40,
+        "opponent_extracted_score_equivalent": 20,
+        "positive_yield_targets": 5,
+        "subject_extracted_score_equivalent": 16,
+        "targets": 13
+      },
+      {
+        "game_id": 896349736,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349759,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349795,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349821,
+        "missed_contact_swing_ceiling": 24,
+        "observed_yield_swing_ceiling": 24,
+        "opponent_extracted_score_equivalent": 12,
+        "positive_yield_targets": 2,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 2
+      },
+      {
+        "game_id": 896349841,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349860,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349870,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349882,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349895,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349904,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349920,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349942,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349964,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349970,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896349986,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350017,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350020,
+        "missed_contact_swing_ceiling": 16,
+        "observed_yield_swing_ceiling": 16,
+        "opponent_extracted_score_equivalent": 8,
+        "positive_yield_targets": 2,
+        "subject_extracted_score_equivalent": 4,
+        "targets": 5
+      },
+      {
+        "game_id": 896350026,
+        "missed_contact_swing_ceiling": 126,
+        "observed_yield_swing_ceiling": 126,
+        "opponent_extracted_score_equivalent": 63,
+        "positive_yield_targets": 6,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 14
+      },
+      {
+        "game_id": 896350051,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350059,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350071,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350102,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350131,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350156,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350195,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350224,
+        "missed_contact_swing_ceiling": 24,
+        "observed_yield_swing_ceiling": 72,
+        "opponent_extracted_score_equivalent": 36,
+        "positive_yield_targets": 5,
+        "subject_extracted_score_equivalent": 24,
+        "targets": 5
+      },
+      {
+        "game_id": 896350256,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350273,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350293,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350338,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350365,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350456,
+        "missed_contact_swing_ceiling": 16,
+        "observed_yield_swing_ceiling": 16,
+        "opponent_extracted_score_equivalent": 8,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 5
+      },
+      {
+        "game_id": 896350476,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350499,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350530,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350541,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350624,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350706,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350727,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350773,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350789,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350822,
+        "missed_contact_swing_ceiling": 32,
+        "observed_yield_swing_ceiling": 40,
+        "opponent_extracted_score_equivalent": 20,
+        "positive_yield_targets": 4,
+        "subject_extracted_score_equivalent": 4,
+        "targets": 4
+      },
+      {
+        "game_id": 896350846,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350890,
+        "missed_contact_swing_ceiling": 8,
+        "observed_yield_swing_ceiling": 8,
+        "opponent_extracted_score_equivalent": 4,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 3
+      },
+      {
+        "game_id": 896350916,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350925,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350941,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350956,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351022,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351071,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351124,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351206,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351244,
+        "missed_contact_swing_ceiling": 6,
+        "observed_yield_swing_ceiling": 6,
+        "opponent_extracted_score_equivalent": 3,
+        "positive_yield_targets": 2,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 4
+      },
+      {
+        "game_id": 896351274,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351292,
+        "missed_contact_swing_ceiling": 22,
+        "observed_yield_swing_ceiling": 22,
+        "opponent_extracted_score_equivalent": 11,
+        "positive_yield_targets": 2,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 9
+      },
+      {
+        "game_id": 896351310,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351356,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351376,
+        "missed_contact_swing_ceiling": 40,
+        "observed_yield_swing_ceiling": 40,
+        "opponent_extracted_score_equivalent": 20,
+        "positive_yield_targets": 5,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 5
+      },
+      {
+        "game_id": 896351409,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351446,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351477,
+        "missed_contact_swing_ceiling": 30,
+        "observed_yield_swing_ceiling": 30,
+        "opponent_extracted_score_equivalent": 15,
+        "positive_yield_targets": 4,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 8
+      },
+      {
+        "game_id": 896351520,
+        "missed_contact_swing_ceiling": 88,
+        "observed_yield_swing_ceiling": 88,
+        "opponent_extracted_score_equivalent": 44,
+        "positive_yield_targets": 8,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 10
+      },
+      {
+        "game_id": 896351539,
+        "missed_contact_swing_ceiling": 48,
+        "observed_yield_swing_ceiling": 48,
+        "opponent_extracted_score_equivalent": 24,
+        "positive_yield_targets": 2,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 2
+      },
+      {
+        "game_id": 896351572,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351609,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351620,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351635,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351653,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351694,
+        "missed_contact_swing_ceiling": 32,
+        "observed_yield_swing_ceiling": 32,
+        "opponent_extracted_score_equivalent": 16,
+        "positive_yield_targets": 2,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 2
+      },
+      {
+        "game_id": 896351740,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351758,
+        "missed_contact_swing_ceiling": 80,
+        "observed_yield_swing_ceiling": 88,
+        "opponent_extracted_score_equivalent": 44,
+        "positive_yield_targets": 9,
+        "subject_extracted_score_equivalent": 4,
+        "targets": 12
+      },
+      {
+        "game_id": 896351773,
+        "missed_contact_swing_ceiling": 8,
+        "observed_yield_swing_ceiling": 8,
+        "opponent_extracted_score_equivalent": 4,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 1
+      },
+      {
+        "game_id": 896351828,
+        "missed_contact_swing_ceiling": 22,
+        "observed_yield_swing_ceiling": 22,
+        "opponent_extracted_score_equivalent": 11,
+        "positive_yield_targets": 3,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 6
+      },
+      {
+        "game_id": 896351842,
+        "missed_contact_swing_ceiling": 56,
+        "observed_yield_swing_ceiling": 56,
+        "opponent_extracted_score_equivalent": 32,
+        "positive_yield_targets": 6,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 6
+      },
+      {
+        "game_id": 896351874,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351902,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351912,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351921,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351931,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896351955,
+        "missed_contact_swing_ceiling": 32,
+        "observed_yield_swing_ceiling": 32,
+        "opponent_extracted_score_equivalent": 16,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 1
+      },
+      {
+        "game_id": 896351976,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352010,
+        "missed_contact_swing_ceiling": 36,
+        "observed_yield_swing_ceiling": 36,
+        "opponent_extracted_score_equivalent": 18,
+        "positive_yield_targets": 2,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 2
+      },
+      {
+        "game_id": 896352044,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352056,
+        "missed_contact_swing_ceiling": 24,
+        "observed_yield_swing_ceiling": 24,
+        "opponent_extracted_score_equivalent": 16,
+        "positive_yield_targets": 4,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 5
+      },
+      {
+        "game_id": 896352075,
+        "missed_contact_swing_ceiling": 16,
+        "observed_yield_swing_ceiling": 16,
+        "opponent_extracted_score_equivalent": 8,
+        "positive_yield_targets": 2,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 2
+      },
+      {
+        "game_id": 896352102,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352110,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352129,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352154,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352175,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352189,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352205,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352236,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352273,
+        "missed_contact_swing_ceiling": 6,
+        "observed_yield_swing_ceiling": 6,
+        "opponent_extracted_score_equivalent": 3,
+        "positive_yield_targets": 2,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 14
+      },
+      {
+        "game_id": 896352322,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352340,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352353,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352379,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352418,
+        "missed_contact_swing_ceiling": 112,
+        "observed_yield_swing_ceiling": 112,
+        "opponent_extracted_score_equivalent": 56,
+        "positive_yield_targets": 7,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 7
+      },
+      {
+        "game_id": 896352461,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352474,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352481,
+        "missed_contact_swing_ceiling": 8,
+        "observed_yield_swing_ceiling": 24,
+        "opponent_extracted_score_equivalent": 12,
+        "positive_yield_targets": 3,
+        "subject_extracted_score_equivalent": 8,
+        "targets": 3
+      },
+      {
+        "game_id": 896352494,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352507,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352541,
+        "missed_contact_swing_ceiling": 8,
+        "observed_yield_swing_ceiling": 8,
+        "opponent_extracted_score_equivalent": 4,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 1
+      },
+      {
+        "game_id": 896352580,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352586,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352596,
+        "missed_contact_swing_ceiling": 32,
+        "observed_yield_swing_ceiling": 32,
+        "opponent_extracted_score_equivalent": 20,
+        "positive_yield_targets": 5,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 5
+      },
+      {
+        "game_id": 896352625,
+        "missed_contact_swing_ceiling": 8,
+        "observed_yield_swing_ceiling": 8,
+        "opponent_extracted_score_equivalent": 4,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 4,
+        "targets": 5
+      },
+      {
+        "game_id": 896352634,
+        "missed_contact_swing_ceiling": 72,
+        "observed_yield_swing_ceiling": 72,
+        "opponent_extracted_score_equivalent": 36,
+        "positive_yield_targets": 6,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 8
+      },
+      {
+        "game_id": 896352655,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352675,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352683,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352724,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352750,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896352760,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896399089,
+        "missed_contact_swing_ceiling": 24,
+        "observed_yield_swing_ceiling": 24,
+        "opponent_extracted_score_equivalent": 16,
+        "positive_yield_targets": 3,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 7
+      },
+      {
+        "game_id": 896399172,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896399501,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896399705,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896409635,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 2
+      },
+      {
+        "game_id": 896410101,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896420875,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896421371,
+        "missed_contact_swing_ceiling": 8,
+        "observed_yield_swing_ceiling": 8,
+        "opponent_extracted_score_equivalent": 4,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 4
+      },
+      {
+        "game_id": 896421394,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896422596,
+        "missed_contact_swing_ceiling": 4,
+        "observed_yield_swing_ceiling": 4,
+        "opponent_extracted_score_equivalent": 2,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 1,
+        "targets": 6
+      },
+      {
+        "game_id": 896423810,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896478463,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896484682,
+        "missed_contact_swing_ceiling": 48,
+        "observed_yield_swing_ceiling": 48,
+        "opponent_extracted_score_equivalent": 24,
+        "positive_yield_targets": 6,
+        "subject_extracted_score_equivalent": 8,
+        "targets": 9
+      },
+      {
+        "game_id": 896491787,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896504994,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896525380,
+        "missed_contact_swing_ceiling": 24,
+        "observed_yield_swing_ceiling": 40,
+        "opponent_extracted_score_equivalent": 20,
+        "positive_yield_targets": 4,
+        "subject_extracted_score_equivalent": 8,
+        "targets": 4
+      },
+      {
+        "game_id": 896525888,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896526211,
+        "missed_contact_swing_ceiling": 8,
+        "observed_yield_swing_ceiling": 24,
+        "opponent_extracted_score_equivalent": 12,
+        "positive_yield_targets": 3,
+        "subject_extracted_score_equivalent": 8,
+        "targets": 3
+      },
+      {
+        "game_id": 896526301,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896526481,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896526595,
+        "missed_contact_swing_ceiling": 48,
+        "observed_yield_swing_ceiling": 48,
+        "opponent_extracted_score_equivalent": 24,
+        "positive_yield_targets": 4,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 4
+      },
+      {
+        "game_id": 896526856,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896529307,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896547892,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896548198,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 8,
+        "opponent_extracted_score_equivalent": 4,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 4,
+        "targets": 1
+      },
+      {
+        "game_id": 896548356,
+        "missed_contact_swing_ceiling": 16,
+        "observed_yield_swing_ceiling": 24,
+        "opponent_extracted_score_equivalent": 12,
+        "positive_yield_targets": 2,
+        "subject_extracted_score_equivalent": 4,
+        "targets": 2
+      },
+      {
+        "game_id": 896569360,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896580977,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896585749,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896586095,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896588124,
+        "missed_contact_swing_ceiling": 16,
+        "observed_yield_swing_ceiling": 16,
+        "opponent_extracted_score_equivalent": 8,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 1
+      },
+      {
+        "game_id": 896588235,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896606028,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896626900,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896627113,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896628425,
+        "missed_contact_swing_ceiling": 8,
+        "observed_yield_swing_ceiling": 24,
+        "opponent_extracted_score_equivalent": 12,
+        "positive_yield_targets": 2,
+        "subject_extracted_score_equivalent": 4,
+        "targets": 2
+      },
+      {
+        "game_id": 896629488,
+        "missed_contact_swing_ceiling": 16,
+        "observed_yield_swing_ceiling": 56,
+        "opponent_extracted_score_equivalent": 28,
+        "positive_yield_targets": 7,
+        "subject_extracted_score_equivalent": 20,
+        "targets": 7
+      },
+      {
+        "game_id": 896648845,
+        "missed_contact_swing_ceiling": 48,
+        "observed_yield_swing_ceiling": 48,
+        "opponent_extracted_score_equivalent": 24,
+        "positive_yield_targets": 5,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 5
+      },
+      {
+        "game_id": 896648912,
+        "missed_contact_swing_ceiling": 32,
+        "observed_yield_swing_ceiling": 64,
+        "opponent_extracted_score_equivalent": 32,
+        "positive_yield_targets": 6,
+        "subject_extracted_score_equivalent": 16,
+        "targets": 6
+      },
+      {
+        "game_id": 896648983,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896649146,
+        "missed_contact_swing_ceiling": 72,
+        "observed_yield_swing_ceiling": 72,
+        "opponent_extracted_score_equivalent": 36,
+        "positive_yield_targets": 5,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 5
+      },
+      {
+        "game_id": 896649188,
+        "missed_contact_swing_ceiling": 48,
+        "observed_yield_swing_ceiling": 48,
+        "opponent_extracted_score_equivalent": 24,
+        "positive_yield_targets": 5,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 5
+      },
+      {
+        "game_id": 896651228,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896651263,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896651429,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897186510,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897186955,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897187616,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897187740,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897188452,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897218489,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897219063,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 8,
+        "opponent_extracted_score_equivalent": 4,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 4,
+        "targets": 1
+      },
+      {
+        "game_id": 897219257,
+        "missed_contact_swing_ceiling": 40,
+        "observed_yield_swing_ceiling": 56,
+        "opponent_extracted_score_equivalent": 28,
+        "positive_yield_targets": 4,
+        "subject_extracted_score_equivalent": 8,
+        "targets": 4
+      },
+      {
+        "game_id": 897219327,
+        "missed_contact_swing_ceiling": 16,
+        "observed_yield_swing_ceiling": 56,
+        "opponent_extracted_score_equivalent": 28,
+        "positive_yield_targets": 4,
+        "subject_extracted_score_equivalent": 24,
+        "targets": 5
+      },
+      {
+        "game_id": 897219440,
+        "missed_contact_swing_ceiling": 48,
+        "observed_yield_swing_ceiling": 48,
+        "opponent_extracted_score_equivalent": 24,
+        "positive_yield_targets": 6,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 6
+      },
+      {
+        "game_id": 897230691,
+        "missed_contact_swing_ceiling": 24,
+        "observed_yield_swing_ceiling": 32,
+        "opponent_extracted_score_equivalent": 16,
+        "positive_yield_targets": 3,
+        "subject_extracted_score_equivalent": 4,
+        "targets": 3
+      },
+      {
+        "game_id": 897242739,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897242946,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897242965,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897243738,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897263984,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897264459,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897264497,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897264755,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897265726,
+        "missed_contact_swing_ceiling": 56,
+        "observed_yield_swing_ceiling": 96,
+        "opponent_extracted_score_equivalent": 48,
+        "positive_yield_targets": 9,
+        "subject_extracted_score_equivalent": 20,
+        "targets": 9
+      },
+      {
+        "game_id": 897303947,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897304400,
+        "missed_contact_swing_ceiling": 8,
+        "observed_yield_swing_ceiling": 16,
+        "opponent_extracted_score_equivalent": 8,
+        "positive_yield_targets": 2,
+        "subject_extracted_score_equivalent": 4,
+        "targets": 2
+      },
+      {
+        "game_id": 897304594,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897304629,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897304717,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897304997,
+        "missed_contact_swing_ceiling": 40,
+        "observed_yield_swing_ceiling": 64,
+        "opponent_extracted_score_equivalent": 32,
+        "positive_yield_targets": 8,
+        "subject_extracted_score_equivalent": 12,
+        "targets": 8
+      },
+      {
+        "game_id": 897305474,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897308009,
+        "missed_contact_swing_ceiling": 8,
+        "observed_yield_swing_ceiling": 8,
+        "opponent_extracted_score_equivalent": 4,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 1
+      },
+      {
+        "game_id": 897309299,
+        "missed_contact_swing_ceiling": 32,
+        "observed_yield_swing_ceiling": 32,
+        "opponent_extracted_score_equivalent": 28,
+        "positive_yield_targets": 5,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 5
+      },
+      {
+        "game_id": 897320189,
+        "missed_contact_swing_ceiling": 48,
+        "observed_yield_swing_ceiling": 48,
+        "opponent_extracted_score_equivalent": 24,
+        "positive_yield_targets": 5,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 5
+      },
+      {
+        "game_id": 897320693,
+        "missed_contact_swing_ceiling": 48,
+        "observed_yield_swing_ceiling": 80,
+        "opponent_extracted_score_equivalent": 40,
+        "positive_yield_targets": 8,
+        "subject_extracted_score_equivalent": 16,
+        "targets": 8
+      },
+      {
+        "game_id": 897320747,
+        "missed_contact_swing_ceiling": 64,
+        "observed_yield_swing_ceiling": 64,
+        "opponent_extracted_score_equivalent": 32,
+        "positive_yield_targets": 6,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 6
+      },
+      {
+        "game_id": 897320844,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 4,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 1
+      },
+      {
+        "game_id": 897322350,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897322364,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 897322404,
+        "missed_contact_swing_ceiling": 16,
+        "observed_yield_swing_ceiling": 16,
+        "opponent_extracted_score_equivalent": 8,
+        "positive_yield_targets": 2,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 2
+      },
+      {
+        "game_id": 897324011,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      }
+    ],
+    "yamo": [
+      {
+        "game_id": 892881842,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 893001832,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 893004231,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 893996642,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 894576037,
+        "missed_contact_swing_ceiling": 32,
+        "observed_yield_swing_ceiling": 32,
+        "opponent_extracted_score_equivalent": 16,
+        "positive_yield_targets": 4,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 4
+      },
+      {
+        "game_id": 895363703,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895364191,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895365007,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895365078,
+        "missed_contact_swing_ceiling": 34,
+        "observed_yield_swing_ceiling": 34,
+        "opponent_extracted_score_equivalent": 21,
+        "positive_yield_targets": 6,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 6
+      },
+      {
+        "game_id": 895366401,
+        "missed_contact_swing_ceiling": 64,
+        "observed_yield_swing_ceiling": 64,
+        "opponent_extracted_score_equivalent": 32,
+        "positive_yield_targets": 5,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 7
+      },
+      {
+        "game_id": 895366519,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895366616,
+        "missed_contact_swing_ceiling": 64,
+        "observed_yield_swing_ceiling": 64,
+        "opponent_extracted_score_equivalent": 32,
+        "positive_yield_targets": 6,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 8
+      },
+      {
+        "game_id": 895366691,
+        "missed_contact_swing_ceiling": 28,
+        "observed_yield_swing_ceiling": 36,
+        "opponent_extracted_score_equivalent": 18,
+        "positive_yield_targets": 3,
+        "subject_extracted_score_equivalent": 8,
+        "targets": 4
+      },
+      {
+        "game_id": 895366725,
+        "missed_contact_swing_ceiling": 16,
+        "observed_yield_swing_ceiling": 16,
+        "opponent_extracted_score_equivalent": 8,
+        "positive_yield_targets": 1,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 8
+      },
+      {
+        "game_id": 895367813,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895425876,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895437159,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895437225,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895437675,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895442491,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895445169,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895445199,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 4,
+        "targets": 5
+      },
+      {
+        "game_id": 895445379,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 1
+      },
+      {
+        "game_id": 895445816,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895446071,
+        "missed_contact_swing_ceiling": 114,
+        "observed_yield_swing_ceiling": 114,
+        "opponent_extracted_score_equivalent": 57,
+        "positive_yield_targets": 9,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 9
+      },
+      {
+        "game_id": 895446297,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895446460,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895447087,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895881807,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895882360,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895882588,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895882652,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895882701,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895882784,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895883048,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895883276,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895927026,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 895927202,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896037666,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896083723,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896083749,
+        "missed_contact_swing_ceiling": 6,
+        "observed_yield_swing_ceiling": 30,
+        "opponent_extracted_score_equivalent": 15,
+        "positive_yield_targets": 3,
+        "subject_extracted_score_equivalent": 12,
+        "targets": 5
+      },
+      {
+        "game_id": 896084306,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896084752,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896094590,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896098656,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896101990,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896129762,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896130350,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896188214,
+        "missed_contact_swing_ceiling": 32,
+        "observed_yield_swing_ceiling": 40,
+        "opponent_extracted_score_equivalent": 20,
+        "positive_yield_targets": 4,
+        "subject_extracted_score_equivalent": 4,
+        "targets": 4
+      },
+      {
+        "game_id": 896279739,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896280673,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896283780,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896283905,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896284687,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896284820,
+        "missed_contact_swing_ceiling": 24,
+        "observed_yield_swing_ceiling": 24,
+        "opponent_extracted_score_equivalent": 12,
+        "positive_yield_targets": 2,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 2
+      },
+      {
+        "game_id": 896285047,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896285387,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896285404,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896285472,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896285510,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896286053,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896286473,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896286832,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896286886,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896286965,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896287098,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896287110,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896290106,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896350293,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896399823,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896410406,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 3
+      },
+      {
+        "game_id": 896411189,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896411774,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 1
+      },
+      {
+        "game_id": 896421835,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896421912,
+        "missed_contact_swing_ceiling": 2,
+        "observed_yield_swing_ceiling": 26,
+        "opponent_extracted_score_equivalent": 13,
+        "positive_yield_targets": 3,
+        "subject_extracted_score_equivalent": 12,
+        "targets": 4
+      },
+      {
+        "game_id": 896421927,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 1
+      },
+      {
+        "game_id": 896423199,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 3
+      },
+      {
+        "game_id": 896424097,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896424327,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 4
+      },
+      {
+        "game_id": 896424907,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896468898,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896481936,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896482028,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896482299,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896492734,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896493195,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 8,
+        "targets": 2
+      },
+      {
+        "game_id": 896493580,
+        "missed_contact_swing_ceiling": 24,
+        "observed_yield_swing_ceiling": 64,
+        "opponent_extracted_score_equivalent": 32,
+        "positive_yield_targets": 8,
+        "subject_extracted_score_equivalent": 20,
+        "targets": 10
+      },
+      {
+        "game_id": 896494159,
+        "missed_contact_swing_ceiling": 16,
+        "observed_yield_swing_ceiling": 32,
+        "opponent_extracted_score_equivalent": 16,
+        "positive_yield_targets": 4,
+        "subject_extracted_score_equivalent": 16,
+        "targets": 9
+      },
+      {
+        "game_id": 896495496,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896502457,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 1
+      },
+      {
+        "game_id": 896503666,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896505723,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896509741,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896512288,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896512721,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896513230,
+        "missed_contact_swing_ceiling": 52,
+        "observed_yield_swing_ceiling": 52,
+        "opponent_extracted_score_equivalent": 26,
+        "positive_yield_targets": 7,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 8
+      },
+      {
+        "game_id": 896513242,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896513437,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896513918,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896514436,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896514496,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896516668,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896516732,
+        "missed_contact_swing_ceiling": 10,
+        "observed_yield_swing_ceiling": 50,
+        "opponent_extracted_score_equivalent": 25,
+        "positive_yield_targets": 7,
+        "subject_extracted_score_equivalent": 20,
+        "targets": 11
+      },
+      {
+        "game_id": 896516921,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896517648,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896533679,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896570904,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896571044,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896581295,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896582437,
+        "missed_contact_swing_ceiling": 64,
+        "observed_yield_swing_ceiling": 64,
+        "opponent_extracted_score_equivalent": 32,
+        "positive_yield_targets": 8,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 9
+      },
+      {
+        "game_id": 896582590,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896582850,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896582996,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896583084,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896583961,
+        "missed_contact_swing_ceiling": 16,
+        "observed_yield_swing_ceiling": 32,
+        "opponent_extracted_score_equivalent": 16,
+        "positive_yield_targets": 4,
+        "subject_extracted_score_equivalent": 8,
+        "targets": 4
+      },
+      {
+        "game_id": 896583970,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896586410,
+        "missed_contact_swing_ceiling": 16,
+        "observed_yield_swing_ceiling": 16,
+        "opponent_extracted_score_equivalent": 8,
+        "positive_yield_targets": 2,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 2
+      },
+      {
+        "game_id": 896586625,
+        "missed_contact_swing_ceiling": 80,
+        "observed_yield_swing_ceiling": 96,
+        "opponent_extracted_score_equivalent": 48,
+        "positive_yield_targets": 12,
+        "subject_extracted_score_equivalent": 8,
+        "targets": 13
+      },
+      {
+        "game_id": 896586728,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896588859,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896589070,
+        "missed_contact_swing_ceiling": 12,
+        "observed_yield_swing_ceiling": 12,
+        "opponent_extracted_score_equivalent": 6,
+        "positive_yield_targets": 3,
+        "subject_extracted_score_equivalent": 12,
+        "targets": 11
+      },
+      {
+        "game_id": 896589428,
+        "missed_contact_swing_ceiling": 16,
+        "observed_yield_swing_ceiling": 16,
+        "opponent_extracted_score_equivalent": 8,
+        "positive_yield_targets": 2,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 5
+      },
+      {
+        "game_id": 896589583,
+        "missed_contact_swing_ceiling": 48,
+        "observed_yield_swing_ceiling": 48,
+        "opponent_extracted_score_equivalent": 24,
+        "positive_yield_targets": 6,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 6
+      },
+      {
+        "game_id": 896589618,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896590056,
+        "missed_contact_swing_ceiling": 8,
+        "observed_yield_swing_ceiling": 16,
+        "opponent_extracted_score_equivalent": 8,
+        "positive_yield_targets": 3,
+        "subject_extracted_score_equivalent": 12,
+        "targets": 11
+      },
+      {
+        "game_id": 896595446,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896596146,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896596941,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896599103,
+        "missed_contact_swing_ceiling": 24,
+        "observed_yield_swing_ceiling": 24,
+        "opponent_extracted_score_equivalent": 12,
+        "positive_yield_targets": 3,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 3
+      },
+      {
+        "game_id": 896600241,
+        "missed_contact_swing_ceiling": 56,
+        "observed_yield_swing_ceiling": 56,
+        "opponent_extracted_score_equivalent": 28,
+        "positive_yield_targets": 6,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 8
+      },
+      {
+        "game_id": 896607101,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896625176,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896631599,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896631633,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896632234,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896632250,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 1
+      },
+      {
+        "game_id": 896632392,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896634447,
+        "missed_contact_swing_ceiling": 0,
+        "observed_yield_swing_ceiling": 0,
+        "opponent_extracted_score_equivalent": 0,
+        "positive_yield_targets": 0,
+        "subject_extracted_score_equivalent": 0,
+        "targets": 0
+      },
+      {
+        "game_id": 896648272,
+        "missed_contact_swing_ceiling": 16,
+        "observed_yield_swing_ceiling": 32,
+        "opponent_extracted_score_equivalent": 16,
+        "positive_yield_targets": 4,
+        "subject_extracted_score_equivalent": 8,
+        "targets": 4
+      },
+      {
+        "game_id": 896650307,
+        "missed_contact_swing_ceiling": 88,
+        "observed_yield_swing_ceiling": 96,
+        "opponent_extracted_score_equivalent": 48,
+        "positive_yield_targets": 8,
+        "subject_extracted_score_equivalent": 4,
+        "targets": 8
+      }
+    ]
+  },
+  "schema": 1,
+  "scope": "read-only observational generation-lineage audit; extracted cargo is not banked score; factor-two ceiling is replay-conditioned, not causal",
+  "source": {
+    "checks": {
+      "all_inputs_present": true,
+      "cohort_lists": true,
+      "dependency_hashes": true,
+      "frozen_manifest_hash": true,
+      "frozen_manifest_inputs_unchanged": true
+    },
+    "cohorts": {
+      "resident": {
+        "actual_count": 242,
+        "actual_ids_sha256": "3ea12d776e10019905b098ca159b4688266fe6874935a7d03c58ce216b8ec91c",
+        "expected_count": 242,
+        "expected_ids_sha256": "3ea12d776e10019905b098ca159b4688266fe6874935a7d03c58ce216b8ec91c",
+        "pass": true,
+        "unique_within_cohort": true
+      },
+      "yamo": {
+        "actual_count": 140,
+        "actual_ids_sha256": "0dc44b60be9e6ed893cc0226b3e1f170a6a6b1da46e67b0f8b266802ad9a2ec0",
+        "expected_count": 140,
+        "expected_ids_sha256": "0dc44b60be9e6ed893cc0226b3e1f170a6a6b1da46e67b0f8b266802ad9a2ec0",
+        "pass": true,
+        "unique_within_cohort": true
+      }
+    },
+    "dependencies": {
+      "cgauto/analyze_d101a_production_suppression.py": {
+        "actual_sha256": "9ffb10092180fa8a9ac848033650dc5d1c8fe95f83bff3a0aad9dc0dd37d4d30",
+        "expected_sha256": "9ffb10092180fa8a9ac848033650dc5d1c8fe95f83bff3a0aad9dc0dd37d4d30",
+        "pass": true
+      },
+      "cgauto/fidelity_gap_audit.py": {
+        "actual_sha256": "1ede4eef0b2f6af23c8b90b90603664b4701746483a73e764bb5b32d9d024a77",
+        "expected_sha256": "1ede4eef0b2f6af23c8b90b90603664b4701746483a73e764bb5b32d9d024a77",
+        "pass": true
+      },
+      "cgauto/waste_sweep.py": {
+        "actual_sha256": "cb5c813d591f3defd3809f97b25b61f6c7cdf67f039836d7b43c0544d29cad02",
+        "expected_sha256": "cb5c813d591f3defd3809f97b25b61f6c7cdf67f039836d7b43c0544d29cad02",
+        "pass": true
+      },
+      "rust/src/bin/yamo_orchard_live.rs": {
+        "actual_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+        "expected_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+        "pass": true
+      }
+    },
+    "frozen_index_records": 9082,
+    "frozen_index_sha256": "12f72265c2af19d69ddf9dad053ccc33b3c7f799182b23ca973210429500a73d",
+    "frozen_input_manifest_sha256": "53ee5cf3347fbc72dcd1021369cb2b41ce48eb6c3ca22fc9981f7abf14a2b26f",
+    "live_index_records": 9372,
+    "live_index_sha256": "d0cd96f884633a70ba7d9ce0e4398602db7d6a1c9fcd181f0b7b192779ddd81a",
+    "logical_index": "data/processed/games.jsonl",
+    "selection_mode": "frozen_input_manifest"
+  },
+  "task": "20260730-n5-endgame-opponent-plant-contest",
+  "verdict": "NO_MATERIAL_CONTEST_OPPORTUNITY"
+}

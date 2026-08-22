@@ -1,0 +1,199 @@
+{
+  "answers": "what the list holds; NOT which generator branch produced it",
+  "arms": {
+    "cureC-p1p2": {
+      "situations": [
+        {
+          "counts": {
+            "EMPLOYED": 11,
+            "ONLY_SEEDED_WAIT": 3
+          },
+          "distinct_commands": {
+            "WAIT": 3
+          },
+          "distinct_targets": {
+            "None": 3
+          },
+          "id": "OSC-004",
+          "idle_turn_span": [
+            20,
+            22
+          ],
+          "idle_turns": 3,
+          "list_lengths": {
+            "1": 3
+          },
+          "unit": 0
+        },
+        {
+          "counts": {
+            "EMPLOYED": 17,
+            "ONLY_SEEDED_WAIT": 170
+          },
+          "distinct_commands": {
+            "WAIT": 170
+          },
+          "distinct_targets": {
+            "None": 170
+          },
+          "id": "OSC-013",
+          "idle_turn_span": [
+            31,
+            200
+          ],
+          "idle_turns": 170,
+          "list_lengths": {
+            "1": 170
+          },
+          "unit": 0
+        },
+        {
+          "counts": {
+            "EMPLOYED": 7,
+            "ONLY_SEEDED_WAIT": 187
+          },
+          "distinct_commands": {
+            "WAIT": 187
+          },
+          "distinct_targets": {
+            "None": 187
+          },
+          "id": "OSC-017",
+          "idle_turn_span": [
+            14,
+            200
+          ],
+          "idle_turns": 187,
+          "list_lengths": {
+            "1": 187
+          },
+          "unit": 0
+        },
+        {
+          "counts": {
+            "EMPLOYED": 4,
+            "ONLY_SEEDED_WAIT": 90
+          },
+          "distinct_commands": {
+            "WAIT": 90
+          },
+          "distinct_targets": {
+            "None": 90
+          },
+          "id": "OSC-034",
+          "idle_turn_span": [
+            10,
+            99
+          ],
+          "idle_turns": 90,
+          "list_lengths": {
+            "1": 90
+          },
+          "unit": 0
+        }
+      ],
+      "source": "claude_1/picker2/candidate-cureC-p1p2.rs",
+      "source_sha256": "d127cf861ad7f145e5693b0a595bcc8e3c870f424926b18bdbb3debec80b0412"
+    },
+    "door1-p1p2": {
+      "situations": [
+        {
+          "counts": {
+            "EMPLOYED": 11,
+            "ONLY_SEEDED_WAIT": 3
+          },
+          "distinct_commands": {
+            "WAIT": 3
+          },
+          "distinct_targets": {
+            "None": 3
+          },
+          "id": "OSC-004",
+          "idle_turn_span": [
+            20,
+            22
+          ],
+          "idle_turns": 3,
+          "list_lengths": {
+            "1": 3
+          },
+          "unit": 0
+        },
+        {
+          "counts": {
+            "EMPLOYED": 17,
+            "ONLY_SEEDED_WAIT": 170
+          },
+          "distinct_commands": {
+            "WAIT": 170
+          },
+          "distinct_targets": {
+            "None": 170
+          },
+          "id": "OSC-013",
+          "idle_turn_span": [
+            31,
+            200
+          ],
+          "idle_turns": 170,
+          "list_lengths": {
+            "1": 170
+          },
+          "unit": 0
+        },
+        {
+          "counts": {
+            "EMPLOYED": 7,
+            "ONLY_SEEDED_WAIT": 187
+          },
+          "distinct_commands": {
+            "WAIT": 187
+          },
+          "distinct_targets": {
+            "None": 187
+          },
+          "id": "OSC-017",
+          "idle_turn_span": [
+            14,
+            200
+          ],
+          "idle_turns": 187,
+          "list_lengths": {
+            "1": 187
+          },
+          "unit": 0
+        },
+        {
+          "counts": {
+            "EMPLOYED": 4,
+            "ONLY_SEEDED_WAIT": 90
+          },
+          "distinct_commands": {
+            "WAIT": 90
+          },
+          "distinct_targets": {
+            "None": 90
+          },
+          "id": "OSC-034",
+          "idle_turn_span": [
+            10,
+            99
+          ],
+          "idle_turns": 90,
+          "list_lengths": {
+            "1": 90
+          },
+          "unit": 0
+        }
+      ],
+      "source": "claude_1/picker2/candidate-door1-p1p2.rs",
+      "source_sha256": "5e1f4df406480f678ff03677cdda0f69d510c5c94efe90d4f0a8231b70c3339e"
+    }
+  },
+  "cross_check": "HAS_NON_WAIT must be 0 on every fixture or the run fails",
+  "phase": 3,
+  "question": "on the idle turns, is the anchor's candidate list empty, or does it hold only the WAIT that main_candidates/endgame_candidates seed it with?",
+  "readers_agree": true,
+  "step": "1-idle-list-shape",
+  "task": "20260820-pair-selector-anti-benching"
+}

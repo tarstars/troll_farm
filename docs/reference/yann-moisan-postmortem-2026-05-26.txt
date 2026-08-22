@@ -1,0 +1,199 @@
+
+
+    
+    
+    
+    
+My post mortem for the codingame Spring Challenge 2026 | Yann Moisan
+
+    
+    
+
+  
+Yann Moisan
+        
+        
+          
+            
+              
+            
+          
+        
+
+        
+PostsNews from last monthAbout meBookmarks
+      
+
+      
+
+        
+
+  
+    
+My post mortem for the codingame Spring Challenge 2026
+    
+
+      May 26, 2026
+      
+  
+
+  
+
+    
+  
+Language: Scala
+  
+Rank: #3 (Legend) / 2022
+  
+Challenge: Troll Farm
+
+Introduction
+
+Early on, a clear meta emerged around chopping trees. A minor rule change later rebalanced things, but I decided to stick with it — chop trees with 2 trolls — since it was straightforward to implement well.
+
+Strategy Overview
+
+My bot follows three broad phases:
+
+  
+Early game: gather just enough resources to train a second troll.
+  
+Main loop: both trolls chop trees and return wood, coordinated to avoid conflicting targets.
+  
+End game: plant remaining fruits for extra points
+
+Early Game: Resource Objective
+
+The goal was to train the strongest second troll as quickly as possible. I checked whether I could collect enough resources (plum, lemon, iron) to hit the next threshold (5 or 10 of each) in time, based on the round-trip distance to the nearest relevant tree or mine.
+
+Main Loop: Candidate Scoring
+
+The heart of the bot is a candidate generator. For each troll it produces a list of `(command, score)` pairs and picks the highest-scoring one. The full priority stack:
+
+  
+    
+
+      Score
+      Action
+    
+  
+  
+    
+
+      8 000
+      Drop resources at shack
+    
+    
+
+      7 000
+      Move to shack adjacency (carry full)
+    
+    
+
+      dynamic
+      Chop / move to tree
+    
+  
+
+Tree Chopping Value
+
+For every available tree the bot computes a throughput score:
+
+`value = min(treeSize, carryRemaining) / (travelTurns + chopTurns + returnTurns)
+`
+
+This is wood per turn: the wood actually collectible divided by the full round-trip cost. `travelTurns` and `chopTurns` account for the troll’s `movementSpeed` and `chopPower` respectively (using `math.ceil` for fractional turns).
+
+typeToCut: Picking a Focus Tree Type
+
+On the first turn, the bot picks either LEMON or PLUM as the primary chopping target. The criterion is simple: whichever tree type has its cluster closest to the shack (summed BFS distances across all trees of that type). When a tree matches `typeToCut` and the opponent has at most 2 trolls, the bot uses a different scoring formula that rewards trees near from the opponent’s shack.
+
+The idea: cut trees that will prevent the opponent from training.
+
+Tree Simulation
+
+A key ingredient for both target selection and safety checks is tree state prediction. The `Tree.nextN(n, oppChopPower)` method simulates `n` turns of growth and opponent chopping. The bot uses this to:
+
+  
+Skip trees that will die before the troll arrives (opponent is already chopping it).
+  
+Compute the actual health/size at arrival time to get accurate chopTurns and wood yield.
+
+The opponent’s chop power is inferred from the `isDamaged` flag on the tree: if the tree’s health differs from its expected value for its size, someone is chopping it.
+
+Multi-Troll Coordination
+
+With two trolls the bot enumerates all pairs of candidates `(a, b)` where `a` and `b` do not target the same cell, then picks the pair with the highest combined score.
+
+“Same target” covers moves toward a tree, chopping, harvesting, and dropping at the shack.
+
+End Game
+
+When trees are almost gone and the opponent leads, or when turn > 250, the bot switches to end-game mode:
+
+  
+Trolls pick fruits from the shack and plant them on empty cells for extra scoring points.
+  
+Trolls carrying resources rush to the shack to drop.
+  
+The fallback waiting position shifts to a cell adjacent to the opponent’s shack, staying in position to contest any last-minute planting.
+
+Things to Improve
+
+Sweet spot (disabled)
+
+The sweet spot feature (planting an apple tree on a cell adjacent to the shack and next to water for a very fast fruit cycle) was implemented but disabled
+
+Movement optimisation
+I didn’t optimize movement at all. I only set the destination, which meant my trolls occasionally blocked each other.
+
+The competition inside the competition
+
+My son m4l0s4n also competed, doing remarkably well in Python 3. He reached Legend before me and finished #66. 
+I couldn’t be prouder.
+We had a great time together, discussing strategies and watching replays. Every time he overtook me in the rankings, 
+I had no choice but to push harder and come up with new ideas. He made sure I knew it too, with his profile tagline:
+
+  
+son of yamo but better
+
+Conclusion
+
+Thanks a lot to eulerscheZahl for such a fun challenge. I really enjoy heuristic-friendly challenges. To be honest, I’m really surprised to see how far this simple idea got me in the rankings.
+
+  
+
+      
+    
+  
+
+  
+
+    
+Yann Moisan
+
+    
+
+      
+
+        
+          
+Yann Moisan
+yamo93+blog@gmail.com
+      
+
+      
+
+ YannMoisan
+ yann-moisan-01771746
+ yannmoisan
+
+      
+
+        
+Blog de Yann Moisan Scala, Java, Linux
+      
+    
+
+  
+

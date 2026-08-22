@@ -1,0 +1,792 @@
+{
+ "blocker_state_histogram": {
+  "IDLE": 17,
+  "NONE": 9,
+  "WORKING": 8
+ },
+ "completeness_histogram": {
+  "FULL": 34
+ },
+ "episode_count": 46,
+ "excluded": [
+  {
+   "kind": "REAL_CORPUS",
+   "reason": "produced by a different bot (f26e3781e972006cb2698420bba3474f1a038708225beeb562f3ab2242593e4a), not the subject 98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29"
+  }
+ ],
+ "item": "M3a -- oscillation situation library (enumerate and freeze)",
+ "kind_histogram": {
+  "D1_EPISODE": 30,
+  "P4_STALL": 4
+ },
+ "library_sha256": "1370384da9cad46e4f60617b2c9edd076de6ffd9f26d30d0066528de414f9174",
+ "mechanism_histogram": {
+  "M1": 11,
+  "M2": 14,
+  "M3": 1,
+  "UNCLASSIFIED": 8
+ },
+ "panel_config_sha256": "eca5cb32e8fc5daa61dd69d0753f9a3962eff5cbce10cf12e8410ba36c903fe5",
+ "schema": "troll-farm-oscillation-library-index-v1",
+ "scope_note": "M3a freezes the situations ONLY. No judgement of the best action is recorded anywhere in this library: that is M3b, which is a separate item blocked on the Decision Packet, and deriving an answer here from the same scorer that produced the oscillation would poison it with circularity.",
+ "situation_count": 34,
+ "situations": [
+  {
+   "blocker_state": "IDLE",
+   "completeness": "FULL",
+   "content_sha256": "91e9fc4c5af8be1a2fd539de92759902e93b00623040429b53715172bcce0684",
+   "file": "OSC-001.json",
+   "id": "OSC-001",
+   "kind": "D1_EPISODE",
+   "length_turns": 195,
+   "mechanism": "M1",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m110",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 0
+   },
+   "window_turns": [
+    6,
+    200
+   ]
+  },
+  {
+   "blocker_state": "IDLE",
+   "completeness": "FULL",
+   "content_sha256": "9fdce9632ba1e8bf47930b5f18742aba82069b7a03fb5fcef25091f92406b811",
+   "file": "OSC-002.json",
+   "id": "OSC-002",
+   "kind": "D1_EPISODE",
+   "length_turns": 189,
+   "mechanism": "M1",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m059",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 2
+   },
+   "window_turns": [
+    12,
+    200
+   ]
+  },
+  {
+   "blocker_state": "WORKING",
+   "completeness": "FULL",
+   "content_sha256": "6b51f7d4f579627028d9ae41621c5384bca3fab96174049e7a62ebf294dd53c9",
+   "file": "OSC-003.json",
+   "id": "OSC-003",
+   "kind": "D1_EPISODE",
+   "length_turns": 23,
+   "mechanism": "M1",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m025",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 0
+   },
+   "window_turns": [
+    25,
+    47
+   ]
+  },
+  {
+   "blocker_state": "WORKING",
+   "completeness": "FULL",
+   "content_sha256": "8b0cfd8dd401233634a0d651912a6b914a460c6710b8ed55fb03e84ea625b095",
+   "file": "OSC-004.json",
+   "id": "OSC-004",
+   "kind": "D1_EPISODE",
+   "length_turns": 14,
+   "mechanism": "M1",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m065",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 2
+   },
+   "window_turns": [
+    9,
+    22
+   ]
+  },
+  {
+   "blocker_state": "WORKING",
+   "completeness": "FULL",
+   "content_sha256": "a57c91c738afc8660f29056be83ac2becbf32ffc63355a12454cc9181e2c1aac",
+   "file": "OSC-005.json",
+   "id": "OSC-005",
+   "kind": "D1_EPISODE",
+   "length_turns": 12,
+   "mechanism": "M1",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m070",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 2
+   },
+   "window_turns": [
+    7,
+    18
+   ]
+  },
+  {
+   "blocker_state": "WORKING",
+   "completeness": "FULL",
+   "content_sha256": "c41ea045216cc76ba2cae411e9da19f3c3cd6d58e7f824061792a3fed0e606b8",
+   "file": "OSC-006.json",
+   "id": "OSC-006",
+   "kind": "D1_EPISODE",
+   "length_turns": 9,
+   "mechanism": "M1",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m078",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "unit": 2
+   },
+   "window_turns": [
+    12,
+    20
+   ]
+  },
+  {
+   "blocker_state": "WORKING",
+   "completeness": "FULL",
+   "content_sha256": "d3493cc7356e60e0c876425cc46e7a180c5c6b51b07709abdb043a32b0a3047a",
+   "file": "OSC-007.json",
+   "id": "OSC-007",
+   "kind": "D1_EPISODE",
+   "length_turns": 9,
+   "mechanism": "M1",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m118",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 2
+   },
+   "window_turns": [
+    8,
+    16
+   ]
+  },
+  {
+   "blocker_state": "WORKING",
+   "completeness": "FULL",
+   "content_sha256": "56656481f22b0037659ab777f9e99ce5bcd90a2ebdc92b267605f1b87c81df80",
+   "file": "OSC-008.json",
+   "id": "OSC-008",
+   "kind": "D1_EPISODE",
+   "length_turns": 8,
+   "mechanism": "M1",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m068",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 0
+   },
+   "window_turns": [
+    57,
+    64
+   ]
+  },
+  {
+   "blocker_state": "IDLE",
+   "completeness": "FULL",
+   "content_sha256": "af58fe7d1a0eeb48129f9e13473c313f7f5e7fe70f4fffb2d4875bb82efca12e",
+   "file": "OSC-009.json",
+   "id": "OSC-009",
+   "kind": "D1_EPISODE",
+   "length_turns": 7,
+   "mechanism": "M1",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m092",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "unit": 0
+   },
+   "window_turns": [
+    77,
+    83
+   ]
+  },
+  {
+   "blocker_state": "WORKING",
+   "completeness": "FULL",
+   "content_sha256": "50224e218cfe419a817fca09f055a66e5e9f4d67a0e4bcdf41f2513a60b57b81",
+   "file": "OSC-010.json",
+   "id": "OSC-010",
+   "kind": "D1_EPISODE",
+   "length_turns": 7,
+   "mechanism": "M1",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m040",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 0
+   },
+   "window_turns": [
+    80,
+    86
+   ]
+  },
+  {
+   "blocker_state": "WORKING",
+   "completeness": "FULL",
+   "content_sha256": "ae6076cde8b87bc8b598ff18695f00b2633d82705a6a4fe6191aed9629740c77",
+   "file": "OSC-011.json",
+   "id": "OSC-011",
+   "kind": "D1_EPISODE",
+   "length_turns": 7,
+   "mechanism": "M1",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m028",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 0
+   },
+   "window_turns": [
+    26,
+    32
+   ]
+  },
+  {
+   "blocker_state": "IDLE",
+   "completeness": "FULL",
+   "content_sha256": "6e892bb13f3b4f01a81e91a4b99135426dd35fcf82a6a6a4d524f1e453e01f29",
+   "file": "OSC-012.json",
+   "id": "OSC-012",
+   "kind": "D1_EPISODE",
+   "length_turns": 193,
+   "mechanism": "M2",
+   "multiplicity": 3,
+   "origin": {
+    "game_id": null,
+    "map_id": "m099",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 0
+   },
+   "window_turns": [
+    8,
+    200
+   ]
+  },
+  {
+   "blocker_state": "IDLE",
+   "completeness": "FULL",
+   "content_sha256": "8ccf05c2ca8e35a388f1d909d747999c51599fd50d2e581906167557a8491053",
+   "file": "OSC-013.json",
+   "id": "OSC-013",
+   "kind": "D1_EPISODE",
+   "length_turns": 187,
+   "mechanism": "M2",
+   "multiplicity": 2,
+   "origin": {
+    "game_id": null,
+    "map_id": "m046",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "unit": 2
+   },
+   "window_turns": [
+    14,
+    200
+   ]
+  },
+  {
+   "blocker_state": "IDLE",
+   "completeness": "FULL",
+   "content_sha256": "80fdf23879ddf39100fd29f523aadf2e8073b4c1105e96297001864e0cfce043",
+   "file": "OSC-014.json",
+   "id": "OSC-014",
+   "kind": "D1_EPISODE",
+   "length_turns": 168,
+   "mechanism": "M2",
+   "multiplicity": 2,
+   "origin": {
+    "game_id": null,
+    "map_id": "m079",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 2
+   },
+   "window_turns": [
+    33,
+    200
+   ]
+  },
+  {
+   "blocker_state": "IDLE",
+   "completeness": "FULL",
+   "content_sha256": "f365e88e5ba7d1813911adaa5923839f02ed1c39467f2b73349f6838ec2cc7f9",
+   "file": "OSC-015.json",
+   "id": "OSC-015",
+   "kind": "D1_EPISODE",
+   "length_turns": 157,
+   "mechanism": "M2",
+   "multiplicity": 2,
+   "origin": {
+    "game_id": null,
+    "map_id": "m060",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "unit": 2
+   },
+   "window_turns": [
+    44,
+    200
+   ]
+  },
+  {
+   "blocker_state": "IDLE",
+   "completeness": "FULL",
+   "content_sha256": "f13853d6df48886afe56a8a3f8f2a401cb3c47fb9faf638b472a98ba2063d47d",
+   "file": "OSC-016.json",
+   "id": "OSC-016",
+   "kind": "D1_EPISODE",
+   "length_turns": 194,
+   "mechanism": "M2",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m114",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 2
+   },
+   "window_turns": [
+    7,
+    200
+   ]
+  },
+  {
+   "blocker_state": "IDLE",
+   "completeness": "FULL",
+   "content_sha256": "0f9a67087127f0168dff396648ba540caca8abd977deb110293b1ffd58dcfda2",
+   "file": "OSC-017.json",
+   "id": "OSC-017",
+   "kind": "D1_EPISODE",
+   "length_turns": 194,
+   "mechanism": "M2",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m014",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 2
+   },
+   "window_turns": [
+    7,
+    200
+   ]
+  },
+  {
+   "blocker_state": "IDLE",
+   "completeness": "FULL",
+   "content_sha256": "86db095920cb4bbdb9ab5c51f1d854831eb058f689ea91deb5184e838a96df64",
+   "file": "OSC-018.json",
+   "id": "OSC-018",
+   "kind": "D1_EPISODE",
+   "length_turns": 191,
+   "mechanism": "M2",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m094",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 2
+   },
+   "window_turns": [
+    10,
+    200
+   ]
+  },
+  {
+   "blocker_state": "IDLE",
+   "completeness": "FULL",
+   "content_sha256": "b00bd043b07d7a76ee1d4314b36f6c2a835735883a3bb896eff284ba125c4b33",
+   "file": "OSC-019.json",
+   "id": "OSC-019",
+   "kind": "D1_EPISODE",
+   "length_turns": 178,
+   "mechanism": "M2",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m003",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "unit": 2
+   },
+   "window_turns": [
+    23,
+    200
+   ]
+  },
+  {
+   "blocker_state": "IDLE",
+   "completeness": "FULL",
+   "content_sha256": "a31b33331b470418a15b57ad59ef36cdc4aa039b6faafc43ff3a82b7e6133dda",
+   "file": "OSC-020.json",
+   "id": "OSC-020",
+   "kind": "D1_EPISODE",
+   "length_turns": 172,
+   "mechanism": "M2",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m104",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 2
+   },
+   "window_turns": [
+    29,
+    200
+   ]
+  },
+  {
+   "blocker_state": "IDLE",
+   "completeness": "FULL",
+   "content_sha256": "e68f55e71e4e2228888064bac45e81d17f34c9ca4db5623a177b5799d113d18f",
+   "file": "OSC-021.json",
+   "id": "OSC-021",
+   "kind": "D1_EPISODE",
+   "length_turns": 169,
+   "mechanism": "M2",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m084",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 0
+   },
+   "window_turns": [
+    32,
+    200
+   ]
+  },
+  {
+   "blocker_state": "IDLE",
+   "completeness": "FULL",
+   "content_sha256": "3cb3be3f68bc04f8b5c44206ba8cac20dfc472d2fff68028c2e7b6b91c95cdaf",
+   "file": "OSC-022.json",
+   "id": "OSC-022",
+   "kind": "D1_EPISODE",
+   "length_turns": 95,
+   "mechanism": "M2",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m071",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 2
+   },
+   "window_turns": [
+    106,
+    200
+   ]
+  },
+  {
+   "blocker_state": "IDLE",
+   "completeness": "FULL",
+   "content_sha256": "387ca61c873276b4e09fcf5389b934f9feca6f0b131ea425b125c075dd33ae4b",
+   "file": "OSC-023.json",
+   "id": "OSC-023",
+   "kind": "D1_EPISODE",
+   "length_turns": 74,
+   "mechanism": "M2",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m071",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 2
+   },
+   "window_turns": [
+    27,
+    100
+   ]
+  },
+  {
+   "blocker_state": "IDLE",
+   "completeness": "FULL",
+   "content_sha256": "41c75214bdb76da327a451594fa457b0a1e12524678a363e17c1c9ee8f238c2b",
+   "file": "OSC-024.json",
+   "id": "OSC-024",
+   "kind": "D1_EPISODE",
+   "length_turns": 65,
+   "mechanism": "M2",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m073",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "unit": 0
+   },
+   "window_turns": [
+    5,
+    69
+   ]
+  },
+  {
+   "blocker_state": "IDLE",
+   "completeness": "FULL",
+   "content_sha256": "1d825e99702ca2825d2c587a43083173a445fc74e658b1acb69fe6c5172086c4",
+   "file": "OSC-025.json",
+   "id": "OSC-025",
+   "kind": "D1_EPISODE",
+   "length_turns": 21,
+   "mechanism": "M2",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m012",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 0
+   },
+   "window_turns": [
+    12,
+    32
+   ]
+  },
+  {
+   "blocker_state": "NONE",
+   "completeness": "FULL",
+   "content_sha256": "44d60d45352f06e6d61b0e55442f3dc131cfc66abec570d629755076b2dd987e",
+   "file": "OSC-026.json",
+   "id": "OSC-026",
+   "kind": "D1_EPISODE",
+   "length_turns": 9,
+   "mechanism": "M3",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m085",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "unit": 0
+   },
+   "window_turns": [
+    17,
+    25
+   ]
+  },
+  {
+   "blocker_state": "NONE",
+   "completeness": "FULL",
+   "content_sha256": "0eade1ece26c68ed36b0fa4eca702d25a077a169b4bbae9bfaabb6280936bd72",
+   "file": "OSC-027.json",
+   "id": "OSC-027",
+   "kind": "D1_EPISODE",
+   "length_turns": 22,
+   "mechanism": "UNCLASSIFIED",
+   "multiplicity": 4,
+   "origin": {
+    "game_id": null,
+    "map_id": "m066",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "unit": 2
+   },
+   "window_turns": [
+    3,
+    24
+   ]
+  },
+  {
+   "blocker_state": "NONE",
+   "completeness": "FULL",
+   "content_sha256": "dce6d6226b5d53444e01131c5fe6387a1b95750117c220a2989e2ed0ee728384",
+   "file": "OSC-028.json",
+   "id": "OSC-028",
+   "kind": "D1_EPISODE",
+   "length_turns": 53,
+   "mechanism": "UNCLASSIFIED",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m092",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "unit": 0
+   },
+   "window_turns": [
+    2,
+    54
+   ]
+  },
+  {
+   "blocker_state": "NONE",
+   "completeness": "FULL",
+   "content_sha256": "51fd3654f44928ed24f850f798b788beca5273a42de60bec98678c86f8b5c408",
+   "file": "OSC-029.json",
+   "id": "OSC-029",
+   "kind": "D1_EPISODE",
+   "length_turns": 17,
+   "mechanism": "UNCLASSIFIED",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m058",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "unit": 0
+   },
+   "window_turns": [
+    28,
+    44
+   ]
+  },
+  {
+   "blocker_state": "NONE",
+   "completeness": "FULL",
+   "content_sha256": "bcbb713d72fafb44fa29c9c510bc90337b7bb48474efaf217a74cb78cfb24567",
+   "file": "OSC-030.json",
+   "id": "OSC-030",
+   "kind": "D1_EPISODE",
+   "length_turns": 8,
+   "mechanism": "UNCLASSIFIED",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m004",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "unit": 2
+   },
+   "window_turns": [
+    24,
+    31
+   ]
+  },
+  {
+   "blocker_state": "NONE",
+   "completeness": "FULL",
+   "content_sha256": "ae529352b7417b186e7006beb070a9670270fec8a71c93b64cfbca5bdb478538",
+   "file": "OSC-031.json",
+   "id": "OSC-031",
+   "kind": "P4_STALL",
+   "length_turns": 190,
+   "mechanism": "UNCLASSIFIED",
+   "multiplicity": 3,
+   "origin": {
+    "game_id": null,
+    "map_id": "m059",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "unit": 0
+   },
+   "window_turns": [
+    11,
+    200
+   ]
+  },
+  {
+   "blocker_state": "NONE",
+   "completeness": "FULL",
+   "content_sha256": "ac3df622c29bb4260af201971a7fcc8248bb7fcf3af67970c31035e6158aca95",
+   "file": "OSC-032.json",
+   "id": "OSC-032",
+   "kind": "P4_STALL",
+   "length_turns": 110,
+   "mechanism": "UNCLASSIFIED",
+   "multiplicity": 3,
+   "origin": {
+    "game_id": null,
+    "map_id": "m091",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "unit": 0
+   },
+   "window_turns": [
+    91,
+    200
+   ]
+  },
+  {
+   "blocker_state": "NONE",
+   "completeness": "FULL",
+   "content_sha256": "4f4e784e9699e3764567a02732a08989bed9f26005064341da640f154bd0eac8",
+   "file": "OSC-033.json",
+   "id": "OSC-033",
+   "kind": "P4_STALL",
+   "length_turns": 143,
+   "mechanism": "UNCLASSIFIED",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m087",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "unit": 0
+   },
+   "window_turns": [
+    58,
+    200
+   ]
+  },
+  {
+   "blocker_state": "NONE",
+   "completeness": "FULL",
+   "content_sha256": "67343bb5e9f5a19d38b53911beea42674f1660405cce58112e4f007ceb410f43",
+   "file": "OSC-034.json",
+   "id": "OSC-034",
+   "kind": "P4_STALL",
+   "length_turns": 94,
+   "mechanism": "UNCLASSIFIED",
+   "multiplicity": 1,
+   "origin": {
+    "game_id": null,
+    "map_id": "m100",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "unit": 0
+   },
+   "window_turns": [
+    6,
+    99
+   ]
+  }
+ ],
+ "subject": {
+  "git_ref": "origin/main:cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+  "judged_against": "itself (candidate bytes == parent bytes)",
+  "name": "readable__no_orchard",
+  "path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+  "run_identity": "floor",
+  "sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29"
+ },
+ "subject_note": "SUBJECT-CORRECT library. Every situation here was harvested from the M3a subject `readable__no_orchard` = cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs (git ref origin/main:cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs, sha256 98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29), judged against ITSELF at run_identity `floor` -- candidate bytes == parent bytes, machine-checked by fuzz_panel._check_run_identity. It is NOT the parent lineage: the sibling tree `oscillation-library/` was harvested from `candidate-agent6553250-preseed-orchard-coverage-slim.min.rs` (sha256 a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55), a different program, and must never be cited as M3a."
+}

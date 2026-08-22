@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "scope": "exact-live binary focus-species causal audit and seed-level hindsight ceiling on reused maps; not a selector, candidate, or Arena predictor",
+  "verdict": "HINDSIGHT_RESIDUAL_ONLY",
+  "control_sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "flip_sha256": "09c2d9276f6ebd256e24c9e3df56c28c30c02b95e2c7233235678acde8c6c488",
+  "panel": {
+    "seeds": "0..59 reused generated Bronze",
+    "opponents": [
+      "motion",
+      "taskplan",
+      "race",
+      "yield",
+      "ringfix3",
+      "chopharvest"
+    ],
+    "cells": 360,
+    "seat_games_per_policy": 720,
+    "total_games": 1440,
+    "coverage_complete": true
+  },
+  "geometry": {
+    "lemon_choices": 35,
+    "plum_choices": 25,
+    "distance_ties": 4,
+    "symmetric_seat_agreement": "60/60"
+  },
+  "mechanism": {
+    "status": "ACTIVE_FOCUS",
+    "activated_cells": 360,
+    "activated_seeds": 60,
+    "seat_game_counts": [
+      360,
+      360
+    ],
+    "active_families": 6,
+    "first_divergence_turn_minimum": 1,
+    "first_divergence_turn_median": 12.0,
+    "first_divergence_turn_maximum": 33
+  },
+  "direct_flip": {
+    "material": false,
+    "paired_margin_mean": -12.17361111111111,
+    "paired_margin_median": -4.25,
+    "paired_margin_minimum": -292.5,
+    "paired_margin_maximum": 286.5,
+    "cell_signs": {
+      "positive": 144,
+      "zero": 7,
+      "negative": 209
+    },
+    "seat_means": [
+      -7.4,
+      -16.947222222222223
+    ],
+    "family_means": {
+      "motion": -8.375,
+      "taskplan": -8.208333333333334,
+      "race": -11.333333333333334,
+      "yield": -5.95,
+      "ringfix3": -18.65,
+      "chopharvest": -20.525
+    },
+    "policy_score_mean": -1.0138888888888888,
+    "opponent_score_mean": 11.159722222222221,
+    "wood_edge_mean": -3.025,
+    "gates": {
+      "mean_margin_at_least_one": false,
+      "both_seats_nonnegative": false,
+      "at_least_four_positive_families": false,
+      "worst_family_at_least_minus_one": false
+    }
+  },
+  "seed_hindsight": {
+    "material": true,
+    "seed_balanced_gain": 10.509722222222223,
+    "preferred_flip_seed_count": 24,
+    "preferred_flip_seeds": [
+      3,
+      8,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      25,
+      26,
+      28,
+      32,
+      34,
+      37,
+      39,
+      42,
+      43,
+      45,
+      50,
+      52,
+      55,
+      56,
+      57,
+      58
+    ],
+    "selected_policy_seat_gain_means": [
+      10.886111111111111,
+      10.133333333333333
+    ],
+    "leave_one_family_out_gain_means": {
+      "motion": 7.041666666666667,
+      "taskplan": 8.266666666666667,
+      "race": 6.75,
+      "yield": 5.45,
+      "ringfix3": 12.983333333333333,
+      "chopharvest": 15.45
+    },
+    "gates": {
+      "seed_balanced_gain_at_least_one": true,
+      "at_least_12_seeds_prefer_flip": true,
+      "both_selected_policy_seats_nonnegative": true,
+      "at_least_four_positive_leave_one_family_out": true
+    }
+  },
+  "integrity": {
+    "focused_tests": "7 passed",
+    "self_test": "ok",
+    "jobs_8_full_json_sha256": "18648731768f0756c787ddc52fe83a547213e60e2f35e993b80d2fd45c7fea14",
+    "jobs_1_full_json_sha256": "288cd0a0d21dcf2437553b94dba936878f32ac3fe3380d38901476ec7aa26ca8",
+    "normalized_payload_sha256": "c7a9d614ca607227b1dfb9649783a034212b4446cf5838250768695dff0044a5",
+    "normalized_payloads_excluding_jobs_exact": true,
+    "value_rows_sha256": "d3f3687945983c4809518388a0269db97d8a50c6ba6917fc12c63ef418410c76",
+    "geometry_rows_sha256": "cf22b763f5fa738a8bd31ac6f4eabc79c58a4a79c4572e696579d3c91a64461a",
+    "divergence_rows_sha256": "220e4b7f0d790ca8bd5f04dca5ef9a2e61a76c9a5ad4b430cfaf95703e4c4e02",
+    "oracle_rows_sha256": "0ed6247f419c986e45a8fcbf78a6102a63c1ae9876f8e1befdcba4ce4949dba1",
+    "unexpected_stderr_bytes": 0,
+    "malformed_commands": 0,
+    "sacred_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "decision": {
+    "keep_current_default": true,
+    "persistent_flip": false,
+    "selector": false,
+    "candidate": false,
+    "arena_action": false,
+    "successor": "peer review, then a separately frozen prospective selector decision"
+  }
+}

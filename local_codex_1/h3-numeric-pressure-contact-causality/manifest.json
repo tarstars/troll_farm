@@ -1,0 +1,104 @@
+{
+  "task_id": "20260731-h3-numeric-pressure-contact-causality",
+  "agent": "local_codex_1",
+  "date": "2026-07-31",
+  "verdict": "TEMPORALLY_ORDERED_PRESSURE_SIGNAL_PREFLIGHT_ONLY",
+  "base_commit": "d7384ccfb8a8b06baa480536973e9110c11d23cd",
+  "claim_commit": "704080af3633dbe6dce3840ea7d94e9fa3c47409",
+  "implementation_commit": "963f36831ab28fd29b9676e51f11420bc6955eee",
+  "files": {
+    "protocol": {
+      "path": "docs/h3-numeric-pressure-contact-causality-protocol-2026-07-31.md",
+      "sha256": "a662a1f61da4bd512966de6aa02d48b2ea56034faa11a4f1de501cc54f98b348"
+    },
+    "claim_message": {
+      "path": "coordination/messages/local_codex_1/20260731T030246Z-20260731-h3-numeric-pressure-contact-causality-claim.md",
+      "sha256": "66900304249206f70fabb8b39131a0f95c114d4579080cbfd4fc3ef604184136"
+    },
+    "progress_message": {
+      "path": "coordination/messages/local_codex_1/20260731T030852Z-20260731-h3-numeric-pressure-contact-causality-progress.md",
+      "sha256": "c509bcbb7c3a659ecf6a3aaf9777a6c21dace35197f861cb11615ba698453976"
+    },
+    "analyzer": {
+      "path": "cgauto/h3_numeric_pressure_contact_causality.py",
+      "sha256": "8259f8d02cf25fd1154e554424dbb619db60043e7052d209ded05f525ab9d5dc"
+    },
+    "tests": {
+      "path": "tests/test_h3_numeric_pressure_contact_causality.py",
+      "sha256": "d450227882a87909201fe0ca26d1f683100c09abc2ad0f088909894f2a06651e"
+    },
+    "result": {
+      "path": "data/analysis/live-agent-6553250/h3-numeric-pressure-contact-causality-result-2026-07-31.json",
+      "sha256": "ebc7924e5f0f3670576cdf19372fa4ec1d39de02a1241dcf59e4e51b5bd472b3"
+    },
+    "report": {
+      "path": "data/analysis/live-agent-6553250/h3-numeric-pressure-contact-causality-result-2026-07-31.md",
+      "sha256": "3c0529c17d7c176200d3bd34c1ff5dd7ea795c02bdc0e01680a232145c985ef1"
+    }
+  },
+  "frozen_inputs": {
+    "d159_manifest": {
+      "path": "data/analysis/live-agent-6553250/d159a-current-resident-all-finished-effect-refresh-raw.json",
+      "sha256": "97dc82a730b5a691f2bf63036834b1a9ed23bc186b00d09b874ac092efddf443"
+    },
+    "d159_accepted_result": {
+      "path": "data/analysis/live-agent-6553250/d159a-current-resident-all-finished-effect-refresh-result.json",
+      "sha256": "bd3fe4571aec423cdb57d514a2f610c0dcfe9845099b5500a6721e98d72965ac"
+    },
+    "resident_source": {
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+      "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+    }
+  },
+  "validation": {
+    "py_compile": "pass",
+    "self_test": "self-test: ok",
+    "pytest": "7 passed",
+    "repeat_output_byte_identical": true,
+    "decode_or_transition_errors": 0,
+    "outside_game_ids_read": 0,
+    "post_match_maximum_absolute_smd": 0.18053233096690496
+  },
+  "decisive_counts": {
+    "frozen_games": 200,
+    "scaled_games": 77,
+    "no_scale_games": 123,
+    "main_matched_pairs": 70,
+    "main_scaled_opponent_identities": 29,
+    "preloss_matched_pairs": 69,
+    "preloss_scaled_opponent_identities": 28,
+    "scaled_coverage": 0.3537592351151673,
+    "no_scale_coverage": 0.47761824324324326,
+    "coverage_difference_percentage_points": -12.385900812807593,
+    "coverage_ci95_percentage_points": [
+      -18.828397637557444,
+      -5.854996857372252
+    ],
+    "main_did_hazard_ratio": 0.6060526004698841,
+    "main_did_ci95": [
+      0.41003771975239733,
+      0.8953883901310522
+    ],
+    "preloss_did_hazard_ratio": 0.510266437502987,
+    "preloss_did_ci95": [
+      0.29282384865769195,
+      0.840743208782317
+    ]
+  },
+  "successor_boundary": {
+    "item": "H3a",
+    "status": "peer-review-gated",
+    "required_arms": [
+      "workforce-pressure-conditioned change",
+      "identical change always on",
+      "unchanged control"
+    ]
+  },
+  "actions_not_taken": [
+    "raw or processed data write",
+    "source policy or simulator/referee edit",
+    "map, range, or unlisted game read",
+    "candidate or submission",
+    "Arena action"
+  ]
+}

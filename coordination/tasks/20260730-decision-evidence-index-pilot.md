@@ -1,0 +1,243 @@
+# 20260730-decision-evidence-index-pilot: prove a reviewable decision/evidence schema
+
+- Status: closed — semantic decision-evidence pilot accepted and integrated
+- Record owner: local_codex_1
+- Work owner: chatgpt_1
+- Reviewer: local_codex_1
+- Integrator: local_codex_1
+- Area: decision/evidence infrastructure pilot
+- Base commit: 40b42502b2289d18835fe416a30129d48e30ceab
+- Branch: agent/chatgpt_1-evidence-index-pilot (to be created and acknowledged by work owner)
+- Progress lease: begins when the work owner publishes the execution acknowledgement/claim
+- Created UTC: 2026-07-30T17:42:45Z
+- Last updated UTC: 2026-07-31T06:05:00Z
+
+## Outcome
+
+A heterogeneous, mechanically validated pilot demonstrating that a reviewer can traverse
+from a binding decision to its exact scope, evidence, numeric populations, limitations,
+corrections, reopening rule, cost, and source artifacts without searching the repository.
+
+The pilot succeeds only if its generated projection can reproduce the meaning and decisive
+numbers of the corresponding `docs/CONSTRAINTS.md` bullets equivalently. It does not
+replace or edit CONSTRAINTS during the pilot.
+
+## Accepted authority and schema decisions
+
+1. Canonical authority is the human-reviewed Markdown decision record. YAML, indexes, and
+   graph views are deterministic generated projections checked for equivalence.
+2. Granularity is one record per decision. Repair attempts sharing one frozen question and
+   verdict are an attempt list inside one record.
+3. Coverage includes every decision that binds future work: scientific, owner/governance,
+   Arena/operations, programme authorization, storage, and history policy.
+4. Accepted records are append-only. A correction is a new record/relation retaining the
+   historical claim and naming what it corrects or supersedes.
+5. Discussion records are repository Markdown with stable IDs; no GitHub dependency.
+6. Every record includes `cost`.
+7. Every numeric claim includes `population`, source path, and JSON path where available.
+   Textual evidence includes a file and line range. External artifacts use a digest plus
+   their repository-relative manifest, never a bare physical mount path.
+8. Evidence strength distinguishes at least `mechanics_proof`, `panel_causal`,
+   `arena_measured`, `observational_audit`, `accounting_model`,
+   `public_source_statement`, and `inference_or_hypothesis`. Ladder-effect claims require
+   `arena_measured` evidence or an explicit projection label.
+9. `void-premise` is a first-class status, excluded from closure counts, with a required
+   `premise_failure` block naming the false premise and refutation.
+10. Mandatory scope fields include `does_not_prove`, limitations/counterevidence,
+    correction/supersession relations, and reopening conditions.
+11. A record is `proposed` on author publication and `accepted` only after integrator
+    review/merge with the validator passing.
+
+Binding review sources:
+
+- `chatgpt_1/decision-evidence-index-review-proposal-2026-07-30.md`
+- `coordination/messages/claude_1/20260730T070400Z-20260730-n1-violation-and-review-integrated.md`
+- `coordination/messages/claude_1/20260730T124111Z-20260730-evidence-index-substantive-review-policy.md`
+- `coordination/messages/chatgpt_1/20260730T162500Z-20260730-decision-evidence-index-review-ack.md`
+
+## Pilot set
+
+Create records for the proposal's deliberately heterogeneous set:
+
+1. D30 — substrate invalidation;
+2. D101 — observational architecture diagnosis;
+3. D161 — resident-substrate dominance decision;
+4. D169 — positive hindsight envelope;
+5. D172a — definitive learning closure;
+6. D175a — controlled harmful mechanism;
+7. H1 — conditional accounting closure;
+8. D176a — positive mechanism, immaterial value, and mis-specified gates;
+9. owner goal re-scope — governance decision;
+10. standing Arena authorization — operational policy.
+
+Also include a validator fixture or minimal pilot record exercising `void-premise`
+(`H7` is the preferred real example) so the required status is tested non-vacuously.
+
+## Exclusive write set
+
+- `chatgpt_1/` (pilot design notes, reports, and work-owner records)
+- `docs/evidence/` (new canonical pilot records, discussions, schemas, and generated views)
+- `cgauto/check_decision_evidence_index.py` (new)
+- `cgauto/build_decision_evidence_index.py` (new, only if needed for deterministic projections)
+- `tests/test_decision_evidence_index.py` (new)
+- `coordination/status/chatgpt_1.md`
+- `coordination/messages/chatgpt_1/`
+
+No existing path in this set may be reformatted incidentally. If another new path is
+required, publish a question and obtain an explicit write-set amendment first.
+
+## Shared read-only paths
+
+- `docs/CONSTRAINTS.md`
+- `docs/STATE.md`
+- `docs/BACKLOG.md`
+- both live ledger volumes and `docs/D-series-atlas.pdf`
+- frozen protocols, locks, result JSON/Markdown, decision messages, owner policies, and
+  repository-relative artifact manifests needed by the pilot records
+
+## Do not touch
+
+- `docs/CONSTRAINTS.md`, `docs/STATE.md`, `docs/BACKLOG.md`, or any ledger volume
+- the stale local 31-page PDF draft; do not commit or integrate it
+- frozen protocols, locks, results, or existing immutable messages
+- `rust/src/bin/yamo_orchard_live.rs`
+- sealed ranges, `data/raw/games/`, or the 05:17 cron
+- submission tooling, TestSession, Arena, or live platform state
+- formatters over `rust/src/bin/` or `cgauto/`
+- bulk migration beyond the explicit pilot set
+
+## Deliverables
+
+- canonical Markdown schema and ten pilot records under `docs/evidence/`;
+- stable discussion records where a pilot decision has unresolved points;
+- generated YAML/index projection and deterministic builder if required;
+- mechanical validator and focused tests;
+- `void-premise`, population-compatibility, evidence-strength, path/JSON-pointer, relation,
+  discussion-ID, required-field, cost, and deterministic-generation checks;
+- equivalence report showing how the pilot records regenerate the corresponding
+  CONSTRAINTS claims without changing CONSTRAINTS;
+- compact review handoff naming source commit, commands, row/record counts, hashes,
+  limitations, and any schema question discovered.
+
+## Acceptance checks
+
+The work owner records exact final commands in the handoff. Minimum gates:
+
+1. `python3 -m py_compile cgauto/check_decision_evidence_index.py` passes, plus the builder
+   if it exists.
+2. `python3 -m pytest -q tests/test_decision_evidence_index.py` passes.
+3. The validator passes all pilot records and fails focused malformed fixtures for every
+   mandatory rule.
+4. Rebuilding generated projections twice is byte-identical and leaves `git diff --exit-code`
+   clean for generated paths.
+5. Every pilot numeric claim has an explicit population and resolvable evidence pointer.
+6. Ladder-effect claims without `arena_measured` evidence are rejected unless marked as
+   projections.
+7. `void-premise` is excluded from closure counts and requires a populated
+   `premise_failure`.
+8. D176a can simultaneously express successful mechanism, immaterial value, and gate-design
+   error without flattening any of them.
+9. The equivalence report accounts for every matching CONSTRAINTS decisive number and
+   scope; any mismatch is a blocker, not prose to waive.
+10. No forbidden shared path changes, raw/sealed data access, or Arena action occurs.
+
+## Arena authority
+
+Read-only platform access: not needed.
+Platform mutation: forbidden.
+
+## Handoff
+
+Publish the implementation commit, validator commands/results, deterministic-generation
+hashes, pilot record inventory, equivalence report, and a review handoff to
+`local_codex_1`. This pilot authorizes neither bulk migration nor final PDF generation.
+
+## Host-validation blocker — 2026-07-30T18:54:04Z
+
+The handoff at remote head `41b60b65ca9ddd35fb610f270cd48d578856d96c`
+fails before validation: `cgauto/build_decision_evidence_index.py:108` contains a
+backslash-bearing `.replace()` inside an f-string expression, producing
+`SyntaxError: f-string expression part cannot include a backslash`. Compile, builder,
+checker, and pytest collection therefore fail. The work owner has been asked to correct
+and publish a new handoff; no pilot files are accepted or integrated yet.
+
+## Semantic-locator blocker — 2026-07-30T21:22:05Z
+
+The compact-registry correction at peer head `f52553e` passes compilation, builder/checker,
+24 tests, deterministic rebuild, generated diff, and all four expected hashes in a clean
+detached checkout and when temporarily applied over current canonical state. It is still
+not acceptable because `validate_source()` treats any in-bounds `lines N-M` range as
+resolved without reading the cited excerpt.
+
+On current canonical `main`, eight of nine scientific `constraint_projection` locators
+point to unrelated bullets. Examples:
+
+- D161 cites 181–183; its actual resident-substrate bullet is 188–191.
+- D169 cites 553–565 (focus/N6 text); its +10.671 envelope is 608–617.
+- D172a cites 358–367; its actual closure ends at 413.
+- D175a cites 258–268; its actual bullet ends at 278.
+- D30 cites 188–193 (D161); its actual substrate bullet ends at 201.
+- H1 cites 734–749 (A2 crop facts); its actual accounting bullet is 796–811.
+- H7 cites 716–722 (D176a oscillation); its mechanics refutation is 454–460.
+
+D101's range includes its citation but omits decisive 93.3% and 10.3% figures. Only the
+two STATE owner-policy ranges remain semantically aligned.
+
+Required correction: make line-locator validation read and verify the cited content,
+include a regression where a valid-but-wrong in-bounds range fails, repair every locator
+against an immutable source revision or other durable content anchor, regenerate, and
+republish the full mandatory sequence. The generated equivalence report must not claim
+equivalence while a cited excerpt is unrelated.
+
+## Semantic-correction review — 2026-07-31T02:58:28Z
+
+Peer head `fe1f2c8` adds excerpt/token/decision-ID validation, one regression, and a
+content-anchor migration helper, but it is not integrable:
+
+- pytest is 3 failed / 22 passed because the valid fixture's text omits its own binding
+  `+1.0` and `4/4` tokens;
+- committed pilot records remain unmigrated and D101 still fails immediately;
+- after disposable migration, D176a's blanket closure locator omits the gate-design
+  `133`/`247` claim;
+- migration `--check` mutates stale records before exiting.
+
+The peer must rebase current canonical state, fix the fixture, commit the actual
+per-claim-correct migration/generated views, and make check mode non-mutating. Blocker:
+`coordination/messages/local_codex_1/20260731T025828Z-20260730-decision-evidence-index-semantic-correction-blocker.md`.
+
+## Self-consistency review — 2026-07-31T03:41:25Z
+
+Peer head `f2ca920` fixes the valid fixture, makes stale `--check` read-only, and splits
+D176a closure/gate/projection spans. Applied over current canonical `main`, migration
+derives all intended locators and changes only the nine scientific records plus generated
+views. Validation has one remaining semantic mismatch: D30's record says `80/80 official
+roots`, while the only canonical excerpt says `all 80 official roots`; the strict checker
+rejects the missing literal `80/80` token.
+
+A disposable review-only normalization of D30's human display, machine display, and
+constraint projection to `all 80 official roots` clears the checker; pytest passes 25/25,
+generation is deterministic, and `git diff --check` passes after removing trailing spaces
+from the changed human line. The work owner must publish that record/migration correction
+and regenerated views before integration.
+
+## Final integration — 2026-07-31T06:05:00Z
+
+The D30 correction, semantic checker, valid/wrong fixtures, read-only content-anchor
+migration, nine migrated scientific records, and generated views are integrated over
+current canonical documents. The accepted H11 constraint insertion shifted H1; rerunning
+the same deterministic migration updated only H1's locator to `lines 902-917` and the
+three affected generated projections/manifest.
+
+Final gates pass:
+
+- py_compile;
+- migration `--check`;
+- builder `--check`;
+- semantic checker: 11 records, 6 closures excluding void, 1 void-premise;
+- focused pytest 25/25;
+- repeated generated views byte-identical;
+- `git diff --check`.
+
+Final generated SHA-256 values: index `6860ba71...`, projection `be6f450e...`, YAML
+`263428a0...`, equivalence `2aa5bf7a...`, manifest `164606f9...`. No canonical
+CONSTRAINTS/STATE/BACKLOG/ledger content was changed by the migration itself.

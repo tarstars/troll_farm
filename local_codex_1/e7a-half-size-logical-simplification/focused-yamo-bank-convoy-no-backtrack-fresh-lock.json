@@ -1,0 +1,148 @@
+{
+  "schema": "troll-farm-e7a-half-size-fresh-gate-lock-v1",
+  "task_id": "20260802-e7a-half-size-logical-simplification",
+  "locked_at_utc": "2026-08-03T02:54:31Z",
+  "state_at_lock": "UNOPENED",
+  "one_shot": true,
+  "candidate": {
+    "path": "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-bank-convoy-no-backtrack.rs",
+    "bytes": 31248,
+    "sha256": "a767e36228c872ad566b4347825f5282f95e50ae9f59fcf5a42b682989d85fea"
+  },
+  "baseline": {
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+    "bytes": 62820,
+    "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+  },
+  "sacred": {
+    "path": "rust/src/bin/yamo_orchard_live.rs",
+    "sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "validation": {
+    "seed_start": 9865000,
+    "seed_end_inclusive": 9865042,
+    "maps": 43,
+    "seats": [
+      0,
+      1
+    ],
+    "opponents": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot"
+    ],
+    "paired_tasks": 516,
+    "threads": 8,
+    "bootstrap_samples": 50000,
+    "bootstrap_rng_seed": 20260803,
+    "range_arguments_exposed": false,
+    "map_count_arguments_exposed": false,
+    "thread_count_arguments_exposed": false,
+    "bootstrap_arguments_exposed": false
+  },
+  "gates": {
+    "coverage_at_least_512": true,
+    "six_families": true,
+    "zero_critical_and_unclassified": true,
+    "mean_margin_delta_minimum": -0.5,
+    "bootstrap_95_lower_strictly_above": -2,
+    "catastrophes_may_increase": false,
+    "negative_margin_mass_may_increase": false,
+    "minimum_nonnegative_family_means": 5,
+    "both_seat_means_nonnegative": true,
+    "worker2_coverage_minimum": 0.95,
+    "median_worker2_delay_maximum": 10,
+    "candidate_period2_ge6_maximum": 0,
+    "latency_p95_ratio_maximum": 1.2,
+    "latency_maximum_ms_strictly_below": 50
+  },
+  "collision_audit": {
+    "result": "NO_RECORDED_SEED_COLLISION",
+    "live_record_roots": [
+      "docs",
+      "coordination",
+      "cgauto",
+      "scripts",
+      "local_codex_1/e7a-half-size-logical-simplification",
+      "data/analysis/live-agent-6553250"
+    ],
+    "exact_tokens": [
+      "9865000",
+      "9_865_000",
+      "9,865,000",
+      "9,865"
+    ],
+    "tracked_live_record_matches_before_reservation": 0,
+    "task_working_tree_matches_before_reservation": 0,
+    "tracked_filename_matches_before_reservation": 0,
+    "tracked_history_exact_matches_before_reservation": 0,
+    "external_artifact_filename_matches_before_reservation": 0,
+    "external_roots_verified_beneath_project_volume": true,
+    "external_roots_checked": [
+      "artifacts",
+      "outputs",
+      "yt_work",
+      "data/generated",
+      "data/external"
+    ],
+    "excluded_recorded_ranges": [
+      "9844200-9844215",
+      "9852000-9852063",
+      "9853000-9853127",
+      "9854000-9854127",
+      "9855000-9855127",
+      "9856000-9856255",
+      "9857000-9857127",
+      "9858000-9858031",
+      "9859000-9859127",
+      "9860000-9860511",
+      "9861000 selection material",
+      "9862000-9862063",
+      "9863000-9863042",
+      "9864000-9864042"
+    ]
+  },
+  "hashes": {
+    "builder": "b6c01ee532cd15557aa156916e3275df41899af3ccb3fee828220d2b41d5b6d4",
+    "candidate_manifest": "fd052a5945ea8f655555189dbea786a9905bb7d5b55b8e85e050902f37de5f6b",
+    "semantic_validator": "fcf279595cd5663796014d2d85a3c1db989ce46a8e2dee83947201ef2a3fb5ff",
+    "semantic_result": "c997280aa0ad6b5e291da89c9f5a0c5ab578448de1c4e20a0cda547c7299aac9",
+    "motion_evaluator": "aeccde7b73891fbfa03a57c657ce230c65e1930ef04ff735c081cbf4134b6258",
+    "motion_result": "1eeb60e3e77012777e14ce275fcc7f359ce710e5c8d57591d62fc44bace8d619",
+    "live_packet_evaluator": "ff43268181e88b563257f2c8eace5649ab5bba076beb96f9b49e76876fb44d9a",
+    "live_packet_result": "a2e250fb8d97288f7f7b001353b76f15818114f5aa4ef86444c60d7435fccf1b",
+    "shared_panel_analyzer": "fa1fc5c29d857b4d6c5fd3116f678f33d51be46566af2c503307ae4f21d8acff",
+    "fresh_evaluator": "dc9c803f66fa2511011793efce2073e0c1928b207388228718bf2d0a34616b14",
+    "runner_template": "05335ff0226394abe0216e172bf234c56051358bbc29fceb5f5de86da9361a45",
+    "generated_fresh_runner": "227b2d8282293c4adfab028c8229a62cdd7844ce0d80fc9a23b05b6e3de633ab",
+    "rust_library": "1802bd8d69023b2e374d0a9586c33296485456892a9821dc635f5cb6dde0e660",
+    "consumed_panel_tsv": "64b01897badf6674467ea39b70382fed53774428a59dbd88718321d17417a008",
+    "consumed_result": "33cf97f7c2b3ca368680ef141ac2a3b8c1bfb3e0ca125ef64a8a4e7f0bcf000f",
+    "consumed_transfer_driver": "634e2ec7ccc0cbc354ce6aecbab1cfb11522ba74402ca141c1d820a847d55f37",
+    "consumed_transfer_tsv": "a4b6d5def06b48caa915ab81271171cf12adee7d2720c27f6cf306ed1fc37dc0",
+    "consumed_transfer_result": "f111b9d7ebfd4b964f756e0e418ed5d86153d2fce68c3e26d0b4891675f9cc53"
+  },
+  "pre_run_checks": {
+    "standalone_optimized_compile": true,
+    "empty_input_exit_zero": true,
+    "empty_input_stdout_bytes": 0,
+    "empty_input_stderr_bytes": 0,
+    "semantic_fixtures": "PASS_10_OF_10",
+    "consumed_panel": "QUALIFIED_OPEN_PANEL",
+    "consumed_transfer_diagnostic": "ANALYTICAL_PASS_CANNOT_QUALIFY",
+    "live_period2_packet": "PASS_25_OF_25_MAXIMUM_4",
+    "fresh_runner_compile_only": "PASS_NO_MAP_GENERATION"
+  },
+  "one_shot_command": [
+    "python3",
+    "local_codex_1/e7a-half-size-logical-simplification/evaluate_fresh_no_backtrack_gate.py",
+    "--panel",
+    "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-bank-convoy-no-backtrack-fresh-panel.tsv",
+    "--output",
+    "local_codex_1/e7a-half-size-logical-simplification/focused-yamo-bank-convoy-no-backtrack-fresh-panel.json"
+  ],
+  "evidence_boundary": "Untouched engineering transfer gate; not an Arena-rating predictor"
+}

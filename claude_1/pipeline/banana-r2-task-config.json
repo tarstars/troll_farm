@@ -1,0 +1,221 @@
+{
+  "task": "20260802-banana-restoration-r2",
+  "ledger": "failure-ledger.json",
+  "timeout": 300,
+  "traces": [
+    {
+      "name": "t1_lifecycle",
+      "transcript": "../banana-restoration-r2/traces/t1_lifecycle-transcript.txt",
+      "commands": "../banana-restoration-r2/traces/t1_lifecycle-commands.txt",
+      "binary_source": "../banana-restoration-r2/candidate-banana-r2.min.rs",
+      "crate_name": "banana_r2",
+      "scripted": false,
+      "critical": true
+    },
+    {
+      "name": "t2_contested",
+      "transcript": "../banana-restoration-r2/traces/t2_contested-transcript.txt",
+      "commands": "../banana-restoration-r2/traces/t2_contested-commands.txt",
+      "binary_source": "../banana-restoration-r2/candidate-banana-r2.min.rs",
+      "crate_name": "banana_r2",
+      "scripted": false,
+      "critical": true
+    },
+    {
+      "name": "t3_abandon",
+      "transcript": "../banana-restoration-r2/traces/t3_abandon-transcript.txt",
+      "commands": "../banana-restoration-r2/traces/t3_abandon-commands.txt",
+      "binary_source": "../banana-restoration-r2/candidate-banana-r2.min.rs",
+      "crate_name": "banana_r2",
+      "scripted": false,
+      "critical": true
+    },
+    {
+      "name": "t4_convert",
+      "transcript": "../banana-restoration-r2/traces/t4_convert-transcript.txt",
+      "commands": "../banana-restoration-r2/traces/t4_convert-commands.txt",
+      "binary_source": "../banana-restoration-r2/candidate-banana-r2.min.rs",
+      "crate_name": "banana_r2",
+      "scripted": false,
+      "critical": true
+    },
+    {
+      "name": "t5_flip_convert",
+      "transcript": "../banana-restoration-r2/traces/t5_flip_convert-transcript.txt",
+      "commands": "../banana-restoration-r2/traces/t5_flip_convert-commands.txt",
+      "scripted": true,
+      "critical": false,
+      "note": "round-3 scripted D-8-amendment illustration, retained for provenance only; the candidate-driven flip/convert evidence is R-4 flip-response-reachability (regression_tests.py r4-bin), which runs the real binary closed-loop and ERRORs on scripted input"
+    },
+    {
+      "name": "t6_owned_chop",
+      "transcript": "../banana-restoration-r2/traces/t6_owned_chop-transcript.txt",
+      "commands": "../banana-restoration-r2/traces/t6_owned_chop-commands.txt",
+      "scripted": true,
+      "critical": false,
+      "note": "owned-mother discretionary-chop NEGATIVE control: proves detector D-8 can FAIL (its detectors.json records the designed D-8 FAIL); never cited as evidence that an invariant holds"
+    }
+  ],
+  "oracles": [
+    {
+      "name": "CONVERSION_RACE_ORACLE",
+      "module_path": "../banana-restoration-r2/conversion_race_oracle.py",
+      "quantity_patterns": [
+        "max\\(\\s*(?:t\\s*\\+\\s*)?eta_opp",
+        "eta_opp\\w*\\s*\\.\\s*max\\s*\\(",
+        "exact_chops\\w*\\s*<\\s*eta_opp",
+        "ceil\\w*\\(\\s*(?:current_)?health\\b[^)]*chop"
+      ],
+      "scan_files": [
+        "../banana-restoration-r2/trace_detectors.py",
+        "../banana-restoration-r2/regression_tests.py",
+        "../banana-restoration-r2/semantic_harness.py",
+        "../banana-restoration-r2/make_banana_traces.py",
+        "../banana-restoration-r2/test_trace_detectors.py",
+        "../banana-restoration-r2/banana_blocks/block-i1.rs",
+        "../banana-restoration-r2/research-banana-r2.rs"
+      ],
+      "allowed_importers": [
+        { "path": "../banana-restoration-r2/trace_detectors.py" },
+        { "path": "../banana-restoration-r2/regression_tests.py" }
+      ],
+      "allowed_mirrors": [
+        {
+          "path": "../banana-restoration-r2/banana_blocks/block-i1.rs",
+          "marker_regex": "CONVERSION_RACE_ORACLE",
+          "note": "candidate readable block; Rust cannot import the Python oracle, so the mirror must cite CONVERSION_RACE_ORACLE by name at the mirrored arithmetic"
+        },
+        {
+          "path": "../banana-restoration-r2/research-banana-r2.rs",
+          "note": "complete readable research source; arithmetic identity with the compact candidate (and hence with the cited block-i1 mirror) is established by the research-vs-compact replay-equality gate (gate-results-v4-2026-08-05.md) and the seam asserts of build_banana_candidate.py. Declared here so the mirror is visible; the file does NOT cite the oracle name in-text - see validation report finding"
+        }
+      ]
+    }
+  ],
+  "red_green_pairs": [
+    {
+      "name": "R-1-vs-f29efd0e",
+      "check_cmd": ["python3", "regression_tests.py", "r1-bin", "--source", "{source}"],
+      "cwd": "../banana-restoration-r2",
+      "old_source_git": {
+        "commit": "a787d478",
+        "path": "claude_1/banana-restoration-r2/candidate-banana-r2.min.rs"
+      },
+      "expected_failure_signature": {
+        "must_match_regexes": [
+          "\"check\": \"R-1 one-seed-reservation\"",
+          "\"verdict\": \"FAIL\"",
+          "\"surplus_since_turn\": 57",
+          "\"turn\": 58"
+        ]
+      },
+      "documented_defect": "r1 review finding 1: plants at turns 58 and 61 before any surplus banana is banked (no one-seed reservation)"
+    },
+    {
+      "name": "R-3b-vs-280ed777",
+      "check_cmd": ["python3", "regression_tests.py", "r3-bin", "--source", "{source}"],
+      "cwd": "../banana-restoration-r2",
+      "old_source_git": {
+        "commit": "0ece10ec",
+        "path": "claude_1/banana-restoration-r2/candidate-banana-r2.min.rs"
+      },
+      "expected_failure_signature": {
+        "must_match_regexes": [
+          "\"check\": \"R-3b conversion-race-boundary/feasible-edge\"",
+          "\"verdict\": \"FAIL\"",
+          "refuses the feasible conversion and abandons",
+          "completion 6 < opponent harvest 7"
+        ]
+      },
+      "documented_defect": "r2 review finding 1 (as unified in round 4): non-growth-aware / non-oracle deadline refuses an oracle-feasible conversion at the strict one-turn edge"
+    },
+    {
+      "name": "R-3b-vs-2f58edef",
+      "check_cmd": ["python3", "regression_tests.py", "r3-bin", "--source", "{source}"],
+      "cwd": "../banana-restoration-r2",
+      "old_source_git": {
+        "commit": "8b000bad",
+        "path": "claude_1/banana-restoration-r2/candidate-banana-r2.min.rs"
+      },
+      "expected_failure_signature": {
+        "must_match_regexes": [
+          "\"check\": \"R-3b conversion-race-boundary/feasible-edge\"",
+          "\"verdict\": \"FAIL\"",
+          "no CHOP on the mother was ever issued",
+          "completion 6 < opponent harvest 7"
+        ]
+      },
+      "documented_defect": "r3 review finding 2: the candidate's voided max(eta_opp, predicted.cooldown) deadline disagrees with CONVERSION_RACE_ORACLE exactly at the feasible edge"
+    },
+    {
+      "name": "R-4-vs-2f58edef",
+      "check_cmd": ["python3", "regression_tests.py", "r4-bin", "--source", "{source}"],
+      "cwd": "../banana-restoration-r2",
+      "old_source_git": {
+        "commit": "8b000bad",
+        "path": "claude_1/banana-restoration-r2/candidate-banana-r2.min.rs"
+      },
+      "expected_failure_signature": {
+        "must_match_regexes": [
+          "\"check\": \"R-4 flip-response-reachability\"",
+          "\"verdict\": \"FAIL\"",
+          "no convert response begun in the I-10a window",
+          "completion 18 < opponent harvest 27"
+        ]
+      },
+      "documented_defect": "r3 review finding 1 (reachable form): after a real ownership flip the 2f58edef candidate WAITs instead of beginning the oracle-feasible conversion"
+    },
+    {
+      "name": "R-5-vs-9f5ef833",
+      "check_cmd": ["python3", "regression_tests.py", "r5-bin", "--source", "{source}"],
+      "cwd": "../banana-restoration-r2",
+      "old_source_git": {
+        "commit": "b358124f",
+        "path": "claude_1/banana-restoration-r2/candidate-banana-r2.min.rs"
+      },
+      "expected_failure_signature": {
+        "must_match_regexes": [
+          "\"check\": \"R-5 two-worker-full-cargo-banking\"",
+          "\"verdict\": \"FAIL\"",
+          "two-cell alternation cells \\(4, 2\\)<->\\(3, 2\\) over turns 3-40",
+          "cargo unchanged and no DROP",
+          "never DROPs at a door within the bounded banking horizon"
+        ]
+      },
+      "documented_defect": "r4 host review finding 1 (MULTI_UNIT_COORDINATION): the BananaBot protected-mother forbidden-landing re-resolution (block-i1 C5 third layer) displaces the full second worker's one-step banking landing every other turn - locally a 38-state (4,2)<->(3,2) MOVE alternation with carry [0,0,0,0,0,2] and no DROP, the host's 225-turn (8,4)<->(8,3) episode class; I-19/I-20/I-21 violated, D-1 by construction (diagnosis-r5-2026-08-05.md)"
+    }
+  ],
+  "external_checks": [
+    {
+      "name": "fuzz-panel",
+      "cmd": ["python3", "fuzz_panel.py",
+              "--config", "fuzz-panel-config.json",
+              "--report", "../banana-restoration-r2/fuzz/fuzz-report-latest.md",
+              "--json", "../banana-restoration-r2/fuzz/fuzz-report-latest.json",
+              "--save-failures", "../banana-restoration-r2/fuzz/failures"],
+      "cwd": ".",
+      "timeout": 5400,
+      "ledger_class": "UNSAMPLED_STATE_SPACE",
+      "note": "randomized closed-loop property panel (final gate); pre_review runs it after the four built-in checks; a fuzz BLOCK is a pre-review BLOCK"
+    }
+  ],
+  "claims": {
+    "path": "banana-r2-claims.json",
+    "critical_invariants": ["I-9", "I-10a", "I-7", "D-8", "I-19", "I-20", "I-21"]
+  },
+  "required_deliverables": [
+    "../banana-restoration-r2/candidate-banana-r2.min.rs",
+    "../banana-restoration-r2/research-banana-r2.rs",
+    "../banana-restoration-r2/candidate-banana-r2-manifest.json",
+    "../banana-restoration-r2/build_banana_candidate.py",
+    "../banana-restoration-r2/conversion_race_oracle.py",
+    "../banana-restoration-r2/invariant-spec-2026-08-04.md",
+    "../banana-restoration-r2/regression_tests.py",
+    "../banana-restoration-r2/trace_detectors.py",
+    "../banana-restoration-r2/gate-results-v4-2026-08-05.md",
+    "../banana-restoration-r2/red-evidence-2f58edef-2026-08-05.md"
+  ],
+  "checklist_answers": {
+    "INSTRUMENT_GAP": "The static-opponent gap named in r1 was closed by the dynamic-opponent referee (make_banana_traces DYNAMIC_SCENARIOS t3/t4 and the R-4 scenario, where the opponent harvester really approaches and captures). Multi-unit OWN-side coordination - deferred to the host replay gate through round 4, which the round-4 host review rejected as a deferral (its finding 1 is exactly such a failure) - is now locally expressible: the R-5 scenario (scenario_r5_two_worker_banking, CustomMapReferee) runs both own workers closed-loop with the full carrier's bank route crossing the protected cell, and the R-5-vs-9f5ef833 pair mechanizes the MULTI_UNIT_COORDINATION ledger class. Remaining inexpressible classes: multi-unit OPPONENT coordination and platform-engine tie-breaking order; both remain covered only by the integrator's host replay gates and are declared, not hidden."
+  }
+}

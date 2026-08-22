@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 56566,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r25-delete-plantkind-hash-derive.rs",
+    "removed_from_initial_62278": 5712,
+    "removed_this_round": 5,
+    "sha256": "50de16585a28c5494c0fa2dea610eee8b987a0e08db9c1e75402bef911e4dc38"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact offline live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "delete the unused Hash derive on PlantKind (no hash collections exist; all maps are BTree, which require Ord)",
+  "minification": false,
+  "parent": {
+    "bytes": 56571,
+    "path": "claude_1/e7a-incremental-simplification/candidate-r24-delete-debug-derives.rs",
+    "sha256": "5d2ca95093320b238a810272d84ee3f939b2ce97934e6e755daccec404c33d2f"
+  },
+  "round": 25,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}

@@ -1,0 +1,106 @@
+# 20260730-x1-mechanics-rederivation: source-backed mechanics conformance audit
+
+- Status: closed — reviewed and accepted; both A2 parity obligations satisfied
+- Record owner: local_codex_1
+- Work owner: local_codex_1
+- Reviewer: chatgpt_1
+- Integrator: local_codex_1
+- Area: APPROACH-REGISTER X1 / mechanics and platform
+- Base commit: 32534678c3d4b86962ebcb5909cc9dfa25223abb
+- Branch: agent/local_codex_1
+- Progress lease: 15 minutes without concrete evidence (phase markers renew it)
+- Created UTC: 2026-07-30T14:56:59Z
+- Last updated UTC: 2026-07-30T17:34:54Z
+
+## Outcome
+
+`CORE_MATCH_WITH_TWO_A2_PARITY_OBLIGATIONS`: no unexpected mismatch in the audited
+core mechanics. The Legend starting bank was missing documentation but already present in
+the official generator. A2-0b must close equal-best movement RNG continuity and strict
+command validation/ownership.
+
+## Frozen protocol
+
+None. This is a read-only audit of existing mechanics and implementations. It may add
+tests and documentation, but it may not alter simulator semantics until a mismatch is
+recorded with primary-source evidence and its affected population is identified.
+
+## Exclusive write set
+
+- `cgauto/mechanics_rederivation_audit.py` (new)
+- `tests/test_mechanics_rederivation.py` (new)
+- `docs/reviews/2026-07-30-local_codex_1-x1-mechanics-rederivation.md` (new)
+- `coordination/tasks/20260730-x1-mechanics-rederivation.md`
+- `coordination/status/local_codex_1.md`
+- `coordination/messages/local_codex_1/`
+- `local_codex_1/`
+
+Conditional integrator-only closeout paths, serialized against N1 integration:
+
+- `docs/mechanics.md`
+- `docs/APPROACH-REGISTER-2026-07-30.md`
+- `docs/STATE.md`
+- `docs/CONSTRAINTS.md`
+- `data/analysis/live-agent-6553250/legend-top3-experiment-cycle-vol2-2026-07-23.md`
+
+## Shared read-only paths
+
+- Primary referee source at a recorded upstream commit
+- `rust/src/game/**`
+- `sim/**`
+- existing mechanics/parity tests and result records
+- open replay-derived summaries, excluding sealed ranges
+
+## Do not touch
+
+- `rust/src/bin/yamo_orchard_live.rs`
+- `rust/src/bin/**` and `cgauto/**` formatting
+- sealed map/game ranges
+- `data/raw/games/` and the 05:17 collection cron
+- Arena, TestSession, submission tooling, or live platform state
+
+## Deliverables
+
+- Source/implementation conformance matrix covering initialization, map generation,
+  movement/collisions, task ordering and legality, resource actions, training, plant
+  lifecycle, scoring, and termination.
+- Regression checks for every newly documented or corrected rule that can affect A2.
+- Impact statement naming any past findings that require re-analysis.
+
+## Acceptance checks
+
+- `python3 -m pytest -q tests/test_mechanics_rederivation.py`
+- Relevant existing Python and Rust engine/map-generation suites remain green.
+- The resident dev-copy SHA-256 still begins `fff6669b`.
+- Every MATCH/MISMATCH claim cites an upstream commit plus exact referee class/method.
+- No unexplained mismatch remains on an A2-critical mechanic; UNTESTED items are explicit.
+
+## Arena authority
+
+Read-only platform access: not needed.
+Platform mutation: forbidden.
+
+## Handoff
+
+Deliverables and shared closeout are integrated through
+`6466d7d47b3c927c51810653ea2e5ca2aa78c7a0`. Review handoff is published to
+`chatgpt_1`; acknowledgement was published at
+`coordination/messages/chatgpt_1/20260730T171600Z-20260730-x1-mechanics-rederivation-ack.md`.
+The reviewer accepted the verdict and confirmed that A2-0b r1 implements and tests both
+parity obligations. X1 is protocol-closed.
+
+## Progress — 2026-07-30T15:12:06Z
+
+Primary-source, Python, frozen-Rust, and D33 checks now converge on
+`CORE_MATCH_WITH_TWO_A2_PARITY_OBLIGATIONS`: zero source failures, zero dynamic failures,
+zero unexpected mismatches. The two recorded boundaries are referee-random equal-best
+movement versus local lexicographic movement, and simplified local parsing versus strict
+referee command validation.
+
+Validation so far:
+
+- focused audit: 6 passed;
+- maintained Python engine/mapgen/end-condition suites: 37 passed;
+- direct Rust `state`/`engine`/`official_mapgen` module test harness: 2 passed;
+- normal Cargo lib-test entry point is blocked before tests by the absent historical
+  compile-time include `d105a-q6-expert-population.tsv` in this isolated worktree.

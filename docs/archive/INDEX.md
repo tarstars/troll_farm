@@ -43,3 +43,5 @@ finds them.
 | docs/troll_farm_dom_dump.html | docs/archive/bronze-to-gold/troll_farm_dom_dump.html | Bronze | scraped DOM dump | cgauto collectors |
 | docs/troll_farm_play.html | docs/archive/bronze-to-gold/troll_farm_play.html | Bronze | scraped play page | cgauto collectors |
 | cgauto/HANDOFF.md | docs/archive/bronze-to-gold/HANDOFF.md | Gold | double-stale handoff (mechanics/lessons background) | docs/STATE.md + docs/CONSTRAINTS.md |
+
+- `STATE-2026-08-10-pre-diet.md` — full 360-line STATE as of the 2026-08-10 doc diet; superseded by the ≤150-line rewrite, no facts were dropped, only history moved here.

@@ -1,0 +1,3769 @@
+{
+ "actionable": [],
+ "opponents": [
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6479385,
+   "current": {
+    "rank": 27,
+    "score": 23.53
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Meruem",
+   "raw": {
+    "first_game_id": 896347981,
+    "games": 3,
+    "last_game_id": 896352625,
+    "mean_margin": -19.0,
+    "mean_opponent_score": 23.62,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1,
+     "1": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.6666666666666666,
+    "wins": 2
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6479388,
+   "current": {
+    "rank": 59,
+    "score": 20.09
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Kheopsian",
+   "raw": {
+    "first_game_id": 896348809,
+    "games": 1,
+    "last_game_id": 896348809,
+    "mean_margin": 17.0,
+    "mean_opponent_score": 20.47,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6479532,
+   "current": {
+    "rank": 32,
+    "score": 23.02
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "aangairbender",
+   "raw": {
+    "first_game_id": 896347518,
+    "games": 2,
+    "last_game_id": 896347795,
+    "mean_margin": 184.5,
+    "mean_opponent_score": 21.87,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1,
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 2
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6479542,
+   "current": {
+    "rank": 28,
+    "score": 23.45
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "xSkyline",
+   "raw": {
+    "first_game_id": 896349895,
+    "games": 2,
+    "last_game_id": 896350131,
+    "mean_margin": -98.5,
+    "mean_opponent_score": 23.51,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "1": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6479553,
+   "current": {
+    "rank": 45,
+    "score": 21.76
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Wld",
+   "raw": {
+    "first_game_id": 896347586,
+    "games": 3,
+    "last_game_id": 896351244,
+    "mean_margin": 61.666666666666664,
+    "mean_opponent_score": 20.8,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1,
+     "1": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.6666666666666666,
+    "wins": 2
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6479658,
+   "current": {
+    "rank": 44,
+    "score": 21.93
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "eulerscheZahl",
+   "raw": {
+    "first_game_id": 896351124,
+    "games": 1,
+    "last_game_id": 896351124,
+    "mean_margin": 104.0,
+    "mean_opponent_score": 20.99,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6479750,
+   "current": {
+    "rank": 35,
+    "score": 22.83
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "mehdi_ayari",
+   "raw": {
+    "first_game_id": 896348265,
+    "games": 6,
+    "last_game_id": 896351902,
+    "mean_margin": 21.5,
+    "mean_opponent_score": 22.3,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 6
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.6666666666666666,
+    "wins": 4
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6479814,
+   "current": {
+    "rank": 16,
+    "score": 24.7
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "yamo",
+   "raw": {
+    "first_game_id": 896350293,
+    "games": 1,
+    "last_game_id": 896350293,
+    "mean_margin": -20.0,
+    "mean_opponent_score": 24.61,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6479840,
+   "current": {
+    "rank": 26,
+    "score": 23.61
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "siman",
+   "raw": {
+    "first_game_id": 896350156,
+    "games": 3,
+    "last_game_id": 896352683,
+    "mean_margin": 0.6666666666666666,
+    "mean_opponent_score": 23.5,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1,
+     "1": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.6666666666666666,
+    "wins": 2
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6479842,
+   "current": {
+    "rank": 53,
+    "score": 20.63
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "icecuber",
+   "raw": {
+    "first_game_id": 896348868,
+    "games": 1,
+    "last_game_id": 896348868,
+    "mean_margin": 248.0,
+    "mean_opponent_score": 20.96,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": true,
+    "both_seats_negative": true,
+    "both_time_halves_negative": true,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": true,
+    "margin_residual_at_most_minus_20": true,
+    "primary_eligible": true,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6479863,
+   "current": {
+    "rank": 38,
+    "score": 22.67
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": true,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": true,
+   "primary": {
+    "holm_adjusted_p": 0.22871542569148617,
+    "leave_one_game_out": {
+     "all_negative": true,
+     "max": -18.07941247349142,
+     "min": -47.89647776114494
+    },
+    "margin_residual_ci95": [
+     -81.01549600103199,
+     22.24331983805668
+    ],
+    "mean_margin_residual": -31.620956502540285,
+    "mean_win_residual": -0.08726470092085417,
+    "per_game_margin_residuals": [
+     81.4,
+     -126.41176470588235,
+     -40.84210526315789,
+     82.3076923076923,
+     7.0,
+     -75.6923076923077,
+     -84.0625,
+     -96.66666666666666
+    ],
+    "per_game_win_residuals": [
+     0.6,
+     -0.4117647058823529,
+     -0.5789473684210527,
+     0.46153846153846156,
+     0.4736842105263158,
+     -0.5384615384615384,
+     -0.4375,
+     -0.26666666666666666
+    ],
+    "raw_one_sided_p": 0.11435771284574309,
+    "sensitivities": {
+     "0.5": {
+      "control_count_max": 15,
+      "control_count_median": 12.0,
+      "control_count_min": 10,
+      "identified": true,
+      "mean_margin_residual": -26.49805194805195,
+      "mean_win_residual": -0.059792291042291064,
+      "opponent_score_band": 0.5
+     },
+     "1.5": {
+      "control_count_max": 21,
+      "control_count_median": 19.0,
+      "control_count_min": 14,
+      "identified": true,
+      "mean_margin_residual": -29.571006944444445,
+      "mean_win_residual": -0.10327380952380952,
+      "opponent_score_band": 1.5
+     }
+    },
+    "splits": {
+     "chronological": {
+      "early": {
+       "mean_margin_residual": -0.8865444153369815,
+       "n": 4
+      },
+      "late": {
+       "mean_margin_residual": -62.35536858974359,
+       "n": 4
+      }
+     },
+     "seat": {
+      "0": {
+       "mean_margin_residual": -32.723346828609984,
+       "n": 4
+      },
+      "1": {
+       "mean_margin_residual": -30.518566176470586,
+       "n": 4
+      }
+     }
+    }
+   },
+   "primary_control_counts": {
+    "max": 19,
+    "median": 15.5,
+    "min": 13,
+    "per_game": [
+     15,
+     17,
+     19,
+     13,
+     19,
+     13,
+     16,
+     15
+    ]
+   },
+   "primary_eligible": true,
+   "pseudo": "R1FA",
+   "raw": {
+    "first_game_id": 896351071,
+    "games": 8,
+    "last_game_id": 896352494,
+    "mean_margin": -40.75,
+    "mean_opponent_score": 22.54,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 4,
+     "1": 4
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.375,
+    "wins": 3
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6479914,
+   "current": {
+    "rank": 29,
+    "score": 23.27
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "FinkPloyd",
+   "raw": {
+    "first_game_id": 896352056,
+    "games": 4,
+    "last_game_id": 896352596,
+    "mean_margin": 47.75,
+    "mean_opponent_score": 22.74,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 2,
+     "1": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.75,
+    "wins": 3
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6480507,
+   "current": {
+    "rank": 46,
+    "score": 21.49
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "RinSakamichi",
+   "raw": {
+    "first_game_id": 896348456,
+    "games": 2,
+    "last_game_id": 896348671,
+    "mean_margin": 111.0,
+    "mean_opponent_score": 20.88,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1,
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 2
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6480515,
+   "current": {
+    "rank": 33,
+    "score": 22.98
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "FredericBautista",
+   "raw": {
+    "first_game_id": 896349986,
+    "games": 1,
+    "last_game_id": 896349986,
+    "mean_margin": -168.0,
+    "mean_opponent_score": 23.1,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6480516,
+   "current": {
+    "rank": 34,
+    "score": 22.87
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": true,
+   "primary_control_counts": {
+    "max": 21,
+    "median": 17,
+    "min": 7,
+    "per_game": [
+     7,
+     11,
+     21,
+     18,
+     17
+    ]
+   },
+   "primary_eligible": false,
+   "pseudo": "Ztrk",
+   "raw": {
+    "first_game_id": 896350195,
+    "games": 5,
+    "last_game_id": 896352541,
+    "mean_margin": -33.8,
+    "mean_opponent_score": 21.93,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 3,
+     "1": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.6,
+    "wins": 3
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6480520,
+   "current": {
+    "rank": 9,
+    "score": 25.57
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "skotz",
+   "raw": {
+    "first_game_id": 896349736,
+    "games": 4,
+    "last_game_id": 896350102,
+    "mean_margin": -39.75,
+    "mean_opponent_score": 25.62,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1,
+     "1": 3
+    },
+    "ties": 1,
+    "win_rate_with_half_ties": 0.375,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6480541,
+   "current": {
+    "rank": 7,
+    "score": 26.62
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "yaichi",
+   "raw": {
+    "first_game_id": 896347357,
+    "games": 1,
+    "last_game_id": 896347357,
+    "mean_margin": 19.0,
+    "mean_opponent_score": 26.62,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6480544,
+   "current": {
+    "rank": 60,
+    "score": 20.04
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "m4l0s4n",
+   "raw": {
+    "first_game_id": 896348623,
+    "games": 1,
+    "last_game_id": 896348623,
+    "mean_margin": -108.0,
+    "mean_opponent_score": 20.46,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": true,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": true,
+    "margin_residual_at_most_minus_20": true,
+    "primary_eligible": true,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6480545,
+   "current": {
+    "rank": 31,
+    "score": 23.02
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": true,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": true,
+   "primary": {
+    "holm_adjusted_p": 0.18437631247375053,
+    "leave_one_game_out": {
+     "all_negative": true,
+     "max": -39.24801587301587,
+     "min": -109.71111111111111
+    },
+    "margin_residual_ci95": [
+     -166.99333333333334,
+     20.636507936507936
+    ],
+    "mean_margin_residual": -73.1784126984127,
+    "mean_win_residual": -0.1353968253968254,
+    "per_game_margin_residuals": [
+     19.88888888888889,
+     -208.9,
+     -167.33333333333334,
+     -82.5,
+     72.95238095238095
+    ],
+    "per_game_win_residuals": [
+     0.5555555555555556,
+     -0.8,
+     -0.25,
+     -0.6111111111111112,
+     0.4285714285714286
+    ],
+    "raw_one_sided_p": 0.06145877082458351,
+    "sensitivities": {
+     "0.5": {
+      "control_count_max": 9,
+      "control_count_median": 6,
+      "control_count_min": 4,
+      "identified": false,
+      "opponent_score_band": 0.5
+     },
+     "1.5": {
+      "control_count_max": 22,
+      "control_count_median": 19,
+      "control_count_min": 11,
+      "identified": true,
+      "mean_margin_residual": -72.07964666912035,
+      "mean_win_residual": -0.10648877438351122,
+      "opponent_score_band": 1.5
+     }
+    },
+    "splits": {
+     "chronological": {
+      "early": {
+       "mean_margin_residual": -94.50555555555556,
+       "n": 2
+      },
+      "late": {
+       "mean_margin_residual": -58.96031746031746,
+       "n": 3
+      }
+     },
+     "seat": {
+      "0": {
+       "mean_margin_residual": -152.91111111111113,
+       "n": 3
+      },
+      "1": {
+       "mean_margin_residual": 46.42063492063492,
+       "n": 2
+      }
+     }
+    }
+   },
+   "primary_control_counts": {
+    "max": 21,
+    "median": 18,
+    "min": 10,
+    "per_game": [
+     18,
+     10,
+     12,
+     18,
+     21
+    ]
+   },
+   "primary_eligible": true,
+   "pseudo": "BoatBuilder",
+   "raw": {
+    "first_game_id": 896349546,
+    "games": 5,
+    "last_game_id": 896352634,
+    "mean_margin": -77.2,
+    "mean_opponent_score": 22.74,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 3,
+     "1": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.4,
+    "wins": 2
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6480943,
+   "current": {
+    "rank": 43,
+    "score": 22.17
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": true,
+   "primary_control_counts": {
+    "max": 19,
+    "median": 12.5,
+    "min": 4,
+    "per_game": [
+     15,
+     14,
+     13,
+     11,
+     10,
+     18,
+     5,
+     9,
+     12,
+     17,
+     19,
+     12,
+     17,
+     4,
+     13,
+     6
+    ]
+   },
+   "primary_eligible": false,
+   "pseudo": "Dridriun",
+   "raw": {
+    "first_game_id": 896348043,
+    "games": 16,
+    "last_game_id": 896352580,
+    "mean_margin": -13.6875,
+    "mean_opponent_score": 22.37,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 12,
+     "1": 4
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.375,
+    "wins": 6
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6480945,
+   "current": {
+    "rank": 62,
+    "score": 19.81
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Halphas",
+   "raw": {
+    "first_game_id": 896349002,
+    "games": 1,
+    "last_game_id": 896349002,
+    "mean_margin": -12.0,
+    "mean_opponent_score": 20.5,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6480947,
+   "current": {
+    "rank": 30,
+    "score": 23.23
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "khanh-alice",
+   "raw": {
+    "first_game_id": 896350530,
+    "games": 5,
+    "last_game_id": 896352675,
+    "mean_margin": -95.4,
+    "mean_opponent_score": 22.85,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 4,
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6480948,
+   "current": {
+    "rank": 67,
+    "score": 19.62
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "dabino",
+   "raw": {
+    "first_game_id": 896347649,
+    "games": 2,
+    "last_game_id": 896348742,
+    "mean_margin": 9.0,
+    "mean_opponent_score": 19.68,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1,
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.5,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6481139,
+   "current": {
+    "rank": 21,
+    "score": 24.14
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "uta_ccc",
+   "raw": {
+    "first_game_id": 896349970,
+    "games": 2,
+    "last_game_id": 896350026,
+    "mean_margin": -12.5,
+    "mean_opponent_score": 24.03,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "1": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.5,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6481142,
+   "current": {
+    "rank": 20,
+    "score": 24.28
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": true,
+   "primary_control_counts": {
+    "max": 4,
+    "median": 2.5,
+    "min": 1,
+    "per_game": [
+     3,
+     2,
+     1,
+     4,
+     1,
+     3
+    ]
+   },
+   "primary_eligible": false,
+   "pseudo": "XSpace",
+   "raw": {
+    "first_game_id": 896348189,
+    "games": 6,
+    "last_game_id": 896352760,
+    "mean_margin": 14.5,
+    "mean_opponent_score": 24.22,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 2,
+     "1": 4
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.5,
+    "wins": 3
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6481143,
+   "current": {
+    "rank": 37,
+    "score": 22.78
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Pafin",
+   "raw": {
+    "first_game_id": 896347930,
+    "games": 3,
+    "last_game_id": 896351828,
+    "mean_margin": 111.0,
+    "mean_opponent_score": 21.83,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1,
+     "1": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 3
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6481144,
+   "current": {
+    "rank": 52,
+    "score": 20.88
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Sequo",
+   "raw": {
+    "first_game_id": 896347362,
+    "games": 1,
+    "last_game_id": 896347362,
+    "mean_margin": 48.0,
+    "mean_opponent_score": 20.19,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6481225,
+   "current": {
+    "rank": 24,
+    "score": 23.66
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "mikmak",
+   "raw": {
+    "first_game_id": 896349841,
+    "games": 2,
+    "last_game_id": 896352724,
+    "mean_margin": 35.0,
+    "mean_opponent_score": 23.76,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.5,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6481252,
+   "current": {
+    "rank": 48,
+    "score": 21.24
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "DaNinja",
+   "raw": {
+    "first_game_id": 896351310,
+    "games": 2,
+    "last_game_id": 896352461,
+    "mean_margin": 45.5,
+    "mean_opponent_score": 21.96,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 2
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6481269,
+   "current": {
+    "rank": 70,
+    "score": 19.52
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "AndreMarasca",
+   "raw": {
+    "first_game_id": 896347363,
+    "games": 1,
+    "last_game_id": 896347363,
+    "mean_margin": 84.0,
+    "mean_opponent_score": 19.21,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6481270,
+   "current": {
+    "rank": 25,
+    "score": 23.61
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": true,
+   "primary_control_counts": {
+    "max": 10,
+    "median": 6.5,
+    "min": 2,
+    "per_game": [
+     10,
+     6,
+     2,
+     7,
+     10,
+     2
+    ]
+   },
+   "primary_eligible": false,
+   "pseudo": "zasmu",
+   "raw": {
+    "first_game_id": 896349382,
+    "games": 6,
+    "last_game_id": 896352750,
+    "mean_margin": -6.5,
+    "mean_opponent_score": 23.44,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 2,
+     "1": 4
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.3333333333333333,
+    "wins": 2
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6481547,
+   "current": {
+    "rank": 22,
+    "score": 23.92
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": true,
+   "primary_control_counts": {
+    "max": 5,
+    "median": 3,
+    "min": 1,
+    "per_game": [
+     5,
+     4,
+     1,
+     1,
+     3
+    ]
+   },
+   "primary_eligible": false,
+   "pseudo": "bl4sterino",
+   "raw": {
+    "first_game_id": 896349904,
+    "games": 5,
+    "last_game_id": 896352586,
+    "mean_margin": 113.4,
+    "mean_opponent_score": 24.08,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 3,
+     "1": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 5
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6482016,
+   "current": {
+    "rank": 40,
+    "score": 22.49
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "DoubtinGiyov",
+   "raw": {
+    "first_game_id": 896347359,
+    "games": 5,
+    "last_game_id": 896352189,
+    "mean_margin": 5.6,
+    "mean_opponent_score": 22.77,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1,
+     "1": 4
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.6,
+    "wins": 3
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6483325,
+   "current": {
+    "rank": 41,
+    "score": 22.23
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": true,
+   "primary_control_counts": {
+    "max": 15,
+    "median": 10.5,
+    "min": 3,
+    "per_game": [
+     3,
+     11,
+     15,
+     9,
+     12,
+     10
+    ]
+   },
+   "primary_eligible": false,
+   "pseudo": "Pech1",
+   "raw": {
+    "first_game_id": 896349042,
+    "games": 6,
+    "last_game_id": 896352273,
+    "mean_margin": -51.833333333333336,
+    "mean_opponent_score": 22.35,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 3,
+     "1": 3
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.16666666666666666,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6483491,
+   "current": {
+    "rank": 58,
+    "score": 20.1
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "VINCE_MX",
+   "raw": {
+    "first_game_id": 896347361,
+    "games": 2,
+    "last_game_id": 896351292,
+    "mean_margin": 50.0,
+    "mean_opponent_score": 21.19,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "1": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 2
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6491198,
+   "current": {
+    "rank": 68,
+    "score": 19.59
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Renatys",
+   "raw": {
+    "first_game_id": 896347364,
+    "games": 1,
+    "last_game_id": 896347364,
+    "mean_margin": 76.0,
+    "mean_opponent_score": 19.28,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6491404,
+   "current": {
+    "rank": 50,
+    "score": 21.12
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "daaskare",
+   "raw": {
+    "first_game_id": 896348573,
+    "games": 2,
+    "last_game_id": 896349215,
+    "mean_margin": -11.0,
+    "mean_opponent_score": 21.62,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1,
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.5,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6491563,
+   "current": {
+    "rank": 8,
+    "score": 26.5
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Stounate",
+   "raw": {
+    "first_game_id": 896349920,
+    "games": 2,
+    "last_game_id": 896350051,
+    "mean_margin": -60.5,
+    "mean_opponent_score": 26.41,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6491567,
+   "current": {
+    "rank": 42,
+    "score": 22.18
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "_H3R0_",
+   "raw": {
+    "first_game_id": 896349174,
+    "games": 1,
+    "last_game_id": 896349174,
+    "mean_margin": 207.0,
+    "mean_opponent_score": 21.83,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6493247,
+   "current": {
+    "rank": 103,
+    "score": 16.48
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "sZoom",
+   "raw": {
+    "first_game_id": 896347366,
+    "games": 1,
+    "last_game_id": 896347366,
+    "mean_margin": -166.0,
+    "mean_opponent_score": 16.23,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6499915,
+   "current": {
+    "rank": 104,
+    "score": 16.34
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "LeRenard",
+   "raw": {
+    "first_game_id": 896347365,
+    "games": 1,
+    "last_game_id": 896347365,
+    "mean_margin": 69.0,
+    "mean_opponent_score": 16.77,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6512040,
+   "current": {
+    "rank": 36,
+    "score": 22.82
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": true,
+   "primary_control_counts": {
+    "max": 13,
+    "median": 8.0,
+    "min": 2,
+    "per_game": [
+     5,
+     2,
+     8,
+     9,
+     13,
+     8,
+     8,
+     6
+    ]
+   },
+   "primary_eligible": false,
+   "pseudo": "celeria",
+   "raw": {
+    "first_game_id": 896348406,
+    "games": 8,
+    "last_game_id": 896352205,
+    "mean_margin": -25.5,
+    "mean_opponent_score": 21.2,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 3,
+     "1": 5
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.5,
+    "wins": 4
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": true,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6512056,
+   "current": {
+    "rank": 39,
+    "score": 22.62
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": true,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": true,
+   "primary": {
+    "holm_adjusted_p": 0.635007299854003,
+    "leave_one_game_out": {
+     "all_negative": false,
+     "max": 38.63384491325668,
+     "min": -14.744737288854937
+    },
+    "margin_residual_ci95": [
+     -65.50873440285206,
+     81.8160033244067
+    ],
+    "mean_margin_residual": 9.526488917245219,
+    "mean_win_residual": 0.13380666952095524,
+    "per_game_margin_residuals": [
+     38.64705882352941,
+     -21.545454545454547,
+     155.15384615384616,
+     -6.0,
+     -165.11764705882354,
+     123.21428571428571,
+     -57.666666666666664
+    ],
+    "per_game_win_residuals": [
+     0.4117647058823529,
+     -0.45454545454545453,
+     0.46153846153846156,
+     0.7272727272727273,
+     -0.4117647058823529,
+     0.7857142857142857,
+     -0.5833333333333334
+    ],
+    "raw_one_sided_p": 0.635007299854003,
+    "sensitivities": {
+     "0.5": {
+      "control_count_max": 16,
+      "control_count_median": 10,
+      "control_count_min": 8,
+      "identified": false,
+      "opponent_score_band": 0.5
+     },
+     "1.5": {
+      "control_count_max": 22,
+      "control_count_median": 15,
+      "control_count_min": 12,
+      "identified": true,
+      "mean_margin_residual": 12.206106393606392,
+      "mean_win_residual": 0.13147904726852094,
+      "opponent_score_band": 1.5
+     }
+    },
+    "splits": {
+     "chronological": {
+      "early": {
+       "mean_margin_residual": 57.41848347730701,
+       "n": 3
+      },
+      "late": {
+       "mean_margin_residual": -26.392507002801125,
+       "n": 4
+      }
+     },
+     "seat": {
+      "0": {
+       "mean_margin_residual": 33.578972498090145,
+       "n": 4
+      },
+      "1": {
+       "mean_margin_residual": -22.543489190548012,
+       "n": 3
+      }
+     }
+    }
+   },
+   "primary_control_counts": {
+    "max": 17,
+    "median": 13,
+    "min": 11,
+    "per_game": [
+     17,
+     11,
+     13,
+     11,
+     17,
+     14,
+     12
+    ]
+   },
+   "primary_eligible": true,
+   "pseudo": "a76a44",
+   "raw": {
+    "first_game_id": 896347360,
+    "games": 7,
+    "last_game_id": 896351874,
+    "mean_margin": 14.142857142857142,
+    "mean_opponent_score": 22.44,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 4,
+     "1": 3
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.5714285714285714,
+    "wins": 4
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6520935,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "goq",
+   "raw": {
+    "first_game_id": 896350059,
+    "games": 1,
+    "last_game_id": 896350059,
+    "mean_margin": -28.0,
+    "mean_opponent_score": 23.28,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6541379,
+   "current": {
+    "rank": 57,
+    "score": 20.12
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "GoodDevel",
+   "raw": {
+    "first_game_id": 896347862,
+    "games": 4,
+    "last_game_id": 896352110,
+    "mean_margin": 0.5,
+    "mean_opponent_score": 21.72,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 4
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.75,
+    "wins": 3
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6557104,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Bubaptik",
+   "raw": {
+    "first_game_id": 896347358,
+    "games": 2,
+    "last_game_id": 896350020,
+    "mean_margin": 1.0,
+    "mean_opponent_score": 26.91,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.5,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6557848,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "FreZzz",
+   "raw": {
+    "first_game_id": 896349330,
+    "games": 10,
+    "last_game_id": 896352481,
+    "mean_margin": 15.2,
+    "mean_opponent_score": 22.17,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 4,
+     "1": 6
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.4,
+    "wins": 4
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6563190,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Bubaptik",
+   "raw": {
+    "first_game_id": 896399089,
+    "games": 4,
+    "last_game_id": 896399705,
+    "mean_margin": -9.0,
+    "mean_opponent_score": 26.91,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 3,
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.25,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6563484,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Bubaptik",
+   "raw": {
+    "first_game_id": 896409635,
+    "games": 2,
+    "last_game_id": 896410101,
+    "mean_margin": 14.0,
+    "mean_opponent_score": 26.91,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "1": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.5,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6563637,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Bubaptik",
+   "raw": {
+    "first_game_id": 896420875,
+    "games": 4,
+    "last_game_id": 896422596,
+    "mean_margin": 28.75,
+    "mean_opponent_score": 26.91,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1,
+     "1": 3
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.5,
+    "wins": 2
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6563744,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Bubaptik",
+   "raw": {
+    "first_game_id": 896423810,
+    "games": 1,
+    "last_game_id": 896423810,
+    "mean_margin": 21.0,
+    "mean_opponent_score": 26.91,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6565274,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Bubaptik",
+   "raw": {
+    "first_game_id": 896478463,
+    "games": 1,
+    "last_game_id": 896478463,
+    "mean_margin": -60.0,
+    "mean_opponent_score": 26.91,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6565503,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Bubaptik",
+   "raw": {
+    "first_game_id": 896484682,
+    "games": 1,
+    "last_game_id": 896484682,
+    "mean_margin": 122.0,
+    "mean_opponent_score": 26.91,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6565556,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Bubaptik",
+   "raw": {
+    "first_game_id": 896491787,
+    "games": 1,
+    "last_game_id": 896491787,
+    "mean_margin": -13.0,
+    "mean_opponent_score": 26.91,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6565654,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Bubaptik",
+   "raw": {
+    "first_game_id": 896504994,
+    "games": 1,
+    "last_game_id": 896504994,
+    "mean_margin": -31.0,
+    "mean_opponent_score": 26.91,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6566050,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "FreZzz",
+   "raw": {
+    "first_game_id": 896525380,
+    "games": 7,
+    "last_game_id": 896526856,
+    "mean_margin": -9.428571428571429,
+    "mean_opponent_score": 22.17,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 3,
+     "1": 4
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.2857142857142857,
+    "wins": 2
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6566077,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "IlyaPol",
+   "raw": {
+    "first_game_id": 896529307,
+    "games": 1,
+    "last_game_id": 896529307,
+    "mean_margin": 26.0,
+    "mean_opponent_score": 17.35,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 1.0,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6566112,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "FreZzz",
+   "raw": {
+    "first_game_id": 896547892,
+    "games": 3,
+    "last_game_id": 896548356,
+    "mean_margin": -12.0,
+    "mean_opponent_score": 22.17,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1,
+     "1": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.3333333333333333,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6566509,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Bubaptik",
+   "raw": {
+    "first_game_id": 896569360,
+    "games": 1,
+    "last_game_id": 896569360,
+    "mean_margin": -21.0,
+    "mean_opponent_score": 26.91,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6567585,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Bubaptik",
+   "raw": {
+    "first_game_id": 896580977,
+    "games": 1,
+    "last_game_id": 896580977,
+    "mean_margin": -14.0,
+    "mean_opponent_score": 26.91,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6567667,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Bubaptik",
+   "raw": {
+    "first_game_id": 896585749,
+    "games": 2,
+    "last_game_id": 896586095,
+    "mean_margin": -52.5,
+    "mean_opponent_score": 26.91,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1,
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6567772,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Bubaptik",
+   "raw": {
+    "first_game_id": 896588124,
+    "games": 2,
+    "last_game_id": 896588235,
+    "mean_margin": -50.5,
+    "mean_opponent_score": 26.91,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "1": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6567909,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "Bubaptik",
+   "raw": {
+    "first_game_id": 896606028,
+    "games": 1,
+    "last_game_id": 896606028,
+    "mean_margin": -34.0,
+    "mean_opponent_score": 26.91,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6568027,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "FreZzz",
+   "raw": {
+    "first_game_id": 896626900,
+    "games": 4,
+    "last_game_id": 896629488,
+    "mean_margin": 3.0,
+    "mean_opponent_score": 22.17,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 2,
+     "1": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.5,
+    "wins": 2
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6568324,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "FreZzz",
+   "raw": {
+    "first_game_id": 896648845,
+    "games": 5,
+    "last_game_id": 896649188,
+    "mean_margin": 9.6,
+    "mean_opponent_score": 22.17,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 2,
+     "1": 3
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.6,
+    "wins": 3
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6568588,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": false,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "FreZzz",
+   "raw": {
+    "first_game_id": 896651228,
+    "games": 3,
+    "last_game_id": 896651429,
+    "mean_margin": -40.666666666666664,
+    "mean_opponent_score": 22.17,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 1,
+     "1": 2
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.0,
+    "wins": 0
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6579750,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "FreZzz",
+   "raw": {
+    "first_game_id": 897186510,
+    "games": 5,
+    "last_game_id": 897188452,
+    "mean_margin": -9.4,
+    "mean_opponent_score": 22.17,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 4,
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.4,
+    "wins": 2
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6580001,
+   "current": {
+    "rank": 54,
+    "score": 20.44
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": true,
+   "primary_control_counts": {
+    "max": 8,
+    "median": 7,
+    "min": 5,
+    "per_game": [
+     8,
+     5,
+     5,
+     7,
+     8
+    ]
+   },
+   "primary_eligible": false,
+   "pseudo": "goq",
+   "raw": {
+    "first_game_id": 897218489,
+    "games": 5,
+    "last_game_id": 897219440,
+    "mean_margin": 43.2,
+    "mean_opponent_score": 23.28,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 2,
+     "1": 3
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.8,
+    "wins": 4
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6580130,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": false,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "FreZzz",
+   "raw": {
+    "first_game_id": 897230691,
+    "games": 5,
+    "last_game_id": 897243738,
+    "mean_margin": -7.8,
+    "mean_opponent_score": 22.17,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 4,
+     "1": 1
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.2,
+    "wins": 1
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6581650,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "FreZzz",
+   "raw": {
+    "first_game_id": 897263984,
+    "games": 5,
+    "last_game_id": 897265726,
+    "mean_margin": 7.6,
+    "mean_opponent_score": 22.17,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 2,
+     "1": 3
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.4,
+    "wins": 2
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": false,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6582020,
+   "current": null,
+   "eligibility_gates": {
+    "active_exact_agent": false,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": false,
+   "primary_eligible": false,
+   "pseudo": "FreZzz",
+   "raw": {
+    "first_game_id": 897303947,
+    "games": 9,
+    "last_game_id": 897309299,
+    "mean_margin": -19.555555555555557,
+    "mean_opponent_score": 22.17,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 5,
+     "1": 4
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.3333333333333333,
+    "wins": 3
+   }
+  },
+  {
+   "actionability_gates": {
+    "active_exact_agent": true,
+    "both_band_sensitivities_identified_negative": false,
+    "both_seats_negative": false,
+    "both_time_halves_negative": false,
+    "ci_upper_below_zero": false,
+    "holm_p_at_most_0_05": false,
+    "leave_one_out_all_negative": false,
+    "margin_residual_at_most_minus_20": false,
+    "primary_eligible": false,
+    "win_residual_at_most_minus_0_15": false
+   },
+   "actionable": false,
+   "agent_id": 6582186,
+   "current": {
+    "rank": 51,
+    "score": 21.05
+   },
+   "eligibility_gates": {
+    "active_exact_agent": true,
+    "at_least_five_games": true,
+    "at_least_ten_controls_each_game": false,
+    "at_least_two_each_seat": true,
+    "complete_matching_fields": true
+   },
+   "eligible_before_controls": true,
+   "primary_control_counts": {
+    "max": 16,
+    "median": 7.5,
+    "min": 2,
+    "per_game": [
+     2,
+     7,
+     13,
+     10,
+     2,
+     6,
+     8,
+     16
+    ]
+   },
+   "primary_eligible": false,
+   "pseudo": "FreZzz",
+   "raw": {
+    "first_game_id": 897320189,
+    "games": 8,
+    "last_game_id": 897324011,
+    "mean_margin": -1.125,
+    "mean_opponent_score": 22.17,
+    "mean_resident_score": 22.18,
+    "seat_counts": {
+     "0": 4,
+     "1": 4
+    },
+    "ties": 0,
+    "win_rate_with_half_ties": 0.5,
+    "wins": 4
+   }
+  }
+ ],
+ "parameters": {
+  "bootstrap_reps": 20000,
+  "min_controls_per_game": 10,
+  "min_games": 5,
+  "min_per_seat": 2,
+  "null_reps": 50000,
+  "primary_opponent_score_band": 1.0,
+  "seed": 20260730,
+  "sensitivity_bands": [
+   0.5,
+   1.5
+  ]
+ },
+ "primary_eligible_count": 3,
+ "protocol": "docs/m2-opponent-specific-losses-protocol-2026-07-30.md",
+ "pseudo_sensitivities": [
+  {
+   "control_count_min": 10,
+   "exact_agent_ids": [
+    6480545
+   ],
+   "games": 5,
+   "identified": true,
+   "mean_margin_residual": -73.1784126984127,
+   "mean_win_residual": -0.1353968253968254,
+   "pseudo": "BoatBuilder",
+   "seat_counts": {
+    "0": 3,
+    "1": 2
+   }
+  },
+  {
+   "control_count_min": 0,
+   "exact_agent_ids": [
+    6557104,
+    6563190,
+    6563484,
+    6563637,
+    6563744,
+    6565274,
+    6565503,
+    6565556,
+    6565654,
+    6566509,
+    6567585,
+    6567667,
+    6567772,
+    6567909
+   ],
+   "games": 24,
+   "identified": false,
+   "pseudo": "Bubaptik",
+   "seat_counts": {
+    "0": 11,
+    "1": 13
+   }
+  },
+  {
+   "control_count_min": 4,
+   "exact_agent_ids": [
+    6480943
+   ],
+   "games": 16,
+   "identified": false,
+   "pseudo": "Dridriun",
+   "seat_counts": {
+    "0": 12,
+    "1": 4
+   }
+  },
+  {
+   "control_count_min": 1,
+   "exact_agent_ids": [
+    6557848,
+    6566050,
+    6566112,
+    6568027,
+    6568324,
+    6568588,
+    6579750,
+    6580130,
+    6581650,
+    6582020,
+    6582186
+   ],
+   "games": 64,
+   "identified": false,
+   "pseudo": "FreZzz",
+   "seat_counts": {
+    "0": 32,
+    "1": 32
+   }
+  },
+  {
+   "control_count_min": 3,
+   "exact_agent_ids": [
+    6483325
+   ],
+   "games": 6,
+   "identified": false,
+   "pseudo": "Pech1",
+   "seat_counts": {
+    "0": 3,
+    "1": 3
+   }
+  },
+  {
+   "control_count_min": 13,
+   "exact_agent_ids": [
+    6479863
+   ],
+   "games": 8,
+   "identified": true,
+   "mean_margin_residual": -31.620956502540285,
+   "mean_win_residual": -0.08726470092085417,
+   "pseudo": "R1FA",
+   "seat_counts": {
+    "0": 4,
+    "1": 4
+   }
+  },
+  {
+   "control_count_min": 1,
+   "exact_agent_ids": [
+    6481142
+   ],
+   "games": 6,
+   "identified": false,
+   "pseudo": "XSpace",
+   "seat_counts": {
+    "0": 2,
+    "1": 4
+   }
+  },
+  {
+   "control_count_min": 7,
+   "exact_agent_ids": [
+    6480516
+   ],
+   "games": 5,
+   "identified": false,
+   "pseudo": "Ztrk",
+   "seat_counts": {
+    "0": 3,
+    "1": 2
+   }
+  },
+  {
+   "control_count_min": 11,
+   "exact_agent_ids": [
+    6512056
+   ],
+   "games": 7,
+   "identified": true,
+   "mean_margin_residual": 9.526488917245219,
+   "mean_win_residual": 0.13380666952095524,
+   "pseudo": "a76a44",
+   "seat_counts": {
+    "0": 4,
+    "1": 3
+   }
+  },
+  {
+   "control_count_min": 1,
+   "exact_agent_ids": [
+    6481547
+   ],
+   "games": 5,
+   "identified": false,
+   "pseudo": "bl4sterino",
+   "seat_counts": {
+    "0": 3,
+    "1": 2
+   }
+  },
+  {
+   "control_count_min": 2,
+   "exact_agent_ids": [
+    6512040
+   ],
+   "games": 8,
+   "identified": false,
+   "pseudo": "celeria",
+   "seat_counts": {
+    "0": 3,
+    "1": 5
+   }
+  },
+  {
+   "control_count_min": 5,
+   "exact_agent_ids": [
+    6520935,
+    6580001
+   ],
+   "games": 6,
+   "identified": false,
+   "pseudo": "goq",
+   "seat_counts": {
+    "0": 3,
+    "1": 3
+   }
+  },
+  {
+   "control_count_min": 2,
+   "exact_agent_ids": [
+    6481270
+   ],
+   "games": 6,
+   "identified": false,
+   "pseudo": "zasmu",
+   "seat_counts": {
+    "0": 2,
+    "1": 4
+   }
+  }
+ ],
+ "resident_agent_id": 6561795,
+ "schema": 1,
+ "source": {
+  "count_checks": {
+   "clean_games": true,
+   "exact_opponents": true,
+   "records": true,
+   "resident_games": true
+  },
+  "counts": {
+   "clean_games": 9018,
+   "exact_opponents": 72,
+   "records": 9082,
+   "resident_games": 241
+  },
+  "expected_hashes": {
+   "games": "12f72265c2af19d69ddf9dad053ccc33b3c7f799182b23ca973210429500a73d",
+   "leaderboard": "7f6cdaa2b4fbce31ca5a4adbe5c78d59a9a16b56e76faac838b0a4b062c66815"
+  },
+  "hash_checks": {
+   "games": true,
+   "leaderboard": true
+  },
+  "observed_hashes": {
+   "games": "12f72265c2af19d69ddf9dad053ccc33b3c7f799182b23ca973210429500a73d",
+   "leaderboard": "7f6cdaa2b4fbce31ca5a4adbe5c78d59a9a16b56e76faac838b0a4b062c66815"
+  },
+  "paths": {
+   "games": "/home/tarstars/prj/troll_farm/data/processed/games.jsonl",
+   "leaderboard": "/home/tarstars/prj/troll_farm/data/raw/snapshots/20260730T021701Z-d61p-wide/leaderboard.json"
+  }
+ },
+ "verdict": "NO_ACTIONABLE_MATCHUP"
+}

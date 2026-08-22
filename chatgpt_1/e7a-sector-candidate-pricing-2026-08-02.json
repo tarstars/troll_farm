@@ -1,0 +1,728 @@
+{
+  "candidate_c1": {
+    "best_static_arm": "C0",
+    "c1_minus_a1_mean_margin": 16.181944444444444,
+    "c1_minus_a1_root_cluster_bootstrap": {
+      "lower_95": 4.729131944444445,
+      "median": 15.973611111111111,
+      "probability_le_zero": 0.00196,
+      "repetitions": 100000,
+      "seed": 20260802,
+      "upper_95": 28.66809027777777
+    },
+    "c1_minus_best_static_mean_margin": 4.008333333333333,
+    "c1_minus_c0_mean_margin": 4.008333333333333,
+    "c1_minus_c0_root_cluster_bootstrap": {
+      "lower_95": -1.5875000000000001,
+      "median": 3.6875,
+      "probability_le_zero": 0.16086,
+      "repetitions": 100000,
+      "seed": 20260802,
+      "upper_95": 13.101458333333316
+    },
+    "leave_one_family_out_means": {
+      "chopharvest": 4.545,
+      "motion": 3.716666666666667,
+      "race": 3.4233333333333333,
+      "ringfix3": 4.676666666666667,
+      "taskplan": 3.533333333333333,
+      "yield": 4.155
+    },
+    "opponent_family_means": {
+      "chopharvest": 1.325,
+      "motion": 5.466666666666667,
+      "race": 6.933333333333334,
+      "ringfix3": 0.6666666666666666,
+      "taskplan": 6.383333333333334,
+      "yield": 3.275
+    },
+    "oracle_capture_fraction": 0.3813928901810492,
+    "root_signs": {
+      "negative": 3,
+      "positive": 10,
+      "selected_negative_or_zero": 3,
+      "selected_positive": 10,
+      "zero": 47
+    },
+    "score_decomposition": {
+      "opponent_score_delta": -3.797222222222222,
+      "own_policy_score_delta": 0.2111111111111111,
+      "reconstructed_margin_delta": 4.008333333333333,
+      "wood_edge_delta": 1.0680555555555555
+    },
+    "seat_means": [
+      5.791666666666667,
+      2.225
+    ],
+    "selected_root_conditional_margin": 18.5,
+    "selected_root_opponent_family_means": {
+      "chopharvest": 6.115384615384615,
+      "motion": 25.23076923076923,
+      "race": 32.0,
+      "ringfix3": 3.076923076923077,
+      "taskplan": 29.46153846153846,
+      "yield": 15.115384615384615
+    }
+  },
+  "inputs": {
+    "delta_rows": "data/analysis/live-agent-6553250/e7a-root-delta-pricing-input-2026-08-02.csv",
+    "delta_rows_sha256": "cb2a98e63c245534b743501000b3ef8529cca674c7bb3ea226717e767abd4d6a",
+    "opponents": [
+      "motion",
+      "taskplan",
+      "race",
+      "yield",
+      "ringfix3",
+      "chopharvest"
+    ],
+    "root_count": 60,
+    "row_count": 360,
+    "sign_rows": "chatgpt_1/e7a-initial-sector-sign-preflight-2026-08-02.csv"
+  },
+  "integrity_reproduction": {
+    "global_always_flip_margin": -12.17361111111111,
+    "hindsight_oracle_margin": 10.509722222222223,
+    "positive_flip_roots": 24
+  },
+  "interpretation": {
+    "development_measurement_only": true,
+    "labels_and_pricing_panel_consumed": true,
+    "no_refit_or_threshold_change": true,
+    "rule_frozen_before_magnitude_recovery": true,
+    "source_or_arena_authorization": false
+  },
+  "root_rows": [
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 61.583333333333336,
+      "flip_delta_margin": -61.583333333333336,
+      "seed": 0,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 197.5,
+      "flip_delta_margin": -197.5,
+      "seed": 1,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 31.583333333333332,
+      "flip_delta_margin": -31.583333333333332,
+      "seed": 2,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": -10.5,
+      "flip_delta_margin": 10.5,
+      "seed": 3,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 63.833333333333336,
+      "flip_delta_margin": -63.833333333333336,
+      "seed": 4,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 55.083333333333336,
+      "flip_delta_margin": -55.083333333333336,
+      "seed": 5,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 40.333333333333336,
+      "flip_delta_margin": -40.333333333333336,
+      "seed": 6,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 8.333333333333334,
+      "flip_delta_margin": -8.333333333333334,
+      "seed": 7,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": -8.25,
+      "flip_delta_margin": 8.25,
+      "seed": 8,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 9.416666666666666,
+      "flip_delta_margin": -9.416666666666666,
+      "seed": 9,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 164.66666666666666,
+      "flip_delta_margin": -164.66666666666666,
+      "seed": 10,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 4.666666666666667,
+      "flip_delta_margin": -4.666666666666667,
+      "seed": 11,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 15.583333333333334,
+      "flip_delta_margin": -15.583333333333334,
+      "seed": 12,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 3.75,
+      "flip_delta_margin": -3.75,
+      "seed": 13,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 32.583333333333336,
+      "flip_delta_margin": -32.583333333333336,
+      "seed": 14,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": -13.583333333333334,
+      "flip_delta_margin": 13.583333333333334,
+      "seed": 15,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": -0.4166666666666667,
+      "flip_delta_margin": 0.4166666666666667,
+      "seed": 16,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 9.833333333333334,
+      "candidate_delta_opponent_score": -6.833333333333333,
+      "candidate_delta_policy_score": 3.0,
+      "candidate_delta_wood_edge": 2.5,
+      "candidate_minus_always_flip": 0.0,
+      "flip_delta_margin": 9.833333333333334,
+      "seed": 17,
+      "selected": true
+    },
+    {
+      "candidate_delta_margin": 0.9166666666666666,
+      "candidate_delta_opponent_score": -0.16666666666666666,
+      "candidate_delta_policy_score": 0.75,
+      "candidate_delta_wood_edge": 0.16666666666666666,
+      "candidate_minus_always_flip": 0.0,
+      "flip_delta_margin": 0.9166666666666666,
+      "seed": 18,
+      "selected": true
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": -1.5,
+      "flip_delta_margin": 1.5,
+      "seed": 19,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 29.666666666666668,
+      "candidate_delta_opponent_score": -34.666666666666664,
+      "candidate_delta_policy_score": -5.0,
+      "candidate_delta_wood_edge": 7.416666666666667,
+      "candidate_minus_always_flip": 0.0,
+      "flip_delta_margin": 29.666666666666668,
+      "seed": 20,
+      "selected": true
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 0.0,
+      "flip_delta_margin": 0.0,
+      "seed": 21,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 12.666666666666666,
+      "flip_delta_margin": -12.666666666666666,
+      "seed": 22,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 7.333333333333333,
+      "flip_delta_margin": -7.333333333333333,
+      "seed": 23,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 8.083333333333334,
+      "flip_delta_margin": -8.083333333333334,
+      "seed": 24,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 13.0,
+      "candidate_delta_opponent_score": -8.666666666666666,
+      "candidate_delta_policy_score": 4.333333333333333,
+      "candidate_delta_wood_edge": 3.4166666666666665,
+      "candidate_minus_always_flip": 0.0,
+      "flip_delta_margin": 13.0,
+      "seed": 25,
+      "selected": true
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": -0.3333333333333333,
+      "flip_delta_margin": 0.3333333333333333,
+      "seed": 26,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": -11.833333333333334,
+      "candidate_delta_opponent_score": -2.1666666666666665,
+      "candidate_delta_policy_score": -14.0,
+      "candidate_delta_wood_edge": -2.5833333333333335,
+      "candidate_minus_always_flip": 0.0,
+      "flip_delta_margin": -11.833333333333334,
+      "seed": 27,
+      "selected": true
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": -21.5,
+      "flip_delta_margin": 21.5,
+      "seed": 28,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": -42.333333333333336,
+      "candidate_delta_opponent_score": 35.833333333333336,
+      "candidate_delta_policy_score": -6.5,
+      "candidate_delta_wood_edge": -7.083333333333333,
+      "candidate_minus_always_flip": 0.0,
+      "flip_delta_margin": -42.333333333333336,
+      "seed": 29,
+      "selected": true
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 10.666666666666666,
+      "flip_delta_margin": -10.666666666666666,
+      "seed": 30,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 88.91666666666667,
+      "flip_delta_margin": -88.91666666666667,
+      "seed": 31,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 233.91666666666666,
+      "candidate_delta_opponent_score": -217.0,
+      "candidate_delta_policy_score": 16.916666666666668,
+      "candidate_delta_wood_edge": 60.0,
+      "candidate_minus_always_flip": 0.0,
+      "flip_delta_margin": 233.91666666666666,
+      "seed": 32,
+      "selected": true
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 7.25,
+      "flip_delta_margin": -7.25,
+      "seed": 33,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": -97.91666666666667,
+      "flip_delta_margin": 97.91666666666667,
+      "seed": 34,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": -31.0,
+      "candidate_delta_opponent_score": 23.333333333333332,
+      "candidate_delta_policy_score": -7.666666666666667,
+      "candidate_delta_wood_edge": -8.166666666666666,
+      "candidate_minus_always_flip": 0.0,
+      "flip_delta_margin": -31.0,
+      "seed": 35,
+      "selected": true
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 3.1666666666666665,
+      "flip_delta_margin": -3.1666666666666665,
+      "seed": 36,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": -11.5,
+      "flip_delta_margin": 11.5,
+      "seed": 37,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 7.083333333333333,
+      "flip_delta_margin": -7.083333333333333,
+      "seed": 38,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": -87.5,
+      "flip_delta_margin": 87.5,
+      "seed": 39,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 18.5,
+      "flip_delta_margin": -18.5,
+      "seed": 40,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 7.833333333333333,
+      "flip_delta_margin": -7.833333333333333,
+      "seed": 41,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": -6.083333333333333,
+      "flip_delta_margin": 6.083333333333333,
+      "seed": 42,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": -16.75,
+      "flip_delta_margin": 16.75,
+      "seed": 43,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 113.25,
+      "flip_delta_margin": -113.25,
+      "seed": 44,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 3.8333333333333335,
+      "candidate_delta_opponent_score": 0.5,
+      "candidate_delta_policy_score": 4.333333333333333,
+      "candidate_delta_wood_edge": 1.0,
+      "candidate_minus_always_flip": 0.0,
+      "flip_delta_margin": 3.8333333333333335,
+      "seed": 45,
+      "selected": true
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 39.333333333333336,
+      "flip_delta_margin": -39.333333333333336,
+      "seed": 46,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 3.25,
+      "flip_delta_margin": -3.25,
+      "seed": 47,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 8.666666666666666,
+      "flip_delta_margin": -8.666666666666666,
+      "seed": 48,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 78.16666666666667,
+      "flip_delta_margin": -78.16666666666667,
+      "seed": 49,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 11.083333333333334,
+      "candidate_delta_opponent_score": -11.416666666666666,
+      "candidate_delta_policy_score": -0.3333333333333333,
+      "candidate_delta_wood_edge": 2.4166666666666665,
+      "candidate_minus_always_flip": 0.0,
+      "flip_delta_margin": 11.083333333333334,
+      "seed": 50,
+      "selected": true
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 23.083333333333332,
+      "flip_delta_margin": -23.083333333333332,
+      "seed": 51,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 4.25,
+      "candidate_delta_opponent_score": 1.75,
+      "candidate_delta_policy_score": 6.0,
+      "candidate_delta_wood_edge": 1.0833333333333333,
+      "candidate_minus_always_flip": 0.0,
+      "flip_delta_margin": 4.25,
+      "seed": 52,
+      "selected": true
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 3.0833333333333335,
+      "flip_delta_margin": -3.0833333333333335,
+      "seed": 53,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 11.333333333333334,
+      "flip_delta_margin": -11.333333333333334,
+      "seed": 54,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": -23.583333333333332,
+      "flip_delta_margin": 23.583333333333332,
+      "seed": 55,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 9.666666666666666,
+      "candidate_delta_opponent_score": 2.5833333333333335,
+      "candidate_delta_policy_score": 12.25,
+      "candidate_delta_wood_edge": 1.75,
+      "candidate_minus_always_flip": 0.0,
+      "flip_delta_margin": 9.666666666666666,
+      "seed": 56,
+      "selected": true
+    },
+    {
+      "candidate_delta_margin": 9.5,
+      "candidate_delta_opponent_score": -10.916666666666666,
+      "candidate_delta_policy_score": -1.4166666666666667,
+      "candidate_delta_wood_edge": 2.1666666666666665,
+      "candidate_minus_always_flip": 0.0,
+      "flip_delta_margin": 9.5,
+      "seed": 57,
+      "selected": true
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": -5.5,
+      "flip_delta_margin": 5.5,
+      "seed": 58,
+      "selected": false
+    },
+    {
+      "candidate_delta_margin": 0.0,
+      "candidate_delta_opponent_score": 0.0,
+      "candidate_delta_policy_score": 0.0,
+      "candidate_delta_wood_edge": 0.0,
+      "candidate_minus_always_flip": 135.25,
+      "flip_delta_margin": -135.25,
+      "seed": 59,
+      "selected": false
+    }
+  ],
+  "rule": {
+    "definition": "default LEMON and alternate-minus-default distance <= 8",
+    "selected_nonpositive_roots": 3,
+    "selected_positive_roots": 10,
+    "selected_root_ids": [
+      17,
+      18,
+      20,
+      25,
+      27,
+      29,
+      32,
+      35,
+      45,
+      50,
+      52,
+      56,
+      57
+    ],
+    "selected_roots": 13
+  },
+  "schema": "troll-farm-e7a-frozen-sector-pricing/1",
+  "task": "20260802-e7a-sector-candidate",
+  "unavailable_from_compact_delta_table": [
+    "absolute control/candidate terminal margins",
+    "candidate catastrophe count/rate",
+    "candidate negative-margin mass",
+    "candidate win/tie/loss changes",
+    "fresh-root or official-map generalization",
+    "Arena rating effect"
+  ],
+  "verdict": "FROZEN_RULE_PRICED_ON_CONSUMED_E7_ONLY"
+}

@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 57677,
+    "path": "local_codex_1/e7a-iterative-logical-deletion/candidate-r13-remove-movement-tie-mode.rs",
+    "removed_from_initial_62278": 4601,
+    "removed_this_round": 234,
+    "sha256": "6b9fdc99c960b4ddc969729d9452b1e5b7b252b06f8314a8567e969e27f5ba34"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "delete the disabled movement-first opening tie mode and preserve the exact chop-first tuple from its fixed false branch",
+  "minification": false,
+  "parent": {
+    "bytes": 57911,
+    "path": "local_codex_1/e7a-iterative-logical-deletion/candidate-r12-remove-preferred-only-mode.rs",
+    "sha256": "685728c71f4c6236d8cb62cedecd6b423a78a5f161ac44f923eed8459eb3f50e"
+  },
+  "round": 13,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}

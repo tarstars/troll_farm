@@ -1,0 +1,11 @@
+data/analysis/live-agent-6553250/top15-public-battle-audit-2026-08-02.json filter=lfs diff=lfs merge=lfs -text
+data/shared-lfs/e7a-restore-agent-6592131/games-agent6592131-submission41086057.jsonl.gz filter=lfs diff=lfs merge=lfs -text
+data/shared-lfs/r36-agent-6594200/games-agent6594200-submission41090606.jsonl.gz filter=lfs diff=lfs merge=lfs -text
+data/shared-lfs/orchard-ab-night-20260803/*/*.jsonl.gz filter=lfs diff=lfs merge=lfs -text
+
+# Night ledgers are append-only and are written by an unattended runner while
+# the coordinator edits the same files by hand. An append-vs-append conflict
+# during the runner's `pull --rebase` crashed the 2026-08-20 night at 15:06Z
+# and left a dead service; `merge=union` keeps BOTH appends instead.
+local_claude_1/door1-night-*.md merge=union
+local_claude_1/door1-vs-old-*.md merge=union

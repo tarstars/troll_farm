@@ -1,6 +1,6 @@
 # 20260729-h5-postmortem-intelligence: what did the field say about itself?
 
-- Status: active
+- Status: closed — verdict (b)+(c); incidental finding opened H13; integrated
 - Record owner: claude_1
 - Work owner: claude_1
 - Reviewer: chatgpt_1 (optional)
@@ -10,7 +10,7 @@
 - Branch: session-2026-07-01 (integrator; executed by claude_1 subagent)
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-07-29T12:30:49Z
-- Last updated UTC: 2026-07-29T12:30:49Z
+- Last updated UTC: 2026-07-29T13:09:10Z
 
 ## Outcome
 A cross-check of this project's inferred model of the field against what top players

@@ -1,0 +1,79 @@
+{
+  "schema": "troll-farm-a2-1-economy-skeleton-implementation-lock-v1",
+  "locked_utc": "2026-07-30T18:11:05Z",
+  "status": "LOCKED_BEFORE_CONFIRMATION",
+  "implementation_commit": "2357ec672c971a23f8225ce63f8f1ff4c9214913",
+  "verified_remote_refs": {
+    "agent/local_codex_1": "2357ec672c971a23f8225ce63f8f1ff4c9214913",
+    "main": "2357ec672c971a23f8225ce63f8f1ff4c9214913",
+    "session-2026-07-01": "2357ec672c971a23f8225ce63f8f1ff4c9214913"
+  },
+  "a2_0b_implementation_commit": "cd424a19a1f746d72afcfc8b7c824284cdda4012",
+  "toolchain": {
+    "cargo": "cargo 1.75.0",
+    "python": "Python 3.10.12",
+    "rustc": "rustc 1.75.0 (82e1608df 2023-12-21) (built from a source tarball)"
+  },
+  "source_sha256": {
+    "cgauto/analyze_a2_1_economy_skeleton.py": "464358537101931debbfb457037540bdd75b740a309faa1b3c0256b525b3a73b",
+    "cgauto/waste_sweep.py": "cb5c813d591f3defd3809f97b25b61f6c7cdf67f039836d7b43c0544d29cad02",
+    "docs/a2-1-economy-skeleton-protocol-2026-07-30.md": "93d1273b54f1cddba3b349e18d08fdd427a572a821d8c424bde07976a9469f2a",
+    "rust/Cargo.lock": "afef49fbb1b34147c78cd8300b96d372c7064602eb244a914c53aef25773ab9d",
+    "rust/Cargo.toml": "50d5f616bcfab858ee4dcbe394069ff22fca76e3039f9313e17a67644ea77f8c",
+    "rust/src/bin/a2_1_economy_skeleton.rs": "e45fe70d1d258b5c186481e7b7b6cf9bf5d4f833f13e12f557a62d82c4be549d",
+    "rust/src/bin/yamo_orchard_live.rs": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "rust/src/d171a_control_resident_snapshot.rs": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "rust/src/game/a2_continued_mapgen.rs": "8e841958c47db42920ca23150bd2afbdb88acaa06c1a13f97ee684fbfea2a84d",
+    "rust/src/game/a2_economy_skeleton.rs": "7f9cae2c5230797e8d7d31b82ad173ae8951273de7165990e068b8968bb5be03",
+    "rust/src/game/a2_referee_parity.rs": "518c222881ac23f8548cc13c858bacc93577ea920ecfbdbf0fd0e588cad1bf83",
+    "rust/src/game/engine.rs": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+    "rust/src/game/mod.rs": "7c7a0b3229e72b22e0c80288dd85e47ac0166a60f80ee15925d94d06816304a7",
+    "rust/src/game/official_mapgen.rs": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971",
+    "rust/src/game/state.rs": "0b75b26b7a700ce023d2f0d65993a57a0f6e577b54dc1b2012dd00b6ff3fde9c",
+    "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee"
+  },
+  "release_binary_sha256": "b1b95b3f11c39c1c7dc7c414062826a1dbcd901c5080bede061a78511bf922c7",
+  "development": {
+    "start_seed": 9880000,
+    "maps": 32,
+    "tasks": 512,
+    "verdict": "READY_FOR_IMPLEMENTATION_LOCK",
+    "fruit_funded_worker3_tasks": 206,
+    "fruit_funded_worker3_rate": 0.40234375,
+    "own_issues": 2,
+    "critical_issues": 0,
+    "unclassified_issues": 0,
+    "jobs1_sha256": "c395ec1bb7ebf8b0cb30918e04e5bc03b04b3c690b0f368027092099ea37925c",
+    "jobs20_sha256": "c395ec1bb7ebf8b0cb30918e04e5bc03b04b3c690b0f368027092099ea37925c",
+    "trajectories_sha256": "da848c71958411fda33f2436115954add59de012ddf27c09f5671f6257331896",
+    "result_sha256": "52907752e1bf10876949f229886cc8cbaa73d300f8b99cb1bb21fee00549f5da",
+    "rust_tests": "27 passed, 0 failed",
+    "analyzer_compile": "passed",
+    "analyzer_self_test": "passed",
+    "six_detectors_exact_coverage": true,
+    "repeated_failed_command_episodes": 0
+  },
+  "commands": {
+    "analyze_development": "python3 cgauto/analyze_a2_1_economy_skeleton.py --stage development --jobs1 artifacts/experiments/a2-1-economy-skeleton/a2-1-development-jobs1-9880000-9880031.tsv --jobs20 artifacts/experiments/a2-1-economy-skeleton/a2-1-development-jobs20-9880000-9880031.tsv --trajectories artifacts/experiments/a2-1-economy-skeleton/a2-1-development-trajectories-9880000-9880031.ndjson --output data/analysis/live-agent-6553250/a2-1-development-result.json",
+    "analyzer_self_test": "python3 cgauto/analyze_a2_1_economy_skeleton.py --self-test",
+    "build": "cargo build --release --manifest-path rust/Cargo.toml --bin a2_1_economy_skeleton",
+    "development_jobs1": "rust/target/release/a2_1_economy_skeleton 9880000 32 artifacts/experiments/a2-1-economy-skeleton/a2-1-development-jobs1-9880000-9880031.tsv 1",
+    "development_jobs20": "rust/target/release/a2_1_economy_skeleton 9880000 32 artifacts/experiments/a2-1-economy-skeleton/a2-1-development-jobs20-9880000-9880031.tsv 20 artifacts/experiments/a2-1-economy-skeleton/a2-1-development-trajectories-9880000-9880031.ndjson",
+    "python_compile": "python3 -m py_compile cgauto/analyze_a2_1_economy_skeleton.py",
+    "rust_tests": "cargo test --manifest-path rust/Cargo.toml --bin a2_1_economy_skeleton",
+    "storage_preflight": "python3 cgauto/check_external_storage.py --required-free-gib 5"
+  },
+  "confirmation_authority": {
+    "arena_authorized": false,
+    "maps": 128,
+    "one_confirmation_look": true,
+    "source_change_after_lock": "invalidates confirmation and requires a new versioned protocol and fresh range",
+    "start_seed": 9881000,
+    "tasks": 2048,
+    "thread_counts": [
+      1,
+      20
+    ],
+    "trajectory_mode": "referee"
+  }
+}

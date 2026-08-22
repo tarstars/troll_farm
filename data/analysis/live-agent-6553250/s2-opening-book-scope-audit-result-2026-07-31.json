@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "scope": "written-evidence dependency and representation audit; no opening enumeration, model fit, game run, source change, or Arena action",
+  "verdict": "DEPENDENCY_GATED_REPRESENTATION_BLOCKED",
+  "control_sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "sacred_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+  "requirements": {
+    "non_closed_sequence_library_with_terminal_value": false,
+    "pre_action_map_representation_with_prospective_transfer": false,
+    "disjoint_official_map_validation_available": false,
+    "held_opponent_transfer_available": false,
+    "runtime_lookup_is_current_blocker": false
+  },
+  "action_library_evidence": [
+    {
+      "class": "harvest-0 first-worker grid",
+      "surface": "CONTROL, dynamic max-affordable, and all 27 movement/carry/chop specs",
+      "terminal_labels": true,
+      "selection_support": "both seats, eight continuations, six process realizations",
+      "disposition": "closed_no_opponent_robust_activation",
+      "supplies_s2": false,
+      "citations": [
+        "data/analysis/live-agent-6553250/e1-opening-micro-optimality-scope-audit-2026-07-30.md §What was already covered",
+        "docs/CONSTRAINTS.md §(f), Phases 6–8"
+      ]
+    },
+    {
+      "class": "complete opening macro options",
+      "surface": "farm-first orchard scale, adaptive max-bank, and later funding",
+      "terminal_labels": true,
+      "selection_support": "complete macro comparisons",
+      "disposition": "closed_farm_first_minus_97_57_score_later_funding_minus_56_78",
+      "supplies_s2": false,
+      "citations": [
+        "data/analysis/live-agent-6553250/e1-opening-micro-optimality-scope-audit-2026-07-30.md §What was already covered",
+        "docs/CONSTRAINTS.md §(a)"
+      ]
+    },
+    {
+      "class": "terminal-valued turn-one rollout",
+      "surface": "control versus immediate max-affordable harvest-0 option",
+      "terminal_labels": true,
+      "selection_support": "local frozen block and 60 diagnosis-only Arena maps",
+      "disposition": "closed_local_plus_2_717_then_arena_21_7_vs_24_1_control",
+      "supplies_s2": false,
+      "citations": [
+        "data/analysis/live-agent-6553250/e1-opening-micro-optimality-scope-audit-2026-07-30.md §What was already covered",
+        "docs/CONSTRAINTS.md §(f), Phases 6–8"
+      ]
+    },
+    {
+      "class": "fixed one-source opening prefixes",
+      "surface": "later-scaler first-crop order/species transactions",
+      "terminal_labels": false,
+      "selection_support": "discovery prefix reconstruction",
+      "disposition": "closed_best_first_generation_receipt_45_to_60_percent",
+      "supplies_s2": false,
+      "citations": [
+        "data/analysis/live-agent-6553250/e1-opening-micro-optimality-scope-audit-2026-07-30.md §What was already covered",
+        "docs/CONSTRAINTS.md §(a), D69/D70"
+      ]
+    },
+    {
+      "class": "closed-loop opening portfolio",
+      "surface": "eight-action recurrent environment and 32 recurrent policies",
+      "terminal_labels": true,
+      "selection_support": "closed-loop development",
+      "disposition": "closed_source_action_breadth_gate_failed_and_policy_minus_1_758",
+      "supplies_s2": false,
+      "citations": [
+        "data/analysis/live-agent-6553250/e1-opening-micro-optimality-scope-audit-2026-07-30.md §What was already covered"
+      ]
+    },
+    {
+      "class": "one- and two-batch semantic sequences",
+      "surface": "all four one-batch and all 16 two-batch sequences",
+      "terminal_labels": true,
+      "selection_support": "576 roots; complete frozen sequence grid",
+      "disposition": "closed_one_deviation_breadth_38_54_percent_two_batch_spread_3_455",
+      "supplies_s2": false,
+      "citations": [
+        "data/analysis/live-agent-6553250/e1-opening-micro-optimality-scope-audit-2026-07-30.md §What was already covered",
+        "docs/CONSTRAINTS.md §(f)"
+      ]
+    },
+    {
+      "class": "resident-native multi-turn candidate-pair prefix",
+      "surface": "bounded first-turn sequence over exact resident candidate pairs",
+      "terminal_labels": false,
+      "selection_support": "not yet enumerable",
+      "disposition": "surviving_but_gated_on_accepted_n4_phase_a_and_later_e1_oracle",
+      "supplies_s2": false,
+      "citations": [
+        "data/analysis/live-agent-6553250/e1-opening-micro-optimality-scope-audit-2026-07-30.md §Exact surviving scope",
+        "coordination/tasks/20260730-n4-candidate-pair-value-audit.md"
+      ]
+    }
+  ],
+  "map_representation_evidence": [
+    {
+      "class": "D63 static opening/map features",
+      "target": "workforce-policy behavior",
+      "development": "AUC 0.830",
+      "validation": "AUC 0.479; balanced accuracy 0.503",
+      "disposition": "closed_for_current_workforce_selector_representation",
+      "supplies_s2": false,
+      "citations": [
+        "data/analysis/live-agent-6553250/legend-top3-experiment-cycle-2026-07-18.md §D63a/D63b",
+        "docs/CONSTRAINTS.md §(a)"
+      ]
+    },
+    {
+      "class": "D91 first-boundary map selector",
+      "target": "resident versus full factory",
+      "development": "+31.012 overall; +158.780 selected",
+      "validation": "selection occupies only 5/16 maps; cluster interval [-1.738,+63.761]",
+      "disposition": "closed_before_prospective_maps",
+      "supplies_s2": false,
+      "citations": [
+        "data/analysis/live-agent-6553250/legend-top3-experiment-cycle-2026-07-18.md §D91"
+      ]
+    },
+    {
+      "class": "Phase 15 expanded map-only forest",
+      "target": "worker-three policy",
+      "development": "oracle precision 89.615%, below frozen 90% gate",
+      "validation": "best fixed forest precision 47.059%; margin -0.277",
+      "disposition": "closed_without_validation_or_holdout_use",
+      "supplies_s2": false,
+      "citations": [
+        "docs/archive/legend/session-handoff-2026-07-16.md Phase 15",
+        "docs/CONSTRAINTS.md §(b)"
+      ]
+    },
+    {
+      "class": "D153 conditional value by map fold",
+      "target": "resident conditional action value",
+      "development": "selected value about +14 to +17",
+      "validation": "best +1.820; 44.44% harmful; worst fold -0.992",
+      "disposition": "closed_representation_and_confidence_rescue",
+      "supplies_s2": false,
+      "citations": [
+        "data/analysis/live-agent-6553250/legend-top3-experiment-cycle-2026-07-18.md §D153a/b",
+        "docs/CONSTRAINTS.md §(b)"
+      ]
+    },
+    {
+      "class": "generated map scalar domain",
+      "target": "field transfer",
+      "development": "constant six water cells",
+      "validation": "all 80 official roots outside support; -78.05 shift, -72.12 from scalars",
+      "disposition": "generated_maps_not_field_evidence",
+      "supplies_s2": false,
+      "citations": [
+        "docs/CONSTRAINTS.md §(c), D29c/D30/D31/D33"
+      ]
+    }
+  ],
+  "dependency_graph": [
+    "accepted N4 candidate-pair surface",
+    "separately frozen E1 terminal prefix oracle",
+    "material and opponent-broad sequence-library value",
+    "new pre-action map representation",
+    "prospective disjoint official-map and held-opponent transfer",
+    "separately frozen S2 book protocol"
+  ],
+  "boundaries": {
+    "n4_unchanged": true,
+    "e1_unchanged": true,
+    "h11_unchanged": true,
+    "opponent_families_are_map_classes": false,
+    "consumed_panels_reused_as_holdout": false
+  },
+  "decision": {
+    "opening_enumeration": false,
+    "feature_fit": false,
+    "book": false,
+    "source_change": false,
+    "candidate": false,
+    "arena_action": false
+  }
+}

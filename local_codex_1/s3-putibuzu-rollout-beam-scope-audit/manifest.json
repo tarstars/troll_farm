@@ -1,0 +1,41 @@
+{
+  "task": "20260731-s3-putibuzu-rollout-beam-scope-audit",
+  "generated_utc": "2026-07-31T00:54:02Z",
+  "base_commit": "a4b010ccbc10036d925de89419e10ea7b195fafd",
+  "verdict": "DISTINCT_MULTI_GATED",
+  "artifacts": {
+    "protocol": {
+      "path": "docs/s3-putibuzu-rollout-beam-scope-protocol-2026-07-31.md",
+      "sha256": "50fc59e36dc8c7dbb7d9784d6087d42bc7221ed95c2100a0805b3ee72d0f3b59"
+    },
+    "compact_result": {
+      "path": "data/analysis/live-agent-6553250/s3-putibuzu-rollout-beam-scope-audit-result-2026-07-31.json",
+      "sha256": "7dc10ff1ffe67f506d35902200a97b2e04481c65cf0e366e5b445cf0753a66c6"
+    },
+    "report": {
+      "path": "data/analysis/live-agent-6553250/s3-putibuzu-rollout-beam-scope-audit-result-2026-07-31.md",
+      "sha256": "c3478b2603b583c33083714d1bc585f540728f96fc4b21ef590d8d0cc9a9a108"
+    }
+  },
+  "evidence_hashes": {
+    "hierarchical_controller_roadmap": "58997f5515483ab8f8f481eee0173d3c0335121feb2e1e08910770cb5293e6f2",
+    "residual_search_iteration": "462c4f317c8224d3ec39d8896e9bfbfc3b2bb920e09379abd14e2bfe1a42a740",
+    "resident_residual_result": "775ad67c9c4c95de068771f821f3817f842310f69dba9da6aad977dd9ed72734",
+    "d84_result": "08231ab7ce93366def3b15131915e405cf94fa9a982f82491aeb8f706c3ca516",
+    "arena_rollout_verdict": "e58bbd76664c57189d57b062ae0189c4bd7b8df707b7ddca7545eaa642e41438",
+    "s1_compact_result": "3341616796b470dd23bb4bbf7b51118cd140135c25c71661f21c4da0f01270b2"
+  },
+  "public_source": {
+    "url": "https://forum.codingame.com/t/spring-challenge-2026-troll-farm-feedback-strategies/208241/5",
+    "retrieved_utc": "2026-07-31T00:51:00Z",
+    "content_status": "external architectural prose; no exact source hash claimed"
+  },
+  "integrity": {
+    "exact_resident_control_sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+    "sacred_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "new_source_files": 0,
+    "new_analyzers_or_tests": 0,
+    "new_maps_or_games": 0,
+    "arena_actions": 0
+  }
+}

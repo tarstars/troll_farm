@@ -1,0 +1,148 @@
+{
+  "schema": "troll-farm-e7a-iterative-logical-deletion-r13-fresh-lock-v1",
+  "task_id": "20260803-e7a-iterative-logical-deletion",
+  "locked_at_utc": "2026-08-03T06:47:33Z",
+  "state_at_lock": "UNOPENED",
+  "one_shot": true,
+  "candidate": {
+    "path": "local_codex_1/e7a-iterative-logical-deletion/candidate-r13-remove-movement-tie-mode.rs",
+    "bytes": 57677,
+    "sha256": "6b9fdc99c960b4ddc969729d9452b1e5b7b252b06f8314a8567e969e27f5ba34",
+    "accepted_rounds": 13,
+    "removed_from_qualified_parent_bytes": 4601,
+    "removed_from_live_e7a_bytes": 5143
+  },
+  "qualified_parent": {
+    "path": "local_codex_1/e7a-single-logical-deletion/candidate-e7a-remove-generic-selector.rs",
+    "bytes": 62278,
+    "sha256": "ab0934740171cc7f5f4cd65cdfb8cf879ca92d8236c9505903e4741e0a7c57c2"
+  },
+  "baseline": {
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-e7a-lemon-near-tie.min.rs",
+    "bytes": 62820,
+    "sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595"
+  },
+  "sacred": {
+    "path": "rust/src/bin/yamo_orchard_live.rs",
+    "sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "validation": {
+    "seed_start": 9868000,
+    "seed_end_inclusive": 9868042,
+    "maps": 43,
+    "seats": [0, 1],
+    "opponents": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot"
+    ],
+    "paired_tasks": 516,
+    "threads": 8,
+    "bootstrap_samples": 50000,
+    "bootstrap_rng_seed": 20260803,
+    "range_arguments_exposed": false,
+    "map_count_arguments_exposed": false,
+    "thread_count_arguments_exposed": false,
+    "bootstrap_arguments_exposed": false
+  },
+  "gates": {
+    "exact_terminal_equality_tasks": 516,
+    "exact_fields": [
+      "score",
+      "opponent_score",
+      "margin",
+      "wood",
+      "opponent_wood",
+      "terminal_turn",
+      "second_worker_train_turn",
+      "final_worker_count",
+      "period2",
+      "issues",
+      "critical",
+      "unclassified"
+    ],
+    "coverage_at_least_512": true,
+    "six_families": true,
+    "zero_critical_and_unclassified": true,
+    "latency_p95_ratio_maximum": 1.2,
+    "latency_maximum_ms_strictly_below": 50
+  },
+  "collision_audit": {
+    "result": "NO_RECORDED_EXACT_SEED_COLLISION",
+    "specific_tokens": ["9868000", "9_868_000", "9,868,000"],
+    "tracked_compact_matches_before_reservation": 0,
+    "task_working_tree_matches_before_reservation": 0,
+    "tracked_filename_matches_before_reservation": 0,
+    "tracked_history_exact_matches_before_reservation": 0,
+    "broad_token_matches_before_reservation": 0,
+    "scoped_roots": [
+      "docs",
+      "coordination",
+      "cgauto",
+      "scripts",
+      "local_codex_1/e7a-iterative-logical-deletion",
+      "data/analysis/live-agent-6553250"
+    ],
+    "recursive_external_bulk_scan_performed": false,
+    "recursive_external_bulk_scan_reason": "owner requires avoiding potentially blocking wide searches over huge mounted repositories; canonical compact records and tracked history are the seed-use authority",
+    "excluded_recorded_ranges": [
+      "9844200-9844215",
+      "9852000-9852063",
+      "9853000-9853127",
+      "9854000-9854127",
+      "9855000-9855127",
+      "9856000-9856255",
+      "9857000-9857127",
+      "9858000-9858031",
+      "9859000-9859127",
+      "9860000-9860511",
+      "9861000 selection material",
+      "9862000-9862063",
+      "9863000-9863042",
+      "9864000-9864042",
+      "9865000-9865042",
+      "9866000-9866042",
+      "9867000-9867042"
+    ]
+  },
+  "hashes": {
+    "protocol": "5e72026c2a0b0fb86a16a8af3b45203e04650d1c3b373eb9947cd5d256e0bbeb",
+    "round_builder": "0828b96a9de8da6cd27c9bd74bc9b9d261c94ec8e8f82d268234842675dcfc70",
+    "candidate_manifest": "f412e2750d2344852700ff079a5e64b2f69eb03001b202fc206abf84a47c2909",
+    "semantic_validator": "d915ff76fdf71fd3e23d0676d8165da11cd95fc1515a7a4b1ba85ddb50683a5d",
+    "semantic_result": "e46206c137484f07119b9f48c32742089dc53f893e30be1a03a1cf01a8530281",
+    "live_parity_evaluator": "2b89c8a68845614ac70df701d8611df54fb90cec08b27fd03909fa7d5a3c7339",
+    "live_parity_result": "579d7b156053087e73485283af215478365b912d3602c97c1fdfc8aa25ea5c18",
+    "development_evaluator": "d08491b7b1da5a6547a01a7c870d7fbadecbec369ed503187070938de548dd20",
+    "development_result": "5bd74e48ded38322ca6a8690c73bb7abda8490de25d164a00152e6250c53c8db",
+    "development_tsv": "93b438f5725553356acc3532e934f1b3bba80db9f13f5f9c4e2d6d727f254cde",
+    "fresh_evaluator_adapter": "df3bd6858c22666312717c93abc5fa6ab6bca550f9cba8a2d35e61eadb9b1dc3",
+    "shared_fresh_evaluator": "c38c67455ab3e3922f79b1b721d08239b1348f41fb4d41fc4377d72e2ac58203",
+    "runner_template": "d9a118d715ab0b5f0e55f2a5a846afaa9007b725a3de1cad605feadb69a83c18",
+    "generated_fresh_runner": "bdf3c5b33263f833cb1e691173ba4a0139f2dd2a62f64e2b706b662496e340d2",
+    "candidate_module": "5f70abc7a34cee564a6f5383647f3da102126d1d80f5f6d9631919f8177675d7",
+    "rust_library": "1802bd8d69023b2e374d0a9586c33296485456892a9821dc635f5cb6dde0e660"
+  },
+  "pre_run_checks": {
+    "accepted_sequential_rounds": 13,
+    "each_round_rebuild": "BYTE_IDENTICAL",
+    "each_round_standalone_optimized_compile": true,
+    "each_round_empty_input_exit_zero": true,
+    "each_round_semantic_fixtures": "EXACT_PASS_10_OF_10",
+    "each_round_live_command_parity": "EXACT_PASS_7234_OF_7234_LINES",
+    "accumulated_development_panel": "EXACT_PASS_516_OF_516_TASKS",
+    "fresh_runner_compile_only": "PASS_NO_MAP_GENERATION"
+  },
+  "one_shot_command": [
+    "python3",
+    "local_codex_1/e7a-iterative-logical-deletion/evaluate_r13_fresh_equality_gate.py",
+    "--panel",
+    "local_codex_1/e7a-iterative-logical-deletion/candidate-r13-fresh.tsv",
+    "--output",
+    "local_codex_1/e7a-iterative-logical-deletion/candidate-r13-fresh.json"
+  ],
+  "evidence_boundary": "one-shot untouched exact-equality engineering transfer gate; not an Arena-rating predictor"
+}

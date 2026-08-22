@@ -1,0 +1,83 @@
+{
+  "schema": "troll-farm-a2-0b-referee-parity-r1-implementation-lock-v1",
+  "locked_utc": "2026-07-30T16:04:00Z",
+  "status": "LOCKED_BEFORE_CONFIRMATION",
+  "implementation_commit": "cd424a19a1f746d72afcfc8b7c824284cdda4012",
+  "verified_remote_refs": {
+    "agent/local_codex_1": "cd424a19a1f746d72afcfc8b7c824284cdda4012",
+    "session-2026-07-01": "cd424a19a1f746d72afcfc8b7c824284cdda4012"
+  },
+  "referee_commit": "290129129db7a7539d98739ebdb0ed63ee6ceb50",
+  "toolchain": {
+    "rustc": "rustc 1.75.0 (82e1608df 2023-12-21) (built from a source tarball)",
+    "cargo": "cargo 1.75.0",
+    "python": "Python 3.10.12"
+  },
+  "protocol": {
+    "v1_sha256": "b107a57f2991a3a2ef49d931e1382bf448fa012c27e1372f9dc1ffd6b93f1680",
+    "rng_amendment_sha256": "b3da490bde59814d999069ce5d233232c971002698b5df6df6f91eab92e57739",
+    "r1_sha256": "c1c6a773c256ea53c3ddf8f3f2db3a1c907d333d64cd53a968b88fb939a8c021"
+  },
+  "development_gate": {
+    "verdict": "READY_FOR_IMPLEMENTATION_LOCK",
+    "maps": 16,
+    "tasks": 256,
+    "all_terminal": true,
+    "legacy_critical_issues": 0,
+    "legacy_unclassified_issues": 0,
+    "referee_critical_issues": 0,
+    "referee_unclassified_issues": 0,
+    "tsv_sha256": "7daa4944bd9868873cbbfe602e9ca504c86515973ff7061ed2507f22747a9c21",
+    "result_sha256": "f750c063cc7a40c8787ff3492ada80a4c52a6added1c81e3a3e5232d91cd1fc9",
+    "rust_tests": {
+      "a2_referee_parity": "18 passed, 0 failed",
+      "official_mapgen": "2 passed, 0 failed"
+    },
+    "analyzer_compile": "passed",
+    "analyzer_self_test": "passed",
+    "trajectory_detector_probe": "16 legacy + 16 referee tasks; all six detectors; exact coverage; zero errors"
+  },
+  "source_sha256": {
+    "rust/Cargo.toml": "50d5f616bcfab858ee4dcbe394069ff22fca76e3039f9313e17a67644ea77f8c",
+    "rust/Cargo.lock": "afef49fbb1b34147c78cd8300b96d372c7064602eb244a914c53aef25773ab9d",
+    "rust/src/game/mod.rs": "7c7a0b3229e72b22e0c80288dd85e47ac0166a60f80ee15925d94d06816304a7",
+    "rust/src/game/state.rs": "0b75b26b7a700ce023d2f0d65993a57a0f6e577b54dc1b2012dd00b6ff3fde9c",
+    "rust/src/game/engine.rs": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
+    "rust/src/game/official_mapgen.rs": "5746607acdbaabed91720a9f7e75d73b55b6d87fdfe37f4f14ae3e4934d67971",
+    "rust/src/game/a2_continued_mapgen.rs": "8e841958c47db42920ca23150bd2afbdb88acaa06c1a13f97ee684fbfea2a84d",
+    "rust/src/game/a2_referee_parity.rs": "518c222881ac23f8548cc13c858bacc93577ea920ecfbdbf0fd0e588cad1bf83",
+    "rust/src/rl_macro.rs": "de9061c787af0fe28ef9a4768b30158c7b9d5a7b8273da868dca296b4d37f4ee",
+    "rust/src/strategies/mod.rs": "97fc71ac64e6048101fa1627b177a90756724a310757c4f75ce5ddaa5147624a",
+    "rust/src/strategies/compact_gold.rs": "b97b9dd03d23b7cc9b24481a852567dce984c6594618656c3a6a9fe0dfb77bb1",
+    "rust/src/strategies/gold_elite.rs": "4c96ab6b19fde5edace7bbb0c8fc1897ff83e46aed5daf1610217c212ef90022",
+    "rust/src/strategies/legend_field_proxy.rs": "8334d99b0dcb5d508c02329e91e68af0cccfb8115244249d2f227be8fb322a73",
+    "rust/src/strategies/mybot.rs": "8c3ec91c415a55f70516a39710bbab046ab5334eb25369d0de7404b5bfb38f37",
+    "rust/src/strategies/norxondor_native.rs": "48da3ac2a5edc811aaefbb3d1923f3c837e6283699f8e1d1e8f8c97a5a974447",
+    "rust/src/strategies/script_boss.rs": "716e52c0c9de0104efae24500202e851b56de9509fe194834f5d8af8d0c6eb1f",
+    "rust/src/strategies/silver_boss.rs": "fd13c13d23b652f9b48cddf81a134800a0bf738b90a7a3f0342bb0525f38cf4d",
+    "rust/src/d171a_control_resident_snapshot.rs": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "rust/src/bin/yamo_orchard_live.rs": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+    "rust/src/bin/a2_0b_referee_parity.rs": "1054a047a410b23ca952e3ed6b96df12662615bb630597f68b1d551b9b056a3f",
+    "cgauto/analyze_a2_0b_referee_parity.py": "f7cfc60df0c67ca001140e9c31df3807421178dead0c6d249b8ead551dc84681",
+    "cgauto/waste_sweep.py": "cb5c813d591f3defd3809f97b25b61f6c7cdf67f039836d7b43c0544d29cad02",
+    "cgauto/replay_conformance.py": "9a532218a6e76c83900f6d99996131267746341d397baa1263169b20f5dd738a",
+    "cgauto/top_player_opening_analysis.py": "7a29292677cb310cdc94ffcd4035f5b28744d704f970aac1e855d911dd858fcd",
+    "cgauto/recent_resident_field_census.py": "29bbcb30b2b585f38c2aa70782be7988b4849ec656612ef308248f8801147a9f"
+  },
+  "release_binary_sha256": "ba1e0ec98a5530f1c75177963b4616cda0e3213e3eeb50573a0c5523182f604b",
+  "confirmation_authority": {
+    "start_seed": 9854000,
+    "maps": 128,
+    "tasks": 2048,
+    "thread_counts": [
+      1,
+      20
+    ],
+    "trajectory_modes": [
+      "legacy",
+      "referee"
+    ],
+    "arena_authorized": false,
+    "source_change_after_lock": "invalidates confirmation and requires a new protocol version"
+  }
+}

@@ -1,0 +1,108 @@
+[
+ {
+  "count": 0,
+  "detector": "D-1",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-2",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-3",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-4",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-5",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 2,
+  "detector": "D-6",
+  "episodes": [
+   {
+    "cell": [
+     8,
+     2
+    ],
+    "eta_opp_x": 2,
+    "kind": "opp_chop_eta",
+    "turn_end": 37,
+    "turn_start": 37,
+    "unit": 0
+   },
+   {
+    "cell": [
+     8,
+     2
+    ],
+    "eta_opp_x": 0,
+    "kind": "opp_chop_eta",
+    "turn_end": 42,
+    "turn_start": 42,
+    "unit": 0
+   }
+  ],
+  "verdict": "FAIL"
+ },
+ {
+  "count": 0,
+  "detector": "D-7",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 0,
+  "detector": "D-8",
+  "episodes": [],
+  "verdict": "PASS"
+ },
+ {
+  "count": 4,
+  "detector": "D-9",
+  "episodes": [
+   {
+    "kind": "banana_before_train",
+    "turn_end": 36,
+    "turn_start": 36,
+    "unit": 0,
+    "verb": "PICK"
+   },
+   {
+    "kind": "banana_before_train",
+    "turn_end": 37,
+    "turn_start": 37,
+    "unit": 0,
+    "verb": "PLANT"
+   },
+   {
+    "kind": "banana_before_train",
+    "turn_end": 41,
+    "turn_start": 41,
+    "unit": 0,
+    "verb": "PICK"
+   },
+   {
+    "kind": "banana_before_train",
+    "turn_end": 42,
+    "turn_start": 42,
+    "unit": 0,
+    "verb": "PLANT"
+   }
+  ],
+  "verdict": "FAIL"
+ }
+]

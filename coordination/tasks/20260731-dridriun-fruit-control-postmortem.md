@@ -1,0 +1,113 @@
+# 20260731-dridriun-fruit-control-postmortem
+
+- Status: closed — corrected record accepted; empirical verdict
+  `NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK`, disposition `ACCEPTED_NARROW_CORRECTION`
+  (chatgpt_1 re-review handoff 2026-08-06T09:18Z; artifact
+  `chatgpt_1/dridriun-fruit-control-postmortem-corrected-rereview-2026-08-06.md` at `0f0bd5a3`,
+  integrated). Acceptance covers a read-only existing-corpus precheck only; it does not
+  authorize implementation or reopen Phase 21, D173a/b, B3.7, B3.10, or any broad intervention.
+- Record owner: local_claude_1 (coordinator transfer 2026-08-06; work authored by local_codex_1)
+- Work owner: local_codex_1
+- Reviewer: chatgpt_1 — review complete
+- Integrator: local_claude_1
+- Area: owner-observed fruit control / B3.7, B3.10, H3 boundary
+- Base commit: c2df655468a39c9f6f90da77a798f92b247ec6a8
+- Branch: agent/local_codex_1
+- Progress lease: 15 minutes without concrete evidence
+- Created UTC: 2026-07-31T11:00:00Z
+- Last updated UTC: 2026-08-06T13:05:00Z
+
+## Result
+
+- Exact 300-turn decode has zero unknown updates; final score is 252–276.
+- Nine Dridriun door-APPLE generations received 83 opponent HARVEST commands; all 83
+  succeeded and produced 83 confirmed APPLE units, with zero failed/zero-gain commands.
+  The first waited 60 turns for contact and produced 25 units before it.
+- Nine resident door-APPLE generations received zero resident and zero opponent HARVEST.
+  Four ripened: 22 resident ripe-CHOP commands and eight fruit present at final removal.
+- In the first two ripe cycles, resident unit 0 had `harvest_power=1`, one free slot, and
+  stood on the tree. Opponent unit 1 is raw BFS/ETA 3 at all four first-ripe states.
+- Actual capture and reachable capture are separated: Dridriun harvested none of our
+  apples in this replay.
+- Verdict: `NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK`. Only a read-only existing-corpus
+  joint-predicate proposal may follow after corrected re-review; all broad interventions
+  remain closed.
+
+## Corrected compact — 2026-07-31
+
+- The invalid base is replaced by exact
+  `c2df655468a39c9f6f90da77a798f92b247ec6a8`.
+- Per enemy generation, command count, successful count, confirmed fruit-unit gain, and
+  failed/zero-gain count are separated and total 83/83/83/0.
+- Resident CHOP count/success is 84/82. Every one of eight removals is a joint transition:
+  resident unit 3 and opponent unit 1 both issue successful final CHOP and gain wood.
+- The compact publishes eight first-contact rows, eight joint-removal rows, and all 22
+  ripe resident CHOP transitions with unit stats, carry/free capacity, tree state/effect,
+  raw BFS, movement speed, ETA, co-location, and explicit state indices.
+- Four ripe-cycle opponent raw-BFS/ETA values are [3,2,3,3] at post-PLANT states and
+  [3,3,3,3] at first-ripe states. The old 2/1 mixed label is withdrawn.
+- Corrected compact SHA-256 `c0ca3ce9…`; human report SHA-256 `399b347a…`.
+
+Evidence:
+`data/analysis/live-agent-6553250/dridriun-fruit-control-postmortem-result-2026-07-31.md`,
+compact JSON beside it, and
+`local_codex_1/dridriun-fruit-control-postmortem/manifest.json`.
+
+## Outcome
+
+Reconstruct the three owner-observed errors in exact resident game `896352129` against
+Dridriun, then decide whether they identify a distinct bounded fruit-control precheck or
+are already consumed by the failed broad harvest/opponent-crop interventions.
+
+The three hypotheses are:
+
+1. deny a recurring enemy-door apple before the opponent repeatedly harvests it;
+2. avoid creating apple fruit where opponent harvesting capacity is not dominated;
+3. when we control a ripe own-door apple, harvest before converting it to wood.
+
+## Frozen evidence
+
+- Platform game `896352129`, resident agent `6561795` versus Dridriun agent `6480943`,
+  final score 252–276.
+- Raw replay:
+  `data/raw/games/896352129.json`,
+  SHA-256 `eee9f3485204dea948efa36d39b2fb7783752cec419e931bc08577f943adb1c0`.
+- Exact trajectory:
+  `data/processed/trajectories/896352129.jsonl`,
+  SHA-256 `b4f42a5f46791de61aaa5a91e4c19f35aba3b711e9399666565fdb61a3983593`.
+- Existing exact replay decoder plus frozen H3/H3a, D173a/b, B3.7, B3.10, and Phase-21
+  results/constraints.
+
+## Exclusive write set
+
+- this task record;
+- `coordination/status/local_codex_1.md`;
+- `coordination/messages/local_codex_1/*-20260731-dridriun-fruit-control-postmortem-*.md`;
+- `data/analysis/live-agent-6553250/dridriun-fruit-control-postmortem-result-2026-07-31.*`
+  (new compact);
+- `local_codex_1/dridriun-fruit-control-postmortem/manifest.json` (new);
+- integrator-owned BACKLOG/approach/constraints/state/live-ledger disposition only after
+  the audit verdict is fixed.
+
+## Acceptance
+
+- Identify exact turns, cells, units, harvest/chop capability, camp distances, fruit,
+  health, and generation fate for all three observations.
+- Quantify opponent harvests by enemy-door apple generation and delay to resident contact
+  and removal.
+- Quantify resident-created own-door apple cycles, ripe turns chopped without harvest,
+  and actual versus merely reachable opponent capture.
+- Separate replay facts, direct accounting ceilings, and policy counterfactuals.
+- Reconcile with the failed unconditional Phase-21 dual value, D173a/b displacement,
+  B3.7 conversion-by-design, and B3.10 direct-stock closure.
+- Return exactly one:
+  `COVERED_NO_NEW_INTERVENTION`,
+  `NARROWED_TO_DISTINCT_FRUIT_CONTROL_PRECHECK`, or
+  `UNIDENTIFIABLE`.
+
+## Prohibitions
+
+No other game/replay/map/range, bulk write, source/frozen-artifact edit, new analyzer,
+simulation, runner, panel, threshold, capability change, candidate, submission,
+TestSession, or Arena action. A distinct verdict authorizes only a separately reviewed
+precheck proposal, never implementation.

@@ -1,0 +1,612 @@
+diff --git a/rust/src/bin/yamo_orchard_live.rs b/rust/src/bin/yamo_orchard_live.rs
+index 3f0b716..92fe218 100644
+--- a/rust/src/bin/yamo_orchard_live.rs
++++ b/rust/src/bin/yamo_orchard_live.rs
+@@ -727,12 +727,51 @@ pub mod bot {
+             opponent_crop_harvest_contact: bool,
+             opponent_crop_harvested: BTreeSet<Cell>,
+             opponent_crop_harvest_rewrites: usize,
++            oscillation_memory: BTreeMap<i32, OscillationMemory>,
+         }
+         impl Default for YamoBot {
+             fn default() -> Self {
+                 Self::with_opening_policy(YamoOpeningPolicy::default())
+             }
+         }
++        // D176a oscillation breaker (successor to D171a's closed hard-forbid attempt): a
++        // per-unit short memory feeding a *preference*, not a prohibition, into the detour
++        // tie-break of `resolve_move_conflicts_with_priority_and_penalty`. See
++        // data/analysis/live-agent-6553250/d176a-oscillation-breaker-successor-protocol-2026-07-29.md.
++        #[derive(Clone, Copy, Debug, Default)]
++        struct OscillationMemory {
++            one_ago: Option<Cell>,
++            two_ago: Option<Cell>,
++            target: Option<Cell>,
++            reversals: u8,
++            // Armed state. `penalized` is the cell the unit occupied immediately before its
++            // 3rd confirmed reversal (the alternate cell of the A/B pair); while `Some`, it
++            // is offered to the resolver as a +1 sort-key penalty, never a hard block.
++            penalized: Option<Cell>,
++            armed_target: Option<Cell>,
++            armed_distance: Option<i32>,
++            // Bounded arming (the D171a successor requirements): at most 4 turns of
++            // offering after arming (hard expiry), and at most 2 of those turns may
++            // actually change a resolved command (the "<=2 forced choices" cap) before the
++            // arm is spent.
++            turns_offered: u8,
++            turns_altered: u8,
++        }
++        impl OscillationMemory {
++            /// Clears the current/former arming (reversal streak, the penalized cell, its
++            /// frozen arm-time target/distance, and both bounded-arming counters) while
++            /// leaving the raw position history (`one_ago`/`two_ago`/`target`) untouched --
++            /// that history is refreshed unconditionally every turn by the caller regardless
++            /// of arming state, so a fresh reversal streak can start immediately.
++            fn clear_arm(&mut self) {
++                self.reversals = 0;
++                self.penalized = None;
++                self.armed_target = None;
++                self.armed_distance = None;
++                self.turns_offered = 0;
++                self.turns_altered = 0;
++            }
++        }
+         #[derive(Clone, Copy)]
+         struct PredictedTree {
+             size: i32,
+@@ -1527,6 +1566,106 @@ pub mod bot {
+                     };
+                 }
+             }
++            /// D176a: sibling to `resolve_move_conflicts_with_priority_and_forbidden` that
++            /// implements *preference*, not prohibition. `penalized_for_non_priority` maps a
++            /// unit id (ignored for ids in `priority_ids`) to the single cell its detour
++            /// tie-break should avoid *when tied*: that cell is never excluded from
++            /// consideration (unlike the sibling's hard `forbidden_for_non_priority`
++            /// filter), it simply receives a fixed +1 penalty added to the BFS-distance half
++            /// of the existing `(distance, Cell)` sort key. A cell that is genuinely,
++            /// strictly closer than every alternative still wins; a cell that only wins
++            /// today because of the arbitrary `Cell` lexicographic tie-break loses to any
++            /// equally-close alternative. The natural (non-detour) landing is never subject
++            /// to the penalty, so this can never turn an otherwise-legal move illegal.
++            fn resolve_move_conflicts_with_priority_and_penalty(
++                view: &GameState,
++                commands: &mut [String],
++                priority_ids: &BTreeSet<i32>,
++                penalized_for_non_priority: &BTreeMap<i32, Cell>,
++            ) {
++                let command_by_id: BTreeMap<i32, usize> = commands
++                    .iter()
++                    .enumerate()
++                    .filter_map(|(index, command)| {
++                        Self::move_command(command).map(|(id, _)| (id, index))
++                    })
++                    .collect();
++                let projections: Vec<(i32, usize, Cell, Cell, Cell)> = command_by_id
++                    .iter()
++                    .filter_map(|(id, index)| {
++                        let unit = view.unit(*id)?;
++                        let (_, target) = Self::move_command(&commands[*index])?;
++                        let landing =
++                            next_cell(&view.walkable, unit.cell, target, unit.stats.movement_speed);
++                        Some((*id, *index, unit.cell, target, landing))
++                    })
++                    .collect();
++                let moving_ids: BTreeSet<i32> = projections
++                    .iter()
++                    .filter(|(_, _, current, _, landing)| landing != current)
++                    .map(|(id, _, _, _, _)| *id)
++                    .collect();
++                let occupied_now: BTreeSet<Cell> = view
++                    .units
++                    .iter()
++                    .filter(|unit| unit.player == 0)
++                    .map(|unit| unit.cell)
++                    .collect();
++                let mut reserved: BTreeSet<Cell> = view
++                    .units
++                    .iter()
++                    .filter(|unit| unit.player == 0 && !moving_ids.contains(&unit.id))
++                    .map(|unit| unit.cell)
++                    .collect();
++                for (_, index, current, _, landing) in &projections {
++                    if landing == current {
++                        commands[*index] = "WAIT".to_string();
++                    }
++                }
++                let mut movers: Vec<(i32, usize, Cell, Cell)> = projections
++                    .into_iter()
++                    .filter(|(_, _, current, _, landing)| landing != current)
++                    .map(|(id, index, _, target, landing)| (id, index, target, landing))
++                    .collect();
++                movers.sort_by(|a, b| {
++                    let a_priority = priority_ids.contains(&a.0);
++                    let b_priority = priority_ids.contains(&b.0);
++                    b_priority.cmp(&a_priority).then_with(|| b.0.cmp(&a.0))
++                });
++                for (id, index, target, landing) in movers {
++                    let Some(unit) = view.unit(id) else { continue };
++                    if !reserved.contains(&landing) {
++                        reserved.insert(landing);
++                        commands[index] = format!("MOVE {} {} {}", id, landing.0, landing.1);
++                        continue;
++                    }
++                    let penalized = if priority_ids.contains(&id) {
++                        None
++                    } else {
++                        penalized_for_non_priority.get(&id).copied()
++                    };
++                    let toward_goal = bfs_distances(&view.walkable, &[target]);
++                    let detour = ortho_neighbors(unit.cell)
++                        .into_iter()
++                        .filter(|cell| view.walkable.contains(cell))
++                        .filter(|cell| !reserved.contains(cell))
++                        .filter(|cell| !occupied_now.contains(cell))
++                        .min_by_key(|cell| {
++                            let distance = toward_goal
++                                .get(cell)
++                                .copied()
++                                .unwrap_or_else(|| manhattan(*cell, target));
++                            let penalty = i32::from(penalized == Some(*cell));
++                            (distance + penalty, *cell)
++                        });
++                    commands[index] = if let Some(cell) = detour {
++                        reserved.insert(cell);
++                        format!("MOVE {} {} {}", id, cell.0, cell.1)
++                    } else {
++                        "WAIT".to_string()
++                    };
++                }
++            }
+             fn endgame(view: &GameState) -> bool {
+                 view.turn > 275
+             }
+@@ -1658,6 +1797,7 @@ pub mod bot {
+                     opponent_crop_harvest_contact: false,
+                     opponent_crop_harvested: BTreeSet::new(),
+                     opponent_crop_harvest_rewrites: 0,
++                    oscillation_memory: BTreeMap::new(),
+                 }
+             }
+             pub fn tuned_carry() -> Self {
+@@ -3424,6 +3564,130 @@ pub mod bot {
+                     target: Target::Tree(mother),
+                 })
+             }
++            /// D176a phase A (pre-resolution): advance every own unit's reversal memory,
++            /// apply the disarm rules that do not depend on this turn's resolution outcome,
++            /// and arm newly-qualifying units. Returns, for each unit that is armed and
++            /// still within its bounded-arming budget, the single cell its detour tie-break
++            /// should prefer away from this turn. The caller must resolve movement (both
++            /// with and without the preference, to police command purity) and report the
++            /// outcome back via `oscillation_record_outcome` so the <=2-altered-turns cap
++            /// can be enforced -- this function alone cannot know whether the preference
++            /// actually changed anything, since that depends on the full multi-unit
++            /// resolution, not on any single unit's memory.
++            ///
++            /// Disarm conditions checked here (any one clears the arm before it can be
++            /// offered this turn): the intended target changed since arming; BFS distance to
++            /// the arm-time target has strictly improved since arming (both retained from
++            /// D171a); the 4-turn hard expiry; and -- new in D176a, closing the stale-arm
++            /// hole that killed D171a -- an "echo-stop": a full turn passing without a
++            /// confirmed reversal disarms immediately, on the theory that a streak that
++            /// stops on its own was never a real chokepoint.
++            fn oscillation_offer_penalties(
++                &mut self,
++                view: &GameState,
++                selected: &[String],
++            ) -> BTreeMap<i32, Cell> {
++                let own_ids: BTreeSet<i32> = view
++                    .units
++                    .iter()
++                    .filter(|unit| unit.player == 0)
++                    .map(|unit| unit.id)
++                    .collect();
++                self.oscillation_memory.retain(|id, _| own_ids.contains(id));
++                let mut offered = BTreeMap::new();
++                for unit in view.units.iter().filter(|unit| unit.player == 0) {
++                    let current = unit.cell;
++                    let target = selected.iter().find_map(|command| {
++                        let (id, target) = MoisanBot::move_command(command)?;
++                        (id == unit.id).then_some(target)
++                    });
++                    let entry = self.oscillation_memory.entry(unit.id).or_default();
++                    let is_reversal = target.is_some()
++                        && target == entry.target
++                        && entry.two_ago == Some(current)
++                        && entry.one_ago != Some(current);
++
++                    if entry.penalized.is_some() {
++                        let target_changed = target != entry.armed_target;
++                        let progressed =
++                            entry.armed_target.zip(entry.armed_distance).is_some_and(
++                                |(goal, prior)| {
++                                    bfs_distances(&view.walkable, &[goal])
++                                        .get(&current)
++                                        .is_some_and(|&distance| distance < prior)
++                                },
++                            );
++                        let expired = entry.turns_offered >= 4;
++                        let echo_stopped = !is_reversal;
++                        if target_changed || progressed || expired || echo_stopped {
++                            entry.clear_arm();
++                        }
++                    }
++
++                    if let Some(cell) = entry.penalized {
++                        offered.insert(unit.id, cell);
++                        entry.turns_offered = entry.turns_offered.saturating_add(1);
++                    } else {
++                        if is_reversal {
++                            entry.reversals = entry.reversals.saturating_add(1);
++                        } else {
++                            entry.reversals = 0;
++                        }
++                        if entry.reversals >= 3 {
++                            entry.penalized = entry.one_ago;
++                            entry.armed_target = target;
++                            entry.armed_distance = target
++                                .map(|goal| bfs_distances(&view.walkable, &[goal]))
++                                .and_then(|distances| distances.get(&current).copied());
++                            entry.turns_offered = 0;
++                            entry.turns_altered = 0;
++                        }
++                    }
++
++                    entry.two_ago = entry.one_ago;
++                    entry.one_ago = Some(current);
++                    entry.target = target;
++                }
++                offered
++            }
++            /// D176a phase B (post-resolution): for each unit `oscillation_offer_penalties`
++            /// offered a preference to this turn, compare the command the resolver actually
++            /// produced without the preference (`baseline`) to the one actually adopted this
++            /// turn (`adopted`, already collapsed to `baseline` itself by the caller's
++            /// command-purity gate if the preference leaked onto another unit) -- using
++            /// `pre_resolution` (the pre-resolution commands) only to recover each unit's
++            /// stable index, since a resolved command can be a bare "WAIT" that no longer
++            /// carries an id. Counts a real alteration toward the <=2-forced-choices cap and
++            /// spends the arm immediately once it is reached, even if unexpired.
++            fn oscillation_record_outcome(
++                &mut self,
++                pre_resolution: &[String],
++                offered: &BTreeMap<i32, Cell>,
++                baseline: &[String],
++                adopted: &[String],
++            ) {
++                let index_by_id: BTreeMap<i32, usize> = pre_resolution
++                    .iter()
++                    .enumerate()
++                    .filter_map(|(index, command)| {
++                        MoisanBot::move_command(command).map(|(id, _)| (id, index))
++                    })
++                    .collect();
++                for &unit_id in offered.keys() {
++                    let Some(&index) = index_by_id.get(&unit_id) else {
++                        continue;
++                    };
++                    let Some(entry) = self.oscillation_memory.get_mut(&unit_id) else {
++                        continue;
++                    };
++                    if baseline[index] != adopted[index] {
++                        entry.turns_altered = entry.turns_altered.saturating_add(1);
++                        if entry.turns_altered >= 2 {
++                            entry.clear_arm();
++                        }
++                    }
++                }
++            }
+             fn endgame(view: &GameState) -> bool {
+                 view.turn > 250
+                     || (view.plants.len() <= 4
+@@ -3659,7 +3923,45 @@ pub mod bot {
+                     }
+                 }
+                 self.remember_selected_tree_targets(view, &selected, &tree_targets);
+-                MoisanBot::resolve_move_conflicts(view, &mut selected);
++                let oscillation_offered = self.oscillation_offer_penalties(view, &selected);
++                if oscillation_offered.is_empty() {
++                    MoisanBot::resolve_move_conflicts(view, &mut selected);
++                } else {
++                    // D176a: resolve twice from the same pre-resolution commands -- once
++                    // exactly as CONTROL would (`baseline`), once with the armed unit(s)'
++                    // preference applied (`preferred`) -- and only adopt the preferred
++                    // resolution if every *other* unit's command came out identical (the
++                    // command-purity gate). Either way, report the outcome back so the
++                    // <=2-altered-turns cap can be enforced.
++                    let pre_resolution = selected.clone();
++                    let mut baseline = selected.clone();
++                    MoisanBot::resolve_move_conflicts(view, &mut baseline);
++                    let mut preferred = selected.clone();
++                    MoisanBot::resolve_move_conflicts_with_priority_and_penalty(
++                        view,
++                        &mut preferred,
++                        &BTreeSet::new(),
++                        &oscillation_offered,
++                    );
++                    let armed_ids: BTreeSet<i32> = oscillation_offered.keys().copied().collect();
++                    let purity_ok = pre_resolution
++                        .iter()
++                        .zip(baseline.iter())
++                        .zip(preferred.iter())
++                        .all(|((command, base), pref)| {
++                            base == pref
++                                || MoisanBot::move_command(command)
++                                    .is_some_and(|(id, _)| armed_ids.contains(&id))
++                        });
++                    let adopted = if purity_ok { preferred } else { baseline.clone() };
++                    self.oscillation_record_outcome(
++                        &pre_resolution,
++                        &oscillation_offered,
++                        &baseline,
++                        &adopted,
++                    );
++                    selected = adopted;
++                }
+                 self.remember_selected_regeneration(view, &selected);
+                 self.apply_opponent_crop_harvest_contact(view, &mut selected);
+                 self.remember_own_plant_attempts(view, &selected);
+@@ -5995,6 +6297,262 @@ pub mod bot {
+                 assert_eq!(bot.inner.opponent_crop_selected, 0);
+             }
+         }
++
++        // D176a oscillation breaker (successor to D171a): focused unit tests for the
++        // preference-based tie-break penalty and its bounded-arming memory. See
++        // data/analysis/live-agent-6553250/d176a-oscillation-breaker-successor-protocol-2026-07-29.md.
++        #[cfg(test)]
++        mod oscillation_preference_tests {
++            use super::*;
++
++            // ---- resolver-level tests: the +1 sort-key penalty itself ----
++
++            /// A fully open rectangle (no walls) large enough that BFS distance equals
++            /// Manhattan distance for every cell used below, and every target used below is
++            /// directly reachable (no `next_cell` fallback-branch surprises).
++            fn open_rectangle_fixture() -> GameState {
++                let mut view = GameState::empty(9, 25);
++                view.walkable = (-3..=3)
++                    .flat_map(|x| (-3..=22).map(move |y| (x, y)))
++                    .collect();
++                view
++            }
++
++            fn add_unit(view: &mut GameState, id: i32, cell: Cell) {
++                view.units.push(Unit {
++                    id,
++                    player: 0,
++                    cell,
++                    stats: Stats {
++                        movement_speed: 1,
++                        carry_capacity: 1,
++                        harvest_power: 1,
++                        chop_power: 1,
++                    },
++                    carry: [0; 6],
++                });
++            }
++
++            #[test]
++            fn penalty_breaks_an_exact_tie_but_never_forbids_the_cell() {
++                let mut view = open_rectangle_fixture();
++                add_unit(&mut view, 1, (0, 0));
++                add_unit(&mut view, 2, (0, 1)); // stationary blocker forces a detour
++                // Target due north: once (0,1) is blocked, (1,0)/(0,-1)/(-1,0) all tie at
++                // the same BFS distance (an open grid's detour candidates around a
++                // due-north target always do).
++                let mut plain = vec!["MOVE 1 0 20".to_string(), "WAIT".to_string()];
++                MoisanBot::resolve_move_conflicts(&view, &mut plain);
++                assert_eq!(
++                    plain[0], "MOVE 1 -1 0",
++                    "sanity check: today's arbitrary Cell tie-break picks (-1,0)"
++                );
++
++                let mut penalized = vec!["MOVE 1 0 20".to_string(), "WAIT".to_string()];
++                let penalty = BTreeMap::from([(1, (-1, 0))]);
++                MoisanBot::resolve_move_conflicts_with_priority_and_penalty(
++                    &view,
++                    &mut penalized,
++                    &BTreeSet::new(),
++                    &penalty,
++                );
++                assert_eq!(
++                    penalized[0], "MOVE 1 0 -1",
++                    "the penalized cell loses the 3-way tie to the next-lowest alternative"
++                );
++            }
++
++            #[test]
++            fn strictly_better_remembered_cell_still_wins_despite_the_penalty() {
++                let mut view = open_rectangle_fixture();
++                add_unit(&mut view, 1, (0, 0));
++                add_unit(&mut view, 2, (0, 1)); // stationary blocker forces a detour
++                // Target one cell east of due-north: (1,0) is now uniquely 2 cells closer
++                // than (0,-1)/(-1,0) -- a margin the +1 penalty cannot overcome.
++                let mut penalized = vec!["MOVE 1 1 20".to_string(), "WAIT".to_string()];
++                let penalty = BTreeMap::from([(1, (1, 0))]);
++                MoisanBot::resolve_move_conflicts_with_priority_and_penalty(
++                    &view,
++                    &mut penalized,
++                    &BTreeSet::new(),
++                    &penalty,
++                );
++                assert_eq!(
++                    penalized[0], "MOVE 1 1 0",
++                    "a genuinely, strictly better cell (margin 2) survives a +1 penalty"
++                );
++            }
++
++            // ---- memory-level tests: bounded arming ----
++
++            fn single_unit_fixture(unit_id: i32, cell: Cell) -> GameState {
++                let mut view = GameState::empty(8, 8);
++                add_unit(&mut view, unit_id, cell);
++                view
++            }
++
++            /// Drive `oscillation_offer_penalties` through one call per cell in `path`
++            /// (moving the fixture's sole unit there first), always issuing the same far
++            /// MOVE target, collecting each call's offered-penalty map.
++            fn drive(
++                bot: &mut YamoBot,
++                view: &mut GameState,
++                unit_id: i32,
++                path: &[Cell],
++                target: Cell,
++            ) -> Vec<BTreeMap<i32, Cell>> {
++                path.iter()
++                    .map(|&cell| {
++                        view.units[0].cell = cell;
++                        let selected = vec![format!("MOVE {} {} {}", unit_id, target.0, target.1)];
++                        bot.oscillation_offer_penalties(view, &selected)
++                    })
++                    .collect()
++            }
++
++            #[test]
++            fn no_effect_without_a_reversal_pattern() {
++                let unit_id = 1;
++                let mut view = single_unit_fixture(unit_id, (0, 0));
++                let mut bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                // Monotonic motion toward the target never repeats a cell two turns back.
++                let path = [(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0)];
++                let results = drive(&mut bot, &mut view, unit_id, &path, (9, 9));
++                for offered in &results {
++                    assert!(offered.is_empty());
++                }
++                assert_eq!(bot.oscillation_memory[&unit_id].reversals, 0);
++            }
++
++            #[test]
++            fn reversal_counting_arms_at_exactly_three() {
++                let unit_id = 1;
++                let a = (0, 0);
++                let b = (2, 0);
++                let target = (1, -1);
++                let mut view = single_unit_fixture(unit_id, a);
++                let mut bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                // Calls 1..=5 (A,B,A,B,A): confirmed reversals land on calls 3,4,5 (1,2,3).
++                let path = [a, b, a, b, a];
++                let results = drive(&mut bot, &mut view, unit_id, &path, target);
++                for offered in &results {
++                    assert!(
++                        offered.is_empty(),
++                        "nothing is offered on or before the arming turn itself"
++                    );
++                }
++                assert_eq!(bot.oscillation_memory[&unit_id].reversals, 3);
++                assert!(bot.oscillation_memory[&unit_id].penalized.is_some());
++            }
++
++            #[test]
++            fn expiry_clears_the_arm_after_four_offered_turns() {
++                let unit_id = 1;
++                let a = (0, 0);
++                let b = (2, 0);
++                let target = (1, -1);
++                let mut view = single_unit_fixture(unit_id, a);
++                let mut bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                // Calls 1-5 arm (3rd confirmed reversal on call 5, as above); an
++                // uninterrupted echo continues thereafter, so only the hard expiry -- not
++                // target-change, progress, or echo-stop -- can end this arm.
++                let path = [a, b, a, b, a, b, a, b, a, b];
++                let results = drive(&mut bot, &mut view, unit_id, &path, target);
++                for offered in &results[..5] {
++                    assert!(offered.is_empty());
++                }
++                for offered in &results[5..9] {
++                    assert_eq!(offered, &BTreeMap::from([(unit_id, b)]));
++                }
++                assert!(
++                    results[9].is_empty(),
++                    "the 5th would-be offered turn is past the 4-turn hard expiry"
++                );
++                assert!(bot.oscillation_memory[&unit_id].penalized.is_none());
++            }
++
++            #[test]
++            fn echo_stop_disarms_after_one_reversal_free_turn() {
++                let unit_id = 1;
++                let a = (0, 0);
++                let b = (2, 0);
++                let elsewhere = (5, 5);
++                let target = (1, -1);
++                let mut view = single_unit_fixture(unit_id, a);
++                let mut bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                // Arms at call 5 exactly as above; call 6 breaks the echo (neither a nor b).
++                let path = [a, b, a, b, a, elsewhere];
++                let results = drive(&mut bot, &mut view, unit_id, &path, target);
++                for offered in &results[..5] {
++                    assert!(offered.is_empty());
++                }
++                assert!(
++                    results[5].is_empty(),
++                    "a reversal-free turn while armed disarms before ever offering a penalty"
++                );
++                assert!(bot.oscillation_memory[&unit_id].penalized.is_none());
++                assert_eq!(bot.oscillation_memory[&unit_id].reversals, 0);
++            }
++
++            #[test]
++            fn disarm_on_progress_is_retained_from_d171a() {
++                let unit_id = 1;
++                let a = (0, 0);
++                let b = (2, 0);
++                let choke = (1, 0);
++                let target = (1, -1);
++                let mut view = GameState::empty(8, 8);
++                view.walkable = BTreeSet::from([a, b, choke, target]);
++                add_unit(&mut view, unit_id, a);
++                let mut bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                let armed_path = [a, b, a, b, a, b];
++                let armed_results = drive(&mut bot, &mut view, unit_id, &armed_path, target);
++                assert_eq!(armed_results[5], BTreeMap::from([(unit_id, b)]));
++
++                // The unit squeezes through the chokepoint: strictly closer to the target
++                // than the frozen arm-time distance from `a` (both `a` and `b` are
++                // equidistant from `target`, matching the real tie this fix targets).
++                view.units[0].cell = choke;
++                let selected = vec![format!("MOVE {} {} {}", unit_id, target.0, target.1)];
++                let offered = bot.oscillation_offer_penalties(&view, &selected);
++                assert!(
++                    offered.is_empty(),
++                    "progress toward the target disarms immediately"
++                );
++                assert!(bot.oscillation_memory[&unit_id].penalized.is_none());
++                assert_eq!(bot.oscillation_memory[&unit_id].reversals, 0);
++            }
++
++            #[test]
++            fn altered_turns_cap_spends_the_arm_after_two_real_alterations() {
++                let unit_id = 1;
++                let mut bot = YamoBot::tuned_carry_regeneration_transit_idle_harvest();
++                {
++                    let entry = bot.oscillation_memory.entry(unit_id).or_default();
++                    entry.penalized = Some((9, 9));
++                    entry.armed_target = Some((0, 0));
++                    entry.turns_offered = 1;
++                }
++                let offered = BTreeMap::from([(unit_id, (9, 9))]);
++                let pre_resolution = vec!["MOVE 1 3 3".to_string()];
++                let baseline = vec!["MOVE 1 9 9".to_string()];
++                let adopted_altered = vec!["MOVE 1 8 9".to_string()];
++
++                bot.oscillation_record_outcome(&pre_resolution, &offered, &baseline, &adopted_altered);
++                assert_eq!(bot.oscillation_memory[&unit_id].turns_altered, 1);
++                assert!(
++                    bot.oscillation_memory[&unit_id].penalized.is_some(),
++                    "still armed after only 1 of the allowed 2 alterations"
++                );
++
++                bot.oscillation_record_outcome(&pre_resolution, &offered, &baseline, &adopted_altered);
++                assert!(
++                    bot.oscillation_memory[&unit_id].penalized.is_none(),
++                    "the arm is spent immediately after the 2nd real alteration"
++                );
++                assert_eq!(bot.oscillation_memory[&unit_id].turns_altered, 0);
++            }
++        }
+     }
+     use super::game::GameState;
+     pub trait Bot {

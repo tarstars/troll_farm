@@ -1,0 +1,72 @@
+{
+  "schema": "troll-farm-owner-onsite-tree-owner-arena-v1",
+  "task_id": "20260731-owner-onsite-tree-owner-arena",
+  "owner_authority": [
+    "fix the agent",
+    "don't restore previous stabe, send new"
+  ],
+  "candidate": {
+    "path": "cgauto/submissions/candidate-agent6585765-onsite-tree-owner-slim.min.rs",
+    "bytes": 68620,
+    "sha256": "fab84019558e19491a0ce3408d584e4483f398a11da3140bf9adc5de30a90efc",
+    "source_commit": "2f27bfaa32a1b019726f8339ec7810e60b3cf71b",
+    "focused_and_inherited_tests_passed": 11,
+    "compiled": true,
+    "unsealed_smoke_cells": 8,
+    "smoke_stderr_bytes": 0
+  },
+  "displaced_parent": {
+    "agent_id": 6585765,
+    "submission_id": 41071067,
+    "finished_games_at_preflight": 149,
+    "pending_games_at_preflight": 1,
+    "score_at_preflight": 13.91,
+    "rank_at_preflight": 110,
+    "rank_total": 113,
+    "identity_clean": true,
+    "validity_runtime_signals": []
+  },
+  "submission": {
+    "calls": 1,
+    "service": "TestSession/submit",
+    "http_status": 200,
+    "submission_id": 41071204,
+    "agent_id": 6585801,
+    "response_log": "data/analysis/live-agent-6553250/owner-onsite-tree-owner-arena-submit-2026-07-31.log",
+    "response_log_sha256": "012eca1f127c6e4a4ad4c294cc7b8fa59e2fb643cb1d785e4ddab2553c7bd3c3"
+  },
+  "initial_checkpoint": {
+    "path": "data/analysis/live-agent-6553250/owner-onsite-tree-owner-arena-initial-checkpoint-2026-07-31.json",
+    "sha256": "2e310af55a709c310c6b53ec4cce7c426aa3f1ab7c90086accea6ce17838b00a",
+    "matching_finished": 2,
+    "matching_pending": 8,
+    "wins": 2,
+    "losses": 0,
+    "mean_margin": 88.5,
+    "unexpected_rows": 0,
+    "fetch_failures": 0,
+    "validity_runtime_signals": 0,
+    "identity_clean": true
+  },
+  "first_completed_health": {
+    "path": "data/analysis/live-agent-6553250/owner-onsite-tree-owner-arena-first-health-2026-07-31.json",
+    "sha256": "5b6487380d7c294d26efacf3ef7d07887ca0e2c72fceb19199b49ea4b64cead6",
+    "matching_finished": 14,
+    "matching_pending": 1,
+    "arena_score": 11.53,
+    "arena_rank": 111,
+    "arena_rank_total": 113,
+    "wins": 6,
+    "ties": 0,
+    "losses": 8,
+    "mean_margin": -13.0,
+    "catastrophic_losses": 2,
+    "negative_margin_mass": 498,
+    "unexpected_rows": 0,
+    "fetch_failures": 0,
+    "validity_runtime_signals": 0,
+    "identity_clean": true
+  },
+  "automatic_restore_authorized": false,
+  "status": "first_health_clean_weak_monitoring_without_restore"
+}

@@ -1,0 +1,254 @@
+{
+  "integrity": {
+    "all_games_done": true,
+    "command_purity": {
+      "flagged": [],
+      "flagged_tasks": 0,
+      "pass": true
+    },
+    "inactive_episodes_byte_exact": {
+      "inactive_tasks": 1896,
+      "mismatch_examples": [],
+      "mismatches": 0,
+      "pass": true
+    },
+    "one_vs_twenty_thread_byte_identical": {
+      "jobs1_sha256": "e11c16785ca213caa2600eb58b72d88c27b800c8d0ec7e306c05bd082023b5a5",
+      "jobs20_sha256": "e11c16785ca213caa2600eb58b72d88c27b800c8d0ec7e306c05bd082023b5a5",
+      "pass": true
+    },
+    "pass": true,
+    "row_count_exact": true,
+    "task_matrix_exact": true
+  },
+  "mechanism": {
+    "detector_displacement": {
+      "gate_no_detector_worsens_gt_10pct": true,
+      "missing_candidate_for_active": [],
+      "missing_control": [],
+      "pass": true,
+      "tasks_covered": 2048,
+      "waste_sweep_detectors": {
+        "door_queue": {
+          "candidate_episodes": 1646,
+          "candidate_flagged_turns": 1648,
+          "control_episodes": 1676,
+          "control_flagged_turns": 1678,
+          "gate_le_10pct_worse": true,
+          "worsen_pct": -1.7899761336515514
+        },
+        "harvest_slack": {
+          "candidate_episodes": 21945,
+          "candidate_flagged_turns": 168718,
+          "control_episodes": 21944,
+          "control_flagged_turns": 168844,
+          "gate_le_10pct_worse": true,
+          "worsen_pct": 0.004557054320087495
+        },
+        "idle_with_work": {
+          "candidate_episodes": 67539,
+          "candidate_flagged_turns": 90753,
+          "control_episodes": 67529,
+          "control_flagged_turns": 90839,
+          "gate_le_10pct_worse": true,
+          "worsen_pct": 0.014808452664781056
+        },
+        "late_train_window": {
+          "candidate_episodes": 3,
+          "candidate_flagged_turns": 99,
+          "control_episodes": 3,
+          "control_flagged_turns": 99,
+          "gate_le_10pct_worse": true,
+          "worsen_pct": 0.0
+        },
+        "repeated_failed_command": {
+          "candidate_episodes": 0,
+          "candidate_flagged_turns": 0,
+          "control_episodes": 0,
+          "control_flagged_turns": 0,
+          "gate_le_10pct_worse": true,
+          "worsen_pct": null
+        },
+        "unbanked_carry": {
+          "candidate_episodes": 117,
+          "candidate_flagged_turns": 4710,
+          "control_episodes": 117,
+          "control_flagged_turns": 4921,
+          "gate_le_10pct_worse": true,
+          "worsen_pct": 0.0
+        }
+      }
+    },
+    "gates": {
+      "de_novo_le_1pct": true,
+      "ge10_task_rate_le_6pct": true,
+      "no_detector_worsens_gt_10pct": true,
+      "run_5_9_displacement_le_10pct": false,
+      "worst_case_run_le_20": false
+    },
+    "pass": false,
+    "run_length": {
+      "de_novo_oscillation": {
+        "examples": [],
+        "gate_max_pct": 1.0,
+        "pass": true,
+        "pct": 0.0,
+        "tasks": 0
+      },
+      "gates": {
+        "de_novo_le_1pct": true,
+        "ge10_task_rate_le_6pct": true,
+        "run_5_9_displacement_le_10pct": false,
+        "worst_case_run_le_20": false
+      },
+      "ge10_task_rate": {
+        "candidate_rate_pct": 2.880859375,
+        "candidate_tasks": 59,
+        "control_rate_pct": 8.49609375,
+        "control_reference_pct_h13_real_corpus": 18.2,
+        "control_tasks": 174,
+        "gate_max_pct": 6.0,
+        "pass": true,
+        "yamo_reference_pct": 2.9
+      },
+      "missing_run_stats": [],
+      "pass": false,
+      "run_5_9_displacement": {
+        "candidate_total": 825,
+        "control_total": 213,
+        "displacement_pct": 287.32394366197184,
+        "gate_max_pct": 10.0,
+        "pass": false
+      },
+      "total_tasks": 2048,
+      "worst_case_run_length": {
+        "candidate_run_max": 247,
+        "control_reference_turns_h13_real_corpus": 133,
+        "control_run_max": 247,
+        "gate_max_turns": 20,
+        "pass": false,
+        "yamo_reference_turns": 6
+      }
+    }
+  },
+  "panel": {
+    "families": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot",
+      "script_boss",
+      "silver_boss"
+    ],
+    "path": "artifacts/experiments/d176a-oscillation-breaker-successor/d176a-jobs20-9857000-9857127.tsv",
+    "rows": 2048,
+    "seeds": "9857000-9857127"
+  },
+  "reason": "one or more mechanism gates failed",
+  "schema": "troll-farm-d176a-oscillation-breaker-successor-panel-v1",
+  "value": {
+    "activated_subset_floor": 0.5,
+    "activated_subset_mean_margin_delta": 0.6118421052631579,
+    "activated_tasks": 152,
+    "best_5_candidate_tail": [
+      {
+        "map_seed": 9857013,
+        "margin_delta": 7,
+        "opponent": "legend_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9857065,
+        "margin_delta": 8,
+        "opponent": "compact_gold",
+        "seat": 1
+      },
+      {
+        "map_seed": 9857065,
+        "margin_delta": 13,
+        "opponent": "legend_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9857033,
+        "margin_delta": 17,
+        "opponent": "norx_native_three",
+        "seat": 0
+      },
+      {
+        "map_seed": 9857063,
+        "margin_delta": 62,
+        "opponent": "norx_native_three",
+        "seat": 1
+      }
+    ],
+    "candidate_catastrophes": 73,
+    "candidate_negative_margin_mass": 16838,
+    "control_catastrophes": 73,
+    "control_negative_margin_mass": 16856,
+    "family_mean_margin_delta": {
+      "compact_gold": 0.04296875,
+      "gold_adaptive": 0.015625,
+      "legend_balanced": 0.0234375,
+      "mybot": 0.00390625,
+      "norx_native_three": 0.2578125,
+      "resident": 0.01953125,
+      "script_boss": 0.0,
+      "silver_boss": 0.0
+    },
+    "gates": {
+      "activated_subset_mean_ge_0_5": true,
+      "catastrophes_not_above_control": true,
+      "negative_margin_mass_le_1_05x_control": true,
+      "overall_ci_lower_ge_neg_0_5": true,
+      "overall_mean_ge_0": true,
+      "worst_family_ge_neg_1_0": true
+    },
+    "map_clustered_95pct_ci": [
+      -0.02356257451424977,
+      0.11438288701424977
+    ],
+    "negative_margin_mass_ratio": 0.9989321309919317,
+    "overall_mean_margin_delta": 0.04541015625,
+    "pass": true,
+    "worst_5_candidate_tail": [
+      {
+        "map_seed": 9857004,
+        "margin_delta": -14,
+        "opponent": "legend_balanced",
+        "seat": 1
+      },
+      {
+        "map_seed": 9857122,
+        "margin_delta": -13,
+        "opponent": "norx_native_three",
+        "seat": 1
+      },
+      {
+        "map_seed": 9857037,
+        "margin_delta": -4,
+        "opponent": "silver_boss",
+        "seat": 1
+      },
+      {
+        "map_seed": 9857000,
+        "margin_delta": 0,
+        "opponent": "resident",
+        "seat": 0
+      },
+      {
+        "map_seed": 9857000,
+        "margin_delta": 0,
+        "opponent": "gold_adaptive",
+        "seat": 0
+      }
+    ],
+    "worst_family": {
+      "mean_margin_delta": 0.0,
+      "name": "script_boss"
+    }
+  },
+  "verdict": "CLOSED-AT-MECHANISM"
+}

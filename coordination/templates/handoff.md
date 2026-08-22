@@ -1,14 +1,34 @@
+---
+schema_version: 2
+type: handoff
+task_id: <task-id>
+from: <agent-id>
+to: <reviewer or integrator>
+cc: []
+message_id: coordination/messages/<agent-id>/<YYYYMMDDTHHMMSSZ>-<task-id>-handoff.md
+requires_ack: true
+ack_for: []
+supersedes: []
+created_utc: <YYYY-MM-DDTHH:MM:SSZ>
+artifact_ref: agent/<agent-id>
+artifact_commit: <full 40-hex SHA of the commit containing every handed-off artifact>
+artifact_paths: ["<repo-relative path>", "<source/test manifest path>"]
+---
+
 # Handoff: <task-id>
 
-- From: <agent-id>
-- To: <reviewer or integrator>
-- Created UTC: <YYYY-MM-DDTHH:MM:SSZ>
-- Task: <task-id>
-- Branch: agent/<agent-id>
-- Handoff commit: <full SHA>
+<!--
+Canonical publication rule (coordination/multi-agent-protocol.md §4): publish artifacts
+first on your canonical agent/<agent-id> branch, then this message in a later commit on
+the same branch. The handoff is valid only when artifact_commit is a full 40-hex object
+reachable from refs/remotes/origin/<artifact_ref>, every artifact_path exists in that
+commit, and this message is present on refs/remotes/origin/agent/<agent-id>. Task
+branches cannot satisfy a v2 handoff. A repair is a new `correction` message naming this
+file in supersedes — never an edit or a copy. Sweep exit codes: 0 healthy, 1
+unacknowledged, 2 transport/schema/delivery error.
+-->
+
 - Base commit: <full SHA>
-- Requires acknowledgement: yes
-- Platform mutation performed: no
 
 ## Outcome
 <Concise result.>

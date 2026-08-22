@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "task": "20260730-e4-orchard-mother-tie-audit",
+  "locked_utc": "2026-07-30T22:14:56Z",
+  "base_commit": "bcae0425375913cc6a09c1952f272d71c5502a64",
+  "protocol": "docs/e4-orchard-mother-tie-audit-protocol-2026-07-30.md",
+  "implementation": {
+    "path": "cgauto/e4_orchard_mother_tie_audit.py",
+    "sha256": "968ad30331f184a7c222b4811938f720647e82b00bda9fc354a7a6f8b51b437a"
+  },
+  "tests": {
+    "path": "tests/test_e4_orchard_mother_tie_audit.py",
+    "sha256": "df6a5952f28588e73312aca4a18cfbdabc8aec36e7fbab4374826c22e9ae58c1",
+    "pytest": "10 passed",
+    "self_test": "ok"
+  },
+  "control": {
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+    "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+  },
+  "sacred_resident": {
+    "path": "rust/src/bin/yamo_orchard_live.rs",
+    "sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "transformation": {
+    "from": ".then_with(||a.cmp(b))",
+    "to": ".then_with(||b.cmp(a))",
+    "replacement_count": 1,
+    "persistent_alternate": false
+  },
+  "tied_seeds": [
+    31,
+    91,
+    246,
+    364,
+    405,
+    568,
+    598,
+    652,
+    932,
+    966
+  ],
+  "sentinel_seeds": [
+    19,
+    28,
+    29,
+    72,
+    86,
+    168,
+    183,
+    200,
+    201,
+    255,
+    266,
+    287,
+    361,
+    382,
+    440,
+    460
+  ],
+  "opponents": {
+    "motion": "d2d0d9a1f8af9ddc9922c2c1d57e0eb1c4a1dff8582d829215b916a03f6e4c66",
+    "taskplan": "7eaf60266523512d1d7059909bcb23c44043a106011094369748224a95d454b1",
+    "race": "ed27829d0f0daae320f0d26599059fbccb60cced64a027376b347bcdf000850e",
+    "yield": "b030cc1fbda9cc5cf7964f74e407c0413136becc500963e7b7955c36108778ac",
+    "ringfix3": "cb746ed26541aecd179bcfeacf13835659cc1eab4fbac7e81bedf53f00128916",
+    "chopharvest": "391ac89b20e36b1bdaf89fe7a212af8bdc087dd7d8fc669274818f2f176a05db"
+  },
+  "prelock_checks": {
+    "source_transform": "exact",
+    "geometry_eligible_seeds_per_seat": 57,
+    "two_way_tied_seeds_per_seat": 10,
+    "compile_smoke_seed": 31,
+    "compile_smoke_opponent": "motion",
+    "compile_smoke_policy_diverged_both_seats": true,
+    "compile_smoke_control_paired_margin": 204,
+    "compile_smoke_alternate_paired_margin": 212.5,
+    "compile_smoke_stderr_bytes": 0,
+    "compile_smoke_malformed_commands": 0
+  },
+  "authorized_next_action": "run the frozen full panel at jobs=1 and jobs=8; no source or gate changes"
+}

@@ -1,0 +1,35 @@
+# GREEN evidence -- fuzz panel r4
+# date_utc: 2026-08-09T09:44:22Z
+# cmd: python3 -m unittest test_fuzz_panel && python3 -m unittest test_pre_review
+
+test_the_rest_of_the_line_is_still_recorded_as_invalid (test_fuzz_panel.TestUnsupportedVerbRetainsTheRow.test_the_rest_of_the_line_is_still_recorded_as_invalid) ... ok
+test_unsupported_verb_is_a_retained_error_not_an_abort (test_fuzz_panel.TestUnsupportedVerbRetainsTheRow.test_unsupported_verb_is_a_retained_error_not_an_abort) ... ok
+test_a_correct_declaration_still_loads (test_fuzz_panel.TestVersionDeclarationFailsClosed.test_a_correct_declaration_still_loads) ... ok
+test_missing_corpus_version_is_rejected (test_fuzz_panel.TestVersionDeclarationFailsClosed.test_missing_corpus_version_is_rejected) ... ok
+test_missing_instrument_version_is_rejected (test_fuzz_panel.TestVersionDeclarationFailsClosed.test_missing_instrument_version_is_rejected) ... ok
+test_the_committed_configs_declare_the_r4_bump (test_fuzz_panel.TestVersionDeclarationFailsClosed.test_the_committed_configs_declare_the_r4_bump) ... ok
+test_the_versions_are_not_in_defaults (test_fuzz_panel.TestVersionDeclarationFailsClosed.test_the_versions_are_not_in_defaults) ... ok
+
+----------------------------------------------------------------------
+Ran 163 tests in 15.747s
+
+OK
+fuzz_panel: GATE_UNREADY [candidate run] (2 games, 0 blocking, 0 flagged, 2 gate-unready, 0.6 s; report: /tmp/tmp18e3gs1q/r.md)
+fuzz_panel: GATE_UNREADY [candidate run] (2 games, 0 blocking, 0 flagged, 2 gate-unready, 0.5 s; report: /tmp/tmps5n1ms4e/r.md)
+fuzz_panel: CLEAR [floor run] (4 games, 0 blocking, 0 flagged, 0 gate-unready, 0.3 s; report: /tmp/tmpxsaipj8m/report.md)
+fuzz_panel: BLOCK [candidate run] (4 games, 4 blocking, 0 flagged, 0 gate-unready, 0.6 s; report: /tmp/tmpeuoal_et/report.md)
+fuzz_panel: BLOCK [floor run] (4 games, 4 blocking, 0 flagged, 0 gate-unready, 0.4 s; report: /tmp/tmp2oi82m5f/report.md)
+fuzz_panel: CLEAR [floor run] (2 games, 0 blocking, 0 flagged, 0 gate-unready, 0.3 s; report: /tmp/tmpldi3o7k4/report.md)
+fuzz_panel: GATE_UNREADY [candidate run] (2 games, 0 blocking, 0 flagged, 2 gate-unready, 0.5 s; report: /tmp/tmplbmprqf9/r.md)
+fuzz_panel: GATE_UNREADY [candidate run] (2 games, 0 blocking, 0 flagged, 2 gate-unready, 0.5 s; report: /tmp/tmp2kzkk043/r.md)
+fuzz_panel: GATE_UNREADY [candidate run] (2 games, 0 blocking, 0 flagged, 2 gate-unready, 0.5 s; report: /tmp/tmpvmrevnyp/r.md)
+fuzz_panel: GATE_UNREADY [candidate run] (2 games, 0 blocking, 0 flagged, 2 gate-unready, 0.6 s; report: /tmp/tmp3li2_arz/r.md)
+fuzz_panel: CLEAR [floor run] (2 games, 0 blocking, 0 flagged, 0 gate-unready, 0.3 s; report: /tmp/tmpd9f_mmwq/r.md)
+fuzz_panel: CLEAR [floor run] (2 games, 0 blocking, 0 flagged, 0 gate-unready, 0.3 s; report: /tmp/tmpxxlg3r12/r.md)
+fuzz_panel: GATE_UNREADY [candidate run] (2 games, 0 blocking, 0 flagged, 2 gate-unready, 0.5 s; report: /tmp/tmpqn_83kq_/r.md)
+
+........................
+----------------------------------------------------------------------
+Ran 24 tests in 0.582s
+
+OK

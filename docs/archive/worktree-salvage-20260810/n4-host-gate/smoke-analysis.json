@@ -1,0 +1,66 @@
+{
+  "counts": {
+    "boundary_games": 16,
+    "candidate_blob_states": 4028,
+    "distinct_boundary_pairs": 261661,
+    "distinct_nonoverlap_pairs": 168942,
+    "eligible_by_family": {
+      "0": 2,
+      "1": 2,
+      "2": 2,
+      "3": 2,
+      "4": 2,
+      "5": 2,
+      "6": 2,
+      "7": 2
+    },
+    "eligible_by_seat": {
+      "0": 8,
+      "1": 8
+    },
+    "eligible_families": 8,
+    "eligible_games": 16,
+    "expected_games": 2048,
+    "natural_two_worker_states": 4028,
+    "observed_games": 16,
+    "reconstruction_failures": 0,
+    "seat_shares": {
+      "0": 0.5,
+      "1": 0.5
+    },
+    "state_rows": 4028
+  },
+  "hard_closes": {
+    "boundary_games_below_41": true,
+    "eligible_families_below_6": false,
+    "eligible_games_below_103": true,
+    "latency_p95_above_5ms": true,
+    "live_reconstruction_not_exact": false,
+    "not_distinct_from_consumed_grammar": false,
+    "seat_share_below_30pct": false,
+    "source_or_outcome_integrity_failure": true
+  },
+  "latency": {
+    "observations": 4028,
+    "p95_ms": 210.408
+  },
+  "outcome_influenced_eligibility": false,
+  "phase_b_authorized": false,
+  "reconstruction_failure_examples": [],
+  "schema": "troll-farm-n4-candidate-pair-phase-a-v1",
+  "source": {
+    "command_turns": 541726,
+    "surface_path": "/tmp/troll-farm-n4-review.eaE6Ux/n4-host-gate/smoke-threads1.tsv",
+    "surface_sha256": "1175c70bc19400182465f51f426c0aee86fb2722442b85ff0ddfadc667408938",
+    "tasks": 2048,
+    "trajectory_path": "/home/tarstars/prj/troll_farm/artifacts/experiments/a2-0b-referee-parity/a2-0b-trajectories-referee-9854000-9854127.ndjson",
+    "trajectory_sha256": "9b7281fb374d229524afc8341cf119ff30b073c73121f0fd4d87b8597c2af6f4"
+  },
+  "triggered_closes": [
+    "eligible_games_below_103",
+    "boundary_games_below_41",
+    "latency_p95_above_5ms",
+    "source_or_outcome_integrity_failure"
+  ],
+  "verdict": "UNIDENTIFIABLE"
+}

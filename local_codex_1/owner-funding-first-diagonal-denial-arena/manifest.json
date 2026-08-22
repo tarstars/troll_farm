@@ -1,0 +1,74 @@
+{
+  "schema": "troll-farm-owner-funding-first-diagonal-denial-arena-v1",
+  "task_id": "20260731-owner-funding-first-diagonal-denial-arena",
+  "owner_authority": [
+    "prioritise collection of resources for the second troll over denial logic",
+    "also include diagonal trees into denial policy"
+  ],
+  "candidate": {
+    "path": "cgauto/submissions/candidate-agent6585801-second-funding-first-diagonal-denial-slim.min.rs",
+    "bytes": 68893,
+    "sha256": "b8382910116bbfaeade378732508bf4281a7f4ee793ae8f14ae41992ece37af4",
+    "source_commit": "2ef378bcc60da8dc4cfb1aab2083029b8b3c28f2",
+    "compiled_tests_passed": 16,
+    "unsealed_smoke_cells": 8,
+    "train_earlier_cells": 7,
+    "train_same_cells": 1,
+    "train_later_cells": 0,
+    "smoke_stderr_bytes": 0
+  },
+  "displaced_parent": {
+    "agent_id": 6585801,
+    "submission_id": 41071204,
+    "finished_games_at_preflight": 129,
+    "pending_games_at_preflight": 1,
+    "score_at_preflight": 14.25,
+    "rank_at_preflight": 110,
+    "rank_total": 113,
+    "catastrophic_losses": 24,
+    "negative_margin_mass": 6345,
+    "identity_clean": true,
+    "validity_runtime_signals": []
+  },
+  "submission": {
+    "calls": 1,
+    "service": "TestSession/submit",
+    "http_status": 200,
+    "submission_id": 41071360,
+    "agent_id": 6585846,
+    "response_log": "data/analysis/live-agent-6553250/owner-funding-first-diagonal-denial-arena-submit-2026-07-31.log",
+    "response_log_sha256": "e2475b7b54ac3b88e6facd41cf8e4e02ce58671af2b0545d916c8e06c8135b54"
+  },
+  "initial_checkpoint": {
+    "path": "data/analysis/live-agent-6553250/owner-funding-first-diagonal-denial-arena-initial-checkpoint-2026-07-31.json",
+    "sha256": "866595595b858e4d343070fcbbd75b4d220b52b0f2d73cb9c7cb2529fee4ddf8",
+    "matching_finished": 0,
+    "matching_pending": 10,
+    "unexpected_rows": 0,
+    "filtered_agent_id": 6585846,
+    "arena_room_agent_id": 6585801,
+    "identity_clean": false,
+    "identity_note": "new filtered identity and ten exact pending rows; Arena room had not recomputed"
+  },
+  "first_completed_health": {
+    "path": "data/analysis/live-agent-6553250/owner-funding-first-diagonal-denial-arena-first-health-2026-07-31.json",
+    "sha256": "3c1a21cdf6ac87f16c2a3ff7aa19ecc8304ec0c21c1ca2a38164876a71b7e96a",
+    "matching_finished": 11,
+    "matching_pending": 1,
+    "arena_score": 16.97,
+    "arena_rank": 95,
+    "arena_rank_total": 113,
+    "wins": 6,
+    "ties": 0,
+    "losses": 5,
+    "mean_margin": 40.18181818181818,
+    "catastrophic_losses": 0,
+    "negative_margin_mass": 165,
+    "unexpected_rows": 0,
+    "fetch_failures": 0,
+    "validity_runtime_signals": 0,
+    "identity_clean": true
+  },
+  "automatic_restore_authorized": false,
+  "status": "first_health_clean_positive_monitoring_without_restore"
+}

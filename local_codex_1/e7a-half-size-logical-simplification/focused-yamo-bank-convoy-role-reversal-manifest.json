@@ -1,0 +1,743 @@
+{
+  "arm": "FOCUSED_YAMO_BANK_CONVOY_ROLE_REVERSAL",
+  "baseline_sha256": "97bfe71e3f2f05e1b8fa3c697c5e5db3624ac9739e90954e9fa9be79a8e48595",
+  "candidate_bytes": 31361,
+  "candidate_sha256": "323cd18747b9853bf3fce38550bf2f8e7ce8ce6bb0e0f0b5b7e1b889651cf356",
+  "evidence_boundary": "distinct trace-derived liveness/value successor; requires all gates",
+  "identifier_renaming": false,
+  "lexical_identifier_audit": {
+    "added_by_readable_replacements": [
+      "_width",
+      "bank",
+      "eta",
+      "focus",
+      "fruit_kind",
+      "items",
+      "key",
+      "level",
+      "move_state",
+      "moves",
+      "needs",
+      "option",
+      "orchard_active",
+      "orchard_command",
+      "orchard_mother",
+      "output",
+      "previous",
+      "repeated",
+      "required",
+      "reset",
+      "reversal",
+      "select_orchard_mother",
+      "stock",
+      "tree",
+      "two_back",
+      "u8",
+      "unit_index"
+    ],
+    "baseline_unique": 568,
+    "candidate_unique": 327,
+    "preserved_unique": 300,
+    "removed_identifiers_are_consequence_of_declared_items": true,
+    "removed_with_declared_blocks": [
+      "Abandoned",
+      "Active",
+      "Bank",
+      "CarryingSeed",
+      "Debug",
+      "Dormant",
+      "Eq",
+      "Hash",
+      "ITEM_COUNT",
+      "MSG",
+      "OpeningObjective",
+      "OrchardCycle",
+      "OrchardGeometry",
+      "OrchardPhase",
+      "Ord",
+      "PartialOrd",
+      "PredictedTree",
+      "SecureOrchardBot",
+      "Shack",
+      "TUNED_CARRY",
+      "Tree",
+      "WOOD_POINTS",
+      "YamoOpeningPolicy",
+      "a_priority",
+      "action",
+      "affordable",
+      "all",
+      "alternate_doors",
+      "amount",
+      "and_then",
+      "announced",
+      "announcement",
+      "as_ref",
+      "at_target",
+      "available_capacity",
+      "b_priority",
+      "bankable_cycle",
+      "base",
+      "best_alternate_door",
+      "best_manhattan",
+      "blocker",
+      "blocker_at_door",
+      "blocker_to_carrier",
+      "by_id",
+      "can_activate",
+      "can_continue_seed",
+      "can_plant_here",
+      "carried",
+      "carried_fruit",
+      "carrier",
+      "carrier_landing",
+      "carries_committed_fruit",
+      "carry_total",
+      "carrying_any",
+      "cc",
+      "cells",
+      "checkpoint",
+      "chop",
+      "chop_outcome",
+      "clamp",
+      "clear",
+      "cloned",
+      "command_by_id",
+      "committed_regeneration",
+      "conversion_chop_turns",
+      "conversion_score",
+      "conversion_turns",
+      "cooldown_reset",
+      "cost",
+      "cycle",
+      "cycle_eta",
+      "cycles",
+      "damage",
+      "deadline_eta",
+      "detour",
+      "distances",
+      "door_unblocking",
+      "effective_cooldown",
+      "egress",
+      "empty_on_door",
+      "endgame",
+      "enemy_cycle",
+      "enemy_door_distance",
+      "enemy_doors",
+      "enemy_eta",
+      "enforce_training_deadline",
+      "estimated_eta",
+      "expected",
+      "external_idle_unit",
+      "external_protected_tree",
+      "fallback_second_troll",
+      "final_size",
+      "first",
+      "first_chop_eta",
+      "flatten",
+      "fold",
+      "forbidden",
+      "forbidden_for_non_priority",
+      "force_unique_door_clear",
+      "forced",
+      "forced_move",
+      "from",
+      "from_carrier",
+      "from_door",
+      "geometry",
+      "goals",
+      "growth_health",
+      "hard_train_turn",
+      "harvest",
+      "harvest_power",
+      "has_bank_route",
+      "has_second",
+      "home",
+      "home_distance",
+      "hp",
+      "idle",
+      "idle_harvest",
+      "idle_harvest_candidates",
+      "idle_harvest_clock_only",
+      "idle_regeneration",
+      "initial_kind",
+      "initial_natural",
+      "initialize",
+      "initialized",
+      "inner",
+      "inventory_fruits",
+      "is_idle",
+      "item_index",
+      "landing_forbidden",
+      "lemon",
+      "loses_contested_tree",
+      "main_candidates",
+      "max_carry_capacity",
+      "max_chop_power",
+      "max_extra_eta",
+      "median",
+      "middle",
+      "minimum_enemy_door_distance",
+      "minimum_enemy_eta",
+      "minimum_speed",
+      "minimum_worker_speed",
+      "mother_alive",
+      "mothers",
+      "move_lands_on_mother",
+      "move_target",
+      "movers",
+      "ms",
+      "my_units",
+      "name",
+      "natural_return",
+      "next_id",
+      "objective",
+      "occupied",
+      "occupied_now",
+      "on_tree",
+      "opening_abandoned",
+      "opening_initialized",
+      "opening_key",
+      "opening_objective",
+      "opening_options",
+      "opening_policy",
+      "opp_chop",
+      "opponent",
+      "opponent_eta",
+      "opponent_eta_penalty",
+      "opponents",
+      "or_else",
+      "other",
+      "our_eta",
+      "partial_bank_transit",
+      "pay_iron",
+      "persistent_regeneration",
+      "phase",
+      "picked_item",
+      "planned_egress",
+      "plant_attempted",
+      "plant_cooldown",
+      "plant_index",
+      "plum",
+      "policy",
+      "predict_tree",
+      "predicted",
+      "predicted_opp_chop",
+      "prefer_movement_ties",
+      "preferred",
+      "preferred_min_carry",
+      "preferred_min_chop",
+      "priority",
+      "priority_ids",
+      "projections",
+      "protect_mother",
+      "protected",
+      "protected_tree",
+      "ready",
+      "reconcile_initial_natural",
+      "reconcile_regeneration_commitments",
+      "regen",
+      "regeneration_commitments",
+      "remember_selected_regeneration",
+      "remove",
+      "replace_action",
+      "replacement",
+      "require_idle_starter",
+      "require_preferred",
+      "reserve_apple",
+      "reserve_orchard",
+      "resolve_move_conflicts_with_priority",
+      "resolve_move_conflicts_with_priority_and_forbidden",
+      "return_eta",
+      "risk",
+      "route_cycle",
+      "rust",
+      "safe_regeneration",
+      "safe_tree_waypoint",
+      "saturating_add",
+      "saturating_sub",
+      "scores",
+      "slope",
+      "slot",
+      "sort_unstable",
+      "starter_control_is_idle",
+      "starter_cycle",
+      "starter_id",
+      "starter_is_busy",
+      "starts",
+      "stays_on_mother",
+      "steals_seed",
+      "stock_compatible",
+      "strongest_affordable",
+      "talents",
+      "then",
+      "then_some",
+      "then_with",
+      "to_ascii_uppercase",
+      "to_door",
+      "to_doors",
+      "to_mother",
+      "to_tree",
+      "total",
+      "toward_goal",
+      "train_horizon",
+      "trained_cycle",
+      "training_affordable",
+      "training_cost",
+      "transit",
+      "tree_health_params",
+      "trip",
+      "tuned_carry_regeneration_transit_idle_harvest",
+      "tuple",
+      "turns_to_plant",
+      "uncontested_turns",
+      "unique_shack_door",
+      "unit_action_slot",
+      "unit_ids",
+      "unreachable",
+      "unwrap_or_else",
+      "used_stock",
+      "used_targets",
+      "walkable_without",
+      "water_boost",
+      "waypoint",
+      "width",
+      "with_opening_policy",
+      "with_policy",
+      "worker_can_use_alternate",
+      "worker_walkable",
+      "yamo",
+      "yamo_chop_candidates"
+    ],
+    "renaming_mapping": null
+  },
+  "logical_change": "use a smaller role-specific reversal bound and specialize selection to the controller's one-or-two-worker invariant",
+  "minification": false,
+  "removed_or_replaced_items": [
+    {
+      "bytes": 57,
+      "marker": "enum OrchardPhase"
+    },
+    {
+      "bytes": 102,
+      "marker": "struct OrchardGeometry"
+    },
+    {
+      "bytes": 54,
+      "marker": "struct OrchardCycle"
+    },
+    {
+      "bytes": 302,
+      "marker": "pub struct SecureOrchardBot"
+    },
+    {
+      "bytes": 10241,
+      "marker": "impl SecureOrchardBot"
+    },
+    {
+      "bytes": 3373,
+      "marker": "impl Bot for SecureOrchardBot"
+    },
+    {
+      "bytes": 260,
+      "marker": "pub struct YamoOpeningPolicy"
+    },
+    {
+      "bytes": 243,
+      "marker": "impl YamoOpeningPolicy"
+    },
+    {
+      "bytes": 55,
+      "marker": "struct OpeningObjective"
+    },
+    {
+      "marker": "pub struct YamoBot",
+      "net_removed_bytes": 383,
+      "replacement_bytes": 117
+    },
+    {
+      "marker": "impl YamoBot",
+      "net_removed_bytes": 14506,
+      "replacement_bytes": 7774
+    },
+    {
+      "marker": "impl Bot for YamoBot",
+      "net_removed_bytes": 124,
+      "replacement_bytes": 2872
+    },
+    {
+      "bytes": 140,
+      "marker": "pub fn item_index(self)"
+    },
+    {
+      "marker": "fn choose_second_troll(",
+      "net_removed_bytes": -822,
+      "replacement_bytes": 3961
+    },
+    {
+      "marker": "fn resolve_move_conflicts(",
+      "net_removed_bytes": -1778,
+      "replacement_bytes": 1919
+    },
+    {
+      "bytes": 212,
+      "marker": "fn resolve_move_conflicts_with_priority("
+    },
+    {
+      "bytes": 2352,
+      "marker": "fn resolve_move_conflicts_with_priority_and_forbidden("
+    },
+    {
+      "marker": "fn select(",
+      "net_removed_bytes": 584,
+      "replacement_bytes": 745
+    },
+    {
+      "bytes": 56,
+      "marker": "fn carry_total("
+    },
+    {
+      "bytes": 60,
+      "marker": "fn carrying_any("
+    },
+    {
+      "bytes": 77,
+      "marker": "duplicated early-resource affordability check"
+    },
+    {
+      "bytes": 28,
+      "marker": "pub const WOOD_POINTS"
+    },
+    {
+      "bytes": 127,
+      "marker": "pub fn score("
+    },
+    {
+      "bytes": 66,
+      "marker": "unused protocol score computation"
+    },
+    {
+      "bytes": 29,
+      "marker": "#[derive(Clone,Copy,Debug,Eq,PartialEq,Ord,PartialOrd,Hash)]pub enum PlantKind"
+    },
+    {
+      "bytes": 19,
+      "marker": "#[derive(Clone,Copy,Debug,Eq,PartialEq)]pub struct Stats"
+    },
+    {
+      "bytes": 35,
+      "marker": "#[derive(Clone,Debug,Eq,PartialEq)]pub struct Unit"
+    },
+    {
+      "bytes": 35,
+      "marker": "#[derive(Clone,Debug,Eq,PartialEq)]pub struct Plant"
+    },
+    {
+      "bytes": 35,
+      "marker": "#[derive(Clone,Debug,Eq,PartialEq)]pub struct GameState"
+    },
+    {
+      "bytes": 22,
+      "marker": "#[derive(Clone,Debug)]pub struct StaticMap"
+    },
+    {
+      "bytes": 24,
+      "marker": "#[derive(Clone,Copy,Debug,Eq,PartialEq,Ord,PartialOrd)]enum Target"
+    },
+    {
+      "bytes": 22,
+      "marker": "#[derive(Clone,Debug)]struct Candidate"
+    },
+    {
+      "bytes": 40,
+      "marker": "#[derive(Clone,Copy,Debug,Eq,PartialEq)]pub struct YamoBot"
+    },
+    {
+      "bytes": 21,
+      "marker": "#[derive(Clone,Copy)]struct PredictedTree"
+    },
+    {
+      "bytes": 157,
+      "marker": "doorless-shack banking fallback and Target::Shack"
+    },
+    {
+      "bytes": 37,
+      "marker": "pub const ITEM_COUNT and its sole Stock alias"
+    },
+    {
+      "marker": "fn bank_candidates(",
+      "net_removed_bytes": -23,
+      "replacement_bytes": 569
+    },
+    {
+      "marker": "fn choose_second_troll(",
+      "net_removed_bytes": 393,
+      "replacement_bytes": 3568
+    },
+    {
+      "marker": "fn chop_candidates(",
+      "net_removed_bytes": 107,
+      "replacement_bytes": 1576
+    },
+    {
+      "bytes": 294,
+      "marker": "fn predicted_opp_chop("
+    },
+    {
+      "bytes": 55,
+      "marker": "struct PredictedTree"
+    },
+    {
+      "bytes": 700,
+      "marker": "fn predict_tree("
+    },
+    {
+      "bytes": 631,
+      "marker": "fn chop_outcome("
+    },
+    {
+      "marker": "enum Target",
+      "net_removed_bytes": 22,
+      "replacement_bytes": 29
+    },
+    {
+      "marker": "fn compatible(",
+      "net_removed_bytes": 176,
+      "replacement_bytes": 78
+    },
+    {
+      "marker": "fn resolve_move_conflicts(",
+      "net_removed_bytes": 453,
+      "replacement_bytes": 1466
+    },
+    {
+      "marker": "pub struct Stats",
+      "net_removed_bytes": 22,
+      "replacement_bytes": 83
+    },
+    {
+      "bytes": 128,
+      "marker": "impl Stats"
+    },
+    {
+      "bytes": 78,
+      "marker": "zero-harvest parser and TRAIN plumbing"
+    },
+    {
+      "bytes": 194,
+      "marker": "pub fn training_cost("
+    },
+    {
+      "marker": "fn can_train(",
+      "net_removed_bytes": -222,
+      "replacement_bytes": 633
+    },
+    {
+      "marker": "fn early_candidates(",
+      "net_removed_bytes": -753,
+      "replacement_bytes": 1480
+    },
+    {
+      "marker": "fn ticks_until_fruit(",
+      "net_removed_bytes": -311,
+      "replacement_bytes": 692
+    },
+    {
+      "bytes": 124,
+      "marker": "pub fn effective_cooldown("
+    },
+    {
+      "bytes": 136,
+      "marker": "pub fn plant_cooldown("
+    },
+    {
+      "bytes": 133,
+      "marker": "pub fn water_boost("
+    },
+    {
+      "marker": "pub fn tree_health(",
+      "net_removed_bytes": -163,
+      "replacement_bytes": 269
+    },
+    {
+      "bytes": 155,
+      "marker": "pub fn tree_health_params("
+    },
+    {
+      "marker": "fn focus_type(",
+      "net_removed_bytes": -178,
+      "replacement_bytes": 706
+    },
+    {
+      "bytes": 212,
+      "marker": "pub fn item_index("
+    },
+    {
+      "marker": "fn picked_item(",
+      "net_removed_bytes": -55,
+      "replacement_bytes": 253
+    },
+    {
+      "marker": "pub fn parse(",
+      "net_removed_bytes": 31,
+      "replacement_bytes": 193
+    },
+    {
+      "marker": "fn chop_candidates(",
+      "net_removed_bytes": 188,
+      "replacement_bytes": 1388
+    },
+    {
+      "marker": "enum Target",
+      "net_removed_bytes": 4,
+      "replacement_bytes": 25
+    },
+    {
+      "bytes": 104,
+      "marker": "optional-cell target use sites"
+    },
+    {
+      "marker": "fn compatible(",
+      "net_removed_bytes": -8,
+      "replacement_bytes": 70
+    },
+    {
+      "marker": "fn resolve_move_conflicts(",
+      "net_removed_bytes": -71,
+      "replacement_bytes": 1537
+    },
+    {
+      "bytes": 83,
+      "marker": "pub fn unit("
+    },
+    {
+      "bytes": 241,
+      "marker": "unused parsed GameState and StaticMap fields"
+    },
+    {
+      "marker": "pub fn next_cell(",
+      "net_removed_bytes": 104,
+      "replacement_bytes": 661
+    },
+    {
+      "marker": "fn ensure_opening(",
+      "net_removed_bytes": 135,
+      "replacement_bytes": 348
+    },
+    {
+      "marker": "fn orchard_command(",
+      "net_removed_bytes": 216,
+      "replacement_bytes": 1328
+    },
+    {
+      "marker": "fn select_orchard_mother(",
+      "net_removed_bytes": 291,
+      "replacement_bytes": 954
+    },
+    {
+      "marker": "fn fruit_kind(",
+      "net_removed_bytes": 78,
+      "replacement_bytes": 612
+    },
+    {
+      "logical_change": "order same-door carriers by remaining cells so the rear worker cannot pin the front worker in WAIT",
+      "marker": "bank lane priority",
+      "net_removed_bytes": 42
+    },
+    {
+      "bytes": 27,
+      "logical_change": "protocol plant rows always have size at least one",
+      "marker": "impossible live-tree size-zero branch"
+    },
+    {
+      "logical_change": "preserve all-empty two-door orchards, but require a spare third door when a natural tree already occupies another home door",
+      "marker": "fn select_orchard_mother(",
+      "net_removed_bytes": -130,
+      "replacement_bytes": 1084
+    },
+    {
+      "logical_change": "emit an explicit WAIT for each worker when reserved-cell filtering leaves no compatible pair",
+      "marker": "empty two-worker selector fallback",
+      "net_removed_bytes": -16
+    },
+    {
+      "bytes": 20,
+      "logical_change": "protocol plant rows contain only live trees",
+      "marker": "redundant orchard live-tree health predicate"
+    },
+    {
+      "logical_change": "remember the last two consecutive landings in each worker slot",
+      "marker": "pub struct YamoBot",
+      "net_removed_bytes": -50
+    },
+    {
+      "logical_change": "turn the third consecutive A-B-A landing into WAIT",
+      "marker": "fn resolve_move_conflicts(",
+      "net_removed_bytes": -824,
+      "replacement_bytes": 2361
+    },
+    {
+      "bytes": 40,
+      "marker": "simultaneous-PICK stock guard"
+    },
+    {
+      "bytes": 253,
+      "marker": "fn picked_item("
+    },
+    {
+      "bytes": 191,
+      "marker": "fn stock_compatible("
+    },
+    {
+      "bytes": 192,
+      "marker": "terminal occupied-door prefilter"
+    },
+    {
+      "bytes": 17,
+      "marker": "redundant live-tree chop health predicate"
+    },
+    {
+      "bytes": 80,
+      "marker": "unused selector inventory parameter"
+    },
+    {
+      "logical_change": "reject any immediate landing backtrack using the prior observed cell for each stable two-worker action slot",
+      "marker": "third-A-B-A landing history",
+      "net_removed_bytes": 295
+    },
+    {
+      "logical_change": "reset history on non-MOVE, allow one A-B-A landing-target reversal, and wait only when that reversal repeats",
+      "marker": "generic immediate-backtrack guard",
+      "net_removed_bytes": -105
+    },
+    {
+      "logical_change": "represent history over MOVE decisions, retaining evidence of a loop across an intervening job action",
+      "marker": "non-MOVE target-history reset",
+      "net_removed_bytes": 133
+    },
+    {
+      "logical_change": "allow three consecutive target reversals, then suppress the fourth so an A-B loop cannot reach six MOVE decisions",
+      "marker": "persistent target-reversal threshold",
+      "net_added_bytes": 29
+    },
+    {
+      "logical_change": "remove a branch unreachable for the starter and every worker profile constructed by this specialized controller",
+      "marker": "unreachable zero-chop worker guard"
+    },
+    {
+      "logical_change": "break the loop after three MOVE decisions against a scaled opponent, but preserve the five-decision bound at roster two",
+      "marker": "opponent-workforce reversal threshold",
+      "net_added_bytes": 15
+    },
+    {
+      "logical_change": "specialize the selector to the controller's invariant roster of one starter plus at most its single trained worker",
+      "marker": "unreachable zero-worker and over-two-worker selector branches"
+    },
+    {
+      "logical_change": "permit the starter's bounded five-decision route correction, but stop the trained chopper after three alternating MOVE decisions",
+      "marker": "worker-role reversal threshold",
+      "net_removed_bytes": 48
+    }
+  ],
+  "schema": "troll-farm-e7a-development-ablation/1"
+}

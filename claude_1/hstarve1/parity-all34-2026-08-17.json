@@ -1,0 +1,19 @@
+{
+ "check": "runner parity + exact coverage + POST-MUTATION stage assertion, ALL situations",
+ "revision": "2026-08-17 logging-point repair (codex_1 pool-#2 blocker)",
+ "instrument_commit": "1384df741173eba5aabd49fd4f76b6995f59f103",
+ "instrument_generated_by": "claude_1/hstarve1/make_instrumented2.py",
+ "subject_sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+ "situations": 34,
+ "parity_pass": 34,
+ "parity_fail": 0,
+ "coverage_pass": 34,
+ "final_stage_pass": 34,
+ "total_unit_turn_rows": 12981,
+ "total_chosen_rows": 6800,
+ "parity_definition": "diagnostic runner command stream byte-identical to regression_tests.run_binary_custom",
+ "tap_order_verified": "HS2PRE < force_unique_door_clear < HS2 < select < HS2CHOSENPRE < resolve_move_conflicts < HS2CHOSEN < out.extend",
+ "final_stage_definition": "HS2 is emitted after force_unique_door_clear and immediately before select(); HS2CHOSEN is emitted after resolve_move_conflicts and immediately before the commands are extended into output. HS2PRE/HS2CHOSENPRE retain the old pre-mutation view solely so the mutation paths can be observed firing.",
+ "negative_controls": "coverage.py --selftest drives all three check_final_stage rejection arms plus a positive twin; logging_taps_control.py runs its comparator PRE-against-PRE and requires 0 differences.",
+ "note": "Row and chosen totals are UNCHANGED from the pre-repair run (12981/6800), which is expected: the repair changes WHAT each row records, not how many there are. Coverage counts alone could never have caught this defect."
+}

@@ -1,0 +1,121 @@
+{
+  "cases": [
+    {
+      "agrees_with_H": true,
+      "available": true,
+      "frames": 601,
+      "game_id": 895033321,
+      "in_any_window": true,
+      "in_participant_window": {
+        "6498801": true,
+        "6536563": false
+      },
+      "participants": [
+        6498801,
+        6536563
+      ]
+    },
+    {
+      "agrees_with_H": true,
+      "available": true,
+      "frames": 601,
+      "game_id": 895033352,
+      "in_any_window": true,
+      "in_participant_window": {
+        "6481027": true,
+        "6536563": false
+      },
+      "participants": [
+        6536563,
+        6481027
+      ]
+    },
+    {
+      "agrees_with_H": true,
+      "available": true,
+      "frames": 601,
+      "game_id": 895033359,
+      "in_any_window": true,
+      "in_participant_window": {
+        "6481277": true,
+        "6536563": false
+      },
+      "participants": [
+        6536563,
+        6481277
+      ]
+    },
+    {
+      "agrees_with_H": true,
+      "available": false,
+      "error": "{\"id\":548,\"message\":\"Game not found\"}",
+      "game_id": 895033310,
+      "http_status": 422,
+      "in_any_window": false,
+      "in_participant_window": {
+        "6480589": false,
+        "6536563": false
+      },
+      "participants": [
+        6536563,
+        6480589
+      ]
+    },
+    {
+      "agrees_with_H": true,
+      "available": false,
+      "error": "{\"id\":548,\"message\":\"Game not found\"}",
+      "game_id": 895033338,
+      "http_status": 422,
+      "in_any_window": false,
+      "in_participant_window": {
+        "6480672": false,
+        "6536563": false
+      },
+      "participants": [
+        6536563,
+        6480672
+      ]
+    },
+    {
+      "agrees_with_H": true,
+      "available": false,
+      "error": "{\"id\":548,\"message\":\"Game not found\"}",
+      "game_id": 895033379,
+      "http_status": 422,
+      "in_any_window": false,
+      "in_participant_window": {
+        "6479572": false,
+        "6536563": false
+      },
+      "participants": [
+        6479572,
+        6536563
+      ]
+    },
+    {
+      "agrees_with_H": true,
+      "available": false,
+      "error": "{\"id\":548,\"message\":\"Game not found\"}",
+      "game_id": 892621271,
+      "http_status": 422,
+      "in_any_window": false,
+      "in_participant_window": {
+        "6481141": false,
+        "6503244": false
+      },
+      "participants": [
+        6481141,
+        6503244
+      ]
+    }
+  ],
+  "cases_decided": 7,
+  "check": "b1-participant-window-visibility",
+  "counterexamples": [],
+  "hypothesis": "a replay is anonymously readable iff at least one participant's findLastBattlesByAgentId window still contains it",
+  "note": "H_CONSISTENT is agreement on this sample, not proof of mechanism; the platform's actual retention rule is not observable from here.",
+  "run_utc": "2026-08-11T10:45:27.059Z",
+  "task_id": "20260811-s3-collector-v2",
+  "verdict": "H_CONSISTENT"
+}

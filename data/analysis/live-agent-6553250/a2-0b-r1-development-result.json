@@ -1,0 +1,853 @@
+{
+  "input_hashes": {
+    "jobs20": {
+      "path": "/tmp/a2-0b-r1-dev16-final.tsv",
+      "sha256": "7daa4944bd9868873cbbfe602e9ca504c86515973ff7061ed2507f22747a9c21"
+    }
+  },
+  "integrity": {
+    "actual_rows": 256,
+    "checks": {
+      "all_terminal": true,
+      "family_labels_exact": true,
+      "legality_accounting": true,
+      "margin_fields_exact": true,
+      "row_count_exact": true,
+      "rows_sorted": true,
+      "task_matrix_exact": true
+    },
+    "expected_rows": 256,
+    "issue_accounting": {
+      "legacy": {
+        "by_family": {
+          "compact_gold": {
+            "critical_issues": 0,
+            "issues": 918,
+            "opponent_issues": 918,
+            "own_issues": 0,
+            "phase_reason_counts": {
+              "apply:move_blocked": 918
+            },
+            "reason_counts": {
+              "move_blocked": 918
+            }
+          },
+          "gold_adaptive": {
+            "critical_issues": 0,
+            "issues": 2152,
+            "opponent_issues": 2152,
+            "own_issues": 0,
+            "phase_reason_counts": {
+              "apply:move_blocked": 2150,
+              "apply:pick_stock_lost": 2
+            },
+            "reason_counts": {
+              "move_blocked": 2150,
+              "pick_stock_lost": 2
+            }
+          },
+          "legend_balanced": {
+            "critical_issues": 0,
+            "issues": 1329,
+            "opponent_issues": 1329,
+            "own_issues": 0,
+            "phase_reason_counts": {
+              "apply:move_blocked": 1219,
+              "apply:train_affordability_lost": 98,
+              "apply:train_shack_blocked": 12
+            },
+            "reason_counts": {
+              "move_blocked": 1219,
+              "train_affordability_lost": 98,
+              "train_shack_blocked": 12
+            }
+          },
+          "mybot": {
+            "critical_issues": 0,
+            "issues": 1593,
+            "opponent_issues": 1593,
+            "own_issues": 0,
+            "phase_reason_counts": {
+              "apply:move_blocked": 1593
+            },
+            "reason_counts": {
+              "move_blocked": 1593
+            }
+          },
+          "norx_native_three": {
+            "critical_issues": 0,
+            "issues": 1677,
+            "opponent_issues": 1677,
+            "own_issues": 0,
+            "phase_reason_counts": {
+              "apply:move_blocked": 1108,
+              "parse:no_capacity": 558,
+              "parse:nothing_to_drop": 11
+            },
+            "reason_counts": {
+              "move_blocked": 1108,
+              "no_capacity": 558,
+              "nothing_to_drop": 11
+            }
+          },
+          "resident": {
+            "critical_issues": 0,
+            "issues": 0,
+            "opponent_issues": 0,
+            "own_issues": 0,
+            "phase_reason_counts": {},
+            "reason_counts": {}
+          },
+          "script_boss": {
+            "critical_issues": 0,
+            "issues": 1134,
+            "opponent_issues": 1134,
+            "own_issues": 0,
+            "phase_reason_counts": {
+              "apply:move_blocked": 1134
+            },
+            "reason_counts": {
+              "move_blocked": 1134
+            }
+          },
+          "silver_boss": {
+            "critical_issues": 0,
+            "issues": 1979,
+            "opponent_issues": 1935,
+            "own_issues": 44,
+            "phase_reason_counts": {
+              "apply:move_blocked": 1891,
+              "apply:opponent_plant_blocking": 88
+            },
+            "reason_counts": {
+              "move_blocked": 1891,
+              "opponent_plant_blocking": 88
+            }
+          }
+        },
+        "by_role": {
+          "opponent": {
+            "issues": 10738,
+            "phase_reason_counts": {
+              "apply:move_blocked": 10013,
+              "apply:opponent_plant_blocking": 44,
+              "apply:pick_stock_lost": 2,
+              "apply:train_affordability_lost": 98,
+              "apply:train_shack_blocked": 12,
+              "parse:no_capacity": 558,
+              "parse:nothing_to_drop": 11
+            },
+            "reason_counts": {
+              "move_blocked": 10013,
+              "no_capacity": 558,
+              "nothing_to_drop": 11,
+              "opponent_plant_blocking": 44,
+              "pick_stock_lost": 2,
+              "train_affordability_lost": 98,
+              "train_shack_blocked": 12
+            }
+          },
+          "own": {
+            "issues": 44,
+            "phase_reason_counts": {
+              "apply:opponent_plant_blocking": 44
+            },
+            "reason_counts": {
+              "opponent_plant_blocking": 44
+            }
+          }
+        },
+        "critical_issues": 0,
+        "first_critical_issue": null,
+        "first_issue": "t37:p1:apply:move_blocked:MOVE 3 19 4",
+        "first_opponent_issue": "t37:p1:apply:move_blocked:MOVE 3 19 4",
+        "first_own_issue": "t166:p0:apply:opponent_plant_blocking:PLANT 2 APPLE",
+        "issues": 10782,
+        "opponent_critical_issues": 0,
+        "opponent_issues": 10738,
+        "own_critical_issues": 0,
+        "own_issues": 44,
+        "pass": true,
+        "phase_reason_counts": {
+          "apply:move_blocked": 10013,
+          "apply:opponent_plant_blocking": 88,
+          "apply:pick_stock_lost": 2,
+          "apply:train_affordability_lost": 98,
+          "apply:train_shack_blocked": 12,
+          "parse:no_capacity": 558,
+          "parse:nothing_to_drop": 11
+        },
+        "reason_counts": {
+          "move_blocked": 10013,
+          "no_capacity": 558,
+          "nothing_to_drop": 11,
+          "opponent_plant_blocking": 88,
+          "pick_stock_lost": 2,
+          "train_affordability_lost": 98,
+          "train_shack_blocked": 12
+        },
+        "row_invariant_failures": [],
+        "unclassified_issues": 0,
+        "unsupported_reasons": []
+      },
+      "referee": {
+        "by_family": {
+          "compact_gold": {
+            "critical_issues": 0,
+            "issues": 999,
+            "opponent_issues": 999,
+            "own_issues": 0,
+            "phase_reason_counts": {
+              "apply:move_blocked": 999
+            },
+            "reason_counts": {
+              "move_blocked": 999
+            }
+          },
+          "gold_adaptive": {
+            "critical_issues": 0,
+            "issues": 2375,
+            "opponent_issues": 2375,
+            "own_issues": 0,
+            "phase_reason_counts": {
+              "apply:move_blocked": 2373,
+              "apply:pick_stock_lost": 2
+            },
+            "reason_counts": {
+              "move_blocked": 2373,
+              "pick_stock_lost": 2
+            }
+          },
+          "legend_balanced": {
+            "critical_issues": 0,
+            "issues": 1070,
+            "opponent_issues": 1070,
+            "own_issues": 0,
+            "phase_reason_counts": {
+              "apply:move_blocked": 1058,
+              "apply:train_shack_blocked": 12
+            },
+            "reason_counts": {
+              "move_blocked": 1058,
+              "train_shack_blocked": 12
+            }
+          },
+          "mybot": {
+            "critical_issues": 0,
+            "issues": 1629,
+            "opponent_issues": 1629,
+            "own_issues": 0,
+            "phase_reason_counts": {
+              "apply:move_blocked": 1629
+            },
+            "reason_counts": {
+              "move_blocked": 1629
+            }
+          },
+          "norx_native_three": {
+            "critical_issues": 0,
+            "issues": 1154,
+            "opponent_issues": 1154,
+            "own_issues": 0,
+            "phase_reason_counts": {
+              "apply:move_blocked": 620,
+              "parse:no_capacity": 524,
+              "parse:nothing_to_drop": 10
+            },
+            "reason_counts": {
+              "move_blocked": 620,
+              "no_capacity": 524,
+              "nothing_to_drop": 10
+            }
+          },
+          "resident": {
+            "critical_issues": 0,
+            "issues": 0,
+            "opponent_issues": 0,
+            "own_issues": 0,
+            "phase_reason_counts": {},
+            "reason_counts": {}
+          },
+          "script_boss": {
+            "critical_issues": 0,
+            "issues": 827,
+            "opponent_issues": 827,
+            "own_issues": 0,
+            "phase_reason_counts": {
+              "apply:move_blocked": 827
+            },
+            "reason_counts": {
+              "move_blocked": 827
+            }
+          },
+          "silver_boss": {
+            "critical_issues": 0,
+            "issues": 2078,
+            "opponent_issues": 2078,
+            "own_issues": 0,
+            "phase_reason_counts": {
+              "apply:move_blocked": 2078
+            },
+            "reason_counts": {
+              "move_blocked": 2078
+            }
+          }
+        },
+        "by_role": {
+          "opponent": {
+            "issues": 10132,
+            "phase_reason_counts": {
+              "apply:move_blocked": 9584,
+              "apply:pick_stock_lost": 2,
+              "apply:train_shack_blocked": 12,
+              "parse:no_capacity": 524,
+              "parse:nothing_to_drop": 10
+            },
+            "reason_counts": {
+              "move_blocked": 9584,
+              "no_capacity": 524,
+              "nothing_to_drop": 10,
+              "pick_stock_lost": 2,
+              "train_shack_blocked": 12
+            }
+          },
+          "own": {
+            "issues": 0,
+            "phase_reason_counts": {},
+            "reason_counts": {}
+          }
+        },
+        "critical_issues": 0,
+        "first_critical_issue": null,
+        "first_issue": "t37:p1:apply:move_blocked:MOVE 3 19 4",
+        "first_opponent_issue": "t37:p1:apply:move_blocked:MOVE 3 19 4",
+        "first_own_issue": null,
+        "issues": 10132,
+        "opponent_critical_issues": 0,
+        "opponent_issues": 10132,
+        "own_critical_issues": 0,
+        "own_issues": 0,
+        "pass": true,
+        "phase_reason_counts": {
+          "apply:move_blocked": 9584,
+          "apply:pick_stock_lost": 2,
+          "apply:train_shack_blocked": 12,
+          "parse:no_capacity": 524,
+          "parse:nothing_to_drop": 10
+        },
+        "reason_counts": {
+          "move_blocked": 9584,
+          "no_capacity": 524,
+          "nothing_to_drop": 10,
+          "pick_stock_lost": 2,
+          "train_shack_blocked": 12
+        },
+        "row_invariant_failures": [],
+        "unclassified_issues": 0,
+        "unsupported_reasons": []
+      }
+    },
+    "pass": true
+  },
+  "legacy_reproduction": {
+    "expected": {
+      "catastrophes": 49,
+      "negative_margin_mass": 12749
+    },
+    "observed": {
+      "catastrophes": 4,
+      "negative_margin_mass": 1051
+    },
+    "pass": null,
+    "required": false
+  },
+  "panel": {
+    "families": [
+      "resident",
+      "gold_adaptive",
+      "compact_gold",
+      "norx_native_three",
+      "legend_balanced",
+      "mybot",
+      "script_boss",
+      "silver_boss"
+    ],
+    "maps": 16,
+    "rows": 256,
+    "seats": [
+      0,
+      1
+    ],
+    "start_seed": 9854000
+  },
+  "schema": "troll-farm-a2-0b-referee-parity-r1-result-v1",
+  "semantics_change": {
+    "cross_mode_hash_equality": {
+      "action_hash_tasks": 50,
+      "state_hash_tasks": 49
+    },
+    "first_state_divergence_turns": {
+      "count": 224,
+      "max": 232,
+      "mean": 17.647321428571427,
+      "min": 1,
+      "sum": 3953
+    },
+    "hash_accounting": {
+      "legacy": {
+        "action_hash_vector_sha256": "db48b3e01d41f00a9dd072d32d774bbfaba71752840b103324c7b17cfab2d92b",
+        "state_hash_vector_sha256": "b89432a2a422684fbcda57a3eba5bf091fdff71d368519035e33bb3a05d9e8fe",
+        "unique_action_hashes": 238,
+        "unique_state_hashes": 238
+      },
+      "referee": {
+        "action_hash_vector_sha256": "76535013d33dd6cacf999bdf86af17eaecc7b70d8e7e0cea3aeb8b94a631619c",
+        "state_hash_vector_sha256": "bc1632366833e6eb5de34e7725dbd494398139ed54197287e06917f8e7da7e07",
+        "unique_action_hashes": 238,
+        "unique_state_hashes": 238
+      }
+    },
+    "margin_delta": {
+      "by_family_and_seat": {
+        "compact_gold": {
+          "0": {
+            "margin_delta": {
+              "count": 16,
+              "max": 38,
+              "mean": -3.1875,
+              "min": -63,
+              "sum": -51
+            },
+            "opponent_score_delta": {
+              "count": 16,
+              "max": 83,
+              "mean": -2.875,
+              "min": -55,
+              "sum": -46
+            },
+            "own_score_delta": {
+              "count": 16,
+              "max": 20,
+              "mean": -6.0625,
+              "min": -84,
+              "sum": -97
+            }
+          },
+          "1": {
+            "margin_delta": {
+              "count": 16,
+              "max": 56,
+              "mean": 0.5,
+              "min": -64,
+              "sum": 8
+            },
+            "opponent_score_delta": {
+              "count": 16,
+              "max": 67,
+              "mean": 7.4375,
+              "min": -24,
+              "sum": 119
+            },
+            "own_score_delta": {
+              "count": 16,
+              "max": 92,
+              "mean": 7.9375,
+              "min": -24,
+              "sum": 127
+            }
+          }
+        },
+        "gold_adaptive": {
+          "0": {
+            "margin_delta": {
+              "count": 16,
+              "max": 28,
+              "mean": -3.625,
+              "min": -41,
+              "sum": -58
+            },
+            "opponent_score_delta": {
+              "count": 16,
+              "max": 16,
+              "mean": 1.5,
+              "min": -13,
+              "sum": 24
+            },
+            "own_score_delta": {
+              "count": 16,
+              "max": 16,
+              "mean": -2.125,
+              "min": -25,
+              "sum": -34
+            }
+          },
+          "1": {
+            "margin_delta": {
+              "count": 16,
+              "max": 61,
+              "mean": 2.375,
+              "min": -52,
+              "sum": 38
+            },
+            "opponent_score_delta": {
+              "count": 16,
+              "max": 12,
+              "mean": -5.4375,
+              "min": -53,
+              "sum": -87
+            },
+            "own_score_delta": {
+              "count": 16,
+              "max": 28,
+              "mean": -3.0625,
+              "min": -45,
+              "sum": -49
+            }
+          }
+        },
+        "legend_balanced": {
+          "0": {
+            "margin_delta": {
+              "count": 16,
+              "max": 82,
+              "mean": 17.5625,
+              "min": -33,
+              "sum": 281
+            },
+            "opponent_score_delta": {
+              "count": 16,
+              "max": 23,
+              "mean": -12.3125,
+              "min": -86,
+              "sum": -197
+            },
+            "own_score_delta": {
+              "count": 16,
+              "max": 41,
+              "mean": 5.25,
+              "min": -16,
+              "sum": 84
+            }
+          },
+          "1": {
+            "margin_delta": {
+              "count": 16,
+              "max": 57,
+              "mean": 0.3125,
+              "min": -48,
+              "sum": 5
+            },
+            "opponent_score_delta": {
+              "count": 16,
+              "max": 34,
+              "mean": 1.375,
+              "min": -25,
+              "sum": 22
+            },
+            "own_score_delta": {
+              "count": 16,
+              "max": 36,
+              "mean": 1.6875,
+              "min": -24,
+              "sum": 27
+            }
+          }
+        },
+        "mybot": {
+          "0": {
+            "margin_delta": {
+              "count": 16,
+              "max": 78,
+              "mean": 6.1875,
+              "min": -13,
+              "sum": 99
+            },
+            "opponent_score_delta": {
+              "count": 16,
+              "max": 10,
+              "mean": -6.375,
+              "min": -67,
+              "sum": -102
+            },
+            "own_score_delta": {
+              "count": 16,
+              "max": 15,
+              "mean": -0.1875,
+              "min": -20,
+              "sum": -3
+            }
+          },
+          "1": {
+            "margin_delta": {
+              "count": 16,
+              "max": 34,
+              "mean": 3.8125,
+              "min": -15,
+              "sum": 61
+            },
+            "opponent_score_delta": {
+              "count": 16,
+              "max": 18,
+              "mean": -2.9375,
+              "min": -22,
+              "sum": -47
+            },
+            "own_score_delta": {
+              "count": 16,
+              "max": 39,
+              "mean": 0.875,
+              "min": -20,
+              "sum": 14
+            }
+          }
+        },
+        "norx_native_three": {
+          "0": {
+            "margin_delta": {
+              "count": 16,
+              "max": 47,
+              "mean": -4.5,
+              "min": -91,
+              "sum": -72
+            },
+            "opponent_score_delta": {
+              "count": 16,
+              "max": 91,
+              "mean": 6.25,
+              "min": -59,
+              "sum": 100
+            },
+            "own_score_delta": {
+              "count": 16,
+              "max": 26,
+              "mean": 1.75,
+              "min": -17,
+              "sum": 28
+            }
+          },
+          "1": {
+            "margin_delta": {
+              "count": 16,
+              "max": 77,
+              "mean": 7.9375,
+              "min": -40,
+              "sum": 127
+            },
+            "opponent_score_delta": {
+              "count": 16,
+              "max": 66,
+              "mean": -5.9375,
+              "min": -84,
+              "sum": -95
+            },
+            "own_score_delta": {
+              "count": 16,
+              "max": 26,
+              "mean": 2.0,
+              "min": -8,
+              "sum": 32
+            }
+          }
+        },
+        "resident": {
+          "0": {
+            "margin_delta": {
+              "count": 16,
+              "max": 0,
+              "mean": 0.0,
+              "min": 0,
+              "sum": 0
+            },
+            "opponent_score_delta": {
+              "count": 16,
+              "max": 0,
+              "mean": 0.0,
+              "min": 0,
+              "sum": 0
+            },
+            "own_score_delta": {
+              "count": 16,
+              "max": 0,
+              "mean": 0.0,
+              "min": 0,
+              "sum": 0
+            }
+          },
+          "1": {
+            "margin_delta": {
+              "count": 16,
+              "max": 0,
+              "mean": 0.0,
+              "min": 0,
+              "sum": 0
+            },
+            "opponent_score_delta": {
+              "count": 16,
+              "max": 0,
+              "mean": 0.0,
+              "min": 0,
+              "sum": 0
+            },
+            "own_score_delta": {
+              "count": 16,
+              "max": 0,
+              "mean": 0.0,
+              "min": 0,
+              "sum": 0
+            }
+          }
+        },
+        "script_boss": {
+          "0": {
+            "margin_delta": {
+              "count": 16,
+              "max": 10,
+              "mean": -4.6875,
+              "min": -88,
+              "sum": -75
+            },
+            "opponent_score_delta": {
+              "count": 16,
+              "max": 87,
+              "mean": 6.8125,
+              "min": -6,
+              "sum": 109
+            },
+            "own_score_delta": {
+              "count": 16,
+              "max": 16,
+              "mean": 2.125,
+              "min": -8,
+              "sum": 34
+            }
+          },
+          "1": {
+            "margin_delta": {
+              "count": 16,
+              "max": 62,
+              "mean": 1.125,
+              "min": -47,
+              "sum": 18
+            },
+            "opponent_score_delta": {
+              "count": 16,
+              "max": 27,
+              "mean": -4.1875,
+              "min": -59,
+              "sum": -67
+            },
+            "own_score_delta": {
+              "count": 16,
+              "max": 3,
+              "mean": -3.0625,
+              "min": -20,
+              "sum": -49
+            }
+          }
+        },
+        "silver_boss": {
+          "0": {
+            "margin_delta": {
+              "count": 16,
+              "max": 23,
+              "mean": -1.75,
+              "min": -44,
+              "sum": -28
+            },
+            "opponent_score_delta": {
+              "count": 16,
+              "max": 44,
+              "mean": 7.25,
+              "min": -33,
+              "sum": 116
+            },
+            "own_score_delta": {
+              "count": 16,
+              "max": 40,
+              "mean": 5.5,
+              "min": -12,
+              "sum": 88
+            }
+          },
+          "1": {
+            "margin_delta": {
+              "count": 16,
+              "max": 35,
+              "mean": -3.375,
+              "min": -40,
+              "sum": -54
+            },
+            "opponent_score_delta": {
+              "count": 16,
+              "max": 30,
+              "mean": 5.125,
+              "min": -19,
+              "sum": 82
+            },
+            "own_score_delta": {
+              "count": 16,
+              "max": 32,
+              "mean": 1.75,
+              "min": -49,
+              "sum": 28
+            }
+          }
+        }
+      },
+      "overall": {
+        "margin_delta": {
+          "count": 256,
+          "max": 82,
+          "mean": 1.16796875,
+          "min": -91,
+          "sum": 299
+        },
+        "opponent_score_delta": {
+          "count": 256,
+          "max": 91,
+          "mean": -0.26953125,
+          "min": -86,
+          "sum": -69
+        },
+        "own_score_delta": {
+          "count": 256,
+          "max": 92,
+          "mean": 0.8984375,
+          "min": -84,
+          "sum": 230
+        }
+      }
+    },
+    "movement_rng": {
+      "legacy": {
+        "draws": 51319,
+        "true_ties": 14007
+      },
+      "referee": {
+        "draws": 52434,
+        "true_ties": 14562
+      }
+    },
+    "state_divergence_tasks": 224,
+    "tail": {
+      "legacy": {
+        "catastrophes": 4,
+        "negative_margin_mass": 1051
+      },
+      "referee": {
+        "catastrophes": 4,
+        "negative_margin_mass": 1130
+      }
+    }
+  },
+  "stage": "development",
+  "thread_parity": {
+    "pass": null,
+    "required": false
+  },
+  "trajectories_and_detectors": {
+    "pass": null,
+    "required": false
+  },
+  "verdict": "READY_FOR_IMPLEMENTATION_LOCK"
+}

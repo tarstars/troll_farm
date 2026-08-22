@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 62116,
+    "path": "local_codex_1/e7a-iterative-logical-deletion/candidate-r1-inline-constructor.rs",
+    "removed_from_initial_62278": 162,
+    "removed_this_round": 162,
+    "sha256": "29f2cfd8a697502bd8239a1ba6b9f5e8cc89ef7c5189b3c732ec0e3cbb45d922"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "inline the sole private with_policy call with the same exact field values, deleting unused runtime configurability",
+  "minification": false,
+  "parent": {
+    "bytes": 62278,
+    "path": "local_codex_1/e7a-single-logical-deletion/candidate-e7a-remove-generic-selector.rs",
+    "sha256": "ab0934740171cc7f5f4cd65cdfb8cf879ca92d8236c9505903e4741e0a7c57c2"
+  },
+  "round": 1,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}

@@ -250,7 +250,7 @@ def test_split_hash_is_stable_and_requires_label_agreement() -> None:
     assert split_bucket("d61p-resident:", 123) == split_bucket(
         "d61p-resident:", 123
     )
-    assert 0 <= split_bucket("d61p-opponent:", 456) <= 9
+    assert split_bucket("d61p-opponent:", 456) == 9
 
 
 def test_collector_output_is_directly_consumable_by_snapshot_parser(

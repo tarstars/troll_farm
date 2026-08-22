@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "task": "20260731-s1-endgame-exact-solver-scope-audit",
+  "locked_utc": "2026-07-31T00:20:15Z",
+  "base_commit": "c980127c3817baee2f562f4efb1015983c418afc",
+  "protocol": "docs/s1-endgame-exact-solver-scope-protocol-2026-07-31.md",
+  "protocol_sha256": "45e1ad715654f81560d5d6457e952c83bb44b12f6526a7232a46f54c1b58cea1",
+  "implementation": {
+    "path": "cgauto/s1_endgame_solver_feasibility.py",
+    "sha256": "a1bc3175ddbae9b0628c970b318446d16ee484cbc37d0b889f8b6a1b7bdaf3cb"
+  },
+  "tests": {
+    "path": "tests/test_s1_endgame_solver_feasibility.py",
+    "sha256": "2acb4ec93e8a19b3ae3f5abb15f4b03b814c62b561b200924dc6d75bf53cbbd0",
+    "pytest": "6 passed",
+    "self_test": "ok"
+  },
+  "control": {
+    "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+    "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+  },
+  "runtime": {
+    "source": "cgauto/e4_orchard_mother_tie_audit.py:CLOCK_SHIM_SOURCE",
+    "shim_source_sha256": "52a879df0a3c034c202d18ded300c634feb822e17c9f335946e64552ab71bf2a",
+    "bot_source_mutation": false
+  },
+  "panel": {
+    "seeds": "0..59",
+    "opponents": [
+      "motion",
+      "taskplan",
+      "race",
+      "yield",
+      "ringfix3",
+      "chopharvest"
+    ],
+    "policy_seats": [
+      0,
+      1
+    ],
+    "games": 720,
+    "snapshot_turns": [
+      251,
+      276,
+      291
+    ]
+  },
+  "prelock_checks": {
+    "movement_resolver_engine_equivalence": "all direct vectors on focused two-unit fixture",
+    "swap_fixture": true,
+    "contested_destination_fixture": true,
+    "active_smoke_seed": 0,
+    "active_smoke_opponent": "motion",
+    "active_smoke_policy_seat": 0,
+    "active_smoke_terminal_turn": 264,
+    "active_smoke_snapshot_turns": [
+      251
+    ],
+    "active_smoke_unit_counts": [
+      2,
+      2
+    ],
+    "active_smoke_joint_movement_outcomes": 440,
+    "unexpected_stderr_bytes": 0,
+    "malformed_commands": 0
+  },
+  "sacred_resident_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+  "authorized_next_action": "run the unchanged complete jobs=8 and jobs=1 census; no source, panel, snapshot, or classification changes"
+}

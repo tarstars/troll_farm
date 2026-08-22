@@ -1,0 +1,41 @@
+# MUTATION DRIVE -- fuzz panel r4
+# date_utc: 2026-08-09T09:44:39Z
+# cmd: python3 mutation_drive.py
+
+M1-malformed-train-coerced         1 (C3 strict TRAIN parsing)                          CAUGHT by 10 test(s): test_every_error_names_the_line_it_came_from, test_the_durable_row_can_reconstruct_every_offending_command, test_the_verbatim_line_is_retained_for_every_offending_turn
+M2-textual-order-executor          2 (C4 full phase order)                              CAUGHT by 9 test(s): test_pick_can_only_starve_a_train_never_fund_it, test_rust_authority_agrees_on_every_case, test_sim_engine_mirror_agrees_on_every_case
+M3-no-per-unit-dedup               3 (C5 first non-TRAIN per unit)                      CAUGHT by 8 test(s): test_with_a_duplicate_unit_command_textual_order_decides, test_rust_authority_agrees_on_every_case, test_sim_engine_mirror_agrees_on_every_case
+M4-drop-funds-train                4 (O1 same-turn matrix)                              CAUGHT by 3 test(s): test_every_mutant_is_valid_python, test_every_mutation_anchor_still_exists_exactly_once, test_execute_calls_the_phases_in_that_order
+M5-next-cell-ignores-speed         5 (differential oracle) + the zero-speed shack divergence CAUGHT by 6 test(s): test_rust_authority_agrees_on_every_case, test_sim_engine_mirror_agrees_on_every_case, test_the_sim_leg_defects_are_real_and_named
+M6-drop-the-provenance             6 (per-row provenance)                               CAUGHT by 4 test(s): test_every_row_carries_execution_status_events_and_hashes, test_the_identity_reaches_the_report_the_packet_and_every_row, test_every_mutant_is_valid_python
+M7-unsupported-verb-aborts         7 (row retention)                                    CAUGHT by 16 test(s): test_every_error_carries_an_exact_span_into_the_original_line, test_every_error_names_the_line_it_came_from, test_the_durable_row_can_reconstruct_every_offending_command
+M8-version-defaults-restored       8 (version declaration fails closed)                 CAUGHT by 4 test(s): test_missing_corpus_version_is_rejected, test_missing_instrument_version_is_rejected, test_every_mutant_is_valid_python
+M9-train-events-dropped            9 (m040 six-part packet)                             CAUGHT by 6 test(s): test_m040_seat_0_packet, test_m040_seat_1_packet, test_every_mutant_is_valid_python
+M10-reinstate-the-bot-worker-cap   12 / r2 regression guard (no invented worker cap)    CAUGHT by 7 test(s): test_every_mutant_is_valid_python, test_every_mutation_anchor_still_exists_exactly_once, test_a_third_worker_trains_because_the_engine_has_no_worker_cap
+M11-opponent-stream-ignored        B2 (one phase-merged two-player transition)          CAUGHT by 6 test(s): test_a_generated_opponent_line_is_engine_conformant, test_rust_authority_agrees_on_every_two_player_case, test_sim_mirror_agrees_on_every_two_player_case
+M12-train-ignores-the-player       B2 (apply_train is per player, engine.rs:786-791)    CAUGHT by 4 test(s): test_rust_authority_agrees_on_every_two_player_case, test_sim_mirror_agrees_on_every_two_player_case, test_every_mutant_is_valid_python
+M13-parent-failure-fails-open      B3 (parent execution dominates the aggregate)        CAUGHT by 7 test(s): test_every_mutant_is_valid_python, test_every_mutation_anchor_still_exists_exactly_once, test_aggregate_is_unready_for_a_malformed_parent_command
+M14-raw-fragment-stripped-again    B4 (verbatim bytes + exact span)                     CAUGHT by 5 test(s): test_every_error_carries_an_exact_span_into_the_original_line, test_the_durable_row_can_reconstruct_every_offending_command, test_the_raw_fragment_is_verbatim_and_the_normalization_separate
+M15-error-stream-recapped          B4 (the retained stream is uncapped)                 CAUGHT by 2 test(s): test_every_mutant_is_valid_python, test_the_error_stream_is_not_capped
+M16-floor-claim-unchecked          B5 (run identity is machine-checked)                 CAUGHT by 3 test(s): test_every_mutant_is_valid_python, test_every_mutation_anchor_still_exists_exactly_once, test_a_floor_claim_over_two_different_bots_is_rejected
+
+| id | blocker | result | failing tests | first caught by |
+|---|---|---|---|---|
+| `M1-malformed-train-coerced` | 1 (C3 strict TRAIN parsing) | **CAUGHT** | 10 | `test_every_error_names_the_line_it_came_from` |
+| `M2-textual-order-executor` | 2 (C4 full phase order) | **CAUGHT** | 9 | `test_pick_can_only_starve_a_train_never_fund_it` |
+| `M3-no-per-unit-dedup` | 3 (C5 first non-TRAIN per unit) | **CAUGHT** | 8 | `test_with_a_duplicate_unit_command_textual_order_decides` |
+| `M4-drop-funds-train` | 4 (O1 same-turn matrix) | **CAUGHT** | 3 | `test_every_mutant_is_valid_python` |
+| `M5-next-cell-ignores-speed` | 5 (differential oracle) + the zero-speed shack divergence | **CAUGHT** | 6 | `test_rust_authority_agrees_on_every_case` |
+| `M6-drop-the-provenance` | 6 (per-row provenance) | **CAUGHT** | 4 | `test_every_row_carries_execution_status_events_and_hashes` |
+| `M7-unsupported-verb-aborts` | 7 (row retention) | **CAUGHT** | 16 | `test_every_error_carries_an_exact_span_into_the_original_line` |
+| `M8-version-defaults-restored` | 8 (version declaration fails closed) | **CAUGHT** | 4 | `test_missing_corpus_version_is_rejected` |
+| `M9-train-events-dropped` | 9 (m040 six-part packet) | **CAUGHT** | 6 | `test_m040_seat_0_packet` |
+| `M10-reinstate-the-bot-worker-cap` | 12 / r2 regression guard (no invented worker cap) | **CAUGHT** | 7 | `test_every_mutant_is_valid_python` |
+| `M11-opponent-stream-ignored` | B2 (one phase-merged two-player transition) | **CAUGHT** | 6 | `test_a_generated_opponent_line_is_engine_conformant` |
+| `M12-train-ignores-the-player` | B2 (apply_train is per player, engine.rs:786-791) | **CAUGHT** | 4 | `test_rust_authority_agrees_on_every_two_player_case` |
+| `M13-parent-failure-fails-open` | B3 (parent execution dominates the aggregate) | **CAUGHT** | 7 | `test_every_mutant_is_valid_python` |
+| `M14-raw-fragment-stripped-again` | B4 (verbatim bytes + exact span) | **CAUGHT** | 5 | `test_every_error_carries_an_exact_span_into_the_original_line` |
+| `M15-error-stream-recapped` | B4 (the retained stream is uncapped) | **CAUGHT** | 2 | `test_every_mutant_is_valid_python` |
+| `M16-floor-claim-unchecked` | B5 (run identity is machine-checked) | **CAUGHT** | 3 | `test_every_mutant_is_valid_python` |
+
+16 of 16 caught, 0 survived

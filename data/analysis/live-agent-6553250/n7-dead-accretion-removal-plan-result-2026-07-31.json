@@ -1,0 +1,173 @@
+{
+  "audit": "N7 dead-accretion removal plan",
+  "date": "2026-07-31",
+  "verdict": "DEPLOYMENT_ALREADY_SLIM",
+  "question": "Can ScarceIntent, banana factory, task market, and opponent-crop scoring be removed safely, and from which artifact?",
+  "integrity": {
+    "read_only": true,
+    "source_edit": false,
+    "formatter": false,
+    "deletion_or_regeneration": false,
+    "compile_or_test": false,
+    "game_or_map": false,
+    "candidate_or_submission": false,
+    "arena_action": false
+  },
+  "construction_chain": {
+    "entrypoint": "main() -> SecureOrchardBot::new()",
+    "entrypoint_lines": "rust/src/bin/yamo_orchard_live.rs:6008-6019",
+    "inner": "YamoBot::tuned_carry_regeneration_transit_idle_harvest()",
+    "constructor_lines": "rust/src/bin/yamo_orchard_live.rs:1629-1658,1691-1696,3824-3832,4052-4089",
+    "inactive_defaults": {
+      "scarce_farming": false,
+      "scarce_plan": null,
+      "task_market_enabled": false,
+      "banana_factory_enabled": false,
+      "opponent_crop_bonus": 0,
+      "opponent_crop_dual_value": false,
+      "opponent_crop_eta_limit": 0,
+      "opponent_crop_min_seen": "usize::MAX",
+      "opponent_crop_harvest_contact": false
+    },
+    "conclusion": "All four families are unreachable from the exact main construction chain, independently reproducing H13."
+  },
+  "artifacts": {
+    "sacred_development_source": {
+      "path": "rust/src/bin/yamo_orchard_live.rs",
+      "lines": 6024,
+      "bytes": 275377,
+      "sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+    },
+    "byte_identical_snapshot": {
+      "path": "rust/src/d171a_control_resident_snapshot.rs",
+      "lines": 6024,
+      "bytes": 275377,
+      "sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f",
+      "cmp_equal": true
+    },
+    "pre_slim_submission_ancestor": {
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage.min.rs",
+      "lines": 1,
+      "bytes": 90547,
+      "sha256": "da53b0f66a0224bf9c8d5796d69905a9bebcf1e71ee97e4b65e72a2fdea046e9"
+    },
+    "current_live_deploy": {
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+      "lines": 1,
+      "bytes": 62725,
+      "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+      "api_submit_default": true
+    },
+    "slimmer": {
+      "path": "cgauto/slim_live_source.py",
+      "lines": 356,
+      "bytes": 13208,
+      "sha256": "d396ae909af4645fc2b06f86ca2c359cdac2ee2e2ae8bfa206f0b9963d4117f8",
+      "semantics": "name-based fail-closed item/fragment removal plus specialization of fixed-off branches"
+    }
+  },
+  "family_matrix": [
+    {
+      "family": "ScarceIntent",
+      "reachable_from_main": false,
+      "sacred_occurrences": 45,
+      "pre_slim_occurrences": 45,
+      "live_deploy_occurrences": 0,
+      "deploy_exclusion": "explicitly removed by SPECIALIZED_DEAD_ITEMS after fixed-off branch specialization",
+      "non_live_consumers": "sacred embedded tests, exact snapshot, and copied experimental variants",
+      "disposition": "keep sacred fixtures; live deploy already excludes"
+    },
+    {
+      "family": "banana_factory",
+      "reachable_from_main": false,
+      "sacred_occurrences": 306,
+      "pre_slim_occurrences": 0,
+      "live_deploy_occurrences": 0,
+      "deploy_exclusion": "already absent before the current slimming pass",
+      "non_live_consumers": "ownership_aware_complete_economy constructors/telemetry and sacred embedded tests",
+      "disposition": "keep research API/fixtures; live deploy already excludes"
+    },
+    {
+      "family": "task_market",
+      "reachable_from_main": false,
+      "sacred_occurrences": 28,
+      "pre_slim_occurrences": 0,
+      "live_deploy_occurrences": 0,
+      "deploy_exclusion": "already absent before the current slimming pass",
+      "non_live_consumers": "ownership_aware_complete_economy constructor and sacred embedded tests",
+      "disposition": "keep research API/fixtures; live deploy already excludes"
+    },
+    {
+      "family": "opponent_crop",
+      "reachable_from_main": false,
+      "sacred_occurrences": 121,
+      "pre_slim_occurrences": 0,
+      "live_deploy_occurrences": 0,
+      "deploy_exclusion": "already absent before the current slimming pass",
+      "non_live_consumers": "ownership/crop-priority/continuation/harvest-contact runners and sacred embedded tests",
+      "disposition": "keep research API/fixtures; live deploy already excludes"
+    }
+  ],
+  "consumer_inventory": {
+    "direct_path_importers_of_sacred_source": 23,
+    "library_inclusion": "rust/src/lib.rs exposes the sacred source as troll_farm::resident_policy",
+    "files_containing_resident_policy_api": 11,
+    "rust_files_containing_family_tokens": {
+      "ScarceIntent": 4,
+      "banana_factory": 3,
+      "task_market": 3,
+      "opponent_crop": 18
+    },
+    "cgauto_files_containing_family_tokens": {
+      "ScarceIntent": 57,
+      "banana_factory": 5,
+      "task_market": 3,
+      "opponent_crop": 32
+    },
+    "interpretation": "The counts include historical sources and submission artifacts, not live construction-chain consumers. Direct specialized constructors and embedded tests make the sacred source a research fixture/API even though main cannot activate the families."
+  },
+  "size_accounting": {
+    "sacred_to_pre_slim_bytes": 184830,
+    "sacred_to_pre_slim_percent": 67.1189,
+    "pre_slim_to_live_bytes": 27822,
+    "pre_slim_to_live_percent": 30.7266,
+    "sacred_to_live_bytes": 212652,
+    "sacred_to_live_percent": 77.2221,
+    "additional_live_deploy_deletion_ceiling_bytes": 0,
+    "additional_live_deploy_deletion_ceiling_percent": 0.0,
+    "attribution_caveat": "The 212652-byte gross sacred-to-live difference also includes formatting, tests, APIs, unrelated dead items, and other specialization; it is not attributable to the four N7 families."
+  },
+  "artifact_disposition": [
+    {
+      "artifact": "current live deploy and api_submit default",
+      "action": "KEEP",
+      "reason": "already excludes all four families; no live size or performance gain remains"
+    },
+    {
+      "artifact": "sacred development/library source",
+      "action": "KEEP_BYTE_EXACT",
+      "reason": "hash lock, direct library visibility, 23 path importers, specialized research constructors, and embedded tests"
+    },
+    {
+      "artifact": "D171a exact snapshot",
+      "action": "KEEP_BYTE_EXACT",
+      "reason": "exact control fixture used by later panels"
+    },
+    {
+      "artifact": "historical runners and submission artifacts",
+      "action": "KEEP",
+      "reason": "reproducibility record; token presence is not live-deploy liveness"
+    },
+    {
+      "artifact": "future maintainable runtime core",
+      "action": "SEPARATE_OWNER_AUTHORIZED_MIGRATION_ONLY",
+      "reason": "if desired, create a new versioned non-sacred module from the slim artifact, migrate consumers individually with parity, and retain sacred fixtures; do not clean the sacred source in place"
+    }
+  ],
+  "decision": {
+    "cleanup_patch": false,
+    "successor_required": false,
+    "reason": "The deploy already has zero occurrences and therefore a zero-byte additional deletion ceiling. Editing the sacred source would trade away reproducibility/API stability for no deploy benefit.",
+    "register_action": "close N7 as deployment already slim"
+  }
+}

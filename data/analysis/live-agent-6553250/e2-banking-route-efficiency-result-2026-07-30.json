@@ -1,0 +1,987 @@
+{
+ "aggregate": {
+  "ambiguous_carrying_door_moves": 7,
+  "bound_next_targets": 10597,
+  "cargo_units_confirmed": 14695,
+  "confirmed_deposits": 11260,
+  "ended_by_stall": 192,
+  "episodes": 11267,
+  "games": 200,
+  "hindsight_static": {
+   "bound_episodes": 10597,
+   "cell_regret_sum": 716,
+   "eta_regret_max": 1,
+   "eta_regret_sum": 134,
+   "positive_eta_episodes": 134
+  },
+  "immediate": {
+   "checks": 4873,
+   "eta_regret_max": 0,
+   "eta_regret_sum": 0,
+   "identified_checks": 4855,
+   "positive_checks": 0,
+   "unidentified_checks": 18
+  },
+  "joint_assignment": {
+   "confirmed_checks": 64,
+   "eta_regret_max": 0,
+   "eta_regret_sum": 0,
+   "identified_checks": 64,
+   "positive_checks": 0
+  },
+  "median_terminal_turn": 168.0,
+  "persistence": {
+   "episodes_with_target_change": 0,
+   "max_target_changes": 0,
+   "target_changes": 0
+  },
+  "side_games": 400,
+  "side_games_with_confirmed_deposit": 400,
+  "status_counts": {
+   "deposited_bound": 10597,
+   "deposited_unbound": 663,
+   "unidentified_unterminated_return": 7
+  },
+  "total_hindsight_ceiling": {
+   "avoidable_cells": 716,
+   "avoidable_movement_turns": 134,
+   "max_episode_turns": 1,
+   "note": "Hindsight/static upper bound conditioned on the observed next target; not causal value and not rating.",
+   "positive_episodes": 134,
+   "positive_side_games": 105
+  },
+  "verdict": "ROUTE_RESIDUAL_OBSERVED"
+ },
+ "details": {
+  "bytes": 14794834,
+  "path": "outputs/local_codex_1/e2-banking-route-efficiency/e2-episode-details-0-199.json",
+  "sha256": "54aa05584a3f77b15c8c133bede7d85e05d58d668081dfa3b1f72a76ebbc0fd1"
+ },
+ "examples": {
+  "episodes": [
+   {
+    "actual_inbound_steps": 2,
+    "bank_move_turns": 1,
+    "best_static_roundtrip_cells": 4,
+    "best_static_roundtrip_eta": 2,
+    "cargo_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     1
+    ],
+    "cargo_total": 1,
+    "chosen_static_roundtrip_cells": 6,
+    "chosen_static_roundtrip_eta": 3,
+    "deposit_door": [
+     14,
+     6
+    ],
+    "deposit_turn": 56,
+    "deposited_cargo": 1,
+    "door_targets": [
+     [
+      14,
+      6
+     ]
+    ],
+    "episode_id": "1:1:7",
+    "hindsight_cell_regret": 2,
+    "hindsight_eta_regret": 1,
+    "immediate_checks": 1,
+    "immediate_eta_regret_max": 0,
+    "immediate_eta_regret_sum": 0,
+    "immediate_positive_checks": 0,
+    "immediate_unidentified_checks": 0,
+    "next_action": "MOVE 3 11 5",
+    "next_action_turn": 58,
+    "next_target": [
+     11,
+     5
+    ],
+    "note": null,
+    "post_deposit_wait_turns": 1,
+    "seat": 1,
+    "seed": 1,
+    "speed": 2,
+    "start_cell": [
+     15,
+     5
+    ],
+    "start_turn": 55,
+    "status": "deposited_bound",
+    "target_changes": 0,
+    "total_hindsight_cell_regret": 2,
+    "total_hindsight_eta_regret": 1,
+    "unit_id": 3
+   },
+   {
+    "actual_inbound_steps": 2,
+    "bank_move_turns": 1,
+    "best_static_roundtrip_cells": 5,
+    "best_static_roundtrip_eta": 3,
+    "cargo_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     3
+    ],
+    "cargo_total": 3,
+    "chosen_static_roundtrip_cells": 7,
+    "chosen_static_roundtrip_eta": 4,
+    "deposit_door": [
+     4,
+     2
+    ],
+    "deposit_turn": 31,
+    "deposited_cargo": 3,
+    "door_targets": [
+     [
+      4,
+      2
+     ]
+    ],
+    "episode_id": "3:0:3",
+    "hindsight_cell_regret": 2,
+    "hindsight_eta_regret": 1,
+    "immediate_checks": 1,
+    "immediate_eta_regret_max": 0,
+    "immediate_eta_regret_sum": 0,
+    "immediate_positive_checks": 0,
+    "immediate_unidentified_checks": 0,
+    "next_action": "MOVE 2 2 3",
+    "next_action_turn": 34,
+    "next_target": [
+     2,
+     3
+    ],
+    "note": null,
+    "post_deposit_wait_turns": 2,
+    "seat": 0,
+    "seed": 3,
+    "speed": 2,
+    "start_cell": [
+     4,
+     4
+    ],
+    "start_turn": 30,
+    "status": "deposited_bound",
+    "target_changes": 0,
+    "total_hindsight_cell_regret": 2,
+    "total_hindsight_eta_regret": 1,
+    "unit_id": 2
+   },
+   {
+    "actual_inbound_steps": 1,
+    "bank_move_turns": 1,
+    "best_static_roundtrip_cells": null,
+    "best_static_roundtrip_eta": null,
+    "cargo_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     1
+    ],
+    "cargo_total": 1,
+    "chosen_static_roundtrip_cells": null,
+    "chosen_static_roundtrip_eta": null,
+    "deposit_door": null,
+    "deposit_turn": null,
+    "deposited_cargo": null,
+    "door_targets": [
+     [
+      3,
+      1
+     ]
+    ],
+    "episode_id": "3:0:16",
+    "hindsight_cell_regret": null,
+    "hindsight_eta_regret": null,
+    "immediate_checks": 1,
+    "immediate_eta_regret_max": 0,
+    "immediate_eta_regret_sum": 0,
+    "immediate_positive_checks": 0,
+    "immediate_unidentified_checks": 0,
+    "next_action": null,
+    "next_action_turn": null,
+    "next_target": null,
+    "note": "game ended before a bound deposit",
+    "post_deposit_wait_turns": 0,
+    "seat": 0,
+    "seed": 3,
+    "speed": 1,
+    "start_cell": [
+     4,
+     1
+    ],
+    "start_turn": 129,
+    "status": "unidentified_unterminated_return",
+    "target_changes": 0,
+    "total_hindsight_cell_regret": null,
+    "total_hindsight_eta_regret": null,
+    "unit_id": 0
+   },
+   {
+    "actual_inbound_steps": 3,
+    "bank_move_turns": 1,
+    "best_static_roundtrip_cells": 3,
+    "best_static_roundtrip_eta": 1,
+    "cargo_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     1
+    ],
+    "cargo_total": 1,
+    "chosen_static_roundtrip_cells": 5,
+    "chosen_static_roundtrip_eta": 2,
+    "deposit_door": [
+     15,
+     0
+    ],
+    "deposit_turn": 61,
+    "deposited_cargo": 1,
+    "door_targets": [
+     [
+      15,
+      0
+     ]
+    ],
+    "episode_id": "6:1:8",
+    "hindsight_cell_regret": 2,
+    "hindsight_eta_regret": 1,
+    "immediate_checks": 1,
+    "immediate_eta_regret_max": 0,
+    "immediate_eta_regret_sum": 0,
+    "immediate_positive_checks": 0,
+    "immediate_unidentified_checks": 0,
+    "next_action": "CHOP 3",
+    "next_action_turn": 63,
+    "next_target": [
+     14,
+     1
+    ],
+    "note": null,
+    "post_deposit_wait_turns": 1,
+    "seat": 1,
+    "seed": 6,
+    "speed": 3,
+    "start_cell": [
+     15,
+     3
+    ],
+    "start_turn": 60,
+    "status": "deposited_bound",
+    "target_changes": 0,
+    "total_hindsight_cell_regret": 2,
+    "total_hindsight_eta_regret": 1,
+    "unit_id": 3
+   },
+   {
+    "actual_inbound_steps": 1,
+    "bank_move_turns": 1,
+    "best_static_roundtrip_cells": 1,
+    "best_static_roundtrip_eta": 1,
+    "cargo_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     2
+    ],
+    "cargo_total": 2,
+    "chosen_static_roundtrip_cells": 3,
+    "chosen_static_roundtrip_eta": 2,
+    "deposit_door": [
+     12,
+     3
+    ],
+    "deposit_turn": 26,
+    "deposited_cargo": 2,
+    "door_targets": [
+     [
+      12,
+      3
+     ]
+    ],
+    "episode_id": "8:1:1",
+    "hindsight_cell_regret": 2,
+    "hindsight_eta_regret": 1,
+    "immediate_checks": 1,
+    "immediate_eta_regret_max": 0,
+    "immediate_eta_regret_sum": 0,
+    "immediate_positive_checks": 0,
+    "immediate_unidentified_checks": 0,
+    "next_action": "CHOP 3",
+    "next_action_turn": 28,
+    "next_target": [
+     13,
+     2
+    ],
+    "note": null,
+    "post_deposit_wait_turns": 1,
+    "seat": 1,
+    "seed": 8,
+    "speed": 2,
+    "start_cell": [
+     13,
+     3
+    ],
+    "start_turn": 25,
+    "status": "deposited_bound",
+    "target_changes": 0,
+    "total_hindsight_cell_regret": 2,
+    "total_hindsight_eta_regret": 1,
+    "unit_id": 3
+   },
+   {
+    "actual_inbound_steps": 2,
+    "bank_move_turns": 1,
+    "best_static_roundtrip_cells": 4,
+    "best_static_roundtrip_eta": 2,
+    "cargo_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     2
+    ],
+    "cargo_total": 2,
+    "chosen_static_roundtrip_cells": 6,
+    "chosen_static_roundtrip_eta": 3,
+    "deposit_door": [
+     7,
+     6
+    ],
+    "deposit_turn": 69,
+    "deposited_cargo": 2,
+    "door_targets": [
+     [
+      7,
+      6
+     ]
+    ],
+    "episode_id": "9:0:6",
+    "hindsight_cell_regret": 2,
+    "hindsight_eta_regret": 1,
+    "immediate_checks": 1,
+    "immediate_eta_regret_max": 0,
+    "immediate_eta_regret_sum": 0,
+    "immediate_positive_checks": 0,
+    "immediate_unidentified_checks": 0,
+    "next_action": "MOVE 2 6 3",
+    "next_action_turn": 71,
+    "next_target": [
+     6,
+     3
+    ],
+    "note": null,
+    "post_deposit_wait_turns": 1,
+    "seat": 0,
+    "seed": 9,
+    "speed": 2,
+    "start_cell": [
+     5,
+     6
+    ],
+    "start_turn": 68,
+    "status": "deposited_bound",
+    "target_changes": 0,
+    "total_hindsight_cell_regret": 2,
+    "total_hindsight_eta_regret": 1,
+    "unit_id": 2
+   },
+   {
+    "actual_inbound_steps": 1,
+    "bank_move_turns": 1,
+    "best_static_roundtrip_cells": 3,
+    "best_static_roundtrip_eta": 2,
+    "cargo_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     2
+    ],
+    "cargo_total": 2,
+    "chosen_static_roundtrip_cells": 5,
+    "chosen_static_roundtrip_eta": 3,
+    "deposit_door": [
+     7,
+     6
+    ],
+    "deposit_turn": 93,
+    "deposited_cargo": 2,
+    "door_targets": [
+     [
+      7,
+      6
+     ]
+    ],
+    "episode_id": "9:0:8",
+    "hindsight_cell_regret": 2,
+    "hindsight_eta_regret": 1,
+    "immediate_checks": 1,
+    "immediate_eta_regret_max": 0,
+    "immediate_eta_regret_sum": 0,
+    "immediate_positive_checks": 0,
+    "immediate_unidentified_checks": 0,
+    "next_action": "MOVE 2 9 4",
+    "next_action_turn": 95,
+    "next_target": [
+     9,
+     4
+    ],
+    "note": null,
+    "post_deposit_wait_turns": 1,
+    "seat": 0,
+    "seed": 9,
+    "speed": 2,
+    "start_cell": [
+     8,
+     6
+    ],
+    "start_turn": 92,
+    "status": "deposited_bound",
+    "target_changes": 0,
+    "total_hindsight_cell_regret": 2,
+    "total_hindsight_eta_regret": 1,
+    "unit_id": 2
+   },
+   {
+    "actual_inbound_steps": 1,
+    "bank_move_turns": 1,
+    "best_static_roundtrip_cells": 2,
+    "best_static_roundtrip_eta": 2,
+    "cargo_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     2
+    ],
+    "cargo_total": 2,
+    "chosen_static_roundtrip_cells": 4,
+    "chosen_static_roundtrip_eta": 3,
+    "deposit_door": [
+     8,
+     5
+    ],
+    "deposit_turn": 189,
+    "deposited_cargo": 2,
+    "door_targets": [
+     [
+      8,
+      5
+     ]
+    ],
+    "episode_id": "9:0:22",
+    "hindsight_cell_regret": 2,
+    "hindsight_eta_regret": 1,
+    "immediate_checks": 1,
+    "immediate_eta_regret_max": 0,
+    "immediate_eta_regret_sum": 0,
+    "immediate_positive_checks": 0,
+    "immediate_unidentified_checks": 0,
+    "next_action": "MOVE 2 6 4",
+    "next_action_turn": 191,
+    "next_target": [
+     6,
+     4
+    ],
+    "note": null,
+    "post_deposit_wait_turns": 1,
+    "seat": 0,
+    "seed": 9,
+    "speed": 2,
+    "start_cell": [
+     8,
+     4
+    ],
+    "start_turn": 188,
+    "status": "deposited_bound",
+    "target_changes": 0,
+    "total_hindsight_cell_regret": 2,
+    "total_hindsight_eta_regret": 1,
+    "unit_id": 2
+   },
+   {
+    "actual_inbound_steps": 1,
+    "bank_move_turns": 1,
+    "best_static_roundtrip_cells": 3,
+    "best_static_roundtrip_eta": 2,
+    "cargo_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     2
+    ],
+    "cargo_total": 2,
+    "chosen_static_roundtrip_cells": 5,
+    "chosen_static_roundtrip_eta": 3,
+    "deposit_door": [
+     8,
+     1
+    ],
+    "deposit_turn": 53,
+    "deposited_cargo": 2,
+    "door_targets": [
+     [
+      8,
+      1
+     ]
+    ],
+    "episode_id": "9:1:4",
+    "hindsight_cell_regret": 2,
+    "hindsight_eta_regret": 1,
+    "immediate_checks": 1,
+    "immediate_eta_regret_max": 0,
+    "immediate_eta_regret_sum": 0,
+    "immediate_positive_checks": 0,
+    "immediate_unidentified_checks": 0,
+    "next_action": "MOVE 3 9 4",
+    "next_action_turn": 55,
+    "next_target": [
+     9,
+     4
+    ],
+    "note": null,
+    "post_deposit_wait_turns": 1,
+    "seat": 1,
+    "seed": 9,
+    "speed": 2,
+    "start_cell": [
+     9,
+     1
+    ],
+    "start_turn": 52,
+    "status": "deposited_bound",
+    "target_changes": 0,
+    "total_hindsight_cell_regret": 2,
+    "total_hindsight_eta_regret": 1,
+    "unit_id": 3
+   },
+   {
+    "actual_inbound_steps": 2,
+    "bank_move_turns": 1,
+    "best_static_roundtrip_cells": 3,
+    "best_static_roundtrip_eta": 2,
+    "cargo_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     2
+    ],
+    "cargo_total": 2,
+    "chosen_static_roundtrip_cells": 5,
+    "chosen_static_roundtrip_eta": 3,
+    "deposit_door": [
+     8,
+     3
+    ],
+    "deposit_turn": 71,
+    "deposited_cargo": 2,
+    "door_targets": [
+     [
+      8,
+      3
+     ]
+    ],
+    "episode_id": "9:1:6",
+    "hindsight_cell_regret": 2,
+    "hindsight_eta_regret": 1,
+    "immediate_checks": 1,
+    "immediate_eta_regret_max": 0,
+    "immediate_eta_regret_sum": 0,
+    "immediate_positive_checks": 0,
+    "immediate_unidentified_checks": 0,
+    "next_action": "MOVE 3 7 1",
+    "next_action_turn": 73,
+    "next_target": [
+     7,
+     1
+    ],
+    "note": null,
+    "post_deposit_wait_turns": 1,
+    "seat": 1,
+    "seed": 9,
+    "speed": 2,
+    "start_cell": [
+     6,
+     3
+    ],
+    "start_turn": 70,
+    "status": "deposited_bound",
+    "target_changes": 0,
+    "total_hindsight_cell_regret": 2,
+    "total_hindsight_eta_regret": 1,
+    "unit_id": 3
+   },
+   {
+    "actual_inbound_steps": 2,
+    "bank_move_turns": 1,
+    "best_static_roundtrip_cells": 4,
+    "best_static_roundtrip_eta": 2,
+    "cargo_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     1
+    ],
+    "cargo_total": 1,
+    "chosen_static_roundtrip_cells": 6,
+    "chosen_static_roundtrip_eta": 3,
+    "deposit_door": [
+     0,
+     5
+    ],
+    "deposit_turn": 83,
+    "deposited_cargo": 1,
+    "door_targets": [
+     [
+      0,
+      5
+     ]
+    ],
+    "episode_id": "10:0:8",
+    "hindsight_cell_regret": 2,
+    "hindsight_eta_regret": 1,
+    "immediate_checks": 1,
+    "immediate_eta_regret_max": 0,
+    "immediate_eta_regret_sum": 0,
+    "immediate_positive_checks": 0,
+    "immediate_unidentified_checks": 0,
+    "next_action": "MOVE 3 3 6",
+    "next_action_turn": 85,
+    "next_target": [
+     3,
+     6
+    ],
+    "note": null,
+    "post_deposit_wait_turns": 1,
+    "seat": 0,
+    "seed": 10,
+    "speed": 2,
+    "start_cell": [
+     2,
+     5
+    ],
+    "start_turn": 82,
+    "status": "deposited_bound",
+    "target_changes": 0,
+    "total_hindsight_cell_regret": 2,
+    "total_hindsight_eta_regret": 1,
+    "unit_id": 3
+   },
+   {
+    "actual_inbound_steps": 2,
+    "bank_move_turns": 1,
+    "best_static_roundtrip_cells": 4,
+    "best_static_roundtrip_eta": 2,
+    "cargo_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     2
+    ],
+    "cargo_total": 2,
+    "chosen_static_roundtrip_cells": 6,
+    "chosen_static_roundtrip_eta": 3,
+    "deposit_door": [
+     1,
+     4
+    ],
+    "deposit_turn": 71,
+    "deposited_cargo": 2,
+    "door_targets": [
+     [
+      1,
+      4
+     ]
+    ],
+    "episode_id": "14:0:7",
+    "hindsight_cell_regret": 2,
+    "hindsight_eta_regret": 1,
+    "immediate_checks": 1,
+    "immediate_eta_regret_max": 0,
+    "immediate_eta_regret_sum": 0,
+    "immediate_positive_checks": 0,
+    "immediate_unidentified_checks": 0,
+    "next_action": "MOVE 2 3 2",
+    "next_action_turn": 73,
+    "next_target": [
+     3,
+     2
+    ],
+    "note": null,
+    "post_deposit_wait_turns": 1,
+    "seat": 0,
+    "seed": 14,
+    "speed": 2,
+    "start_cell": [
+     3,
+     4
+    ],
+    "start_turn": 70,
+    "status": "deposited_bound",
+    "target_changes": 0,
+    "total_hindsight_cell_regret": 2,
+    "total_hindsight_eta_regret": 1,
+    "unit_id": 2
+   },
+   {
+    "actual_inbound_steps": 1,
+    "bank_move_turns": 1,
+    "best_static_roundtrip_cells": 3,
+    "best_static_roundtrip_eta": 2,
+    "cargo_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     2
+    ],
+    "cargo_total": 2,
+    "chosen_static_roundtrip_cells": 5,
+    "chosen_static_roundtrip_eta": 3,
+    "deposit_door": [
+     14,
+     3
+    ],
+    "deposit_turn": 40,
+    "deposited_cargo": 2,
+    "door_targets": [
+     [
+      14,
+      3
+     ]
+    ],
+    "episode_id": "14:1:3",
+    "hindsight_cell_regret": 2,
+    "hindsight_eta_regret": 1,
+    "immediate_checks": 1,
+    "immediate_eta_regret_max": 0,
+    "immediate_eta_regret_sum": 0,
+    "immediate_positive_checks": 0,
+    "immediate_unidentified_checks": 0,
+    "next_action": "MOVE 3 11 4",
+    "next_action_turn": 42,
+    "next_target": [
+     11,
+     4
+    ],
+    "note": null,
+    "post_deposit_wait_turns": 1,
+    "seat": 1,
+    "seed": 14,
+    "speed": 2,
+    "start_cell": [
+     13,
+     3
+    ],
+    "start_turn": 39,
+    "status": "deposited_bound",
+    "target_changes": 0,
+    "total_hindsight_cell_regret": 2,
+    "total_hindsight_eta_regret": 1,
+    "unit_id": 3
+   },
+   {
+    "actual_inbound_steps": 2,
+    "bank_move_turns": 1,
+    "best_static_roundtrip_cells": null,
+    "best_static_roundtrip_eta": null,
+    "cargo_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     2
+    ],
+    "cargo_total": 2,
+    "chosen_static_roundtrip_cells": null,
+    "chosen_static_roundtrip_eta": null,
+    "deposit_door": null,
+    "deposit_turn": null,
+    "deposited_cargo": null,
+    "door_targets": [
+     [
+      6,
+      3
+     ]
+    ],
+    "episode_id": "17:0:25",
+    "hindsight_cell_regret": null,
+    "hindsight_eta_regret": null,
+    "immediate_checks": 1,
+    "immediate_eta_regret_max": 0,
+    "immediate_eta_regret_sum": 0,
+    "immediate_positive_checks": 0,
+    "immediate_unidentified_checks": 0,
+    "next_action": null,
+    "next_action_turn": null,
+    "next_target": null,
+    "note": "game ended before a bound deposit",
+    "post_deposit_wait_turns": 0,
+    "seat": 0,
+    "seed": 17,
+    "speed": 2,
+    "start_cell": [
+     7,
+     2
+    ],
+    "start_turn": 174,
+    "status": "unidentified_unterminated_return",
+    "target_changes": 0,
+    "total_hindsight_cell_regret": null,
+    "total_hindsight_eta_regret": null,
+    "unit_id": 2
+   },
+   {
+    "actual_inbound_steps": 2,
+    "bank_move_turns": 1,
+    "best_static_roundtrip_cells": 6,
+    "best_static_roundtrip_eta": 3,
+    "cargo_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     2
+    ],
+    "cargo_total": 2,
+    "chosen_static_roundtrip_cells": 8,
+    "chosen_static_roundtrip_eta": 4,
+    "deposit_door": [
+     14,
+     1
+    ],
+    "deposit_turn": 35,
+    "deposited_cargo": 2,
+    "door_targets": [
+     [
+      14,
+      1
+     ]
+    ],
+    "episode_id": "21:1:6",
+    "hindsight_cell_regret": 2,
+    "hindsight_eta_regret": 1,
+    "immediate_checks": 1,
+    "immediate_eta_regret_max": 0,
+    "immediate_eta_regret_sum": 0,
+    "immediate_positive_checks": 0,
+    "immediate_unidentified_checks": 0,
+    "next_action": "MOVE 2 12 3",
+    "next_action_turn": 38,
+    "next_target": [
+     12,
+     3
+    ],
+    "note": null,
+    "post_deposit_wait_turns": 2,
+    "seat": 1,
+    "seed": 21,
+    "speed": 2,
+    "start_cell": [
+     15,
+     0
+    ],
+    "start_turn": 34,
+    "status": "deposited_bound",
+    "target_changes": 0,
+    "total_hindsight_cell_regret": 2,
+    "total_hindsight_eta_regret": 1,
+    "unit_id": 2
+   },
+   {
+    "actual_inbound_steps": 2,
+    "bank_move_turns": 1,
+    "best_static_roundtrip_cells": 4,
+    "best_static_roundtrip_eta": 2,
+    "cargo_start": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     2
+    ],
+    "cargo_total": 2,
+    "chosen_static_roundtrip_cells": 6,
+    "chosen_static_roundtrip_eta": 3,
+    "deposit_door": [
+     6,
+     3
+    ],
+    "deposit_turn": 26,
+    "deposited_cargo": 2,
+    "door_targets": [
+     [
+      6,
+      3
+     ]
+    ],
+    "episode_id": "24:0:4",
+    "hindsight_cell_regret": 2,
+    "hindsight_eta_regret": 1,
+    "immediate_checks": 1,
+    "immediate_eta_regret_max": 0,
+    "immediate_eta_regret_sum": 0,
+    "immediate_positive_checks": 0,
+    "immediate_unidentified_checks": 0,
+    "next_action": "MOVE 2 8 1",
+    "next_action_turn": 28,
+    "next_target": [
+     8,
+     1
+    ],
+    "note": null,
+    "post_deposit_wait_turns": 1,
+    "seat": 0,
+    "seed": 24,
+    "speed": 2,
+    "start_cell": [
+     8,
+     3
+    ],
+    "start_turn": 25,
+    "status": "deposited_bound",
+    "target_changes": 0,
+    "total_hindsight_cell_regret": 2,
+    "total_hindsight_eta_regret": 1,
+    "unit_id": 2
+   }
+  ],
+  "positive_joint_assignments": []
+ },
+ "schema": 1,
+ "scope": "behavior-neutral exact-live local audit on reused deterministic seeds; no source change, protected range, candidate, or Arena inference",
+ "seed_start": 0,
+ "seeds": 200,
+ "source": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+ "source_sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+}

@@ -1,0 +1,62 @@
+{
+ "bin_cache_dir": "bin",
+ "candidate": {
+  "crate": "m3a_floor_candidate",
+  "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "source": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+  "source_git": {
+   "commit": "a6e82a1cd36d223e6577e69753f3c1b278ade8e3",
+   "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs"
+  }
+ },
+ "class_mix": {
+  "choke_corridor": 0.25,
+  "forest_dense": 0.08,
+  "forest_sparse": 0.07,
+  "multi_door": 0.1,
+  "open_field": 0.15,
+  "orchard_eligible": 0.1,
+  "single_door_tent": 0.1,
+  "water_diagonal": 0.15
+ },
+ "corpus_version": "c3-train-engine-authority-2026-08-09",
+ "games_dir": "games",
+ "instrument_version": "fuzz-panel/3-train-engine-authority",
+ "liveness_window": 60,
+ "maps": 120,
+ "margin_collapse_threshold": 100,
+ "max_generation_attempts": 64,
+ "notes": [
+  "CORPUS BUMP c2 -> c3 (TRAIN engine-authority revision, 2026-08-09). The c2 referee derived TRAIN legality from MoisanBot::can_train (rust/src/bin/yamo_orchard_live.rs:836, 'if n >= 2 || TOTAL_TURNS - view.turn <= 20 { return false; }'). That is ONE BOT'S SELF-RESTRAINT. The authority is rust/src/game/engine.rs::apply_train (525-568), which enforces NEITHER the two-worker cap NOR the final-20-turn guard: between the own-unit count at 527 (used only to price the bill at 528) and the spawn at 556-567 the only rejections are affordability (539-541) and an occupied shack (545-547). The c2 referee therefore forbade what the engine permits and would have silently rejected a candidate that trains a third worker. c3 removes both bot-derived restrictions and mirrors engine.rs alone. Permitting a third (and fourth, ...) worker changes many games; results are NOT comparable across the bump.",
+  "CORPUS BUMP c1 -> c2 (referee TRAIN repair, 2026-08-09). The referee now implements TRAIN and MINE and dispatches commands EXHAUSTIVELY: a verb with no handler terminates the run as GATE_UNREADY / unsupported_command instead of being silently discarded. Under c1 the referee silently dropped TRAIN and MINE, so every game in which the bot trained or mined was simulated against a world that never happened -- m040 seat 0 / seat 1 emitted TRAIN on 166 / 182 of 200 turns and still scored CLEAN. Results are NOT comparable across the bump; load_config refuses a config declaring a different version.",
+  "RAW/ABSOLUTE gate (owner ruling 2026-08-06): every detector D-1..D-9 episode blocks, inherited-from-parent or not, on every map, and P4 liveness has no parent exemption. The round-6 ROOT-A D-9 parent-differential gate and the D-1 inherited-report-only downgrade are both REMOVED. The parent run is still computed for the P3 orchard-inertness check (an absolute candidate==parent requirement, kept) and for diagnostics, but never exempts a candidate detector episode. trace_detectors is unmodified.",
+  "P4 ABSOLUTE terminal-state calibration (gate repair #2, 2026-08-06): a stall window blocks only over the turns in which the referee world state still offers the own player a resource action -- i.e. some own unit still carries something to bank/plant, or some plant still stands on a cell an own unit can walk to (harvest/chop) -- so a stall that begins after the world is exhausted for the rest of the game is excused while any stall of >= liveness_window LIVE turns, mid-game or running to the sim horizon, still blocks. The predicate reads only the candidate's own transcript (static map + plants + own units): no parent reference, no all-WAIT command heuristic.",
+  "SOURCE PORTABILITY REPAIR (2026-08-12, against chatgpt_1's M3a review 20260811T230000Z: REVISION_REQUIRED -- SOURCE REPLAY NOT PORTABLE). `candidate.source` and `parent.source` previously held absolute paths under /tmp/claude-1000/<session-id>/scratchpad and /home/tarstars, which exist on no clean runner and not on this host once the session scratchpad is reaped. Each entry now carries `source_git` = {commit, path}: an IMMUTABLE commit id, not a moving branch. The replay materialises the blob from that commit into a temp dir and re-checks it against the `sha256` pin above before compiling, so provenance is fixed by the commit and content by the digest. `source` now holds the repo-relative path for the record; a direct panel run that does not materialise will fail loudly on a missing path rather than silently depend on a scratch directory. NOTHING measured changes: same seeds, same mixes, same corpus_version, same instrument_version, same sha256 pins, same run_identity.",
+  "OUTPUT PATHS (same repair). `bin_cache_dir` and `games_dir` were absolute paths under the same session scratchpad. They are now names resolved relative to this config's own directory by fuzz_panel.resolve(), so no absolute host path remains anywhere in this config. Both are untracked build/output directories; the replay does not read either, and overrides them into a temp dir regardless."
+ ],
+ "opponent_mix": {
+  "chopper_aggressor": 0.3,
+  "harvester": 0.4,
+  "idle": 0.3
+ },
+ "parent": {
+  "crate": "m3a_floor_parent",
+  "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "source": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+  "source_git": {
+   "commit": "a6e82a1cd36d223e6577e69753f3c1b278ade8e3",
+   "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs"
+  }
+ },
+ "processes": 8,
+ "seeds": [
+  982451653,
+  15485863,
+  32452843,
+  49979687,
+  67867967,
+  86028121
+ ],
+ "task": "M3a oscillation situation library harvest -- panel floor (parent vs parent)",
+ "turns": 200
+}

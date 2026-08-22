@@ -1,0 +1,196 @@
+{
+ "schema": 1,
+ "observed_at": "2026-07-31T08:23:58.028860+00:00",
+ "result_audit_completed_at": "2026-07-31T08:24:02.805735+00:00",
+ "role": "onsite-tree-owner-first-health",
+ "agent_id": 6585801,
+ "submission_id": 41071204,
+ "arena": {
+  "agent_id": 6585801,
+  "rank": 111,
+  "total": 113,
+  "score": 11.53,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6585801,
+  "rank": 111,
+  "score": 11.53,
+  "division_index": 5
+ },
+ "battle_rows_listed": 15,
+ "matching_rows": 15,
+ "matching_finished": 14,
+ "matching_pending": 1,
+ "unexpected_rows": [],
+ "parsed_results": 14,
+ "fetch_failures": [],
+ "summary": {
+  "games": 14,
+  "wins": 6,
+  "ties": 0,
+  "losses": 8,
+  "mean_margin": -13.0,
+  "catastrophic_losses": 2,
+  "catastrophic_rate": 0.14285714285714285,
+  "negative_margin_mass": 498.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 897559494,
+   "opponent": "FreZzz",
+   "opponent_agent_id": 6584756,
+   "our_score": 156.0,
+   "opponent_score": 124.0,
+   "margin": 32.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897559468,
+   "opponent": "yveslacroix83400",
+   "opponent_agent_id": 6493051,
+   "our_score": 76.0,
+   "opponent_score": 16.0,
+   "margin": 60.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897559450,
+   "opponent": "LeRenard",
+   "opponent_agent_id": 6499915,
+   "our_score": 68.0,
+   "opponent_score": 87.0,
+   "margin": -19.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897559403,
+   "opponent": "conioon",
+   "opponent_agent_id": 6579288,
+   "our_score": 143.0,
+   "opponent_score": 117.0,
+   "margin": 26.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897559372,
+   "opponent": "yveslacroix83400",
+   "opponent_agent_id": 6493051,
+   "our_score": 136.0,
+   "opponent_score": 22.0,
+   "margin": 114.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897559371,
+   "opponent": "tonigineer",
+   "opponent_agent_id": 6505289,
+   "our_score": 151.0,
+   "opponent_score": 239.0,
+   "margin": -88.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897559370,
+   "opponent": "Titanmito",
+   "opponent_agent_id": 6505284,
+   "our_score": 223.0,
+   "opponent_score": 242.0,
+   "margin": -19.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897559369,
+   "opponent": "OccitanieFreelancer",
+   "opponent_agent_id": 6480996,
+   "our_score": 97.0,
+   "opponent_score": 34.0,
+   "margin": 63.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897559368,
+   "opponent": "Halphas",
+   "opponent_agent_id": 6480945,
+   "our_score": 116.0,
+   "opponent_score": 140.0,
+   "margin": -24.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897559367,
+   "opponent": "Quentin18",
+   "opponent_agent_id": 6481265,
+   "our_score": 90.0,
+   "opponent_score": 196.0,
+   "margin": -106.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897559366,
+   "opponent": "RinSakamichi",
+   "opponent_agent_id": 6480507,
+   "our_score": 84.0,
+   "opponent_score": 172.0,
+   "margin": -88.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897559365,
+   "opponent": "BoatBuilder",
+   "opponent_agent_id": 6480545,
+   "our_score": 89.0,
+   "opponent_score": 232.0,
+   "margin": -143.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897559364,
+   "opponent": "yamo",
+   "opponent_agent_id": 6479814,
+   "our_score": 128.0,
+   "opponent_score": 139.0,
+   "margin": -11.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897559363,
+   "opponent": "yaichi",
+   "opponent_agent_id": 6480541,
+   "our_score": 140.0,
+   "opponent_score": 119.0,
+   "margin": 21.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": true
+}

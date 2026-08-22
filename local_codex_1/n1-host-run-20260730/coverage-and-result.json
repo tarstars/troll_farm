@@ -1,0 +1,312 @@
+{
+  "battle_summary": {
+    "battle_lists": 243,
+    "lifetime_count_status": "right_censored recent list unless a separate invariant leaderboard count is present",
+    "list_length_max": 274,
+    "list_length_median": 137,
+    "list_length_min": 101,
+    "raw_top_level_field_counts": {
+      "done": 36280,
+      "gameId": 36280,
+      "players": 36280
+    },
+    "rows_with_any_timestamp": 0,
+    "visible_rows": 36280
+  },
+  "configuration": {
+    "bootstrap": 1000,
+    "interim_score": 24.7,
+    "output_dir": "/tmp/n1-maturity-result-chatgpt1-20260730T1541Z",
+    "resident_agent_id": 6561795,
+    "seed": 20260730,
+    "snapshot_root": "/home/tarstars/prj/troll_farm/data/raw/snapshots",
+    "target_score": 25.4
+  },
+  "field_inventory": {
+    "20260721T105508Z-d61p": {
+      "creationTime_rows": 1000,
+      "leaderboard_top_level_fields": [
+        "agentId",
+        "codingamer",
+        "company",
+        "creationTime",
+        "eligibleForPromotion",
+        "globalRank",
+        "inProgress",
+        "league",
+        "localRank",
+        "percentage",
+        "programmingLanguage",
+        "pseudo",
+        "rank",
+        "school",
+        "score",
+        "testSessionHandle",
+        "updateTime"
+      ],
+      "lifetime_count_fields": {},
+      "rows": 1000,
+      "updateTime_rows": 1000
+    },
+    "20260727T130712Z-d61p": {
+      "creationTime_rows": 1000,
+      "leaderboard_top_level_fields": [
+        "agentId",
+        "codingamer",
+        "company",
+        "creationTime",
+        "eligibleForPromotion",
+        "globalRank",
+        "inProgress",
+        "league",
+        "localRank",
+        "percentage",
+        "programmingLanguage",
+        "pseudo",
+        "rank",
+        "school",
+        "score",
+        "testSessionHandle",
+        "updateTime"
+      ],
+      "lifetime_count_fields": {},
+      "rows": 1000,
+      "updateTime_rows": 1000
+    },
+    "20260728T050038Z-d61p": {
+      "creationTime_rows": 1000,
+      "leaderboard_top_level_fields": [
+        "agentId",
+        "codingamer",
+        "company",
+        "creationTime",
+        "eligibleForPromotion",
+        "globalRank",
+        "inProgress",
+        "league",
+        "localRank",
+        "percentage",
+        "programmingLanguage",
+        "pseudo",
+        "rank",
+        "school",
+        "score",
+        "testSessionHandle",
+        "updateTime"
+      ],
+      "lifetime_count_fields": {},
+      "rows": 1000,
+      "updateTime_rows": 1000
+    },
+    "20260728T050038Z-d61p-wide21to50": {
+      "creationTime_rows": 1000,
+      "leaderboard_top_level_fields": [
+        "agentId",
+        "codingamer",
+        "company",
+        "creationTime",
+        "eligibleForPromotion",
+        "globalRank",
+        "inProgress",
+        "league",
+        "localRank",
+        "percentage",
+        "programmingLanguage",
+        "pseudo",
+        "rank",
+        "school",
+        "score",
+        "testSessionHandle",
+        "updateTime"
+      ],
+      "lifetime_count_fields": {},
+      "rows": 1000,
+      "updateTime_rows": 1000
+    },
+    "20260728T110709Z-d61p-wide": {
+      "creationTime_rows": 1000,
+      "leaderboard_top_level_fields": [
+        "agentId",
+        "codingamer",
+        "company",
+        "creationTime",
+        "eligibleForPromotion",
+        "globalRank",
+        "inProgress",
+        "league",
+        "localRank",
+        "percentage",
+        "programmingLanguage",
+        "pseudo",
+        "rank",
+        "school",
+        "score",
+        "testSessionHandle",
+        "updateTime"
+      ],
+      "lifetime_count_fields": {},
+      "rows": 1000,
+      "updateTime_rows": 1000
+    },
+    "20260729T021701Z-d61p-wide": {
+      "creationTime_rows": 1000,
+      "leaderboard_top_level_fields": [
+        "agentId",
+        "codingamer",
+        "company",
+        "creationTime",
+        "eligibleForPromotion",
+        "globalRank",
+        "inProgress",
+        "league",
+        "localRank",
+        "percentage",
+        "programmingLanguage",
+        "pseudo",
+        "rank",
+        "school",
+        "score",
+        "testSessionHandle",
+        "updateTime"
+      ],
+      "lifetime_count_fields": {},
+      "rows": 1000,
+      "updateTime_rows": 1000
+    },
+    "20260730T021701Z-d61p-wide": {
+      "creationTime_rows": 1000,
+      "leaderboard_top_level_fields": [
+        "agentId",
+        "codingamer",
+        "company",
+        "creationTime",
+        "eligibleForPromotion",
+        "globalRank",
+        "inProgress",
+        "league",
+        "localRank",
+        "percentage",
+        "programmingLanguage",
+        "pseudo",
+        "rank",
+        "school",
+        "score",
+        "testSessionHandle",
+        "updateTime"
+      ],
+      "lifetime_count_fields": {},
+      "rows": 1000,
+      "updateTime_rows": 1000
+    }
+  },
+  "fit": {
+    "age_effect_ci95": {
+      "d1_3": [
+        -0.4706086102675416,
+        1.0352365330447473
+      ],
+      "d3_7": [
+        -0.17891761923845495,
+        1.17475044695485
+      ],
+      "d7_14": [
+        -0.4566931857347717,
+        0.7525263732713229
+      ],
+      "ge_14d": [
+        0.0,
+        0.0
+      ],
+      "lt_1d": [
+        -0.4485264957044593,
+        1.0599417991802393
+      ]
+    },
+    "age_effect_vs_ge_14d": {
+      "d1_3": 0.312354206948308,
+      "d3_7": 0.5457769066306749,
+      "d7_14": 0.16120039741558279,
+      "ge_14d": 0.0,
+      "lt_1d": 0.3442638027959181
+    },
+    "bootstrap_requested": 1000,
+    "bootstrap_usable": 1000,
+    "columns": 10,
+    "condition_number": 26.85140287966204,
+    "fit_status": "ok",
+    "included_lifetime_battle_count": false,
+    "lifetime_battle_score_per_100": null,
+    "rank": 10,
+    "rows": 6974
+  },
+  "fit_panel_rows": 6974,
+  "generated_at_utc": "2026-07-30T15:42:32.198424Z",
+  "identification": {
+    "age_bin_crossings": 41,
+    "agent_to_user_inconsistent_agents": 0,
+    "battle_count_status": "right_censored recent list unless a separate invariant leaderboard count is present",
+    "creation_time_coverage": 1.0,
+    "creation_time_inconsistent_agents": 0,
+    "full_model_includes_lifetime_battle_count": false,
+    "future_creation_rows": 0,
+    "intervals": 5966,
+    "lifetime_battle_count_coverage": 0.0,
+    "panel_rows": 7000,
+    "positive_lifetime_battle_count_deltas": 0,
+    "reasons": [
+      "creationTime is usable; battle accumulation remains censored"
+    ],
+    "repeated_exact_agents": 1008,
+    "score_changes_with_advancing_update_time": 2549,
+    "score_changes_without_advancing_update_time": 0,
+    "score_changing_intervals": 2549,
+    "score_frozen_rank_movement_intervals": 592,
+    "snapshot_count": 7,
+    "support": "PARTIAL",
+    "unique_agents": 1034,
+    "update_advanced_without_score_change": 31,
+    "update_time_coverage": 1.0,
+    "update_time_regressions": 0,
+    "visible_dropped_battle_ids_across_intervals": 6478,
+    "visible_new_battle_ids_across_intervals": 10314
+  },
+  "load_errors": [],
+  "resident_projection": {
+    "available": true,
+    "current_age_bin": "d7_14",
+    "current_age_days": 10.35635119212963,
+    "current_score": 21.47,
+    "gap_to_interim_now": 3.2300000000000004,
+    "gap_to_interim_projected": 3.3912003974155844,
+    "gap_to_target_now": 3.9299999999999997,
+    "gap_to_target_projected": 4.091200397415584,
+    "latest_snapshot": "20260730T021701Z-d61p-wide",
+    "projected_mature_score": 21.308799602584415,
+    "remaining_maturity_uplift": -0.16120039741558279
+  },
+  "schema": "troll-farm-n1-maturity-audit-v1",
+  "scientific_verdict": {
+    "basis": [
+      "current-resident remaining uplift; 0.5 lower noise edge and 1.0 experiment value bar"
+    ],
+    "remaining_uplift": -0.16120039741558279,
+    "remaining_uplift_ci95": [
+      -0.7525263732713229,
+      0.4566931857347717
+    ],
+    "thresholds": {
+      "immaterial_ci_upper_below": 0.5,
+      "material_ci_lower_at_least": 1.0
+    },
+    "verdict": "IMMATERIAL"
+  },
+  "snapshot_ids": [
+    "20260721T105508Z-d61p",
+    "20260727T130712Z-d61p",
+    "20260728T050038Z-d61p",
+    "20260728T050038Z-d61p-wide21to50",
+    "20260728T110709Z-d61p-wide",
+    "20260729T021701Z-d61p-wide",
+    "20260730T021701Z-d61p-wide"
+  ]
+}

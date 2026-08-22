@@ -47,7 +47,7 @@ PREAMBLE = r"""
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\sffamily\footnotesize\color{arc} Troll Farm — D-Series Atlas}
-\fancyhead[R]{\sffamily\footnotesize\color{arc} 2026-07-27}
+\fancyhead[R]{\sffamily\footnotesize\color{arc} __SNAPDATE__}
 \fancyfoot[C]{\sffamily\footnotesize\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 \begin{document}
@@ -59,7 +59,7 @@ TITLE = r"""
 \vspace{4pt}
 {\sffamily\large A reader's guide to every numbered experiment of the Legend top-3 cycle\par}
 \vspace{2pt}
-{\sffamily\small Snapshot 2026-07-27 \quad·\quad ledger vol 1+2 \quad·\quad
+{\sffamily\small Snapshot __SNAPDATE__ \quad·\quad ledger vol 1+2 \quad·\quad
 \texttt{docs/CONSTRAINTS.md} \quad·\quad \texttt{docs/STATE.md}\par}
 \vspace{6pt}
 {\color{rulegray}\hrule height 1.2pt}
@@ -169,7 +169,11 @@ def main():
     with open(SRC, encoding="utf-8") as f:
         md = f.readlines()
     body = convert(unwrap(md))
-    tex = PREAMBLE + TITLE + body + "\n\\end{document}\n"
+    # Snapshot date is taken from the source document, never hardcoded: a stale date on
+    # the title page of a research atlas is a correctness bug, not cosmetics.
+    _m = re.search(r"Snapshot date:\s*\**([0-9]{4}-[0-9]{2}-[0-9]{2})", "".join(md))
+    snapshot_date = _m.group(1) if _m else "unknown"
+    tex = (PREAMBLE + TITLE).replace("__SNAPDATE__", snapshot_date) + body + "\n\\end{document}\n"
     with tempfile.TemporaryDirectory(prefix="atlas-") as tmp:
         tex_path = os.path.join(tmp, "atlas.tex")
         with open(tex_path, "w", encoding="utf-8") as f:

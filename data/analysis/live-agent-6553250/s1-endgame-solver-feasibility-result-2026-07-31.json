@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "scope": "read-only exact-live endgame solver scope and movement-only branching audit on reused maps; not a solver, policy, candidate, or Arena predictor",
+  "verdict": "FULL_EXACT_INFEASIBLE",
+  "control_sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55",
+  "panel": {
+    "seeds": "0..59 reused generated Bronze",
+    "opponents": [
+      "motion",
+      "taskplan",
+      "race",
+      "yield",
+      "ringfix3",
+      "chopharvest"
+    ],
+    "policy_seats": [
+      0,
+      1
+    ],
+    "games": 720,
+    "coverage_complete": true
+  },
+  "reach": {
+    "turn_251": {
+      "roots": 246,
+      "rate": 0.3416666666666667,
+      "nominal_horizon": 50
+    },
+    "turn_276": {
+      "roots": 188,
+      "rate": 0.2611111111111111,
+      "nominal_horizon": 25
+    },
+    "turn_291": {
+      "roots": 155,
+      "rate": 0.2152777777777778,
+      "nominal_horizon": 10
+    },
+    "all_roots": 589
+  },
+  "movement_only_joint_outcomes": {
+    "all_roots": {
+      "minimum": 8,
+      "median": 600,
+      "maximum": 6400
+    },
+    "turn_251": {
+      "minimum": 16,
+      "median": 688.0,
+      "p90": 2304,
+      "maximum": 6400
+    },
+    "turn_276": {
+      "minimum": 8,
+      "median": 497.5,
+      "p90": 2112,
+      "maximum": 5520
+    },
+    "turn_291": {
+      "minimum": 8,
+      "median": 450,
+      "p90": 1944,
+      "maximum": 3825
+    },
+    "interpretation": "strict one-ply lower bound; all non-MOVE actions are omitted"
+  },
+  "root_structure": {
+    "unit_count_patterns": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "median_total_units": 4,
+    "median_live_plants_by_turn": {
+      "251": 3.0,
+      "276": 3.0,
+      "291": 3
+    },
+    "terminal_reasons": {
+      "grace_expired": 308,
+      "mercy_player_1": 142,
+      "mercy_player_0": 141,
+      "turn_cap": 129
+    }
+  },
+  "objects": {
+    "full_simultaneous_game": {
+      "distinct": true,
+      "objective": "terminal score margin",
+      "both_players_primitive_actions": true,
+      "referee_chance_nodes_required": true,
+      "realized_referee_rng_visible_to_bot": false,
+      "deployable_50ms": false
+    },
+    "known_policy_continuation": {
+      "bot_session_serializable": false,
+      "bot_session_forkable": false,
+      "prefix_replay_possible": true,
+      "exact_counterfactual_clone": false,
+      "deployable_50ms": false
+    },
+    "resident_candidate_restriction": {
+      "exact_game_solver": false,
+      "novel": false,
+      "overlaps": [
+        "N4",
+        "D36",
+        "S3"
+      ]
+    },
+    "known_latency_boundaries_ms_p95": {
+      "online_shared_state_mc": 279.46,
+      "primitive_move_residual": 92.852,
+      "live_turn_budget": 50.0
+    }
+  },
+  "integrity": {
+    "focused_tests": "6 passed",
+    "self_test": "ok",
+    "jobs_8_full_json_sha256": "2b7749a9cfc6b1edbdfc05d80fbe3839db8fe5ddc845a6cf752dcd60bb85b20d",
+    "jobs_1_full_json_sha256": "b0006c8bf279ada0b9de4447b8582d9212283865a25883f05ed0cb4364e2dcf6",
+    "normalized_payload_sha256": "d8aafbc51df48dd16e66e5143974b724db556b35a431763d3d960b7dfebb5f51",
+    "normalized_payloads_excluding_jobs_exact": true,
+    "game_rows_sha256": "79fdcd8bbc46a51752247174552bc6a0b151cff787370340ba2bcec64e424e62",
+    "root_rows_sha256": "4b4b776692e4028c9850af22f7f01d0a335441c8372d3ee201df5a7948f90054",
+    "unexpected_stderr_bytes": 0,
+    "malformed_commands": 0,
+    "sacred_source_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "decision": {
+    "solver_implementation": false,
+    "policy_change": false,
+    "candidate": false,
+    "arena_action": false,
+    "n4_unchanged": true,
+    "s3_unchanged": true,
+    "reopen_only_with": "proof-preserving compact full-game state reduction and exact referee chance model"
+  }
+}

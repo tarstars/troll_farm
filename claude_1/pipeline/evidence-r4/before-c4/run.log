@@ -1,0 +1,14 @@
+Sun Aug  9 09:24:47 UTC 2026
+=== FLOOR c4 ===
+fuzz_panel: BLOCK (240 games, 119 blocking, 0 flagged, 0 instrument-invalid, 15.3 s; report: /tmp/claude-1000/-home-tarstars-prj-troll-farm/3b336b91-cd2f-4655-9aaf-31fd6d3d156f/scratchpad/before/floor-c4-report.md)
+
+real	0m16.197s
+user	0m50.659s
+sys	0m2.633s
+=== CANDIDATE c4 ===
+fuzz_panel: tool/config error: candidate source missing: /tmp/claude-1000/-home-tarstars-prj-troll-farm/3b336b91-cd2f-4655-9aaf-31fd6d3d156f/scratchpad/banana-restoration-r2/candidate-banana-r2.min.rs
+
+real	0m0.087s
+user	0m0.072s
+sys	0m0.015s
+Sun Aug  9 09:25:03 UTC 2026

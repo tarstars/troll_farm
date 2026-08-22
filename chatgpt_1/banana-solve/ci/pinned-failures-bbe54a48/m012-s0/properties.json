@@ -1,0 +1,85 @@
+{
+ "attempt": 0,
+ "banana_active": true,
+ "block": true,
+ "candidate": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   4
+  ],
+  "margin": 16,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 16
+ },
+ "class": "single_door_tent",
+ "detector_counts": {
+  "D-1": 0,
+  "D-2": 0,
+  "D-3": 0,
+  "D-4": 0,
+  "D-5": 1,
+  "D-6": 0,
+  "D-7": 0,
+  "D-8": 0,
+  "D-9": 0
+ },
+ "flags": [],
+ "map_id": "m012",
+ "orchard_eligible": false,
+ "parent": {
+  "inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   4
+  ],
+  "margin": 16,
+  "opp_inventory": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "opp_score": 0,
+  "score": 16
+ },
+ "profile": "chopper_aggressor",
+ "seat": 0,
+ "seed": 982451653,
+ "turns": 200,
+ "violations": [
+  {
+   "count": 1,
+   "detector": "D-5",
+   "episodes": [
+    {
+     "cell": [
+      4,
+      1
+     ],
+     "kind": "outside_ring",
+     "turn_end": 15,
+     "turn_start": 15,
+     "unit": 2
+    }
+   ],
+   "property": "P1"
+  }
+ ]
+}

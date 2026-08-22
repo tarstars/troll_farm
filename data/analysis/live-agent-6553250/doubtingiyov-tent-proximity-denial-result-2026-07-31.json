@@ -1,0 +1,5987 @@
+{
+ "adjacent_tree_generations": [
+  {
+   "birth_fruits": 0,
+   "birth_health": 3,
+   "birth_size": 1,
+   "birth_turn": 13,
+   "cell": [
+    6,
+    7
+   ],
+   "death_fruits_before": 1,
+   "death_health_before": 1,
+   "death_turn": 90,
+   "first_opponent_harvest_turn": 70,
+   "first_resident_contact_turn": 88,
+   "generation": 20,
+   "kind": "BANANA",
+   "opponent_commands": {
+    "CHOP": 4,
+    "DROP": 10,
+    "HARVEST": 6,
+    "MOVE": 9
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 3,
+    "MOVE": 1
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 3,
+   "birth_size": 1,
+   "birth_turn": 17,
+   "cell": [
+    7,
+    6
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 3,
+   "death_turn": 70,
+   "first_opponent_harvest_turn": 56,
+   "first_resident_contact_turn": 69,
+   "generation": 21,
+   "kind": "BANANA",
+   "opponent_commands": {
+    "DROP": 8,
+    "HARVEST": 5,
+    "MOVE": 4
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 2,
+    "MOVE": 3
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 20,
+   "cell": [
+    8,
+    7
+   ],
+   "death_fruits_before": 3,
+   "death_health_before": 2,
+   "death_turn": 128,
+   "first_opponent_harvest_turn": 56,
+   "first_resident_contact_turn": 112,
+   "generation": 22,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "DROP": 37,
+    "HARVEST": 37,
+    "MOVE": 1
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 13,
+    "MOVE": 2
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 3,
+   "birth_size": 1,
+   "birth_turn": 73,
+   "cell": [
+    7,
+    6
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 2,
+   "death_turn": 91,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": 90,
+   "generation": 23,
+   "kind": "BANANA",
+   "opponent_commands": {
+    "DROP": 1,
+    "MOVE": 1
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 2,
+    "MOVE": 1
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 3,
+   "birth_size": 1,
+   "birth_turn": 93,
+   "cell": [
+    6,
+    7
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 103,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": 102,
+   "generation": 24,
+   "kind": "BANANA",
+   "opponent_commands": {},
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 2,
+    "MOVE": 1
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 3,
+   "birth_size": 1,
+   "birth_turn": 97,
+   "cell": [
+    7,
+    6
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 100,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 25,
+   "kind": "BANANA",
+   "opponent_commands": {
+    "CHOP": 3
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 3,
+   "birth_size": 1,
+   "birth_turn": 103,
+   "cell": [
+    7,
+    6
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 115,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": 114,
+   "generation": 26,
+   "kind": "BANANA",
+   "opponent_commands": {
+    "DROP": 1,
+    "MOVE": 1
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 2,
+    "MOVE": 2
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 3,
+   "birth_size": 1,
+   "birth_turn": 107,
+   "cell": [
+    6,
+    7
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 110,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 27,
+   "kind": "BANANA",
+   "opponent_commands": {
+    "CHOP": 3
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 3,
+   "birth_size": 1,
+   "birth_turn": 113,
+   "cell": [
+    6,
+    7
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 116,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 28,
+   "kind": "BANANA",
+   "opponent_commands": {
+    "CHOP": 3
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 3,
+   "birth_size": 1,
+   "birth_turn": 119,
+   "cell": [
+    6,
+    7
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 137,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 29,
+   "kind": "BANANA",
+   "opponent_commands": {
+    "CHOP": 5,
+    "DROP": 1,
+    "MOVE": 2
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 3,
+   "birth_size": 1,
+   "birth_turn": 123,
+   "cell": [
+    7,
+    6
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 2,
+   "death_turn": 125,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": 125,
+   "generation": 30,
+   "kind": "BANANA",
+   "opponent_commands": {
+    "CHOP": 2
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 1,
+    "MOVE": 1
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 3,
+   "birth_size": 1,
+   "birth_turn": 128,
+   "cell": [
+    7,
+    6
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 134,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 31,
+   "kind": "BANANA",
+   "opponent_commands": {
+    "CHOP": 3,
+    "MOVE": 2
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 129,
+   "cell": [
+    8,
+    7
+   ],
+   "death_fruits_before": 2,
+   "death_health_before": 2,
+   "death_turn": 144,
+   "first_opponent_harvest_turn": 140,
+   "first_resident_contact_turn": 138,
+   "generation": 32,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "DROP": 2,
+    "HARVEST": 3,
+    "MOVE": 1
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 7,
+    "MOVE": 1
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 3,
+   "birth_size": 1,
+   "birth_turn": 137,
+   "cell": [
+    7,
+    6
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 2,
+   "death_turn": 150,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": 149,
+   "generation": 33,
+   "kind": "BANANA",
+   "opponent_commands": {
+    "CHOP": 3,
+    "DROP": 1,
+    "MOVE": 2
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 2,
+    "MOVE": 1
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 3,
+   "birth_size": 1,
+   "birth_turn": 140,
+   "cell": [
+    6,
+    7
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 143,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 34,
+   "kind": "BANANA",
+   "opponent_commands": {
+    "CHOP": 3
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 145,
+   "cell": [
+    8,
+    7
+   ],
+   "death_fruits_before": 1,
+   "death_health_before": 2,
+   "death_turn": 187,
+   "first_opponent_harvest_turn": 156,
+   "first_resident_contact_turn": 181,
+   "generation": 35,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "DROP": 16,
+    "HARVEST": 16,
+    "MOVE": 1
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 7,
+    "MOVE": 2
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 3,
+   "birth_size": 1,
+   "birth_turn": 146,
+   "cell": [
+    6,
+    7
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 149,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 36,
+   "kind": "BANANA",
+   "opponent_commands": {
+    "CHOP": 3
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 3,
+   "birth_size": 1,
+   "birth_turn": 152,
+   "cell": [
+    6,
+    7
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 157,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 37,
+   "kind": "BANANA",
+   "opponent_commands": {
+    "CHOP": 3,
+    "MOVE": 1
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 153,
+   "cell": [
+    7,
+    6
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 2,
+   "death_turn": 171,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": 167,
+   "generation": 38,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "DROP": 1,
+    "MOVE": 1
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 5,
+    "MOVE": 1
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 160,
+   "cell": [
+    6,
+    7
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 172,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": 170,
+   "generation": 39,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "CHOP": 12
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 3,
+    "MOVE": 1
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 175,
+   "cell": [
+    6,
+    7
+   ],
+   "death_fruits_before": 1,
+   "death_health_before": 1,
+   "death_turn": 220,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 40,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "CHOP": 20,
+    "DROP": 1,
+    "MOVE": 2
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 179,
+   "cell": [
+    7,
+    6
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 2,
+   "death_turn": 192,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": 192,
+   "generation": 41,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "CHOP": 13
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 1,
+    "MOVE": 1
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 189,
+   "cell": [
+    8,
+    7
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 2,
+   "death_turn": 203,
+   "first_opponent_harvest_turn": 198,
+   "first_resident_contact_turn": 197,
+   "generation": 42,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "DROP": 3,
+    "HARVEST": 3,
+    "MOVE": 1
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 7,
+    "MOVE": 1
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 195,
+   "cell": [
+    7,
+    6
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 2,
+   "death_turn": 221,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": 221,
+   "generation": 43,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "CHOP": 16,
+    "DROP": 1,
+    "MOVE": 2
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 1,
+    "MOVE": 1
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 223,
+   "cell": [
+    6,
+    7
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 237,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 47,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "CHOP": 14
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 224,
+   "cell": [
+    7,
+    6
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 3,
+   "death_turn": 233,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": 233,
+   "generation": 48,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "CHOP": 9
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 1,
+    "MOVE": 1
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 236,
+   "cell": [
+    7,
+    6
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 250,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 51,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "CHOP": 14
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 240,
+   "cell": [
+    6,
+    7
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 254,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 52,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "CHOP": 14
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 253,
+   "cell": [
+    7,
+    6
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 267,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 53,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "CHOP": 14
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 257,
+   "cell": [
+    6,
+    7
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 271,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": 271,
+   "generation": 56,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "CHOP": 14
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 1,
+    "MOVE": 1
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 270,
+   "cell": [
+    7,
+    6
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 282,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": 280,
+   "generation": 59,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "CHOP": 12
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 3,
+    "MOVE": 1
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 274,
+   "cell": [
+    6,
+    7
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 285,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": 284,
+   "generation": 60,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "CHOP": 11
+   },
+   "planter": 0,
+   "resident_commands": {
+    "CHOP": 2,
+    "MOVE": 1
+   },
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 277,
+   "cell": [
+    8,
+    7
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 2,
+   "death_turn": 283,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 61,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "CHOP": 6
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 285,
+   "cell": [
+    7,
+    6
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 1,
+   "death_turn": 299,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 62,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "CHOP": 14
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 286,
+   "cell": [
+    8,
+    7
+   ],
+   "death_fruits_before": 0,
+   "death_health_before": 2,
+   "death_turn": 292,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 63,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "CHOP": 6
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 288,
+   "cell": [
+    6,
+    7
+   ],
+   "death_turn": null,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 64,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "CHOP": 12
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  },
+  {
+   "birth_fruits": 0,
+   "birth_health": 11,
+   "birth_size": 1,
+   "birth_turn": 295,
+   "cell": [
+    8,
+    7
+   ],
+   "death_turn": null,
+   "first_opponent_harvest_turn": null,
+   "first_resident_contact_turn": null,
+   "generation": 65,
+   "kind": "APPLE",
+   "opponent_commands": {
+    "CHOP": 5
+   },
+   "planter": 0,
+   "resident_commands": {},
+   "source": "planted"
+  }
+ ],
+ "final_inventory": [
+  [
+   0,
+   0,
+   38,
+   0,
+   0,
+   56
+  ],
+  [
+   0,
+   0,
+   0,
+   0,
+   0,
+   52
+  ]
+ ],
+ "game": {
+  "game_id": 897547554,
+  "opponent": "DoubtinGiyov",
+  "opponent_agent_id": 6482016,
+  "opponent_seat": 0,
+  "opponent_submission_id": 40751228,
+  "our_agent_id": 6585578,
+  "our_seat": 1,
+  "our_submission_id": 41070584,
+  "ranks": [
+   0,
+   1
+  ],
+  "scores": [
+   262,
+   208
+  ],
+  "turns": 300
+ },
+ "geometry": {
+  "cardinal_adjacent_cells": [
+   [
+    7,
+    8
+   ],
+   [
+    8,
+    7
+   ],
+   [
+    7,
+    6
+   ],
+   [
+    6,
+    7
+   ]
+  ],
+  "initial_adjacent_tree_count": 0,
+  "opponent_shack": [
+   7,
+   7
+  ]
+ },
+ "integrity": {
+  "decoded_turns": 300,
+  "raw_cache": "data/external/doubtingiyov-tent-proximity-denial/game-897547554.json",
+  "raw_sha256": "d2f2c13c6737ea110d86df1f54973e5a0d3924be5bd2140d6bd90d92dda646c3",
+  "trajectory_cache": "data/external/doubtingiyov-tent-proximity-denial/trajectory-897547554.jsonl",
+  "trajectory_sha256": "fd2d03817ca9885858a8a5e774102e63d41e939eb89708488c00019c446342dc",
+  "trajectory_turns": 300,
+  "unknown_diff_updates": 0
+ },
+ "interpretation": "The exact game supports the trigger and exposes a delayed response window. It does not identify the counterfactual score effect of the proposed policy.",
+ "observed_actions": {
+  "adjacent_chop_commands": {
+   "player_0": 241,
+   "player_1": 65
+  },
+  "adjacent_drop_commands": {
+   "player_0": 83
+  },
+  "adjacent_harvest_commands": {
+   "player_0": 70
+  },
+  "before_first_resident_contact": {
+   "opponent_drop_commands": 19,
+   "opponent_dropped_item_units": 24,
+   "opponent_harvest_commands": 12,
+   "opponent_harvested_item_units": 12
+  },
+  "command_matrix": {
+   "more_than_two|player_0|CHOP:other_tree": 31,
+   "more_than_two|player_0|CHOP:tent_adjacent_tree": 94,
+   "more_than_two|player_0|DROP:tent_adjacent_tree": 59,
+   "more_than_two|player_0|HARVEST:other_tree": 6,
+   "more_than_two|player_0|HARVEST:tent_adjacent_tree": 48,
+   "more_than_two|player_0|MINE:other": 2,
+   "more_than_two|player_0|MOVE:other": 105,
+   "more_than_two|player_0|MOVE:tent_adjacent_tree": 26,
+   "more_than_two|player_1|CHOP:other_tree": 32,
+   "more_than_two|player_1|CHOP:tent_adjacent_tree": 41,
+   "more_than_two|player_1|DROP:other": 17,
+   "more_than_two|player_1|MOVE:other": 152,
+   "more_than_two|player_1|MOVE:tent_adjacent_tree": 15,
+   "more_than_two|player_1|WAIT:other": 13,
+   "one_or_two|player_0|CHOP:other_tree": 40,
+   "one_or_two|player_0|CHOP:tent_adjacent_tree": 147,
+   "one_or_two|player_0|DROP:other": 29,
+   "one_or_two|player_0|DROP:tent_adjacent_tree": 24,
+   "one_or_two|player_0|HARVEST:tent_adjacent_tree": 22,
+   "one_or_two|player_0|MOVE:other": 110,
+   "one_or_two|player_0|MOVE:tent_adjacent_tree": 5,
+   "one_or_two|player_0|PICK:other": 31,
+   "one_or_two|player_0|PLANT:other": 35,
+   "one_or_two|player_1|CHOP:other_tree": 50,
+   "one_or_two|player_1|CHOP:tent_adjacent_tree": 24,
+   "one_or_two|player_1|DROP:other": 19,
+   "one_or_two|player_1|MOVE:other": 172,
+   "one_or_two|player_1|MOVE:tent_adjacent_tree": 9,
+   "one_or_two|player_1|PICK:other": 9,
+   "one_or_two|player_1|PLANT:other": 9,
+   "one_or_two|player_1|WAIT:other": 8,
+   "zero|player_0|CHOP:other_tree": 2,
+   "zero|player_0|DROP:other": 2,
+   "zero|player_0|HARVEST:other_tree": 1,
+   "zero|player_0|MOVE:other": 10,
+   "zero|player_0|PICK:other": 3,
+   "zero|player_0|PLANT:other": 2,
+   "zero|player_1|CHOP:other_tree": 2,
+   "zero|player_1|DROP:other": 1,
+   "zero|player_1|HARVEST:other_tree": 1,
+   "zero|player_1|MOVE:other": 14
+  },
+  "opponent_adjacent_drop_confirmed_units": 83,
+  "opponent_adjacent_dropped_item_units": {
+   "player_0": 96
+  },
+  "opponent_adjacent_harvest_confirmed": 70,
+  "opponent_adjacent_harvested_item_units": 70,
+  "resident_adjacent_chop_confirmed": 65
+ },
+ "schema": "troll-farm-doubtingiyov-tent-denial-v1",
+ "training_events": [
+  {
+   "cost": [
+    5,
+    5,
+    2,
+    0,
+    10,
+    0
+   ],
+   "inventory_before": [
+    5,
+    5,
+    6,
+    4,
+    10,
+    0
+   ],
+   "player": 0,
+   "spec": [
+    2,
+    2,
+    1,
+    3
+   ],
+   "turn": 12,
+   "workers_before": 1
+  },
+  {
+   "cost": [
+    5,
+    5,
+    1,
+    0,
+    10,
+    0
+   ],
+   "inventory_before": [
+    5,
+    5,
+    6,
+    4,
+    10,
+    0
+   ],
+   "player": 1,
+   "spec": [
+    2,
+    2,
+    0,
+    3
+   ],
+   "turn": 12,
+   "workers_before": 1
+  },
+  {
+   "cost": [
+    3,
+    3,
+    3,
+    0,
+    3,
+    0
+   ],
+   "inventory_before": [
+    3,
+    3,
+    3,
+    2,
+    3,
+    2
+   ],
+   "player": 0,
+   "spec": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "turn": 54,
+   "workers_before": 2
+  }
+ ],
+ "trigger": {
+  "first_more_than_two_turn": 21,
+  "first_resident_adjacent_contact_turn": 69,
+  "max_adjacent_tree_count": 3,
+  "transitions": [
+   {
+    "active_adjacent_cells": [],
+    "adjacent_tree_count": 0,
+    "band": "zero",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 13 2",
+      "free_capacity": 1,
+      "position": [
+       12,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       13,
+       2
+      ],
+      "unit_id": 1
+     }
+    ],
+    "turn": 1
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 1,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 12 4",
+      "free_capacity": 1,
+      "position": [
+       12,
+       3
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       12,
+       4
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 3",
+      "free_capacity": 2,
+      "position": [
+       11,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other_tree",
+      "target_cell": [
+       11,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 14
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 9 5",
+      "free_capacity": 1,
+      "position": [
+       10,
+       5
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       9,
+       5
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 6 4",
+      "free_capacity": 0,
+      "position": [
+       7,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       6,
+       4
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 18
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 3,
+    "band": "more_than_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 7 6",
+      "free_capacity": 1,
+      "position": [
+       8,
+       6
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       7,
+       6
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "CHOP 3",
+      "free_capacity": 0,
+      "position": [
+       4,
+       5
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other_tree",
+      "target_cell": [
+       4,
+       5
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 21
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 1",
+      "free_capacity": 1,
+      "position": [
+       6,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other_tree",
+      "target_cell": [
+       6,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 7 4",
+      "free_capacity": 0,
+      "position": [
+       7,
+       6
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       4
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 71
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 3,
+    "band": "more_than_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 9 2",
+      "free_capacity": 0,
+      "position": [
+       8,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       9,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 12 3",
+      "free_capacity": 0,
+      "position": [
+       10,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       12,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 74
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 6 6",
+      "free_capacity": 0,
+      "position": [
+       6,
+       7
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       6,
+       6
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 3",
+      "free_capacity": 2,
+      "position": [
+       7,
+       6
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       7,
+       6
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 91
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 1,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 6 5",
+      "free_capacity": 0,
+      "position": [
+       6,
+       6
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       6,
+       5
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 7 4",
+      "free_capacity": 0,
+      "position": [
+       7,
+       6
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       4
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 92
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 6 3",
+      "free_capacity": 0,
+      "position": [
+       6,
+       4
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       6,
+       3
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 9 2",
+      "free_capacity": 0,
+      "position": [
+       7,
+       2
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       9,
+       2
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 94
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 3,
+    "band": "more_than_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 10 3",
+      "free_capacity": 0,
+      "position": [
+       9,
+       3
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       10,
+       3
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 3 7 2",
+      "free_capacity": 2,
+      "position": [
+       9,
+       2
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       2
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 98
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "DROP 1",
+      "free_capacity": 0,
+      "position": [
+       12,
+       3
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       12,
+       3
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 3 6 7",
+      "free_capacity": 2,
+      "position": [
+       6,
+       5
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       6,
+       7
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 101
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 3,
+    "band": "more_than_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 7 5",
+      "free_capacity": 1,
+      "position": [
+       7,
+       4
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       5
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 12 3",
+      "free_capacity": 0,
+      "position": [
+       10,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       12,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 108
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 8 7",
+      "free_capacity": 1,
+      "position": [
+       8,
+       6
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       8,
+       7
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 3 8 3",
+      "free_capacity": 2,
+      "position": [
+       10,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       8,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 111
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 3,
+    "band": "more_than_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 1",
+      "free_capacity": 1,
+      "position": [
+       8,
+       7
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       8,
+       7
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 3",
+      "free_capacity": 2,
+      "position": [
+       7,
+       6
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       7,
+       6
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 114
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 1",
+      "free_capacity": 1,
+      "position": [
+       8,
+       7
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       8,
+       7
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 7 4",
+      "free_capacity": 0,
+      "position": [
+       7,
+       6
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       4
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 116
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 1,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 1",
+      "free_capacity": 1,
+      "position": [
+       8,
+       7
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       8,
+       7
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 8 3",
+      "free_capacity": 0,
+      "position": [
+       7,
+       4
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       8,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 117
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 1",
+      "free_capacity": 1,
+      "position": [
+       8,
+       7
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       8,
+       7
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "DROP 3",
+      "free_capacity": 0,
+      "position": [
+       12,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       12,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 120
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 3,
+    "band": "more_than_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 7 6",
+      "free_capacity": 1,
+      "position": [
+       6,
+       6
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       7,
+       6
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 3 8 7",
+      "free_capacity": 2,
+      "position": [
+       9,
+       6
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       8,
+       7
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 124
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 7 5",
+      "free_capacity": 0,
+      "position": [
+       7,
+       6
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       5
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 3",
+      "free_capacity": 2,
+      "position": [
+       8,
+       7
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       8,
+       7
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 126
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 3,
+    "band": "more_than_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 9 3",
+      "free_capacity": 0,
+      "position": [
+       8,
+       3
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       9,
+       3
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 9 4",
+      "free_capacity": 0,
+      "position": [
+       9,
+       6
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       9,
+       4
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 130
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 12 4",
+      "free_capacity": 1,
+      "position": [
+       12,
+       3
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       12,
+       4
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 3 9 4",
+      "free_capacity": 2,
+      "position": [
+       9,
+       2
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       9,
+       4
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 135
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 3,
+    "band": "more_than_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 9 7",
+      "free_capacity": 1,
+      "position": [
+       10,
+       7
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       9,
+       7
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 3",
+      "free_capacity": 2,
+      "position": [
+       8,
+       7
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       8,
+       7
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 141
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 10 7",
+      "free_capacity": 1,
+      "position": [
+       11,
+       7
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       10,
+       7
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 3",
+      "free_capacity": 2,
+      "position": [
+       8,
+       7
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       8,
+       7
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 144
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      7,
+      6
+     ]
+    ],
+    "adjacent_tree_count": 1,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 9 7",
+      "free_capacity": 1,
+      "position": [
+       10,
+       7
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       9,
+       7
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 9 6",
+      "free_capacity": 0,
+      "position": [
+       8,
+       7
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       9,
+       6
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 145
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 8 7",
+      "free_capacity": 1,
+      "position": [
+       9,
+       7
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       8,
+       7
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 9 4",
+      "free_capacity": 0,
+      "position": [
+       9,
+       6
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       9,
+       4
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 146
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 3,
+    "band": "more_than_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 8 6",
+      "free_capacity": 1,
+      "position": [
+       8,
+       7
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       8,
+       6
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 10 3",
+      "free_capacity": 0,
+      "position": [
+       9,
+       4
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       10,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 147
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 1",
+      "free_capacity": 1,
+      "position": [
+       7,
+       6
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       7,
+       6
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 3 12 5",
+      "free_capacity": 2,
+      "position": [
+       12,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       12,
+       5
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 150
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 1,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 7 5",
+      "free_capacity": 0,
+      "position": [
+       7,
+       6
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       5
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 3 12 7",
+      "free_capacity": 2,
+      "position": [
+       12,
+       5
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       12,
+       7
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 151
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 7 3",
+      "free_capacity": 0,
+      "position": [
+       7,
+       4
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       3
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 3 14 9",
+      "free_capacity": 2,
+      "position": [
+       12,
+       9
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       14,
+       9
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 153
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 3,
+    "band": "more_than_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 8 3",
+      "free_capacity": 0,
+      "position": [
+       7,
+       3
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       8,
+       3
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 3 15 9",
+      "free_capacity": 2,
+      "position": [
+       14,
+       9
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       15,
+       9
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 154
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 12 3",
+      "free_capacity": 0,
+      "position": [
+       11,
+       3
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       12,
+       3
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 13 5",
+      "free_capacity": 0,
+      "position": [
+       13,
+       7
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       13,
+       5
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 158
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 3,
+    "band": "more_than_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 10 3",
+      "free_capacity": 1,
+      "position": [
+       11,
+       3
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       10,
+       3
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "DROP 3",
+      "free_capacity": 0,
+      "position": [
+       13,
+       2
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       13,
+       2
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 161
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 1",
+      "free_capacity": 1,
+      "position": [
+       6,
+       7
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       6,
+       7
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 7 4",
+      "free_capacity": 0,
+      "position": [
+       7,
+       6
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       4
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 172
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 1,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 6 6",
+      "free_capacity": 0,
+      "position": [
+       6,
+       7
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       6,
+       6
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 7 2",
+      "free_capacity": 0,
+      "position": [
+       7,
+       4
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       2
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 173
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 6 3",
+      "free_capacity": 0,
+      "position": [
+       6,
+       4
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       6,
+       3
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "DROP 3",
+      "free_capacity": 0,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       11,
+       2
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 176
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 3,
+    "band": "more_than_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 10 3",
+      "free_capacity": 0,
+      "position": [
+       9,
+       3
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       10,
+       3
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 3 8 7",
+      "free_capacity": 2,
+      "position": [
+       9,
+       6
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       8,
+       7
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 180
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 7 3",
+      "free_capacity": 1,
+      "position": [
+       8,
+       3
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       3
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 9 6",
+      "free_capacity": 0,
+      "position": [
+       8,
+       7
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       9,
+       6
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 188
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 3,
+    "band": "more_than_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 7 5",
+      "free_capacity": 1,
+      "position": [
+       7,
+       4
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       5
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 10 3",
+      "free_capacity": 0,
+      "position": [
+       9,
+       4
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       10,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 190
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 7 5",
+      "free_capacity": 0,
+      "position": [
+       7,
+       6
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       5
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 3 10 3",
+      "free_capacity": 2,
+      "position": [
+       12,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       10,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 193
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 3,
+    "band": "more_than_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 8 3",
+      "free_capacity": 0,
+      "position": [
+       7,
+       3
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       8,
+       3
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 3 8 7",
+      "free_capacity": 2,
+      "position": [
+       9,
+       6
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       8,
+       7
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 196
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 9 3",
+      "free_capacity": 1,
+      "position": [
+       10,
+       3
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       9,
+       3
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 9 6",
+      "free_capacity": 0,
+      "position": [
+       8,
+       7
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       9,
+       6
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 204
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      7,
+      6
+     ]
+    ],
+    "adjacent_tree_count": 1,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      "command": "PLANT 1 BANANA",
+      "free_capacity": 0,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       11,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 3",
+      "free_capacity": 2,
+      "position": [
+       7,
+       6
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       7,
+       6
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 221
+   },
+   {
+    "active_adjacent_cells": [],
+    "adjacent_tree_count": 0,
+    "band": "zero",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 1",
+      "free_capacity": 1,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other_tree",
+      "target_cell": [
+       11,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 7 4",
+      "free_capacity": 0,
+      "position": [
+       7,
+       6
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       4
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 222
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 1,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 1",
+      "free_capacity": 1,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other_tree",
+      "target_cell": [
+       11,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 10 3",
+      "free_capacity": 0,
+      "position": [
+       8,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       10,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 224
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "DROP 1",
+      "free_capacity": 0,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       11,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "MOVE 3 12 3",
+      "free_capacity": 0,
+      "position": [
+       10,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       12,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 225
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 1,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 1",
+      "free_capacity": 1,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other_tree",
+      "target_cell": [
+       11,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 3 7 4",
+      "free_capacity": 1,
+      "position": [
+       7,
+       6
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       4
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 234
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 1",
+      "free_capacity": 1,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other_tree",
+      "target_cell": [
+       11,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 3 12 3",
+      "free_capacity": 1,
+      "position": [
+       10,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       12,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 237
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      7,
+      6
+     ]
+    ],
+    "adjacent_tree_count": 1,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 1",
+      "free_capacity": 1,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other_tree",
+      "target_cell": [
+       11,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "DROP 3",
+      "free_capacity": 1,
+      "position": [
+       12,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       12,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 238
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 1",
+      "free_capacity": 1,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other_tree",
+      "target_cell": [
+       11,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 3 16 5",
+      "free_capacity": 2,
+      "position": [
+       14,
+       5
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       16,
+       5
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 241
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 1,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 1",
+      "free_capacity": 1,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other_tree",
+      "target_cell": [
+       11,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 2,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       2
+      ],
+      "command": "DROP 3",
+      "free_capacity": 0,
+      "position": [
+       12,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       12,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 251
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "DROP 1",
+      "free_capacity": 0,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       11,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 3",
+      "free_capacity": 2,
+      "position": [
+       12,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other_tree",
+      "target_cell": [
+       12,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 254
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      7,
+      6
+     ]
+    ],
+    "adjacent_tree_count": 1,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "PICK 1 APPLE",
+      "free_capacity": 1,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       11,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 3",
+      "free_capacity": 2,
+      "position": [
+       12,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other_tree",
+      "target_cell": [
+       12,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 255
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 1",
+      "free_capacity": 1,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other_tree",
+      "target_cell": [
+       11,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "DROP 3",
+      "free_capacity": 1,
+      "position": [
+       12,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       12,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 258
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 1,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 1",
+      "free_capacity": 1,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other_tree",
+      "target_cell": [
+       11,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 3 6 3",
+      "free_capacity": 2,
+      "position": [
+       8,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       6,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 268
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "DROP 1",
+      "free_capacity": 0,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       11,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 3",
+      "free_capacity": 2,
+      "position": [
+       6,
+       7
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       6,
+       7
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 271
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      7,
+      6
+     ]
+    ],
+    "adjacent_tree_count": 1,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 10 2",
+      "free_capacity": 1,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       10,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 3 6 5",
+      "free_capacity": 1,
+      "position": [
+       6,
+       7
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       6,
+       5
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 272
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 7 2",
+      "free_capacity": 1,
+      "position": [
+       8,
+       2
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       2
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 3 10 3",
+      "free_capacity": 1,
+      "position": [
+       8,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       10,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 275
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 3,
+    "band": "more_than_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 1 7 5",
+      "free_capacity": 1,
+      "position": [
+       7,
+       4
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       5
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 3 10 3",
+      "free_capacity": 2,
+      "position": [
+       12,
+       3
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       10,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 278
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 7 5",
+      "free_capacity": 0,
+      "position": [
+       7,
+       6
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       5
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "MOVE 3 6 7",
+      "free_capacity": 2,
+      "position": [
+       6,
+       6
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       6,
+       7
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 283
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 1,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 7 4",
+      "free_capacity": 0,
+      "position": [
+       7,
+       5
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       7,
+       4
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "CHOP 3",
+      "free_capacity": 2,
+      "position": [
+       6,
+       7
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "tent_adjacent_tree",
+      "target_cell": [
+       6,
+       7
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 284
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 9 3",
+      "free_capacity": 0,
+      "position": [
+       8,
+       3
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       9,
+       3
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 3 6 3",
+      "free_capacity": 1,
+      "position": [
+       6,
+       5
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       6,
+       3
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 287
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 3,
+    "band": "more_than_two",
+    "resident_units": [
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 1 11 3",
+      "free_capacity": 0,
+      "position": [
+       10,
+       3
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": [
+       11,
+       3
+      ],
+      "unit_id": 1
+     },
+     {
+      "carried": 1,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ],
+      "command": "MOVE 3 9 2",
+      "free_capacity": 1,
+      "position": [
+       7,
+       2
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": [
+       9,
+       2
+      ],
+      "unit_id": 3
+     }
+    ],
+    "turn": 289
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "WAIT",
+      "free_capacity": 1,
+      "position": [
+       12,
+       3
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": null,
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "WAIT",
+      "free_capacity": 2,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": null,
+      "unit_id": 3
+     }
+    ],
+    "turn": 293
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      7,
+      6
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 3,
+    "band": "more_than_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "WAIT",
+      "free_capacity": 1,
+      "position": [
+       12,
+       3
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": null,
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "WAIT",
+      "free_capacity": 2,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": null,
+      "unit_id": 3
+     }
+    ],
+    "turn": 296
+   },
+   {
+    "active_adjacent_cells": [
+     [
+      6,
+      7
+     ],
+     [
+      8,
+      7
+     ]
+    ],
+    "adjacent_tree_count": 2,
+    "band": "one_or_two",
+    "resident_units": [
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "WAIT",
+      "free_capacity": 1,
+      "position": [
+       12,
+       3
+      ],
+      "stats": [
+       1,
+       1,
+       1,
+       1
+      ],
+      "target_category": "other",
+      "target_cell": null,
+      "unit_id": 1
+     },
+     {
+      "carried": 0,
+      "carry": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "command": "WAIT",
+      "free_capacity": 2,
+      "position": [
+       11,
+       2
+      ],
+      "stats": [
+       2,
+       2,
+       0,
+       3
+      ],
+      "target_category": "other",
+      "target_cell": null,
+      "unit_id": 3
+     }
+    ],
+    "turn": 300
+   }
+  ],
+  "turns_by_band": {
+   "more_than_two": 135,
+   "one_or_two": 150,
+   "zero": 15
+  }
+ },
+ "verdict": "MECHANICALLY_COHERENT"
+}

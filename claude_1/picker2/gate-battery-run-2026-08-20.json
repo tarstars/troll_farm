@@ -1,0 +1,121 @@
+{
+  "task": "20260820-pair-selector-anti-benching",
+  "phase": 2,
+  "steps": [
+    {
+      "step": "build (one generator, two subjects, identical patch)",
+      "exit": 0,
+      "status": "OK",
+      "note": null
+    },
+    {
+      "step": "probes (both arms, both bases)",
+      "exit": 0,
+      "status": "OK",
+      "note": null
+    },
+    {
+      "step": "gate 1a BENCHED \u2014 fail-first, parity + coverage + P1 liveness",
+      "exit": 0,
+      "status": "OK",
+      "note": null
+    },
+    {
+      "step": "gate 1b employment cross-check (uninstrumented command stream)",
+      "exit": 0,
+      "status": "OK",
+      "note": null
+    },
+    {
+      "step": "all-34 sweep, cure-C base",
+      "exit": 0,
+      "status": "OK",
+      "note": null
+    },
+    {
+      "step": "all-34 sweep, cure-C P1+P2",
+      "exit": 0,
+      "status": "OK",
+      "note": null
+    },
+    {
+      "step": "all-34 sweep, door-1 base",
+      "exit": 0,
+      "status": "OK",
+      "note": null
+    },
+    {
+      "step": "all-34 sweep, door-1 P1+P2",
+      "exit": 0,
+      "status": "OK",
+      "note": null
+    },
+    {
+      "step": "panel: cure-C candidate (240)",
+      "exit": 1,
+      "status": "OK",
+      "note": "fuzz_panel exit 1 = BLOCK verdict, a result not a failure"
+    },
+    {
+      "step": "panel: door-1 matched floor (240)",
+      "exit": 1,
+      "status": "OK",
+      "note": "fuzz_panel exit 1 = BLOCK verdict, a result not a failure"
+    },
+    {
+      "step": "panel: door-1 candidate (240)",
+      "exit": 1,
+      "status": "OK",
+      "note": "fuzz_panel exit 1 = BLOCK verdict, a result not a failure"
+    },
+    {
+      "step": "panel: cure-C candidate at 1 process (parity arm)",
+      "exit": 1,
+      "status": "OK",
+      "note": "fuzz_panel exit 1 = BLOCK verdict, a result not a failure"
+    },
+    {
+      "step": "matched-floor check (the reused cure-C floor is THIS candidate's floor)",
+      "exit": 0,
+      "status": "OK",
+      "note": null
+    },
+    {
+      "step": "decomposition (map_id, seat), cure-C",
+      "exit": 0,
+      "status": "OK",
+      "note": null
+    },
+    {
+      "step": "decomposition (map_id, seat), door-1",
+      "exit": 0,
+      "status": "OK",
+      "note": null
+    },
+    {
+      "step": "de-novo DIRECTION control (swap the arms; healed must reappear as de-novo)",
+      "exit": 0,
+      "status": "OK",
+      "note": null
+    },
+    {
+      "step": "every behaviour change named",
+      "exit": 0,
+      "status": "OK",
+      "note": null
+    },
+    {
+      "step": "process-count parity (8-proc vs 1-proc, 240 rows)",
+      "exit": 0,
+      "status": "OK",
+      "note": null
+    },
+    {
+      "step": "latency p95, all four arms",
+      "exit": 0,
+      "status": "OK",
+      "note": null
+    }
+  ],
+  "all_ok": true
+}

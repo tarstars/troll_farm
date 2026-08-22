@@ -1,0 +1,137 @@
+{
+  "schema": "troll-farm-block-index-definitions-v1",
+  "note": "Curated layer: what each block IS. Presence across artifacts is DERIVED by build_block_index.py from the anchors, never hand-maintained, so the index cannot rot the way a written inventory does. Anchors are exact source substrings chosen to be stable across minification-preserving edits.",
+  "blocks": [
+    {
+      "id": "secure-apple-orchard",
+      "title": "Secure apple orchard",
+      "purpose": "Plants an apple 'mother' tree in a spot the opponent cannot cheaply reach, then camps one worker there harvesting its fruit for the rest of the game, reserving that worker and protecting the tree from the main policy.",
+      "class": "feature",
+      "anchors": ["SecureOrchardBot", "OrchardPhase"],
+      "measured": {
+        "source_cost_bytes": 15013,
+        "source_cost_percent": 23.898,
+        "activation_rate": "1 of 25 packet games; 11 of 160 ladder games showed camp signature",
+        "live_value": "-2.03 score / -22 ranks when ablated (agent 6592097, 160 games)",
+        "evidence": ["claude_1/orchard-code-cost/orchard-code-cost-report.md", "claude_1/no-orchard-arena/no-orchard-ablation-postmortem-2026-08-03.md"]
+      }
+    },
+    {
+      "id": "door-unblocking",
+      "title": "Shack door unblocking",
+      "purpose": "When the home shack has exactly one walkable doorway, detects a worker blocking it and issues forced moves to clear the way for a carrier heading to the bank.",
+      "class": "feature",
+      "anchors": ["force_unique_door_clear"],
+      "measured": {
+        "source_cost_bytes": 5991,
+        "source_cost_percent": 9.537,
+        "coverage": "entered 7,234 times (every turn); 1.17% of regions; action paths planned_egress/forced_move/carries_committed_fruit have ZERO entries",
+        "live_value": "unmeasured; disabling changed 0 of 7,234 commands on the frozen packet",
+        "evidence": ["claude_1/door-unblocking-cost/door-unblocking-cost-report.md"]
+      }
+    },
+    {
+      "id": "training-deadline-fallback",
+      "title": "Training deadline fallback",
+      "purpose": "If the second worker has not been trained by a deadline turn, abandons the preferred build and trains the strongest currently affordable one instead.",
+      "class": "feature",
+      "anchors": ["enforce_training_deadline", "strongest_affordable"],
+      "measured": {
+        "coverage": "guard runs 35,529 times; strongest_affordable / training_affordable / fallback_second_troll all 0% covered",
+        "evidence": ["claude_1/e7a-incremental-simplification/r36-coverage-analysis-2026-08-04.md"]
+      }
+    },
+    {
+      "id": "opening-policy-record",
+      "title": "Opening policy configuration record",
+      "purpose": "Seven-field tuning record (train horizon, carry/chop preferences and caps, extra-ETA allowance, hard train turn) selecting the second worker's stats.",
+      "class": "configuration",
+      "anchors": ["YamoOpeningPolicy"],
+      "measured": {
+        "source_cost_bytes": 580,
+        "note": "single-valued in the resident lineage; inlined and deleted by simplification rounds 15-22 with no behavior change",
+        "evidence": ["claude_1/e7a-incremental-simplification/r22-contract-2026-08-03.md"]
+      }
+    },
+    {
+      "id": "persistent-regeneration",
+      "title": "Persistent regeneration commitments",
+      "purpose": "Remembers which worker committed to replanting which fruit species and keeps that commitment across turns instead of re-deciding each turn.",
+      "class": "feature",
+      "anchors": ["regeneration_commitments"],
+      "measured": {}
+    },
+    {
+      "id": "idle-harvest",
+      "title": "Endgame idle harvest",
+      "purpose": "In the endgame, when every candidate action is a WAIT, harvests ripe fruit instead of idling.",
+      "class": "feature",
+      "anchors": ["idle_harvest_candidates"],
+      "measured": {}
+    },
+    {
+      "id": "opponent-eta-penalty",
+      "title": "Contested-tree risk penalty",
+      "purpose": "Discounts chop targets an opponent can reach first, by estimated damage they could do before we arrive.",
+      "class": "feature",
+      "anchors": ["opponent_eta_penalty"],
+      "measured": {
+        "source_cost_bytes": 1341,
+        "note": "penalty fixed to zero in the resident lineage, making the whole calculation unreachable; deleted by simplification round 11",
+        "evidence": ["local_codex_1/e7a-iterative-logical-deletion/candidate-r11-remove-zero-opponent-risk-manifest.json"]
+      }
+    },
+    {
+      "id": "preferred-only-opening",
+      "title": "Preferred-only opening mode",
+      "purpose": "Alternative opening mode that refuses any second-worker build not meeting the preferred carry/chop minimums.",
+      "class": "configuration",
+      "anchors": ["require_preferred"],
+      "measured": {
+        "source_cost_bytes": 1254,
+        "note": "fixed false in the resident lineage; deleted by simplification round 12"
+      }
+    },
+    {
+      "id": "movement-first-tie-mode",
+      "title": "Movement-first tie-break mode",
+      "purpose": "Alternative opening tie-break preferring movement speed over chop power.",
+      "class": "configuration",
+      "anchors": ["prefer_movement_ties"],
+      "measured": {
+        "source_cost_bytes": 234,
+        "note": "fixed false in the resident lineage; deleted by simplification round 13"
+      }
+    },
+    {
+      "id": "idle-starter-gate",
+      "title": "Idle-starter activation gate",
+      "purpose": "Optional requirement that the starting worker be idle before the orchard may activate.",
+      "class": "configuration",
+      "anchors": ["require_idle_starter"],
+      "measured": {
+        "source_cost_bytes": 403,
+        "note": "permanently disabled in the resident lineage; deleted by simplification round 2"
+      }
+    },
+    {
+      "id": "focus-species-selection",
+      "title": "Focus species selection",
+      "purpose": "Chooses which fruit species to cut based on aggregate walking distance from the shack to each species' trees.",
+      "class": "shared-infrastructure",
+      "anchors": ["focus_type"],
+      "measured": {"note": "load-bearing; the semantic-fixture harness probes this function"}
+    },
+    {
+      "id": "banana-orchard",
+      "title": "Self-reproducing banana orchard",
+      "purpose": "Banana-based production loop: early planted bananas reproduce, late ripe fruit converts to wood, harvested fruit is banked.",
+      "class": "feature",
+      "anchors": ["banana_factory_commands"],
+      "measured": {
+        "note": "architectural study measured +162.3 own score on a development panel; live publications 2026-08-02 were implementation-invalid. Anchor corrected 2026-08-04: the first attempt used PlantKind::Banana, which is the species enum present in every bot, so 291 artifacts resolved 'partial' — a worked example of why anchors must discriminate the implementation, not the domain vocabulary.",
+        "evidence": ["docs/CONSTRAINTS.md"]
+      }
+    }
+  ]
+}

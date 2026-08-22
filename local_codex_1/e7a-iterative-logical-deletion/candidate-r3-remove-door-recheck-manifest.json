@@ -1,0 +1,27 @@
+{
+  "candidate": {
+    "bytes": 61487,
+    "path": "local_codex_1/e7a-iterative-logical-deletion/candidate-r3-remove-door-recheck.rs",
+    "removed_from_initial_62278": 791,
+    "removed_this_round": 226,
+    "sha256": "72552c8ff6d524f8eb056a66ce8f601bf84a74ece64ef57487580dedeaf7e8cc"
+  },
+  "compression": false,
+  "formatting_reduction": false,
+  "gates_pending": [
+    "byte-exact rebuild",
+    "optimized compile and empty input",
+    "ten exact semantic fixtures",
+    "25-game exact live command parity"
+  ],
+  "identifier_renaming": false,
+  "logical_change": "delete the stored enemy-door distance and its >=11 activation recheck because initialization selects the same mother only through the preserved >=11 filter",
+  "minification": false,
+  "parent": {
+    "bytes": 61713,
+    "path": "local_codex_1/e7a-iterative-logical-deletion/candidate-r2-remove-idle-gate.rs",
+    "sha256": "b89aacaf5c94249f0c4e55a3ba47b4de5253b791f62124a8b6cd3e43e0265388"
+  },
+  "round": 3,
+  "schema": "troll-farm-e7a-iterative-logical-deletion-round-v1"
+}

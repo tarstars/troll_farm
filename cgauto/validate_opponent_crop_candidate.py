@@ -61,15 +61,15 @@ def digest(path: Path) -> str:
 
 
 def activate_research_source(source: str) -> str:
-    before = "    let mut bot = SecureOrchardBot::new();"
-    after = (
-        "    let mut bot = "
-        "SecureOrchardBot::opponent_crop_priority(100, 6, 1, 1);"
+    raise RuntimeError(
+        "retired 2026-08-11 (owner ruling B7/3a): the live source recovered on "
+        "2026-07-29 contains two identical opponent_crop_priority(100, 6, 1, 1) "
+        "constructors, so the unique-anchor premise this activation relied on is "
+        "gone and it could modify the wrong site. Use "
+        "cgauto/validate_opponent_crop_dual_value_candidate.py, whose "
+        "activate_research_source carries its own seal test. The original body "
+        "is in git history before this commit."
     )
-    count = source.count(before)
-    if count != 1:
-        raise ValueError(f"expected one research main anchor, found {count}")
-    return source.replace(before, after, 1)
 
 
 def percentile(values: list[float], fraction: float) -> float:

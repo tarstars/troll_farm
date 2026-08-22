@@ -1,0 +1,56 @@
+{
+  "bases": {
+    "cureC": {
+      "de_novo_direction_observable": true,
+      "de_novo_keys_when_swapped": [
+        "m012/seat1",
+        "m014/seat1",
+        "m025/seat1",
+        "m028/seat1",
+        "m046/seat0",
+        "m050/seat1",
+        "m060/seat0",
+        "m065/seat1",
+        "m071/seat0",
+        "m071/seat1",
+        "m073/seat0",
+        "m078/seat0",
+        "m079/seat0",
+        "m079/seat1",
+        "m084/seat1",
+        "m094/seat1",
+        "m100/seat0",
+        "m104/seat1",
+        "m114/seat1",
+        "m118/seat1"
+      ],
+      "real_de_novo": 0,
+      "real_healed": 20,
+      "swapped_de_novo": 20,
+      "swapped_de_novo_equals_real_healed": true
+    },
+    "door1": {
+      "de_novo_direction_observable": true,
+      "de_novo_keys_when_swapped": [
+        "m012/seat1",
+        "m014/seat1",
+        "m021/seat0",
+        "m028/seat1",
+        "m046/seat0",
+        "m073/seat0",
+        "m079/seat0",
+        "m084/seat1"
+      ],
+      "real_de_novo": 0,
+      "real_healed": 8,
+      "swapped_de_novo": 8,
+      "swapped_de_novo_equals_real_healed": true
+    }
+  },
+  "claim_supported": "the de-novo bucket fills on this data with this code, so the real run's 0 de-novo is a measurement and not an inert check",
+  "control": "swap the arms; every HEALED game must reappear as DE-NOVO",
+  "met": true,
+  "not_claimed": "that the candidate regresses nowhere outside these 240 keyed games",
+  "phase": 2,
+  "task": "20260820-pair-selector-anti-benching"
+}

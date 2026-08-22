@@ -1,0 +1,264 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=17mm,top=18mm,bottom=20mm,includeheadfoot,headheight=20pt,headsep=4mm,footskip=9mm]{geometry}
+\usepackage{fontspec}
+\setmainfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\definecolor{ink}{HTML}{172033}
+\definecolor{muted}{HTML}{5F6B7A}
+\definecolor{accent}{HTML}{3157A4}
+\definecolor{accentlight}{HTML}{EAF0FC}
+\definecolor{good}{HTML}{176B52}
+\definecolor{warn}{HTML}{A35A00}
+\definecolor{bad}{HTML}{A12B35}
+\definecolor{rule}{HTML}{CBD3DF}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=accent,
+  urlcolor=accent,
+  pdftitle={Troll Farm: all-agent analysis of recent games against strong opponents},
+  pdfauthor={local Codex 1, Claude 1, ChatGPT 1}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small\color{muted}Troll Farm · all-agent game review}
+\rhead{\small\color{muted}2 August 2026}
+\cfoot{\small\color{muted}Page \thepage\ of \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{rule}\leaders\hrule height \headrulewidth\hfill}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\headheight}{20pt}
+\emergencystretch=2em
+\setlist[itemize]{leftmargin=5mm,itemsep=2pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=6mm,itemsep=2pt,topsep=3pt}
+\renewcommand{\arraystretch}{1.18}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\status}[2]{\textcolor{#1}{\textbf{#2}}}
+
+\begin{document}
+
+{\color{accent}\rule{\textwidth}{1.4pt}}
+
+{\Huge\bfseries\color{ink} All-agent analysis of recent games\\[2mm]
+against strong opponents}
+
+{\large\color{muted} Reconciled result from independent replication and two-way cross-review}
+
+\vspace{2mm}
+\begin{tabularx}{\textwidth}{@{}lY@{}}
+\textbf{Current bot} & agent \texttt{6589709}, submission \texttt{41079653}, source SHA-256 \texttt{6f992a5a…} \\
+\textbf{Evidence} & 153 new open games; one direct rank-13 game; 2,684 top-20-source benchmark games \\
+\textbf{Reviewers} & \texttt{local\_codex\_1}, \texttt{claude\_1}, \texttt{chatgpt\_1} \\
+\textbf{Frozen package} & commit \texttt{73718b3fdf9f2dc13359e17cb0ce002f95ea559e} \\
+\end{tabularx}
+
+\vspace{3mm}
+\fcolorbox{accent}{accentlight}{\parbox{0.95\textwidth}{
+\textbf{Final decision.} The review leaves one research direction: H3a, which increases
+priority for eligible opponent-created trees only after the public state shows at least
+three opponent workers. It is \textbf{not ready to run}: the conditioned source, exact
+value runner, byte-equivalence bridge, and required multi-game trajectory package do not
+exist. No second or third improvement survived cross-review.
+}}
+
+\section*{1. Evidence boundary}
+
+The package contains 153 current-bot games: \textbf{95 wins, 2 ties and 56 losses}, with
+68 games in seat 0 and 85 in seat 1. Seven sealed-tagged games were excluded. The direct
+strong-opponent evidence is only game \texttt{897780884} against rank-13 Astrobytes; the
+larger top-20 corpus is observational context, not a direct treatment comparison.
+
+\begin{tabularx}{\textwidth}{@{}l r Y@{}}
+\toprule
+\textbf{Evidence slice} & \textbf{Size} & \textbf{Permitted interpretation} \\
+\midrule
+Current-new open games & 153 & Current behavior, associations and recurrent failure modes \\
+Full 300-turn current games & 96 & Phase-by-phase score decomposition \\
+Direct current vs top-20 & 1 & Exact postmortem only; not broad evidence \\
+Top-20-source open games & 2,684 & Benchmark context; not causal value \\
+Sealed-tagged games & 7 & Excluded and unopened \\
+\bottomrule
+\end{tabularx}
+
+No report used sealed data, performed a build or simulation, created a candidate, or
+mutated the Arena.
+
+\section*{2. The recurrent loss pattern}
+
+The blind replication isolated ten catastrophic games, defined before mechanism analysis
+as final margin at most $-100$:
+
+\begin{itemize}
+  \item \textbf{10/153 games} (6.54\%; Wilson 95\% interval 3.59--11.61\%);
+  \item total margin \textbf{$-1{,}674$}, or $-167.4$ per catastrophe;
+  \item every catastrophic opponent finished with 3--4 workers while the resident stayed
+        at exactly two;
+  \item the resident was still ahead at turn 150 in 9/10, but ahead at turn 250 in only
+        1/10 and at the end in 0/10.
+\end{itemize}
+
+\begin{tabularx}{\textwidth}{@{}l *{6}{>{\centering\arraybackslash}X}@{}}
+\toprule
+\textbf{Checkpoint} & t50 & t100 & t150 & t200 & t250 & Final \\
+\midrule
+Resident ahead, catastrophes & 9/10 & 10/10 & 9/10 & 6/10 & 1/10 & 0/10 \\
+\bottomrule
+\end{tabularx}
+
+This is a late crossover under opponent scaling, not a recurrent opening collapse. It is
+still observational: final roster is endogenous, the resident has no workforce variation,
+and opponent scaling bundles many policy differences.
+
+\section*{3. What changes across the game}
+
+Claude's non-blind replication independently decomposed points per 50-turn window over all
+96 full games. Against opponents that finish with at least three workers, resident scoring
+does not decline; opponent scoring accelerates sharply.
+
+\begin{tabularx}{\textwidth}{@{}l r r r r@{}}
+\toprule
+\textbf{Window} & \textbf{Our points} & \textbf{Their points} & \textbf{Net} & \textbf{Opponent roster group} \\
+\midrule
+t50--100  & 36.92 & 8.64   & +28.28 & $\geq 3$ workers \\
+t100--150 & 37.64 & 16.47  & +21.17 & $\geq 3$ workers \\
+t150--200 & 39.75 & 46.06  & $-6.31$ & $\geq 3$ workers \\
+t200--250 & 40.83 & 79.81  & $-38.97$ & $\geq 3$ workers \\
+t250--300 & 42.56 & 102.19 & $-59.64$ & $\geq 3$ workers \\
+\bottomrule
+\end{tabularx}
+
+For the 60 full games against opponents finishing with at most two workers, the resident's
+net remains positive in every window. For the 36 games against 3--4-worker opponents, the
+net turns negative in t150--200 and deteriorates afterward. The reconciled interpretation
+is deliberately narrow:
+
+\begin{quote}\raggedright
+\textbf{Opponent workforce divergence can be established by turn 150; the score crossover
+and largest terminal damage occur later.}
+\end{quote}
+
+The decomposition rejects the simple story that our own output collapses. It does not, by
+itself, prove every marginal own-economy improvement worthless; those families remain
+closed by their separate controlled experiments and displacement accounting.
+
+\section*{4. Direct game: Astrobytes, \texttt{897780884}}
+
+The resident lost 333--403. It trained once at turn 11; Astrobytes trained at turns 1, 56
+and 105 and finished with four workers. The resident led through turn 200, then crossed
+behind during the late acceleration. The direct trajectory supports the chronology but
+cannot identify a treatment effect.
+
+The early WAIT sequence at turns 4--8 is followed by harvesting the same tree and matches
+the documented ripening-wait behavior. Across the 36 scaled-opponent full games, resident
+WAIT count correlates only $-0.046$ with margin. Cross-review therefore rejected a generic
+WAIT legality/precedence audit as a ranked improvement.
+
+Tree lineage, first feller, wood recipient, and counterfactual legality are unavailable for
+the wider cohort in this package. Claims depending on those fields remain unavailable.
+
+\section*{5. What each agent contributed}
+
+\begin{tabularx}{\textwidth}{@{}p{28mm}YY@{}}
+\toprule
+\textbf{Agent} & \textbf{Principal contribution} & \textbf{Correction after review} \\
+\midrule
+\texttt{local\_codex\_1} & Initial integrated ranking from quantitative, action-flow and direct-postmortem tracks; H3a first. & Original ranks 2--3 do not survive the full replication ring. \\
+\texttt{claude\_1} & 96-game score-window decomposition: opponent acceleration, not resident output decline. Prior exposure disclosed. & Withdrew the endgame removal-race idea and kept rank 3 empty. \\
+\texttt{chatgpt\_1} & Blind ten-catastrophe study, exact IDs/arithmetic, late-crossover chronology, and H3a trigger preflight. & Folded its discriminator into H3a and withdrew the WAIT audit. \\
+\bottomrule
+\end{tabularx}
+
+Both cross-reviews returned \status{warn}{ACCEPT WITH CORRECTIONS}. Claude reproduced every
+checkable number in the blind report. ChatGPT accepted the phase decomposition but narrowed
+its causal wording. This agreement is stronger than the initial ranking because it survived
+independent recomputation and adversarial review.
+
+\section*{6. Final ranked disposition}
+
+\begin{tabularx}{\textwidth}{@{}p{10mm}p{38mm}p{38mm}Y@{}}
+\toprule
+\textbf{Rank} & \textbf{Idea} & \textbf{Disposition} & \textbf{Reason} \\
+\midrule
+1 & H3a: pressure-conditioned opponent-crop priority & \status{warn}{BLOCKED, TOP FUTURE ROUTE} & Unanimous direction and exact always-on reconstruction, but no conditioned source, value runner, equality bridge, or runnable multi-game preflight package. \\
+--- & Endgame conversion removal race & \status{bad}{REJECTED} & One direct game; required tree/feller/wood attribution absent; correlation is collinear with opponent roster; no defensible cohort value. \\
+--- & B3.14 sticky banking & \status{muted}{MEASUREMENT ONLY} & 17 unbanked wood imply at most +0.444 own points per game; too small for an improvement rank. \\
+--- & WAIT legality/precedence & \status{bad}{REJECTED} & Same-tree ripening behavior, no cohort signal, legality counterfactual unavailable. \\
+\bottomrule
+\end{tabularx}
+
+There is intentionally no rank 2 or rank 3. Padding the list with low-value audits would
+hide the central result: the analysis found one scientifically live direction, and it is
+not yet executable.
+
+\section*{7. H3a: exact next decision}
+
+The intended three arms remain:
+
+\begin{enumerate}
+  \item unchanged resident control;
+  \item exact eligible opponent-crop priority always on;
+  \item the identical priority activated, and then kept active, after public state first
+        shows at least three opponent workers.
+\end{enumerate}
+
+The existing reconstruction self-test passes, but it proves source reconstruction only.
+Before any 6,144-task value panel, a new host-authorized read-only task must materialize the
+required trajectories and test the trigger gate: sufficiently early activation in the ten
+catastrophes, low false activation on matched wins, and eligible ETA-$\leq 6$ decisions after
+activation. If that preflight fails, stop H3a without tuning it. If it passes, build the
+conditioned source and exact value runner under a new frozen protocol; the frozen protocol's
+value gates govern.
+
+A purely illustrative 20\% recovery of the ten-catastrophe negative mass would be
+$1{,}674 \times 0.20 / 153 = +2.19$ mean margin per current game. This is a scenario, not a
+prediction and not an Arena-rating conversion.
+
+\section*{8. Data and provenance corrections}
+
+\begin{itemize}
+  \item Do not compute \texttt{planted\_ok / plant\_cmd}: over top-20 sides the aggregate
+        numerator is 86,023 and the denominator 81,280. The counters are not documented as
+        a subset relation, so a success rate can exceed 100\% and is unsound.
+  \item For retrospective ``scaled by turn 150'' counts, require a successfully landed
+        extra worker:
+        \begin{center}\small
+        \texttt{second\_train\_turn <= 151}\\[-1mm]
+        \texttt{AND roster\_final >= 3}
+        \end{center}
+        Game \texttt{897782434} contains a failed TRAIN and must be excluded.
+  \item Do not use the earlier unexplained ``1,268'' count; no coherent package predicate
+        reproduced it.
+  \item The rubric's SHA-256 and Git blob hash are different hash types over the same
+        content, not a provenance failure.
+\end{itemize}
+
+\section*{9. Source artifacts}
+
+\scriptsize
+\sloppy
+\begin{itemize}
+  \item Local synthesis: \nolinkurl{local_codex_1/top-player-new-games-final-ranked-ideas-2026-08-02.md}
+  \item Claude replication: \nolinkurl{claude_1/top-player-full-review-replication-2026-08-02.md}
+  \item Claude cross-review: \nolinkurl{claude_1/top-player-full-review-cross-review-of-chatgpt_1-2026-08-02.md}
+  \item ChatGPT blind replication: \nolinkurl{chatgpt_1/top-player-full-review-replication-2026-08-02.md}
+  \item ChatGPT cross-review: \nolinkurl{chatgpt_1/top-player-full-review-cross-review-of-claude_1-2026-08-02.md}
+\end{itemize}
+
+\vfill
+{\color{muted}\footnotesize Integrator disposition: analysis only. This document does not
+authorize source changes, simulation, TestSession, submission, or any Arena mutation.}
+
+\end{document}

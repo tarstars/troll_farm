@@ -1,0 +1,142 @@
+{
+  "schema": "troll-farm-h3a-pressure-treatment-reconstruction-result-v1",
+  "task_id": "20260731-h3a-pressure-treatment-reconstruction",
+  "verdict": "TREATMENT_REPRODUCIBLE",
+  "authorship": {
+    "implementation_owner": "chatgpt_1",
+    "reviewer_integrator": "local_codex_1",
+    "canonical_documentation_takeover": true,
+    "peer_last_head": "8ae01f5831f78e77c9fea1e039785fcfaffed2e8"
+  },
+  "frozen_inputs": {
+    "fallback": {
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+      "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+    },
+    "treatment": {
+      "path": "cgauto/submissions/candidate-agent6553250-opponent-crop-dual-value-e6-slim.min.rs",
+      "sha256": "083107f53e412be49fa06163f511a1453f7dc5447baed51ecda6d567785044cf"
+    },
+    "sidecar": {
+      "path": "cgauto/submissions/candidate-agent6553250-opponent-crop-dual-value-e6-slim.min.rs.sha256",
+      "file_sha256": "9811fb4f0d2ed3112b5eeef399f8ec36fc9b0a2a296f9ee1ca01fbe9415b249c",
+      "recorded_treatment_sha256": "083107f53e412be49fa06163f511a1453f7dc5447baed51ecda6d567785044cf"
+    },
+    "full_parent": {
+      "path": "cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage.min.rs",
+      "sha256": "da53b0f66a0224bf9c8d5796d69905a9bebcf1e71ee97e4b65e72a2fdea046e9"
+    }
+  },
+  "implementation": {
+    "script_path": "chatgpt_1/h3a_pressure_treatment_reconstruction.py",
+    "script_sha256": "60073fa609f735ff8217f0f56ae2ac6a48a2f509033c35c7fc22b018ea637667",
+    "test_path": "tests/test_h3a_pressure_treatment_reconstruction.py",
+    "test_sha256": "8daf6645cbd8f0f8c104ddc488ae8a71c4a59b528979dbdd781f8872d5f70e68",
+    "peer_commits": [
+      "ac559290feedaeff3a530a80657f86b022c6b750",
+      "3400d65bb4321cf2f9b0cf01f9c744d01e59b45f",
+      "0ad30eef4355c7a9a3154d3902da24ff28e00648",
+      "924b96b07864c10c3610a22400114376401ccd75",
+      "1322dc12d3d56bd44234ac070501887e5183030f",
+      "8ed7a24cb102196b5eccfcb318c001452c6cabf8",
+      "042bce7c218c7c31ec008f7e22587d10bac70dcc"
+    ]
+  },
+  "exact_equality": {
+    "direct_fallback_to_treatment": true,
+    "inverse_treatment_to_fallback": true,
+    "archived_generator_to_treatment": true,
+    "repeated_direct_output": true,
+    "repeated_inverse_output": true
+  },
+  "edits": [
+    {
+      "index": 1,
+      "name": "add_provenance_state_fields",
+      "category": "provenance"
+    },
+    {
+      "index": 2,
+      "name": "initialize_provenance_state",
+      "category": "provenance"
+    },
+    {
+      "index": 3,
+      "name": "add_provenance_and_dual_value_methods",
+      "category": "provenance_and_scoring"
+    },
+    {
+      "index": 4,
+      "name": "reconcile_provenance_before_opening",
+      "category": "provenance_lifecycle"
+    },
+    {
+      "index": 5,
+      "name": "apply_dual_value_to_existing_candidates",
+      "category": "scoring_hook"
+    },
+    {
+      "index": 6,
+      "name": "remember_main_loop_own_plant_attempts",
+      "category": "provenance_lifecycle"
+    },
+    {
+      "index": 7,
+      "name": "remember_orchard_wrapper_own_plant_attempts",
+      "category": "provenance_lifecycle"
+    }
+  ],
+  "edit_count": 7,
+  "total_delta_bytes": 1811,
+  "semantic_classification": {
+    "provenance_tracking": true,
+    "existing_tree_targets_only": true,
+    "tracked_opponent_crop_required": true,
+    "bfs_ceil_div_eta_threshold": 6,
+    "score_operation": "candidate.score += candidate.score",
+    "new_multiplier": false,
+    "new_eta_threshold": false,
+    "new_target_or_command": false,
+    "new_commitment": false,
+    "harvest_rewrite": false,
+    "scheduler_change": false,
+    "unrelated_bytes": false
+  },
+  "fixtures": {
+    "eligible_eta_6": 25.0,
+    "ineligible_eta_7": 12.5,
+    "ineligible_untracked": 12.5,
+    "ineligible_non_tree": 12.5,
+    "ineligible_unreachable": 12.5,
+    "input_score": 12.5
+  },
+  "host_validation": {
+    "first_full_validation_commit": "c7d8959be7c2269139410aaaee6ffad3f28602b9",
+    "final_acceptance_commit": "99866345728ad38b8e0539df4bfb69b6c578ba50",
+    "python_compile": true,
+    "self_test": true,
+    "focused_pytest": "14 passed",
+    "skip_compile_results_byte_identical": true,
+    "compiled_results_byte_identical": true,
+    "skip_compile_result_sha256": "5f392ab3466e46fc66841117b3848bcc5a7bd310f90ab3fe490b8c4405d2ff4a",
+    "compiled_result_sha256": "a8679546cf4225531175f5185061c26300c87f5d7f006a1e08e0303bd8a1cc32",
+    "fallback_binary": {
+      "crate_name": "h3a_fallback",
+      "sha256": "a732c30f3a4de3e3d735cef6c320f5727cb669cb99de3dd797510f6da6fa2d11",
+      "bytes": 13576832
+    },
+    "treatment_binary": {
+      "crate_name": "h3a_treatment",
+      "sha256": "37b6dabc6f891a0f7906fb43b7b0d399dec63a816ae7eb612a6e1691ff4b698e",
+      "bytes": 13587432
+    },
+    "sacred_resident_sha256": "fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f"
+  },
+  "decision": {
+    "source_reconstruction_prerequisite_satisfied": true,
+    "separate_three_arm_protocol_may_be_considered": true,
+    "runner_arm_or_panel_authorized": false,
+    "map_or_range_reserved": false,
+    "candidate_or_platform_action_authorized": false
+  }
+}

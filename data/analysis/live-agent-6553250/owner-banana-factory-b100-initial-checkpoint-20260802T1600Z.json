@@ -1,0 +1,152 @@
+{
+ "schema": 1,
+ "observed_at": "2026-08-02T16:00:50.816041+00:00",
+ "result_audit_completed_at": "2026-08-02T16:00:54.473266+00:00",
+ "role": "initial",
+ "agent_id": 6590083,
+ "submission_id": 41081195,
+ "arena": {
+  "agent_id": 6590083,
+  "rank": 130,
+  "total": 131,
+  "score": 0.0,
+  "division_index": 5
+ },
+ "filtered_ladder": {
+  "agent_id": 6590083,
+  "rank": 124,
+  "score": 13.7,
+  "division_index": 5
+ },
+ "battle_rows_listed": 10,
+ "matching_rows": 10,
+ "matching_finished": 10,
+ "matching_pending": 0,
+ "unexpected_rows": [],
+ "parsed_results": 10,
+ "fetch_failures": [],
+ "summary": {
+  "games": 10,
+  "wins": 4,
+  "ties": 0,
+  "losses": 6,
+  "mean_margin": -32.3,
+  "catastrophic_losses": 5,
+  "catastrophic_rate": 0.5,
+  "negative_margin_mass": 749.0,
+  "validity_runtime_signals": []
+ },
+ "rows": [
+  {
+   "game_id": 897818380,
+   "opponent": "MTLKS",
+   "opponent_agent_id": 6588458,
+   "our_score": 93.0,
+   "opponent_score": 326.0,
+   "margin": -233.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897818379,
+   "opponent": "Ramdeath",
+   "opponent_agent_id": 6588460,
+   "our_score": 321.0,
+   "opponent_score": 38.0,
+   "margin": 283.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897818378,
+   "opponent": "Regulus136",
+   "opponent_agent_id": 6480942,
+   "our_score": 189.0,
+   "opponent_score": 375.0,
+   "margin": -186.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897818377,
+   "opponent": "Zabym",
+   "opponent_agent_id": 6483514,
+   "our_score": 244.0,
+   "opponent_score": 351.0,
+   "margin": -107.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897818376,
+   "opponent": "oidrissi",
+   "opponent_agent_id": 6502964,
+   "our_score": 252.0,
+   "opponent_score": 192.0,
+   "margin": 60.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897818375,
+   "opponent": "abdelmathin",
+   "opponent_agent_id": 6479931,
+   "our_score": 176.0,
+   "opponent_score": 133.0,
+   "margin": 43.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897818374,
+   "opponent": "_H3R0_",
+   "opponent_agent_id": 6491567,
+   "our_score": 99.0,
+   "opponent_score": 59.0,
+   "margin": 40.0,
+   "rank": 0,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897818373,
+   "opponent": "Pafin",
+   "opponent_agent_id": 6481143,
+   "our_score": 386.0,
+   "opponent_score": 486.0,
+   "margin": -100.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897818372,
+   "opponent": "tsukammo",
+   "opponent_agent_id": 6480543,
+   "our_score": 209.0,
+   "opponent_score": 214.0,
+   "margin": -5.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  },
+  {
+   "game_id": 897818371,
+   "opponent": "delineate",
+   "opponent_agent_id": 6479768,
+   "our_score": 124.0,
+   "opponent_score": 242.0,
+   "margin": -118.0,
+   "rank": 1,
+   "valid": true,
+   "runtime_markers": []
+  }
+ ],
+ "identity_clean": true
+}

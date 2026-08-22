@@ -1,0 +1,44 @@
+{
+  "task_id": "20260812-readable-no-orchard-rerun-arena",
+  "phase": "pre-mutation-baseline",
+  "measured_utc": "2026-08-12T16:00:00Z",
+  "authority": "owner_directed_override; explicit owner authorisation 2026-08-12",
+  "live_before": {
+    "agent_id": 6594200,
+    "submission_id": 41090606,
+    "source_path": "cgauto/submissions/candidate-agent6553250-e7a-r36-simplified.min.rs",
+    "source_sha256": "2caac7c6e71e8dcc613a2275fe8129cdf9aec2c1230e50f7dfdec79908528381",
+    "recovered_bytes": 55799,
+    "platform_recovery": "exact_match",
+    "arena_room_rank": 35,
+    "arena_room_total": 139,
+    "arena_room_score": 22.7,
+    "battles_listed": 200,
+    "settled_checkpoint_score": 22.81,
+    "settled_checkpoint_rank": 32,
+    "settled_checkpoint_total": 137,
+    "note": "22.81/rank32/137 is the settled 160-game checkpoint; 22.7/rank35/139 is current standing. Do not conflate."
+  },
+  "candidate": {
+    "source_path": "cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs",
+    "source_sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+    "source_bytes": 75634,
+    "prior_agent_id": 6593838,
+    "prior_submission_id": 41089629,
+    "prior_mature_score": 24.76,
+    "prior_mature_rank": 21,
+    "prior_mature_games": 160,
+    "comparator_source_id": "e7a-r28-no-orchard-ablation",
+    "comparator_mature_score": 23.27
+  },
+  "restore_target": {
+    "source_path": "cgauto/submissions/candidate-agent6553250-e7a-r36-simplified.min.rs",
+    "source_sha256": "2caac7c6e71e8dcc613a2275fe8129cdf9aec2c1230e50f7dfdec79908528381",
+    "note": "NOT the a8eb3b2b source named in PROMOTION-RUNBOOK.md section 1, which is stale."
+  },
+  "leaderboard_top3": [
+    {"rank": 1, "score": 30.42, "name": "delineate"},
+    {"rank": 2, "score": 29.94, "name": "norxondor_gorgonax"},
+    {"rank": 3, "score": 28.34, "name": "MSz"}
+  ]
+}
