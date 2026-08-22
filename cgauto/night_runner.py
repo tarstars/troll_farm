@@ -282,6 +282,17 @@ def extend_plan(state) -> list:
     return added
 
 
+def already_session3(state_path) -> bool:
+    """Is the block we are running the one the tree's branch 2 would open?
+
+    Compared by resolved path, so a relative `--state` and the constant agree.
+    """
+    try:
+        return pathlib.Path(state_path).resolve() == pathlib.Path(SESSION3_STATE).resolve()
+    except OSError:
+        return str(state_path) == SESSION3_STATE
+
+
 def ordered_pair(i: int) -> list:
     """Pair `i` with its arms in ABBA order: A leads odd pairs, B leads even.
 
@@ -359,6 +370,39 @@ def morning_sheet(state, branch: str, next_note: str) -> tuple[pathlib.Path, str
         verdict = "IMMATERIAL (below the 1.0 floor)"
     else:
         verdict = "BETWEEN the floor and the bar"
+    arms = state.get("arms", {})
+    arm_a = arms.get("A", {}).get("label", "arm A")
+    arm_b = arms.get("B", {}).get("label", "arm B")
+    # Composing night 1 with THIS block only means something when this block is
+    # not itself the direct comparison.  When arm B already IS the very-old
+    # resident, adding night 1's delta counts the same generation twice — the
+    # sheet said "Composed distance" on exactly that block, twice.
+    direct = arms.get("B", {}).get("sha256") == SESSION3_ARMS["B"]["sha256"]
+    if direct:
+        section2 = (
+            f"## 2. This block IS the direct comparison — nothing is composed\n\n"
+            f"Arm B is the very-old resident itself, so the {mean:+.3f} above is "
+            f"already the whole distance from that bot to this one, measured in a "
+            f"single block on one ladder. Night 1's {NIGHT1_DELTA:+.2f} is NOT added "
+            f"here: it covers the same ground, and adding it would count one "
+            f"generation twice. This is the gold standard the composed estimate was "
+            f"only ever a stand-in for.")
+    else:
+        section2 = (
+            f"## 2. The composed comparison (pre-registered {NIGHT1_DELTA:+.2f} + this block)\n\n"
+            f"- Night 1 (cure C vs the very-old resident): {NIGHT1_DELTA:+.2f}, "
+            f"n={NIGHT1_N}, empirical pair SD {NIGHT1_PAIR_SD}.\n"
+            f"- This block: {mean:+.3f}.\n"
+            f"- **Composed distance {composed:+.3f}** from the very-old resident to "
+            f"this challenger.\n"
+            f"- Uncertainty, planning sigma: SE {se_comp_plan:.3f}; empirical spreads: "
+            f"SE {se_comp_emp:.3f}.\n"
+            f"- Named caveat: composition chains ACROSS nights, and pairing cancels "
+            f"only within-night drift. The composed number is evidence, not gold; the "
+            f"direct measurement in one block is the gold standard.\n\n"
+            f"Your framing, recorded: individually-immaterial steps may compose into a "
+            f"significant cumulative gain, so KEEP weighs the composed distance, not "
+            f"only the single step.")
     now = utcnow()
     fname = f"{now.strftime('%Y%m%dT%H%M%SZ')}-{TASK_ID}-progress.md"
     path = pathlib.Path(MSG_DIR) / fname
@@ -386,7 +430,7 @@ created_utc: {now.strftime('%Y-%m-%dT%H:%M:%SZ')}
 Written by `night_runner` at {now.strftime('%H:%M:%SZ')} UTC, unattended, with
 no human in the loop.  Nothing here is a ruling: KEEP/REVERT is yours.
 
-## 1. What the title fight said (session 2: Door-1 challenger vs cure-C resident)
+## 1. What the block said ({arm_a} vs {arm_b})
 
 - Pairs (A - B), in order: {st['pairs']}
 - Mean difference **{mean:+.3f}** over n={n} pairs.
@@ -400,23 +444,7 @@ fictional-decay hunk deleted) scored higher than the resident it replaced.  The
 bar is what a 95% interval demands before we are willing to call it real; the
 floor is the size below which we agreed we would not care even if it were real.
 
-## 2. The composed three-generation comparison (pre-registered {NIGHT1_DELTA:+.2f} + tonight)
-
-- Night 1 (cure C vs the very-old resident): {NIGHT1_DELTA:+.2f}, n={NIGHT1_N},
-  empirical pair SD {NIGHT1_PAIR_SD}.
-- Night 2 (this night): {mean:+.3f}.
-- **Composed distance {composed:+.3f}** from the very-old resident to tonight's
-  challenger.
-- Uncertainty, planning sigma: SE {se_comp_plan:.3f}. Uncertainty, empirical
-  spreads: SE {se_comp_emp:.3f}.
-- Named caveat, unchanged: composition chains ACROSS nights.  Pairing cancels
-  only within-night drift and the ladder visibly moved between nights (Legend
-  160 -> 176 seats).  The composed number is evidence, not gold.  The direct
-  gold standard is Door-1 measured against the very-old resident in one block.
-
-Your own framing, recorded: individually-immaterial steps may compose into a
-significant cumulative gain, so the KEEP question weighs the composed distance,
-not only the single step.
+{section2}
 
 ## 3. The nine named costs, which travel with any verdict
 
@@ -550,6 +578,7 @@ def main() -> int:
         # 2. submit the next arm, unless the block is complete
         paths = [state_path, ledger]
         switch = None
+        stop_after_publish = False
         if len(state["reads"]) < len(state["plan"]):
             summary = "; next arm submitted"
             submit_next(state, state_path, ledger)
@@ -579,6 +608,36 @@ def main() -> int:
                     f"{bar_for(len(state['plan']) // 2)}. No new arm, no new "
                     f"file, nothing else changed.")
                 summary = f"; BLOCK COMPLETE -> EXTENSION {span}"
+            elif already_session3(state_path):
+                # The tree's branch 2 opens session 3.  If session 3 is what just
+                # FINISHED, opening it again means rewriting the very ledger and
+                # state this block is running from: `open_session3` calls
+                # `write_text`, so the final read row and the verdict block are
+                # erased BEFORE the commit that would publish them, and a real
+                # arm is submitted for a block nobody ordered.  That happened
+                # twice, 2026-08-21T20:29Z and 2026-08-22T16:04Z; both verdicts
+                # had to be reconstructed from the state JSON.  A finished block
+                # is not an anomaly, so this stops CLEANLY (exit 0, no HALT
+                # file): the verdict stands, the sheet is published, and the arm
+                # left on the ladder is whichever one was last submitted.
+                stop_after_publish = True
+                branch = "complete"
+                append(ledger,
+                       f"\n**BLOCK COMPLETE — STOPPING** "
+                       f"({utcnow().isoformat(timespec='seconds')}) — mean "
+                       f"{mean:+.3f} is not between the floor and the bar, and "
+                       f"this block IS the direct comparison the night tree's "
+                       f"branch 2 would open. Re-opening it here would rewrite "
+                       f"this ledger and resubmit. The runner stops; the verdict "
+                       f"above stands and KEEP/REVERT is the owner's.\n")
+                next_note = (
+                    "The block finished and the runner stopped, on purpose. This "
+                    "was already the direct comparison, so there was nothing "
+                    "further for the night tree to open — starting it again would "
+                    "have erased the verdict above and put another arm on the "
+                    "ladder for a measurement nobody asked for. Nothing more will "
+                    "be submitted until you say so.")
+                summary = "; BLOCK COMPLETE -> STOP (this WAS the direct comparison)"
             else:
                 new_state, new_state_path, new_ledger = open_session3(mean)
                 nxt = submit_next(new_state, new_state_path, new_ledger)
@@ -620,6 +679,9 @@ def main() -> int:
                  publish=False)
         if switch is not None:
             state, state_path, ledger = switch
+        if stop_after_publish:
+            print("block complete; stopping (this was already the direct comparison)")
+            return 0
         if args.once:
             return 0
     print("block complete")
