@@ -6,7 +6,11 @@
     "chatgpt_1",
     "chatgpt_2"
   ],
-  "unreachable_note": "Declared out of reach by the owner 2026-08-12. Advisory only: this field changes NO transport behaviour. chatgpt_1's canonical ref stays authoritative for messages it already published, its 9 quarantined messages stay quarantined, and its immutable message and task ids are never rewritten. Live work slots it held were reassigned to codex_1 on 2026-08-12. Note codex_1 is a NEW agent (canonical ref agent/codex_1, onboarded 2026-08-09T17:06Z) and is NOT local_codex_1, which has been dormant since the 2026-08-06 coordinator transfer.",
+  "unreachable_note": "Declared out of reach by the owner 2026-08-12. Advisory only: this field changes NO transport behaviour. chatgpt_1's canonical ref stays authoritative for messages it already published, its 6 quarantined messages (counted 2026-08-22 against coordination/quarantine.json; this note said 9, which was wrong) stay quarantined, and its immutable message and task ids are never rewritten. Live work slots it held were reassigned to codex_1 on 2026-08-12. Note codex_1 is a NEW agent (canonical ref agent/codex_1, onboarded 2026-08-09T17:06Z) and is NOT local_codex_1, which has been dormant since the 2026-08-06 coordinator transfer.",
+  "reviving": [
+    "chatgpt_1"
+  ],
+  "reviving_note": "OWNER DECISION 2026-08-22: revive chatgpt_1. Recorded here the moment it was made; the id stays listed unreachable until the ONE condition in coordination/multi-agent-protocol.md sec 1 is met, because that condition IS the project's definition of reachable: the agent publishes the SHA-256 of the scripts/inbox_sweep.py and scripts/lint_outbox.py it actually runs, matching origin/main. That rule exists because of this agent -- it once ran an older inbox tool, saw zero messages for ten days, and truthfully reported having no work. Reviving the identity does NOT reopen its quarantine: those 6 adjudications rest on permanent transport invalidity, one of them on a fabricated acceptance, and they are not judgments about future work. Advisory field; no code reads it.",
   "dormant": [
     "local_codex_1"
   ]
