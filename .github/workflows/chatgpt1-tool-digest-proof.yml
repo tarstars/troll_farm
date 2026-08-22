@@ -4,7 +4,14 @@ on:
   push:
     branches:
       - agent/chatgpt_1
+    paths:
+      - scripts/inbox_sweep.py
+      - scripts/lint_outbox.py
+      - .github/workflows/chatgpt1-tool-digest-proof.yml
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   digest:
@@ -12,11 +19,32 @@ jobs:
     steps:
       - name: Check out exact branch commit
         uses: actions/checkout@v4
-      - name: Publish tool object IDs and content SHA-256
+        with:
+          ref: agent/chatgpt_1
+          fetch-depth: 0
+      - name: Verify main identity and publish durable digest record
         shell: bash
         run: |
           set -euo pipefail
-          printf 'workflow_head=%s\n' "$(git rev-parse HEAD)"
-          printf 'inbox_sweep_git_blob=%s\n' "$(git hash-object scripts/inbox_sweep.py)"
-          printf 'lint_outbox_git_blob=%s\n' "$(git hash-object scripts/lint_outbox.py)"
-          sha256sum scripts/inbox_sweep.py scripts/lint_outbox.py
+          git fetch --no-tags origin main
+          observed_main="$(git rev-parse origin/main)"
+          branch_head="$(git rev-parse HEAD)"
+          inbox_blob="$(git hash-object scripts/inbox_sweep.py)"
+          lint_blob="$(git hash-object scripts/lint_outbox.py)"
+          main_inbox_blob="$(git rev-parse origin/main:scripts/inbox_sweep.py)"
+          main_lint_blob="$(git rev-parse origin/main:scripts/lint_outbox.py)"
+          test "$inbox_blob" = "$main_inbox_blob"
+          test "$lint_blob" = "$main_lint_blob"
+          mkdir -p chatgpt_1/verification
+          {
+            printf 'origin_main=%s\n' "$observed_main"
+            printf 'branch_head=%s\n' "$branch_head"
+            printf 'inbox_sweep_git_blob=%s\n' "$inbox_blob"
+            printf 'lint_outbox_git_blob=%s\n' "$lint_blob"
+            sha256sum scripts/inbox_sweep.py scripts/lint_outbox.py
+          } | tee chatgpt_1/verification/revival-tool-digest-2026-08-22.txt
+          git config user.name 'chatgpt_1 digest probe'
+          git config user.email 'chatgpt_1@users.noreply.github.com'
+          git add chatgpt_1/verification/revival-tool-digest-2026-08-22.txt
+          git commit -m 'revival proof: record authoritative transport-tool digests [skip ci]'
+          git push origin HEAD:agent/chatgpt_1
