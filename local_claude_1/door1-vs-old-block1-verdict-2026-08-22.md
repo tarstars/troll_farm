@@ -77,3 +77,32 @@ still open:
    challenger vs cure-C resident"* and adds night 1's +1.02 to this mean as a "composed
    distance" — which double-counts, because this block **is** the direct measurement of that
    composition. The numbers in it are this block's; its labels are not.
+
+## Block 2, and where the Arena stops — OWNER RULING 2026-08-22
+
+> "let this block finish, then halt"
+
+Block 2 is the identical comparison, opened automatically at 20:29:26Z. Its pairs pool with
+block 1's on the same question, giving n = 10 and dropping the winner bar to 0.930. Partial
+at the time of the ruling: **+0.7, −0.7**; pooled with block 1, **mean +0.386 over 7 pairs**.
+
+**The halt cannot simply be dropped in.** `NIGHT-HALT` is checked at the top of the loop,
+and the entire completion — verdict, ledger rewrite, re-open, resubmit — happens inside a
+single iteration, so there is no instant between "B5 recorded" and "block 3 started" to
+interrupt. Placing the file early costs the last pair; placing it late is placing it after
+the restart. The one safe window is the **~2 hours after completion**, while the runner
+sleeps waiting for the next read: by then the verdict is computed and published, the state
+JSON holds all ten reads, and arm A — the champion `547fa706…` — is the bot left on the
+ladder, which is the resting state we want.
+
+Armed accordingly: `/home/tarstars/night-halt-watcher.sh` on the VM (started 07:02:50Z,
+log `/home/tarstars/night-halt-watcher.log`, bounded to 24 h) polls the state file every two
+minutes and touches `NIGHT-HALT` the moment every planned mark is read. Its predicate was
+observed firing before it was trusted: 10/10 → fires, 5/10 → waits, and 10/20 → waits, so an
+M-1 extension is not mistaken for a finished block. A deliberate halt exits non-zero and
+`Restart=on-abnormal` leaves it stopped for a human.
+
+**Expected sequence:** block 2 completes around 16:00–17:00Z on 2026-08-22 → verdict
+published in the morning sheet, ledger erased again (recover it from the closing commit's
+state JSON exactly as this file was recovered) → block 3 opens and submits the champion →
+the watcher fires → the runner halts with the champion resident and the Arena free.
