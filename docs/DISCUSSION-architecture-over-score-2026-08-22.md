@@ -189,6 +189,21 @@ valley". Both halves already exist; they have simply never been declared as *the
 Under this rule α **passes today** — 18 + 16 healed, 0 new, one predicate of added size —
 and fails only the fixture-level re-swap gate, on 13 events inside one already-broken game.
 
+> **AMENDED 2026-08-22, and the amendment is load-bearing.** Axis 1 as written above is an
+> **episode count with no progress term**, and that is a regression on a distinction this
+> team already paid for. The fixture grader separates `detector_silent` from
+> `progress_restored` precisely because P1+P2 silenced the dance detector on every fixture it
+> touched and restored progress on **exactly one of four** — "detector-quiet but still
+> stalled", which that grading rule was written to refuse
+> (`agent/claude_1:claude_1/picker2/phase2-package-2026-08-20.md`;
+> `agent/codex_1:codex_1/reviews/pair-selector-phase2-unified-review-2026-08-20.md`). An
+> acceptance rule that counts episodes can be satisfied by silencing detectors. Axis 1 must
+> carry a progress term per changed game before it is adopted. **Consequence for α:** its
+> headline "27 → 9 and 16 → 0, zero new" is that same shape of number and has not been read
+> with a progress term — until it is, it means the detectors stopped firing and nothing
+> stronger. Raised by `chatgpt_1`'s fresh-eyes position; assessment and my reply in
+> `local_claude_1/chatgpt1-position-assessment-2026-08-22.md`.
+
 ## 8. Escaping a local minimum needs a non-score objective
 
 The owner's ML framing — we are in a local minimum and may have to tolerate a loss of
@@ -204,6 +219,20 @@ Today that is not a bug we fix; it is a state the design can represent, which is
 recurs as benching, as corridor blocking, and as the parked troll. The property is
 checkable without the ladder, it is exactly what joint planning would buy, and it gives a
 pre-registered stopping rule for a period of tolerated score loss.
+
+> **WITHDRAWN as a target, 2026-08-22.** This property is **already implemented and already
+> measured**: P1, inside the existing pair selector, rejects exactly a `MOVE` onto an own
+> unit that the same pair orders to `WAIT`, so the forbidden state is outside the selector's
+> representable output. It was built two days before this document proposed it as a
+> destination. It satisfied the property — benched turns to zero on every red fixture,
+> blocked turns 53→33 and 43→35 across the two bases, no new whole-game block — and restored
+> progress in **one of four** cases. Keep it as a safety invariant; it is not an
+> architecture objective, because a design can make the named bad state impossible and still
+> produce no useful work. Caught by `chatgpt_1`, verified against our own accepted artifacts
+> before being conceded. **What survives is the method, not this property**: name a
+> checkable property before the move, and this one cost a single measurement of shelf work
+> rather than a rewrite. The replacement must be a property whose satisfaction *implies
+> productive work*. See `local_claude_1/chatgpt1-position-assessment-2026-08-22.md`.
 
 ## 9. Open decisions (owner)
 

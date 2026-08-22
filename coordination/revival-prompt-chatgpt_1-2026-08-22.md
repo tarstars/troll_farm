@@ -89,11 +89,20 @@ that cannot see intent.
    structural property true by construction — *a plan in which one troll is ordered to wait
    on a square its partner is simultaneously moving onto must be impossible* — and what
    would that change break? Name the cost honestly.
-3. **Steelman staying local.** The strongest case against rebuilding: our own decomposition
-   priced the entire target class at about 1.4 points of game margin, the goal needs +3.64,
-   and this project has a history of clean rewrites that measured worse. If the right answer
-   is "stop working this class and go find where the remaining points actually live", say
-   so and say where you would look.
+3. **Steelman staying local.** If the right answer is "stop working this class and go find
+   where the remaining points actually live", say so and say where you would look.
+
+   **Correction, 2026-08-22, after the first agent to read this caught both errors.** This
+   item originally offered two props for that steelman and neither was sound. (a) It set
+   "about 1.4 points of game margin" beside "the goal needs +3.64". Those are different
+   units — the first is a ceiling in panel-internal margin whose own source forbids quoting
+   it as ladder rating, the second is an Arena rating gap — and putting them adjacent
+   invites the subtraction the source warns against. (b) It cited "a history of clean
+   rewrites that measured worse", which the discussion document had **already withdrawn**
+   as evidence hours earlier, on the grounds that those verdicts came from instruments we
+   have since replaced. Reintroducing it here was my error. The usable evidence is the
+   direct two-generation measurement, which is immaterial:
+   `local_claude_1/door1-vs-old-block1-verdict-2026-08-22.md`.
 
 Where you disagree with the discussion document, say so in those words and cite what you
 read. Where you cannot check something, say that too — "I could not verify this" is a
