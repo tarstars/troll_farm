@@ -822,6 +822,16 @@ mod bot{
                     }
                     ;
                     let landing_forbidden=!priority_ids.contains(&id)&&forbidden_for_non_priority.contains(&landing);
+                    if let Some(occupant)=view.units.iter().find(|other|other.player==0&&other.cell==landing){
+                        let o_id=occupant.id;
+                        let o_idx=own_index.as_ref().and_then(|own|own.get(&o_id).copied());
+                        let o_cmd=o_idx.map(|i|commands[i].clone()).unwrap_or_else(||String::from("?"));
+                        eprintln!("SW1COLL0 turn={} m={} m_from={},{} landing={},{} m_target={},{} occupant={} occupant_is_mover={} occupant_already_swapped={} landing_reserved={} landing_forbidden={} index_ok={} early_take={} occupant_cmd={}",
+                            view.turn,id,unit.cell.0,unit.cell.1,landing.0,landing.1,target.0,target.1,
+                            o_id,moving_ids.contains(&o_id),swapped_ids.contains(&o_id),
+                            reserved.contains(&landing),landing_forbidden,o_idx.is_some(),
+                            !landing_forbidden&&!reserved.contains(&landing),o_cmd);
+                        }
                     if!landing_forbidden&&!reserved.contains(&landing){
                         reserved.insert(landing);
                         commands[index]=format!("MOVE {} {} {}",id,landing.0,landing.1);
@@ -836,6 +846,21 @@ mod bot{
                     }
                     );
                     let partner=own_index.as_ref().and_then(|own|{
+                    if let Some(occupant)=view.units.iter().find(|other|other.player==0&&other.cell==landing){
+                        let o_id=occupant.id;
+                        let o_idx=own_index.as_ref().and_then(|own|own.get(&o_id).copied());
+                        let o_cmd=o_idx.map(|i|commands[i].clone()).unwrap_or_else(||String::from("?"));
+                        let o_legal=next_cell(&view.walkable,occupant.cell,unit.cell,occupant.stats.movement_speed)==unit.cell;
+                        let o_free=!reserved.contains(&unit.cell);
+                        let o_allowed=priority_ids.contains(&o_id)||!forbidden_for_non_priority.contains(&unit.cell);
+                        eprintln!("SW1COLL1 turn={} m={} m_from={},{} landing={},{} m_target={},{} occupant={} occupant_is_mover={} occupant_already_swapped={} landing_forbidden={} index_ok={} legal={} free={} allowed={} yielding={} detour_existed={} target_is_landing={} d_from={} d_landing={} occupant_cmd={}",
+                            view.turn,id,unit.cell.0,unit.cell.1,landing.0,landing.1,target.0,target.1,
+                            o_id,moving_ids.contains(&o_id),swapped_ids.contains(&o_id),
+                            landing_forbidden,o_idx.is_some(),o_legal,o_free,o_allowed,o_cmd=="WAIT",
+                            detour.is_some(),target==landing,
+                            toward_goal.get(&unit.cell).copied().unwrap_or(-1),
+                            toward_goal.get(&landing).copied().unwrap_or(-1),o_cmd);
+                        }
                         if landing_forbidden{
                             return None;
                             }

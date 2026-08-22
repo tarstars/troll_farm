@@ -156,6 +156,63 @@ FIRE_ROW += ('                            eprintln!("SW1SEAM turn={} m={} u={} m
              'target==landing,commands[u_index]);\n')
 
 
+# ---------------------------------------------------------------------------------------
+# PROBE-ONLY decline census — task `20260822-peek-planner-target-map`, the coordinator's card of
+# 2026-08-22T19:29:45Z. The fire table records only turns where the trigger FIRED; a widened
+# trigger fires where the current one DECLINES, and declines were logged nowhere. The two rows
+# below log every own-unit collision the seam sees, fired or not, with the fields that say why it
+# declined.
+#
+# Both rows are appended by `patch_probe` only, into the PATCHED seam — never the shadow copy of
+# the base's seam, never the delivery candidate. Neither row reads or writes any state: each is a
+# single `eprintln!`, so the candidate bytes and the probe's command stream are unchanged, and the
+# existing probe-parity gate re-proves that before any row is read.
+#
+# TWO sites, because one cannot see everything:
+#   * SW1COLL0 sits right after `landing_forbidden`, BEFORE the early `continue` that lets a mover
+#     take an unreserved landing. `reserved` starts as the cells of own units that are NOT moving,
+#     so a landing held by an own unit that is ITSELF moving is unreserved: that collision takes
+#     the early exit and NEVER reaches the partner block. A census placed only at the partner
+#     block would silently miss exactly that class, which is the kind of hole this programme has
+#     paid for before.
+#   * SW1COLL1 sits immediately before `let partner=`, where `detour` and `toward_goal` exist, so
+#     it carries the same seam fields the fire rows carry.
+
+COLL_EARLY_ANCHOR = ("                    let landing_forbidden=!priority_ids.contains(&id)"
+                     "&&forbidden_for_non_priority.contains(&landing);\n")
+
+COLL_EARLY_ROW = (
+    '                    if let Some(occupant)=view.units.iter().find(|other|other.player==0&&other.cell==landing){\n'
+    '                        let o_id=occupant.id;\n'
+    '                        let o_idx=own_index.as_ref().and_then(|own|own.get(&o_id).copied());\n'
+    '                        let o_cmd=o_idx.map(|i|commands[i].clone()).unwrap_or_else(||String::from("?"));\n'
+    '                        eprintln!("SW1COLL0 turn={} m={} m_from={},{} landing={},{} m_target={},{} occupant={} occupant_is_mover={} occupant_already_swapped={} landing_reserved={} landing_forbidden={} index_ok={} early_take={} occupant_cmd={}",\n'
+    '                            view.turn,id,unit.cell.0,unit.cell.1,landing.0,landing.1,target.0,target.1,\n'
+    '                            o_id,moving_ids.contains(&o_id),swapped_ids.contains(&o_id),\n'
+    '                            reserved.contains(&landing),landing_forbidden,o_idx.is_some(),\n'
+    '                            !landing_forbidden&&!reserved.contains(&landing),o_cmd);\n'
+    '                        }\n')
+
+COLL_LATE_ANCHOR = "                    let partner=own_index.as_ref().and_then(|own|{\n"
+
+COLL_LATE_ROW = (
+    '                    if let Some(occupant)=view.units.iter().find(|other|other.player==0&&other.cell==landing){\n'
+    '                        let o_id=occupant.id;\n'
+    '                        let o_idx=own_index.as_ref().and_then(|own|own.get(&o_id).copied());\n'
+    '                        let o_cmd=o_idx.map(|i|commands[i].clone()).unwrap_or_else(||String::from("?"));\n'
+    '                        let o_legal=next_cell(&view.walkable,occupant.cell,unit.cell,occupant.stats.movement_speed)==unit.cell;\n'
+    '                        let o_free=!reserved.contains(&unit.cell);\n'
+    '                        let o_allowed=priority_ids.contains(&o_id)||!forbidden_for_non_priority.contains(&unit.cell);\n'
+    '                        eprintln!("SW1COLL1 turn={} m={} m_from={},{} landing={},{} m_target={},{} occupant={} occupant_is_mover={} occupant_already_swapped={} landing_forbidden={} index_ok={} legal={} free={} allowed={} yielding={} detour_existed={} target_is_landing={} d_from={} d_landing={} occupant_cmd={}",\n'
+    '                            view.turn,id,unit.cell.0,unit.cell.1,landing.0,landing.1,target.0,target.1,\n'
+    '                            o_id,moving_ids.contains(&o_id),swapped_ids.contains(&o_id),\n'
+    '                            landing_forbidden,o_idx.is_some(),o_legal,o_free,o_allowed,o_cmd=="WAIT",\n'
+    '                            detour.is_some(),target==landing,\n'
+    '                            toward_goal.get(&unit.cell).copied().unwrap_or(-1),\n'
+    '                            toward_goal.get(&landing).copied().unwrap_or(-1),o_cmd);\n'
+    '                        }\n')
+
+
 def patch_candidate(base: str, predicate: str = PREDICATE_R1) -> str:
     out = base
     for anchor in (REGION_START, SEAM_HEAD, LOOP_ANCHOR, TAIL_ANCHOR):
@@ -253,7 +310,19 @@ def patch_probe(base: str, candidate: str, predicate: str = PREDICATE_R1) -> str
     rest = rest.replace(tail_anchor, """                    ;
                     }
 """ + SHADOW_TAIL, 1)
-    return out[:idx] + rest
+    out = out[:idx] + rest
+    # 6. the decline census (task 20260822-peek-planner-target-map). Both anchors occur TWICE in
+    # the probe — once in the shadow copy of the base's seam, once in the patched seam — so the
+    # edit is confined to the text at or after the PATCHED seam's signature, which is unique.
+    seam_at = out.index(SEAM_HEAD)
+    head, tail = out[:seam_at], out[seam_at:]
+    for anchor, row in ((COLL_EARLY_ANCHOR, COLL_EARLY_ROW), (COLL_LATE_ANCHOR, COLL_LATE_ROW)):
+        if tail.count(anchor) != 1:
+            raise SystemExit(f"decline-census anchor is not unique in the patched seam "
+                             f"({tail.count(anchor)}x): {anchor[:60]!r}")
+        tail = tail.replace(anchor, anchor + row, 1)
+    out = head + tail
+    return out
 
 
 # ---------------------------------------------------------------------------------------
