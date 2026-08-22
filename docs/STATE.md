@@ -1,60 +1,59 @@
 # STATE — Troll Farm (single entry point)
 
-Last updated: 2026-08-10 (doc diet; see docs/archive/STATE-2026-08-10-pre-diet.md for the
+Last updated: 2026-08-22 (§1 rewritten: champion of record, Arena halted, corpus re-counted). Earlier: 2026-08-10 (doc diet; see docs/archive/STATE-2026-08-10-pre-diet.md for the
 pre-diet text). This file is live state, not a record — the ledger volumes are the record.
 Hard budget: 150 lines. Rewrite it whenever facts change.
 
 ## 1. Live identity
 
-### ★★★ OWNER RULED **KEEP** 2026-08-19 — the resident is **CURE C** (`cure-c-quiet`).
+### ★★★ OWNER RULED **KEEP** 2026-08-21 — the resident is the **DOOR-1 CHALLENGER** (`candidate-door1-pure-deletion`). The Arena is **HALTED**.
 
-M-1 paired night 2026-08-18/19 (ledger `local_claude_1/cure-c-night-2026-08-18.md`):
-cure C won **all five pairs** vs the prior resident `98628e98…` — +1.3, +0.2, +0.4,
-+0.6, +2.6, **mean +1.02** (clears the 1.0 floor; planning winner bar 1.86 not met;
-M-1's prescribed extension was superseded by the owner's KEEP, which is the owner's
-call to make). Honesty: empirical pair SD 0.976 vs planning 2.123; pair-5 ladder-event
-caveat on record. **m082 seat 1 (12→1) is the permanently accepted named cost.**
-Prior resident era (98628e98, KEEP 2026-08-12, six reads 19.77–24.90): archived in
-this file's git history and the night ledger.
+Door 1 is cure C **with the fictional-decay hunk deleted** — a pure deletion. Against cure C it
+measured **+0.220, IMMATERIAL**, and the owner ruled KEEP anyway: at equal score the smaller
+program is the better one (`docs/DISCUSSION-architecture-over-score-2026-08-22.md` §1). Cure C
+`ad3bfefe…` is **retired** (era: git history, `local_claude_1/cure-c-night-2026-08-18.md`).
 
 | field | value |
 |---|---|
-| live submission | **`41159334`** (submitted 2026-08-19T04:04Z on the KEEP; agent id pending first read — night agents for these bytes: 6631618/6632611/6633433/6634457/6634986) |
-| source | `cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs` (75,844 B) |
-| SHA-256 | `ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1` |
-| purpose | resident; cure C = mid-game fallback for chopless trolls (one hunk, six lines, over `98628e98…`) |
-| last read | A5 night window: **24.4, rank 24/162, 160 games** (2026-08-19T00:58Z); night windows 25.2/23.0/23.2/22.9/24.4 |
-| disposition | **resident — owner KEEP ruling 2026-08-19 on the night's numbers** |
-| restore-to-resident source | `cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs`, SHA `ad3bfefe…` |
+| live submission | **`41178858`** (submitted 2026-08-22T16:04:32Z as arm A of a block that was halted three minutes later; the bytes are the champion's) |
+| source | `cgauto/submissions/candidate-door1-pure-deletion.rs` |
+| SHA-256 | `547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0` |
+| purpose | champion of record; cure C minus the fictional-decay hunk |
+| recent reads | as arm A across two 5-pair blocks, 2026-08-21/22: 23.7 / 21.3 / 23.8 / 21.8 / 21.8 · 21.9 / 21.4 / 21.3 / 23.4 / 21.6 |
+| disposition | **resident — owner KEEP 2026-08-21**; Arena halted by owner ruling 2026-08-22 |
+| restore-to-resident source | `cgauto/submissions/candidate-door1-pure-deletion.rs`, SHA `547fa706…` |
 
-⚠ **`docs/PROMOTION-RUNBOOK.md` MUST NOT be followed for this run.** Its authorization gate is
-scoped to candidate D171a only, and its §1 "fixed identities" are stale — it names resident
-`a8eb3b2b…` / agent `6561795`, which has not been live for weeks. **Following its abort path
-would restore the wrong bot.** Use the restore target in the table above.
+**The Arena is deliberately stopped.** `NIGHT-HALT` sits in the runner's working directory on
+the VM; `night-runner.service` exited 2026-08-22T16:07:55Z. To resume, delete that file and
+start the service. Nothing is submitted until then.
 
-- Displaced: `6594200`/`41090606` (`2caac7c6…`), settled 22.81/32/137, eroded 22.7/35/139.
-- Corpus: 14,930 games / 582 agents / 279 names, 0 parse failures (verified 2026-08-12-labelled session).
+★ **The direct two-generation measurement is IMMATERIAL.** Ten pairs, champion against the
+very-old resident `98628e98…`: **mean +0.17, ≈0.00 once the pairing bias is removed**, against
+a composed estimate of +1.24 (`local_claude_1/door1-vs-old-pooled-verdict-2026-08-22.md`). Two
+generations of fixture-driven cures are not visible on the ladder — the central planning fact.
+
+⚠ **`docs/PROMOTION-RUNBOOK.md` MUST NOT be followed as it stands.** Its gate is scoped to
+candidate D171a and its "fixed identities" name a resident retired weeks ago, so **its abort
+path would restore the wrong bot.** Use the restore target above.
+
+- Corpus (re-counted **by parsing**, 2026-08-22): **21,496 games**, raw and processed agreeing,
+  21,496 trajectories, `sha256(games.jsonl) a882e527…`; **8,590 are ours** across 86 agent ids
+  (`6536359`–`6648254`), complete through today. `local_claude_1/corpus-identity-2026-08-22.md`.
+  **Never count corpus membership with a text match** — JSON spacing varies and greps undercount.
 
 ## 2. Goal (RE-SCOPED 2026-07-30 by owner decision)
 
-**Primary: reach a mature score ≥ 25.40** — the current top-10 boundary (Escdemon 25.37),
-i.e. **+3.64** from our frozen 21.76. **Interim checkpoint: 24.70** — yamo's score, the
-design this bot reproduces, so passing it means the reproduction has surpassed its original
-(+2.94). Completion rule unchanged: a mature read **plus a later confirmation**, never a
-single spike.
+**Primary: a mature score ≥ 25.40** — the top-10 boundary (Escdemon 25.37), i.e. **+3.64** from
+our frozen 21.76. **Interim: 24.70**, yamo's score — the design this bot reproduces, so passing
+it means the reproduction beat its original (+2.94). Completion needs a mature read **plus a
+later confirmation**, never a single spike.
 
-Superseded: Legend rank ≤ 3 (bar 28.22). It was set when passive maturity looked like a
-live lever; that assumption died (score is source-side frozen between rare recomputes) and
-the target was never revisited. No path to +6.5 has been identified in two months, and the
-2026-07-29 terminal synthesis closed all eight known routes for this architecture.
-
-Why ≥25.40 is the right kind of target: **25 Legend agents reach ranks 7–54 on our exact
-two-worker roster**, so it is architecturally demonstrated rather than hypothetical.
-N1 has now rejected the anecdotal 3–4-point passive-maturity premise for planning:
-remaining uplift −0.161, CI [−0.753,+0.457]. The measured policy/architecture gap must do
-the work. **A2 has now stopped at its Phase-1 K1**, so it is no longer a current goal path;
-waiting is not one either. Rank targets are additionally avoided because pool strengthening
-makes the goalpost move in the wrong direction.
+Superseded: Legend rank ≤ 3 (bar 28.22), set when passive maturity looked like a live lever —
+an assumption N1 killed (uplift −0.161, CI [−0.753, +0.457]); rank targets also move the
+goalpost the wrong way as the pool strengthens. ≥25.40 is the right *kind* of target because
+**25 Legend agents reach ranks 7–54 on our exact two-worker roster** — demonstrated, not
+hypothetical. **Read §1's two-generation measurement beside this:** the cure programme is not
+moving the ladder, so +3.64 will not come from more of it.
 
 ## 3. Standing rules
 
@@ -62,111 +61,90 @@ makes the goalpost move in the wrong direction.
   permission gate is **lifted**: *"I want to lift this rule about my authorization of
   interaction with arena. Submit anything worth trying."* Scope, as recorded and confirmed
   by the integrator:
-  - **Authorized without asking:** submitting a candidate that has passed its frozen
-    protocol's gates; the full promotion protocol including the capacity A/A phase; timed
-    reads; reverts and exact-resident restore within a cycle.
-  - **Still surfaced to the owner BEFORE acting** (not a permission request — a
-    notification, because these are not what was authorized): submitting anything that has
-    NOT passed frozen gates (i.e. experimenting on the live ladder); any action that would
-    abandon a matured score with no qualified candidate in hand; more than one submission
-    cycle in flight; anything that could forfeit the ladder slot.
+  - **Without asking:** submit a candidate that passed its frozen gates; the full promotion
+    protocol including the capacity A/A phase; timed reads; reverts and exact-resident restore.
+  - **Surfaced BEFORE acting** (a notification, not a permission request — these are outside
+    what was authorized): submitting anything that has NOT passed frozen gates; abandoning a
+    matured score with no qualified candidate in hand; more than one cycle in flight; anything
+    that could forfeit the ladder slot.
 - ★★ **OWNER 2026-08-12 (real date 2026-08-09): the noise-band gate is REMOVED.** The ladder
   is an information channel; submissions are the cheap instrument. QUALIFIED-verdict
   correctness bar stands; magnitude bar is gone; runbook in full; owner told before and
   after each cycle; every id and terminal response logged.
-- ★ **σ = 1.501** (CI [1.049, 2.634]; 4 families / 14 mature observations / 10 d.o.f.;
-  `cgauto/arena_noise_band.py`). **Supersedes the earlier 1.098** (6 d.o.f.) after the
-  2026-08-13 four-run same-source campaign; the CI's lower bound now sits *above* the old point
-  estimate, so the previous figure was optimistic, not merely imprecise. Difference SD at n=1
-  per arm = **2.123**; SE 1.0 needs **5** runs/arm, SE 0.5 needs **19** (~76 h), SE 0.3 needs
-  **51**. A mature 160-game read takes **~2 h**.
-  - **What this number is** (wording required by `codex_1`'s review, 2026-08-13): `1.501`
-    estimates **combined operational variability for sequential same-source deployments in the
-    observed campaign**. Pure re-submission variance and ladder drift are **not separately
-    identifiable** from these data, and **no inequality between them is established** — drift can
-    increase *or* decrease within-family dispersion depending on its direction, timing and
-    covariance with deployment order. An earlier draft of mine called `1.501` an upper bound on
-    re-submission variance; **that claim is withdrawn** — it assumed an additive, independent
-    drift term that this design cannot establish.
-  - **The runs-per-arm figures are a planning approximation, not a guarantee.** They are exact
-    under independent, stationary observations with variance `1.501²`. Persistent or
-    autocorrelated drift can prevent the nominal `1/√n` improvement. **Interleaved A/B/A/B is
-    required** to distribute drift across arms — with sequential blocks the arithmetic does not
-    hold. Re-run the estimator after every new mature deployment.
-  - Evidence: campaign family `e7a-readable-no-orchard-code-cost`, n=6 on byte-identical
-    `98628e98…` — [19.77, 22.46, 23.39, 23.73, 24.76, 24.90], range 5.13, which is 2–3× every
-    other family (1.70–1.77). Task record `20260810-arena-noise-band-measurement`; independently
-    reproduced by `codex_1` to `SD 1.5010773908540938`.
+- ★ **σ = 1.501** (CI [1.049, 2.634]; 4 families / 14 observations / 10 d.o.f.;
+  `cgauto/arena_noise_band.py`), superseding 1.098 — the new CI's lower bound sits *above* the
+  old point estimate, so that figure was optimistic, not merely imprecise. Difference SD at
+  n=1/arm = **2.123**; SE 1.0 needs **5** runs/arm, SE 0.5 needs **19**, SE 0.3 needs **51**.
+  A mature 160-game read takes **~2 h**. Paired blocks use **σ_pair 1.5** (bar 1.315 at n=5,
+  0.930 at n=10; materiality floor 1.0).
+  - What the number is and is not, the runs-per-arm caveats, and the n=6 evidence:
+    task record `20260810-arena-noise-band-measurement`. Two clauses that must travel with
+    it: it estimates **combined** operational variability and does **not** separate
+    re-submission variance from ladder drift; and the runs-per-arm figures assume stationary
+    observations, so persistent drift can defeat the nominal `1/√n`.
+  - **Pairing (amended 2026-08-22, owner):** blocks run **ABBA** and the difference is taken
+    **A minus B by arm, never by position**. A fixed A-then-B order put arm A in the earlier
+    slot of every pair, so drift entered every difference with a fixed sign.
+    `docs/METHODS-LEDGER.md`, `paired-order-carries-the-drift`.
   - **Read scores only from an agent-validated block.** The room serves a persistent
     stale row — agent 6604529 / field 140 / score 22.46 — that camouflages as a plausible
-    value (it nearly entered the registry twice); the registry now faults any checkpoint
-    whose arena block names a foreign agent.
-  - **Unchanged:** mutations remain serialized through the **single arena controller**
-    (now `local_claude_1` by owner reassignment — see the note in this section). No peer agent
-    or subagent may submit. One cycle in flight at a time — that is a ladder-slot constraint,
-    not an evidence one, so higher throughput means *shorter cycles*, never parallel ones.
-- **B0.3 no-churn — SUBSTANTIALLY WEAKENED 2026-08-12, by measurement.** The rule read: "fresh
-  reads sit 3–4 points below matured ones; every failed trial costs days of standing." The
-  first clause holds. **The second does not, at current ladder rates:** the 2026-08-12 cycle
-  went from submission to a settled 160-game read in **~2 hours** (21 games at +15 min, 127 at
-  +1 h 35 m, 160 at +1 h 55 m). The "days" figure dates from the B0.1 regime when the score was
-  source-side frozen and the resident drew 6 battles in 4 days. A mature observation is now
-  cheap. What remains true: never *abandon* a run before it matures, since a half-matured read
-  is the expensive kind of worthless.
-- Sealed, do not open: maps `9,844,200–9,844,215`; the official-map holdout; the 11
-  sealed D164 field games; D170's confirmation block `9,852,000–063` (unused, preserved).
-- Substrate rule (D158/D161): controllers use the exact Yamo/Orchard resident fallback
-  natively or first prove same-panel dominance. D40/q6 is dead as a substrate.
-- External play bursts ≤ 12 games; stop on HTTP 422 or degenerate results.
-- Bulk writes: preflight `python3 cgauto/check_external_storage.py --required-free-gib N`
-  (`AGENTS.md`, `docs/storage-policy.md`). YT root:
-  `//home/delivery_ml/research/tarstars/troll_farm`.
-- **Coordination is migrating to a control plane** — spec
-  `docs/superpowers/specs/2026-08-10-coordination-control-plane-design.md` (approved
-  2026-08-10; no CI this iteration). Until P2 switches authority, the existing protocol
-  `coordination/multi-agent-protocol.md` remains in force. Coordinator/integrator/Arena
-  controller = `local_claude_1` (owner reassignment 2026-08-06). §7 hazards bind everyone:
+    value; the registry faults any checkpoint whose arena block names a foreign agent.
+  - **Unchanged:** mutations are serialized through the single arena controller
+    (`local_claude_1`); no peer agent or subagent may submit; one cycle in flight at a time,
+    so higher throughput means *shorter cycles*, never parallel ones. The controller may run a
+    deterministic service (`night-runner`) under a pre-registered plan — it is not a peer.
+- **B0.3 no-churn — WEAKENED 2026-08-12 by measurement, restated 2026-08-22.** "Fresh reads sit
+  3–4 points below matured ones" holds. "Every failed trial costs days of standing" does not: a
+  mature 160-game read takes ~2 h, and the ladder was swapped every 2 h for several nights
+  without loss. What churn costs is the **slot** — while a block runs nothing else can be
+  measured — so queue order is the scarce thing. Never *abandon* a run before it matures.
+- Sealed, do not open: maps `9,844,200–9,844,215`; the official-map holdout; the 11 sealed
+  D164 field games; D170's confirmation block `9,852,000–063`.
+- Substrate rule (D158/D161): controllers use the exact Yamo/Orchard resident fallback natively
+  or first prove same-panel dominance. D40/q6 is dead as a substrate.
+- External play bursts ≤ 12 games; stop on HTTP 422 or degenerate results. Bulk writes:
+  preflight `cgauto/check_external_storage.py --required-free-gib N` (`docs/storage-policy.md`).
+- **`coordination/multi-agent-protocol.md` is in force** (control-plane migration parked; spec
+  `docs/superpowers/specs/2026-08-10-coordination-control-plane-design.md`).
+  Coordinator/integrator/Arena controller = `local_claude_1`. §7 hazards bind everyone:
   byte-sacred `fff6669b` dev copy, no formatters over hash-locked sources, `data/raw/games/`
-  and the 05:17 cron untouchable.
-- **History rewrite: DECLINED by owner 2026-07-30, closed.** Measured gain was 12.9 MB
-  (39 MB → ~26 MB) against invalidating all ~380 published commit hashes, four of which are
-  cited directly in experiment records. `git gc --aggressive` already reclaimed 14 MB for
-  free. The full-history bundle stays on `medium_data` as a backup. Do not reopen.
-- Repository pushed to GitHub 2026-07-29 (`origin/session-2026-07-01` current); remote
-  message transport is live; full-history bundle on `medium_data`; 1,629 tracked bulk
-  artifacts migrated to USB as committed symlinks (digest
-  `docs/storage-migration-2026-07-29-tracked.sha256`).
+  and the 02:17 UTC cron untouchable. **§5.1: an agent is woken only by mail from someone
+  else** — its own cards are obligations, not signals.
+- **History rewrite: DECLINED by owner 2026-07-30, closed. Do not reopen.** (12.9 MB against
+  invalidating ~380 published commit hashes, four cited in experiment records.)
+- The integrated branch is **`main`**; `session-2026-07-01` has not moved since 2026-08-17 and
+  is not kept in step. Full-history bundle on `medium_data`.
 
 ## 4. Open thread
 
-- **Transport CLEAN 2026-08-10** — delivery errors 0, quarantine errors 0, quarantined 10
-  for all three active agents; the half-done self-quarantine was found unpushed and landed
-  (`4de33b8c`, trunk `8c01c6ad`).
-- **Control-plane migration is the live programme.** Spec approved; plan
-  `docs/superpowers/plans/2026-08-10-coordination-control-plane.md` (P0+P1). P2/P3 follow
-  shadow-mode verification.
-- **Iteration-3 carries (designed, unstarted):** CBF conditional banana farm
-  (`docs/superpowers/specs/2026-08-07-conditional-banana-farm-design.md`; note the strict
-  no-banana-before-second-troll rule and D-9(a) UNPINNED status) and D89a
-  leak-repairability follow-up (claude_1 returned NOT_REPAIRABLE; review pending).
-- **P0 tooling-integrity task** `20260810-guards-that-cannot-fail` (G1–G6; G6 owner-gated).
-- **σ task** `20260810-arena-noise-band-measurement` — unowned; Q2–Q4 open; blocked
-  ordering cannot separate our variance from ladder drift, only interleaved A/B/A/B can.
-- **Needs the owner:** G6 go-ahead only. (B7, B9, e7a all ruled 2026-08-11; the readable
-  format is pinned rustfmt per `docs/readable-format.md`.)
-- History: 2026-07-29 terminal synthesis closed all eight resident levers; A2 stopped at
-  Phase-1 K1; N1 closed passive maturity; the full pre-diet record is
-  `docs/archive/STATE-2026-08-10-pre-diet.md` and the ledger volumes.
+- **The live programme is the architecture question**, not the cure programme:
+  `docs/DISCUSSION-architecture-over-score-2026-08-22.md`. Score is a constraint, not the
+  objective; a score-neutral, smaller program is an improvement. The measurement in §1 is why.
+- **In review:** cure α re-graded with the two-clause test — 32 of 34 healed events carry
+  restored progress, 2 quiet-but-stalled, 0 window-absent — pending codex_1's instrument
+  ruling (`coordination/tasks/20260822-alpha-progress-regrade.md`). "Healed" now means healed
+  **with progress**, never detector-silent, on α's bar and on any future one.
+- **Unparked:** corpus prevalence — the corpus is pinned (§1) and the replay adapter is sized
+  by execution; the alignment of 301 states to 300 command rows is its one trap.
+  Anti-benching Phase 3b design delivered after the extend-versus-replace ruling.
+- **`chatgpt_1` revived** 2026-08-22 as a fresh-eyes architecture partner, no verdict
+  authority; tooling digest verified; its own publisher fails, so its argument is undelivered.
+- **Unowned defect:** the night runner erases its ledger and re-opens an identical block at
+  every completion. It did so twice on 2026-08-21/22; a watcher caught it the second time.
+- **Needs the owner:** nothing.
+- History: 2026-07-29 synthesis closed all eight resident levers; A2 stopped at Phase-1 K1; N1
+  closed passive maturity. Pre-diet record: `docs/archive/STATE-2026-08-10-pre-diet.md`.
 
 ## 5. Reading order & pointers
 
-1. This file.
-2. `docs/CONSTRAINTS.md` — check BEFORE proposing any experiment.
-3. `docs/BACKLOG.md` — live priorities at the top; historical tiers below are the record.
-4. `coordination/README.md` + inbox sweep — mandatory until P2; see the control-plane spec.
-5. Live ledger: `data/analysis/live-agent-6553250/legend-top3-experiment-cycle-vol4-2026-08-04.md`; prior volumes frozen. Atlas: `docs/D-series-atlas.pdf`.
-6. `AGENTS.md` (process), `docs/storage-policy.md`, `docs/mechanics.md`,
-   `docs/archive/INDEX.md` (superseded docs).
+1. This file → `docs/CONSTRAINTS.md` (before proposing any experiment) → `docs/BACKLOG.md`
+   (live priorities on top) → `coordination/README.md` + the inbox sweep.
+2. `docs/DISCUSSION-architecture-over-score-2026-08-22.md` — what we are optimising, and why.
+3. `docs/METHODS-LEDGER.md` (how we measure) · `docs/RULES-LEDGER.md` (how we win) ·
+   `docs/DISCOVERY-two-correct-doors-make-a-wall-2026-08-17.md`.
+4. Live ledger `data/analysis/live-agent-6553250/legend-top3-experiment-cycle-vol4-2026-08-04.md`;
+   prior volumes frozen. Atlas `docs/D-series-atlas.pdf`. `AGENTS.md`, `docs/mechanics.md`,
+   `docs/archive/INDEX.md`.
 
 Per-experiment obligations: ledger entry; CONSTRAINTS bullet for anything closed; §4 update here.
 First session ending with the live volume over 100 KB freezes it and opens the next.
