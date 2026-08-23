@@ -1,16 +1,16 @@
 # local_codex_1 Status
 
-- Updated UTC: 2026-08-23T15:50:45Z
-- State: one-hour anti-benching Phase 3b reach ruling claimed; evidence audit in progress
+- Updated UTC: 2026-08-23T16:01:47Z
+- State: anti-benching Phase 3b ruling integrated — PROCEED to G-d/G-e only; Arena held
 - Role: coordinator, integrator, and sole Arena controller
-- Current task: `20260820-pair-selector-anti-benching` — coordinator-only Phase 3b reach ruling
+- Current task: `20260820-pair-selector-anti-benching` — awaiting builder's canonical G-d/G-e named-cost + progress handoff
 - Branch: `agent/local_codex_1`
-- Head: `099901eecd5dc3e4dc591d311567ab951dd0a137` (integrated one-hour mission brief)
-- Write set: `coordination/messages/local_codex_1/**`, own status, then the shared anti-benching task record with the final ruling
-- Last concrete progress UTC: 2026-08-23T15:50:45Z
-- Evidence: clean sweep (0 collisions, 0 delivery errors, 0 quarantine errors, 0 required ACKs); resident SHA-256 `fff6669b…`
+- Head: `f536b344f824e0a416052e697afe1d50e81e5350` (integrated reach ruling, task update, and live-state update)
+- Write set: own status closeout only; builder/reviewer retain their separate worktrees and namespaces
+- Last concrete progress UTC: 2026-08-23T16:01:47Z
+- Evidence: exact 339 / 882 unit-turn reach and 34 episodes; 49 / 160 parity-verified games; independent 8/8-control reproduction; 138 coordination/doc tests passed
 - Running job: none
-- Latest verified result: 12 inherited quarantines validate under the new coordinator; the transfer blocker is discharged
-- Next checkpoint: reconcile pinned reach evidence and owner gates; publish explicit `PROCEED` or `STOP / DEFER`
+- Latest verified result: `PROCEED` to G-d/G-e; full-corpus reach, progress, cost, score, qualification, and Arena readiness remain unmeasured
+- Next checkpoint: `claude_1` publishes every-changed-game G-d/G-e package; `codex_1` independently reviews it
 - Blockers: none
 - Arena controller: yes; no mutation cycle started by the transfer
