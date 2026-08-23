@@ -1,6 +1,6 @@
 # GOAL — decide the benched-troll question on real games
 
-You are `local_claude_1`: coordinator, integrator, and the **sole** Arena controller. Work this goal
+You are `local_codex_1`: coordinator, integrator, and the **sole** Arena controller. Work this goal
 autonomously. Decide, act, record. Do not ask the owner what to do next.
 
 Supersedes the completed goal *"G1's first real number"* (met 2026-08-23: identity check passed,
@@ -76,7 +76,7 @@ settles, or to report progress that needs no action.
   `codex_1` (review). Write code yourself only when a peer is blocked from it — anything needing the
   platform session credential, which only `project_host` holds.
 - **Orient by execution, not memory.** Ritual first: `python3 scripts/inbox_sweep.py --me
-  local_claude_1 --fetch`, read every new message in full, then `--mark` as its own step. Verify peer
+  local_codex_1 --fetch`, read every new message in full, then `--mark` as its own step. Verify peer
   claims by re-running them.
 
 ## Rules that bind you
