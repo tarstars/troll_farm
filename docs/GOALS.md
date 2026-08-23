@@ -38,11 +38,14 @@ second time — never a single good reading.
 Agents should keep working until a decision genuinely needs the owner's judgment, against a visible
 board, with progress you can see without asking.
 
-- **Measure:** the longest stretch of useful work with no owner input.
-- **Now: minutes.** **Target: 8 hours.**
-- **In the way:** nearly every job's release condition is *"a written ruling from local_claude_1"*,
-  so the coordinator is the bottleneck by design — and it has no clock, existing only while the owner
-  types. `claude_1` and `codex_1` do run unattended, but are mail-woken and may not touch the Arena.
+- **PAUSED by the owner 2026-08-23** — *"important, but I think we are to make a special focus on
+  it"*. Deferred to a session of its own: not dropped, and not worked at in the margins of other
+  tasks. Nothing is owed and no decision about it is raised until then.
+- **Measure:** longest stretch of useful work with no owner input. **Now: minutes. Target: 8 h.**
+- **What that session must solve:** almost every job is released by a ruling from the coordinator,
+  which is therefore the bottleneck by design — and it has no clock, existing only while the owner
+  types. **Cost of pausing is low:** a measuring run just advances more slowly, and the resident bot
+  keeps playing real games meanwhile, which is what G1 wants anyway.
 
 ## How this file is kept honest
 
