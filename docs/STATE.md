@@ -5,26 +5,26 @@ at `docs/archive/STATE-2026-08-10-pre-diet.md`). Live state, not a record. Hard 
 
 ## 1. Live identity
 
-### ★★★ OWNER RULED **KEEP** 2026-08-21 — the resident is the **DOOR-1 CHALLENGER** (`candidate-door1-pure-deletion`). The Arena is **HALTED**.
+### ★★★ The Arena is RUNNING again (owner, 2026-08-23). Live: the **NARRATE instrument**. Champion of record: **door 1** `547fa706…`, off-ladder, restore target.
 
-Door 1 is cure C **with the fictional-decay hunk deleted** — a pure deletion. Against cure C it
-measured **+0.220, IMMATERIAL**, and the owner ruled KEEP anyway: at equal score the smaller
-program is the better one (`docs/DISCUSSION-architecture-over-score-2026-08-22.md` §1). Cure C
-`ad3bfefe…` is **retired** (era: git history, `local_claude_1/cure-c-night-2026-08-18.md`).
+Door 1 is cure C minus the fictional-decay hunk — a pure deletion, owner-ruled KEEP 2026-08-21 at
++0.220 IMMATERIAL: at equal score the smaller program wins. Cure C `ad3bfefe…` retired.
 
-| field | value |
-|---|---|
-| live submission | **`41178858`** (submitted 2026-08-22T16:04:32Z as arm A of a block that was halted three minutes later; the bytes are the champion's) |
-| source | `cgauto/submissions/candidate-door1-pure-deletion.rs` |
-| SHA-256 | `547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0` |
-| purpose | champion of record; cure C minus the fictional-decay hunk |
-| recent reads | as arm A across two 5-pair blocks, 2026-08-21/22: 23.7 / 21.3 / 23.8 / 21.8 / 21.8 · 21.9 / 21.4 / 21.3 / 23.4 / 21.6. **Matured room read 2026-08-23T06:40Z: score 22.6, rank 36/176, agent `6650438`** — fresh id, not the known-stale `6604529` row; one read, unpaired |
-| disposition | **resident — owner KEEP 2026-08-21**; Arena halted by owner ruling 2026-08-22 |
-| restore-to-resident source | `cgauto/submissions/candidate-door1-pure-deletion.rs`, SHA `547fa706…` |
+| field | live now | champion of record |
+|---|---|---|
+| submission / agent | **`41182039`** / **`6652424`**, submitted 2026-08-23T09:44Z | `41178858` / `6650438` |
+| source | `local_claude_1/narrate/instrument-swap-r1-narrate-v2-SUBMITTED-2026-08-23.rs` | `cgauto/submissions/candidate-door1-pure-deletion.rs` |
+| SHA-256 | `aaebc503cc2660e920d45858767c6932575324085c93ef9345906f683b5a9271` | `547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0` |
+| what it is | **a measuring instrument**: swap R-1 plus per-turn intention telemetry. It can **never** be champion — it changes the command stream. Run, read, retire. | champion; restore target |
+| reads | AAAAA, 5 reads of one arm, no pairing. Read 1 live, immature (23.8 at 50 min). | 22.6, rank 36/176, 2026-08-23T06:40Z, one unpaired read |
 
-**The Arena is deliberately stopped.** `NIGHT-HALT` sits in the runner's working directory on
-the VM; `night-runner.service` exited 2026-08-22T16:07:55Z. To resume, delete that file and
-start the service. Nothing is submitted until then.
+**Owner reopened the ladder 2026-08-23** for the instrument. Submissions go through
+`cgauto/api_submit_once.py`, **not** `night_runner.py` (its end-of-block tree opens an unrelated
+A/B); `NIGHT-HALT` stays in place on the VM and `night-runner.service` stays down.
+
+★ **Telemetry proven through the Arena path** — 20 games, 5,257 turns, 0 decode errors, 0 leakage to
+the opponent's seat; 149 replays at `local_claude_1/narrate/games/`. **Seat comes from the replay's
+`agents` array, never the battle listing's `position`** — METHODS-LEDGER `seat-from-the-replay`.
 
 ★ **The direct two-generation measurement is IMMATERIAL.** Ten pairs, champion against the
 very-old resident `98628e98…`: **mean +0.17, ≈0.00 once the pairing bias is removed**, against
