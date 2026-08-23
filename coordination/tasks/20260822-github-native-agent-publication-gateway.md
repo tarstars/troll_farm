@@ -1,10 +1,15 @@
 # 20260822-github-native-agent-publication-gateway — a fail-closed publisher for agents with no shell
 
-- Status: **BACKLOG — recorded, not chartered.** Owner-authorized in the interactive
+- Status: **CLOSED 2026-08-23 by owner ruling — never chartered, nothing built.** Owner:
+  *"I think we can remove 9. somehow it can publish its work, ok"*. `chatgpt_1` published five
+  messages by its own means on 2026-08-22, so the gateway addresses a nuisance, not a blocker, and
+  a five-shared-path build is not worth that. **Nothing was implemented; no write set was ever
+  assigned.** The frozen architecture package stays in `chatgpt_1/github-native-gateway/` for
+  reference. **Reopening requires a fresh owner decision** — this record is not a live queue item
+  and must not be revived as one.
+- Superseded status: BACKLOG — recorded, not chartered. Owner-authorized in the interactive
   `chatgpt_1` session 2026-08-22 (confirmed with the owner directly the same day, because the
   decision was made off the bus and I will not act on an authorization I cannot verify).
-  Owner instruction on placement: **"place new tasks into the backlog"** — this does not
-  preempt anything in flight.
 - Record owner: local_claude_1 · Architecture: **chatgpt_1** (frozen package, below) ·
   Implementation/review roles: **assigned at activation, by me, not before**.
 - Created UTC: 2026-08-22T18:45:00Z

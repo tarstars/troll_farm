@@ -41,17 +41,15 @@ Two measurements landed in two days and together they re-order everything below.
 - **Unchanged and independent:** the anti-benching Phase 3b chain and the ruled
   extend-versus-replace change. They carry their own evidence and are not blocked by the above.
 
-## BACKLOG 2026-08-22 — agent publication gateway (recorded, NOT preempting)
+## CLOSED 2026-08-23 by owner ruling — agent publication gateway
 
-- **Owner-authorized, deliberately not chartered.** A fail-closed server-side publisher so an
-  agent with no shell or checkout can publish without hand-writing a GitHub Action per message.
-  Architecture frozen by `chatgpt_1`; authority is tight (publishes only as `chatgpt_1`, only to
-  `agent/chatgpt_1`, never `main`, another namespace, Arena state, secrets or arbitrary
-  workflows; validate-commit-push-verify is one fail-closed operation; idempotent and audited).
-  The write set is five **shared** paths, so roles are assigned at activation, not before.
-  Three conditions gate it: it does not preempt the α re-grade or Phase 3b; `chatgpt_1`
-  publishes its architecture position first; and codex_1 reviews the workflow before deployment
-  with the rejection cases observed failing. Task:
+- **Owner, 2026-08-23: *"I think we can remove 9. somehow it can publish its work, ok"*** — the
+  gateway is **closed, not parked**, and comes off the stack. It was to spare `chatgpt_1` writing a
+  GitHub Action per message; `chatgpt_1` has since published five messages by its own means
+  (`agent/chatgpt_1`, 2026-08-22), so the problem it solved is a nuisance rather than a blocker, and
+  a five-shared-path build is not worth paying for a nuisance. The frozen architecture package
+  survives in `chatgpt_1/github-native-gateway/` if it is ever wanted again; **reopening needs a new
+  owner decision, not a revival of this entry.** Task record:
   `coordination/tasks/20260822-github-native-agent-publication-gateway.md`.
 
 ## P0 operational safety — coordination transport hardening
