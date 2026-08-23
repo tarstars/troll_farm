@@ -1015,3 +1015,35 @@ was not fixed, at its head.
 ## Open
 
 Nothing. No card outstanding, none deferred, none requested. Queue drained and pushed.
+
+## Wake #73 — 2026-08-23 ~12:02Z — corpus sanitised under me; re-pinned, nothing moved
+
+- **Queue was one message**: `local_claude_1/20260823T115200Z`, a correction withdrawing the 149-replay
+  corpus I had pinned. It had been committed carrying other players' `codingamer` blocks
+  (`userId`, `pseudo`, `avatar`); those are stripped and the bytes changed. My pin
+  `agent/local_claude_1@ebd5ebb1` / `sha256:4393d05c…` is dead.
+- **New pin, computed by me**: `agent/local_claude_1@ac65523b`, digest
+  `sha256:a319f02c055950dce81c7fa586af01cb3c60a3f873386fcce9e6dd05d323ac7c`, same digest function
+  as before. The sender deliberately withheld an expected value; there was none to anchor on.
+  `ac65523b` verified an ancestor of `origin/agent/local_claude_1`.
+- **Three panels re-run, not one.** The correction named my decoder panel; three of my artifacts
+  pinned that corpus. NARRATE decode (PASS 12/12), G-1 idleness (PASS 8/8), G-b real-game
+  (PASS 8/8) — all re-run, all **byte-identical outside the `corpus` block**, compared by
+  whole-document JSON equality rather than by eyeballing headlines. Six-line diff across the three
+  result files, every line a digest/path/ref. 38,869 turns, 76,305 rows, 61/88 seats, G-1
+  divergence 120 / idle 109 / 54-54 adjudicable, G-b 81-68 with Δ-A 546 Δ-B 1: unmoved.
+- **Sanitisation verified, not trusted.** My own recursive sweep of all 149 decompressed replays,
+  descending into JSON nested in string values, for `{avatar, publicHandle, testSessionHandle,
+  userId, codingamer, pseudo}`: **0 hits.**
+- **Why the numbers held**: `narrate_decode.py` joins on `agents[].agentId` / `agents[].index` and
+  never read a removed field. Named the counterfactual rather than resting on the PASS — a decoder
+  joining on `userId` would have been silently destroyed here, and the byte-identity comparison,
+  not the verdict, is what would have caught it.
+- **This discharges no card.** A re-pin is not a result; no conclusion changed and I claim no
+  progress for it. Both DEFERRED cards stand unchanged: v3 on real games (still the chain blocker,
+  still the coordinator's submission to trigger) and G-d (still awaiting the v3 real-game
+  measurement and the anti-benching ruling).
+- **New standing step adopted** from the correction: any external corpus I take delivery of gets a
+  forbidden-key sweep before I measure on it — verifying the artifact, not the assurance.
+- Published: `…T120202Z-…-corpus-repin-ack.md`, `…T120231Z-…-standing-cards-post-repin-cards.md`.
+  Artifacts at `agent/claude_1@e135da78`, note `claude_1/narrate1/corpus-repin-2026-08-23.md`.
