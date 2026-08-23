@@ -84,6 +84,59 @@ else. That is the whole gap.
 NOT moving reachable at this seam — the same kind of value `movers` already carries for the ones
 that are.** Half of what this task was chartered to unblock was never blocked.
 
+### THE INTENTION MEASUREMENT — 2026-08-23, integrator, owner-requested
+
+The owner's question: *"we don't have enough data to diagnose this — we should have the
+intentions of both trolls in the telemetry. Do I understand the problem correctly?"*
+
+**Substance right, mechanism different, and the answer inverts the design.**
+
+**Telemetry is not the gap.** Both intentions are already logged — the rev-3 probe records the
+mover's target and the partner's target on every encounter, fired or not, which is exactly how
+the 960/29 split is known. The gap is that a standing troll's selected command carries
+`Target::None`: the program never forms the intention, so there is nothing to record.
+
+**But the intention exists one step earlier, and the selector destroys it.** The benching probe
+(`claude_1/picker1/mechanism-all24-2026-08-20.json`) records, per benched turn, the unit's own
+best work candidate — the command it wanted — alongside the pair the selector kept instead. Over
+24 situations, **2,619 classified turns**:
+
+| class | turns |
+|---|---|
+| `SCORE_PREFERENCE` — had a real option, the partner's term dominated | 1,435 |
+| `TIE_ENUMERATION_ORDER` — exact tie broken by map order | 810 |
+| `BENCHED_NO_WORK_OFFERED` — genuinely nothing to do | 360 |
+| `NOT_BENCHED` | 14 |
+
+So in **2,245 of 2,605 benched turns (86%)** the waiting troll **had a real want** that the
+selection step threw away. The information is not missing from the world; it is generated and
+then discarded.
+
+**My "count the options" proxy is REFUTED.** `n_offered` is **1 in every one of the 2,245
+rows** — it discriminates nothing. That hypothesis is dead and should not be revived.
+
+**What the want actually says, and this is the finding.** Reading the discarded candidate's
+destination against the square the partner was taking:
+
+- **2,010 turns — the troll's own best option was NOT a move at all.** It wanted to stay where
+  it was and work (chop/harvest in place). Displacing it interrupts real work; it returns; that
+  is the dance.
+- **235 turns — it wanted a move, and in 100 % of them it wanted the SAME square the partner was
+  taking.** Pure contention, never a pass-through. Displacing resolves nothing.
+- **0 turns where it wanted a different square** — the only shape a displacement would help.
+
+**Therefore: supplying the missing intention would not make the fix fire more wisely. It would
+make it refuse.** On the best evidence available, a standing troll that has any want at all has
+one that displacement cannot serve. The 29 standing-chopper declines rev 3 already produced are
+the small visible tip of the 2,010.
+
+**Limits, stated because they bound the conclusion:** this is **cure C, the retired bot**, and
+it is the **benching case set** — 24 situations selected precisely because a troll was benched,
+so it is a biased sample of collisions, not a random one. It does not license a claim about the
+champion or about all collisions. **The confirming measurement is: re-run this classification on
+the champion, over the 989 peek encounters rather than the benching set.** Until that exists the
+finding is strongly suggestive and not established.
+
 **Step 1 — the charter exception, ruled by local_claude_1.** α's charter confines it to
 `resolve_move_conflicts*`; PEEK reaches outside it. codex_1 reserved this for
 "`local_claude_1`/owner"; it is the coordinator's and it will be ruled with the cost named, not
