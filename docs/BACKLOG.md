@@ -6,6 +6,41 @@ Re-rank only from written evidence. One experiment in flight at a time; read-onl
 may run in parallel and are claimable by any agent under
 `coordination/multi-agent-protocol.md`.
 
+## ★★★ RE-RANKED 2026-08-23 — measure on real games, not on the 34 fixtures
+
+Two measurements landed in two days and together they re-order everything below.
+
+1. **The ladder cannot see the cure programme.** Ten pairs, champion against the bot two
+   generations back: **+0.17, ≈0.00 once the pairing bias is removed**, against a composed
+   estimate of +1.24 (`local_claude_1/door1-vs-old-pooled-verdict-2026-08-22.md`).
+2. **The evidence base is a biased sample.** Every behavioural claim rests on 34 hand-picked
+   fixtures recorded on a retired bot; the benching subset was selected *because* a troll was
+   benched. The 2026-08-23 intention measurement had to ship with "biased by construction"
+   attached, and the owner named the concern independently.
+
+**So the top priority is the instrument, not another cure.**
+
+- **P0 — `20260823-narrate-real-game-telemetry` (NARRATE).** The bot prints each troll's target
+  every turn via `MSG`; the platform records it; we grade dancing, blocked passes and
+  **intentions** over thousands of our own real games. Capability audit is done and verified:
+  submitting ✔, collecting ✔ (21,496 games, 8,590 ours, both players' commands every turn,
+  301 states per 300-turn game), the `MSG` round trip ✔ byte-preserved into the corpus, and the
+  channel is idle 299 turns out of 300. Step 1 is one submission and needs the owner's go
+  because the ladder is deliberately stopped.
+- **P0 — the replay→`Trace` adapter.** Prerequisite for NARRATE step 4 *and* for the corpus
+  prevalence card. Already sized: shape translation, one trap (301 states vs 300 command rows,
+  truncated silently).
+- **P1 — `20260821-corpus-prevalence`.** No longer blocked on data (corpus ruled and pinned); it
+  becomes a consumer of the adapter above rather than a separate build.
+- **P2 — DEMOTED: the swap cure (`20260821-swap-r1-cure`) and PEEK
+  (`20260822-peek-planner-target-map`).** The cure is verified (32 of 34 healed with real
+  progress) and cannot advance: its gate needs the 13 residual re-swaps cured, PEEK rev 3 was
+  inert, and the intention measurement says supplying the missing fact makes displacement
+  **refuse** rather than fire wisely. Its confirming evidence should come from real games, not
+  from more fixture rounds. **Park until NARRATE reports**; do not build rev 4.
+- **Unchanged and independent:** the anti-benching Phase 3b chain and the ruled
+  extend-versus-replace change. They carry their own evidence and are not blocked by the above.
+
 ## BACKLOG 2026-08-22 — agent publication gateway (recorded, NOT preempting)
 
 - **Owner-authorized, deliberately not chartered.** A fail-closed server-side publisher so an
