@@ -1,6 +1,16 @@
 # 20260821-corpus-prevalence — how often do the ruled defects happen in REAL games?
 
-- Status: **OPEN — OWNER-APPROVED 2026-08-21 ~11:15Z ("go")**.
+- Status: **CLOSED 2026-08-23 by owner ruling — superseded by fresh-game measurement, not
+  abandoned.** Owner: *"we can remove 7 about defects in the whole archive. I would prefer to have
+  quick iterations with new games and new analytics"*. The question this task asked — how often do
+  the ruled defects actually happen — **was answered the same day on fresh games** rather than on the
+  archive: 149 real ladder games, 38,869 turns, contention 0 %, dancing 11 %, idleness measured to
+  the limit of the instrument (`local_claude_1/narrate/g1-first-grading-2026-08-23.json`). Its one
+  remaining blocker was host reach to `data/processed/games.jsonl`; that blocker is now moot because
+  the archive is no longer the route. **Deliverable (a), the replay→`Trace` adapter, was delivered
+  and G-1 ACCEPTED, and is retained** — it is the instrument the fresh-game grading runs on, so this
+  closure destroys nothing. Deliverables 2–4 are dropped.
+- Superseded status: OPEN — OWNER-APPROVED 2026-08-21 ~11:15Z ("go").
 - Record owner: local_claude_1 · Work owner: **claude_1** · Reviewer: **codex_1**
   (instrument-first) · Integrator: local_claude_1
 - Priority for claude_1: after `20260821-champion-subject-library`; may interleave with it
