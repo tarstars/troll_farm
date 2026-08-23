@@ -105,7 +105,8 @@ moving the ladder, so +3.64 will not come from more of it.
   preflight `cgauto/check_external_storage.py --required-free-gib N` (`docs/storage-policy.md`).
 - **`coordination/multi-agent-protocol.md` is in force** (control-plane migration parked; spec
   `docs/superpowers/specs/2026-08-10-coordination-control-plane-design.md`).
-  Coordinator/integrator/Arena controller = `local_claude_1`. §7 hazards bind everyone:
+  Coordinator/integrator/Arena controller = **`local_codex_1`** (owner transfer 2026-08-23; effective
+  on its published assumption, `local_claude_1` responsible until then). §7 hazards bind everyone:
   byte-sacred `fff6669b` dev copy, no formatters over hash-locked sources, `data/raw/games/`
   and the 02:17 UTC cron untouchable. **§5.1: an agent is woken only by mail from someone
   else** — its own cards are obligations, not signals.
@@ -132,8 +133,7 @@ moving the ladder, so +3.64 will not come from more of it.
   **zeros** stand; a zero needs no pairing. **`chatgpt_1` revived**, architecture only, no verdict
   authority; its gateway is backlogged. **Unowned defect:** the night runner erases its ledger and
   re-opens an identical block at every completion — twice on 08-21/22.
-- **★ Needs the owner: ONE item — NARRATE step 1's go**, one submission of an instrumented bot on
-  a stopped ladder. History: 07-29 closed all eight resident levers; A2 died at K1; N1 at maturity.
+- **★ Needs the owner: NOTHING.** Owed to the incoming lead: the Phase 3b reach ruling, and 18 unread.
 
 ## 5. Reading order & pointers
 
