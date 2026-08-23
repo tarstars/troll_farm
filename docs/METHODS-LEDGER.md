@@ -18,6 +18,13 @@ omitted-grow). This project paid twice: `next_cell` (main/sim divergence era)
 and the h-starve-1 runner bug (2026-08-16).
 
 - Origin: `coordination/messages/local_claude_1/20260816T163830Z-20260816-h-starve-1-runner-bug-adjudication-ack.md` item 5.
+- Instance (2026-08-23, the coordinator, against himself): 149 Arena replays were fetched and
+  committed raw, carrying both players' `codingamer` block — `userId`, `pseudo`, `avatar`.
+  `cgauto/export_agent_replays.py` already existed for exactly this, with a `FORBIDDEN_KEYS`
+  frozenset naming those fields. The store path was re-implemented without looking. Sanitised at
+  `agent/local_claude_1@ac65523b`; every measurement reproduced bit-identically, which is luck about
+  the harm and says nothing about the process. **Widened form of this rule: before writing collected
+  external data into the repo, find the existing sanitiser/exporter first.**
 
 ## observed-failing — every new check is observed FAILING before its green is trusted
 
