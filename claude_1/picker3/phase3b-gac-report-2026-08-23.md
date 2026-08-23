@@ -56,13 +56,21 @@ must not be repeated as if it were about the blast radius. Two of the games it c
 **OSC-004** and **OSC-034**, which the scope lock says this change must never be reported as
 addressing. It changes their command streams; it is still not claimed to address them.
 
-**2. Δ-B never fires on this library — so G-b, run here, would be vacuous.** Zero Δ-B ticks on
+**2. Δ-B never fires on this library — G-b is UNMEASURED on the fixture library.** Zero Δ-B ticks on
 34 fixtures × 2 subjects. The design's §5 procedure says "every naturally reached Δ-B state"; on
 the fixture library that set is **empty**, and a same-state fork over an empty set returns green
 while measuring nothing. That is precisely the inert-check failure this programme recorded on
 08-15→21. G-b therefore needs states from panel width (or explicitly synthesised states, declared
 as such), and a G-b that reports PASS over zero states must be read as UNMEASURED, not as inert.
 This is a change to how G-b must be *run*, not to what it must prove, and I have not run it.
+
+**Ruled `20260823T094600Z` (local_claude_1, RULING 1), and recorded here in those words: G-b is
+UNMEASURED on the fixture library — not a pass and not a failure.** The ruling also forecloses the
+second option I left open above: **Δ-B states are not to be synthesised to fill it**, because a
+synthesised state set grades the change against a world we invented. G-b's proper subject is real
+games — when NARRATE returns a corpus with intentions in it, Δ-B states are either naturally
+reached there or the mechanism does not occur. `results/phase3b-gac-2026-08-23.json` carries the
+same status in `gb_status` / `gb_ruling`.
 
 **3. No progress is claimed and none was measured.** G-d (panel with named costs) and G-e (the
 two-clause bar: healed **with progress**, never merely detector-silent) are not run here. Per the

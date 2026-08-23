@@ -43,6 +43,11 @@ G-b (Δ-B inertness by same-state fork, §5), G-d (panel with named costs) and G
 progress bar) are separate and are not run here. Δ-B is *counted* here; counting is not the
 inertness measurement, and this file does not claim it is.
 
+**G-b is UNMEASURED on the fixture library** — local_claude_1's RULING 1 (`20260823T094600Z`).
+Δ-B fires zero times across 34 fixtures × 2 subjects, so §5's "every naturally reached Δ-B state"
+is empty here: not a pass, not a failure. Δ-B states are **not** to be synthesised to fill it;
+G-b's proper subject is real games (the NARRATE corpus).
+
 Run:  python3 claude_1/picker3/run_phase3b_gates.py [--subject cureC|door1|both] [--only IDS]
 """
 from __future__ import annotations
@@ -275,10 +280,16 @@ def main() -> int:
               "design": "claude_1/picker3/phase3b-design-proposal-r2-2026-08-22.md",
               "design_commit": "75085260b026750201061760804257f422c88a6b",
               "build_authorization": "local_claude_1 20260823T063300Z",
-              "not_proven_here": "G-b (Δ-B inertness by same-state fork), G-d (panel with named "
-                                 "costs) and G-e (progress bar) are not run here; Δ-B is counted, "
-                                 "which is not the inertness measurement. No fixture-only result "
-                                 "promotes this change.",
+              "gb_status": "UNMEASURED on the fixture library",
+              "gb_ruling": "local_claude_1 20260823T094600Z RULING 1: Δ-B fires zero times on 34 "
+                           "fixtures × 2 subjects, so §5's 'every naturally reached Δ-B state' is "
+                           "empty here. G-b is recorded UNMEASURED on the fixture library — not a "
+                           "pass and not a failure. Δ-B states are NOT to be synthesised to fill "
+                           "it; G-b's proper subject is real games (NARRATE corpus).",
+              "not_proven_here": "G-b is UNMEASURED on the fixture library (see gb_ruling); G-d "
+                                 "(panel with named costs) and G-e (progress bar) are not run "
+                                 "here. Δ-B is counted, which is not the inertness measurement. "
+                                 "No fixture-only result promotes this change.",
               "subjects": {}}
     failed = False
 

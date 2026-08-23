@@ -3,7 +3,9 @@
   "design": "claude_1/picker3/phase3b-design-proposal-r2-2026-08-22.md",
   "design_commit": "75085260b026750201061760804257f422c88a6b",
   "gate": "G-a + G-c",
-  "not_proven_here": "G-b (\u0394-B inertness by same-state fork), G-d (panel with named costs) and G-e (progress bar) are not run here; \u0394-B is counted, which is not the inertness measurement. No fixture-only result promotes this change.",
+  "gb_ruling": "local_claude_1 20260823T094600Z RULING 1: \u0394-B fires zero times on 34 fixtures \u00d7 2 subjects, so \u00a75's 'every naturally reached \u0394-B state' is empty here. G-b is recorded UNMEASURED on the fixture library \u2014 not a pass and not a failure. \u0394-B states are NOT to be synthesised to fill it; G-b's proper subject is real games (NARRATE corpus).",
+  "gb_status": "UNMEASURED on the fixture library",
+  "not_proven_here": "G-b is UNMEASURED on the fixture library (see gb_ruling); G-d (panel with named costs) and G-e (progress bar) are not run here. \u0394-B is counted, which is not the inertness measurement. No fixture-only result promotes this change.",
   "subjects": {
     "cureC": {
       "assertion_violations": [],
