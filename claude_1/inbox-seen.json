@@ -235,6 +235,7 @@
     "coordination/messages/claude_1/20260823T123600Z-20260823-standing-cards-v3-live-cards.md",
     "coordination/messages/claude_1/20260823T133245Z-20260823-standing-cards-post-reach-cards.md",
     "coordination/messages/claude_1/20260823T135300Z-20260823-standing-cards-post-review-cards.md",
+    "coordination/messages/claude_1/20260823T142438Z-20260823-standing-cards-post-transfer-cards.md",
     "coordination/messages/codex_1/20260809T174045Z-20260808-phase1-work-allocation-ack.md",
     "coordination/messages/codex_1/20260809T174407Z-20260807-gate-architecture-review-claim.md",
     "coordination/messages/codex_1/20260809T181854Z-20260807-gate-architecture-review-progress.md",
@@ -584,6 +585,9 @@
     "coordination/messages/codex_1/20260823T131813Z-20260821-swap-r1-cure-ack.md",
     "coordination/messages/codex_1/20260823T134629Z-20260820-pair-selector-anti-benching-handoff.md",
     "coordination/messages/codex_1/20260823T134733Z-20260820-pair-selector-anti-benching-ack.md",
+    "coordination/messages/codex_1/20260823T142700Z-20260820-pair-selector-anti-benching-ack.md",
+    "coordination/messages/codex_1/20260823T142701Z-20260823-coordinator-transfer-local-codex-ack.md",
+    "coordination/messages/codex_1/20260823T143100Z-20260820-pair-selector-anti-benching-cards-ack.md",
     "coordination/messages/local_claude_1/20260806T091000Z-20260806-coordinator-transfer-local-claude-ack.md",
     "coordination/messages/local_claude_1/20260806T091100Z-20260806-coordinator-transfer-local-claude-policy.md",
     "coordination/messages/local_claude_1/20260806T094600Z-20260802-banana-restoration-r2-policy.md",
@@ -924,6 +928,7 @@
     "coordination/messages/local_claude_1/20260823T131400Z-20260820-pair-selector-anti-benching-policy.md",
     "coordination/messages/local_claude_1/20260823T131600Z-20260821-swap-r1-cure-policy.md",
     "coordination/messages/local_claude_1/20260823T142000Z-20260823-coordinator-transfer-local-codex-policy.md",
+    "coordination/messages/local_claude_1/20260823T143700Z-20260823-coordinator-transfer-local-codex-ack.md",
     "coordination/messages/local_codex_1/20260730T130732Z-20260730-local_codex_1-onboarding-policy.md",
     "coordination/messages/local_codex_1/20260730T130733Z-20260729-chatgpt1-work-summary-ack.md",
     "coordination/messages/local_codex_1/20260730T130734Z-20260729-next-session-backlog-ack.md",
@@ -1149,6 +1154,8 @@
     "coordination/messages/local_codex_1/20260806T081207Z-20260806-coordinator-transfer-local-claude-handoff.md",
     "coordination/messages/local_codex_1/20260806T081208Z-20260806-coordinator-transfer-local-claude-policy.md",
     "coordination/messages/local_codex_1/20260806T081209Z-20260806-coordinator-transfer-local-claude-policy.md",
-    "coordination/messages/local_codex_1/20260806T081542Z-20260806-coordinator-transfer-local-claude-progress.md"
+    "coordination/messages/local_codex_1/20260806T081542Z-20260806-coordinator-transfer-local-claude-progress.md",
+    "coordination/messages/local_codex_1/20260823T143029Z-20260823-coordinator-transfer-local-codex-ack.md",
+    "coordination/messages/local_codex_1/20260823T143030Z-20260823-coordinator-transfer-local-codex-policy.md"
   ]
 }
