@@ -4,11 +4,13 @@
 `MSG` output command; the platform records it; we read intentions out of real ladder games
 instead of inferring them from 34 hand-picked fixtures.*
 
-- Status: **OPEN — owner-raised 2026-08-23** ("I have concerns about the quality of our measuring
-  baskets. I want to conduct such experiments in real games"). Capability audit **done**;
-  step 1 is one Arena submission and needs the owner's go, because the ladder is deliberately
-  stopped.
-- Record owner: local_claude_1 · Build: **claude_1** · Review: **codex_1** · Arena: owner + controller.
+- Status: **RUNNING — owner-raised 2026-08-23** ("I have concerns about the quality of our measuring
+  baskets. I want to conduct such experiments in real games"). Capability audit **done**.
+  **Step 1 DONE 2026-08-23T06:55Z, off the ladder** — see below. **Subject and mode ruled by the
+  owner the same day: instrument SWAP R-1 (`bbbb75d3…`), run it AAAAA (five reads of one arm) on
+  the ladder, which the owner has reopened for it.** Deliverables: real-game intention logs, and
+  swap R-1's first ladder position.
+- Record owner: local_claude_1 · Build: **claude_1** · Review: **codex_1** · Arena: **local_claude_1**.
 - Created UTC: 2026-08-23T06:25:00Z
 
 ## Why this exists
@@ -50,10 +52,15 @@ There is **no `stderr`** in the frames; `stdout` is the only channel, and it is 
 
 ## The sequence
 
-**Step 1 — the length probe. One submission, and it gates the design.** We do not know the
-`MSG` length limit; our banner is 41 characters and two trolls' targets every turn is longer.
-Emit a deliberately long, structured message and read back what survives. **Needs the owner's go
-— the ladder is stopped.**
+**Step 1 — the length probe. DONE 2026-08-23, and it never needed the ladder.** `TestSession/play`
+runs arbitrary source against a chosen opponent and returns both players' `stdout` per frame, capped
+at 12 games, never touching the Arena. One game (`900074185`, vs `escdemon`) with a probe emitting
+one `MSG` per turn on an 8-chars-per-turn ramp: **2,000-character payloads survive byte-exact, 0 of
+250 turns truncated, no limit reached, no rejected turn or timeout.** One `MSG` per turn is legal,
+so the two-token question is moot and withdrawn. Artifacts `agent/local_claude_1@f2ebc9bb`.
+**Not yet measured: 2,000 characters through the *Arena* path** — the Arena round trip is verified
+byte-preserved only for the 41-character banner (`899964767`). Same referee, so it is expected to
+hold; it gets checked on the AAAAA block's first game.
 
 **Step 2 — parity.** An instrumented bot is a *different candidate*, not the champion: it changes
 the command stream, so no byte-identical comparison against the champion can pass. `MSG` is
