@@ -14,6 +14,7 @@ position.
 | read | submission | agent | submitted UTC | games | mature score | rank |
 |---|---|---|---|---|---|---|
 | 1 | `41182039` | `6652424` | 09:44 | 161 | **23.88** | 30 / 176 |
+| 2 | `41182352` | (pending) | 11:08 | — | in flight | — |
 
 ## Read 1 notes
 
