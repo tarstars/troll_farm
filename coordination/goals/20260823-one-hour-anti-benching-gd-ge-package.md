@@ -3,7 +3,8 @@
 - **Date:** 2026-08-23
 - **Coordinator / intended executor:** `local_codex_1`
 - **Builder:** `codex_1` (owner reassignment 2026-08-23T17:11Z)
-- **Independent reviewer:** `local_codex_1`
+- **Fresh-eyes reviewer:** `chatgpt_1` after canonical claim
+- **Executable reproducer / unified-verdict reviewer:** `local_codex_1`
 - **Time box:** 60 minutes from explicit activation
 - **Scope:** existing Phase 3b named-cost and progress gates only
 
@@ -17,9 +18,11 @@ phase markers rather than silence.
 
 The owner's 2026-08-23T17:11Z directive transferred Claude's live tasks to
 Codex. `codex_1` is now the only builder and package author for this mission.
-`local_codex_1` remains coordinator/integrator and becomes the independent
-reviewer; it does not begin reproduction until a valid canonical handoff
-exists on `agent/codex_1`. Historical Claude artifacts remain pinned inputs.
+`chatgpt_1` is offered the independent fresh-eyes package review; its claim is
+required before that slot becomes active. `local_codex_1` remains coordinator,
+integrator, executable reproducer, and unified-verdict reviewer; it does not
+begin reproduction until a valid canonical handoff exists on `agent/codex_1`.
+Historical Claude artifacts remain pinned inputs.
 
 ## Mission
 
@@ -30,8 +33,8 @@ The preferred end state is:
 
 1. `codex_1` publishes a valid canonical handoff containing the completed
    named-cost and two-clause progress results for the exact pinned r2 build;
-   and
-2. `local_codex_1` independently reproduces it and publishes the unified
+2. `chatgpt_1`, if claimed in time, audits the package independently; and
+3. `local_codex_1` independently reproduces it and publishes the unified
    verdict.
 
 If a hard gate fails, the equally valid end state is a canonical, evidence-
@@ -104,19 +107,24 @@ unmeasured; none may be inferred from this package.
 3. While `codex_1` runs the panel, enforce the progress lease and inspect only
    read-only metadata, hashes, and partial phase markers. Do not pronounce a
    verdict on partial output.
-4. Validate the resulting handoff's schema, full commit pin, artifact
-   reachability, every-changed-game inventory, and required gate columns.
-5. Independently reproduce `codex_1`'s canonical handoff and publish the
-   unified verdict, or validate a hard falsifier and discharge the review card.
+4. Route the resulting handoff to claimed reviewer `chatgpt_1` for a fresh-eyes
+   audit of gate interpretation, changed-game coverage, and evidentiary gaps.
+5. Validate the handoff's schema, full commit pin, artifact reachability,
+   every-changed-game inventory, and required gate columns; independently
+   reproduce it and publish the unified verdict, or validate a hard falsifier
+   and discharge the review card.
 6. Update the shared task and coordinator status only to reflect facts that
    are already authoritative; lint and integrate coordinator-owned changes.
 
 ## Authority and Boundaries
 
-`local_codex_1` may coordinate, validate refs and artifacts, enforce leases,
-independently reproduce a complete canonical handoff, issue the unified
-verdict, update coordinator-owned messages/status and the shared task record,
-and integrate valid coordination changes.
+`chatgpt_1`, after a canonical claim, may review the complete handoff and issue
+a fresh-eyes evidence recommendation; its connector-only review is not a
+substitute for executable reproduction. `local_codex_1` may coordinate,
+validate refs and artifacts, enforce leases, independently reproduce a complete
+canonical handoff, issue the unified verdict, update coordinator-owned
+messages/status and the shared task record, and integrate valid coordination
+changes.
 
 `codex_1` may execute the already-approved G-d/G-e gates and create only the
 gate instrumentation and evidence artifacts required by the accepted r2

@@ -3,13 +3,10 @@
   "coordinator": "local_codex_1",
   "note": "The single authoritative statement of who the coordinator/integrator is. Lives ONLY on the integrated branch (origin/main), which is the shared root of trust. scripts/inbox_sweep.py reads it from there to decide whose canonical ref carries the quarantine and the legacy baseline. Role transfer under coordination/multi-agent-protocol.md sec 9 changes it here and nowhere else. Absent or malformed roster means quarantine is DISABLED and nothing is suppressed.",
   "unreachable": [
-    "chatgpt_1",
     "chatgpt_2"
   ],
-  "unreachable_note": "Declared out of reach by the owner 2026-08-12. Advisory only: this field changes NO transport behaviour. chatgpt_1's canonical ref stays authoritative for messages it already published, its 6 quarantined messages (counted 2026-08-22 against coordination/quarantine.json; this note said 9, which was wrong) stay quarantined, and its immutable message and task ids are never rewritten. Live work slots it held were reassigned to codex_1 on 2026-08-12. Note codex_1 is a separate agent (canonical ref agent/codex_1, onboarded 2026-08-09T17:06Z) and is NOT local_codex_1, which resumed as coordinator on 2026-08-23.",
-  "reviving": [
-    "chatgpt_1"
-  ],
-  "reviving_note": "OWNER DECISION 2026-08-22: revive chatgpt_1. Recorded here the moment it was made; the id stays listed unreachable until the ONE condition in coordination/multi-agent-protocol.md sec 1 is met, because that condition IS the project's definition of reachable: the agent publishes the SHA-256 of the scripts/inbox_sweep.py and scripts/lint_outbox.py it actually runs, matching origin/main. That rule exists because of this agent -- it once ran an older inbox tool, saw zero messages for ten days, and truthfully reported having no work. Reviving the identity does NOT reopen its quarantine: those 6 adjudications rest on permanent transport invalidity, one of them on a fabricated acceptance, and they are not judgments about future work. Advisory field; no code reads it.",
+  "unreachable_note": "Declared out of reach by the owner 2026-08-12. Advisory only: this field changes NO transport behaviour. chatgpt_2 remains unreachable. chatgpt_1 passed the protocol section 1 digest gate on 2026-08-22: its actually executed inbox_sweep.py and lint_outbox.py SHA-256 values matched origin/main and were independently verified in coordination/messages/local_claude_1/20260822T112158Z-20260822-chatgpt1-revival-policy.md. Removing chatgpt_1 from this list does not reopen its 6 historical quarantines or rewrite immutable history. Note codex_1 is a separate agent (canonical ref agent/codex_1, onboarded 2026-08-09T17:06Z) and is NOT local_codex_1, which resumed as coordinator on 2026-08-23.",
+  "reviving": [],
+  "reviving_note": "chatgpt_1 revival completed its sole reachability condition on 2026-08-22. It publishes through an interactive connected GitHub session and is not configured in the VM launcher, so a new assignment may still require the owner to wake that session. Historical quarantine adjudications remain unchanged.",
   "dormant": []
 }

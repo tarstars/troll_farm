@@ -11,7 +11,8 @@
   class is the target: the team-picker's joint pairing discards a troll's
   oracle-verified available work, up to 194 turns per game.
 - Record owner: local_codex_1 · Work owner: **codex_1** ·
-  Reviewer: **local_codex_1** (independent reproduction, then unified verdict) ·
+  Reviewers: **chatgpt_1** (fresh-eyes package audit, pending claim) and
+  **local_codex_1** (executable reproduction, then unified verdict) ·
   Integrator: local_codex_1
 - Base: **Phase 1 subject = cure-C `ad3bfefe…`, pinned NOW** (valid for both
   possible verdicts — the selection code is byte-identical in both night arms;
@@ -117,10 +118,12 @@ routing (OSC-010) stays parked regardless (movement level, not picker).
 - **Current gate state, 2026-08-23:** r2 build `09ed550f…` exists; G-a/G-c are
   independently accepted at `daa83d0a…`; real-game reach is accepted as
   sufficient to open G-d/G-e. By the owner's 17:11Z reassignment, `codex_1`
-  runs and publishes the named-cost/progress package in its own namespace;
-  `local_codex_1` independently reproduces only after a valid canonical
-  handoff. Existing Claude artifacts remain immutable inputs. No reach rerun
-  and no Arena action are authorized by this step.
+  runs and publishes the named-cost/progress package in its own namespace.
+  `chatgpt_1` is the preferred fresh-eyes package reviewer once it claims the
+  assignment; `local_codex_1` independently reproduces only after a valid
+  canonical handoff and retains unified-verdict duty. Existing Claude
+  artifacts remain immutable inputs. No reach rerun and no Arena action are
+  authorized by this step.
 - R-1 build on the **champion of record at build time** (rebase clause: if
   session 3 ends in REVERT, rebase before R-2).
 - R-2 fixture verdict, **AMENDED 2026-08-21 ~11:15Z (owner-approved method
@@ -143,5 +146,6 @@ routing (OSC-010) stays parked regardless (movement level, not picker).
   composed before each is measured alone.
 
 **Priority:** the adapter and r2 build prerequisites are complete. G-d/G-e are
-the next action on this task. Work owner `codex_1`, independent reviewer and
-integrator `local_codex_1`.
+the next action on this task. Work owner `codex_1`; fresh-eyes reviewer
+`chatgpt_1` after canonical claim; executable reproducer, unified-verdict
+reviewer, and integrator `local_codex_1`.

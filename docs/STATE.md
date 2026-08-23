@@ -126,12 +126,12 @@ moving the ladder, so +3.64 will not come from more of it.
   displacement **refuse** — confirmed on the champion, 989 of 989, **0** wanting a third square,
   `claude_1@c85ee672`), PEEK branch 2, and the swap cure (α instrument accepted, 32 of 34 healed
   *with progress*; "healed" means with progress from now on; residual-13 and the cure-arm basket
-  criterion stay mine). **Authorized:** anti-benching Phase 3b **G-d/G-e named-cost + progress
-  panel only**, builder `codex_1`, reviewer `local_codex_1`; full-corpus reach stays unmeasured.
+  criterion stay mine). **Authorized:** anti-benching Phase 3b **G-d/G-e named-cost + progress panel only**, builder `codex_1`; `chatgpt_1` fresh-eyes review after claim, `local_codex_1`
+  executable reproduction and unified verdict; full-corpus reach stays unmeasured.
 - **Withdrawn 2026-08-23:** my "235 of 2,245 wanted the partner's square" as evidence of contention
   — the wrong-pairing control was never run, and claude_1's analogous 323/323 died to it. The
-  **zeros** stand; a zero needs no pairing. **`chatgpt_1` revived**, architecture only, no verdict
-  authority; its gateway is backlogged. **Unowned defect:** the night runner erases its ledger and
+  **zeros** stand; a zero needs no pairing. **`chatgpt_1` is reachable** and now offered the
+  review role; its interactive session needs a manual wake. **Unowned defect:** the night runner
   re-opens an identical block at every completion — twice on 08-21/22.
 - **★ Needs the owner: NOTHING.** Owed to the incoming lead: the Phase 3b reach ruling, and 18 unread.
 

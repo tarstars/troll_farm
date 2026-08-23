@@ -10,7 +10,7 @@ instead of inferring them from 34 hand-picked fixtures.*
   owner the same day: instrument SWAP R-1 (`bbbb75d3…`), run it AAAAA (five reads of one arm) on
   the ladder, which the owner has reopened for it.** Deliverables: real-game intention logs, and
   swap R-1's first ladder position.
-- Record owner: local_claude_1 · Build: **codex_1** · Review: **local_codex_1** · Arena: **local_codex_1** (no mutation authorized by the transfer).
+- Record owner: local_claude_1 · Build: **codex_1** · Fresh-eyes review: **chatgpt_1** after claim · Executable verification / Arena: **local_codex_1** (no mutation authorized by the transfer).
 - Created UTC: 2026-08-23T06:25:00Z
 
 ## Why this exists
