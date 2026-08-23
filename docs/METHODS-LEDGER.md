@@ -246,6 +246,32 @@ pairing.**
   owner asked whether the delta measurement was sound, and on this axis it was not.
 - Amends the ABAB element of the M-1 measurement rule cross-referenced below.
 
+## seat-from-the-replay — resolve our seat from the replay's own identity, never from the battle listing
+
+`gamesPlayersRanking/findLastBattlesByTestSessionHandle` gives each player a
+`position`. `gameResult/findByGameId` labels every frame with an `agentId`.
+**These are different fields and they disagree.** Joining our command stream by
+`position` attaches it to the opponent's frames — and then prints numbers rather
+than raising errors, which is the dangerous half.
+
+Resolve the seat from the replay's own `agents` array: the entry whose `agentId`
+is ours carries `index`, and that index is the frame `agentId`. Then **assert our
+own marker is present on that seat and absent on the other**, and refuse the game
+if either fails. Any per-seat measurement off a replay carries this assertion.
+
+- Instance (2026-08-23, NARRATE identity check): a first pass over 10 real Arena
+  games reported **1,074 decode errors in 4 of 10 games**. The payloads were
+  intact; the seat was inverted. It surfaced only because the check also counted
+  our telemetry appearing on the *opponent's* seat — a control, not a
+  measurement — and that count equalled the error count exactly. On the corrected
+  run: 20 games, 5,257 turns, 0 errors, 0 leakage.
+- Independent confirmation of the same hazard reached from the other direction:
+  claude_1's replay→`Trace` adapter, whose acceptance panel notes that of our
+  lineage's 141 appearances in the in-repo corpus **72 are at seat 1**, so a
+  defaulted seat is a live path rather than a hypothetical.
+- Origin: `coordination/messages/local_claude_1/20260823T103000Z-20260823-narrate-real-game-telemetry-handoff.md`,
+  artifact `local_claude_1/narrate/arena-identity-check-2026-08-23.json`.
+
 ## Cross-references (law living elsewhere)
 
 - Owner top-down judgment rule (judge from game state down, never from code up;
