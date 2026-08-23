@@ -1,0 +1,2957 @@
+{
+  "build_authorization": "local_claude_1 20260823T063300Z",
+  "design": "claude_1/picker3/phase3b-design-proposal-r2-2026-08-22.md",
+  "design_commit": "75085260b026750201061760804257f422c88a6b",
+  "gate": "G-a + G-c",
+  "not_proven_here": "G-b (\u0394-B inertness by same-state fork), G-d (panel with named costs) and G-e (progress bar) are not run here; \u0394-B is counted, which is not the inertness measurement. No fixture-only result promotes this change.",
+  "subjects": {
+    "cureC": {
+      "assertion_violations": [],
+      "class_failures": [],
+      "effect_games": 20,
+      "games": 34,
+      "games_with_delta_a_formed": 20,
+      "games_with_delta_b": 0,
+      "no_effect_games": 14,
+      "panel_delta_a_formed_ticks": 203,
+      "panel_delta_a_selected_ticks": 144,
+      "panel_delta_b_duplicate_ticks": 0,
+      "probe_parity_failures": [],
+      "rows": [
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-001",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-002",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-003",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((13, 4))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((13, 6))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            106
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100,
+            106
+          ],
+          "delta_a_selected_ticks": 2,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-004",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((13, 1))"
+              },
+              {
+                "command": "PICK 0 PLUM",
+                "score": 7499.0,
+                "target": "Cell((13, 1))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-005",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100,
+            100
+          ],
+          "delta_a_selected_ticks": 2,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-006",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 PLUM",
+              "PICK 2 LEMON"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 PLUM",
+                "score": 7500.0,
+                "target": "Cell((2, 2))"
+              },
+              {
+                "command": "PICK 0 LEMON",
+                "score": 7499.0,
+                "target": "Cell((2, 2))"
+              },
+              {
+                "command": "PICK 2 PLUM",
+                "score": 7500.0,
+                "target": "Cell((1, 3))"
+              },
+              {
+                "command": "PICK 2 LEMON",
+                "score": 7499.0,
+                "target": "Cell((1, 3))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100
+          ],
+          "delta_a_formed_ticks": 1,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-007",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((9, 6))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100,
+            102,
+            104,
+            106,
+            106,
+            108,
+            110,
+            112,
+            112,
+            114,
+            116,
+            118,
+            118,
+            120,
+            122,
+            124,
+            124,
+            126,
+            128,
+            130,
+            130,
+            132,
+            134,
+            135,
+            136,
+            138,
+            140,
+            141,
+            142,
+            144,
+            146,
+            147,
+            148,
+            150,
+            152,
+            154,
+            156,
+            156,
+            158
+          ],
+          "delta_a_formed_ticks": 67,
+          "delta_a_selected": [
+            100,
+            100,
+            102,
+            104,
+            106,
+            106,
+            108,
+            110,
+            112,
+            112,
+            114,
+            116,
+            118,
+            118,
+            120,
+            122,
+            124,
+            124,
+            126,
+            128,
+            130,
+            130,
+            132,
+            134,
+            135,
+            136,
+            138,
+            140,
+            141,
+            142,
+            144,
+            146,
+            147,
+            148,
+            150,
+            152,
+            154,
+            156,
+            156,
+            158
+          ],
+          "delta_a_selected_ticks": 67,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-008",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 BANANA",
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((8, 3))"
+              },
+              {
+                "command": "PICK 0 PLUM",
+                "score": 7499.0,
+                "target": "Cell((8, 3))"
+              },
+              {
+                "command": "PICK 0 LEMON",
+                "score": 7498.0,
+                "target": "Cell((8, 3))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((9, 4))"
+              },
+              {
+                "command": "PICK 2 PLUM",
+                "score": 7499.0,
+                "target": "Cell((9, 4))"
+              },
+              {
+                "command": "PICK 2 LEMON",
+                "score": 7498.0,
+                "target": "Cell((9, 4))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-009",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-010",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-011",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((7, 1))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((8, 2))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-012",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100,
+            100
+          ],
+          "delta_a_selected_ticks": 2,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-013",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 PLUM",
+              "PICK 2 APPLE"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 PLUM",
+                "score": 7500.0,
+                "target": "Cell((2, 1))"
+              },
+              {
+                "command": "PICK 0 APPLE",
+                "score": 7499.0,
+                "target": "Cell((2, 1))"
+              },
+              {
+                "command": "PICK 2 PLUM",
+                "score": 7500.0,
+                "target": "Cell((1, 2))"
+              },
+              {
+                "command": "PICK 2 APPLE",
+                "score": 7499.0,
+                "target": "Cell((1, 2))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-014",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-015",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((1, 2))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((2, 1))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100,
+            100
+          ],
+          "delta_a_selected_ticks": 2,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-016",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 BANANA",
+              "PICK 2 PLUM"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((13, 3))"
+              },
+              {
+                "command": "PICK 0 PLUM",
+                "score": 7499.0,
+                "target": "Cell((13, 3))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((13, 1))"
+              },
+              {
+                "command": "PICK 2 PLUM",
+                "score": 7499.0,
+                "target": "Cell((13, 1))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-017",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100
+          ],
+          "delta_a_formed_ticks": 1,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-018",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((10, 0))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            106,
+            112
+          ],
+          "delta_a_formed_ticks": 3,
+          "delta_a_selected": [
+            100,
+            106,
+            112
+          ],
+          "delta_a_selected_ticks": 3,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-019",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((1, 4))"
+              },
+              {
+                "command": "PICK 0 APPLE",
+                "score": 7499.0,
+                "target": "Cell((1, 4))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-020",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 APPLE"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 APPLE",
+                "score": 7500.0,
+                "target": "Cell((12, 1))"
+              },
+              {
+                "command": "PICK 2 APPLE",
+                "score": 7500.0,
+                "target": "Cell((13, 2))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100,
+            100
+          ],
+          "delta_a_selected_ticks": 2,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-021",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 BANANA",
+              "PICK 2 PLUM"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((10, 2))"
+              },
+              {
+                "command": "PICK 0 PLUM",
+                "score": 7499.0,
+                "target": "Cell((10, 2))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((9, 1))"
+              },
+              {
+                "command": "PICK 2 PLUM",
+                "score": 7499.0,
+                "target": "Cell((9, 1))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-022",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((10, 4))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((11, 3))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-023",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((10, 4))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((11, 3))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-024",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((1, 2))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((2, 1))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-025",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((12, 2))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((13, 1))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-026",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100,
+            102,
+            102,
+            104,
+            104,
+            106,
+            106,
+            108,
+            108,
+            110,
+            110,
+            112,
+            112,
+            114,
+            114,
+            116,
+            116,
+            118,
+            118,
+            120,
+            120,
+            122,
+            122,
+            124,
+            124,
+            126,
+            126,
+            128,
+            128,
+            130,
+            130,
+            132,
+            132,
+            134,
+            134,
+            136,
+            136,
+            138,
+            138
+          ],
+          "delta_a_formed_ticks": 102,
+          "delta_a_selected": [
+            100,
+            102,
+            104,
+            106,
+            108,
+            110,
+            112,
+            114,
+            116,
+            118,
+            120,
+            122,
+            124,
+            126,
+            128,
+            130,
+            132,
+            134,
+            136,
+            138,
+            140,
+            142,
+            144,
+            146,
+            148,
+            150,
+            152,
+            154,
+            156,
+            158,
+            160,
+            162,
+            164,
+            166,
+            168,
+            170,
+            172,
+            174,
+            176,
+            178
+          ],
+          "delta_a_selected_ticks": 51,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-027",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((1, 2))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((2, 1))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-028",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100
+          ],
+          "delta_a_formed_ticks": 1,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-029",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 APPLE"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 2 APPLE",
+                "score": 7500.0,
+                "target": "Cell((7, 1))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-030",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-031",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-032",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-033",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100,
+            100
+          ],
+          "delta_a_selected_ticks": 2,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-034",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 BANANA",
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((2, 2))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((1, 3))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        }
+      ],
+      "shipped_source_inertness": {
+        "graded_sha256": "c55f9ef2d23fe82afff4e631c49c5edd70929c7ef0b3b57b8f04107ba5f4d226",
+        "pinned": "claude_1/picker2/candidate-cureC-p1p2.rs",
+        "pinned_sha256": "d127cf861ad7f145e5693b0a595bcc8e3c870f424926b18bdbb3debec80b0412"
+      },
+      "verdict": "PASS"
+    },
+    "door1": {
+      "assertion_violations": [],
+      "class_failures": [],
+      "effect_games": 19,
+      "games": 34,
+      "games_with_delta_a_formed": 19,
+      "games_with_delta_b": 0,
+      "no_effect_games": 15,
+      "panel_delta_a_formed_ticks": 201,
+      "panel_delta_a_selected_ticks": 143,
+      "panel_delta_b_duplicate_ticks": 0,
+      "probe_parity_failures": [],
+      "rows": [
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-001",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-002",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-003",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            106
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100,
+            106
+          ],
+          "delta_a_selected_ticks": 2,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-004",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((13, 1))"
+              },
+              {
+                "command": "PICK 0 PLUM",
+                "score": 7499.0,
+                "target": "Cell((13, 1))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-005",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100,
+            100
+          ],
+          "delta_a_selected_ticks": 2,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-006",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 PLUM",
+              "PICK 2 LEMON"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 PLUM",
+                "score": 7500.0,
+                "target": "Cell((1, 3))"
+              },
+              {
+                "command": "PICK 0 LEMON",
+                "score": 7499.0,
+                "target": "Cell((1, 3))"
+              },
+              {
+                "command": "PICK 2 PLUM",
+                "score": 7500.0,
+                "target": "Cell((2, 2))"
+              },
+              {
+                "command": "PICK 2 LEMON",
+                "score": 7499.0,
+                "target": "Cell((2, 2))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100
+          ],
+          "delta_a_formed_ticks": 1,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-007",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((9, 6))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100,
+            102,
+            104,
+            106,
+            106,
+            108,
+            110,
+            112,
+            112,
+            114,
+            116,
+            118,
+            118,
+            120,
+            122,
+            124,
+            124,
+            126,
+            128,
+            130,
+            130,
+            132,
+            134,
+            135,
+            136,
+            138,
+            140,
+            141,
+            142,
+            144,
+            146,
+            147,
+            148,
+            150,
+            152,
+            154,
+            156,
+            156,
+            158
+          ],
+          "delta_a_formed_ticks": 67,
+          "delta_a_selected": [
+            100,
+            100,
+            102,
+            104,
+            106,
+            106,
+            108,
+            110,
+            112,
+            112,
+            114,
+            116,
+            118,
+            118,
+            120,
+            122,
+            124,
+            124,
+            126,
+            128,
+            130,
+            130,
+            132,
+            134,
+            135,
+            136,
+            138,
+            140,
+            141,
+            142,
+            144,
+            146,
+            147,
+            148,
+            150,
+            152,
+            154,
+            156,
+            156,
+            158
+          ],
+          "delta_a_selected_ticks": 67,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-008",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 BANANA",
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((8, 3))"
+              },
+              {
+                "command": "PICK 0 PLUM",
+                "score": 7499.0,
+                "target": "Cell((8, 3))"
+              },
+              {
+                "command": "PICK 0 LEMON",
+                "score": 7498.0,
+                "target": "Cell((8, 3))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((9, 4))"
+              },
+              {
+                "command": "PICK 2 PLUM",
+                "score": 7499.0,
+                "target": "Cell((9, 4))"
+              },
+              {
+                "command": "PICK 2 LEMON",
+                "score": 7498.0,
+                "target": "Cell((9, 4))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-009",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-010",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-011",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((7, 1))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((8, 2))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-012",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100,
+            100
+          ],
+          "delta_a_selected_ticks": 2,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-013",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 PLUM",
+              "PICK 2 APPLE"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 PLUM",
+                "score": 7500.0,
+                "target": "Cell((2, 1))"
+              },
+              {
+                "command": "PICK 0 APPLE",
+                "score": 7499.0,
+                "target": "Cell((2, 1))"
+              },
+              {
+                "command": "PICK 2 PLUM",
+                "score": 7500.0,
+                "target": "Cell((1, 2))"
+              },
+              {
+                "command": "PICK 2 APPLE",
+                "score": 7499.0,
+                "target": "Cell((1, 2))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-014",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-015",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((1, 2))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((2, 1))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100,
+            100
+          ],
+          "delta_a_selected_ticks": 2,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-016",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 BANANA",
+              "PICK 2 PLUM"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((13, 3))"
+              },
+              {
+                "command": "PICK 0 PLUM",
+                "score": 7499.0,
+                "target": "Cell((13, 3))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((13, 1))"
+              },
+              {
+                "command": "PICK 2 PLUM",
+                "score": 7499.0,
+                "target": "Cell((13, 1))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-017",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100
+          ],
+          "delta_a_formed_ticks": 1,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-018",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((10, 0))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            106,
+            112
+          ],
+          "delta_a_formed_ticks": 3,
+          "delta_a_selected": [
+            100,
+            106,
+            112
+          ],
+          "delta_a_selected_ticks": 3,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-019",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((1, 4))"
+              },
+              {
+                "command": "PICK 0 APPLE",
+                "score": 7499.0,
+                "target": "Cell((1, 4))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-020",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 APPLE"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 APPLE",
+                "score": 7500.0,
+                "target": "Cell((13, 2))"
+              },
+              {
+                "command": "PICK 2 APPLE",
+                "score": 7500.0,
+                "target": "Cell((12, 1))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100,
+            100
+          ],
+          "delta_a_selected_ticks": 2,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-021",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 BANANA",
+              "PICK 2 PLUM"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((10, 2))"
+              },
+              {
+                "command": "PICK 0 PLUM",
+                "score": 7499.0,
+                "target": "Cell((10, 2))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((9, 1))"
+              },
+              {
+                "command": "PICK 2 PLUM",
+                "score": 7499.0,
+                "target": "Cell((9, 1))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-022",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((10, 4))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((9, 3))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-023",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((10, 4))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((9, 3))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-024",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((1, 2))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((2, 1))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-025",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((12, 2))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((13, 1))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-026",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100,
+            102,
+            102,
+            104,
+            104,
+            106,
+            106,
+            108,
+            108,
+            110,
+            110,
+            112,
+            112,
+            114,
+            114,
+            116,
+            116,
+            118,
+            118,
+            120,
+            120,
+            122,
+            122,
+            124,
+            124,
+            126,
+            126,
+            128,
+            128,
+            130,
+            130,
+            132,
+            132,
+            134,
+            134,
+            136,
+            136,
+            138,
+            138
+          ],
+          "delta_a_formed_ticks": 102,
+          "delta_a_selected": [
+            100,
+            102,
+            104,
+            106,
+            108,
+            110,
+            112,
+            114,
+            116,
+            118,
+            120,
+            122,
+            124,
+            126,
+            128,
+            130,
+            132,
+            134,
+            136,
+            138,
+            140,
+            142,
+            144,
+            146,
+            148,
+            150,
+            152,
+            154,
+            156,
+            158,
+            160,
+            162,
+            164,
+            166,
+            168,
+            170,
+            172,
+            174,
+            176,
+            178
+          ],
+          "delta_a_selected_ticks": 51,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-027",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((1, 2))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((2, 1))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-028",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100
+          ],
+          "delta_a_formed_ticks": 1,
+          "delta_a_selected": [
+            100
+          ],
+          "delta_a_selected_ticks": 1,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-029",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 2 APPLE"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 2 APPLE",
+                "score": 7500.0,
+                "target": "Cell((7, 1))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-030",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-031",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-032",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "NO-EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [],
+          "delta_a_formed_ticks": 0,
+          "delta_a_selected": [],
+          "delta_a_selected_ticks": 0,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": null,
+          "first_divergence_turn": null,
+          "id": "OSC-033",
+          "provenance": null,
+          "whole_game_identical": true,
+          "why": "byte-identical"
+        },
+        {
+          "assertion_violations": [],
+          "class": "EFFECT",
+          "class_ok": true,
+          "delta_a_formed": [
+            100,
+            100
+          ],
+          "delta_a_formed_ticks": 2,
+          "delta_a_selected": [
+            100,
+            100
+          ],
+          "delta_a_selected_ticks": 2,
+          "delta_b_detail": [],
+          "delta_b_duplicate_ticks": 0,
+          "first_delta_a_selected_tick": 100,
+          "first_divergence_turn": 100,
+          "id": "OSC-034",
+          "provenance": {
+            "base_fallback_list": [
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              },
+              {
+                "command": "WAIT",
+                "score": 0.0,
+                "target": "None"
+              }
+            ],
+            "changed_commands": [
+              "PICK 0 BANANA",
+              "PICK 2 BANANA"
+            ],
+            "preserved_picks": [
+              {
+                "command": "PICK 0 BANANA",
+                "score": 7500.0,
+                "target": "Cell((2, 2))"
+              },
+              {
+                "command": "PICK 2 BANANA",
+                "score": 7500.0,
+                "target": "Cell((1, 3))"
+              }
+            ],
+            "tick": 100
+          },
+          "whole_game_identical": false,
+          "why": "identical before the first selected \u0394-A tick 100"
+        }
+      ],
+      "shipped_source_inertness": {
+        "graded_sha256": "457360589a65cb2662950761deba817852ea9eb0d2c53b05a3e6fd2ab9dfda8a",
+        "pinned": "claude_1/picker2/candidate-door1-p1p2.rs",
+        "pinned_sha256": "5e1f4df406480f678ff03677cdda0f69d510c5c94efe90d4f0a8231b70c3339e"
+      },
+      "verdict": "PASS"
+    }
+  },
+  "task": "20260820-pair-selector-anti-benching",
+  "verdict": "PASS"
+}
