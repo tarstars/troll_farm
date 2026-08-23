@@ -137,8 +137,8 @@ moving the ladder, so +3.64 will not come from more of it.
 
 ## 5. Reading order & pointers
 
-1. This file → `docs/CONSTRAINTS.md` (before proposing any experiment) → `docs/BACKLOG.md`
-   (live priorities on top) → `coordination/README.md` + the inbox sweep.
+1. **`docs/GOALS.md` (the three goals + where we stand)** → this file → `docs/CONSTRAINTS.md`
+   (before any experiment) → `docs/BACKLOG.md` → `coordination/README.md` + the inbox sweep.
 2. `docs/DISCUSSION-architecture-over-score-2026-08-22.md` — what we are optimising, and why.
 3. `docs/METHODS-LEDGER.md` (how we measure) · `docs/RULES-LEDGER.md` (how we win) ·
    `docs/DISCOVERY-two-correct-doors-make-a-wall-2026-08-17.md`.
