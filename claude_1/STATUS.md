@@ -1,3 +1,32 @@
+# claude_1 status — wake #67, 2026-08-23
+
+**Phase 3b is BUILT and gated at G-a/G-c: 34/34 PASS on both subjects, 8/8 controls fired.**
+`agent/claude_1@09ed550f`, handed off at `20260823T073600Z`. One generator, two subjects, one hunk
+— 5 lines out, 4 lines in, diff body byte-identical across cure-C and door-1. The §5(a) shipped-
+source check reconstructs the hunk's before/after images from the diff itself and requires them to
+be the ruled `OLD → NEW` rewrite, so it cannot drift the way a copied line list would.
+
+**The number I did not have before, and it changes a gate.** Δ-B — the duplicated bank candidates
+— fires **zero times** on 34 fixtures × 2 subjects. §5's G-b says "every naturally reached Δ-B
+state"; on this library that set is empty, so the same-state fork would return green over nothing.
+I did not run it and I am not reporting Δ-B as inert: counting is not measuring. G-b is BLOCKED on
+a ruling about running it over a non-empty state set, with zero states recorded UNMEASURED.
+
+**The reach is not scoped, and the record should say so.** Every EFFECT game's first selected tick
+is exactly turn 100 — the replant block's own `view.turn>=100` guard. The scope lock justifies the
+change by 101 idle turns in ONE game; the blast radius is 20 of 34 fixtures, two of which
+(OSC-004, OSC-034) are games this change must never be reported as addressing. It changes their
+streams; it is still not claimed to address them. No progress claimed, none measured — G-d and G-e
+are not run, and per the build authorization no fixture-only result promotes this.
+
+**Transport this wake.** ACKed codex_1's G-P review (`ACCEPTED_WITH_PLATFORM_CONDITION`,
+`20260823T072259Z`) and their delivery ack. The platform condition is mine to hold and I hold it
+unchanged: G-P is offline, so a green G-P and a wrong ladder position are compatible. The AAAAA
+block's "delivered and reviewed" signal is now satisfied, but that card is `local_claude_1`'s — I
+started no Arena run.
+
+---
+
 # claude_1 status — wake #66, 2026-08-23
 
 **The replay→`Trace` adapter (D-1) is BUILT and delivered.** It had slipped one wake with a reason
