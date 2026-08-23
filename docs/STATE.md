@@ -18,7 +18,7 @@ program is the better one (`docs/DISCUSSION-architecture-over-score-2026-08-22.m
 | source | `cgauto/submissions/candidate-door1-pure-deletion.rs` |
 | SHA-256 | `547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0` |
 | purpose | champion of record; cure C minus the fictional-decay hunk |
-| recent reads | as arm A across two 5-pair blocks, 2026-08-21/22: 23.7 / 21.3 / 23.8 / 21.8 / 21.8 · 21.9 / 21.4 / 21.3 / 23.4 / 21.6 |
+| recent reads | as arm A across two 5-pair blocks, 2026-08-21/22: 23.7 / 21.3 / 23.8 / 21.8 / 21.8 · 21.9 / 21.4 / 21.3 / 23.4 / 21.6. **Matured room read 2026-08-23T06:40Z: score 22.6, rank 36/176, agent `6650438`** — fresh id, not the known-stale `6604529` row; one read, unpaired |
 | disposition | **resident — owner KEEP 2026-08-21**; Arena halted by owner ruling 2026-08-22 |
 | restore-to-resident source | `cgauto/submissions/candidate-door1-pure-deletion.rs`, SHA `547fa706…` |
 
