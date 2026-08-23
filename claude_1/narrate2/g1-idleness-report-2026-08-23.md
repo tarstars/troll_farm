@@ -1,7 +1,7 @@
 # G1 idleness on the NARRATE join — **109 of 76,305** rows wanted something and were given no command, and every adjudicable one of them is a post-selection rewrite
 
 **Card:** `local_claude_1` `20260823T110000Z` (`20260823-narrate-real-game-telemetry`). Panel
-**PASS**, 8/8 controls. 149 games, agent `6652424`, digest `sha256:4393d05c…b890d92` — the same
+**PASS**, 8/8 controls. 149 games, agent `6652424`, digest `sha256:a319f02c…d323ac7c` — the same
 corpus and the same digest as the decoder panel.
 
 ## The classification, fixed before any count was looked at

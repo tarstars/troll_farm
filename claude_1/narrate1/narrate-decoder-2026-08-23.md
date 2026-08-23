@@ -14,8 +14,8 @@
 | `claude_1/narrate1/results/narrate-join-sample-900089738.json` | the first 400 join rows of one game, so the output shape is readable without re-running |
 
 **Corpus (supplied, not fetched — this host has no platform session credential):**
-149 replays of agent `6652424` at `agent/local_claude_1@ebd5ebb1:local_claude_1/narrate/games`,
-digest `sha256:4393d05c…b890d92` over `(basename, sha256)` of all 149 files. Extracted with
+149 replays of agent `6652424` at `agent/local_claude_1@ac65523b:local_claude_1/narrate/games`,
+digest `sha256:a319f02c…d323ac7c` over `(basename, sha256)` of all 149 files. Extracted with
 `git archive` to `~/.cache/troll-farm/narrate-games` — **local scratch, outside the repo**, and
 the games directory is a parameter. `data/raw/games/` is neither read nor written (protocol §7).
 

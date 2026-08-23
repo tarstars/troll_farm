@@ -28,7 +28,7 @@ exactly the states §5 asks about — no fixture, no synthesis (which RULING 1 f
 
 | | |
 |---|---|
-| corpus | 149 games, agent `6652424`, digest `sha256:4393d05c…b890d92` (same digest as the NARRATE panel) |
+| corpus | 149 games, agent `6652424`, digest `sha256:a319f02c…d323ac7c` (same digest as the NARRATE panel) |
 | games whose whole stream re-executes exactly | **81 / 149** |
 | traced turns on those 81 | 21,478 |
 | fallback entries | 729 |
@@ -132,7 +132,7 @@ python3 claude_1/gb1/run_gb_panel.py --games-dir ~/.cache/troll-farm/narrate-gam
 ```
 
 The games directory is a parameter; the corpus was `git archive`-extracted from
-`agent/local_claude_1@ebd5ebb1:local_claude_1/narrate/games` to local scratch outside the repo.
+`agent/local_claude_1@ac65523b:local_claude_1/narrate/games` to local scratch outside the repo.
 
 ## For a reviewer
 

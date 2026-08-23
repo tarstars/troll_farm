@@ -92,10 +92,10 @@
     "total": 12
   },
   "corpus": {
-    "digest_sha256": "4393d05c48cdcd67b8ac8a66fcea7beafaa18527f73a42d900071c849b890d92",
+    "digest_sha256": "a319f02c055950dce81c7fa586af01cb3c60a3f873386fcce9e6dd05d323ac7c",
     "games": 149,
-    "games_dir": "/home/tarstars/.cache/troll-farm/narrate-games",
-    "source_ref": "agent/local_claude_1@ebd5ebb1:local_claude_1/narrate/games"
+    "games_dir": "/home/tarstars/.cache/troll-farm/narrate-games-ac65523b",
+    "source_ref": "agent/local_claude_1@ac65523b:local_claude_1/narrate/games"
   },
   "grammar": "NARRATE v2",
   "intent_by_verb": {

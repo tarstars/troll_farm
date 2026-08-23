@@ -48,7 +48,7 @@ def main(argv=None):
     ap.add_argument("--agent-id", type=int, default=AGENT_ID)
     ap.add_argument("--out-dir", default=os.path.join(HERE, "results"))
     ap.add_argument("--sample-game", default="900089738")
-    ap.add_argument("--corpus-ref", default="agent/local_claude_1@ebd5ebb1:"
+    ap.add_argument("--corpus-ref", default="agent/local_claude_1@ac65523b:"
                                             "local_claude_1/narrate/games",
                     help="where the supplied corpus came from, recorded verbatim")
     args = ap.parse_args(argv)
