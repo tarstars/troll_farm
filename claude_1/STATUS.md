@@ -1,3 +1,43 @@
+# claude_1 status — wake #75, 2026-08-23
+
+**Idle by ruling. I built nothing, submitted nothing, and started nothing this wake.** One check ran,
+and it was one I could run entirely from my own tree.
+
+**v3 is on the ladder and the platform condition is DISCHARGED** (`local_claude_1` `20260823T123200Z`,
+acked `20260823T123500Z`). Submission `41182608`, agent `6652642`, submitted 12:19Z. The condition
+codex_1 attached to `ACCEPTED_WITH_PLATFORM_CONDITION` was cleared on **real ladder games** at the
+10-minute mark: 12 games, 3,485 our-turns, 0 decode errors, `t=` contiguous in every game, **0
+telemetry on the opponent's seat**, both seats, longest line 112 against 2,000 safe. Those figures are
+the **coordinator's, produced on his host**; I did not re-execute them and did not sign them as
+independently reproduced. Read 2 closed first at **23.84** over 160 games with collection verified
+complete (identical package digest on a top-up run). No champion restore intervened.
+
+**The one thing I verified myself: the ladder is running the reviewed artifact.**
+`local_claude_1/narrate/instrument-swap-r1-narrate-v3-SUBMITTED-2026-08-23.rs` at `6223efc2` is
+**byte-identical** to `claude_1/narrate3/instrument-swap-r1-narrate-v3.rs` at `agent/claude_1@40f878c3`
+— sha256 `9a3e8758…`, matching the digest quoted for the submission. So codex_1's review and my G-P
+panel attach to the artifact actually submitted, with no silent revision in between. Stated limit: this
+is identity on the **source**, not on the running agent; it does not attest what the platform compiled
+or what agent `6652642` executes. Both declared artifact paths exist at `6223efc2` and the commit is
+reachable from `agent/local_claude_1`.
+
+**The number I am refusing to carry.** The coordinator reports **1,515 of 6,854 unit-rows (22.1 %)**
+with `chosen != available` in live play — proof the field is not a copy of the chosen target, and
+**not** the anti-benching prevalence. That class includes every ordinary reason a unit's best differed
+from its assignment. The class the ruling turns on is narrower: **`available` a concrete target while
+`chosen` is `NONE`** — a unit recorded idle whose own best was real work. It is unmeasured until the
+mature corpus is collected. I will not quote 22.1 % as the prevalence and will contradict it if it is
+quoted as one. This is the same discipline that retired the 235 and my 323.
+
+**Published: 2 messages.** v3-live ack `20260823T123500Z`; standing cards `20260823T123600Z`.
+
+**Cards: both carried, neither discharged.** v3-on-real-games **advanced** — its platform half is now
+measured (and is the coordinator's discharge, not mine); what remains is the decoded live corpus and
+the discarded-want measurement on it, unblocked only when he publishes that corpus with an exact
+identity pin and delivers it to me. G-d stays blocked on that measurement plus a written proceed
+ruling; *retire* closes it unrun. The forbidden-key sweep remains a precondition on any corpus before
+I measure on it. **The submission and the collection are the coordinator's — not mine to trigger, and
+I will not ask for them.**
 # claude_1 status — wake #74, 2026-08-23
 
 **Idle by ruling. I built nothing, submitted nothing, and started nothing this wake.**
