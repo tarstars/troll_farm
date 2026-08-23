@@ -1,6 +1,6 @@
 # 20260820-pair-selector-anti-benching — employ the benched troll (rule R-2)
 
-- Status: **OPEN — PROCEED TO G-d/G-e NAMED-COST + PROGRESS PANEL; ARENA HELD** (`coordination/messages/local_codex_1/20260823T155558Z-20260820-pair-selector-anti-benching-policy.md`). Phase 3b has exact non-zero real-play reach on the parity-verified subcorpus: **339 / 882 `nothing/nothing` unit-turns, collapsed to 34 episodes in 14 / 49 verified games**. Only 49 / 160 games replay exactly; 111 refuse closed, so full-corpus reach and representativeness remain unmeasured. This is enough to price the existing candidate, not evidence of progress, score, repair, prevalence, qualification, or Arena readiness. The separate real benched class remains **615 / 84,928 troll-turns** and is not what Phase 3b measured.
+- Status: **OPEN — OWNER REASSIGNED G-d/G-e BUILD TO `codex_1` 2026-08-23; ARENA HELD** (`coordination/messages/local_codex_1/20260823T171116Z-20260823-claude-to-codex-live-task-transfer-policy.md`). The prior `PROCEED` ruling and every scientific gate remain unchanged. Phase 3b has exact non-zero real-play reach on the parity-verified subcorpus: **339 / 882 `nothing/nothing` unit-turns, collapsed to 34 episodes in 14 / 49 verified games**. Only 49 / 160 games replay exactly; 111 refuse closed, so full-corpus reach and representativeness remain unmeasured. This is enough to price the existing candidate, not evidence of progress, score, repair, prevalence, qualification, or Arena readiness. The separate real benched class remains **615 / 84,928 troll-turns** and is not what Phase 3b measured.
 - Superseded status: **OPEN — PHASE 3 (REVISION), OWNER-RULED 2026-08-21 ~10:00Z: D3 = "revise"**
   (the 08-21 morning ruling was D3 = HOLD, no Arena slot, because codex_1's
   unified verdict was `PACKAGE_REPRODUCED; BOTH CANDIDATES BLOCKED AS QUALIFIED
@@ -10,8 +10,8 @@
   consequence of rule R-2 (`docs/RULES-LEDGER.md`). The 24-case GOAL_SPLIT
   class is the target: the team-picker's joint pairing discards a troll's
   oracle-verified available work, up to 194 turns per game.
-- Record owner: local_codex_1 · Work owner: **claude_1** ·
-  Reviewer: **codex_1** (instrument-first, then gates) ·
+- Record owner: local_codex_1 · Work owner: **codex_1** ·
+  Reviewer: **local_codex_1** (independent reproduction, then unified verdict) ·
   Integrator: local_codex_1
 - Base: **Phase 1 subject = cure-C `ad3bfefe…`, pinned NOW** (valid for both
   possible verdicts — the selection code is byte-identical in both night arms;
@@ -116,9 +116,11 @@ routing (OSC-010) stays parked regardless (movement level, not picker).
 **Phase 3c — build + gates (ready-with-gates, named-costs class):**
 - **Current gate state, 2026-08-23:** r2 build `09ed550f…` exists; G-a/G-c are
   independently accepted at `daa83d0a…`; real-game reach is accepted as
-  sufficient to open G-d/G-e. `claude_1` runs the named-cost/progress package;
-  `codex_1` reviews only after a valid canonical handoff. No reach rerun and no
-  Arena action are authorized by this step.
+  sufficient to open G-d/G-e. By the owner's 17:11Z reassignment, `codex_1`
+  runs and publishes the named-cost/progress package in its own namespace;
+  `local_codex_1` independently reproduces only after a valid canonical
+  handoff. Existing Claude artifacts remain immutable inputs. No reach rerun
+  and no Arena action are authorized by this step.
 - R-1 build on the **champion of record at build time** (rebase clause: if
   session 3 ends in REVERT, rebase before R-2).
 - R-2 fixture verdict, **AMENDED 2026-08-21 ~11:15Z (owner-approved method
@@ -134,12 +136,12 @@ routing (OSC-010) stays parked regardless (movement level, not picker).
 - R-3 panel: **P3-clean** (orchard inertness holds vs parent on the locked
   panel), **no new P4 / `r5-horizon`** violation, blocking totals not worse than
   P1+P2's; full named-costs decomposition both directions, every de-novo game
-  diagnosed and named; codex_1 `PACKAGE_REPRODUCED` + unified verdict
+  diagnosed and named; local_codex_1 `PACKAGE_REPRODUCED` + unified verdict
   QUALIFIED / BLOCKED.
 - R-4 Arena **only on the owner's explicit go**; sequence versus cure α decided
   by the owner when both are qualified; one standard 5-pair block each, never
   composed before each is measured alone.
 
 **Priority:** the adapter and r2 build prerequisites are complete. G-d/G-e are
-the next action on this task. Work owner `claude_1`, reviewer `codex_1`,
+the next action on this task. Work owner `codex_1`, independent reviewer and
 integrator `local_codex_1`.

@@ -119,7 +119,7 @@ moving the ladder, so +3.64 will not come from more of it.
 
 - **P0 is the INSTRUMENT, not another cure** (backlog re-ranked 2026-08-23). **NARRATE** — the bot
   prints each troll's target every turn via `MSG`, so we grade real games instead of 34 hand-picked
-  fixtures from a retired bot; audit done (`coordination/tasks/20260823-narrate-real-game-telemetry.md`).
+  fixtures from a retired bot; task `20260823-narrate-real-game-telemetry`, now builder `codex_1`, reviewer/controller `local_codex_1` — no Arena authorization.
   Also P0: the replay→`Trace` adapter, needed by NARRATE step 4 **and** the prevalence card — one
   trap, 301 states against 300 command rows, silently truncated. Why: §1, and §5's reading order.
 - **Parked behind NARRATE:** PEEK (rev 3 inert corpus-wide; supplying the missing intention makes
@@ -127,7 +127,7 @@ moving the ladder, so +3.64 will not come from more of it.
   `claude_1@c85ee672`), PEEK branch 2, and the swap cure (α instrument accepted, 32 of 34 healed
   *with progress*; "healed" means with progress from now on; residual-13 and the cure-arm basket
   criterion stay mine). **Authorized:** anti-benching Phase 3b **G-d/G-e named-cost + progress
-  panel only**; full-corpus reach is unmeasured and no fixture-only result promotes it.
+  panel only**, builder `codex_1`, reviewer `local_codex_1`; full-corpus reach stays unmeasured.
 - **Withdrawn 2026-08-23:** my "235 of 2,245 wanted the partner's square" as evidence of contention
   — the wrong-pairing control was never run, and claude_1's analogous 323/323 died to it. The
   **zeros** stand; a zero needs no pairing. **`chatgpt_1` revived**, architecture only, no verdict

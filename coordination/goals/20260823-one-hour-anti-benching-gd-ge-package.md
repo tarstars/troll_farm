@@ -2,8 +2,8 @@
 
 - **Date:** 2026-08-23
 - **Coordinator / intended executor:** `local_codex_1`
-- **Builder:** `claude_1`
-- **Independent reviewer:** `codex_1`
+- **Builder:** `codex_1` (owner reassignment 2026-08-23T17:11Z)
+- **Independent reviewer:** `local_codex_1`
 - **Time box:** 60 minutes from explicit activation
 - **Scope:** existing Phase 3b named-cost and progress gates only
 
@@ -15,10 +15,11 @@ and publish or renew the coordinator claim. The repository's 15-minute
 concrete-progress lease applies throughout the hour; a long panel run needs
 phase markers rather than silence.
 
-This is a coordinated mission, not a transfer of implementation ownership.
-`claude_1` remains the only builder and package author. `codex_1` remains the
-independent reviewer and does not begin reproduction until a valid canonical
-handoff exists.
+The owner's 2026-08-23T17:11Z directive transferred Claude's live tasks to
+Codex. `codex_1` is now the only builder and package author for this mission.
+`local_codex_1` remains coordinator/integrator and becomes the independent
+reviewer; it does not begin reproduction until a valid canonical handoff
+exists on `agent/codex_1`. Historical Claude artifacts remain pinned inputs.
 
 ## Mission
 
@@ -27,10 +28,11 @@ ruling to a review-ready G-d/G-e evidence package.
 
 The preferred end state is:
 
-1. `claude_1` publishes a valid canonical handoff containing the completed
+1. `codex_1` publishes a valid canonical handoff containing the completed
    named-cost and two-clause progress results for the exact pinned r2 build;
    and
-2. `codex_1` acknowledges that handoff and claims independent reproduction.
+2. `local_codex_1` independently reproduces it and publishes the unified
+   verdict.
 
 If a hard gate fails, the equally valid end state is a canonical, evidence-
 backed blocker naming the first falsifier and stopping the candidate without
@@ -81,9 +83,10 @@ The canonical G-d/G-e handoff must include all of the following:
 6. **Scope discipline.** Do not report Phase 3b as addressing
    OSC-004/017/034 or OSC-032/033 merely because its stream changes there;
    component attribution and combined-candidate grading remain distinct.
-7. **Reproducibility.** Pin every artifact path to a full commit on
-   `agent/claude_1`, record exact commands and hashes, and make the package
-   independently executable by `codex_1`.
+7. **Reproducibility.** Keep every historical input pinned to its full Claude
+   commit; pin every new package artifact to a full commit on `agent/codex_1`,
+   record exact commands and hashes, and make the package independently
+   executable by `local_codex_1`.
 
 The real-game reach result travels only as `339 / 882` verified unit-turns and
 `34` episodes across `14 / 49` parity-verified games. `111 / 160` games
@@ -95,34 +98,31 @@ unmeasured; none may be inferred from this package.
 1. Refresh refs, sweep the coordinator inbox, verify the sacred resident hash
    prefix `fff6669b`, and confirm transport has zero delivery or quarantine
    errors.
-2. Confirm `claude_1` has acknowledged the ruling and published a bounded
+2. Confirm `codex_1` has acknowledged the transfer and published a bounded
    claim naming the exact G-d/G-e write set and command. If not, send the
    precise unblock signal; do not take over its build.
-3. While `claude_1` runs the panel, enforce the progress lease and inspect only
+3. While `codex_1` runs the panel, enforce the progress lease and inspect only
    read-only metadata, hashes, and partial phase markers. Do not pronounce a
    verdict on partial output.
 4. Validate the resulting handoff's schema, full commit pin, artifact
    reachability, every-changed-game inventory, and required gate columns.
-5. Notify `codex_1`. The hour succeeds when it acknowledges and claims the
-   canonical package, or when a hard falsifier is validly published and its
-   review card is discharged.
+5. Independently reproduce `codex_1`'s canonical handoff and publish the
+   unified verdict, or validate a hard falsifier and discharge the review card.
 6. Update the shared task and coordinator status only to reflect facts that
    are already authoritative; lint and integrate coordinator-owned changes.
 
 ## Authority and Boundaries
 
 `local_codex_1` may coordinate, validate refs and artifacts, enforce leases,
-update coordinator-owned messages/status and the shared task record, and
-integrate valid coordination changes.
+independently reproduce a complete canonical handoff, issue the unified
+verdict, update coordinator-owned messages/status and the shared task record,
+and integrate valid coordination changes.
 
-`claude_1` may execute the already-approved G-d/G-e gates and create only the
+`codex_1` may execute the already-approved G-d/G-e gates and create only the
 gate instrumentation and evidence artifacts required by the accepted r2
 design. It may not alter the intervention logic, widen scope, lower a gate, or
-repair a falsifier during the run.
-
-`codex_1` may independently reproduce a complete canonical handoff and issue
-the chartered unified `QUALIFIED` or `BLOCKED` verdict. It may not review an
-unpublished or branch-local draft as if it were delivered.
+repair a falsifier during the run. New artifacts live in `codex_1/**`; existing
+artifacts in `claude_1/**` are immutable inputs.
 
 Nobody may:
 
@@ -144,13 +144,13 @@ progress, P3 failure, any new P4 or `r5-horizon` event, worse blocking totals,
 an unnamed changed game, identity drift, or a non-reproducible package. Publish
 the exact evidence and do not patch within the hour.
 
-If `claude_1` remains silent past one concrete-progress lease, publish the
+If `codex_1` remains silent past one concrete-progress lease, publish the
 lease breach and exact missing claim; do not impersonate the builder. If the
 panel is still validly running when the hour expires, require a phase marker
 with completed case counts, exact command/job identity, next checkpoint, and
 resumable state. Partial output receives no verdict.
 
-If `codex_1` returns `QUALIFIED` within the hour, surface the now-required owner
+If `local_codex_1` returns `QUALIFIED`, surface the now-required owner
 decision for Arena R-4 and stop. Do not submit. If it returns `BLOCKED`, record
 the first binding gate and stop the candidate.
 
@@ -158,8 +158,8 @@ the first binding gate and stop the candidate.
 
 The mission ends with either:
 
-- a valid, pinned, every-changed-game G-d/G-e handoff acknowledged and claimed
-  for independent review by `codex_1`; or
+- a valid, pinned, every-changed-game G-d/G-e handoff independently reproduced
+  and given a unified verdict by `local_codex_1`; or
 - a valid blocker naming the first hard falsifier and the evidence that stops
   the candidate.
 

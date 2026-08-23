@@ -4,13 +4,13 @@
 `MSG` output command; the platform records it; we read intentions out of real ladder games
 instead of inferring them from 34 hand-picked fixtures.*
 
-- Status: **RUNNING — owner-raised 2026-08-23** ("I have concerns about the quality of our measuring
+- Status: **RUNNING — BUILD REASSIGNED TO `codex_1` 2026-08-23T17:11Z** by the owner's live-task transfer. The existing corpus-identity and forbidden-key gates remain unchanged; the transfer itself authorizes no Arena action. Originally owner-raised 2026-08-23 ("I have concerns about the quality of our measuring
   baskets. I want to conduct such experiments in real games"). Capability audit **done**.
   **Step 1 DONE 2026-08-23T06:55Z, off the ladder** — see below. **Subject and mode ruled by the
   owner the same day: instrument SWAP R-1 (`bbbb75d3…`), run it AAAAA (five reads of one arm) on
   the ladder, which the owner has reopened for it.** Deliverables: real-game intention logs, and
   swap R-1's first ladder position.
-- Record owner: local_claude_1 · Build: **claude_1** · Review: **codex_1** · Arena: **local_claude_1**.
+- Record owner: local_claude_1 · Build: **codex_1** · Review: **local_codex_1** · Arena: **local_codex_1** (no mutation authorized by the transfer).
 - Created UTC: 2026-08-23T06:25:00Z
 
 ## Why this exists
