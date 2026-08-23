@@ -1,0 +1,365 @@
+{
+ "not_claimed": [
+  "that 339 turns are 339 independent occasions -- they are 34 episodes",
+  "that restoring the option on turn N leaves turn N+1 as replayed; the counterfactual is per-tick and divergence is not simulated",
+  "anything about score"
+ ],
+ "nothing_nothing": {
+  "episodes": 140,
+  "turns": 882
+ },
+ "reach": {
+  "all_episodes": [
+   {
+    "end": 140,
+    "game": 900106661,
+    "start": 127,
+    "turns": 14,
+    "unit": 3
+   },
+   {
+    "end": 167,
+    "game": 900107776,
+    "start": 159,
+    "turns": 9,
+    "unit": 0
+   },
+   {
+    "end": 167,
+    "game": 900107776,
+    "start": 142,
+    "turns": 26,
+    "unit": 2
+   },
+   {
+    "end": 171,
+    "game": 900108004,
+    "start": 165,
+    "turns": 7,
+    "unit": 1
+   },
+   {
+    "end": 185,
+    "game": 900108004,
+    "start": 181,
+    "turns": 5,
+    "unit": 1
+   },
+   {
+    "end": 208,
+    "game": 900108004,
+    "start": 204,
+    "turns": 5,
+    "unit": 1
+   },
+   {
+    "end": 142,
+    "game": 900108004,
+    "start": 108,
+    "turns": 35,
+    "unit": 2
+   },
+   {
+    "end": 156,
+    "game": 900108004,
+    "start": 147,
+    "turns": 10,
+    "unit": 2
+   },
+   {
+    "end": 170,
+    "game": 900108004,
+    "start": 165,
+    "turns": 6,
+    "unit": 2
+   },
+   {
+    "end": 208,
+    "game": 900108004,
+    "start": 203,
+    "turns": 6,
+    "unit": 2
+   },
+   {
+    "end": 229,
+    "game": 900108213,
+    "start": 226,
+    "turns": 4,
+    "unit": 1
+   },
+   {
+    "end": 239,
+    "game": 900108213,
+    "start": 236,
+    "turns": 4,
+    "unit": 1
+   },
+   {
+    "end": 214,
+    "game": 900108213,
+    "start": 211,
+    "turns": 4,
+    "unit": 2
+   },
+   {
+    "end": 221,
+    "game": 900108213,
+    "start": 221,
+    "turns": 1,
+    "unit": 2
+   },
+   {
+    "end": 228,
+    "game": 900108213,
+    "start": 228,
+    "turns": 1,
+    "unit": 2
+   },
+   {
+    "end": 237,
+    "game": 900108213,
+    "start": 235,
+    "turns": 3,
+    "unit": 2
+   },
+   {
+    "end": 233,
+    "game": 900108380,
+    "start": 233,
+    "turns": 1,
+    "unit": 0
+   },
+   {
+    "end": 161,
+    "game": 900108712,
+    "start": 156,
+    "turns": 6,
+    "unit": 0
+   },
+   {
+    "end": 161,
+    "game": 900108712,
+    "start": 155,
+    "turns": 7,
+    "unit": 2
+   },
+   {
+    "end": 139,
+    "game": 900108788,
+    "start": 124,
+    "turns": 16,
+    "unit": 1
+   },
+   {
+    "end": 139,
+    "game": 900108788,
+    "start": 125,
+    "turns": 15,
+    "unit": 3
+   },
+   {
+    "end": 129,
+    "game": 900108963,
+    "start": 125,
+    "turns": 5,
+    "unit": 0
+   },
+   {
+    "end": 129,
+    "game": 900108963,
+    "start": 109,
+    "turns": 21,
+    "unit": 3
+   },
+   {
+    "end": 122,
+    "game": 900109557,
+    "start": 104,
+    "turns": 19,
+    "unit": 3
+   },
+   {
+    "end": 233,
+    "game": 900109645,
+    "start": 220,
+    "turns": 14,
+    "unit": 1
+   },
+   {
+    "end": 233,
+    "game": 900109645,
+    "start": 216,
+    "turns": 18,
+    "unit": 2
+   },
+   {
+    "end": 228,
+    "game": 900109689,
+    "start": 225,
+    "turns": 4,
+    "unit": 0
+   },
+   {
+    "end": 235,
+    "game": 900110024,
+    "start": 234,
+    "turns": 2,
+    "unit": 1
+   },
+   {
+    "end": 125,
+    "game": 900110497,
+    "start": 109,
+    "turns": 17,
+    "unit": 1
+   },
+   {
+    "end": 125,
+    "game": 900110497,
+    "start": 104,
+    "turns": 22,
+    "unit": 3
+   },
+   {
+    "end": 168,
+    "game": 900110641,
+    "start": 164,
+    "turns": 5,
+    "unit": 0
+   },
+   {
+    "end": 120,
+    "game": 900110641,
+    "start": 120,
+    "turns": 1,
+    "unit": 3
+   },
+   {
+    "end": 137,
+    "game": 900110641,
+    "start": 137,
+    "turns": 1,
+    "unit": 3
+   },
+   {
+    "end": 168,
+    "game": 900110641,
+    "start": 144,
+    "turns": 25,
+    "unit": 3
+   }
+  ],
+  "distinct_game_unit_pairs": 23,
+  "episode_turns": {
+   "max": 35,
+   "mean": 9.97,
+   "median": 6,
+   "min": 1
+  },
+  "episode_turns_histogram": {
+   "1": 5,
+   "2": 1,
+   "3": 1,
+   "4": 4,
+   "5": 4,
+   "6": 3,
+   "7": 2,
+   "9": 1,
+   "10": 1,
+   "14": 2,
+   "15": 1,
+   "16": 1,
+   "17": 1,
+   "18": 1,
+   "19": 1,
+   "21": 1,
+   "22": 1,
+   "25": 1,
+   "26": 1,
+   "35": 1
+  },
+  "episodes": 34,
+  "episodes_per_game_histogram": {
+   "1": 5,
+   "2": 6,
+   "4": 1,
+   "6": 1,
+   "7": 1
+  },
+  "games_with_at_least_one_episode": 14,
+  "longest": [
+   {
+    "end": 142,
+    "game": 900108004,
+    "start": 108,
+    "turns": 35,
+    "unit": 2
+   },
+   {
+    "end": 167,
+    "game": 900107776,
+    "start": 142,
+    "turns": 26,
+    "unit": 2
+   },
+   {
+    "end": 168,
+    "game": 900110641,
+    "start": 144,
+    "turns": 25,
+    "unit": 3
+   },
+   {
+    "end": 125,
+    "game": 900110497,
+    "start": 104,
+    "turns": 22,
+    "unit": 3
+   },
+   {
+    "end": 129,
+    "game": 900108963,
+    "start": 109,
+    "turns": 21,
+    "unit": 3
+   },
+   {
+    "end": 122,
+    "game": 900109557,
+    "start": 104,
+    "turns": 19,
+    "unit": 3
+   },
+   {
+    "end": 233,
+    "game": 900109645,
+    "start": 216,
+    "turns": 18,
+    "unit": 2
+   },
+   {
+    "end": 125,
+    "game": 900110497,
+    "start": 109,
+    "turns": 17,
+    "unit": 1
+   },
+   {
+    "end": 139,
+    "game": 900108788,
+    "start": 124,
+    "turns": 16,
+    "unit": 1
+   },
+   {
+    "end": 139,
+    "game": 900108788,
+    "start": 125,
+    "turns": 15,
+    "unit": 3
+   }
+  ],
+  "turns": 339
+ },
+ "verified_games": 49
+}

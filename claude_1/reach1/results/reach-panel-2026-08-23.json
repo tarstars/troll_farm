@@ -1,0 +1,849 @@
+{
+ "answer": {
+  "examples": [
+   {
+    "cavail": "CELL(10,5)",
+    "cchosen": "CELL(10,5)",
+    "game": 900106661,
+    "turn": 127,
+    "unit": 3
+   },
+   {
+    "cavail": "CELL(10,5)",
+    "cchosen": "CELL(10,5)",
+    "game": 900106661,
+    "turn": 128,
+    "unit": 3
+   },
+   {
+    "cavail": "CELL(10,5)",
+    "cchosen": "CELL(10,5)",
+    "game": 900106661,
+    "turn": 129,
+    "unit": 3
+   },
+   {
+    "cavail": "CELL(10,5)",
+    "cchosen": "CELL(10,5)",
+    "game": 900106661,
+    "turn": 130,
+    "unit": 3
+   },
+   {
+    "cavail": "CELL(10,5)",
+    "cchosen": "CELL(10,5)",
+    "game": 900106661,
+    "turn": 131,
+    "unit": 3
+   },
+   {
+    "cavail": "CELL(10,5)",
+    "cchosen": "CELL(10,5)",
+    "game": 900106661,
+    "turn": 132,
+    "unit": 3
+   },
+   {
+    "cavail": "CELL(10,5)",
+    "cchosen": "CELL(10,5)",
+    "game": 900106661,
+    "turn": 133,
+    "unit": 3
+   },
+   {
+    "cavail": "CELL(10,5)",
+    "cchosen": "CELL(10,5)",
+    "game": 900106661,
+    "turn": 134,
+    "unit": 3
+   },
+   {
+    "cavail": "CELL(10,5)",
+    "cchosen": "CELL(10,5)",
+    "game": 900106661,
+    "turn": 135,
+    "unit": 3
+   },
+   {
+    "cavail": "CELL(10,5)",
+    "cchosen": "CELL(10,5)",
+    "game": 900106661,
+    "turn": 136,
+    "unit": 3
+   },
+   {
+    "cavail": "CELL(10,5)",
+    "cchosen": "CELL(10,5)",
+    "game": 900106661,
+    "turn": 137,
+    "unit": 3
+   },
+   {
+    "cavail": "CELL(10,5)",
+    "cchosen": "CELL(10,5)",
+    "game": 900106661,
+    "turn": 138,
+    "unit": 3
+   },
+   {
+    "cavail": "CELL(10,5)",
+    "cchosen": "CELL(10,5)",
+    "game": 900106661,
+    "turn": 139,
+    "unit": 3
+   },
+   {
+    "cavail": "CELL(10,5)",
+    "cchosen": "CELL(10,5)",
+    "game": 900106661,
+    "turn": 140,
+    "unit": 3
+   },
+   {
+    "cavail": "CELL(8,4)",
+    "cchosen": "CELL(8,4)",
+    "game": 900107776,
+    "turn": 142,
+    "unit": 2
+   },
+   {
+    "cavail": "CELL(8,4)",
+    "cchosen": "CELL(8,4)",
+    "game": 900107776,
+    "turn": 143,
+    "unit": 2
+   },
+   {
+    "cavail": "CELL(8,4)",
+    "cchosen": "CELL(8,4)",
+    "game": 900107776,
+    "turn": 144,
+    "unit": 2
+   },
+   {
+    "cavail": "CELL(8,4)",
+    "cchosen": "CELL(8,4)",
+    "game": 900107776,
+    "turn": 145,
+    "unit": 2
+   },
+   {
+    "cavail": "CELL(8,4)",
+    "cchosen": "CELL(8,4)",
+    "game": 900107776,
+    "turn": 146,
+    "unit": 2
+   },
+   {
+    "cavail": "CELL(8,4)",
+    "cchosen": "CELL(8,4)",
+    "game": 900107776,
+    "turn": 147,
+    "unit": 2
+   },
+   {
+    "cavail": "CELL(8,4)",
+    "cchosen": "CELL(8,4)",
+    "game": 900107776,
+    "turn": 148,
+    "unit": 2
+   },
+   {
+    "cavail": "CELL(8,4)",
+    "cchosen": "CELL(8,4)",
+    "game": 900107776,
+    "turn": 149,
+    "unit": 2
+   },
+   {
+    "cavail": "CELL(8,4)",
+    "cchosen": "CELL(8,4)",
+    "game": 900107776,
+    "turn": 150,
+    "unit": 2
+   },
+   {
+    "cavail": "CELL(8,4)",
+    "cchosen": "CELL(8,4)",
+    "game": 900107776,
+    "turn": 151,
+    "unit": 2
+   },
+   {
+    "cavail": "CELL(8,4)",
+    "cchosen": "CELL(8,4)",
+    "game": 900107776,
+    "turn": 152,
+    "unit": 2
+   }
+  ],
+  "nothing_nothing_distribution": {
+   "games": 49,
+   "histogram": {
+    "2": 3,
+    "3": 2,
+    "4": 2,
+    "5": 1,
+    "6": 1,
+    "7": 4,
+    "8": 2,
+    "11": 6,
+    "13": 5,
+    "14": 2,
+    "15": 2,
+    "16": 1,
+    "17": 1,
+    "18": 1,
+    "19": 2,
+    "20": 1,
+    "23": 1,
+    "26": 1,
+    "27": 1,
+    "29": 2,
+    "31": 1,
+    "32": 2,
+    "35": 1,
+    "37": 1,
+    "39": 1,
+    "46": 1,
+    "123": 1
+   },
+   "max": 123,
+   "mean": 18.0,
+   "median": 13,
+   "nonzero_games": 49,
+   "total": 882,
+   "worst_decile_share": 245,
+   "zero_games": 0
+  },
+  "nothing_nothing_rows_on_verified_corpus": 882,
+  "question": "on how many nothing/nothing turns would the un-discarded options have given the troll something real to do?",
+  "restored": 339,
+  "restored_distribution": {
+   "games": 49,
+   "histogram": {
+    "0": 35,
+    "1": 1,
+    "2": 1,
+    "4": 1,
+    "13": 1,
+    "14": 1,
+    "17": 1,
+    "19": 1,
+    "26": 1,
+    "31": 1,
+    "32": 2,
+    "35": 1,
+    "39": 1,
+    "74": 1
+   },
+   "max": 74,
+   "mean": 6.9184,
+   "median": 0,
+   "nonzero_games": 14,
+   "total": 339,
+   "worst_decile_share": 180,
+   "zero_games": 35
+  },
+  "restored_shapes": {
+   "CELL": 339
+  },
+  "selected": 339,
+  "selected_distribution": {
+   "games": 49,
+   "histogram": {
+    "0": 35,
+    "1": 1,
+    "2": 1,
+    "4": 1,
+    "13": 1,
+    "14": 1,
+    "17": 1,
+    "19": 1,
+    "26": 1,
+    "31": 1,
+    "32": 2,
+    "35": 1,
+    "39": 1,
+    "74": 1
+   },
+   "max": 74,
+   "mean": 6.9184,
+   "median": 0,
+   "nonzero_games": 14,
+   "total": 339,
+   "worst_decile_share": 180,
+   "zero_games": 35
+  },
+  "selected_shapes": {
+   "CELL": 339
+  },
+  "whole_turn_command_vector_differences": 255
+ },
+ "charter": "coordination/messages/local_claude_1/20260823T131400Z-20260820-pair-selector-anti-benching-policy.md",
+ "controls": [
+  {
+   "expect": "the probe's stdout equals the uninstrumented v3 instrument's on all 160 games",
+   "fired": true,
+   "id": 1,
+   "name": "probe-inertness",
+   "observed": {
+    "failures": []
+   }
+  },
+  {
+   "expect": "on every parity-verified game the base arm reproduces the NARRATE v3 rows the bot printed on the wire, exactly",
+   "fired": true,
+   "id": 2,
+   "name": "telemetry-identity",
+   "observed": {
+    "failing_game_count": 0,
+    "failing_games": [],
+    "rows_checked": 24906
+   }
+  },
+  {
+   "expect": "the parity-verified corpus carries at least one nothing/nothing row",
+   "fired": true,
+   "id": 3,
+   "name": "not-vacuous",
+   "observed": {
+    "nothing_nothing": 882
+   }
+  },
+  {
+   "expect": "the arms' `available` differs only on turn/units where the fallback fired",
+   "fired": true,
+   "id": 4,
+   "name": "confinement",
+   "observed": {
+    "failures": 0,
+    "first": []
+   }
+  },
+  {
+   "expect": "with both arms the incumbent body, reach is 0 and no turn's command vector differs -- the measurement cannot manufacture a difference",
+   "fired": true,
+   "id": 5,
+   "name": "null-fork-is-flat",
+   "observed": {
+    "nothing_nothing": 882,
+    "restored": 0,
+    "sel_diff_turns": 0,
+    "selected": 0
+   }
+  },
+  {
+   "expect": "with one candidate the REPLACE arm cannot produce, reach and the command vectors both move -- the fork is not inert",
+   "fired": true,
+   "id": 6,
+   "name": "poison-fork-moves",
+   "observed": {
+    "honest_restored": 339,
+    "honest_sel_diff_turns": 255,
+    "restored": 458,
+    "sel_diff_turns": 243,
+    "selected": 443
+   }
+  },
+  {
+   "expect": "every probe row and every recorded NARRATE line parses; nothing is skipped",
+   "fired": true,
+   "id": 7,
+   "name": "no-parse-errors",
+   "observed": {
+    "count": 0,
+    "games_with_errors": []
+   }
+  },
+  {
+   "expect": "the idle-regeneration fallback fires on the verified corpus, so the EXTEND body is reached at all",
+   "fired": true,
+   "id": 8,
+   "name": "fallback-actually-fires",
+   "observed": {
+    "entries_discarding_a_list": 473,
+    "entries_discarding_a_replant_pick": 341,
+    "fallback_entries": 473
+   }
+  }
+ ],
+ "corpus": {
+  "agent_id": 6652642,
+  "artifact_commit": "39269312913b00e238b5a26da82c11711c32b935",
+  "games": 160,
+  "package": "local_claude_1/narrate/v3/games-agent6652642-submission41182608.jsonl.gz",
+  "package_sha256": "0116994468cb6d23702511d0cefce28eeaeeb049eb8e7fc24ccdc29b886c3ceb",
+  "split_digest_sha256": "581392e4b077fae0dbf5f8040438b75d9d5a9cc47deb1390d7485dbe7aa02ce2",
+  "submission_id": 41182608
+ },
+ "identity_failures": [],
+ "joint_table_verified": {
+  "CONCRETE/CONCRETE": 23858,
+  "NONE/CONCRETE": 166,
+  "NONE/NONE": 882
+ },
+ "parity": {
+  "refused": [
+   {
+    "first_divergent_turn": 78,
+    "game": 900106657
+   },
+   {
+    "first_divergent_turn": 22,
+    "game": 900106658
+   },
+   {
+    "first_divergent_turn": 57,
+    "game": 900106659
+   },
+   {
+    "first_divergent_turn": 141,
+    "game": 900106660
+   },
+   {
+    "first_divergent_turn": 97,
+    "game": 900106663
+   },
+   {
+    "first_divergent_turn": 120,
+    "game": 900106664
+   },
+   {
+    "first_divergent_turn": 169,
+    "game": 900106666
+   },
+   {
+    "first_divergent_turn": 80,
+    "game": 900106722
+   },
+   {
+    "first_divergent_turn": 59,
+    "game": 900106807
+   },
+   {
+    "first_divergent_turn": 117,
+    "game": 900106869
+   },
+   {
+    "first_divergent_turn": 48,
+    "game": 900106907
+   },
+   {
+    "first_divergent_turn": 33,
+    "game": 900106917
+   },
+   {
+    "first_divergent_turn": 139,
+    "game": 900106926
+   },
+   {
+    "first_divergent_turn": 200,
+    "game": 900106970
+   },
+   {
+    "first_divergent_turn": 68,
+    "game": 900106983
+   },
+   {
+    "first_divergent_turn": 19,
+    "game": 900107001
+   },
+   {
+    "first_divergent_turn": 125,
+    "game": 900107012
+   },
+   {
+    "first_divergent_turn": 129,
+    "game": 900107025
+   },
+   {
+    "first_divergent_turn": 90,
+    "game": 900107061
+   },
+   {
+    "first_divergent_turn": 26,
+    "game": 900107084
+   },
+   {
+    "first_divergent_turn": 94,
+    "game": 900107158
+   },
+   {
+    "first_divergent_turn": 279,
+    "game": 900107180
+   },
+   {
+    "first_divergent_turn": 103,
+    "game": 900107224
+   },
+   {
+    "first_divergent_turn": 1,
+    "game": 900107237
+   },
+   {
+    "first_divergent_turn": 136,
+    "game": 900107259
+   },
+   {
+    "first_divergent_turn": 18,
+    "game": 900107292
+   },
+   {
+    "first_divergent_turn": 129,
+    "game": 900107356
+   },
+   {
+    "first_divergent_turn": 53,
+    "game": 900107376
+   },
+   {
+    "first_divergent_turn": 82,
+    "game": 900107406
+   },
+   {
+    "first_divergent_turn": 98,
+    "game": 900107424
+   },
+   {
+    "first_divergent_turn": 65,
+    "game": 900107443
+   },
+   {
+    "first_divergent_turn": 22,
+    "game": 900107462
+   },
+   {
+    "first_divergent_turn": 210,
+    "game": 900107506
+   },
+   {
+    "first_divergent_turn": 40,
+    "game": 900107528
+   },
+   {
+    "first_divergent_turn": 115,
+    "game": 900107550
+   },
+   {
+    "first_divergent_turn": 105,
+    "game": 900107573
+   },
+   {
+    "first_divergent_turn": 116,
+    "game": 900107588
+   },
+   {
+    "first_divergent_turn": 160,
+    "game": 900107618
+   },
+   {
+    "first_divergent_turn": 48,
+    "game": 900107635
+   },
+   {
+    "first_divergent_turn": 32,
+    "game": 900107702
+   },
+   {
+    "first_divergent_turn": 213,
+    "game": 900107921
+   },
+   {
+    "first_divergent_turn": 10,
+    "game": 900107989
+   },
+   {
+    "first_divergent_turn": 57,
+    "game": 900108081
+   },
+   {
+    "first_divergent_turn": 191,
+    "game": 900108104
+   },
+   {
+    "first_divergent_turn": 141,
+    "game": 900108129
+   },
+   {
+    "first_divergent_turn": 98,
+    "game": 900108234
+   },
+   {
+    "first_divergent_turn": 5,
+    "game": 900108253
+   },
+   {
+    "first_divergent_turn": 46,
+    "game": 900108277
+   },
+   {
+    "first_divergent_turn": 16,
+    "game": 900108364
+   },
+   {
+    "first_divergent_turn": 37,
+    "game": 900108411
+   },
+   {
+    "first_divergent_turn": 93,
+    "game": 900108475
+   },
+   {
+    "first_divergent_turn": 57,
+    "game": 900108490
+   },
+   {
+    "first_divergent_turn": 181,
+    "game": 900108555
+   },
+   {
+    "first_divergent_turn": 55,
+    "game": 900108570
+   },
+   {
+    "first_divergent_turn": 75,
+    "game": 900108600
+   },
+   {
+    "first_divergent_turn": 147,
+    "game": 900108615
+   },
+   {
+    "first_divergent_turn": 15,
+    "game": 900108649
+   },
+   {
+    "first_divergent_turn": 117,
+    "game": 900108665
+   },
+   {
+    "first_divergent_turn": 136,
+    "game": 900108725
+   },
+   {
+    "first_divergent_turn": 23,
+    "game": 900108767
+   },
+   {
+    "first_divergent_turn": 75,
+    "game": 900108849
+   },
+   {
+    "first_divergent_turn": 59,
+    "game": 900108884
+   },
+   {
+    "first_divergent_turn": 85,
+    "game": 900108910
+   },
+   {
+    "first_divergent_turn": 171,
+    "game": 900108974
+   },
+   {
+    "first_divergent_turn": 113,
+    "game": 900108989
+   },
+   {
+    "first_divergent_turn": 41,
+    "game": 900109048
+   },
+   {
+    "first_divergent_turn": 151,
+    "game": 900109090
+   },
+   {
+    "first_divergent_turn": 112,
+    "game": 900109142
+   },
+   {
+    "first_divergent_turn": 141,
+    "game": 900109188
+   },
+   {
+    "first_divergent_turn": 100,
+    "game": 900109206
+   },
+   {
+    "first_divergent_turn": 63,
+    "game": 900109260
+   },
+   {
+    "first_divergent_turn": 128,
+    "game": 900109277
+   },
+   {
+    "first_divergent_turn": 49,
+    "game": 900109297
+   },
+   {
+    "first_divergent_turn": 73,
+    "game": 900109360
+   },
+   {
+    "first_divergent_turn": 67,
+    "game": 900109410
+   },
+   {
+    "first_divergent_turn": 97,
+    "game": 900109451
+   },
+   {
+    "first_divergent_turn": 35,
+    "game": 900109483
+   },
+   {
+    "first_divergent_turn": 75,
+    "game": 900109500
+   },
+   {
+    "first_divergent_turn": 82,
+    "game": 900109575
+   },
+   {
+    "first_divergent_turn": 136,
+    "game": 900109621
+   },
+   {
+    "first_divergent_turn": 128,
+    "game": 900109656
+   },
+   {
+    "first_divergent_turn": 94,
+    "game": 900109670
+   },
+   {
+    "first_divergent_turn": 122,
+    "game": 900109734
+   },
+   {
+    "first_divergent_turn": 157,
+    "game": 900109745
+   },
+   {
+    "first_divergent_turn": 159,
+    "game": 900109763
+   },
+   {
+    "first_divergent_turn": 223,
+    "game": 900109777
+   },
+   {
+    "first_divergent_turn": 207,
+    "game": 900109797
+   },
+   {
+    "first_divergent_turn": 148,
+    "game": 900109816
+   },
+   {
+    "first_divergent_turn": 122,
+    "game": 900109828
+   },
+   {
+    "first_divergent_turn": 33,
+    "game": 900109881
+   },
+   {
+    "first_divergent_turn": 92,
+    "game": 900109982
+   },
+   {
+    "first_divergent_turn": 106,
+    "game": 900109996
+   },
+   {
+    "first_divergent_turn": 84,
+    "game": 900110048
+   },
+   {
+    "first_divergent_turn": 137,
+    "game": 900110059
+   },
+   {
+    "first_divergent_turn": 61,
+    "game": 900110085
+   },
+   {
+    "first_divergent_turn": 96,
+    "game": 900110123
+   },
+   {
+    "first_divergent_turn": 95,
+    "game": 900110139
+   },
+   {
+    "first_divergent_turn": 150,
+    "game": 900110148
+   },
+   {
+    "first_divergent_turn": 29,
+    "game": 900110189
+   },
+   {
+    "first_divergent_turn": 75,
+    "game": 900110315
+   },
+   {
+    "first_divergent_turn": 83,
+    "game": 900110361
+   },
+   {
+    "first_divergent_turn": 208,
+    "game": 900110372
+   },
+   {
+    "first_divergent_turn": 94,
+    "game": 900110390
+   },
+   {
+    "first_divergent_turn": 101,
+    "game": 900110426
+   },
+   {
+    "first_divergent_turn": 60,
+    "game": 900110469
+   },
+   {
+    "first_divergent_turn": 70,
+    "game": 900110481
+   },
+   {
+    "first_divergent_turn": 26,
+    "game": 900110522
+   },
+   {
+    "first_divergent_turn": 225,
+    "game": 900110576
+   },
+   {
+    "first_divergent_turn": 41,
+    "game": 900110652
+   },
+   {
+    "first_divergent_turn": 112,
+    "game": 900110665
+   },
+   {
+    "first_divergent_turn": 185,
+    "game": 900110684
+   }
+  ],
+  "refused_games": 111,
+  "verified_games": 49
+ },
+ "parse_errors": [],
+ "probe_inertness_failures": [],
+ "probe_sha256": {
+  "honest": "8a89f1e1d02154bea99f1c749aa98ed7e143053ef0866fdd87ecb1bfe997b8ed",
+  "null": "cf8339a2d9eada836d130a85709ea5033bb0103f4e7bee291995b5590b09f4d0",
+  "poison": "134115c5dcd830538430d50701a9a470cd7cb9e4ab3631129f09124db5527271"
+ },
+ "subject_sha256": "9a3e875823f3fc26bb7be04f67d872d5c5590f4479f771cae4402ed1e3281239",
+ "task": "20260820-pair-selector-anti-benching",
+ "unit_rows_verified": 24906,
+ "verdict": "PASS",
+ "verified_traced_turns": 12710,
+ "what": "Phase 3b REACH on the v3 real-game corpus -- a reach measurement, nothing more"
+}
