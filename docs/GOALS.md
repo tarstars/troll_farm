@@ -11,9 +11,9 @@ Meanwhile the ladder says two generations of those repairs are worth **+0.17** �
 
 - **Measure:** our own real ladder games graded for dancing, contention and repeated pick-and-drop,
   **with the bot's own stated intention attached to every turn**.
-- **Now: 149 games graded** (0 → 149 on 2026-08-23), 38,869 of our turns, 0 refused. Intentions are
-  present and verified decodable in all of them but **not yet joined** to the grading, so the
-  "with intention attached" half is still owed. **Target: 500.**
+- **Now: 149 games** (0 → 149 on 2026-08-23), 38,869 of our turns, 0 refused — graded for dancing and
+  contention, **and the intentions are joined**: 76,305 turn×unit rows, decoder independently
+  accepted, 12/12 controls. Idleness is the one problem still ungraded. **Target: 500.**
 - **First result**, at **matched own-unit count** — contention scales with unit count, so nothing
   else is a fair comparison. Share of games showing the defect:
   **contention — us 0 % of 149; the opponents in those same games 23 %; our pre-cure bot 43 %.**
