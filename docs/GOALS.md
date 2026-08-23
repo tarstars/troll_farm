@@ -6,23 +6,23 @@ Hard budget 60 lines, enforced by `tests/test_doc_budgets.py`. Last updated 2026
 ## G1 — Find out whether the problems we keep fixing are real
 
 Everything we repaired was chosen from **34 hand-picked situations** on a since-retired bot, picked
-*because* something had gone wrong in them. We never checked whether they happen in real games.
-Meanwhile the ladder says two generations of those repairs are worth **+0.17** — near nothing.
+*because* something had gone wrong in them, and never checked against real games — while the ladder
+says two generations of those repairs are worth **+0.17**, near nothing.
 
 - **Measure:** our own real ladder games graded for dancing, contention and repeated pick-and-drop,
   **with the bot's own stated intention attached to every turn**.
-- **Now: 149 games** (0 → 149 on 2026-08-23), 38,869 of our turns, 0 refused — graded for dancing and
-  contention, **and the intentions are joined**: 76,305 turn×unit rows, decoder independently
-  accepted, 12/12 controls. Idleness is the one problem still ungraded. **Target: 500.**
-- **First result**, at **matched own-unit count** — contention scales with unit count, so nothing
-  else is a fair comparison. Share of games showing the defect:
-  **contention — us 0 % of 149; the opponents in those same games 23 %; our pre-cure bot 43 %.**
-  **Dancing — us 11 %, those opponents 14 %, our pre-cure bot 0 %.** The defect two generations of
-  work targeted is **gone from real play**; **dancing is the one that survived**, and we now do it
-  more than our predecessor did. Rows: `local_claude_1/narrate/g1-first-grading-2026-08-23.json`.
-- **Limits:** different eras, so not randomised; the zero is not attributable to any one cure; replay
-  dancing counts are an **upper bound** (reconstructed plant clocks invent dancing) applied
-  identically to every cohort; 149 games is one agent, mid-maturation.
+- **Now: 309 games** (0 → 149 → 309 on 2026-08-23), 81,884 of our turns, 0 refused. Intentions joined
+  on the first 149: 76,305 turn×unit rows, decoder independently accepted, 12/12 controls.
+  **Target: 500.**
+- **The result, and it REPLICATED** across two independent batches (149 then 160 games, different
+  agent, different opponents, no overlap): dancing **11 % of games** both times; contention **0**
+  both times; repeated pick-and-drop **0** both times. Compared at **matched own-unit count** —
+  contention scales with unit count, so nothing else is fair — **contention: us 0 %, the opponents in
+  those same games 23 %, our pre-cure bot 43 %**; **dancing: us 11 %, those opponents 14 %, our
+  pre-cure bot 0 %**. So the defect two generations of work targeted is **gone from real play**, and
+  **dancing is the one that survived**. Rows: `local_claude_1/narrate/g1-first-grading-2026-08-23.json`.
+- **Limits:** not randomised (different eras); the zero is not attributable to any one cure; dancing
+  counts are an **upper bound** (reconstructed clocks invent dancing); both batches are one bot.
 
 ## G2 — A settled ladder score of 25.40 or better
 
