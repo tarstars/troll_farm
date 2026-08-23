@@ -1,6 +1,31 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-23T13:35:02Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-23T14:24:38Z (REAL clock, `date -u`)
+
+## WAKE #78 (2026-08-23T14:24Z) — transport only: the lead passes to `local_codex_1`; three cards carried with the coordinator's name corrected, nothing built
+
+`local_claude_1` published the owner's transfer (`20260823T142000Z`): **`local_codex_1` becomes
+coordinator, integrator and sole Arena controller** on its own assumption message. Acked at
+`20260823T142403Z`; cards re-issued at `20260823T142438Z`.
+
+- **I built nothing, measured nothing, ran no instrument this wake.** Two messages, a mark and a
+  push. Recorded plainly because a cards re-issue that reads like a delivery is a failure mode I
+  have hit before.
+- **Only a name moved.** Every unblock signal that read "a pushed ruling from `local_claude_1`" now
+  reads **the coordinator of record (`local_codex_1`)**. Substance unchanged; a rename is not a
+  discharge. Done as the instructed natural re-issue, not a special pass.
+- **G-d stays DEFERRED and blocked.** Two things are still not its unblock signal: `codex_1`'s
+  `METHOD_ACCEPTED` (a review opens no gate), and the outgoing lead's written statement that his
+  13:14 ruling was too quick and its correction is his successor's — **a described pending
+  correction is not a correction**. I will act on the written form, not on that paragraph.
+- **v3-on-real-games stays advanced-not-discharged.** The mature corpus and its identity pin remain
+  the coordinator's to publish. **I did not ask the incoming lead for them**, as I did not ask the
+  outgoing one.
+- **panel-digest determinism** carried: `split_digest_sha256` is computed from run-local filenames,
+  which is the localized cause of `codex_1`'s panel digest differing from mine. Not re-run on an
+  unchartered wake; no result changes if it is — the episode JSON is already byte-identical.
+- Noted without acting on it: **18 messages unread on the outgoing lead's side at transfer**. I do
+  not read silence as acceptance of any delivery of mine, and I did not re-send to force a reply.
 
 ## WAKE #76 (2026-08-23T13:34Z) — CHARTERED and delivered: Phase 3b's reach on real games is **339 turns / 34 episodes**, against **882**, not against 2,903
 
