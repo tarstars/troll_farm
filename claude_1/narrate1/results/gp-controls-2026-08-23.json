@@ -1,0 +1,93 @@
+{
+  "all_fired": true,
+  "controls": [
+    {
+      "control": "unmutated telemetry is accepted",
+      "errors": [],
+      "expected": "no errors",
+      "fired": true
+    },
+    {
+      "control": "turn misalignment",
+      "errors": [
+        "turn 2: telemetry says t=3 \u2014 turn misalignment"
+      ],
+      "expected": "turn misalignment",
+      "fired": true
+    },
+    {
+      "control": "a unit dropped from the roster",
+      "errors": [
+        "turn 2: roster [0] != live own units [0, 2]"
+      ],
+      "expected": "roster",
+      "fired": true
+    },
+    {
+      "control": "ids out of order",
+      "errors": [
+        "turn 2: ids not ascending: [2, 0]",
+        "turn 2: roster [2, 0] != live own units [0, 2]"
+      ],
+      "expected": "not ascending",
+      "fired": true
+    },
+    {
+      "control": "a second MSG token",
+      "errors": [
+        "turn 2: 2 MSG tokens, expected exactly 1"
+      ],
+      "expected": "2 MSG tokens",
+      "fired": true
+    },
+    {
+      "control": "MSG not first",
+      "errors": [
+        "turn 2: the MSG token is not first in the command list"
+      ],
+      "expected": "not first",
+      "fired": true
+    },
+    {
+      "control": "off-grammar target",
+      "errors": [
+        "turn 2: off-grammar target 'HOME' in 'MSG NARRATE v2 t=2 u0=TREE(3,4) u2=HOME'"
+      ],
+      "expected": "off-grammar",
+      "fired": true
+    },
+    {
+      "control": "banner on a later turn",
+      "errors": [
+        "turn 2: banner present=True, expected False"
+      ],
+      "expected": "banner present",
+      "fired": true
+    },
+    {
+      "control": "a duplicated unit",
+      "errors": [
+        "turn 2: unit 0 appears twice in 'MSG NARRATE v2 t=2 u0=TREE(3,4) u0=SHACK u2=SHACK'"
+      ],
+      "expected": "appears twice",
+      "fired": true
+    },
+    {
+      "control": "strip_msg removes the complete token, and only it",
+      "errors": [
+        "MOVE 0 3 4;HARVEST 2"
+      ],
+      "expected": "stripped == the gameplay tokens; unstripped still carries MSG",
+      "fired": true
+    },
+    {
+      "control": "a gameplay token containing the letters MSG is NOT stripped",
+      "errors": [
+        "MOVE 0 3 4;MSGX 1"
+      ],
+      "expected": "kept",
+      "fired": true
+    }
+  ],
+  "gate": "G-P"
+}
