@@ -1,8 +1,7 @@
 # STATE — Troll Farm (single entry point)
 
-Last updated: 2026-08-22 (§1 rewritten: champion of record, Arena halted, corpus re-counted). Earlier: 2026-08-10 (doc diet; see docs/archive/STATE-2026-08-10-pre-diet.md for the
-pre-diet text). This file is live state, not a record — the ledger volumes are the record.
-Hard budget: 150 lines. Rewrite it whenever facts change.
+Last updated: 2026-08-23 (§4 re-ranked: NARRATE is P0); earlier 08-22 (§1), 08-10 (doc diet, text
+at `docs/archive/STATE-2026-08-10-pre-diet.md`). Live state, not a record. Hard budget: 150 lines.
 
 ## 1. Live identity
 
@@ -117,23 +116,24 @@ moving the ladder, so +3.64 will not come from more of it.
 
 ## 4. Open thread
 
-- **The live programme is the architecture question**, not the cure programme:
-  `docs/DISCUSSION-architecture-over-score-2026-08-22.md`. Score is a constraint, not the
-  objective; a score-neutral, smaller program is an improvement. The measurement in §1 is why.
-- **In review:** cure α re-graded with the two-clause test — 32 of 34 healed events carry
-  restored progress, 2 quiet-but-stalled, 0 window-absent — pending codex_1's instrument
-  ruling (`coordination/tasks/20260822-alpha-progress-regrade.md`). "Healed" now means healed
-  **with progress**, never detector-silent, on α's bar and on any future one.
-- **Unparked:** corpus prevalence — the corpus is pinned (§1) and the replay adapter is sized
-  by execution; the alignment of 301 states to 300 command rows is its one trap.
-  Anti-benching Phase 3b design delivered after the extend-versus-replace ruling.
-- **`chatgpt_1` revived** 2026-08-22 as a fresh-eyes architecture partner, no verdict
-  authority; tooling digest verified; its own publisher fails, so its argument is undelivered.
-- **Unowned defect:** the night runner erases its ledger and re-opens an identical block at
-  every completion. It did so twice on 2026-08-21/22; a watcher caught it the second time.
-- **Needs the owner:** nothing.
-- History: 2026-07-29 synthesis closed all eight resident levers; A2 stopped at Phase-1 K1; N1
-  closed passive maturity. Pre-diet record: `docs/archive/STATE-2026-08-10-pre-diet.md`.
+- **P0 is the INSTRUMENT, not another cure** (backlog re-ranked 2026-08-23). **NARRATE** — the bot
+  prints each troll's target every turn via `MSG`, so we grade real games instead of 34 hand-picked
+  fixtures from a retired bot; audit done (`coordination/tasks/20260823-narrate-real-game-telemetry.md`).
+  Also P0: the replay→`Trace` adapter, needed by NARRATE step 4 **and** the prevalence card — one
+  trap, 301 states against 300 command rows, silently truncated. Why: §1, and §5's reading order.
+- **Parked behind NARRATE:** PEEK (rev 3 inert corpus-wide; supplying the missing intention makes
+  displacement **refuse** — confirmed on the champion, 989 of 989, **0** wanting a third square,
+  `claude_1@c85ee672`), PEEK branch 2, and the swap cure (α instrument accepted, 32 of 34 healed
+  *with progress*; "healed" means with progress from now on; residual-13 and the cure-arm basket
+  criterion stay mine). **Authorized:** anti-benching Phase 3b **build**, strictly after the adapter
+  — and no fixture-only result promotes it. Extend-versus-replace: scope 101 turns, one game.
+- **Withdrawn 2026-08-23:** my "235 of 2,245 wanted the partner's square" as evidence of contention
+  — the wrong-pairing control was never run, and claude_1's analogous 323/323 died to it. The
+  **zeros** stand; a zero needs no pairing. **`chatgpt_1` revived**, architecture only, no verdict
+  authority; its gateway is backlogged. **Unowned defect:** the night runner erases its ledger and
+  re-opens an identical block at every completion — twice on 08-21/22.
+- **★ Needs the owner: ONE item — NARRATE step 1's go**, one submission of an instrumented bot on
+  a stopped ladder. History: 07-29 closed all eight resident levers; A2 died at K1; N1 at maturity.
 
 ## 5. Reading order & pointers
 

@@ -70,9 +70,14 @@ intention question on the same instrument.
 ## What it would settle
 
 - Whether the fixture library's picture of these defects holds on real play at all.
-- The intention question on an unbiased sample: today's "in 100 % of cases the standing troll's
-  want cannot be served by displacement" is measured on the retired bot's *benching* set and is
-  explicitly not established for the champion.
+- The intention question on an unbiased sample. It now has **two** independent measurements, and
+  they agree: on the retired bot's benching set (2,245 wants, 0 for a third square) and on the
+  champion (`claude_1@c85ee672`, 989 of 989 encounters joined, 0 for a third square). Both still
+  read the **same 34-fixture library**, which is where the bias lives, so the agreement narrows
+  the question rather than closing it. Note also which half of each result survived scrutiny: the
+  *rates* beside those zeros ("235 of 2,245", "323 of 323") are structural artefacts of the case
+  set — a deliberately wrong pairing reproduces them — and are withdrawn. **The zeros stand,
+  because a zero needs no pairing.** That is precisely the kind of ambiguity real games remove.
 - The owner's own prevalence question — how often each ruled defect actually occurs, by agent id.
 
 ## Costs and limits, stated up front
