@@ -1,3 +1,58 @@
+# claude_1 status — wake #66, 2026-08-23
+
+**The replay→`Trace` adapter (D-1) is BUILT and delivered.** It had slipped one wake with a reason
+owed; it did not slip a second. `agent/claude_1@bc814ba536df48e98f34a859b6fbdd7539cf75b4`, handed
+off at `20260823T065400Z`, which discharges the card message it came from.
+
+**What it is.** `replay JSON → (transcript text, commands text) → trace_detectors.build_trace →
+Trace → detect_d1`. It emits **text**, so every parsing rule stays inside the accepted instrument;
+an adapter that built `Trace` objects directly could disagree with it silently and its D-1 would
+not be the same D-1. Layout measured over all 290 in-repo replays, not assumed: `frames = 2T+1`,
+keyframes = frame 0 plus every even frame, strict seat alternation, `stdout` everywhere — and
+`T = 300` in only 266 of them.
+
+**The trap that mattered was not the named one.** The named 301-vs-300 truncation is *correct* by
+luck. The dangerous case is a dropped mid-game keyframe: `T` states against `T` commands, the
+length note does **not** fire, and every later state is one turn early with nothing on screen. The
+adapter asserts `len(states) == T+1` and `resolved_turn == k` instead. Seat is required with no
+default — a wrong seat joins our commands to the opponent's units and still prints numbers, and 72
+of our lineage's 141 appearances here are at seat 1.
+
+**Panel: 580 of 580 pairs, six controls, exit 0.** Two controls were INERT on first run and I fixed
+the controls, not the adapter: a seat mutant that set an already-correct field, and a shift control
+run on a game where D-1 fires zero episodes (0 == 0).
+
+**The finding I reported instead of tuning away.** Sliding the *commands* one turn changes D-1 on
+only **7 of 37** flagged pairs — D-1 reads positions from states and touches commands only for its
+DROP/PICK clause, so **a command misalignment is very nearly invisible in D-1's own output**. The
+detector cannot police its own join; only the adapter's assertions can.
+
+**Not a prevalence result, and it must not be quoted as one.** `d1_flagged_pairs = 37` /
+`d1_episodes_total = 77` is adapter coverage over 136 pseudonymous players including every
+opponent. Our lineage is 141 of 580 pairs (`6536563`×140, `6536359`×1); the resident of record
+`6561795` is in **none** of the 290. Plant clocks are reconstructed by `DiffDecoder`, which biases
+D-1 toward **false** episodes, so replay counts are an upper bound. P4 stays inapplicable.
+
+**NARRATE arrived mid-wake and took the front.** Owner-directed (`local_claude_1` `20260823T065100Z`):
+instrument swap R-1 with intention logging, AAAAA on the ladder. Delivered the construction
+proposal at `agent/claude_1@254cfa1581fc22e5766db32f1652538c2efe8604` — reuse PEEK rev 3's
+`select_recording` and carry **none** of its displacement predicate; widen the single existing
+`MSG` rather than push a second token, because two-`MSG` legality is unmeasured; `N1` grammar with
+all five `Target` shapes and `None` printed as `N`, because a unit absent from the payload must be
+a decode error, never a `None`. Budget measured against the corpus: maps ≤ 22×11 so one base-36
+char per coordinate always fits, worst case 29 characters. **No instrument is built** and
+`candidate-swap-r1.rs` is untouched; the build waits on codex_1's ruling plus the length figure.
+Said before it passes: G-P runs offline and cannot see a referee reacting to command count or
+payload length, so it can pass while the ladder position is still not swap R-1's.
+
+**Phase 3b is authorized and unblocked** (codex_1's r2 ruling `75085260…` — my card had named r1
+`802e1388`, which the coordinator corrected — plus `20260823T063300Z`), and queued behind NARRATE.
+No fixture-only result promotes it.
+
+**Cards:** four, at `20260823T065801Z` — NARRATE build (front, blocked on two signals), Phase 3b
+(unblocked, queued), prevalence (b) (blocked), swap R-1 cure (blocked). **Open:** codex_1's G-1
+review of the adapter and their construction ruling on `N1`; both are their queue items.
+
 # claude_1 status — wake #62, 2026-08-22
 
 One review verdict inbound, acted on the same wake: **G-f REVISION_REQUIRED**, revised design out.
