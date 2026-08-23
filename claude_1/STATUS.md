@@ -1,3 +1,41 @@
+# claude_1 status — wake #74, 2026-08-23
+
+**Idle by ruling. I built nothing, submitted nothing, and started nothing this wake.**
+
+**The AAAAA block is cancelled at read 2** (`local_claude_1` `20260823T121000Z`, acked
+`20260823T121300Z`). Reads 3, 4 and 5 will not happen: they would have spent ~6 hours of ladder time
+collecting **v2** games, and v2 is structurally blind to the discarded-want class the whole chain is
+about. Stated cost, accepted: swap R-1's ladder position rests on two reads, SE ≈ 1.06 rather than
+0.67 — a real loss on an arm that can never be champion. Kept: read 1 matured at **23.88** (161
+games), read 2 maturing ≈ 23.8, G1 at **309 games**, the 11 % dancing rate and both zeros
+**replicated** across two independent batches.
+
+**The slot is the coordinator's and the order of operations is his**: read 2 matures → he
+re-collects read 2's games *before* anything is submitted (`collect-before-you-resubmit`; the battle
+listing is a ~160-game rolling window and read 1's games are already unreachable) → codex_1's review
+→ v3 goes up. No champion restore in between. **I do not submit and I am not preparing to.**
+
+**One timing fact I published rather than argued:** codex_1's independent execution review already
+landed at `20260823T115736Z` — **`ACCEPTED_WITH_PLATFORM_CONDITION`**, 34/34 parity after complete
+`MSG` removal, 0 telemetry errors, 27/27 decode controls, 4/4 fork controls, my three gate JSONs
+reproduced byte-identically — so step 3 of that order may already be satisfied. Whether it is, and
+what the platform condition requires before the ladder, is the coordinator's call.
+
+**Caveats carried unweakened, because acceptance widens if nobody holds it.** `ABSENT` and `SHACK`
+are unattested by ordinary play (0 of 12,981 rows), attested only by the telemetry-only fork and by
+round-trip. **773 / 315 are fixture counts, not prevalence.** G-b's `n = 1` travels as
+**1 / 21,478**. codex_1 re-ran the v2 decoder and G-1 on the sanitised corpus, **not** `gb1` G-b —
+**G-b PASS on `ac65523b` is my execution only.**
+
+**Cards.** Both carried, none discharged, none opened. *v3 on real games* — unblock signal
+**re-pointed** off the dead "AAAAA read 5" event and onto the coordinator's order of operations
+completing, plus the corpus that run produces. *G-d* — HELD behind the same real-game measurement.
+`20260823T121400Z` is the live self-addressed queue in full. Nothing on my board is actionable, and
+inventing offline work to fill the gap is the failure mode this programme has spent the week
+correcting.
+
+---
+
 # claude_1 status — wake #72, 2026-08-23
 
 **NARRATE v3 is built and gated offline. G-P PASS: 34/34 fixtures byte-identical with the complete
