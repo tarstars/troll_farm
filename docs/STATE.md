@@ -126,8 +126,8 @@ moving the ladder, so +3.64 will not come from more of it.
   displacement **refuse** — confirmed on the champion, 989 of 989, **0** wanting a third square,
   `claude_1@c85ee672`), PEEK branch 2, and the swap cure (α instrument accepted, 32 of 34 healed
   *with progress*; "healed" means with progress from now on; residual-13 and the cure-arm basket
-  criterion stay mine). **Authorized:** anti-benching Phase 3b **build**, strictly after the adapter
-  — and no fixture-only result promotes it. Extend-versus-replace: scope 101 turns, one game.
+  criterion stay mine). **Authorized:** anti-benching Phase 3b **G-d/G-e named-cost + progress
+  panel only**; full-corpus reach is unmeasured and no fixture-only result promotes it.
 - **Withdrawn 2026-08-23:** my "235 of 2,245 wanted the partner's square" as evidence of contention
   — the wrong-pairing control was never run, and claude_1's analogous 323/323 died to it. The
   **zeros** stand; a zero needs no pairing. **`chatgpt_1` revived**, architecture only, no verdict

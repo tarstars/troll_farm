@@ -1,6 +1,6 @@
 # 20260820-pair-selector-anti-benching — employ the benched troll (rule R-2)
 
-- Status: **OPEN — TARGET CONFIRMED ON REAL GAMES 2026-08-23; PHASE 3b HELD** (`coordination/messages/local_claude_1/20260823T131400Z-20260820-pair-selector-anti-benching-policy.md`). The benched troll is REAL in real play: **615 of 84,928 troll-turns (0.72%)** over 160 ladder games had a troll given nothing while its own best candidate was real work — absent in 40% of games, but 54% of it concentrated in the worst 10% (max 51 turns in one game). Much smaller than the fixtures implied (charter cited up to 194 turns/game; real max 51, median game 1). **Phase 3b does NOT proceed to G-d**: it repairs the idle branch that discards options BEFORE anything records what was available, so its target is invisible to the v3 instrument for the same structural reason v2 was blind to the selector's — a troll robbed by that bug lands in the 2,903 wanted-nothing rows, not the 615. No v4 is chartered. Next step is one targeted reach measurement on the real corpus, not the cost panel.
+- Status: **OPEN — PROCEED TO G-d/G-e NAMED-COST + PROGRESS PANEL; ARENA HELD** (`coordination/messages/local_codex_1/20260823T155558Z-20260820-pair-selector-anti-benching-policy.md`). Phase 3b has exact non-zero real-play reach on the parity-verified subcorpus: **339 / 882 `nothing/nothing` unit-turns, collapsed to 34 episodes in 14 / 49 verified games**. Only 49 / 160 games replay exactly; 111 refuse closed, so full-corpus reach and representativeness remain unmeasured. This is enough to price the existing candidate, not evidence of progress, score, repair, prevalence, qualification, or Arena readiness. The separate real benched class remains **615 / 84,928 troll-turns** and is not what Phase 3b measured.
 - Superseded status: **OPEN — PHASE 3 (REVISION), OWNER-RULED 2026-08-21 ~10:00Z: D3 = "revise"**
   (the 08-21 morning ruling was D3 = HOLD, no Arena slot, because codex_1's
   unified verdict was `PACKAGE_REPRODUCED; BOTH CANDIDATES BLOCKED AS QUALIFIED
@@ -10,9 +10,9 @@
   consequence of rule R-2 (`docs/RULES-LEDGER.md`). The 24-case GOAL_SPLIT
   class is the target: the team-picker's joint pairing discards a troll's
   oracle-verified available work, up to 194 turns per game.
-- Record owner: local_claude_1 · Work owner: **claude_1** ·
+- Record owner: local_codex_1 · Work owner: **claude_1** ·
   Reviewer: **codex_1** (instrument-first, then gates) ·
-  Integrator: local_claude_1
+  Integrator: local_codex_1
 - Base: **Phase 1 subject = cure-C `ad3bfefe…`, pinned NOW** (valid for both
   possible verdicts — the selection code is byte-identical in both night arms;
   step 0 verifies). **Phase 2 subject = whatever resident tonight's ruling
@@ -106,7 +106,7 @@ question goes back to the owner with the evidence; nothing is built against it
 until ruled.** Also in 3a: the mechanism of the `m004` P3 regression and of the
 `m021` P4/`r5-horizon` cost under P1+P2 — named, with the turn.
 
-**Phase 3b — design proposal → codex_1 pre-build ruling → OWNER design go.**
+**Phase 3b — design proposal → codex_1 pre-build ruling → owner/delegated design go: SATISFIED for r2.**
 The picker is planner core; two-doors-wall applies; the owner approved P1+P2's
 design and approves the revision's. The design states whether OSC-030's shape
 (same tree wanted while a teammate works it — the 4b "tree reservation"
@@ -114,6 +114,11 @@ mechanism, β) is covered by the revised picker or stays parked; teammate-aware
 routing (OSC-010) stays parked regardless (movement level, not picker).
 
 **Phase 3c — build + gates (ready-with-gates, named-costs class):**
+- **Current gate state, 2026-08-23:** r2 build `09ed550f…` exists; G-a/G-c are
+  independently accepted at `daa83d0a…`; real-game reach is accepted as
+  sufficient to open G-d/G-e. `claude_1` runs the named-cost/progress package;
+  `codex_1` reviews only after a valid canonical handoff. No reach rerun and no
+  Arena action are authorized by this step.
 - R-1 build on the **champion of record at build time** (rebase clause: if
   session 3 ends in REVERT, rebase before R-2).
 - R-2 fixture verdict, **AMENDED 2026-08-21 ~11:15Z (owner-approved method
@@ -135,7 +140,6 @@ routing (OSC-010) stays parked regardless (movement level, not picker).
   by the owner when both are qualified; one standard 5-pair block each, never
   composed before each is measured alone.
 
-**Priority:** cure α (`20260821-swap-r1-cure`) keeps precedence for **building**;
-Phase 3a is read-only and may run alongside it. Phase 3b/3c start after α's G-1
-is delivered or α is blocked, whichever comes first. Work owner claude_1,
-reviewer codex_1, integrator local_claude_1, as before.
+**Priority:** the adapter and r2 build prerequisites are complete. G-d/G-e are
+the next action on this task. Work owner `claude_1`, reviewer `codex_1`,
+integrator `local_codex_1`.
