@@ -1,6 +1,7 @@
 # 20260820-pair-selector-anti-benching — employ the benched troll (rule R-2)
 
-- Status: **OPEN — PHASE 3 (REVISION), OWNER-RULED 2026-08-21 ~10:00Z: D3 = "revise"**
+- Status: **OPEN — TARGET CONFIRMED ON REAL GAMES 2026-08-23; PHASE 3b HELD** (`coordination/messages/local_claude_1/20260823T131400Z-20260820-pair-selector-anti-benching-policy.md`). The benched troll is REAL in real play: **615 of 84,928 troll-turns (0.72%)** over 160 ladder games had a troll given nothing while its own best candidate was real work — absent in 40% of games, but 54% of it concentrated in the worst 10% (max 51 turns in one game). Much smaller than the fixtures implied (charter cited up to 194 turns/game; real max 51, median game 1). **Phase 3b does NOT proceed to G-d**: it repairs the idle branch that discards options BEFORE anything records what was available, so its target is invisible to the v3 instrument for the same structural reason v2 was blind to the selector's — a troll robbed by that bug lands in the 2,903 wanted-nothing rows, not the 615. No v4 is chartered. Next step is one targeted reach measurement on the real corpus, not the cost panel.
+- Superseded status: **OPEN — PHASE 3 (REVISION), OWNER-RULED 2026-08-21 ~10:00Z: D3 = "revise"**
   (the 08-21 morning ruling was D3 = HOLD, no Arena slot, because codex_1's
   unified verdict was `PACKAGE_REPRODUCED; BOTH CANDIDATES BLOCKED AS QUALIFIED
   CURES`; today the owner chose door 2 of three — revise, not retire, not change
