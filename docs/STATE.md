@@ -126,8 +126,8 @@ moving the ladder, so +3.64 will not come from more of it.
   displacement **refuse** — confirmed on the champion, 989 of 989, **0** wanting a third square,
   `claude_1@c85ee672`), PEEK branch 2, and the swap cure (α instrument accepted, 32 of 34 healed
   *with progress*; "healed" means with progress from now on; residual-13 and the cure-arm basket
-  criterion stay mine). **Result:** anti-benching r2 **BLOCKED at G-d**, 115 vs 35 blocking games,
-  80 de-novo, 5 new P3, 73 new P4; full 240-game rerun exact. G-e and Arena stayed closed.
+  criterion stay mine). **Result:** anti-benching r2 **BLOCKED at G-d**, 115 vs 35 blocking games, 80 de-novo, 5 new P3, 73 new P4; full 240-game rerun exact. `chatgpt_1` now rereviews method,
+  causal attribution, and the highest-value next approach; no experiment or Arena authority.
 - **Withdrawn 2026-08-23:** my "235 of 2,245 wanted the partner's square" as evidence of contention
   — the wrong-pairing control was never run, and claude_1's analogous 323/323 died to it. The
   **zeros** stand; a zero needs no pairing. **`chatgpt_1` is reachable** and delivered the independent
