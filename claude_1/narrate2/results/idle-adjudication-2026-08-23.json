@@ -1,0 +1,2638 @@
+{
+  "games_with_divergence_refused": 14,
+  "games_with_divergence_verified": 20,
+  "rows": [
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089741,
+      "intent_cell": [
+        16,
+        3
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 1 16 3",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        16,
+        3
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          11,
+          10
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900089904,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "resolved": "MOVE 3 11 10",
+      "selected": null,
+      "sibling_resolved": {
+        "1": "MOVE 1 12 10"
+      },
+      "sibling_selected": {
+        "1": "MOVE 1 13 9"
+      },
+      "sites": [
+        "swap"
+      ],
+      "turn": 240,
+      "unit": 3,
+      "unit_cell": [
+        12,
+        10
+      ],
+      "verdict": "MANUFACTURED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 8,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 13,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 14,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 15,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 16,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090089,
+      "intent_cell": [
+        8,
+        4
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 8 4",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 3,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        4
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090089,
+      "intent_cell": [
+        8,
+        4
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 8 4",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 4,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        4
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090089,
+      "intent_cell": [
+        8,
+        4
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 8 4",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 5,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        4
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090150,
+      "intent_cell": [
+        13,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        4
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090150,
+      "intent_cell": [
+        13,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        4
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090150,
+      "intent_cell": [
+        13,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        4
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090150,
+      "intent_cell": [
+        13,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        4
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090150,
+      "intent_cell": [
+        13,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 8,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        4
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090186,
+      "intent_cell": [
+        7,
+        7
+      ],
+      "intent_kind": "TREE",
+      "turn": 40,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        1
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090390,
+      "intent_cell": [
+        8,
+        1
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 8 1",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 6,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        1
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090390,
+      "intent_cell": [
+        8,
+        1
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 8 1",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 7,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        1
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          10,
+          6
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900090390,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "resolved": "MOVE 0 10 6",
+      "selected": null,
+      "sibling_resolved": {
+        "3": "MOVE 3 11 6"
+      },
+      "sibling_selected": {
+        "3": "MOVE 3 11 6"
+      },
+      "sites": [
+        "swap"
+      ],
+      "turn": 94,
+      "unit": 0,
+      "unit_cell": [
+        11,
+        6
+      ],
+      "verdict": "MANUFACTURED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 7 0",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 10,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 7 0",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 13,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 7 0",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 14,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 7 0",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 15,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 7 0",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 16,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 7 0",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 17,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 7 0",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 18,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 7 0",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 21,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 7 0",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 22,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 7 0",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 23,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 7 0",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 24,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 7 0",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 25,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 7 0",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 26,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        4,
+        6
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 4 6",
+      "sibling_resolved": {
+        "2": "MOVE 2 7 4"
+      },
+      "sibling_selected": {
+        "2": "MOVE 2 5 6"
+      },
+      "sites": [
+        "blocked-no-detour"
+      ],
+      "turn": 145,
+      "unit": 0,
+      "unit_cell": [
+        6,
+        4
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        6,
+        1
+      ],
+      "intent_kind": "BANK",
+      "resolved": null,
+      "selected": "MOVE 0 6 1",
+      "sibling_resolved": {
+        "2": "MOVE 2 4 3"
+      },
+      "sibling_selected": {
+        "2": "MOVE 2 5 0"
+      },
+      "sites": [
+        "blocked-no-detour"
+      ],
+      "turn": 176,
+      "unit": 0,
+      "unit_cell": [
+        5,
+        3
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090587,
+      "intent_cell": [
+        11,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 3,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        4
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090587,
+      "intent_cell": [
+        11,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        4
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090623,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 1 11 7",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        7
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090623,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 1 11 7",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        7
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090623,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 1 11 7",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        7
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090623,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 1 11 7",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        7
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090623,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 1 11 7",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 8,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        7
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090810,
+      "intent_cell": [
+        10,
+        2
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 10 2",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 10,
+      "unit": 0,
+      "unit_cell": [
+        10,
+        2
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090810,
+      "intent_cell": [
+        10,
+        2
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 10 2",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 11,
+      "unit": 0,
+      "unit_cell": [
+        10,
+        2
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090810,
+      "intent_cell": [
+        10,
+        2
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 10 2",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 12,
+      "unit": 0,
+      "unit_cell": [
+        10,
+        2
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090810,
+      "intent_cell": [
+        9,
+        0
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 9 0",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 18,
+      "unit": 0,
+      "unit_cell": [
+        9,
+        0
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          10,
+          4
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900090849,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "turn": 293,
+      "unit": 0,
+      "unit_cell": [
+        9,
+        4
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090870,
+      "intent_cell": [
+        8,
+        2
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 1 8 2",
+      "sibling_resolved": {
+        "3": "MOVE 3 8 3"
+      },
+      "sibling_selected": {
+        "3": "MOVE 3 7 2"
+      },
+      "sites": [
+        "blocked-no-detour"
+      ],
+      "turn": 182,
+      "unit": 1,
+      "unit_cell": [
+        8,
+        4
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090870,
+      "intent_cell": [
+        8,
+        2
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 1 8 2",
+      "sibling_resolved": {
+        "3": "MOVE 3 8 3"
+      },
+      "sibling_selected": {
+        "3": "MOVE 3 7 2"
+      },
+      "sites": [
+        "blocked-no-detour"
+      ],
+      "turn": 208,
+      "unit": 1,
+      "unit_cell": [
+        8,
+        4
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091110,
+      "intent_cell": [
+        4,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 8,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091110,
+      "intent_cell": [
+        4,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 9,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091110,
+      "intent_cell": [
+        4,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 10,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091110,
+      "intent_cell": [
+        4,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 11,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091110,
+      "intent_cell": [
+        4,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 12,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          11,
+          6
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900091394,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "resolved": "MOVE 0 11 6",
+      "selected": null,
+      "sibling_resolved": {
+        "2": "MOVE 2 12 6"
+      },
+      "sibling_selected": {
+        "2": "MOVE 2 16 6"
+      },
+      "sites": [
+        "swap"
+      ],
+      "turn": 177,
+      "unit": 0,
+      "unit_cell": [
+        12,
+        6
+      ],
+      "verdict": "MANUFACTURED"
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          12,
+          6
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900091394,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "resolved": "MOVE 0 12 6",
+      "selected": null,
+      "sibling_resolved": {
+        "2": "MOVE 2 11 6"
+      },
+      "sibling_selected": {
+        "2": "MOVE 2 8 4"
+      },
+      "sites": [
+        "swap"
+      ],
+      "turn": 192,
+      "unit": 0,
+      "unit_cell": [
+        11,
+        6
+      ],
+      "verdict": "MANUFACTURED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091594,
+      "intent_cell": [
+        12,
+        5
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 1 12 5",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        12,
+        5
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091594,
+      "intent_cell": [
+        12,
+        5
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 1 12 5",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        12,
+        5
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091594,
+      "intent_cell": [
+        12,
+        5
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 1 12 5",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        12,
+        5
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091594,
+      "intent_cell": [
+        12,
+        5
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 1 12 5",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        12,
+        5
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091690,
+      "intent_cell": [
+        11,
+        3
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 1 11 3",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 12,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        3
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 10,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 13,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 14,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 15,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 16,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 17,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 18,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091939,
+      "intent_cell": [
+        8,
+        1
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 1 8 1",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        8,
+        1
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091939,
+      "intent_cell": [
+        8,
+        1
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 1 8 1",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        8,
+        1
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 2,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 3,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 9,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 12,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 15,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092073,
+      "intent_cell": [
+        4,
+        6
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 4 6",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 2,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        6
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092073,
+      "intent_cell": [
+        4,
+        6
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 0 4 6",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 5,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        6
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092107,
+      "intent_cell": [
+        3,
+        4
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 1 3 4",
+      "sibling_resolved": {
+        "3": "MOVE 3 10 3"
+      },
+      "sibling_selected": {
+        "3": "MOVE 3 4 5"
+      },
+      "sites": [
+        "blocked-no-detour"
+      ],
+      "turn": 221,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        3
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092318,
+      "intent_cell": [
+        9,
+        5
+      ],
+      "intent_kind": "BANK",
+      "resolved": null,
+      "selected": "MOVE 0 9 5",
+      "sibling_resolved": {
+        "3": "MOVE 3 9 5"
+      },
+      "sibling_selected": {
+        "3": "MOVE 3 8 4"
+      },
+      "sites": [
+        "blocked-no-detour"
+      ],
+      "turn": 124,
+      "unit": 0,
+      "unit_cell": [
+        10,
+        5
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          10,
+          5
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900092318,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "resolved": "MOVE 3 10 5",
+      "selected": null,
+      "sibling_resolved": {
+        "0": "MOVE 0 9 5"
+      },
+      "sibling_selected": {
+        "0": "MOVE 0 8 4"
+      },
+      "sites": [
+        "swap"
+      ],
+      "turn": 297,
+      "unit": 3,
+      "unit_cell": [
+        9,
+        5
+      ],
+      "verdict": "MANUFACTURED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092332,
+      "intent_cell": [
+        10,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        0
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092332,
+      "intent_cell": [
+        10,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        0
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092332,
+      "intent_cell": [
+        10,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        0
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092332,
+      "intent_cell": [
+        10,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        0
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092504,
+      "intent_cell": [
+        10,
+        1
+      ],
+      "intent_kind": "TREE",
+      "resolved": null,
+      "selected": "MOVE 1 10 1",
+      "sibling_resolved": {},
+      "sibling_selected": {},
+      "sites": [
+        "no-progress"
+      ],
+      "turn": 23,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        1
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 3,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 8,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 9,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 10,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 11,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 12,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 13,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 14,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 15,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 20,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 21,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 22,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 23,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092777,
+      "intent_cell": [
+        11,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        8
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          15,
+          1
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900092800,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "resolved": "MOVE 1 15 1",
+      "selected": null,
+      "sibling_resolved": {
+        "3": "MOVE 3 15 2"
+      },
+      "sibling_selected": {
+        "3": "MOVE 3 15 2"
+      },
+      "sites": [
+        "swap"
+      ],
+      "turn": 95,
+      "unit": 1,
+      "unit_cell": [
+        15,
+        2
+      ],
+      "verdict": "MANUFACTURED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        4,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 3,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        8
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        4,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        8
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        4,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        8
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        4,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        8
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        4,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        8
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        7,
+        8
+      ],
+      "intent_kind": "BANK",
+      "turn": 165,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        4
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093179,
+      "intent_cell": [
+        12,
+        7
+      ],
+      "intent_kind": "BANK",
+      "resolved": null,
+      "selected": "MOVE 1 12 7",
+      "sibling_resolved": {
+        "2": "MOVE 2 9 7"
+      },
+      "sibling_selected": {
+        "2": "MOVE 2 11 6"
+      },
+      "sites": [
+        "blocked-no-detour"
+      ],
+      "turn": 40,
+      "unit": 1,
+      "unit_cell": [
+        8,
+        7
+      ],
+      "verdict": "REWRITTEN_TO_WAIT"
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          4,
+          2
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900093311,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "turn": 298,
+      "unit": 3,
+      "unit_cell": [
+        4,
+        1
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093423,
+      "intent_cell": [
+        7,
+        2
+      ],
+      "intent_kind": "BANK",
+      "turn": 80,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        4
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093423,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "turn": 170,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        7
+      ],
+      "verdict": "NOT_VERIFIED"
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          10,
+          6
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900093465,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "resolved": "MOVE 1 10 6",
+      "selected": null,
+      "sibling_resolved": {
+        "3": "MOVE 3 10 5"
+      },
+      "sibling_selected": {
+        "3": "MOVE 3 10 2"
+      },
+      "sites": [
+        "swap"
+      ],
+      "turn": 283,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        5
+      ],
+      "verdict": "MANUFACTURED"
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          10,
+          5
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900093465,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "resolved": "MOVE 1 10 5",
+      "selected": null,
+      "sibling_resolved": {
+        "3": "MOVE 3 10 6"
+      },
+      "sibling_selected": {
+        "3": "MOVE 3 11 8"
+      },
+      "sites": [
+        "swap"
+      ],
+      "turn": 291,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        6
+      ],
+      "verdict": "MANUFACTURED"
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          6,
+          6
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900093504,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "resolved": "MOVE 0 6 6",
+      "selected": null,
+      "sibling_resolved": {
+        "2": "MOVE 2 7 6"
+      },
+      "sibling_selected": {
+        "2": "MOVE 2 7 7"
+      },
+      "sites": [
+        "swap"
+      ],
+      "turn": 251,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        6
+      ],
+      "verdict": "MANUFACTURED"
+    }
+  ],
+  "verdicts": {
+    "MANUFACTURED": 9,
+    "NOT_VERIFIED": 66,
+    "REWRITTEN_TO_WAIT": 45,
+    "site:blocked-no-detour": 7,
+    "site:no-progress": 38,
+    "site:swap": 9
+  }
+}
