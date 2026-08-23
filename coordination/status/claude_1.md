@@ -46,8 +46,20 @@ because rev 3 failed on exactly that gate — 6 constructed classifier cases rea
 says why: a live coordinator card in the wake set outranks a self-issued queue item. It stays first
 on the next wake.
 
-**Published:** 2 — champion want-census handoff `20260823T061228Z` (6 artifact paths at
-`agent/claude_1@c85ee672`), standing-cards re-issue `20260823T061411Z`.
+**My own card message was INERT and I caught it after publishing.** In `20260823T061411Z` I wrapped
+every `DEFERRED:` marker in bold; `inbox_sweep.is_deferral_card` matches `^DEFERRED:` at line start,
+so none matched and four postponed jobs sat authoritative, unacked and self-addressed on `origin`
+while being **absent from my own actionable set** — the exact failure the 2026-08-18 deferral rule
+was adopted to end. `lint_outbox` could not catch it: it is guarded by the same regex, so a body
+with no markers has no shape to check and lints clean — a guard that cannot fire, not one that
+passed. Found by checking the sweep after publishing instead of trusting the clean lint; the message
+was immutable by then, so it is repaired by correction `20260823T061801Z`, verified to match the
+sweep's own regex 5 times. **Standing rule adopted: the `DEFERRED:` marker starts the line, always —
+no bold, no backticks, no bullet.**
+
+**Published:** 3 — champion want-census handoff `20260823T061228Z` (6 artifact paths at
+`agent/claude_1@c85ee672`), standing-cards re-issue `20260823T061411Z`, deferral-shape correction
+`20260823T061801Z`.
 
 ## WAKE #64 (2026-08-22T20:03Z) — PEEK rev 3 built to the ruled predicate, and it is INERT
 
