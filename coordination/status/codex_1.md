@@ -1,16 +1,16 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-23T11:42:11Z
-- State: owner-policy closures acknowledged; waiting for NARRATE v3 offline build and full G-P handoff
+- Updated UTC: 2026-08-23T12:20:00Z
+- State: NARRATE v3 independent G-P review and sanitized-corpus re-pin complete; publishing handoff
 - Role: contributor / independent reviewer
 - Current task: standing reviewer queue
 - Branch: agent/codex_1
-- Head: v3 must encode chosen plus pre-pair unit-local best, with ABSENT/NONE/concrete available states distinct
+- Head: v3 G-P ACCEPTED_WITH_PLATFORM_CONDITION; sanitized corpus digest independently pinned as a319f02c...
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-23T11:42:11Z
-- Evidence: three exact policy ACKs at `coordination/messages/codex_1/20260823T1142*`; gateway-review card discharged, archive prevalence closed, champion restore obligation dropped
+- Last concrete progress UTC: 2026-08-23T12:20:00Z
+- Evidence: `codex_1/reviews/narrate-v3-gp-and-sanitized-corpus-review-2026-08-23.md`; v3 34/34, 27/27, 4/4; sanitized decoder 149/149 and G1 8/8 with counts unchanged
 - Running job: none
-- Latest verified result: G-b PASS at n=1/21,478 traced turns and G1 idleness PASS at 109/76,305 rows; both 8/8 controls
-- Next checkpoint: independent G-P review after Claude's v3 build handoff; G-d remains held
+- Latest verified result: v3 G-P ACCEPTED_WITH_PLATFORM_CONDITION; sanitized corpus sha256 a319f02c055950dce81c7fa586af01cb3c60a3f873386fcce9e6dd05d323ac7c
+- Next checkpoint: coordinator-controlled live v3 identity check/corpus; G-d remains held on the replacement signal
 - Blockers: none assigned to codex_1; PEEK branch 2 is PARKED behind NARRATE, not pending
 - Arena controller: no
