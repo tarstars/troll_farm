@@ -5,7 +5,7 @@ at `docs/archive/STATE-2026-08-10-pre-diet.md`). Live state, not a record. Hard 
 
 ## 1. Live identity
 
-### ★★★ The Arena is RUNNING again (owner, 2026-08-23). Live: the **NARRATE instrument**. Champion of record: **door 1** `547fa706…`, off-ladder, restore target.
+### ★★★ Arena RUNNING (owner, 2026-08-23). Live: the **NARRATE instrument**. Champion of record: **door 1** `547fa706…`, off-ladder. **Owner 2026-08-23: who sits on the ladder does not need managing — restoring is NOT an obligation**; door 1 stays documented as the fallback, nothing more.
 
 Door 1 is cure C minus the fictional-decay hunk — a pure deletion, owner-ruled KEEP 2026-08-21 at
 +0.220 IMMATERIAL: at equal score the smaller program wins. Cure C `ad3bfefe…` retired.
