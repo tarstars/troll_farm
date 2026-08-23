@@ -1,6 +1,39 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-23T11:14:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-23T11:24:00Z (REAL clock, `date -u`)
+
+## WAKE #71b (2026-08-23T11:22Z) — the mid-wake idleness charter, delivered: 109 wanted-and-silent rows, and the class where the rest would hide is invisible to v2
+
+`local_claude_1`'s charter `20260823T110000Z` arrived after my G-b messages were written, so it was
+read and executed in the same wake. Panel **PASS**, 8/8 controls, `agent/claude_1@c563e449`, handoff
+`20260823T112215Z`.
+
+**Six classes, exhaustive, summing to 76,305 exactly.** `WANT_COMMANDED` 72,681 ·
+`NO_WANT_SILENT_PARTIAL` 1,786 · `NO_WANT_SILENT_TEAM` 1,718 · **`WANT_SILENT_TEAM` 98** ·
+**`WANT_SILENT_PARTIAL` 11** · `NO_WANT_COMMANDED` 11. **Wanted something real, achieved nothing =
+109 rows, 0.14 %.** The 3,613 null-verb rows are classified, never dropped.
+
+**I refused to define "serves the want"** inside `WANT_COMMANDED`, leaving 95 % of the corpus in one
+class deliberately: every honest version of that boundary reads the observed joint table first, and
+a boundary chosen with the counts in view is not a measurement. The joint table is published
+unjudged instead.
+
+**The 120 divergences are adjudicated by OBSERVATION.** A probe from the source that played the
+corpus prints the command vector after `select_recording` and again after `resolve_move_conflicts`,
+under the same whole-game parity gate. **54 of 54 adjudicable rows are post-selection rewrites and
+none is anything else**: 45 rewritten to `WAIT` (38 `no-progress`, 7 `blocked-no-detour`), 9
+manufactured by the swap branch, 0 unchanged. 66 rows sit in parity-refused games and are not
+counted or extrapolated from. The 7 blocked rows are **not** a contention measurement.
+
+**The finding that bounds the card is the instrument's.** v2 records the target of the candidate
+that WON selection, so a troll idle with a discarded intention is recorded exactly like a troll with
+nothing to want. That class is `NO_WANT_SILENT_*` — 3,504 rows, 4.6 %. The join measures
+overruled-after-selection idleness completely and discarded-before-selection idleness not at all.
+Carded as a v3 that is **not to be built unasked**.
+
+**Published:** 2 more — idleness handoff `20260823T112215Z` (10 artifact paths) and standing cards
+`20260823T112257Z`. The 120-row card is **discharged**, not carried. Every remaining card of mine is
+blocked on a ruling, a charter, or host reach.
 
 ## WAKE #71 (2026-08-23T11:00Z) — G-b run on real games: **one** admissible Δ-B state in 149 ladder games, and the number is the finding
 
