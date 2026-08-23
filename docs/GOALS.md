@@ -6,23 +6,23 @@ Hard budget 60 lines, enforced by `tests/test_doc_budgets.py`. Last updated 2026
 ## G1 — Find out whether the problems we keep fixing are real
 
 Everything we repaired was chosen from **34 hand-picked situations** on a since-retired bot, picked
-*because* something had gone wrong in them, and never checked against real games — while the ladder
-says two generations of those repairs are worth **+0.17**, near nothing.
+*because* something went wrong in them, never checked against real play — while the ladder says two
+generations of those repairs are worth **+0.17**, near nothing.
 
-- **Measure:** our own real ladder games graded for dancing, contention and repeated pick-and-drop,
-  **with the bot's own stated intention attached to every turn**.
-- **Now: 309 games** (0 → 149 → 309 on 2026-08-23), 81,884 of our turns, 0 refused. Intentions joined
-  on the first 149: 76,305 turn×unit rows, decoder independently accepted, 12/12 controls.
-  **Target: 500.**
-- **The result, and it REPLICATED** across two independent batches (149 then 160 games, different
-  agent, different opponents, no overlap): dancing **11 % of games** both times; contention **0**
-  both times; repeated pick-and-drop **0** both times. Compared at **matched own-unit count** —
-  contention scales with unit count, so nothing else is fair — **contention: us 0 %, the opponents in
-  those same games 23 %, our pre-cure bot 43 %**; **dancing: us 11 %, those opponents 14 %, our
-  pre-cure bot 0 %**. So the defect two generations of work targeted is **gone from real play**, and
-  **dancing is the one that survived**. Rows: `local_claude_1/narrate/g1-first-grading-2026-08-23.json`.
-- **Limits:** not randomised (different eras); the zero is not attributable to any one cure; dancing
-  counts are an **upper bound** (reconstructed clocks invent dancing); both batches are one bot.
+- **Measure:** our own real ladder games graded for dancing, contention and idleness, **with the
+  bot's own stated intention attached to every turn**. **Now 469** (0 → 149 → 309 → 469 on
+  2026-08-23), 125,184 of our turns, 0 refused. **Target 500.**
+- **Contention and pick-and-drop: ZERO, replicated** on two independent batches. At **matched
+  own-unit count** (contention scales with unit count, so nothing else is fair) — contention: **us
+  0 %, the opponents in those same games 23 %, our pre-cure bot 43 %**; **dancing survived**: us
+  11 %, them 14 %, pre-cure 0 %. `local_claude_1/narrate/g1-first-grading-2026-08-23.json`.
+- **Idleness needed a new instrument** — reporting only the *chosen* move cannot tell an overruled
+  troll from an idle one, so the bot now also reports what it wanted **before** the picker chose. On
+  160 real games a troll had work available and got nothing on **615 of 84,928 troll-turns (0.72 %)**
+  — none at all in 40 % of games, but **54 % of it packed into the worst 10 %** (51 turns in one),
+  usually a tree it meant to chop. `local_claude_1/narrate/v3-discarded-want-2026-08-23.json`.
+- **Limits:** not randomised (different eras); no zero is attributable to any one cure; dancing counts
+  are an **upper bound** (reconstructed clocks invent dancing); every batch is one bot.
 
 ## G2 — A settled ladder score of 25.40 or better
 
