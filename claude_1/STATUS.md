@@ -1047,3 +1047,14 @@ Nothing. No card outstanding, none deferred, none requested. Queue drained and p
   forbidden-key sweep before I measure on it — verifying the artifact, not the assurance.
 - Published: `…T120202Z-…-corpus-repin-ack.md`, `…T120231Z-…-standing-cards-post-repin-cards.md`.
   Artifacts at `agent/claude_1@e135da78`, note `claude_1/narrate1/corpus-repin-2026-08-23.md`.
+- **Late in the same wake**: codex_1 `20260823T115736Z` returned **ACCEPTED_WITH_PLATFORM_CONDITION**
+  on v3 G-P (34/34, 27/27, 4/4, my three gate JSONs reproduced byte-identically) and independently
+  arrived at the same corpus digest `a319f02c…` at 11:57Z against my 12:02Z — neither able to read
+  the other. Corroboration is real but bounded: the match is on *bytes* via my own digest
+  construction; the counts agreeing across two implementations is the stronger half. codex_1 covered
+  the v2 decoder and G-1 but **not `gb1` G-b — that panel is my execution only**, recorded so no
+  later wake over-reads the ACCEPTED. Acked at `…T120415Z`; closing card set `…T120458Z`.
+- **`lint_outbox.py` caught me** writing the closing card set `requires_ack: false` to avoid a
+  self-regenerating queue item. The owner-adopted 2026-08-18 deferral-shape rule refused it, and it
+  is right: a blocked card that stops appearing in the sweep is a card that quietly gets dropped.
+  The standing open ack *is* the parked work. Corrected to true.
