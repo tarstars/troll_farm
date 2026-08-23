@@ -7,6 +7,8 @@
 - **Executable reproducer / unified-verdict reviewer:** `local_codex_1`
 - **Time box:** 60 minutes from explicit activation
 - **Scope:** existing Phase 3b named-cost and progress gates only
+- **Outcome:** **ACHIEVED BY VALID BLOCKER** — G-d reproduced
+  `BLOCKED_FIRST_FALSIFIER`; G-e correctly unrun; no Arena action
 
 ## Activation
 
@@ -174,3 +176,22 @@ The mission ends with either:
 The closing report must state the package or blocker commit, current reviewer
 state, remaining unmeasured claims, whether an owner decision is now needed,
 transport health, and confirmation that no Arena action occurred.
+
+## Achieved Result — 2026-08-23
+
+Codex published the stopped package at
+`agent/codex_1@35d569f2b78c90dd7c15b46183376cc95efa7196` and its canonical
+handoff at `agent/codex_1@f167c8e660b9cda642eba3701cde102e9f8712cb`.
+`chatgpt_1` independently recommended `BLOCKED` at
+`agent/chatgpt_1@c67244197bec5ff59a3b5e59f10430c0197af639`.
+`local_codex_1` reran all 240 locked games, reproduced every submitted game
+row exactly, independently regenerated the 85-game changed inventory, and
+published the unified review at
+`agent/local_codex_1@16b6e4ada72ab1381833162ed98e97ba930cd9b4`.
+
+The binding result is 115 candidate blocking games versus 35 for the exact
+base, with 80 de-novo, zero healed, five new P3, 73 new P4, and zero new
+`r5-horizon` games. No owner decision is needed to reject r2. Population
+progress, fixture healing, score, full-corpus representativeness,
+qualification, and Arena readiness remain unmeasured. No intervention patch,
+reach rerun, TestSession, submission, or Arena action occurred.

@@ -1,6 +1,6 @@
 # 20260820-pair-selector-anti-benching — employ the benched troll (rule R-2)
 
-- Status: **OPEN — OWNER REASSIGNED G-d/G-e BUILD TO `codex_1` 2026-08-23; ARENA HELD** (`coordination/messages/local_codex_1/20260823T171116Z-20260823-claude-to-codex-live-task-transfer-policy.md`). The prior `PROCEED` ruling and every scientific gate remain unchanged. Phase 3b has exact non-zero real-play reach on the parity-verified subcorpus: **339 / 882 `nothing/nothing` unit-turns, collapsed to 34 episodes in 14 / 49 verified games**. Only 49 / 160 games replay exactly; 111 refuse closed, so full-corpus reach and representativeness remain unmeasured. This is enough to price the existing candidate, not evidence of progress, score, repair, prevalence, qualification, or Arena readiness. The separate real benched class remains **615 / 84,928 troll-turns** and is not what Phase 3b measured.
+- Status: **R2 BLOCKED AT THE FIRST G-d FALSIFIER; ARENA CLOSED**. Codex's canonical package (`agent/codex_1@35d569f2b78c90dd7c15b46183376cc95efa7196`) reports 115 blocking games versus 35 for the exact P1+P2 base: 80 de-novo, zero healed, five new P3 orchard-inertness failures, and 73 new P4 liveness failures. `local_codex_1` reran the complete locked 240-game panel and reproduced every game row exactly; `chatgpt_1` independently recommends `BLOCKED`. Unified review: `agent/local_codex_1@16b6e4ada72ab1381833162ed98e97ba930cd9b4`, `local_codex_1/reviews/pair-selector-gd-ge-unified-review-2026-08-23.md`. G-e correctly remained unrun under the frozen first-falsifier rule. Full-corpus reach, progress, score, qualification, and Arena readiness remain unmeasured; no next design is authorized.
 - Superseded status: **OPEN — PHASE 3 (REVISION), OWNER-RULED 2026-08-21 ~10:00Z: D3 = "revise"**
   (the 08-21 morning ruling was D3 = HOLD, no Arena slot, because codex_1's
   unified verdict was `PACKAGE_REPRODUCED; BOTH CANDIDATES BLOCKED AS QUALIFIED
@@ -10,9 +10,9 @@
   consequence of rule R-2 (`docs/RULES-LEDGER.md`). The 24-case GOAL_SPLIT
   class is the target: the team-picker's joint pairing discards a troll's
   oracle-verified available work, up to 194 turns per game.
-- Record owner: local_codex_1 · Work owner: **codex_1** ·
-  Reviewers: **chatgpt_1** (fresh-eyes package audit, pending claim) and
-  **local_codex_1** (executable reproduction, then unified verdict) ·
+- Record owner: local_codex_1 · Work owner: **codex_1** (r2 stopped) ·
+  Reviewers: **chatgpt_1** (fresh-eyes `BLOCKED`) and
+  **local_codex_1** (full executable reproduction; unified `BLOCKED`) ·
   Integrator: local_codex_1
 - Base: **Phase 1 subject = cure-C `ad3bfefe…`, pinned NOW** (valid for both
   possible verdicts — the selection code is byte-identical in both night arms;
@@ -115,15 +115,13 @@ mechanism, β) is covered by the revised picker or stays parked; teammate-aware
 routing (OSC-010) stays parked regardless (movement level, not picker).
 
 **Phase 3c — build + gates (ready-with-gates, named-costs class):**
-- **Current gate state, 2026-08-23:** r2 build `09ed550f…` exists; G-a/G-c are
-  independently accepted at `daa83d0a…`; real-game reach is accepted as
-  sufficient to open G-d/G-e. By the owner's 17:11Z reassignment, `codex_1`
-  runs and publishes the named-cost/progress package in its own namespace.
-  `chatgpt_1` is the preferred fresh-eyes package reviewer once it claims the
-  assignment; `local_codex_1` independently reproduces only after a valid
-  canonical handoff and retains unified-verdict duty. Existing Claude
-  artifacts remain immutable inputs. No reach rerun and no Arena action are
-  authorized by this step.
+- **Final gate state, 2026-08-23:** r2 build `09ed550f…` exists; G-a/G-c are
+  independently accepted at `daa83d0a…`; G-d is now independently reproduced
+  `BLOCKED_FIRST_FALSIFIER` on the exact locked panel. Blocking worsens 35→115,
+  with 80 de-novo games, five new P3 games, and 73 new P4 games. G-e is unrun
+  and discharged because no later progress result can waive a hard G-d stop.
+  Existing Claude artifacts remain immutable inputs. No reach rerun or Arena
+  action occurred.
 - R-1 build on the **champion of record at build time** (rebase clause: if
   session 3 ends in REVERT, rebase before R-2).
 - R-2 fixture verdict, **AMENDED 2026-08-21 ~11:15Z (owner-approved method
@@ -145,7 +143,8 @@ routing (OSC-010) stays parked regardless (movement level, not picker).
   by the owner when both are qualified; one standard 5-pair block each, never
   composed before each is measured alone.
 
-**Priority:** the adapter and r2 build prerequisites are complete. G-d/G-e are
-the next action on this task. Work owner `codex_1`; fresh-eyes reviewer
-`chatgpt_1` after canonical claim; executable reproducer, unified-verdict
-reviewer, and integrator `local_codex_1`.
+**Priority:** r2 is stopped and has no active next action. The analyzer's
+duplicate-key, fixture-identity, source-binding, and per-game diagnosis gaps
+are recorded for future evidence tooling; they do not authorize repairing or
+rerunning this candidate. A new design needs a separate owner/coordinator
+charter.
