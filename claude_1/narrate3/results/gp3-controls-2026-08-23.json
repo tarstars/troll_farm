@@ -1,0 +1,228 @@
+{
+  "all_fired": true,
+  "control_count": 27,
+  "controls": [
+    {
+      "control": "unmutated v3 telemetry is accepted",
+      "errors": [],
+      "expected": "no errors",
+      "fired": true
+    },
+    {
+      "control": "turn misalignment",
+      "errors": [
+        "turn 2: telemetry says t=3 \u2014 turn misalignment"
+      ],
+      "expected": "turn misalignment",
+      "fired": true
+    },
+    {
+      "control": "a unit dropped from the roster",
+      "errors": [
+        "turn 2: roster [0] != live own units [0, 2]"
+      ],
+      "expected": "roster",
+      "fired": true
+    },
+    {
+      "control": "ids out of order",
+      "errors": [
+        "turn 2: ids not ascending: [2, 0]",
+        "turn 2: roster [2, 0] != live own units [0, 2]"
+      ],
+      "expected": "not ascending",
+      "fired": true
+    },
+    {
+      "control": "a second MSG token",
+      "errors": [
+        "turn 2: 2 MSG tokens, expected exactly 1"
+      ],
+      "expected": "2 MSG tokens",
+      "fired": true
+    },
+    {
+      "control": "MSG not first",
+      "errors": [
+        "turn 2: the MSG token is not first in the command list"
+      ],
+      "expected": "not first",
+      "fired": true
+    },
+    {
+      "control": "off-grammar chosen target",
+      "errors": [
+        "turn 2: off-grammar chosen target 'HOME' in 'MSG NARRATE v3 t=2 u0=TREE(3,4)/TREE(3,4) u2=HOME/SHACK'"
+      ],
+      "expected": "off-grammar chosen",
+      "fired": true
+    },
+    {
+      "control": "off-grammar available target",
+      "errors": [
+        "turn 2: off-grammar available target 'HOME' in 'MSG NARRATE v3 t=2 u0=TREE(3,4)/TREE(3,4) u2=NONE/HOME'"
+      ],
+      "expected": "off-grammar available",
+      "fired": true
+    },
+    {
+      "control": "banner on a later turn",
+      "errors": [
+        "turn 2: banner present=True, expected False"
+      ],
+      "expected": "banner present",
+      "fired": true
+    },
+    {
+      "control": "a duplicated unit",
+      "errors": [
+        "turn 2: unit 0 appears twice in 'MSG NARRATE v3 t=2 u0=NONE/NONE u0=SHACK/SHACK u2=NONE/SHACK'"
+      ],
+      "expected": "appears twice",
+      "fired": true
+    },
+    {
+      "control": "lone-unit tie parity broken",
+      "errors": [
+        "turn 1: lone-unit tie parity broken \u2014 chosen NONE != available TREE(3,4)"
+      ],
+      "expected": "tie parity broken",
+      "fired": true
+    },
+    {
+      "control": "payload over the 2,000-character budget",
+      "errors": [
+        "turn 1: MSG payload 2051 chars exceeds 2000",
+        "turn 1: off-grammar unit token 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' in 'MSG yamo-waypoint-rust NARRATE v3 t=1 u0=NONE/NONE xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'"
+      ],
+      "expected": "exceeds 2000",
+      "fired": true
+    },
+    {
+      "control": "version refusal \u2014 v2 (the previous live grammar)",
+      "errors": [
+        "MSG NARRATE v2 t=2 u0=NONE"
+      ],
+      "expected": "unsupported NARRATE version",
+      "fired": true
+    },
+    {
+      "control": "version refusal \u2014 v4 (a future grammar)",
+      "errors": [
+        "MSG NARRATE v4 t=2 u0=NONE/NONE"
+      ],
+      "expected": "unsupported NARRATE version",
+      "fired": true
+    },
+    {
+      "control": "version refusal \u2014 no version token at all",
+      "errors": [
+        "MSG NARRATE t=2 u0=NONE/NONE"
+      ],
+      "expected": "unsupported NARRATE version",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 v2-shaped unit token, no separator",
+      "errors": [
+        "MSG NARRATE v3 t=1 u0=NONE"
+      ],
+      "expected": "off-grammar unit token",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 empty available side",
+      "errors": [
+        "MSG NARRATE v3 t=1 u0=NONE/"
+      ],
+      "expected": "off-grammar unit token",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 empty chosen side",
+      "errors": [
+        "MSG NARRATE v3 t=1 u0=/NONE"
+      ],
+      "expected": "off-grammar unit token",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 two separators",
+      "errors": [
+        "MSG NARRATE v3 t=1 u0=NONE/NONE/NONE"
+      ],
+      "expected": "off-grammar unit token",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 no t= field",
+      "errors": [
+        "MSG NARRATE v3 u0=NONE/NONE"
+      ],
+      "expected": "no t= field",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 not an MSG token",
+      "errors": [
+        "NARRATE v3 t=1 u0=NONE/NONE"
+      ],
+      "expected": "not an MSG token",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 ABSENT in the chosen position",
+      "errors": [
+        "MSG NARRATE v3 t=1 u0=ABSENT/NONE"
+      ],
+      "expected": "off-grammar chosen",
+      "fired": true
+    },
+    {
+      "control": "three-state round trip \u2014 the three states are pairwise distinct on the wire AND after decoding",
+      "errors": [
+        "discarded real want: ('NONE', 'TREE(3,4)')",
+        "explicit WAIT was locally best: ('NONE', 'NONE')",
+        "no candidate vector at all: ('NONE', 'ABSENT')"
+      ],
+      "expected": "3 distinct wire forms, 3 distinct decoded values, all with chosen=NONE",
+      "fired": true
+    },
+    {
+      "control": "ABSENT is not readable as NONE and NONE is not readable as ABSENT",
+      "errors": [
+        "('NONE', 'ABSENT')",
+        "('NONE', 'NONE')"
+      ],
+      "expected": "decoded available differs",
+      "fired": true
+    },
+    {
+      "control": "the live v2 decoder REFUSES a v3 payload rather than mis-reading it",
+      "errors": [
+        "version is not v2: 'MSG NARRATE v3 t=1 u0=NONE/TREE(3,4)'",
+        "version is not v2: 'MSG NARRATE v3 t=1 u0=NONE/NONE'",
+        "version is not v2: 'MSG NARRATE v3 t=1 u0=NONE/ABSENT'"
+      ],
+      "expected": "version is not v2, on all three states",
+      "fired": true
+    },
+    {
+      "control": "strip_msg removes the complete token, and only it",
+      "errors": [
+        "MOVE 0 3 4;HARVEST 2"
+      ],
+      "expected": "stripped == the gameplay tokens; unstripped still carries MSG",
+      "fired": true
+    },
+    {
+      "control": "a gameplay token containing the letters MSG is NOT stripped",
+      "errors": [
+        "MOVE 0 3 4;MSGX 1"
+      ],
+      "expected": "kept",
+      "fired": true
+    }
+  ],
+  "gate": "G-P (NARRATE v3)"
+}

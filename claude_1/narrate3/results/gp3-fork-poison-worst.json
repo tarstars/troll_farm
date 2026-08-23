@@ -1,0 +1,375 @@
+{
+  "base": "cgauto/submissions/candidate-swap-r1.rs",
+  "byte_identical_without_msg": 34,
+  "census": {
+    "available_states": {
+      "ABSENT": 0,
+      "CONCRETE": 20,
+      "NONE": 12961
+    },
+    "chosen_ne_available": 2294,
+    "discarded_want": 0,
+    "lone_unit_turns": 619,
+    "payload_max_chars": 109,
+    "rows": 12981
+  },
+  "census_note": "counts over the fixture corpus only. `discarded_want` is the class v2 could not represent: chosen NONE with a concrete available. A zero here means the fixtures never exercised it, NOT that the instrument cannot record it.",
+  "fixtures": 34,
+  "gate": "G-P (NARRATE v3)",
+  "instrument": "claude_1/narrate3/fork-poison-worst-available.rs",
+  "not_proven_here": "platform non-interference: this harness does not react to command count, ordering or line length; the instrument emits a MSG token every turn where the base emits one on turn 1 only",
+  "rows": [
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-001",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-002",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-003",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-004",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-005",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-006",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-007",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-008",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-009",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-010",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 19,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-011",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-012",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-013",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-014",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-015",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-016",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-017",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-018",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-019",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-020",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-021",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-022",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-023",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-024",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-025",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-026",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 39,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-027",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-028",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-029",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-030",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-031",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-032",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 90,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-033",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 20,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-034",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    }
+  ],
+  "ruling": "codex_1 20260823T113503Z construction ruling; charter local_claude_1 20260823T113300Z",
+  "task": "20260823-narrate-real-game-telemetry",
+  "telemetry_error_count": 168,
+  "telemetry_errors": [
+    "OSC-010: turn 1: lone-unit tie parity broken \u2014 chosen TREE(6,1) != available NONE",
+    "OSC-010: turn 2: lone-unit tie parity broken \u2014 chosen TREE(6,1) != available NONE",
+    "OSC-010: turn 3: lone-unit tie parity broken \u2014 chosen TREE(6,1) != available NONE",
+    "OSC-010: turn 4: lone-unit tie parity broken \u2014 chosen BANK(8,1) != available NONE",
+    "OSC-010: turn 5: lone-unit tie parity broken \u2014 chosen BANK(8,1) != available NONE",
+    "OSC-010: turn 6: lone-unit tie parity broken \u2014 chosen BANK(8,1) != available NONE",
+    "OSC-010: turn 7: lone-unit tie parity broken \u2014 chosen TREE(6,1) != available NONE",
+    "OSC-010: turn 8: lone-unit tie parity broken \u2014 chosen TREE(6,1) != available NONE",
+    "OSC-010: turn 9: lone-unit tie parity broken \u2014 chosen TREE(6,1) != available NONE",
+    "OSC-010: turn 10: lone-unit tie parity broken \u2014 chosen BANK(8,1) != available NONE",
+    "OSC-010: turn 11: lone-unit tie parity broken \u2014 chosen BANK(8,1) != available NONE",
+    "OSC-010: turn 12: lone-unit tie parity broken \u2014 chosen BANK(8,1) != available NONE",
+    "OSC-010: turn 13: lone-unit tie parity broken \u2014 chosen TREE(10,0) != available NONE",
+    "OSC-010: turn 14: lone-unit tie parity broken \u2014 chosen TREE(10,0) != available NONE",
+    "OSC-010: turn 15: lone-unit tie parity broken \u2014 chosen TREE(10,0) != available NONE",
+    "OSC-010: turn 16: lone-unit tie parity broken \u2014 chosen TREE(10,0) != available NONE",
+    "OSC-010: turn 17: lone-unit tie parity broken \u2014 chosen BANK(9,0) != available NONE",
+    "OSC-010: turn 18: lone-unit tie parity broken \u2014 chosen BANK(9,0) != available NONE",
+    "OSC-010: turn 19: lone-unit tie parity broken \u2014 chosen TREE(6,1) != available NONE",
+    "OSC-026: turn 1: lone-unit tie parity broken \u2014 chosen CELL(2,4) != available NONE",
+    "OSC-026: turn 2: lone-unit tie parity broken \u2014 chosen CELL(2,4) != available NONE",
+    "OSC-026: turn 3: lone-unit tie parity broken \u2014 chosen CELL(2,4) != available NONE",
+    "OSC-026: turn 4: lone-unit tie parity broken \u2014 chosen CELL(2,4) != available NONE",
+    "OSC-026: turn 5: lone-unit tie parity broken \u2014 chosen BANK(1,4) != available NONE",
+    "OSC-026: turn 6: lone-unit tie parity broken \u2014 chosen BANK(1,4) != available NONE",
+    "OSC-026: turn 7: lone-unit tie parity broken \u2014 chosen CELL(2,4) != available NONE",
+    "OSC-026: turn 8: lone-unit tie parity broken \u2014 chosen CELL(2,4) != available NONE",
+    "OSC-026: turn 9: lone-unit tie parity broken \u2014 chosen BANK(1,4) != available NONE",
+    "OSC-026: turn 10: lone-unit tie parity broken \u2014 chosen BANK(1,4) != available NONE",
+    "OSC-026: turn 11: lone-unit tie parity broken \u2014 chosen CELL(1,4) != available NONE",
+    "OSC-026: turn 12: lone-unit tie parity broken \u2014 chosen CELL(1,4) != available NONE",
+    "OSC-026: turn 13: lone-unit tie parity broken \u2014 chosen TREE(1,4) != available NONE",
+    "OSC-026: turn 14: lone-unit tie parity broken \u2014 chosen TREE(1,4) != available NONE",
+    "OSC-026: turn 15: lone-unit tie parity broken \u2014 chosen TREE(1,4) != available NONE",
+    "OSC-026: turn 16: lone-unit tie parity broken \u2014 chosen BANK(1,4) != available NONE",
+    "OSC-026: turn 17: lone-unit tie parity broken \u2014 chosen TREE(9,1) != available NONE",
+    "OSC-026: turn 18: lone-unit tie parity broken \u2014 chosen CELL(0,5) != available NONE",
+    "OSC-026: turn 19: lone-unit tie parity broken \u2014 chosen TREE(9,1) != available NONE",
+    "OSC-026: turn 20: lone-unit tie parity broken \u2014 chosen CELL(0,5) != available NONE",
+    "OSC-026: turn 21: lone-unit tie parity broken \u2014 chosen TREE(9,1) != available NONE"
+  ],
+  "verdict": "FAIL"
+}
