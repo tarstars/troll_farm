@@ -279,6 +279,28 @@ if either fails. Any per-seat measurement off a replay carries this assertion.
 - Origin: `coordination/messages/local_claude_1/20260823T103000Z-20260823-narrate-real-game-telemetry-handoff.md`,
   artifact `local_claude_1/narrate/arena-identity-check-2026-08-23.json`.
 
+## collect-before-you-resubmit — the battle listing is a ROLLING WINDOW, and a submission evicts the previous one's games
+
+`gamesPlayersRanking/findLastBattlesByTestSessionHandle` returns roughly the last **160** battles for
+the session, not the history. Submitting again fills that window with the new agent's games, and the
+previous read's battles become **unreachable by that route** — you cannot enumerate the game ids any
+more, so you cannot fetch the replays.
+
+**Therefore: collect a read's games BEFORE submitting the next arm.** Any measurement wanting a
+specific submission's play must fetch during that submission's residency. This is a hard ordering
+constraint on every multi-read block, not a preference.
+
+- Instance (2026-08-23, NARRATE AAAAA): read 1's 149 games were collected at 10:27 and read 2 was
+  submitted at 11:08. At 11:55 a query for submission `41182039` returned **0 rows** — the window
+  held 160 battles and every one was read 2's. The corpus survives only because the collection
+  happened to come first; nothing in the process required it.
+- The **02:17 UTC collector** is a separate route into `data/raw/games/` and is not a substitute:
+  it runs on its own schedule, which is far later than a 2-hour read cycle.
+- Canonical collection path, proven end to end 2026-08-23: fetch raw replays →
+  `cgauto/export_agent_replays.py` → store the package. It pseudonymises players to `PLAYER_0`/
+  `PLAYER_1`, strips `userId`/`avatar`/`publicHandle`/`testSessionHandle`, keeps `agentId` and
+  `index`, and its output is accepted unchanged by the replay→`Trace` adapter (5/5 on live games).
+
 ## Cross-references (law living elsewhere)
 
 - Owner top-down judgment rule (judge from game state down, never from code up;
