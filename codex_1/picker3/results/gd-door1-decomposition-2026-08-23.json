@@ -1,0 +1,1674 @@
+{
+  "base_blocking": 35,
+  "base_panel_sha256": "41e3be878b590998e69b9d690559daa87db0ed959b11ec142879c9af75b27a5b",
+  "base_sha256": "5e1f4df406480f678ff03677cdda0f69d510c5c94efe90d4f0a8231b70c3339e",
+  "by_kind": {
+    "DE_NOVO_BLOCK": 80,
+    "PROPERTY_CHANGE_WITHIN_BLOCKED_GAME": 5
+  },
+  "candidate_blocking": 115,
+  "candidate_panel_sha256": "0b1c60e7006ed1b6996b5a16ae0a55cfda19eab6c6a80ae3547bebae4c0e33b4",
+  "candidate_sha256": "457360589a65cb2662950761deba817852ea9eb0d2c53b05a3e6fd2ab9dfda8a",
+  "changed_games": [
+    {
+      "base_block": true,
+      "base_flags": [],
+      "base_properties": [
+        "P1",
+        "P3"
+      ],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1"
+      ],
+      "class": "orchard_eligible",
+      "kind": "PROPERTY_CHANGE_WITHIN_BLOCKED_GAME",
+      "map_id": "m004",
+      "new_flags": [],
+      "new_properties": [],
+      "profile": "idle",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1"
+      ],
+      "class": "multi_door",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m005",
+      "new_flags": [],
+      "new_properties": [
+        "P1"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "multi_door",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m005",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m006",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m006",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "water_diagonal",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m009",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "water_diagonal",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m009",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "single_door_tent",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m012",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "multi_door",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m015",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "multi_door",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m015",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "open_field",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m017",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "idle",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "open_field",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m017",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "idle",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m018",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m018",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m021",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "idle",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "water_diagonal",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m022",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "water_diagonal",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m022",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1"
+      ],
+      "class": "open_field",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m023",
+      "new_flags": [],
+      "new_properties": [
+        "P1"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1"
+      ],
+      "class": "open_field",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m023",
+      "new_flags": [],
+      "new_properties": [
+        "P1"
+      ],
+      "profile": "harvester",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m026",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m026",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "water_diagonal",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m028",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "water_diagonal",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m028",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m030",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m030",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "forest_sparse",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m032",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1",
+        "P4"
+      ],
+      "class": "forest_sparse",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m032",
+      "new_flags": [],
+      "new_properties": [
+        "P1",
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P3",
+        "P4"
+      ],
+      "class": "orchard_eligible",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m035",
+      "new_flags": [],
+      "new_properties": [
+        "P3",
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "orchard_eligible",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m035",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "multi_door",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m036",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "multi_door",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m036",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "water_diagonal",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m042",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m046",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m046",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1"
+      ],
+      "class": "water_diagonal",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m049",
+      "new_flags": [],
+      "new_properties": [
+        "P1"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1"
+      ],
+      "class": "water_diagonal",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m049",
+      "new_flags": [],
+      "new_properties": [
+        "P1"
+      ],
+      "profile": "harvester",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m050",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m050",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "single_door_tent",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m052",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "single_door_tent",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m052",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 1
+    },
+    {
+      "base_block": true,
+      "base_flags": [],
+      "base_properties": [
+        "P1"
+      ],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1",
+        "P4"
+      ],
+      "class": "single_door_tent",
+      "kind": "PROPERTY_CHANGE_WITHIN_BLOCKED_GAME",
+      "map_id": "m064",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "idle",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "single_door_tent",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m064",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "idle",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P3",
+        "P4"
+      ],
+      "class": "orchard_eligible",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m065",
+      "new_flags": [],
+      "new_properties": [
+        "P3",
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "orchard_eligible",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m065",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 1
+    },
+    {
+      "base_block": true,
+      "base_flags": [],
+      "base_properties": [
+        "P1",
+        "P2"
+      ],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1",
+        "P2",
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "PROPERTY_CHANGE_WITHIN_BLOCKED_GAME",
+      "map_id": "m066",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1"
+      ],
+      "class": "forest_dense",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m068",
+      "new_flags": [],
+      "new_properties": [
+        "P1"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1"
+      ],
+      "class": "forest_dense",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m068",
+      "new_flags": [],
+      "new_properties": [
+        "P1"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "open_field",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m071",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "idle",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m073",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m073",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P3"
+      ],
+      "class": "orchard_eligible",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m074",
+      "new_flags": [],
+      "new_properties": [
+        "P3"
+      ],
+      "profile": "idle",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "orchard_eligible",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m074",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "idle",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1",
+        "P4"
+      ],
+      "class": "open_field",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m077",
+      "new_flags": [],
+      "new_properties": [
+        "P1",
+        "P4"
+      ],
+      "profile": "idle",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1",
+        "P4"
+      ],
+      "class": "open_field",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m077",
+      "new_flags": [],
+      "new_properties": [
+        "P1",
+        "P4"
+      ],
+      "profile": "idle",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m078",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "water_diagonal",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m082",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1",
+        "P4"
+      ],
+      "class": "open_field",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m083",
+      "new_flags": [],
+      "new_properties": [
+        "P1",
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1",
+        "P4"
+      ],
+      "class": "open_field",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m083",
+      "new_flags": [],
+      "new_properties": [
+        "P1",
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1",
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m086",
+      "new_flags": [],
+      "new_properties": [
+        "P1",
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1",
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m086",
+      "new_flags": [],
+      "new_properties": [
+        "P1",
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "water_diagonal",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m088",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 0
+    },
+    {
+      "base_block": true,
+      "base_flags": [],
+      "base_properties": [
+        "P1",
+        "P2"
+      ],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1",
+        "P2",
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "PROPERTY_CHANGE_WITHIN_BLOCKED_GAME",
+      "map_id": "m090",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": true,
+      "base_flags": [],
+      "base_properties": [
+        "P1"
+      ],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1",
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "PROPERTY_CHANGE_WITHIN_BLOCKED_GAME",
+      "map_id": "m090",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1"
+      ],
+      "class": "forest_dense",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m092",
+      "new_flags": [],
+      "new_properties": [
+        "P1"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "single_door_tent",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m094",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "idle",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "single_door_tent",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m094",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "idle",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "water_diagonal",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m097",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "idle",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "water_diagonal",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m097",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "idle",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "open_field",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m098",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "open_field",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m098",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P1"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m099",
+      "new_flags": [],
+      "new_properties": [
+        "P1"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m100",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m100",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "open_field",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m102",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "open_field",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m102",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P3"
+      ],
+      "class": "orchard_eligible",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m104",
+      "new_flags": [],
+      "new_properties": [
+        "P3"
+      ],
+      "profile": "idle",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "orchard_eligible",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m104",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "idle",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "forest_sparse",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m108",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "water_diagonal",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m109",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "water_diagonal",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m109",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m110",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "harvester",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P3",
+        "P4"
+      ],
+      "class": "orchard_eligible",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m114",
+      "new_flags": [],
+      "new_properties": [
+        "P3",
+        "P4"
+      ],
+      "profile": "idle",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "orchard_eligible",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m114",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "idle",
+      "seat": 1
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m118",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 0
+    },
+    {
+      "base_block": false,
+      "base_flags": [],
+      "base_properties": [],
+      "candidate_block": true,
+      "candidate_flags": [],
+      "candidate_properties": [
+        "P4"
+      ],
+      "class": "choke_corridor",
+      "kind": "DE_NOVO_BLOCK",
+      "map_id": "m118",
+      "new_flags": [],
+      "new_properties": [
+        "P4"
+      ],
+      "profile": "chopper_aggressor",
+      "seat": 1
+    }
+  ],
+  "gate": "G-d",
+  "matched_games": 240,
+  "new_p3_games": 5,
+  "new_p4_games": 73,
+  "new_r5_horizon_games": 0,
+  "stop_reason": "R-3 requires P3-clean, no new P4/r5-horizon, and blocking totals no worse; candidate fails all but the r5 clause. G-e was not run after the first binding falsifier.",
+  "task": "20260820-pair-selector-anti-benching",
+  "verdict": "BLOCKED_FIRST_FALSIFIER"
+}
