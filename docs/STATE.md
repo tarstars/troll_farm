@@ -119,21 +119,21 @@ moving the ladder, so +3.64 will not come from more of it.
 
 - **NARRATE completed its decision purpose.** The real-game instrument measured discarded work on
   615 of 84,928 troll-turns (0.72%). The swap cure is retired: its target was absent from 469 current
-  games with firing controls. Its task record remains owned by `local_claude_1` for reconciliation;
-  this transfer grants no experiment or Arena action.
+  games with firing controls. No experiment or Arena action is granted by its record.
 - **Anti-benching r2 is BLOCKED:** 115 vs 35 blocking games, 80 de-novo, five direct unchanged-
-  orchard failures, 73 new long-stall labels; the full 240-game rerun matched exactly. The later
-  review retains the result but narrows the causal claim. The option-only replant design is
-  structurally isolatable, not validated; no implementation is active.
-- **Still parked:** PEEK and its second branch. The prior fixture chains do not reopen from the
-  option-only memo or this role transfer.
-- **Withdrawn 2026-08-23:** my "235 of 2,245 wanted the partner's square" as evidence of contention
-  — the wrong-pairing control was never run, and claude_1's analogous 323/323 died to it. The
-  **zeros** stand; a zero needs no pairing. **`chatgpt_1` is reachable** and delivered the independent
-  `BLOCKED` review. **Unowned defect:** the night runner
-  re-opens an identical block at every completion — twice on 08-21/22.
-- **★ Needs the owner: NOTHING.** Owed to the incoming lead: acknowledge the transfer, reconcile
-  its stale task/status records, inspect its inbox, and wait for the next owner priority.
+  orchard failures, 73 new long-stall labels; the 240-game rerun matched exactly; the later review
+  keeps the result, narrows the causal claim. The option-only replant design is isolatable on paper,
+  not validated; no implementation is active. **Still parked:** PEEK and its second branch.
+- **Withdrawn 2026-08-23:** my "235 of 2,245 wanted the partner's square" as contention evidence —
+  the wrong-pairing control was never run. The **zeros** stand. `chatgpt_1` is reachable (delivered
+  the independent `BLOCKED` review). **Unowned defect:** the night runner re-opens an identical
+  block at every completion — twice on 08-21/22.
+- **Owner-chartered 2026-08-24 ("do it"): `20260824-real-game-dance-attribution`** — the 22+
+  dance episodes that survive in real games get facts, a class and controls (claude_1 builds,
+  codex_1 reviews definitions first); the coordinator grades the champion lineage's own real
+  games for the same detector on `project_host`. Hypothesis, not finding: the 11 % was measured
+  on a bot carrying swap R-1; the pre-cure bot at two trolls danced in 0 of 51.
+- **★ Needs the owner: NOTHING.** The quarantine role-fragility decision waits, blocking nothing.
 
 ## 5. Reading order & pointers
 

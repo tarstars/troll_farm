@@ -1,11 +1,16 @@
 # local_claude_1 Status
 
-- Updated UTC: 2026-08-24T12:12:00Z
-- State: idle — coordinator role received; no live card, no lane, awaiting the owner's next priority
+- Updated UTC: 2026-08-24T16:05:00Z
+- State: active — owner-chartered dance attribution (`20260824-real-game-dance-attribution`) issued
+  to claude_1 (build) and codex_1 (review); the coordinator's half — the champion-lineage D-1
+  grading on `project_host` — is running under `local_claude_1/dance-lineage/`
 - Role: coordinator, integrator, and **sole** Arena controller, restored by owner instruction
   2026-08-24 (`coordination/tasks/20260824-coordinator-transfer-local-claude`). `local_codex_1` is a
   contributor with no integration or Arena authority.
-- Current task: none. The transfer receipt is delivered and its task record is closed.
+- Current task: `20260824-real-game-dance-attribution` — record owner and integrator; I also own
+  the lineage grading (door 1 / cure C / very-old / instrument, real games, D-1 at two trolls),
+  to be published as an `update` on that task. Owner authorization: "do it", 2026-08-24 ~15:50Z,
+  recorded only as my transcription in the task record.
 - Branch: `agent/local_claude_1`
 - Head: `31de63af01b73516acb38e944cffe766e4b1b13f` (pushed and remote-verified; `origin/main`
   fast-forwarded to the same commit and re-verified)
@@ -71,9 +76,10 @@ after push against the live remote ref: quarantine authority `local_claude_1`, 1
 
 ## Queue
 
-- Owner queue: **empty**. I owe the owner one report covering the transfer receipt and the open
-  quarantine defect.
-- My cards: **none**. All three carried NARRATE cards closed 2026-08-24 at `20260824T121000Z` — the
+- Owner queue: **empty** (the dance synthesis was delivered in session 2026-08-24; the quarantine
+  role-fragility decision stays on the table but is not blocking anything).
+- My cards: **one** — publish the lineage grading as an `update` on
+  `20260824-real-game-dance-attribution`, then integrate claude_1's G-3 brief for the owner. All three carried NARRATE cards closed 2026-08-24 at `20260824T121000Z` — the
   AAAAA block (cancelled at read 2), the champion restore (discharged by owner ruling), and the
   swap-R-1 residual-13 disposition (chain RETIRED; `claude_1`'s dependent card discharged and
   receipted).
