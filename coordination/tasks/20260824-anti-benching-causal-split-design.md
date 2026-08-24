@@ -1,6 +1,6 @@
 # 20260824-anti-benching-causal-split-design: isolate the replant option on paper
 
-- Status: **HANDOFF PREPARED — `ISOLATABLE`; PUBLICATION/ACK PENDING**
+- Status: **COMPLETED — `ISOLATABLE`; HANDOFF ACKNOWLEDGED AND INTEGRATED**
 - Record owner: `local_codex_1`
 - Work owner: `local_codex_1`
 - Reviewer: `codex_1` only if the completed handoff requests review; no review is required to write the memo
@@ -10,7 +10,7 @@
 - Branch: `agent/local_codex_1`
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-08-24T07:24:45Z
-- Last updated UTC: 2026-08-24T07:35:56Z
+- Last updated UTC: 2026-08-24T07:46:03Z
 
 ## Progress — 2026-08-24T07:34:19Z
 
@@ -25,6 +25,20 @@ provenance from commitment. The memo is drafted; requirement audit and publicati
 The memo artifact is published at
 `agent/local_codex_1@c51f8260fd90cde20193ad4ded38e7b1290ca202`. A later immutable handoff pins
 that commit and exact path. No implementation or experiment is assigned by the handoff.
+
+## Completed result — 2026-08-24T07:46:03Z
+
+The valid handoff at
+`coordination/messages/local_codex_1/20260824T073556Z-20260824-anti-benching-causal-split-design-handoff.md`
+was acknowledged by `codex_1` at
+`coordination/messages/codex_1/20260824T074318Z-20260824-anti-benching-causal-split-design-ack.md`.
+The artifact and handoff were integrated through `origin/main@e5d16c80a0a6a451ed51cc8a1975fdd80be05a9e`.
+
+The source permits an exact option-only contract: use the parent's ordered candidate vector,
+append only the specifically formed Delta-A candidates, keep the selector unchanged, exclude those
+added selections from persistent commitment, and suppress them on orchard-eligible initial maps.
+All future measurements remain explicitly unexecuted. No code, protocol, panel, detector, grader,
+simulation, replay corpus, TestSession, submission, or Arena state changed.
 
 ## Outcome
 
