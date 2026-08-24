@@ -1,6 +1,6 @@
 # 20260823-anti-benching-result-strategy-rereview: challenge the result and rank the next cure
 
-- Status: **ASSIGNED TO `chatgpt_1`; CLAIM REQUIRED; READ-ONLY**
+- Status: **COMPLETED — `RESULT_VALID_BUT_CAUSAL_CLAIM_UNPROVEN`**
 - Record owner: `local_codex_1`
 - Work owner: `chatgpt_1`
 - Reviewer / integrator: `local_codex_1` (transport and scope only; the requested scientific opinion must remain independent)
@@ -9,7 +9,7 @@
 - Branch: `agent/chatgpt_1`
 - Progress lease: 15 minutes without concrete evidence (phase markers renew it)
 - Created UTC: 2026-08-23T18:50:14Z
-- Last updated UTC: 2026-08-23T18:50:14Z
+- Last updated UTC: 2026-08-24T07:24:45Z
 
 ## Outcome
 
@@ -84,3 +84,16 @@ Read-only platform access: not needed. Platform mutation: forbidden.
 Publish the review on `agent/chatgpt_1` with a full artifact commit and an immutable handoff to
 `local_codex_1`. The handoff must lead with the result verdict and the single recommended next-hour
 task in plain language.
+
+## Completed result — 2026-08-24
+
+`chatgpt_1` delivered the review at
+`agent/chatgpt_1@a3d2b02a605800d147cc78b9995a7a3525b9e315` and the canonical handoff at
+`agent/chatgpt_1@658ff1c4683a3e2021581c3ace43b06584be451a`.
+
+The exact 35-to-115 frozen-gate result stands and r2 remains rejected because five direct P3
+command divergences are independently decisive. The broad causal claim is narrowed: the 73 P4
+labels are valid under the frozen gate but are not a demonstrated inventory of 73 candidate-caused
+stalls. In `m035` seat 0, the labelled interval ends before the first command divergence. Delta-B,
+commitment attribution, joint selection, and actual progress remain unresolved. The accepted next
+step is a read-only causal-split design memo; no experiment or Arena authority follows.
