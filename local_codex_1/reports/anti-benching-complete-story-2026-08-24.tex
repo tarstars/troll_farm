@@ -1,0 +1,828 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[margin=17mm,top=18mm,bottom=20mm,includeheadfoot,headheight=20pt,headsep=4mm,footskip=9mm]{geometry}
+\usepackage{fontspec}
+\setmainfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{amsmath}
+
+\definecolor{ink}{HTML}{172033}
+\definecolor{muted}{HTML}{5F6B7A}
+\definecolor{accent}{HTML}{3157A4}
+\definecolor{accentlight}{HTML}{EAF0FC}
+\definecolor{good}{HTML}{176B52}
+\definecolor{goodlight}{HTML}{E8F4EF}
+\definecolor{warn}{HTML}{A35A00}
+\definecolor{warnlight}{HTML}{FFF2DD}
+\definecolor{bad}{HTML}{A12B35}
+\definecolor{badlight}{HTML}{FBEAEC}
+\definecolor{rule}{HTML}{CBD3DF}
+\definecolor{soft}{HTML}{F5F7FA}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=accent,
+  urlcolor=accent,
+  pdftitle={Anti-benching: from the original problem to the causal-split conclusion},
+  pdfauthor={local codex 1},
+  pdfsubject={Complete evidence narrative for the Troll Farm pair-selector anti-benching investigation},
+  pdfkeywords={Troll Farm, anti-benching, pair selector, causal review, liveness}
+}
+\urlstyle{tt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5.5pt}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.18}
+\setlist[itemize]{leftmargin=5mm,itemsep=2pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=6mm,itemsep=2.5pt,topsep=3pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{muted}Troll Farm research report}
+\fancyhead[R]{\small\color{muted}Anti-benching · 2026-08-24}
+\fancyfoot[L]{\small\color{muted}local\_codex\_1}
+\fancyfoot[R]{\small\color{muted}Page \thepage\ of \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\yes}{\textcolor{good}{\textbf{PROVED}}}
+\newcommand{\no}{\textcolor{bad}{\textbf{NOT PROVED}}}
+\newcommand{\stopmark}{\textcolor{bad}{\textbf{STOP}}}
+\newcommand{\term}[1]{\textcolor{accent}{\textbf{#1}}}
+\newcommand{\smallpath}[1]{{\footnotesize\path{#1}}}
+
+\newenvironment{BlueBox}
+  {\par\medskip\noindent\begin{minipage}{\textwidth}\color{accent}\hrule height 1.1pt\vspace{5pt}\color{ink}}
+  {\vspace{2pt}\color{accent}\hrule height 1.1pt\end{minipage}\par\medskip}
+\newenvironment{GreenBox}
+  {\par\medskip\noindent\begin{minipage}{\textwidth}\color{good}\hrule height 1.1pt\vspace{5pt}\color{ink}}
+  {\vspace{2pt}\color{good}\hrule height 1.1pt\end{minipage}\par\medskip}
+\newenvironment{AmberBox}
+  {\par\medskip\noindent\begin{minipage}{\textwidth}\color{warn}\hrule height 1.1pt\vspace{5pt}\color{ink}}
+  {\vspace{2pt}\color{warn}\hrule height 1.1pt\end{minipage}\par\medskip}
+\newenvironment{RedBox}
+  {\par\medskip\noindent\begin{minipage}{\textwidth}\color{bad}\hrule height 1.1pt\vspace{5pt}\color{ink}}
+  {\vspace{2pt}\color{bad}\hrule height 1.1pt\end{minipage}\par\medskip}
+
+\begin{document}
+
+% -----------------------------------------------------------------------------
+% Cover
+% -----------------------------------------------------------------------------
+\thispagestyle{empty}
+\vspace*{10mm}
+{\color{accent}\rule{\textwidth}{2.2pt}}
+
+\vspace{10mm}
+{\fontsize{27}{32}\selectfont\bfseries\color{ink}
+Anti-benching}
+
+\vspace{2mm}
+{\fontsize{17}{22}\selectfont\color{accent}
+From the original problem to the causal-split conclusion}
+
+\vspace{9mm}
+{\large\color{muted}
+A complete account of what we stated, what we changed, what the gates measured,
+why the attempted cure worsened the locked result, and what the evidence actually permits next}
+
+\vspace{13mm}
+\begin{BlueBox}
+{\large\bfseries\color{ink}The answer in one paragraph}
+
+The original defect was real: the joint pair selector could discard one troll's available work,
+leaving that troll idle for as many as 194 consecutive turns. The first cure, P1+P2, removed the
+visible benching mechanism but usually did not restore progress. Route diagnosis then found useful
+replant \code{PICK} candidates being built and thrown away. Revision r2 preserved those candidates,
+but also introduced persistent cross-turn commitments and a duplicate-candidate path. On the
+frozen 240-game cost panel, blocking rose from \textbf{35 to 115}; five orchard-inertness failures
+alone were decisive. That result is valid and r2 is rejected. The later review corrected one
+overstatement: the data do \emph{not} prove that persistent commitment caused all or most of the
+damage, and 73 P4 labels are not 73 directly caused stall windows. The clean conclusion is:
+\textbf{the option is structurally isolatable, but its value is unproved}. A future experiment, if
+authorized, must add only the ephemeral current-turn option to the exact baseline candidate list,
+without duplicate candidates or new commitment memory, and must stop at the first structural or
+progress falsifier.
+\end{BlueBox}
+
+\vfill
+\begin{tabularx}{\textwidth}{@{}Y Y@{}}
+\textbf{Prepared by} & \textbf{Canonical state} \\
+local\_codex\_1 & 2026-08-24 · artifact line through \code{bc68b712} \\
+\addlinespace
+\textbf{Scientific verdict} & \textbf{Engineering verdict} \\
+\code{RESULT\_VALID\_BUT\_CAUSAL\_CLAIM\_UNPROVEN} & r2 rejected; Arena closed \\
+\end{tabularx}
+
+\vspace{8mm}
+{\color{accent}\rule{\textwidth}{2.2pt}}
+\newpage
+
+\tableofcontents
+\newpage
+
+% -----------------------------------------------------------------------------
+\section{Executive decision}
+
+This report covers one continuous investigation. It begins with the anti-benching rule, follows
+the first selector repair and the route diagnosis, reconstructs r2 and its gates, and ends with the
+review-corrected causal conclusion and the exact boundary of a possible next experiment.
+
+\begin{RedBox}
+\textbf{Operational decision.} Revision r2 is \stopmark. It produced 115 blocking games against 35
+for the exact P1+P2 base on the same locked 240-game panel: 80 de-novo blocks, zero healed blocks,
+five new P3 failures, and 73 new P4 labels. G-e progress testing was correctly not run after the
+first hard G-d falsifier. Nothing in the later review reopens r2.
+\end{RedBox}
+
+\begin{GreenBox}
+\textbf{Scientific correction.} The measured result is reproducible, but the broad causal story
+was stronger than the evidence. R2 bundled at least three mechanisms. There was no no-commitment
+arm, no Delta-B census over the full panel, and no per-game selector decomposition. Moreover, P4
+uses future trajectory information, so some labels describe temporal reclassification rather than
+a stall caused inside the reported earlier interval. The precise verdict is therefore
+\code{RESULT\_VALID\_BUT\_CAUSAL\_CLAIM\_UNPROVEN}.
+\end{GreenBox}
+
+\begin{tabularx}{\textwidth}{@{}p{31mm}Y Y@{}}
+\toprule
+& \textbf{What is settled} & \textbf{What remains open} \\
+\midrule
+Problem & Benching exists; the selector can discard available work. & How much economically useful work is recoverable. \\
+P1+P2 & Mechanism changed; visible benching fell. & Why most newly active turns failed to progress. \\
+r2 & Locked cost result worsened decisively; reject it. & Which bundled mechanism caused which changed game. \\
+Delta-A option & Naturally forms and can survive selection; structurally isolatable. & Durable progress, score, full-corpus reach, and closed-loop safety. \\
+Next action & Design contract and falsifiers are written. & Implementation and measurement require a new authorization. \\
+\bottomrule
+\end{tabularx}
+
+% -----------------------------------------------------------------------------
+\section{What we stated initially}
+
+\subsection{The rule and the failure shape}
+
+The original statement was not ``make both units move.'' It was stronger and more useful:
+
+\begin{BlueBox}
+\textbf{Anti-benching rule R-2.} When a troll has oracle-verified available work, the team's joint
+pair selection must not discard that work and leave the troll idle. Employment means real progress,
+not merely replacing \code{WAIT} with a harmless action.
+\end{BlueBox}
+
+The target was the 24-case \term{GOAL\_SPLIT} class. The recurring shape was that each local route
+could be individually reasonable while their joint pairing was not. One unit wanted to move into
+the cell occupied by its teammate, while the selected partner command ordered that teammate to
+\code{WAIT}; the referee then dropped the move. In the worst observed case this repeated for
+\textbf{194 turns in a 200-turn game}.
+
+The field audit showed the defect was sparse but real: across 160 real games, trolls had work
+available but received nothing on \textbf{615 of 84,928 troll-turns (0.72\%)}. That audit motivated
+the work; it did not imply that every later fixture turn or every restored candidate was one of
+those 615 turns.
+
+\subsection{Initial success criterion}
+
+The investigation deliberately separated three questions:
+
+\begin{enumerate}
+  \item \textbf{Mechanism:} does the selector stop constructing self-impossible or needlessly idle
+        pairs?
+  \item \textbf{Progress:} does the previously benched troll actually bank, harvest, build, route,
+        or otherwise advance useful work?
+  \item \textbf{Cost:} does the cure preserve named invariants and avoid new liveness failures on
+        the locked panel?
+\end{enumerate}
+
+This separation became decisive. A command can silence the benching detector without helping the
+game. Conversely, a later action can alter a trajectory-level liveness label without causing the
+earlier interval that the label reports.
+
+% -----------------------------------------------------------------------------
+\section{The investigation as a sequence}
+
+\begin{tabularx}{\textwidth}{@{}p{18mm}p{33mm}Y p{28mm}@{}}
+\toprule
+\textbf{Phase} & \textbf{Question} & \textbf{Work performed} & \textbf{Result} \\
+\midrule
+1 / WHY & Why is work discarded? & Instrumented the real selector arithmetic and hard filters; named pair conflicts and exact ties. & Mechanism localized. \\
+2 / P1+P2 & Can a minimal selector repair employ the troll? & Refused self-impossible pairs; broke exact ties toward fewer waits; tested two exact bases. & Benching fell, progress mostly did not. \\
+3a / route & What does the newly active troll do? & Traced candidate formation and returns for OSC-004/013/017; inspected the lossy fallback. & Replant PICKs were formed then discarded. \\
+3b / r2 & Can preserving those PICKs restore progress? & Built an extend-not-replace revision with persistent regeneration behavior; independently reviewed reach and build identity. & Natural reach shown; value not yet shown. \\
+G-d & Is the candidate safe on named costs? & Ran and independently reproduced the complete locked 240-game panel. & 35 $\rightarrow$ 115; hard stop. \\
+Rereview & Is the causal explanation sound? & Fresh review separated observation, deduction, hypothesis, and missing counterfactuals. & Result valid; causal claim unproved. \\
+Causal split & Is a cleaner mechanism test possible? & Read-only source/evidence analysis wrote an exact option-only contract. & \code{ISOLATABLE}; still unvalidated. \\
+\bottomrule
+\end{tabularx}
+
+\begin{center}
+\setlength{\fboxsep}{7pt}
+\fcolorbox{rule}{soft}{\textbf{Benching observed}}
+\quad$\rightarrow$\quad
+\fcolorbox{rule}{soft}{\textbf{P1+P2 changes selection}}
+\quad$\rightarrow$\quad
+\fcolorbox{rule}{soft}{\textbf{Progress still absent}}
+
+\vspace{4pt}
+$\downarrow$
+
+\vspace{4pt}
+\fcolorbox{rule}{soft}{\textbf{Discarded replant option}}
+\quad$\rightarrow$\quad
+\fcolorbox{rule}{soft}{\textbf{Bundled r2}}
+\quad$\rightarrow$\quad
+\fcolorbox{bad}{badlight}{\textbf{Locked gate fails}}
+
+\vspace{4pt}
+$\downarrow$
+
+\vspace{4pt}
+\fcolorbox{good}{goodlight}{\textbf{Causal claims narrowed; option-only design isolated}}
+\end{center}
+
+% -----------------------------------------------------------------------------
+\section{Phase 1 and Phase 2: the first cure}
+
+\subsection{What P1 and P2 changed}
+
+The first repair was intentionally narrow and applied as one patch to two bases.
+
+\begin{tabularx}{\textwidth}{@{}p{20mm}p{42mm}Y@{}}
+\toprule
+\textbf{Part} & \textbf{Rule} & \textbf{Intended effect} \\
+\midrule
+P1 & Refuse a pair where a unit moves onto a cell occupied by a teammate whom the same pair orders to \code{WAIT}. & Remove self-impossible pairs that the referee will invalidate. \\
+P2 & On an exact pair-score tie, prefer the pair with fewer \code{WAIT} commands. & Avoid arbitrary map-order tie resolution when an equally scored active pair exists. \\
+\bottomrule
+\end{tabularx}
+
+P3 and P4 were explicitly not part of that build. The 235 non-deadlock turns identified by the
+diagnosis remained outside the initial fix. The patch was behavior-changing, so qualification
+required not just local examples but a named-cost gate and a separate platform decision.
+
+\subsection{The repair was mechanically real}
+
+The cure did what its code said. On the selected fixtures, benched turns fell to zero. On broader
+panel accounting, blocking totals also fell:
+
+\begin{center}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+\textbf{Base} & \textbf{Before P1+P2} & \textbf{After P1+P2} & \textbf{Change} \\
+\midrule
+cure-C & 53 & 33 & $-20$ \\
+door-1 & 43 & 35 & $-8$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+That is why it would be wrong to say the first cure ``did nothing.'' It changed the intended
+selection mechanism. The failure was at the next semantic layer: activity was not the same as
+productive progress.
+
+\subsection{Why detector success was not cure success}
+
+Under the fixed progress grader, cure-C moved only \textbf{3 to 4} and door-1 remained
+\textbf{8 to 8}. Only OSC-034 became fixed on cure-C. OSC-004, OSC-013, and OSC-017 became
+detector-quiet while retaining \code{progress\_restored = false}.
+
+Two additional named costs appeared on door-1:
+
+\begin{itemize}
+  \item \textbf{P3 absolute regression:} \code{m004}, seat 0, violated the locked
+        orchard-inertness comparison.
+  \item \textbf{P4 and horizon cost:} \code{m021} acquired a new P4 / \code{r5-horizon}
+        property violation, even though that game was already blocked for another reason.
+\end{itemize}
+
+\begin{AmberBox}
+\textbf{First central lesson.} ``The troll is no longer benched'' is an intermediate mechanism
+metric. It is not the project outcome. A cure must produce actual banking or employment and then
+survive the named-cost gate.
+\end{AmberBox}
+
+% -----------------------------------------------------------------------------
+\section{Phase 3a: route diagnosis}
+
+\subsection{The lossy fallback}
+
+The route probe found that the parent candidate list was not genuinely empty. It typically had a
+seeded \code{WAIT}, and in eligible late states the regeneration path formed valuable-looking
+replant \code{PICK} candidates. But the fallback logic behaved conceptually as follows:
+
+\begin{verbatim}
+build ordinary candidates into out
+form safe-regeneration PICK candidates in out
+if idle_regeneration and chop candidates are empty:
+    return fresh [WAIT]          # earlier out is discarded
+\end{verbatim}
+
+The open design question was therefore \term{extend versus replace}: should the fallback return a
+fresh wait-only list, or extend the exact parent fallback with the candidates that had just been
+formed?
+
+\subsection{OSC-013: the clearest trace}
+
+Across 170 idle turns in OSC-013, the route split cleanly:
+
+\begin{tabularx}{\textwidth}{@{}p{30mm}p{28mm}Y@{}}
+\toprule
+\textbf{Turns} & \textbf{Count} & \textbf{Observed route state} \\
+\midrule
+31--99 & 69 & Only \code{WAIT}; there was no discarded replant option to recover. \\
+100--200 & 101 & Two replant \code{PICK} candidates were present in \code{out}, with scores 7500 and 7499, but the fallback returned \code{WAIT}. \\
+\bottomrule
+\end{tabularx}
+
+This was strong evidence of a missing option. It was not yet evidence that selecting the option
+would create durable progress. It also did not show that a persistent intention to complete the
+replant transaction was safe.
+
+% -----------------------------------------------------------------------------
+\section{Phase 3b: what r2 actually bundled}
+
+Revision r2 implemented the intuitive ``extend, do not replace'' idea, but its behavioral surface
+was larger than that phrase suggests.
+
+\begin{tabularx}{\textwidth}{@{}p{27mm}Y p{36mm}@{}}
+\toprule
+\textbf{Mechanism} & \textbf{What it did} & \textbf{Status before G-d} \\
+\midrule
+Delta-A & Preserved the replant \code{PICK} candidates that the parent fallback discarded. & Natural formation and selection observed. \\
+Persistent commitment & When a new \code{PICK} was selected, recorded regeneration state and routed the unit toward endgame candidates on later turns. & Source path identified; no no-commitment control. \\
+Delta-B & In carried, shack-adjacent fallback states, returning the whole accumulated vector and appending bank candidates could produce element-identical duplicates. & Derived from source; zero fixture ticks; unmeasured on full panel. \\
+Joint selector exposure & The unchanged pair selector saw a larger candidate cross-product and could choose a different command for either unit. & Selection occurred; alternatives not decomposed per game. \\
+\bottomrule
+\end{tabularx}
+
+The source structure matters. Candidate formation occurs in \code{main\_candidates}; joint choice
+occurs in \code{MoisanBot::select}; cross-turn memory is inserted by
+\code{remember\_selected\_regeneration}; later command routing reads that memory. Thus a small
+candidate-list edit can propagate into later turns through a separate memory mechanism.
+
+\begin{BlueBox}
+\textbf{Why the bundle matters.} The r2 experiment did not compare ``baseline'' with ``the exact
+same bot plus one ephemeral option.'' It compared the baseline with a system in which the option
+could be selected, remembered, and followed across turns, while another duplicate-candidate path
+also existed. The experiment can reject that system. It cannot identify every component's causal
+share without additional arms or traces.
+\end{BlueBox}
+
+% -----------------------------------------------------------------------------
+\section{Pre-panel evidence: formation, selection, and reach}
+
+The build and reach reviews established that Delta-A was not merely a synthetic fixture idea.
+
+\subsection{Fixture library}
+
+\begin{tabularx}{\textwidth}{@{}p{24mm}rrrrY@{}}
+\toprule
+\textbf{Base} & \textbf{Effect} & \textbf{No effect} & \textbf{Formed} & \textbf{Selected} & \textbf{Delta-B} \\
+\midrule
+cure-C & 20 & 14 & 203 & 144 & 0 ticks \\
+door-1 & 19 & 15 & 201 & 143 & 0 ticks \\
+\bottomrule
+\end{tabularx}
+
+All first selected turns were turn 100, matching the late-game precondition. Zero Delta-B fixture
+ticks means ``not observed in this fixture library,'' not ``impossible.''
+
+\subsection{Real-corpus natural reach}
+
+Only \textbf{49 of 160} real games could be parity-verified; \textbf{111 refused closed}. Within
+the verified subset, the analysis found:
+
+\begin{center}
+\begin{tabular}{@{}lr@{}}
+\toprule
+Eligible \code{NOTHING/NOTHING} rows & 882 \\
+Restored-and-selected turns & 339 \\
+Episodes & 34 \\
+Games containing those episodes & 14 \\
+Changed whole command-vector turns & 255 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+These numbers prove exact natural reach in the accepted subset. They do \emph{not} mean
+``339 of the original 615 benched turns were cured,'' and they must not be divided by an unrelated
+2,903-row denominator. They also do not establish full-corpus representativeness, progress, value,
+score, or safety.
+
+% -----------------------------------------------------------------------------
+\section{The locked G-d result}
+
+\subsection{The decisive measurement}
+
+The full named-cost panel contained 240 locked games. Against the exact door-1 P1+P2 base, r2
+produced:
+
+\begin{center}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+\textbf{Measure} & \textbf{Exact base} & \textbf{r2} \\
+\midrule
+Blocking games & 35 & 115 \\
+Healed games & \multicolumn{2}{c}{0} \\
+De-novo blocking games & \multicolumn{2}{c}{80} \\
+New P3 orchard-inertness failures & \multicolumn{2}{c}{5} \\
+New P4 liveness labels & \multicolumn{2}{c}{73} \\
+New horizon failures & \multicolumn{2}{c}{0} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The independent local reproduction matched all 240 per-game rows and the exact 85-game changed
+decomposition. \code{chatgpt\_1}'s fresh-eyes review also returned \code{BLOCKED}. This is not a
+sampling wobble or an analyzer disagreement.
+
+\subsection{The five direct P3 failures}
+
+P3 required complete command-stream equality on orchard-eligible initial layouts. Five games
+diverged directly at turn 100:
+
+\begin{tabularx}{\textwidth}{@{}p{23mm}C{18mm}Y Y p{17mm}@{}}
+\toprule
+\textbf{Game / seat} & \textbf{First turn} & \textbf{r2 command} & \textbf{Exact-base command} & \textbf{Frozen label} \\
+\midrule
+\code{m035} / 0 & 100 & \code{WAIT; PICK 2 BANANA} & \code{WAIT; WAIT} & P3, P4 \\
+\code{m065} / 0 & 100 & \code{PICK 0 BANANA; PICK 2 PLUM} & \code{WAIT; WAIT} & P3, P4 \\
+\code{m074} / 0 & 100 & \code{PICK 0 BANANA; WAIT} & \code{WAIT; WAIT} & P3 \\
+\code{m104} / 0 & 100 & \code{WAIT; PICK 2 APPLE} & \code{WAIT; WAIT} & P3 \\
+\code{m114} / 0 & 100 & \code{PICK 0 BANANA; PICK 2 PLUM} & \code{WAIT; WAIT} & P3, P4 \\
+\bottomrule
+\end{tabularx}
+
+One P3 divergence was enough to fail the frozen gate. Five were observed. Therefore G-e—the later
+progress gate—was correctly left unrun. A positive progress number could not waive the hard cost
+failure, and running it would have weakened the precommitted first-falsifier discipline.
+
+\begin{RedBox}
+\textbf{Why the result worsened.} In the exact operational sense, r2 broadened the behavior of the
+bot in states covered by the locked safety rules. It changed commands in five maps that had to be
+inert and generated many trajectories classified as newly blocking. Since it healed no blocked
+game, the net locked result moved from 35 to 115. This is sufficient to reject r2 even before we
+know which bundled internal mechanism caused each change.
+\end{RedBox}
+
+% -----------------------------------------------------------------------------
+\section{Why the first causal explanation was too strong}
+
+The early explanation was plausible: the newly selected \code{PICK} creates a persistent
+regeneration commitment; that commitment keeps routing the troll and causes long liveness
+regressions. Source inspection supports the possibility. The panel supports broad downstream
+behavioral change. But plausibility plus correlation is not a component-level causal estimate.
+
+\subsection{Missing counterfactuals}
+
+The experiment did not include:
+
+\begin{itemize}
+  \item an r2 arm with Delta-A but no new commitment memory;
+  \item a full-panel census and same-state selector fork for Delta-B;
+  \item per-changed-game candidate vectors, rejected pair alternatives, and scores;
+  \item commitment timelines joined to first divergence and later progress events; or
+  \item a measurement that partitions P4 windows by whether they occur before, cross, or after the
+        first command divergence.
+\end{itemize}
+
+Without those counterfactuals, ``persistent commitment caused most of the 73'' remains a hypothesis.
+
+\subsection{P4 looks backward from the future}
+
+The frozen P4 implementation computes remaining work and a live horizon from the later trajectory,
+then scans backward and trims windows relative to the terminal suffix. That definition is valid as
+a gate, but it is future-dependent.
+
+The smallest concrete counterexample is \code{m035}, seat 0:
+
+\begin{tabularx}{\textwidth}{@{}p{42mm}Y@{}}
+\toprule
+Candidate-only P4 window & turns 33--99 \\
+\code{live\_end} & 99 \\
+\code{terminal\_from} & 106 \\
+First command divergence & turn 100 \\
+Commands and world through turn 99 & identical between exact base and r2 \\
+\bottomrule
+\end{tabularx}
+
+A deterministic referee cannot make a command at turn 100 cause different commands or world state
+on turns 33--99. Instead, the later reactivation changes where the final terminal suffix begins,
+which retroactively changes the earlier interval's P4 classification. The same temporal shape is
+seen in \code{m065} and \code{m114}.
+
+\begin{AmberBox}
+\textbf{Correct interpretation.} ``73 new P4 labels'' is a valid frozen-gate output. It is not a
+causal inventory of 73 stalls that r2 produced inside the named intervals. Some subset may still
+be genuine post-divergence harm; the existing package does not partition it.
+\end{AmberBox}
+
+This correction does not rescue r2. The five direct P3 command divergences remain, and the exact
+35-to-115 gate result remains. It only prevents the project from learning the wrong mechanism from
+a correctly failed candidate.
+
+% -----------------------------------------------------------------------------
+\section{Causal ledger}
+
+The final review separated four epistemic levels: observed, deduced from source or definitions,
+hypothesized, and missing evidence.
+
+\subsection{Delta-A: preserved replant option}
+
+\textbf{Observed.} Two score-7500/7499 candidates were discarded on 101 consecutive OSC-013 turns;
+the fixture library reproduced formation and selection; the verified real subset reproduced 339
+restored-and-selected turns. The five P3 games show turn-100 command impact.
+
+\textbf{Deduced.} The option has non-zero natural reach and can survive joint selection.
+
+\textbf{Hypothesis.} An isolated one-turn option may create useful banking or employment at an
+acceptable cost.
+
+\textbf{Missing.} The progress gate, closed-loop value, full-corpus reach, score, and qualification.
+
+\subsection{Persistent regeneration commitment}
+
+\textbf{Observed.} The tuned r2 path records selected \code{PICK}s and later routes remembered
+units; source separates memory insertion from formation and selection.
+
+\textbf{Deduced.} A selected Delta-A action can have a larger cross-turn behavioral surface than
+its local candidate diff suggests. The new option can be excluded from memory without changing
+baseline \code{PICK} handling.
+
+\textbf{Hypothesis.} Persistent commitment caused most post-turn-100 regressions.
+
+\textbf{Missing.} A no-commitment arm and field-level memory timelines.
+
+\subsection{Delta-B: duplicate bank candidates}
+
+\textbf{Observed.} Source derivation shows duplicated, element-identical bank candidates in a
+carried, shack-adjacent fallback state. The fixture library reached zero such ticks.
+
+\textbf{Deduced.} Delta-B and Delta-A are mutually exclusive in one unit state
+(\code{carried > 0} versus \code{carried == 0}), but a Delta-A trajectory could reach Delta-B later.
+
+\textbf{Hypothesis.} Exact duplicates are selector-inert—or they alter an ordering or tie path.
+
+\textbf{Missing.} A natural-state census and same-state selection comparison on the 240-game run.
+
+\subsection{Joint pair selection}
+
+\textbf{Observed.} The selector applies target, stock, self-blocking, score, and fewer-wait checks
+across the candidate cross-product. Added candidates were sometimes selected.
+
+\textbf{Deduced.} Adding one unit option can change either selected command without changing the
+selector's source.
+
+\textbf{Hypothesis.} Some options complement a partner command; others displace a better pair.
+
+\textbf{Missing.} Per-game full vectors, pair scores, rejected alternatives, and resolved commands.
+
+\subsection{P3 and P4}
+
+\textbf{P3 observed and decisive.} Five orchard-eligible streams differ from the exact parent.
+This is direct, not inferential.
+
+\textbf{P4 observed but causally ambiguous.} Seventy-three labels are reproduced exactly under the
+frozen definition. At least one named window precedes the first command divergence, so the total is
+not a direct stall count.
+
+% -----------------------------------------------------------------------------
+\section{The final causal-split conclusion}
+
+\begin{GreenBox}
+{\large\bfseries\color{good}Conclusion: ISOLATABLE}
+
+The missing replant option can be separated structurally from both new persistent commitment and
+duplicate bank candidates. Candidate formation, joint selection, and commitment insertion occupy
+distinct functions. A future design can construct the exact parent's returned list first, append
+only the explicitly discarded replant candidates, pass the result through the unchanged selector,
+and exclude any selected added candidate from commitment memory.
+
+\textbf{This is an isolatable design, not a validated cure.}
+\end{GreenBox}
+
+\subsection{Exact option-only candidate-list contract}
+
+Let $B[u]$ be the exact ordered candidate vector returned by the parent for unit $u$ on the same
+recorded decision state. Let $D[u]$ contain only the eligible, deduplicated replant \code{PICK}
+candidates. The candidate vector under test must be:
+
+\[
+C[u] =
+\begin{cases}
+B[u] \mathbin{\|} D[u], & \text{when every exact precondition holds},\\
+B[u], & \text{otherwise,}
+\end{cases}
+\]
+
+where $\mathbin{\|}$ means ordered append. No element of $B$ may be removed, reordered, rescored,
+retargeted, or duplicated. Nothing other than $D$ may be added.
+
+\subsection{Exact same-state preconditions}
+
+Delta-A may form for a unit only when all conditions hold:
+
+\begin{enumerate}
+  \item command routing uses the parent's ordinary \code{main\_candidates} branch—not an early,
+        endgame, or remembered-regeneration branch;
+  \item the dedicated option-only flag is enabled and the frozen initial layout is not
+        orchard-eligible;
+  \item idle regeneration is active and chop candidates are empty;
+  \item carried inventory is zero and free capacity is positive;
+  \item turn is at least 100, there are at most two plants, and at least two own units exist;
+  \item the unit is adjacent to its own shack and no plant occupies its cell; and
+  \item the bank contains at least one fruit kind.
+\end{enumerate}
+
+For each bank fruit in unchanged inventory order, $D$ uses the existing identity:
+\code{PICK <unit> <kind>}, score $7500 - \text{priority}$, target the unit's current cell. Any
+element already identical in $B$ is removed from $D$.
+
+\subsection{What must remain exact}
+
+\begin{tabularx}{\textwidth}{@{}p{37mm}Y@{}}
+\toprule
+Parent candidate list & Byte/bit exact and ordered before the append. \\
+Selector & Source-identical: compatibility, stock checks, self-blocking, scores, wait count, unit order, and conflict resolution unchanged. \\
+Sibling unit & Exact parent vector unless it independently satisfies all Delta-A conditions. \\
+Delta-B & Absent structurally; never return the failed r2 arm's whole accumulated \code{out}. \\
+Memory & Selected $D$ creates, renews, and changes no persistent field. Parent-existing PICKs retain exact behavior. \\
+Provenance & Current-turn only, cleared before the next turn, and invisible to scoring or ordering. \\
+Orchard maps & $D$ empty on every turn; complete streams byte-identical to the parent. \\
+\bottomrule
+\end{tabularx}
+
+Later turns may differ because the referee executed a selected \code{PICK} and the world now holds
+different cargo. They may not differ because the experimental candidate inserted a hidden target,
+phase, fruit, owner, or commitment.
+
+% -----------------------------------------------------------------------------
+\section{What a future one-hour stage should do}
+
+No future experiment was authorized by this report. If the project opens one, the order below is
+the minimum useful path. Each row has an early falsifier so failure stays cheap and interpretable.
+
+\begin{longtable}{@{}L{9mm}L{32mm}L{54mm}L{55mm}@{}}
+\toprule
+\textbf{Step} & \textbf{Claim} & \textbf{Smallest measurement} & \textbf{Stop immediately if} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Step} & \textbf{Claim} & \textbf{Smallest measurement} & \textbf{Stop immediately if} \\
+\midrule
+\endhead
+1 & Only the contracted list delta exists. & Source-diff allowlist and same-state generator fork recording complete ordered $B$, $D$, and $C$ vectors. & Any change outside $D$; parent removal/reordering; duplicate; unrelated sibling change. \\
+\addlinespace
+2 & Delta-A creates no commitment. & Snapshot every persistent field before/after selection and on the next turn; include a deliberately committing poison control. & Selected $D$ changes any persistent state, or baseline PICK handling changes. \\
+\addlinespace
+3 & Selector remains exact and can select $D$. & Replay the unchanged selector on identical states with $B$ and $C$; record scores, compatibility, selected pair, and resolved commands. & Selector hash changes, illegal pair appears, or $D$ never survives selection. \\
+\addlinespace
+4 & Orchard-inert scope is exact. & Predicate parity on boundary fixtures plus complete stream equality on every orchard-eligible locked game. & One predicate disagreement or one command byte differs. \\
+\addlinespace
+5 & The isolated option restores real progress. & Existing two-clause progress grade on a matched benched-and-work-available population, with selected-option provenance. & No positive population improvement, detector-only silence, or a required fixture lacks progress. \\
+\addlinespace
+6 & Closed-loop costs are acceptable. & Only after progress: full locked named-cost panel under a newly frozen protocol. & Any P3 divergence, new P4/horizon event under that protocol, worse blocking, or unnamed changed game. \\
+\addlinespace
+7 & P4 labels can be interpreted causally. & Separate read-only evidence tool joining first divergence, progress windows, work remaining, and live horizon for the 73 existing rows. & It cannot reproduce the frozen labels or calls a pre-divergence interval command-caused. \\
+\addlinespace
+8 & Local value transfers to score. & Only after qualification: separately authorized paired score design with balanced arm order. & Candidate is not qualified or identities/order are ambiguous. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Stage-level stop rule}
+
+If the isolated option has natural selection but no useful progress, retire the replant cure family
+and move to explicit capability-aware work/resource ownership. If the option is useful but requires
+memory to complete a transaction, design that memory later as a bounded protocol with explicit
+success, timeout, cancellation, and ownership. Do not restore the generic commitment implicitly.
+
+P4 semantics are a separate evidence-tool question. Clarifying them may improve future causal
+language, but it cannot waive r2's P3 failures or rewrite the 35-to-115 result.
+
+% -----------------------------------------------------------------------------
+\section{Final conclusions}
+
+\begin{tabularx}{\textwidth}{@{}p{40mm}Y@{}}
+\toprule
+\yes & The original benching defect and its 194-turn worst case were real. \\
+\yes & P1+P2 changed the intended selector mechanism and reduced visible blocking. \\
+\yes & Activity alone did not restore progress in most target fixtures. \\
+\yes & The parent route discarded naturally forming replant options. \\
+\yes & R2 reached natural states and changed commands. \\
+\yes & The frozen G-d result worsened from 35 to 115 and was reproduced exactly. \\
+\yes & Five direct P3 divergences independently reject r2. \\
+\yes & Delta-A can be isolated in design from new commitment and Delta-B. \\
+\midrule
+\no & That persistent commitment caused most of the 73 P4 labels. \\
+\no & That 73 P4 labels equal 73 stalls caused inside their reported windows. \\
+\no & That Delta-B was inert on the full panel. \\
+\no & That the isolated option restores durable progress. \\
+\no & Full-corpus representativeness, score benefit, qualification, or Arena readiness. \\
+\bottomrule
+\end{tabularx}
+
+\begin{BlueBox}
+\textbf{The project-level conclusion.} We found a real planner defect, applied a real but
+semantically insufficient first repair, then built a broader revision whose locked safety result
+was decisively worse. Independent reproduction and review confirmed the rejection. The rereview
+did not overturn the result; it improved the science by narrowing the causal statement. The next
+profitable move is therefore not to retry r2 or debate the frozen count. It is to test—if separately
+authorized—the smallest option-only mechanism whose candidate-list delta, memory behavior,
+selector identity, and orchard inertness can all be falsified before a costly panel run.
+\end{BlueBox}
+
+No source, bot, detector, grader, panel, replay corpus, simulation, TestSession, submission,
+resident, or Arena state was changed or run in producing this report.
+
+% -----------------------------------------------------------------------------
+\appendix
+\section{Evidence map and immutable pins}
+
+The narrative above is a synthesis of the following canonical artifacts. Branch-plus-commit pins
+are included where the evidence is not on the final integrated line.
+
+\begin{longtable}{@{}L{34mm}L{122mm}@{}}
+\toprule
+\textbf{Purpose} & \textbf{Canonical evidence} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Purpose} & \textbf{Canonical evidence} \\
+\midrule
+\endhead
+Original task and rulings & \smallpath{coordination/tasks/20260820-pair-selector-anti-benching.md} \\
+Original project statement & \smallpath{docs/GOALS.md}\par \smallpath{docs/RULES-LEDGER.md}\par \smallpath{docs/DISCOVERY-two-correct-doors-make-a-wall-2026-08-17.md} \\
+Phase 3a route diagnosis & \smallpath{agent/claude_1@09ed550f91936818425ad2611c1b875531f32a35:claude_1/picker2/phase3-generator-route-2026-08-20.md} \\
+r2 design & \smallpath{agent/claude_1@09ed550f91936818425ad2611c1b875531f32a35:claude_1/picker3/phase3b-design-proposal-r2-2026-08-22.md} \\
+Exact base and r2 source & \smallpath{agent/claude_1@e6cb7523d87d4da02e6f81406d572e3e83e4cf10:claude_1/picker2/candidate-door1-p1p2.rs}\par \smallpath{claude_1/picker3/candidate-door1-p3b.rs} \\
+Build and reach review & \smallpath{agent/codex_1@35d569f2b78c90dd7c15b46183376cc95efa7196:codex_1/reviews/pair-selector-phase3b-build-review-2026-08-23.md}\par \smallpath{codex_1/reviews/pair-selector-phase3b-reach-review-2026-08-23.md} \\
+Locked G-d result & \smallpath{agent/codex_1@35d569f2b78c90dd7c15b46183376cc95efa7196:codex_1/picker3/results/gd-door1-panel-2026-08-23.md}\par \smallpath{codex_1/picker3/results/gd-door1-decomposition-2026-08-23.json} \\
+Executable reproduction & \smallpath{agent/local_codex_1@16b6e4ada72ab1381833162ed98e97ba930cd9b4:local_codex_1/reviews/pair-selector-gd-ge-unified-review-2026-08-23.md} \\
+Fresh causal rereview & \smallpath{agent/chatgpt_1@a3d2b02a605800d147cc78b9995a7a3525b9e315:chatgpt_1/reviews/anti-benching-result-strategy-rereview-2026-08-23.md} \\
+Final causal split & \smallpath{local_codex_1/reviews/anti-benching-causal-split-design-2026-08-24.md}; artifact \code{c51f8260fd90cde20193ad4ded38e7b1290ca202} \\
+Final integrated line & \code{bc68b7120e7ff51cc60f1a04efe7637885ec83cc} \\
+\bottomrule
+\end{longtable}
+
+The sacred resident source remained byte-exact at SHA-256:
+
+\begin{center}
+{\footnotesize\ttfamily fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f}
+\end{center}
+
+It remained exact throughout the final review and report work.
+
+\section{Terminology}
+
+\begin{tabularx}{\textwidth}{@{}p{34mm}Y@{}}
+\toprule
+Benched turn & A troll has oracle-verified available work but receives no effective work from the joint command. \\
+Detector-quiet & The detector no longer emits the original symptom; this does not imply useful progress. \\
+Delta-A & Only the replant \code{PICK} candidates formed by the safe-regeneration block and discarded by the parent idle fallback. \\
+Delta-B & Element-identical bank candidates introduced by r2's whole-vector return plus another append path. \\
+P3 & Frozen orchard-inertness rule: the candidate's complete command stream must equal the exact parent on eligible initial orchard layouts. \\
+P4 & Frozen trajectory-level long-stall classifier using remaining work and a future-derived live horizon. \\
+G-d & Full locked named-cost panel; the first decisive safety gate for r2. \\
+G-e & Progress gate scheduled after G-d; correctly unrun because G-d failed. \\
+Exact base & The pinned door-1 P1+P2 source and runtime identity used by the accepted package. \\
+Isolatable & Source structure permits a clean component experiment. It does not mean useful, safe, qualified, or authorized. \\
+\bottomrule
+\end{tabularx}
+
+\section{Chronology}
+
+\begin{tabularx}{\textwidth}{@{}p{27mm}Y@{}}
+\toprule
+2026-08-20 & Owner charters anti-benching under rule R-2; Phase 1 mechanism probe begins; P1+P2 design approved. \\
+2026-08-20/21 & Dual-base P1+P2 build and gates show the selector mechanism changes, but progress mostly does not recover; P3/P4 costs appear. \\
+2026-08-21 & Owner chooses ``revise''; Phase 3a diagnosis is required before another build. \\
+2026-08-20--22 & Route analysis isolates the lossy regeneration fallback; r2 design is proposed and built. \\
+2026-08-23 & Independent build/reach review accepts natural Delta-A reach but leaves Delta-B unmeasured; locked G-d panel reports 35 to 115. \\
+2026-08-23 & local\_codex\_1 reproduces all 240 rows; chatgpt\_1 independently returns \code{BLOCKED}; G-e remains unrun. \\
+2026-08-23/24 & Fresh rereview corrects the broad causal story; result remains valid and candidate remains rejected. \\
+2026-08-24 & Causal-split memo concludes \code{ISOLATABLE} and writes the exact option-only contract and falsifier-ordered future matrix. \\
+2026-08-24 & This complete narrative report consolidates the investigation without opening a new experiment. \\
+\bottomrule
+\end{tabularx}
+
+\vfill
+{\small\color{muted}
+Document source: \path{local_codex_1/reports/anti-benching-complete-story-2026-08-24.tex}.\\
+Rendered artifact: \path{local_codex_1/reports/anti-benching-complete-story-2026-08-24.pdf}.}
+
+\end{document}

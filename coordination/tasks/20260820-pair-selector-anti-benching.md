@@ -1,6 +1,6 @@
 # 20260820-pair-selector-anti-benching — employ the benched troll (rule R-2)
 
-- Status: **OPEN — TARGET CONFIRMED ON REAL GAMES 2026-08-23; PHASE 3b HELD** (`coordination/messages/local_claude_1/20260823T131400Z-20260820-pair-selector-anti-benching-policy.md`). The benched troll is REAL in real play: **615 of 84,928 troll-turns (0.72%)** over 160 ladder games had a troll given nothing while its own best candidate was real work — absent in 40% of games, but 54% of it concentrated in the worst 10% (max 51 turns in one game). Much smaller than the fixtures implied (charter cited up to 194 turns/game; real max 51, median game 1). **Phase 3b does NOT proceed to G-d**: it repairs the idle branch that discards options BEFORE anything records what was available, so its target is invisible to the v3 instrument for the same structural reason v2 was blind to the selector's — a troll robbed by that bug lands in the 2,903 wanted-nothing rows, not the 615. No v4 is chartered. Next step is one targeted reach measurement on the real corpus, not the cost panel.
+- Status: **R2 BLOCKED AT THE FIRST G-d FALSIFIER; ARENA CLOSED**. Codex's canonical package (`agent/codex_1@35d569f2b78c90dd7c15b46183376cc95efa7196`) reports 115 blocking games versus 35 for the exact P1+P2 base: 80 de-novo, zero healed, five new P3 orchard-inertness failures, and 73 new P4 liveness failures. `local_codex_1` reran the complete locked 240-game panel and reproduced every game row exactly; `chatgpt_1` independently recommends `BLOCKED`. Unified review: `agent/local_codex_1@16b6e4ada72ab1381833162ed98e97ba930cd9b4`, `local_codex_1/reviews/pair-selector-gd-ge-unified-review-2026-08-23.md`. G-e correctly remained unrun under the frozen first-falsifier rule. Full-corpus reach, progress, score, qualification, and Arena readiness remain unmeasured; no next design is authorized.
 - Superseded status: **OPEN — PHASE 3 (REVISION), OWNER-RULED 2026-08-21 ~10:00Z: D3 = "revise"**
   (the 08-21 morning ruling was D3 = HOLD, no Arena slot, because codex_1's
   unified verdict was `PACKAGE_REPRODUCED; BOTH CANDIDATES BLOCKED AS QUALIFIED
@@ -10,9 +10,10 @@
   consequence of rule R-2 (`docs/RULES-LEDGER.md`). The 24-case GOAL_SPLIT
   class is the target: the team-picker's joint pairing discards a troll's
   oracle-verified available work, up to 194 turns per game.
-- Record owner: local_claude_1 · Work owner: **claude_1** ·
-  Reviewer: **codex_1** (instrument-first, then gates) ·
-  Integrator: local_claude_1
+- Record owner: local_codex_1 · Work owner: **codex_1** (r2 stopped) ·
+  Reviewers: **chatgpt_1** (fresh-eyes `BLOCKED`) and
+  **local_codex_1** (full executable reproduction; unified `BLOCKED`) ·
+  Integrator: local_codex_1
 - Base: **Phase 1 subject = cure-C `ad3bfefe…`, pinned NOW** (valid for both
   possible verdicts — the selection code is byte-identical in both night arms;
   step 0 verifies). **Phase 2 subject = whatever resident tonight's ruling
@@ -106,7 +107,7 @@ question goes back to the owner with the evidence; nothing is built against it
 until ruled.** Also in 3a: the mechanism of the `m004` P3 regression and of the
 `m021` P4/`r5-horizon` cost under P1+P2 — named, with the turn.
 
-**Phase 3b — design proposal → codex_1 pre-build ruling → OWNER design go.**
+**Phase 3b — design proposal → codex_1 pre-build ruling → owner/delegated design go: SATISFIED for r2.**
 The picker is planner core; two-doors-wall applies; the owner approved P1+P2's
 design and approves the revision's. The design states whether OSC-030's shape
 (same tree wanted while a teammate works it — the 4b "tree reservation"
@@ -114,6 +115,13 @@ mechanism, β) is covered by the revised picker or stays parked; teammate-aware
 routing (OSC-010) stays parked regardless (movement level, not picker).
 
 **Phase 3c — build + gates (ready-with-gates, named-costs class):**
+- **Final gate state, 2026-08-23:** r2 build `09ed550f…` exists; G-a/G-c are
+  independently accepted at `daa83d0a…`; G-d is now independently reproduced
+  `BLOCKED_FIRST_FALSIFIER` on the exact locked panel. Blocking worsens 35→115,
+  with 80 de-novo games, five new P3 games, and 73 new P4 games. G-e is unrun
+  and discharged because no later progress result can waive a hard G-d stop.
+  Existing Claude artifacts remain immutable inputs. No reach rerun or Arena
+  action occurred.
 - R-1 build on the **champion of record at build time** (rebase clause: if
   session 3 ends in REVERT, rebase before R-2).
 - R-2 fixture verdict, **AMENDED 2026-08-21 ~11:15Z (owner-approved method
@@ -129,13 +137,14 @@ routing (OSC-010) stays parked regardless (movement level, not picker).
 - R-3 panel: **P3-clean** (orchard inertness holds vs parent on the locked
   panel), **no new P4 / `r5-horizon`** violation, blocking totals not worse than
   P1+P2's; full named-costs decomposition both directions, every de-novo game
-  diagnosed and named; codex_1 `PACKAGE_REPRODUCED` + unified verdict
+  diagnosed and named; local_codex_1 `PACKAGE_REPRODUCED` + unified verdict
   QUALIFIED / BLOCKED.
 - R-4 Arena **only on the owner's explicit go**; sequence versus cure α decided
   by the owner when both are qualified; one standard 5-pair block each, never
   composed before each is measured alone.
 
-**Priority:** cure α (`20260821-swap-r1-cure`) keeps precedence for **building**;
-Phase 3a is read-only and may run alongside it. Phase 3b/3c start after α's G-1
-is delivered or α is blocked, whichever comes first. Work owner claude_1,
-reviewer codex_1, integrator local_claude_1, as before.
+**Priority:** r2 is stopped and has no active next action. The analyzer's
+duplicate-key, fixture-identity, source-binding, and per-game diagnosis gaps
+are recorded for future evidence tooling; they do not authorize repairing or
+rerunning this candidate. A new design needs a separate owner/coordinator
+charter.
