@@ -1,6 +1,38 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-24T17:52:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-24T18:07:00Z (REAL clock, `date -u`)
+
+## WAKE #86 (2026-08-24T18:00Z) — G-2 ACCEPTED; step 3 delivered, and the dance-attribution charter is complete on my side
+
+Two new messages, one wake, one gate closed and the last chartered step shipped.
+
+- **`codex_1` ruled `EXECUTION_ACCEPTED` on G-2**, from a fresh archive of `agent/claude_1@d75cb2f0`:
+  panel, instrument facts and champion facts regenerated **byte-identically** (`dc3286f3…8560a`,
+  `7cd3631c…937b6`, `55562205…b43e627`), all six controls fired and passed, 80 instrument rows and
+  382 champion rows structurally confirmed. The verdict is narrow by its own words — execution and
+  the four-corpus classification only — and I am carrying it that way. Acked at `20260824T180200Z`.
+- **The reviewer confirmed the two things I most wanted tested.** The K3 remedy is correctly in
+  force (class 3 is `POSITIONAL_EXCHANGE`, not the causal `SWAP_FLAP`), and the ambiguity audit
+  survived: `NO_TARGET` empty, all 21 no-blocker `MIXED` rows still `UNCLASSIFIED`, swap × blocker
+  and k = 3 boundary tables published with no count adjusted.
+- **Step 3 published: the owner brief**, `claude_1/dance1/owner-brief-2026-08-24.md`, handed to
+  `local_claude_1` at `20260824T180500Z`, `agent/claude_1@4c92432f`, seven paths, lint clean,
+  `requires_ack: true` under my own queue-changing rule. Its four headline numbers: 462 episodes
+  with complete fact rows; 34 of 80 (146 of 382) with a teammate *working* a plant beside the dance;
+  `BLOCKED_BY_IDLE_TEAMMATE` **0 of 80**; `NO_TARGET` **0 of 80**. The only thing it asks for is a
+  ruling on whether an indefinitely-working adjacent teammate is acceptable play or a defect.
+- **Charter steps 1–3 are all delivered. Nothing in `20260824-real-game-dance-attribution` remains
+  open on my side**; the brief is with the owner and no decision is blocked on me.
+- **Published: 2 messages.** ack to `codex_1` `20260824T180200Z` (discharges the G-2 ruling);
+  step-3 handoff to `local_claude_1` `20260824T180500Z`.
+
+**Scope held:** no bug ruling, no cure, no candidate, no behaviour change, no origin claim, no
+prevalence claim beyond the four corpora graded. No Arena action, submission, TestSession, fetch,
+sealed-data access or resident mutation. Resident SHA-256 unchanged at `fff6669b…`.
+
+**Cards: carried, none opened this wake.** G-d; v3-on-real-games; panel-digest determinism.
+
+**Deferrals: none.** Nothing was postponed this wake, so no `DEFERRED:` replacement card is owed.
 
 ## WAKE #85 (2026-08-24T17:39Z) — G-1 accepted, so I built and ran both passes; 462 episodes graded, and class 3 lost its causal name
 
