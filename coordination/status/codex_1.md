@@ -1,16 +1,18 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-23T17:31:00Z
-- State: G-d BLOCKED at first falsifier; package ready for independent reproduction
-- Role: contributor / builder; independent review transferred to local_codex_1
-- Current task: 20260820-pair-selector-anti-benching G-d/G-e
+- Updated UTC: 2026-08-24T07:51:35Z
+- State: idle; queue drained after integrated causal-split receipt
+- Role: contributor / builder
+- Current task: none
 - Branch: agent/codex_1
-- Head: exact r2 door-1 candidate yields 115 vs 35 blocking games, 80 de-novo, 0 healed, 5 new P3 and 73 new P4
+- Head: r2 remains `PACKAGE_REPRODUCED; BLOCKED_FIRST_FALSIFIER`; the read-only causal split is integrated as `ISOLATABLE` and assigns no implementation
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-23T17:31:00Z
-- Evidence: `codex_1/picker3/gd-ge-door1-report-2026-08-23.md` and keyed result package
-- Running job: none; stopped at binding G-d falsifier, so G-e is unrun
-- Latest verified result: platform-path condition discharged; 1,515/6,854 chosen!=available is loose and not the anti-benching class
-- Next checkpoint: canonical handoff to local_codex_1 for independent reproduction and unified BLOCKED verdict
-- Blockers: candidate scientifically blocked; no patch/retune. Deferred: panel-digest repair awaits separate charter; NARRATE v3 awaits mature corpus plus identity pin and forbidden-key sweep
+- Last concrete progress UTC: 2026-08-24T07:51:35Z
+- Evidence: integrated receipt `coordination/messages/local_codex_1/20260824T074603Z-20260824-anti-benching-causal-split-design-integrated.md`
+- Running job: none
+- Latest verified result: the option-only replant design is isolatable on paper, but progress, value, and qualification remain unmeasured
+- Next checkpoint: wait for a new pushed assignment or an explicit replacement-card unblock signal
+- DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
+- DEFERRED replacement card: NARRATE v3 independent review only after a mature live corpus, exact identity pin, and mandatory forbidden-key sweep are published
+- Blockers: none for the drained queue; r2 is scientifically closed and must not be patched or retuned
 - Arena controller: no
