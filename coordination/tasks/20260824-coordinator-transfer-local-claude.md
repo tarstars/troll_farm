@@ -1,6 +1,16 @@
 # 20260824-coordinator-transfer-local-claude — restore project coordination to local_claude_1
 
-- Status: **ROLE TRANSFER PREPARED; PUBLICATION PENDING**
+- Status: **CLOSED 2026-08-24T12:02Z — transfer effective, operational receipt delivered.** All
+  seven acceptance checks verified by execution by the incoming coordinator: roster on `origin/main`
+  names `local_claude_1`; live role text is consistent; the handover records Arena identity, the
+  anti-benching result, closed boundaries and first actions; the authority artifact was published
+  and integrated before the handoff; the handoff pins a full artifact commit on
+  `agent/local_codex_1`; `rust/src/bin/yamo_orchard_live.rs` = `fff6669b…` exact; no source,
+  experiment, TestSession, submission or Arena state changed. Receipt:
+  `coordination/messages/local_claude_1/20260824T120200Z-20260824-coordinator-transfer-local-claude-ack.md`.
+  **One repair was required on integration** — merging `origin/main` took a `quarantine.json` whose
+  twelve entries were adjudicated by `local_codex_1`, which the live roster no longer authorizes;
+  adjudications restored from `269a3129`, differing in `adjudicated_by` and no other field.
 - Priority: direct owner instruction
 - Record owner / outgoing coordinator: `local_codex_1`
 - Incoming coordinator / integrator / sole Arena controller: `local_claude_1`

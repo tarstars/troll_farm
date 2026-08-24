@@ -1,47 +1,84 @@
 # local_claude_1 Status
 
-- Updated UTC: 2026-08-07T17:10:00Z
-- State: idle — iteration 2 closed by owner 2026-08-07
-- Role: coordinator/integrator and sole Arena controller (per 20260806-coordinator-transfer-local-claude)
-- Current task: 20260807-transport-quarantine-and-outbox-lint — published for independent review
-  by both peers; also holding 20260807-d89a-leak-repairability-scoping (claude_1 analyses,
-  chatgpt_1 reviews) and detector-semantics repair taken from local_codex_1
-- Branch: agent/local_claude_1
-- Head: 183f93a48777c8925bdc7dc0e2e054f83c99a891 (pushed; `main` and `session-2026-07-01`
-  fast-forwarded to the same commit, remote-verified)
-- Write set: coordination/status/local_claude_1.md, coordination/messages/local_claude_1/**,
-  local_claude_1/**, scripts/inbox_sweep.py, scripts/lint_outbox.py, tests/test_inbox_sweep.py,
-  tests/test_lint_outbox.py, coordination/quarantine.json, coordination/multi-agent-protocol.md §10
-- Last concrete progress UTC: 2026-08-07T16:40:00Z
-- Evidence: sacred source SHA-256 verified exact
-  `fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f`; live round-36 candidate
-  `2caac7c6…` and banana parent `a8eb3b2b…` verified exact at head; `.github/workflows/` empty on
-  `main`; no Arena controller/service process running
-- Running job: none
-- Latest verified result: transport repair, all by execution — (a) a valid `correction` naming an
-  invalid message in `supersedes` does NOT clear its delivery error (exit 2 before and after), so
-  an invalid published message was previously unclearable; (b) with the six adjudicated chatgpt_1
-  messages quarantined, live delivery errors fall 9 → 2 and `quarantined (6)`/`quarantine errors
-  (0)`; (c) removing `coordination/quarantine.json` restores 9/142/69 exactly, and tampering with
-  one entry restores all nine errors while quarantining zero — a broken quarantine suppresses
-  nothing; (d) `scripts/lint_outbox.py` reproduces the sweep's per-agent delivery errors exactly
-  with no false positives (chatgpt_1 7, claude_1 2, local_codex_1 0, local_claude_1 0);
-  (e) 63/63 tests pass in tests/test_inbox_sweep.py + tests/test_lint_outbox.py
-- Earlier verified result (retained): 2026-08-07 host floor self-test — the acceptance gate BLOCKs
-  its own reference implementation 118/240 (parent judged against itself, D-1=35, D-4=6,
-  D-2/D-3/D-8=0); reproduces claude_1's calibrated floor exactly. Evidence:
-  local_claude_1/verification/
-- Next checkpoint (iteration closed; these carry to the next session): both peers' independent
-  review of the quarantine entries and the two transport scripts — nothing there is settled until
-  they land; claude_1 to re-publish its two invalid messages' content under canonical kinds, after
-  which their originals are quarantined and the transport reaches exit 0/1; the CBF conditional
-  banana farm design is complete and awaiting an implementation plan, not started
-- Blockers: `--mark` still blocked by claude_1's two schema-invalid messages (kind
-  `review_request`; `correction` with empty `supersedes`). These are deliberately NOT quarantined
-  because their content is live work; they need valid re-publication first. The four chatgpt_1
-  workflows previously on `main` are gone — `.github/workflows/` is empty at head
-- Conflict of interest declared: I authored the quarantine/lint tooling, I am the only agent
-  authorised to write the quarantine file, and I benefit from a clean exit status. Binding
-  mitigation: no quarantine entry and no script change is settled until claude_1 and chatgpt_1 have
-  each independently reviewed it, reproducing the acceptance checks on their own machines
-- Arena controller: yes — no mutation cycle in flight, no qualified candidate; Arena stays unchanged
+- Updated UTC: 2026-08-24T12:12:00Z
+- State: idle — coordinator role received; no live card, no lane, awaiting the owner's next priority
+- Role: coordinator, integrator, and **sole** Arena controller, restored by owner instruction
+  2026-08-24 (`coordination/tasks/20260824-coordinator-transfer-local-claude`). `local_codex_1` is a
+  contributor with no integration or Arena authority.
+- Current task: none. The transfer receipt is delivered and its task record is closed.
+- Branch: `agent/local_claude_1`
+- Head: `31de63af01b73516acb38e944cffe766e4b1b13f` (pushed and remote-verified; `origin/main`
+  fast-forwarded to the same commit and re-verified)
+- Write set: `coordination/status/local_claude_1.md`, `coordination/messages/local_claude_1/**`,
+  `local_claude_1/**`, `coordination/quarantine.json`, `scripts/inbox_sweep.py`,
+  `scripts/lint_outbox.py`, `tests/test_inbox_sweep.py`, `tests/test_lint_outbox.py`, and the
+  shared coordination tree and live project documents as integrator
+- Last concrete progress UTC: 2026-08-24T12:10:00Z
+
+## Arena
+
+- Arena controller: **yes**. No mutation cycle in flight, no qualified candidate, no submission
+  made or planned. The Arena is unchanged by this transfer.
+- Live resident: NARRATE v3 **measuring instrument**, submission `41182608` / agent `6652642`,
+  source `local_claude_1/narrate/instrument-swap-r1-narrate-v3-SUBMITTED-2026-08-23.rs`, last
+  recorded read 21.37 / rank 41 of 176. It alters the command stream and can never be champion.
+- Champion of record: door 1, `547fa706…`, off ladder. **No restore obligation** — owner ruling
+  2026-08-23. Door 1 remains the documented fallback target; that is not the same as an obligation.
+- `docs/PROMOTION-RUNBOOK.md` remains unsafe: its abort path restores a bot retired weeks ago.
+- Single-arm submissions go through `cgauto/api_submit_once.py` with an expected source hash, never
+  `night_runner.py`, whose completion tree opens an unrelated A/B run.
+
+## Evidence — the no-mutation boundary, verified by execution today
+
+- `origin/main:coordination/roster.json` names `local_claude_1` as coordinator.
+- Sacred source `rust/src/bin/yamo_orchard_live.rs` = `fff6669b…` exact.
+- Live instrument source = `9a3e8758…` exact; champion of record = `547fa706…` exact.
+- `NIGHT-HALT` present on the VM at `troll-vm:/home/tarstars/prj/troll_farm-claude_1-lfs/NIGHT-HALT`
+  (0 bytes, 2026-08-22 16:04); `night-runner.service` is `failed` — down on purpose — and no
+  `night_runner` / `api_submit` / `cgauto` process runs on the VM or on `project_host`.
+- Transport clean: 0 delivery errors, 0 immutable-path collisions, 0 quarantine errors,
+  12 quarantined, `lint_outbox.py` exit 0.
+
+## Latest verified result
+
+Integrating `origin/main` silently replaced `coordination/quarantine.json` with a copy whose twelve
+entries are adjudicated by a `local_codex_1` message. `scripts/inbox_sweep.py:1032` validates
+`adjudicated_by` against the coordinator in the **live** roster, so as merged all twelve would have
+become unauthorized and the quarantine would have suppressed nothing. Repaired by restoring the
+adjudications from `269a3129`, verified by execution that the two files differ in `adjudicated_by`
+and in **no other field** — same twelve paths, same reasons, same `target_blob` pins. Confirmed
+after push against the live remote ref: quarantine authority `local_claude_1`, 12 quarantined,
+0 errors.
+
+## Open defects and blockers
+
+- **OPEN, owner-bound — quarantine role-fragility.** Adjudication validity is bound to the *present*
+  holder of the coordinator role, so every transfer voids all twelve entries, in either direction,
+  and a merge reintroduces the break without a conflict. Broken on two consecutive transfers in two
+  days; repaired by hand both times. `claude_1` named the same hazard independently at
+  `20260824T114000Z`. Not repaired on my own authority — see the conflict of interest below.
+- **Carried limitation.** Swap R-1's ladder position rests on two reads, standard error ≈ 1.06, not
+  the ≈ 0.67 the five-read AAAAA design was bought for; reads 3–5 were cancelled by ruling on
+  2026-08-23. The handover table does not show this. Anyone citing that position cites the wider
+  interval.
+- **Provenance caveat against my own record.** The owner ruling discharging the champion-restore
+  obligation exists in the repository only as my own transcription of a spoken utterance, in a
+  message I authored. Self-consistent across four documents, but single-sourced through me.
+- Conflict of interest declared, unchanged since 2026-08-07: I authored the quarantine and lint
+  tooling, I am the only agent authorised to write the quarantine file, and I benefit from a clean
+  exit status. Binding mitigation: no change to the validation rule lands without independent peer
+  review.
+
+## Queue
+
+- Owner queue: **empty**. I owe the owner one report covering the transfer receipt and the open
+  quarantine defect.
+- My cards: **none**. All three carried NARRATE cards closed 2026-08-24 at `20260824T121000Z` — the
+  AAAAA block (cancelled at read 2), the champion restore (discharged by owner ruling), and the
+  swap-R-1 residual-13 disposition (chain RETIRED; `claude_1`'s dependent card discharged and
+  receipted).
+- Standing posture: anti-benching r2 stays rejected and Arena-closed; the swap/yield cure stays
+  retired, reopening automatically if contention appears in any graded real corpus; the replant
+  option is `ISOLATABLE` on paper only, with progress, closed-loop safety, score, qualification and
+  Arena value all unmeasured. **No implementation is authorized.** Autonomous operation stays
+  paused pending its own owner session.
