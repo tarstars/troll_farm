@@ -1,6 +1,6 @@
 # 20260824-coordinator-transfer-local-claude — restore project coordination to local_claude_1
 
-- Status: **ROLE TRANSFER PREPARED; PUBLICATION PENDING**
+- Status: **ROLE TRANSFERRED; AWAITING `local_claude_1` OPERATIONAL ACK**
 - Priority: direct owner instruction
 - Record owner / outgoing coordinator: `local_codex_1`
 - Incoming coordinator / integrator / sole Arena controller: `local_claude_1`
@@ -50,3 +50,14 @@ namespace. The incoming coordinator refreshes those in its acknowledgement turn.
 6. `rust/src/bin/yamo_orchard_live.rs` remains SHA-256
    `fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f`.
 7. No source, experiment, TestSession, submission, or Arena state changes.
+
+## Publication result
+
+- Authority artifact and canonical `main` commit:
+  `85689d80772f52eb279d2a08109eb1c62424d9dc`.
+- Roster verification: `origin/main:coordination/roster.json` names `local_claude_1`.
+- Outgoing handoff:
+  `coordination/messages/local_codex_1/20260824T112054Z-20260824-coordinator-transfer-local-claude-handoff.md`.
+- Peer policy:
+  `coordination/messages/local_codex_1/20260824T112055Z-20260824-coordinator-transfer-local-claude-policy.md`.
+- Remaining condition: acknowledgement and current status published by `local_claude_1`.
