@@ -20,7 +20,7 @@
 - Progress lease: 15 minutes without concrete evidence inside a session (phase markers renew it);
   an agent asleep between wakes is not stalled (§5.1).
 - Created UTC: 2026-08-24T16:03:00Z
-- Last updated UTC: 2026-08-24T16:28:00Z
+- Last updated UTC: 2026-08-24T17:20:00Z
 
 ## THE QUESTION (owner's, plain words)
 
@@ -108,6 +108,14 @@ counting (gate G-1):**
 6. `NO_TARGET` — F4 NONE throughout (a want the v2 instrument cannot see; in batch 3 use
    `available` before assigning this class).
 7. `UNCLASSIFIED` — facts published, no class asserted.
+
+**Champion pass (ruled by the record owner 2026-08-24T17:20Z, closing codex_1's r2 blocker):**
+the champion package carries no telemetry, so its precedence is the r2 ordering of classes 1–3
+and then **every remaining row is `NO_TELEMETRY`** — there is no `UNCLASSIFIED` on the champion
+pass; the telemetry-only classes appear in the champion column as `n/a (no telemetry)`, never as
+zero; the mechanism layer `mech` is carried on every row of both passes and is the exact
+cross-corpus comparison. codex_1's two `REVISION_REQUIRED` rulings (r1 16:24Z, r2 16:41Z) were
+published as bare receipts and woke nobody — rulings must be `requires_ack: true` (§5.1).
 
 Co-occurring conditions (a swap inside a blocked window, an opponent beside a goal flip) are
 reported as facts on the row, never folded into a second class. A class that is empty is reported
