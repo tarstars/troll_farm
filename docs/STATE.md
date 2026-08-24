@@ -1,6 +1,6 @@
 # STATE — Troll Farm (single entry point)
 
-Last updated: 2026-08-23 (§4 re-ranked: NARRATE is P0); earlier 08-22 (§1), 08-10 (doc diet, text
+Last updated: 2026-08-24 (§3 coordinator transfer); earlier 08-23 (§4), 08-22 (§1), 08-10 (doc diet,
 at `docs/archive/STATE-2026-08-10-pre-diet.md`). Live state, not a record. Hard budget: 150 lines.
 
 ## 1. Live identity
@@ -12,11 +12,11 @@ Door 1 is cure C minus the fictional-decay hunk — a pure deletion, owner-ruled
 
 | field | live now | champion of record |
 |---|---|---|
-| submission / agent | **`41182039`** / **`6652424`**, submitted 2026-08-23T09:44Z | `41178858` / `6650438` |
-| source | `local_claude_1/narrate/instrument-swap-r1-narrate-v2-SUBMITTED-2026-08-23.rs` | `cgauto/submissions/candidate-door1-pure-deletion.rs` |
-| SHA-256 | `aaebc503cc2660e920d45858767c6932575324085c93ef9345906f683b5a9271` | `547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0` |
+| submission / agent | **`41182608`** / **`6652642`**, submitted 2026-08-23T12:19Z | `41178858` / `6650438` |
+| source | `local_claude_1/narrate/instrument-swap-r1-narrate-v3-SUBMITTED-2026-08-23.rs` | `cgauto/submissions/candidate-door1-pure-deletion.rs` |
+| SHA-256 | `9a3e875823f3fc26bb7be04f67d872d5c5590f4479f771cae4402ed1e3281239` | `547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0` |
 | what it is | **a measuring instrument**: swap R-1 plus per-turn intention telemetry. It can **never** be champion — it changes the command stream. Run, read, retire. | champion; restore target |
-| reads | AAAAA, 5 reads of one arm, no pairing. Read 1 live, immature (23.8 at 50 min). | 22.6, rank 36/176, 2026-08-23T06:40Z, one unpaired read |
+| reads | 21.37, rank 41/176 at transfer; measuring resident, not a champion candidate. | 22.6, rank 36/176, 2026-08-23T06:40Z, one unpaired read |
 
 **Owner reopened the ladder 2026-08-23** for the instrument. Submissions go through
 `cgauto/api_submit_once.py`, **not** `night_runner.py` (its end-of-block tree opens an unrelated
@@ -105,8 +105,8 @@ moving the ladder, so +3.64 will not come from more of it.
   preflight `cgauto/check_external_storage.py --required-free-gib N` (`docs/storage-policy.md`).
 - **`coordination/multi-agent-protocol.md` is in force** (control-plane migration parked; spec
   `docs/superpowers/specs/2026-08-10-coordination-control-plane-design.md`).
-  Coordinator/integrator/Arena controller = **`local_codex_1`** (owner transfer 2026-08-23; effective
-  on its published assumption, `local_claude_1` responsible until then). §7 hazards bind everyone:
+  Coordinator/integrator/Arena controller = **`local_claude_1`** (owner transfer 2026-08-24;
+  `local_codex_1` has no integration or Arena authority). §7 hazards bind everyone:
   byte-sacred `fff6669b` dev copy, no formatters over hash-locked sources, `data/raw/games/`
   and the 02:17 UTC cron untouchable. **§5.1: an agent is woken only by mail from someone
   else** — its own cards are obligations, not signals.
@@ -117,23 +117,23 @@ moving the ladder, so +3.64 will not come from more of it.
 
 ## 4. Open thread
 
-- **P0 is the INSTRUMENT, not another cure** (backlog re-ranked 2026-08-23). **NARRATE** — the bot
-  prints each troll's target every turn via `MSG`, so we grade real games instead of 34 hand-picked
-  fixtures from a retired bot; task `20260823-narrate-real-game-telemetry`, now builder `codex_1`, reviewer/controller `local_codex_1` — no Arena authorization.
-  Also P0: the replay→`Trace` adapter, needed by NARRATE step 4 **and** the prevalence card — one
-  trap, 301 states against 300 command rows, silently truncated. Why: §1, and §5's reading order.
-- **Parked behind NARRATE:** PEEK (rev 3 inert corpus-wide; supplying the missing intention makes
-  displacement **refuse** — confirmed on the champion, 989 of 989, **0** wanting a third square,
-  `claude_1@c85ee672`), PEEK branch 2, and the swap cure (α instrument accepted, 32 of 34 healed
-  *with progress*; "healed" means with progress from now on; residual-13 and the cure-arm basket
-  criterion stay mine). **Result:** anti-benching r2 **BLOCKED at G-d**, 115 vs 35 blocking games, 80 de-novo, 5 new P3, 73 new P4; full 240-game rerun exact. `chatgpt_1` now rereviews method,
-  causal attribution, and the highest-value next approach; no experiment or Arena authority.
+- **NARRATE completed its decision purpose.** The real-game instrument measured discarded work on
+  615 of 84,928 troll-turns (0.72%). The swap cure is retired: its target was absent from 469 current
+  games with firing controls. Its task record remains owned by `local_claude_1` for reconciliation;
+  this transfer grants no experiment or Arena action.
+- **Anti-benching r2 is BLOCKED:** 115 vs 35 blocking games, 80 de-novo, five direct unchanged-
+  orchard failures, 73 new long-stall labels; the full 240-game rerun matched exactly. The later
+  review retains the result but narrows the causal claim. The option-only replant design is
+  structurally isolatable, not validated; no implementation is active.
+- **Still parked:** PEEK and its second branch. The prior fixture chains do not reopen from the
+  option-only memo or this role transfer.
 - **Withdrawn 2026-08-23:** my "235 of 2,245 wanted the partner's square" as evidence of contention
   — the wrong-pairing control was never run, and claude_1's analogous 323/323 died to it. The
   **zeros** stand; a zero needs no pairing. **`chatgpt_1` is reachable** and delivered the independent
   `BLOCKED` review. **Unowned defect:** the night runner
   re-opens an identical block at every completion — twice on 08-21/22.
-- **★ Needs the owner: NOTHING.** Owed to the incoming lead: the Phase 3b reach ruling, and 18 unread.
+- **★ Needs the owner: NOTHING.** Owed to the incoming lead: acknowledge the transfer, reconcile
+  its stale task/status records, inspect its inbox, and wait for the next owner priority.
 
 ## 5. Reading order & pointers
 

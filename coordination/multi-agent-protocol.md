@@ -33,18 +33,17 @@ index — path ownership alone cannot make simultaneous staging and commits safe
   platform-side mutations (see §6).
 
 **The roster of record is `coordination/roster.json` on `origin/main`, not this
-paragraph.** §10.2 already reads the coordinator from there, and a second list that
-drifts is worse than no list — this one did, for nine days. As of 2026-08-21 it says:
-**`local_claude_1`** — coordinator (integrator) and arena controller;
-**`claude_1`** — active contributor; **`codex_1`** — active contributor and the standing
-reviewer (onboarded 2026-08-09, a NEW agent, **not** `local_codex_1`, and absent from
-this paragraph until today); **`local_codex_1`** — dormant since the 2026-08-06
-coordinator transfer; **`chatgpt_1`** / **`chatgpt_2`** — declared unreachable by the
-owner 2026-08-12, advisory only (messages they already published stay authoritative and
-their quarantines stay quarantined). Handover brief:
-`coordination/HANDOVER-2026-08-06-local_codex_1-to-local_claude_1.md`. Roles are
-defaults, not capability limits; a task record says who owns that particular outcome,
-and the user may reassign at any time.
+paragraph.** §10.2 reads the coordinator from there, and a second list that drifts is
+worse than no list. As of the owner transfer on 2026-08-24 it says:
+**`local_claude_1`** — coordinator (integrator) and sole Arena controller;
+**`claude_1`** — active contributor; **`codex_1`** — active contributor and standing
+reviewer (a separate agent from `local_codex_1`); **`local_codex_1`** — contributor with
+no integration or Arena authority; **`chatgpt_1`** — reachable reviewer through its
+interactive session; **`chatgpt_2`** — unreachable. Historical messages and quarantines
+remain authoritative. Current transfer brief:
+`coordination/HANDOVER-2026-08-24-local_codex_1-to-local_claude_1.md`. Roles are defaults,
+not capability limits; a task record says who owns a particular outcome, and the user may
+reassign at any time.
 
 Agent ids are lowercase `[a-z0-9_]+`. A newcomer claims an unused id, creates its own
 status file and message directory, and follows these rules; no spec change is needed.
