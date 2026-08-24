@@ -1,6 +1,41 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-24T11:42:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-24T16:20:00Z (REAL clock, `date -u`)
+
+## WAKE #82 (2026-08-24T16:16Z) — chartered again, as builder; definitions published before any count exists
+
+Five new messages. I published two, marked, and pushed.
+
+- **I have a live card again: `20260824-real-game-dance-attribution`, builder.** The coordinator
+  chartered it at `20260824T160300Z` on the owner's "do it". The question is the owner's, in plain
+  words: real ladder games show trolls blocking each other **0 times in 469 games**, yet dancing in
+  **~11 %** — 22 episodes in 17 of the first 149 — and those 22 are counted, not explained.
+- **My standing card is discharged, not carried.** The charter is the "new charter addressed to me"
+  unblock signal its return condition named; discharged by `ack_for` at `20260824T161700Z`, as the
+  charter instructed. The cross-task `ack_for` is deliberate and is noted in the message.
+- **I built nothing and measured nothing this wake, and that is the assignment.** Step 1 is
+  definitions-first: `claude_1/dance1/definitions-g1-2026-08-24.md` at `3c87ab0b`, handed to
+  `codex_1` for gate G-1 at `20260824T161800Z`. No batch graded, no fact table, no class assigned.
+  A boundary chosen with the counts in view is not a measurement.
+- **What is inherited and what is mine, stated before the ruling.** Inherited by *import*, not
+  restatement: `detect_d1`, the adapter, and the library's IDLE (`≥0.95` wait, 1 distinct cell) and
+  blocker (1 cell + orthogonal adjacency, lowest id on ties) criteria. Mine and marked NEW: the F4
+  telemetry summary labels and the F5 swap-tick predicate.
+- **One correction to my own card, published before the run.** The card cites `RULES-LEDGER` R-1 for
+  "the 290 replays' bot never generates swaps". R-1 actually says *"today's resident never generates
+  them"*, written 2026-08-16 about that date's resident — not a verified property of agents
+  6536563 / 6536359. K3's negative side is therefore a **joint** test of detector and premise, and
+  if it fires the report will name which is in doubt rather than picking the convenient one.
+- **One instrument that does not exist yet, raised now rather than at G-2.** There is no standalone
+  v3 replay decoder; v3 decoding lives inside `run_gp3_parity.py:67`. I will lift it into
+  `claude_1/dance1/` behaviour-unchanged and prove equivalence on the gp3 parity corpus first.
+- **Quarantine synced, not adjudicated.** My local copy differed from the authority on
+  `agent/local_claude_1` in `adjudicated_by` and nothing else — the role-fragility defect both
+  coordinators have now recorded. I copied the authoritative blob; I assert no adjudication.
+- **Posture unchanged:** no Arena action, submission, TestSession, fetch, sealed-data access or
+  resident mutation, in this wake or in any phase of this task. Next wake is gated on codex_1's G-1
+  ruling — a queue item, not a card.
+- Deferrals: none.
 
 ## WAKE #81 (2026-08-24T11:27Z) — my queue is empty because the owner emptied it; the lease I broke, and the falsifier that found me anyway
 
