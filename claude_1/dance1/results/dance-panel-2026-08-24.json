@@ -1,0 +1,1850 @@
+{
+  "batches": [
+    {
+      "agent": 6652424,
+      "batch": "batch1",
+      "d1": 22,
+      "d1_games": 17,
+      "d2": 0,
+      "d3": 0,
+      "detector_episodes": 22,
+      "games": 149,
+      "refusals": [],
+      "source": "local_claude_1/narrate/games/ @3256dafb",
+      "telemetry_refused_games": 0,
+      "version": "v2"
+    },
+    {
+      "agent": 6652602,
+      "batch": "batch2",
+      "d1": 24,
+      "d1_games": 18,
+      "d2": 0,
+      "d3": 0,
+      "detector_episodes": 24,
+      "games": 160,
+      "refusals": [],
+      "source": "local_claude_1/narrate/read2/games-agent6652602-submission41182352.jsonl.gz @3256dafb",
+      "telemetry_refused_games": 0,
+      "version": "v2"
+    },
+    {
+      "agent": 6652642,
+      "batch": "batch3",
+      "d1": 34,
+      "d1_games": 30,
+      "d2": 0,
+      "d3": 0,
+      "detector_episodes": 34,
+      "games": 160,
+      "refusals": [],
+      "source": "local_claude_1/narrate/v3/games-agent6652642-submission41182608.jsonl.gz @3256dafb",
+      "telemetry_refused_games": 0,
+      "version": "v3"
+    }
+  ],
+  "caution": "D-1 off replays is an UPPER BOUND: the adapter reconstructs plant clocks and the reconstruction error direction invents dancing. No count here may be quoted without this sentence.",
+  "champion": {
+    "agent": "door-1 lineage (16 agent ids)",
+    "batch": "champion",
+    "d1": 382,
+    "d1_games": 306,
+    "detector_episodes": 382,
+    "episode_identity_against_record": {
+      "exact": true,
+      "matched": 382,
+      "only_here": [],
+      "only_in_record": []
+    },
+    "episodes_of_record": 382,
+    "games": 306,
+    "refusals": [],
+    "source": "local_claude_1/dance-lineage/door1-games/ @4b9bd563",
+    "version": null
+  },
+  "champion_pass": {
+    "blocker_distinct_cells_to_game_end_by_k": {
+      "k=3|1": 3,
+      "k=3|10": 1,
+      "k=3|11": 2,
+      "k=3|13": 2,
+      "k=3|14": 1,
+      "k=3|15": 3,
+      "k=3|16": 2,
+      "k=3|17": 1,
+      "k=3|18": 2,
+      "k=3|20": 1,
+      "k=3|24": 1,
+      "k=3|25": 1,
+      "k=3|26": 1,
+      "k=3|27": 1,
+      "k=3|28": 2,
+      "k=3|3": 1,
+      "k=3|32": 1,
+      "k=3|33": 2,
+      "k=3|34": 1,
+      "k=3|36": 1,
+      "k=3|39": 1,
+      "k=3|4": 2,
+      "k=3|43": 2,
+      "k=3|7": 2,
+      "k=3|9": 2,
+      "k>3|1": 70,
+      "k>3|10": 3,
+      "k>3|13": 1,
+      "k>3|15": 2,
+      "k>3|16": 2,
+      "k>3|18": 4,
+      "k>3|19": 2,
+      "k>3|20": 1,
+      "k>3|21": 2,
+      "k>3|22": 1,
+      "k>3|23": 2,
+      "k>3|25": 6,
+      "k>3|26": 1,
+      "k>3|27": 2,
+      "k>3|28": 2,
+      "k>3|3": 1,
+      "k>3|31": 2,
+      "k>3|32": 1,
+      "k>3|34": 1,
+      "k>3|37": 1,
+      "k>3|38": 1,
+      "k>3|4": 3,
+      "k>3|5": 2,
+      "k>3|6": 5,
+      "k>3|7": 1,
+      "k>3|8": 3,
+      "k>3|9": 1
+    },
+    "blocker_liveness": {
+      "count": 0,
+      "rows": []
+    },
+    "class_by_window_length": {
+      "BLOCKED_BY_IDLE_TEAMMATE|k=3": 3,
+      "BLOCKED_BY_IDLE_TEAMMATE|k>3": 13,
+      "BLOCKED_BY_WORKING_TEAMMATE|k=3": 36,
+      "BLOCKED_BY_WORKING_TEAMMATE|k>3": 110,
+      "NO_TELEMETRY|k=3": 113,
+      "NO_TELEMETRY|k>3": 93,
+      "POSITIONAL_EXCHANGE|k=3": 7,
+      "POSITIONAL_EXCHANGE|k>3": 7
+    },
+    "class_table": {
+      "BLOCKED_BY_IDLE_TEAMMATE": 16,
+      "BLOCKED_BY_WORKING_TEAMMATE": 146,
+      "FIXED_TARGET_NO_BLOCKER": "n/a (no telemetry)",
+      "GOAL_FLIP": "n/a (no telemetry)",
+      "NO_TARGET": "n/a (no telemetry)",
+      "NO_TELEMETRY": 206,
+      "POSITIONAL_EXCHANGE": 14,
+      "UNCLASSIFIED": "n/a (no telemetry)"
+    },
+    "classes": {
+      "BLOCKED_BY_IDLE_TEAMMATE": 16,
+      "BLOCKED_BY_WORKING_TEAMMATE": 146,
+      "NO_TELEMETRY": 206,
+      "POSITIONAL_EXCHANGE": 14
+    },
+    "f4_labels": {
+      "NO_TELEMETRY": 382
+    },
+    "f7_end": {
+      "DANCER_PROGRESS": 218,
+      "GAME_END_NO_EVENT": 79,
+      "HOLDING_PEER_MOVED": 75,
+      "SWAP_TICK_WITH_DANCER": 10
+    },
+    "late_peer_sensitivity": {
+      "count": 0,
+      "rows": []
+    },
+    "mech": {
+      "BLOCKER_IDLE_NO_PLANT": 13,
+      "BLOCKER_IDLE_ON_PLANT": 3,
+      "BLOCKER_WORKING": 146,
+      "NO_PEERS": 6,
+      "PEERS_NO_BLOCKER": 214
+    },
+    "mech_split_of_no_blocker_classes": {
+      "NO_TELEMETRY|NO_PEERS": 5,
+      "NO_TELEMETRY|PEERS_NO_BLOCKER": 201,
+      "POSITIONAL_EXCHANGE|NO_PEERS": 1,
+      "POSITIONAL_EXCHANGE|PEERS_NO_BLOCKER": 13
+    },
+    "swap_by_mech": {
+      "no_swap|BLOCKER_IDLE_NO_PLANT": 13,
+      "no_swap|BLOCKER_IDLE_ON_PLANT": 3,
+      "no_swap|BLOCKER_WORKING": 137,
+      "no_swap|NO_PEERS": 5,
+      "no_swap|PEERS_NO_BLOCKER": 201,
+      "swap|BLOCKER_WORKING": 9,
+      "swap|NO_PEERS": 1,
+      "swap|PEERS_NO_BLOCKER": 13
+    }
+  },
+  "class_3_name_in_force": "POSITIONAL_EXCHANGE",
+  "controls": [
+    {
+      "control": "K0 progress() agreement with detect_d1",
+      "disagreement_count": 0,
+      "disagreements": [],
+      "fired": true,
+      "passed": true,
+      "transitions_checked": 462
+    },
+    {
+      "control": "K1 batch-1 detector identity",
+      "expected": {
+        "d1": 22,
+        "d1_games": 17,
+        "d2": 0,
+        "d3": 0
+      },
+      "fired": true,
+      "observed": {
+        "d1": 22,
+        "d1_games": 17,
+        "d2": 0,
+        "d3": 0
+      },
+      "passed": true
+    },
+    {
+      "control": "K2 mechanism-layer reproduction of the frozen classifier",
+      "episodes": 38,
+      "fired": true,
+      "library": "claude_1/banana-restoration-r2/oscillation-library-98628e98/library",
+      "mismatch_count": 0,
+      "mismatches": [],
+      "passed": true,
+      "rows": [
+        {
+          "crosswalk": "M1",
+          "deciding_field": "blocker idle=True plant=False",
+          "episodes": 1,
+          "frozen": "M1",
+          "id": "OSC-001",
+          "mech": "BLOCKER_IDLE_NO_PLANT"
+        },
+        {
+          "crosswalk": "M1",
+          "deciding_field": "blocker idle=True plant=False",
+          "episodes": 1,
+          "frozen": "M1",
+          "id": "OSC-002",
+          "mech": "BLOCKER_IDLE_NO_PLANT"
+        },
+        {
+          "crosswalk": "M1",
+          "deciding_field": "blocker idle=False plant=True",
+          "episodes": 1,
+          "frozen": "M1",
+          "id": "OSC-003",
+          "mech": "BLOCKER_WORKING"
+        },
+        {
+          "crosswalk": "M1",
+          "deciding_field": "blocker idle=False plant=True",
+          "episodes": 1,
+          "frozen": "M1",
+          "id": "OSC-004",
+          "mech": "BLOCKER_WORKING"
+        },
+        {
+          "crosswalk": "M1",
+          "deciding_field": "blocker idle=False plant=True",
+          "episodes": 1,
+          "frozen": "M1",
+          "id": "OSC-005",
+          "mech": "BLOCKER_WORKING"
+        },
+        {
+          "crosswalk": "M1",
+          "deciding_field": "blocker idle=False plant=True",
+          "episodes": 1,
+          "frozen": "M1",
+          "id": "OSC-006",
+          "mech": "BLOCKER_WORKING"
+        },
+        {
+          "crosswalk": "M1",
+          "deciding_field": "blocker idle=False plant=True",
+          "episodes": 1,
+          "frozen": "M1",
+          "id": "OSC-007",
+          "mech": "BLOCKER_WORKING"
+        },
+        {
+          "crosswalk": "M1",
+          "deciding_field": "blocker idle=False plant=True",
+          "episodes": 1,
+          "frozen": "M1",
+          "id": "OSC-008",
+          "mech": "BLOCKER_WORKING"
+        },
+        {
+          "crosswalk": "M1",
+          "deciding_field": "blocker idle=True plant=False",
+          "episodes": 1,
+          "frozen": "M1",
+          "id": "OSC-009",
+          "mech": "BLOCKER_IDLE_NO_PLANT"
+        },
+        {
+          "crosswalk": "M1",
+          "deciding_field": "blocker idle=False plant=True",
+          "episodes": 1,
+          "frozen": "M1",
+          "id": "OSC-010",
+          "mech": "BLOCKER_WORKING"
+        },
+        {
+          "crosswalk": "M1",
+          "deciding_field": "blocker idle=False plant=True",
+          "episodes": 1,
+          "frozen": "M1",
+          "id": "OSC-011",
+          "mech": "BLOCKER_WORKING"
+        },
+        {
+          "crosswalk": "M2",
+          "deciding_field": "blocker idle=True plant=True",
+          "episodes": 3,
+          "frozen": "M2",
+          "id": "OSC-012",
+          "mech": "BLOCKER_IDLE_ON_PLANT"
+        },
+        {
+          "crosswalk": "M2",
+          "deciding_field": "blocker idle=True plant=True",
+          "episodes": 2,
+          "frozen": "M2",
+          "id": "OSC-013",
+          "mech": "BLOCKER_IDLE_ON_PLANT"
+        },
+        {
+          "crosswalk": "M2",
+          "deciding_field": "blocker idle=True plant=True",
+          "episodes": 2,
+          "frozen": "M2",
+          "id": "OSC-014",
+          "mech": "BLOCKER_IDLE_ON_PLANT"
+        },
+        {
+          "crosswalk": "M2",
+          "deciding_field": "blocker idle=True plant=True",
+          "episodes": 2,
+          "frozen": "M2",
+          "id": "OSC-015",
+          "mech": "BLOCKER_IDLE_ON_PLANT"
+        },
+        {
+          "crosswalk": "M2",
+          "deciding_field": "blocker idle=True plant=True",
+          "episodes": 1,
+          "frozen": "M2",
+          "id": "OSC-016",
+          "mech": "BLOCKER_IDLE_ON_PLANT"
+        },
+        {
+          "crosswalk": "M2",
+          "deciding_field": "blocker idle=True plant=True",
+          "episodes": 1,
+          "frozen": "M2",
+          "id": "OSC-017",
+          "mech": "BLOCKER_IDLE_ON_PLANT"
+        },
+        {
+          "crosswalk": "M2",
+          "deciding_field": "blocker idle=True plant=True",
+          "episodes": 1,
+          "frozen": "M2",
+          "id": "OSC-018",
+          "mech": "BLOCKER_IDLE_ON_PLANT"
+        },
+        {
+          "crosswalk": "M2",
+          "deciding_field": "blocker idle=True plant=True",
+          "episodes": 1,
+          "frozen": "M2",
+          "id": "OSC-019",
+          "mech": "BLOCKER_IDLE_ON_PLANT"
+        },
+        {
+          "crosswalk": "M2",
+          "deciding_field": "blocker idle=True plant=True",
+          "episodes": 1,
+          "frozen": "M2",
+          "id": "OSC-020",
+          "mech": "BLOCKER_IDLE_ON_PLANT"
+        },
+        {
+          "crosswalk": "M2",
+          "deciding_field": "blocker idle=True plant=True",
+          "episodes": 1,
+          "frozen": "M2",
+          "id": "OSC-021",
+          "mech": "BLOCKER_IDLE_ON_PLANT"
+        },
+        {
+          "crosswalk": "M2",
+          "deciding_field": "blocker idle=True plant=True",
+          "episodes": 1,
+          "frozen": "M2",
+          "id": "OSC-022",
+          "mech": "BLOCKER_IDLE_ON_PLANT"
+        },
+        {
+          "crosswalk": "M2",
+          "deciding_field": "blocker idle=True plant=True",
+          "episodes": 1,
+          "frozen": "M2",
+          "id": "OSC-023",
+          "mech": "BLOCKER_IDLE_ON_PLANT"
+        },
+        {
+          "crosswalk": "M2",
+          "deciding_field": "blocker idle=True plant=True",
+          "episodes": 1,
+          "frozen": "M2",
+          "id": "OSC-024",
+          "mech": "BLOCKER_IDLE_ON_PLANT"
+        },
+        {
+          "crosswalk": "M2",
+          "deciding_field": "blocker idle=True plant=True",
+          "episodes": 1,
+          "frozen": "M2",
+          "id": "OSC-025",
+          "mech": "BLOCKER_IDLE_ON_PLANT"
+        },
+        {
+          "crosswalk": "M3",
+          "deciding_field": "peers empty",
+          "episodes": 1,
+          "frozen": "M3",
+          "id": "OSC-026",
+          "mech": "NO_PEERS"
+        },
+        {
+          "crosswalk": "UNCLASSIFIED",
+          "deciding_field": "peers non-empty, blocker None",
+          "episodes": 4,
+          "frozen": "UNCLASSIFIED",
+          "id": "OSC-027",
+          "mech": "PEERS_NO_BLOCKER"
+        },
+        {
+          "crosswalk": "UNCLASSIFIED",
+          "deciding_field": "peers non-empty, blocker None",
+          "episodes": 1,
+          "frozen": "UNCLASSIFIED",
+          "id": "OSC-028",
+          "mech": "PEERS_NO_BLOCKER"
+        },
+        {
+          "crosswalk": "UNCLASSIFIED",
+          "deciding_field": "peers non-empty, blocker None",
+          "episodes": 1,
+          "frozen": "UNCLASSIFIED",
+          "id": "OSC-029",
+          "mech": "PEERS_NO_BLOCKER"
+        },
+        {
+          "crosswalk": "UNCLASSIFIED",
+          "deciding_field": "peers non-empty, blocker None",
+          "episodes": 1,
+          "frozen": "UNCLASSIFIED",
+          "id": "OSC-030",
+          "mech": "PEERS_NO_BLOCKER"
+        }
+      ],
+      "situations": 30,
+      "telemetry_fields_present_in_library": []
+    },
+    {
+      "causal_name_permitted": false,
+      "class_3_name_in_force": "POSITIONAL_EXCHANGE",
+      "consequence_applied": "class 3 renamed to POSITIONAL_EXCHANGE and graded under that name, per the definitions' pre-committed remedy; the causal reading is withdrawn, not footnoted",
+      "control": "K3 swap-tick detector",
+      "fired": true,
+      "hits": [
+        {
+          "row": {
+            "game": 900089904,
+            "turn": 240,
+            "unit": 3
+          },
+          "tick": {
+            "pair": [
+              1,
+              3
+            ],
+            "seat": 1,
+            "turn": 240
+          }
+        },
+        {
+          "row": {
+            "game": 900090390,
+            "turn": 94,
+            "unit": 0
+          },
+          "tick": {
+            "pair": [
+              0,
+              3
+            ],
+            "seat": 0,
+            "turn": 94
+          }
+        },
+        {
+          "row": {
+            "game": 900091394,
+            "turn": 177,
+            "unit": 0
+          },
+          "tick": {
+            "pair": [
+              0,
+              2
+            ],
+            "seat": 0,
+            "turn": 177
+          }
+        },
+        {
+          "row": {
+            "game": 900091394,
+            "turn": 192,
+            "unit": 0
+          },
+          "tick": {
+            "pair": [
+              0,
+              2
+            ],
+            "seat": 0,
+            "turn": 192
+          }
+        },
+        {
+          "row": {
+            "game": 900092318,
+            "turn": 297,
+            "unit": 3
+          },
+          "tick": {
+            "pair": [
+              0,
+              3
+            ],
+            "seat": 0,
+            "turn": 297
+          }
+        },
+        {
+          "row": {
+            "game": 900092800,
+            "turn": 95,
+            "unit": 1
+          },
+          "tick": {
+            "pair": [
+              1,
+              3
+            ],
+            "seat": 1,
+            "turn": 95
+          }
+        },
+        {
+          "row": {
+            "game": 900093465,
+            "turn": 283,
+            "unit": 1
+          },
+          "tick": {
+            "pair": [
+              1,
+              3
+            ],
+            "seat": 1,
+            "turn": 283
+          }
+        },
+        {
+          "row": {
+            "game": 900093465,
+            "turn": 291,
+            "unit": 1
+          },
+          "tick": {
+            "pair": [
+              1,
+              3
+            ],
+            "seat": 1,
+            "turn": 291
+          }
+        },
+        {
+          "row": {
+            "game": 900093504,
+            "turn": 251,
+            "unit": 0
+          },
+          "tick": {
+            "pair": [
+              0,
+              2
+            ],
+            "seat": 0,
+            "turn": 251
+          }
+        }
+      ],
+      "negative": {
+        "adapter_refusals": [],
+        "clean": false,
+        "detail": [
+          {
+            "agent": 6536359,
+            "game": 895017865,
+            "tick_count": 35,
+            "ticks": [
+              {
+                "command_pair": false,
+                "pair": [
+                  3,
+                  4
+                ],
+                "turn": 77
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  3,
+                  4
+                ],
+                "turn": 80
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  2,
+                  4
+                ],
+                "turn": 99
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  2,
+                  4
+                ],
+                "turn": 118
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  2,
+                  4
+                ],
+                "turn": 122
+              }
+            ],
+            "ticks_with_command_pair": 0
+          },
+          {
+            "agent": 6536563,
+            "game": 895033264,
+            "tick_count": 3,
+            "ticks": [
+              {
+                "command_pair": false,
+                "pair": [
+                  0,
+                  2
+                ],
+                "turn": 148
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  0,
+                  2
+                ],
+                "turn": 167
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  0,
+                  2
+                ],
+                "turn": 229
+              }
+            ],
+            "ticks_with_command_pair": 1
+          },
+          {
+            "agent": 6536563,
+            "game": 895033265,
+            "tick_count": 5,
+            "ticks": [
+              {
+                "command_pair": true,
+                "pair": [
+                  3,
+                  4
+                ],
+                "turn": 76
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  0,
+                  3
+                ],
+                "turn": 78
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  0,
+                  4
+                ],
+                "turn": 83
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  0,
+                  4
+                ],
+                "turn": 85
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  3,
+                  4
+                ],
+                "turn": 110
+              }
+            ],
+            "ticks_with_command_pair": 4
+          },
+          {
+            "agent": 6536563,
+            "game": 895033266,
+            "tick_count": 15,
+            "ticks": [
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  4
+                ],
+                "turn": 40
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  1,
+                  4
+                ],
+                "turn": 64
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  4
+                ],
+                "turn": 68
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  4
+                ],
+                "turn": 88
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  4
+                ],
+                "turn": 116
+              }
+            ],
+            "ticks_with_command_pair": 1
+          },
+          {
+            "agent": 6536563,
+            "game": 895033267,
+            "tick_count": 9,
+            "ticks": [
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  2
+                ],
+                "turn": 64
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  4
+                ],
+                "turn": 102
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  4
+                ],
+                "turn": 131
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  1,
+                  2
+                ],
+                "turn": 143
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  2
+                ],
+                "turn": 187
+              }
+            ],
+            "ticks_with_command_pair": 2
+          },
+          {
+            "agent": 6536563,
+            "game": 895033268,
+            "tick_count": 34,
+            "ticks": [
+              {
+                "command_pair": true,
+                "pair": [
+                  0,
+                  2
+                ],
+                "turn": 55
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  0,
+                  2
+                ],
+                "turn": 61
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  0,
+                  2
+                ],
+                "turn": 63
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  0,
+                  2
+                ],
+                "turn": 69
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  0,
+                  2
+                ],
+                "turn": 90
+              }
+            ],
+            "ticks_with_command_pair": 11
+          },
+          {
+            "agent": 6536563,
+            "game": 895033269,
+            "tick_count": 9,
+            "ticks": [
+              {
+                "command_pair": true,
+                "pair": [
+                  0,
+                  3
+                ],
+                "turn": 59
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  0,
+                  3
+                ],
+                "turn": 73
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  0,
+                  3
+                ],
+                "turn": 79
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  0,
+                  3
+                ],
+                "turn": 84
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  0,
+                  3
+                ],
+                "turn": 141
+              }
+            ],
+            "ticks_with_command_pair": 6
+          },
+          {
+            "agent": 6536563,
+            "game": 895033270,
+            "tick_count": 8,
+            "ticks": [
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 44
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 60
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 76
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 92
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 98
+              }
+            ],
+            "ticks_with_command_pair": 0
+          },
+          {
+            "agent": 6536563,
+            "game": 895033271,
+            "tick_count": 21,
+            "ticks": [
+              {
+                "command_pair": true,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 39
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 45
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 92
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 101
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  3,
+                  4
+                ],
+                "turn": 105
+              }
+            ],
+            "ticks_with_command_pair": 10
+          },
+          {
+            "agent": 6536563,
+            "game": 895033272,
+            "tick_count": 1,
+            "ticks": [
+              {
+                "command_pair": false,
+                "pair": [
+                  0,
+                  2
+                ],
+                "turn": 57
+              }
+            ],
+            "ticks_with_command_pair": 0
+          },
+          {
+            "agent": 6536563,
+            "game": 895033273,
+            "tick_count": 100,
+            "ticks": [
+              {
+                "command_pair": false,
+                "pair": [
+                  2,
+                  3
+                ],
+                "turn": 35
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 41
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 43
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 50
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  1,
+                  2
+                ],
+                "turn": 87
+              }
+            ],
+            "ticks_with_command_pair": 47
+          },
+          {
+            "agent": 6536563,
+            "game": 895033294,
+            "tick_count": 1,
+            "ticks": [
+              {
+                "command_pair": true,
+                "pair": [
+                  2,
+                  3
+                ],
+                "turn": 69
+              }
+            ],
+            "ticks_with_command_pair": 1
+          },
+          {
+            "agent": 6536563,
+            "game": 895033310,
+            "tick_count": 25,
+            "ticks": [
+              {
+                "command_pair": false,
+                "pair": [
+                  0,
+                  2
+                ],
+                "turn": 33
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  0,
+                  2
+                ],
+                "turn": 40
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  0,
+                  2
+                ],
+                "turn": 42
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  0,
+                  2
+                ],
+                "turn": 82
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  0,
+                  2
+                ],
+                "turn": 86
+              }
+            ],
+            "ticks_with_command_pair": 23
+          },
+          {
+            "agent": 6536563,
+            "game": 895033321,
+            "tick_count": 73,
+            "ticks": [
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  2
+                ],
+                "turn": 49
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 91
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  2,
+                  3
+                ],
+                "turn": 93
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  2
+                ],
+                "turn": 95
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 97
+              }
+            ],
+            "ticks_with_command_pair": 0
+          },
+          {
+            "agent": 6536563,
+            "game": 895033338,
+            "tick_count": 4,
+            "ticks": [
+              {
+                "command_pair": false,
+                "pair": [
+                  0,
+                  3
+                ],
+                "turn": 34
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  0,
+                  3
+                ],
+                "turn": 113
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  0,
+                  3
+                ],
+                "turn": 191
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  0,
+                  3
+                ],
+                "turn": 219
+              }
+            ],
+            "ticks_with_command_pair": 3
+          },
+          {
+            "agent": 6536563,
+            "game": 895033352,
+            "tick_count": 28,
+            "ticks": [
+              {
+                "command_pair": false,
+                "pair": [
+                  0,
+                  2
+                ],
+                "turn": 31
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  0,
+                  2
+                ],
+                "turn": 47
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  2,
+                  5
+                ],
+                "turn": 99
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  2,
+                  5
+                ],
+                "turn": 105
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  2,
+                  5
+                ],
+                "turn": 108
+              }
+            ],
+            "ticks_with_command_pair": 7
+          },
+          {
+            "agent": 6536563,
+            "game": 895033359,
+            "tick_count": 13,
+            "ticks": [
+              {
+                "command_pair": false,
+                "pair": [
+                  0,
+                  3
+                ],
+                "turn": 63
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  3,
+                  5
+                ],
+                "turn": 73
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  0,
+                  3
+                ],
+                "turn": 140
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  0,
+                  5
+                ],
+                "turn": 253
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  0,
+                  5
+                ],
+                "turn": 255
+              }
+            ],
+            "ticks_with_command_pair": 8
+          },
+          {
+            "agent": 6536563,
+            "game": 895033379,
+            "tick_count": 22,
+            "ticks": [
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 62
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 74
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 76
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  4
+                ],
+                "turn": 78
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 99
+              }
+            ],
+            "ticks_with_command_pair": 13
+          },
+          {
+            "agent": 6536563,
+            "game": 895033391,
+            "tick_count": 7,
+            "ticks": [
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 66
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 71
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 85
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 99
+              },
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  3
+                ],
+                "turn": 113
+              }
+            ],
+            "ticks_with_command_pair": 1
+          },
+          {
+            "agent": 6536563,
+            "game": 895033402,
+            "tick_count": 30,
+            "ticks": [
+              {
+                "command_pair": false,
+                "pair": [
+                  1,
+                  4
+                ],
+                "turn": 58
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  2,
+                  4
+                ],
+                "turn": 60
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  2,
+                  4
+                ],
+                "turn": 62
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  1,
+                  4
+                ],
+                "turn": 70
+              },
+              {
+                "command_pair": true,
+                "pair": [
+                  1,
+                  2
+                ],
+                "turn": 81
+              }
+            ],
+            "ticks_with_command_pair": 14
+          }
+        ],
+        "games_with_ticks": 132,
+        "pairs_scanned": 141,
+        "ticks_total": 3256,
+        "ticks_with_move_command_pair": 1597
+      },
+      "negative_side_clean": false,
+      "passed": true,
+      "positive_fixtures": 9,
+      "positive_hits": 9,
+      "positive_misses": [],
+      "premise_note": "the negative side is a joint test of detector and the R-1 premise; a non-zero result names both as in doubt and does not pick the convenient one"
+    },
+    {
+      "batches": [
+        {
+          "batch": "batch1",
+          "games": 149,
+          "refused": 0,
+          "version": "v2"
+        },
+        {
+          "batch": "batch2",
+          "games": 160,
+          "refused": 0,
+          "version": "v2"
+        },
+        {
+          "batch": "batch3",
+          "games": 160,
+          "refused": 0,
+          "version": "v3"
+        }
+      ],
+      "control": "K4 telemetry decode",
+      "fired": true,
+      "games": 469,
+      "passed": true,
+      "refused_games": 0,
+      "v3_grammar_matches_reviewed": true,
+      "v3_grammar_provenance": "imported from claude_1/narrate3/run_gp3_parity.py:decode",
+      "v3_grammar_source_sha256": "0537741d53e65da10b10a0a5cb88f6a78fbee5234672488f9dc3a1d68cf293bf"
+    },
+    {
+      "control": "K5 exhaustiveness and refusal accounting",
+      "fired": true,
+      "passed": true,
+      "rows": [
+        {
+          "batch": "batch1",
+          "classes_total_equals_detector_total": true,
+          "classified_episodes": 22,
+          "detector_episodes": 22,
+          "telemetry_refused_episodes": 0
+        },
+        {
+          "batch": "batch2",
+          "classes_total_equals_detector_total": true,
+          "classified_episodes": 24,
+          "detector_episodes": 24,
+          "telemetry_refused_episodes": 0
+        },
+        {
+          "batch": "batch3",
+          "classes_total_equals_detector_total": true,
+          "classified_episodes": 34,
+          "detector_episodes": 34,
+          "telemetry_refused_episodes": 0
+        },
+        {
+          "batch": "champion",
+          "classes_total_equals_detector_total": true,
+          "classified_episodes": 382,
+          "detector_episodes": 382,
+          "telemetry_refused_episodes": 0
+        }
+      ]
+    }
+  ],
+  "controls_all_fired": true,
+  "controls_all_passed": true,
+  "definitions": "claude_1/dance1/definitions-g1-r3-2026-08-24.md (DEFINITIONS_ACCEPTED, codex_1 20260824T172730Z)",
+  "instrument_pass": {
+    "blocker_distinct_cells_to_game_end_by_k": {
+      "k=3|22": 1,
+      "k=3|26": 1,
+      "k=3|32": 4,
+      "k=3|36": 1,
+      "k=3|39": 1,
+      "k=3|40": 1,
+      "k=3|7": 1,
+      "k=3|9": 1,
+      "k>3|1": 10,
+      "k>3|10": 2,
+      "k>3|11": 1,
+      "k>3|2": 8,
+      "k>3|36": 1,
+      "k>3|4": 1
+    },
+    "blocker_liveness": {
+      "count": 0,
+      "rows": []
+    },
+    "class_by_window_length": {
+      "BLOCKED_BY_WORKING_TEAMMATE|k=3": 11,
+      "BLOCKED_BY_WORKING_TEAMMATE|k>3": 23,
+      "FIXED_TARGET_NO_BLOCKER|k=3": 12,
+      "FIXED_TARGET_NO_BLOCKER|k>3": 10,
+      "POSITIONAL_EXCHANGE|k>3": 3,
+      "UNCLASSIFIED|k=3": 11,
+      "UNCLASSIFIED|k>3": 10
+    },
+    "class_table": {
+      "BLOCKED_BY_IDLE_TEAMMATE": "EMPTY",
+      "BLOCKED_BY_WORKING_TEAMMATE": 34,
+      "FIXED_TARGET_NO_BLOCKER": 22,
+      "GOAL_FLIP": "EMPTY",
+      "NO_TARGET": "EMPTY",
+      "POSITIONAL_EXCHANGE": 3,
+      "UNCLASSIFIED": 21
+    },
+    "classes": {
+      "BLOCKED_BY_WORKING_TEAMMATE": 34,
+      "FIXED_TARGET_NO_BLOCKER": 22,
+      "POSITIONAL_EXCHANGE": 3,
+      "UNCLASSIFIED": 21
+    },
+    "f4_labels": {
+      "CONSTANT": 44,
+      "MIXED": 36
+    },
+    "f7_end": {
+      "DANCER_PROGRESS": 52,
+      "GAME_END_NO_EVENT": 9,
+      "HOLDING_PEER_MOVED": 16,
+      "SWAP_TICK_WITH_DANCER": 3
+    },
+    "late_peer_sensitivity": {
+      "count": 0,
+      "rows": []
+    },
+    "mech": {
+      "BLOCKER_WORKING": 34,
+      "PEERS_NO_BLOCKER": 46
+    },
+    "mech_split_of_no_blocker_classes": {
+      "FIXED_TARGET_NO_BLOCKER|PEERS_NO_BLOCKER": 22,
+      "POSITIONAL_EXCHANGE|PEERS_NO_BLOCKER": 3,
+      "UNCLASSIFIED|PEERS_NO_BLOCKER": 21
+    },
+    "swap_by_mech": {
+      "no_swap|BLOCKER_WORKING": 26,
+      "no_swap|PEERS_NO_BLOCKER": 43,
+      "swap|BLOCKER_WORKING": 8,
+      "swap|PEERS_NO_BLOCKER": 3
+    }
+  },
+  "instrument_pass_by_batch": {
+    "batch1": {
+      "blocker_distinct_cells_to_game_end_by_k": {
+        "k=3|22": 1,
+        "k=3|32": 1,
+        "k>3|1": 2,
+        "k>3|2": 2
+      },
+      "blocker_liveness": {
+        "count": 0,
+        "rows": []
+      },
+      "class_by_window_length": {
+        "BLOCKED_BY_WORKING_TEAMMATE|k=3": 2,
+        "BLOCKED_BY_WORKING_TEAMMATE|k>3": 4,
+        "FIXED_TARGET_NO_BLOCKER|k=3": 3,
+        "FIXED_TARGET_NO_BLOCKER|k>3": 2,
+        "POSITIONAL_EXCHANGE|k>3": 1,
+        "UNCLASSIFIED|k=3": 4,
+        "UNCLASSIFIED|k>3": 6
+      },
+      "class_table": {
+        "BLOCKED_BY_IDLE_TEAMMATE": "EMPTY",
+        "BLOCKED_BY_WORKING_TEAMMATE": 6,
+        "FIXED_TARGET_NO_BLOCKER": 5,
+        "GOAL_FLIP": "EMPTY",
+        "NO_TARGET": "EMPTY",
+        "POSITIONAL_EXCHANGE": 1,
+        "UNCLASSIFIED": 10
+      },
+      "classes": {
+        "BLOCKED_BY_WORKING_TEAMMATE": 6,
+        "FIXED_TARGET_NO_BLOCKER": 5,
+        "POSITIONAL_EXCHANGE": 1,
+        "UNCLASSIFIED": 10
+      },
+      "f4_labels": {
+        "CONSTANT": 10,
+        "MIXED": 12
+      },
+      "f7_end": {
+        "DANCER_PROGRESS": 17,
+        "GAME_END_NO_EVENT": 2,
+        "HOLDING_PEER_MOVED": 2,
+        "SWAP_TICK_WITH_DANCER": 1
+      },
+      "late_peer_sensitivity": {
+        "count": 0,
+        "rows": []
+      },
+      "mech": {
+        "BLOCKER_WORKING": 6,
+        "PEERS_NO_BLOCKER": 16
+      },
+      "mech_split_of_no_blocker_classes": {
+        "FIXED_TARGET_NO_BLOCKER|PEERS_NO_BLOCKER": 5,
+        "POSITIONAL_EXCHANGE|PEERS_NO_BLOCKER": 1,
+        "UNCLASSIFIED|PEERS_NO_BLOCKER": 10
+      },
+      "swap_by_mech": {
+        "no_swap|BLOCKER_WORKING": 4,
+        "no_swap|PEERS_NO_BLOCKER": 15,
+        "swap|BLOCKER_WORKING": 2,
+        "swap|PEERS_NO_BLOCKER": 1
+      }
+    },
+    "batch2": {
+      "blocker_distinct_cells_to_game_end_by_k": {
+        "k=3|26": 1,
+        "k=3|32": 1,
+        "k=3|36": 1,
+        "k=3|39": 1,
+        "k=3|40": 1,
+        "k>3|1": 1,
+        "k>3|10": 1,
+        "k>3|2": 5,
+        "k>3|36": 1
+      },
+      "blocker_liveness": {
+        "count": 0,
+        "rows": []
+      },
+      "class_by_window_length": {
+        "BLOCKED_BY_WORKING_TEAMMATE|k=3": 5,
+        "BLOCKED_BY_WORKING_TEAMMATE|k>3": 8,
+        "FIXED_TARGET_NO_BLOCKER|k=3": 5,
+        "FIXED_TARGET_NO_BLOCKER|k>3": 1,
+        "POSITIONAL_EXCHANGE|k>3": 1,
+        "UNCLASSIFIED|k=3": 2,
+        "UNCLASSIFIED|k>3": 2
+      },
+      "class_table": {
+        "BLOCKED_BY_IDLE_TEAMMATE": "EMPTY",
+        "BLOCKED_BY_WORKING_TEAMMATE": 13,
+        "FIXED_TARGET_NO_BLOCKER": 6,
+        "GOAL_FLIP": "EMPTY",
+        "NO_TARGET": "EMPTY",
+        "POSITIONAL_EXCHANGE": 1,
+        "UNCLASSIFIED": 4
+      },
+      "classes": {
+        "BLOCKED_BY_WORKING_TEAMMATE": 13,
+        "FIXED_TARGET_NO_BLOCKER": 6,
+        "POSITIONAL_EXCHANGE": 1,
+        "UNCLASSIFIED": 4
+      },
+      "f4_labels": {
+        "CONSTANT": 16,
+        "MIXED": 8
+      },
+      "f7_end": {
+        "DANCER_PROGRESS": 12,
+        "GAME_END_NO_EVENT": 1,
+        "HOLDING_PEER_MOVED": 9,
+        "SWAP_TICK_WITH_DANCER": 2
+      },
+      "late_peer_sensitivity": {
+        "count": 0,
+        "rows": []
+      },
+      "mech": {
+        "BLOCKER_WORKING": 13,
+        "PEERS_NO_BLOCKER": 11
+      },
+      "mech_split_of_no_blocker_classes": {
+        "FIXED_TARGET_NO_BLOCKER|PEERS_NO_BLOCKER": 6,
+        "POSITIONAL_EXCHANGE|PEERS_NO_BLOCKER": 1,
+        "UNCLASSIFIED|PEERS_NO_BLOCKER": 4
+      },
+      "swap_by_mech": {
+        "no_swap|BLOCKER_WORKING": 9,
+        "no_swap|PEERS_NO_BLOCKER": 10,
+        "swap|BLOCKER_WORKING": 4,
+        "swap|PEERS_NO_BLOCKER": 1
+      }
+    },
+    "batch3": {
+      "blocker_distinct_cells_to_game_end_by_k": {
+        "k=3|32": 2,
+        "k=3|7": 1,
+        "k=3|9": 1,
+        "k>3|1": 7,
+        "k>3|10": 1,
+        "k>3|11": 1,
+        "k>3|2": 1,
+        "k>3|4": 1
+      },
+      "blocker_liveness": {
+        "count": 0,
+        "rows": []
+      },
+      "class_by_window_length": {
+        "BLOCKED_BY_WORKING_TEAMMATE|k=3": 4,
+        "BLOCKED_BY_WORKING_TEAMMATE|k>3": 11,
+        "FIXED_TARGET_NO_BLOCKER|k=3": 4,
+        "FIXED_TARGET_NO_BLOCKER|k>3": 7,
+        "POSITIONAL_EXCHANGE|k>3": 1,
+        "UNCLASSIFIED|k=3": 5,
+        "UNCLASSIFIED|k>3": 2
+      },
+      "class_table": {
+        "BLOCKED_BY_IDLE_TEAMMATE": "EMPTY",
+        "BLOCKED_BY_WORKING_TEAMMATE": 15,
+        "FIXED_TARGET_NO_BLOCKER": 11,
+        "GOAL_FLIP": "EMPTY",
+        "NO_TARGET": "EMPTY",
+        "POSITIONAL_EXCHANGE": 1,
+        "UNCLASSIFIED": 7
+      },
+      "classes": {
+        "BLOCKED_BY_WORKING_TEAMMATE": 15,
+        "FIXED_TARGET_NO_BLOCKER": 11,
+        "POSITIONAL_EXCHANGE": 1,
+        "UNCLASSIFIED": 7
+      },
+      "f4_labels": {
+        "CONSTANT": 18,
+        "MIXED": 16
+      },
+      "f7_end": {
+        "DANCER_PROGRESS": 23,
+        "GAME_END_NO_EVENT": 6,
+        "HOLDING_PEER_MOVED": 5
+      },
+      "late_peer_sensitivity": {
+        "count": 0,
+        "rows": []
+      },
+      "mech": {
+        "BLOCKER_WORKING": 15,
+        "PEERS_NO_BLOCKER": 19
+      },
+      "mech_split_of_no_blocker_classes": {
+        "FIXED_TARGET_NO_BLOCKER|PEERS_NO_BLOCKER": 11,
+        "POSITIONAL_EXCHANGE|PEERS_NO_BLOCKER": 1,
+        "UNCLASSIFIED|PEERS_NO_BLOCKER": 7
+      },
+      "swap_by_mech": {
+        "no_swap|BLOCKER_WORKING": 13,
+        "no_swap|PEERS_NO_BLOCKER": 18,
+        "swap|BLOCKER_WORKING": 2,
+        "swap|PEERS_NO_BLOCKER": 1
+      }
+    }
+  },
+  "status": "PASS",
+  "task": "20260824-real-game-dance-attribution"
+}
