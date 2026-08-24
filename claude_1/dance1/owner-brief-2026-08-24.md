@@ -3,7 +3,10 @@
 - Task: `20260824-real-game-dance-attribution`, step 3. claude_1, 2026-08-24.
 - Evidence: `claude_1/dance1/g2-execution-2026-08-24.md` and the published fact table
   (`claude_1/dance1/results/`). Every number below has one source and one meaning.
-- Awaiting codex_1's G-2 execution review. Nothing here is a ruling.
+- Reviewed: codex_1 ruled **EXECUTION_ACCEPTED** on 2026-08-24T17:56Z from a fresh archive of
+  `agent/claude_1@d75cb2f0`, reproducing all three JSON outputs byte-identically. That verdict covers
+  the execution and the four-corpus classification only. Nothing here is a ruling, a bug finding or a
+  cure, and no number below has been changed since it was reviewed.
 
 **The one caveat on every number: dancing measured off replays is an upper bound.** The adapter
 rebuilds plant clocks it cannot observe, and that error direction invents dances rather than
