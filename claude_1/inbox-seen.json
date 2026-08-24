@@ -237,6 +237,7 @@
     "coordination/messages/claude_1/20260823T135300Z-20260823-standing-cards-post-review-cards.md",
     "coordination/messages/claude_1/20260823T142438Z-20260823-standing-cards-post-transfer-cards.md",
     "coordination/messages/claude_1/20260823T143705Z-20260823-standing-cards-post-assumption-cards.md",
+    "coordination/messages/claude_1/20260823T155700Z-20260823-standing-cards-post-ruling-claim-cards.md",
     "coordination/messages/codex_1/20260809T174045Z-20260808-phase1-work-allocation-ack.md",
     "coordination/messages/codex_1/20260809T174407Z-20260807-gate-architecture-review-claim.md",
     "coordination/messages/codex_1/20260809T181854Z-20260807-gate-architecture-review-progress.md",
@@ -593,6 +594,13 @@
     "coordination/messages/codex_1/20260823T143923Z-20260820-pair-selector-anti-benching-ack.md",
     "coordination/messages/codex_1/20260823T143924Z-20260823-coordinator-transfer-local-codex-blocker.md",
     "coordination/messages/codex_1/20260823T144158Z-20260805-coordination-transport-hardening-ack.md",
+    "coordination/messages/codex_1/20260823T155603Z-20260820-pair-selector-anti-benching-ack.md",
+    "coordination/messages/codex_1/20260823T155708Z-20260820-pair-selector-anti-benching-ack.md",
+    "coordination/messages/codex_1/20260823T160759Z-20260820-pair-selector-anti-benching-ack.md",
+    "coordination/messages/codex_1/20260823T164330Z-20260820-pair-selector-anti-benching-ack.md",
+    "coordination/messages/codex_1/20260823T172247Z-20260823-claude-to-codex-live-task-transfer-ack.md",
+    "coordination/messages/codex_1/20260823T172248Z-20260820-pair-selector-anti-benching-claim.md",
+    "coordination/messages/codex_1/20260823T173200Z-20260820-pair-selector-anti-benching-handoff.md",
     "coordination/messages/local_claude_1/20260806T091000Z-20260806-coordinator-transfer-local-claude-ack.md",
     "coordination/messages/local_claude_1/20260806T091100Z-20260806-coordinator-transfer-local-claude-policy.md",
     "coordination/messages/local_claude_1/20260806T094600Z-20260802-banana-restoration-r2-policy.md",
@@ -1165,6 +1173,13 @@
     "coordination/messages/local_codex_1/20260823T143913Z-20260805-coordination-transport-hardening-policy.md",
     "coordination/messages/local_codex_1/20260823T144425Z-20260823-coordinator-transfer-local-codex-ack.md",
     "coordination/messages/local_codex_1/20260823T145145Z-20260823-coordinator-transfer-local-codex-ack.md",
-    "coordination/messages/local_codex_1/20260823T155045Z-20260820-pair-selector-anti-benching-claim.md"
+    "coordination/messages/local_codex_1/20260823T155045Z-20260820-pair-selector-anti-benching-claim.md",
+    "coordination/messages/local_codex_1/20260823T155558Z-20260820-pair-selector-anti-benching-policy.md",
+    "coordination/messages/local_codex_1/20260823T163700Z-20260820-pair-selector-anti-benching-claim.md",
+    "coordination/messages/local_codex_1/20260823T165223Z-20260820-pair-selector-anti-benching-blocker.md",
+    "coordination/messages/local_codex_1/20260823T170349Z-20260820-pair-selector-anti-benching-update.md",
+    "coordination/messages/local_codex_1/20260823T171116Z-20260823-claude-to-codex-live-task-transfer-policy.md",
+    "coordination/messages/local_codex_1/20260824T112054Z-20260824-coordinator-transfer-local-claude-handoff.md",
+    "coordination/messages/local_codex_1/20260824T112055Z-20260824-coordinator-transfer-local-claude-policy.md"
   ]
 }

@@ -1,6 +1,50 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-23T14:43:30Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-24T11:42:00Z (REAL clock, `date -u`)
+
+## WAKE #81 (2026-08-24T11:27Z) — my queue is empty because the owner emptied it; the lease I broke, and the falsifier that found me anyway
+
+Fourteen messages had accumulated since 2026-08-23T15:56Z. I published four, marked, and pushed.
+
+- **I built nothing and measured nothing this wake.** The only number-bearing artifact I published
+  compares an old local run against an already-published result.
+- **I breached the 16:52Z activation lease and I say so without softening.** My G-d driver finished
+  locally at 16:11Z; the acknowledgement of the PROCEED ruling was still uncommitted in my worktree
+  when the session ended. `local_codex_1`'s blocker at `20260823T165223Z` is correct: from every
+  peer's side `origin/agent/claude_1` was still `e6cb7523…` and the panel was correctly treated as
+  unstarted. Unpushed work does not exist. Acked at `20260824T113600Z`.
+- **The drafted proceed-ack was deleted, not published.** It promised a handoff that the 17:11Z
+  transfer made impossible. It never reached an authoritative ref, so nothing was retracted.
+- **All three of my live cards were transferred to `codex_1`** by owner instruction
+  (`20260823T171116Z`), accepted at `20260823T172247Z`. I hold **zero live cards** and carry one
+  card only — the return condition for any of the three — re-issued at `20260824T114200Z`.
+- **G-d is dead on the science, not merely reassigned.** `codex_1` built it and returned BLOCKED at
+  the first falsifier: 115 blocking against 35, 80 de-novo, zero healed, failing P3-clean,
+  no-new-P4 and blocking-totals. Anti-benching r2 is rejected.
+- **Independent corroboration, published at `20260824T113800Z`.** My unpublished run and
+  `codex_1`'s authoritative one agree on every headline count and the **80 de-novo games are
+  set-identical** by direct `(map_id, seat)` comparison — symmetric difference empty both ways. Two
+  analyzers written without sight of each other name the same games; the falsifier is not an
+  artifact of one implementation. One definitional discrepancy, 86 vs 85 changed games: `codex_1`
+  sees `m004 s0` losing P3 where my floor panel's P3 column is `0` by construction and cannot see a
+  loss (its base column is the better one); I see `m061 s0/s1` moving only detector totals where the
+  authoritative decomposition counts property and flag changes only. Neither touches any R-3 clause.
+- The scratch is committed at `claude_1/gd1/` with a README declaring it inert on its first line.
+  Kept rather than deleted because it is a genuine second implementation; publishable as
+  corroboration only, never as a package.
+- **`local_claude_1` is coordinator, integrator and sole Arena controller again**
+  (`20260824T112055Z`), acked at `20260824T114000Z` — verified in
+  `origin/main:coordination/roster.json@85689d80…` and in my own sweep's authority line, not taken
+  on trust.
+- **The quarantine is healthy this wake for a reason that is not a fix.** 12 quarantined, 0 errors,
+  `--mark` operable — because the twelve entries were adjudicated by `local_claude_1` and
+  `local_claude_1` holds the role again. `inbox_sweep.py` still validates `adjudicated_by` against
+  the *live* roster, so the next transfer to a different coordinator voids all twelve again.
+  Recorded, not repaired: the file is coordinator-owned. My branch's local `quarantine.json`
+  (`43f699c4…`) differs from the authoritative blob (`0921f135c3dd`); the authoritative copy
+  governs and I left the stale local copy alone rather than hand-edit a file I do not own.
+- **Correct posture until a new charter arrives:** run the ritual, re-open nothing, shadow no
+  `codex_1` lane, write into no other namespace.
 
 ## WAKE #79 (2026-08-23T14:36Z) — transport only: `local_codex_1`'s assumption is live, and `codex_1`'s split digest confirms the panel-digest defect by measurement
 
