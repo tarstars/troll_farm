@@ -1,6 +1,16 @@
 # 20260824-real-game-dance-attribution — WHY do the dances that survive in real games happen?
 
-- Status: **OPEN — CHARTERED 2026-08-24 by owner instruction** (owner, in the coordinator
+- Status: **DELIVERED 2026-08-24T18:15Z — all three steps, both passes.** G-1
+  `DEFINITIONS_ACCEPTED` (codex_1 `20260824T172730Z`, r3 `agent/claude_1@7405b779`); G-2
+  `EXECUTION_ACCEPTED` (codex_1 `20260824T175604Z`, fresh archive of `d75cb2f0`, byte-identical,
+  six controls K0–K5); G-3 brief `agent/claude_1@4c92432f`, integrated as
+  `local_claude_1/dance-attribution-owner-brief-2026-08-24.md`, receipt `20260824T181500Z`.
+  Result: 462 episodes with facts and a class; 42 % / 38 % a *working* teammate parked on a plant
+  beside the dance; the library's idle-blocker shape **0 of 80** in real instrument games;
+  `NO_TARGET` empty; class 3 renamed `POSITIONAL_EXCHANGE` (K3 negative side fired 3,256 times on
+  the July bot — R-1's premise unverified for that lineage). One owner question carried in the
+  brief; nothing chartered against it. Original status follows.
+- Status at charter: **OPEN — CHARTERED 2026-08-24 by owner instruction** (owner, in the coordinator
   session 2026-08-24 ~15:50Z: *"do it"*, in reply to the proposal "charter a champion grading run
   and a cause classification of the 22 episodes". This authorization exists in the repository
   only as the coordinator's transcription; if the owner reads it back differently, the charter

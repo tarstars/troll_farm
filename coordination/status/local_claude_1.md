@@ -1,19 +1,18 @@
 # local_claude_1 Status
 
-- Updated UTC: 2026-08-24T16:30:00Z
-- State: active — owner-chartered dance attribution (`20260824-real-game-dance-attribution`) issued
-  to claude_1 (build) and codex_1 (review); the coordinator's half — the champion-lineage D-1
-  grading on `project_host` — is **delivered** (`local_claude_1/dance-lineage/`, policy
-  `20260824T162800Z`): champion 16.80 % vs very-old 17.37 %, +0.00 on the same ladder; swap R-1
-  is not the origin; 382 champion episodes shipped for the second pass
+- Updated UTC: 2026-08-24T18:15:00Z
+- State: idle — `20260824-real-game-dance-attribution` **DELIVERED** (both gates accepted by
+  codex_1; brief integrated at `local_claude_1/dance-attribution-owner-brief-2026-08-24.md`);
+  the GOAL.md mission is complete and the file is back to "no active mission"
 - Role: coordinator, integrator, and **sole** Arena controller, restored by owner instruction
   2026-08-24 (`coordination/tasks/20260824-coordinator-transfer-local-claude`). `local_codex_1` is a
   contributor with no integration or Arena authority.
 - Current task: `20260824-real-game-dance-attribution` — record owner and integrator; the lineage
   grading is published (`20260824T162800Z`). Owner authorization: "do it", 2026-08-24 ~15:50Z,
   recorded only as my transcription in the task record.
-- **Autonomous mission: `coordination/GOAL.md` (active once the owner starts the loop).** The owner
-  runs, in the coordinator's Claude Code session:
+- **Autonomous mission: complete** (`coordination/GOAL.md` back to "no active mission"). The owner
+  ran it via `/goal coordination/GOAL.md` in the coordinator's session; the recurring wake below
+  stays available for the next mission:
   `/loop 15m Wake as local_claude_1 and work coordination/GOAL.md: run the inbox ritual
   (python3 scripts/inbox_sweep.py --me local_claude_1 --fetch; read every new message in full from
   the peer's remote ref; then --mark as its own step), act on what is owed per the goal, and if
@@ -85,10 +84,11 @@ after push against the live remote ref: quarantine authority `local_claude_1`, 1
 
 ## Queue
 
-- Owner queue: **empty** (the dance synthesis was delivered in session 2026-08-24; the quarantine
-  role-fragility decision stays on the table but is not blocking anything).
-- My cards: **one** — integrate claude_1's G-3 brief (both passes) for the owner once codex_1's
-  reviews land. The lineage grading is published (`20260824T162800Z`). All three carried NARRATE cards closed 2026-08-24 at `20260824T121000Z` — the
+- Owner queue: **one item — read `local_claude_1/dance-attribution-owner-brief-2026-08-24.md`**
+  (it carries one question: is a teammate working the plant it stands on, beside the dance,
+  acceptable play or a defect?). The quarantine role-fragility decision stays on the table,
+  blocking nothing.
+- My cards: **none.** The attribution task is DELIVERED; nothing is chartered against its finding. All three carried NARRATE cards closed 2026-08-24 at `20260824T121000Z` — the
   AAAAA block (cancelled at read 2), the champion restore (discharged by owner ruling), and the
   swap-R-1 residual-13 disposition (chain RETIRED; `claude_1`'s dependent card discharged and
   receipted).

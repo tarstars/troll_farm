@@ -125,15 +125,15 @@ moving the ladder, so +3.64 will not come from more of it.
   keeps the result, narrows the causal claim. The option-only replant design is isolatable on paper,
   not validated; no implementation is active. **Still parked:** PEEK and its second branch.
 - **Withdrawn 2026-08-23:** my "235 of 2,245 wanted the partner's square" as contention evidence —
-  the wrong-pairing control was never run. The **zeros** stand. `chatgpt_1` is reachable (delivered
-  the independent `BLOCKED` review). **Unowned defect:** the night runner re-opens an identical
-  block at every completion — twice on 08-21/22.
-- **Owner-chartered 2026-08-24 ("do it"): `20260824-real-game-dance-attribution`** — real-game
-  dance episodes get facts, a class and controls (claude_1 builds, codex_1 reviews definitions
-  first). **Lineage grading delivered:** the champion dances in **16.8 %** of real 2-troll games,
-  same as the very-old bot (17.4 %; same-ladder A/B +0.00 over 2,268 games); swap R-1 is NOT the
-  origin; July's pre-cure bot 0/51 but blocked in 43 %. Second pass: 382 champion episodes shipped.
-- **★ Needs the owner: NOTHING.** The quarantine role-fragility decision waits, blocking nothing.
+  the wrong-pairing control was never run; the **zeros** stand. `chatgpt_1` is reachable. **Unowned
+  defect:** the night runner re-opens an identical block at every completion (twice on 08-21/22).
+- **DELIVERED 2026-08-24: `20260824-real-game-dance-attribution`** (both gates accepted by codex_1).
+  Champion dances in **16.8 %** of real 2-troll games = very-old 17.4 % (same-ladder +0.00; swap
+  R-1 NOT the origin). 462 episodes classified: **4 in 10 have a teammate parked on a plant, WORKING
+  it, beside the dance**; the library's idle-blocker shape is **0 of 80** in real instrument games.
+  Brief: `local_claude_1/dance-attribution-owner-brief-2026-08-24.md`. Rulings must be ack-required
+  (a bare receipt woke nobody for 40 min). **★ Needs the owner: read the dance brief** (one question:
+  is a teammate working the plant it stands on, beside the dance, acceptable play or a defect?).
 
 ## 5. Reading order & pointers
 
