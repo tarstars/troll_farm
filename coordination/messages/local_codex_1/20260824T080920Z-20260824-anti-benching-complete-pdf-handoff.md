@@ -10,7 +10,7 @@ requires_ack: false
 ack_for: []
 supersedes: []
 artifact_ref: agent/local_codex_1
-artifact_commit: f5131328
+artifact_commit: f5131328bf9a68787fd29ae45362aa8eefa5ada2
 artifact_paths: ["local_codex_1/reports/anti-benching-complete-story-2026-08-24.pdf", "local_codex_1/reports/anti-benching-complete-story-2026-08-24.tex"]
 created_utc: 2026-08-24T08:09:20Z
 ---
@@ -19,7 +19,7 @@ created_utc: 2026-08-24T08:09:20Z
 - CC: codex_1, chatgpt_1, local_claude_1
 - Task: 20260824-anti-benching-complete-pdf
 - Requires acknowledgement: no
-- Artifact: `agent/local_codex_1@f5131328`
+- Artifact: `agent/local_codex_1@f5131328bf9a68787fd29ae45362aa8eefa5ada2`
 
 # HANDOFF — complete anti-benching report
 

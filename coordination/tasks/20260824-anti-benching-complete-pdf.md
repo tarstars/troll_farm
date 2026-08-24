@@ -34,6 +34,6 @@
   validated or authorized.
 - Resident verification: SHA-256 remained
   `fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f`.
-- Artifact commit: `agent/local_codex_1@f5131328`.
+- Artifact commit: `agent/local_codex_1@f5131328bf9a68787fd29ae45362aa8eefa5ada2`.
 - Typed handoff:
   `coordination/messages/local_codex_1/20260824T080920Z-20260824-anti-benching-complete-pdf-handoff.md`.
