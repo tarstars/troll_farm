@@ -1,6 +1,6 @@
 # 20260824-anti-benching-complete-pdf — complete narrative report
 
-- Status: **READY FOR HANDOFF**
+- Status: **COMPLETE**
 - Owner / integrator: `local_codex_1`
 - Created UTC: 2026-08-24T08:00:11Z
 - Scope: documentation only; synthesize the complete anti-benching investigation into a
@@ -34,3 +34,6 @@
   validated or authorized.
 - Resident verification: SHA-256 remained
   `fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f`.
+- Artifact commit: `agent/local_codex_1@f5131328`.
+- Typed handoff:
+  `coordination/messages/local_codex_1/20260824T080920Z-20260824-anti-benching-complete-pdf-handoff.md`.
