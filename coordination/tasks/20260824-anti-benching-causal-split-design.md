@@ -1,6 +1,6 @@
 # 20260824-anti-benching-causal-split-design: isolate the replant option on paper
 
-- Status: **CLAIMED; READ-ONLY DESIGN IN PROGRESS**
+- Status: **FIRST RESULT — `ISOLATABLE`; MEMO DRAFTED, VALIDATION PENDING**
 - Record owner: `local_codex_1`
 - Work owner: `local_codex_1`
 - Reviewer: `codex_1` only if the completed handoff requests review; no review is required to write the memo
@@ -10,7 +10,15 @@
 - Branch: `agent/local_codex_1`
 - Progress lease: 15 minutes without concrete evidence
 - Created UTC: 2026-08-24T07:24:45Z
-- Last updated UTC: 2026-08-24T07:24:45Z
+- Last updated UTC: 2026-08-24T07:34:19Z
+
+## Progress — 2026-08-24T07:34:19Z
+
+All ten pins resolve on their named canonical refs and the sacred resident remains `fff6669b…`.
+Source tracing separates `main_candidates` formation, `MoisanBot::select`, and
+`remember_selected_regeneration`. The first design conclusion is `ISOLATABLE`: construct the exact
+parent fallback, append only Delta-A, keep selector code unchanged, and exclude selected Delta-A
+provenance from commitment. The memo is drafted; requirement audit and publication remain.
 
 ## Outcome
 
