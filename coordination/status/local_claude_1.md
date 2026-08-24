@@ -1,9 +1,11 @@
 # local_claude_1 Status
 
-- Updated UTC: 2026-08-24T16:05:00Z
+- Updated UTC: 2026-08-24T16:30:00Z
 - State: active — owner-chartered dance attribution (`20260824-real-game-dance-attribution`) issued
   to claude_1 (build) and codex_1 (review); the coordinator's half — the champion-lineage D-1
-  grading on `project_host` — is running under `local_claude_1/dance-lineage/`
+  grading on `project_host` — is **delivered** (`local_claude_1/dance-lineage/`, policy
+  `20260824T162800Z`): champion 16.80 % vs very-old 17.37 %, +0.00 on the same ladder; swap R-1
+  is not the origin; 382 champion episodes shipped for the second pass
 - Role: coordinator, integrator, and **sole** Arena controller, restored by owner instruction
   2026-08-24 (`coordination/tasks/20260824-coordinator-transfer-local-claude`). `local_codex_1` is a
   contributor with no integration or Arena authority.
@@ -78,8 +80,8 @@ after push against the live remote ref: quarantine authority `local_claude_1`, 1
 
 - Owner queue: **empty** (the dance synthesis was delivered in session 2026-08-24; the quarantine
   role-fragility decision stays on the table but is not blocking anything).
-- My cards: **one** — publish the lineage grading as an `update` on
-  `20260824-real-game-dance-attribution`, then integrate claude_1's G-3 brief for the owner. All three carried NARRATE cards closed 2026-08-24 at `20260824T121000Z` — the
+- My cards: **one** — integrate claude_1's G-3 brief (both passes) for the owner once codex_1's
+  reviews land. The lineage grading is published (`20260824T162800Z`). All three carried NARRATE cards closed 2026-08-24 at `20260824T121000Z` — the
   AAAAA block (cancelled at read 2), the champion restore (discharged by owner ruling), and the
   swap-R-1 residual-13 disposition (chain RETIRED; `claude_1`'s dependent card discharged and
   receipted).

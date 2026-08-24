@@ -128,11 +128,11 @@ moving the ladder, so +3.64 will not come from more of it.
   the wrong-pairing control was never run. The **zeros** stand. `chatgpt_1` is reachable (delivered
   the independent `BLOCKED` review). **Unowned defect:** the night runner re-opens an identical
   block at every completion — twice on 08-21/22.
-- **Owner-chartered 2026-08-24 ("do it"): `20260824-real-game-dance-attribution`** — the 22+
-  dance episodes that survive in real games get facts, a class and controls (claude_1 builds,
-  codex_1 reviews definitions first); the coordinator grades the champion lineage's own real
-  games for the same detector on `project_host`. Hypothesis, not finding: the 11 % was measured
-  on a bot carrying swap R-1; the pre-cure bot at two trolls danced in 0 of 51.
+- **Owner-chartered 2026-08-24 ("do it"): `20260824-real-game-dance-attribution`** — real-game
+  dance episodes get facts, a class and controls (claude_1 builds, codex_1 reviews definitions
+  first). **Lineage grading delivered:** the champion dances in **16.8 %** of real 2-troll games,
+  same as the very-old bot (17.4 %; same-ladder A/B +0.00 over 2,268 games); swap R-1 is NOT the
+  origin; July's pre-cure bot 0/51 but blocked in 43 %. Second pass: 382 champion episodes shipped.
 - **★ Needs the owner: NOTHING.** The quarantine role-fragility decision waits, blocking nothing.
 
 ## 5. Reading order & pointers

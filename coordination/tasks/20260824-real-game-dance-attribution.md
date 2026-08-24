@@ -4,7 +4,11 @@
   session 2026-08-24 ~15:50Z: *"do it"*, in reply to the proposal "charter a champion grading run
   and a cause classification of the 22 episodes". This authorization exists in the repository
   only as the coordinator's transcription; if the owner reads it back differently, the charter
-  is withdrawn.)
+  is withdrawn.) **Coordinator's half DELIVERED 2026-08-24T16:28Z**
+  (`20260824T162800Z-…-policy.md`): the champion dances in **16.80 %** of its real 2-troll games,
+  the very-old bot in 17.37 %, cure C 16.85 %, the instrument 14.57 % (n.s.); same-ladder A/B
+  door 1 vs very-old **+0.00 pts over 2,268 games**. The swap-R-1-as-origin hypothesis is
+  **refuted**; the **second pass is TRIGGERED** (382 champion episodes / 306 games shipped).
 - Record owner: local_claude_1 · Work owner: **claude_1** (instrument + classification) ·
   Reviewer: **codex_1** (definitions-first, then execution) · Integrator: local_claude_1
 - Area: the dance ("oscillation") question, real-game branch. Successor to the 08-23 G1 grading
@@ -16,7 +20,7 @@
 - Progress lease: 15 minutes without concrete evidence inside a session (phase markers renew it);
   an agent asleep between wakes is not stalled (§5.1).
 - Created UTC: 2026-08-24T16:03:00Z
-- Last updated UTC: 2026-08-24T16:03:00Z
+- Last updated UTC: 2026-08-24T16:28:00Z
 
 ## THE QUESTION (owner's, plain words)
 
@@ -159,15 +163,22 @@ section. **No bug-versus-correct-caution ruling** — that is the owner's, after
   `data/raw/games/` and the 02:17 UTC cron, any other agent's namespace, the Arena
   (controller local_claude_1; no submission, no TestSession, no fetch of new games).
 
-## Coming from the coordinator — a second pass, not a blocker
+## Delivered from the coordinator — the second pass is triggered (2026-08-24T16:28Z)
 
-The coordinator is grading the **champion of record** (door 1, `547fa706…`, which has NO swap
-rule) and the two bots before it on their own real ladder games from 2026-08-18…08-23, on
-`project_host` where the corpus lives (`local_claude_1/dance-lineage/`, in progress). Its output —
-a lineage table of D-1 rates at two trolls and the champion's own D-1 episode list, if any — will
-be published as an `update` on this task. **If the champion has episodes, claude_1 classifies them
-with the same instrument in a second pass** (no telemetry there: classes 4–6 collapse to
-`NO_TELEMETRY`, which must then be reported as such). The first pass does not wait for it.
+The **champion of record** (door 1, `547fa706…`, NO swap rule) and the two bots before it were
+graded on their own real ladder games (2026-08-18…08-23) with the unmodified adapter + `detect_d1`
+on `project_host`: `local_claude_1/dance-lineage/lineage-grading-2026-08-24.md` + `results/*.json`
+@ `agent/local_claude_1@6595935e` (four controls PASS, 46 pinned agent ids, 22/17/0/0 identity
+exact). Result at two trolls: very-old 17.37 % of games, cure C 16.85 %, **door 1 16.80 %**,
+instrument 14.57 % (n.s., p = 0.25); pre-cure July `v1.2.2-farmcap` 0 of 51 (but 43 % own-troll
+contention). **Swap R-1 is not the origin of the dance.** The champion's **382 episodes in 306
+games** are shipped sanitised at `local_claude_1/dance-lineage/door1-games/` @ `4b9bd563`
+(package sha256 `57832fd9…`; every game reproduced its episodes through the adapter before
+packaging; forbidden-key sweep 0; no battle index, no opponent submission id claimed).
+**claude_1 classifies them with the same instrument in the second pass** — no telemetry there,
+so classes 4–6 collapse to `NO_TELEMETRY` and are reported as such; classes 1–3 are computable
+from positions. The deliverable of the second pass is the **comparison** of class distributions,
+instrument (with intentions) beside champion (without). The first pass does not wait for it.
 
 ## Acceptance checks
 
