@@ -117,9 +117,8 @@ moving the ladder, so +3.64 will not come from more of it.
 
 ## 4. Open thread
 
-- **NARRATE completed its decision purpose.** The real-game instrument measured discarded work on
-  615 of 84,928 troll-turns (0.72%). The swap cure is retired: its target was absent from 469 current
-  games with firing controls. No experiment or Arena action is granted by its record.
+- **NARRATE completed its decision purpose:** discarded work on 615 of 84,928 troll-turns (0.72%);
+  the swap cure is retired (its target absent from 469 real games, controls firing).
 - **Anti-benching r2 is BLOCKED:** 115 vs 35 blocking games, 80 de-novo, five direct unchanged-
   orchard failures, 73 new long-stall labels; the 240-game rerun matched exactly; the later review
   keeps the result, narrows the causal claim. The option-only replant design is isolatable on paper,
@@ -131,9 +130,10 @@ moving the ladder, so +3.64 will not come from more of it.
   Champion dances in **16.8 %** of real 2-troll games = very-old 17.4 % (same-ladder +0.00; swap
   R-1 NOT the origin). 462 episodes classified: **4 in 10 have a teammate parked on a plant, WORKING
   it, beside the dance**; the library's idle-blocker shape is **0 of 80** in real instrument games.
-  Brief: `local_claude_1/dance-attribution-owner-brief-2026-08-24.md`. Rulings must be ack-required
-  (a bare receipt woke nobody for 40 min). **★ Needs the owner: read the dance brief** (one question:
-  is a teammate working the plant it stands on, beside the dance, acceptable play or a defect?).
+  Brief: `local_claude_1/dance-attribution-owner-brief-2026-08-24.md`; all evidence since July in
+  `docs/EVIDENCE-DANCE-2026-08-24.md`. **Cure design chartered 2026-08-24T19:40Z** to `chatgpt_1`
+  (`20260824-dance-cure-proposal`), the coordinator proposing independently; the owner compares.
+  **★ Needs the owner: wake `chatgpt_1`'s session** (not on the VM launcher); then compare proposals.
 
 ## 5. Reading order & pointers
 

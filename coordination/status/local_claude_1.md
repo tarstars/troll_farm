@@ -84,11 +84,12 @@ after push against the live remote ref: quarantine authority `local_claude_1`, 1
 
 ## Queue
 
-- Owner queue: **one item — read `local_claude_1/dance-attribution-owner-brief-2026-08-24.md`**
-  (it carries one question: is a teammate working the plant it stands on, beside the dance,
-  acceptable play or a defect?). The quarantine role-fragility decision stays on the table,
-  blocking nothing.
-- My cards: **none.** The attribution task is DELIVERED; nothing is chartered against its finding. All three carried NARRATE cards closed 2026-08-24 at `20260824T121000Z` — the
+- Owner queue: **(1) wake `chatgpt_1`'s session** so it receives `20260824-dance-cure-proposal`
+  (it is not on the VM launcher); **(2) read `local_claude_1/dance-attribution-owner-brief-2026-08-24.md`**;
+  later, compare the two cure proposals. The quarantine role-fragility decision waits, blocking nothing.
+- My cards: **one** — my own cure proposal, `local_claude_1/dance-cure-proposal-2026-08-24.md`,
+  written and **held unpublished** until chatgpt_1's handoff lands (independence), then both go to
+  the owner. Evidence dossier published: `docs/EVIDENCE-DANCE-2026-08-24.md`. All three carried NARRATE cards closed 2026-08-24 at `20260824T121000Z` — the
   AAAAA block (cancelled at read 2), the champion restore (discharged by owner ruling), and the
   swap-R-1 residual-13 disposition (chain RETIRED; `claude_1`'s dependent card discharged and
   receipted).
