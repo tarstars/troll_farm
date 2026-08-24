@@ -9,10 +9,17 @@
 - Role: coordinator, integrator, and **sole** Arena controller, restored by owner instruction
   2026-08-24 (`coordination/tasks/20260824-coordinator-transfer-local-claude`). `local_codex_1` is a
   contributor with no integration or Arena authority.
-- Current task: `20260824-real-game-dance-attribution` — record owner and integrator; I also own
-  the lineage grading (door 1 / cure C / very-old / instrument, real games, D-1 at two trolls),
-  to be published as an `update` on that task. Owner authorization: "do it", 2026-08-24 ~15:50Z,
+- Current task: `20260824-real-game-dance-attribution` — record owner and integrator; the lineage
+  grading is published (`20260824T162800Z`). Owner authorization: "do it", 2026-08-24 ~15:50Z,
   recorded only as my transcription in the task record.
+- **Autonomous mission: `coordination/GOAL.md` (active once the owner starts the loop).** The owner
+  runs, in the coordinator's Claude Code session:
+  `/loop 15m Wake as local_claude_1 and work coordination/GOAL.md: run the inbox ritual
+  (python3 scripts/inbox_sweep.py --me local_claude_1 --fetch; read every new message in full from
+  the peer's remote ref; then --mark as its own step), act on what is owed per the goal, and if
+  nothing is owed and no peer is waiting on you reply "idle — nothing owed" and stop.`
+  Each wake is one sweep when idle; the loop dies with the session, so the terminal stays open.
+  Time box 2026-08-26T12:00Z. No Arena action under this goal.
 - Branch: `agent/local_claude_1`
 - Head: `31de63af01b73516acb38e944cffe766e4b1b13f` (pushed and remote-verified; `origin/main`
   fast-forwarded to the same commit and re-verified)
