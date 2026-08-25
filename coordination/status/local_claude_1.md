@@ -1,18 +1,18 @@
 # local_claude_1 Status
 
-- Updated UTC: 2026-08-24T18:15:00Z
-- State: idle — `20260824-real-game-dance-attribution` **DELIVERED** (both gates accepted by
-  codex_1; brief integrated at `local_claude_1/dance-attribution-owner-brief-2026-08-24.md`);
-  the GOAL.md mission is complete and the file is back to "no active mission"
+- Updated UTC: 2026-08-25T09:45:00Z
+- State: active — **Candidate 1** (`20260825-dance-cure-candidate-1-hold`) in its first revision
+  after G-1; `coordination/GOAL.md` carries the mission (owner runs `/goal`); the attribution task
+  is DELIVERED (`local_claude_1/dance-attribution-owner-brief-2026-08-24.md`)
 - Role: coordinator, integrator, and **sole** Arena controller, restored by owner instruction
   2026-08-24 (`coordination/tasks/20260824-coordinator-transfer-local-claude`). `local_codex_1` is a
   contributor with no integration or Arena authority.
 - Current task: `20260824-real-game-dance-attribution` — record owner and integrator; the lineage
   grading is published (`20260824T162800Z`). Owner authorization: "do it", 2026-08-24 ~15:50Z,
   recorded only as my transcription in the task record.
-- **Autonomous mission: complete** (`coordination/GOAL.md` back to "no active mission"). The owner
-  ran it via `/goal coordination/GOAL.md` in the coordinator's session; the recurring wake below
-  stays available for the next mission:
+- **Autonomous mission: Candidate 1 through its gates** (`coordination/GOAL.md`, time box
+  2026-08-27T12:00Z). The owner drives it with `/goal coordination/GOAL.md`; the recurring-wake
+  form below is the alternative:
   `/loop 15m Wake as local_claude_1 and work coordination/GOAL.md: run the inbox ritual
   (python3 scripts/inbox_sweep.py --me local_claude_1 --fetch; read every new message in full from
   the peer's remote ref; then --mark as its own step), act on what is owed per the goal, and if
@@ -84,7 +84,7 @@ after push against the live remote ref: quarantine authority `local_claude_1`, 1
 
 ## Queue
 
-- 09:55Z: **G-1 as built → REVISION_REQUIRED** (ruling `20260825T094200Z`): parity and the hazard
+- 09:42Z: **G-1 as built → REVISION_REQUIRED** (ruling `20260825T094200Z`): parity and the hazard
   fix green, D-1 27 → 1, but P3 broke on `m004 s0` and idle-with-work 2.28 % > 1.5 %; the poison arm
   exposed **P4 as blind** (game-level) — idle share is now the G-1 safety net; "35" corrected to 43.
   Revision: hold only on transient blocks + P3 scoping + idle/wood-return reporting. **Arena read
