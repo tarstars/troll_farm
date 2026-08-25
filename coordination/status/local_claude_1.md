@@ -7,7 +7,16 @@
   `/tmp/codex1-*`) and killed codex_1's 14:47Z reproduction silently — cleaned by me at 15:21:51Z
   (19 → 13 GB used), rule published `20260825T152239Z`, codex_1 re-woken 15:22:02Z; entry for
   everything else `coordination/HANDOVER-2026-08-25-candidate-1-close.md`)
-- State: **mission ACTIVE (owner `/goal` ~16:39Z) — Candidate 2 G-0 DESIGN_ACCEPTED 16:56:07Z**
+- **17:31Z — Candidate 2 G-1 STOPPED AT THE PRE-COMMITTED COUNTER (owner question in the queue):**
+  build correct (rule-off byte-identical to the champion on 34 + 240 games; D-1 27 → 13 on the
+  panel, everything else flat; C-6 = 0, the proof holds) but **C-5 fired — the pair trades places
+  every second turn on 4 of 240 games (planner re-pick provoked by the exchange)** and **`m061`
+  loses 75 points (panel net −24)**. Owner page `local_claude_1/cure2/owner-question-2026-08-25.md`
+  (options A planner "keep your goal" first / B predicate back to G-0 / C read with the loop
+  measured / D stop; recommendation A after the `m061` diagnosis). Meanwhile: `m061` diagnosis,
+  loop anatomy, and every ruling-independent control proceed (my `20260825T173045Z`). P4b G-0
+  **DEFINITIONS_ACCEPTED** 17:20Z (claude_1) → codex_1 builds. No Arena action.
+- State (before the stop): **mission ACTIVE (owner `/goal` ~16:39Z) — Candidate 2 G-0 DESIGN_ACCEPTED 16:56:07Z**
   (codex_1 on `agent/claude_1@6eb89209`, Addendum A at `e1f63adb`; Theorem 1: after an exchange
   neither troll is "standing", so the reverse exchange is unrepresentable — R-1a discharged with no
   lock; G-1 build under way, claude_1); **P4b G-0 in revision** (claude_1 REVISION_REQUIRED R-1
