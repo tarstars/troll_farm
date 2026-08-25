@@ -83,6 +83,11 @@ transcription error — **43 governs**. **The Arena read is NOT spent on the as-
 or was not on that cell last turn; a blocker stationary since last turn gets today's detour — the
 never-moving worker is Candidate 2's); R-B hold inert on P3-covered turns; R-C idle clause + wood-
 return delay reported per arm. Unchanged: fixed point, `W = 2`, definitions, arms, parity, controls.
+R-B control amended 10:18Z (`20260825T101800Z`): P3 covers the *whole game* of an orchard-eligible
+seat view, so the hold is scoped by the bot's mirrored eligibility predicate (evaluated once, cached);
+control = red/green on the identical map (predicate forced false → hold fires on `m004 s0` at the same
+turn; revised arm → base bytes). Coverage cost named: no hold on orchard-eligible games; report the
+share of games where the scope is active.
 
 ## Telemetry v4 — the rule must be visible in real games
 
