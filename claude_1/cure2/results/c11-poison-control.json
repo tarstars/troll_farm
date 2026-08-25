@@ -1,0 +1,75 @@
+{
+ "control": "C-11 poison: prev_cells written only on even turns",
+ "example_mismatch": {
+  "expected_cells_of_previous_turn": {
+   "0": [
+    11,
+    2
+   ],
+   "2": [
+    4,
+    2
+   ]
+  },
+  "game": "OSC-001",
+  "ids_alive_previous_turn_not_read": [
+   0,
+   2
+  ],
+  "ids_read_not_alive_previous_turn": [],
+  "ids_with_wrong_cell": [],
+  "read": {},
+  "turn": 2
+ },
+ "fixtures": 34,
+ "games_where_c11_fired": [
+  "OSC-001",
+  "OSC-002",
+  "OSC-003",
+  "OSC-004",
+  "OSC-005",
+  "OSC-006",
+  "OSC-007",
+  "OSC-008",
+  "OSC-009",
+  "OSC-010",
+  "OSC-011",
+  "OSC-012",
+  "OSC-013",
+  "OSC-014",
+  "OSC-015",
+  "OSC-016",
+  "OSC-017",
+  "OSC-018",
+  "OSC-019",
+  "OSC-020",
+  "OSC-021",
+  "OSC-022",
+  "OSC-023",
+  "OSC-024",
+  "OSC-025",
+  "OSC-026",
+  "OSC-027",
+  "OSC-028",
+  "OSC-029",
+  "OSC-030",
+  "OSC-031",
+  "OSC-032",
+  "OSC-033",
+  "OSC-034"
+ ],
+ "poison_arm_sha256": "b9a7ff0245aa3f71a2e7fb2e3c5962f24a5ad62227f27a781194ba633587b4d7",
+ "poison_edit": "the end-of-turn *prev_cells write wrapped in `if view.turn%2==0`",
+ "print_only": "NOT print-only by construction \u2014 a stale memory changes the commands",
+ "summary": {
+  "W1_discriminating_turns": 1382,
+  "W2_roster_change_turns": 1,
+  "games": 34,
+  "mismatches": 913,
+  "rate": 86.57,
+  "turns_checked": 6800,
+  "turns_matching": 5887
+ },
+ "task": "20260825-dance-cure-candidate-2-swap",
+ "verdict": "PASS \u2014 the C-11 comparison detects a stale prev_cells"
+}

@@ -1,3 +1,41 @@
+# claude_1 status — wake #103, 2026-08-25
+
+**C-11 PASSES 54 800 of 54 800 turns, 100.00 %. A-2 is no longer an assumption either.** The
+`prev_cells` map the standing test reads on turn `t` is the cells own units occupied on turn
+`t-1`, on every turn of **34 fixtures and the whole 240-game panel** — not just the 28 games that
+carry an exchange, because A-2 is a claim about every turn and the exchange games are where it is
+least likely to be wrong. Read from the arm at the point of use; expected cells from the referee's
+transcript. Report `claude_1/cure2/c11-report-2026-08-25.md`, result
+`claude_1/cure2/results/c11-a2-check.json`.
+
+**The shape problem the card named was resolved by the print-only route**, as the coordinator's
+`20260825T185749Z` directed: the v5 wire does not carry the read, so `arm-c11.rs` is
+`arm-instrument.rs` **+ one `eprintln!`** and nothing else — no wire extension, no payload change,
+no cost to the C-1 parity story. Print-only is **gated**: G-A refused unless the arm's stdout
+commands are byte-identical to the instrument arm's, and they were on all 274 games.
+
+**The zero is a measurement, not a tautology.** `c11_poison_control.py` rebuilds the arm with the
+end-of-turn write wrapped in `if view.turn%2==0` and runs it through the *same* comparison
+function: **913 mismatches of 6 800 turns (86.57 %), firing on 34 of 34 fixtures**. Two further
+witnesses are published: **W-1 = 10 617** turns where the read differs from the *current* turn's
+cells, and **W-2 = 3** roster-change turns.
+
+**Two limits stated rather than folded into the 100 %:** all three roster changes in the corpus
+are **births** (unit `6` in `OSC-010` t20, `m040:0` t34, `m040:1` t20), so "a unit that *died*
+leaves no stale entry" is unmeasured — structurally true from the full-`collect()` rebuild, but an
+argument, not a number; and **12 of 274 games** (`m000/m006/m017/m026/m111/m113`, both seats)
+contribute no discriminating turn because no own unit ever moves in them.
+
+**Correction carried from the coordinator's `20260825T185749Z`:** the wake-#102 line below saying
+`m061`'s −75 "is still undiagnosed" is **stale**. It was diagnosed at `20260825T180028Z` (the
+freed troll fells the last tree; the champion's `idle_regeneration` fallback discards the replant
+PICKs). What is open on `m061` is the **owner's ruling on Candidate 0**, not the diagnosis.
+
+Transport: sweep drift-free against `main`, 12/0/0/0, blob `0921f135c3dd`, 134/134. Queue was four
+messages, all `type: ack`/`integrated`, **0 ack-required** — the C-10 acceptance from both
+`local_claude_1` and `codex_1`, the queue-drain ack, and quarantine-on-main **integrated** at
+roster v2 (`main@82f7908e`). **No Arena action taken; none proposed.**
+
 # claude_1 status — wake #102, 2026-08-25
 
 **C-10 PASSES 66 of 66 exchanges, 100.00 %. A-1 is no longer an assumption.** The coordinator's
