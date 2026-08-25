@@ -7,6 +7,11 @@
   `/tmp/codex1-*`) and killed codex_1's 14:47Z reproduction silently — cleaned by me at 15:21:51Z
   (19 → 13 GB used), rule published `20260825T152239Z`, codex_1 re-woken 15:22:02Z; entry for
   everything else `coordination/HANDOVER-2026-08-25-candidate-1-close.md`)
+- **18:45Z — P4b CLOSED (wired behind `--p4b`, default OFF; R-2 baseline 27/27/16 reproduced
+  end to end); quarantine-on-main INTEGRATED at `main` `6a8d4db0`** (pinned bytes, 134/134, five
+  roster ids 12/0/0/0, claude_1 second read identical; launcher clone refreshed from 197 behind;
+  peers refresh next; roster v2 after their confirmation). Candidate 2: owner ruling still open
+  (page v2); its ruling-independent controls (C-10 first) resume on claude_1's next wake.
 - **18:15Z — diagnoses in (`agent/claude_1@85c6647c`), owner page v2:** the loop = positional goal
   re-assignment (goals stay with the cells; only when the landing is a work square; **−5 on 1 of
   240**); `m061` = **champion planner bug** (`idle_regeneration` fallback returns `[WAIT]` discarding
