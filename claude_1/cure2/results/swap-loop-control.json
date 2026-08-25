@@ -1,0 +1,131 @@
+{
+  "ambiguous_rows": [],
+  "ambiguous_turns": 0,
+  "c5_meaning": "any positive count is the pre-committed stop: the rule is not looping within a turn, it is looping across turns, and G-0 \u00a710 says that is reported and ruled on, never patched with a lock",
+  "c5_repeats_within_window": 5,
+  "c5_rows": [
+    {
+      "first_mover": 0,
+      "first_turn": 3,
+      "game": "OSC-006",
+      "gap": 2,
+      "pair": [
+        0,
+        2
+      ],
+      "reversed": true,
+      "second_mover": 2,
+      "second_turn": 5
+    },
+    {
+      "first_mover": 2,
+      "first_turn": 5,
+      "game": "OSC-006",
+      "gap": 2,
+      "pair": [
+        0,
+        2
+      ],
+      "reversed": true,
+      "second_mover": 0,
+      "second_turn": 7
+    },
+    {
+      "first_mover": 0,
+      "first_turn": 7,
+      "game": "OSC-006",
+      "gap": 2,
+      "pair": [
+        0,
+        2
+      ],
+      "reversed": true,
+      "second_mover": 2,
+      "second_turn": 9
+    },
+    {
+      "first_mover": 2,
+      "first_turn": 9,
+      "game": "OSC-006",
+      "gap": 2,
+      "pair": [
+        0,
+        2
+      ],
+      "reversed": true,
+      "second_mover": 0,
+      "second_turn": 11
+    },
+    {
+      "first_mover": 2,
+      "first_turn": 8,
+      "game": "OSC-007",
+      "gap": 3,
+      "pair": [
+        0,
+        2
+      ],
+      "reversed": true,
+      "second_mover": 0,
+      "second_turn": 11
+    }
+  ],
+  "c5_verdict": "STOP_AND_ASK",
+  "c6_consecutive_turn_repeats": 0,
+  "c6_meaning": "0 == Theorem 1 survives its own falsifier on this corpus; a positive count would mean the immediate back-swap IS representable",
+  "c6_rows": [],
+  "c6_verdict": "PASS",
+  "control": "C-5 / C-6 swap-loop counters",
+  "exchanges": 20,
+  "inputs": [
+    "claude_1/cure2/results/fixtures-instrument.json"
+  ],
+  "pairs": {
+    "OSC-001:0-2": [
+      7
+    ],
+    "OSC-002:0-2": [
+      12,
+      31
+    ],
+    "OSC-005:0-2": [
+      8
+    ],
+    "OSC-006:0-2": [
+      3,
+      5,
+      7,
+      9,
+      11
+    ],
+    "OSC-007:0-2": [
+      8,
+      11
+    ],
+    "OSC-009:0-2": [
+      53,
+      71
+    ],
+    "OSC-010:0-6": [
+      79
+    ],
+    "OSC-021:0-2": [
+      19
+    ],
+    "OSC-027:0-2": [
+      4
+    ],
+    "OSC-028:0-2": [
+      53,
+      71
+    ],
+    "OSC-029:0-2": [
+      29
+    ],
+    "OSC-031:0-2": [
+      12
+    ]
+  },
+  "task": "20260825-dance-cure-candidate-2-swap",
+  "window_turns": 6
+}

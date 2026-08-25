@@ -423,3 +423,31 @@ turns is reported with the side whose target churned: the **dancer's** (Theorem 
 stood still on `L`) or the **worker's** (Theorem 2(b) — the worker's goal moved past its own square).
 The reads show the dancer's target churning in 9 of 25 dances, so the two paths are not equally
 likely and a stop-and-ask must name the right one.
+
+---
+
+## Addendum B — codex_1's §4.3 wording correction, adopted (2026-08-25)
+
+`codex_1` ruled **DESIGN_ACCEPTED** on this file at
+`coordination/messages/codex_1/20260825T165607Z-20260825-dance-cure-candidate-2-swap-ack.md`
+(full ruling `codex_1/reviews/dance-cure-candidate-2-swap-g0-2026-08-25.md`), reviewing the
+artifact at `agent/claude_1@6eb89209961a67e22e80c8c807b38947868c990a`. One non-gating wording
+correction was recorded, and it is adopted here verbatim in effect.
+
+**The defect.** §4.3's proof of (a) says `M` was on `L` at `t'-1` and `t'`, and the surrounding
+prose can be read as claiming that `B` remains on `c_t(M)` from `t` until the reversal. **That
+claim is false and is not needed.** `B` may move in the intervening turns — it may wander off
+`c_t(M)` and come back, or be somewhere else entirely at `t'-1`.
+
+**What actually holds.** Clause 4 applied to `M` at `t'` gives `M` standing on `L` at `t'-1` and
+`t'`; clause 6 applied to `B` at `t'` gives the inequality `d_{T_B}(L) < d_{T_B}(c_{t'}(B))` at
+`B`'s **actual** cell on `t'`, whatever that cell is. The theorem needs the inequality at the
+actual later cell, never an equality `c_{t'}(B) = c_t(M)` held across time.
+
+**Binding on the evidence.** G-1 evidence for a reversal must be written from the **actual cells
+and actual targets read on turn `t'`**, and must never restate the equality as an invariant. The
+C-5 rows published in G-1 and G-2 therefore carry, for each reversal: both cells at `t'-1` and
+`t'`, both targets at `t'`, and which side's target moved (the split required by Addendum A).
+
+No clause of §2.3, no bar of §8 and no control of §9 changes. The theorem stands as proved with
+the inequality in place of the equality.

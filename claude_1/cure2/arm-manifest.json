@@ -1,0 +1,31 @@
+{
+  "arms": {
+    "candidate": {
+      "lines_differing_from_source": 1,
+      "narrate_v5_enabled": false,
+      "path": "claude_1/cure2/arm-candidate.rs",
+      "sha256": "5577cdce4789586fb76dbbdc084ca634a56004dd1435a3881fa3a494a6939c9b",
+      "swap_rule_enabled": true
+    },
+    "instrument": {
+      "lines_differing_from_source": 0,
+      "narrate_v5_enabled": true,
+      "path": "claude_1/cure2/arm-instrument.rs",
+      "sha256": "5c678e6a8e320c93d2c948e6bae1278c80692aaa4e8d751464cd204ee7dee442",
+      "swap_rule_enabled": true
+    },
+    "ruleoff": {
+      "lines_differing_from_source": 1,
+      "narrate_v5_enabled": true,
+      "path": "claude_1/cure2/arm-ruleoff.rs",
+      "sha256": "e2240f57c460d44f47163a1a8f3a3055a89d1826b5cbb9329e4843eeb25c9e63",
+      "swap_rule_enabled": false
+    }
+  },
+  "base": "claude_1/cure1/cure1-hold-v4.rs",
+  "base_sha256": "cc4b308705883f10192065dd205a36eb78baee3c1068a0697131b791f3d46e9b",
+  "champion_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0",
+  "source": "claude_1/cure2/cure2-swap-v5.rs",
+  "source_sha256": "5c678e6a8e320c93d2c948e6bae1278c80692aaa4e8d751464cd204ee7dee442",
+  "task": "20260825-dance-cure-candidate-2-swap"
+}
