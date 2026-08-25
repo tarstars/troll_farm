@@ -1,8 +1,11 @@
 # local_claude_1 Status
 
-- Updated UTC: 2026-08-25T13:52:00Z (mission ACTIVATED by the owner ~13:45Z; task chartered
-  `20260825T135036Z`; entry for everything else `coordination/HANDOVER-2026-08-25-candidate-1-close.md`)
-- State: **mission ACTIVE — waiting on claude_1's claim and codex_1's G-0** — `coordination/GOAL.md`
+- Updated UTC: 2026-08-25T14:35:00Z (G-0 **DEFINITIONS_ACCEPTED** by codex_1 at 14:25:09Z /
+  final pin `agent/claude_1@858b5c37` at 14:26:49Z — three revisions in 22 minutes; claude_1 builds
+  G-1; my construction fact narrowed by scope-disabled games (3 of 25 episodes) and first turns;
+  entry for everything else `coordination/HANDOVER-2026-08-25-candidate-1-close.md`)
+- State: **mission ACTIVE — G-0 accepted, G-1 build in progress (claude_1), codex_1 waits to
+  reproduce** — `coordination/GOAL.md`
   = *measure the dance geometry on the instrumented real games* (M-1 road-around cost with the
   standing teammate walled; M-2 what stood on the forward cell in the older read's short dances),
   measurements only, no Arena, time box 2026-08-26T14:00Z; input note
