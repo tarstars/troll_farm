@@ -1,0 +1,27 @@
+{
+  "arms": {
+    "arm-c16noscope-instrument.rs": {
+      "from_arm": "arm-instrument.rs",
+      "from_arm_sha256": "5c678e6a8e320c93d2c948e6bae1278c80692aaa4e8d751464cd204ee7dee442",
+      "lines_differing_from_source_arm": 1,
+      "narrate_v5_enabled": true,
+      "path": "claude_1/cure2/arm-c16noscope-instrument.rs",
+      "sha256": "4ca2084976b6b38caa39662b001b251dd2c23eef242995e6943cc659d8b87171",
+      "swap_p3_scoping_enabled": false
+    },
+    "arm-c16noscope.rs": {
+      "from_arm": "arm-candidate.rs",
+      "from_arm_sha256": "5577cdce4789586fb76dbbdc084ca634a56004dd1435a3881fa3a494a6939c9b",
+      "lines_differing_from_source_arm": 1,
+      "narrate_v5_enabled": false,
+      "path": "claude_1/cure2/arm-c16noscope.rs",
+      "sha256": "7ff7fadb2854229cc0bf22eb448871b288675791c282eb932a945e124ce854d6",
+      "swap_p3_scoping_enabled": false
+    }
+  },
+  "control": "C-16",
+  "flag": "SWAP_P3_SCOPING_ENABLED",
+  "from": "true",
+  "task": "20260825-dance-cure-candidate-2-swap",
+  "to": "false"
+}

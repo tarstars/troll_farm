@@ -1,0 +1,482 @@
+{
+  "arms": {
+    "arm-c16noscope-instrument.rs": {
+      "differing_line_index": 738,
+      "from_arm": "arm-instrument.rs",
+      "now": "const SWAP_P3_SCOPING_ENABLED:bool=false;",
+      "sha256": "4ca2084976b6b38caa39662b001b251dd2c23eef242995e6943cc659d8b87171",
+      "was": "const SWAP_P3_SCOPING_ENABLED:bool=true;"
+    },
+    "arm-c16noscope.rs": {
+      "differing_line_index": 738,
+      "from_arm": "arm-candidate.rs",
+      "now": "const SWAP_P3_SCOPING_ENABLED:bool=false;",
+      "sha256": "7ff7fadb2854229cc0bf22eb448871b288675791c282eb932a945e124ce854d6",
+      "was": "const SWAP_P3_SCOPING_ENABLED:bool=true;"
+    }
+  },
+  "control": "C-16 -- R-B red half: is the orchard scoping doing work or decoration?",
+  "extension_config": "claude_1/cure2/cure2-c16-extension-config.json",
+  "extension_used": false,
+  "gates": {
+    "G-1L one-line arms": "PASS -- both scoping-off arms differ from their source arm in exactly the scoping flag line",
+    "G-A attribution": "PASS -- on all 1 firing games the first P3 divergence turn is the first turn the wire granted an exchange",
+    "G-B green-half identity": "PASS -- every graded game reproduces its census exchange count of 0 and is byte-identical to the parent",
+    "G-E population identity": "PASS -- 12 orchard-eligible games, census and regenerated specs agree game for game",
+    "G-I red-arm in-play identity": "PASS -- the narrate-on attributing arm and the narrate-off graded arm are identical in play on all 12 graded games",
+    "G-N off-class inertness": "PASS -- 28/28 exchange-bearing non-eligible games byte-identical between the scoping-on and scoping-off arms"
+  },
+  "graded_primary": [
+    "m004:0",
+    "m014:0",
+    "m025:0",
+    "m035:0",
+    "m045:0",
+    "m054:0",
+    "m065:0",
+    "m074:0",
+    "m085:0",
+    "m095:0",
+    "m104:0",
+    "m114:0"
+  ],
+  "green_half": {
+    "arm": "arm-candidate.rs (SWAP_P3_SCOPING_ENABLED=true)",
+    "games": 12,
+    "p3_firing_games": 0,
+    "p3_violations": 0
+  },
+  "meaning": "the scoping is doing work: with the one line flipped, the same maps, seats, seeds and opponent produce P3 violations that the scoped arm does not produce, and each one begins on the turn an exchange was granted. The whole-game inertness on orchard-eligible maps is a paid cost, not decoration.",
+  "not_proven_here": "that P3 would fire on every orchard-eligible map, or that the scoped arm is P3-neutral by any argument other than whole-game inertness. C-16 measures the scoping's effect on the corpus it was run on and nothing wider.",
+  "off_class_inertness": {
+    "games": 28,
+    "identical": 28,
+    "rows": [
+      {
+        "census_swaps": 1,
+        "game": "m009:1",
+        "identical": true
+      },
+      {
+        "census_swaps": 1,
+        "game": "m019:0",
+        "identical": true
+      },
+      {
+        "census_swaps": 1,
+        "game": "m023:1",
+        "identical": true
+      },
+      {
+        "census_swaps": 1,
+        "game": "m040:0",
+        "identical": true
+      },
+      {
+        "census_swaps": 1,
+        "game": "m040:1",
+        "identical": true
+      },
+      {
+        "census_swaps": 1,
+        "game": "m041:0",
+        "identical": true
+      },
+      {
+        "census_swaps": 2,
+        "game": "m042:0",
+        "identical": true
+      },
+      {
+        "census_swaps": 2,
+        "game": "m056:0",
+        "identical": true
+      },
+      {
+        "census_swaps": 1,
+        "game": "m058:1",
+        "identical": true
+      },
+      {
+        "census_swaps": 1,
+        "game": "m059:0",
+        "identical": true
+      },
+      {
+        "census_swaps": 2,
+        "game": "m059:1",
+        "identical": true
+      },
+      {
+        "census_swaps": 2,
+        "game": "m061:0",
+        "identical": true
+      },
+      {
+        "census_swaps": 1,
+        "game": "m061:1",
+        "identical": true
+      },
+      {
+        "census_swaps": 1,
+        "game": "m063:1",
+        "identical": true
+      },
+      {
+        "census_swaps": 1,
+        "game": "m066:0",
+        "identical": true
+      },
+      {
+        "census_swaps": 1,
+        "game": "m070:0",
+        "identical": true
+      },
+      {
+        "census_swaps": 1,
+        "game": "m070:1",
+        "identical": true
+      },
+      {
+        "census_swaps": 5,
+        "game": "m078:0",
+        "identical": true
+      },
+      {
+        "census_swaps": 1,
+        "game": "m078:1",
+        "identical": true
+      },
+      {
+        "census_swaps": 1,
+        "game": "m082:1",
+        "identical": true
+      },
+      {
+        "census_swaps": 1,
+        "game": "m084:1",
+        "identical": true
+      },
+      {
+        "census_swaps": 5,
+        "game": "m090:0",
+        "identical": true
+      },
+      {
+        "census_swaps": 4,
+        "game": "m090:1",
+        "identical": true
+      },
+      {
+        "census_swaps": 2,
+        "game": "m092:0",
+        "identical": true
+      },
+      {
+        "census_swaps": 1,
+        "game": "m092:1",
+        "identical": true
+      },
+      {
+        "census_swaps": 2,
+        "game": "m109:0",
+        "identical": true
+      },
+      {
+        "census_swaps": 1,
+        "game": "m110:1",
+        "identical": true
+      },
+      {
+        "census_swaps": 2,
+        "game": "m118:1",
+        "identical": true
+      }
+    ]
+  },
+  "red_half": {
+    "arm": "arm-c16noscope.rs (SWAP_P3_SCOPING_ENABLED=false)",
+    "exchanges": 1,
+    "games": 12,
+    "games_with_an_exchange": 1,
+    "net_margin_delta_against_the_scoped_arm": 4,
+    "p3_firing_games": 1,
+    "p3_violations": 1
+  },
+  "rows": [
+    {
+      "class": "orchard_eligible",
+      "game": "m004:0",
+      "green_p3": [],
+      "green_p3_violations": 0,
+      "parent_margin": 12,
+      "red_exchange_turns": [
+        27
+      ],
+      "red_exchanges": 1,
+      "red_margin": 16,
+      "red_minus_scoped_margin": 4,
+      "red_p3": [
+        {
+          "candidate": "MOVE 0 9 2;MOVE 2 10 2",
+          "first_divergence_turn": 27,
+          "parent": "CHOP 0;MOVE 2 8 2"
+        }
+      ],
+      "red_p3_violations": 1,
+      "red_refusals": {
+        "sf": 0,
+        "sn": 0,
+        "so": 0
+      },
+      "scoped_identical_to_parent": true,
+      "scoped_margin": 12,
+      "seat": 0,
+      "turns": 200
+    },
+    {
+      "class": "orchard_eligible",
+      "game": "m014:0",
+      "green_p3": [],
+      "green_p3_violations": 0,
+      "parent_margin": 24,
+      "red_exchange_turns": [],
+      "red_exchanges": 0,
+      "red_margin": 24,
+      "red_minus_scoped_margin": 0,
+      "red_p3": [],
+      "red_p3_violations": 0,
+      "red_refusals": {
+        "sf": 0,
+        "sn": 1,
+        "so": 0
+      },
+      "scoped_identical_to_parent": true,
+      "scoped_margin": 24,
+      "seat": 0,
+      "turns": 200
+    },
+    {
+      "class": "orchard_eligible",
+      "game": "m025:0",
+      "green_p3": [],
+      "green_p3_violations": 0,
+      "parent_margin": 8,
+      "red_exchange_turns": [],
+      "red_exchanges": 0,
+      "red_margin": 8,
+      "red_minus_scoped_margin": 0,
+      "red_p3": [],
+      "red_p3_violations": 0,
+      "red_refusals": {
+        "sf": 0,
+        "sn": 0,
+        "so": 0
+      },
+      "scoped_identical_to_parent": true,
+      "scoped_margin": 8,
+      "seat": 0,
+      "turns": 200
+    },
+    {
+      "class": "orchard_eligible",
+      "game": "m035:0",
+      "green_p3": [],
+      "green_p3_violations": 0,
+      "parent_margin": 13,
+      "red_exchange_turns": [],
+      "red_exchanges": 0,
+      "red_margin": 13,
+      "red_minus_scoped_margin": 0,
+      "red_p3": [],
+      "red_p3_violations": 0,
+      "red_refusals": {
+        "sf": 0,
+        "sn": 0,
+        "so": 0
+      },
+      "scoped_identical_to_parent": true,
+      "scoped_margin": 13,
+      "seat": 0,
+      "turns": 200
+    },
+    {
+      "class": "orchard_eligible",
+      "game": "m045:0",
+      "green_p3": [],
+      "green_p3_violations": 0,
+      "parent_margin": -12,
+      "red_exchange_turns": [],
+      "red_exchanges": 0,
+      "red_margin": -12,
+      "red_minus_scoped_margin": 0,
+      "red_p3": [],
+      "red_p3_violations": 0,
+      "red_refusals": {
+        "sf": 0,
+        "sn": 0,
+        "so": 0
+      },
+      "scoped_identical_to_parent": true,
+      "scoped_margin": -12,
+      "seat": 0,
+      "turns": 200
+    },
+    {
+      "class": "orchard_eligible",
+      "game": "m054:0",
+      "green_p3": [],
+      "green_p3_violations": 0,
+      "parent_margin": 18,
+      "red_exchange_turns": [],
+      "red_exchanges": 0,
+      "red_margin": 18,
+      "red_minus_scoped_margin": 0,
+      "red_p3": [],
+      "red_p3_violations": 0,
+      "red_refusals": {
+        "sf": 0,
+        "sn": 0,
+        "so": 0
+      },
+      "scoped_identical_to_parent": true,
+      "scoped_margin": 18,
+      "seat": 0,
+      "turns": 200
+    },
+    {
+      "class": "orchard_eligible",
+      "game": "m065:0",
+      "green_p3": [],
+      "green_p3_violations": 0,
+      "parent_margin": 10,
+      "red_exchange_turns": [],
+      "red_exchanges": 0,
+      "red_margin": 10,
+      "red_minus_scoped_margin": 0,
+      "red_p3": [],
+      "red_p3_violations": 0,
+      "red_refusals": {
+        "sf": 0,
+        "sn": 0,
+        "so": 0
+      },
+      "scoped_identical_to_parent": true,
+      "scoped_margin": 10,
+      "seat": 0,
+      "turns": 200
+    },
+    {
+      "class": "orchard_eligible",
+      "game": "m074:0",
+      "green_p3": [],
+      "green_p3_violations": 0,
+      "parent_margin": 10,
+      "red_exchange_turns": [],
+      "red_exchanges": 0,
+      "red_margin": 10,
+      "red_minus_scoped_margin": 0,
+      "red_p3": [],
+      "red_p3_violations": 0,
+      "red_refusals": {
+        "sf": 0,
+        "sn": 0,
+        "so": 0
+      },
+      "scoped_identical_to_parent": true,
+      "scoped_margin": 10,
+      "seat": 0,
+      "turns": 200
+    },
+    {
+      "class": "orchard_eligible",
+      "game": "m085:0",
+      "green_p3": [],
+      "green_p3_violations": 0,
+      "parent_margin": -12,
+      "red_exchange_turns": [],
+      "red_exchanges": 0,
+      "red_margin": -12,
+      "red_minus_scoped_margin": 0,
+      "red_p3": [],
+      "red_p3_violations": 0,
+      "red_refusals": {
+        "sf": 0,
+        "sn": 0,
+        "so": 0
+      },
+      "scoped_identical_to_parent": true,
+      "scoped_margin": -12,
+      "seat": 0,
+      "turns": 200
+    },
+    {
+      "class": "orchard_eligible",
+      "game": "m095:0",
+      "green_p3": [],
+      "green_p3_violations": 0,
+      "parent_margin": 2,
+      "red_exchange_turns": [],
+      "red_exchanges": 0,
+      "red_margin": 2,
+      "red_minus_scoped_margin": 0,
+      "red_p3": [],
+      "red_p3_violations": 0,
+      "red_refusals": {
+        "sf": 0,
+        "sn": 0,
+        "so": 0
+      },
+      "scoped_identical_to_parent": true,
+      "scoped_margin": 2,
+      "seat": 0,
+      "turns": 200
+    },
+    {
+      "class": "orchard_eligible",
+      "game": "m104:0",
+      "green_p3": [],
+      "green_p3_violations": 0,
+      "parent_margin": 33,
+      "red_exchange_turns": [],
+      "red_exchanges": 0,
+      "red_margin": 33,
+      "red_minus_scoped_margin": 0,
+      "red_p3": [],
+      "red_p3_violations": 0,
+      "red_refusals": {
+        "sf": 0,
+        "sn": 0,
+        "so": 0
+      },
+      "scoped_identical_to_parent": true,
+      "scoped_margin": 33,
+      "seat": 0,
+      "turns": 200
+    },
+    {
+      "class": "orchard_eligible",
+      "game": "m114:0",
+      "green_p3": [],
+      "green_p3_violations": 0,
+      "parent_margin": 10,
+      "red_exchange_turns": [],
+      "red_exchanges": 0,
+      "red_margin": 10,
+      "red_minus_scoped_margin": 0,
+      "red_p3": [],
+      "red_p3_violations": 0,
+      "red_refusals": {
+        "sf": 0,
+        "sn": 0,
+        "so": 0
+      },
+      "scoped_identical_to_parent": true,
+      "scoped_margin": 10,
+      "seat": 0,
+      "turns": 200
+    }
+  ],
+  "task": "20260825-dance-cure-candidate-2-swap",
+  "verdict": "PASS"
+}

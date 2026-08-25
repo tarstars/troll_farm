@@ -1,0 +1,45 @@
+{
+  "bin_cache_dir": "/tmp/claude-1000/cure2/bin",
+  "candidate": {
+    "crate": "cure2_c16noscope",
+    "sha256": "7ff7fadb2854229cc0bf22eb448871b288675791c282eb932a945e124ce854d6",
+    "source": "../../claude_1/cure2/arm-c16noscope.rs"
+  },
+  "class_mix": {
+    "orchard_eligible": 1.0
+  },
+  "corpus_version": "c5-two-player-phase-merged-2026-08-11",
+  "games_dir": "/tmp/claude-1000/cure2/cure2-c16-extension/games",
+  "instrument_version": "fuzz-panel/5-two-player-phase-merged-referee",
+  "liveness_window": 60,
+  "maps": 48,
+  "margin_collapse_threshold": 100,
+  "max_generation_attempts": 64,
+  "notes": [
+    "C-16 EXTENSION POPULATION, declared BEFORE the primary run and used only if the 12 orchard-eligible games of the published 240-game panel produce no exchange on the scoping-off arm. Same referee, same seeds, same turn budget, same opponent mix as cure2-instrument-config.json; the ONLY change is class_mix, which is orchard_eligible at 1.0 so that every generated map is of the class the scoping switches off.",
+    "48 maps x 2 seats; only seat views whose own orchard_eligible predicate is true are graded, because P3 is only evaluated on those.",
+    "Existence of this file before the run is the pre-commitment: the extension is not a second look for a better number, it is a declared enlargement of a population whose primary size (12) may be too small to contain a fire."
+  ],
+  "opponent_mix": {
+    "chopper_aggressor": 0.3,
+    "harvester": 0.4,
+    "idle": 0.3
+  },
+  "parent": {
+    "crate": "cure1_base_seat_b",
+    "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0",
+    "source": "../../cgauto/submissions/candidate-door1-pure-deletion.rs"
+  },
+  "processes": 4,
+  "run_identity": "candidate",
+  "seeds": [
+    982451653,
+    15485863,
+    32452843,
+    49979687,
+    67867967,
+    86028121
+  ],
+  "task": "20260825-dance-cure-candidate-2-swap control C-16 extension population",
+  "turns": 200
+}
