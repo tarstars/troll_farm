@@ -398,6 +398,12 @@ effect only when the coordinator integrates it into `main`. A coordinator role t
 the identity authorized to adjudicate and edit the list; it does not relocate either authority
 file. The sweep prints the ref and blob it used and warns when the local copy drifts.
 
+The roster's `former_coordinators` list keeps entries adjudicated during an earlier term valid
+after a transfer. A former coordinator's id in that list does **not** authorize new entries: the
+sweep cannot establish when a signature was made, so the current integrator must refuse new
+entries signed by former coordinators before they reach `main`; the sweep reports every honoured
+former-coordinator signature explicitly.
+
 **An adjudication must actually adjudicate.** It must be a valid v2 message, authored by the
 coordinator, present on the coordinator's canonical ref, naming the exact target in a
 `quarantines: ["<exact path>", …]` front-matter array — and the entry must pin the target's
