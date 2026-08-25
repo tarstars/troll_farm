@@ -107,11 +107,11 @@ LEGACY_BASELINE_SCHEMA_VERSION = 1
 # shared root of trust — anyone who can write it can already do anything.
 ROSTER_FILE = "coordination/roster.json"
 ROSTER_REF = REMOTE_PREFIX + "main"
-ROSTER_SCHEMA_VERSION = 2
+ROSTER_SCHEMA_VERSION = 1
 
 
-def roster_authorities() -> tuple[str, set[str]] | None:
-    """Return current and former coordinators from the authoritative roster.
+def coordinator_agent() -> str | None:
+    """Return the coordinator named by the authoritative roster, or None.
 
     None means no roster is reachable, in which case quarantine is disabled —
     fail-safe, because suppressing nothing is always recoverable while
@@ -127,30 +127,17 @@ def roster_authorities() -> tuple[str, set[str]] | None:
         if not isinstance(data, dict):
             raise ValueError("roster is not a JSON object")
         version = data.get("schema_version")
-        if isinstance(version, bool) or version not in (1, ROSTER_SCHEMA_VERSION):
+        if isinstance(version, bool) or version != ROSTER_SCHEMA_VERSION:
             raise ValueError(
-                f"schema_version {version!r} is not supported (expected 1 or "
-                f"{ROSTER_SCHEMA_VERSION})"
+                f"schema_version {version!r} is not the supported version "
+                f"{ROSTER_SCHEMA_VERSION}"
             )
         coordinator = data["coordinator"]
         if not isinstance(coordinator, str) or not coordinator.strip():
             raise ValueError("coordinator is not a non-empty string")
-        former_raw = data.get("former_coordinators", []) if version == 2 else []
-        if (not isinstance(former_raw, list)
-                or any(not isinstance(x, str) or not x.strip() for x in former_raw)):
-            raise ValueError("former_coordinators is not an array of non-empty strings")
-        former = set(former_raw)
-        if coordinator in former:
-            raise ValueError("current coordinator also appears in former_coordinators")
     except (json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
         raise ValueError(f"malformed roster {where}: {exc}") from exc
-    return coordinator, former
-
-
-def coordinator_agent() -> str | None:
-    """Compatibility accessor for callers that need only the current identity."""
-    authorities = roster_authorities()
-    return authorities[0] if authorities else None
+    return coordinator
 
 
 class GitError(RuntimeError):
@@ -857,18 +844,18 @@ def tool_drift() -> str | None:
     )
 
 
-def load_quarantine() -> tuple[list[dict[str, str]], str]:
-    """Load the quarantine blob from origin/main (rule 7).
+def load_quarantine(coordinator_ref: str) -> tuple[list[dict[str, str]], str]:
+    """Load the quarantine blob from the coordinator's canonical ref (rule 7).
 
     Returns (entries, blob_oid). The worktree copy is never authoritative; the
     caller compares it for drift and reports, but never uses it. Reading shared
     inbox truth from a mutable local file was finding TQ-1.
     """
-    found = read_authoritative_blob(ROSTER_REF, QUARANTINE_FILE)
+    found = read_authoritative_blob(coordinator_ref, QUARANTINE_FILE)
     if found is None:
         return [], ""
     oid, text = found
-    where = f"{ROSTER_REF}:{QUARANTINE_FILE}"
+    where = f"{coordinator_ref}:{QUARANTINE_FILE}"
     try:
         data = json.loads(text)
         if not isinstance(data, dict):
@@ -896,7 +883,7 @@ def load_quarantine() -> tuple[list[dict[str, str]], str]:
     return entries, oid
 
 
-def load_legacy_baseline() -> tuple[dict[str, str], bool]:
+def load_legacy_baseline(coordinator_ref: str) -> tuple[dict[str, str], bool]:
     """Frozen path→blob map of messages grandfathered as pre-v2 (rule 5).
 
     Returns (mapping, present). When absent, legacy messages are accepted as
@@ -907,11 +894,11 @@ def load_legacy_baseline() -> tuple[dict[str, str], bool]:
     message escape validation (finding F5). With it the list is verifiable —
     `verify_legacy_baseline` rejects any path that did not exist at that commit.
     """
-    found = read_authoritative_blob(ROSTER_REF, LEGACY_BASELINE_FILE)
+    found = read_authoritative_blob(coordinator_ref, LEGACY_BASELINE_FILE)
     if found is None:
         return {}, False
     _, text = found
-    where = f"{ROSTER_REF}:{LEGACY_BASELINE_FILE}"
+    where = f"{coordinator_ref}:{LEGACY_BASELINE_FILE}"
     try:
         data = json.loads(text)
         if not isinstance(data, dict):
@@ -938,13 +925,14 @@ def load_legacy_baseline() -> tuple[dict[str, str], bool]:
     return paths, True
 
 
-def verify_legacy_baseline(baseline: dict[str, str]) -> list[str]:
+def verify_legacy_baseline(coordinator_ref: str,
+                           baseline: dict[str, str]) -> list[str]:
     """Every pinned path must have existed, with those bytes, at the freeze.
 
     One `ls-tree` of the namespace at `frozen_at` rather than a lookup per path:
     the live baseline pins 691 paths.
     """
-    found = read_authoritative_blob(ROSTER_REF, LEGACY_BASELINE_FILE)
+    found = read_authoritative_blob(coordinator_ref, LEGACY_BASELINE_FILE)
     if found is None:
         return []
     frozen_at = json.loads(found[1]).get("frozen_at", "")
@@ -977,7 +965,6 @@ def validate_quarantine(
     messages: dict[str, "Message"],
     blob_by_path: dict[str, str],
     coordinator: str,
-    former_coordinators: set[str] | None = None,
     canonical_paths_by_agent: dict[str, set[str]] | None = None,
     collided: set[str] | None = None,
 ) -> list[str]:
@@ -1040,12 +1027,9 @@ def validate_quarantine(
                 )
         if adjudicator not in authoritative_paths:
             continue
-        adjudicator_agent = sender_of(adjudicator)
-        authorized = {coordinator} | (former_coordinators or set())
-        if adjudicator_agent not in authorized:
+        if sender_of(adjudicator) != coordinator:
             errors.append(
-                f"adjudicated_by is not authored by the current or former "
-                f"coordinators {sorted(authorized)!r}: "
+                f"adjudicated_by is not authored by the coordinator {coordinator!r}: "
                 f"{adjudicator!r}"
             )
             continue
@@ -1053,11 +1037,11 @@ def validate_quarantine(
         # the coordinator's canonical ref. Being in the coordinator's namespace
         # somewhere is not that: a side branch would do, and code enforced only
         # the namespace (finding F7).
-        canonical = (canonical_paths_by_agent or {}).get(adjudicator_agent, set())
+        canonical = (canonical_paths_by_agent or {}).get(coordinator, set())
         if adjudicator not in canonical:
             errors.append(
-                f"adjudicated_by is not present on its author's canonical "
-                f"ref {REMOTE_PREFIX}agent/{adjudicator_agent}: {adjudicator!r}"
+                f"adjudicated_by is not present on the coordinator's canonical "
+                f"ref {REMOTE_PREFIX}agent/{coordinator}: {adjudicator!r}"
             )
             continue
         msg = messages.get(adjudicator)
@@ -1120,7 +1104,6 @@ class SweepState:
     collisions: list[tuple[str, dict[str, list[str]]]]
     delivery_errors: list[tuple[str, str]]
     coordinator: str | None
-    former_coordinators: set[str]
     coordinator_ref: str
     quarantine_blob: str
     quarantine_errors: list[str]
@@ -1230,29 +1213,27 @@ def actionable_set(
     # Quarantine (rule 7). Authority is the coordinator's canonical ref, never
     # the worktree: a local file must not be able to change shared inbox truth.
     try:
-        roster = roster_authorities()
+        coordinator = coordinator_agent()
     except ValueError as exc:
         raise SweepFailure(str(exc)) from exc
-    if roster is None:
-        coordinator, former_coordinators = None, set()
-        coordinator_ref = ROSTER_REF
+    if coordinator is None:
+        coordinator_ref = ""
         quarantine_entries, quarantine_blob = [], ""
         legacy_baseline, baseline_present = {}, False
     else:
-        coordinator, former_coordinators = roster
-        coordinator_ref = ROSTER_REF
+        coordinator_ref = f"{REMOTE_PREFIX}agent/{coordinator}"
         try:
-            quarantine_entries, quarantine_blob = load_quarantine()
-            legacy_baseline, baseline_present = load_legacy_baseline()
+            quarantine_entries, quarantine_blob = load_quarantine(coordinator_ref)
+            legacy_baseline, baseline_present = load_legacy_baseline(coordinator_ref)
         except ValueError as exc:
             raise SweepFailure(str(exc)) from exc
     quarantine_errors = validate_quarantine(
         quarantine_entries, authoritative_paths, messages, blob_by_path,
-        coordinator, former_coordinators, canonical_paths_by_agent, collided
+        coordinator, canonical_paths_by_agent, collided
     )
     if baseline_present:
         quarantine_errors.extend(
-            verify_legacy_baseline(legacy_baseline))
+            verify_legacy_baseline(coordinator_ref, legacy_baseline))
     # A broken or unauthorized quarantine suppresses nothing.
     quarantined: dict[str, dict[str, str]] = (
         {} if quarantine_errors else {e["path"]: e for e in quarantine_entries}
@@ -1363,7 +1344,6 @@ def actionable_set(
         collisions=collisions,
         delivery_errors=delivery_errors,
         coordinator=coordinator,
-        former_coordinators=former_coordinators,
         coordinator_ref=coordinator_ref,
         quarantine_blob=quarantine_blob,
         quarantine_errors=quarantine_errors,
@@ -1489,12 +1469,6 @@ def main() -> int:
     for path in sorted(state.quarantined):
         entry = state.quarantined[path]
         print(f"  {path}: {entry['reason']}   [{entry['adjudicated_by']}]")
-        adjudicator_agent = sender_of(entry["adjudicated_by"])
-        if adjudicator_agent in state.former_coordinators:
-            print(
-                f"    adjudicated by former coordinator {adjudicator_agent} "
-                "(honoured; new entries by former coordinators are refused at integration)"
-            )
 
     for warning in state.ack_warnings:
         print(f"\nwarning: {warning}")

@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-25T18:28:00Z
-- State: quarantine-on-main G-1 and P4b erratum delivered; waiting for review/integration
+- Updated UTC: 2026-08-25T18:42:00Z
+- State: inbox ritual active; all new mail read, P4b integration independently reproduced, stale self-cards audited for delivery
 - Role: contributor / reviewer
-- Current task: 20260825-quarantine-on-main (G-1 delivery to reviewers)
+- Current task: inbox queue drain and P4b integration verdict
 - Branch: agent/codex_1
 - Head: deliveries published at `agent/codex_1@c968e48f`; inbox mark published at `9260863b`
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-25T18:32:00Z
-- Evidence: transport suites 134 passed; five live roster-id dry runs each 12 quarantined and zero transport errors
+- Last concrete progress UTC: 2026-08-25T18:42:00Z
+- Evidence: P4b integration commit `31480089` independently passes 9 evaluator tests and 166 panel tests; queue audit at `codex_1/queue-drain-2026-08-25.md`
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: reviewer rulings; no runnable queue work before a new wake signal
+- Next checkpoint: publish queue-drain delivery and P4b acceptance, mark, verify clean authoritative sweep
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
 - DEFERRED replacement card: NARRATE v3 independent review only after a mature live corpus, exact identity pin, and mandatory forbidden-key sweep are published
 - DEFERRED replacement card: G-2 first-pass and champion second-pass fresh-archive execution review only after DEFINITIONS_ACCEPTED and a valid claude_1 handoff naming its canonical full commit and artifact paths
