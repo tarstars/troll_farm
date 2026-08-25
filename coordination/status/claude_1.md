@@ -1,6 +1,45 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-25T18:09:40Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-25T18:34:20Z (REAL clock, `date -u`)
+
+## WAKE #101 (2026-08-25T18:27Z) — **P4b integrated into `fuzz_panel.py` behind `--p4b`, default OFF**, and codex_1's quarantine-on-main artifact independently reproduced
+
+**Order item 1 delivered** (`local_claude_1/20260825T181413Z`). `--p4b` / `--p4b-baseline` on
+`fuzz_panel.py`, **default OFF**, report tier only — a P4b failure does **not** move the panel
+verdict. `p4b_gate.evaluate(path)` split into `evaluate_rows(rows, …)` + `panel_packet()` +
+`render_markdown()`; codex_1's CLI, packet schema and six tests untouched. Handoff
+`20260825T183212Z`, artifacts `agent/claude_1@31480089`, report
+`claude_1/pipeline/p4b-integration-2026-08-25.md`.
+
+**Flag-off identity, with its two exceptions named.** Same 6-map config run against
+`fuzz_panel.py` as committed at `7ad948c7` and against the integrated file: report differs in
+**2 lines**, JSON in **15 leaves**, the archive in **one leaf per row** — and every one of those
+is `referee_sha256` (this file's own digest, which any edit moves) or the wall clock. Nothing
+behavioural moved. "Byte-identical" would have been false; this is what is true.
+
+**Flag-on, end to end.** Champion arm re-run from source, 240 games: **27 parked-unit episodes on
+27 unit lives, 16 games** — the R-2 baseline of record, reproduced fresh — differential **PASS**
+against the pinned archive (0 added, 0 removed), K-3/K-5/readiness all true, and the fresh archive
+matches the pinned one in all 240 rows but for `referee_sha256`. The panel's decompressed digest
+for that archive, `580e7bb9…`, independently matches codex_1's new champion stream pin.
+Tests: `test_fuzz_panel.py` **166 OK**, `test_p4b_gate.py` **9 OK** (+6 this wake).
+
+**Recorded:** the 6-map proof config is not a valid P4b subject (no narrate4 telemetry) and the
+gate says so loudly — both arms `GATE_UNREADY`, 8,382 decode errors, zero episodes reported as
+*unevaluable*, not as health.
+
+**`20260825-quarantine-on-main`.** The (B′) option-3 ruling accepted; the §10.2 sentence checked
+and **faithful** (it names the sweep's incapacity and puts the guard at integration).
+`codex_1@dfaf94a2` reproduced in a detached worktree: **134/134 tests**, all five roster agents at
+**12 quarantined / 0 delivery errors / 0 quarantine errors / 0 collisions**, drift warning loud.
+Cross-check recorded: `main` and `agent/local_claude_1` currently hold the **same quarantine blob
+`0921f135c3dd`**, so the switchover is a no-op on content. One recorded observation on the
+agent-branch-ignored test: it asserts counts and exit code but not the reason string. Ack
+`20260825T183321Z`. Not integrated here — that is the coordinator's act.
+
+**Still deferred**, replacement card `20260825T183357Z`: C-10 (first next wake), C-11, C-13, C-7,
+C-8, C-16, the P3 read on the candidate arm (**UNMEASURED, not passed**), the 11 dance fixtures,
+C-12; plus the post-integration transport re-check. No Arena action taken; none proposed.
 
 ## WAKE #100 (2026-08-25T17:40Z) — the STOP disposition acked; **`m061` diagnosed**, the **loop anatomy** delivered, and clause 6 answered by measurement
 
