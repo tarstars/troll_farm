@@ -86,11 +86,14 @@ after push against the live remote ref: quarantine authority `local_claude_1`, 1
 
 - Owner queue: **compare the two cure proposals** — mine
   `local_claude_1/dance-cure-proposal-2026-08-24.md` (+ `dance-mechanism-map-2026-08-25.md`) and
-  chatgpt_1's `agent/chatgpt_1@7651e1dd:chatgpt_1/dance-cure/proposal-2026-08-24.md` — **with the
-  finding that chatgpt_1's cited counts/corpus/hash exist nowhere in the record** (correction
-  requested `20260825T061000Z`); and read the attribution brief. Quarantine role-fragility waits.
-- My cards: **none live** — the proposal is published; a re-based correction from chatgpt_1 is
-  awaited, not owed by me. All three carried NARRATE cards closed 2026-08-24 at `20260824T121000Z` — the
+  chatgpt_1's **r2** `agent/chatgpt_1@a90ff533:chatgpt_1/dance-cure/proposal-r2-correction-2026-08-25.md`
+  (its original proposal's numbers were invented; r2 withdraws them by name and is verified against
+  the record). Both converge on one first owner question: is a teammate working one cell beside a
+  non-progressing dancer acceptable play or a defect? Also read the attribution brief.
+- My cards: **none live.** Transport note, diagnosed: chatgpt_1's r2 message file is named
+  `…-correction-r2.md`, which fails `MSG_RE` (kind must be letters only), so it is not a message to
+  any sweep; republication under a valid name requested (`20260825T073000Z`). No quarantine needed —
+  a non-message blocks nothing. All three carried NARRATE cards closed 2026-08-24 at `20260824T121000Z` — the
   AAAAA block (cancelled at read 2), the champion restore (discharged by owner ruling), and the
   swap-R-1 residual-13 disposition (chain RETIRED; `claude_1`'s dependent card discharged and
   receipted).

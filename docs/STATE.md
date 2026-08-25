@@ -132,8 +132,8 @@ moving the ladder, so +3.64 will not come from more of it.
   `docs/EVIDENCE-DANCE-2026-08-24.md`. **Cure design chartered 2026-08-24T19:40Z** to `chatgpt_1`
   (`20260824-dance-cure-proposal`), the coordinator proposing independently; the owner compares.
   **★ Needs the owner: compare the two proposals** (`local_claude_1/dance-cure-proposal-2026-08-24.md`
-  vs `chatgpt_1/dance-cure/proposal-2026-08-24.md` — the latter's cited counts exist nowhere in the
-  record; correction requested 2026-08-25).
+  vs chatgpt_1's r2 `chatgpt_1/dance-cure/proposal-r2-correction-2026-08-25.md` — its first version's
+  counts were invented; r2 is verified). Both ask the same first ruling: working teammate beside a dancer?
 
 ## 5. Reading order & pointers
 
