@@ -78,11 +78,24 @@ def archive_sha(path: Path) -> str:
 
 
 def evaluate(path: Path, td, n4) -> dict:
+    with gzip.open(path, "rt", encoding="utf-8") as fh:
+        source_rows = [json.loads(line) for line in fh]
+    return evaluate_rows(source_rows, td, n4, str(path), archive_sha(path))
+
+
+def evaluate_rows(source_rows, td, n4, archive_label: str,
+                  archive_digest: str) -> dict:
+    """The body of `evaluate`, over rows already in memory.
+
+    Split out (claude_1, 2026-08-25) so an in-process caller -- fuzz_panel's
+    `--p4b` flag -- can evaluate the panel's own game rows without writing and
+    re-reading an archive.  `evaluate(path)` is byte-for-byte the same
+    computation it always was; only the source of `source_rows` and the two
+    provenance strings move to the caller.
+    """
     games, unit_rows, errors = [], [], []
     seen_games, map_seats = set(), collections.Counter()
     totals = collections.Counter()
-    with gzip.open(path, "rt", encoding="utf-8") as fh:
-        source_rows = [json.loads(line) for line in fh]
     for game in source_rows:
         game_key = (game["map_id"], int(game["seat"]))
         if game_key in seen_games:
@@ -204,7 +217,7 @@ def evaluate(path: Path, td, n4) -> dict:
                           "p4b_failure": bool(r["episodes"]),
                           "longest_run": r["longest_all_available_progress_free_run"],
                           "explanation": ("P4b episode" if r["episodes"] else "run below W")})
-    return {"archive": str(path), "archive_sha256": archive_sha(path),
+    return {"archive": archive_label, "archive_sha256": archive_digest,
             "status": "GATE_UNREADY" if errors else "READY", "errors": errors,
             "games": len(games), "map_ids": len(map_seats),
             "both_seats_per_map": all(v == 2 for v in map_seats.values()),
@@ -242,6 +255,123 @@ def compare(base: dict, candidate: dict) -> dict:
             "added_game_keys": [list(k) for k in sorted({k[:2] for k in added})],
             "removed_game_keys": [list(k) for k in sorted({k[:2] for k in removed})],
             "common_failure_longest_deltas": sorted(growth, key=lambda r: (-r["candidate_minus_base"], r["key"]))}
+
+
+def panel_packet(source_rows, td, n4, archive_label: str,
+                 archive_digest: str, baseline=None,
+                 baseline_label: str = "baseline") -> dict:
+    """The packet fuzz_panel embeds when --p4b is ON.
+
+    One arm ('panel') evaluated from the panel's own rows, plus -- when a
+    baseline archive is supplied -- a second arm and the same `compare`
+    differential the G-1 packet uses.  K-5 (exact 240 / 120 maps / both seats)
+    is REPORTED, not asserted: a smaller panel is not a K-5 failure, it is a
+    smaller panel, and the row says which it was.
+    """
+    arms = {"panel": evaluate_rows(source_rows, td, n4, archive_label,
+                                   archive_digest)}
+    if baseline is not None:
+        arms[baseline_label] = baseline
+    comparisons = ({baseline_label: compare(arms[baseline_label], arms["panel"])}
+                   if baseline is not None else {})
+    return {"schema": "p4b-panel/1", "definition": {"W": W, "k": K,
+                                                    "tripwire": TRIPWIRE},
+            "arms": arms, "comparisons": comparisons,
+            "controls": {
+                "K3_tripwire_clear": all(not r["tripwire_45"]
+                                         for r in arms.values()),
+                "K5_exact_240": all(r["games"] == 240 and r["map_ids"] == 120
+                                    and r["both_seats_per_map"]
+                                    for r in arms.values()),
+                "all_arms_ready": all(r["status"] == "READY"
+                                      for r in arms.values())}}
+
+
+def render_markdown(packet: dict) -> list:
+    """The report section for an embedded packet.  Report tier only: nothing
+    here changes the panel's aggregate verdict (the flag's charter decides
+    what a P4b failure means for a given run)."""
+    d = packet["definition"]
+    lines = ["## P4b per-troll stall gate (report tier)", "",
+             "Definition: a unit fails when it has a maximal run of >= %d "
+             "consecutive own-turn transitions on which its telemetry names a "
+             "CONCRETE target and no progress event occurs (W=%d, k=%d, "
+             "tripwire=%d).  **This section does not change the panel "
+             "verdict above.**" % (d["W"], d["W"], d["k"], d["tripwire"]), ""]
+    for label in sorted(packet["arms"]):
+        arm = packet["arms"][label]
+        t = arm["totals"]
+        lines.append("### arm `%s` -- %s" % (label, arm["status"]))
+        lines.append("")
+        lines.append("- source: `%s` (sha256 `%s`)"
+                     % (arm["archive"], arm["archive_sha256"]))
+        lines.append("- games %d, maps %d, both seats per map: %s"
+                     % (arm["games"], arm["map_ids"],
+                        arm["both_seats_per_map"]))
+        lines.append("- unit lives %d, observable transitions %d, available "
+                     "turns %d, progress turns %d"
+                     % (t.get("unit_lives", 0),
+                        t.get("observable_transitions", 0),
+                        t.get("available_turns", 0),
+                        t.get("progress_turns", 0)))
+        lines.append("- **parked-unit episodes %d on %d unit lives, %d games**"
+                     % (t.get("episodes", 0), len(arm["failed_units"]),
+                        len(arm["failed_games"])))
+        lines.append("- longest-run distribution: min %s q1 %s median %s q3 "
+                     "%s max %s"
+                     % tuple(arm["longest_run_distribution"][k]
+                             for k in ("min", "q1", "median", "q3", "max")))
+        if arm["errors"]:
+            lines.append("- **errors (%d, arm is GATE_UNREADY)**: %s"
+                         % (len(arm["errors"]), "; ".join(arm["errors"][:10])))
+        lines.append("")
+        if arm["failed_units"]:
+            lines.append("| map | seat | unit | longest | episodes |")
+            lines.append("|---|---|---|---|---|")
+            for r in arm["failed_units"]:
+                spans = " ".join("%d-%d" % (e["start"], e["end"])
+                                 for e in r["episodes"])
+                lines.append("| %s | %d | %d | %d | %s |"
+                             % (r["map_id"], r["seat"], r["unit_id"],
+                                r["longest"], spans))
+            lines.append("")
+        blind = arm["blind_population"]
+        if blind:
+            lines.append("Blind population (no stall-evaluable window): %s"
+                         % ", ".join("%s %d" % (k, v["count"])
+                                     for k, v in sorted(blind.items())))
+            lines.append("")
+        lines.append("K-3 reconciliation: %d unit lives above the 1.5 %% "
+                     "idle-with-work share; %d of them are P4b failures, %d "
+                     "sit below W, and **%d cross the %d-turn tripwire "
+                     "without failing** (a non-empty tripwire list is an "
+                     "under-count warning, not a pass)."
+                     % (len(arm["idle_share_above_1_5_pct"]),
+                        sum(1 for r in arm["idle_share_above_1_5_pct"]
+                            if r["p4b_failure"]),
+                        sum(1 for r in arm["idle_share_above_1_5_pct"]
+                            if not r["p4b_failure"]),
+                        len(arm["tripwire_45"]), d["tripwire"]))
+        lines.append("")
+    for label, cmp_ in sorted(packet["comparisons"].items()):
+        lines.append("### differential vs `%s`: %s" % (label, cmp_["status"]))
+        lines.append("")
+        lines.append("- added failing units (panel, not baseline): %d %s"
+                     % (len(cmp_["added_unit_keys"]),
+                        json.dumps(cmp_["added_unit_keys"])[:400]))
+        lines.append("- removed failing units (baseline, not panel): %d %s"
+                     % (len(cmp_["removed_unit_keys"]),
+                        json.dumps(cmp_["removed_unit_keys"])[:400]))
+        if cmp_["roster_lifetime_mismatches"]:
+            lines.append("- **roster/lifetime mismatches %d -- the two arms "
+                         "are not comparable and the differential is "
+                         "GATE_UNREADY**"
+                         % len(cmp_["roster_lifetime_mismatches"]))
+        lines.append("")
+    lines.append("Controls: %s" % json.dumps(packet["controls"],
+                                             sort_keys=True))
+    lines.append("")
+    return lines
 
 
 def main(argv=None) -> int:

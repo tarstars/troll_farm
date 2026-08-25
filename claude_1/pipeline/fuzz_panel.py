@@ -2283,7 +2283,8 @@ def summarize(cfg, rows, wall_time):
     return stats
 
 
-def write_report(path: Path, cfg, rows, stats, verdict):
+def write_report(path: Path, cfg, rows, stats, verdict,
+                 extra_sections=None):
     identity = cfg.get("run_identity")
     label = {RUN_IDENTITY_FLOOR: "FLOOR (the parent judged against ITSELF)",
              RUN_IDENTITY_CANDIDATE: "CANDIDATE (candidate vs parent)"}.get(
@@ -2398,6 +2399,12 @@ def write_report(path: Path, cfg, rows, stats, verdict):
                              % (r["map_id"], r["seat"], f["flag"],
                                 f["detail"]))
         lines.append("")
+    # --p4b (2026-08-25, coordinator order 20260825T181413Z): report-tier
+    # only, appended after the panel's own sections and before the verdict.
+    # With the flag OFF `extra_sections` is None and this file's output is
+    # unchanged.
+    if extra_sections:
+        lines.extend(extra_sections)
     lines.append("---")
     lines.append("")
     lines.append("**VERDICT: %s -- %s**" % (verdict, label))
@@ -2406,8 +2413,49 @@ def write_report(path: Path, cfg, rows, stats, verdict):
     path.write_text("\n".join(lines))
 
 
+# --- P4b per-troll stall gate (integrated 2026-08-25) ----------------------
+# codex_1's accepted G-1 evaluator, claude_1/pipeline/p4b_gate.py, wired in
+# BEHIND A FLAG, DEFAULT OFF.  With --p4b absent nothing below runs, nothing
+# is imported, and every byte of the report, the JSON packet and the games
+# archive is what it was before the flag existed (the sole exceptions are the
+# two self-referential fields every edit to this file moves: `referee sha256`
+# -- this file's own digest -- and the measured wall time).
+
+
+def stream_digest(rows) -> str:
+    """sha256 of the DECOMPRESSED canonical jsonl stream.  Deliberately not
+    the .gz file digest: a gzip member embeds an mtime, so a file digest
+    cannot be reproduced from a fresh regeneration (the erratum on the G-1
+    provenance table, coordinator order 20260825T181413Z item 2)."""
+    h = hashlib.sha256()
+    for row in rows:
+        h.update((json.dumps(row, sort_keys=True) + "\n").encode("utf-8"))
+    return h.hexdigest()
+
+
+def load_archive_rows(path: Path) -> list:
+    with gzip.open(path, "rt", encoding="utf-8") as fh:
+        return [json.loads(line) for line in fh]
+
+
+def p4b_evaluate(rows, archive_path, baseline_path):
+    """Build the embedded P4b packet from the panel's own rows."""
+    sys.path[:0] = [str(HERE.parent / "narrate4")]
+    import narrate4 as n4                          # noqa: PLC0415
+    import p4b_gate                                # noqa: PLC0415
+    baseline = None
+    if baseline_path is not None:
+        b_rows = load_archive_rows(baseline_path)
+        baseline = p4b_gate.evaluate_rows(
+            b_rows, td, n4, str(baseline_path), stream_digest(b_rows))
+    label = str(archive_path) if archive_path else "(panel rows, not archived)"
+    return p4b_gate.panel_packet(rows, td, n4, label, stream_digest(rows),
+                                 baseline=baseline)
+
+
 def run_panel(cfg, report_path: Path, json_path: Path | None,
-              save_failures: Path | None) -> int:
+              save_failures: Path | None, p4b: bool = False,
+              p4b_baseline: Path | None = None) -> int:
     started = time.monotonic()
     with tempfile.TemporaryDirectory(prefix="fuzz-panel-") as workdir:
         candidate = compile_bot(cfg, "candidate", Path(workdir))
@@ -2427,11 +2475,16 @@ def run_panel(cfg, report_path: Path, json_path: Path | None,
         for row in rows:
             if row["block"] or row["flags"]:
                 save_failure(save_failures, row)
-    write_games_archive(cfg, rows)
+    archive_path = write_games_archive(cfg, rows)
 
     stats = summarize(cfg, rows, wall_time)
     verdict = aggregate_verdict(rows)
-    write_report(report_path, cfg, rows, stats, verdict)
+    p4b_packet, p4b_sections = None, None
+    if p4b:
+        p4b_packet = p4b_evaluate(rows, archive_path, p4b_baseline)
+        import p4b_gate                            # noqa: PLC0415
+        p4b_sections = p4b_gate.render_markdown(p4b_packet)
+    write_report(report_path, cfg, rows, stats, verdict, p4b_sections)
     if json_path is not None:
         slim = []
         for row in rows:
@@ -2452,6 +2505,7 @@ def run_panel(cfg, report_path: Path, json_path: Path | None,
              "parent_sha256": sha256_path(resolve(
                  cfg, cfg["parent"]["source"])),
              "provenance": provenance(cfg.get("run_identity")),
+             **({"p4b": p4b_packet} if p4b_packet is not None else {}),
              "games": slim}, indent=1, sort_keys=True) + "\n")
     print("fuzz_panel: %s [%s run] (%d games, %d blocking, %d flagged, %d "
           "gate-unready, %.1f s; report: %s)"
@@ -2474,13 +2528,24 @@ def main(argv=None) -> int:
     parser.add_argument("--report", required=True)
     parser.add_argument("--json", dest="json_out")
     parser.add_argument("--save-failures", dest="save_failures")
+    parser.add_argument(
+        "--p4b", action="store_true",
+        help="report-tier P4b per-troll stall gate (default OFF; the run's "
+             "charter decides the flag, and a P4b failure does NOT change "
+             "the panel verdict)")
+    parser.add_argument(
+        "--p4b-baseline", dest="p4b_baseline",
+        help="games.jsonl.gz of the arm to difference against (optional)")
     args = parser.parse_args(argv)
     try:
         cfg = load_config(Path(args.config))
         return run_panel(
             cfg, Path(args.report),
             Path(args.json_out) if args.json_out else None,
-            Path(args.save_failures) if args.save_failures else None)
+            Path(args.save_failures) if args.save_failures else None,
+            p4b=args.p4b,
+            p4b_baseline=(Path(args.p4b_baseline) if args.p4b_baseline
+                          else None))
     except PanelError as exc:
         print("fuzz_panel: tool/config error: %s" % exc, file=sys.stderr)
         return EXIT_ERROR
