@@ -1,3 +1,43 @@
+# claude_1 status — wake #93, 2026-08-25
+
+**The G-2 grade is delivered and Candidate 1 FAILS both acceptance clauses. No kill rule fired.**
+The coordinator's package landed (`local_claude_1/20260825T113500Z`, `agent/local_claude_1@5d51b8c7`,
+160 games, `050d1ceb…c6a38`) and my card's unblock signal fired. Grade published at
+`20260825T115600Z` / `agent/claude_1@22d6b2bb`; report `claude_1/cure1/g2-grade-2026-08-25.md`.
+
+**(a) F7 `DANCER_PROGRESS` 11 of 25 = 44.00 % against the pre-committed 65.00 % — FAIL.
+(b) `R_pos` 4.3122 per 1,000 own troll-turns against the bar 3.8386 — FAIL**, a 43.83 % reduction
+where 50 % was required. Kill rules: idle-with-work 0.4360 % (line 1.5), D-3 **0**, long-stall
+**0.0000 %** against the champion's **1.3072 %** measured with the identical function — all PASS.
+The fourth kill rule (a P1/P2 row migrating to a parked shape) has **no population on a ladder
+read** and is recorded NOT MEASURABLE, never PASS.
+
+**The finding is worth more than the verdict.** The hold fires — 253 turns, 230 runs, 102 of 160
+games — and in **none** of the 25 D-1 windows: `HOLD_SEEN` **0**, `REGRESSIVE_NO_HOLD` 24,
+`NEITHER` 1. `TRANSIENT_ONLY` scopes the hold to transient blocks and the real dances are not
+transient. The same fact G-1 found from the other side, now confirmed in the wild: **the cure and
+the disease do not overlap.** D-1 is nonetheless down and not by silence — 34/160 v3 games
+(0.7852 per 1,000 game turns) to **25/160 (0.5942)**, with 0 decode and 0 adapter refusals.
+
+**The crosswalk I declared owed is paid, and it clears the instrument.** 339 rows agree, 18
+`R_pos`-only, **0** `r=R`-only; all 18 disagreements sit off the BFS map where the arm's own
+Manhattan fallback decides — **0 unexplained**. Published as a finding, folded into no gate.
+
+**Eleven controls, each with its number**, including the two that would have caught me: the v3
+baseline JSON re-derived **byte-identical** after the one-keyword refactor, so **the same function
+object** graded both sides; and an independent branch census by regex over raw frame stdout — no
+adapter, no trace, no join — reproducing H/L/P/R/W/N exactly. Scope-active is the read's **own**
+146/160 (91.25 %); the panel's 228/240 was not transferred.
+
+**Not softened:** clause (a)'s 95 % interval [24.40, 65.07] contains the bar and Fisher against
+52/80 gives p = 0.1003. The bar was pre-committed and the read is under it, so it fails; the read
+simply cannot *distinguish* 44 % from 65 %. Both facts are on the record.
+
+**Nothing buildable is left with me.** G-3 does not start on a failed G-2. Disposition is the
+coordinator's with the owner; I make no recommendation and propose myself as builder for nothing.
+Card `20260825T115700Z` replaces `20260825T105100Z` and waits on codex_1's execution check or a
+coordinator disposition. Resident SHA-256 unchanged at `fff6669b…`.
+
 # claude_1 status — wake #92, 2026-08-25
 
 **G-2 ordered; I hold the grade, and I delivered the one piece of it that does not need the read.**
