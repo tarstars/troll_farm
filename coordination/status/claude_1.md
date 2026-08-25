@@ -1,6 +1,63 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-25T21:48:27Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-25T22:37:16Z (REAL clock, `date -u`)
+
+## WAKE #109 (2026-08-25T22:37Z) — **C-12: `--p4b` is NOT_EVALUABLE on this candidate's wire**, and the accepted computation with the decoder swapped says per-troll BLOCK / corpus PASS with every figure improved by the rule
+
+Delivery `20260825T223526Z` (ack-required, both peers), artifacts `agent/claude_1@7ff58b5b`, report
+`claude_1/cure2/c12-report-2026-08-25.md`, runner `c12_idle_with_work.py`, packet
+`results/c12-idle-with-work.json`.
+
+**Two verdict fields, never collapsed.** I turned `--p4b` ON on both arms and got
+**`GATE_UNREADY`, 172 364 evaluator errors each** — an instrument failure, not a verdict, and
+specifically not a 0.0 % pass. Two independent causes, measured not argued: `p4b_gate` reads the
+branch with `import narrate4` (`p4b_gate.py:387`, `fuzz_panel.py:2443-2444`) and these arms narrate
+**v5**, so every telemetry row is a decode error (**G-A1** narrate4 refuses a real payload naming
+the version; **G-A2** narrate5 reads the same bytes cleanly — the gate cannot read the wire and the
+wire is not at fault); and the `{H, W}` numerator names a branch **v5 retires by grammar**
+(**G-H**: 0 `H` turns over 76 748). A version-agnostic decoder fixes the first and not the second.
+`evaluate_rows` already takes its narrator as a parameter; only the wiring hardcodes it. **Locus
+named, amendment not enacted** — codex_1's to make.
+
+**The accepted computation, decoder swapped.** Everything but the narrator argument is
+grammar-independent, so codex_1's evaluator was re-driven with `narrate5` in its narrator slot —
+same function, same rows, nothing restated, and **G-X** requires its per-unit share to equal an
+independent tally on all 768 unit lives and narrate5's own census. READY on both arms:
+
+| | instrument (rule ON) | ruleoff (α-identical to the champion) |
+|---|---|---|
+| corpus idle share | **0.3818 %** | 0.7323 % |
+| per-troll maximum | **11.50 %** (`m101:0` u0) | 95.00 % (`m059:0` u2) |
+| unit lives above the 1.5 % bar | **25 / 384** | 28 / 384 |
+| parked-unit episodes (W=60) | **16** | 27 |
+| `compare(ruleoff → instrument)` | **PASS**, `added_unit_keys: []`, 11 removed | — |
+
+**The bar is breached and not by the candidate**: all 25 above-bar unit lives on the candidate arm
+are above the bar on the rule-off arm too, the instrument-only set is **empty**, and the rule-off
+arm has three more. So the **per-troll reading BLOCKS on the champion-equivalent arm as well** while
+the **corpus-aggregate reading PASSES on both** — which reading C-12 means is **codex_1's ruling and
+I made none**. C-12 is delivered, **not closed**.
+
+**Three things that travel with the numbers.** The 16 episodes are measured on **107 of 384** unit
+lives — the other **277** are blind (`NONE` available in every 60-turn window), the P3 orchard
+guard's shape a second time. 52 candidate-arm unit lives carry a forced `W` against 49 on rule-off,
+while total `W` turns fall 562 → 293: fewer waits, spread slightly wider. And two readings measured
+and **explicitly not offered against the bar** — `W`∪`N` = 87.34 % is not idleness (`N` is "no
+MOVE"; a `CHOP` is an `N`), and conditioning on progress does not rescue it because a multi-turn
+chop registers none until the tree falls; **that failure is an argument for P4b's 60-turn episode
+shape**, and on that invalid metric the candidate is two unit lives worse, reported because it is
+the one figure in the run that moves against the rule.
+
+**Transport this wake.** codex_1's `P3_READ_ACCEPTED` (`20260825T221829Z`) acked at
+`20260825T223441Z`; the coordinator's `20260825T222155Z` read whole (requires no ack) and its two
+rulings folded into the card — units beside every cost figure, and charter
+`20260826-deferred-card-lint` (codex_1 builds, **claude_1 reviews**, after this mission) which is
+now a deferred item I own. The replacement card `20260825T223716Z` puts the **G-1 handoff** first
+and carries every gap. **The countermeasure held**: `grep -c '^DEFERRED:'` = 1 before publication
+and the card verified present under "unacknowledged, ack required" in my own sweep afterwards —
+the check the six inert cards of `20260825T191401Z`…`20260825T221237Z` never got.
+
+No Arena action taken and none proposed; G-1 open, the owner's C-5 stop-and-ask still the owner's.
 
 ## WAKE #107 (2026-08-25T21:48Z) — **C-16 PASSES**: the orchard scoping is doing work — 9 of 60 eligible views violate P3 with the one line flipped, 0 with it on
 
