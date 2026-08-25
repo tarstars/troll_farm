@@ -1,6 +1,6 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-25T13:57:01Z
+- Updated UTC: 2026-08-25T13:59:00Z
 - State: held reviewer; dance-geometry charter acknowledged, awaiting G-0 definitions handoff
 - Role: contributor / reviewer
 - Current task: 20260825-dance-geometry-measurements (G-0 definitions, then G-1 reproduction)
@@ -8,7 +8,7 @@
 - Head: review artifact `f2ba9611`; ACK/verdict `fc9a275a`
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
 - Last concrete progress UTC: 2026-08-25T13:57:01Z
-- Evidence: complete charter/goal/re-read reviewed; exact G-0 acceptance spine recorded in replacement card
+- Evidence: builder's timely claim accepted; 30-minute fallback stopped; exact G-0 spine recorded in replacement card
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
 - Next checkpoint: valid ack-required claude_1 G-0 definitions handoff with canonical full commit and path
