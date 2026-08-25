@@ -1,0 +1,550 @@
+{
+ "candidate": "claude_1/cure1/arm-candidate.rs",
+ "results": [
+  {
+   "id": "OSC-001",
+   "identity_reasons": [
+    "98 of 195 frozen window command lines differ"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 0,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    6,
+    200
+   ]
+  },
+  {
+   "id": "OSC-002",
+   "identity_reasons": [
+    "189 of 189 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (units)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 2,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    12,
+    200
+   ]
+  },
+  {
+   "id": "OSC-003",
+   "identity_reasons": [
+    "23 of 23 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 0,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    25,
+    47
+   ]
+  },
+  {
+   "id": "OSC-004",
+   "identity_reasons": [
+    "14 of 14 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (plants, units)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 2,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    9,
+    22
+   ]
+  },
+  {
+   "id": "OSC-005",
+   "identity_reasons": [
+    "7 of 12 frozen window command lines differ"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 2,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    7,
+    18
+   ]
+  },
+  {
+   "id": "OSC-006",
+   "identity_reasons": [
+    "9 of 9 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (plants, units)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 2,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    12,
+    20
+   ]
+  },
+  {
+   "id": "OSC-007",
+   "identity_reasons": [
+    "9 of 9 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (plants, units)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 2,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    8,
+    16
+   ]
+  },
+  {
+   "id": "OSC-008",
+   "identity_reasons": [
+    "8 of 8 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 0,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    57,
+    64
+   ]
+  },
+  {
+   "id": "OSC-009",
+   "identity_reasons": [
+    "7 of 7 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 0,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    77,
+    83
+   ]
+  },
+  {
+   "id": "OSC-010",
+   "identity_reasons": [
+    "7 of 7 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (plants, units)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 0,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    80,
+    86
+   ]
+  },
+  {
+   "id": "OSC-011",
+   "identity_reasons": [
+    "4 of 7 frozen window command lines differ"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 0,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    26,
+    32
+   ]
+  },
+  {
+   "id": "OSC-012",
+   "identity_reasons": [
+    "96 of 193 frozen window command lines differ"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 0,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    8,
+    200
+   ]
+  },
+  {
+   "id": "OSC-013",
+   "identity_reasons": [
+    "94 of 187 frozen window command lines differ"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 2,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    14,
+    200
+   ]
+  },
+  {
+   "id": "OSC-014",
+   "identity_reasons": [
+    "167 of 168 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 2,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    33,
+    200
+   ]
+  },
+  {
+   "id": "OSC-015",
+   "identity_reasons": [
+    "157 of 157 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (plants, units)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 2,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    44,
+    200
+   ]
+  },
+  {
+   "id": "OSC-016",
+   "identity_reasons": [
+    "194 of 194 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (plants, units)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 2,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    7,
+    200
+   ]
+  },
+  {
+   "id": "OSC-017",
+   "identity_reasons": [
+    "98 of 194 frozen window command lines differ"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 2,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    7,
+    200
+   ]
+  },
+  {
+   "id": "OSC-018",
+   "identity_reasons": [
+    "191 of 191 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (plants, units)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 2,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    10,
+    200
+   ]
+  },
+  {
+   "id": "OSC-019",
+   "identity_reasons": [
+    "178 of 178 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (plants, units)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 2,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    23,
+    200
+   ]
+  },
+  {
+   "id": "OSC-020",
+   "identity_reasons": [
+    "172 of 172 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 2,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    29,
+    200
+   ]
+  },
+  {
+   "id": "OSC-021",
+   "identity_reasons": [
+    "85 of 169 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (units)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 0,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    32,
+    200
+   ]
+  },
+  {
+   "id": "OSC-022",
+   "identity_reasons": [
+    "95 of 95 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 2,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    106,
+    200
+   ]
+  },
+  {
+   "id": "OSC-023",
+   "identity_reasons": [
+    "74 of 74 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (plants, units)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 2,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    27,
+    100
+   ]
+  },
+  {
+   "id": "OSC-024",
+   "identity_reasons": [
+    "32 of 65 frozen window command lines differ"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 0,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    5,
+    69
+   ]
+  },
+  {
+   "id": "OSC-025",
+   "identity_reasons": [
+    "11 of 21 frozen window command lines differ"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 0,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    12,
+    32
+   ]
+  },
+  {
+   "cells": [
+    [
+     1,
+     4
+    ],
+    [
+     2,
+     4
+    ]
+   ],
+   "d1_episodes_in_window": 1,
+   "detector_clause": "D-1",
+   "detector_silent": false,
+   "id": "OSC-026",
+   "kind": "D1_EPISODE",
+   "left_cycle": false,
+   "p4_violations_in_window": 0,
+   "progress_events": false,
+   "progress_restored": false,
+   "reproduces_the_recorded_episode": true,
+   "unit": 0,
+   "verdict": "NOT_FIXED",
+   "why": "detector still fires",
+   "window": [
+    17,
+    25
+   ]
+  },
+  {
+   "id": "OSC-027",
+   "identity_reasons": [
+    "10 of 22 frozen window command lines differ"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 2,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    3,
+    24
+   ]
+  },
+  {
+   "id": "OSC-028",
+   "identity_reasons": [
+    "53 of 53 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (units)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 0,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    2,
+    54
+   ]
+  },
+  {
+   "id": "OSC-029",
+   "identity_reasons": [
+    "17 of 17 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (units, inventories)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 0,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    28,
+    44
+   ]
+  },
+  {
+   "id": "OSC-030",
+   "identity_reasons": [
+    "8 of 8 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (plants, units)"
+   ],
+   "kind": "D1_EPISODE",
+   "reproduces_the_recorded_episode": false,
+   "unit": 2,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    24,
+    31
+   ]
+  },
+  {
+   "id": "OSC-031",
+   "identity_reasons": [
+    "1 of 190 frozen window command lines differ",
+    "the board at the window's first turn differs from the frozen entry state (units)"
+   ],
+   "kind": "P4_STALL",
+   "reproduces_the_recorded_episode": false,
+   "unit": 0,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    11,
+    200
+   ]
+  },
+  {
+   "id": "OSC-032",
+   "identity_reasons": [
+    "the board at the window's first turn differs from the frozen entry state (plants, inventories)"
+   ],
+   "kind": "P4_STALL",
+   "reproduces_the_recorded_episode": false,
+   "unit": 0,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    91,
+    200
+   ]
+  },
+  {
+   "id": "OSC-033",
+   "identity_reasons": [
+    "the board at the window's first turn differs from the frozen entry state (plants, inventories)"
+   ],
+   "kind": "P4_STALL",
+   "reproduces_the_recorded_episode": false,
+   "unit": 0,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    58,
+    200
+   ]
+  },
+  {
+   "id": "OSC-034",
+   "identity_reasons": [
+    "4 of 94 frozen window command lines differ"
+   ],
+   "kind": "P4_STALL",
+   "reproduces_the_recorded_episode": false,
+   "unit": 0,
+   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
+   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "window": [
+    6,
+    99
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1965 @@
+{
+  "blocking_count_not_read_here": "a telemetry arm emits one MSG token per turn; eval_p3 compares command streams byte-wise, so the rule-off arm's blocking count is an instrument artifact. The blocking comparison that means something is the candidate arm's, which emits no MSG.",
+  "byte_identical_without_msg": 240,
+  "census": {
+    "available_states": {
+      "ABSENT": 0,
+      "CONCRETE": 21609,
+      "NONE": 55139
+    },
+    "blocked_values": {
+      "0": 76748
+    },
+    "branches": {
+      "H": 0,
+      "L": 297,
+      "N": 65482,
+      "P": 9117,
+      "R": 1290,
+      "W": 562
+    },
+    "chosen_ne_available": 4607,
+    "discarded_want": 2612,
+    "hold_turns": 0,
+    "lone_unit_turns": 19252,
+    "max_passes": 1,
+    "payload_max_chars": 142,
+    "rows": 76748,
+    "stale_protections": 0,
+    "turns": 48000,
+    "w_collision_events": 0,
+    "w_collision_turns": 0
+  },
+  "changed_game_count": 0,
+  "changed_games": [],
+  "games": 240,
+  "games_archive": "/tmp/claude-1000/cure1/cure1-ruleoff/games/games.jsonl.gz",
+  "gate": "alpha parity on the 240-game panel",
+  "rows": [
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m000",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m000",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m001",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m001",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m002",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m002",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m003",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m003",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m004",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m004",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m005",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m005",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m006",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m006",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m007",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m007",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m008",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m008",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m009",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m009",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m010",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m010",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m011",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m011",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m012",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m012",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m013",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m013",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m014",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m014",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m015",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m015",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m016",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m016",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m017",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m017",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m018",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m018",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m019",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m019",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m020",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m020",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m021",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m021",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m022",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m022",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m023",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m023",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m024",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m024",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m025",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m025",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m026",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m026",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m027",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m027",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m028",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m028",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m029",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m029",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m030",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m030",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m031",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m031",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m032",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m032",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m033",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m033",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m034",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m034",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m035",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m035",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m036",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m036",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m037",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m037",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m038",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m038",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m039",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m039",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m040",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m040",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m041",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m041",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m042",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m042",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m043",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m043",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m044",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m044",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m045",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m045",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m046",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m046",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m047",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m047",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m048",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m048",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m049",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m049",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m050",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m050",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m051",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m051",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m052",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m052",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m053",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m053",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m054",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m054",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m055",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m055",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m056",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m056",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m057",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m057",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m058",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m058",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m059",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m059",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m060",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m060",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m061",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m061",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m062",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m062",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m063",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m063",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m064",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m064",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m065",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m065",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m066",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m066",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m067",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m067",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m068",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m068",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m069",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m069",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m070",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m070",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m071",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m071",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m072",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m072",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m073",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m073",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m074",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m074",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m075",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m075",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m076",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m076",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m077",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m077",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m078",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m078",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m079",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m079",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m080",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m080",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m081",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m081",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m082",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m082",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m083",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m083",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m084",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m084",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m085",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m085",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m086",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m086",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m087",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m087",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m088",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m088",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m089",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m089",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m090",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m090",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m091",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m091",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m092",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m092",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m093",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m093",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m094",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m094",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m095",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m095",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m096",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m096",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m097",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m097",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m098",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m098",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m099",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m099",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m100",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m100",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m101",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m101",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m102",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m102",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m103",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m103",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m104",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m104",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m105",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m105",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m106",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m106",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m107",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m107",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m108",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m108",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m109",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m109",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m110",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m110",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m111",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m111",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m112",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m112",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m113",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m113",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m114",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m114",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m115",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m115",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m116",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m116",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m117",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m117",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m118",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m118",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m119",
+      "seat": 0,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "map_id": "m119",
+      "seat": 1,
+      "telemetry_errors": 0,
+      "turns": 200
+    }
+  ],
+  "rule_on": false,
+  "task": "20260825-dance-cure-candidate-1-hold",
+  "telemetry_error_count": 0,
+  "telemetry_errors": [],
+  "verdict": "PASS"
+}

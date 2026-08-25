@@ -1,0 +1,22 @@
+{
+  "caught": false,
+  "control": "poison arm \u2014 holds on every blocked step forever (W=255)",
+  "discriminator": "longest consecutive hold run 194 turns reaches the P4 window and P4 still did not fire: the gate is BLIND to a parked troll and no green on it can be read.",
+  "expected": "CAUGHT: more blocking games than the candidate arm, and P4 above the base",
+  "observed": {
+    "base_blocking": 43,
+    "base_p4": 16,
+    "candidate_blocking": 41,
+    "longest_consecutive_hold_run": 194,
+    "p4_liveness_window": 60,
+    "poison_blocking": 40,
+    "poison_de_novo_blocks": 3,
+    "poison_hold_turns": 2689,
+    "poison_p4": 16,
+    "poison_p4_worse_games": 1
+  },
+  "sha256": "0972704aa4d48e1e810f0da11d8438eb9eb07e32847ef813d34adcb7cd146007",
+  "task": "20260825-dance-cure-candidate-1-hold",
+  "unsampled": false,
+  "verdict": "FAIL \u2014 the gate cannot see a parked troll, so the candidate's own green on it means nothing"
+}

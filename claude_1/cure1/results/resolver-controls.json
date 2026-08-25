@@ -1,0 +1,322 @@
+{
+  "control_count": 10,
+  "controls": [
+    {
+      "control": "codex_1 #1 \u2014 persistent regressive block cycles H(b=1), H(b=2), R(b=0), H(b=1)",
+      "expected": [
+        [
+          1,
+          "H",
+          1
+        ],
+        [
+          2,
+          "H",
+          2
+        ],
+        [
+          3,
+          "R",
+          0
+        ],
+        [
+          4,
+          "H",
+          1
+        ]
+      ],
+      "observed": [
+        [
+          1,
+          "H",
+          1
+        ],
+        [
+          2,
+          "H",
+          2
+        ],
+        [
+          3,
+          "R",
+          0
+        ],
+        [
+          4,
+          "H",
+          1
+        ]
+      ],
+      "pass": true,
+      "status": "checked",
+      "why": "the bound W is what stops a hold becoming a parked troll; if the counter did not reset on R the cycle would stall forever"
+    },
+    {
+      "control": "codex_1 #6a \u2014 the rule-off arm cannot emit H or a nonzero b on the same situation",
+      "expected": [
+        [
+          1,
+          "R",
+          0
+        ],
+        [
+          2,
+          "R",
+          0
+        ],
+        [
+          3,
+          "R",
+          0
+        ],
+        [
+          4,
+          "R",
+          0
+        ]
+      ],
+      "observed": [
+        [
+          1,
+          "R",
+          0
+        ],
+        [
+          2,
+          "R",
+          0
+        ],
+        [
+          3,
+          "R",
+          0
+        ],
+        [
+          4,
+          "R",
+          0
+        ]
+      ],
+      "pass": true,
+      "status": "checked",
+      "why": "the parity claim rests on H being unreachable with the flag off"
+    },
+    {
+      "control": "codex_1 #2a \u2014 an IMPROVING detour after a prior hold is taken, as L, counter cleared",
+      "expected": [
+        [
+          1,
+          "L",
+          0
+        ]
+      ],
+      "observed": [
+        [
+          1,
+          "L",
+          0
+        ]
+      ],
+      "pass": true,
+      "status": "checked",
+      "why": "the cure must not swallow the detours the base takes correctly"
+    },
+    {
+      "control": "codex_1 #2b \u2014 an EQUAL-distance detour after a prior hold is L0",
+      "expected": "NOT CONSTRUCTIBLE: on a 4-connected grid the BFS distances of adjacent cells differ by exactly one, and a free orthogonal neighbour of a reachable cell is itself reachable, so the manhattan fallback can never apply to one side of the comparison only. `toward_goal[detour] == d_cur` is unreachable and the predicate's `<=` is exactly `<`. The probe runs the sideways case and it resolves as H because the neighbour is d_cur+1.",
+      "observed": [
+        [
+          1,
+          "H",
+          2
+        ]
+      ],
+      "pass": true,
+      "status": "not_constructible",
+      "why": "asked for by the G-0 ruling; reported honestly rather than faked"
+    },
+    {
+      "control": "codex_1 #3 \u2014 no legal detour after a prior hold is the base's forced WAIT, W, counter 0",
+      "expected": [
+        [
+          1,
+          "W",
+          0
+        ]
+      ],
+      "observed": [
+        [
+          1,
+          "W",
+          0
+        ]
+      ],
+      "pass": true,
+      "status": "checked",
+      "why": "a hold must never be produced by the absence of a detour; that is the base's own branch"
+    },
+    {
+      "control": "codex_1 #4 \u2014 a free primary landing after a prior hold is P, counter cleared",
+      "expected": [
+        [
+          1,
+          "P",
+          0
+        ]
+      ],
+      "observed": [
+        [
+          1,
+          "P",
+          0
+        ]
+      ],
+      "pass": true,
+      "status": "checked",
+      "why": "the counter counts CONSECUTIVE holds; a granted landing ends the run"
+    },
+    {
+      "control": "codex_1 #5 \u2014 a live own unit with no MOVE this turn is N, counter cleared",
+      "expected": [
+        [
+          1,
+          "N",
+          0
+        ]
+      ],
+      "observed": [
+        [
+          1,
+          "N",
+          0
+        ]
+      ],
+      "pass": true,
+      "status": "checked",
+      "why": "definition 6: counters are reset for live own ids absent from command_by_id"
+    },
+    {
+      "control": "codex_1 #3b \u2014 a self-targeting MOVE resolved to WAIT is W0",
+      "expected": [
+        [
+          1,
+          "W",
+          0
+        ]
+      ],
+      "observed": [
+        [
+          1,
+          "W",
+          0
+        ]
+      ],
+      "pass": true,
+      "status": "checked",
+      "why": "definition 3 names this case explicitly; it is the pre-pass, not the mover loop"
+    },
+    {
+      "control": "claude_1 \u2014 an earlier-order mover targeting a late-order holder's square resolves with ZERO own-troll contention",
+      "expected": {
+        "one unseeded pass": "u9 is granted u5's cell (1,0) while u5 holds on it",
+        "the fixed point": "u5 holds, u9 is NOT granted (1,0)"
+      },
+      "observed": {
+        "fixed_passes": "2",
+        "fixed_u5_r": "H",
+        "fixed_u9_cmd": "WAIT",
+        "pass1_holders": "1",
+        "pass1_u5_r": "H",
+        "pass1_u9_cmd": "MOVE 9 1 0"
+      },
+      "pass": true,
+      "status": "checked",
+      "why": "this is the hazard that sent G-0 back REVISION_REQUIRED, and the two-phase fixed point is the ruling's repair for it; the single unseeded pass is printed beside it so the control shows the defect as well as the fix"
+    },
+    {
+      "control": "charter \u2014 the hold fires and the dance ends with PROGRESS",
+      "expected": "rule-on never emits R and ends no further from the target than rule-off; rule-off does step backwards on the same script",
+      "observed": {
+        "rule_off": [
+          [
+            1,
+            "R",
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            2,
+            "P",
+            [
+              0,
+              0
+            ]
+          ],
+          [
+            3,
+            "P",
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            4,
+            "P",
+            [
+              2,
+              0
+            ]
+          ]
+        ],
+        "rule_on": [
+          [
+            1,
+            "H",
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            2,
+            "H",
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            3,
+            "P",
+            [
+              1,
+              0
+            ]
+          ],
+          [
+            4,
+            "P",
+            [
+              2,
+              0
+            ]
+          ]
+        ]
+      },
+      "pass": true,
+      "status": "checked",
+      "why": "a cure that merely stops the backward step and then stands still forever is the polite-standstill failure this programme has shipped before"
+    }
+  ],
+  "gate": "G-1 resolver controls",
+  "not_constructible": [
+    "codex_1 #2b \u2014 an EQUAL-distance detour after a prior hold is L0"
+  ],
+  "probe": "claude_1/cure1/control-probe.rs (generated by make_control_probe.py from arm-instrument.rs by ADDING a driver; no resolver line edited)",
+  "scope": "the resolver in isolation. These controls prove the branch transitions and the contention repair. They say NOTHING about how often those branches are reached in real play \u2014 that is the panel's and G-2's job.",
+  "task": "20260825-dance-cure-candidate-1-hold",
+  "verdict": "PASS"
+}
