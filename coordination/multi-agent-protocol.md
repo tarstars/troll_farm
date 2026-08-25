@@ -45,6 +45,10 @@ remain authoritative. Current transfer brief:
 not capability limits; a task record says who owns a particular outcome, and the user may
 reassign at any time.
 
+A coordinator transfer updates the roster on `main` in one act: set the new `coordinator` and
+append the outgoing id to `former_coordinators`. Omitting the append invalidates prior quarantine
+adjudications loudly at the next sweep; no quarantine file is copied between agent branches.
+
 Agent ids are lowercase `[a-z0-9_]+`. A newcomer claims an unused id, creates its own
 status file and message directory, and follows these rules; no spec change is needed.
 Onboarding brief: `coordination/peer-prompt.md`.
@@ -521,10 +525,18 @@ rewriting is closed (`docs/STATE.md` §3), the coordinator may record an adjudic
 ]}
 ```
 
-**Authority is the coordinator's canonical ref**, `refs/remotes/origin/agent/<coordinator>`,
-never the worktree — otherwise two agents at the same fetched state get different inbox truth
-from their local checkouts, and any local edit suppresses a message. The sweep prints the ref
-and blob it used and warns when the local copy drifts.
+**Authority is `refs/remotes/origin/main`**, beside the roster, never an agent branch or the
+worktree — otherwise two agents at the same fetched state get different inbox truth from their
+local checkouts, and any local or coordinator-branch edit suppresses a message. An entry takes
+effect only when the coordinator integrates it into `main`. A coordinator role transfer changes
+the identity authorized to adjudicate and edit the list; it does not relocate either authority
+file. The sweep prints the ref and blob it used and warns when the local copy drifts.
+
+The roster's `former_coordinators` list keeps entries adjudicated during an earlier term valid
+after a transfer. A former coordinator's id in that list does **not** authorize new entries: the
+sweep cannot establish when a signature was made, so the current integrator must refuse new
+entries signed by former coordinators before they reach `main`; the sweep reports every honoured
+former-coordinator signature explicitly.
 
 **An adjudication must actually adjudicate.** It must be a valid v2 message, authored by the
 coordinator, present on the coordinator's canonical ref, naming the exact target in a
@@ -569,7 +581,7 @@ instead, so the record is preserved rather than erased. Rules:
   invalid original is quarantined, or it disappears from the transport's view.
 
 **Frozen legacy baseline.** Rule 5 grandfathers pre-v2 messages, but only the exact paths
-pinned by blob in `coordination/legacy-baseline.json` on the coordinator's canonical ref
+pinned by blob in `coordination/legacy-baseline.json` on `origin/main`
 (691 at the migration). Any message outside that baseline must be v2, enforced by the
 *receiver*. Otherwise omitting `schema_version` skips v2 validation entirely for anyone who
 does not voluntarily run the lint, and a backdated filename defeats a date cutoff. The

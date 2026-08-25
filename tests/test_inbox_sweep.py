@@ -921,7 +921,7 @@ def test_legacy_repository_messages_parse_without_mutation():
 
 # ---------------------------------------------------------------------------
 # 18. quarantine: coordinator-adjudicated invalid messages stop poisoning the
-#     transport. Authority is the coordinator's canonical ref, and an
+#     transport. Authority is origin/main, and an
 #     adjudication must actually adjudicate the target (findings TQ-1/TQ-2).
 # ---------------------------------------------------------------------------
 
@@ -954,7 +954,7 @@ def publish_quarantine(
     branch: str | None = None,
     with_roster: bool = True,
 ):
-    """Quarantine is authoritative only on the coordinator's canonical ref.
+    """Quarantine is authoritative only on origin/main.
 
     The roster is published alongside by default because it is a precondition:
     without one there is no authority, so a quarantine means nothing. Pass
@@ -963,7 +963,7 @@ def publish_quarantine(
     payload = raw if raw is not None else json.dumps(
         {"schema_version": 2, "entries": entries}, indent=2
     ) + "\n"
-    repo.commit(branch or f"agent/{COORDINATOR}",
+    repo.commit(branch or "main",
                 {"coordination/quarantine.json": payload})
     if with_roster:
         publish_roster(repo)
@@ -979,11 +979,13 @@ def quarantine_entry(repo: TransportRepo, path: str, adjudicated_by: str,
     }
 
 
-def publish_roster(repo: TransportRepo, coordinator: str = COORDINATOR):
+def publish_roster(repo: TransportRepo, coordinator: str = COORDINATOR,
+                   former_coordinators: tuple[str, ...] = ()):
     """The roster names the coordinator, and lives only on origin/main."""
     repo.commit("main", {
         inbox_sweep.ROSTER_FILE: json.dumps(
-            {"schema_version": 1, "coordinator": coordinator}, indent=2
+            {"schema_version": 2, "coordinator": coordinator,
+             "former_coordinators": list(former_coordinators)}, indent=2
         ) + "\n"
     })
 
@@ -1019,17 +1021,30 @@ def test_missing_roster_disables_quarantine_loudly(repo):
     assert "no authoritative roster" in result.stdout
 
 
-def test_roster_naming_a_different_coordinator_moves_the_authority(repo):
-    # Legitimate role transfer: the roster is the single place it happens.
+def test_role_transfer_preserves_prior_adjudications_through_succession_list(repo):
     bad = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "finding",
                      requires_ack=False)
     adj = publish_adjudication(repo, (bad,))
     publish_quarantine(repo, [quarantine_entry(repo, bad, adj)])
-    publish_roster(repo, coordinator=THIRD)  # quarantine is not on THIRD's ref
+    publish_roster(repo, coordinator=THIRD, former_coordinators=(COORDINATOR,))
+
+    result = repo.sweep("--me", ME)
+    assert result.returncode == 0
+    assert counts(result.stdout)["quarantined"] == 1
+    assert f"adjudicated by former coordinator {COORDINATOR}" in result.stdout
+
+
+def test_role_transfer_without_succession_list_fails_loudly(repo):
+    bad = publish_v2(repo, PEER, "20260805T100000Z", "task-a", "finding",
+                     requires_ack=False)
+    adj = publish_adjudication(repo, (bad,))
+    publish_quarantine(repo, [quarantine_entry(repo, bad, adj)])
+    publish_roster(repo, coordinator=THIRD)
 
     result = repo.sweep("--me", ME)
     assert result.returncode == 2
     assert counts(result.stdout)["quarantined"] == 0
+    assert counts(result.stdout)["quarantine errors"] == 1
 
 
 def test_malformed_roster_fails_loudly(repo):
@@ -1061,7 +1076,7 @@ def test_adjudication_only_on_a_side_branch_is_rejected(repo):
     result = repo.sweep("--me", ME)
     assert result.returncode == 2
     assert counts(result.stdout)["quarantined"] == 0
-    assert "not present on the coordinator's canonical ref" in result.stdout
+    assert "not present on its author's canonical ref" in result.stdout
 
 
 def test_blob_pin_is_enforced_even_when_the_path_collides(repo):
@@ -1109,7 +1124,7 @@ def test_quarantining_an_ack_must_declare_what_it_reopens(repo):
 def publish_baseline(repo: TransportRepo, paths: dict[str, str],
                      frozen_at: str | None = None):
     """`frozen_at` defaults to the tip carrying the baselined messages."""
-    repo.commit(f"agent/{COORDINATOR}", {
+    repo.commit("main", {
         inbox_sweep.LEGACY_BASELINE_FILE: json.dumps(
             {"schema_version": 1,
              "frozen_at": frozen_at or repo.tips[f"agent/{PEER}"],
@@ -1141,7 +1156,7 @@ def test_quarantined_message_suppresses_errors_and_recovers_exit(repo):
     assert bad in quarantined_section
     assert "schema-invalid, adjudicated" in quarantined_section
     # TQ-1: the authority actually used must be reported.
-    assert f"{inbox_sweep.REMOTE_PREFIX}agent/{COORDINATOR}" in result.stdout
+    assert f"{inbox_sweep.ROSTER_REF}:{inbox_sweep.QUARANTINE_FILE}" in result.stdout
 
     marked = repo.sweep("--me", ME, "--mark")
     assert marked.returncode == 0
@@ -1179,12 +1194,12 @@ def test_local_quarantine_drift_from_authority_is_loud(repo):
     assert counts(result.stdout)["quarantined"] == 1
 
 
-def test_quarantine_on_a_non_coordinator_ref_is_ignored(repo):
+def test_well_formed_quarantine_on_any_agent_ref_is_ignored(repo):
     bad = publish_v2(repo, THIRD, "20260805T100000Z", "task-a", "finding",
                      requires_ack=False)
     adj = publish_adjudication(repo, (bad,))
     publish_quarantine(repo, [quarantine_entry(repo, bad, adj)],
-                       branch=f"agent/{THIRD}")
+                       branch=f"agent/{COORDINATOR}")
 
     result = repo.sweep("--me", ME)
     assert result.returncode == 2
@@ -1218,7 +1233,7 @@ def test_adjudication_from_a_non_coordinator_is_rejected(repo):
     result = repo.sweep("--me", ME)
     assert result.returncode == 2
     assert counts(result.stdout)["quarantined"] == 0
-    assert "not authored by the coordinator" in result.stdout
+    assert "not authored by the current or former coordinators" in result.stdout
 
 
 def test_quarantine_entry_with_unknown_adjudication_message_fails(repo):
@@ -1383,7 +1398,7 @@ def test_baseline_cannot_grandfather_a_message_added_after_the_freeze(repo):
     forgery = msg_path(PEER, "20260729T090000Z", "task-forged", "claim")
     repo.commit(f"agent/{PEER}", {forgery: legacy_message("task-forged")})
 
-    repo.commit(f"agent/{COORDINATOR}", {
+    repo.commit("main", {
         inbox_sweep.LEGACY_BASELINE_FILE: json.dumps(
             {"schema_version": 1, "frozen_at": freeze,
              "paths": {old: repo.blob_oid(old),
@@ -1399,7 +1414,7 @@ def test_baseline_cannot_grandfather_a_message_added_after_the_freeze(repo):
 def test_baseline_without_frozen_at_is_rejected(repo):
     path = msg_path(PEER, "20260805T100000Z", "task-a", "handoff")
     repo.commit(f"agent/{PEER}", {path: legacy_message("task-a")})
-    repo.commit(f"agent/{COORDINATOR}", {
+    repo.commit("main", {
         inbox_sweep.LEGACY_BASELINE_FILE: json.dumps(
             {"schema_version": 1, "paths": {path: repo.blob_oid(path)}},
             indent=2) + "\n"})
