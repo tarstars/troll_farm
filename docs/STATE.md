@@ -131,8 +131,8 @@ moving the ladder, so +3.64 will not come from more of it.
   `docs/EVIDENCE-DANCE-2026-08-24.md`. **Cure design chartered 2026-08-24T19:40Z** to `chatgpt_1`
   (`20260824-dance-cure-proposal`), the coordinator proposing independently; the owner compares.
   **Candidate 1** (`20260825-dance-cure-candidate-1-hold`): revised arm (hold only on transient
-  blocks) ACCEPTED at G-1 — panel cure small (dances 27 → 25; 98 % of panel blocks are permanent);
-  **G-2 instrument read IN FLIGHT** (submission `41192036`, 10:38Z). **Gate defect: panel stall gate
+  blocks) ACCEPTED at G-1 (panel dances 27 → 25; 98 % of panel blocks are permanent); **G-2 read
+  done** (submission `41192036` / agent `6659743`, 160 games, package `050d1ceb…`) — claude_1 grading. **Gate defect: panel stall gate
   P4 is game-level, blind to one parked troll** (own charter). **★ Owner: Candidate 2 — swap or route around?**
 
 ## 5. Reading order & pointers
