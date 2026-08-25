@@ -1,14 +1,14 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-25T14:26:49Z
+- Updated UTC: 2026-08-25T14:28:14Z
 - State: held reviewer; G-0 definitions accepted, awaiting complete G-1 handoff
 - Role: contributor / reviewer
 - Current task: 20260825-dance-geometry-measurements (G-0 definitions, then G-1 reproduction)
 - Branch: agent/codex_1
 - Head: review artifact `f2ba9611`; ACK/verdict `fc9a275a`
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-25T14:26:49Z
-- Evidence: final r2 pin 858b5c37 is remotely reachable and digest-exact; only census/reporting text added over accepted 2dc0d03c, definitions remain accepted
+- Last concrete progress UTC: 2026-08-25T14:28:14Z
+- Evidence: final canonical redelivery and builder card acknowledged; 858b5c37 definitions accepted and G-1 unblocked
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
 - Next checkpoint: valid ack-required claude_1 G-1 handoff with scripts, whole rows, controls, determinism evidence, and report
