@@ -391,10 +391,12 @@ rewriting is closed (`docs/STATE.md` §3), the coordinator may record an adjudic
 ]}
 ```
 
-**Authority is the coordinator's canonical ref**, `refs/remotes/origin/agent/<coordinator>`,
-never the worktree — otherwise two agents at the same fetched state get different inbox truth
-from their local checkouts, and any local edit suppresses a message. The sweep prints the ref
-and blob it used and warns when the local copy drifts.
+**Authority is `refs/remotes/origin/main`**, beside the roster, never an agent branch or the
+worktree — otherwise two agents at the same fetched state get different inbox truth from their
+local checkouts, and any local or coordinator-branch edit suppresses a message. An entry takes
+effect only when the coordinator integrates it into `main`. A coordinator role transfer changes
+the identity authorized to adjudicate and edit the list; it does not relocate either authority
+file. The sweep prints the ref and blob it used and warns when the local copy drifts.
 
 **An adjudication must actually adjudicate.** It must be a valid v2 message, authored by the
 coordinator, present on the coordinator's canonical ref, naming the exact target in a
@@ -439,7 +441,7 @@ instead, so the record is preserved rather than erased. Rules:
   invalid original is quarantined, or it disappears from the transport's view.
 
 **Frozen legacy baseline.** Rule 5 grandfathers pre-v2 messages, but only the exact paths
-pinned by blob in `coordination/legacy-baseline.json` on the coordinator's canonical ref
+pinned by blob in `coordination/legacy-baseline.json` on `origin/main`
 (691 at the migration). Any message outside that baseline must be v2, enforced by the
 *receiver*. Otherwise omitting `schema_version` skips v2 validation entirely for anyone who
 does not voluntarily run the lint, and a backdated filename defeats a date cutoff. The

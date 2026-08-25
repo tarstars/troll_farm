@@ -186,15 +186,14 @@ def main() -> int:
     authoritative_paths = set(per_path)
     remote_ref_names = set(refs)
 
-    # The frozen legacy baseline lives on the coordinator's canonical ref; the
+    # The frozen legacy baseline lives on origin/main beside the roster; the
     # lint must apply it or it clears messages the sweep permanently rejects.
     legacy_baseline: dict[str, str] = {}
     baseline_present = False
     try:
         coordinator = inbox_sweep.coordinator_agent()
         if coordinator:
-            legacy_baseline, baseline_present = inbox_sweep.load_legacy_baseline(
-                f"{inbox_sweep.REMOTE_PREFIX}agent/{coordinator}")
+            legacy_baseline, baseline_present = inbox_sweep.load_legacy_baseline()
     except ValueError as exc:
         print(str(exc), file=sys.stderr)
         return 2

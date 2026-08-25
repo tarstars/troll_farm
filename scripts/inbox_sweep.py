@@ -683,18 +683,18 @@ def read_authoritative_blob(ref: str, path: str) -> tuple[str, str] | None:
     return oid, git("cat-file", "blob", oid)
 
 
-def load_quarantine(coordinator_ref: str) -> tuple[list[dict[str, str]], str]:
-    """Load the quarantine blob from the coordinator's canonical ref (rule 7).
+def load_quarantine() -> tuple[list[dict[str, str]], str]:
+    """Load the quarantine blob from origin/main (rule 7).
 
     Returns (entries, blob_oid). The worktree copy is never authoritative; the
     caller compares it for drift and reports, but never uses it. Reading shared
     inbox truth from a mutable local file was finding TQ-1.
     """
-    found = read_authoritative_blob(coordinator_ref, QUARANTINE_FILE)
+    found = read_authoritative_blob(ROSTER_REF, QUARANTINE_FILE)
     if found is None:
         return [], ""
     oid, text = found
-    where = f"{coordinator_ref}:{QUARANTINE_FILE}"
+    where = f"{ROSTER_REF}:{QUARANTINE_FILE}"
     try:
         data = json.loads(text)
         if not isinstance(data, dict):
@@ -722,7 +722,7 @@ def load_quarantine(coordinator_ref: str) -> tuple[list[dict[str, str]], str]:
     return entries, oid
 
 
-def load_legacy_baseline(coordinator_ref: str) -> tuple[dict[str, str], bool]:
+def load_legacy_baseline() -> tuple[dict[str, str], bool]:
     """Frozen path→blob map of messages grandfathered as pre-v2 (rule 5).
 
     Returns (mapping, present). When absent, legacy messages are accepted as
@@ -733,11 +733,11 @@ def load_legacy_baseline(coordinator_ref: str) -> tuple[dict[str, str], bool]:
     message escape validation (finding F5). With it the list is verifiable —
     `verify_legacy_baseline` rejects any path that did not exist at that commit.
     """
-    found = read_authoritative_blob(coordinator_ref, LEGACY_BASELINE_FILE)
+    found = read_authoritative_blob(ROSTER_REF, LEGACY_BASELINE_FILE)
     if found is None:
         return {}, False
     _, text = found
-    where = f"{coordinator_ref}:{LEGACY_BASELINE_FILE}"
+    where = f"{ROSTER_REF}:{LEGACY_BASELINE_FILE}"
     try:
         data = json.loads(text)
         if not isinstance(data, dict):
@@ -764,14 +764,13 @@ def load_legacy_baseline(coordinator_ref: str) -> tuple[dict[str, str], bool]:
     return paths, True
 
 
-def verify_legacy_baseline(coordinator_ref: str,
-                           baseline: dict[str, str]) -> list[str]:
+def verify_legacy_baseline(baseline: dict[str, str]) -> list[str]:
     """Every pinned path must have existed, with those bytes, at the freeze.
 
     One `ls-tree` of the namespace at `frozen_at` rather than a lookup per path:
     the live baseline pins 691 paths.
     """
-    found = read_authoritative_blob(coordinator_ref, LEGACY_BASELINE_FILE)
+    found = read_authoritative_blob(ROSTER_REF, LEGACY_BASELINE_FILE)
     if found is None:
         return []
     frozen_at = json.loads(found[1]).get("frozen_at", "")
@@ -993,22 +992,20 @@ def main() -> int:
                     if "/" not in agent:
                         canonical_paths_by_agent.setdefault(agent, set()).add(path)
 
-    # Quarantine (rule 7). Authority is the coordinator's canonical ref, never
-    # the worktree: a local file must not be able to change shared inbox truth.
+    # Quarantine (rule 7). Authority is origin/main beside the roster, never an
+    # agent branch or the worktree: local state cannot change shared inbox truth.
     try:
         coordinator = coordinator_agent()
     except ValueError as exc:
         print(str(exc), file=sys.stderr)
         return 2
     if coordinator is None:
-        coordinator_ref = ""
         quarantine_entries, quarantine_blob = [], ""
         legacy_baseline, baseline_present = {}, False
     else:
-        coordinator_ref = f"{REMOTE_PREFIX}agent/{coordinator}"
         try:
-            quarantine_entries, quarantine_blob = load_quarantine(coordinator_ref)
-            legacy_baseline, baseline_present = load_legacy_baseline(coordinator_ref)
+            quarantine_entries, quarantine_blob = load_quarantine()
+            legacy_baseline, baseline_present = load_legacy_baseline()
         except ValueError as exc:
             print(str(exc), file=sys.stderr)
             return 2
@@ -1018,7 +1015,7 @@ def main() -> int:
     )
     if baseline_present:
         quarantine_errors.extend(
-            verify_legacy_baseline(coordinator_ref, legacy_baseline))
+            verify_legacy_baseline(legacy_baseline))
     # A broken or unauthorized quarantine suppresses nothing.
     quarantined: dict[str, dict[str, str]] = (
         {} if quarantine_errors else {e["path"]: e for e in quarantine_entries}
@@ -1138,7 +1135,7 @@ def main() -> int:
     else:
         print(
             f"\nquarantine authority: coordinator {coordinator!r} per "
-            f"{ROSTER_REF}:{ROSTER_FILE}; {coordinator_ref}:{QUARANTINE_FILE} "
+            f"{ROSTER_REF}:{ROSTER_FILE}; {ROSTER_REF}:{QUARANTINE_FILE} "
             f"blob {quarantine_blob[:12] or 'absent'}; legacy baseline "
             + (f"{len(legacy_baseline)} pinned paths" if baseline_present
                else "ABSENT — legacy messages are not pinned")
