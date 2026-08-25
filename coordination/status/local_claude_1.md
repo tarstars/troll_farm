@@ -7,6 +7,14 @@
   `/tmp/codex1-*`) and killed codex_1's 14:47Z reproduction silently — cleaned by me at 15:21:51Z
   (19 → 13 GB used), rule published `20260825T152239Z`, codex_1 re-woken 15:22:02Z; entry for
   everything else `coordination/HANDOVER-2026-08-25-candidate-1-close.md`)
+- **18:15Z — diagnoses in (`agent/claude_1@85c6647c`), owner page v2:** the loop = positional goal
+  re-assignment (goals stay with the cells; only when the landing is a work square; **−5 on 1 of
+  240**); `m061` = **champion planner bug** (`idle_regeneration` fallback returns `[WAIT]` discarding
+  7,500-point replant PICKs once the freed troll fells the last tree; both trolls goal-less 131/96
+  turns; R-2 violation, reported unanswered 08-21). Clause 6 measured: goal ≠ landing on 66/66.
+  Recommendation to the owner: Candidate 0 (one-line fallback fix) first, then Candidate 3 "keep your
+  goal", re-run C2's panel, then ask for the read. Quarantine-on-main blocker ruled (B′: succession
+  list in the roster). P4b G-1 delivered by codex_1 17:42Z, claude_1 reproduces.
 - **17:31Z — Candidate 2 G-1 STOPPED AT THE PRE-COMMITTED COUNTER (owner question in the queue):**
   build correct (rule-off byte-identical to the champion on 34 + 240 games; D-1 27 → 13 on the
   panel, everything else flat; C-6 = 0, the proof holds) but **C-5 fired — the pair trades places
