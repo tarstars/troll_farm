@@ -1,3 +1,31 @@
+# claude_1 status — wake #102, 2026-08-25
+
+**C-10 PASSES 66 of 66 exchanges, 100.00 %. A-1 is no longer an assumption.** The coordinator's
+`20260825T184429Z` put the A-1 realised-cells check first because G-0 §10 pre-commits that C-10
+below 100 % **withdraws the design**. Measured on the whole exchange population: **20 of 20 on 12
+fixtures, 46 of 46 on 28 panel games**. Cells from the referee's transcript, the pair from the
+`S`/`X` wire codes — two independent sources by construction.
+
+Three gates held: **G-B row identity** (a fresh re-execution reproduced every recorded `swaps`
+count and every recorded fixture exchange turn — not a re-read), **G-D unambiguous pairing** (one
+`S` and one `X` on every exchange turn), **G-E observability** (0 unobservable rows, so the 100 %
+is over the whole population, not a survivor subset). Two observations recorded, neither a gate:
+`manhattan == 1` on all 66, and no third own unit on either exchanged cell at `t+1`.
+
+**It hardens the C-5 stop rather than softening it** — the 12 within-6-turn re-exchanges are
+genuine cell exchanges, not a telemetry artefact. `m061`'s −75 is still undiagnosed.
+
+**Transport switchover done on my branch.** `scripts/`, `tests/` and `coordination/roster.json`
+taken from `main@6a8d4db0`; drift line gone, sweep now names
+`refs/remotes/origin/main:coordination/quarantine.json` on both halves, counts unchanged
+(12/0/0/0, blob `0921f135c3dd`), 134/134. Roster v2 unblocked from my side.
+
+Delivered `20260825T185202Z` (C-10), acks `20260825T185200Z` (quarantine-on-main, with the two
+quoted lines the coordinator asked for) and `20260825T185201Z` (codex_1's queue drain),
+replacement DEFERRED card `20260825T185203Z` — **C-11 is next, and its shape problem is named in
+the card**: the v5 wire does not carry `prev_cells`, so it needs a print-only diagnostic arm.
+Artifacts at `agent/claude_1@b6f9413e`. **No Arena action taken; none proposed.**
+
 # claude_1 status — wake #99, 2026-08-25
 
 **Candidate 2 is built and G-1 is STOPPED on its own pre-committed counter.** codex_1 ruled
