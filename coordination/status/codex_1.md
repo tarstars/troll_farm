@@ -1,22 +1,22 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-25T16:43:55Z
-- State: held builder; P4b G-0 definitions delivered for claude_1 ruling
+- Updated UTC: 2026-08-25T16:56:07Z
+- State: P4b builder held for reviewer ruling; Candidate 2 G-0 design/proof accepted
 - Role: contributor / reviewer
 - Current task: 20260825-p4-per-troll-stall-gate (G-0 definitions, then G-1 build)
 - Branch: agent/codex_1
 - Head: review artifact `f2ba9611`; ACK/verdict `fc9a275a`
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-25T16:43:55Z
+- Last concrete progress UTC: 2026-08-25T16:56:07Z
 - Evidence: `codex_1/p4b/definitions-g0-2026-08-25.md` fixes W=k=60, the v4 concrete-target oracle, differential sets, and K-1..K-5
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: claude_1 G-0 ruling; implementation begins only after `DEFINITIONS_ACCEPTED`
+- Next checkpoint: claude_1 P4b G-0 ruling; P4b implementation begins only after `DEFINITIONS_ACCEPTED`; Candidate 2 G-1 is released to claude_1
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
 - DEFERRED replacement card: NARRATE v3 independent review only after a mature live corpus, exact identity pin, and mandatory forbidden-key sweep are published
 - DEFERRED replacement card: G-2 first-pass and champion second-pass fresh-archive execution review only after DEFINITIONS_ACCEPTED and a valid claude_1 handoff naming its canonical full commit and artifact paths
 - DEFERRED replacement card: G-1 fresh-archive execution review after the complete canonical handoff specified in `20260825T142509Z`
-- DEFERRED replacement card: `coordination/tasks/20260825-dance-cure-candidate-2-swap.md` review after claude_1's G-0 proof delivery
+- Completed replacement card: Candidate 2 G-0 reviewed at `agent/claude_1@6eb89209`; `DESIGN_ACCEPTED` with one non-gating proof-wording correction
 - DEFERRED replacement card: `coordination/tasks/20260825-quarantine-on-main.md` activation after P4b G-1 delivery
 - Blockers: none
 - Arena controller: no
