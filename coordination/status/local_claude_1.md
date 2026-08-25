@@ -1,21 +1,23 @@
 # local_claude_1 Status
 
-- Updated UTC: 2026-08-25T13:40:00Z (new mission written at the owner's request — *"create goal
-  file for measurements you just mentioned"*; not yet activated; entry for everything else
-  `coordination/HANDOVER-2026-08-25-candidate-1-close.md`)
-- State: **mission written, awaiting activation** — `coordination/GOAL.md` = *measure the dance
-  geometry on the instrumented real games* (M-1 road-around cost with the standing teammate walled;
-  M-2 what stood on the forward cell in the older read's short dances), measurements only, no
-  Arena, time box 2026-08-26T14:00Z; input note `local_claude_1/dance-geometry/re-read-2026-08-25.md`
-  (teammate next to the dance at its start in 55/80 and 24/25 episodes; short "nobody adjacent"
-  dances 25/80 → 1/25 on the hold arm). Candidate 1 stays **CLOSED AT G-2 / PARKED (rec.)**, verdict
-  sheet `local_claude_1/cure1/owner-verdict-sheet-2026-08-25.md` still in the owner's queue.
+- Updated UTC: 2026-08-25T13:52:00Z (mission ACTIVATED by the owner ~13:45Z; task chartered
+  `20260825T135036Z`; entry for everything else `coordination/HANDOVER-2026-08-25-candidate-1-close.md`)
+- State: **mission ACTIVE — waiting on claude_1's claim and codex_1's G-0** — `coordination/GOAL.md`
+  = *measure the dance geometry on the instrumented real games* (M-1 road-around cost with the
+  standing teammate walled; M-2 what stood on the forward cell in the older read's short dances),
+  measurements only, no Arena, time box 2026-08-26T14:00Z; input note
+  `local_claude_1/dance-geometry/re-read-2026-08-25.md` (teammate next to the dance at its start in
+  55/80 and 24/25 episodes; short "nobody adjacent" dances 25/80 → 1/25 on the hold arm). Candidate 1
+  stays **CLOSED AT G-2 / PARKED (rec.)**, verdict sheet
+  `local_claude_1/cure1/owner-verdict-sheet-2026-08-25.md` still in the owner's queue.
 - Role: coordinator, integrator, and **sole** Arena controller, restored by owner instruction
   2026-08-24 (`coordination/tasks/20260824-coordinator-transfer-local-claude`). `local_codex_1` is a
   contributor with no integration or Arena authority.
-- Current task: `20260824-real-game-dance-attribution` — record owner and integrator; the lineage
-  grading is published (`20260824T162800Z`). Owner authorization: "do it", 2026-08-24 ~15:50Z,
-  recorded only as my transcription in the task record.
+- Current task: **`20260825-dance-geometry-measurements`** — record owner; **CHARTERED
+  2026-08-25T13:50Z** (`20260825T135036Z`, ack-required toward claude_1 + codex_1): claude_1 builds
+  (G-0 definitions first, then execution), codex_1 reviews; owner brief by me at the end. Mission
+  ACTIVE (`/goal coordination/GOAL.md`, 2026-08-25 ~13:45Z), time box 2026-08-26T14:00Z. Previous
+  task `20260824-real-game-dance-attribution` DELIVERED 08-24; Candidate 1 CLOSED AT G-2 08-25.
 - **Autonomous mission (written 2026-08-25T13:40Z, NOT yet activated): measure the dance
   geometry on the instrumented real games** (`coordination/GOAL.md`, time box 2026-08-26T14:00Z;
   the window starts when the owner activates it). The owner drives it with
