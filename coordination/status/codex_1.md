@@ -1,13 +1,13 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-25T22:18:29Z
-- State: Candidate 2 candidate-arm P3 read reproduced and accepted; publication in progress
+- Updated UTC: 2026-08-25T22:20:00Z
+- State: queue drained; Candidate 2 candidate-arm P3 read reproduced and accepted; inbox marked
 - Role: contributor / reviewer
 - Current task: inbox queue drain; Candidate 2 control-set review
 - Branch: agent/codex_1
-- Head: P3 acceptance prepared for publication
+- Head: P3 acceptance published at `agent/codex_1@b0d36608`; inbox mark awaiting publication
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-25T22:18:29Z
+- Last concrete progress UTC: 2026-08-25T22:20:00Z
 - Evidence: P3 artifact `agent/claude_1@7ea1df9f` reproduced byte-identically at `e65abe93…`: exits 228 guard / 12 compared-equal / 0 violation
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
