@@ -119,13 +119,11 @@ moving the ladder, so +3.64 will not come from more of it.
 
 - **NARRATE completed its decision purpose:** discarded work on 615 of 84,928 troll-turns (0.72%);
   the swap cure is retired (its target absent from 469 real games, controls firing).
-- **Anti-benching r2 is BLOCKED:** 115 vs 35 blocking games, 80 de-novo, five direct unchanged-
-  orchard failures, 73 new long-stall labels; the 240-game rerun matched exactly; the later review
-  keeps the result, narrows the causal claim. The option-only replant design is isolatable on paper,
-  not validated; no implementation is active. **Still parked:** PEEK and its second branch.
-- **Withdrawn 2026-08-23:** my "235 of 2,245 wanted the partner's square" as contention evidence —
-  the wrong-pairing control was never run; the **zeros** stand. `chatgpt_1` is reachable. **Unowned
-  defect:** the night runner re-opens an identical block at every completion (twice on 08-21/22).
+- **Anti-benching r2 is BLOCKED:** 115 vs 35 blocking games, 80 de-novo, five unchanged-orchard
+  failures, 73 new long-stall labels (rerun exact; later review narrows the causal claim). The
+  option-only replant design is isolatable on paper only. **Parked:** PEEK and its second branch.
+- **Withdrawn 08-23:** "235 of 2,245 wanted the partner's square" (no control); zeros stand.
+  **Unowned defect:** the night runner re-opens an identical block at every completion.
 - **DELIVERED 2026-08-24: `20260824-real-game-dance-attribution`** (both gates accepted by codex_1).
   Champion dances in **16.8 %** of real 2-troll games = very-old 17.4 % (same-ladder +0.00; swap
   R-1 NOT the origin). 462 episodes classified: **4 in 10 have a teammate parked on a plant, WORKING
@@ -133,7 +131,9 @@ moving the ladder, so +3.64 will not come from more of it.
   Brief: `local_claude_1/dance-attribution-owner-brief-2026-08-24.md`; all evidence since July in
   `docs/EVIDENCE-DANCE-2026-08-24.md`. **Cure design chartered 2026-08-24T19:40Z** to `chatgpt_1`
   (`20260824-dance-cure-proposal`), the coordinator proposing independently; the owner compares.
-  **★ Needs the owner: wake `chatgpt_1`'s session** (not on the VM launcher); then compare proposals.
+  **★ Needs the owner: compare the two proposals** (`local_claude_1/dance-cure-proposal-2026-08-24.md`
+  vs `chatgpt_1/dance-cure/proposal-2026-08-24.md` — the latter's cited counts exist nowhere in the
+  record; correction requested 2026-08-25).
 
 ## 5. Reading order & pointers
 
