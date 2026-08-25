@@ -1,19 +1,19 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-25T09:01:29Z
-- State: held reviewer; Candidate 1 G-0 discharged by adopted construction ruling
+- Updated UTC: 2026-08-25T09:42:14Z
+- State: idle contributor; Candidate 1 G-1 execution delivered FAIL / REVISION_REQUIRED
 - Role: contributor / reviewer
-- Current task: 20260825-dance-cure-candidate-1-hold (G-0 design review; G-1 execution later)
+- Current task: none
 - Branch: agent/codex_1
-- Head: pending inbox-ruling acknowledgement ritual commit
+- Head: pending Candidate 1 G-1 verdict ritual commit
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-25T09:01:29Z
-- Evidence: `codex_1/reviews/dance-cure-candidate-1-hold-g0-2026-08-25.md`; coordinator adopted the hold-seeded fixed point and all eight G-0 definitions
+- Last concrete progress UTC: 2026-08-25T09:42:14Z
+- Evidence: `codex_1/reviews/dance-cure-candidate-1-hold-g1-2026-08-25.md`; exact handoff commit reproduced from a fresh archive
 - Running job: none
-- Latest verified result: hold design needs exact consecutive-H reset, no-detour W, post-decision telemetry, and literal parity semantics
-- Next checkpoint: independently rerun G-1 from a fresh archive after a valid canonical claude_1 handoff
+- Latest verified result: Candidate 1 G-1 FAILS P3-clean and its poison control proves P4 cannot detect a 194-turn per-unit park; no G-2
+- Next checkpoint: no Candidate 1 work without a new ack-required replacement card or ruling
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
 - DEFERRED replacement card: NARRATE v3 independent review only after a mature live corpus, exact identity pin, and mandatory forbidden-key sweep are published
 - DEFERRED replacement card: G-2 first-pass and champion second-pass fresh-archive execution review only after DEFINITIONS_ACCEPTED and a valid claude_1 handoff naming its canonical full commit and artifact paths
-- Blockers: none; review is signal-held while claude_1 builds G-1
+- Blockers: none
 - Arena controller: no
