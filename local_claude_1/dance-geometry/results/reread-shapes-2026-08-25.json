@@ -1,0 +1,4904 @@
+{
+ "episodes": [
+  {
+   "cell_a": [
+    17,
+    2
+   ],
+   "cell_b": [
+    18,
+    2
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900089744,
+   "k": 3,
+   "length_turns": 8,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 6,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    19,
+    2
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 27,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "TREE(20,6)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    11,
+    10
+   ],
+   "cell_b": [
+    10,
+    10
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "GAME_END_NO_EVENT",
+   "f4_label": "MIXED",
+   "game": 900089904,
+   "k": 9,
+   "length_turns": 19,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    12,
+    10
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 1,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "CELL(13,9)"
+   ],
+   "unit": 3
+  },
+  {
+   "cell_a": [
+    5,
+    2
+   ],
+   "cell_b": [
+    5,
+    1
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900090390,
+   "k": 42,
+   "length_turns": 86,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 1,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    4,
+    1
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 5,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "BANK(3,0)",
+    "BANK(4,1)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    10,
+    4
+   ],
+   "cell_b": [
+    11,
+    4
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900091110,
+   "k": 3,
+   "length_turns": 8,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    6,
+    4
+   ],
+   "peer_cells_in_window": 3,
+   "peer_cells_to_game_end": 23,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "TREE(12,5)",
+    "TREE(13,5)",
+    "TREE(12,6)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    8,
+    4
+   ],
+   "cell_b": [
+    8,
+    5
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900091394,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    9,
+    5
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 22,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(10,5)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    4,
+    2
+   ],
+   "cell_b": [
+    3,
+    2
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900091527,
+   "k": 4,
+   "length_turns": 9,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 10,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    5,
+    2
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 28,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "BANK(12,4)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    9,
+    4
+   ],
+   "cell_b": [
+    9,
+    3
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900092186,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 6,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    8,
+    5
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 38,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "BANK(8,9)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    11,
+    2
+   ],
+   "cell_b": [
+    11,
+    1
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900092186,
+   "k": 16,
+   "length_turns": 34,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 0,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    6,
+    9
+   ],
+   "peer_cells_in_window": 23,
+   "peer_cells_to_game_end": 28,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "TREE(11,0)",
+    "TREE(11,2)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    10,
+    5
+   ],
+   "cell_b": [
+    11,
+    5
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900092318,
+   "k": 3,
+   "length_turns": 8,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 1,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    12,
+    5
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 34,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "TREE(12,5)",
+    "TREE(12,4)",
+    "TREE(13,2)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    11,
+    5
+   ],
+   "cell_b": [
+    10,
+    5
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900092318,
+   "k": 16,
+   "length_turns": 34,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    9,
+    5
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 2,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(8,4)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    7,
+    4
+   ],
+   "cell_b": [
+    7,
+    5
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900092504,
+   "k": 5,
+   "length_turns": 12,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    6,
+    5
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 26,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "TREE(5,5)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    11,
+    2
+   ],
+   "cell_b": [
+    11,
+    1
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900092700,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 9,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    12,
+    2
+   ],
+   "peer_cells_in_window": 3,
+   "peer_cells_to_game_end": 42,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "TREE(12,10)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    6,
+    4
+   ],
+   "cell_b": [
+    6,
+    3
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900092719,
+   "k": 4,
+   "length_turns": 10,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 1,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    7,
+    3
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 24,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "BANK(8,2)",
+    "BANK(7,3)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    8,
+    4
+   ],
+   "cell_b": [
+    8,
+    5
+   ],
+   "class": "POSITIONAL_EXCHANGE",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900092719,
+   "k": 4,
+   "length_turns": 10,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    8,
+    5
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 11,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "TREE(5,5)",
+    "TREE(7,7)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    10,
+    6
+   ],
+   "cell_b": [
+    11,
+    6
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900092906,
+   "k": 3,
+   "length_turns": 8,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    12,
+    6
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 18,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "TREE(12,5)",
+    "TREE(13,5)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    9,
+    4
+   ],
+   "cell_b": [
+    10,
+    4
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900092998,
+   "k": 3,
+   "length_turns": 8,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 1,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    6,
+    5
+   ],
+   "peer_cells_in_window": 3,
+   "peer_cells_to_game_end": 22,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "TREE(10,2)",
+    "TREE(11,1)",
+    "TREE(10,3)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    11,
+    6
+   ],
+   "cell_b": [
+    11,
+    7
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "SWAP_TICK_WITH_DANCER",
+   "f4_label": "MIXED",
+   "game": 900093265,
+   "k": 4,
+   "length_turns": 9,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    10,
+    4
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 27,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "TREE(10,4)",
+    "TREE(16,4)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    10,
+    4
+   ],
+   "cell_b": [
+    11,
+    5
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900093265,
+   "k": 4,
+   "length_turns": 9,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 0,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": false,
+   "peer_cell_at_entry": [
+    11,
+    6
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 36,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 2,
+   "targets": [
+    "TREE(16,4)",
+    "TREE(10,4)"
+   ],
+   "unit": 2
+  },
+  {
+   "cell_a": [
+    4,
+    3
+   ],
+   "cell_b": [
+    4,
+    2
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900093311,
+   "k": 17,
+   "length_turns": 36,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    4,
+    1
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 2,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0278,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(3,0)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    7,
+    4
+   ],
+   "cell_b": [
+    7,
+    3
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "GAME_END_NO_EVENT",
+   "f4_label": "CONSTANT",
+   "game": 900093423,
+   "k": 21,
+   "length_turns": 44,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    7,
+    2
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 1,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(6,1)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    7,
+    6
+   ],
+   "cell_b": [
+    6,
+    6
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900093504,
+   "k": 3,
+   "length_turns": 8,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    7,
+    7
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 32,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(8,8)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    7,
+    6
+   ],
+   "cell_b": [
+    6,
+    6
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900093504,
+   "k": 51,
+   "length_turns": 103,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 1,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    7,
+    7
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 5,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "BANK(8,8)",
+    "BANK(7,7)"
+   ],
+   "unit": 2
+  },
+  {
+   "cell_a": [
+    14,
+    4
+   ],
+   "cell_b": [
+    13,
+    4
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900098910,
+   "k": 32,
+   "length_turns": 66,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    15,
+    4
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 2,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "CELL(16,5)",
+    "TREE(5,5)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    13,
+    4
+   ],
+   "cell_b": [
+    14,
+    4
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900098910,
+   "k": 18,
+   "length_turns": 38,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    15,
+    4
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 2,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0263,
+   "read": "older",
+   "seat": 1,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(16,5)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    12,
+    6
+   ],
+   "cell_b": [
+    12,
+    5
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900098915,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    10,
+    6
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 24,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "TREE(9,6)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    12,
+    6
+   ],
+   "cell_b": [
+    12,
+    5
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900098915,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    10,
+    6
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 24,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "TREE(10,7)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    10,
+    5
+   ],
+   "cell_b": [
+    11,
+    5
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900098916,
+   "k": 5,
+   "length_turns": 11,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 4,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    12,
+    5
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 10,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(14,6)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    11,
+    3
+   ],
+   "cell_b": [
+    12,
+    3
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900098918,
+   "k": 15,
+   "length_turns": 32,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    13,
+    3
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 2,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(14,4)"
+   ],
+   "unit": 3
+  },
+  {
+   "cell_a": [
+    6,
+    4
+   ],
+   "cell_b": [
+    6,
+    5
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "GAME_END_NO_EVENT",
+   "f4_label": "MIXED",
+   "game": 900099410,
+   "k": 4,
+   "length_turns": 10,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    5,
+    5
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 1,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(3,3)",
+    "TREE(4,5)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    11,
+    10
+   ],
+   "cell_b": [
+    10,
+    10
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "SWAP_TICK_WITH_DANCER",
+   "f4_label": "CONSTANT",
+   "game": 900099457,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    11,
+    8
+   ],
+   "peer_cells_in_window": 3,
+   "peer_cells_to_game_end": 33,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "TREE(10,8)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    4,
+    4
+   ],
+   "cell_b": [
+    3,
+    4
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900099483,
+   "k": 4,
+   "length_turns": 9,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 4,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    6,
+    4
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 17,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "BANK(8,4)",
+    "BANK(9,3)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    7,
+    3
+   ],
+   "cell_b": [
+    6,
+    3
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900099654,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    8,
+    3
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 36,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(9,3)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    4,
+    4
+   ],
+   "cell_b": [
+    4,
+    5
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900099654,
+   "k": 3,
+   "length_turns": 8,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    5,
+    7
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 31,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "TREE(4,7)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    9,
+    3
+   ],
+   "cell_b": [
+    9,
+    4
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900099824,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 6,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    8,
+    4
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 26,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(5,6)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    16,
+    4
+   ],
+   "cell_b": [
+    16,
+    5
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900100275,
+   "k": 26,
+   "length_turns": 54,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    16,
+    6
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 2,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(15,7)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    3,
+    5
+   ],
+   "cell_b": [
+    2,
+    5
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900100638,
+   "k": 15,
+   "length_turns": 31,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    3,
+    6
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 2,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0323,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(4,7)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    3,
+    2
+   ],
+   "cell_b": [
+    2,
+    2
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900100880,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 10,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    4,
+    1
+   ],
+   "peer_cells_in_window": 4,
+   "peer_cells_to_game_end": 41,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "TREE(13,6)",
+    "TREE(10,5)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    9,
+    6
+   ],
+   "cell_b": [
+    10,
+    6
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900100880,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": false,
+   "peer_cell_at_entry": [
+    10,
+    5
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 40,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(13,6)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    5,
+    1
+   ],
+   "cell_b": [
+    6,
+    1
+   ],
+   "class": "POSITIONAL_EXCHANGE",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900100880,
+   "k": 5,
+   "length_turns": 12,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 1,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    7,
+    1
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 38,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "TREE(7,1)",
+    "TREE(10,0)",
+    "TREE(11,3)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    7,
+    3
+   ],
+   "cell_b": [
+    6,
+    3
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "MIXED",
+   "game": 900101148,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 6,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    8,
+    3
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 32,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(13,8)",
+    "TREE(10,0)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    15,
+    7
+   ],
+   "cell_b": [
+    14,
+    7
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900101148,
+   "k": 4,
+   "length_turns": 10,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 11,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    10,
+    6
+   ],
+   "peer_cells_in_window": 3,
+   "peer_cells_to_game_end": 19,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "BANK(7,3)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    4,
+    3
+   ],
+   "cell_b": [
+    5,
+    3
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900101206,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 8,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    2,
+    4
+   ],
+   "peer_cells_in_window": 6,
+   "peer_cells_to_game_end": 52,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "DROP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "TREE(17,0)",
+    "TREE(2,9)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    15,
+    6
+   ],
+   "cell_b": [
+    15,
+    5
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900101663,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 7,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    14,
+    6
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 6,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "BANK(8,5)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    7,
+    2
+   ],
+   "cell_b": [
+    6,
+    2
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900101783,
+   "k": 5,
+   "length_turns": 11,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    8,
+    2
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 36,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(9,1)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    4,
+    3
+   ],
+   "cell_b": [
+    4,
+    4
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900101851,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 8,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    5,
+    4
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 39,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(12,4)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    5,
+    5
+   ],
+   "cell_b": [
+    6,
+    5
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "SWAP_TICK_WITH_DANCER",
+   "f4_label": "MIXED",
+   "game": 900103230,
+   "k": 5,
+   "length_turns": 12,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 6,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    7,
+    5
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 38,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "BANK(8,9)",
+    "BANK(9,10)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    8,
+    1
+   ],
+   "cell_b": [
+    7,
+    1
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900106711,
+   "k": 6,
+   "length_turns": 13,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    9,
+    1
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 24,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "TREE(10,1)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    5,
+    4
+   ],
+   "cell_b": [
+    4,
+    4
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900106722,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    4,
+    6
+   ],
+   "peer_cells_in_window": 3,
+   "peer_cells_to_game_end": 14,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "BANK(3,7)",
+    "BANK(4,6)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    4,
+    6
+   ],
+   "cell_b": [
+    5,
+    5
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900106722,
+   "k": 3,
+   "length_turns": 8,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 0,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    5,
+    2
+   ],
+   "peer_cells_in_window": 4,
+   "peer_cells_to_game_end": 7,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 2,
+   "targets": [
+    "TREE(12,3)",
+    "CELL(4,6)"
+   ],
+   "unit": 2
+  },
+  {
+   "cell_a": [
+    15,
+    6
+   ],
+   "cell_b": [
+    14,
+    6
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900106807,
+   "k": 3,
+   "length_turns": 8,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 7,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    10,
+    6
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 26,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "BANK(7,6)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    4,
+    6
+   ],
+   "cell_b": [
+    5,
+    6
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900106869,
+   "k": 3,
+   "length_turns": 8,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    6,
+    6
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 37,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "TREE(6,4)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    7,
+    6
+   ],
+   "cell_b": [
+    8,
+    6
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900106993,
+   "k": 5,
+   "length_turns": 12,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    9,
+    6
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 37,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "TREE(10,6)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    8,
+    3
+   ],
+   "cell_b": [
+    7,
+    3
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900107100,
+   "k": 6,
+   "length_turns": 14,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    9,
+    3
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 4,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(12,5)",
+    "TREE(14,5)",
+    "TREE(5,3)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    13,
+    3
+   ],
+   "cell_b": [
+    12,
+    3
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900107336,
+   "k": 51,
+   "length_turns": 104,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    12,
+    4
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 2,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(11,5)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    9,
+    5
+   ],
+   "cell_b": [
+    8,
+    5
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "GAME_END_NO_EVENT",
+   "f4_label": "MIXED",
+   "game": 900107356,
+   "k": 19,
+   "length_turns": 39,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    7,
+    5
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 1,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "CELL(6,6)"
+   ],
+   "unit": 2
+  },
+  {
+   "cell_a": [
+    6,
+    2
+   ],
+   "cell_b": [
+    7,
+    2
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900107528,
+   "k": 5,
+   "length_turns": 11,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 0,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": false,
+   "peer_cell_at_entry": [
+    7,
+    3
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 11,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(15,1)",
+    "CELL(6,2)"
+   ],
+   "unit": 2
+  },
+  {
+   "cell_a": [
+    3,
+    2
+   ],
+   "cell_b": [
+    2,
+    2
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "MIXED",
+   "game": 900107655,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 1,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    4,
+    2
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 7,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(4,0)",
+    "TREE(4,1)",
+    "TREE(4,2)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    11,
+    4
+   ],
+   "cell_b": [
+    11,
+    3
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900107799,
+   "k": 4,
+   "length_turns": 9,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 8,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    8,
+    4
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 28,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "BANK(3,3)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    7,
+    5
+   ],
+   "cell_b": [
+    7,
+    6
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "GAME_END_NO_EVENT",
+   "f4_label": "CONSTANT",
+   "game": 900108129,
+   "k": 22,
+   "length_turns": 46,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    7,
+    4
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 1,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0217,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(6,3)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    6,
+    2
+   ],
+   "cell_b": [
+    5,
+    2
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900108277,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 4,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    7,
+    2
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 24,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "BANK(9,1)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    9,
+    3
+   ],
+   "cell_b": [
+    9,
+    2
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900108490,
+   "k": 13,
+   "length_turns": 28,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    9,
+    1
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 10,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(8,0)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    11,
+    8
+   ],
+   "cell_b": [
+    11,
+    9
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900108665,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    8,
+    7
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 12,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "TREE(10,7)",
+    "TREE(9,7)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    10,
+    2
+   ],
+   "cell_b": [
+    10,
+    3
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900108725,
+   "k": 9,
+   "length_turns": 19,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 0,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    9,
+    3
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 1,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0526,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(4,8)",
+    "CELL(9,1)",
+    "CELL(10,2)"
+   ],
+   "unit": 2
+  },
+  {
+   "cell_a": [
+    8,
+    5
+   ],
+   "cell_b": [
+    9,
+    5
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900108767,
+   "k": 3,
+   "length_turns": 8,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 6,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    10,
+    5
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 37,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "TREE(11,9)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    10,
+    5
+   ],
+   "cell_b": [
+    10,
+    6
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "MIXED",
+   "game": 900108767,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 1,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    10,
+    7
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 9,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(10,8)",
+    "TREE(11,5)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    11,
+    3
+   ],
+   "cell_b": [
+    12,
+    3
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900109260,
+   "k": 4,
+   "length_turns": 9,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 5,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    10,
+    4
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 37,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "BANK(8,5)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    6,
+    2
+   ],
+   "cell_b": [
+    6,
+    1
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900109500,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 4,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    6,
+    3
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 32,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(6,6)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    6,
+    4
+   ],
+   "cell_b": [
+    6,
+    5
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "GAME_END_NO_EVENT",
+   "f4_label": "MIXED",
+   "game": 900109500,
+   "k": 12,
+   "length_turns": 25,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    6,
+    6
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 1,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "CELL(5,7)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    10,
+    8
+   ],
+   "cell_b": [
+    9,
+    8
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900109734,
+   "k": 3,
+   "length_turns": 8,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 1,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    8,
+    7
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 20,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "TREE(8,7)",
+    "TREE(9,7)"
+   ],
+   "unit": 2
+  },
+  {
+   "cell_a": [
+    11,
+    2
+   ],
+   "cell_b": [
+    12,
+    2
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "GAME_END_NO_EVENT",
+   "f4_label": "MIXED",
+   "game": 900109763,
+   "k": 11,
+   "length_turns": 23,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    13,
+    2
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 1,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "CELL(14,1)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    4,
+    6
+   ],
+   "cell_b": [
+    5,
+    6
+   ],
+   "class": "POSITIONAL_EXCHANGE",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900109777,
+   "k": 5,
+   "length_turns": 12,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    5,
+    6
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 10,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "TREE(7,5)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    4,
+    3
+   ],
+   "cell_b": [
+    4,
+    4
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900109996,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    11,
+    2
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 25,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "TREE(6,5)",
+    "TREE(6,3)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    5,
+    3
+   ],
+   "cell_b": [
+    6,
+    3
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900109996,
+   "k": 4,
+   "length_turns": 9,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 0,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    10,
+    3
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 24,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "TREE(6,3)",
+    "TREE(6,5)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    7,
+    5
+   ],
+   "cell_b": [
+    7,
+    4
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "GAME_END_NO_EVENT",
+   "f4_label": "MIXED",
+   "game": 900110059,
+   "k": 18,
+   "length_turns": 38,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    6,
+    5
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 1,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "CELL(5,6)"
+   ],
+   "unit": 2
+  },
+  {
+   "cell_a": [
+    6,
+    1
+   ],
+   "cell_b": [
+    7,
+    1
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900110085,
+   "k": 4,
+   "length_turns": 10,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    9,
+    1
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 39,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "BANK(8,0)",
+    "BANK(9,1)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    1,
+    5
+   ],
+   "cell_b": [
+    0,
+    5
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900110139,
+   "k": 4,
+   "length_turns": 9,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 12,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    3,
+    5
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 16,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "BANK(11,3)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    7,
+    2
+   ],
+   "cell_b": [
+    6,
+    2
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900110372,
+   "k": 3,
+   "length_turns": 7,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 6,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    8,
+    2
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 32,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(13,2)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    8,
+    4
+   ],
+   "cell_b": [
+    9,
+    4
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900110452,
+   "k": 5,
+   "length_turns": 12,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    10,
+    4
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 34,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "TREE(10,5)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    15,
+    3
+   ],
+   "cell_b": [
+    15,
+    2
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900110576,
+   "k": 4,
+   "length_turns": 9,
+   "letters": null,
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 7,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    14,
+    4
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 26,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 0,
+   "shape": "nobody",
+   "speed": 1,
+   "targets": [
+    "TREE(12,7)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    10,
+    5
+   ],
+   "cell_b": [
+    11,
+    5
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "GAME_END_NO_EVENT",
+   "f4_label": "CONSTANT",
+   "game": 900110684,
+   "k": 19,
+   "length_turns": 39,
+   "letters": null,
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    12,
+    5
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 1,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "older",
+   "seat": 1,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(13,6)"
+   ],
+   "unit": 2
+  },
+  {
+   "cell_a": [
+    6,
+    4
+   ],
+   "cell_b": [
+    5,
+    4
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900326476,
+   "k": 3,
+   "length_turns": 7,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 4,
+    "R": 3,
+    "W": 0
+   },
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 4,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    7,
+    4
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 47,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "TREE(10,4)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    8,
+    3
+   ],
+   "cell_b": [
+    7,
+    3
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900326481,
+   "k": 5,
+   "length_turns": 12,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 7,
+    "R": 5,
+    "W": 0
+   },
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 7,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    7,
+    4
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 46,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 1,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(6,9)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    9,
+    7
+   ],
+   "cell_b": [
+    8,
+    7
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "SWAP_TICK_WITH_DANCER",
+   "f4_label": "MIXED",
+   "game": 900326482,
+   "k": 3,
+   "length_turns": 7,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 4,
+    "R": 3,
+    "W": 0
+   },
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    10,
+    7
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 17,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "TREE(10,8)",
+    "TREE(11,7)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    9,
+    3
+   ],
+   "cell_b": [
+    10,
+    3
+   ],
+   "class": "SWAP_FLAP",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900326532,
+   "k": 6,
+   "length_turns": 14,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 8,
+    "R": 6,
+    "W": 0
+   },
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 5,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    10,
+    3
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 35,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "TREE(15,3)"
+   ],
+   "unit": 2
+  },
+  {
+   "cell_a": [
+    11,
+    5
+   ],
+   "cell_b": [
+    11,
+    6
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900326617,
+   "k": 4,
+   "length_turns": 10,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 6,
+    "R": 4,
+    "W": 0
+   },
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    11,
+    7
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 28,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(11,9)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    7,
+    4
+   ],
+   "cell_b": [
+    6,
+    4
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "GAME_END_NO_EVENT",
+   "f4_label": "CONSTANT",
+   "game": 900327026,
+   "k": 33,
+   "length_turns": 67,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 34,
+    "R": 33,
+    "W": 0
+   },
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    6,
+    5
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 1,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0597,
+   "read": "v4",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(5,6)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    2,
+    2
+   ],
+   "cell_b": [
+    1,
+    2
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900327183,
+   "k": 3,
+   "length_turns": 7,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 4,
+    "R": 3,
+    "W": 0
+   },
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 7,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": false,
+   "peer_cell_at_entry": [
+    2,
+    3
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 27,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 1,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "BANK(9,2)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    9,
+    7
+   ],
+   "cell_b": [
+    9,
+    8
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900327286,
+   "k": 4,
+   "length_turns": 10,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 6,
+    "R": 4,
+    "W": 0
+   },
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    9,
+    9
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 28,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 1,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "TREE(8,10)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    9,
+    4
+   ],
+   "cell_b": [
+    10,
+    4
+   ],
+   "class": "FIXED_TARGET_NO_BLOCKER",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900327618,
+   "k": 3,
+   "length_turns": 7,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 4,
+    "R": 3,
+    "W": 0
+   },
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 5,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    8,
+    4
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 29,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "BANK(5,3)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    1,
+    8
+   ],
+   "cell_b": [
+    1,
+    9
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "MIXED",
+   "game": 900327649,
+   "k": 7,
+   "length_turns": 16,
+   "letters": {
+    "H": 0,
+    "L": 8,
+    "N": 1,
+    "P": 0,
+    "R": 7,
+    "W": 0
+   },
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 1,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    2,
+    9
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 11,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP"
+   ],
+   "peer_wait_fraction": 0.9375,
+   "read": "v4",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 2,
+   "targets": [
+    "TREE(2,9)"
+   ],
+   "unit": 2
+  },
+  {
+   "cell_a": [
+    10,
+    2
+   ],
+   "cell_b": [
+    11,
+    2
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900327873,
+   "k": 3,
+   "length_turns": 8,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 5,
+    "R": 3,
+    "W": 0
+   },
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    12,
+    2
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 21,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(13,2)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    6,
+    0
+   ],
+   "cell_b": [
+    5,
+    1
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900328010,
+   "k": 4,
+   "length_turns": 9,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 1,
+    "P": 8,
+    "R": 0,
+    "W": 0
+   },
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 0,
+   "peer_adjacent_at_entry": false,
+   "peer_ahead_manhattan": null,
+   "peer_cell_at_entry": [
+    7,
+    2
+   ],
+   "peer_cells_in_window": 8,
+   "peer_cells_to_game_end": 41,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "DROP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 1,
+   "shape": "nobody",
+   "speed": 2,
+   "targets": [
+    "TREE(5,1)",
+    "TREE(6,0)"
+   ],
+   "unit": 2
+  },
+  {
+   "cell_a": [
+    6,
+    3
+   ],
+   "cell_b": [
+    6,
+    2
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900328084,
+   "k": 8,
+   "length_turns": 18,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 10,
+    "R": 8,
+    "W": 0
+   },
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    6,
+    1
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 8,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(5,0)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    12,
+    7
+   ],
+   "cell_b": [
+    12,
+    8
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900328242,
+   "k": 3,
+   "length_turns": 7,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 4,
+    "R": 3,
+    "W": 0
+   },
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 13,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    12,
+    6
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 10,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(4,2)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    12,
+    3
+   ],
+   "cell_b": [
+    12,
+    2
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "GAME_END_NO_EVENT",
+   "f4_label": "MIXED",
+   "game": 900328301,
+   "k": 17,
+   "length_turns": 35,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 1,
+    "P": 17,
+    "R": 17,
+    "W": 0
+   },
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    13,
+    2
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 1,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 1,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "CELL(14,1)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    5,
+    3
+   ],
+   "cell_b": [
+    5,
+    4
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "GAME_END_NO_EVENT",
+   "f4_label": "CONSTANT",
+   "game": 900328800,
+   "k": 19,
+   "length_turns": 40,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 20,
+    "R": 20,
+    "W": 0
+   },
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    5,
+    5
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 1,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.025,
+   "read": "v4",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(4,6)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    8,
+    8
+   ],
+   "cell_b": [
+    7,
+    8
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "CONSTANT",
+   "game": 900329090,
+   "k": 3,
+   "length_turns": 7,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 4,
+    "R": 3,
+    "W": 0
+   },
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 8,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    8,
+    7
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 8,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 1,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(10,2)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    5,
+    8
+   ],
+   "cell_b": [
+    4,
+    8
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900329090,
+   "k": 6,
+   "length_turns": 13,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 7,
+    "R": 6,
+    "W": 0
+   },
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 11,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    6,
+    8
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 19,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 1,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "BANK(10,2)",
+    "BANK(9,1)"
+   ],
+   "unit": 2
+  },
+  {
+   "cell_a": [
+    6,
+    6
+   ],
+   "cell_b": [
+    6,
+    5
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "GAME_END_NO_EVENT",
+   "f4_label": "CONSTANT",
+   "game": 900329181,
+   "k": 21,
+   "length_turns": 43,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 22,
+    "R": 21,
+    "W": 0
+   },
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    6,
+    4
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 1,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.1395,
+   "read": "v4",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(4,4)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    5,
+    2
+   ],
+   "cell_b": [
+    5,
+    3
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900329285,
+   "k": 8,
+   "length_turns": 17,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 10,
+    "R": 7,
+    "W": 0
+   },
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 2,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    6,
+    3
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 3,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 0,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "BANK(7,3)",
+    "BANK(8,4)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    12,
+    5
+   ],
+   "cell_b": [
+    13,
+    5
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "CONSTANT",
+   "game": 900329900,
+   "k": 11,
+   "length_turns": 24,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 13,
+    "R": 11,
+    "W": 0
+   },
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    14,
+    5
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 5,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 1,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(15,6)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    7,
+    4
+   ],
+   "cell_b": [
+    6,
+    4
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "MIXED",
+   "game": 900330091,
+   "k": 3,
+   "length_turns": 7,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 4,
+    "R": 3,
+    "W": 0
+   },
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 5,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    8,
+    4
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 28,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(11,5)",
+    "TREE(11,0)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    12,
+    4
+   ],
+   "cell_b": [
+    11,
+    4
+   ],
+   "class": "UNCLASSIFIED",
+   "end": "DANCER_PROGRESS",
+   "f4_label": "MIXED",
+   "game": 900330125,
+   "k": 11,
+   "length_turns": 23,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 12,
+    "R": 11,
+    "W": 0
+   },
+   "mech": "PEERS_NO_BLOCKER",
+   "min_dist_dance_cell_to_target": 1,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    13,
+    4
+   ],
+   "peer_cells_in_window": 2,
+   "peer_cells_to_game_end": 13,
+   "peer_on_plant": false,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "MOVE",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 1,
+   "shape": "adjacent",
+   "speed": 1,
+   "targets": [
+    "BANK(14,3)",
+    "BANK(13,4)"
+   ],
+   "unit": 1
+  },
+  {
+   "cell_a": [
+    9,
+    6
+   ],
+   "cell_b": [
+    8,
+    6
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "HOLDING_PEER_MOVED",
+   "f4_label": "MIXED",
+   "game": 900330216,
+   "k": 3,
+   "length_turns": 7,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 4,
+    "R": 3,
+    "W": 0
+   },
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 6,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    10,
+    6
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 40,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "MOVE"
+   ],
+   "peer_wait_fraction": 0.0,
+   "read": "v4",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "TREE(14,5)",
+    "TREE(14,8)",
+    "TREE(16,5)",
+    "TREE(15,6)"
+   ],
+   "unit": 0
+  },
+  {
+   "cell_a": [
+    6,
+    2
+   ],
+   "cell_b": [
+    6,
+    3
+   ],
+   "class": "BLOCKED_BY_WORKING_TEAMMATE",
+   "end": "GAME_END_NO_EVENT",
+   "f4_label": "CONSTANT",
+   "game": 900330366,
+   "k": 12,
+   "length_turns": 26,
+   "letters": {
+    "H": 0,
+    "L": 0,
+    "N": 0,
+    "P": 13,
+    "R": 13,
+    "W": 0
+   },
+   "mech": "BLOCKER_WORKING",
+   "min_dist_dance_cell_to_target": 3,
+   "peer_adjacent_at_entry": true,
+   "peer_ahead_manhattan": true,
+   "peer_cell_at_entry": [
+    7,
+    3
+   ],
+   "peer_cells_in_window": 1,
+   "peer_cells_to_game_end": 1,
+   "peer_on_plant": true,
+   "peer_verbs": [
+    "CHOP",
+    "DROP",
+    "PICK",
+    "PLANT"
+   ],
+   "peer_wait_fraction": 0.0769,
+   "read": "v4",
+   "seat": 0,
+   "shape": "one-cell",
+   "speed": 1,
+   "targets": [
+    "BANK(8,4)"
+   ],
+   "unit": 0
+  }
+ ],
+ "summary": {
+  "fisher_two_sided": {
+   "nobody_share_batch3_vs_v4": {
+    "batch3": [
+     12,
+     34
+    ],
+    "p": 0.0043,
+    "v4": [
+     1,
+     25
+    ]
+   },
+   "nobody_share_older_vs_v4": {
+    "older": [
+     25,
+     80
+    ],
+    "p": 0.0066,
+    "v4": [
+     1,
+     25
+    ]
+   }
+  },
+  "older_read_80": {
+   "adjacent": {
+    "ends": {
+     "DANCER_PROGRESS": 20,
+     "SWAP_TICK_WITH_DANCER": 1
+    },
+    "episodes": 21,
+    "episodes_with_letter_H": 0,
+    "episodes_with_letter_R": 0,
+    "f4_label": {
+     "CONSTANT": 12,
+     "MIXED": 9
+    },
+    "length_ge_12": 9,
+    "length_min_med_max": [
+     7,
+     10,
+     103
+    ],
+    "peer_ahead_manhattan": {
+     "False": 1,
+     "True": 20
+    },
+    "peer_cells_in_window": {
+     "2": 20,
+     "3": 1
+    },
+    "peer_never_moves_again": 0,
+    "peer_on_plant": 17,
+    "peer_wait_fraction_le_0_05": 21
+   },
+   "nobody": {
+    "ends": {
+     "DANCER_PROGRESS": 23,
+     "SWAP_TICK_WITH_DANCER": 2
+    },
+    "episodes": 25,
+    "episodes_with_letter_H": 0,
+    "episodes_with_letter_R": 0,
+    "f4_label": {
+     "CONSTANT": 11,
+     "MIXED": 14
+    },
+    "length_ge_12": 1,
+    "length_min_med_max": [
+     7,
+     8,
+     34
+    ],
+    "peer_ahead_manhattan": {
+     "None": 25
+    },
+    "peer_cells_in_window": {
+     "2": 16,
+     "23": 1,
+     "3": 5,
+     "4": 2,
+     "6": 1
+    },
+    "peer_never_moves_again": 0,
+    "peer_on_plant": 5,
+    "peer_wait_fraction_le_0_05": 25
+   },
+   "one-cell": {
+    "ends": {
+     "DANCER_PROGRESS": 9,
+     "GAME_END_NO_EVENT": 9,
+     "HOLDING_PEER_MOVED": 16
+    },
+    "episodes": 34,
+    "episodes_with_letter_H": 0,
+    "episodes_with_letter_R": 0,
+    "f4_label": {
+     "CONSTANT": 21,
+     "MIXED": 13
+    },
+    "length_ge_12": 19,
+    "length_min_med_max": [
+     7,
+     19,
+     104
+    ],
+    "peer_ahead_manhattan": {
+     "False": 2,
+     "True": 32
+    },
+    "peer_cells_in_window": {
+     "1": 34
+    },
+    "peer_never_moves_again": 10,
+    "peer_on_plant": 24,
+    "peer_wait_fraction_le_0_05": 33
+   },
+   "total": 80
+  },
+  "older_read_batch3_v3_160_games": {
+   "adjacent": {
+    "ends": {
+     "DANCER_PROGRESS": 7
+    },
+    "episodes": 7,
+    "episodes_with_letter_H": 0,
+    "episodes_with_letter_R": 0,
+    "f4_label": {
+     "CONSTANT": 7
+    },
+    "length_ge_12": 4,
+    "length_min_med_max": [
+     7,
+     12,
+     13
+    ],
+    "peer_ahead_manhattan": {
+     "True": 7
+    },
+    "peer_cells_in_window": {
+     "2": 7
+    },
+    "peer_never_moves_again": 0,
+    "peer_on_plant": 6,
+    "peer_wait_fraction_le_0_05": 7
+   },
+   "nobody": {
+    "ends": {
+     "DANCER_PROGRESS": 12
+    },
+    "episodes": 12,
+    "episodes_with_letter_H": 0,
+    "episodes_with_letter_R": 0,
+    "f4_label": {
+     "CONSTANT": 5,
+     "MIXED": 7
+    },
+    "length_ge_12": 0,
+    "length_min_med_max": [
+     7,
+     9,
+     10
+    ],
+    "peer_ahead_manhattan": {
+     "None": 12
+    },
+    "peer_cells_in_window": {
+     "2": 10,
+     "3": 1,
+     "4": 1
+    },
+    "peer_never_moves_again": 0,
+    "peer_on_plant": 3,
+    "peer_wait_fraction_le_0_05": 12
+   },
+   "one-cell": {
+    "ends": {
+     "DANCER_PROGRESS": 4,
+     "GAME_END_NO_EVENT": 6,
+     "HOLDING_PEER_MOVED": 5
+    },
+    "episodes": 15,
+    "episodes_with_letter_H": 0,
+    "episodes_with_letter_R": 0,
+    "f4_label": {
+     "CONSTANT": 6,
+     "MIXED": 9
+    },
+    "length_ge_12": 10,
+    "length_min_med_max": [
+     7,
+     23,
+     104
+    ],
+    "peer_ahead_manhattan": {
+     "False": 1,
+     "True": 14
+    },
+    "peer_cells_in_window": {
+     "1": 15
+    },
+    "peer_never_moves_again": 7,
+    "peer_on_plant": 8,
+    "peer_wait_fraction_le_0_05": 14
+   },
+   "total": 34
+  },
+  "v4_read_25": {
+   "adjacent": {
+    "ends": {
+     "DANCER_PROGRESS": 8,
+     "SWAP_TICK_WITH_DANCER": 1
+    },
+    "episodes": 9,
+    "episodes_with_letter_H": 0,
+    "episodes_with_letter_R": 9,
+    "f4_label": {
+     "CONSTANT": 5,
+     "MIXED": 4
+    },
+    "length_ge_12": 4,
+    "length_min_med_max": [
+     7,
+     10,
+     23
+    ],
+    "peer_ahead_manhattan": {
+     "False": 1,
+     "True": 8
+    },
+    "peer_cells_in_window": {
+     "2": 9
+    },
+    "peer_never_moves_again": 0,
+    "peer_on_plant": 7,
+    "peer_wait_fraction_le_0_05": 9
+   },
+   "nobody": {
+    "ends": {
+     "DANCER_PROGRESS": 1
+    },
+    "episodes": 1,
+    "episodes_with_letter_H": 0,
+    "episodes_with_letter_R": 0,
+    "f4_label": {
+     "MIXED": 1
+    },
+    "length_ge_12": 0,
+    "length_min_med_max": [
+     9,
+     9,
+     9
+    ],
+    "peer_ahead_manhattan": {
+     "None": 1
+    },
+    "peer_cells_in_window": {
+     "8": 1
+    },
+    "peer_never_moves_again": 0,
+    "peer_on_plant": 0,
+    "peer_wait_fraction_le_0_05": 1
+   },
+   "one-cell": {
+    "ends": {
+     "DANCER_PROGRESS": 2,
+     "GAME_END_NO_EVENT": 5,
+     "HOLDING_PEER_MOVED": 8
+    },
+    "episodes": 15,
+    "episodes_with_letter_H": 0,
+    "episodes_with_letter_R": 15,
+    "f4_label": {
+     "CONSTANT": 11,
+     "MIXED": 4
+    },
+    "length_ge_12": 9,
+    "length_min_med_max": [
+     7,
+     16,
+     67
+    ],
+    "peer_ahead_manhattan": {
+     "True": 15
+    },
+    "peer_cells_in_window": {
+     "1": 15
+    },
+    "peer_never_moves_again": 5,
+    "peer_on_plant": 11,
+    "peer_wait_fraction_le_0_05": 11
+   },
+   "total": 25
+  }
+ }
+}
