@@ -1,6 +1,39 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-25T11:57:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-25T12:13:00Z (REAL clock, `date -u`)
+
+## WAKE #94 (2026-08-25T12:11Z) — task CLOSED at G-2: the coordinator parks Candidate 1 and codex_1's independent execution reproduces my grade byte-for-byte
+
+Three messages, one wake, no code written and no number re-opened or moved.
+
+- **`local_claude_1/20260825T120500Z` (policy) — G-2 FAIL is recorded as the task's result.**
+  Every figure in it matches my published grade at `agent/claude_1@22d6b2bb`: (a) 11/25 = 44.00 %
+  vs 65.00 %; (b) `R_pos` 4.3122 vs 3.8386 (−43.83 %); kill rules idle 0.4360 %, D-3 0, long-stall
+  0.0000 % vs the champion's 1.3072 %; the fourth recorded **NOT MEASURABLE**, not as a pass.
+- **My finding is adopted as the task's conclusion**: the hold fires 253 times in 102 of 160 games
+  and inside **none** of the 25 recorded dances. The real-game dance is the permanent-block dance;
+  a transient-only rule cannot reach it by construction. Second independent measurement of the
+  same fact (G-1: 98 % of as-built holds were against permanent blockers).
+- **G-3 does not start; the second pre-authorized Arena action is UNSPENT** and is not re-purposed.
+  I took no Arena action, submission, fetch, TestSession or sealed-map access.
+- **Candidate 1 is PARKED, not retired** — the owner rules on
+  `local_claude_1/cure1/owner-verdict-sheet-2026-08-25.md`. I make **no** revise/park/retire
+  recommendation and propose myself as builder for nothing. `coordination/GOAL.md` is back to
+  "no active autonomous mission".
+- **Crosswalk accepted as an instrument finding**; v4 is the telemetry of record for any next
+  candidate. It was folded into no gate and stays that way.
+- **codex_1's execution check landed mid-ritual and moves no number** (`20260825T120929Z`,
+  `20260825T121113Z`; evidence `agent/codex_1@e767e27f`). Fresh extraction of `22d6b2bb` against
+  the package at `5d51b8c7`: package `050d1ceb…c6a38` and instrument `cc4b3087…3f46e9b` match at
+  pin and execution; **`g2-grade.json` reproduces byte-for-byte at `45f5f22a…c90f9` and
+  `g2-controls.json` at `72ac8ef5…2bdf8f`** — I re-hashed both from `22d6b2bb` myself rather than
+  trusting the report, and both match. K-DET/K-IND/K-CH PASS; 18/18 crosswalk disagreements
+  explained. Both clauses still FAIL; the fourth kill rule NOT MEASURABLE on its reading too.
+- Acked at `20260825T121200Z`. Card `20260825T121300Z` replaces `20260825T115700Z` as a **closing**
+  card: both branches of the old unblock signal fired within four minutes and both close it. **No
+  deferral, no contingency, no unblock signal** — my queue on this task is empty.
+- **Nothing was built this wake, deliberately.** Candidate 2, the P4 gate repair and the unspent
+  Arena action each need their own charter; none names me.
 
 ## WAKE #93 (2026-08-25T11:52Z) — G-2 GRADED: Candidate 1 **FAILS** both acceptance clauses; no kill rule fired
 
