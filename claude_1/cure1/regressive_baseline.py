@@ -124,9 +124,24 @@ def poison_target(turn_rows: dict, uid, tent, shift: int):
     return target_cell(turn_rows[other]["chosen"], tent)
 
 
-def measure_game(game: dict, agent_id: int, poison_shift: int = 0) -> dict:
-    """Return the per-game census, or raise `Narrate3Error` / `AdapterError` (refusal)."""
-    rows, meta = n3.decode_game(game, agent_id)
+def measure_game(game: dict, agent_id: int, poison_shift: int = 0, decode=None,
+                 row_sink=None) -> dict:
+    """Return the per-game census, or raise `Narrate3Error` / `AdapterError` (refusal).
+
+    `decode` is the (game, agent_id) -> (rows, meta) join and defaults to the v3 one, so the
+    published v3 baseline is unchanged byte-for-byte.  G-2 passes the v4 join instead: the rows
+    it returns carry the same `turn` / `unit` / `unit_cell` / `chosen` fields in the same
+    spellings, so **the identical instrument runs on both arms** rather than a v4 re-statement
+    of it.  This parameter is the whole of the change, and `results/regressive-baseline-v3.json`
+    is re-derived under it as a control.
+
+    `row_sink`, when given, is called once per **eligible** row as
+    `row_sink(turn, unit, verdict)` with verdict in `MOVED_REGRESSIVE` / `MOVED_PROGRESSIVE` /
+    `MOVED_EQUAL` / `DID_NOT_MOVE`.  It exists so the owed `R_pos` <-> `r=R` crosswalk reads the
+    verdicts this measure actually emitted rather than a second implementation of them; it
+    changes no count, and the v3 baseline is re-derived byte-identical with it in place.
+    """
+    rows, meta = (decode or n3.decode_game)(game, agent_id)
     trace, _tmeta = rt.adapt_to_trace(game, agent_id=agent_id)
     walkable = trace.smap.walkable
     tent = trace.tent
@@ -178,14 +193,19 @@ def measure_game(game: dict, agent_id: int, poison_shift: int = 0) -> dict:
         if there != here and both_mapped and d_there > d_here:
             regressive_no_fallback[0] += 1
         if there == here:
-            pass
+            verdict = "DID_NOT_MOVE"
         elif d_there > d_here:
+            verdict = "MOVED_REGRESSIVE"
             regressive += 1
             per_unit_regressive[uid] += 1
         elif d_there < d_here:
+            verdict = "MOVED_PROGRESSIVE"
             progressive += 1
         else:
+            verdict = "MOVED_EQUAL"
             equal += 1
+        if row_sink is not None:
+            row_sink(t, uid, verdict)
         if poison_shift and there != here:
             other = poison_target(by_turn[t], uid, tent, poison_shift)
             if other is not None:
