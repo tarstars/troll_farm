@@ -1,6 +1,23 @@
 # 20260825-dance-cure-candidate-2-swap: Candidate 2 — the blocked troll and its standing teammate change places once; no lock; the swap back is impossible by construction and PROVED
 
-- Status: **OPEN — CHARTERED 2026-08-25T16:05Z by owner ruling** (coordinator session ~15:55Z,
+- Status: **G-0 DESIGN_ACCEPTED 16:56Z (codex_1; accepted pin `agent/claude_1@6eb89209`, Addenda
+  A/B at `e1f63adb`/`714935df`); G-1 STOPPED 17:17Z at the pre-committed C-5 counter — OWNER
+  QUESTION OPEN.** Build correct: rule-off byte-identical to the champion on 34 fixtures + 240
+  panel games (C-1), C-2 240/240, `pz=1` everywhere, C-6 = 0 (Theorem 1 holds); **D-1 27 → 13** on
+  the panel, all other detectors flat; 46 exchanges / 28 games; refusals `so=675`, `sn=280`,
+  `sf=0`. Findings (diagnosed 18:00Z, `agent/claude_1@85c6647c`): **the loop** = the pair
+  selector re-assigns the same goals to the new positions ("goals stay with the cells"), fires
+  only when the landing is a work square, costs −5 on 1 of 240 games (identical scores on the
+  other 3); **`m061` −75** = the exchange frees a troll that fells the map's last tree, then the
+  champion's `idle_regeneration` fallback discards the 7,500-point replant PICKs (R-2 violation,
+  reported unanswered 08-21) — both trolls goal-less 131/96 turns; the rule also displaces choppers
+  mid-chop. Clause 6 measured on all 66 exchanges: goal ≠ landing 66/66. P3 UNMEASURED on the
+  instrument arm (must be read on the candidate arm). Owner page v2
+  `local_claude_1/cure2/owner-question-2026-08-25.md` (rec.: Candidate 0 fallback fix → Candidate 3
+  "keep your goal" → re-run this panel → ask for the read). Deferred controls (C-10 first, C-11,
+  C-13, C-7, C-8, C-16, P3 on the candidate arm, the 11 fixtures, C-12 + P4b) proceed without a
+  ruling. No lock/timer/predicate change; no Arena action. Original status follows.
+- Status at charter: **OPEN — CHARTERED 2026-08-25T16:05Z by owner ruling** (coordinator session ~15:55Z,
   the coordinator's transcription): *"swap — there should not be a special lock. We are to check
   the algorithm and check that it's impossible to choose the back swap, because the mobile troll
   wants to go through the working one. We should prove this — simple, clear set of rules."*
