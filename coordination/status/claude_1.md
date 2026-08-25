@@ -1,6 +1,53 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-25T12:13:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-25T14:07:00Z (REAL clock, `date -u`)
+
+## WAKE #95 (2026-08-25T13:55Z) — new charter claimed and **G-0 delivered**: the exact M-1/M-2 definitions, four objections to the input note, two new controls; **no M-1 or M-2 number computed**
+
+New task `20260825-dance-geometry-measurements`, chartered by `local_claude_1/20260825T135036Z`
+(record `agent/local_claude_1@ad5ea0e6`). Measurements only — no cure, no Candidate 2 or 3, no bot
+change, and **no Arena action of any kind** this wake.
+
+- **Claimed at `20260825T135608Z`**, 5.5 minutes into the charter's 30-minute window, so the local
+  Opus subagent fallback did not fire. Acked by both `local_claude_1` (`20260825T140213Z`) and
+  `codex_1` (`20260825T135900Z`).
+- **G-0 published** at `agent/claude_1@1bd2c257c1181546c1270d98042400fa37e0e700`,
+  `claude_1/geometry1/definitions-g0-2026-08-25.md` (sha256 `4cf447f5…`), handed off ack-required
+  to codex_1 at `20260825T140403Z`. The **60-minute silence clock runs to 2026-08-25T15:04:03Z**;
+  counting starts on `DEFINITIONS_ACCEPTED` or at the clock with the definitions marked
+  *unreviewed*.
+- **Input checks only, and I say so explicitly** — the two pinned fact files hash to exactly the
+  charter's digests (`7cd3631c…`, `45f5f22a…`), and **K-7 already passes**: the coordinator's
+  `reread_shapes.py` reproduces `reread-shapes-2026-08-25.json` at `8e2159e3…` byte-for-byte,
+  equal to the digest the note claims, byte-identical on a second run, with every number in both
+  of its tables reproducing exactly. None of this is an M-1 or M-2 count.
+- **Four objections to the unreviewed re-read note**, its two unchecked assumptions verified by
+  execution rather than by reading: **O-1** "exactly one teammate alive" is asserted, never checked
+  (`f3_peers[0]` in roster order) — true on all 105 (`{1: 80}`, `{1: 25}`), so no number moves, but
+  it becomes control **K-8** which refuses rather than picks; **O-2** `BLOCKER_WORKING` sets
+  `one-cell` without re-testing adjacency — zero affected episodes, a redundancy not a defect;
+  **O-3** `ahead` is a disjunction over the whole window printed as a per-episode yes/no, so M-1
+  uses it in no predicate, table or refusal; **O-4** the note's gloss of the letter `R` is the
+  typical case, not the rule — `R` also arises on an exhausted (game-scoped) hold counter, on
+  `landing_forbidden`, or on a landing granted to an earlier mover, so "R and never H therefore
+  permanent" is supported by the first case dominating, which K-1 measures, not deduced.
+- **Pre-committed before any number, so neither reading can be chosen afterwards**: the column
+  `blocked_but_road_exists` (eligible turns with `d1 == d0` — a road around at zero cost — on which
+  the arm still could not step forward) is the direct evidence for *route around*; the `∞` and `>5`
+  counts are the direct evidence for *swap*. K-1's disagreement categories are named in advance.
+- **Two honest upper bounds, not smoothed over**: `lateral exists` cannot see the arm's `reserved`
+  or `forbidden_for_non_priority` (within-turn resolver state a replay does not carry); and D-1 off
+  replays bounds every episode count. **K-6 carries a vacuity clause in advance** — if the `H`
+  population is empty it reports VACUOUS — NOT MEASURED, never "passed".
+- **Two pieces of genuinely new code declared up front**: a Python transliteration of the arm's
+  `next_cell` (licensed by K-1/K-6) and a **v2 join shim** for batches 1–2 (309 of the older read's
+  469 games emit `intent_kind`/`intent_cell`, not `chosen`), licensed by new control **K-9**.
+  Everything else is imported under asserted digests and copied nowhere.
+- **Held, not idle.** Self-addressed card `20260825T140431Z` holds the G-1 build on two signals:
+  codex_1's ruling, or the 60-minute clock. I start no count, no partial table and no "easy half"
+  before one fires. Time box 2026-08-26T14:00Z.
+- Candidate 1 stays PARKED and its verdict stays the owner's; my closing card on that task was
+  discharged under its own task id at `20260825T135644Z`.
 
 ## WAKE #94 (2026-08-25T12:11Z) — task CLOSED at G-2: the coordinator parks Candidate 1 and codex_1's independent execution reproduces my grade byte-for-byte
 
