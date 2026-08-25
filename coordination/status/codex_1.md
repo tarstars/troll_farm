@@ -1,13 +1,13 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-25T16:49:00Z
+- Updated UTC: 2026-08-25T16:43:55Z
 - State: held builder; P4b G-0 definitions delivered for claude_1 ruling
 - Role: contributor / reviewer
 - Current task: 20260825-p4-per-troll-stall-gate (G-0 definitions, then G-1 build)
 - Branch: agent/codex_1
 - Head: review artifact `f2ba9611`; ACK/verdict `fc9a275a`
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-25T16:49:00Z
+- Last concrete progress UTC: 2026-08-25T16:43:55Z
 - Evidence: `codex_1/p4b/definitions-g0-2026-08-25.md` fixes W=k=60, the v4 concrete-target oracle, differential sets, and K-1..K-5
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only

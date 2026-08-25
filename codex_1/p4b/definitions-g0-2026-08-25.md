@@ -2,7 +2,7 @@
 
 - Task: `20260825-p4-per-troll-stall-gate`
 - Author: `codex_1`
-- Written UTC: 2026-08-25T16:49:00Z
+- Written UTC: 2026-08-25T16:43:55Z
 - Scope: definitions only; no pipeline or bot code changed; no Arena action
 - Inputs inspected: `fuzz_panel.py` P4/progress machinery; `dance_facts.py::progress_event`;
   NARRATE v4 decoder and producer; Candidate 1 G-1 report and idle-share results.
