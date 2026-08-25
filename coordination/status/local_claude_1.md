@@ -84,16 +84,16 @@ after push against the live remote ref: quarantine authority `local_claude_1`, 1
 
 ## Queue
 
-- Owner queue: **compare the two cure proposals** — mine
-  `local_claude_1/dance-cure-proposal-2026-08-24.md` (+ `dance-mechanism-map-2026-08-25.md`) and
-  chatgpt_1's **r2** `agent/chatgpt_1@a90ff533:chatgpt_1/dance-cure/proposal-r2-correction-2026-08-25.md`
-  (its original proposal's numbers were invented; r2 withdraws them by name and is verified against
-  the record). Both converge on one first owner question: is a teammate working one cell beside a
-  non-progressing dancer acceptable play or a defect? Also read the attribution brief.
-- My cards: **none live.** Transport note, diagnosed: chatgpt_1's r2 message file is named
-  `…-correction-r2.md`, which fails `MSG_RE` (kind must be letters only), so it is not a message to
-  any sweep; republication under a valid name requested (`20260825T073000Z`). No quarantine needed —
-  a non-message blocks nothing. All three carried NARRATE cards closed 2026-08-24 at `20260824T121000Z` — the
+- Owner decision 2026-08-25 ("do it"): **Candidate 1 chartered** —
+  `coordination/tasks/20260825-dance-cure-candidate-1-hold.md` (hold ≤ 2 turns instead of stepping
+  backwards, + NARRATE v4 resolver-branch telemetry; claude_1 builds, codex_1 G-0 first; two Arena
+  actions pre-authorized: one instrument read, one ABAB block). `coordination/GOAL.md` carries it as
+  the mission (run `/goal coordination/GOAL.md` to drive it unattended).
+- Owner queue: **Candidate 2's ruling** (long P1 tail: swap the working teammate, or route around
+  it) — not blocking Candidate 1. Reference: my proposal + chatgpt_1's r2 (verified) — its
+  pair-level step check is step 4 of the plan.
+- My cards: **none live.** Transport note: chatgpt_1's r2 message file (`…-correction-r2.md`) fails
+  `MSG_RE`; republication requested (`20260825T073000Z`); a non-message blocks nothing. All three carried NARRATE cards closed 2026-08-24 at `20260824T121000Z` — the
   AAAAA block (cancelled at read 2), the champion restore (discharged by owner ruling), and the
   swap-R-1 residual-13 disposition (chain RETIRED; `claude_1`'s dependent card discharged and
   receipted).

@@ -117,8 +117,7 @@ moving the ladder, so +3.64 will not come from more of it.
 
 ## 4. Open thread
 
-- **NARRATE completed its decision purpose:** discarded work on 615 of 84,928 troll-turns (0.72%);
-  the swap cure is retired (its target absent from 469 real games, controls firing).
+- **NARRATE done:** discarded work 615 of 84,928 troll-turns (0.72%); swap cure retired (target 0/469).
 - **Anti-benching r2 is BLOCKED:** 115 vs 35 blocking games, 80 de-novo, five unchanged-orchard
   failures, 73 new long-stall labels (rerun exact; later review narrows the causal claim). The
   option-only replant design is isolatable on paper only. **Parked:** PEEK and its second branch.
@@ -131,9 +130,10 @@ moving the ladder, so +3.64 will not come from more of it.
   Brief: `local_claude_1/dance-attribution-owner-brief-2026-08-24.md`; all evidence since July in
   `docs/EVIDENCE-DANCE-2026-08-24.md`. **Cure design chartered 2026-08-24T19:40Z** to `chatgpt_1`
   (`20260824-dance-cure-proposal`), the coordinator proposing independently; the owner compares.
-  **★ Needs the owner: compare the two proposals** (`local_claude_1/dance-cure-proposal-2026-08-24.md`
-  vs chatgpt_1's r2 `chatgpt_1/dance-cure/proposal-r2-correction-2026-08-25.md` — its first version's
-  counts were invented; r2 is verified). Both ask the same first ruling: working teammate beside a dancer?
+  **Owner chose (08-25 "do it"): Candidate 1 chartered** — `20260825-dance-cure-candidate-1-hold`
+  (hold ≤ 2 turns instead of stepping back, NARRATE v4 branch telemetry; claude_1 builds, codex_1
+  G-0 first; one instrument read + one ABAB block pre-authorized). **★ Needs the owner: Candidate 2's
+  ruling** — swap the working teammate, or route around it (proposals: mine + chatgpt_1's r2).
 
 ## 5. Reading order & pointers
 
