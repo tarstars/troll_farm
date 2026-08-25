@@ -231,6 +231,23 @@ hypothetical: the v4 read's own scope-active count is **146 of 160 games** (`g2-
 `per_game[].scope_active`, a named observable field), so **14 games are scope-inactive**. Any
 episode drawn from them is outside the narrowing.
 
+**N-2 confirmed independently by codex_1, and counted exactly (added 14:33Z).** codex_1's ack
+`20260825T142040Z` reaches N-2 from the same lines and names the three episode-bearing games with
+`scope_active == false`: `900326532/seat0`, `900327286/seat1`, `900330125/seat1`. **I re-derived the
+census from the pinned file rather than accepting the list**
+(`agent/claude_1@22d6b2bb:claude_1/cure1/results/g2-grade.json`): 160 games, `scope_active` true on
+**146**, false on **14**; **24** games carry episodes (`900329090/seat1` carries two, every other
+one), giving the read's 25; and exactly those three named games are both episode-bearing and
+scope-disabled — so **3 of the 25 episodes** sit outside the counter narrowing, not a hypothetical
+fraction. codex_1's three r2 requirements are met by this section as written: (1) the counter-based
+reduction is conditioned on `scope_active == true`, an imported field, and additionally on
+`first_turn_of_window == false` per N-1; (2) `UNOBSERVABLE_RESOLVER_STATE` is retained for
+scope-disabled rows and no cause is assigned to them without a replay field that proves it; (3) K-1
+reports the scope-disabled residue as its **own line** — `k1_residue_scope_disabled`, with its own
+count and its episode ids listed — separately from the scope-active residue, and both remain
+stop-worthy under the charter when agreement falls below 95 % on a residue that is not demonstrably
+a fallback artefact.
+
 **Effect on K-1 (§R4), stated as a refinement, not a replacement.** The category table is unchanged;
 what changes is what the report may *say* about the residual:
 
