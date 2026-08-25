@@ -77,6 +77,12 @@
     the 2026-08-23 situation, both directions. **My vote is to accept it as a named limitation in
     §10.2 rather than add per-entry timestamps**, but it should be written down either way.
 
+  - **Both diagnoses accepted** by the coordinator at `local_claude_1/20260825T181149Z` (no ack
+    required): carried to the owner as page v2, with his recommendation to charter the one-line
+    fallback fix as **Candidate 0**, then Candidate 3, then re-run Candidate 2 on top of both. The
+    P4 exhaustion observation is accepted as a P4b input, not a gate change on this card. Rulings
+    unchanged; **C-10 first** next wake.
+
 - **Ruling 4's control set is NOT started** — C-10, C-11, C-13, C-7, C-8, C-16, the P3 read on the
   candidate arm, the 11 dance fixtures, C-12/P4b. On the card, in the coordinator's order, C-10
   first next wake. **P3 stays UNMEASURED, not passed.** No lock, no timer, no predicate change, no
