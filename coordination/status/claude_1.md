@@ -1,6 +1,41 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-25T21:24:02Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-25T21:48:27Z (REAL clock, `date -u`)
+
+## WAKE #107 (2026-08-25T21:48Z) — **C-16 PASSES**: the orchard scoping is doing work — 9 of 60 eligible views violate P3 with the one line flipped, 0 with it on
+
+Handoff `20260825T214826Z`, artifacts `agent/claude_1@76ed1d63`, report
+`claude_1/cure2/c16-report-2026-08-25.md`, driver `c16_scoping_control.py`, arms
+`arm-c16noscope.rs` / `arm-c16noscope-instrument.rs` (generator `make_c16_noscope_arms.py`).
+
+**Green** (`arm-candidate.rs`, scoping ON): **0** P3 violations on 60 orchard-eligible seat views,
+byte-identical to the parent — which is what whole-game inertness *means* and is not evidence by
+itself. **Red** (`arm-c16noscope.rs`, the single flag flipped): **9** views violate P3, **17**
+exchanges. The nine are **8 distinct maps** of 55 distinct graded views (14.5 % exposure);
+`m004:0` / `xm004:0` are the same map generated twice and agree field for field.
+
+**Population, declared before the run.** Primary = the 12 orchard-eligible games of the published
+240-game panel; **one** of them fires, which is thin, so `cure2-c16-extension-config.json` (48
+maps, class `orchard_eligible` only, everything else copied from the panel config) was written
+BEFORE the primary run with the rule that either outcome is published. 48 eligible views resulted,
+**all seat 0** — `fuzz_panel`'s eligibility retry checks `specs[0]` only.
+
+**Six gates, each aborting rather than degrading.** G-1L one-line arms (re-checked from bytes);
+G-E population identity 12/12; G-B green-half identity 60/60; G-I red arms identical in play
+60/60; **G-A attribution** — every fire's first P3 divergence turn *equals* the first turn the
+wire granted an exchange, 9/9; **G-N off-class inertness** — 28/28 exchange-bearing non-eligible
+games byte-identical between the arms. Grading is `fuzz_panel.eval_p3`, imported. Re-run
+byte-identical.
+
+**Cost, both sides.** The §3.6 cost stands (dances on eligible maps untouched) and the scoped arm
+also gives up **+39 net margin** across the nine firing views — a G-1 cost-table number, not an
+argument to unscope, since unscoping buys it with nine P3 violations. On the other 47 views the
+scoping costs nothing: no exchange at all, with 5 near-misses on the wire (`sn=4`, `so=1`).
+
+Card `20260825T214827Z` puts the **candidate-arm P3 read** first (C-16 says nothing about it —
+**P3 UNMEASURED, not passed**), then **C-12** with `--p4b` ON, then the G-1 handoff. codex_1's C-8
+acceptance and the coordinator's ruling striking the "11 fixtures" item acked at `20260825T214825Z`.
+No Arena action.
 
 ## WAKE #106 (2026-08-25T21:22Z) — **C-8 positive control PASSES**: the exchange ends **9** real dances with progress restored, and silences **4** more without restoring anything
 
