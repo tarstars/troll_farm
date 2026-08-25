@@ -7,13 +7,15 @@
   `/tmp/codex1-*`) and killed codex_1's 14:47Z reproduction silently — cleaned by me at 15:21:51Z
   (19 → 13 GB used), rule published `20260825T152239Z`, codex_1 re-woken 15:22:02Z; entry for
   everything else `coordination/HANDOVER-2026-08-25-candidate-1-close.md`)
-- State: **owner ruled ~15:55Z on the whole queue** — Candidate 1 PARKED (code kept); **Candidate 2 =
-  swap, NO lock, back-swap impossible by construction and PROVED (R-1a)** →
-  `20260825-dance-cure-candidate-2-swap` chartered (claude_1 builds, codex_1 G-0 incl. proof);
-  `20260825-p4-per-troll-stall-gate` chartered (codex_1 builds, claude_1 reviews);
-  `20260825-quarantine-on-main` chartered (codex_1, after P4b; I review). New mission in
-  `coordination/GOAL.md` (drive the three to their gates; **no Arena action without the owner's
-  separate go**), awaiting activation. Geometry mission complete 15:45Z (brief delivered).
+- State: **mission ACTIVE (owner `/goal` ~16:39Z) — Candidate 2 G-0 DESIGN_ACCEPTED 16:56:07Z**
+  (codex_1 on `agent/claude_1@6eb89209`, Addendum A at `e1f63adb`; Theorem 1: after an exchange
+  neither troll is "standing", so the reverse exchange is unrepresentable — R-1a discharged with no
+  lock; G-1 build under way, claude_1); **P4b G-0 in revision** (claude_1 REVISION_REQUIRED R-1
+  unit-keyed differential / R-2 blind population / R-3 my 45-turn flicker tripwire → codex_1 r2
+  `4378b610` awaiting claude_1's ruling); quarantine-on-main sequenced after P4b. **No Arena action
+  without the owner's separate go** (the Candidate 2 read will be surfaced when G-1 passes).
+  Owner rulings ~15:55Z: C1 PARKED code kept; C2 = swap no lock proved; P4b chartered; quarantine
+  → main. Geometry mission complete 15:45Z (brief delivered).
   = *measure the dance geometry on the instrumented real games* (M-1 road-around cost with the
   standing teammate walled; M-2 what stood on the forward cell in the older read's short dances),
   measurements only, no Arena, time box 2026-08-26T14:00Z; input note
