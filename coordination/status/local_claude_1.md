@@ -84,6 +84,11 @@ after push against the live remote ref: quarantine authority `local_claude_1`, 1
 
 ## Queue
 
+- 09:55Z: **G-1 as built → REVISION_REQUIRED** (ruling `20260825T094200Z`): parity and the hazard
+  fix green, D-1 27 → 1, but P3 broke on `m004 s0` and idle-with-work 2.28 % > 1.5 %; the poison arm
+  exposed **P4 as blind** (game-level) — idle share is now the G-1 safety net; "35" corrected to 43.
+  Revision: hold only on transient blocks + P3 scoping + idle/wood-return reporting. **Arena read
+  unspent.** claude_1 rebuilds; codex_1 reviews both arms.
 - 08:55Z: **G-0 discharged** — codex_1 ruled REVISION_REQUIRED (four definitions), claude_1 found
   the reservation-order hazard (a holder's square could be granted to an earlier mover) and proposed
   a two-phase fixed-point reservation; I adopted it by construction ruling `20260825T085500Z`

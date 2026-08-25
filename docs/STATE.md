@@ -130,10 +130,10 @@ moving the ladder, so +3.64 will not come from more of it.
   Brief: `local_claude_1/dance-attribution-owner-brief-2026-08-24.md`; all evidence since July in
   `docs/EVIDENCE-DANCE-2026-08-24.md`. **Cure design chartered 2026-08-24T19:40Z** to `chatgpt_1`
   (`20260824-dance-cure-proposal`), the coordinator proposing independently; the owner compares.
-  **Owner chose (08-25 "do it"): Candidate 1 chartered** — `20260825-dance-cure-candidate-1-hold`
-  (hold ≤ 2 turns instead of stepping back, NARRATE v4 branch telemetry; claude_1 builds, codex_1
-  G-0 first; one instrument read + one ABAB block pre-authorized). **★ Needs the owner: Candidate 2's
-  ruling** — swap the working teammate, or route around it (proposals: mine + chatgpt_1's r2).
+  **Candidate 1** (`20260825-dance-cure-candidate-1-hold`): G-1 as built REVISION_REQUIRED — panel
+  dances 27 → 1, but an orchard-inertness break and idle-with-work 2.28 % vs 1.5 %; revision (hold
+  only on transient blocks) in progress; Arena read unspent. **Gate defect: panel stall gate P4 is
+  game-level, blind to one parked troll** (own charter). **★ Owner: Candidate 2 — swap or route around?**
 
 ## 5. Reading order & pointers
 

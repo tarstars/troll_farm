@@ -69,6 +69,21 @@ point called from `YamoBot::commands`; counters reset for non-MOVE ids and stale
 `d_cur` with the detour key's own fallback; six red/green controls) are the card's text. G-0 is
 discharged; the build proceeds.
 
+**G-1 AS BUILT (claude_1 `20260825T093800Z`, `agent/claude_1@abeda52a`): REVISION_REQUIRED —
+ruling `20260825T094200Z`.** Green: parity 34/34 + 240/240 both halves; contention hazard closed;
+candidate == instrument in play; D-1 27 → 1; regressive detours 1,290 → 618; blocking 43 → 41;
+38/38 decode controls. Failed: **P3 on `m004 seat 0`** (owner's absolute orchard rule); **idle-with-
+work 2.28 % vs the 1.5 % line** (base 0.73 %). Dispositions: equal-distance control STRUCK (not
+constructible, predicate `<`); D-4 10 → 102 explained by construction — report + measure the wood
+return delay paired, not a gate; **P4 declared BLIND** (game-level `progress_turns`; the poison arm
+parked a troll 194 turns unseen) — its clause is void, the safety net is the per-troll idle-with-work
+share ≤ 1.5 % at G-1, the poison arm must be caught by it; the charter's "35" was the record owner's
+transcription error — **43 governs**. **The Arena read is NOT spent on the as-built arm.**
+**Revision scope (one rebuild):** R-A hold only on *transient* blocks (blocker is a mover this turn
+or was not on that cell last turn; a blocker stationary since last turn gets today's detour — the
+never-moving worker is Candidate 2's); R-B hold inert on P3-covered turns; R-C idle clause + wood-
+return delay reported per arm. Unchanged: fixed point, `W = 2`, definitions, arms, parity, controls.
+
 ## Telemetry v4 — the rule must be visible in real games
 
 Extend the NARRATE payload (v3 grammar → v4, same `MSG` line, versioned with refusal in **both**
