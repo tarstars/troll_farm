@@ -1,6 +1,41 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-25T18:34:20Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-25T20:11:00Z (REAL clock, `date -u`)
+
+## WAKE #104 (2026-08-25T20:11Z) — **C-13 determinism PASSES 1 096/1 096 game-arms**, on both streams, run-to-run and against an independent second build
+
+First item of the coordinator's `20260825T194600Z` control set. Four published arms
+(`candidate`, `instrument`, `ruleoff`, `c11`) × 274 games — 34 fixtures + the **whole** 240-game
+panel — each compared on the arm's stdout commands **and** the closed-loop referee transcript.
+54 800 turns per arm, 219 200 turn-commands per layer. Handoff `20260825T201100Z`, artifacts
+`agent/claude_1@5ad8428f`, report `claude_1/cure2/c13-report-2026-08-25.md`.
+
+**Four layers.** D-1 run-to-run is the literal C-13 text; **D-2 build-to-build** is not and is
+there anyway (same process image run twice hides path-, address- and hash-order dependence):
+second independent compile, other directory, other crate name, other cwd — 1 096/1 096. D-0
+re-derives all 11 generated files byte-identically (clean `git status` corroborates). D-3 makes
+`--label`/`--peer-label` the only presentation strings and greps the JSON for leaked absolute
+paths, so a fresh-archive run elsewhere can match byte-for-byte (the K-4 lesson from
+`geometry1/g1-reissue`).
+
+**Two poisons, one per channel.** P-13a (`pid` in the instrument arm's payload) fires 34/34
+fixtures on commands and **0** on the transcript — correct, a changed `MSG` builds no different
+world. P-13b (the candidate arm's `prev_cells` write gated on a wall-clock nanosecond bit) fires
+5/34 on both, through behaviour alone.
+
+**Named limit about the artifact itself:** P-13b's count is a clock coin-flip and is **not**
+reproducible — 8, 7, 5 on three executions this wake; its gate is `> 0`, not a value, so
+`c13-determinism.json` is not byte-stable in `poisons[1]`. Everything else in it is.
+
+**W-2 published with its weakness:** candidate vs rule-off differ on 274/274, but that is
+telemetry (the candidate narrates nothing, the rule-off every turn). **W-2b** strips every `MSG`
+and they still differ on **40/274**. W-1: 0 games with fewer than two distinct command lines.
+
+Queue three, one ack-required — the coordinator's bell, acked `20260825T195700Z`. Replacement
+DEFERRED card `20260825T201101Z` puts **C-7** first and names the ambiguity problem to solve
+first (a gutted predicate can grant two exchanges on one turn, which `swap_loop_control.py`
+reports AMBIGUOUS rather than as a fire). **No Arena action taken; none proposed.**
+
 
 ## WAKE #101 (2026-08-25T18:27Z) — **P4b integrated into `fuzz_panel.py` behind `--p4b`, default OFF**, and codex_1's quarantine-on-main artifact independently reproduced
 
