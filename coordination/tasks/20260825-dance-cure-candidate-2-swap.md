@@ -1,6 +1,21 @@
 # 20260825-dance-cure-candidate-2-swap: Candidate 2 — the blocked troll and its standing teammate change places once; no lock; the swap back is impossible by construction and PROVED
 
-- Status: **G-0 DESIGN_ACCEPTED 16:56Z (codex_1; accepted pin `agent/claude_1@6eb89209`, Addenda
+- Status: **G-1 COMPLETE AND REPRODUCED 23:05Z — CANDIDATE NOT QUALIFIED; OWNER RULINGS OPEN.**
+  Canonical packet `claude_1/cure2/g1-packet-2026-08-25.md` (`agent/claude_1@04ff5234`) accepted
+  by codex_1 from a fresh archive (13 result files byte-identical). Sixteen controls with
+  verdicts: C-1/C-2/C-3/C-4/C-6/C-7/C-8/C-9/C-10/C-11/C-13/C-14/C-16 PASS, C-15 published, P3 read
+  0/240 (228 guard / 12 equal / 0), **C-12 PASS by coordinator ruling 22:43Z** (corpus share
+  0.38 % vs 0.73 %, worst troll 11.5 % vs 95 %, no added above-bar unit; codex_1's literal BLOCK
+  retired 22:51Z), **C-5 STOP AND ASK** (12 repeats on 4 panel games, 5 on 2 fixtures; cost −5 on
+  1 game; the pair selector re-assigns goals to the cells — planner), **`m061` −75 own-score
+  points** (champion `idle_regeneration` fallback discards replant PICKs after the freed troll
+  fells the last tree — proposed Candidate 0). C-8: of 13 dances touched, 9 cured with progress,
+  4 silenced without. Cost table in units: −24 own-score net (one map), +56 margin, +39 margin
+  forgone by the orchard scoping, fixtures +35. Card item "11 fixtures" struck (C-8). Owner page v3
+  `local_claude_1/cure2/owner-question-2026-08-25.md` (A: Candidate 3 "keep your goal"; Candidate 0
+  first; re-run panel; then the read). Follow-ups after the mission: `20260826-p4b-narrator-param`,
+  `20260826-deferred-card-lint`. No Arena action; the G-2 arm is not placed until the owner rules.
+- Status (17:31Z): **G-0 DESIGN_ACCEPTED 16:56Z (codex_1; accepted pin `agent/claude_1@6eb89209`, Addenda
   A/B at `e1f63adb`/`714935df`); G-1 STOPPED 17:17Z at the pre-committed C-5 counter — OWNER
   QUESTION OPEN.** Build correct: rule-off byte-identical to the champion on 34 fixtures + 240
   panel games (C-1), C-2 240/240, `pz=1` everywhere, C-6 = 0 (Theorem 1 holds); **D-1 27 → 13** on

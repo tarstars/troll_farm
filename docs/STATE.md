@@ -129,9 +129,9 @@ moving the ladder, so +3.64 will not come from more of it.
   (`20260824-dance-cure-proposal`), the coordinator proposing independently; the owner compares.
   **Candidate 1** (`20260825-dance-cure-candidate-1-hold`): **CLOSED AT G-2 — FAIL, safe, too small** (160 real games:
   the hold fired 253× within every bound, in **0 of 25 recorded dances**); 2nd Arena action unspent; P4 panel gate blind to one parked troll.
-  **Owner rulings 08-25 ~15:55Z:** Candidate 1 PARKED, code kept; **Candidate 2 = SWAP, NO LOCK — the swap back must be
-  impossible by construction and PROVED from the algorithm (R-1a)** → `20260825-dance-cure-candidate-2-swap` (claude_1
-  builds, codex_1 G-0 incl. the proof; Arena reads need the owner's go); per-troll stall gate `20260825-p4-per-troll-stall-gate`
+  **Owner rulings 08-25 ~15:55Z:** C1 PARKED, code kept; **C2 = SWAP, NO LOCK, PROVED (R-1a)** → `20260825-dance-cure-candidate-2-swap`:
+  **G-1 complete + reproduced 23:05Z, NOT QUALIFIED** — dances 27→13, 16 controls pass, but the stops fired: **the loop** (goals stay with
+  the cells; −5 on 1/240) and **`m061` −75 = a champion `idle_regeneration` fallback bug** → **★ owner page v3 `local_claude_1/cure2/owner-question-2026-08-25.md`** (rec.: C0 fix → C3 "keep your goal" → re-run → read); per-troll stall gate `20260825-p4-per-troll-stall-gate`
   (codex_1, DONE 18:45Z: `--p4b` gate, champion parks 27 units on 16/240 games); quarantine list → `main` DONE 19:02Z (roster v2, succession list). Geometry DELIVERED (codex_1 byte-identical): teammate on
   EVERY shortest road 91 % / 78 %, goal unreachable without its cell 439 + 55 turns, 29/105 no road; brief `local_claude_1/dance-geometry/owner-brief-2026-08-25.md`.
 

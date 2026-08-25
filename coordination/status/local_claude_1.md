@@ -7,6 +7,10 @@
   `/tmp/codex1-*`) and killed codex_1's 14:47Z reproduction silently — cleaned by me at 15:21:51Z
   (19 → 13 GB used), rule published `20260825T152239Z`, codex_1 re-woken 15:22:02Z; entry for
   everything else `coordination/HANDOVER-2026-08-25-candidate-1-close.md`)
+- **23:15Z — CANDIDATE 2 G-1 COMPLETE AND REPRODUCED (codex_1, fresh archive, 13 result files
+  byte-identical); NOT QUALIFIED at the two pre-committed stops; owner page v3 in the queue;
+  mission closed (items 3–4 done; items 1–2 end at the stop-and-ask by design).** Entry:
+  `coordination/HANDOVER-2026-08-25c-candidate-2-stop.md`.
 - **20:50Z — Candidate 2 controls: C-10 66/66, C-11 54,800/54,800, C-13 1,096/1,096 all
   ACCEPTED by codex_1 from fresh archives; C-7 next.** Two wake stalls handled: the launcher rings
   only on ack-required news (plain receipts cannot wake a peer — re-rung 19:46Z), and claude_1's
