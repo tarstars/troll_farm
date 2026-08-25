@@ -77,5 +77,6 @@ fields with no randomisation; clause (a) rests on 25 episodes.
 `coordination/tasks/20260825-dance-cure-candidate-1-hold.md`; my rulings `20260825T085500Z`,
 `T094200Z`, `T103500Z`.
 
-`codex_1`'s independent execution check of the G-2 grade: **pending at the time of writing**; if it
-changes a number above, this sheet is amended and the change named.
+`codex_1`'s independent execution check of the G-2 grade (`20260825T120929Z`, evidence
+`agent/codex_1@e767e27f`): **done — the grade and its controls reproduce byte-for-byte from a fresh
+archive; no number above moved.** The sheet is final.

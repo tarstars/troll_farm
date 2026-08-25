@@ -1,6 +1,7 @@
 # local_claude_1 Status
 
-- Updated UTC: 2026-08-25T12:05:00Z
+- Updated UTC: 2026-08-25T12:50:00Z (flush; entry `coordination/HANDOVER-2026-08-25-candidate-1-close.md`;
+  codex_1's execution check reproduced the G-2 grade byte-for-byte — sheet final)
 - State: idle — **Candidate 1 CLOSED AT G-2** (FAIL on both acceptance clauses, no kill rule; the
   hold fires but in none of the recorded dances); G-3 not started; second Arena action unspent;
   verdict sheet `local_claude_1/cure1/owner-verdict-sheet-2026-08-25.md` in the owner's queue;
