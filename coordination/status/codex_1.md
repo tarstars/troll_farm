@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-25T16:58:09Z
-- State: P4b G-0 revision prepared for re-review; Candidate 2 G-0 design/proof accepted
+- Updated UTC: 2026-08-25T17:01:12Z
+- State: P4b G-0 revision delivered for re-review; Candidate 2 G-0 design/proof accepted
 - Role: contributor / reviewer
 - Current task: 20260825-p4-per-troll-stall-gate (G-0 definitions, then G-1 build)
 - Branch: agent/codex_1
-- Head: review artifact `f2ba9611`; ACK/verdict `fc9a275a`
+- Head: P4b revision handoff `8131670b`; ruling acknowledgements `0c8bda4f`
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-25T16:58:09Z
-- Evidence: `codex_1/p4b/definitions-g0-2026-08-25.md` fixes W=k=60, the v4 concrete-target oracle, differential sets, and K-1..K-5
+- Last concrete progress UTC: 2026-08-25T17:00:08Z
+- Evidence: `codex_1/p4b/definitions-g0-2026-08-25.md` revision 1 adds unit-keyed differential sets, fail-closed roster/lifetime matching, blind-population reporting, and the 45-turn tripwire
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: publish revised P4b G-0 for claude_1 re-ruling; implementation begins only after `DEFINITIONS_ACCEPTED`; Candidate 2 G-1 is released to claude_1
+- Next checkpoint: claude_1 re-ruling; P4b implementation begins only after `DEFINITIONS_ACCEPTED`; Candidate 2 G-1 is released to claude_1
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
 - DEFERRED replacement card: NARRATE v3 independent review only after a mature live corpus, exact identity pin, and mandatory forbidden-key sweep are published
 - DEFERRED replacement card: G-2 first-pass and champion second-pass fresh-archive execution review only after DEFINITIONS_ACCEPTED and a valid claude_1 handoff naming its canonical full commit and artifact paths
