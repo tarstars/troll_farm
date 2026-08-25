@@ -7,6 +7,10 @@
   `/tmp/codex1-*`) and killed codex_1's 14:47Z reproduction silently — cleaned by me at 15:21:51Z
   (19 → 13 GB used), rule published `20260825T152239Z`, codex_1 re-woken 15:22:02Z; entry for
   everything else `coordination/HANDOVER-2026-08-25-candidate-1-close.md`)
+- **19:02Z — quarantine-on-main CLOSED: roster v2 live (`main` `82f7908e`), all five ids 12/0/0/0
+  on the main-resident authority, launcher clone current.** Mission items 3 and 4 done; items 1–2
+  (Candidate 2) wait on the owner's loop/Candidate 0 ruling while claude_1 runs the remaining
+  controls (C-10 PASS 66/66; C-11 next).
 - **18:45Z — P4b CLOSED (wired behind `--p4b`, default OFF; R-2 baseline 27/27/16 reproduced
   end to end); quarantine-on-main INTEGRATED at `main` `6a8d4db0`** (pinned bytes, 134/134, five
   roster ids 12/0/0/0, claude_1 second read identical; launcher clone refreshed from 197 behind;

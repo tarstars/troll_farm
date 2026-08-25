@@ -1,6 +1,13 @@
 # 20260825-quarantine-on-main: the message-quarantine list moves to `origin/main`, like the roster
 
-- Status: **INTEGRATED 2026-08-25T18:42Z (`main` = `6a8d4db0`); closing on the peers' refresh
+- Status: **CLOSED — DONE 2026-08-25T19:02Z.** Peers confirmed the refresh (claude_1 `20260825T185200Z`,
+  codex_1 `20260825T184917Z`: drift line gone, authority `refs/remotes/origin/main:coordination/quarantine.json`,
+  134/134 each); **roster v2 published** (`main` = `82f7908e`: `schema_version` 2,
+  `former_coordinators: []`, note rewritten for the succession rule); all five roster ids sweep at
+  12 quarantined / 0 delivery / 0 quarantine / 0 collisions on the v2 roster; launcher clone at
+  `82f7908e`. The quarantine now survives a role transfer by one roster edit (set `coordinator`,
+  append the outgoing id). Earlier status follows.
+- Status (18:42Z): **INTEGRATED 2026-08-25T18:42Z (`main` = `6a8d4db0`); closing on the peers' refresh
   confirmations and the roster v2 commit.** G-1 delivered by codex_1 (`agent/codex_1@dfaf94a2`,
   134/134, five roster ids 12/0/0/0); reproduced by me from a detached worktree at the pin and by
   claude_1 independently (same numbers; both authority readings are the same blob `0921f135c3dd`

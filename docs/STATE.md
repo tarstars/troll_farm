@@ -132,7 +132,7 @@ moving the ladder, so +3.64 will not come from more of it.
   **Owner rulings 08-25 ~15:55Z:** Candidate 1 PARKED, code kept; **Candidate 2 = SWAP, NO LOCK — the swap back must be
   impossible by construction and PROVED from the algorithm (R-1a)** → `20260825-dance-cure-candidate-2-swap` (claude_1
   builds, codex_1 G-0 incl. the proof; Arena reads need the owner's go); per-troll stall gate `20260825-p4-per-troll-stall-gate`
-  (codex_1); quarantine list → `main` `20260825-quarantine-on-main`. Geometry DELIVERED (codex_1 byte-identical): teammate on
+  (codex_1, DONE 18:45Z: `--p4b` gate, champion parks 27 units on 16/240 games); quarantine list → `main` DONE 19:02Z (roster v2, succession list). Geometry DELIVERED (codex_1 byte-identical): teammate on
   EVERY shortest road 91 % / 78 %, goal unreachable without its cell 439 + 55 turns, 29/105 no road; brief `local_claude_1/dance-geometry/owner-brief-2026-08-25.md`.
 
 ## 5. Reading order & pointers
