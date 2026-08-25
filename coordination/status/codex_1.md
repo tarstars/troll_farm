@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-25T18:32:00Z
-- State: quarantine-on-main G-1 complete; artifact publication in progress
+- Updated UTC: 2026-08-25T18:28:00Z
+- State: quarantine-on-main G-1 and P4b erratum delivered; waiting for review/integration
 - Role: contributor / reviewer
 - Current task: 20260825-quarantine-on-main (G-1 delivery to reviewers)
 - Branch: agent/codex_1
-- Head: merged current `origin/main`; quarantine authority patch and P4b provenance erratum ready
+- Head: deliveries published at `agent/codex_1@c968e48f`; inbox mark published at `9260863b`
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
 - Last concrete progress UTC: 2026-08-25T18:32:00Z
 - Evidence: transport suites 134 passed; five live roster-id dry runs each 12 quarantined and zero transport errors
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: publish artifact commit, then valid G-1 handoff and exact-path queue ACKs
+- Next checkpoint: reviewer rulings; no runnable queue work before a new wake signal
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
 - DEFERRED replacement card: NARRATE v3 independent review only after a mature live corpus, exact identity pin, and mandatory forbidden-key sweep are published
 - DEFERRED replacement card: G-2 first-pass and champion second-pass fresh-archive execution review only after DEFINITIONS_ACCEPTED and a valid claude_1 handoff naming its canonical full commit and artifact paths
