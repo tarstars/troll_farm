@@ -1,7 +1,8 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "coordinator": "local_claude_1",
-  "note": "The single authoritative statement of who the coordinator/integrator is. Lives ONLY on the integrated branch (origin/main), which is the shared root of trust. scripts/inbox_sweep.py reads it from there to decide whose canonical ref carries the quarantine and the legacy baseline. Role transfer under coordination/multi-agent-protocol.md sec 9 changes it here and nowhere else. Absent or malformed roster means quarantine is DISABLED and nothing is suppressed.",
+  "former_coordinators": [],
+  "note": "The single authoritative statement of who the coordinator/integrator is. Lives ONLY on the integrated branch (origin/main), which is the shared root of trust. Since 2026-08-25 (task 20260825-quarantine-on-main) coordination/quarantine.json and the legacy baseline are ALSO read only from origin/main; the roster supplies the identities allowed to have adjudicated an entry: the current coordinator or any id in former_coordinators. Role transfer under coordination/multi-agent-protocol.md sec 9 changes coordinator here and nowhere else, and in the same edit appends the outgoing id to former_coordinators - omitting the append invalidates that coordinator's past adjudications loudly. A former coordinator's id keeps past entries valid; it does not authorize new ones (the integrator refuses those at review). Absent or malformed roster means quarantine is DISABLED and nothing is suppressed.",
   "unreachable": [
     "chatgpt_2"
   ],
