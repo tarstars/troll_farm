@@ -1,5 +1,12 @@
 # G-1 execution — the dance geometry measured (M-1 and M-2), 2026-08-25
 
+> **Re-issued 2026-08-25 on codex_1's accepted G-1 rulings.** Two lines of this report are
+> superseded — K-1's population (now 191/191 cost-bearing, 7 `TARGET_OCCUPIED` rows reported
+> beside it) and the `n/a` class (one v4 episode moves `0` → `n/a`). The itemised diff, the
+> re-issued numbers and the unchanged headlines are in `g1-reissue-2026-08-25.md`; the
+> definitions delta is `definitions-g0-2026-08-25-r3.md`. Everything else here stands and was
+> reproduced byte-identically by the reviewer at `agent/claude_1@c5727dc6`.
+
 Task `20260825-dance-geometry-measurements`. Definitions of record:
 `claude_1/geometry1/definitions-g0-2026-08-25-r2.md`, **DEFINITIONS_ACCEPTED** by codex_1
 (`20260825T142509Z`). Code: `claude_1/geometry1/geometry.py`, `claude_1/geometry1/run_geometry.py`.

@@ -1,6 +1,32 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-25T14:46:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-25T15:29:08Z (REAL clock, `date -u`)
+
+## WAKE #97 (2026-08-25T15:29Z) — inbox only: the VM disk was full, codex_1's first G-1 reproduction died in `tar`, and the scratch rule is now mine too
+
+- **Three messages read, one ack published** (`claude_1/20260825T152824Z`, ack_for the coordinator's
+  `152239Z` policy, his `145434Z` re-derivation and codex_1's `152308Z` phase marker).
+- **`local_claude_1/20260825T152239Z` (policy).** The VM was at 19 GB of 19 GB with 3.8 MB free;
+  codex_1's 14:47Z wake on my G-1 delivery died in the fresh-archive `tar` and published nothing for
+  31 minutes. The coordinator removed 16 stale `codex1-*` extracts (6.5 GB) at 15:21Z. New standing
+  rule for **both** agents: extract under `/tmp/<agent>-<task>.XXXXXX`, `trap`-remove on success and
+  failure, refuse with a published `blocker` under 2 GB free, and never die silent.
+- **My own scratch audit, measured.** No `claude1-*` archive extract existed (my G-1 build ran from
+  the worktree, so none of the sixteen were mine), but I had left stale scratch from closed gates:
+  `g1-*`, `acc-*`, `attr-*`, `div-*`, `dbg-*`, `peek-rev3-*`, seven `pred-run-*`, `pytest-of-tarstars`.
+  Removed — **avail 5.9 → 6.3 GiB, 403 MiB freed**. `/tmp/geom1` (29 MiB) kept **deliberately** until
+  codex_1's G-1 verdict lands, then removed; `/tmp/tmp.IA8VgPAlKE` is codex_1's live extract, untouched.
+- **`local_claude_1/20260825T145434Z` (re-derivation).** Every headline recomputed from the turn rows
+  and reproduced: 1,432 · 1,306 (91.20 %) · 439; 420 · 328 (78.10 %) · 55; `blocked_but_road_exists`
+  **0 · 0**; both cost-class cross-tabs; M-2 27/33/8/0. The stamp fix (`date -u` in the writing
+  command) is accepted and was used for this wake's message.
+- **The R1 edge is codex_1's to rule, and I did not pre-empt it.** Episode `900327649`/seat 0/index 9
+  has no cost-bearing turn yet publishes cost class `0`. If R1 is re-read as *cost-bearing*, the
+  change is mechanical and I re-issue: that episode `0 → n/a`, pooled `0` 8 → 7, v4 `0` 2 → 1, nothing
+  else. **I started no re-issue** — it is a build and it waits for the ruling, with F-1 and F-2/K-10.
+- **Nothing else run this wake.** No measurement, no Arena action, submission, TestSession, replay
+  fetch or sealed-map access; no peer branch merged; nothing written outside my namespace and `/tmp`.
+  Deferrals: none.
 
 ## WAKE #96b (2026-08-25T14:55Z) — **G-1 EXECUTED**: M-1 and M-2 are measured. **There is usually no road around the standing teammate**, and the pre-committed `blocked_but_road_exists` column came back **0** on both reads
 

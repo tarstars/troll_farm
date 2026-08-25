@@ -352,7 +352,10 @@ def run(inputs, out_dir, reread_py):
     records, refusals = [], []
     walk_by_game = {}
     k3 = collections.Counter()
-    k1 = {"rows": [], "agree": 0, "total": 0}
+    # r3 §R4b: the agreement denominator is the COST-BEARING `R` rows only; the
+    # non-cost-bearing ones are reported beside it, never inside it.
+    k1 = {"rows": [], "agree": 0, "total": 0,
+          "non_cost_bearing": [], "r_turns": 0, "r_turns_forward_cell_is_teammate": 0}
     k2 = {"total": 0, "free": 0, "exceptions": []}
     k6 = collections.Counter()
     k9 = {"checked": 0, "mismatch": []}
@@ -417,10 +420,30 @@ def run(inputs, out_dir, reread_py):
                     if read == "v4" and "refusal" not in rec:
                         for r in rec["m1"]:
                             if r["branch"] == "R":
-                                k1["total"] += 1
-                                ok = (r["forward_cell_occupant_is_teammate"] and r["blocked"])
-                                k1["agree"] += int(ok)
-                                if not ok:
+                                k1["r_turns"] += 1
+                                k1["r_turns_forward_cell_is_teammate"] += int(
+                                    r["forward_cell_occupant_is_teammate"])
+                                ok = None
+                                if r["status"] not in geo.COST_BEARING:
+                                    # r3 §R4b: `d1 > d0` is deliberately undefined on
+                                    # these rows, so they can neither agree nor disagree.
+                                    k1["non_cost_bearing"].append({
+                                        "game": gid, "turn": r["turn"],
+                                        "status": r["status"],
+                                        "occupant": r["forward_cell_occupant_id"],
+                                        "teammate": rec["teammate"],
+                                        "occupant_is_teammate":
+                                            r["forward_cell_occupant_is_teammate"],
+                                        "scope_active": rec["scope_active"],
+                                        "first_turn_of_window": r["first_turn_of_window"],
+                                        "category": "NON_COST_BEARING_STATUS",
+                                    })
+                                else:
+                                    k1["total"] += 1
+                                    ok = (r["forward_cell_occupant_is_teammate"]
+                                          and r["blocked"])
+                                    k1["agree"] += int(ok)
+                                if r["status"] in geo.COST_BEARING and not ok:
                                     k1["rows"].append({
                                         "game": gid, "turn": r["turn"],
                                         "status": r["status"],
@@ -485,6 +508,12 @@ def run(inputs, out_dir, reread_py):
             "verdict": ("VACUOUS - NOT MEASURED" if not k1["total"]
                         else "PASS" if k1_share >= 0.95 else "FAIL"),
             "disagreements": k1["rows"],
+            "non_cost_bearing_excluded": len(k1["non_cost_bearing"]),
+            "non_cost_bearing_rows": k1["non_cost_bearing"],
+            "non_cost_bearing_statuses": dict(collections.Counter(
+                d["status"] for d in k1["non_cost_bearing"])),
+            "all_R_turns": k1["r_turns"],
+            "all_R_turns_forward_cell_is_teammate": k1["r_turns_forward_cell_is_teammate"],
             "residue_scope_active_nonfirst": sum(
                 1 for d in k1["rows"] if d["category"] == "UNOBSERVABLE_RESOLVER_STATE"
                 and d["scope_active"] and not d["first_turn_of_window"]),
@@ -576,11 +605,18 @@ def main(argv=None):
     ap.add_argument("--peer", help="a second run's output dir; writes determinism-2026-08-25.json")
     ap.add_argument("--reread", required=True,
                     help="the coordinator's reread_shapes.py, read from origin/main")
+    # r3: the determinism file used to carry the two absolute output paths, so a
+    # reproduction in a temporary directory could not match it byte-for-byte even
+    # with identical semantics (codex_1's G-1 note, 20260825T152653Z).  The labels
+    # are now explicit inputs; the four hashes below them are the evidence.
+    ap.add_argument("--label", default=None, help="presentation label for --out")
+    ap.add_argument("--peer-label", default=None, help="presentation label for --peer")
     args = ap.parse_args(argv)
     results, controls = run(args.inputs, args.out, args.reread)
     if args.peer:
         names = ["geometry-2026-08-25.json", "controls-2026-08-25.json"]
-        det = {"run_a": args.out, "run_b": args.peer, "files": {}}
+        det = {"run_a": args.label or args.out,
+               "run_b": args.peer_label or args.peer, "files": {}}
         same = True
         for n in names:
             a = sha256_file(Path(args.out) / n)

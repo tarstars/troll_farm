@@ -146,10 +146,14 @@ def cost_key(row):
 
 
 def episode_cost_class(rows):
-    """r2 §R1: n/a with no eligible turn, 0 with no blocked turn, else the LOWER median."""
+    """r3 §R1: n/a with no COST-BEARING turn, 0 with cost-bearing turns and none
+    blocked, else the LOWER median.  The r2 text said `n/a` when no *eligible* turn
+    existed, which labelled a window whose every eligible turn was non-cost-bearing
+    `0` -- asserting a road at zero cost where no road was ever measured
+    (codex_1's G-1 ruling on the coordinator's `900327649` edge, 20260825T152653Z)."""
     population = [r for r in rows if r["status"] in COST_BEARING]
     blocked = sorted((r for r in population if r["blocked"]), key=cost_key)
-    if not rows:
+    if not population:
         return {"cost_class": "n/a", "cost_median": None, "cost_median_is_inf": False,
                 "n_blocked": 0, "n_eligible": len(population)}
     if not blocked:
