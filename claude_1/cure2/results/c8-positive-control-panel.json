@@ -1,0 +1,4013 @@
+{
+  "cases": [
+    {
+      "canonical_game": "m110:1",
+      "cells": [
+        [
+          6,
+          2
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        7
+      ],
+      "first_divergence_turn": 7,
+      "first_exchange_turn": 7,
+      "game": "OSC-001",
+      "k": 97,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 0,
+      "verdict": "PASS",
+      "window": [
+        6,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m059:1",
+      "cells": [
+        [
+          9,
+          4
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        12,
+        31
+      ],
+      "first_divergence_turn": 12,
+      "first_exchange_turn": 12,
+      "game": "OSC-002",
+      "k": 94,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        12,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m070:1",
+      "cells": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": 8,
+      "first_exchange_turn": 8,
+      "game": "OSC-005",
+      "k": 74,
+      "matches_frozen_episode": false,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the dance opens at 52, after the arms diverge at 8, so its turn numbers are not shared history (G-D)"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        52,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m070:1",
+      "cells": [
+        [
+          10,
+          2
+        ],
+        [
+          9,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        8
+      ],
+      "first_divergence_turn": 8,
+      "first_exchange_turn": 8,
+      "game": "OSC-005",
+      "k": 5,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "FAIL",
+      "window": [
+        7,
+        18
+      ]
+    },
+    {
+      "canonical_game": "m028:1",
+      "cells": [
+        [
+          7,
+          4
+        ],
+        [
+          8,
+          4
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-011",
+      "k": 3,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        26,
+        32
+      ]
+    },
+    {
+      "canonical_game": "m099:1",
+      "cells": [
+        [
+          9,
+          2
+        ],
+        [
+          10,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-012",
+      "k": 96,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        8,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m046:0",
+      "cells": [
+        [
+          7,
+          2
+        ],
+        [
+          6,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-013",
+      "k": 93,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 2,
+      "verdict": "FAIL",
+      "window": [
+        14,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m014:1",
+      "cells": [
+        [
+          10,
+          1
+        ],
+        [
+          9,
+          1
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-017",
+      "k": 96,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 2,
+      "verdict": "FAIL",
+      "window": [
+        7,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m084:1",
+      "cells": [
+        [
+          7,
+          5
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": 19,
+      "first_exchange_turn": 19,
+      "game": "OSC-021",
+      "k": 84,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the dance opens at 32, after the arms diverge at 19, so its turn numbers are not shared history (G-D)",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        32,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m073:0",
+      "cells": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-024",
+      "k": 32,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        5,
+        69
+      ]
+    },
+    {
+      "canonical_game": "m012:1",
+      "cells": [
+        [
+          12,
+          2
+        ],
+        [
+          13,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-025",
+      "k": 10,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        12,
+        32
+      ]
+    },
+    {
+      "canonical_game": "m085:0",
+      "cells": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-026",
+      "k": 4,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        17,
+        25
+      ]
+    },
+    {
+      "canonical_game": "m066:0",
+      "cells": [
+        [
+          5,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        4
+      ],
+      "first_divergence_turn": 4,
+      "first_exchange_turn": 4,
+      "game": "OSC-027",
+      "k": 10,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        3,
+        24
+      ]
+    },
+    {
+      "canonical_game": "m058:1",
+      "cells": [
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        29
+      ],
+      "first_divergence_turn": 29,
+      "first_exchange_turn": 29,
+      "game": "OSC-029",
+      "k": 6,
+      "matches_frozen_episode": false,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 0,
+      "verdict": "PASS",
+      "window": [
+        29,
+        42
+      ]
+    },
+    {
+      "canonical_game": "m004:0",
+      "cells": [
+        [
+          10,
+          2
+        ],
+        [
+          11,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-030",
+      "k": 74,
+      "matches_frozen_episode": false,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        52,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m004:0",
+      "cells": [
+        [
+          8,
+          2
+        ],
+        [
+          9,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-030",
+      "k": 3,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 2,
+      "verdict": "FAIL",
+      "window": [
+        24,
+        31
+      ]
+    },
+    {
+      "canonical_game": "m004:0",
+      "cells": [
+        [
+          10,
+          2
+        ],
+        [
+          11,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "m004:0",
+      "k": 74,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        52,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m004:0",
+      "cells": [
+        [
+          8,
+          2
+        ],
+        [
+          9,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "m004:0",
+      "k": 3,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 2,
+      "verdict": "FAIL",
+      "window": [
+        24,
+        31
+      ]
+    },
+    {
+      "canonical_game": "m012:1",
+      "cells": [
+        [
+          12,
+          2
+        ],
+        [
+          13,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "m012:1",
+      "k": 10,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        12,
+        32
+      ]
+    },
+    {
+      "canonical_game": "m014:1",
+      "cells": [
+        [
+          10,
+          1
+        ],
+        [
+          9,
+          1
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "m014:1",
+      "k": 96,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 2,
+      "verdict": "FAIL",
+      "window": [
+        7,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m021:0",
+      "cells": [
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "m021:0",
+      "k": 86,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        27,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m028:1",
+      "cells": [
+        [
+          7,
+          4
+        ],
+        [
+          8,
+          4
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "m028:1",
+      "k": 3,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        26,
+        32
+      ]
+    },
+    {
+      "canonical_game": "m039:1",
+      "cells": [
+        [
+          4,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "m039:1",
+      "k": 84,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        32,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m040:0",
+      "cells": [
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        177
+      ],
+      "first_divergence_turn": 177,
+      "first_exchange_turn": 177,
+      "game": "m040:0",
+      "k": 12,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": true,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        176,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m046:0",
+      "cells": [
+        [
+          7,
+          2
+        ],
+        [
+          6,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "m046:0",
+      "k": 93,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 2,
+      "verdict": "FAIL",
+      "window": [
+        14,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m058:1",
+      "cells": [
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        29
+      ],
+      "first_divergence_turn": 29,
+      "first_exchange_turn": 29,
+      "game": "m058:1",
+      "k": 6,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 0,
+      "verdict": "PASS",
+      "window": [
+        29,
+        42
+      ]
+    },
+    {
+      "canonical_game": "m059:1",
+      "cells": [
+        [
+          9,
+          4
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        12,
+        31
+      ],
+      "first_divergence_turn": 12,
+      "first_exchange_turn": 12,
+      "game": "m059:1",
+      "k": 94,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        12,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m061:0",
+      "cells": [
+        [
+          4,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        3
+      ],
+      "first_divergence_turn": 3,
+      "first_exchange_turn": 3,
+      "game": "m061:0",
+      "k": 3,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        2,
+        9
+      ]
+    },
+    {
+      "canonical_game": "m063:1",
+      "cells": [
+        [
+          10,
+          3
+        ],
+        [
+          10,
+          4
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        51
+      ],
+      "first_divergence_turn": 51,
+      "first_exchange_turn": 51,
+      "game": "m063:1",
+      "k": 75,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        50,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m066:0",
+      "cells": [
+        [
+          5,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        4
+      ],
+      "first_divergence_turn": 4,
+      "first_exchange_turn": 4,
+      "game": "m066:0",
+      "k": 10,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        3,
+        24
+      ]
+    },
+    {
+      "canonical_game": "m070:0",
+      "cells": [
+        [
+          4,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        4
+      ],
+      "first_divergence_turn": 4,
+      "first_exchange_turn": 4,
+      "game": "m070:0",
+      "k": 3,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        1,
+        8
+      ]
+    },
+    {
+      "canonical_game": "m070:1",
+      "cells": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": 8,
+      "first_exchange_turn": 8,
+      "game": "m070:1",
+      "k": 74,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the dance opens at 52, after the arms diverge at 8, so its turn numbers are not shared history (G-D)"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        52,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m070:1",
+      "cells": [
+        [
+          10,
+          2
+        ],
+        [
+          9,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        8
+      ],
+      "first_divergence_turn": 8,
+      "first_exchange_turn": 8,
+      "game": "m070:1",
+      "k": 5,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "FAIL",
+      "window": [
+        7,
+        18
+      ]
+    },
+    {
+      "canonical_game": "m073:0",
+      "cells": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "m073:0",
+      "k": 32,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        5,
+        69
+      ]
+    },
+    {
+      "canonical_game": "m078:1",
+      "cells": [
+        [
+          7,
+          3
+        ],
+        [
+          6,
+          3
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        7
+      ],
+      "first_divergence_turn": 7,
+      "first_exchange_turn": 7,
+      "game": "m078:1",
+      "k": 3,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": true,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        4,
+        10
+      ]
+    },
+    {
+      "canonical_game": "m079:0",
+      "cells": [
+        [
+          11,
+          3
+        ],
+        [
+          11,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "m079:0",
+      "k": 81,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 2,
+      "verdict": "FAIL",
+      "window": [
+        38,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m082:1",
+      "cells": [
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        18
+      ],
+      "first_divergence_turn": 18,
+      "first_exchange_turn": 18,
+      "game": "m082:1",
+      "k": 91,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        17,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m084:1",
+      "cells": [
+        [
+          7,
+          5
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": 19,
+      "first_exchange_turn": 19,
+      "game": "m084:1",
+      "k": 84,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the dance opens at 32, after the arms diverge at 19, so its turn numbers are not shared history (G-D)",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        32,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m085:0",
+      "cells": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "m085:0",
+      "k": 4,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        17,
+        25
+      ]
+    },
+    {
+      "canonical_game": "m090:0",
+      "cells": [
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        3,
+        6,
+        8
+      ],
+      "first_divergence_turn": 3,
+      "first_exchange_turn": 3,
+      "game": "m090:0",
+      "k": 3,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        2,
+        9
+      ]
+    },
+    {
+      "canonical_game": "m090:1",
+      "cells": [
+        [
+          7,
+          5
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        12,
+        15,
+        18
+      ],
+      "first_divergence_turn": 12,
+      "first_exchange_turn": 12,
+      "game": "m090:1",
+      "k": 3,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "FAIL",
+      "window": [
+        11,
+        18
+      ]
+    },
+    {
+      "canonical_game": "m099:1",
+      "cells": [
+        [
+          9,
+          2
+        ],
+        [
+          10,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "m099:1",
+      "k": 96,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        8,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m110:1",
+      "cells": [
+        [
+          6,
+          2
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        7
+      ],
+      "first_divergence_turn": 7,
+      "first_exchange_turn": 7,
+      "game": "m110:1",
+      "k": 97,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 0,
+      "verdict": "PASS",
+      "window": [
+        6,
+        200
+      ]
+    }
+  ],
+  "cases_passing": 9,
+  "cases_quiet_but_stalled": 4,
+  "cases_where_the_exchange_fires": 13,
+  "clauses": "detector_silent AND progress_restored, both from the fixture harness; progress via fixture_harness.had_progress, imported not re-implemented",
+  "control": "C-8 -- positive control: the exchange fires and the dance ends",
+  "controls": {
+    "N-1 inertness": "run with --inert; every case must FAIL",
+    "N-2 clause liveness": {
+      "meaning": "if the second number is 0 the progress clause cannot say no and a PASS is worth nothing",
+      "windows_where_it_does_not": 27,
+      "windows_where_the_ruleoff_arm_also_progresses": 0
+    },
+    "N-3 corroboration": {
+      "passing_cases_matching_a_frozen_library_episode": 3
+    }
+  },
+  "dance_cases": 27,
+  "dance_definition": "a D-1 episode on the rule-off arm, from trace_detectors.detect_d1",
+  "games": 240,
+  "games_played": 274,
+  "gates": {
+    "G-B panel identity": "PASS -- every panel game reproduces its panel-swap-census.json exchange count on the ON arm",
+    "G-D divergence identity": "the arms' first differing command turn must be the ON arm's first exchange turn, and the dance must open at or before it; cases that fail it are published with the reason, never dropped",
+    "G-E wire honesty": "every counted exchange turn carries at least one S/X unit",
+    "G-R duplicate agreement": "PASS -- 16 cases played twice (fixture run and panel run of the same map:seat), 0 disagreements"
+  },
+  "mode": "ON=arm-instrument.rs, OFF=arm-ruleoff.rs",
+  "passing_cases": [
+    {
+      "canonical_game": "m110:1",
+      "cells": [
+        [
+          6,
+          2
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        7
+      ],
+      "first_divergence_turn": 7,
+      "first_exchange_turn": 7,
+      "game": "OSC-001",
+      "k": 97,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 0,
+      "verdict": "PASS",
+      "window": [
+        6,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m059:1",
+      "cells": [
+        [
+          9,
+          4
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        12,
+        31
+      ],
+      "first_divergence_turn": 12,
+      "first_exchange_turn": 12,
+      "game": "OSC-002",
+      "k": 94,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        12,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m066:0",
+      "cells": [
+        [
+          5,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        4
+      ],
+      "first_divergence_turn": 4,
+      "first_exchange_turn": 4,
+      "game": "OSC-027",
+      "k": 10,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        3,
+        24
+      ]
+    },
+    {
+      "canonical_game": "m058:1",
+      "cells": [
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        29
+      ],
+      "first_divergence_turn": 29,
+      "first_exchange_turn": 29,
+      "game": "OSC-029",
+      "k": 6,
+      "matches_frozen_episode": false,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 0,
+      "verdict": "PASS",
+      "window": [
+        29,
+        42
+      ]
+    },
+    {
+      "canonical_game": "m058:1",
+      "cells": [
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        29
+      ],
+      "first_divergence_turn": 29,
+      "first_exchange_turn": 29,
+      "game": "m058:1",
+      "k": 6,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 0,
+      "verdict": "PASS",
+      "window": [
+        29,
+        42
+      ]
+    },
+    {
+      "canonical_game": "m059:1",
+      "cells": [
+        [
+          9,
+          4
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        12,
+        31
+      ],
+      "first_divergence_turn": 12,
+      "first_exchange_turn": 12,
+      "game": "m059:1",
+      "k": 94,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        12,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m061:0",
+      "cells": [
+        [
+          4,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        3
+      ],
+      "first_divergence_turn": 3,
+      "first_exchange_turn": 3,
+      "game": "m061:0",
+      "k": 3,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        2,
+        9
+      ]
+    },
+    {
+      "canonical_game": "m063:1",
+      "cells": [
+        [
+          10,
+          3
+        ],
+        [
+          10,
+          4
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        51
+      ],
+      "first_divergence_turn": 51,
+      "first_exchange_turn": 51,
+      "game": "m063:1",
+      "k": 75,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        50,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m066:0",
+      "cells": [
+        [
+          5,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        4
+      ],
+      "first_divergence_turn": 4,
+      "first_exchange_turn": 4,
+      "game": "m066:0",
+      "k": 10,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        3,
+        24
+      ]
+    },
+    {
+      "canonical_game": "m070:0",
+      "cells": [
+        [
+          4,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        4
+      ],
+      "first_divergence_turn": 4,
+      "first_exchange_turn": 4,
+      "game": "m070:0",
+      "k": 3,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        1,
+        8
+      ]
+    },
+    {
+      "canonical_game": "m082:1",
+      "cells": [
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        18
+      ],
+      "first_divergence_turn": 18,
+      "first_exchange_turn": 18,
+      "game": "m082:1",
+      "k": 91,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        17,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m090:0",
+      "cells": [
+        [
+          4,
+          5
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        3,
+        6,
+        8
+      ],
+      "first_divergence_turn": 3,
+      "first_exchange_turn": 3,
+      "game": "m090:0",
+      "k": 3,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        2,
+        9
+      ]
+    },
+    {
+      "canonical_game": "m110:1",
+      "cells": [
+        [
+          6,
+          2
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        7
+      ],
+      "first_divergence_turn": 7,
+      "first_exchange_turn": 7,
+      "game": "m110:1",
+      "k": 97,
+      "matches_frozen_episode": null,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 0,
+      "verdict": "PASS",
+      "window": [
+        6,
+        200
+      ]
+    }
+  ],
+  "per_game": [
+    {
+      "canonical_game": "m110:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 1,
+      "game": "OSC-001"
+    },
+    {
+      "canonical_game": "m059:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 2,
+      "game": "OSC-002"
+    },
+    {
+      "canonical_game": "m025:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-003"
+    },
+    {
+      "canonical_game": "m065:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-004"
+    },
+    {
+      "canonical_game": "m070:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 2,
+      "exchanges": 1,
+      "game": "OSC-005"
+    },
+    {
+      "canonical_game": "m078:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 5,
+      "game": "OSC-006"
+    },
+    {
+      "canonical_game": "m118:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 2,
+      "game": "OSC-007"
+    },
+    {
+      "canonical_game": "m068:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-008"
+    },
+    {
+      "canonical_game": "m092:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 2,
+      "game": "OSC-009"
+    },
+    {
+      "canonical_game": "m040:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 1,
+      "game": "OSC-010"
+    },
+    {
+      "canonical_game": "m028:1",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "OSC-011"
+    },
+    {
+      "canonical_game": "m099:1",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "OSC-012"
+    },
+    {
+      "canonical_game": "m046:0",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "OSC-013"
+    },
+    {
+      "canonical_game": "m079:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-014"
+    },
+    {
+      "canonical_game": "m060:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-015"
+    },
+    {
+      "canonical_game": "m114:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-016"
+    },
+    {
+      "canonical_game": "m014:1",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "OSC-017"
+    },
+    {
+      "canonical_game": "m094:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-018"
+    },
+    {
+      "canonical_game": "m003:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-019"
+    },
+    {
+      "canonical_game": "m104:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-020"
+    },
+    {
+      "canonical_game": "m084:1",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 1,
+      "game": "OSC-021"
+    },
+    {
+      "canonical_game": "m071:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-022"
+    },
+    {
+      "canonical_game": "m071:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-023"
+    },
+    {
+      "canonical_game": "m073:0",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "OSC-024"
+    },
+    {
+      "canonical_game": "m012:1",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "OSC-025"
+    },
+    {
+      "canonical_game": "m085:0",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "OSC-026"
+    },
+    {
+      "canonical_game": "m066:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 1,
+      "game": "OSC-027"
+    },
+    {
+      "canonical_game": "m092:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 2,
+      "game": "OSC-028"
+    },
+    {
+      "canonical_game": "m058:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 1,
+      "game": "OSC-029"
+    },
+    {
+      "canonical_game": "m004:0",
+      "dances_with_the_rule": 2,
+      "dances_without_the_rule": 2,
+      "exchanges": 0,
+      "game": "OSC-030"
+    },
+    {
+      "canonical_game": "m059:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 1,
+      "game": "OSC-031"
+    },
+    {
+      "canonical_game": "m091:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-032"
+    },
+    {
+      "canonical_game": "m087:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-033"
+    },
+    {
+      "canonical_game": "m100:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-034"
+    },
+    {
+      "canonical_game": "m000:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m000:0"
+    },
+    {
+      "canonical_game": "m000:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m000:1"
+    },
+    {
+      "canonical_game": "m001:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m001:0"
+    },
+    {
+      "canonical_game": "m001:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m001:1"
+    },
+    {
+      "canonical_game": "m002:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m002:0"
+    },
+    {
+      "canonical_game": "m002:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m002:1"
+    },
+    {
+      "canonical_game": "m003:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m003:0"
+    },
+    {
+      "canonical_game": "m003:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m003:1"
+    },
+    {
+      "canonical_game": "m004:0",
+      "dances_with_the_rule": 2,
+      "dances_without_the_rule": 2,
+      "exchanges": 0,
+      "game": "m004:0"
+    },
+    {
+      "canonical_game": "m004:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m004:1"
+    },
+    {
+      "canonical_game": "m005:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m005:0"
+    },
+    {
+      "canonical_game": "m005:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m005:1"
+    },
+    {
+      "canonical_game": "m006:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m006:0"
+    },
+    {
+      "canonical_game": "m006:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m006:1"
+    },
+    {
+      "canonical_game": "m007:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m007:0"
+    },
+    {
+      "canonical_game": "m007:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m007:1"
+    },
+    {
+      "canonical_game": "m008:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m008:0"
+    },
+    {
+      "canonical_game": "m008:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m008:1"
+    },
+    {
+      "canonical_game": "m009:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m009:0"
+    },
+    {
+      "canonical_game": "m009:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 1,
+      "game": "m009:1"
+    },
+    {
+      "canonical_game": "m010:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m010:0"
+    },
+    {
+      "canonical_game": "m010:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m010:1"
+    },
+    {
+      "canonical_game": "m011:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m011:0"
+    },
+    {
+      "canonical_game": "m011:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m011:1"
+    },
+    {
+      "canonical_game": "m012:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m012:0"
+    },
+    {
+      "canonical_game": "m012:1",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "m012:1"
+    },
+    {
+      "canonical_game": "m013:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m013:0"
+    },
+    {
+      "canonical_game": "m013:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m013:1"
+    },
+    {
+      "canonical_game": "m014:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m014:0"
+    },
+    {
+      "canonical_game": "m014:1",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "m014:1"
+    },
+    {
+      "canonical_game": "m015:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m015:0"
+    },
+    {
+      "canonical_game": "m015:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m015:1"
+    },
+    {
+      "canonical_game": "m016:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m016:0"
+    },
+    {
+      "canonical_game": "m016:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m016:1"
+    },
+    {
+      "canonical_game": "m017:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m017:0"
+    },
+    {
+      "canonical_game": "m017:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m017:1"
+    },
+    {
+      "canonical_game": "m018:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m018:0"
+    },
+    {
+      "canonical_game": "m018:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m018:1"
+    },
+    {
+      "canonical_game": "m019:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 1,
+      "game": "m019:0"
+    },
+    {
+      "canonical_game": "m019:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m019:1"
+    },
+    {
+      "canonical_game": "m020:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m020:0"
+    },
+    {
+      "canonical_game": "m020:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m020:1"
+    },
+    {
+      "canonical_game": "m021:0",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "m021:0"
+    },
+    {
+      "canonical_game": "m021:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m021:1"
+    },
+    {
+      "canonical_game": "m022:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m022:0"
+    },
+    {
+      "canonical_game": "m022:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m022:1"
+    },
+    {
+      "canonical_game": "m023:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m023:0"
+    },
+    {
+      "canonical_game": "m023:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 1,
+      "game": "m023:1"
+    },
+    {
+      "canonical_game": "m024:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m024:0"
+    },
+    {
+      "canonical_game": "m024:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m024:1"
+    },
+    {
+      "canonical_game": "m025:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m025:0"
+    },
+    {
+      "canonical_game": "m025:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m025:1"
+    },
+    {
+      "canonical_game": "m026:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m026:0"
+    },
+    {
+      "canonical_game": "m026:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m026:1"
+    },
+    {
+      "canonical_game": "m027:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m027:0"
+    },
+    {
+      "canonical_game": "m027:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m027:1"
+    },
+    {
+      "canonical_game": "m028:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m028:0"
+    },
+    {
+      "canonical_game": "m028:1",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "m028:1"
+    },
+    {
+      "canonical_game": "m029:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m029:0"
+    },
+    {
+      "canonical_game": "m029:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m029:1"
+    },
+    {
+      "canonical_game": "m030:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m030:0"
+    },
+    {
+      "canonical_game": "m030:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m030:1"
+    },
+    {
+      "canonical_game": "m031:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m031:0"
+    },
+    {
+      "canonical_game": "m031:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m031:1"
+    },
+    {
+      "canonical_game": "m032:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m032:0"
+    },
+    {
+      "canonical_game": "m032:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m032:1"
+    },
+    {
+      "canonical_game": "m033:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m033:0"
+    },
+    {
+      "canonical_game": "m033:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m033:1"
+    },
+    {
+      "canonical_game": "m034:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m034:0"
+    },
+    {
+      "canonical_game": "m034:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m034:1"
+    },
+    {
+      "canonical_game": "m035:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m035:0"
+    },
+    {
+      "canonical_game": "m035:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m035:1"
+    },
+    {
+      "canonical_game": "m036:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m036:0"
+    },
+    {
+      "canonical_game": "m036:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m036:1"
+    },
+    {
+      "canonical_game": "m037:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m037:0"
+    },
+    {
+      "canonical_game": "m037:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m037:1"
+    },
+    {
+      "canonical_game": "m038:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m038:0"
+    },
+    {
+      "canonical_game": "m038:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m038:1"
+    },
+    {
+      "canonical_game": "m039:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m039:0"
+    },
+    {
+      "canonical_game": "m039:1",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "m039:1"
+    },
+    {
+      "canonical_game": "m040:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 1,
+      "game": "m040:0"
+    },
+    {
+      "canonical_game": "m040:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 1,
+      "game": "m040:1"
+    },
+    {
+      "canonical_game": "m041:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 1,
+      "game": "m041:0"
+    },
+    {
+      "canonical_game": "m041:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m041:1"
+    },
+    {
+      "canonical_game": "m042:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 2,
+      "game": "m042:0"
+    },
+    {
+      "canonical_game": "m042:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m042:1"
+    },
+    {
+      "canonical_game": "m043:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m043:0"
+    },
+    {
+      "canonical_game": "m043:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m043:1"
+    },
+    {
+      "canonical_game": "m044:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m044:0"
+    },
+    {
+      "canonical_game": "m044:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m044:1"
+    },
+    {
+      "canonical_game": "m045:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m045:0"
+    },
+    {
+      "canonical_game": "m045:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m045:1"
+    },
+    {
+      "canonical_game": "m046:0",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "m046:0"
+    },
+    {
+      "canonical_game": "m046:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m046:1"
+    },
+    {
+      "canonical_game": "m047:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m047:0"
+    },
+    {
+      "canonical_game": "m047:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m047:1"
+    },
+    {
+      "canonical_game": "m048:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m048:0"
+    },
+    {
+      "canonical_game": "m048:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m048:1"
+    },
+    {
+      "canonical_game": "m049:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m049:0"
+    },
+    {
+      "canonical_game": "m049:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m049:1"
+    },
+    {
+      "canonical_game": "m050:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m050:0"
+    },
+    {
+      "canonical_game": "m050:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m050:1"
+    },
+    {
+      "canonical_game": "m051:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m051:0"
+    },
+    {
+      "canonical_game": "m051:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m051:1"
+    },
+    {
+      "canonical_game": "m052:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m052:0"
+    },
+    {
+      "canonical_game": "m052:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m052:1"
+    },
+    {
+      "canonical_game": "m053:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m053:0"
+    },
+    {
+      "canonical_game": "m053:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m053:1"
+    },
+    {
+      "canonical_game": "m054:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m054:0"
+    },
+    {
+      "canonical_game": "m054:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m054:1"
+    },
+    {
+      "canonical_game": "m055:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m055:0"
+    },
+    {
+      "canonical_game": "m055:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m055:1"
+    },
+    {
+      "canonical_game": "m056:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 2,
+      "game": "m056:0"
+    },
+    {
+      "canonical_game": "m056:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m056:1"
+    },
+    {
+      "canonical_game": "m057:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m057:0"
+    },
+    {
+      "canonical_game": "m057:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m057:1"
+    },
+    {
+      "canonical_game": "m058:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m058:0"
+    },
+    {
+      "canonical_game": "m058:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 1,
+      "game": "m058:1"
+    },
+    {
+      "canonical_game": "m059:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 1,
+      "game": "m059:0"
+    },
+    {
+      "canonical_game": "m059:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 2,
+      "game": "m059:1"
+    },
+    {
+      "canonical_game": "m060:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m060:0"
+    },
+    {
+      "canonical_game": "m060:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m060:1"
+    },
+    {
+      "canonical_game": "m061:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 2,
+      "game": "m061:0"
+    },
+    {
+      "canonical_game": "m061:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 1,
+      "game": "m061:1"
+    },
+    {
+      "canonical_game": "m062:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m062:0"
+    },
+    {
+      "canonical_game": "m062:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m062:1"
+    },
+    {
+      "canonical_game": "m063:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m063:0"
+    },
+    {
+      "canonical_game": "m063:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 1,
+      "game": "m063:1"
+    },
+    {
+      "canonical_game": "m064:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m064:0"
+    },
+    {
+      "canonical_game": "m064:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m064:1"
+    },
+    {
+      "canonical_game": "m065:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m065:0"
+    },
+    {
+      "canonical_game": "m065:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m065:1"
+    },
+    {
+      "canonical_game": "m066:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 1,
+      "game": "m066:0"
+    },
+    {
+      "canonical_game": "m066:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m066:1"
+    },
+    {
+      "canonical_game": "m067:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m067:0"
+    },
+    {
+      "canonical_game": "m067:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m067:1"
+    },
+    {
+      "canonical_game": "m068:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m068:0"
+    },
+    {
+      "canonical_game": "m068:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m068:1"
+    },
+    {
+      "canonical_game": "m069:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m069:0"
+    },
+    {
+      "canonical_game": "m069:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m069:1"
+    },
+    {
+      "canonical_game": "m070:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 1,
+      "game": "m070:0"
+    },
+    {
+      "canonical_game": "m070:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 2,
+      "exchanges": 1,
+      "game": "m070:1"
+    },
+    {
+      "canonical_game": "m071:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m071:0"
+    },
+    {
+      "canonical_game": "m071:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m071:1"
+    },
+    {
+      "canonical_game": "m072:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m072:0"
+    },
+    {
+      "canonical_game": "m072:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m072:1"
+    },
+    {
+      "canonical_game": "m073:0",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "m073:0"
+    },
+    {
+      "canonical_game": "m073:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m073:1"
+    },
+    {
+      "canonical_game": "m074:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m074:0"
+    },
+    {
+      "canonical_game": "m074:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m074:1"
+    },
+    {
+      "canonical_game": "m075:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m075:0"
+    },
+    {
+      "canonical_game": "m075:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m075:1"
+    },
+    {
+      "canonical_game": "m076:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m076:0"
+    },
+    {
+      "canonical_game": "m076:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m076:1"
+    },
+    {
+      "canonical_game": "m077:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m077:0"
+    },
+    {
+      "canonical_game": "m077:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m077:1"
+    },
+    {
+      "canonical_game": "m078:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 5,
+      "game": "m078:0"
+    },
+    {
+      "canonical_game": "m078:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 1,
+      "game": "m078:1"
+    },
+    {
+      "canonical_game": "m079:0",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "m079:0"
+    },
+    {
+      "canonical_game": "m079:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m079:1"
+    },
+    {
+      "canonical_game": "m080:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m080:0"
+    },
+    {
+      "canonical_game": "m080:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m080:1"
+    },
+    {
+      "canonical_game": "m081:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m081:0"
+    },
+    {
+      "canonical_game": "m081:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m081:1"
+    },
+    {
+      "canonical_game": "m082:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m082:0"
+    },
+    {
+      "canonical_game": "m082:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 1,
+      "game": "m082:1"
+    },
+    {
+      "canonical_game": "m083:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m083:0"
+    },
+    {
+      "canonical_game": "m083:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m083:1"
+    },
+    {
+      "canonical_game": "m084:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m084:0"
+    },
+    {
+      "canonical_game": "m084:1",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 1,
+      "game": "m084:1"
+    },
+    {
+      "canonical_game": "m085:0",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "m085:0"
+    },
+    {
+      "canonical_game": "m085:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m085:1"
+    },
+    {
+      "canonical_game": "m086:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m086:0"
+    },
+    {
+      "canonical_game": "m086:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m086:1"
+    },
+    {
+      "canonical_game": "m087:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m087:0"
+    },
+    {
+      "canonical_game": "m087:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m087:1"
+    },
+    {
+      "canonical_game": "m088:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m088:0"
+    },
+    {
+      "canonical_game": "m088:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m088:1"
+    },
+    {
+      "canonical_game": "m089:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m089:0"
+    },
+    {
+      "canonical_game": "m089:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m089:1"
+    },
+    {
+      "canonical_game": "m090:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 5,
+      "game": "m090:0"
+    },
+    {
+      "canonical_game": "m090:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 4,
+      "game": "m090:1"
+    },
+    {
+      "canonical_game": "m091:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m091:0"
+    },
+    {
+      "canonical_game": "m091:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m091:1"
+    },
+    {
+      "canonical_game": "m092:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 2,
+      "game": "m092:0"
+    },
+    {
+      "canonical_game": "m092:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 1,
+      "game": "m092:1"
+    },
+    {
+      "canonical_game": "m093:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m093:0"
+    },
+    {
+      "canonical_game": "m093:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m093:1"
+    },
+    {
+      "canonical_game": "m094:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m094:0"
+    },
+    {
+      "canonical_game": "m094:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m094:1"
+    },
+    {
+      "canonical_game": "m095:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m095:0"
+    },
+    {
+      "canonical_game": "m095:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m095:1"
+    },
+    {
+      "canonical_game": "m096:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m096:0"
+    },
+    {
+      "canonical_game": "m096:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m096:1"
+    },
+    {
+      "canonical_game": "m097:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m097:0"
+    },
+    {
+      "canonical_game": "m097:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m097:1"
+    },
+    {
+      "canonical_game": "m098:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m098:0"
+    },
+    {
+      "canonical_game": "m098:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m098:1"
+    },
+    {
+      "canonical_game": "m099:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m099:0"
+    },
+    {
+      "canonical_game": "m099:1",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "m099:1"
+    },
+    {
+      "canonical_game": "m100:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m100:0"
+    },
+    {
+      "canonical_game": "m100:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m100:1"
+    },
+    {
+      "canonical_game": "m101:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m101:0"
+    },
+    {
+      "canonical_game": "m101:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m101:1"
+    },
+    {
+      "canonical_game": "m102:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m102:0"
+    },
+    {
+      "canonical_game": "m102:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m102:1"
+    },
+    {
+      "canonical_game": "m103:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m103:0"
+    },
+    {
+      "canonical_game": "m103:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m103:1"
+    },
+    {
+      "canonical_game": "m104:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m104:0"
+    },
+    {
+      "canonical_game": "m104:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m104:1"
+    },
+    {
+      "canonical_game": "m105:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m105:0"
+    },
+    {
+      "canonical_game": "m105:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m105:1"
+    },
+    {
+      "canonical_game": "m106:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m106:0"
+    },
+    {
+      "canonical_game": "m106:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m106:1"
+    },
+    {
+      "canonical_game": "m107:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m107:0"
+    },
+    {
+      "canonical_game": "m107:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m107:1"
+    },
+    {
+      "canonical_game": "m108:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m108:0"
+    },
+    {
+      "canonical_game": "m108:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m108:1"
+    },
+    {
+      "canonical_game": "m109:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 2,
+      "game": "m109:0"
+    },
+    {
+      "canonical_game": "m109:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m109:1"
+    },
+    {
+      "canonical_game": "m110:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m110:0"
+    },
+    {
+      "canonical_game": "m110:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 1,
+      "game": "m110:1"
+    },
+    {
+      "canonical_game": "m111:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m111:0"
+    },
+    {
+      "canonical_game": "m111:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m111:1"
+    },
+    {
+      "canonical_game": "m112:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m112:0"
+    },
+    {
+      "canonical_game": "m112:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m112:1"
+    },
+    {
+      "canonical_game": "m113:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m113:0"
+    },
+    {
+      "canonical_game": "m113:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m113:1"
+    },
+    {
+      "canonical_game": "m114:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m114:0"
+    },
+    {
+      "canonical_game": "m114:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m114:1"
+    },
+    {
+      "canonical_game": "m115:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m115:0"
+    },
+    {
+      "canonical_game": "m115:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m115:1"
+    },
+    {
+      "canonical_game": "m116:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m116:0"
+    },
+    {
+      "canonical_game": "m116:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m116:1"
+    },
+    {
+      "canonical_game": "m117:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m117:0"
+    },
+    {
+      "canonical_game": "m117:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m117:1"
+    },
+    {
+      "canonical_game": "m118:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m118:0"
+    },
+    {
+      "canonical_game": "m118:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 2,
+      "game": "m118:1"
+    },
+    {
+      "canonical_game": "m119:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m119:0"
+    },
+    {
+      "canonical_game": "m119:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "m119:1"
+    }
+  ],
+  "rows_before_deduplication": {
+    "duplicated_cases": 16,
+    "firing": 18,
+    "meaning": "all 34 fixtures are re-runs of panel games, so a --panel run plays each of them twice; the headline counts above are deduplicated by (map_id:seat, unit, window)",
+    "passing": 13,
+    "rows": 43
+  },
+  "task": "20260825-dance-cure-candidate-2-swap",
+  "verdict": "PASS"
+}

@@ -1,0 +1,1017 @@
+{
+  "cases": [
+    {
+      "canonical_game": "m110:1",
+      "cells": [
+        [
+          6,
+          2
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        7
+      ],
+      "first_divergence_turn": 7,
+      "first_exchange_turn": 7,
+      "game": "OSC-001",
+      "k": 97,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 0,
+      "verdict": "PASS",
+      "window": [
+        6,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m059:1",
+      "cells": [
+        [
+          9,
+          4
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        12,
+        31
+      ],
+      "first_divergence_turn": 12,
+      "first_exchange_turn": 12,
+      "game": "OSC-002",
+      "k": 94,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        12,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m070:1",
+      "cells": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": 8,
+      "first_exchange_turn": 8,
+      "game": "OSC-005",
+      "k": 74,
+      "matches_frozen_episode": false,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the dance opens at 52, after the arms diverge at 8, so its turn numbers are not shared history (G-D)"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        52,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m070:1",
+      "cells": [
+        [
+          10,
+          2
+        ],
+        [
+          9,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        8
+      ],
+      "first_divergence_turn": 8,
+      "first_exchange_turn": 8,
+      "game": "OSC-005",
+      "k": 5,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "FAIL",
+      "window": [
+        7,
+        18
+      ]
+    },
+    {
+      "canonical_game": "m028:1",
+      "cells": [
+        [
+          7,
+          4
+        ],
+        [
+          8,
+          4
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-011",
+      "k": 3,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        26,
+        32
+      ]
+    },
+    {
+      "canonical_game": "m099:1",
+      "cells": [
+        [
+          9,
+          2
+        ],
+        [
+          10,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-012",
+      "k": 96,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        8,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m046:0",
+      "cells": [
+        [
+          7,
+          2
+        ],
+        [
+          6,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-013",
+      "k": 93,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 2,
+      "verdict": "FAIL",
+      "window": [
+        14,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m014:1",
+      "cells": [
+        [
+          10,
+          1
+        ],
+        [
+          9,
+          1
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-017",
+      "k": 96,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 2,
+      "verdict": "FAIL",
+      "window": [
+        7,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m084:1",
+      "cells": [
+        [
+          7,
+          5
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": 19,
+      "first_exchange_turn": 19,
+      "game": "OSC-021",
+      "k": 84,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the dance opens at 32, after the arms diverge at 19, so its turn numbers are not shared history (G-D)",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        32,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m073:0",
+      "cells": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-024",
+      "k": 32,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        5,
+        69
+      ]
+    },
+    {
+      "canonical_game": "m012:1",
+      "cells": [
+        [
+          12,
+          2
+        ],
+        [
+          13,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-025",
+      "k": 10,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        12,
+        32
+      ]
+    },
+    {
+      "canonical_game": "m085:0",
+      "cells": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-026",
+      "k": 4,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        17,
+        25
+      ]
+    },
+    {
+      "canonical_game": "m066:0",
+      "cells": [
+        [
+          5,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        4
+      ],
+      "first_divergence_turn": 4,
+      "first_exchange_turn": 4,
+      "game": "OSC-027",
+      "k": 10,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        3,
+        24
+      ]
+    },
+    {
+      "canonical_game": "m058:1",
+      "cells": [
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        29
+      ],
+      "first_divergence_turn": 29,
+      "first_exchange_turn": 29,
+      "game": "OSC-029",
+      "k": 6,
+      "matches_frozen_episode": false,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 0,
+      "verdict": "PASS",
+      "window": [
+        29,
+        42
+      ]
+    },
+    {
+      "canonical_game": "m004:0",
+      "cells": [
+        [
+          10,
+          2
+        ],
+        [
+          11,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-030",
+      "k": 74,
+      "matches_frozen_episode": false,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 0,
+      "verdict": "FAIL",
+      "window": [
+        52,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m004:0",
+      "cells": [
+        [
+          8,
+          2
+        ],
+        [
+          9,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": false,
+      "exchange_fires_in_window": false,
+      "exchange_turns": [],
+      "first_divergence_turn": null,
+      "first_exchange_turn": null,
+      "game": "OSC-030",
+      "k": 3,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": false,
+      "reasons": [
+        "no exchange involving this unit inside the dance window",
+        "the ON arm granted no exchange in this game",
+        "the ON arm still dances: 1 D-1 episode(s) overlap the window",
+        "progress not restored on the ON arm over the window"
+      ],
+      "shared_history_gate": false,
+      "unit": 2,
+      "verdict": "FAIL",
+      "window": [
+        24,
+        31
+      ]
+    }
+  ],
+  "cases_passing": 4,
+  "cases_quiet_but_stalled": 1,
+  "cases_where_the_exchange_fires": 5,
+  "clauses": "detector_silent AND progress_restored, both from the fixture harness; progress via fixture_harness.had_progress, imported not re-implemented",
+  "control": "C-8 -- positive control: the exchange fires and the dance ends",
+  "controls": {
+    "N-1 inertness": "run with --inert; every case must FAIL",
+    "N-2 clause liveness": {
+      "meaning": "if the second number is 0 the progress clause cannot say no and a PASS is worth nothing",
+      "windows_where_it_does_not": 16,
+      "windows_where_the_ruleoff_arm_also_progresses": 0
+    },
+    "N-3 corroboration": {
+      "passing_cases_matching_a_frozen_library_episode": 3
+    }
+  },
+  "dance_cases": 16,
+  "dance_definition": "a D-1 episode on the rule-off arm, from trace_detectors.detect_d1",
+  "games": 32,
+  "games_played": 34,
+  "gates": {
+    "G-B panel identity": "NOT RUN -- fixtures only",
+    "G-D divergence identity": "the arms' first differing command turn must be the ON arm's first exchange turn, and the dance must open at or before it; cases that fail it are published with the reason, never dropped",
+    "G-E wire honesty": "every counted exchange turn carries at least one S/X unit",
+    "G-R duplicate agreement": "PASS -- 0 cases played twice (fixture run and panel run of the same map:seat), 0 disagreements"
+  },
+  "mode": "ON=arm-instrument.rs, OFF=arm-ruleoff.rs",
+  "passing_cases": [
+    {
+      "canonical_game": "m110:1",
+      "cells": [
+        [
+          6,
+          2
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        7
+      ],
+      "first_divergence_turn": 7,
+      "first_exchange_turn": 7,
+      "game": "OSC-001",
+      "k": 97,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 0,
+      "verdict": "PASS",
+      "window": [
+        6,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m059:1",
+      "cells": [
+        [
+          9,
+          4
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        12,
+        31
+      ],
+      "first_divergence_turn": 12,
+      "first_exchange_turn": 12,
+      "game": "OSC-002",
+      "k": 94,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        12,
+        200
+      ]
+    },
+    {
+      "canonical_game": "m066:0",
+      "cells": [
+        [
+          5,
+          2
+        ],
+        [
+          4,
+          2
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        4
+      ],
+      "first_divergence_turn": 4,
+      "first_exchange_turn": 4,
+      "game": "OSC-027",
+      "k": 10,
+      "matches_frozen_episode": true,
+      "progress_after_window_on_arm": false,
+      "progress_after_window_on_ruleoff_arm": true,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 2,
+      "verdict": "PASS",
+      "window": [
+        3,
+        24
+      ]
+    },
+    {
+      "canonical_game": "m058:1",
+      "cells": [
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "detector_silent_on_arm": true,
+      "exchange_fires_in_window": true,
+      "exchange_turns": [
+        29
+      ],
+      "first_divergence_turn": 29,
+      "first_exchange_turn": 29,
+      "game": "OSC-029",
+      "k": 6,
+      "matches_frozen_episode": false,
+      "progress_after_window_on_arm": true,
+      "progress_after_window_on_ruleoff_arm": false,
+      "progress_on_ruleoff_arm": false,
+      "progress_restored_on_arm": true,
+      "reasons": [],
+      "shared_history_gate": true,
+      "unit": 0,
+      "verdict": "PASS",
+      "window": [
+        29,
+        42
+      ]
+    }
+  ],
+  "per_game": [
+    {
+      "canonical_game": "m110:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 1,
+      "game": "OSC-001"
+    },
+    {
+      "canonical_game": "m059:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 2,
+      "game": "OSC-002"
+    },
+    {
+      "canonical_game": "m025:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-003"
+    },
+    {
+      "canonical_game": "m065:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-004"
+    },
+    {
+      "canonical_game": "m070:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 2,
+      "exchanges": 1,
+      "game": "OSC-005"
+    },
+    {
+      "canonical_game": "m078:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 5,
+      "game": "OSC-006"
+    },
+    {
+      "canonical_game": "m118:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 2,
+      "game": "OSC-007"
+    },
+    {
+      "canonical_game": "m068:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-008"
+    },
+    {
+      "canonical_game": "m092:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 2,
+      "game": "OSC-009"
+    },
+    {
+      "canonical_game": "m040:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 1,
+      "game": "OSC-010"
+    },
+    {
+      "canonical_game": "m028:1",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "OSC-011"
+    },
+    {
+      "canonical_game": "m099:1",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "OSC-012"
+    },
+    {
+      "canonical_game": "m046:0",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "OSC-013"
+    },
+    {
+      "canonical_game": "m079:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-014"
+    },
+    {
+      "canonical_game": "m060:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-015"
+    },
+    {
+      "canonical_game": "m114:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-016"
+    },
+    {
+      "canonical_game": "m014:1",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "OSC-017"
+    },
+    {
+      "canonical_game": "m094:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-018"
+    },
+    {
+      "canonical_game": "m003:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-019"
+    },
+    {
+      "canonical_game": "m104:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-020"
+    },
+    {
+      "canonical_game": "m084:1",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 1,
+      "game": "OSC-021"
+    },
+    {
+      "canonical_game": "m071:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-022"
+    },
+    {
+      "canonical_game": "m071:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-023"
+    },
+    {
+      "canonical_game": "m073:0",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "OSC-024"
+    },
+    {
+      "canonical_game": "m012:1",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "OSC-025"
+    },
+    {
+      "canonical_game": "m085:0",
+      "dances_with_the_rule": 1,
+      "dances_without_the_rule": 1,
+      "exchanges": 0,
+      "game": "OSC-026"
+    },
+    {
+      "canonical_game": "m066:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 1,
+      "game": "OSC-027"
+    },
+    {
+      "canonical_game": "m092:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 2,
+      "game": "OSC-028"
+    },
+    {
+      "canonical_game": "m058:1",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 1,
+      "exchanges": 1,
+      "game": "OSC-029"
+    },
+    {
+      "canonical_game": "m004:0",
+      "dances_with_the_rule": 2,
+      "dances_without_the_rule": 2,
+      "exchanges": 0,
+      "game": "OSC-030"
+    },
+    {
+      "canonical_game": "m059:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 1,
+      "game": "OSC-031"
+    },
+    {
+      "canonical_game": "m091:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-032"
+    },
+    {
+      "canonical_game": "m087:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-033"
+    },
+    {
+      "canonical_game": "m100:0",
+      "dances_with_the_rule": 0,
+      "dances_without_the_rule": 0,
+      "exchanges": 0,
+      "game": "OSC-034"
+    }
+  ],
+  "rows_before_deduplication": {
+    "duplicated_cases": 0,
+    "firing": 5,
+    "meaning": "all 34 fixtures are re-runs of panel games, so a --panel run plays each of them twice; the headline counts above are deduplicated by (map_id:seat, unit, window)",
+    "passing": 4,
+    "rows": 16
+  },
+  "task": "20260825-dance-cure-candidate-2-swap",
+  "verdict": "PASS"
+}
