@@ -23,18 +23,31 @@ Two writing agents must never share a Git worktree: one working tree, one branch
 index — path ownership alone cannot make simultaneous staging and commits safe.
 
 - one worktree and `agent/<id>` branch per writing agent;
-- one designated **integrator**, who alone updates the session branch
-  (currently `session-2026-07-01`; this project has no active `main` workflow);
+- one designated **integrator**, who alone updates the integrated branch — **`main`**
+  (corrected 2026-08-21: this line said `session-2026-07-01` and "no active `main`
+  workflow" long after both stopped being true. `main` is the shared root of trust that
+  `coordination/roster.json` and the frozen legacy baseline are read from, and
+  `night_runner` fast-forwards it on every publish — `cgauto/night_runner.py:169`.
+  `session-2026-07-01` has not moved since 2026-08-17);
 - one designated **arena controller**, normally the integrator, who alone performs
   platform-side mutations (see §6).
 
-Current roster (owner reassignment 2026-08-06): **`local_claude_1`** — **coordinator
-(integrator)** and arena controller by the "normally the integrator" default. **`local_codex_1`**
-— contributor and outgoing coordinator, with no Arena authority after the transfer.
-**`claude_1`** — active contributor; **`chatgpt_1`** — contributor and reviewer. Handover brief:
-`coordination/HANDOVER-2026-08-06-local_codex_1-to-local_claude_1.md`. Roles are defaults, not
-capability limits; a task record says who owns that particular outcome, and the user may reassign
-at any time.
+**The roster of record is `coordination/roster.json` on `origin/main`, not this
+paragraph.** §10.2 reads the coordinator from there, and a second list that drifts is
+worse than no list. As of the owner transfer on 2026-08-24 it says:
+**`local_claude_1`** — coordinator (integrator) and sole Arena controller;
+**`claude_1`** — active contributor; **`codex_1`** — active contributor and standing
+reviewer (a separate agent from `local_codex_1`); **`local_codex_1`** — contributor with
+no integration or Arena authority; **`chatgpt_1`** — reachable reviewer through its
+interactive session; **`chatgpt_2`** — unreachable. Historical messages and quarantines
+remain authoritative. Current transfer brief:
+`coordination/HANDOVER-2026-08-24-local_codex_1-to-local_claude_1.md`. Roles are defaults,
+not capability limits; a task record says who owns a particular outcome, and the user may
+reassign at any time.
+
+A coordinator transfer updates the roster on `main` in one act: set the new `coordinator` and
+append the outgoing id to `former_coordinators`. Omitting the append invalidates prior quarantine
+adjudications loudly at the next sweep; no quarantine file is copied between agent branches.
 
 Agent ids are lowercase `[a-z0-9_]+`. A newcomer claims an unused id, creates its own
 status file and message directory, and follows these rules; no spec change is needed.
@@ -101,14 +114,22 @@ visible or current for peers until its commit is pushed.
 YYYYMMDDTHHMMSSZ-<task-id>-<kind>.md
 ```
 
-Kinds: `claim`, `progress`, `question`, `blocker`, `policy`, `stop`, `takeover`,
-`handoff`, `ack`, `release`, `integrated`, `correction`. Messages are immutable once
+Kinds: `claim`, `progress`, `update`, `question`, `blocker`, `policy`, `stop`,
+`takeover`, `handoff`, `ack`, `release`, `integrated`, `correction`. The enforced set is
+`V2_KNOWN_KINDS` in `scripts/inbox_sweep.py`; `update` was in daily use and missing from
+this list until 2026-08-21. Messages are immutable once
 published; here **published means committed and pushed to `origin`**. A correction is a
 new pushed `correction` message at a new immutable path whose `supersedes` array names the
 exact superseded message path; the superseded message stays immutable and visible. Moving
 or copying an old message between refs is not a new coordination event. All kinds except
-`progress`, `ack`, `release` and `integrated` require an `ack` from the recipient's own
-namespace (`correction` requires acknowledgement by default).
+`progress`, `update`, `ack`, `release` and `integrated` require an `ack` from the
+recipient's own namespace (`correction` requires acknowledgement by default).
+
+**The ack obligation falls on `to` recipients only** (ruling 2026-08-20, implemented as
+`ack_obliged_to_me`; recorded here 2026-08-21, having lived only in a code docstring). A
+`cc` recipient may acknowledge as a courtesy but never owes one, and on a `CARD:` or
+`DEFERRED:` message a bystander's ack is actively forbidden — it would discharge another
+agent's queue anchor. Address the parties who must act in `to`; everyone else is `cc`.
 
 **Transport schema v2** (mandatory for newly created messages once announced; task
 `20260805-coordination-transport-hardening`). Every new message starts with YAML front
@@ -137,6 +158,33 @@ repository-relative immutable message paths — never task ids or timestamps. A 
 a non-empty `ack_for` and covers exactly the listed paths, nothing else; an ACK may itself
 set `requires_ack: true`, in which case the response targets that ACK's exact path.
 Filename timestamps are human-readable ordering hints only.
+
+## Owner-facing wording policy (owner directive, 2026-08-13)
+
+Any text the owner is expected to read — messages with `user` in `to:`/`cc:`, session
+summaries, reports, backlog/state presentations — follows these rules:
+
+1. **Plain language.** Short sentences. Say what a thing IS before what it is called.
+2. **No unexplained codes.** Every project abbreviation or codename (G6, H3a, D-9, σ,
+   CBF, …) gets a plain-language explanation at first use: *"the watchdog-test job
+   (G6)"*, *"the score-wobble number (σ, 'sigma')"*. A code the reader must look up is
+   a defect, not shorthand.
+3. **Numbers carry their meaning.** Not "σ = 1.501" alone, but "scores wobble by about
+   ±1.5 points — one test run proves nothing."
+4. **Describe, then name.** Prefer "the rule that no banana tricks happen before the
+   second troll is trained" over "the D-9(a) constraint."
+5. Inter-agent technical artifacts (task records, evidence files, code) keep full
+   precision and exact identifiers — this policy governs the owner-facing layer, not
+   the lab notebook. When one message serves both audiences, the owner-facing summary
+   comes first, the technical detail after.
+
+**Ack requirement is kind-based first, field-based second (ruled 2026-08-12, coordinator,
+after claude_1's finding):** the sweep's `ACK_REQUIRED_KINDS` (e.g. `policy`, `handoff`)
+makes those kinds ack-required regardless of front matter — `requires_ack: false` on a
+`policy` is inert and misleading; do not write it expecting an exemption. `requires_ack:
+true` can only ADD an obligation to a kind that lacks one (e.g. a `progress`); it never
+subtracts. Supersession does not discharge an ack, and retiring a message does not carry
+its `ack_for` — re-issue discharges explicitly (both learned live, 2026-08-12).
 
 A v2 `handoff` additionally carries `artifact_ref` (the sender's canonical branch,
 `agent/<sender-id>`), `artifact_commit` (a full 40-hex object), and `artifact_paths` (a
@@ -199,24 +247,107 @@ possible, pushes the checkpoint, acks, releases, and does not resume without rea
 Direct user chat may duplicate an urgent notification, but it does not create repository
 coordination state; the pushed repository message is authoritative.
 
+### 5.1 Wake-driven operation (owner rule, 2026-08-21)
+
+Since 2026-08-20 `claude_1` and `codex_1` are not sessions a human starts. They are woken
+by `agent-launcher.service` (`scripts/agent_launcher.py`): every 180 s it fetches, computes
+each agent's set with the agents' own sweep — never a second scanner — and launches only
+when that set has GROWN. Guards: a 60-second debounce so one burst is one wake, one live
+session per agent, a per-agent hourly cap, and `LAUNCHER-PAUSED` in the repo root which
+stops all launches instantly. §5's event-triggered cadence above is what an agent does
+once awake; this subsection is what may wake it.
+
+**THE RULE (owner, 2026-08-21): an agent is woken only by mail from someone else.** The
+**wake set** is exactly (a) messages it has not seen, sent by another agent, with this
+agent in `to`; plus (b) ack-required obligations it owes to another agent. Three things
+are excluded by construction, each because it caused a measured failure:
+
+1. **Nothing an agent wrote itself may wake it.** Its own `DEFERRED:` cards remain in the
+   queue as obligations — §10's "nothing owed to me AND nothing owed by me" is untouched —
+   but an obligation is not news. An agent has read what it wrote.
+2. **`cc`-only mail never wakes.** A cc recipient owes nothing (§4); waking it to read what
+   it does not owe contradicts the same ruling. It reads the cc on its next real wake.
+3. **A receipt that authorizes nothing never wakes** — an `ack` with `requires_ack: false`.
+   A verdict, ruling or authorization CHANGES the recipient's queue and must therefore
+   already carry `requires_ack: true` toward that party (the queue-changing rule below);
+   published that way it wakes normally. Published as a bare receipt it waits for the next
+   real wake, and receipt-for-a-receipt ping-pong terminates instead of sustaining itself.
+4. **A `DEFERRED:` card wakes nobody — not even the peers it names in `to`.** Both live
+   agents address their own cards to each other, and no peer can discharge another agent's
+   card (§10: only a later message of the same agent naming it in `ack_for` does), so the
+   obligation such a card appears to place on a peer is one the peer cannot act on. It
+   stays fully visible as status. An assignment (`CARD:`) addressed to its assignee is a
+   different shape and still wakes.
+
+**The incident, measured 2026-08-21.** Between 12:39Z and 14:21Z `claude_1` woke eight
+times and did the same nothing each time: read one peer receipt, re-measured a blocked
+dependency byte-identically, and re-issued the same card. Every one of those wakes was
+mail-triggered and therefore legal — **the mail was its own.** Three separately correct
+rules composed into a loop: a blocked job must be a self-addressed ack-required card
+(08-18); a card is discharged only by delivering it or by a replacement card (08-19);
+self-addressed cards became visible to the sweep (repair `8c531096`, 08-21). So the
+discharge of a card is another card, that card enters its author's own actionable set,
+the set changed, and the launcher rang. While work is blocked that set has no fixed
+point. The peer's courtesy acks were a second loop through `cc`. This is the
+`docs/DISCOVERY-two-correct-doors-make-a-wall-2026-08-17.md` family: no rule here was
+wrong and the composition was still a wall.
+
+**One predicate, one code path.** The wake set is computed once, in
+`inbox_sweep.actionable_set()`, and both consumers read it from there — the launcher and
+`scripts/sentinel.py`, which shares the predicate by import. A sentinel that disagrees
+with the sweep is worse than no sentinel.
+
+**A standing card is left standing.** An agent must NOT re-issue an unchanged `DEFERRED:`
+card merely because it woke. A card blocked on something outside the agent's control
+carries a body line `UNBLOCK-SIGNAL:` naming the exact observable that must change (a
+command and its exit status, a named written ruling), and is re-issued only when that
+signal changes, when the work starts, or once per 24 h so the record shows it still owed.
+This does not touch the owner's 08-18 law that **a deferral is a status, not a silence** —
+the first deferral is still published the moment the decision is made. What is retired is
+the re-declaration of an unchanged status.
+
+**The 15-minute progress lease runs inside a session, not between wakes.** A wake-driven
+agent that is asleep is not stalled and must not be taken over for it; its liveness is the
+wake log plus its standing cards. The lease applies from the moment a session starts until
+it ends, and to any agent that has announced a long-running job.
+
 ## 6. Arena authority (replaces the source protocol's contest-submission section)
 
 Read-only platform work (leaderboard reads, replay collection) may be delegated to any
 agent under the existing authorization rules in `docs/STATE.md` §3. **Mutations — any
 submission, TestSession game, or anything that changes our ladder standing — are
-serialized through the single arena controller**, per `docs/PROMOTION-RUNBOOK.md`. Since
+serialized through the single arena controller**. Since
 2026-07-30 the owner's per-candidate permission gate is **lifted** (standing authorization —
 see `docs/STATE.md` §3), but the requirements it protected are not: a **QUALIFIED verdict
-from a frozen protocol**, expected gain above the arena noise band, the full runbook, and
-owner notification before and after each cycle. **No peer agent or subagent may submit** —
-serialization through the single controller, currently `local_claude_1`, is the point.
+from a frozen protocol**, the full runbook, and owner notification before and after each
+cycle. **The magnitude bar is GONE** — corrected 2026-08-21: this section went on
+demanding "expected gain above the arena noise band" for nine days after the owner removed
+exactly that bar (`docs/STATE.md` §3, recorded 2026-08-12 — the ladder is an information
+channel and submissions are the cheap instrument). The correctness bar stands; the size
+bar does not.
+
+**`docs/PROMOTION-RUNBOOK.md` is not the runbook to follow as it stands.** Its
+authorization gate is scoped to one retired candidate and its "fixed identities" name a
+resident that has not been live for weeks, so its abort path would restore the wrong bot
+(warning carried in `docs/STATE.md` §1). Use the restore target recorded there.
+
+**No peer agent or subagent may submit** — serialization through the single controller,
+currently `local_claude_1`, is the point. The controller may execute a block through a
+**deterministic service it configures** (`night-runner.service`), which is not a peer
+agent: it submits only the arms named in a pre-registered plan, verifies each file's
+SHA-256 before the swap, never retries an ambiguous submission, and HALTs fail-closed on
+any anomaly. What it computes at the end of a block is arithmetic; KEEP/REVERT is the
+owner's, never the runner's.
 
 No agent submits merely because a candidate qualifies. Before any submission: confirm the
 exact artifact and its SHA-256, confirm only one controller is active, take the pre-trial
 baseline read, and preserve the returned submission id and terminal response. Never
 automatically retry an ambiguous submission. Announce to all agents when a submission
-starts and again when it terminates. The no-churn rule stands: a failed trial costs days
-of standing.
+starts and again when it terminates. **No-churn, restated on measurement (2026-08-21):** a
+failed trial no longer costs "days of standing" — a mature 160-game read takes about two
+hours (`docs/STATE.md` §3) and the ladder has been swapped every two hours for several
+nights without loss. What churn still costs is the **slot**: while a block runs, no other
+candidate can be measured, so queue order is the scarce resource, not standing.
 
 ## 7. Project-specific hazards (new; violating these breaks other agents' work)
 
@@ -233,9 +364,12 @@ of standing.
 - **Sealed data.** Maps `9,844,200–9,844,215`, the official-map holdout, the 11 sealed
   confirmation games, and any range a frozen protocol reserves must not be read or opened
   by any agent without that protocol authorizing it.
-- **The collection cron** runs daily at 05:17 and writes to `data/raw/games/`. Do not
-  symlink, move, or lock that directory; do not leave the USB volume required for a run
-  that touches it.
+- **The collection cron** fires daily at **02:17 UTC** and writes to `data/raw/games/`.
+  (Corrected 2026-08-21. Every document said 05:17 UTC, including this one: the crontab
+  reads `17 5` and `project_host` runs Europe/Moscow, so the job fires three hours earlier
+  than every runbook claimed — measured 2026-08-12, `coordination/coordd-shadow-runbook.md`.)
+  Do not symlink, move, or lock that directory; do not leave the USB volume required for a
+  run that touches it.
 - **Bulk writes** require `python3 cgauto/check_external_storage.py --required-free-gib N`
   first; never replace a missing external symlink with a real directory.
 
@@ -465,6 +599,106 @@ ref, because the pinned paths span every agent branch.
 message outside the baseline linted clean and was rejected permanently by the receiver — the
 safety net failing in the one direction that costs a quarantine.
 
+**WIP limit (owner decision 2026-08-17).** One in-flight ack-requiring handoff per agent
+per task: do not publish handoff N+1 for a task while your handoff N still awaits
+acknowledgement. The canonical retirement is the integrator's ack; a correction naming the
+pending handoff in `supersedes` is always allowed (corrections are mandatory and exempt).
+Enforced sender-side by `scripts/lint_outbox.py` on NEW handoffs only — published messages
+are immutable and are never flagged retroactively. Rationale: crossings-in-flight were the
+largest measured coordination cost of 2026-08-16 (three handoffs crossed rulings, each
+crossing spawning a correction round).
+
+**Queue-changing messages require acknowledgement (adopted 2026-08-18).** Any message
+that changes another party's task list carries `requires_ack: true` toward that party —
+verdicts on ack-required handoffs (REVISION_REQUIRED reopens the implementer's queue;
+ACCEPTED often opens the next stage's), approvals a party is on record waiting for,
+rulings that reopen or redirect work. Proposed by the integrator after the 2026-08-18
+G-4c.2 stall (a no-ack method approval left the implementer truthfully idle while the
+record said "in build"); codex_1 endorsed in writing and practiced it the same hour;
+no objections. Companion rule from the same incident: **a deferral is a status, not a
+silence** — an agent that decides not to start unblocked work publishes "not started,
+deferred, because X" the moment the decision is made; a truthful empty inbox is not a
+status. Instances and full history: `docs/METHODS-LEDGER.md`, verdict-equals-message.
+
+**A deferral is also a QUEUE ITEM (owner-adopted 2026-08-18).** Prose is not enough:
+twice in one day a correctly-published deferral left every inbox empty beside open
+work, because everyone polls the queue, not the diary. A deferral message declares
+itself with a body line starting with the canonical marker `DEFERRED:` and must carry
+`requires_ack: true` with the SENDER among its own `to` recipients — the deferring
+agent's next session then finds the postponed job as its first unacknowledged item and
+acknowledges it by starting (or by publishing a further deferral of the same shape).
+Enforced sender-side by `deferral_shape_errors` in `scripts/lint_outbox.py`; prose
+mentions of the word "deferred" mid-line do not trigger the gate. Coordinator
+resume-orders remain the backstop for sessions that die before declaring.
+
+**A self-addressed card surfaces as an OBLIGATION, never as unread mail (rule-owner
+ruling 2026-08-21, after the repair).** From adoption (08-18) until 08-21 the sentence
+above — "the deferring agent's next session then finds the postponed job" — was not true:
+the sweep dropped every self-sent message before addressing was consulted, so no
+self-addressed card was ever visible to the agent who owed it (measured by claude_1,
+`20260821T053322Z`; repaired in the ONE shared predicate `actionable_set()` at
+`8c531096`, codex_1 ACCEPTED). The mechanism as it now is, and as the rule means:
+(1) the addressed set admits a self-authored message only when it is a shape-valid
+`DEFERRED:` card (line-start marker, `requires_ack: true`, sender among `to`);
+ordinary self-mail stays invisible, so nobody can put arbitrary work in their own queue
+by writing to themselves. (2) The card is listed under *unacknowledged, ack required*
+— never under *new*, because its author has read it and a `--mark` must not retire an
+undone job. (3) It leaves the queue only when a later message of the SAME agent names
+it in `ack_for` — the delivery handoff or the next `DEFERRED:` replacement; `supersedes`
+is inert for discharge on every kind. (4) Consequently a green sweep asserts "nothing
+owed TO me and nothing owed BY me"; the honest steady state is a small standing queue
+of one's own open cards. Turning the route on revealed 12 never-discharged cards of
+claude_1's, 9 of them closed the same hour against verified deliveries
+(`20260821T061633Z`). **OWNER RULED 2026-08-21: ALL.** The queue shows every open
+card of the agent, not only the newest per task; "inbox clean" means nothing owed to
+me AND nothing owed by me, with no per-task collapsing. No second predicate is to be
+written for it.
+
+**(5) Visible is not the same as waking (§5.1, owner rule 2026-08-21).** The card sits in
+its author's queue; it never rings its author's doorbell. Turning the visibility on without
+this clause cost eight no-op wakes in 102 minutes on the day it landed.
+
+**Cards are acknowledged by DELIVERY, never by a bare receipt (sharpened
+2026-08-19; route corrected same day after claude_1 proved the first wording
+unimplementable — `supersedes` is inert for discharge, `ack_for` is the only
+mechanism).** A message carrying a line-start **`CARD:`** marker is a standing
+work item; it stays in the assignee's queue until discharged by exactly one of:
+
+1. **the DELIVERY handoff** naming the card in its `ack_for`; or
+2. **a replacement `DEFERRED:` card** naming the original card in its
+   `ack_for` — legitimate because the discharge arrives WITH a successor queue
+   item in the same message (self-addressed, ack-required, per the deferral
+   gate); the queue never reads empty while work exists.
+
+A replacement is published when something CHANGED — the work started, the blocker moved,
+the scope was ruled on. An unchanged standing card is left standing (§5.1): waking is not a
+reason to re-issue, and a card carrying `UNBLOCK-SIGNAL:` waits for that signal or for its
+24-hour heartbeat.
+
+A **bare receipt-ack** — one that discharges a `CARD:` while neither delivering
+nor replacing it — is the violation. Enforced sender-side by
+`card_ack_errors` in `scripts/lint_outbox.py`: an ack naming a `CARD:` message
+must be a handoff or itself carry a `DEFERRED:` line.
+
+**Ack is not delivery (adopted 2026-08-19, third stall shape in two days).**
+Acknowledging a message that ASSIGNS you work discharges the acknowledgement, not
+the work — and leaves the work with no queue item at all. Rule: a session that
+acks a work-assigning message (charter, verdict opening your next stage, directive)
+and ends without DELIVERING that work must leave a `DEFERRED:` card for it (the
+self-addressed ack-required shape above). "My build proceeds" inside an ack is
+prose; the card is the queue item. Note for the sentinel era: wake-on-work only
+sees CARDED work — an acked-and-uncarded assignment is invisible to the sentinel
+too, which makes this rule load-bearing, not cosmetic.
+
+**Evidence gate (owner decision 2026-08-17).** A handoff whose body asserts a chartered
+cause label (the audit vocabulary, e.g. `GENERATOR_GAP` — the registered set lives in
+`CAUSE_LABEL_TOKENS` in `scripts/lint_outbox.py`) must carry a `review_ref:` front-matter
+field naming the review file that ACCEPTED the producing instrument, resolvable on an
+authoritative remote ref. Causal claims travel only with their instrument's acceptance;
+raw-data and instrument handoffs need nothing. This mechanizes the standing publication
+gate that was enforced only socially on 2026-08-16 (three headlines published ahead of
+review, all later withdrawn).
+
 **Migration to v2 (one-time, per agent).** Run from your own worktree, substituting your
 agent id — shown here for `claude_1`, `local_codex_1`, and `chatgpt_1`:
 
@@ -497,3 +731,25 @@ after the ACK/audit commit is remotely verified (task record §Historical-backlo
 
 **Operational shorthand:** unpushed = unsent; unverified push = not yet sent; chat is an
 alert channel, not the coordination bus.
+
+## 11. Rules about rules (added 2026-08-21)
+
+The two worst coordination failures of this week came from correct rules composing badly,
+not from a wrong rule — the owner's discovery note is
+`docs/DISCOVERY-two-correct-doors-make-a-wall-2026-08-17.md`. Four obligations follow, each
+paid for:
+
+1. **A rule that creates a queue item must name what removes it**, and the remover must be
+   reachable by the party who owes it. `supersedes` looked like a discharge and was inert
+   for one, so a card stayed open for a day while its work shipped and was reviewed.
+2. **No mechanism may take an agent's own output as its own trigger.** What an agent
+   publishes is, for that agent, a record — never a signal. (§5.1 is the instance that
+   produced this rule.)
+3. **A change to a shared predicate enumerates every consumer before it lands.**
+   `actionable_set()` is read by the sweep, the lint, the launcher and the sentinel. The
+   08-21 repair was right in the sweep and turned the launcher into a treadmill because the
+   second consumer was never listed. Name them in the handoff; the reviewer checks the list.
+4. **A message adopting a rule says which rule it amends and what it does NOT change.**
+   The sections of this document written that way have survived unedited; §1, which was
+   not, silently named a dead branch and a roster missing its most active reviewer for
+   nine days.

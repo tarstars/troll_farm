@@ -239,6 +239,18 @@ def _observation_from_checkpoint(entry: dict[str, Any]) -> dict[str, Any]:
     filtered = raw.get("filtered_ladder") or {}
     if filtered.get("agent_id") not in (None, agent_id):
         identity_faults += 1
+    # ...and so must the room block itself.  ``score``, ``rank`` and ``field_size`` below
+    # are read from ``arena``, so checking only ``filtered`` validated one block and then
+    # took the numbers from another.  When the room serves a cached row for an older agent
+    # (sigma run 2: agent 6604529's 22.46/140 returned for deployment 41125448) the result
+    # was another deployment's score recorded with identity_faults == 0 and maturity
+    # 'terminal' -- silently admitted to the pooled SD.
+    if arena.get("agent_id") not in (None, agent_id):
+        identity_faults += 1
+    # The checkpoint reader already decides this and records it; do not discard a
+    # producer's verdict and recompute a weaker one in the consumer.
+    if raw.get("identity_clean") is False:
+        identity_faults += 1
 
     games_finished = raw.get("matching_finished")
     parsed = raw.get("parsed_results")

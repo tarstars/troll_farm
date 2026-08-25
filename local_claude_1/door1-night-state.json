@@ -1,0 +1,210 @@
+{
+ "arms": {
+  "A": {
+   "label": "A challenger",
+   "source": "cgauto/submissions/candidate-door1-pure-deletion.rs",
+   "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+  },
+  "B": {
+   "label": "B champion",
+   "source": "cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs",
+   "sha256": "ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1"
+  }
+ },
+ "plan": [
+  {
+   "label": "A1",
+   "arm": "A"
+  },
+  {
+   "label": "B1",
+   "arm": "B"
+  },
+  {
+   "label": "A2",
+   "arm": "A"
+  },
+  {
+   "label": "B2",
+   "arm": "B"
+  },
+  {
+   "label": "A3",
+   "arm": "A"
+  },
+  {
+   "label": "B3",
+   "arm": "B"
+  },
+  {
+   "label": "A4",
+   "arm": "A"
+  },
+  {
+   "label": "B4",
+   "arm": "B"
+  },
+  {
+   "label": "A5",
+   "arm": "A"
+  },
+  {
+   "label": "B5",
+   "arm": "B"
+  }
+ ],
+ "submissions": [
+  {
+   "at": "2026-08-20T05:18:28+00:00",
+   "id": 41165297,
+   "arm": "A"
+  },
+  {
+   "at": "2026-08-20T07:16:02+00:00",
+   "id": 41165649,
+   "arm": "B"
+  },
+  {
+   "at": "2026-08-20T09:13:30+00:00",
+   "id": 41166242,
+   "arm": "A"
+  },
+  {
+   "at": "2026-08-20T11:11:07+00:00",
+   "id": 41166770,
+   "arm": "B"
+  },
+  {
+   "at": "2026-08-20T13:08:47+00:00",
+   "id": 41167365,
+   "arm": "A"
+  },
+  {
+   "at": "2026-08-20T15:06:22+00:00",
+   "id": 41168001,
+   "arm": "B"
+  },
+  {
+   "at": "2026-08-20T17:04:04+00:00",
+   "id": 41168534,
+   "arm": "A"
+  },
+  {
+   "at": "2026-08-20T19:01:32+00:00",
+   "id": 41169118,
+   "arm": "B"
+  },
+  {
+   "at": "2026-08-20T20:58:59+00:00",
+   "id": 41169544,
+   "arm": "A"
+  },
+  {
+   "at": "2026-08-20T22:56:34+00:00",
+   "id": 41169888,
+   "arm": "B"
+  }
+ ],
+ "reads": [
+  {
+   "label": "A1",
+   "rank": 28,
+   "total": 176,
+   "league": "Legend",
+   "score": 23.4,
+   "agent_id": "6640462",
+   "battles": 160,
+   "read_at": "07:16:00Z"
+  },
+  {
+   "label": "B1",
+   "rank": 43,
+   "total": 176,
+   "league": "Legend",
+   "score": 21.5,
+   "agent_id": "6640802",
+   "battles": 160,
+   "read_at": "09:13:28Z"
+  },
+  {
+   "label": "A2",
+   "rank": 29,
+   "total": 176,
+   "league": "Legend",
+   "score": 23.1,
+   "agent_id": "6641056",
+   "battles": 160,
+   "read_at": "11:11:05Z"
+  },
+  {
+   "label": "B2",
+   "rank": 27,
+   "total": 176,
+   "league": "Legend",
+   "score": 23.7,
+   "agent_id": "6641617",
+   "battles": 160,
+   "read_at": "13:08:42Z"
+  },
+  {
+   "label": "A3",
+   "rank": 28,
+   "total": 176,
+   "league": "Legend",
+   "score": 23.4,
+   "agent_id": "6642046",
+   "battles": 160,
+   "read_at": "15:06:19Z"
+  },
+  {
+   "label": "B3",
+   "rank": 29,
+   "total": 176,
+   "league": "Legend",
+   "score": 23.0,
+   "agent_id": "6642442",
+   "battles": 160,
+   "read_at": "17:04:02Z"
+  },
+  {
+   "label": "A4",
+   "rank": 26,
+   "total": 176,
+   "league": "Legend",
+   "score": 23.9,
+   "agent_id": "6642773",
+   "battles": 160,
+   "read_at": "19:01:29Z"
+  },
+  {
+   "label": "B4",
+   "rank": 31,
+   "total": 176,
+   "league": "Legend",
+   "score": 22.8,
+   "agent_id": "6643172",
+   "battles": 160,
+   "read_at": "20:58:57Z"
+  },
+  {
+   "label": "A5",
+   "rank": 34,
+   "total": 176,
+   "league": "Legend",
+   "score": 21.8,
+   "agent_id": "6643278",
+   "battles": 160,
+   "read_at": "22:56:31Z"
+  },
+  {
+   "label": "B5",
+   "rank": 26,
+   "total": 176,
+   "league": "Legend",
+   "score": 23.5,
+   "agent_id": "6643465",
+   "battles": 160,
+   "read_at": "00:53:59Z"
+  }
+ ]
+}

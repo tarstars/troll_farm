@@ -1,0 +1,38 @@
+candidate: claude_1/picker2/candidate-cureC-p1p2.rs
+  NOT FIXED OSC-001  D1_EPISODE   turns 6-200  D-1  silent=False progress=False
+  NOT FIXED OSC-002  D1_EPISODE   turns 12-200  D-1  silent=False progress=False
+  NOT FIXED OSC-003  D1_EPISODE   turns 25-47  D-1  silent=True progress=False
+  NOT FIXED OSC-004  D1_EPISODE   turns 9-22  D-1  silent=True progress=False
+  NOT FIXED OSC-005  D1_EPISODE   turns 7-18  D-1  silent=False progress=False
+  NOT FIXED OSC-006  D1_EPISODE   turns 12-20  D-1  silent=True progress=False
+  NOT FIXED OSC-007  D1_EPISODE   turns 8-16  D-1  silent=True progress=False
+  FIXED     OSC-008  D1_EPISODE   turns 57-64  D-1  silent=True progress=True
+  FIXED     OSC-009  D1_EPISODE   turns 77-83  D-1  silent=True progress=True
+  NOT FIXED OSC-010  D1_EPISODE   turns 80-86  D-1  silent=False progress=False
+  NOT FIXED OSC-011  D1_EPISODE   turns 26-32  D-1  silent=True progress=False
+  NOT FIXED OSC-012  D1_EPISODE   turns 8-200  D-1  silent=True progress=False
+  NOT FIXED OSC-013  D1_EPISODE   turns 14-200  D-1  silent=True progress=False
+  NOT FIXED OSC-014  D1_EPISODE   turns 33-200  D-1  silent=True progress=False
+  NOT FIXED OSC-015  D1_EPISODE   turns 44-200  D-1  silent=True progress=False
+  NOT FIXED OSC-016  D1_EPISODE   turns 7-200  D-1  silent=True progress=False
+  NOT FIXED OSC-017  D1_EPISODE   turns 7-200  D-1  silent=True progress=False
+  NOT FIXED OSC-018  D1_EPISODE   turns 10-200  D-1  silent=True progress=False
+  NOT FIXED OSC-019  D1_EPISODE   turns 23-200  D-1  silent=True progress=False
+  NOT FIXED OSC-020  D1_EPISODE   turns 29-200  D-1  silent=True progress=False
+  NOT FIXED OSC-021  D1_EPISODE   turns 32-200  D-1  silent=True progress=False
+  NOT FIXED OSC-022  D1_EPISODE   turns 106-200  D-1  silent=True progress=False
+  NOT FIXED OSC-023  D1_EPISODE   turns 27-100  D-1  silent=True progress=False
+  NOT FIXED OSC-024  D1_EPISODE   turns 5-69  D-1  silent=True progress=False
+  NOT FIXED OSC-025  D1_EPISODE   turns 12-32  D-1  silent=True progress=False
+  NOT FIXED OSC-026  D1_EPISODE   turns 17-25  D-1  silent=False progress=False
+  NOT FIXED OSC-027  D1_EPISODE   turns 3-24  D-1  silent=False progress=False
+  FIXED     OSC-028  D1_EPISODE   turns 2-54  D-1  silent=True progress=True
+  NOT FIXED OSC-029  D1_EPISODE   turns 28-44  D-1  silent=False progress=False
+  NOT FIXED OSC-030  D1_EPISODE   turns 24-31  D-1  silent=False progress=False
+  NOT FIXED OSC-031  P4_STALL     turns 11-200  P4   silent=False progress=False
+  NOT FIXED OSC-032  P4_STALL     turns 91-200  P4   silent=True progress=False
+  NOT FIXED OSC-033  P4_STALL     turns 58-200  P4   silent=True progress=False
+  FIXED     OSC-034  P4_STALL     turns 6-99  P4   silent=True progress=True
+
+4 FIXED / 34 situations
+wrote claude_1/picker2/sweep34-cureC-p1p2.json

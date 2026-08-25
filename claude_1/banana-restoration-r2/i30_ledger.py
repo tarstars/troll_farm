@@ -248,10 +248,20 @@ class ExecutionValidity:
     consistent, and consistent with the command bytes I-30 can see for itself.
     """
 
-    def __init__(self, declaration, commands_text):
+    #: Registry of reviewed referees, `{referee_sha256: {verb_manifest: [...]}}`.
+    #: When supplied, the declaration is checked against a *reviewed artifact*
+    #: instead of against itself. `chatgpt_1` (I-30 revision 3, trust-root
+    #: blocker 1): the old checks were self-consistent by construction —
+    #: `verb_manifest_sha256` was computed from the caller's own manifest, and
+    #: the command counts were caller-supplied integers, so a harness that
+    #: silently discarded a command and reported `executed == emitted` passed.
+    def __init__(self, declaration, commands_text, registry=None):
         self.declaration = dict(declaration or {})
         self.reasons = []
         self.stream_verbs = sorted(command_verbs(commands_text))
+        self.registry = registry
+        self.trust_root = ("reviewed_referee_registry" if registry is not None
+                           else "self_declared_unverified")
 
         if not declaration:
             self.reasons.append("execution_validity_absent")
@@ -299,6 +309,50 @@ class ExecutionValidity:
                 self.reasons.append("execution_provenance_incomplete")
                 break
 
+        if registry is not None:
+            self._check_against_reviewed_referee(registry)
+
+    def _check_against_reviewed_referee(self, registry):
+        """Bind the run to a reviewed artifact, and derive rather than trust.
+
+        Three clauses, each closing one half of a self-consistent check:
+
+        1. the referee must BE a reviewed one, not merely name a digest;
+        2. the verb manifest must equal the one derived from that referee's own
+           dispatcher, not the one the caller also hashed;
+        3. the command counts must be derived from per-command events, so a
+           silent discard cannot be reported as `executed == emitted`.
+        """
+        entry = registry.get(self.declaration.get("referee_sha256"))
+        if entry is None:
+            self.reasons.append("referee_not_in_reviewed_registry")
+        else:
+            derived = sorted({str(v).upper() for v in entry["verb_manifest"]})
+            declared = sorted({str(v).upper()
+                               for v in (self.declaration.get("verb_manifest") or [])})
+            if declared != derived:
+                # the manifest is a property of the referee, not of the caller
+                self.reasons.append("verb_manifest_not_derived_from_referee")
+            self.derived_verb_manifest = derived
+
+        events = self.declaration.get("command_events")
+        if not isinstance(events, (list, tuple)):
+            self.reasons.append("command_events_absent")
+            return
+        emitted = len(events)
+        executed = sum(1 for e in events if (e or {}).get("executed") is True)
+        self.derived_counts = {"commands_emitted": emitted,
+                               "commands_executed": executed}
+        for field, derived_n in self.derived_counts.items():
+            if self.declaration.get(field) != derived_n:
+                self.reasons.append("command_counts_not_derived_from_events")
+                break
+        if executed != emitted:
+            # the m040 signature, now established from evidence rather than
+            # from the harness agreeing with itself
+            if "commands_emitted_not_all_executed" not in self.reasons:
+                self.reasons.append("commands_emitted_not_all_executed")
+
     @property
     def valid(self):
         return not self.reasons
@@ -310,6 +364,9 @@ class ExecutionValidity:
         out["stream_verbs"] = list(self.stream_verbs)
         out["verbs_outside_manifest"] = sorted(getattr(self, "outside_verbs",
                                                        []))
+        out["trust_root"] = self.trust_root
+        out["derived_verb_manifest"] = getattr(self, "derived_verb_manifest", None)
+        out["derived_command_counts"] = getattr(self, "derived_counts", None)
         return out
 
 

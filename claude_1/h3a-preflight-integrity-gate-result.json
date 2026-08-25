@@ -1,0 +1,41 @@
+{
+ "checks": [
+  {
+   "check": "provenance_matches_frozen_hashes",
+   "detail": "all 6 inputs hash-match the task record",
+   "pass": true
+  },
+  {
+   "check": "identities_match_frozen_cohorts",
+   "detail": "10 catastrophes + 7 matched wins, exact ID match",
+   "pass": true
+  },
+  {
+   "check": "counts_complete_and_consistent",
+   "detail": "games=17 manifest_rows=5100 validation_rows=5100 decompressed_rows=5100",
+   "pass": true
+  },
+  {
+   "check": "per_game_row_counts_match_manifest",
+   "detail": "all 17 games' row counts match",
+   "pass": true
+  },
+  {
+   "check": "eta_semantics_frozen_and_applied",
+   "detail": "analyzer pins ETA_THRESHOLD=6; reconstruction record agrees",
+   "pass": true
+  },
+  {
+   "check": "exact_ids_only_and_no_sealed_data",
+   "detail": "exact_ids_only=True sealed_data_included=False",
+   "pass": true
+  },
+  {
+   "check": "locked_resident_is_the_sacred_source",
+   "detail": "locked resident sha256 starts fff6669b0bc0b15b0992637f\u2026",
+   "pass": true
+  }
+ ],
+ "gate": "gate5_integrity",
+ "pass": true
+}

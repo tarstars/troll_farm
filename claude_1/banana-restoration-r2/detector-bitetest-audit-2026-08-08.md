@@ -14,9 +14,9 @@ Also binding:
 
 Scope: **audit only.** No detector, test, gate, harness, candidate, parent, host
 run, value protocol, TestSession, submission, restore or Arena state was
-modified or is authorized to be. `trace_detectors.py` and
-`test_trace_detectors.py` were read and executed, never edited; their semantics
-belong to `local_claude_1` and every finding below is **referred, not fixed**.
+modified or is authorized to be. `trace_detectors.py` was read and executed and is **never edited** — its semantics belong to `local_claude_1` and every finding below is **referred, not fixed**.
+
+**Scope amendment, 2026-08-10.** `test_trace_detectors.py` was edited once, under `local_claude_1`'s explicit invitation in `20260810T070000Z`, to add three negative pinning tests for D-9 (a) after the owner made that branch binding. **The detector was not touched**: the tests assert existing behaviour and were each verified to flip their own mutant to FAIL before being written, so they pin the predicate rather than change it. This is recorded here because the original scope sentence said these files were never edited, and a scope statement that has quietly stopped being true is worse than one that was never made.
 Mutations are applied only to copies under a scratch work root created by the
 committed runner.
 
@@ -60,7 +60,31 @@ collapsed distinct conclusions. This revision separates five axes:
   (a live mutation of the branch survives) / `NO_FIXTURE`.
 - **calibration validity** — does the detector agree with the parent lineage?
 - **truth validity** — is the predicate the right world-state property?
-  `VALIDATED_BY_DEFINITION` / `UNRESOLVED` / `GATE_UNREADY`.
+
+
+> **D-3 — what the probe measures, and what it does not (ruling 2026-08-13).** The committed
+> probe compares the realized landing against `engine.rs::next_cell` on the exact pre-state:
+> it measures **single-turn movement resolution against the referee mirror**. D-3's own
+> predicate is **same-target / occupied-cell contention persisting for ≥ 2 consecutive turns** —
+> a planning defect the conflict resolver does not dissolve. These are different predicates and
+> neither is a weaker form of the other, so **no D-3 branch is probe-covered on this probe's
+> strength**, and no coverage or kill-rate figure may count it as exercising D-3. The
+> same-player conflict-resolution label this audit previously described **is not implemented and
+> will not be**: D-3 has **zero witnessed episodes across 720 referee games in 3 corpora**, so a
+> probe for it would report zero forever and read as coverage. **That is a statement about this
+> corpus; it is NOT "the predicate cannot fire."** `max(speed, 1)` is replaced by the engine's
+> own `d <= speed`, which has no floor.
+
+> **`PROBE_SENSITIVE` (renamed from `LIVE`, ruling 2026-08-13).** A mutation labelled
+> `PROBE_SENSITIVE` **changes probe output on generated traces; it does NOT establish
+> legal-game reachability under the referee.** The probe corpus is not referee-produced, so it
+> cannot witness reachability, and the old name claimed strictly more than the instrument
+> supports. No conclusion in this audit changed: the label never entered a verdict column.
+
+  `UNRESOLVED` / `GATE_UNREADY`.  (`VALIDATED_BY_DEFINITION` was retired from this
+  axis on 2026-08-13: a spec stipulating a property dissolves the question this axis
+  asks rather than answering it.  The real claim is recorded separately as
+  **definitional conformance** — `IDENTICAL_TO_SPEC` / `NOT_APPLICABLE`.)
 
 `FALSIFIED` is used **nowhere** in this revision. Nothing in the repository
 currently has the authority to falsify a detector predicate; §4 explains why.
@@ -137,8 +161,8 @@ see it (a finding), or the patch is inert (a defect in the experiment). The
 missing discriminator: it runs all nine detectors over a fixed synthetic corpus
 that does **not** reuse the audited fixtures, and hashes the results.
 
-- **LIVE** — the mutant changes the pristine digest of the detector it targets.
-  A LIVE survivor is genuine evidence that the bite-test pair does not
+- **PROBE_SENSITIVE** — the mutant changes the pristine digest of the detector it targets.
+  A PROBE_SENSITIVE survivor is genuine evidence that the bite-test pair does not
   discriminate that branch.
 - **UNWITNESSED** — no digest changes. Such a survivor is reported but **must
   not** be read as evidence that the suite is weak; it may be an inert patch or
@@ -153,7 +177,7 @@ not a truth oracle and establishes no validity.
 
 **MEASURED**, `python3 bitetest-audit/run_mutations.py`:
 
-| Det | mutants | caught | caught_by_expected | survived | LIVE survivors | kill rate |
+| Det | mutants | caught | caught_by_expected | survived | PROBE_SENSITIVE survivors | kill rate |
 |---|---|---|---|---|---|---|
 | D-1 | 8 | 2 | 2 | 6 | 4 | 25 % |
 | D-2 | 6 | 2 | 2 | 4 | 2 | 33 % |
@@ -205,7 +229,7 @@ constitute a target claim" rested on the inert patch and is **withdrawn**.
 operators were reviewer-chosen, not sampled from a defined mutation
 distribution. It is *not* an estimate that the suite covers roughly one third of
 detector behaviour, and it must not be quoted as coverage. The load-bearing
-content of the experiment is the *identity* of the 30 LIVE survivors, not the
+content of the experiment is the *identity* of the 30 PROBE_SENSITIVE survivors, not the
 ratio.
 
 ### 1.7 Single most decisive row: D8-M9
@@ -215,7 +239,7 @@ asserts `banana_exact_chop_turns(2, 4, 1, 1) == 5` versus `ceil_div(4, 1) == 4`
 — the round-3 host review's terminal counterexample. Replacing the oracle's
 *use* of the growth-aware count with static `ceil(health/chop)` inside
 `conversion_race_oracle.py` **survives all four D-8 scenario tests and the whole
-suite**, and is **LIVE** (MEASURED). The counterexample is asserted on a helper
+suite**, and is **PROBE_SENSITIVE** (MEASURED). The counterexample is asserted on a helper
 function; no fixture routes it through `detect_d8`. The regression the host
 review demanded is not defended at the detector level. This confirms accepted
 finding 6 of the review.
@@ -238,18 +262,18 @@ one carry delta injected mid-window. Near-miss #2
 
 **Property or implementation?** Implementation. **D1-M6** — deleting
 `and (t == s + 1 or pos[t] == pos[t - 2])` (`:600`), the requirement that the
-walk actually be A,B,A,B rather than merely "moving" — **survives and is LIVE**
+walk actually be A,B,A,B rather than merely "moving" — **survives and is PROBE_SENSITIVE**
 (MEASURED). Under that mutant a unit walking in a straight line for seven turns
 reads as a period-2 oscillation. Both fixtures only ever exhibit oscillation, so
 the clause separating oscillation from motion is never exercised.
 
 **Genuine near-miss?** #1 is genuine and single-dimensional; D1-M3 (CAUGHT,
-LIVE) confirms the carry clause is pinned. But A2 defines *three* progress-event
+PROBE_SENSITIVE) confirms the carry clause is pinned. But A2 defines *three* progress-event
 kinds and **D1-M4** (plant appear/disappear) and **D1-M5** (inventory delta on a
 DROP/PICK turn) both survive — both **UNWITNESSED**, so they are recorded as
 `NO_FIXTURE` for those branches rather than as demonstrated blind spots. #2 pins
 the window only within `[5, 9]` transitions: D1-M1 (`>=4`) CAUGHT; D1-M7 (`>=5`),
-D1-M2 (`>=8`), D1-M8 (`>=9`) all SURVIVED and LIVE. The spec's `k >= 3` is not
+D1-M2 (`>=8`), D1-M8 (`>=9`) all SURVIVED and PROBE_SENSITIVE. The spec's `k >= 3` is not
 established.
 
 **Independent oracle?** None. `conversion_race_oracle.py` models tree growth and
@@ -273,7 +297,7 @@ discriminating condition is `picks < 2 or drops < 2` (`:657`).
 
 **Property or implementation?** Implementation, of one of four conjuncts. Both
 fixtures sit at `DOOR` and both are net-zero, so **D2-M4** (delete the door
-restriction) and **D2-M5** (delete net-zero) both survive and are both **LIVE**
+restriction) and **D2-M5** (delete net-zero) both survive and are both **PROBE_SENSITIVE**
 (MEASURED). If churn away from doors were the real defect, or non-net-zero churn
 counted, the pair would pass identically.
 
@@ -313,7 +337,7 @@ the suite (75 %).
 
 **What is still undefended.** Clause (b) — landing on a stationary-working peer,
 `:723-753` — has **no fixture at all**: **D3-M3** disables it entirely, survives,
-and is **LIVE** (MEASURED). Half the detector is unexercised.
+and is **PROBE_SENSITIVE** (MEASURED). Half the detector is unexercised.
 
 **Independent oracle?** None. `UNRESOLVED`.
 
@@ -333,14 +357,14 @@ and is **LIVE** (MEASURED). Half the detector is unexercised.
 **Property or implementation?** Implementation. The fixtures pin the banned-verb
 set (D4-M4 CAUGHT) and the lower edge of the stall tolerance (D4-M1 CAUGHT).
 Both commitment-start conditions other than `MOVE`-to-door are unexercised:
-**D4-M5** (delete the I-21 forced full-capacity start) survives and is **LIVE**;
+**D4-M5** (delete the I-21 forced full-capacity start) survives and is **PROBE_SENSITIVE**;
 **D4-M6** (delete the DROP-at-door start) survives but is **UNWITNESSED**
 (`NO_FIXTURE`). So if the spec's notion of *when commitment begins* were wrong —
 the exact question A5 resolves by fiat — the pair would not notice.
 
 **Genuine near-miss?** `test_near_miss_single_stall_is_tolerated` is a genuine
 one-dimension control and pins the lower edge. It does not pin the upper edge
-(D4-M2, `nd_run == 3`, survives LIVE) because the `no_progress` trigger walks
+(D4-M2, `nd_run == 3`, survives PROBE_SENSITIVE) because the `no_progress` trigger walks
 *three* consecutive non-decreasing turns, not two.
 
 **Retracted.** The 2026-08-08 text said *"in both trigger and near-miss the
@@ -349,7 +373,7 @@ distinction the near-miss is named after ('single stall') is not actually
 present in the data."* **That statement is false.** See §7.2 for the measured
 door-distance sequences and the correct, narrower explanation of why D4-M3
 survives. The D4-M3 mutation finding itself is retained: it survives and is
-**LIVE**.
+**PROBE_SENSITIVE**.
 
 **Independent oracle?** None. `UNRESOLVED`.
 
@@ -370,14 +394,14 @@ turn 1.
 **Property or implementation? — split.** I-12 *defines* Ring as
 `cheby(c, tent) == 1`; the trigger sits at Chebyshev 2 and the near-miss at
 Chebyshev 1, and membership is pinned from **both** sides: D5-M1 (`!= 1` →
-`!= 2`) and D5-M6 (`cheby==1` → orth-only) are both CAUGHT and both LIVE. For
+`!= 2`) and D5-M6 (`cheby==1` → orth-only) are both CAUGHT and both PROBE_SENSITIVE. For
 the geometry clause the fixture and the property coincide because the property
 *is* a geometric definition.
 
 **Everything else about D-5 is untested.** **D5-M4** (cumulative |Ring| bound
-disabled) survives and is **LIVE**; **D5-M5** (concurrent bound) survives
+disabled) survives and is **PROBE_SENSITIVE**; **D5-M5** (concurrent bound) survives
 UNWITNESSED; **D5-M7** (global cutoff slack `+1` → `+40`) survives and is
-**LIVE**; **D5-M2** (`2*CD` → `1*CD`), **D5-M3** (slack `+2` → `+20`) and
+**PROBE_SENSITIVE**; **D5-M2** (`2*CD` → `1*CD`), **D5-M3** (slack `+2` → `+20`) and
 **D5-M8** (water branch collapsed) survive UNWITNESSED. The trigger plants at
 turn 299 of 300 and the near-miss at turn 1 — the pair establishes only that a
 cutoff exists somewhere in `(1, 299)`.
@@ -403,15 +427,15 @@ Near-miss `test_near_miss_opponent_far_away` (`:302-304`): the same plant with
 the opponent at `(0,6)`, BFS distance 7.
 
 **Implementation validity.** The pair tests one bound of one of three clauses.
-**D6-M4** deletes clause (a1) entirely — survives, **LIVE**. **D6-M3** flips its
-tie handling — survives, **LIVE**. **D6-M6** flips A7's contested "min over ALL
-own units" — survives, **LIVE**. **D6-M7** removes the speed division from the
-ETA — survives, **LIVE**. **D6-M5** deletes clause (b), the replay ground-truth
+**D6-M4** deletes clause (a1) entirely — survives, **PROBE_SENSITIVE**. **D6-M3** flips its
+tie handling — survives, **PROBE_SENSITIVE**. **D6-M6** flips A7's contested "min over ALL
+own units" — survives, **PROBE_SENSITIVE**. **D6-M7** removes the speed division from the
+ETA — survives, **PROBE_SENSITIVE**. **D6-M5** deletes clause (b), the replay ground-truth
 clause — survives, **UNWITNESSED** (the corpus never places an opponent on an
 own-planted cell with fruits decreasing and its banana carry increasing, so this
 is `NO_FIXTURE`, not a measured blind spot). The `opp_x` bound is pinned only to
 `[2, 6]`: D6-M1 (`<=1`) and D6-M9 (`<=7`) CAUGHT; D6-M2 (`<=6`) and D6-M8
-(`<=5`) survive LIVE.
+(`<=5`) survive PROBE_SENSITIVE.
 
 **Truth validity.** `GATE_UNREADY`. **Contract authority: CONFLICT.** See §4.
 
@@ -420,7 +444,7 @@ is `NO_FIXTURE`, not a measured blind spot). The `opp_x` bound is pinned only to
 ### D-7 — Lost harvested fruit (`trace_detectors.py:945-1017`)
 
 **Weakest discrimination in the suite: 1 of 8 caught, and all seven survivors
-are LIVE** — the only detector where every survivor is independently witnessed.
+are PROBE_SENSITIVE** — the only detector where every survivor is independently witnessed.
 
 **What the pair asserts.** Trigger `test_trigger_dropped_outside_door_is_lost`
 (`:323-327`): HARVEST then DROP at `(2,2)`, inventories `[0,0,0]`. Near-miss
@@ -432,13 +456,13 @@ are LIVE** — the only detector where every survivor is independently witnessed
 increased. The near-miss changes **both** the cell and the inventory
 simultaneously, so neither conjunct is individually controlled — and mutation
 confirms it exactly: **D7-M3** (delete the door requirement) and **D7-M4**
-(delete the inventory-increase confirmation) both survive and are both **LIVE**
+(delete the inventory-increase confirmation) both survive and are both **PROBE_SENSITIVE**
 (MEASURED). Under D7-M3 a banana dropped in open field next to a tent counts as
 banked; under D7-M4 a DROP the referee refused counts as banked. This is the
 textbook multi-dimensional-control defect. It confirms accepted finding 3 of the
 review.
 
-Everything else survives and is LIVE too: D7-M1 (`age > 12` → `> 0`), D7-M8
+Everything else survives and is PROBE_SENSITIVE too: D7-M1 (`age > 12` → `> 0`), D7-M8
 (`> 2`), D7-M2 (end grace `T-6` → `T-600`), D7-M5 (delete the PLANT sink
 exemption), D7-M6 (delete harvest provenance). The structural reason is that
 both fixtures are **3 turns long**, so the 12-turn age clause and the 6-turn
@@ -479,7 +503,7 @@ D8-M1, D8-M2, D8-M4, D8-M5, D8-M10 are also CAUGHT.
 
 **But the exemption consults the oracle the detector's own spec defines**
 (`detect_d8` calls it at `:1121`), so the D8Amended tests are agreement-with-self
-by construction. Five mutants survive; two matter and both are **LIVE**:
+by construction. Five mutants survive; two matter and both are **PROBE_SENSITIVE**:
 
 - **D8-M9** — growth-aware `exact_chop_turns` → static `ceil(health/chop)`
   inside the oracle. See §1.7.
@@ -531,7 +555,7 @@ accepted finding 4 of the review.
 Mutation proves it: **D9-M1** (delete the `len(own_units) != 1` guard),
 **D9-M2** (widen the banana-attributable verb set to any resource) and
 **D9-M3** (`t >= first_train` → `t > first_train`) all survive and are all
-**LIVE** (MEASURED). Only D9-M4 (guard → `!= 7`, which kills the *trigger*) is
+**PROBE_SENSITIVE** (MEASURED). Only D9-M4 (guard → `!= 7`, which kills the *trigger*) is
 caught. The pair establishes only that "some episode is emitted when a PICK
 BANANA happens and no TRAIN has occurred".
 
@@ -566,50 +590,50 @@ only).
 
 | Branch | Governing authority | Evidence that exists | Impl. validity | Applicability | Truth validity |
 |---|---|---|---|---|---|
-| D-1 (a) period-2 shape `pos[t]==pos[t-2]` (`:600`) | SPEC D-1 | trigger `:120`; **D1-M6 SURVIVED, LIVE** | UNPINNED | APPLICABLE | UNRESOLVED |
-| D-1 (b) window `k>=3` (`:605`) | SPEC D-1 | near-miss `:136`; D1-M1 CAUGHT; D1-M7/M2/M8 SURVIVED, LIVE | PARTIAL — bounded to `[5,9]` transitions | APPLICABLE | UNRESOLVED |
-| D-1 (c) progress: carry change (`:580`) | A2 | near-miss `:129`; D1-M3 CAUGHT, LIVE | PINNED | APPLICABLE | UNRESOLVED |
+| D-1 (a) period-2 shape `pos[t]==pos[t-2]` (`:600`) | SPEC D-1 | trigger `:120`; **D1-M6 SURVIVED, PROBE_SENSITIVE** | UNPINNED | APPLICABLE | UNRESOLVED |
+| D-1 (b) window `k>=3` (`:605`) | SPEC D-1 | near-miss `:136`; D1-M1 CAUGHT; D1-M7/M2/M8 SURVIVED, PROBE_SENSITIVE | PARTIAL — bounded to `[5,9]` transitions | APPLICABLE | UNRESOLVED |
+| D-1 (c) progress: carry change (`:580`) | A2 | near-miss `:129`; D1-M3 CAUGHT, PROBE_SENSITIVE | PINNED | APPLICABLE | UNRESOLVED |
 | D-1 (d) progress: inv delta on DROP/PICK (`:584`) | A2 | none; D1-M5 SURVIVED, UNWITNESSED | NO_FIXTURE | APPLICABLE | UNRESOLVED |
 | D-1 (e) progress: plant appear/disappear (`:588`) | A2 | none; D1-M4 SURVIVED, UNWITNESSED | NO_FIXTURE | APPLICABLE | UNRESOLVED |
-| D-2 (a) `>=2` PICKs and `>=2` DROPs (`:657`) | SPEC D-2 | pair `:153`/`:163`; D2-M3 CAUGHT, LIVE | PINNED | APPLICABLE | UNRESOLVED |
+| D-2 (a) `>=2` PICKs and `>=2` DROPs (`:657`) | SPEC D-2 | pair `:153`/`:163`; D2-M3 CAUGHT, PROBE_SENSITIVE | PINNED | APPLICABLE | UNRESOLVED |
 | D-2 (b) window `<=12` (`:650`) | SPEC D-2 | D2-M1 CAUGHT; D2-M6/M2 SURVIVED, UNWITNESSED | PARTIAL — bounded to `(4,120]` | APPLICABLE | UNRESOLVED |
-| D-2 (c) door-cell restriction (`:642`) | SPEC D-2 | none (both fixtures at `DOOR`); **D2-M4 SURVIVED, LIVE** | UNPINNED | APPLICABLE | UNRESOLVED |
-| D-2 (d) net-zero over window (`:667`) | SPEC D-2, A3 | none (both fixtures net-zero); **D2-M5 SURVIVED, LIVE** | UNPINNED | APPLICABLE | UNRESOLVED |
+| D-2 (c) door-cell restriction (`:642`) | SPEC D-2 | none (both fixtures at `DOOR`); **D2-M4 SURVIVED, PROBE_SENSITIVE** | UNPINNED | APPLICABLE | UNRESOLVED |
+| D-2 (d) net-zero over window (`:667`) | SPEC D-2, A3 | none (both fixtures net-zero); **D2-M5 SURVIVED, PROBE_SENSITIVE** | UNPINNED | APPLICABLE | UNRESOLVED |
 | D-3 (a) shared MOVE target, run `>=2` (`:715`) | SPEC D-3, I-23 | pair `:184`/`:193`; D3-M1, D3-M2 CAUGHT | PINNED (two-sided) | APPLICABLE | UNRESOLVED |
-| D-3 (a') destination-identity proxy (`:702`) | A4 | D3-M4 CAUGHT, LIVE (`D3-M4-RETIRED` inert, excluded) | PINNED | APPLICABLE | UNRESOLVED — proxy fidelity untested; §7.1 |
-| D-3 (b) landing on stationary working peer (`:723-753`) | SPEC D-3 | none; **D3-M3 SURVIVED, LIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
-| D-4 (a) banned non-bank verb (`:799`) | SPEC D-4, I-19..I-21 | trigger `:213`; D4-M4 CAUGHT, LIVE | PINNED | APPLICABLE | UNRESOLVED |
-| D-4 (b) 2 consecutive non-decreases (`:819-823`) | SPEC D-4, I-20 | trigger `:221`, near-miss `:237`; D4-M1 CAUGHT; D4-M2, **D4-M3 SURVIVED, LIVE** | PARTIAL — lower edge only; equality semantics unpinned (§7.2) | APPLICABLE | UNRESOLVED |
+| D-3 (a') destination-identity proxy (`:702`) | A4 | D3-M4 CAUGHT, PROBE_SENSITIVE (`D3-M4-RETIRED` inert, excluded) | PINNED | APPLICABLE | UNRESOLVED — proxy fidelity untested; §7.1 |
+| D-3 (b) landing on stationary working peer (`:723-753`) | SPEC D-3 | none; **D3-M3 SURVIVED, PROBE_SENSITIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
+| D-4 (a) banned non-bank verb (`:799`) | SPEC D-4, I-19..I-21 | trigger `:213`; D4-M4 CAUGHT, PROBE_SENSITIVE | PINNED | APPLICABLE | UNRESOLVED |
+| D-4 (b) 2 consecutive non-decreases (`:819-823`) | SPEC D-4, I-20 | trigger `:221`, near-miss `:237`; D4-M1 CAUGHT; D4-M2, **D4-M3 SURVIVED, PROBE_SENSITIVE** | PARTIAL — lower edge only; equality semantics unpinned (§7.2) | APPLICABLE | UNRESOLVED |
 | D-4 (c) commitment start: MOVE-to-door (`:787`) | A5 | both triggers | PINNED (by construction) | APPLICABLE | UNRESOLVED |
-| D-4 (d) commitment start: I-21 full capacity (`:785`) | SPEC I-21, A5 | none; **D4-M5 SURVIVED, LIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
+| D-4 (d) commitment start: I-21 full capacity (`:785`) | SPEC I-21, A5 | none; **D4-M5 SURVIVED, PROBE_SENSITIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
 | D-4 (e) commitment start: DROP-at-door (`:789`) | A5 | none; D4-M6 SURVIVED, UNWITNESSED | NO_FIXTURE | APPLICABLE | UNRESOLVED |
-| D-5 (a) I-12 Ring geometry (`:846`) | SPEC I-12 | trigger `:259`, near-miss `:275`; D5-M1, D5-M6 both CAUGHT, LIVE | PINNED (two-sided) | APPLICABLE | **VALIDATED_BY_DEFINITION** — I-12 *is* the geometric definition |
-| D-5 (b) I-13 cumulative bound (`:850`) | SPEC I-13 | none; **D5-M4 SURVIVED, LIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
+| D-5 (a) I-12 Ring geometry (`:846`) | SPEC I-12 | trigger `:259`, near-miss `:275`; D5-M1, D5-M6 both CAUGHT, PROBE_SENSITIVE | PINNED (two-sided) | APPLICABLE | `UNRESOLVED` — I-12 is the spec's own geometric definition; implementation conformance is `PINNED`, but a spec asserting a property does not validate that the property is the right world-state property to detect (ruling 2026-08-13). Definitional conformance: `IDENTICAL_TO_SPEC` |
+| D-5 (b) I-13 cumulative bound (`:850`) | SPEC I-13 | none; **D5-M4 SURVIVED, PROBE_SENSITIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
 | D-5 (c) I-13 concurrent bound (`:876`) | SPEC I-13 | none; D5-M5 SURVIVED, UNWITNESSED | NO_FIXTURE | APPLICABLE | UNRESOLVED |
 | D-5 (d) I-5 orthogonal cutoff (`:861-863`) | SPEC I-5 | trigger `:266` at turn 299/300; D5-M2, D5-M3 SURVIVED, UNWITNESSED | UNPINNED — value irrelevant at turn 299 | APPLICABLE | UNRESOLVED — no payoff oracle; §7.3 |
-| D-5 (e) I-5 global cutoff (`:868-870`) | SPEC I-5, A6 | same trigger; **D5-M7 SURVIVED, LIVE** | UNPINNED | APPLICABLE | UNRESOLVED |
+| D-5 (e) I-5 global cutoff (`:868-870`) | SPEC I-5, A6 | same trigger; **D5-M7 SURVIVED, PROBE_SENSITIVE** | UNPINNED | APPLICABLE | UNRESOLVED |
 | D-5 (f) water-boost CD selection (`:857`) | SPEC sec. 0 | none (fixture map has no water); D5-M8 SURVIVED, UNWITNESSED | NO_FIXTURE | APPLICABLE | UNRESOLVED |
-| D-6 (a1) arrival-order harvest race (`:920`) | **SPEC D-6 `:383-390` vs DESIGN F4 `:1170`** | trigger/near-miss `:294`/`:302`; **D6-M4, D6-M3, D6-M6 SURVIVED, LIVE** | NO_FIXTURE for the clause itself | APPLICABLE | **GATE_UNREADY — CONTRACT AUTHORITY: CONFLICT** (§4) |
-| D-6 (a2) `eta_opp_x <= 2` (`:924`) | SPEC D-6 `:383-390` | pair `:294`/`:302`; D6-M1, D6-M9 CAUGHT; D6-M2, D6-M8 SURVIVED, LIVE | PARTIAL — bounded to `[2,6]` | APPLICABLE | GATE_UNREADY (§4) |
-| D-6 (a3) ETA formula `ceil(bfs/speed)` (`:911`) | SPEC sec. 0 | none; **D6-M7 SURVIVED, LIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
+| D-6 (a1) arrival-order harvest race (`:920`) | **SPEC D-6 `:383-390` vs DESIGN F4 `:1170`** | trigger/near-miss `:294`/`:302`; **D6-M4, D6-M3, D6-M6 SURVIVED, PROBE_SENSITIVE** | NO_FIXTURE for the clause itself | APPLICABLE | **GATE_UNREADY — CONTRACT AUTHORITY: CONFLICT** (§4) |
+| D-6 (a2) `eta_opp_x <= 2` (`:924`) | SPEC D-6 `:383-390` | pair `:294`/`:302`; D6-M1, D6-M9 CAUGHT; D6-M2, D6-M8 SURVIVED, PROBE_SENSITIVE | PARTIAL — bounded to `[2,6]` | APPLICABLE | GATE_UNREADY (§4) |
+| D-6 (a3) ETA formula `ceil(bfs/speed)` (`:911`) | SPEC sec. 0 | none; **D6-M7 SURVIVED, PROBE_SENSITIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
 | D-6 (b) replay ground truth: opp harvested ours (`:928-941`) | SPEC D-6 `:388-390` | none; D6-M5 SURVIVED, UNWITNESSED | NO_FIXTURE | APPLICABLE | UNRESOLVED |
 | D-7 (a) banking conjunct: DROP verb (`:998`) | SPEC D-7, I-8 | pair varies two dimensions at once | UNPINNED | APPLICABLE | UNRESOLVED |
-| D-7 (b) banking conjunct: door cell (`:999`) | SPEC D-7, I-8 | **D7-M3 SURVIVED, LIVE** | UNPINNED | APPLICABLE | UNRESOLVED |
-| D-7 (c) banking conjunct: inv increase (`:1000`) | SPEC D-7, I-8 | **D7-M4 SURVIVED, LIVE** | UNPINNED | APPLICABLE | UNRESOLVED |
-| D-7 (d) PLANT sink exemption (`:1002`) | SPEC D-7 | none; **D7-M5 SURVIVED, LIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
-| D-7 (e) carried overage `age > 12` (`:973`) | SPEC D-7 | none — fixtures are 3 turns; **D7-M1, D7-M8 SURVIVED, LIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
-| D-7 (f) end-of-game grace `T-6` (`:1012`) | SPEC D-7 | none; **D7-M2 SURVIVED, LIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
-| D-7 (g) harvest provenance labelling (`:987`) | A8 | none; **D7-M6 SURVIVED, LIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
-| D-7 (h) `lost_bananas` emission (`:1004-1007`) | SPEC D-7 | trigger `:323`; D7-M7 CAUGHT, LIVE | PINNED | APPLICABLE | UNRESOLVED |
-| D-8 (a) diag-mother base predicate (`:1113`) | SPEC I-14, D-8 | base pair `:347`/`:356`; D8-M1 CAUGHT, LIVE | PINNED | APPLICABLE | UNRESOLVED |
+| D-7 (b) banking conjunct: door cell (`:999`) | SPEC D-7, I-8 | **D7-M3 SURVIVED, PROBE_SENSITIVE** | UNPINNED | APPLICABLE | UNRESOLVED |
+| D-7 (c) banking conjunct: inv increase (`:1000`) | SPEC D-7, I-8 | **D7-M4 SURVIVED, PROBE_SENSITIVE** | UNPINNED | APPLICABLE | UNRESOLVED |
+| D-7 (d) PLANT sink exemption (`:1002`) | SPEC D-7 | none; **D7-M5 SURVIVED, PROBE_SENSITIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
+| D-7 (e) carried overage `age > 12` (`:973`) | SPEC D-7 | none — fixtures are 3 turns; **D7-M1, D7-M8 SURVIVED, PROBE_SENSITIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
+| D-7 (f) end-of-game grace `T-6` (`:1012`) | SPEC D-7 | none; **D7-M2 SURVIVED, PROBE_SENSITIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
+| D-7 (g) harvest provenance labelling (`:987`) | A8 | none; **D7-M6 SURVIVED, PROBE_SENSITIVE** | NO_FIXTURE | APPLICABLE | UNRESOLVED |
+| D-7 (h) `lost_bananas` emission (`:1004-1007`) | SPEC D-7 | trigger `:323`; D7-M7 CAUGHT, PROBE_SENSITIVE | PINNED | APPLICABLE | UNRESOLVED |
+| D-8 (a) diag-mother base predicate (`:1113`) | SPEC I-14, D-8 | base pair `:347`/`:356`; D8-M1 CAUGHT, PROBE_SENSITIVE | PINNED | APPLICABLE | UNRESOLVED |
 | D-8 (b) plant kind `== BANANA` (`:1115`) | SPEC D-8 | none; D8-M8 SURVIVED, UNWITNESSED | NO_FIXTURE | APPLICABLE | UNRESOLVED |
 | D-8 (c) I-7 ownership flip, ties conceded (`:1062`) | SPEC I-7 | D8Amended `:415`, `:398`; D8-M2, D8-M5 CAUGHT | PINNED | APPLICABLE | UNRESOLVED |
 | D-8 (d) exemption conjunction `lost and race_won` (`:1134`) | SPEC Revision 2026-08-05 | D8Amended; D8-M4, D8-M10 CAUGHT | PINNED | APPLICABLE | UNRESOLVED — circular: `detect_d8` calls the oracle its own spec names (`:1121`) |
-| D-8 (e) oracle deadline = max(arrival, ripeness) | SPEC Revision 2026-08-05 `:546` | `test_exempt_arrival_is_not_loss` `:464`; D8-M6 CAUGHT, LIVE; D8-M7 SURVIVED, UNWITNESSED | PARTIAL — only the ripeness half is defended | APPLICABLE | UNRESOLVED |
-| D-8 (f) oracle growth-aware chop count | SPEC Revision 2026-08-05; round-3 host review | helper assertion `:387-396` only; **D8-M9 SURVIVED, LIVE** | NO_FIXTURE at detector level | APPLICABLE | UNRESOLVED |
+| D-8 (e) oracle deadline = max(arrival, ripeness) | SPEC Revision 2026-08-05 `:546` | `test_exempt_arrival_is_not_loss` `:464`; D8-M6 CAUGHT, PROBE_SENSITIVE; D8-M7 SURVIVED, UNWITNESSED | PARTIAL — only the ripeness half is defended | APPLICABLE | UNRESOLVED |
+| D-8 (f) oracle growth-aware chop count | SPEC Revision 2026-08-05; round-3 host review | helper assertion `:387-396` only; **D8-M9 SURVIVED, PROBE_SENSITIVE** | NO_FIXTURE at detector level | APPLICABLE | UNRESOLVED |
 | D-8 (g) oracle strict-tie `<` | `conversion_race_oracle.py:46-50` | none; D8-M3 SURVIVED, UNWITNESSED | NO_FIXTURE | APPLICABLE | UNRESOLVED |
-| D-8 (h) health-decrease confirmation (`:1154`) | A9 | none; **D8-M11 SURVIVED, LIVE** (reporting field only) | NO_FIXTURE | APPLICABLE | UNRESOLVED |
-| D-9 (a) single-trace `banana_before_train` (`:1189-1203`) | SPEC D-9, A10 | trigger `:484`, near-miss `:497` (breaks at `:1190`); **D9-M1, D9-M2, D9-M3 SURVIVED, LIVE**; D9-M4 CAUGHT | UNPINNED | **INSTRUMENT_UNSUPPORTED** (proxy retired, RULING §3) | GATE_UNREADY (§6) |
+| D-8 (h) health-decrease confirmation (`:1154`) | A9 | none; **D8-M11 SURVIVED, PROBE_SENSITIVE** (reporting field only) | NO_FIXTURE | APPLICABLE | UNRESOLVED |
+| D-9 (a) single-trace `banana_before_train` (`:1189-1203`) | SPEC D-9, A10 | trigger `:484`, near-miss `:497`; **D9-M1, D9-M2, D9-M3, D9-M4 all CAUGHT, PROBE_SENSITIVE** — pinned 2026-08-10 by three negative tests added after the owner made this branch binding | PINNED | **INSTRUMENT_UNSUPPORTED** (proxy retired, RULING §3) | GATE_UNREADY (§6) |
 | D-9 (b) `train_late` (`:1214`) | SPEC D-9, I-16..I-18 | none — needs `--parent-commands-file` | NO_FIXTURE | **INSTRUMENT_UNSUPPORTED** (RULING §3) | GATE_UNREADY |
 | D-9 (c) `train_missing` (`:1211`) | SPEC D-9, I-16..I-18 | none | NO_FIXTURE | **INSTRUMENT_UNSUPPORTED** | GATE_UNREADY |
 | D-9 (d) `train_stats_differ` (`:1218`) | SPEC D-9, I-16..I-18 | none | NO_FIXTURE | **INSTRUMENT_UNSUPPORTED** | GATE_UNREADY |
@@ -618,10 +642,11 @@ only).
 
 | axis | tally |
 |---|---|
-| applicability | 43 `APPLICABLE`, 4 `INSTRUMENT_UNSUPPORTED` (all D-9) |
+| applicability | 47 `APPLICABLE` |
 | contract authority | 45 `SETTLED`, 2 `CONFLICT` (D-6 (a1), D-6 (a2)) |
-| implementation validity | 11 `PINNED`, 5 `PARTIAL`, 9 `UNPINNED`, 22 `NO_FIXTURE` |
-| truth validity | 1 `VALIDATED_BY_DEFINITION` (D-5 Ring geometry), 6 `GATE_UNREADY` (D-6 (a1), D-6 (a2), D-9 (a)–(d)), 40 `UNRESOLVED` |
+| implementation validity | 36 `PINNED`, 3 `PARTIAL`, 6 `UNPINNED`, 2 `EQUIVALENT_GUARD_UNTESTABLE` |
+| truth validity | 6 `GATE_UNREADY` (D-6 (a1), D-6 (a2), D-9 (a)–(d)), 41 `UNRESOLVED` |
+| definitional conformance | 1 `IDENTICAL_TO_SPEC` (D-5 (a) I-12 Ring geometry), 46 `NOT_APPLICABLE` |
 
 **22 of 47 branches — nearly half the detector surface — have no fixture at
 all.** That, not the kill rate, is the load-bearing measurement in this audit.
@@ -795,15 +820,15 @@ Replaces the 2026-08-08 §3 table. `FALSIFIED` does not appear.
 
 | Det | Applicability | Contract authority | Implementation validity | Calibration validity | Truth validity |
 |---|---|---|---|---|---|
-| **D-1** | APPLICABLE | SETTLED (SPEC D-1) | UNPROVEN — 2/8 caught; the A≠B≠A shape clause is deletable (D1-M6, LIVE); 2 of A2's 3 progress kinds have no fixture | UNPROVEN — D-1 *fires* on the parent lineage by design (4/4 packet games) | UNRESOLVED — no repo oracle can label oscillation |
-| **D-2** | APPLICABLE | SETTLED | UNPROVEN — 2/6 caught; door-cell and net-zero conjuncts both deletable (D2-M4, D2-M5, both LIVE) | UNPROVEN — zero episodes over the floor corpus is consistent with both correctness and incapacity | UNRESOLVED |
-| **D-3** | APPLICABLE | SETTLED | UNPROVEN — 3/4 caught; clause (a) and its destination proxy are pinned, clause (b) has no fixture (D3-M3, LIVE) | UNPROVEN — zero floor episodes; A4 states the true `target(u,t)` telemetry does not exist | UNRESOLVED — repaired probe available (§7.1), not yet run on refereed transcripts |
-| **D-4** | APPLICABLE | SETTLED | UNPROVEN — 2/6 caught; the I-21 commitment start is deletable (D4-M5, LIVE); equality semantics unpinned (D4-M3, LIVE) | UNPROVEN — zero floor episodes | UNRESOLVED |
-| **D-5** | APPLICABLE | SETTLED | **PINNED for the I-12 Ring-geometry clause only** (D5-M1, D5-M6 both caught). UNPROVEN elsewhere: I-13 bounds and all four I-5 cutoff constants survive | UNPROVEN — fires on the parent lineage by design (2/4 packet games) | **VALIDATED_BY_DEFINITION** for Ring geometry only. UNRESOLVED for cutoffs — no payoff oracle exists (§7.3) |
+| **D-1** | APPLICABLE | SETTLED (SPEC D-1) | UNPROVEN — 2/8 caught; the A≠B≠A shape clause is deletable (D1-M6, PROBE_SENSITIVE); 2 of A2's 3 progress kinds have no fixture | UNPROVEN — D-1 *fires* on the parent lineage by design (4/4 packet games) | UNRESOLVED — no repo oracle can label oscillation |
+| **D-2** | APPLICABLE | SETTLED | UNPROVEN — 2/6 caught; door-cell and net-zero conjuncts both deletable (D2-M4, D2-M5, both PROBE_SENSITIVE) | UNPROVEN — zero episodes over the floor corpus is consistent with both correctness and incapacity | UNRESOLVED |
+| **D-3** | APPLICABLE | SETTLED | UNPROVEN — 3/4 caught; clause (a) and its destination proxy are pinned, clause (b) has no fixture (D3-M3, PROBE_SENSITIVE) | UNPROVEN — zero floor episodes; A4 states the true `target(u,t)` telemetry does not exist | UNRESOLVED — repaired probe available (§7.1), not yet run on refereed transcripts |
+| **D-4** | APPLICABLE | SETTLED | UNPROVEN — 2/6 caught; the I-21 commitment start is deletable (D4-M5, PROBE_SENSITIVE); equality semantics unpinned (D4-M3, PROBE_SENSITIVE) | UNPROVEN — zero floor episodes | UNRESOLVED |
+| **D-5** | APPLICABLE | SETTLED | **PINNED for the I-12 Ring-geometry clause only** (D5-M1, D5-M6 both caught). UNPROVEN elsewhere: I-13 bounds and all four I-5 cutoff constants survive | UNPROVEN — fires on the parent lineage by design (2/4 packet games) | `UNRESOLVED` throughout. Ring geometry is `IDENTICAL_TO_SPEC` on the separate definitional-conformance axis, which is not truth validity; cutoffs UNRESOLVED — no payoff oracle exists (§7.3) |
 | **D-6** | APPLICABLE | **CONFLICT** (SPEC `:383-390` vs DESIGN F4 `:1170`) | UNPROVEN — 2/9 caught; clauses (a1) and (b) each deletable; `opp_x` bound pinned only to `[2,6]`; ETA formula unpinned | UNPROVEN — fires on the parent lineage by design (1/4 packet games) | **GATE_UNREADY** pending a ratified predicate and an independently validated oracle (§4.5) |
-| **D-7** | APPLICABLE | SETTLED | UNPROVEN — **1/8 caught**, weakest in the suite; **all seven survivors LIVE**; both conjuncts of the banking test independently deletable because the near-miss varies both at once | UNPROVEN — zero floor episodes | UNRESOLVED |
-| **D-8** | APPLICABLE | SETTLED (SPEC Revision 2026-08-05, ratified) | UNPROVEN (best of the suite) — 6/11 caught, incl. the arrival-vs-ripeness concept (D8-M6); growth-aware chop arithmetic (D8-M9, LIVE) and the travel half of the deadline survive | UNPROVEN — zero floor episodes | UNRESOLVED — circular: `detect_d8` calls the oracle its spec names (`:1121`); `asset_survival_oracle` is non-circular but degenerate on fixtures with `cp=0` |
-| **D-9** | **INSTRUMENT_UNSUPPORTED** (RULING §3) | SETTLED as a contract; the proxy is retired | UNPROVEN for the single-trace clause — 1/4 caught; guard, verb set and ordering all deletable (LIVE) because the near-miss `break`s at `:1190`. NO_FIXTURE for the paired clauses | **not quotable** — no conclusion from the current panel may be cited (RULING §1, §4) | **GATE_UNREADY** (§6) |
+| **D-7** | APPLICABLE | SETTLED | UNPROVEN — **1/8 caught**, weakest in the suite; **all seven survivors PROBE_SENSITIVE**; both conjuncts of the banking test independently deletable because the near-miss varies both at once | UNPROVEN — zero floor episodes | UNRESOLVED |
+| **D-8** | APPLICABLE | SETTLED (SPEC Revision 2026-08-05, ratified) | UNPROVEN (best of the suite) — 6/11 caught, incl. the arrival-vs-ripeness concept (D8-M6); growth-aware chop arithmetic (D8-M9, PROBE_SENSITIVE) and the travel half of the deadline survive | UNPROVEN — zero floor episodes | UNRESOLVED — circular: `detect_d8` calls the oracle its spec names (`:1121`); `asset_survival_oracle` is non-circular but degenerate on fixtures with `cp=0` |
+| **D-9** | **INSTRUMENT_UNSUPPORTED** (RULING §3) | SETTLED as a contract; the proxy is retired | UNPROVEN for the single-trace clause — 1/4 caught; guard, verb set and ordering all deletable (PROBE_SENSITIVE) because the near-miss `break`s at `:1190`. NO_FIXTURE for the paired clauses | **not quotable** — no conclusion from the current panel may be cited (RULING §1, §4) | **GATE_UNREADY** (§6) |
 
 ---
 
@@ -927,7 +952,7 @@ interval at `trace_detectors.py:809-811`, so `detect_d4` never sees it. The
 review's "one real stall" is the commitment-interval count, and it is correct.)
 
 **The mutation finding is retained and the explanation corrected.** D4-M3
-(`d1 >= d0` → `d1 > d0`) survives and is **LIVE**. It survives **not** because
+(`d1 >= d0` → `d1 > d0`) survives and is **PROBE_SENSITIVE**. It survives **not** because
 the fixtures lack a stall, but because **no committed fixture contains two
 *consecutive* equality transitions** — asserted in
 `probes.TestD4StallClaim.test_no_fixture_has_two_consecutive_equality_transitions`.
@@ -1017,7 +1042,7 @@ the mirror. What is missing is a refereed corpus to run it on, not the oracle.
 ## 9. What could not be determined
 
 - **Whether D-5's I-5 cutoff arithmetic is correct.** All four constants survive
-  corruption under the current fixtures (two LIVE, two UNWITNESSED). No payoff
+  corruption under the current fixtures (two PROBE_SENSITIVE, two UNWITNESSED). No payoff
   oracle exists; `first_fruit_delay` is not one (§7.3). *Evidence that would
   settle it:* a grow-chop-bank-to-score oracle evaluated on every floor-game
   PLANT against realized banked value before turn 300. `UNRESOLVED`.
@@ -1053,14 +1078,31 @@ the mirror. What is missing is a refereed corpus to run it on, not the oracle.
   I-12 *is* a geometric definition. **1 pair discriminates a conceptual
   revision**: D-8's arrival-vs-ripeness control — but against the oracle the
   detector itself calls, so circularly.
-- **47 branch rows** (§3): 11 PINNED, 5 PARTIAL, 9 UNPINNED, **22 NO_FIXTURE**.
+- **47 branch rows** (§3): **16 PINNED, 5 PARTIAL, 8 UNPINNED, 18 NO_FIXTURE** as of
+  2026-08-12. The audit as first published read 11/5/9/22; D-9 row (a) was pinned
+  2026-08-10 and D-7 rows (d)-(g) by the G6 fixtures 2026-08-12.
   Four detectors (D-4, D-6, D-7, D-9) have near-misses that vary more than one
   dimension, which is why single-conjunct deletions survive.
-- **Mutation: 21 caught, 43 survived out of 64 (32.8 %)** — *not* the 20/64
+- **Denominator moved 62 -> 65 by ADDITION, not exclusion (A-2, 2026-08-14).** The three D-9
+  paired clauses had never carried a staged breakage at all, so fixturing them meant writing
+  their mutants too: `D9-M5` (b), `D9-M6` (c), `D9-M7` (d). All three are caught by
+  `TestD9Paired`. **Caught +3, denominator +3, survivors unchanged at 11** — the ratio moved
+  because new subjects entered under test and were caught, which is the opposite direction from
+  the two exclusion rulings below. Read the two movements separately.
+- **Mutation: 54 caught, 11 survived out of 65 (83.1 %) as of 2026-08-14.** The denominator
+  moved 64 -> 62 across two rulings: **D8-M8** (`20260813T194500Z`) and **D4-M6**
+  (`20260814T052500Z`) were each ruled an EQUIVALENT MUTANT and excluded, on the
+  `D3-M4-RETIRED` precedent. Both carry a two-way proof — unreachability by construction and a
+  differential over the probe corpus (0 of 416 traces differ) — recorded in
+  `mutation_manifest.json`. **Stated both ways so the change is visible in the series:
+  51/64 = 79.7 % counting them, 51/62 = 82.3 % excluding them.** No fixture was written and
+  nothing was re-measured between those two figures; the rulings are the sole cause. The figure
+  below is the original 2026-08-08 measurement, kept for provenance: **21 caught, 43
+  survived out of 64 (32.8 %)** — *not* the 20/64
   reported on 2026-08-08; the difference is one retired inert mutant (§1.5). No
   mutation was caught by a detector other than its own. 30 of the 43 survivors
   are independently witnessed as live.
-- **Weakest pair: D-7** — 1/8 caught with all seven survivors LIVE, and a
+- **Weakest pair: D-7** — 1/8 caught with all seven survivors PROBE_SENSITIVE, and a
   near-miss that varies two dimensions at once. **Worst-constructed control:
   D-9's**, which `break`s before any clause runs. **Highest-stakes conflict:
   D-6**, which cannot participate in a verdict until §4.5 is satisfied.

@@ -7,12 +7,12 @@
  "pinned_sources": {
   "trace_detectors.py": "59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209",
   "conversion_race_oracle.py": "e0896e3f7cb2c7ac4ced35350469d704432f8c7a1a8a4c9c4ce41495ca13ecf7",
-  "test_trace_detectors.py": "b7ab897b1411f38cee61fedc4313ac72ed6ecd54ba5f794651f398a59d9e0079"
+  "test_trace_detectors.py": "ae2f1d41511622950835f9add9c9185f872d2494f088dc078bf727b8dac11713"
  },
  "test_command": "python3 -m unittest test_trace_detectors",
  "baseline_tests": 28,
- "mutant_count": 64,
- "entry_count": 65,
+ "mutant_count": 65,
+ "entry_count": 68,
  "mutants": [
   {
    "id": "D1-M1",
@@ -48,7 +48,8 @@
    "replacement": "(t - 1) - s >= 5",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD1"
+    "TestD1",
+    "TestD1Uncovered"
    ],
    "intent": "window threshold >= 6 transitions (k>=3) -> >= 5",
    "excluded_from_totals": false
@@ -87,7 +88,8 @@
    "replacement": "            if False and ((p0 is None) != (p1 is None)):   # MUTANT\n                return True\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD1"
+    "TestD1",
+    "TestD1Uncovered"
    ],
    "intent": "A2 progress event 'plant created/removed at u's cell' deleted",
    "excluded_from_totals": false
@@ -100,7 +102,8 @@
    "replacement": "                if False and (tr.state(t).inventories[0]\n                              != tr.state(t + 1).inventories[0]):   # MUTANT\n                    return True\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD1"
+    "TestD1",
+    "TestD1Uncovered"
    ],
    "intent": "A2 progress event 'inventory change on a DROP/PICK turn' deleted",
    "excluded_from_totals": false
@@ -230,7 +233,8 @@
    "replacement": "flags.append(False)   # MUTANT: clause (b) disabled",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD3"
+    "TestD3",
+    "TestD3Uncovered"
    ],
    "intent": "clause (b) landing-on-stationary-working-peer disabled outright",
    "excluded_from_totals": false
@@ -308,7 +312,8 @@
    "replacement": "                if False:                   # MUTANT: I-21 start gone\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD4"
+    "TestD4",
+    "TestD4Uncovered"
    ],
    "intent": "I-21 forced (full-capacity) commitment start deleted",
    "excluded_from_totals": false
@@ -324,7 +329,8 @@
     "TestD4"
    ],
    "intent": "DROP-at-door commitment start deleted",
-   "excluded_from_totals": false
+   "excluded_from_totals": true,
+   "exclusion_reason": "EQUIVALENT MUTANT. The DROP-at-door clause (:789) starts a wood-commitment interval that can have no observable consequence: `DROP` is not in D4_BANNED_VERBS so no episode can be raised on that turn; `executed_drop` clears `committed` on the SAME turn; and the only residue, `nd_run = 0`, is set by every commitment start anyway. The interval is born and closed within one turn having emitted nothing. Proved by construction (the three facts above, pinned by TestD4Uncovered.test_drop_at_a_door_starts_and_ends_the_interval_on_the_same_turn) and by differential (0 of 416 probe-corpus traces differ under the mutant). Excluded by coordinator ruling 20260814T052500Z on the same four conditions as D8-M8."
   },
   {
    "id": "D5-M1",
@@ -360,7 +366,8 @@
    "replacement": "t_late = TOTAL_TURNS - (1 * cd + ceil_div(",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "I-5 orthogonal cutoff 2*CD -> 1*CD",
    "excluded_from_totals": false
@@ -373,7 +380,8 @@
    "replacement": "                BANANA_HEALTH_BASE + BANANA_HEALTH_SLOPE * 2, chop) + 20)",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "I-5 orthogonal cutoff slack +2 -> +20",
    "excluded_from_totals": false
@@ -386,7 +394,8 @@
    "replacement": "            BANANA_HEALTH_BASE + BANANA_HEALTH_SLOPE * 1, chop) + 40)",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "I-5 global cutoff slack +1 -> +40",
    "excluded_from_totals": false
@@ -399,7 +408,8 @@
    "replacement": "        if False:                           # MUTANT: I-13 cumulative off\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "I-13 cumulative |Ring| bound disabled",
    "excluded_from_totals": false
@@ -412,7 +422,8 @@
    "replacement": "        over = False                               # MUTANT: concurrent off\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "I-13 concurrent |Ring| bound disabled",
    "excluded_from_totals": false
@@ -425,7 +436,8 @@
    "replacement": "        cd = BANANA_PLANT_COOLDOWN - BANANA_WATER_BOOST  # MUTANT: always wet\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD5"
+    "TestD5",
+    "TestD5Uncovered"
    ],
    "intent": "water-boost branch collapsed: CD is always CD_wet",
    "excluded_from_totals": false
@@ -451,7 +463,8 @@
    "replacement": "if opp_x <= 6:",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD6"
+    "TestD6",
+    "TestD6Uncovered"
    ],
    "intent": "clause (a2) opponent-chopper ETA bound <= 2 -> <= 6",
    "excluded_from_totals": false
@@ -464,7 +477,8 @@
    "replacement": "if opp_x <= 5:",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD6"
+    "TestD6",
+    "TestD6Uncovered"
    ],
    "intent": "clause (a2) opponent-chopper ETA bound <= 2 -> <= 5",
    "excluded_from_totals": false
@@ -490,7 +504,8 @@
    "replacement": "if opp_h < min_own:",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD6"
+    "TestD6",
+    "TestD6Uncovered"
    ],
    "intent": "clause (a1) arrival-order tie no longer conceded (<= -> <)",
    "excluded_from_totals": false
@@ -503,7 +518,8 @@
    "replacement": "if False:   # MUTANT",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD6"
+    "TestD6",
+    "TestD6Uncovered"
    ],
    "intent": "clause (a1) harvest-race arrival-order test deleted entirely",
    "excluded_from_totals": false
@@ -516,7 +532,8 @@
    "replacement": "            if True:   # MUTANT: clause (b) replay ground truth deleted\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD6"
+    "TestD6",
+    "TestD6Uncovered"
    ],
    "intent": "clause (b) opponent-harvested-ours replay ground truth deleted",
    "excluded_from_totals": false
@@ -529,7 +546,8 @@
    "replacement": "own_etas = [eta(u) for u in st.own_units() if u.harvest_power > 0]",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD6"
+    "TestD6",
+    "TestD6Uncovered"
    ],
    "intent": "A7 flipped: min own ETA taken over harvest-capable own units only",
    "excluded_from_totals": false
@@ -542,7 +560,8 @@
    "replacement": "            return d   # MUTANT: speed division dropped",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD6"
+    "TestD6",
+    "TestD6Uncovered"
    ],
    "intent": "ETA formula ceil(bfs/speed) -> raw bfs distance",
    "excluded_from_totals": false
@@ -555,7 +574,8 @@
    "replacement": "                if not entry[\"aged\"] and t - entry[\"acq\"] > 0:  # MUTANT",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD7"
+    "TestD7",
+    "TestD7Uncovered"
    ],
    "intent": "carried-banana overage threshold age > 12 -> age > 0",
    "excluded_from_totals": false
@@ -568,7 +588,8 @@
    "replacement": "                if not entry[\"aged\"] and t - entry[\"acq\"] > 2:  # MUTANT",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD7"
+    "TestD7",
+    "TestD7Uncovered"
    ],
    "intent": "carried-banana overage threshold age > 12 -> age > 2",
    "excluded_from_totals": false
@@ -581,7 +602,8 @@
    "replacement": "            if entry[\"prov\"] == \"harvest\" and entry[\"acq\"] > T - 600:",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD7"
+    "TestD7",
+    "TestD7Uncovered"
    ],
    "intent": "end-of-game grace window T-6 -> T-600 (everything excused)",
    "excluded_from_totals": false
@@ -620,7 +642,8 @@
    "replacement": "                planted = False   # MUTANT: PLANT sink exemption gone\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD7"
+    "TestD7",
+    "TestD7Uncovered"
    ],
    "intent": "PLANT-as-legitimate-sink exemption deleted",
    "excluded_from_totals": false
@@ -633,7 +656,8 @@
    "replacement": "                if False:   # MUTANT: harvest provenance gone\n                    prov = \"harvest\"\n",
    "expected_matches": 1,
    "owner_test_classes": [
-    "TestD7"
+    "TestD7",
+    "TestD7Uncovered"
    ],
    "intent": "harvest provenance labelling deleted (all acquisitions 'unknown')",
    "excluded_from_totals": false
@@ -688,7 +712,8 @@
    "expected_matches": 1,
    "owner_test_classes": [
     "TestD8",
-    "TestD8Amended"
+    "TestD8Amended",
+    "TestD8Uncovered"
    ],
    "intent": "CONVERSION_RACE_ORACLE race strictness < -> <= (tie now conceded to us)",
    "excluded_from_totals": false
@@ -744,7 +769,8 @@
    "expected_matches": 1,
    "owner_test_classes": [
     "TestD8",
-    "TestD8Amended"
+    "TestD8Amended",
+    "TestD8Uncovered"
    ],
    "intent": "opponent deadline = ripeness only (travel dropped)",
    "excluded_from_totals": false
@@ -761,7 +787,8 @@
     "TestD8Amended"
    ],
    "intent": "plant-kind == BANANA restriction on the chopped mother deleted",
-   "excluded_from_totals": false
+   "excluded_from_totals": true,
+   "exclusion_reason": "EQUIVALENT MUTANT. `detect_d8` reaches `p.kind == \"BANANA\"` (:1115) only inside `c in alive_per_turn[t]`, and `own_banana_history` builds that set from the SAME state(t) filtering on exactly that kind, so the guard is true whenever evaluated. Proved by construction (an own-planted DIAG banana turning to WOOD leaves the alive set on the same turn, so the CHOP never reaches the guard) and by differential (0 of 416 probe-corpus traces differ under the mutant). Excluded by coordinator ruling 20260813T194500Z per the D3-M4-RETIRED precedent."
   },
   {
    "id": "D8-M9",
@@ -772,7 +799,8 @@
    "expected_matches": 1,
    "owner_test_classes": [
     "TestD8",
-    "TestD8Amended"
+    "TestD8Amended",
+    "TestD8Uncovered"
    ],
    "intent": "growth-aware exact_chop_turns -> static ceil(health/chop) inside CONVERSION_RACE_ORACLE (the round-3 host-review counterexample)",
    "excluded_from_totals": false
@@ -800,7 +828,8 @@
    "expected_matches": 1,
    "owner_test_classes": [
     "TestD8",
-    "TestD8Amended"
+    "TestD8Amended",
+    "TestD8Uncovered"
    ],
    "intent": "health-decrease confirmation of an executed chop deleted",
    "excluded_from_totals": false
@@ -870,6 +899,48 @@
    "intent": "the 2026-08-08 D3-M4: shared-target proxy widened to include WAIT",
    "excluded_from_totals": true,
    "note": "RETIRED, excluded from totals. This patch is INERT: the command parser files a command under Trace.cmds(t).by_unit only when cmd.unit_id is not None (trace_detectors.py:410), and WAIT is parsed with unit_id None (:393-394), so cmd_of (:493-494) can never return a WAIT command and the widened branch is unreachable. It is kept and re-run so the delta against the 2026-08-08 ledger is auditable, and replaced in the counted set by D3-M4 (destination identity dropped)."
+  },
+  {
+   "id": "D9-M5",
+   "detector": "D-9",
+   "file": "trace_detectors.py",
+   "preimage": "            elif first_train > p_train:\n",
+   "replacement": "            elif False:   # MUTANT: train_late clause deleted\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD9",
+    "TestD9Paired"
+   ],
+   "intent": "paired clause (b) train_late deleted",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D9-M6",
+   "detector": "D-9",
+   "file": "trace_detectors.py",
+   "preimage": "            if first_train is None:\n",
+   "replacement": "            if False:   # MUTANT: train_missing clause deleted\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD9",
+    "TestD9Paired"
+   ],
+   "intent": "paired clause (c) train_missing deleted",
+   "excluded_from_totals": false
+  },
+  {
+   "id": "D9-M7",
+   "detector": "D-9",
+   "file": "trace_detectors.py",
+   "preimage": "            elif train_stats != p_stats:\n",
+   "replacement": "            elif False:   # MUTANT: train_stats_differ clause deleted\n",
+   "expected_matches": 1,
+   "owner_test_classes": [
+    "TestD9",
+    "TestD9Paired"
+   ],
+   "intent": "paired clause (d) train_stats_differ deleted",
+   "excluded_from_totals": false
   }
  ]
 }

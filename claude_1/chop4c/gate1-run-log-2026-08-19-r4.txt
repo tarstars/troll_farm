@@ -1,0 +1,38 @@
+    observed chain control OK on OSC-001 — production path rejects: duplicated an ACTUAL SEQ2_ENTRY row
+    observed chain control OK on OSC-001 — production path rejects: dropped an ACTUAL SEQ2_PASS exit
+    observed chain control OK on OSC-001 — production path rejects: dropped an ACTUAL SEQ2_ENTRY row
+  cure-C-resident: negative controls (on OSC-003)
+    control OK — rejects: dropped attribution
+    control OK — rejects: duplicated attribution
+    control OK — rejects: reordered attributions
+    control OK — rejects: alien identity
+    control OK — rejects: mislabeled verdict (fields say one thing, label another)
+    chain control OK — rejects: dropped downstream terminal
+    chain control OK — rejects: dropped ACCEPT terminal
+    chain control OK — rejects: falsified seq2 PASS
+    chain control OK — rejects: falsified seq2 entry count
+    chain: seq2 ENTRY rows (observed) 9900 = PTN 650 + seq2PASS 9250; seq2PASS = ACCEPT 9250 + later 0
+  cure-C-resident: eligible 11255 · terminals 19150 (ACCEPT 9250, PREDICT_TREE_NONE 650) · EVIDENCE_BASED 120 · UNEXPLAINED 530 · opp_chop mismatch 530
+    observed chain control OK on OSC-001 — production path rejects: duplicated an ACTUAL SEQ2_ENTRY row
+    observed chain control OK on OSC-001 — production path rejects: dropped an ACTUAL SEQ2_PASS exit
+    observed chain control OK on OSC-001 — production path rejects: dropped an ACTUAL SEQ2_ENTRY row
+  door1-candidate: negative controls (on OSC-003)
+    OSC-003 has no two differing attributions — trying next
+  door1-candidate: negative controls (on OSC-004)
+    control OK — rejects: dropped attribution
+    control OK — rejects: duplicated attribution
+    control OK — rejects: reordered attributions
+    control OK — rejects: alien identity
+    control OK — rejects: mislabeled verdict (fields say one thing, label another)
+    chain control OK — rejects: dropped downstream terminal
+    chain control OK — rejects: dropped ACCEPT terminal
+    chain control OK — rejects: falsified seq2 PASS
+    chain control OK — rejects: falsified seq2 entry count
+    chain: seq2 ENTRY rows (observed) 7368 = PTN 103 + seq2PASS 7265; seq2PASS = ACCEPT 7265 + later 0
+  door1-candidate: eligible 11229 · terminals 14633 (ACCEPT 7265, PREDICT_TREE_NONE 103) · EVIDENCE_BASED 103 · UNEXPLAINED 0 · opp_chop mismatch 0
+  UNEXPLAINED == opp_chop_mismatch on both subjects (relationship asserted)
+
+  cure-C mismatch control FIRED (unexplained rejections present on the resident)
+  wrote claude_1/chop4c/gate1-unified-2026-08-19.json
+
+  gate-1 green condition (zero UNEXPLAINED under candidate): MET

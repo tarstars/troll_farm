@@ -1,109 +1,112 @@
 # Mutation ledger (generated — do not hand-edit)
 
 Source: `results/mutation-results.json`  
-manifest sha256 `e9d0c130c447667e3e374ba32f7b640112194b547a64ef123721d41bcfcdca22`  
-runner sha256 `c69247450ed4f35b2bcb102e3b678a1426d6c67a6cfa976b4204f13720297fe0`  
+manifest sha256 `9ee64e49f30922857846239d8f0f25c8d827170d364cdb53fdff9df1b164b633`  
+runner sha256 `8dbf4f7774a2cdc014e702675cf9fcf3e051b57f91fcf914782451bc706dd519`  
 probe corpus sha256 `9afe7f3cf3cb073158e67226ddbed31a750cda19900fc031853195cb8b0f3ddb`  
 python 3.12.3, control green: True
 
 Pinned sources:
 
 - `conversion_race_oracle.py` sha256 `e0896e3f7cb2c7ac4ced35350469d704432f8c7a1a8a4c9c4ce41495ca13ecf7`
-- `test_trace_detectors.py` sha256 `b7ab897b1411f38cee61fedc4313ac72ed6ecd54ba5f794651f398a59d9e0079`
+- `test_trace_detectors.py` sha256 `ae2f1d41511622950835f9add9c9185f872d2494f088dc078bf727b8dac11713`
 - `trace_detectors.py` sha256 `59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209`
 
-Totals: **64 mutants run, 21 caught, 43 survived** (kill rate 32.8 %). `caught_by_expected` = 21; caught only by another detector's tests = 0. Liveness: 49 LIVE, 15 UNWITNESSED; LIVE survivors = 30.
+Totals: **65 mutants run, 54 caught, 11 survived** (kill rate 83.1 %). `caught_by_expected` = 54; caught only by another detector's tests = 0. Liveness: 49 PROBE_SENSITIVE, 16 UNWITNESSED; PROBE_SENSITIVE survivors = 9.
 
 ## Per detector
 
-| Det | mutants | caught | caught_by_expected | survived | LIVE survivors | kill rate |
+| Det | mutants | caught | caught_by_expected | survived | PROBE_SENSITIVE survivors | kill rate |
 |---|---|---|---|---|---|---|
-| D-1 | 8 | 2 | 2 | 6 | 4 | 25 % |
+| D-1 | 8 | 5 | 5 | 3 | 3 | 62 % |
 | D-2 | 6 | 2 | 2 | 4 | 2 | 33 % |
-| D-3 | 4 | 3 | 3 | 1 | 1 | 75 % |
-| D-4 | 6 | 2 | 2 | 4 | 3 | 33 % |
-| D-5 | 8 | 2 | 2 | 6 | 2 | 25 % |
-| D-6 | 9 | 2 | 2 | 7 | 6 | 22 % |
-| D-7 | 8 | 1 | 1 | 7 | 7 | 12 % |
-| D-8 | 11 | 6 | 6 | 5 | 2 | 55 % |
-| D-9 | 4 | 1 | 1 | 3 | 3 | 25 % |
-| **all** | **64** | **21** | **21** | **43** | **30** | **32.8 %** |
+| D-3 | 4 | 4 | 4 | 0 | 0 | 100 % |
+| D-4 | 5 | 3 | 3 | 2 | 2 | 60 % |
+| D-5 | 8 | 8 | 8 | 0 | 0 | 100 % |
+| D-6 | 9 | 9 | 9 | 0 | 0 | 100 % |
+| D-7 | 8 | 6 | 6 | 2 | 2 | 75 % |
+| D-8 | 10 | 10 | 10 | 0 | 0 | 100 % |
+| D-9 | 7 | 7 | 7 | 0 | 0 | 100 % |
+| **all** | **65** | **54** | **54** | **11** | **9** | **83.1 %** |
 
 ## Full ledger
 
-`result` = CAUGHT / SURVIVED against the full 28-test suite. `liveness` = LIVE if the patch changes the mutated detector's digest over the independent probe corpus, UNWITNESSED if the corpus cannot witness any behavioural change (such a survivor is *not* evidence that the suite is weak).
+`result` = CAUGHT / SURVIVED against the full 28-test suite. `liveness` = PROBE_SENSITIVE if the patch changes the mutated detector's probe digest. PROBE_SENSITIVE means the mutation changes probe output on GENERATED traces; it does NOT establish legal-game reachability under the referee. digest over the independent probe corpus, UNWITNESSED if the corpus cannot witness any behavioural change (such a survivor is *not* evidence that the suite is weak).
 
 | id | det | file | result | liveness | mutation |
 |---|---|---|---|---|---|
-| D1-M1 | D-1 | `trace_detectors.py` | CAUGHT | LIVE | window threshold >= 6 transitions (k>=3) -> >= 4 |
-| D1-M2 | D-1 | `trace_detectors.py` | SURVIVED | LIVE | window threshold >= 6 transitions (k>=3) -> >= 8 |
-| D1-M7 | D-1 | `trace_detectors.py` | SURVIVED | LIVE | window threshold >= 6 transitions (k>=3) -> >= 5 |
-| D1-M8 | D-1 | `trace_detectors.py` | SURVIVED | LIVE | window threshold >= 6 transitions (k>=3) -> >= 9 |
-| D1-M3 | D-1 | `trace_detectors.py` | CAUGHT | LIVE | A2 progress event 'carry change' deleted |
-| D1-M4 | D-1 | `trace_detectors.py` | SURVIVED | UNWITNESSED | A2 progress event 'plant created/removed at u's cell' deleted |
-| D1-M5 | D-1 | `trace_detectors.py` | SURVIVED | UNWITNESSED | A2 progress event 'inventory change on a DROP/PICK turn' deleted |
-| D1-M6 | D-1 | `trace_detectors.py` | SURVIVED | LIVE | period-2 A,B,A,B shape requirement deleted (any motion counts) |
-| D2-M1 | D-2 | `trace_detectors.py` | CAUGHT | LIVE | D-2 window length <= 12 turns -> <= 3 |
+| D1-M1 | D-1 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | window threshold >= 6 transitions (k>=3) -> >= 4 |
+| D1-M2 | D-1 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | window threshold >= 6 transitions (k>=3) -> >= 8 |
+| D1-M7 | D-1 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | window threshold >= 6 transitions (k>=3) -> >= 5 |
+| D1-M8 | D-1 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | window threshold >= 6 transitions (k>=3) -> >= 9 |
+| D1-M3 | D-1 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | A2 progress event 'carry change' deleted |
+| D1-M4 | D-1 | `trace_detectors.py` | CAUGHT | UNWITNESSED | A2 progress event 'plant created/removed at u's cell' deleted |
+| D1-M5 | D-1 | `trace_detectors.py` | CAUGHT | UNWITNESSED | A2 progress event 'inventory change on a DROP/PICK turn' deleted |
+| D1-M6 | D-1 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | period-2 A,B,A,B shape requirement deleted (any motion counts) |
+| D2-M1 | D-2 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | D-2 window length <= 12 turns -> <= 3 |
 | D2-M2 | D-2 | `trace_detectors.py` | SURVIVED | UNWITNESSED | D-2 window length <= 12 turns -> <= 120 |
 | D2-M6 | D-2 | `trace_detectors.py` | SURVIVED | UNWITNESSED | D-2 window length <= 12 turns -> <= 4 |
-| D2-M3 | D-2 | `trace_detectors.py` | CAUGHT | LIVE | >= 2 PICKs and >= 2 DROPs -> >= 1 each |
-| D2-M4 | D-2 | `trace_detectors.py` | SURVIVED | LIVE | door-cell restriction on the PICK/DROP events deleted |
-| D2-M5 | D-2 | `trace_detectors.py` | SURVIVED | LIVE | net-zero-over-window requirement deleted |
-| D3-M1 | D-3 | `trace_detectors.py` | CAUGHT | LIVE | clause (a) run length >= 2 consecutive turns -> >= 1 |
-| D3-M2 | D-3 | `trace_detectors.py` | CAUGHT | LIVE | clause (a) run length >= 2 consecutive turns -> >= 3 |
-| D3-M3 | D-3 | `trace_detectors.py` | SURVIVED | LIVE | clause (b) landing-on-stationary-working-peer disabled outright |
-| D3-M4 | D-3 | `trace_detectors.py` | CAUGHT | LIVE | clause (a) proxy widened: destination identity dropped, any two own MOVEs on one turn count as a shared target |
-| D4-M1 | D-4 | `trace_detectors.py` | CAUGHT | LIVE | stall tolerance: 2 consecutive non-decreases -> 1 |
-| D4-M2 | D-4 | `trace_detectors.py` | SURVIVED | LIVE | stall tolerance: 2 consecutive non-decreases -> 3 |
-| D4-M3 | D-4 | `trace_detectors.py` | SURVIVED | LIVE | non-progress test d1 >= d0 (stall counts) -> d1 > d0 (only retreat counts): equality semantics flipped |
-| D4-M4 | D-4 | `trace_detectors.py` | CAUGHT | LIVE | banned non-bank verb set reduced to {MINE} |
-| D4-M5 | D-4 | `trace_detectors.py` | SURVIVED | LIVE | I-21 forced (full-capacity) commitment start deleted |
-| D4-M6 | D-4 | `trace_detectors.py` | SURVIVED | UNWITNESSED | DROP-at-door commitment start deleted |
-| D5-M1 | D-5 | `trace_detectors.py` | CAUGHT | LIVE | I-12 Ring membership cheby == 1 -> cheby == 2 |
-| D5-M6 | D-5 | `trace_detectors.py` | CAUGHT | LIVE | I-12 Ring narrowed from cheby == 1 to the four orthogonal doors |
-| D5-M2 | D-5 | `trace_detectors.py` | SURVIVED | UNWITNESSED | I-5 orthogonal cutoff 2*CD -> 1*CD |
-| D5-M3 | D-5 | `trace_detectors.py` | SURVIVED | UNWITNESSED | I-5 orthogonal cutoff slack +2 -> +20 |
-| D5-M7 | D-5 | `trace_detectors.py` | SURVIVED | LIVE | I-5 global cutoff slack +1 -> +40 |
-| D5-M4 | D-5 | `trace_detectors.py` | SURVIVED | LIVE | I-13 cumulative \|Ring\| bound disabled |
-| D5-M5 | D-5 | `trace_detectors.py` | SURVIVED | UNWITNESSED | I-13 concurrent \|Ring\| bound disabled |
-| D5-M8 | D-5 | `trace_detectors.py` | SURVIVED | UNWITNESSED | water-boost branch collapsed: CD is always CD_wet |
-| D6-M1 | D-6 | `trace_detectors.py` | CAUGHT | LIVE | clause (a2) opponent-chopper ETA bound <= 2 -> <= 1 |
-| D6-M2 | D-6 | `trace_detectors.py` | SURVIVED | LIVE | clause (a2) opponent-chopper ETA bound <= 2 -> <= 6 |
-| D6-M8 | D-6 | `trace_detectors.py` | SURVIVED | LIVE | clause (a2) opponent-chopper ETA bound <= 2 -> <= 5 |
-| D6-M9 | D-6 | `trace_detectors.py` | CAUGHT | LIVE | clause (a2) opponent-chopper ETA bound <= 2 -> <= 7 |
-| D6-M3 | D-6 | `trace_detectors.py` | SURVIVED | LIVE | clause (a1) arrival-order tie no longer conceded (<= -> <) |
-| D6-M4 | D-6 | `trace_detectors.py` | SURVIVED | LIVE | clause (a1) harvest-race arrival-order test deleted entirely |
-| D6-M5 | D-6 | `trace_detectors.py` | SURVIVED | UNWITNESSED | clause (b) opponent-harvested-ours replay ground truth deleted |
-| D6-M6 | D-6 | `trace_detectors.py` | SURVIVED | LIVE | A7 flipped: min own ETA taken over harvest-capable own units only |
-| D6-M7 | D-6 | `trace_detectors.py` | SURVIVED | LIVE | ETA formula ceil(bfs/speed) -> raw bfs distance |
-| D7-M1 | D-7 | `trace_detectors.py` | SURVIVED | LIVE | carried-banana overage threshold age > 12 -> age > 0 |
-| D7-M8 | D-7 | `trace_detectors.py` | SURVIVED | LIVE | carried-banana overage threshold age > 12 -> age > 2 |
-| D7-M2 | D-7 | `trace_detectors.py` | SURVIVED | LIVE | end-of-game grace window T-6 -> T-600 (everything excused) |
-| D7-M3 | D-7 | `trace_detectors.py` | SURVIVED | LIVE | banking conjunct 'DROP at a door cell' deleted |
-| D7-M4 | D-7 | `trace_detectors.py` | SURVIVED | LIVE | banking conjunct 'own inventory[BANANA] increased' deleted |
-| D7-M5 | D-7 | `trace_detectors.py` | SURVIVED | LIVE | PLANT-as-legitimate-sink exemption deleted |
-| D7-M6 | D-7 | `trace_detectors.py` | SURVIVED | LIVE | harvest provenance labelling deleted (all acquisitions 'unknown') |
-| D7-M7 | D-7 | `trace_detectors.py` | CAUGHT | LIVE | lost_bananas episode emission deleted |
-| D8-M1 | D-8 | `trace_detectors.py` | CAUGHT | LIVE | base predicate cell set diag(tent) -> orth(tent) |
+| D2-M3 | D-2 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | >= 2 PICKs and >= 2 DROPs -> >= 1 each |
+| D2-M4 | D-2 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | door-cell restriction on the PICK/DROP events deleted |
+| D2-M5 | D-2 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | net-zero-over-window requirement deleted |
+| D3-M1 | D-3 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a) run length >= 2 consecutive turns -> >= 1 |
+| D3-M2 | D-3 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a) run length >= 2 consecutive turns -> >= 3 |
+| D3-M3 | D-3 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (b) landing-on-stationary-working-peer disabled outright |
+| D3-M4 | D-3 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a) proxy widened: destination identity dropped, any two own MOVEs on one turn count as a shared target |
+| D4-M1 | D-4 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | stall tolerance: 2 consecutive non-decreases -> 1 |
+| D4-M2 | D-4 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | stall tolerance: 2 consecutive non-decreases -> 3 |
+| D4-M3 | D-4 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | non-progress test d1 >= d0 (stall counts) -> d1 > d0 (only retreat counts): equality semantics flipped |
+| D4-M4 | D-4 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | banned non-bank verb set reduced to {MINE} |
+| D4-M5 | D-4 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | I-21 forced (full-capacity) commitment start deleted |
+| D5-M1 | D-5 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | I-12 Ring membership cheby == 1 -> cheby == 2 |
+| D5-M6 | D-5 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | I-12 Ring narrowed from cheby == 1 to the four orthogonal doors |
+| D5-M2 | D-5 | `trace_detectors.py` | CAUGHT | UNWITNESSED | I-5 orthogonal cutoff 2*CD -> 1*CD |
+| D5-M3 | D-5 | `trace_detectors.py` | CAUGHT | UNWITNESSED | I-5 orthogonal cutoff slack +2 -> +20 |
+| D5-M7 | D-5 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | I-5 global cutoff slack +1 -> +40 |
+| D5-M4 | D-5 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | I-13 cumulative \|Ring\| bound disabled |
+| D5-M5 | D-5 | `trace_detectors.py` | CAUGHT | UNWITNESSED | I-13 concurrent \|Ring\| bound disabled |
+| D5-M8 | D-5 | `trace_detectors.py` | CAUGHT | UNWITNESSED | water-boost branch collapsed: CD is always CD_wet |
+| D6-M1 | D-6 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a2) opponent-chopper ETA bound <= 2 -> <= 1 |
+| D6-M2 | D-6 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a2) opponent-chopper ETA bound <= 2 -> <= 6 |
+| D6-M8 | D-6 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a2) opponent-chopper ETA bound <= 2 -> <= 5 |
+| D6-M9 | D-6 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a2) opponent-chopper ETA bound <= 2 -> <= 7 |
+| D6-M3 | D-6 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a1) arrival-order tie no longer conceded (<= -> <) |
+| D6-M4 | D-6 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | clause (a1) harvest-race arrival-order test deleted entirely |
+| D6-M5 | D-6 | `trace_detectors.py` | CAUGHT | UNWITNESSED | clause (b) opponent-harvested-ours replay ground truth deleted |
+| D6-M6 | D-6 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | A7 flipped: min own ETA taken over harvest-capable own units only |
+| D6-M7 | D-6 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | ETA formula ceil(bfs/speed) -> raw bfs distance |
+| D7-M1 | D-7 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | carried-banana overage threshold age > 12 -> age > 0 |
+| D7-M8 | D-7 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | carried-banana overage threshold age > 12 -> age > 2 |
+| D7-M2 | D-7 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | end-of-game grace window T-6 -> T-600 (everything excused) |
+| D7-M3 | D-7 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | banking conjunct 'DROP at a door cell' deleted |
+| D7-M4 | D-7 | `trace_detectors.py` | SURVIVED | PROBE_SENSITIVE | banking conjunct 'own inventory[BANANA] increased' deleted |
+| D7-M5 | D-7 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | PLANT-as-legitimate-sink exemption deleted |
+| D7-M6 | D-7 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | harvest provenance labelling deleted (all acquisitions 'unknown') |
+| D7-M7 | D-7 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | lost_bananas episode emission deleted |
+| D8-M1 | D-8 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | base predicate cell set diag(tent) -> orth(tent) |
 | D8-M2 | D-8 | `trace_detectors.py` | CAUGHT | UNWITNESSED | I-7 ownership tie no longer conceded (< -> <=) |
-| D8-M3 | D-8 | `conversion_race_oracle.py` | SURVIVED | UNWITNESSED | CONVERSION_RACE_ORACLE race strictness < -> <= (tie now conceded to us) |
+| D8-M3 | D-8 | `conversion_race_oracle.py` | CAUGHT | UNWITNESSED | CONVERSION_RACE_ORACLE race strictness < -> <= (tie now conceded to us) |
 | D8-M4 | D-8 | `trace_detectors.py` | CAUGHT | UNWITNESSED | oracle result ignored: the conversion race is always won |
-| D8-M5 | D-8 | `trace_detectors.py` | CAUGHT | LIVE | ownership-flip precondition ignored (lost forced True) |
-| D8-M6 | D-8 | `conversion_race_oracle.py` | CAUGHT | LIVE | opponent deadline = arrival only (ripeness dropped) |
-| D8-M7 | D-8 | `conversion_race_oracle.py` | SURVIVED | UNWITNESSED | opponent deadline = ripeness only (travel dropped) |
-| D8-M8 | D-8 | `trace_detectors.py` | SURVIVED | UNWITNESSED | plant-kind == BANANA restriction on the chopped mother deleted |
-| D8-M9 | D-8 | `conversion_race_oracle.py` | SURVIVED | LIVE | growth-aware exact_chop_turns -> static ceil(health/chop) inside CONVERSION_RACE_ORACLE (the round-3 host-review counterexample) |
-| D8-M10 | D-8 | `trace_detectors.py` | CAUGHT | LIVE | exemption conjunction 'lost AND race_won' -> disjunction |
-| D8-M11 | D-8 | `trace_detectors.py` | SURVIVED | LIVE | health-decrease confirmation of an executed chop deleted |
-| D9-M1 | D-9 | `trace_detectors.py` | SURVIVED | LIVE | \|own units\| == 1 qualifying guard deleted |
-| D9-M4 | D-9 | `trace_detectors.py` | CAUGHT | LIVE | \|own units\| == 1 qualifying guard -> == 7 |
-| D9-M2 | D-9 | `trace_detectors.py` | SURVIVED | LIVE | banana-attributable restriction widened to any resource argument |
-| D9-M3 | D-9 | `trace_detectors.py` | SURVIVED | LIVE | ordering boundary t >= first_train -> t > first_train |
+| D8-M5 | D-8 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | ownership-flip precondition ignored (lost forced True) |
+| D8-M6 | D-8 | `conversion_race_oracle.py` | CAUGHT | PROBE_SENSITIVE | opponent deadline = arrival only (ripeness dropped) |
+| D8-M7 | D-8 | `conversion_race_oracle.py` | CAUGHT | UNWITNESSED | opponent deadline = ripeness only (travel dropped) |
+| D8-M9 | D-8 | `conversion_race_oracle.py` | CAUGHT | PROBE_SENSITIVE | growth-aware exact_chop_turns -> static ceil(health/chop) inside CONVERSION_RACE_ORACLE (the round-3 host-review counterexample) |
+| D8-M10 | D-8 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | exemption conjunction 'lost AND race_won' -> disjunction |
+| D8-M11 | D-8 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | health-decrease confirmation of an executed chop deleted |
+| D9-M1 | D-9 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | \|own units\| == 1 qualifying guard deleted |
+| D9-M4 | D-9 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | \|own units\| == 1 qualifying guard -> == 7 |
+| D9-M2 | D-9 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | banana-attributable restriction widened to any resource argument |
+| D9-M3 | D-9 | `trace_detectors.py` | CAUGHT | PROBE_SENSITIVE | ordering boundary t >= first_train -> t > first_train |
+| D9-M5 | D-9 | `trace_detectors.py` | CAUGHT | UNWITNESSED | paired clause (b) train_late deleted |
+| D9-M6 | D-9 | `trace_detectors.py` | CAUGHT | UNWITNESSED | paired clause (c) train_missing deleted |
+| D9-M7 | D-9 | `trace_detectors.py` | CAUGHT | UNWITNESSED | paired clause (d) train_stats_differ deleted |
 
 ## Entries excluded from the totals
 
 | id | det | result | liveness | why excluded |
 |---|---|---|---|---|
+| D4-M6 | D-4 | SURVIVED | UNWITNESSED |  |
+| D8-M8 | D-8 | SURVIVED | UNWITNESSED |  |
 | D3-M4-RETIRED | D-3 | SURVIVED | UNWITNESSED | RETIRED, excluded from totals. This patch is INERT: the command parser files a command under Trace.cmds(t).by_unit only when cmd.unit_id is not None (trace_detectors.py:410), and WAIT is parsed with unit_id None (:393-394), so cmd_of (:493-494) can never return a WAIT command and the widened branch is unreachable. It is kept and re-run so the delta against the 2026-08-08 ledger is auditable, and replaced in the counted set by D3-M4 (destination identity dropped). |
 
 ## Mutated-file SHA-256
@@ -133,7 +136,6 @@ Totals: **64 mutants run, 21 caught, 43 survived** (kill rate 32.8 %). `caught_b
 | D4-M3 | `8f976d25fe0a373aaf884dd8146a7a769d4ecf64720686da2bb22290a38f023b` |
 | D4-M4 | `3c9097ac3d6034820cbf9181c03f2ddee0e33437016e420af2f79240cef2261c` |
 | D4-M5 | `f5b534f7557c996f2dd537a1121fadd66d0497897d2d5d14a2f9cc881a68c773` |
-| D4-M6 | `6cb1c8e9fc09fda732bde2e00d82c4be4c23df7b363ff5f3674da364a6000584` |
 | D5-M1 | `51093365f2ef1ab3cb05dc5f92cfb5d1333ed357cdd258ac9ab62a93282a84e5` |
 | D5-M6 | `4368e83fe9ad5afe2b17d0760f1b66615dbe251444214a32aeb420217a30908b` |
 | D5-M2 | `00ef01fdb5cb2236cfe61b84bf2519f32112013210403c2f050fe81c986a1fb2` |
@@ -166,7 +168,6 @@ Totals: **64 mutants run, 21 caught, 43 survived** (kill rate 32.8 %). `caught_b
 | D8-M5 | `b3c7b66941ed6ef195be47c09a7f5d6aab9397870385c731873df717bb15aa0e` |
 | D8-M6 | `78e83f855826c06dd64306015b56c0d5f862facfe9f4caee9e4ae00f3282b43f` |
 | D8-M7 | `ab10840e299a70141dd9be99dc43792438838e6b4f4e73a3665997b1986a31b6` |
-| D8-M8 | `7cc0185f757748fdd4eab69c18875c8a116fd52a7d564fbd61942dde147208c8` |
 | D8-M9 | `38b12a2e65cb3900015c5b9efd54e6d53b49d4aa99532ac91059e35fbc53bf37` |
 | D8-M10 | `d8b71301d37b42c6da64623ca15187149ea8594bde84104ab0cf1015c304147b` |
 | D8-M11 | `dab82ddbe1995abf8b1807ba97d1b41438514629286ae236e93899536d9bd00b` |
@@ -174,3 +175,6 @@ Totals: **64 mutants run, 21 caught, 43 survived** (kill rate 32.8 %). `caught_b
 | D9-M4 | `3d15ca32928ca8ff1d0ee46f70605bfa96802797feb5094dc84f094512faba97` |
 | D9-M2 | `a09640da6b8b8f07a8d67a856733eb47d4b5b845880d88443c18285a5bb35822` |
 | D9-M3 | `2424832a09822ce4869680144af84465571b4631c1b6e374f375fcf3faab334b` |
+| D9-M5 | `6bfede4194519b77bb662a47f1c7e1503a5cbfcba23261a70fafba7172dca1fc` |
+| D9-M6 | `503c46167600427ad11db0127aa8ab5413951aedf79ec9c7470ded4a15de45b6` |
+| D9-M7 | `5d6e08a648ab8087c14ff471a1f62bd2ddcf6b89f601ed8acdac396e83cd8e0f` |

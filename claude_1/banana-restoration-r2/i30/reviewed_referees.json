@@ -1,0 +1,24 @@
+{
+ "referees": {
+  "d8900abf31dd030d07096e9a063365aa0e1f58b85a1613d02b07d3935c523a6a": {
+   "commit": "8447971ec48d0ebdb0635df64f5d2b38b5901349",
+   "derived_from": "FuzzReferee.VERB_HANDLERS",
+   "name": "c5 two-player phase-merged referee (r4, accepted)",
+   "path": "claude_1/pipeline/fuzz_panel.py",
+   "reviewed_by": "coordination/messages/chatgpt_1/20260811T235500Z-20260811-train-repair-r4-review-handoff.md",
+   "verb_manifest": [
+    "CHOP",
+    "DROP",
+    "HARVEST",
+    "MINE",
+    "MOVE",
+    "MSG",
+    "PICK",
+    "PLANT",
+    "TRAIN",
+    "WAIT"
+   ]
+  }
+ },
+ "schema": "reviewed-referees/1"
+}

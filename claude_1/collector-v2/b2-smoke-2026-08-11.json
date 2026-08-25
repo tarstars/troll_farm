@@ -1,0 +1,98 @@
+{
+  "blocking": [],
+  "bucket": "troll-farm-data",
+  "check": "b2-s3-smoke",
+  "credentials": "Credentials(key_id=YCAJ\u2026, secret=<redacted>)",
+  "endpoint": "https://storage.yandexcloud.net",
+  "findings": {
+    "delete_refused_as_designed": true,
+    "head_agrees": true,
+    "if_none_match_honoured_by_endpoint": true,
+    "overwrite_possible_despite_append_only_grant": true,
+    "read_access": true,
+    "write_round_trip_verified": true
+  },
+  "notes": [
+    "The probe object is left in place on purpose (plan B2) and cannot be removed with this grant.",
+    "Append-only comes from the GRANT lacking delete; it does NOT stop a PUT to an existing key. Measured above: overwrite SUCCEEDED, If-None-Match guard was honoured. B3/B4 must therefore make key collisions impossible by construction rather than rely on the grant."
+  ],
+  "payload_sha256": "d685afcbc57475d4582a1dae3849d997267e7f65758f44c252bda096f8f2716a",
+  "probe_key": "games/probe/b2-smoke-20260811T114601Z-1048230.json",
+  "run_utc": "20260811T114601Z",
+  "steps": [
+    {
+      "result": {
+        "count": 35,
+        "sample_keys": [
+          "games/manifest/backfill-000000.jsonl",
+          "games/manifest/backfill-000001.jsonl",
+          "games/manifest/backfill-000002.jsonl",
+          "games/manifest/backfill-000003.jsonl",
+          "games/manifest/backfill-000004.jsonl",
+          "games/manifest/backfill-000005.jsonl",
+          "games/manifest/backfill-000006.jsonl",
+          "games/manifest/backfill-000007.jsonl",
+          "games/manifest/backfill-000008.jsonl",
+          "games/manifest/backfill-000009.jsonl"
+        ]
+      },
+      "status": "ok",
+      "step": "list games/"
+    },
+    {
+      "result": {
+        "etag": "\"7c149928424f55ead624d7502dc60226\"",
+        "sha256": "d685afcbc57475d4582a1dae3849d997267e7f65758f44c252bda096f8f2716a",
+        "size": 253,
+        "status": 200
+      },
+      "status": "ok",
+      "step": "put probe"
+    },
+    {
+      "result": {
+        "byte_for_byte": true,
+        "bytes": 253,
+        "identical": true,
+        "sha256": "d685afcbc57475d4582a1dae3849d997267e7f65758f44c252bda096f8f2716a"
+      },
+      "status": "ok",
+      "step": "get probe and verify sha256"
+    },
+    {
+      "result": {
+        "etag": "\"7c149928424f55ead624d7502dc60226\"",
+        "size": 253,
+        "status": 200
+      },
+      "status": "ok",
+      "step": "head probe"
+    },
+    {
+      "code": "AccessDenied",
+      "http_status": 403,
+      "message": "Access Denied",
+      "status": "s3_error",
+      "step": "attempt delete (expected refused)"
+    },
+    {
+      "result": {
+        "etag": "\"7a16b58631923a40e4326fe14df3e3e3\"",
+        "sha256": "210276d2b9cb943436cbf7cc96119ad1146fb0974150abf466806be839323d42",
+        "size": 254,
+        "status": 200
+      },
+      "status": "ok",
+      "step": "attempt plain overwrite"
+    },
+    {
+      "code": "PreconditionFailed",
+      "http_status": 412,
+      "message": "At least one of the pre-conditions you specified did not hold",
+      "status": "s3_error",
+      "step": "attempt overwrite with If-None-Match: *"
+    }
+  ],
+  "task_id": "20260811-s3-collector-v2",
+  "verdict": "SMOKE_OK"
+}

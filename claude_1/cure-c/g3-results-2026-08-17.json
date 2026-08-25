@@ -1,0 +1,30 @@
+{
+ "gate": "G3",
+ "latency": {
+  "budget_ms": 50.0,
+  "candidate": {
+   "max_ms": 0.13880198821425438,
+   "median_ms": 0.03359047695994377,
+   "p95_ms": 0.06521103205159307,
+   "warm_turns": 570
+  },
+  "limit": "one host, no competing load, includes the Python referee's own per-turn work, three situations \u2014 overstates the bot's cost",
+  "resident": {
+   "max_ms": 0.29993802309036255,
+   "median_ms": 0.037110643461346626,
+   "p95_ms": 0.05718710599467158,
+   "warm_turns": 570
+  },
+  "verdict": "MET"
+ },
+ "task": "20260817-cure-c-implementation",
+ "thread_parity": {
+  "differing_rows": 0,
+  "negative_control_floor_sha256": "34bfd176bedfc3a7b3c33e50e73b05a45aa10d576060ed8b0bb750af459116fa",
+  "rows": 240,
+  "sha256_1proc": "09ab624d37e6ba1fc4909223dffe7370b09d86d4a76158dec61a764525a592fd",
+  "sha256_8proc": "09ab624d37e6ba1fc4909223dffe7370b09d86d4a76158dec61a764525a592fd",
+  "verdict": "IDENTICAL"
+ },
+ "verdict": "PASS"
+}

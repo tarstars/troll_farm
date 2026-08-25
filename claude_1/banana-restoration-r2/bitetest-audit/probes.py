@@ -417,7 +417,16 @@ def d3_old_probe(tr):
 def d3_repaired_probe(tr):
     """The repaired label: referee-predicted next_cell (engine.rs::next_cell
     on the exact pre-state map, position, speed and target) vs the realized
-    next-state position."""
+    next-state position.
+
+    **This probe does not witness D-3's predicate.** D-3 is same-target /
+    occupied-cell contention persisting for >= 2 consecutive turns -- a
+    planning defect the conflict resolver does not dissolve. This measures
+    single-turn movement resolution against the referee mirror. They are
+    different predicates and neither is a weaker form of the other, so no D-3
+    branch may be recorded as probe-covered on this probe's strength
+    (ruling 2026-08-13, blocker 2 item 3).
+    """
     out = []
     walkable = set(tr.smap.walkable)
     for t in range(1, tr.T):
@@ -429,10 +438,42 @@ def d3_repaired_probe(tr):
             realized = tr.pos(uid, t + 1)
             if u is None or realized is None:
                 continue
-            pred = referee_next_cell(walkable, u.cell, cmd.args[0],
-                                     max(u.speed, 1))
+            # `max(u.speed, 1)` was wrong against the authority.
+            # `engine.rs::next_cell` tests only `d <= speed`, with no floor:
+            # at speed 0 the sole qualifying cell is the unit's own (d == 0),
+            # so the engine returns `current` and the unit does not move. The
+            # floor predicted a one-cell step instead, which would have
+            # labelled a correctly-stationary unit displaced. Mirror the
+            # authority exactly (ruling 2026-08-13, blocker 2 item 3).
+            pred = referee_next_cell(walkable, u.cell, cmd.args[0], u.speed)
             out.append((t, uid, cmd.args[0], pred, realized, pred != realized))
     return out
+
+
+class TestD3SpeedFloor(unittest.TestCase):
+    """A zero-speed unit must be predicted stationary, as the engine does.
+
+    `max(speed, 1)` was correct only because a zero-speed unit had not been
+    observed -- and a clause that is right only because its failing input never
+    arrives is untested, not right. `engine.rs::next_cell` has no floor: its
+    only speed test is `d <= speed`, so at speed 0 the sole qualifying cell is
+    the unit's own and the engine returns `current`.
+    """
+
+    def test_the_engine_mirror_keeps_a_zero_speed_unit_where_it_is(self):
+        walkable = {(x, y) for x in range(4) for y in range(4)}
+        self.assertEqual(
+            referee_next_cell(walkable, (1, 1), (3, 3), 0), (1, 1),
+            "engine.rs::next_cell returns `current` at speed 0")
+
+    def test_the_retired_floor_would_have_moved_it(self):
+        """Demonstrates the divergence rather than asserting it: the floor and
+        the authority disagree, so the old clause mislabelled the unit."""
+        walkable = {(x, y) for x in range(4) for y in range(4)}
+        floored = referee_next_cell(walkable, (1, 1), (3, 3), max(0, 1))
+        authority = referee_next_cell(walkable, (1, 1), (3, 3), 0)
+        self.assertNotEqual(floored, authority)
+        self.assertEqual(authority, (1, 1))
 
 
 class TestD3Probe(unittest.TestCase):

@@ -1,0 +1,43 @@
+# deploy/geesefs-archive.service — user unit on project_host at ~/.config/systemd/user/
+#
+# Mounts the bucket's archive/ prefix at the legacy medium_data path so the repo's
+# 2,346 ABSOLUTE symlinks resolve with the USB detached. Spec Phase 4.
+#
+# Deliberately read-only, twice over:
+#   - credentials are the vm-writer service account (storage.uploader + storage.viewer);
+#     DELETE is refused by the grant — verified 2026-08-11, returns AccessDenied;
+#   - `-o ro` so the kernel refuses writes before they ever reach S3.
+# A mounted archive is the project's only off-host copy of these trees. It must not be
+# possible to destroy it with a mistaken `rm -rf` through a filesystem path.
+#
+# PREREQUISITES (need sudo, one time):
+#   sudo apt install -y geesefs
+#   sudo install -d -o tarstars -g tarstars /media/tarstars/medium_data
+# Then, as the normal user:
+#   mkdir -p /media/tarstars/medium_data/database/troll_farm
+#
+# VERIFIED 2026-08-11 on project_host with geesefs 0.35.0: usage is
+# `geesefs [options] bucket[:prefix] mountpoint`; `-o`, `-f`, `--shared-config`,
+# `--endpoint` and `--region` all exist as spelled. A manual mount with exactly these
+# arguments came up read-only (`ro` in /proc mount options), served the tree, refused
+# writes, and returned a file whose sha256 matched its archive-manifest entry.
+# There is no dedicated --read-only flag; `-o ro` is the mechanism.
+
+[Unit]
+Description=GeeseFS read-only mount of troll-farm archive at the legacy medium_data path
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/geesefs -f -o ro \
+  --shared-config %h/.config/troll-farm/geesefs-credentials \
+  --endpoint https://storage.yandexcloud.net \
+  --region ru-central1 \
+  troll-farm-data:archive /media/tarstars/medium_data/database/troll_farm
+ExecStop=/usr/bin/fusermount -u /media/tarstars/medium_data/database/troll_farm
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

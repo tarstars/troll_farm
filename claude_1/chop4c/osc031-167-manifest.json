@@ -1,0 +1,1364 @@
+{
+  "task": "20260818-osc031-chop-clause-instrument",
+  "derivation_pin": "local_claude_1/chop4c/167-manifest-derivation-pin-2026-08-18.md",
+  "situation": "OSC-031",
+  "unit": 0,
+  "window": [
+    11,
+    200
+  ],
+  "predicate": [
+    "turn in window",
+    "pool-3 token == NO_GOAL_ASSIGNED",
+    "oracle eligible_actions == exactly {CHOP}"
+  ],
+  "expected_count": 167,
+  "count": 167,
+  "tooling_sha256": {
+    "claude_1/hstarve1/instrumented-hstarve2.rs": "42128838d014b96b2c6ae6868f30c8ca068c6ac0c7b6759a145f72c491c7b101",
+    "claude_1/hstarve1/oracle.py": "542202f9b0705d4351853912d4bb16fca8bd2dc5256fcc19a4763c511d0e99a5",
+    "claude_1/hstarve1/audit.py": "cf690aa57dacafd8ee12608da9414e349460e22545f4dcd2fdf41acea3045d15",
+    "claude_1/hstarve1/cause-table-pool3-2026-08-17.json": "79cc5b9d3d2198d5033c62bf7d2f2e3259fc4bd6f54a88cb7ae3600123cb9466",
+    "claude_1/hstarve1/mechanism-pool5-2026-08-17.json": "fc248786126d5b96d3f3d4efbe8c62a8b1b463ea6fdd55412e2f581318eb095f"
+  },
+  "turns": [
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    139,
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    155,
+    156,
+    157,
+    158,
+    159,
+    160,
+    161,
+    163,
+    164,
+    165,
+    166,
+    167,
+    168,
+    169,
+    171,
+    172,
+    173,
+    174,
+    175,
+    176,
+    177,
+    179,
+    180,
+    181,
+    182,
+    183,
+    184,
+    185,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193,
+    195,
+    196,
+    197,
+    198,
+    199,
+    200
+  ],
+  "per_turn": [
+    {
+      "turn": 11,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 12,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 13,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 14,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 15,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 16,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 17,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 19,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 20,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 21,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 22,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 23,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 24,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 25,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 27,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 28,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 29,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 30,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 31,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 32,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 33,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 35,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 36,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 37,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 38,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 39,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 40,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 41,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 43,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 44,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 45,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 46,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 47,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 48,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 49,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 51,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 52,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 53,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 54,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 55,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 56,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 57,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 59,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 60,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 61,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 62,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 63,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 64,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 65,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 67,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 68,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 69,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 70,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 71,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 72,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 73,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 75,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 76,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 77,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 78,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 79,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 80,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 81,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 83,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 84,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 85,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 86,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 87,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 88,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 89,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 91,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 92,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 93,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 94,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 95,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 96,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 97,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 99,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 100,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 101,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 102,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 103,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 104,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 105,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 107,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 108,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 109,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 110,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 111,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 112,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 113,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 115,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 116,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 117,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 118,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 119,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 120,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 121,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 123,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 124,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 125,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 126,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 127,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 128,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 129,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 131,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 132,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 133,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 134,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 135,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 136,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 137,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 139,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 140,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 141,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 142,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 143,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 144,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 145,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 147,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 148,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 149,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 150,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 151,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 152,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 153,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 155,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 156,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 157,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 158,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 159,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 160,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 161,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 163,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 164,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 165,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 166,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 167,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 168,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 169,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 171,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 172,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 173,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 174,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 175,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 176,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 177,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 179,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 180,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 181,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 182,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 183,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 184,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 185,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 187,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 188,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 189,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 190,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 191,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 192,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 193,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 195,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 196,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 197,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 198,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 199,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    },
+    {
+      "turn": 200,
+      "token": "NO_GOAL_ASSIGNED",
+      "eligible_actions": [
+        "CHOP"
+      ]
+    }
+  ]
+}

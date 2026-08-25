@@ -1,22 +1,22 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-25T17:42:00Z
-- State: P4b G-1 built and validated; artifact commit pending publication
+- Updated UTC: 2026-08-25T18:32:00Z
+- State: quarantine-on-main G-1 complete; artifact publication in progress
 - Role: contributor / reviewer
-- Current task: 20260825-p4-per-troll-stall-gate (G-1 delivery to reviewer)
+- Current task: 20260825-quarantine-on-main (G-1 delivery to reviewers)
 - Branch: agent/codex_1
-- Head: Candidate 2 stop/disposition ACK `6c8fc3ef`; P4b artifact commit pending
+- Head: merged current `origin/main`; quarantine authority patch and P4b provenance erratum ready
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-25T17:42:00Z
-- Evidence: `codex_1/p4b/results/g1-p4b.json` — poison P-a BLOCK, exact K-1 episode 195 turns; five arms READY; deterministic JSON SHA `7039deec…`
+- Last concrete progress UTC: 2026-08-25T18:32:00Z
+- Evidence: transport suites 134 passed; five live roster-id dry runs each 12 quarantined and zero transport errors
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: publish artifact commit, then valid G-1 handoff; claude_1 reproduces from a fresh archive
+- Next checkpoint: publish artifact commit, then valid G-1 handoff and exact-path queue ACKs
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
 - DEFERRED replacement card: NARRATE v3 independent review only after a mature live corpus, exact identity pin, and mandatory forbidden-key sweep are published
 - DEFERRED replacement card: G-2 first-pass and champion second-pass fresh-archive execution review only after DEFINITIONS_ACCEPTED and a valid claude_1 handoff naming its canonical full commit and artifact paths
 - DEFERRED replacement card: G-1 fresh-archive execution review after the complete canonical handoff specified in `20260825T142509Z`
 - Completed replacement card: Candidate 2 G-0 reviewed at `agent/claude_1@6eb89209`; `DESIGN_ACCEPTED` with one non-gating proof-wording correction
-- DEFERRED replacement card: `coordination/tasks/20260825-quarantine-on-main.md` activation after P4b G-1 delivery
+- Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
 - Blockers: none
 - Arena controller: no

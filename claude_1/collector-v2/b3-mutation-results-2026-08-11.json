@@ -1,0 +1,99 @@
+{
+  "caught": 12,
+  "control_green": true,
+  "control_output_tail": null,
+  "drive": "b3-packer-mutations",
+  "mutants_applied": 12,
+  "mutants_defined": 12,
+  "not_applied": [],
+  "results": [
+    {
+      "caught": true,
+      "description": "lets gzip write the current time into the header, so identical input differs by run",
+      "id": "P1-gzip-stamps-mtime",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "sorts game ids as text, so 1000 precedes 999 and pack order depends on id width",
+      "id": "P2-lexical-id-sort",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "drops sort_keys from pack lines, so byte output depends on dict insertion order",
+      "id": "P3-unsorted-json-keys",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "escapes non-ASCII, diverging from Part A's pack encoding for unicode nicknames",
+      "id": "P4-ascii-escaping",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "hashes the decoded string's default encoding rather than the file's exact bytes",
+      "id": "P5-digest-over-decoded-text",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "records character count instead of byte length, wrong for every non-ASCII game",
+      "id": "P6-size-from-characters",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "ignores the rerun counter, so a re-run overwrites the original day's object",
+      "id": "P7-rerun-key-collides",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "renames the manifest's game_id field, breaking the shared backfill/daily reader",
+      "id": "P8-manifest-schema-drift",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "returns pack records without checking them against their own recorded digest",
+      "id": "P9-corrupt-pack-accepted",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "packs the same game id twice instead of refusing the input",
+      "id": "P10-duplicate-ids-accepted",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "accepts any date string, so a malformed date silently names an object",
+      "id": "P11-loose-date-accepted",
+      "status": "APPLIED",
+      "test_output_tail": null
+    },
+    {
+      "caught": true,
+      "description": "names gzip packs '.jsonl.zst', so the extension misdescribes the bytes",
+      "id": "P12-extension-lies-about-codec",
+      "status": "APPLIED",
+      "test_output_tail": null
+    }
+  ],
+  "survivors": [],
+  "target": "claude_1/collector-v2/packer.py",
+  "task_id": "20260811-s3-collector-v2",
+  "tests": "claude_1/collector-v2/tests"
+}

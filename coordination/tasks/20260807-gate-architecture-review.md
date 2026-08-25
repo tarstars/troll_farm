@@ -1,13 +1,21 @@
 # 20260807-gate-architecture-review: independent architecture review of the acceptance gate
 
-- Status: assigned — owner-directed 2026-08-07; awaiting chatgpt_1 claim
+- Status: **COMPLETE — `REVISION_REQUIRED`, handed off 2026-08-09T18:21:38Z, verdict accepted by
+  the integrator 2026-08-12 after independent reproduction.** Handoff:
+  `coordination/messages/codex_1/20260809T182138Z-20260807-gate-architecture-review-handoff.md`;
+  artifact `codex_1/reviews/gate-architecture-review-2026-08-09.md` at pinned commit
+  `c0e729b331851d80b8a3409d3e27302a65a045b4`. Five findings F1–F5. Scope item 5 is closed: the
+  D-9 74-versus-196 dispute is records versus episodes, reproduced exactly by the integrator.
+  Consequence: **`claude_1`'s gate design needs revision**, and the referred D-9 affordability /
+  I-16–I-18 / panel-sufficiency questions remain open with `local_codex_1` dormant.
 - Record owner / integrator: `local_claude_1`
-- Work owner (reviewer): `chatgpt_1`
+- Work owner (reviewer): **`codex_1`** (reassigned 2026-08-12 from `chatgpt_1`)
 - Author of the artifact under review: `claude_1`
-- Referred detector-semantics question: `local_codex_1` (see Scope, item 4)
+- Referred detector-semantics question: `local_codex_1` (see Scope, item 4) — a different agent
+  from the reviewer, so item 4 remains an independent second opinion
 - Area: acceptance-gate architecture / measurement validity
 - Base commit: `3ca092abba353b4dd07b63e85f6d25deb9852d0d` (canonical `agent/claude_1`)
-- Branch: `agent/chatgpt_1` (canonical — task branches cannot satisfy a v2 handoff)
+- Branch: **`agent/codex_1`** (canonical — task branches cannot satisfy a v2 handoff)
 - Progress lease: 15 minutes without remotely inspectable concrete progress
 - Created UTC: 2026-08-07T09:35:00Z
 - Last updated UTC: 2026-08-07T09:35:00Z
@@ -69,14 +77,16 @@ modified anywhere in this repository.
 
 ## Standing conditions on this reviewer
 
-`chatgpt_1` is a contributor whose Banana R2 claims required independent re-verification after
-the 2026-08-06 fabricated-verdict finding. Consequently:
+These conditions were written for `chatgpt_1` after the 2026-08-06 fabricated-verdict finding.
+They now bind `codex_1`, which claimed this task on 2026-08-09 — **not because `codex_1` is
+suspected of anything** (it has no history here at all), but because verifiability is a property
+of the artifact, not of the author. They apply to every reviewer of this task:
 
 - every quantitative claim in the review must be reproducible from committed inputs, with the
   exact command and the SHA-256 of every input embedded in the artifact;
 - no acceptance verdict may be attributed to another agent unless the exact message path is
   cited;
-- the handoff must be v2-complete on canonical `agent/chatgpt_1` with `artifact_commit`.
+- the handoff must be v2-complete on canonical `agent/codex_1` with `artifact_commit`.
 
 For the record: chatgpt_1's m012 byte-identity finding was correct and has been adopted; its
 honest 22/240 reproduction was correct. The conditions above are about verifiability, not about
@@ -84,6 +94,6 @@ discounting its technical judgement.
 
 ## Deliverables
 
-One handoff to `local_claude_1` on canonical `agent/chatgpt_1`, carrying the review artifact,
+One handoff to `local_claude_1` on canonical `agent/codex_1`, carrying the review artifact,
 one verdict, itemized findings with evidence, and an explicit statement of which findings (if
 any) are incompatible with the owner's standing strict rule.

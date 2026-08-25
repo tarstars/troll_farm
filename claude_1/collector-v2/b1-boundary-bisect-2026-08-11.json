@@ -1,0 +1,149 @@
+{
+  "agent_id": 6479768,
+  "check": "b1-unlisted-boundary-bisect",
+  "cutoff_between": [
+    895033338,
+    895033352
+  ],
+  "cutoff_note": null,
+  "probes": [
+    {
+      "error": "{\"id\":548,\"message\":\"Game not found\"}",
+      "game_id": 892621271,
+      "http_status": 422,
+      "status": "http_error"
+    },
+    {
+      "frames": 601,
+      "game_id": 895035298,
+      "replay_valid": true,
+      "status": "ok"
+    },
+    {
+      "error": "{\"id\":548,\"message\":\"Game not found\"}",
+      "game_id": 894996938,
+      "http_status": 422,
+      "status": "http_error"
+    },
+    {
+      "frames": 601,
+      "game_id": 895034208,
+      "replay_valid": true,
+      "status": "ok"
+    },
+    {
+      "frames": 601,
+      "game_id": 895033588,
+      "replay_valid": true,
+      "status": "ok"
+    },
+    {
+      "error": "{\"id\":548,\"message\":\"Game not found\"}",
+      "game_id": 895033338,
+      "http_status": 422,
+      "status": "http_error"
+    },
+    {
+      "frames": 601,
+      "game_id": 895033445,
+      "replay_valid": true,
+      "status": "ok"
+    },
+    {
+      "frames": 535,
+      "game_id": 895033391,
+      "replay_valid": true,
+      "status": "ok"
+    },
+    {
+      "frames": 601,
+      "game_id": 895033359,
+      "replay_valid": true,
+      "status": "ok"
+    },
+    {
+      "frames": 601,
+      "game_id": 895033352,
+      "replay_valid": true,
+      "status": "ok"
+    },
+    {
+      "error": "{\"id\":548,\"message\":\"Game not found\"}",
+      "game_id": 895033310,
+      "http_status": 422,
+      "status": "http_error"
+    },
+    {
+      "frames": 601,
+      "game_id": 895033321,
+      "replay_valid": true,
+      "status": "ok"
+    },
+    {
+      "error": "{\"id\":548,\"message\":\"Game not found\"}",
+      "game_id": 895033338,
+      "http_status": 422,
+      "status": "http_error"
+    },
+    {
+      "frames": 601,
+      "game_id": 895033352,
+      "replay_valid": true,
+      "status": "ok"
+    },
+    {
+      "frames": 601,
+      "game_id": 895033359,
+      "replay_valid": true,
+      "status": "ok"
+    },
+    {
+      "error": "{\"id\":548,\"message\":\"Game not found\"}",
+      "game_id": 895033379,
+      "http_status": 422,
+      "status": "http_error"
+    }
+  ],
+  "requests_issued": 17,
+  "run_utc": "2026-08-11T10:44:23.649Z",
+  "shape": "RAGGED",
+  "task_id": "20260811-s3-collector-v2",
+  "unlisted_population": 287,
+  "unlisted_range": [
+    892621271,
+    895035298
+  ],
+  "verification": [
+    {
+      "game_id": 895033310,
+      "resolves": false,
+      "side": "below_cutoff"
+    },
+    {
+      "game_id": 895033321,
+      "resolves": true,
+      "side": "below_cutoff"
+    },
+    {
+      "game_id": 895033338,
+      "resolves": false,
+      "side": "below_cutoff"
+    },
+    {
+      "game_id": 895033352,
+      "resolves": true,
+      "side": "above_cutoff"
+    },
+    {
+      "game_id": 895033359,
+      "resolves": true,
+      "side": "above_cutoff"
+    },
+    {
+      "game_id": 895033379,
+      "resolves": false,
+      "side": "above_cutoff"
+    }
+  ],
+  "verification_consistent": false
+}

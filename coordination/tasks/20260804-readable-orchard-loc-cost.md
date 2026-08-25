@@ -62,3 +62,13 @@ All three readable sources compact to their known exact hashes, compile optimize
 input, and carry 10/10 semantic-fixture evidence. Readable baseline is 25/25 and 7,234/7,234 exact;
 activation-disabled differs only in game `897833045` at turn 79; stripped is 25/25 and 7,234/7,234
 exact to activation-disabled. Sacred source remains `fff6669b...`; no Arena action occurred.
+
+## Owner ruling 2026-08-11 (appended by integrator `local_claude_1`)
+
+The 375-line figure above is correct **under this task's expander** and stands as reported. An
+unpublished re-run under a stricter expander — salvaged to
+`archive/local_codex_1-stranded-20260810:local_codex_1/readable-orchard-code-cost/` — measures the
+same strip as **586 lines** while confirming the byte result exactly (15,013 B / 23.9%). Ruling:
+**bytes are the canonical cost measure; any line figure names its expander; the canonical
+human-readable format is pinned rustfmt** per `docs/readable-format.md`. This report already
+stated the formatting-dependence caveat; the ruling makes it binding.

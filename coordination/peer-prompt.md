@@ -1,9 +1,15 @@
 # Prompt for a new agent (copy-paste, fill in the two blanks)
 
 Referenced by `coordination/README.md`. Give the text below verbatim to any new agent
-joining the project. Replace `<id>` with an unused lowercase agent id (check the roster
-in `coordination/multi-agent-protocol.md` §1 — e.g. `claude_2`, `chatgpt_2`, `codex_1`)
-and `<task>` with either a claimable item or "await assignment".
+joining the project. Replace `<id>` with an unused lowercase agent id and `<task>` with
+either a claimable item or "await assignment".
+
+**Check the id against `coordination/roster.json` on `origin/main` and against
+`git ls-remote origin 'refs/heads/agent/*'` — not against the roster in
+`coordination/multi-agent-protocol.md` §1, which is prose and has been behind reality.**
+This file previously offered `chatgpt_2` and `codex_1` as examples of unused ids while
+both were live agents with published work, and directed the reader to the one roster that
+omits exactly those two — so the check confirmed the error instead of catching it.
 
 **Maintainer note, 2026-08-11.** This file was materially stale until today: it named the
 previous integrator, pointed at a branch that no longer carries the tooling, and listed three
@@ -15,7 +21,10 @@ commit.
 
 You are agent `<id>` on the Troll Farm project, working under its multi-agent
 coordination protocol. The repository remote is `git@github.com:tarstars/troll_farm.git`.
-The integrated branch is **`main`**; `session-2026-07-01` is kept identical to it.
+The integrated branch is **`main`**, and it is the only one. (Corrected 2026-08-22: this
+line said `session-2026-07-01` "is kept identical to it". That stopped being true on
+2026-08-17 — the branch has not moved since, while `main` has advanced by hundreds of
+commits. Read nothing from it.)
 
 ## 0. FIRST, before anything else: prove you are running the current tooling
 
@@ -30,24 +39,37 @@ git checkout origin/main -- scripts/inbox_sweep.py scripts/lint_outbox.py
 sha256sum scripts/inbox_sweep.py scripts/lint_outbox.py
 ```
 
-Expected as of 2026-08-11. **These are content SHA-256 values — the output of `sha256sum` — NOT
-Git blob IDs.** This project pins many things by Git blob (`target_blob` in quarantine entries,
-the golden-set manifest), so both are given here; either check resolves, but do not compare one
-against the other. They are different algorithms over different inputs and can never agree.
+**This file deliberately stores no expected digest.** It used to pin one, and on 2026-08-10 the
+pin went stale within hours of `inbox_sweep.py` changing twice — so the anti-staleness gate was
+itself stale, and worse, it pinned the *old* blob that the blind agent had been running. A
+newcomer computing the truth would have failed the check. A constant that must be hand-updated
+whenever the tool changes will desynchronise; that is the failure this whole section exists to
+prevent, and it does not get an exception for itself.
 
-```text
-content SHA-256 (sha256sum)                                       file
-0f78bf38f32cdd805e29ebfa5591f4f4a55e5a288cd85541df022a452e235515  scripts/inbox_sweep.py
-f3c47b70d4f99647eed917876a675a1c28fe5e7236e609455d367a34f6af045d  scripts/lint_outbox.py
+So compute both sides and compare them to each other:
 
-Git blob id (git rev-parse origin/main:<path>)                    file
-db4adb7e24cf53aad9033aadccb92c9a6133a934                          scripts/inbox_sweep.py
-172779076bcd6f2c3282322701bf0a498ee652c4                          scripts/lint_outbox.py
+```bash
+git fetch origin
+# what origin/main actually carries, right now:
+git rev-parse origin/main:scripts/inbox_sweep.py origin/main:scripts/lint_outbox.py
+git show origin/main:scripts/inbox_sweep.py | sha256sum
+git show origin/main:scripts/lint_outbox.py  | sha256sum
+# what you are actually running:
+sha256sum scripts/inbox_sweep.py scripts/lint_outbox.py
 ```
 
-If they differ, take `main`'s copies — `main` is authoritative for tooling, **your branch's copy
-is a snapshot, not the tool**. **Your first published message must quote the digests you actually
-computed.** Nobody will treat you as reachable until it does.
+The two `sha256sum` outputs must match. If they differ, take `main`'s copies — `main` is
+authoritative for tooling, **your branch's copy is a snapshot, not the tool**:
+
+```bash
+git checkout origin/main -- scripts/inbox_sweep.py scripts/lint_outbox.py
+```
+
+**Your first published message must quote the digests you actually computed, and name the
+`origin/main` commit you computed them against.** Nobody will treat you as reachable until it
+does. Note that a *content* SHA-256 (`sha256sum`) and a *Git blob id* (`git rev-parse`) are
+different algorithms over different inputs and can never agree — this project pins by both in
+different places, so always say which one you are quoting.
 
 ## 1. Read, in this order, before taking ANY action
 

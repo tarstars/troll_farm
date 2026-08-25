@@ -1,0 +1,22 @@
+diff --git a/claude_1/banana-restoration-r2/candidate-banana-r2-manifest.json b/claude_1/banana-restoration-r2/candidate-banana-r2-manifest.json
+index 38ab830b..48f558e4 100644
+--- a/claude_1/banana-restoration-r2/candidate-banana-r2-manifest.json
++++ b/claude_1/banana-restoration-r2/candidate-banana-r2-manifest.json
+@@ -13,7 +13,7 @@
+   },
+   "candidate": {
+     "bytes": 74725,
+-    "path": "/home/tarstars/prj/troll_farm-claude_1/claude_1/banana-restoration-r2/candidate-banana-r2.min.rs",
++    "path": "/tmp/troll-banana-r2-check.Yg4LA3/claude_1/banana-restoration-r2/candidate-banana-r2.min.rs",
+     "sha256": "f29efd0e9c8cd17a2151678b2b0a449baba76aa12ede283d5ef486f5a5fe6eb9"
+   },
+   "insertions": [
+@@ -74,7 +74,7 @@
+   ],
+   "parent": {
+     "bytes": 62725,
+-    "path": "/home/tarstars/prj/troll_farm-claude_1/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
++    "path": "/tmp/troll-banana-r2-check.Yg4LA3/cgauto/submissions/candidate-agent6553250-preseed-orchard-coverage-slim.min.rs",
+     "sha256": "a8eb3b2bb646c59baf4c0a8b6bbdd9ca626e20ab2a27553dadbded047b884e55"
+   },
+   "schema": "troll-farm-banana-r2-candidate-manifest/1"

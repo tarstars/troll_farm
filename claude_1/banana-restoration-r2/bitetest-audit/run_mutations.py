@@ -30,7 +30,7 @@ WHAT IS MEASURED, per mutant
                         Reported separately because "some other detector's
                         test happened to notice" is not evidence that the
                         detector's own trigger/near-miss pair discriminates.
-  liveness            : LIVE if the mutation changes the pristine digest of
+  liveness            : PROBE_SENSITIVE if the mutation changes the pristine digest of
                         the mutated detector over the independent probe
                         corpus (``probe_corpus.py``); UNWITNESSED if it does
                         not.  An UNWITNESSED survivor is NOT evidence that the
@@ -137,6 +137,10 @@ def main(argv=None):
     ap.add_argument("--only", default=None,
                     help="comma-separated mutant ids")
     ap.add_argument("--allow-drift", action="store_true")
+    ap.add_argument(
+        "--partial", action="store_true",
+        help="acknowledge that this is deliberately not a whole-manifest run; "
+             "without it, a subset or any structurally failed mutant exits 2")
     args = ap.parse_args(argv)
 
     with open(args.manifest, encoding="utf-8") as fh:
@@ -216,8 +220,8 @@ def main(argv=None):
             changed = sorted(k for k in control_probe
                              if not k.startswith("_")
                              and control_probe[k] != probe.get(k))
-            liveness = "LIVE" if det in changed else (
-                "LIVE_OTHER" if changed else "UNWITNESSED")
+            liveness = "PROBE_SENSITIVE" if det in changed else (
+                "PROBE_SENSITIVE_OTHER" if changed else "UNWITNESSED")
 
         row.update({
             "status": "OK",
@@ -240,21 +244,69 @@ def main(argv=None):
     excluded = [r for r in results if r.get("excluded_from_totals")]
     caught_n = sum(1 for r in ok if r["caught"])
     expected_n = sum(1 for r in ok if r["caught_by_expected"])
-    live_n = sum(1 for r in ok if r["liveness"] == "LIVE")
+    live_n = sum(1 for r in ok if r["liveness"] == "PROBE_SENSITIVE")
     per_det = {}
     for r in ok:
         d = per_det.setdefault(r["detector"], {
             "mutants": 0, "caught": 0, "caught_by_expected": 0,
-            "live": 0, "live_survivors": 0})
+            "probe_sensitive": 0, "probe_sensitive_survivors": 0})
         d["mutants"] += 1
         d["caught"] += int(r["caught"])
         d["caught_by_expected"] += int(r["caught_by_expected"])
-        d["live"] += int(r["liveness"] == "LIVE")
-        if r["liveness"] == "LIVE" and not r["caught"]:
-            d["live_survivors"] += 1
+        d["probe_sensitive"] += int(r["liveness"] == "PROBE_SENSITIVE")
+        if r["liveness"] == "PROBE_SENSITIVE" and not r["caught"]:
+            d["probe_sensitive_survivors"] += 1
+
+    # ---- completeness --------------------------------------------------
+    # The runner used to `return 0 if control_green else 1`, so an experiment
+    # in which most mutants never patched, never compiled, or never produced a
+    # probe still reported success as long as the unmutated control was green
+    # (chatgpt_1 bite-test audit r2, blocker 4).  The totals already carried
+    # the evidence; nothing consulted it.  A partial experiment is a legitimate
+    # thing to run and an illegitimate thing to report as whole, so it is now
+    # explicit rather than silent.
+    patch_failed_n = sum(1 for r in results if r.get("status") == "PATCH_FAILED")
+    compile_failed_n = sum(1 for r in results if r.get("status") == "COMPILE_FAILED")
+    probe_error_n = sum(1 for r in results if r.get("liveness") == "PROBE_ERROR")
+    declared_total = len(manifest["mutants"])
+    attempted = len(results)
+    subset_run = wanted is not None
+    structural_failures = patch_failed_n + compile_failed_n + probe_error_n
+    complete = (not subset_run
+                and attempted == declared_total
+                and structural_failures == 0
+                and not drift)
+    reasons = []
+    if subset_run:
+        reasons.append("--only selected %d of %d manifest entries"
+                       % (attempted, declared_total))
+    if attempted != declared_total and not subset_run:
+        reasons.append("attempted %d of %d manifest entries"
+                       % (attempted, declared_total))
+    if patch_failed_n:
+        reasons.append("%d mutant(s) failed to patch" % patch_failed_n)
+    if compile_failed_n:
+        reasons.append("%d mutant(s) failed to compile" % compile_failed_n)
+    if probe_error_n:
+        reasons.append("%d mutant(s) produced no probe digest, so their "
+                       "liveness is unknown" % probe_error_n)
+    if drift:
+        reasons.append("pinned-source drift was overridden with --allow-drift")
 
     doc = {
-        "schema": "detector-mutation-results/1",
+        "schema": "detector-mutation-results/3",
+        "completeness": {
+            "complete": complete,
+            "acknowledged_partial": bool(args.partial),
+            "manifest_entries": declared_total,
+            "attempted": attempted,
+            "subset_run": subset_run,
+            "patch_failed": patch_failed_n,
+            "compile_failed": compile_failed_n,
+            "probe_error": probe_error_n,
+            "drift_overridden": bool(drift),
+            "reasons": reasons,
+        },
         "manifest_sha256": sha256_file(args.manifest),
         "runner_sha256": sha256_file(os.path.abspath(__file__)),
         "probe_corpus_sha256": sha256_file(PROBE),
@@ -285,9 +337,9 @@ def main(argv=None):
             "survived": len(ok) - caught_n,
             "caught_by_expected": expected_n,
             "caught_only_by_other_detector": caught_n - expected_n,
-            "live": live_n,
-            "live_survivors": sum(1 for r in ok
-                                  if r["liveness"] == "LIVE"
+            "probe_sensitive": live_n,
+            "probe_sensitive_survivors": sum(1 for r in ok
+                                  if r["liveness"] == "PROBE_SENSITIVE"
                                   and not r["caught"]),
             "unwitnessed": sum(1 for r in ok
                                if r["liveness"] == "UNWITNESSED"),
@@ -307,7 +359,37 @@ def main(argv=None):
         "survived=%d  live=%d  unwitnessed=%d\nwrote %s\n" % (
             control_green, len(ok), caught_n, expected_n, len(ok) - caught_n,
             live_n, doc["totals"]["unwitnessed"], args.out))
-    return 0 if control_green else 1
+
+    return drive_verdict(control_green, complete, bool(args.partial), reasons)
+
+
+def drive_verdict(control_green, complete, acknowledged_partial, reasons):
+    """Exit status, in severity order.  A green control over a broken experiment
+    is the failure mode being closed here: it is not a success, and it must
+    not be reportable as one by anything gating on exit status.
+
+    Semantics are exactly the 2026-08-10 revision (80c3dd63); extracted from
+    main() unchanged so the contract is unit-testable
+    (tests/test_run_mutations_verdict.py).
+    """
+    if not control_green:
+        sys.stderr.write(
+            "INCONCLUSIVE: the unmutated control is not green, so no mutant "
+            "result means anything.\n")
+        return 1
+    if not complete:
+        if acknowledged_partial:
+            sys.stderr.write(
+                "PARTIAL (acknowledged with --partial): %s\n"
+                "These totals describe a subset and must not be published as a "
+                "whole-manifest result.\n" % "; ".join(reasons))
+            return 0
+        sys.stderr.write(
+            "INCOMPLETE: %s\n"
+            "Exiting 2. Re-run whole, or pass --partial to state on the record "
+            "that this is a subset.\n" % "; ".join(reasons))
+        return 2
+    return 0
 
 
 if __name__ == "__main__":

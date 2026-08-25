@@ -1,0 +1,125 @@
+{
+  "base": "https://www.codingame.com/services",
+  "check": "b1-platform-access",
+  "client": "data/scripts/collect_snapshot.PublicClient (frozen, unmodified)",
+  "cookieless_assertion": {
+    "cookieless": true,
+    "credential_headers_present": [],
+    "global_opener_handlers": null,
+    "global_opener_installed": false,
+    "outgoing_headers": [
+      "Content-type"
+    ]
+  },
+  "finished_utc": "2026-08-11T10:45:57.615Z",
+  "forward_path_verdict": "COOKIELESS_OK",
+  "historical_refetch": {
+    "note": "informational, not a B1 gate: arbitrary historical ids do not all resolve. Mechanism measured separately \u2014 availability tracks participant battle windows, not age, and not authentication.",
+    "probed": 3,
+    "resolved": 0
+  },
+  "puzzle": "spring-challenge-2026-troll-farm",
+  "stage_ok": {
+    "battle_list": true,
+    "leaderboard": true,
+    "replays_live": true
+  },
+  "stages": {
+    "battle_list": {
+      "completed_battles": 154,
+      "discovered_game_ids": [
+        898550181,
+        898096416,
+        898058061
+      ],
+      "payload_type": "list",
+      "request_body_sha256": "21751f8e87e03d0470fae007ecd49828a6c61acb476dab2cca2334911a5b3eac",
+      "response_bytes": 83073,
+      "response_sha256": "c060b8d9ca0a946ba833b35f68031c8c956ad56a42706d88124c61446ac69637",
+      "service": "gamesPlayersRanking/findLastBattlesByAgentId",
+      "status": "ok"
+    },
+    "leaderboard": {
+      "payload_type": "dict",
+      "probe_agent_id": 6479768,
+      "request_body_sha256": "45ac9406086d22295cee730a5c430529dc032a2c2b01520260260c0446b3a624",
+      "response_bytes": 669573,
+      "response_sha256": "c958636c8f8f875752009f8fbd731d324e3f019b4dea8d50d3f9ab30aa239aed",
+      "service": "Leaderboards/getFilteredPuzzleLeaderboard",
+      "status": "ok",
+      "users_count": 1000,
+      "users_present": true
+    },
+    "replays": [
+      {
+        "frames": 601,
+        "game_id": 898550181,
+        "origin": "discovered_live",
+        "payload_type": "dict",
+        "replay_valid": true,
+        "request_body_sha256": "95e7cca67eec573329312e5f0206fd8d8967da1fa49b9e71b7b30c1d693285fb",
+        "response_bytes": 369718,
+        "response_sha256": "5c1ccd3b397b8eebe3d93ef5d6b0467a4d2c0397a085e5415bf3c50837d4f222",
+        "service": "gameResult/findByGameId",
+        "shape_error": null,
+        "status": "ok"
+      },
+      {
+        "frames": 601,
+        "game_id": 898096416,
+        "origin": "discovered_live",
+        "payload_type": "dict",
+        "replay_valid": true,
+        "request_body_sha256": "eec74ff16a59d83d65317f1a8a7afbfa7eecebd6c8d4037103da9ae294522766",
+        "response_bytes": 405417,
+        "response_sha256": "814fb1a7f2e0a058d124614f5b7a2fa4f689fc44937fff5481ed19d709e0d81f",
+        "service": "gameResult/findByGameId",
+        "shape_error": null,
+        "status": "ok"
+      },
+      {
+        "frames": 601,
+        "game_id": 898058061,
+        "origin": "discovered_live",
+        "payload_type": "dict",
+        "replay_valid": true,
+        "request_body_sha256": "2db93bab5ddc11d1f0429f7a1b1f253a46893d6d9a5d881c0c72f27ef23b1f4a",
+        "response_bytes": 257605,
+        "response_sha256": "a89276fc42ea9b236f552edb69a2c3f5772ee5a97c2daea5bcac5b341d9d7d83",
+        "service": "gameResult/findByGameId",
+        "shape_error": null,
+        "status": "ok"
+      },
+      {
+        "error": "{\"id\":548,\"message\":\"Game not found\"}",
+        "game_id": 892621271,
+        "http_status": 422,
+        "origin": "known_cached_id",
+        "request_body_sha256": "092a0ba6da053b8255a64ec73b63f7e0167ad985e6662fb18cb9d361260b5558",
+        "service": "gameResult/findByGameId",
+        "status": "http_error"
+      },
+      {
+        "error": "{\"id\":548,\"message\":\"Game not found\"}",
+        "game_id": 892874069,
+        "http_status": 422,
+        "origin": "known_cached_id",
+        "request_body_sha256": "4df7255c910136848b6fd060610473ab6bb58dbb818751267aa087f403cbdacd",
+        "service": "gameResult/findByGameId",
+        "status": "http_error"
+      },
+      {
+        "error": "{\"id\":548,\"message\":\"Game not found\"}",
+        "game_id": 892881842,
+        "http_status": 422,
+        "origin": "known_cached_id",
+        "request_body_sha256": "6b7c6530ec8b5e78e666f89c53e74b44614585b3fa98c2c7f4d7fb13e4d4e54c",
+        "service": "gameResult/findByGameId",
+        "status": "http_error"
+      }
+    ]
+  },
+  "started_utc": "2026-08-11T10:45:54.550Z",
+  "task_id": "20260811-s3-collector-v2",
+  "verdict": "COOKIELESS_OK"
+}

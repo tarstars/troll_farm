@@ -1,0 +1,375 @@
+{
+  "aggregate_context_only": {
+    "candidate_blocking": 33,
+    "floor_blocking": 53
+  },
+  "blocking_in_both": 33,
+  "both_directions_exercised": false,
+  "candidate_sha256": "d127cf861ad7f145e5693b0a595bcc8e3c870f424926b18bdbb3debec80b0412",
+  "corpus_version": "c5-two-player-phase-merged-2026-08-11",
+  "de_novo": [],
+  "de_novo_by_property": {},
+  "directions": {
+    "de_novo": 0,
+    "healed": 20
+  },
+  "floor_sha256": "ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1",
+  "games_per_arm": 240,
+  "games_where_candidate_changed_opponent_behaviour": 17,
+  "healed": [
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "single_door_tent",
+      "floor_detectors": {
+        "D-1": 1,
+        "D-6": 1
+      },
+      "floor_properties": [
+        "P1"
+      ],
+      "map_id": "m012",
+      "profile": "chopper_aggressor",
+      "seat": 1,
+      "seed": 982451653
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "orchard_eligible",
+      "floor_detectors": {
+        "D-1": 1
+      },
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m014",
+      "profile": "idle",
+      "seat": 1,
+      "seed": 32452843
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "orchard_eligible",
+      "floor_detectors": {
+        "D-1": 1
+      },
+      "floor_properties": [
+        "P1"
+      ],
+      "map_id": "m025",
+      "profile": "chopper_aggressor",
+      "seat": 1,
+      "seed": 15485863
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "water_diagonal",
+      "floor_detectors": {
+        "D-1": 1
+      },
+      "floor_properties": [
+        "P1"
+      ],
+      "map_id": "m028",
+      "profile": "chopper_aggressor",
+      "seat": 1,
+      "seed": 67867967
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "choke_corridor",
+      "floor_detectors": {
+        "D-1": 1
+      },
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m046",
+      "profile": "harvester",
+      "seat": 0,
+      "seed": 67867967
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "choke_corridor",
+      "floor_detectors": {
+        "D-1": 1
+      },
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m050",
+      "profile": "harvester",
+      "seat": 1,
+      "seed": 32452843
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "forest_sparse",
+      "floor_detectors": {
+        "D-1": 1
+      },
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m060",
+      "profile": "harvester",
+      "seat": 0,
+      "seed": 982451653
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "orchard_eligible",
+      "floor_detectors": {
+        "D-1": 1
+      },
+      "floor_properties": [
+        "P1"
+      ],
+      "map_id": "m065",
+      "profile": "chopper_aggressor",
+      "seat": 1,
+      "seed": 86028121
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "open_field",
+      "floor_detectors": {
+        "D-1": 1
+      },
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m071",
+      "profile": "idle",
+      "seat": 0,
+      "seed": 86028121
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "open_field",
+      "floor_detectors": {
+        "D-1": 2
+      },
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m071",
+      "profile": "idle",
+      "seat": 1,
+      "seed": 86028121
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "choke_corridor",
+      "floor_detectors": {
+        "D-1": 1
+      },
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m073",
+      "profile": "harvester",
+      "seat": 0,
+      "seed": 15485863
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "choke_corridor",
+      "floor_detectors": {
+        "D-1": 1
+      },
+      "floor_properties": [
+        "P1"
+      ],
+      "map_id": "m078",
+      "profile": "chopper_aggressor",
+      "seat": 0,
+      "seed": 982451653
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "forest_sparse",
+      "floor_detectors": {
+        "D-1": 1
+      },
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m079",
+      "profile": "harvester",
+      "seat": 0,
+      "seed": 15485863
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "forest_sparse",
+      "floor_detectors": {
+        "D-1": 1
+      },
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m079",
+      "profile": "harvester",
+      "seat": 1,
+      "seed": 15485863
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "single_door_tent",
+      "floor_detectors": {
+        "D-1": 1
+      },
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m084",
+      "profile": "idle",
+      "seat": 1,
+      "seed": 982451653
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "single_door_tent",
+      "floor_detectors": {
+        "D-1": 1
+      },
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m094",
+      "profile": "idle",
+      "seat": 1,
+      "seed": 67867967
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "choke_corridor",
+      "floor_detectors": {},
+      "floor_properties": [
+        "P4"
+      ],
+      "map_id": "m100",
+      "profile": "harvester",
+      "seat": 0,
+      "seed": 67867967
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "orchard_eligible",
+      "floor_detectors": {
+        "D-1": 1
+      },
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m104",
+      "profile": "idle",
+      "seat": 1,
+      "seed": 32452843
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "orchard_eligible",
+      "floor_detectors": {
+        "D-1": 1
+      },
+      "floor_properties": [
+        "P1",
+        "P4"
+      ],
+      "map_id": "m114",
+      "profile": "idle",
+      "seat": 1,
+      "seed": 982451653
+    },
+    {
+      "candidate_detectors": {},
+      "candidate_properties": [],
+      "class": "choke_corridor",
+      "floor_detectors": {
+        "D-1": 1
+      },
+      "floor_properties": [
+        "P1"
+      ],
+      "map_id": "m118",
+      "profile": "chopper_aggressor",
+      "seat": 1,
+      "seed": 67867967
+    }
+  ],
+  "instrument_version": "fuzz-panel/5-two-player-phase-merged-referee",
+  "keyed_by": "(map_id, seat)",
+  "parent_of_candidate_sha256": "ad3bfefe4b2326f4f6b4a270dc862ea19a0e319a1cddfde44b96cc6f6d35a5d1",
+  "per_detector": {
+    "D-1": {
+      "de_novo_games": 0,
+      "healed_games": 19
+    },
+    "D-2": {
+      "de_novo_games": 0,
+      "healed_games": 0
+    },
+    "D-3": {
+      "de_novo_games": 0,
+      "healed_games": 0
+    },
+    "D-4": {
+      "de_novo_games": 0,
+      "healed_games": 0
+    },
+    "D-5": {
+      "de_novo_games": 0,
+      "healed_games": 0
+    },
+    "D-6": {
+      "de_novo_games": 0,
+      "healed_games": 1
+    },
+    "D-7": {
+      "de_novo_games": 0,
+      "healed_games": 0
+    },
+    "D-8": {
+      "de_novo_games": 0,
+      "healed_games": 0
+    },
+    "D-9": {
+      "de_novo_games": 0,
+      "healed_games": 0
+    }
+  },
+  "task": "20260820-pair-selector-anti-benching Phase-2 panel: P1+P2 on the cure-C base vs the cure-C matched floor"
+}

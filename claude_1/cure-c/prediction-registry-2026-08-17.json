@@ -1,0 +1,43 @@
+{
+ "task": "20260817-cure-c-implementation",
+ "status": "FROZEN BEFORE THE FIRST LINE OF CANDIDATE CODE",
+ "frozen_utc": "2026-08-17T21:30:00Z",
+ "authority": "coordination/tasks/20260817-cure-c-implementation.md section 2",
+ "source": "coordination/messages/claude_1/20260817T202500Z-20260817-candidate-c-fixture-scope-correction.md (accepted cross-tab)",
+ "instrument": "claude_1/hstarve1/instrumented-hstarve2.rs at 1384df74 (codex_1 GATE_ACCEPTED)",
+ "subject_sha256": "98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29",
+
+ "prediction_rule": "C supplies a candidate on a turn iff the turn is MAIN-branch (the non-endgame :1189 fall-through) AND idle_harvest_candidates would qualify a plant, or the unit carries something and bank_candidates is non-empty. Every other no-goal turn reaches the explicit WAIT tail and is unchanged.",
+
+ "cured_completely": {
+  "OSC-008": {"no_goal_turns": 7, "c_supplies": 7},
+  "OSC-028": {"no_goal_turns": 51, "c_supplies": 51},
+  "OSC-032": {"no_goal_turns": 110, "c_supplies": 110},
+  "OSC-033": {"no_goal_turns": 143, "c_supplies": 143}
+ },
+ "cured_turn_total": 311,
+
+ "predicted_uncured": {
+  "OSC-009": {"no_goal_turns": 4, "c_supplies": 0,
+              "reason": "all 4 turns are ENDGAME-branch; C alters only the non-endgame fall-through and never runs"},
+  "OSC-005": {"no_goal_turns": 1, "c_supplies": 0,
+              "reason": "unit at full capacity returns at :1185, before the :1189 door C rewrites"},
+  "OSC-031": {"no_goal_turns": 189, "c_supplies": 11,
+              "reason": "167 fruitless-board turns reach the explicit WAIT tail with C behaving exactly as specified; the chop-side rejection is the unresolved residue"},
+  "OSC-001": {"no_goal_turns": 16, "c_supplies": 3,
+              "reason": "12 turns are ENDGAME-branch; opponent occupancy declines most of the rest"}
+ },
+ "bonus_turns_outside_the_four": 14,
+ "supplied_turn_total": 325,
+ "no_goal_turn_total": 521,
+
+ "ladder_expectation_points": {"low": 0.2, "high": 0.7,
+  "binding_note": "Under the M-1 materiality floor of 1.0 an IMMATERIAL night is a possible HONEST outcome and is not a failure of this task. Nobody re-frames it afterwards. Recorded before any code exists."},
+
+ "declared_limit": {
+  "claim": "The other 26 fixtures cannot be pre-registered CHANGED/UNCHANGED from the pool-#5 data.",
+  "why": "The :1189 fall-through is only observable when it yields a WAIT-only list; when endgame_candidates returns something non-WAIT the record is indistinguishable from main_candidates' own body. The instrument logs the routing arm, not the producing function.",
+  "resolution": "An HS2FALLBACK tap at the :1190 return makes the fall-through set exact. Being closed inside G1 rather than argued about after the panel.",
+  "status": "OPEN AT FREEZE TIME — stated here so it cannot be discovered later and called a surprise"
+ }
+}

@@ -1,0 +1,303 @@
+{
+ "eligible_actions_declined": {
+  "BANK+CHOP": 1,
+  "CHOP": 167,
+  "CHOP+HARVEST": 275,
+  "HARVEST": 78
+ },
+ "notes": [
+  {
+   "branches": {
+    "ENDGAME": 12,
+    "MAIN": 4
+   },
+   "carry_at_first_turn": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "eligible_actions_declined": {
+    "HARVEST": 16
+   },
+   "harvest_gate_blame": {
+    "OPPONENT_SITTING_ON_PLANTx1": 13,
+    "WOULD_HAVE_QUALIFIEDx1": 3
+   },
+   "kind": "D1_EPISODE",
+   "no_goal_turns": 16,
+   "situation": "OSC-001",
+   "turn_span": [
+    49,
+    200
+   ],
+   "unit": 2,
+   "unit_capability": {
+    "capacity": 1,
+    "chop": 0,
+    "harvest": 1,
+    "speed": 2
+   }
+  },
+  {
+   "branches": {
+    "MAIN": 1
+   },
+   "carry_at_first_turn": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    2
+   ],
+   "eligible_actions_declined": {
+    "BANK+CHOP": 1
+   },
+   "harvest_gate_blame": {},
+   "kind": "D1_EPISODE",
+   "no_goal_turns": 1,
+   "situation": "OSC-005",
+   "turn_span": [
+    17,
+    17
+   ],
+   "unit": 0,
+   "unit_capability": {
+    "capacity": 2,
+    "chop": 1,
+    "harvest": 1,
+    "speed": 1
+   }
+  },
+  {
+   "branches": {
+    "MAIN": 7
+   },
+   "carry_at_first_turn": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "eligible_actions_declined": {
+    "HARVEST": 7
+   },
+   "harvest_gate_blame": {
+    "OPPONENT_SITTING_ON_PLANTx1|WOULD_HAVE_QUALIFIEDx1": 1,
+    "WOULD_HAVE_QUALIFIEDx2": 6
+   },
+   "kind": "D1_EPISODE",
+   "no_goal_turns": 7,
+   "situation": "OSC-008",
+   "turn_span": [
+    57,
+    63
+   ],
+   "unit": 2,
+   "unit_capability": {
+    "capacity": 3,
+    "chop": 0,
+    "harvest": 1,
+    "speed": 1
+   }
+  },
+  {
+   "branches": {
+    "ENDGAME": 4
+   },
+   "carry_at_first_turn": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "eligible_actions_declined": {
+    "HARVEST": 4
+   },
+   "harvest_gate_blame": {
+    "OPPONENT_SITTING_ON_PLANTx1": 4
+   },
+   "kind": "D1_EPISODE",
+   "no_goal_turns": 4,
+   "situation": "OSC-009",
+   "turn_span": [
+    80,
+    83
+   ],
+   "unit": 2,
+   "unit_capability": {
+    "capacity": 2,
+    "chop": 0,
+    "harvest": 1,
+    "speed": 1
+   }
+  },
+  {
+   "branches": {
+    "MAIN": 51
+   },
+   "carry_at_first_turn": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "eligible_actions_declined": {
+    "HARVEST": 51
+   },
+   "harvest_gate_blame": {
+    "OPPONENT_SITTING_ON_PLANTx1|WOULD_HAVE_QUALIFIEDx4": 8,
+    "OPPONENT_SITTING_ON_PLANTx1|WOULD_HAVE_QUALIFIEDx5": 4,
+    "OPPONENT_SITTING_ON_PLANTx2|WOULD_HAVE_QUALIFIEDx3": 2,
+    "OPPONENT_SITTING_ON_PLANTx2|WOULD_HAVE_QUALIFIEDx4": 6,
+    "WOULD_HAVE_QUALIFIEDx1": 4,
+    "WOULD_HAVE_QUALIFIEDx2": 8,
+    "WOULD_HAVE_QUALIFIEDx3": 3,
+    "WOULD_HAVE_QUALIFIEDx4": 2,
+    "WOULD_HAVE_QUALIFIEDx5": 7,
+    "WOULD_HAVE_QUALIFIEDx6": 7
+   },
+   "kind": "D1_EPISODE",
+   "no_goal_turns": 51,
+   "situation": "OSC-028",
+   "turn_span": [
+    2,
+    52
+   ],
+   "unit": 2,
+   "unit_capability": {
+    "capacity": 2,
+    "chop": 0,
+    "harvest": 1,
+    "speed": 1
+   }
+  },
+  {
+   "branches": {
+    "ENDGAME": 20,
+    "MAIN": 169
+   },
+   "carry_at_first_turn": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "eligible_actions_declined": {
+    "CHOP": 167,
+    "CHOP+HARVEST": 22
+   },
+   "harvest_gate_blame": {
+    "OPPONENT_SITTING_ON_PLANTx1": 11,
+    "WOULD_HAVE_QUALIFIEDx1": 11
+   },
+   "kind": "P4_STALL",
+   "no_goal_turns": 189,
+   "situation": "OSC-031",
+   "turn_span": [
+    11,
+    200
+   ],
+   "unit": 0,
+   "unit_capability": {
+    "capacity": 2,
+    "chop": 1,
+    "harvest": 1,
+    "speed": 1
+   }
+  },
+  {
+   "branches": {
+    "MAIN": 110
+   },
+   "carry_at_first_turn": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "eligible_actions_declined": {
+    "CHOP+HARVEST": 110
+   },
+   "harvest_gate_blame": {
+    "WOULD_HAVE_QUALIFIEDx1": 110
+   },
+   "kind": "P4_STALL",
+   "no_goal_turns": 110,
+   "situation": "OSC-032",
+   "turn_span": [
+    91,
+    200
+   ],
+   "unit": 0,
+   "unit_capability": {
+    "capacity": 2,
+    "chop": 1,
+    "harvest": 1,
+    "speed": 1
+   }
+  },
+  {
+   "branches": {
+    "MAIN": 143
+   },
+   "carry_at_first_turn": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "eligible_actions_declined": {
+    "CHOP+HARVEST": 143
+   },
+   "harvest_gate_blame": {
+    "WOULD_HAVE_QUALIFIEDx1": 143
+   },
+   "kind": "P4_STALL",
+   "no_goal_turns": 143,
+   "situation": "OSC-033",
+   "turn_span": [
+    58,
+    200
+   ],
+   "unit": 0,
+   "unit_capability": {
+    "capacity": 2,
+    "chop": 1,
+    "harvest": 1,
+    "speed": 1
+   }
+  }
+ ],
+ "pool": 5,
+ "review_ref": "codex_1/reviews/h-starve-1-pool3-incidence-revision-review-2026-08-17.md",
+ "situations": [
+  "OSC-001",
+  "OSC-005",
+  "OSC-008",
+  "OSC-009",
+  "OSC-028",
+  "OSC-031",
+  "OSC-032",
+  "OSC-033"
+ ],
+ "turns_by_branch": {
+  "ENDGAME": 36,
+  "MAIN": 485
+ }
+}

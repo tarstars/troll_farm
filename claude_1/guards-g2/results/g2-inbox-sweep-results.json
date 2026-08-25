@@ -1,0 +1,95 @@
+{
+  "caught": 7,
+  "control_green": true,
+  "control_output_tail": null,
+  "drive": "g2-inbox-sweep",
+  "mutants_applied": 7,
+  "mutants_defined": 7,
+  "not_applied": [],
+  "results": [
+    {
+      "caught": true,
+      "description": "[authority selection] treats local branches as authoritative, so unpushed messages count as delivered",
+      "extras": [],
+      "failing_tests": [
+        "test_worktree_ack_does_not_acknowledge_remote_message"
+      ],
+      "id": "S1-authority-includes-local-refs",
+      "status": "APPLIED",
+      "test_output_tail": "\nE        +  where 0 = CompletedProcess(args=['/home/tarstars/.cache/uv/archive-v0/eslcbKwuCEoOkprU/bin/python', '/tmp/claude-1000/-home-tars...\\n\\nquarantine errors (0):\\n\\nquarantined (0):\\n\\nnew (unseen) (0):\\n\\nunacknowledged, ack required (0):\\n', stderr='').returncode\n\ntests/test_inbox_sweep.py:265: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_inbox_sweep.py::test_worktree_ack_does_not_acknowledge_remote_message\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 1 passed in 0.74s\n"
+    },
+    {
+      "caught": true,
+      "description": "[quarantine/roster authority] reads the roster from a branch instead of trunk \u2014 the exact defect the comment above it describes, where a ref with no quarantine suppressed nothing and reported zero errors",
+      "extras": [],
+      "failing_tests": [
+        "test_tool_drift_warns_on_mismatch_and_is_quiet_when_in_sync"
+      ],
+      "id": "S2-roster-from-wrong-ref",
+      "status": "APPLIED",
+      "test_output_tail": " required (0):\\n' = CompletedProcess(args=['/home/tarstars/.cache/uv/archive-v0/eslcbKwuCEoOkprU/bin/python', '/tmp/claude-1000/-home-tars...\\n\\nquarantine errors (0):\\n\\nquarantined (0):\\n\\nnew (unseen) (0):\\n\\nunacknowledged, ack required (0):\\n', stderr='').stdout\n\ntests/test_inbox_sweep.py:798: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_inbox_sweep.py::test_tool_drift_warns_on_mismatch_and_is_quiet_when_in_sync\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 25 passed in 6.16s\n"
+    },
+    {
+      "caught": true,
+      "description": "[ack discharge] ignores the v2 requires_ack field, honouring only the legacy line and the kind default",
+      "extras": [],
+      "failing_tests": [
+        "test_requires_ack_boolean_legacy_and_kind_rules"
+      ],
+      "id": "S3-ack-required-ignores-yaml",
+      "status": "APPLIED",
+      "test_output_tail": "uires_ack at 0x74094d8f0180>('---\\nrequires_ack: TRUE\\n---\\n\\n# Message\\n', 'update')\nE        +    where <function requires_ack at 0x74094d8f0180> = inbox_sweep.requires_ack\nE        +    and   '---\\nrequires_ack: TRUE\\n---\\n\\n# Message\\n' = yaml_message('requires_ack: TRUE')\n\ntests/test_inbox_sweep.py:1487: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_inbox_sweep.py::test_requires_ack_boolean_legacy_and_kind_rules\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 65 passed in 18.07s\n"
+    },
+    {
+      "caught": true,
+      "description": "[ack discharge] ignores the legacy `Requires acknowledgement: yes` line, so pre-v2 obligations vanish",
+      "extras": [],
+      "failing_tests": [
+        "test_requires_ack_boolean_legacy_and_kind_rules"
+      ],
+      "id": "S4-ack-required-ignores-legacy",
+      "status": "APPLIED",
+      "test_output_tail": "s acknowledgement: yes\\n\", \"update\")\nE       AssertionError: assert False\nE        +  where False = <function requires_ack at 0x7b74cd1a8180>('- Requires acknowledgement: yes\\n', 'update')\nE        +    where <function requires_ack at 0x7b74cd1a8180> = inbox_sweep.requires_ack\n\ntests/test_inbox_sweep.py:1490: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_inbox_sweep.py::test_requires_ack_boolean_legacy_and_kind_rules\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 65 passed in 19.04s\n"
+    },
+    {
+      "caught": true,
+      "description": "[exit status] exits 0 with outstanding acknowledgements, so the inbox gate can never fail",
+      "extras": [],
+      "failing_tests": [
+        "test_worktree_ack_does_not_acknowledge_remote_message"
+      ],
+      "id": "S5-exit-zero-when-unacknowledged",
+      "status": "APPLIED",
+      "test_output_tail": "\nE        +  where 0 = CompletedProcess(args=['/home/tarstars/.cache/uv/archive-v0/eslcbKwuCEoOkprU/bin/python', '/tmp/claude-1000/-home-tars...oordination/messages/claude_1/20260805T100000Z-task-a-question.md   [refs/remotes/origin/agent/claude_1]\\n', stderr='').returncode\n\ntests/test_inbox_sweep.py:265: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_inbox_sweep.py::test_worktree_ack_does_not_acknowledge_remote_message\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 1 passed in 0.71s\n"
+    },
+    {
+      "caught": true,
+      "description": "[exit status] drops the exit-2 transport-broken signal, hiding delivery errors behind a clean exit",
+      "extras": [],
+      "failing_tests": [
+        "test_immutable_path_collision_across_remote_refs_exits_2"
+      ],
+      "id": "S6-transport-break-not-signalled",
+      "status": "APPLIED",
+      "test_output_tail": "      +  where 0 = CompletedProcess(args=['/home/tarstars/.cache/uv/archive-v0/eslcbKwuCEoOkprU/bin/python', '/tmp/claude-1000/-home-tars...\\n\\nquarantine errors (0):\\n\\nquarantined (0):\\n\\nnew (unseen) (0):\\n\\nunacknowledged, ack required (0):\\n', stderr='').returncode\n\ntests/test_inbox_sweep.py:496: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_inbox_sweep.py::test_immutable_path_collision_across_remote_refs_exits_2\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 12 passed in 3.38s\n"
+    },
+    {
+      "caught": true,
+      "description": "[schema validation] reports a non-integer schema_version as legacy instead of an error",
+      "extras": [],
+      "failing_tests": [
+        "test_schema_version_of_legacy_and_v2"
+      ],
+      "id": "S7-schema-version-parse-lenient",
+      "status": "APPLIED",
+      "test_output_tail": "sert inbox_sweep.schema_version_of({}) == (0, None)\n        assert inbox_sweep.schema_version_of({\"schema_version\": \"2\"}) == (2, None)\n        version, error = inbox_sweep.schema_version_of({\"schema_version\": \"two\"})\n>       assert version >= 2 and error\nE       assert (0 >= 2)\n\ntests/test_inbox_sweep.py:1546: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_inbox_sweep.py::test_schema_version_of_legacy_and_v2 - asse...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 70 passed in 19.52s\n"
+    }
+  ],
+  "survivors": [],
+  "target": "/tmp/claude-1000/-home-tarstars-prj-troll-farm/f04198ac-2046-4ba5-aa62-e4cf8a051a74/scratchpad/g2-main/scripts/inbox_sweep.py",
+  "task_id": "20260810-guards-that-cannot-fail",
+  "tests": [
+    "/tmp/claude-1000/-home-tarstars-prj-troll-farm/f04198ac-2046-4ba5-aa62-e4cf8a051a74/scratchpad/g2-main/tests/test_inbox_sweep.py",
+    "/tmp/claude-1000/-home-tarstars-prj-troll-farm/f04198ac-2046-4ba5-aa62-e4cf8a051a74/scratchpad/g2-main/tests/test_lint_outbox.py"
+  ]
+}

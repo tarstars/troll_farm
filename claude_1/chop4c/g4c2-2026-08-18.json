@@ -1,0 +1,86 @@
+{
+  "OSC-031": {
+    "parity": "IDENTICAL",
+    "gate_records": 727,
+    "plant_chains": 734,
+    "clauses_reached": {
+      "GATE_UNIT": 727,
+      "DEAD_OR_UNREACHABLE": 734,
+      "PREDICT_TREE_NONE": 734,
+      "PREDICTED_NONPOSITIVE": 7,
+      "CHOP_OUTCOME_NONE": 7,
+      "ROUND_TRIP_CLOCK": 7,
+      "WOOD_NONPOSITIVE": 7,
+      "ACCEPT": 7
+    },
+    "terminal_clause": {
+      "ACCEPT": 7,
+      "PREDICT_TREE_NONE": 727
+    },
+    "reject_turn_coverage": 198,
+    "window": [
+      11,
+      200
+    ],
+    "invocations": 727
+  },
+  "OSC-001": {
+    "parity": "IDENTICAL",
+    "gate_records": 463,
+    "plant_chains": 200,
+    "clauses_reached": {
+      "GATE_UNIT": 463,
+      "DEAD_OR_UNREACHABLE": 200,
+      "PREDICT_TREE_NONE": 200,
+      "PREDICTED_NONPOSITIVE": 200,
+      "CHOP_OUTCOME_NONE": 200,
+      "ROUND_TRIP_CLOCK": 200,
+      "WOOD_NONPOSITIVE": 200,
+      "ACCEPT": 200
+    },
+    "terminal_clause": {
+      "ACCEPT": 200,
+      "GATE_UNIT": 263
+    },
+    "reject_turn_coverage": 200,
+    "window": [
+      6,
+      200
+    ],
+    "invocations": 463
+  },
+  "OSC-008": {
+    "parity": "IDENTICAL",
+    "gate_records": 586,
+    "plant_chains": 340,
+    "clauses_reached": {
+      "GATE_UNIT": 586,
+      "DEAD_OR_UNREACHABLE": 340,
+      "PREDICT_TREE_NONE": 340,
+      "PREDICTED_NONPOSITIVE": 329,
+      "CHOP_OUTCOME_NONE": 329,
+      "ROUND_TRIP_CLOCK": 329,
+      "WOOD_NONPOSITIVE": 329,
+      "ACCEPT": 329
+    },
+    "terminal_clause": {
+      "ACCEPT": 329,
+      "GATE_UNIT": 354,
+      "PREDICT_TREE_NONE": 11
+    },
+    "reject_turn_coverage": 188,
+    "window": [
+      57,
+      64
+    ],
+    "invocations": 586
+  },
+  "_taps_never_observed_terminal": [
+    "CHOP_OUTCOME_NONE",
+    "DEAD_OR_UNREACHABLE",
+    "PREDICTED_NONPOSITIVE",
+    "ROUND_TRIP_CLOCK",
+    "WOOD_NONPOSITIVE"
+  ],
+  "_note": "A clause with no observed terminal row cannot support the claim that it did not reject. codex_1 specifies these controls; the implementer does not choose them after seeing which taps stayed silent."
+}

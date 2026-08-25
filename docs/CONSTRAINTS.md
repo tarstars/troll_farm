@@ -831,6 +831,15 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
 - Fresh submissions read 3–4 points below matured ones; a failed same-code A/A (16.1 → 19.9
   vs prior 26.3) proves the artifact. Never churn submissions; require capacity A/A before
   candidate trials. [vol 1 07-16 arena section; archive/legend/session-handoff-2026-07-16.md]
+  **[no-churn clause SUBSTANTIALLY WEAKENED — see `docs/STATE.md` §3 B0.3]** The
+  fresh-vs-matured gap stands; the operational prohibition does not. A mature 160-game
+  read costs ~2 h at current ladder rates, not days of standing, so "never churn" is no
+  longer a binding cost argument. The A/A capacity requirement also no longer applies as
+  written — the per-candidate gate was lifted by the owner 2026-07-30 and the noise-band
+  gate removed by owner ruling. Read STATE §3 before quoting this bullet as a live rule.
+  *Marked 2026-08-10 during hygiene cleanup: the weakening was recorded only in STATE, so
+  this bullet still read as binding to anyone following the reading order in
+  `coordination/peer-prompt.md` §1, which reaches CONSTRAINTS before STATE's standing rules.*
 - Verdicts are deltas against a same-window control, never absolute levels or cross-hour
   comparisons. [archive/bronze-to-gold/arena-queue.md, measurement policy v2]
 - Field evidence comes from authorized passive replay collection with immutable snapshots,
@@ -838,6 +847,98 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   actions are separately sealed and individually authorized. [D61p]
 
 ## (h) Meta-lessons
+
+- ★★★ **LABEL DISCIPLINE — every status label names its AXIS and its EVIDENCE CLASS.**
+  Owner-directed 2026-08-10 after four label failures in one week. A label is a claim; a claim
+  that does not say what backs it is how all four happened.
+
+  **The failures being fixed.** (1) `LIVE` claimed legal-game reachability its synthetic corpus
+  could not witness → renamed `PROBE_SENSITIVE`. (2) `VALIDATED_BY_DEFINITION` recorded a *spec
+  stipulation* in the column reserved for *evidence about the world*, and made the audit
+  contradict its own safety sentence → retired. (3) `INSTRUMENT_UNSUPPORTED` on D-9 (b)–(d) was
+  true of the bite-test harness and false of the production panel, and one label covering two
+  instruments hid that three blocking clauses run untested. (4) "no data" is currently spelled
+  **five** different ways — `NO_FIXTURE`, `INSTRUMENT_UNSUPPORTED`, `UNWITNESSED`,
+  `NO_WITNESSED_POPULATION`, `UNRESOLVED` — with nothing saying which is which.
+
+  **Rule 1 — one axis per label, and the axis is part of the name.** The four axes are
+  *contract authority* (do the specs agree?), *implementation validity* (is the code pinned by
+  tests?), *applicability* (can this instrument run it?), *truth validity* (is the predicate the
+  right property?). A value may appear on exactly one axis. `UNRESOLVED` currently appears as a
+  truth-validity value and colloquially everywhere else; only the former is legal.
+
+  **Rule 2 — every label carries an evidence class**, from this closed set:
+  `MEASURED` (instrument executed on real referee data) · `CONSTRUCTED` (executed on synthetic
+  or fixture data) · `STIPULATED` (asserted by spec or owner ruling; no observation) ·
+  `REPORTED` (another agent's claim, not reproduced here) · `ABSENT` (no evidence exists).
+  Written `STATUS/EVIDENCE`, e.g. `PINNED/CONSTRUCTED`, `NO_POPULATION/MEASURED`.
+  A `STIPULATED` label may **never** be tallied alongside `MEASURED` ones — that was failure (2).
+
+  **Rule 3 — "no data" must say WHY**, because the three cases have different remedies:
+  `ABSENT/NO_INSTRUMENT` the tool cannot produce it (build the tool) ·
+  `ABSENT/NO_FIXTURE` the tool could but no input exists (build the input) ·
+  `NO_POPULATION/MEASURED` the tool ran and nothing occurred (**a finding, not a gap** — and it
+  must carry the corpus bound, e.g. "720 referee games, 3 corpora", because zero observed is
+  never "cannot occur").
+
+  **Rule 4 — a label naming an instrument names WHICH instrument.** Failure (3) was one label
+  spanning the bite-test harness and the production panel.
+
+  **Rule 5 — labels invented mid-flight get registered here.** Mine from 2026-08-12/13 were not:
+  `RECORDED/UNREPLICATED` → now `REPORTED`; `STRUCTURALLY_VERIFIED / RUNTIME_REPORTED` → split
+  into per-claim `MEASURED` and `REPORTED`; `SINGLE_REVIEWER_DEGRADED` is **not** a label at all
+  but a review-process note, and stays out of every status column.
+
+  **Migration is not urgent and must not be silent.** Existing labels stay valid until a row is
+  touched for another reason; re-tallying wholesale would repeat failure (2) at scale. Any
+  retally runs through `render_branch_ledger.py --check`, never by hand.
+  [owner-directed; D-9; LIVE→PROBE_SENSITIVE; VALIDATED_BY_DEFINITION retirement]
+
+- ★★★ **OWNER RULE 2026-08-10, STRICT AND BINDING: NO BANANA MANIPULATION BEFORE THE SECOND
+  TROLL IS TRAINED.** Owner wording: *"For now I want to set strict rule 'no banana manipulation
+  before train the second troll'."* Threshold **0**, no exemption, no affordability trade.
+  Operationally this is detector **D-9 branch (a)** `banana_before_train`: any `PLANT`/`PICK
+  BANANA` issued before the candidate's first `TRAIN` while `|own units| == 1` is a **blocking**
+  violation. Marked "for now" by the owner — interim, revisable, but binding while it stands.
+  **What it settles:** the D-9 affordability question, which had been referred out of
+  `codex_1`'s gate review and left unowned when `local_codex_1` went dormant, is **dissolved
+  rather than answered** — there is no affordable delay to price, because the permitted number
+  of pre-TRAIN banana commands is zero. Blocker 3's semantics dependency is discharged.
+  **What it does NOT settle:** D-9's paired branches (b) `train_late`, (c) `train_missing`,
+  (d) `train_stats_differ` still carry a stale `INSTRUMENT_UNSUPPORTED` label from before c5 and
+  still need recalibration. They catch TRAIN displacement by routes other than bananas.
+  ⚠ **The rule now rests on the least-verified branch of the four.** Row (a) is
+  `impl_validity: UNPINNED`, and per the audit ledger **D9-M1, D9-M2 and D9-M3 all SURVIVED**
+  mutation (only D9-M4 was caught). The detector that enforces this rule currently fails to
+  notice three separate mutations of itself. **A strict rule policed by an unpinned detector is
+  a rule in name only** — pinning row (a) is now the highest-priority item in the bite-test
+  audit, ahead of recalibrating (b)–(d). [owner ruling; D-9; bite-test r2 blocker 3]
+
+- ★★ **EVERY PUBLISHED COUNT NAMES ITS UNIT — standing rule, added 2026-08-12 from repeated
+  cost.** A bare integer in an artifact, message, table or commit message is not a measurement;
+  the unit is part of the value. Write "74 side-games with at least one D-9 record" or
+  "196 D-9 episodes", never "D-9 fires 74 times". This is not style. Evidence, all inside one
+  week: **`claude_1` has logged eight instances of its own "a figure changes meaning at a
+  boundary" failure, five of them specifically at the games-versus-episodes boundary.** The
+  D-9 `74` versus `196` dispute looked like two agents disagreeing, consumed a scope item of an
+  independent review, and needed three separate re-derivations before it resolved into *both
+  numbers being correct measurements of different quantities*. `claude_1`'s M3a restatement had
+  to spell out that `20` counts **terminal episodes** and is "not comparable to the 34 / 46 / 32
+  figures on the sibling extraction, which count situations, represented episodes and source
+  games respectively" — four different units in one paragraph of one task.
+  **The integrator is not exempt and has been the worst offender.** On 2026-08-12 I asserted
+  five figures or states without opening the artifact: task records described as assigned while
+  unpushed; a roster fix announced as in place while absent from the ref that reads it; peer
+  reviews declared missing that had been delivered; a completed task marked incomplete; and
+  `api_submit.py`'s stale default reported as `2caac7c6…` when it was `a8eb3b2b…`. Same family:
+  a claim true of one artifact asserted of another.
+  **Practical rules.** (1) Name the unit at every use, not once per document. (2) When two
+  figures disagree, the *first* hypothesis is different units or different subjects, not error
+  by either party — it has been the true explanation every time so far. (3) State the subject
+  identity by hash, not by name: `98628e98` versus parent `a8eb3b2b` has already produced one
+  wrong-subject retraction. (4) Before reporting a discrepancy, confirm what you actually ran;
+  hashing a nonexistent path returns `e3b0c442…`, the SHA-256 of the empty string, and it looks
+  exactly like agreement.
 
 - ★★★ **IDENTITY: the resident is a reproduction of Yann Moisan (`yamo`)'s #3-Legend
   published bot**, not an independently evolved architecture. Postmortem archived in
@@ -905,6 +1006,13 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   gates passing** — and it is still worth only **+0.045 overall margin (CI [−0.024,+0.114],
   ≈0.005 rating)**. A working version of this fix does not justify a promotion cycle. Do not
   reopen. [D176a; D171a]
+  *(Reproducibility note, 2026-08-10: the code behind this closure —
+  `rust/src/bin/d176a_oscillation_breaker_panel.rs` (`6fcbaef3`) and
+  `cgauto/analyze_d176a_oscillation_breaker.py` (`874f027c`) — sat UNTRACKED from 2026-07-29
+  until 2026-08-10. For twelve days the strongest closure in this document rested on evidence
+  only the authoring worktree could regenerate, which made it unfalsifiable in practice: nobody
+  else could re-run it to disagree. Now committed. The verdict is unchanged; what changed is
+  that it can be contradicted.)*
 - ~~**No renewable resource base exists on these maps — for ANY cohort.**~~
   **[OVERTURNED 2026-07-30 by the completed A2 Phase 0a analysis — the integrator drew this
   from partial output before the audit finished. See the corrected bullet below.]** The
@@ -1129,3 +1237,12 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   post-release edits, impossible-commitment exits, and a frozen coverage manifest. Do not infer a
   value verdict about banana production from these implementation failures. [banana R2 rounds
   5/6 and FSM review, 2026-08-06]
+- **Canonical human-readable format (owner ruling 2026-08-11): pinned rustfmt via
+  `claude_1/readable-source/format_readable.py`** (`reorder_imports=false`, `max_width=100`,
+  trailing-comma reconciliation, mandatory round-trip to the exact minified parent hash;
+  rustfmt 1.9.0-stable at ruling). Readable-LOC figures are formatting-dependent: **bytes are
+  canonical** (E7a orchard strip = 15,013 B = 23.9%), and any line figure names its expander
+  (375 = the 2026-08-04 task expander; 586 = the stricter stranded expander, archived on
+  `archive/local_codex_1-stranded-20260810`). In-place formatting of hash-locked sources
+  remains forbidden. Full text: `docs/readable-format.md`. [e7a LOC-cost reconciliation,
+  2026-08-11]

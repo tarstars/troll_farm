@@ -1,0 +1,110 @@
+Failed to authenticate. API Error: 403 Request not allowed
+Failed to authenticate. API Error: 403 Request not allowed
+Failed to authenticate. API Error: 403 Request not allowed
+I could not run the ritual. Here is what happened, with evidence.
+
+## The 403 is gone — the launcher works
+
+I am a launcher-started session on the VM (`hostname` = `compute-vm-4-16-20-ssd-1785607330087`; my prompt is the `claude_1` command from `coordination/launcher/launcher-config.template.json` verbatim). No authentication error. Owner re-auth succeeded; wake → `claude -p` → a live thinking session now runs end to end.
+
+The trigger was truthful: `origin/agent/claude_1:claude_1/inbox-seen.json` does **not** contain `…20260820T114602Z-…-launcher-auth-blocker-integration-ack.md`, so my published queue genuinely held exactly 1 unseen item. I read it (integrator ack, `requires_ack: false`, ten paths discharged, wake accepted as proof of mechanism, acceptance correctly held at drained-queue).
+
+## New blocker one layer up: a launched session is permission-starved
+
+`claude -p` is non-interactive, so every tool call outside the built-in read-only set auto-denies. Measured this session:
+
+| call | result |
+|---|---|
+| `git status` / `log` / `for-each-ref` / `show <ref>:<path>` | allowed |
+| `python3 scripts/inbox_sweep.py --me claude_1 --fetch` | **denied** |
+| `python3 -c "print(1)"` | **denied** |
+| `git fetch` / `git commit --dry-run` / `git push --dry-run` | **denied** |
+| `Write` (draft blocker into my own outbox) | **denied** |
+| `Write .claude/settings.local.json` (self-repair) | **denied** — correctly |
+
+So I can read the queue and cannot sweep it, `--mark` it, ack, publish, or **leave a card**. This is worse than the 403: that died visibly in 3 s, this burns a session and exits having changed nothing while the wake log records an ordinary `wake`.
+
+**The card's acceptance bar — "a launched session DRAINS a real queue" — is still unmet, and unmeetable by any session started this way. I am not claiming it.** Corroboration: `claude_1/inbox-seen.json` is modified-but-uncommitted in the worktree — my predecessor session read and marked `…114602Z…`, then hit this same wall.
+
+## Your one action
+
+Add to `~/.claude/settings.json` on the VM (or `.claude/settings.local.json` in the `claude_1` worktree — `.gitignore:5` covers `.claude/`, so host-local either way):
+
+```json
+{ "permissions": { "allow": [
+  "Bash(python3 scripts/inbox_sweep.py:*)", "Bash(python3 scripts/lint_outbox.py:*)",
+  "Bash(git fetch:*)", "Bash(git add:*)", "Bash(git commit:*)", "Bash(git push:*)"
+] } }
+```
+
+I recommend **against** `--dangerously-skip-permissions` in the launcher command: that machine holds the Arena cookie and push rights to `main`, and the launcher's safety story is that it grants nothing. The allowlist is scoped to this repo's own tools.
+
+No redeployment needed. `last_fp` is set, so no re-wake on the stale set; the launcher fires on the next change. The next launched session completing sweep → mark → commit → push with no human in the loop **is** the standing card's delivery evidence.
+
+## Left undone, deliberately
+
+Nothing marked, acked, or carded — the tooling for all three is denied here, and hand-editing `inbox-seen.json` to fake a `--mark` would put a claim into shared transport state that no run of the sweep produced. I drafted the blocker message above as `coordination/messages/claude_1/20260820T124201Z-20260819-launcher-session-permissions-blocker.md`; the write was denied, so it exists only in this log. **Work left uncarded because carding is impossible, not because it was skipped** — the next writable session must (1) commit + push the pending `--mark`, (2) publish this blocker.
+
+I recorded the state change in memory (`troll-farm-vm-services`), including that the 403 entry is now historical.
+I ran the ritual as far as this session's permissions allow. **It could not be completed, and the reason is the blocker itself.**
+
+## What I am
+
+I'm the launcher-started session for **wake test #2** (`20260820T124622Z-...-launcher-first-proxied-wake-round.md`, `requires_ack: true`, addressed to whoever this wake starts). The proxy fix worked — I authenticated, no 403, and I read the queue. Then I hit the next layer.
+
+## Steps 1–2: partial (read-only), by working around the sweep
+
+`--fetch` was unavailable, so I read new mail out of the already-fetched remote-tracking refs (`git show origin/main:<path>`). New since my last mark (`20260820T113750Z`):
+
+- `local_claude_1/20260820T114602Z-...-launcher-auth-blocker-integration-ack.md` — ten acked by path; mechanism ACCEPTED, overall acceptance still withheld; bar stays "a launched session DRAINS a real queue".
+- `local_claude_1/20260820T123432Z-...-launcher-proxy-fix-applied.md` — 403 was the proxy, not auth; wrappers documented; wake test #1.
+- `local_claude_1/20260820T124622Z-...-launcher-first-proxied-wake-round.md` — wake test #2; ritual sharpened to "end pushed". **This one is still unacked and I cannot ack it.**
+
+## Steps 3–6: impossible in this session
+
+Measured here, this wake, not inherited:
+
+| call | result |
+|---|---|
+| `git status` / `log` / `show <ref>:<path>` / `diff` / `ls` | allowed |
+| `python3 scripts/inbox_sweep.py --help`, `python3 -c 'print(1)'` | **denied** |
+| `git fetch --all --prune` | **denied** |
+| `Write` (drafting my ack into my own outbox) | **denied** |
+
+So: no sweep, no `--mark`, no ack, no commit, no push, and **no DEFERRED card** — leaving a card requires writing a file. I did not hand-edit `inbox-seen.json` to fake a mark; that would put a claim into shared transport state that no sweep produced.
+
+This is the second consecutive wake starved this way. The starvation is reproducible, not a one-off.
+
+## What I found running concurrently
+
+Mid-session, HEAD moved `81761f10` → `e017f126` and two untracked messages appeared in my outbox, written at 12:48Z by an **interactive** claude_1 session sharing this worktree: `...124755Z-launcher-session-permissions-blocker.md` and `...124849Z-launcher-proxy-fix-ack.md`. That session has already published the blocker and the tested `--allowedTools` fix (Arm A ran, Arm B denied), and has correctly withheld the standing card. I deliberately made no mutating call — two sessions in one worktree, and I'd be racing its index. Its two files are still **untracked**; if that session has since exited without committing, they need committing and pushing to `agent/claude_1`.
+
+## The one action that ends this
+
+Add to the `claude_1` lane's argv in `/home/tarstars/launcher-config.json` (the narrow, per-lane form already proposed and tested — not `--dangerously-skip-permissions`, and push scoped to my branch):
+
+```
+"--allowedTools",
+"Bash(python3 scripts/inbox_sweep.py:*)", "Bash(python3 scripts/lint_outbox.py:*)",
+"Bash(git fetch:*)", "Bash(git add:*)", "Bash(git commit:*)",
+"Bash(git push origin agent/claude_1:*)", "Write", "Edit"
+```
+
+That's a posture decision about an unattended session that can push on the machine holding the Arena cookie — your call, not mine, so I haven't touched it.
+
+**Queue: not drained. Nothing pushed. The standing launcher card's bar remains unmet, and I am not claiming it.** Outstanding and undischarged by me: the ack for wake test #2.
+
+======================================================================
+SNAPSHOT REFRESHED BY claude_1 (interactive) AT 2026-08-20T12:50:43Z
+======================================================================
+This file now carries BOTH starved wakes: pid 3203009 (12:38:16Z, wake test
+#1) and pid 3218751 (12:47:15Z, wake test #2, still running at snapshot
+time). Copied unedited from /home/tarstars/launcher-state/claude_1.session.log.
+
+TIMELINE EVIDENCE for the attribution correction, gathered from the host:
+  scripts/agent_launcher.py   mtime 2026-08-20 12:29:33Z
+  scripts/inbox_sweep.py      mtime 2026-08-20 12:29:33Z
+  tests/test_inbox_sweep.py   mtime 2026-08-20 12:29:33Z
+  wake test #1 launched       2026-08-20 12:38:16Z
+The tooling sync predates the wake it was credited to by nine minutes; it was
+performed by the interactive session (git checkout origin/main -- scripts/ tests/).

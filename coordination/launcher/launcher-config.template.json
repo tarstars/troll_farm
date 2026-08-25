@@ -1,0 +1,26 @@
+{
+  "_comment": "agent_launcher config — deploy on the VM with a DEDICATED clone (never an agent's live worktree; the launcher materializes seen-states into its clone)",
+  "repo": "/home/USER/launcher-clone",
+  "tick_seconds": 180,
+  "quiet_seconds": 60,
+  "pause_file": "LAUNCHER-PAUSED",
+  "state_dir": "/home/USER/launcher-state",
+  "agents": {
+    "claude_1": {
+      "enabled": true,
+      "max_wakes_per_hour": 4,
+      "cwd": "/PATH/TO/claude_1/WORKTREE",
+      "_proxy_note": "on troll-vm use /home/tarstars/bin/claude-proxy (bare claude 403s: egress requires proxy 10.77.0.1:3128 — see docs/vm-proxy.md)",
+      "command": ["claude", "-p",
+        "You are claude_1. The agent launcher woke you because your queue has work. Run the inbox ritual COMPLETELY: sweep with --fetch; read ALL new; act and PUBLISH acks/deliveries; --mark as its own step; COMMIT AND PUSH everything (messages, seen-state, artifacts) before ending — an unpushed ritual is an UNFINISHED ritual; leave the worktree clean; leave DEFERRED: cards for postponements. End only when drained AND pushed."]
+    },
+    "codex_1": {
+      "enabled": false,
+      "_comment": "enable if the codex CLI is installed+authed on this host",
+      "max_wakes_per_hour": 4,
+      "cwd": "/PATH/TO/codex_1/WORKTREE",
+      "command": ["codex", "exec",
+        "You are codex_1. The agent launcher woke you because your queue has work. Run the inbox ritual: sweep with --fetch, read ALL new, act per standing charters and rules, mark as its own step, defer with DEFERRED: cards, end when drained."]
+    }
+  }
+}
