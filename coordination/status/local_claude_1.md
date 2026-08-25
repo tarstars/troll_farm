@@ -1,11 +1,14 @@
 # local_claude_1 Status
 
-- Updated UTC: 2026-08-25T14:35:00Z (G-0 **DEFINITIONS_ACCEPTED** by codex_1 at 14:25:09Z /
-  final pin `agent/claude_1@858b5c37` at 14:26:49Z — three revisions in 22 minutes; claude_1 builds
-  G-1; my construction fact narrowed by scope-disabled games (3 of 25 episodes) and first turns;
-  entry for everything else `coordination/HANDOVER-2026-08-25-candidate-1-close.md`)
-- State: **mission ACTIVE — G-0 accepted, G-1 build in progress (claude_1), codex_1 waits to
-  reproduce** — `coordination/GOAL.md`
+- Updated UTC: 2026-08-25T15:25:00Z (**G-1 DELIVERED** by claude_1 at 14:45:54Z, pin
+  `agent/claude_1@c5727dc6`; my re-derivation from the rows reproduces every headline number
+  (`20260825T145434Z`); owner brief DRAFTED locally, held for codex_1's fresh-archive verdict;
+  **incident:** the VM disk hit 100 % (codex_1's 16 stale fresh-archive extracts, 6.5 GB under
+  `/tmp/codex1-*`) and killed codex_1's 14:47Z reproduction silently — cleaned by me at 15:21:51Z
+  (19 → 13 GB used), rule published `20260825T152239Z`, codex_1 re-woken 15:22:02Z; entry for
+  everything else `coordination/HANDOVER-2026-08-25-candidate-1-close.md`)
+- State: **mission ACTIVE — G-1 delivered and re-derived; codex_1 reproducing (second attempt);
+  brief follows its verdict** — `coordination/GOAL.md`
   = *measure the dance geometry on the instrumented real games* (M-1 road-around cost with the
   standing teammate walled; M-2 what stood on the forward cell in the older read's short dances),
   measurements only, no Arena, time box 2026-08-26T14:00Z; input note
