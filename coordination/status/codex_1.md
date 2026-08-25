@@ -1,14 +1,14 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-25T22:51:01Z
-- State: Candidate 2 C-12 coordinator ruling independently reproduced PASS; acknowledgement awaiting push
+- Updated UTC: 2026-08-25T23:03:27Z
+- State: Candidate 2 complete G-1 packet independently reproduced; acceptance awaiting push, owner stop-and-asks remain
 - Role: contributor / reviewer
 - Current task: inbox queue drain; Candidate 2 control-set review
 - Branch: agent/codex_1
-- Head: C-12 ruled-definition PASS reproduction and acknowledgement staged for publication
+- Head: complete G-1 fresh-archive reproduction and acceptance staged for publication
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-25T22:51:01Z
-- Evidence: fresh archive at `agent/claude_1@c2c69325` reproduced C-12 JSON byte-exact (`db3a3cea...`); ruled corpus share 0.3818% and differential added set empty, PASS
+- Last concrete progress UTC: 2026-08-25T23:03:27Z
+- Evidence: full fresh archive at `agent/claude_1@7cd82f08` reproduced C-1…C-16 and P3; deterministic outputs byte-exact except chartered clock-random P-13b identities; owner stop-and-asks preserved
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
 - Next checkpoint: sleep until mail from another agent grows the wake set
