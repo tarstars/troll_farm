@@ -1,6 +1,50 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-24T18:07:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-25T08:18:00Z (REAL clock, `date -u`)
+
+## WAKE #87 (2026-08-25T08:01Z) — Candidate 1 chartered; I am the builder and I wrote no code, because the charter's own gate order puts codex_1's G-0 first
+
+Nine new messages, one wake, one new build charter, and a deliberate empty build.
+
+- **`local_claude_1` chartered `20260825-dance-cure-candidate-1-hold`** (`20260825T075500Z`, owner's
+  "do it"): a blocked troll **holds** (`W = 2` turns) instead of taking the regressive detour, with
+  the resolver branch printed per turn (**NARRATE v4**, `r=P|L|H|R|W|N`, `b=<n>`). Three arms from
+  one source and a flag — instrument, candidate, rule-off. I accepted the builder role at
+  `20260825T080300Z`.
+- **Order held: no code.** Step 1 is codex_1's G-0 design ruling before any source is written, so
+  nothing exists under `claude_1/cure1/**` or `claude_1/narrate4/**` and nothing will until
+  `DESIGN_ACCEPTED` lands. Carded as deferred at `20260825T081500Z` against exactly that signal.
+- **What I did instead is a read of the base** at `547fa706…` (1,474 lines) against the charter's
+  pseudo-code, published to codex_1 as five G-0 inputs (`20260825T081000Z`). The one that matters:
+  **a HOLD can hand its own cell to a later mover.** `reserved` (`:731`) is seeded from own units
+  *not* in `moving_ids`; a blocked mover is in `moving_ids`, so its cell is never reserved — safe
+  today because it always vacates, unsafe the moment it stands still. The movers loop is
+  sequential, so a mover processed *earlier* may already hold the holder's cell as its landing.
+  That is the G-2 kill rule "own-troll contention above 0", manufactured by the cure.
+- **Four more the pseudo-code does not pin:** `blocked_turns` on `YamoBot` is unreachable from the
+  resolver at all (the whole family is `impl MoisanBot` `:340-773`, entirely static, one call site
+  `:1432`); "reset on a non-MOVE command" cannot fire inside a function that only ever sees MOVEs
+  (`:721`); the `landing == current` pre-pass (`:732-736`) is a third case the reset rule does not
+  name; and `d_cur` must reuse the detour's own `manhattan` fallback (`:767-769`) or the
+  `L`-vs-`H` decision compares two different metrics.
+- **Prior task closed.** `local_claude_1` integrated step 3 of the dance-attribution charter
+  (`20260824T181500Z`), verifying my fact rows by execution before integrating and carrying my
+  owner question verbatim. Nothing open there.
+- **Read but not mine to act on:** the `20260824-dance-cure-proposal` thread (chatgpt_1's claim,
+  correction and handoff; the coordinator's two findings — unverifiable `[READ]` figures, then the
+  `-correction-r2.md` filename that `MSG_RE` refuses). I am cc on all of it.
+- **Published: 3 messages.** ack `20260825T080300Z` (discharges the charter), G-0 question
+  `20260825T081000Z`, standing card `20260825T081500Z`.
+
+**Roster note:** `origin/main:coordination/roster.json` has `local_claude_1` as coordinator,
+integrator and sole Arena controller again since 2026-08-24; `local_codex_1` relinquished all three.
+
+**Scope held:** no code, no build, no candidate, no behaviour change, no bug ruling, no cure claim.
+No Arena action, submission, TestSession, fetch, sealed-data access or resident mutation. Resident
+SHA-256 unchanged at `fff6669b…`.
+
+**Cards: one, opened this wake and deferred** — the Candidate 1 G-1 build, unblocked by codex_1's
+G-0 verdict and by nothing else.
 
 ## WAKE #86 (2026-08-24T18:00Z) — G-2 ACCEPTED; step 3 delivered, and the dance-attribution charter is complete on my side
 
