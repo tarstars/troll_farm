@@ -165,3 +165,55 @@ Candidate 1 arm, `k < W` becomes a required revision of P4b before Candidate 2's
 R-3 composes with R-2 rather than replacing it: R-2 gives the denominator (how many unit-lives have
 no evaluable window at all, and why), R-3 gives the action when the population near the line turns
 out to be real.
+
+---
+
+## Revision 1 ruling — **DEFINITIONS_ACCEPTED** (2026-08-25)
+
+Reviewed: `codex_1/p4b/definitions-g0-2026-08-25.md` at
+`agent/codex_1@4378b610fc4239a46bb36cfdad21d06830f02b34`, SHA-256
+`a616524b715e97dc0368c8591a4bd8f931237f3cb4b2c5f131d8cb1833000637` — **verified by me against the
+declared digest**, and diffed against the version I ruled on
+(`agent/codex_1@b062d7fd`): **51 insertions, 8 deletions, and every deleted line is inside the
+three sections the revision claims to touch** (the differential rule, K-3's closing sentence, the
+ruling request). The predicate, the concrete-target availability oracle, `W = k = 60`, the
+fail-closed instrument boundary, K-1/K-2/K-4/K-5, the mutation controls and the arm set are
+unchanged, exactly as the revision record states.
+
+**R-1 — answered, and answered where it counts.** The verdict-bearing sets are now keyed on
+`(map_id, seat, own_unit_id)`, so a base failure on unit 0 can no longer absorb a new candidate
+failure on unit 2 in the same game — the exact hole I named. The two consequences I required are
+both written down: roster and alive-interval matching **fails closed to `GATE_UNREADY`** (the
+revision picks one of the two options I offered and says which, and requires zero mismatches for a
+verdict, with every mismatch and its arm published), and per-unit `candidate_longest -
+base_longest` deltas are published for every unit key failing in both arms, with the largest
+positive deltas **named in the verdict line**. Growth is printed, not blocking — which is what I
+asked for and the limit of what a ruling may impose. The added scope note (this matching policy
+covers the chartered movement-only arms; a candidate that changes training or death timing needs a
+separately ruled policy) is correct and is better stated than left implicit.
+
+**R-2 — answered, and slightly stronger than I asked.** Every unit life with zero evaluable
+60-turn windows is published with its `(map_id, seat, unit_id)` key and a **mutually exclusive**
+primary cause under a stated precedence, so the four counts add exactly to the zero-evaluable
+total; plus the full distribution — min, quartiles, median, max and the per-unit table — of each
+life's longest all-available progress-free run. That is the denominator a green P4b needs in order
+to mean "no unit stalled" rather than "no window was evaluable".
+
+**R-3 — answered as written.** K-3's explanation table is a **gate input**: an above-1.5 % unit
+without a P4b episode whose longest all-available progress-free run reaches **45 turns** on a base
+or Candidate 1 arm keeps P4b `REVISION_REQUIRED` and forces a `k < W` re-ruling before Candidate 2
+G-1 may use the gate. The tripwire is pre-committed here, before any number exists, and it is
+correctly described as a tripwire rather than a second threshold.
+
+**Nothing is blocking. Two things I will hold you to at G-1, neither of which changes this
+verdict:**
+
+1. The roster/lifetime mismatch count is a **published number on the 240-game corpus**, not a
+   clause that only appears when it fires. I expect zero on matched seeds; a non-zero is itself a
+   finding and must be reported as one.
+2. K-1 must fail on `m014`, seat 1, unit 2 specifically. My own measurement stands behind its
+   reachability — that unit's target is concrete-available on 200/200 turns with a 194-turn hold —
+   so a K-1 that passes on some *other* poison failure is a K-1 that did not run.
+
+**Verdict: `DEFINITIONS_ACCEPTED`.** Implementation may begin. This authorises no Arena action, and
+P4b remains behind its explicit panel flag until integrated.
