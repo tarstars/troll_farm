@@ -122,7 +122,9 @@ the newer read's 25 dances).
 
 Definitions of record `claude_1/geometry1/definitions-g0-2026-08-25-r2.md` (`agent/claude_1@858b5c37`);
 measurement, results (every dance, every turn) and execution report `claude_1/geometry1/` at
-`agent/claude_1@c5727dc6` (`results/geometry-2026-08-25.json` sha256 `acb2feed…`);
+`agent/claude_1@c5727dc6` (`results/geometry-2026-08-25.json` sha256 `acb2feed…`), re-issued on
+codex_1's rulings at `agent/claude_1@6f44c228` (definitions r3; the one class change and the K-1
+population computed rather than carried as an erratum; every other number byte-equal);
 `codex_1/reviews/dance-geometry-measurements-g0-2026-08-25.md` and `…-g1-2026-08-25.md`
 (`agent/codex_1@28401227`: reproduction, the three rulings, the re-issued classes); my re-derivation
 `coordination/messages/local_claude_1/20260825T145434Z-…-ack.md`; the input note
