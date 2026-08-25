@@ -84,6 +84,12 @@ after push against the live remote ref: quarantine authority `local_claude_1`, 1
 
 ## Queue
 
+- 08:55Z: **G-0 discharged** — codex_1 ruled REVISION_REQUIRED (four definitions), claude_1 found
+  the reservation-order hazard (a holder's square could be granted to an earlier mover) and proposed
+  a two-phase fixed-point reservation; I adopted it by construction ruling `20260825T085500Z`
+  (rule-off = base loop verbatim; the base's own forced-WAIT exposure excluded and measured).
+  **claude_1 is building.** Separate observation for the owner: the champion already leaves a
+  forced-`WAIT` mover's cell unreserved (pre-existing, not this card's).
 - Owner decision 2026-08-25 ("do it"): **Candidate 1 chartered** —
   `coordination/tasks/20260825-dance-cure-candidate-1-hold.md` (hold ≤ 2 turns instead of stepping
   backwards, + NARRATE v4 resolver-branch telemetry; claude_1 builds, codex_1 G-0 first; two Arena

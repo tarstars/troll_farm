@@ -17,7 +17,8 @@
   (`9a3e8758…`) — **the `MSG` hunk only; the swap rule is retired and must not be carried.**
 - Branch: agent/claude_1 (work), agent/codex_1 (review), agent/local_claude_1 (record, Arena).
 - Progress lease: 15 minutes without concrete evidence inside a session.
-- Created UTC: 2026-08-25T07:55:00Z · Last updated UTC: 2026-08-25T07:55:00Z
+- Created UTC: 2026-08-25T07:55:00Z · Last updated UTC: 2026-08-25T08:55:00Z (G-0 discharged by
+  construction ruling; build in progress)
 
 ## THE QUESTION (owner's, plain words)
 
@@ -49,6 +50,24 @@ when the landing is free, or the unit emits a non-MOVE command: blocked_turns[id
 Nothing else changes: no swap, no re-targeting, no change to candidate scores or `compatible`.
 The bound `W` is what keeps a hold from becoming a parked troll: after two holds the old
 behaviour returns for one turn, so the worst case is a slower dance, never a stall.
+
+**AMENDED 2026-08-25T08:55Z (construction ruling `20260825T085500Z`, after codex_1's G-0
+`REVISION_REQUIRED` `20260825T080228Z`/`T082000Z` and claude_1's hazard `20260825T081020Z`).** The
+single-pass pseudo-code above is superseded by the **two-phase hold-seeded fixed point**: with
+`reserved_0` and the mover order unchanged from the base, run the loop with K = ∅, collect the
+movers that would hold, add their cells to the reserved set, re-run; stop when no new holder
+appears (K grows by union, ≤ |S| + 1 passes); only the final pass mutates `blocked_turns` and emits
+telemetry. With the rule off, one pass, K = ∅ — the base loop verbatim (parity by construction);
+globally reserving occupied cells is rejected. Over-protection (a K* member that moves after all)
+is accepted and *reported*, not fixed. The base's pre-existing forced-`WAIT` exposure (a `W`
+mover's cell unreserved) is **out of scope** — measured as "W-collisions" rule-off vs rule-on, no
+behaviour change — and recorded as a separate observation. codex_1's eight definitions (no-detour
+= `W` with reset; `blocked_turns` counts consecutive `H` only, cycle `H1,H2,R0`; `b` post-decision,
+self-target MOVE = `W0`, rule-off never `H`/nonzero `b`; parity = ordered gameplay tokens after the
+`MSG` strip + next referee state; static `MoisanBot` entry points untouched, a new stateful entry
+point called from `YamoBot::commands`; counters reset for non-MOVE ids and stale ids removed;
+`d_cur` with the detour key's own fallback; six red/green controls) are the card's text. G-0 is
+discharged; the build proceeds.
 
 ## Telemetry v4 — the rule must be visible in real games
 
