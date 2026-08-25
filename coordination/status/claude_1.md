@@ -1,6 +1,51 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-25T16:48:33Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-25T18:01:30Z (REAL clock, `date -u`)
+
+## WAKE #100 (2026-08-25T17:40Z) — the STOP disposition acked; **`m061` diagnosed**, the **loop anatomy** delivered, and clause 6 answered by measurement
+
+- **Two new messages, both acked** (`claude_1/20260825T174458Z`): the coordinator's
+  `20260825T173045Z` policy (the loop goes to the owner; `m061` first; the anatomy next; the
+  deferred set proceeds) and his `20260825T173324Z` clause-6 question.
+- **The clause-6 answer is (none of a, b, c): the predicate's `T` and the wire's `chosen` are the
+  same value, and the mistake was mine.** `T` is the destination cell of the unit's own `MOVE`
+  command (`cure2-swap-v5.rs:843`); every candidate constructor emitting `MOVE x y` carries a
+  `Target` whose cell is `(x,y)`; a chop goal is the tree's **own** cell. `g1-interim` §4.1 printed
+  the wire's *second* field (`want`) where a reader takes the first (`chosen`); the corrected line
+  is `u0=TREE(2,2)/TREE(2,3)/r=S`. **Measured at the predicate** by a print-only diagnostic arm
+  (+3 `eprintln!`, stdout byte-identical to the instrument arm on 34 fixtures and 28 panel games):
+  over **all 66 exchanges** of both corpora, `chosen == T` **66/66**, `chosen == L` **0**,
+  `T == L` **0**. The owner page's sentence is correct as written.
+- **`m061` — diagnosed, and the mechanism is not the exchange being wrong.** On both seats the map
+  ends with **one tree standing** and the champion's score comes from **not** cutting it;
+  Candidate 1's forced `WAIT` is what preserves it. The exchange removes the block (seat 1
+  directly at t=76; seat 0 by phase shift after t=3/t=28 — **initiating, not proximate**, and the
+  artifact says so), the last tree falls (t=63 / t=100), and the map has **zero plants**. Then
+  `main_candidates`' `idle_regeneration && chops.is_empty()` fallback **returns a fresh
+  `vec![WAIT]` and discards `out`** — including the 7500-point regeneration `PICK`s the clause
+  above had just built. Measured at the clause on both arms (parity-gated probe): every input
+  satisfied, candidate list `[("WAIT", 0.0)]`. **131 and 96 turns with both trolls goal-less and
+  the inventory frozen; zero such turns on the rule-off arm.** 39 vs 75, 43 vs 82.
+  - **The fallback is the champion's, not Candidate 2's** — the same defect I reported unanswered
+    on 2026-08-21 (anti-benching Phase 3a). New this wake: its price, 75 points.
+  - **No detector fired**: the instrument row's violations are identical to the rule-off row's.
+    That is `eval_p4`'s exhaustion calibration working as written — with the twist that the arm
+    exhausted the world itself. Carried into the P4b definitions ruling as an input.
+- **The loop anatomy — 12 exchanges on 6 games.** In **11 of 12** both units are choppers of the
+  same two-tree cluster and **the goals are traded at `t+1`**: the mover takes over the tree it
+  landed on and the displaced partner inherits the mover's goal. Mover cell, goal and partner cell
+  are identical at every exchange of a loop. **The goals stay attached to the cells, not the
+  trolls.** Theorem 1 and Theorem 2 both untouched. **Signature: the loop fires exactly when the
+  landing is itself a work square** — the one exchange landing on a non-work cell (`m090:0` t=3)
+  has no trade. **Price: −5 on 1 of 240 games**; `m090:0`, `m090:1`, `m118:1` score identically to
+  rule-off.
+- **Published:** ack `20260825T174458Z`, handoff `20260825T180028Z` (artifacts at
+  `agent/claude_1@85c6647c`), DEFERRED replacement `20260825T180104Z` (discharges the G-1 STOP
+  card by `ack_for`).
+- **Ruling 4's control set is NOT started** — C-10, C-11, C-13, C-7, C-8, C-16, the P3 read on the
+  candidate arm, the 11 dance fixtures, C-12/P4b. On the card, in the coordinator's order, C-10
+  first next wake. **P3 stays UNMEASURED, not passed.** No lock, no timer, no predicate change, no
+  planner change, no Arena action, and no G-1 handoff to codex_1.
 
 ## WAKE #98 (2026-08-25T16:42Z) — three charters acked, **Candidate 2 claimed**, and its G-0 (definitions **and** proof) published in the same wake
 
