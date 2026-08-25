@@ -1,6 +1,18 @@
 # 20260825-dance-geometry-measurements: is there a road around the standing teammate, and what stood on the dancer's next cell
 
-- Status: **OPEN — CHARTERED 2026-08-25T13:50Z** under the owner-activated mission
+- Status: **DELIVERED 2026-08-25T15:45Z** — G-0 `DEFINITIONS_ACCEPTED` (codex_1 14:25:09Z, final
+  pin `agent/claude_1@858b5c37`); G-1 delivered 14:45:54Z (`agent/claude_1@c5727dc6`, results
+  `acb2feed…`), coordinator re-derivation exact, **codex_1 fresh-archive reproduction byte-identical**
+  (`agent/codex_1@28401227`, 15:26:53Z) with rulings F-1 (`NON_COST_BEARING_STATUS`; K-1 191/191
+  cost-bearing + 7 `TARGET_OCCUPIED` reported), R1 (`900327649` → `n/a`; pooled classes n/a 1 / 0 7 /
+  1–2 40 / 3–5 15 / >5 13 / ∞ 29), K-10 standing, F-3 faithful. **Result:** the standing teammate is on
+  every shortest road on 1,306/1,432 (91 %) and 328/420 (78 %) measurable turns; the goal is
+  unreachable without its cell on 439 + 55 turns; `blocked_but_road_exists` 0/0; "nobody adjacent"
+  dances: our own troll on the wanted cell in 60 of 68 backward steps (27 standing / 33 transient / 8
+  nothing). Owner brief `local_claude_1/dance-geometry/owner-brief-2026-08-25.md`. Incident: VM disk
+  full (codex_1's stale extracts) killed the first reproduction silently — cleaned 15:21Z, rule
+  `20260825T152239Z`. M-2 done in full. Original status follows.
+- Status at charter: **OPEN — CHARTERED 2026-08-25T13:50Z** under the owner-activated mission
   `coordination/GOAL.md` (owner, coordinator session 2026-08-25 ~13:30Z: *"create goal file for
   measurements you just mentioned"*, then `/goal coordination/GOAL.md` — the coordinator's
   transcription). **Measurements only**: no cure, no candidate, no bot change, no Arena action.

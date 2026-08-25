@@ -127,13 +127,13 @@ moving the ladder, so +3.64 will not come from more of it.
   Brief: `local_claude_1/dance-attribution-owner-brief-2026-08-24.md`; all evidence since July in
   `docs/EVIDENCE-DANCE-2026-08-24.md`. **Cure design chartered 2026-08-24T19:40Z** to `chatgpt_1`
   (`20260824-dance-cure-proposal`), the coordinator proposing independently; the owner compares.
-  **Candidate 1** (`20260825-dance-cure-candidate-1-hold`): **CLOSED AT G-2 — FAIL, safe, too small**
-  (160 real games): the hold fired 253× within every bound but in **0 of 25 recorded dances** →
-  Candidate 2; 2nd Arena action unspent; panel P4 gate blind to one parked troll (own charter).
+  **Candidate 1** (`20260825-dance-cure-candidate-1-hold`): **CLOSED AT G-2 — FAIL, safe, too small** (160 real games:
+  the hold fired 253× within every bound, in **0 of 25 recorded dances**); 2nd Arena action unspent; P4 panel gate blind to one parked troll.
   **★ Owner:** verdict sheet `local_claude_1/cure1/owner-verdict-sheet-2026-08-25.md`; Candidate 2 — swap or route
-  around? **Mission 08-25 `20260825-dance-geometry-measurements` (no Arena, box 08-26T14:00Z):** M-1 road-around cost
-  with the standing teammate walled + M-2 what stood on the forward cell → a brief for that ruling; input
-  `local_claude_1/dance-geometry/re-read-2026-08-25.md` (teammate beside the dance at its start 55/80, 24/25 — labels said 34/15).
+  around? **DELIVERED 08-25 `20260825-dance-geometry-measurements`** (gates accepted, codex_1 byte-identical): the
+  standing teammate is on EVERY shortest road on 91 % / 78 % of measurable turns, the goal unreachable without its
+  cell on 439 + 55; 29 of 105 dances have no road around, 40 cost +1–2; `blocked_but_road_exists` 0/0; "nobody
+  adjacent" dances had our own troll on the wanted cell in 60 of 68 backward steps. **★ Brief `local_claude_1/dance-geometry/owner-brief-2026-08-25.md`.**
 
 ## 5. Reading order & pointers
 
