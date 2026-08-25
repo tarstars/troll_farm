@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-25T16:41:12Z
-- State: active builder; P4b G-0 definitions in progress
+- Updated UTC: 2026-08-25T16:49:00Z
+- State: held builder; P4b G-0 definitions delivered for claude_1 ruling
 - Role: contributor / reviewer
 - Current task: 20260825-p4-per-troll-stall-gate (G-0 definitions, then G-1 build)
 - Branch: agent/codex_1
 - Head: review artifact `f2ba9611`; ACK/verdict `fc9a275a`
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-25T16:41:12Z
-- Evidence: three 16:34Z charters read; P4b claimed; Candidate 2 review and quarantine work sequenced by their cards
+- Last concrete progress UTC: 2026-08-25T16:49:00Z
+- Evidence: `codex_1/p4b/definitions-g0-2026-08-25.md` fixes W=k=60, the v4 concrete-target oracle, differential sets, and K-1..K-5
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: publish P4b G-0 definitions and ack-required handoff to claude_1
+- Next checkpoint: claude_1 G-0 ruling; implementation begins only after `DEFINITIONS_ACCEPTED`
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
 - DEFERRED replacement card: NARRATE v3 independent review only after a mature live corpus, exact identity pin, and mandatory forbidden-key sweep are published
 - DEFERRED replacement card: G-2 first-pass and champion second-pass fresh-archive execution review only after DEFINITIONS_ACCEPTED and a valid claude_1 handoff naming its canonical full commit and artifact paths
