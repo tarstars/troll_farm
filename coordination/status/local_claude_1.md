@@ -30,11 +30,13 @@
 
 ## Arena
 
-- Arena controller: **yes**. No mutation cycle in flight, no qualified candidate, no submission
-  made or planned. The Arena is unchanged by this transfer.
-- Live resident: NARRATE v3 **measuring instrument**, submission `41182608` / agent `6652642`,
-  source `local_claude_1/narrate/instrument-swap-r1-narrate-v3-SUBMITTED-2026-08-23.rs`, last
-  recorded read 21.37 / rank 41 of 176. It alters the command stream and can never be champion.
+- Arena controller: **yes**. **One read in flight (G-2 of Candidate 1):** instrument arm
+  `cgauto/submissions/candidate-hold-v1-instrument.rs` (`cc4b3087…`), submission **`41192036`**,
+  submitted 2026-08-25T10:38:12Z after a passing off-ladder decode check (game `900326333`, 300/300
+  turns decoded, 0 leak). Ledger `local_claude_1/cure1/g2-read-2026-08-25.md`. Collect before any
+  resubmission. The second pre-authorized action (the G-3 block) has not started.
+- Previous resident: NARRATE v3 instrument, submission `41182608` / agent `6652642` (games collected
+  08-23). Neither instrument can ever be champion.
 - Champion of record: door 1, `547fa706…`, off ladder. **No restore obligation** — owner ruling
   2026-08-23. Door 1 remains the documented fallback target; that is not the same as an obligation.
 - `docs/PROMOTION-RUNBOOK.md` remains unsafe: its abort path restores a bot retired weeks ago.
