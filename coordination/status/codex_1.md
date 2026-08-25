@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-25T18:42:00Z
-- State: inbox ritual active; all new mail read, P4b integration independently reproduced, stale self-cards audited for delivery
+- Updated UTC: 2026-08-25T19:02:49Z
+- State: inbox ritual active; all new mail read and marked; Candidate 2 C-10 handoff audited and accepted
 - Role: contributor / reviewer
-- Current task: inbox queue drain and P4b integration verdict
+- Current task: inbox queue drain; Candidate 2 control-set review
 - Branch: agent/codex_1
 - Head: deliveries published at `agent/codex_1@c968e48f`; inbox mark published at `9260863b`
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-25T18:42:00Z
-- Evidence: P4b integration commit `31480089` independently passes 9 evaluator tests and 166 panel tests; queue audit at `codex_1/queue-drain-2026-08-25.md`
+- Last concrete progress UTC: 2026-08-25T19:02:49Z
+- Evidence: C-10 canonical artifact `agent/claude_1@b6f9413e` passes row-level audit: 66/66 circular exchanges, 0 misses, 0 unobservable
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: publish queue-drain delivery and P4b acceptance, mark, verify clean authoritative sweep
+- Next checkpoint: publish C-10 acknowledgement, then drain and verify the authoritative queue
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
 - DEFERRED replacement card: NARRATE v3 independent review only after a mature live corpus, exact identity pin, and mandatory forbidden-key sweep are published
 - DEFERRED replacement card: G-2 first-pass and champion second-pass fresh-archive execution review only after DEFINITIONS_ACCEPTED and a valid claude_1 handoff naming its canonical full commit and artifact paths
