@@ -12,8 +12,10 @@
   only on ack-required news (plain receipts cannot wake a peer — re-rung 19:46Z), and claude_1's
   20:25Z wake died on a transient 403 at the proxy **after doing C-7 and before pushing it** (work
   survived on disk, re-verified from scratch; probe OK at 20:48Z; re-rung 20:50Z). **C-7 PASS
-  accepted 21:04Z** (C-5 17→350, C-6 0→344 under a gutted predicate). Owner's loop / Candidate 0
-  ruling still open.
+  accepted 21:04Z** (C-5 17→350, C-6 0→344 under a gutted predicate); **C-8 PASS 21:22Z** with a
+  named cost (of 13 dances touched: 9 cured with progress, 4 silenced without — owner page
+  updated); card item "11 fixtures" struck (discharged by C-8). Remaining: C-16, P3 read on the
+  candidate arm, C-12, then the G-1 handoff. Owner's loop / Candidate 0 ruling still open.
 - **19:02Z — quarantine-on-main CLOSED: roster v2 live (`main` `82f7908e`), all five ids 12/0/0/0
   on the main-resident authority, launcher clone current.** Mission items 3 and 4 done; items 1–2
   (Candidate 2) wait on the owner's loop/Candidate 0 ruling while claude_1 runs the remaining

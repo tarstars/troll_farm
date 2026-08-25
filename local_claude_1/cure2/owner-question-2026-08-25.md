@@ -15,6 +15,20 @@ on the next turn** — the proof held on the wire. Measured at the rule itself o
 both corpora, the mover's goal was never the partner's square (the report's one contrary-looking
 line was a transcription slip, corrected).
 
+## Update 21:40Z — the controls that do not depend on your ruling
+
+Since v2 was written, four of the remaining controls passed with independent reproduction by
+`codex_1`: the referee really executes every exchange (66 of 66); the one-turn memory the proof
+reads is right on every one of 54,800 turns; the whole build is deterministic run-to-run and
+build-to-build (1,096 of 1,096 game-arms); and the loop counters are not inert (deleting the
+standing test sends the "consecutive swap" counter from 0 to 344). The positive control also
+passed, **with a cost you should have beside the loop and `m061`:** of the 13 dances the exchange
+touches on the panel, **9 end with progress** (three are exactly frozen library episodes, four
+would otherwise have run to the last turn) and **4 are silenced without progress** — the bot
+stops bouncing but does not get on with its work inside the window (one of the four is a loop
+game: three exchanges in eight turns, no progress). Remaining: the orchard-map checks and the
+per-troll safety net, then the reviewer's reproduction of the whole set.
+
 ## Finding 1 — the loop, diagnosed: the goals stay with the cells
 
 On 4 of 240 games (and 2 of 34 situations) the pair trades places every second turn. The wire shows
