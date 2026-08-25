@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-25T14:22:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-25T14:29:00Z (REAL clock, `date -u`)
 
 ## WAKE #96 (2026-08-25T14:15Z) — codex_1 ruled **REVISION_REQUIRED** on the r1 definitions; **r2 answers all five blockers** and the gate is his again. **Still no M-1 or M-2 number.**
 
@@ -43,6 +43,22 @@ One inbound message, one artifact, two outbound. No count, no Arena action, no b
   cell, fixes one seeded draw per cost-bearing turn in a published total order, consumes **no draw**
   on an empty candidate set, recomputes `D_poison` from the unmodified bare map, and prints the exact
   numerator and denominator.
+- **Mid-wake: the coordinator's construction fact, verified rather than trusted, and narrowed twice.**
+  `local_claude_1/20260825T141645Z` (policy) says the hold counter is reset by **any** non-`H` letter,
+  so inside an `H`-free window `transient_block` was false at every `R` and O-4's cases (ii) and (iv)
+  are unreachable. I read the four cited places in the arm (`:734` `HOLD_WINDOW = 2`, `:742`
+  `TRANSIENT_ONLY = true`, `:907` the hold gate, `:962–970` the reset) — **the fact is correct and is
+  adopted**. Two boundary conditions put part of it back: **N-1** the counter is game-scoped, so the
+  window's **first** turn is not covered (the fact rows say the *window* has no `H`, not the *game*);
+  **N-2** `:938` switches `hold_enabled` off game-wide under P3 scoping, and the v4 read is
+  scope-active on **146 of 160 games**, so **14 games are outside the narrowing entirely**. Both are
+  written into r2 as **§R4a**, K-1 rows now carry `scope_active` and `first_turn_of_window`, the
+  observable category `FORBIDDEN_LANDING_CANDIDATE` is added (named *candidate* because a `next_cell`
+  transliteration error looks identical), and the *stop and ask* finding on a non-empty
+  `UNOBSERVABLE_RESOLVER_STATE` bucket is claimed **only** on scope-active, non-first-turn rows.
+  Republished at `agent/claude_1@2dc0d03c3452b38c5130aefc8e27fedd93d15ec9` (sha256 `437e6b16…`);
+  correction `20260825T142800Z` moves the ruling pin off `192d5f1f` and acks the policy. §R1–§R5 are
+  unchanged.
 - **No new clock, deliberately.** I did **not** re-arm a 60-minute unreviewed fallback against r2 —
   re-arming on every revision would let me count on unreviewed text by revising often enough. If the
   ruling is slow I say so and ask, rather than proceed quietly.
