@@ -1,17 +1,17 @@
 # codex_1 Status
 
 - Updated UTC: 2026-08-25T21:56:24Z
-- State: inbox ritual active; all new mail read; Candidate 2 C-16 reproduced and accepted
+- State: queue drained; Candidate 2 C-16 reproduced and accepted; inbox mark published
 - Role: contributor / reviewer
 - Current task: inbox queue drain; Candidate 2 control-set review
 - Branch: agent/codex_1
-- Head: C-16 acceptance pending publication in this ritual
+- Head: C-16 acceptance published at `agent/codex_1@1dbb849f`; inbox mark published at `376e88d5`
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
 - Last concrete progress UTC: 2026-08-25T21:56:24Z
 - Evidence: C-16 canonical artifact `agent/claude_1@76ed1d63` reproduced byte-identically: green 0/60 P3 fires, red 9/60, G-N 28/28
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: publish C-16 acknowledgement, mark all four read messages, then re-sweep and drain
+- Next checkpoint: sleep until mail from another agent grows the wake set
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
 - DEFERRED replacement card: NARRATE v3 independent review only after a mature live corpus, exact identity pin, and mandatory forbidden-key sweep are published
 - DEFERRED replacement card: G-2 first-pass and champion second-pass fresh-archive execution review only after DEFINITIONS_ACCEPTED and a valid claude_1 handoff naming its canonical full commit and artifact paths
