@@ -1,38 +1,38 @@
 candidate: claude_1/cure1/arm-candidate.rs
-  NOT REPRO OSC-001  D1_EPISODE   turns 6-200  98 of 195 frozen window command lines differ
+  NOT FIXED OSC-001  D1_EPISODE   turns 6-200  D-1  silent=False progress=False
   NOT REPRO OSC-002  D1_EPISODE   turns 12-200  189 of 189 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (units)
   NOT REPRO OSC-003  D1_EPISODE   turns 25-47  23 of 23 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units, inventories)
   NOT REPRO OSC-004  D1_EPISODE   turns 9-22  14 of 14 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)
-  NOT REPRO OSC-005  D1_EPISODE   turns 7-18  7 of 12 frozen window command lines differ
+  NOT FIXED OSC-005  D1_EPISODE   turns 7-18  D-1  silent=False progress=False
   NOT REPRO OSC-006  D1_EPISODE   turns 12-20  9 of 9 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)
   NOT REPRO OSC-007  D1_EPISODE   turns 8-16  9 of 9 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)
   NOT REPRO OSC-008  D1_EPISODE   turns 57-64  8 of 8 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units, inventories)
   NOT REPRO OSC-009  D1_EPISODE   turns 77-83  7 of 7 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units, inventories)
   NOT REPRO OSC-010  D1_EPISODE   turns 80-86  7 of 7 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)
-  NOT REPRO OSC-011  D1_EPISODE   turns 26-32  4 of 7 frozen window command lines differ
-  NOT REPRO OSC-012  D1_EPISODE   turns 8-200  96 of 193 frozen window command lines differ
-  NOT REPRO OSC-013  D1_EPISODE   turns 14-200  94 of 187 frozen window command lines differ
+  NOT REPRO OSC-011  D1_EPISODE   turns 26-32  1 of 7 frozen window command lines differ
+  NOT FIXED OSC-012  D1_EPISODE   turns 8-200  D-1  silent=False progress=False
+  NOT FIXED OSC-013  D1_EPISODE   turns 14-200  D-1  silent=False progress=False
   NOT REPRO OSC-014  D1_EPISODE   turns 33-200  167 of 168 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units, inventories)
   NOT REPRO OSC-015  D1_EPISODE   turns 44-200  157 of 157 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)
   NOT REPRO OSC-016  D1_EPISODE   turns 7-200  194 of 194 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)
-  NOT REPRO OSC-017  D1_EPISODE   turns 7-200  98 of 194 frozen window command lines differ
+  NOT FIXED OSC-017  D1_EPISODE   turns 7-200  D-1  silent=False progress=False
   NOT REPRO OSC-018  D1_EPISODE   turns 10-200  191 of 191 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)
   NOT REPRO OSC-019  D1_EPISODE   turns 23-200  178 of 178 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)
   NOT REPRO OSC-020  D1_EPISODE   turns 29-200  172 of 172 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units, inventories)
-  NOT REPRO OSC-021  D1_EPISODE   turns 32-200  85 of 169 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (units)
+  NOT FIXED OSC-021  D1_EPISODE   turns 32-200  D-1  silent=False progress=False
   NOT REPRO OSC-022  D1_EPISODE   turns 106-200  95 of 95 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units, inventories)
   NOT REPRO OSC-023  D1_EPISODE   turns 27-100  74 of 74 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)
-  NOT REPRO OSC-024  D1_EPISODE   turns 5-69  32 of 65 frozen window command lines differ
-  NOT REPRO OSC-025  D1_EPISODE   turns 12-32  11 of 21 frozen window command lines differ
+  NOT FIXED OSC-024  D1_EPISODE   turns 5-69  D-1  silent=False progress=False
+  NOT REPRO OSC-025  D1_EPISODE   turns 12-32  1 of 21 frozen window command lines differ
   NOT FIXED OSC-026  D1_EPISODE   turns 17-25  D-1  silent=False progress=False
-  NOT REPRO OSC-027  D1_EPISODE   turns 3-24  10 of 22 frozen window command lines differ
+  NOT FIXED OSC-027  D1_EPISODE   turns 3-24  D-1  silent=False progress=False
   NOT REPRO OSC-028  D1_EPISODE   turns 2-54  53 of 53 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (units)
   NOT REPRO OSC-029  D1_EPISODE   turns 28-44  17 of 17 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (units, inventories)
-  NOT REPRO OSC-030  D1_EPISODE   turns 24-31  8 of 8 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (plants, units)
+  NOT FIXED OSC-030  D1_EPISODE   turns 24-31  D-1  silent=False progress=False
   NOT REPRO OSC-031  P4_STALL     turns 11-200  1 of 190 frozen window command lines differ; the board at the window's first turn differs from the frozen entry state (units)
   NOT REPRO OSC-032  P4_STALL     turns 91-200  the board at the window's first turn differs from the frozen entry state (plants, inventories)
   NOT REPRO OSC-033  P4_STALL     turns 58-200  the board at the window's first turn differs from the frozen entry state (plants, inventories)
   NOT REPRO OSC-034  P4_STALL     turns 6-99  4 of 94 frozen window command lines differ
 
-0 FIXED / 1 graded (33 NOT_REPRODUCIBLE_ON_BASE, not graded either way)
+0 FIXED / 10 graded (24 NOT_REPRODUCIBLE_ON_BASE, not graded either way)
 wrote claude_1/cure1/results/fixtures-candidate.json

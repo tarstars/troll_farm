@@ -7,11 +7,10 @@
     "delta": -3
   },
   "by_kind": {
-    "DE_NOVO_BLOCK": 3,
-    "HEALED_BLOCK": 6,
-    "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME": 19
+    "HEALED_BLOCK": 3,
+    "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME": 2
   },
-  "changed_games": 28,
+  "changed_games": 5,
   "charter_bar_note": {
     "charter_text": "blocking games not above the base's 35 (r2 went 35 -> 115)",
     "cross_check": "claude_1/picker2/panel-door1-floor.json (2026-08-20) reported 43 for 547fa706 against itself on this corpus",
@@ -21,7 +20,7 @@
   "comparator": "claude_1/gd1/gd_named_costs.py grade/controls, imported; g2_grade.gate_m for the matched-panel proof",
   "d1_episodes": {
     "base": 27,
-    "candidate": 1
+    "candidate": 25
   },
   "detector_totals": {
     "base": {
@@ -32,22 +31,21 @@
       "D-9": 24
     },
     "candidate": {
-      "D-1": 1,
-      "D-4": 132,
+      "D-1": 25,
+      "D-4": 7,
       "D-5": 1,
       "D-6": 7,
       "D-9": 24
     },
-    "grew": {
-      "D-4": [
-        10,
-        132
-      ]
-    },
+    "grew": {},
     "shrank": {
       "D-1": [
         27,
-        1
+        25
+      ],
+      "D-4": [
+        10,
+        7
       ]
     }
   },
@@ -57,14 +55,8 @@
       "floor_p3_violations": 0,
       "why": "eval_p3 flags ANY command divergence from the parent on an orchard-eligible map; on the floor panel the candidate IS the parent, so the base P3 column is 0 by construction and cannot itself be a bar. The P3 growth is therefore reported as a DIVERGENCE COUNT on orchard maps, and whether P3 applies to an intended change is the open applicability question codex_1 named at 20260821T120917Z -- handed on, not decided."
     },
-    "s7_3_de_novo_blocks": [
-      "m041 seat 0",
-      "m042 seat 0",
-      "m056 seat 0"
-    ],
-    "s7_5_p3_new_games": [
-      "m004 seat 0"
-    ],
+    "s7_3_de_novo_blocks": [],
+    "s7_5_p3_new_games": [],
     "s7_5_p4_worse_games": [],
     "s7_5_r5_horizon_new_games": []
   },
@@ -79,567 +71,10 @@
     "shrank": {}
   },
   "games": 240,
-  "games_with_a_command_stream_identical_to_the_base": 200,
+  "games_with_a_command_stream_identical_to_the_base": 224,
   "gate": "G-1 item 2 \u2014 rule-on 240-game panel, every changed game named",
   "gate_m_matched_panel": true,
   "named_changes": [
-    {
-      "base_block": true,
-      "base_d1_episodes": 2,
-      "base_detectors": {
-        "D-1": 2
-      },
-      "base_flags": [],
-      "base_margin": 12,
-      "base_p4_violations": 1,
-      "base_properties": [
-        "P1",
-        "P4"
-      ],
-      "better_detectors": {
-        "D-1": [
-          2,
-          0
-        ]
-      },
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
-      "cand_flags": [],
-      "cand_margin": 12,
-      "cand_p4_violations": 1,
-      "cand_properties": [
-        "P3",
-        "P4"
-      ],
-      "class": "orchard_eligible",
-      "command_stream_identical_to_base": false,
-      "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
-      "lost_flags": [],
-      "lost_properties": [
-        "P1"
-      ],
-      "map_id": "m004",
-      "new_flags": [],
-      "new_properties": [
-        "P3"
-      ],
-      "orchard_eligible": true,
-      "profile": "idle",
-      "seat": 0,
-      "seed": 67867967,
-      "worse_detectors": {}
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
-        "D-1": 1,
-        "D-6": 1
-      },
-      "base_flags": [],
-      "base_margin": -4,
-      "base_p4_violations": 0,
-      "base_properties": [
-        "P1"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {
-        "D-6": 1
-      },
-      "cand_flags": [],
-      "cand_margin": -4,
-      "cand_p4_violations": 0,
-      "cand_properties": [
-        "P1"
-      ],
-      "class": "single_door_tent",
-      "command_stream_identical_to_base": false,
-      "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
-      "lost_flags": [],
-      "lost_properties": [],
-      "map_id": "m012",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "chopper_aggressor",
-      "seat": 1,
-      "seed": 982451653,
-      "worse_detectors": {}
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
-        "D-1": 1
-      },
-      "base_flags": [],
-      "base_margin": 12,
-      "base_p4_violations": 1,
-      "base_properties": [
-        "P1",
-        "P4"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
-      "cand_flags": [],
-      "cand_margin": 12,
-      "cand_p4_violations": 1,
-      "cand_properties": [
-        "P4"
-      ],
-      "class": "orchard_eligible",
-      "command_stream_identical_to_base": false,
-      "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
-      "lost_flags": [],
-      "lost_properties": [
-        "P1"
-      ],
-      "map_id": "m014",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "idle",
-      "seat": 1,
-      "seed": 32452843,
-      "worse_detectors": {}
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
-        "D-1": 1
-      },
-      "base_flags": [],
-      "base_margin": 18,
-      "base_p4_violations": 1,
-      "base_properties": [
-        "P1",
-        "P4"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
-      "cand_flags": [],
-      "cand_margin": 18,
-      "cand_p4_violations": 1,
-      "cand_properties": [
-        "P4"
-      ],
-      "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
-      "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
-      "lost_flags": [],
-      "lost_properties": [
-        "P1"
-      ],
-      "map_id": "m021",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "idle",
-      "seat": 0,
-      "seed": 49979687,
-      "worse_detectors": {}
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
-        "D-1": 1
-      },
-      "base_flags": [],
-      "base_margin": 13,
-      "base_p4_violations": 0,
-      "base_properties": [
-        "P1"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": false,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
-      "cand_flags": [],
-      "cand_margin": 13,
-      "cand_p4_violations": 0,
-      "cand_properties": [],
-      "class": "water_diagonal",
-      "command_stream_identical_to_base": false,
-      "kind": "HEALED_BLOCK",
-      "lost_flags": [],
-      "lost_properties": [
-        "P1"
-      ],
-      "map_id": "m028",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "chopper_aggressor",
-      "seat": 1,
-      "seed": 67867967,
-      "worse_detectors": {}
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
-        "D-1": 1
-      },
-      "base_flags": [],
-      "base_margin": -49,
-      "base_p4_violations": 1,
-      "base_properties": [
-        "P1",
-        "P4"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
-      "cand_flags": [],
-      "cand_margin": -49,
-      "cand_p4_violations": 1,
-      "cand_properties": [
-        "P4"
-      ],
-      "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
-      "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
-      "lost_flags": [],
-      "lost_properties": [
-        "P1"
-      ],
-      "map_id": "m039",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "harvester",
-      "seat": 1,
-      "seed": 49979687,
-      "worse_detectors": {}
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
-        "D-1": 1
-      },
-      "base_flags": [],
-      "base_margin": 32,
-      "base_p4_violations": 0,
-      "base_properties": [
-        "P1"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": false,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
-      "cand_flags": [],
-      "cand_margin": 32,
-      "cand_p4_violations": 0,
-      "cand_properties": [],
-      "class": "forest_dense",
-      "command_stream_identical_to_base": false,
-      "kind": "HEALED_BLOCK",
-      "lost_flags": [],
-      "lost_properties": [
-        "P1"
-      ],
-      "map_id": "m040",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "harvester",
-      "seat": 0,
-      "seed": 67867967,
-      "worse_detectors": {}
-    },
-    {
-      "base_block": false,
-      "base_d1_episodes": 0,
-      "base_detectors": {},
-      "base_flags": [],
-      "base_margin": 16,
-      "base_p4_violations": 0,
-      "base_properties": [],
-      "better_detectors": {},
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {
-        "D-4": 1
-      },
-      "cand_flags": [],
-      "cand_margin": 16,
-      "cand_p4_violations": 0,
-      "cand_properties": [
-        "P1"
-      ],
-      "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
-      "kind": "DE_NOVO_BLOCK",
-      "lost_flags": [],
-      "lost_properties": [],
-      "map_id": "m041",
-      "new_flags": [],
-      "new_properties": [
-        "P1"
-      ],
-      "orchard_eligible": false,
-      "profile": "idle",
-      "seat": 0,
-      "seed": 86028121,
-      "worse_detectors": {
-        "D-4": [
-          0,
-          1
-        ]
-      }
-    },
-    {
-      "base_block": false,
-      "base_d1_episodes": 0,
-      "base_detectors": {},
-      "base_flags": [],
-      "base_margin": 9,
-      "base_p4_violations": 0,
-      "base_properties": [],
-      "better_detectors": {},
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {
-        "D-4": 1
-      },
-      "cand_flags": [],
-      "cand_margin": 9,
-      "cand_p4_violations": 0,
-      "cand_properties": [
-        "P1"
-      ],
-      "class": "water_diagonal",
-      "command_stream_identical_to_base": false,
-      "kind": "DE_NOVO_BLOCK",
-      "lost_flags": [],
-      "lost_properties": [],
-      "map_id": "m042",
-      "new_flags": [],
-      "new_properties": [
-        "P1"
-      ],
-      "orchard_eligible": false,
-      "profile": "chopper_aggressor",
-      "seat": 0,
-      "seed": 982451653,
-      "worse_detectors": {
-        "D-4": [
-          0,
-          1
-        ]
-      }
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
-        "D-1": 1
-      },
-      "base_flags": [],
-      "base_margin": 8,
-      "base_p4_violations": 1,
-      "base_properties": [
-        "P1",
-        "P4"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
-      "cand_flags": [],
-      "cand_margin": 8,
-      "cand_p4_violations": 1,
-      "cand_properties": [
-        "P4"
-      ],
-      "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
-      "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
-      "lost_flags": [],
-      "lost_properties": [
-        "P1"
-      ],
-      "map_id": "m046",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "harvester",
-      "seat": 0,
-      "seed": 67867967,
-      "worse_detectors": {}
-    },
-    {
-      "base_block": false,
-      "base_d1_episodes": 0,
-      "base_detectors": {},
-      "base_flags": [],
-      "base_margin": 60,
-      "base_p4_violations": 0,
-      "base_properties": [],
-      "better_detectors": {},
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {
-        "D-4": 1
-      },
-      "cand_flags": [],
-      "cand_margin": 60,
-      "cand_p4_violations": 0,
-      "cand_properties": [
-        "P1"
-      ],
-      "class": "forest_dense",
-      "command_stream_identical_to_base": false,
-      "kind": "DE_NOVO_BLOCK",
-      "lost_flags": [],
-      "lost_properties": [],
-      "map_id": "m056",
-      "new_flags": [],
-      "new_properties": [
-        "P1"
-      ],
-      "orchard_eligible": false,
-      "profile": "harvester",
-      "seat": 0,
-      "seed": 32452843,
-      "worse_detectors": {
-        "D-4": [
-          0,
-          1
-        ]
-      }
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
-        "D-1": 1
-      },
-      "base_flags": [],
-      "base_margin": 5,
-      "base_p4_violations": 0,
-      "base_properties": [
-        "P1"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": false,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
-      "cand_flags": [],
-      "cand_margin": 5,
-      "cand_p4_violations": 0,
-      "cand_properties": [],
-      "class": "open_field",
-      "command_stream_identical_to_base": false,
-      "kind": "HEALED_BLOCK",
-      "lost_flags": [],
-      "lost_properties": [
-        "P1"
-      ],
-      "map_id": "m058",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "chopper_aggressor",
-      "seat": 1,
-      "seed": 67867967,
-      "worse_detectors": {}
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
-        "D-1": 1
-      },
-      "base_flags": [],
-      "base_margin": -4,
-      "base_p4_violations": 1,
-      "base_properties": [
-        "P1",
-        "P4"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
-      "cand_flags": [],
-      "cand_margin": -4,
-      "cand_p4_violations": 1,
-      "cand_properties": [
-        "P4"
-      ],
-      "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
-      "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
-      "lost_flags": [],
-      "lost_properties": [
-        "P1"
-      ],
-      "map_id": "m059",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "harvester",
-      "seat": 1,
-      "seed": 86028121,
-      "worse_detectors": {}
-    },
     {
       "base_block": true,
       "base_d1_episodes": 1,
@@ -656,28 +91,28 @@
         "P4"
       ],
       "better_detectors": {
-        "D-1": [
+        "D-4": [
           1,
           0
         ]
       },
       "cand_block": true,
-      "cand_d1_episodes": 0,
+      "cand_d1_episodes": 1,
       "cand_detectors": {
-        "D-4": 2
+        "D-1": 1
       },
       "cand_flags": [],
       "cand_margin": 39,
       "cand_p4_violations": 0,
       "cand_properties": [
-        "P1"
+        "P1",
+        "P2"
       ],
       "class": "choke_corridor",
       "command_stream_identical_to_base": false,
       "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
       "lost_flags": [],
       "lost_properties": [
-        "P2",
         "P4"
       ],
       "map_id": "m061",
@@ -687,12 +122,7 @@
       "profile": "idle",
       "seat": 0,
       "seed": 15485863,
-      "worse_detectors": {
-        "D-4": [
-          1,
-          2
-        ]
-      }
+      "worse_detectors": {}
     },
     {
       "base_block": true,
@@ -742,140 +172,31 @@
         "D-1": 1
       },
       "base_flags": [],
-      "base_margin": 16,
-      "base_p4_violations": 1,
-      "base_properties": [
-        "P1",
-        "P2",
-        "P4"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {
-        "D-4": 50
-      },
-      "cand_flags": [],
-      "cand_margin": 16,
-      "cand_p4_violations": 1,
-      "cand_properties": [
-        "P1",
-        "P4"
-      ],
-      "class": "open_field",
-      "command_stream_identical_to_base": false,
-      "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
-      "lost_flags": [],
-      "lost_properties": [
-        "P2"
-      ],
-      "map_id": "m063",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "harvester",
-      "seat": 1,
-      "seed": 49979687,
-      "worse_detectors": {
-        "D-4": [
-          0,
-          50
-        ]
-      }
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
-        "D-1": 1
-      },
-      "base_flags": [],
-      "base_margin": 17,
-      "base_p4_violations": 0,
-      "base_properties": [
-        "P1",
-        "P2"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {
-        "D-4": 6
-      },
-      "cand_flags": [],
-      "cand_margin": 17,
-      "cand_p4_violations": 0,
-      "cand_properties": [
-        "P1"
-      ],
-      "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
-      "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
-      "lost_flags": [],
-      "lost_properties": [
-        "P2"
-      ],
-      "map_id": "m066",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "harvester",
-      "seat": 0,
-      "seed": 982451653,
-      "worse_detectors": {
-        "D-4": [
-          0,
-          6
-        ]
-      }
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
-        "D-1": 1
-      },
-      "base_flags": [],
       "base_margin": 21,
       "base_p4_violations": 0,
       "base_properties": [
         "P1",
         "P2"
       ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
+      "better_detectors": {},
       "cand_block": true,
-      "cand_d1_episodes": 0,
+      "cand_d1_episodes": 1,
       "cand_detectors": {
-        "D-4": 2
+        "D-1": 1,
+        "D-4": 1
       },
       "cand_flags": [],
       "cand_margin": 21,
       "cand_p4_violations": 0,
       "cand_properties": [
-        "P1"
+        "P1",
+        "P2"
       ],
       "class": "choke_corridor",
       "command_stream_identical_to_base": false,
       "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
       "lost_flags": [],
-      "lost_properties": [
-        "P2"
-      ],
+      "lost_properties": [],
       "map_id": "m070",
       "new_flags": [],
       "new_properties": [],
@@ -886,97 +207,9 @@
       "worse_detectors": {
         "D-4": [
           0,
-          2
+          1
         ]
       }
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 2,
-      "base_detectors": {
-        "D-1": 2
-      },
-      "base_flags": [],
-      "base_margin": 2,
-      "base_p4_violations": 1,
-      "base_properties": [
-        "P1",
-        "P4"
-      ],
-      "better_detectors": {
-        "D-1": [
-          2,
-          0
-        ]
-      },
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
-      "cand_flags": [],
-      "cand_margin": 2,
-      "cand_p4_violations": 1,
-      "cand_properties": [
-        "P4"
-      ],
-      "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
-      "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
-      "lost_flags": [],
-      "lost_properties": [
-        "P1"
-      ],
-      "map_id": "m070",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "harvester",
-      "seat": 1,
-      "seed": 67867967,
-      "worse_detectors": {}
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
-        "D-1": 1
-      },
-      "base_flags": [],
-      "base_margin": 6,
-      "base_p4_violations": 1,
-      "base_properties": [
-        "P1",
-        "P4"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
-      "cand_flags": [],
-      "cand_margin": 6,
-      "cand_p4_violations": 1,
-      "cand_properties": [
-        "P4"
-      ],
-      "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
-      "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
-      "lost_flags": [],
-      "lost_properties": [
-        "P1"
-      ],
-      "map_id": "m073",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "harvester",
-      "seat": 0,
-      "seed": 15485863,
-      "worse_detectors": {}
     },
     {
       "base_block": true,
@@ -1023,202 +256,6 @@
       "base_block": true,
       "base_d1_episodes": 1,
       "base_detectors": {
-        "D-1": 1
-      },
-      "base_flags": [],
-      "base_margin": 0,
-      "base_p4_violations": 1,
-      "base_properties": [
-        "P1",
-        "P4"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
-      "cand_flags": [],
-      "cand_margin": 0,
-      "cand_p4_violations": 1,
-      "cand_properties": [
-        "P4"
-      ],
-      "class": "forest_sparse",
-      "command_stream_identical_to_base": false,
-      "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
-      "lost_flags": [],
-      "lost_properties": [
-        "P1"
-      ],
-      "map_id": "m079",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "harvester",
-      "seat": 0,
-      "seed": 15485863,
-      "worse_detectors": {}
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
-        "D-1": 1
-      },
-      "base_flags": [
-        "r5-horizon"
-      ],
-      "base_margin": 1,
-      "base_p4_violations": 1,
-      "base_properties": [
-        "P1",
-        "P2",
-        "P4"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {
-        "D-4": 61
-      },
-      "cand_flags": [
-        "r5-horizon"
-      ],
-      "cand_margin": 1,
-      "cand_p4_violations": 1,
-      "cand_properties": [
-        "P1",
-        "P4"
-      ],
-      "class": "water_diagonal",
-      "command_stream_identical_to_base": false,
-      "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
-      "lost_flags": [],
-      "lost_properties": [
-        "P2"
-      ],
-      "map_id": "m082",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "chopper_aggressor",
-      "seat": 1,
-      "seed": 67867967,
-      "worse_detectors": {
-        "D-4": [
-          0,
-          61
-        ]
-      }
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
-        "D-1": 1
-      },
-      "base_flags": [],
-      "base_margin": 14,
-      "base_p4_violations": 1,
-      "base_properties": [
-        "P1",
-        "P4"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
-      "cand_flags": [],
-      "cand_margin": 14,
-      "cand_p4_violations": 1,
-      "cand_properties": [
-        "P4"
-      ],
-      "class": "single_door_tent",
-      "command_stream_identical_to_base": false,
-      "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
-      "lost_flags": [],
-      "lost_properties": [
-        "P1"
-      ],
-      "map_id": "m084",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "idle",
-      "seat": 1,
-      "seed": 982451653,
-      "worse_detectors": {}
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
-        "D-1": 1
-      },
-      "base_flags": [],
-      "base_margin": 26,
-      "base_p4_violations": 0,
-      "base_properties": [
-        "P1",
-        "P2"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {
-        "D-4": 2
-      },
-      "cand_flags": [],
-      "cand_margin": 26,
-      "cand_p4_violations": 0,
-      "cand_properties": [
-        "P1"
-      ],
-      "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
-      "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
-      "lost_flags": [],
-      "lost_properties": [
-        "P2"
-      ],
-      "map_id": "m090",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "harvester",
-      "seat": 0,
-      "seed": 982451653,
-      "worse_detectors": {
-        "D-4": [
-          0,
-          2
-        ]
-      }
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
         "D-1": 1,
         "D-4": 1
       },
@@ -1260,94 +297,6 @@
       "seat": 1,
       "seed": 982451653,
       "worse_detectors": {}
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
-        "D-1": 1
-      },
-      "base_flags": [],
-      "base_margin": -16,
-      "base_p4_violations": 1,
-      "base_properties": [
-        "P1",
-        "P4"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
-      "cand_flags": [],
-      "cand_margin": -16,
-      "cand_p4_violations": 1,
-      "cand_properties": [
-        "P4"
-      ],
-      "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
-      "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
-      "lost_flags": [],
-      "lost_properties": [
-        "P1"
-      ],
-      "map_id": "m099",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "harvester",
-      "seat": 1,
-      "seed": 49979687,
-      "worse_detectors": {}
-    },
-    {
-      "base_block": true,
-      "base_d1_episodes": 1,
-      "base_detectors": {
-        "D-1": 1
-      },
-      "base_flags": [],
-      "base_margin": -24,
-      "base_p4_violations": 1,
-      "base_properties": [
-        "P1",
-        "P4"
-      ],
-      "better_detectors": {
-        "D-1": [
-          1,
-          0
-        ]
-      },
-      "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
-      "cand_flags": [],
-      "cand_margin": -24,
-      "cand_p4_violations": 1,
-      "cand_properties": [
-        "P4"
-      ],
-      "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
-      "kind": "PROPERTY_CHANGE_WITHIN_A_BLOCKED_GAME",
-      "lost_flags": [],
-      "lost_properties": [
-        "P1"
-      ],
-      "map_id": "m110",
-      "new_flags": [],
-      "new_properties": [],
-      "orchard_eligible": false,
-      "profile": "harvester",
-      "seat": 1,
-      "seed": 32452843,
-      "worse_detectors": {}
     }
   ],
   "not_measured_here": "progress restoration (the fixture gate's clause, and G-2 on real games); score (G-3); anything about the instrument arm, whose MSG token changes eval_p3 by construction",
@@ -1363,24 +312,15 @@
       "P4": 16
     },
     "candidate": {
-      "P1": 27,
-      "P3": 1,
+      "P1": 39,
+      "P2": 6,
       "P4": 15
     },
-    "grew": {
-      "P3": [
-        0,
-        1
-      ]
-    },
+    "grew": {},
     "shrank": {
       "P1": [
         42,
-        27
-      ],
-      "P2": [
-        6,
-        0
+        39
       ],
       "P4": [
         16,
@@ -1595,17 +535,19 @@
         "P4"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
+      "cand_d1_episodes": 2,
+      "cand_detectors": {
+        "D-1": 2
+      },
       "cand_flags": [],
       "cand_margin": 12,
       "cand_p4_violations": 1,
       "cand_properties": [
-        "P3",
+        "P1",
         "P4"
       ],
       "class": "orchard_eligible",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m004",
       "orchard_eligible": true,
       "profile": "idle",
@@ -2002,8 +944,9 @@
         "P1"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
+      "cand_d1_episodes": 1,
       "cand_detectors": {
+        "D-1": 1,
         "D-6": 1
       },
       "cand_flags": [],
@@ -2013,7 +956,7 @@
         "P1"
       ],
       "class": "single_door_tent",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m012",
       "orchard_eligible": false,
       "profile": "chopper_aggressor",
@@ -2103,16 +1046,19 @@
         "P4"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
+      "cand_d1_episodes": 1,
+      "cand_detectors": {
+        "D-1": 1
+      },
       "cand_flags": [],
       "cand_margin": 12,
       "cand_p4_violations": 1,
       "cand_properties": [
+        "P1",
         "P4"
       ],
       "class": "orchard_eligible",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m014",
       "orchard_eligible": false,
       "profile": "idle",
@@ -2417,16 +1363,19 @@
         "P4"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
+      "cand_d1_episodes": 1,
+      "cand_detectors": {
+        "D-1": 1
+      },
       "cand_flags": [],
       "cand_margin": 18,
       "cand_p4_violations": 1,
       "cand_properties": [
+        "P1",
         "P4"
       ],
       "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m021",
       "orchard_eligible": false,
       "profile": "idle",
@@ -2783,15 +1732,19 @@
       "base_properties": [
         "P1"
       ],
-      "cand_block": false,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
+      "cand_block": true,
+      "cand_d1_episodes": 1,
+      "cand_detectors": {
+        "D-1": 1
+      },
       "cand_flags": [],
       "cand_margin": 13,
       "cand_p4_violations": 0,
-      "cand_properties": [],
+      "cand_properties": [
+        "P1"
+      ],
       "class": "water_diagonal",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m028",
       "orchard_eligible": false,
       "profile": "chopper_aggressor",
@@ -3305,16 +2258,19 @@
         "P4"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
+      "cand_d1_episodes": 1,
+      "cand_detectors": {
+        "D-1": 1
+      },
       "cand_flags": [],
       "cand_margin": -49,
       "cand_p4_violations": 1,
       "cand_properties": [
+        "P1",
         "P4"
       ],
       "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m039",
       "orchard_eligible": false,
       "profile": "harvester",
@@ -3333,15 +2289,19 @@
       "base_properties": [
         "P1"
       ],
-      "cand_block": false,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
+      "cand_block": true,
+      "cand_d1_episodes": 1,
+      "cand_detectors": {
+        "D-1": 1
+      },
       "cand_flags": [],
       "cand_margin": 32,
       "cand_p4_violations": 0,
-      "cand_properties": [],
+      "cand_properties": [
+        "P1"
+      ],
       "class": "forest_dense",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m040",
       "orchard_eligible": false,
       "profile": "harvester",
@@ -3379,19 +2339,15 @@
       "base_margin": 16,
       "base_p4_violations": 0,
       "base_properties": [],
-      "cand_block": true,
+      "cand_block": false,
       "cand_d1_episodes": 0,
-      "cand_detectors": {
-        "D-4": 1
-      },
+      "cand_detectors": {},
       "cand_flags": [],
       "cand_margin": 16,
       "cand_p4_violations": 0,
-      "cand_properties": [
-        "P1"
-      ],
+      "cand_properties": [],
       "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m041",
       "orchard_eligible": false,
       "profile": "idle",
@@ -3429,19 +2385,15 @@
       "base_margin": 9,
       "base_p4_violations": 0,
       "base_properties": [],
-      "cand_block": true,
+      "cand_block": false,
       "cand_d1_episodes": 0,
-      "cand_detectors": {
-        "D-4": 1
-      },
+      "cand_detectors": {},
       "cand_flags": [],
       "cand_margin": 9,
       "cand_p4_violations": 0,
-      "cand_properties": [
-        "P1"
-      ],
+      "cand_properties": [],
       "class": "water_diagonal",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m042",
       "orchard_eligible": false,
       "profile": "chopper_aggressor",
@@ -3623,16 +2575,19 @@
         "P4"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
+      "cand_d1_episodes": 1,
+      "cand_detectors": {
+        "D-1": 1
+      },
       "cand_flags": [],
       "cand_margin": 8,
       "cand_p4_violations": 1,
       "cand_properties": [
+        "P1",
         "P4"
       ],
       "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m046",
       "orchard_eligible": false,
       "profile": "harvester",
@@ -4092,19 +3047,15 @@
       "base_margin": 60,
       "base_p4_violations": 0,
       "base_properties": [],
-      "cand_block": true,
+      "cand_block": false,
       "cand_d1_episodes": 0,
-      "cand_detectors": {
-        "D-4": 1
-      },
+      "cand_detectors": {},
       "cand_flags": [],
       "cand_margin": 60,
       "cand_p4_violations": 0,
-      "cand_properties": [
-        "P1"
-      ],
+      "cand_properties": [],
       "class": "forest_dense",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m056",
       "orchard_eligible": false,
       "profile": "harvester",
@@ -4215,15 +3166,19 @@
       "base_properties": [
         "P1"
       ],
-      "cand_block": false,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
+      "cand_block": true,
+      "cand_d1_episodes": 1,
+      "cand_detectors": {
+        "D-1": 1
+      },
       "cand_flags": [],
       "cand_margin": 5,
       "cand_p4_violations": 0,
-      "cand_properties": [],
+      "cand_properties": [
+        "P1"
+      ],
       "class": "open_field",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m058",
       "orchard_eligible": false,
       "profile": "chopper_aggressor",
@@ -4271,12 +3226,15 @@
         "P4"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
+      "cand_d1_episodes": 1,
+      "cand_detectors": {
+        "D-1": 1
+      },
       "cand_flags": [],
       "cand_margin": -4,
       "cand_p4_violations": 1,
       "cand_properties": [
+        "P1",
         "P4"
       ],
       "class": "choke_corridor",
@@ -4349,15 +3307,16 @@
         "P4"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
+      "cand_d1_episodes": 1,
       "cand_detectors": {
-        "D-4": 2
+        "D-1": 1
       },
       "cand_flags": [],
       "cand_margin": 39,
       "cand_p4_violations": 0,
       "cand_properties": [
-        "P1"
+        "P1",
+        "P2"
       ],
       "class": "choke_corridor",
       "command_stream_identical_to_base": false,
@@ -4486,19 +3445,20 @@
         "P4"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
+      "cand_d1_episodes": 1,
       "cand_detectors": {
-        "D-4": 50
+        "D-1": 1
       },
       "cand_flags": [],
       "cand_margin": 16,
       "cand_p4_violations": 1,
       "cand_properties": [
         "P1",
+        "P2",
         "P4"
       ],
       "class": "open_field",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m063",
       "orchard_eligible": false,
       "profile": "harvester",
@@ -4619,18 +3579,19 @@
         "P2"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
+      "cand_d1_episodes": 1,
       "cand_detectors": {
-        "D-4": 6
+        "D-1": 1
       },
       "cand_flags": [],
       "cand_margin": 17,
       "cand_p4_violations": 0,
       "cand_properties": [
-        "P1"
+        "P1",
+        "P2"
       ],
       "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m066",
       "orchard_eligible": false,
       "profile": "harvester",
@@ -4812,15 +3773,17 @@
         "P2"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
+      "cand_d1_episodes": 1,
       "cand_detectors": {
-        "D-4": 2
+        "D-1": 1,
+        "D-4": 1
       },
       "cand_flags": [],
       "cand_margin": 21,
       "cand_p4_violations": 0,
       "cand_properties": [
-        "P1"
+        "P1",
+        "P2"
       ],
       "class": "choke_corridor",
       "command_stream_identical_to_base": false,
@@ -4844,16 +3807,19 @@
         "P4"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
+      "cand_d1_episodes": 2,
+      "cand_detectors": {
+        "D-1": 2
+      },
       "cand_flags": [],
       "cand_margin": 2,
       "cand_p4_violations": 1,
       "cand_properties": [
+        "P1",
         "P4"
       ],
       "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m070",
       "orchard_eligible": false,
       "profile": "harvester",
@@ -4982,16 +3948,19 @@
         "P4"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
+      "cand_d1_episodes": 1,
+      "cand_detectors": {
+        "D-1": 1
+      },
       "cand_flags": [],
       "cand_margin": 6,
       "cand_p4_violations": 1,
       "cand_properties": [
+        "P1",
         "P4"
       ],
       "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m073",
       "orchard_eligible": false,
       "profile": "harvester",
@@ -5269,16 +4238,19 @@
         "P4"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
+      "cand_d1_episodes": 1,
+      "cand_detectors": {
+        "D-1": 1
+      },
       "cand_flags": [],
       "cand_margin": 0,
       "cand_p4_violations": 1,
       "cand_properties": [
+        "P1",
         "P4"
       ],
       "class": "forest_sparse",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m079",
       "orchard_eligible": false,
       "profile": "harvester",
@@ -5440,9 +4412,9 @@
         "P4"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
+      "cand_d1_episodes": 1,
       "cand_detectors": {
-        "D-4": 61
+        "D-1": 1
       },
       "cand_flags": [
         "r5-horizon"
@@ -5451,10 +4423,11 @@
       "cand_p4_violations": 1,
       "cand_properties": [
         "P1",
+        "P2",
         "P4"
       ],
       "class": "water_diagonal",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m082",
       "orchard_eligible": false,
       "profile": "chopper_aggressor",
@@ -5552,16 +4525,19 @@
         "P4"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
+      "cand_d1_episodes": 1,
+      "cand_detectors": {
+        "D-1": 1
+      },
       "cand_flags": [],
       "cand_margin": 14,
       "cand_p4_violations": 1,
       "cand_properties": [
+        "P1",
         "P4"
       ],
       "class": "single_door_tent",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m084",
       "orchard_eligible": false,
       "profile": "idle",
@@ -5755,7 +4731,7 @@
       "cand_p4_violations": 0,
       "cand_properties": [],
       "class": "water_diagonal",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m088",
       "orchard_eligible": false,
       "profile": "chopper_aggressor",
@@ -5822,18 +4798,19 @@
         "P2"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
+      "cand_d1_episodes": 1,
       "cand_detectors": {
-        "D-4": 2
+        "D-1": 1
       },
       "cand_flags": [],
       "cand_margin": 26,
       "cand_p4_violations": 0,
       "cand_properties": [
-        "P1"
+        "P1",
+        "P2"
       ],
       "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m090",
       "orchard_eligible": false,
       "profile": "harvester",
@@ -6222,7 +5199,7 @@
       "cand_p4_violations": 0,
       "cand_properties": [],
       "class": "open_field",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m098",
       "orchard_eligible": false,
       "profile": "chopper_aggressor",
@@ -6289,16 +5266,19 @@
         "P4"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
+      "cand_d1_episodes": 1,
+      "cand_detectors": {
+        "D-1": 1
+      },
       "cand_flags": [],
       "cand_margin": -16,
       "cand_p4_violations": 1,
       "cand_properties": [
+        "P1",
         "P4"
       ],
       "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m099",
       "orchard_eligible": false,
       "profile": "harvester",
@@ -6810,16 +5790,19 @@
         "P4"
       ],
       "cand_block": true,
-      "cand_d1_episodes": 0,
-      "cand_detectors": {},
+      "cand_d1_episodes": 1,
+      "cand_detectors": {
+        "D-1": 1
+      },
       "cand_flags": [],
       "cand_margin": -24,
       "cand_p4_violations": 1,
       "cand_properties": [
+        "P1",
         "P4"
       ],
       "class": "choke_corridor",
-      "command_stream_identical_to_base": false,
+      "command_stream_identical_to_base": true,
       "map_id": "m110",
       "orchard_eligible": false,
       "profile": "harvester",

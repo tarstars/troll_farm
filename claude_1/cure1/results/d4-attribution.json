@@ -2,11 +2,11 @@
   "arms_play_the_same_game": "claude_1/cure1/results/arm-equivalence.json (240/240)",
   "detector": "D-4 abandoned carried-wood return: 2 consecutive turns without decreasing door distance inside a wood-committed interval (trace_detectors.detect_d4; its slack is ONE turn)",
   "episode_lengths": {
-    "3": 102
+    "3": 7
   },
   "holds_in_window": {
     "0": 6,
-    "2": 96
+    "1": 1
   },
   "mechanism": "the growth is the hold rule's own turns: see holds_in_window and episode_lengths. Lowering W does NOT relieve it -- the W=1 diagnostic reports 132 D-4 episodes against W=2's 102 -- because a single hold plus one non-approaching turn trips the same two-turn threshold. D-4 reads standing still inside a wood-committed interval as abandoning the return.",
   "not_decided_here": "whether D-4's reading is right for a bot that may deliberately wait, or whether the candidate is rejected on it. That is the coordinator's and codex_1's, not the builder's. W = 1 is priced above and is WORSE on this axis, so it is not a way out.",
@@ -37,34 +37,10 @@
       "seat": 0
     },
     {
-      "base_d4": 0,
-      "candidate_d4": 1,
-      "candidate_d4_containing_a_hold": 1,
-      "hold_turns_in_game": 2,
-      "map_id": "m041",
-      "seat": 0
-    },
-    {
-      "base_d4": 0,
-      "candidate_d4": 1,
-      "candidate_d4_containing_a_hold": 1,
-      "hold_turns_in_game": 4,
-      "map_id": "m042",
-      "seat": 0
-    },
-    {
-      "base_d4": 0,
-      "candidate_d4": 1,
-      "candidate_d4_containing_a_hold": 1,
-      "hold_turns_in_game": 2,
-      "map_id": "m056",
-      "seat": 0
-    },
-    {
       "base_d4": 1,
-      "candidate_d4": 1,
-      "candidate_d4_containing_a_hold": 1,
-      "hold_turns_in_game": 4,
+      "candidate_d4": 0,
+      "candidate_d4_containing_a_hold": 0,
+      "hold_turns_in_game": 1,
       "map_id": "m061",
       "seat": 0
     },
@@ -77,14 +53,6 @@
       "seat": 1
     },
     {
-      "base_d4": 0,
-      "candidate_d4": 37,
-      "candidate_d4_containing_a_hold": 37,
-      "hold_turns_in_game": 76,
-      "map_id": "m063",
-      "seat": 1
-    },
-    {
       "base_d4": 1,
       "candidate_d4": 1,
       "candidate_d4_containing_a_hold": 0,
@@ -94,27 +62,11 @@
     },
     {
       "base_d4": 0,
-      "candidate_d4": 5,
-      "candidate_d4_containing_a_hold": 5,
-      "hold_turns_in_game": 10,
-      "map_id": "m066",
-      "seat": 0
-    },
-    {
-      "base_d4": 0,
-      "candidate_d4": 2,
-      "candidate_d4_containing_a_hold": 2,
-      "hold_turns_in_game": 4,
+      "candidate_d4": 1,
+      "candidate_d4_containing_a_hold": 1,
+      "hold_turns_in_game": 1,
       "map_id": "m070",
       "seat": 0
-    },
-    {
-      "base_d4": 0,
-      "candidate_d4": 46,
-      "candidate_d4_containing_a_hold": 46,
-      "hold_turns_in_game": 92,
-      "map_id": "m082",
-      "seat": 1
     },
     {
       "base_d4": 1,
@@ -125,28 +77,12 @@
       "seat": 0
     },
     {
-      "base_d4": 0,
-      "candidate_d4": 1,
-      "candidate_d4_containing_a_hold": 1,
-      "hold_turns_in_game": 3,
-      "map_id": "m090",
-      "seat": 0
-    },
-    {
       "base_d4": 1,
       "candidate_d4": 0,
       "candidate_d4_containing_a_hold": 0,
-      "hold_turns_in_game": 4,
+      "hold_turns_in_game": 2,
       "map_id": "m090",
       "seat": 1
-    },
-    {
-      "base_d4": 0,
-      "candidate_d4": 1,
-      "candidate_d4_containing_a_hold": 1,
-      "hold_turns_in_game": 4,
-      "map_id": "m098",
-      "seat": 0
     },
     {
       "base_d4": 1,
@@ -167,12 +103,12 @@
     "map_id": "m003",
     "seat": 0
   },
-  "share_of_candidate_episodes_containing_a_hold": 0.9412,
+  "share_of_candidate_episodes_containing_a_hold": 0.1429,
   "task": "20260825-dance-cure-candidate-1-hold",
   "totals": {
     "base_episodes": 10,
-    "candidate_episodes": 102,
-    "candidate_episodes_containing_a_hold": 96
+    "candidate_episodes": 7,
+    "candidate_episodes_containing_a_hold": 1
   },
   "w1_diagnostic": "claude_1/cure1/results/panel-named-costs-diag-w1.json: D-4 10 -> 132, blocking 43 -> 40, de-novo blocks 3, P3 new 1"
 }

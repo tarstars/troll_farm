@@ -5,11 +5,11 @@
 - referee sha256: `d8900abf31dd030d07096e9a063365aa0e1f58b85a1613d02b07d3935c523a6a`  |  engine.rs sha256: `7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05`
 - phase order: MOVE -> HARVEST -> PLANT -> CHOP -> PICK -> TRAIN -> DROP -> MINE (rust/src/game/engine.rs:755-806)
 - supported commands: CHOP DROP HARVEST MINE MOVE MSG PICK PLANT TRAIN WAIT (an unimplemented verb is a retained `unsupported_verb` error: the row stays in the denominator and the aggregate is GATE_UNREADY)
-- candidate: `../../claude_1/cure1/arm-ruleoff.rs` (sha256 b1b565b85fddf16d0580a0bbafa937c1c81e95bee400bef3b279c3a604fc3543)
+- candidate: `../../claude_1/cure1/arm-ruleoff.rs` (sha256 db68e5ab5856a414cecbdfca36e3440bbd2b9c2fd5a556e659d17bde6d4a41f9)
 - parent: `../../cgauto/submissions/candidate-door1-pure-deletion.rs` (sha256 547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0)
 - seeds: [982451653, 15485863, 32452843, 49979687, 67867967, 86028121]
 - maps: 120 (x2 seats = 240 candidate games + 240 parent games), 200 turns each
-- wall time: 17.4 s
+- wall time: 41.5 s
 
 ## Verdict: BLOCK (candidate run)
 

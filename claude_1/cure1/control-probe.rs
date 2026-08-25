@@ -335,7 +335,7 @@ mod bot{
             passes:u32,stale_protections:u32,w_collisions:u32,movers:u32,
         }
         pub struct YamoBot{
-            announced:bool,announcement:&'static str,type_to_cut:Option<PlantKind>,desired_second:Option<OpeningObjective>,opening_initialized:bool,opening_abandoned:bool,opening_policy:YamoOpeningPolicy,idle_regeneration:bool,persistent_regeneration:bool,door_unblocking:bool,partial_bank_transit:bool,idle_harvest:bool,idle_harvest_clock_only:bool,regeneration_commitments:BTreeMap<i32,PlantKind>,opponent_eta_penalty:i32,blocked_turns:BTreeMap<i32,u8>,
+            announced:bool,announcement:&'static str,type_to_cut:Option<PlantKind>,desired_second:Option<OpeningObjective>,opening_initialized:bool,opening_abandoned:bool,opening_policy:YamoOpeningPolicy,idle_regeneration:bool,persistent_regeneration:bool,door_unblocking:bool,partial_bank_transit:bool,idle_harvest:bool,idle_harvest_clock_only:bool,regeneration_commitments:BTreeMap<i32,PlantKind>,opponent_eta_penalty:i32,blocked_turns:BTreeMap<i32,u8>,prev_cells:BTreeMap<i32,Cell>,orchard_inert:Option<bool>,
         }
         #[derive(Clone,Copy)]struct PredictedTree{
             size:i32,health:i32,cooldown:i32,
@@ -737,6 +737,76 @@ mod bot{
             // block takes the regressive detour and resets the counter, so a hold can slow a
             // dance but can never park a troll.
             const HOLD_WINDOW:u8=2;
+            // ------------------------------------------------- revision R-A (ruling 20260825T094200Z)
+            // TRANSIENT_ONLY: the hold fires only when the block is TRANSIENT -- the blocking own
+            // unit is itself a mover this turn, or its cell was not that unit's cell on the
+            // previous turn. A blocker that stood on the same cell last turn and is stationary now
+            // (the working teammate that never leaves) gets the base's regressive detour instead.
+            // An UNKNOWN previous cell fails CLOSED: no hold. Flipping this line alone produces the
+            // as-built arm's hold policy and is the red half of the R-A control.
+            const TRANSIENT_ONLY:bool=true;
+            // ------------------------------------------------- revision R-B (ruling 20260825T094200Z)
+            // P3_SCOPING_ENABLED: on a seat view that satisfies the orchard-eligibility predicate
+            // -- the same gates fuzz_panel.orchard_eligible_view mirrors from
+            // SecureOrchardBot::initialize -- the hold is INERT for the whole game, because
+            // fuzz_panel.eval_p3 compares the WHOLE command stream on those maps. Flipping this
+            // line alone is the red half of the R-B control on the identical map.
+            const P3_SCOPING_ENABLED:bool=true;
+            // The orchard-eligibility predicate, read from the bot's own view: >= 2 own doors; at
+            // least one live natural plant; every natural reachable from the own doors with median
+            // own-door distance >= 8; and a free own door that is water-adjacent with enemy-door
+            // BFS distance >= 11 (a door the enemy BFS cannot reach counts as far, exactly as the
+            // panel's `edist.get(door, BIG)` does). Integer median: for an even count the panel
+            // averages the two middles and compares against 8.0, so the sum is compared against 16.
+            fn orchard_eligible(view:&GameState)->bool{
+                let doors:Vec<Cell> =ortho_neighbors(view.shacks[0]).into_iter().filter(|cell|view.walkable.contains(cell)).collect();
+                if doors.len()<2{
+                    return false;
+                    }
+                let natural:Vec<Cell> =view.plants.iter().filter(|plant|plant.health>0).map(|plant|plant.cell).collect();
+                if natural.is_empty(){
+                    return false;
+                    }
+                let home=bfs_distances(&view.walkable,&doors);
+                let mut returns:Vec<i32> =Vec::new();
+                for cell in &natural{
+                    match home.get(cell){
+                        Some(distance)=>returns.push(*distance),None=>return false,
+                    }
+                    }
+                returns.sort();
+                let n=returns.len();
+                let median_ok=if n%2==1{
+                    returns[n/2]>=8
+                }
+                else{
+                    returns[n/2-1]+returns[n/2]>=16
+                    }
+                ;
+                if!median_ok{
+                    return false;
+                    }
+                let enemy_doors:Vec<Cell> =ortho_neighbors(view.shacks[1]).into_iter().filter(|cell|view.walkable.contains(cell)).collect();
+                let enemy_distance=bfs_distances(&view.walkable,&enemy_doors);
+                let plant_cells:BTreeSet<Cell> =view.plants.iter().map(|plant|plant.cell).collect();
+                for door in &doors{
+                    if plant_cells.contains(door){
+                        continue;
+                        }
+                    if!ortho_neighbors(*door).into_iter().any(|cell|view.water.contains(&cell)){
+                        continue;
+                        }
+                    match enemy_distance.get(door){
+                        Some(distance)=>{
+                            if*distance>=11{
+                                return true;
+                                }
+                            }
+                        None=>return true,
+                    }
+                    }
+                false
+            }
             // ONE PASS of the base resolver over the base mover order, with `hold_cells` added
             // to the INITIAL reserved set. The input slice is never mutated: a pass is a pure
             // function of (view, original commands, K), which is what lets it be re-run.
@@ -748,7 +818,7 @@ mod bot{
             //
             // With hold_enabled=false and hold_cells empty this is the base loop verbatim: the
             // `H` arm is unreachable, so L and R both take the detour exactly as the base does.
-            fn hold_pass(view:&GameState,original:&[String],priority_ids:&BTreeSet<i32>,forbidden_for_non_priority:&BTreeSet<Cell>,hold_cells:&BTreeSet<Cell>,hold_enabled:bool,counters:&BTreeMap<i32,u8>,)->(Vec<String>,BTreeMap<i32,char>,BTreeSet<i32>,u32,u32){
+            fn hold_pass(view:&GameState,original:&[String],priority_ids:&BTreeSet<i32>,forbidden_for_non_priority:&BTreeSet<Cell>,hold_cells:&BTreeSet<Cell>,hold_enabled:bool,counters:&BTreeMap<i32,u8>,prev_cells:&BTreeMap<i32,Cell>,)->(Vec<String>,BTreeMap<i32,char>,BTreeSet<i32>,u32,u32){
                 let mut commands:Vec<String> =original.to_vec();
                 let mut branch:BTreeMap<i32,char> =BTreeMap::new();
                 let mut holders:BTreeSet<i32> =BTreeSet::new();
@@ -790,6 +860,19 @@ mod bot{
                         continue
                     }
                     ;
+                    // R-A. Is the block TRANSIENT? The blocker is the own unit standing on our
+                    // landing; if no own unit stands there, the square was handed to another mover
+                    // in THIS pass, which is a mover by definition. A blocker that is itself a
+                    // mover, or that arrived on that cell only last turn, will plausibly leave;
+                    // anything else -- including an unknown previous cell -- is treated as
+                    // permanent and gets the detour.
+                    let transient_block=match view.units.iter().find(|other|other.player==0&&other.cell==landing){
+                        Some(blocker)=>moving_ids.contains(&blocker.id)||match prev_cells.get(&blocker.id){
+                            Some(previous)=>*previous!=landing,None=>false,
+                        }
+                        ,None=>granted.contains(&landing),
+                    }
+                    ;
                     let landing_forbidden=!priority_ids.contains(&id)&&forbidden_for_non_priority.contains(&landing);
                     if!landing_forbidden&&!reserved.contains(&landing){
                         reserved.insert(landing);
@@ -826,7 +909,7 @@ mod bot{
                                 commands[index]=format!("MOVE {} {} {}",id,cell.0,cell.1);
                                 branch.insert(id,'L');
                                 }
-                            else if hold_enabled&&counters.get(&id).copied().unwrap_or(0)<Self::HOLD_WINDOW{
+                            else if hold_enabled&&(!Self::TRANSIENT_ONLY||transient_block)&&counters.get(&id).copied().unwrap_or(0)<Self::HOLD_WINDOW{
                                 commands[index]="WAIT".to_string();
                                 holders.insert(id);
                                 branch.insert(id,'H');
@@ -850,7 +933,14 @@ mod bot{
             // adds no new holder IS the accepted resolution. K is bounded by the mover count, so
             // at most movers+1 passes run -- the guard below can only fire if that reasoning is
             // wrong, and `pz` is published every turn so the panel can check it independently.
-            fn resolve_move_conflicts_hold(view:&GameState,commands:&mut[String],blocked_turns:&mut BTreeMap<i32,u8>,hold_enabled:bool,branch_out:&mut BTreeMap<i32,char>,meta:&mut HoldMeta,){
+            fn resolve_move_conflicts_hold(view:&GameState,commands:&mut[String],blocked_turns:&mut BTreeMap<i32,u8>,prev_cells:&mut BTreeMap<i32,Cell>,orchard_inert:&mut Option<bool>,hold_enabled:bool,branch_out:&mut BTreeMap<i32,char>,meta:&mut HoldMeta,){
+                // R-B. The predicate is a property of the map+seat, so it is evaluated once,
+                // on the first view this bot ever sees, and cached -- exactly as fuzz_panel
+                // computes spec["orchard_eligible"] once from the initial rows and plants.
+                if orchard_inert.is_none(){
+                    *orchard_inert=Some(Self::orchard_eligible(view));
+                    }
+                let hold_enabled=hold_enabled&&!(Self::P3_SCOPING_ENABLED&&orchard_inert.unwrap_or(false));
                 let original:Vec<String> =commands.to_vec();
                 let priority_ids:BTreeSet<i32> =BTreeSet::new();
                 let forbidden:BTreeSet<Cell> =BTreeSet::new();
@@ -858,7 +948,7 @@ mod bot{
                 let mut passes:u32=0;
                 loop{
                     let hold_cells:BTreeSet<Cell> =k.iter().filter_map(|id|view.unit(*id).map(|unit|unit.cell)).collect();
-                    let(out,mut branch,holders,mover_count,w_collisions)=Self::hold_pass(view,&original,&priority_ids,&forbidden,&hold_cells,hold_enabled,blocked_turns,);
+                    let(out,mut branch,holders,mover_count,w_collisions)=Self::hold_pass(view,&original,&priority_ids,&forbidden,&hold_cells,hold_enabled,blocked_turns,prev_cells,);
                     passes+=1;
                     if!holders.is_subset(&k)&&passes<=mover_count+1{
                         for id in holders{
@@ -883,6 +973,10 @@ mod bot{
                             blocked_turns.remove(id);
                             }
                         }
+                    // R-A's one new memory: where every own unit STOOD this turn, read next turn
+                    // as "the previous turn's cell". Written on every turn of every arm, read only
+                    // inside the hold branch, so it cannot move a rule-off command.
+                    *prev_cells=view.units.iter().filter(|unit|unit.player==0).map(|unit|(unit.id,unit.cell)).collect();
                     meta.passes=passes;
                     meta.movers=mover_count;
                     meta.w_collisions=w_collisions;
@@ -954,7 +1048,7 @@ mod bot{
         impl YamoBot{
             pub fn with_opening_policy(opening_policy:YamoOpeningPolicy)->Self{
                 Self{
-                    announced:false,announcement:"yamo-waypoint-rust",type_to_cut:None,desired_second:None,opening_initialized:false,opening_abandoned:false,opening_policy,idle_regeneration:false,persistent_regeneration:false,door_unblocking:false,partial_bank_transit:false,idle_harvest:false,idle_harvest_clock_only:false,regeneration_commitments:BTreeMap::new(),opponent_eta_penalty:0,blocked_turns:BTreeMap::new(),
+                    announced:false,announcement:"yamo-waypoint-rust",type_to_cut:None,desired_second:None,opening_initialized:false,opening_abandoned:false,opening_policy,idle_regeneration:false,persistent_regeneration:false,door_unblocking:false,partial_bank_transit:false,idle_harvest:false,idle_harvest_clock_only:false,regeneration_commitments:BTreeMap::new(),opponent_eta_penalty:0,blocked_turns:BTreeMap::new(),prev_cells:BTreeMap::new(),orchard_inert:None,
                 }
                 }
             pub fn tuned_carry_regeneration_transit_idle_harvest()->Self{
@@ -1624,23 +1718,35 @@ mod bot{
                 }
                 }
             // One turn: resolve `commands` on `view` with the persistent counter map, and print.
-            fn step(name:&str,turn:i32,view:&GameState,commands:&[String],counters:&mut BTreeMap<i32,u8>,hold:bool,){
+            fn step(name:&str,turn:i32,view:&GameState,commands:&[String],counters:&mut BTreeMap<i32,u8>,prev_cells:&mut BTreeMap<i32,Cell>,hold:bool,)->Vec<String>{
                 let mut resolved:Vec<String> =commands.to_vec();
                 let mut branch:BTreeMap<i32,char> =BTreeMap::new();
                 let mut meta=HoldMeta::default();
-                MoisanBot::resolve_move_conflicts_hold(view,&mut resolved,counters,hold,&mut branch,&mut meta,);
+                // The probe never runs on a real map, so the orchard cache is seeded NOT-eligible
+                // and R-B is inert here by construction: these controls are about R-A and the
+                // fixed point. R-B has its own control, on the panel (revision_controls.py F2).
+                let mut orchard_inert=Some(false);
+                MoisanBot::resolve_move_conflicts_hold(view,&mut resolved,counters,prev_cells,&mut orchard_inert,hold,&mut branch,&mut meta,);
                 for unit in view.units.iter().filter(|unit|unit.player==0){
                     let code=branch.get(&unit.id).copied().unwrap_or('N');
                     let b=counters.get(&unit.id).copied().unwrap_or(0);
                     let cmd=MoisanBot::move_command_index(commands,unit.id).map(|index|resolved[index].clone()).unwrap_or_else(||"<no command>".to_string());
                     println!("CTRL {} hold={} turn={} u{} cell={},{} r={} b={} cmd={} pz={} sp={} wc={}",name,hold,turn,unit.id,unit.cell.0,unit.cell.1,code,b,cmd,meta.passes,meta.stale_protections,meta.w_collisions);
                     }
+                resolved
+            }
+            // Declare a blocker TRANSIENT for the next call: it is recorded as having stood
+            // somewhere else last turn. Used only where the control is about a blocker that has
+            // just arrived; a control about a PERMANENT blocker never calls this and lets the
+            // resolver's own bookkeeping fill the map.
+            fn arrived(prev_cells:&mut BTreeMap<i32,Cell>,id:i32,from:Cell){
+                prev_cells.insert(id,from);
                 }
             // The contention control needs the UNSEEDED single pass to be visible beside the
             // fixed point, because the claim is that the fixed point repairs what one pass does.
-            fn one_pass(name:&str,view:&GameState,commands:&[String],hold:bool){
+            fn one_pass(name:&str,view:&GameState,commands:&[String],prev_cells:&BTreeMap<i32,Cell>,hold:bool){
                 let counters:BTreeMap<i32,u8> =BTreeMap::new();
-                let(resolved,branch,holders,movers,w_collisions)=MoisanBot::hold_pass(view,commands,&BTreeSet::new(),&BTreeSet::new(),&BTreeSet::new(),hold,&counters,);
+                let(resolved,branch,holders,movers,w_collisions)=MoisanBot::hold_pass(view,commands,&BTreeSet::new(),&BTreeSet::new(),&BTreeSet::new(),hold,&counters,prev_cells,);
                 for unit in view.units.iter().filter(|unit|unit.player==0){
                     let code=branch.get(&unit.id).copied().unwrap_or('N');
                     let cmd=MoisanBot::move_command_index(commands,unit.id).map(|index|resolved[index].clone()).unwrap_or_else(||"<no command>".to_string());
@@ -1653,11 +1759,27 @@ mod bot{
                 // the persistent regressive block of codex_1's control 1.
                 let corridor:Vec<Cell> =vec![(0,0),(1,0),(2,0),(3,0)];
                 for hold in [true,false]{
+                    // A-permanent: the teammate NEVER moves. Under revision R-A this is exactly
+                    // the case the hold must NOT take: the standing would be worthless, so the
+                    // base's regressive detour is right and the branch must be R on every turn.
                     let mut counters:BTreeMap<i32,u8> =BTreeMap::new();
+                    let mut prev:BTreeMap<i32,Cell> =BTreeMap::new();
                     for turn in 1..=4{
                         let view=Self::view(&corridor,vec![Self::unit(5,(1,0)),Self::unit(3,(2,0))],turn);
                         let commands=vec![format!("MOVE 5 3 0"),"WAIT".to_string()];
-                        Self::step("A-persistent-block",turn,&view,&commands,&mut counters,hold);
+                        Self::step("A-permanent-block",turn,&view,&commands,&mut counters,&mut prev,hold);
+                        }
+                    // A-transient: the SAME geometry with a blocker that arrived on (2,0) only
+                    // last turn. This is codex_1's control 1 and it must still cycle
+                    // H(b=1), H(b=2), R(b=0), H(b=1): the bound W is what stops a hold from
+                    // becoming a parked troll, and the counter must reset on R.
+                    let mut counters:BTreeMap<i32,u8> =BTreeMap::new();
+                    let mut prev:BTreeMap<i32,Cell> =BTreeMap::new();
+                    for turn in 1..=4{
+                        Self::arrived(&mut prev,3,(2,1));
+                        let view=Self::view(&corridor,vec![Self::unit(5,(1,0)),Self::unit(3,(2,0))],turn);
+                        let commands=vec![format!("MOVE 5 3 0"),"WAIT".to_string()];
+                        Self::step("A-transient-block",turn,&view,&commands,&mut counters,&mut prev,hold);
                         }
                     }
                 // --- B: after a prior hold, an IMPROVING detour must be taken as L with the
@@ -1667,11 +1789,13 @@ mod bot{
                 {
                     let mut counters:BTreeMap<i32,u8> =BTreeMap::new();
                     counters.insert(5,1);
+                    let mut prev:BTreeMap<i32,Cell> =BTreeMap::new();
+                    Self::arrived(&mut prev,3,(0,1));
                     // The blocker sits on u5's PRIMARY landing (1,0); the free neighbour (2,1)
                     // is one step CLOSER to (3,0) than (1,1) is, so the improving arm is reached.
                     let view=Self::view(&bypass,vec![Self::unit(5,(1,1)),Self::unit(3,(1,0))],1);
                     let commands=vec!["MOVE 5 3 0".to_string(),"WAIT".to_string()];
-                    Self::step("B-improving-detour",1,&view,&commands,&mut counters,true);
+                    Self::step("B-improving-detour",1,&view,&commands,&mut counters,&mut prev,true);
                     }
                 // --- C: codex_1's "equal-distance detour" case, which CANNOT BE CONSTRUCTED.
                 // On a 4-connected grid, BFS distances of adjacent cells differ by exactly one,
@@ -1684,42 +1808,48 @@ mod bot{
                 {
                     let mut counters:BTreeMap<i32,u8> =BTreeMap::new();
                     counters.insert(5,1);
+                    let mut prev:BTreeMap<i32,Cell> =BTreeMap::new();
+                    Self::arrived(&mut prev,3,(2,1));
                     let view=Self::view(&square,vec![Self::unit(5,(1,0)),Self::unit(3,(2,0))],1);
                     let commands=vec!["MOVE 5 3 0".to_string(),"WAIT".to_string()];
-                    Self::step("C-equal-detour-not-constructible",1,&view,&commands,&mut counters,true);
+                    Self::step("C-equal-detour-not-constructible",1,&view,&commands,&mut counters,&mut prev,true);
                     }
                 // --- D: no legal detour after a prior hold is the base's forced WAIT, W0.
                 let deadend:Vec<Cell> =vec![(0,0),(1,0),(2,0)];
                 {
                     let mut counters:BTreeMap<i32,u8> =BTreeMap::new();
                     counters.insert(5,1);
+                    let mut prev:BTreeMap<i32,Cell> =BTreeMap::new();
                     let view=Self::view(&deadend,vec![Self::unit(5,(0,0)),Self::unit(3,(1,0))],1);
                     let commands=vec!["MOVE 5 2 0".to_string(),"WAIT".to_string()];
-                    Self::step("D-no-detour",1,&view,&commands,&mut counters,true);
+                    Self::step("D-no-detour",1,&view,&commands,&mut counters,&mut prev,true);
                     }
                 // --- E: a FREE primary landing after a prior hold is P0.
                 {
                     let mut counters:BTreeMap<i32,u8> =BTreeMap::new();
                     counters.insert(5,1);
+                    let mut prev:BTreeMap<i32,Cell> =BTreeMap::new();
                     let view=Self::view(&corridor,vec![Self::unit(5,(1,0))],1);
                     let commands=vec!["MOVE 5 3 0".to_string()];
-                    Self::step("E-free-primary",1,&view,&commands,&mut counters,true);
+                    Self::step("E-free-primary",1,&view,&commands,&mut counters,&mut prev,true);
                     }
                 // --- F: a live own unit with no MOVE this turn is N0.
                 {
                     let mut counters:BTreeMap<i32,u8> =BTreeMap::new();
                     counters.insert(5,1);
+                    let mut prev:BTreeMap<i32,Cell> =BTreeMap::new();
                     let view=Self::view(&corridor,vec![Self::unit(5,(1,0))],1);
                     let commands=vec!["HARVEST 5".to_string()];
-                    Self::step("F-non-move",1,&view,&commands,&mut counters,true);
+                    Self::step("F-non-move",1,&view,&commands,&mut counters,&mut prev,true);
                     }
                 // --- G: a self-targeting MOVE resolved to WAIT is W0.
                 {
                     let mut counters:BTreeMap<i32,u8> =BTreeMap::new();
                     counters.insert(5,1);
+                    let mut prev:BTreeMap<i32,Cell> =BTreeMap::new();
                     let view=Self::view(&corridor,vec![Self::unit(5,(1,0))],1);
                     let commands=vec!["MOVE 5 1 0".to_string()];
-                    Self::step("G-self-target",1,&view,&commands,&mut counters,true);
+                    Self::step("G-self-target",1,&view,&commands,&mut counters,&mut prev,true);
                     }
                 // --- H: THE CONTENTION CONTROL. Movers are processed in DESCENDING id, so u9 is
                 // resolved before u5. u9's landing is u5's cell, and u5 is about to hold. One
@@ -1729,38 +1859,53 @@ mod bot{
                 // (1,1) is u5's regressive escape, so u5 HOLDS rather than being forced to WAIT;
                 // without it the situation is the base's forced-WAIT exposure instead, which is a
                 // different control (and is what the first draft of this fixture measured).
+                // u3 is declared to have ARRIVED on (2,0) last turn, because under revision R-A a
+                // permanent blocker no longer produces a hold at all and the contention hazard is
+                // about a unit that IS holding. The hazard itself is untouched by R-A.
                 let lane:Vec<Cell> =vec![(0,0),(1,0),(2,0),(3,0),(1,1)];
                 {
                     let view=Self::view(&lane,vec![Self::unit(9,(0,0)),Self::unit(5,(1,0)),Self::unit(3,(2,0))],1);
                     let commands=vec!["MOVE 9 1 0".to_string(),"MOVE 5 3 0".to_string(),"WAIT".to_string()];
-                    Self::one_pass("H-contention",&view,&commands,true);
+                    let mut prev:BTreeMap<i32,Cell> =BTreeMap::new();
+                    Self::arrived(&mut prev,3,(2,1));
+                    Self::one_pass("H-contention",&view,&commands,&prev,true);
                     let mut counters:BTreeMap<i32,u8> =BTreeMap::new();
-                    Self::step("H-contention",1,&view,&commands,&mut counters,true);
+                    let mut prev:BTreeMap<i32,Cell> =BTreeMap::new();
+                    Self::arrived(&mut prev,3,(2,1));
+                    Self::step("H-contention",1,&view,&commands,&mut counters,&mut prev,1==1);
                     }
-                // --- I: THE CHARTER'S POSITIVE CONTROL. Two turns blocked, then the teammate
-                // clears. With the rule on the unit holds and then walks forward; with the rule
-                // off it steps backwards first. Both arms are printed so the difference is the
-                // evidence, not a claim.
+                // --- I: THE CHARTER'S POSITIVE CONTROL, rebuilt for revision R-A.
+                // The as-built version used a teammate that simply stood on the cell for two
+                // turns. R-A calls that a PERMANENT block and refuses to hold on it, so that
+                // fixture would now measure nothing -- it is kept as A-permanent-block, where the
+                // detour is the right answer. The transient block as it occurs in play is a
+                // teammate that has just ARRIVED on the cell and is busy this turn (a non-MOVE
+                // command, so its square is reserved), then leaves. u5 must hold instead of
+                // stepping backwards, and must then walk FORWARD -- not stand.
+                //
+                // Note for the record, because it bounds what this rule can now do: with the base
+                // resolver a blocker whose square is reserved is necessarily a NON-mover, and a
+                // non-mover that stood on the same square last turn is permanent by R-A. So in
+                // play the hold fires at most once per arrival, and the two-turn `W` bound is
+                // reached only when the blocking square keeps being handed to a different mover.
+                // A-transient-block exercises the counter's two-turn cycle by DECLARING the
+                // blocker to have arrived on each turn; that is a statement about the counter, not
+                // a claim that the sequence is common in play.
+                let escape:Vec<Cell> =vec![(0,0),(1,0),(2,0),(3,0),(1,1)];
                 for hold in [true,false]{
                     let mut counters:BTreeMap<i32,u8> =BTreeMap::new();
+                    let mut prev:BTreeMap<i32,Cell> =BTreeMap::new();
+                    Self::arrived(&mut prev,3,(2,1));
                     let mut cell=(1,0);
                     for turn in 1..=4{
                         let mut units=vec![Self::unit(5,cell)];
-                        if turn<3{
-                            units.push(Self::unit(3,(2,0)));
-                            }
-                        let view=Self::view(&corridor,units,turn);
                         let mut commands=vec![format!("MOVE 5 3 0")];
-                        if turn<3{
-                            commands.push("WAIT".to_string());
+                        if turn<2{
+                            units.push(Self::unit(3,(2,0)));
+                            commands.push("HARVEST 3".to_string());
                             }
-                        let mut resolved=commands.clone();
-                        let mut branch:BTreeMap<i32,char> =BTreeMap::new();
-                        let mut meta=HoldMeta::default();
-                        MoisanBot::resolve_move_conflicts_hold(&view,&mut resolved,&mut counters,hold,&mut branch,&mut meta,);
-                        let code=branch.get(&5).copied().unwrap_or('N');
-                        let b=counters.get(&5).copied().unwrap_or(0);
-                        println!("CTRL I-positive hold={} turn={} u5 cell={},{} r={} b={} cmd={} pz={} sp={} wc={}",hold,turn,cell.0,cell.1,code,b,resolved[0],meta.passes,meta.stale_protections,meta.w_collisions);
+                        let view=Self::view(&escape,units,turn);
+                        let resolved=Self::step("I-positive",turn,&view,&commands,&mut counters,&mut prev,hold);
                         // Apply the movement the resolver produced, so the next turn sees it.
                         if let Some((_,landing))=MoisanBot::move_command(&resolved[0]){
                             cell=landing;
@@ -1838,7 +1983,7 @@ mod bot{
                 let mut selected=MoisanBot::select_recording(by_id,&view.inventories[0],&mut narrate_chosen,);
                 let mut narrate_branch:BTreeMap<i32,char> =BTreeMap::new();
                 let mut narrate_meta=HoldMeta::default();
-                MoisanBot::resolve_move_conflicts_hold(view,&mut selected,&mut self.blocked_turns,MoisanBot::HOLD_RULE_ENABLED,&mut narrate_branch,&mut narrate_meta,);
+                MoisanBot::resolve_move_conflicts_hold(view,&mut selected,&mut self.blocked_turns,&mut self.prev_cells,&mut self.orchard_inert,MoisanBot::HOLD_RULE_ENABLED,&mut narrate_branch,&mut narrate_meta,);
                 self.remember_selected_regeneration(&selected);
                 out.extend(selected);
                 if MoisanBot::NARRATE_V4_ENABLED{

@@ -1,22 +1,79 @@
 {
-  "caught": false,
-  "control": "poison arm \u2014 holds on every blocked step forever (W=255)",
-  "discriminator": "longest consecutive hold run 194 turns reaches the P4 window and P4 still did not fire: the gate is BLIND to a parked troll and no green on it can be read.",
-  "expected": "CAUGHT: more blocking games than the candidate arm, and P4 above the base",
-  "observed": {
-    "base_blocking": 43,
-    "base_p4": 16,
-    "candidate_blocking": 41,
-    "longest_consecutive_hold_run": 194,
-    "p4_liveness_window": 60,
-    "poison_blocking": 40,
-    "poison_de_novo_blocks": 3,
-    "poison_hold_turns": 2689,
-    "poison_p4": 16,
-    "poison_p4_worse_games": 1
+  "base_idle_share_pct": 0.7323,
+  "base_p4_violations": 16,
+  "caught": true,
+  "control": "poison arm \u2014 the control for the control (ruling 20260825T094200Z, disposition 4c)",
+  "graded_by": "per-troll idle-with-work share <= 1.5 % (idle_share.py). P4 is VOID for this family and its number is recorded only as evidence that it stays blind.",
+  "line_pct": 1.5,
+  "p4_blindness_reconfirmed": true,
+  "revised_arm_idle_share_pct": 0.6437,
+  "variants": {
+    "P-A": {
+      "arms": {
+        "candidate": {
+          "blocking_games": 40,
+          "games_archive": "/tmp/claude-1000/cure1/poison-p-a-candidate/games/games.jsonl.gz",
+          "p4_violations": 16,
+          "sha256": "3f79d3805ae48e27226fe363f9d96a3ab5d783b4ae0cd59a890c32de6d19ef56",
+          "source": "claude_1/cure1/poison-p-a-candidate.rs"
+        },
+        "instrument": {
+          "blocking_games": 49,
+          "games_archive": "/tmp/claude-1000/cure1/poison-p-a-instrument/games/games.jsonl.gz",
+          "p4_violations": 16,
+          "sha256": "6f93f5f061e9c71a5553fdf84e69284a86fa4a76c337d9dd99adbeac9801a734",
+          "source": "claude_1/cure1/poison-p-a-instrument.rs"
+        }
+      },
+      "caught_by_the_idle_clause": true,
+      "graded": true,
+      "hold_turns": 2527,
+      "idle_with_work_share_pct": 3.9076,
+      "longest_consecutive_hold_run": 194,
+      "p4_still_blind": true,
+      "what": "the charter's poison: holds on EVERY blocked step forever (W=255, R-A off)",
+      "worst_troll": {
+        "idle_turns": 194,
+        "map_id": "m110",
+        "seat": 1,
+        "share_pct": 97.0,
+        "turns": 200,
+        "unit": 0
+      }
+    },
+    "P-B": {
+      "arms": {
+        "candidate": {
+          "blocking_games": 40,
+          "games_archive": "/tmp/claude-1000/cure1/poison-p-b-candidate/games/games.jsonl.gz",
+          "p4_violations": 15,
+          "sha256": "945050a2c02222bf223efe06d136fc8f361c83e9aca17b4c8e898e701a2024a6",
+          "source": "claude_1/cure1/poison-p-b-candidate.rs"
+        },
+        "instrument": {
+          "blocking_games": 49,
+          "games_archive": "/tmp/claude-1000/cure1/poison-p-b-instrument/games/games.jsonl.gz",
+          "p4_violations": 15,
+          "sha256": "1f85201b5ca6173ce2caa10084b96f5b6640ef691388034a628f902d8d2b423a",
+          "source": "claude_1/cure1/poison-p-b-instrument.rs"
+        }
+      },
+      "caught_by_the_idle_clause": false,
+      "graded": false,
+      "hold_turns": 22,
+      "idle_with_work_share_pct": 0.6437,
+      "longest_consecutive_hold_run": 2,
+      "p4_still_blind": false,
+      "what": "W=255 with R-A still on: what the transient predicate is worth alone",
+      "worst_troll": {
+        "idle_turns": 190,
+        "map_id": "m059",
+        "seat": 0,
+        "share_pct": 95.0,
+        "turns": 200,
+        "unit": 2
+      }
+    }
   },
-  "sha256": "0972704aa4d48e1e810f0da11d8438eb9eb07e32847ef813d34adcb7cd146007",
-  "task": "20260825-dance-cure-candidate-1-hold",
-  "unsampled": false,
-  "verdict": "FAIL \u2014 the gate cannot see a parked troll, so the candidate's own green on it means nothing"
+  "verdict": "PASS \u2014 the charter's poison arm is CAUGHT by the clause that replaced P4: idle-with-work 3.9076 % against the 1.5 % line, longest consecutive hold run 194 turns."
 }

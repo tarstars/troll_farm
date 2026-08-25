@@ -63,15 +63,36 @@ def main() -> int:
         controls.append({"control": key, "why": why, "expected": expected,
                          "observed": observed, "status": status, "pass": ok})
 
-    # --- codex_1 control 1: the persistent regressive block cycles H1, H2, R0, H1 -------------
-    a_on = seq(ctrl, "A-persistent-block", "true", 5)
-    add("codex_1 #1 — persistent regressive block cycles H(b=1), H(b=2), R(b=0), H(b=1)",
+    # --- revision R-A: a PERMANENT blocker must NOT produce a hold ------------------------------
+    perm_on = seq(ctrl, "A-permanent-block", "true", 5)
+    add("R-A — a blocker that stood on the same cell last turn and is stationary now produces NO "
+        "hold: the base's regressive detour on every turn",
+        "the ruling of 20260825T094200Z: the standing is worthless exactly when the blocker will "
+        "not move, and the never-moving worker is Candidate 2's tail, not this card's. This is "
+        "the control that would catch R-A being silently absent",
+        [(t, "R", 0) for t in range(1, 5)], perm_on,
+        perm_on == [(t, "R", 0) for t in range(1, 5)])
+
+    perm_off = seq(ctrl, "A-permanent-block", "false", 5)
+    add("R-A — rule-off is identical on the permanent-blocker situation",
+        "with the revision in place the rule-on and rule-off arms now agree on this whole class, "
+        "which is why the panel's 240-game parity is not the only evidence for it",
+        [(t, "R", 0) for t in range(1, 5)], perm_off,
+        perm_off == [(t, "R", 0) for t in range(1, 5)] and perm_off == perm_on)
+
+    # --- codex_1 control 1, on a TRANSIENT blocker: the counter cycles H1, H2, R0, H1 -----------
+    a_on = seq(ctrl, "A-transient-block", "true", 5)
+    add("codex_1 #1 — a regressive block by a TRANSIENT blocker cycles H(b=1), H(b=2), R(b=0), "
+        "H(b=1)",
         "the bound W is what stops a hold becoming a parked troll; if the counter did not reset "
-        "on R the cycle would stall forever",
+        "on R the cycle would stall forever. SYNTHETIC: the probe declares the blocker to have "
+        "arrived on each of the four turns, because under R-A a real blocker that stays put stops "
+        "being transient after one turn. This control is about the COUNTER, not about how often "
+        "the sequence occurs in play",
         [(1, "H", 1), (2, "H", 2), (3, "R", 0), (4, "H", 1)], a_on,
         a_on == [(1, "H", 1), (2, "H", 2), (3, "R", 0), (4, "H", 1)])
 
-    a_off = seq(ctrl, "A-persistent-block", "false", 5)
+    a_off = seq(ctrl, "A-transient-block", "false", 5)
     add("codex_1 #6a — the rule-off arm cannot emit H or a nonzero b on the same situation",
         "the parity claim rests on H being unreachable with the flag off",
         [(t, "R", 0) for t in range(1, 5)], a_off,
@@ -91,7 +112,8 @@ def main() -> int:
         "exactly one, and a free orthogonal neighbour of a reachable cell is itself reachable, so "
         "the manhattan fallback can never apply to one side of the comparison only. "
         "`toward_goal[detour] == d_cur` is unreachable and the predicate's `<=` is exactly `<`. "
-        "The probe runs the sideways case and it resolves as H because the neighbour is d_cur+1.",
+        "The probe runs the sideways case against a TRANSIENT blocker and it resolves as H "
+        "because the neighbour is d_cur+1, not equal.",
         c, True, status="not_constructible")
 
     # --- codex_1 control 3: no neighbour after a prior hold is W0 ------------------------------
@@ -140,7 +162,10 @@ def main() -> int:
     ends_further = i_on[-1][2][0] >= i_off[-1][2][0]
     add("charter — the hold fires and the dance ends with PROGRESS",
         "a cure that merely stops the backward step and then stands still forever is the "
-        "polite-standstill failure this programme has shipped before",
+        "polite-standstill failure this programme has shipped before. REBUILT for revision R-A: "
+        "the blocker is a teammate that has just ARRIVED on the cell and is busy this turn, then "
+        "leaves — a permanent blocker no longer produces a hold at all and is covered by the "
+        "R-A control above",
         "rule-on never emits R and ends no further from the target than rule-off; rule-off does "
         "step backwards on the same script",
         {"rule_on": i_on, "rule_off": i_off},

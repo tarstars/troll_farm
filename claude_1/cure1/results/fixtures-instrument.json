@@ -1,29 +1,29 @@
 {
   "arm": "claude_1/cure1/arm-instrument.rs",
   "base": "cgauto/submissions/candidate-door1-pure-deletion.rs",
-  "byte_identical_without_msg": 19,
+  "byte_identical_without_msg": 31,
   "census": {
     "available_states": {
       "ABSENT": 0,
-      "CONCRETE": 5385,
-      "NONE": 7596
+      "CONCRETE": 5384,
+      "NONE": 7597
     },
     "blocked_values": {
-      "0": 12181,
-      "1": 403,
-      "2": 397
+      "0": 12976,
+      "1": 4,
+      "2": 1
     },
     "branches": {
-      "H": 800,
-      "L": 105,
-      "N": 10212,
-      "P": 1274,
-      "R": 393,
+      "H": 5,
+      "L": 202,
+      "N": 10206,
+      "P": 1576,
+      "R": 795,
       "W": 197
     },
-    "chosen_ne_available": 2000,
-    "discarded_want": 1591,
-    "hold_turns": 800,
+    "chosen_ne_available": 1989,
+    "discarded_want": 1577,
+    "hold_turns": 5,
     "lone_unit_turns": 619,
     "max_passes": 2,
     "payload_max_chars": 142,
@@ -36,17 +36,13 @@
   "fixtures": 34,
   "gate": "alpha parity (NARRATE v4, arm instrument)",
   "not_proven_here": "platform non-interference: this harness does not react to command count, ordering or line length; a telemetry arm emits a MSG token on every turn where the base emits one on turn 1 only",
-  "referee_state_identical": 29,
+  "referee_state_identical": 33,
   "rows": [
     {
       "arm_msg_tokens": 200,
       "base_msg_tokens": 1,
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 6 2;WAIT",
-        "turn": 7
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "id": "OSC-001",
       "referee_state_identical": true,
       "telemetry_errors": 0,
@@ -89,14 +85,10 @@
     {
       "arm_msg_tokens": 200,
       "base_msg_tokens": 1,
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "CHOP 0;WAIT",
-        "base": "CHOP 0;MOVE 2 10 2",
-        "turn": 8
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "id": "OSC-005",
-      "referee_state_identical": false,
+      "referee_state_identical": true,
       "telemetry_errors": 0,
       "turns": 200
     },
@@ -115,9 +107,9 @@
       "base_msg_tokens": 1,
       "byte_identical_without_msg": false,
       "first_divergence": {
-        "arm": "CHOP 0;WAIT",
-        "base": "CHOP 0;MOVE 2 7 6",
-        "turn": 8
+        "arm": "WAIT;MOVE 2 6 6",
+        "base": "MOVE 0 4 6;MOVE 2 6 6",
+        "turn": 11
       },
       "id": "OSC-007",
       "referee_state_identical": true,
@@ -161,26 +153,18 @@
     {
       "arm_msg_tokens": 200,
       "base_msg_tokens": 1,
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 7 4;WAIT",
-        "turn": 27
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "id": "OSC-011",
-      "referee_state_identical": false,
+      "referee_state_identical": true,
       "telemetry_errors": 0,
       "turns": 200
     },
     {
       "arm_msg_tokens": 200,
       "base_msg_tokens": 1,
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 9 2;WAIT",
-        "turn": 9
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "id": "OSC-012",
       "referee_state_identical": true,
       "telemetry_errors": 0,
@@ -189,12 +173,8 @@
     {
       "arm_msg_tokens": 200,
       "base_msg_tokens": 1,
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 6 2",
-        "turn": 14
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "id": "OSC-013",
       "referee_state_identical": true,
       "telemetry_errors": 0,
@@ -233,12 +213,8 @@
     {
       "arm_msg_tokens": 200,
       "base_msg_tokens": 1,
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 9 1",
-        "turn": 7
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "id": "OSC-017",
       "referee_state_identical": true,
       "telemetry_errors": 0,
@@ -277,12 +253,8 @@
     {
       "arm_msg_tokens": 200,
       "base_msg_tokens": 1,
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 7 4;WAIT",
-        "turn": 30
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "id": "OSC-021",
       "referee_state_identical": true,
       "telemetry_errors": 0,
@@ -311,12 +283,8 @@
     {
       "arm_msg_tokens": 200,
       "base_msg_tokens": 1,
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 1 2;WAIT",
-        "turn": 6
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "id": "OSC-024",
       "referee_state_identical": true,
       "telemetry_errors": 0,
@@ -325,12 +293,8 @@
     {
       "arm_msg_tokens": 200,
       "base_msg_tokens": 1,
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 12 2;WAIT",
-        "turn": 13
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "id": "OSC-025",
       "referee_state_identical": true,
       "telemetry_errors": 0,
@@ -349,12 +313,8 @@
     {
       "arm_msg_tokens": 200,
       "base_msg_tokens": 1,
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "CHOP 0;WAIT",
-        "base": "CHOP 0;MOVE 2 5 2",
-        "turn": 4
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "id": "OSC-027",
       "referee_state_identical": true,
       "telemetry_errors": 0,
@@ -373,28 +333,20 @@
     {
       "arm_msg_tokens": 200,
       "base_msg_tokens": 1,
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 6 4;WAIT",
-        "turn": 29
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "id": "OSC-029",
-      "referee_state_identical": false,
+      "referee_state_identical": true,
       "telemetry_errors": 0,
       "turns": 200
     },
     {
       "arm_msg_tokens": 200,
       "base_msg_tokens": 1,
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;MOVE 2 7 2",
-        "base": "MOVE 0 5 2;MOVE 2 7 2",
-        "turn": 7
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "id": "OSC-030",
-      "referee_state_identical": false,
+      "referee_state_identical": true,
       "telemetry_errors": 0,
       "turns": 200
     },

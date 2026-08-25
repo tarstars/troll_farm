@@ -2,15 +2,29 @@
  "candidate": "claude_1/cure1/arm-candidate.rs",
  "results": [
   {
-   "id": "OSC-001",
-   "identity_reasons": [
-    "98 of 195 frozen window command lines differ"
+   "cells": [
+    [
+     6,
+     2
+    ],
+    [
+     5,
+     2
+    ]
    ],
+   "d1_episodes_in_window": 1,
+   "detector_clause": "D-1",
+   "detector_silent": false,
+   "id": "OSC-001",
    "kind": "D1_EPISODE",
-   "reproduces_the_recorded_episode": false,
+   "left_cycle": false,
+   "p4_violations_in_window": 1,
+   "progress_events": false,
+   "progress_restored": false,
+   "reproduces_the_recorded_episode": true,
    "unit": 0,
-   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
-   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "verdict": "NOT_FIXED",
+   "why": "detector still fires",
    "window": [
     6,
     200
@@ -65,15 +79,29 @@
    ]
   },
   {
-   "id": "OSC-005",
-   "identity_reasons": [
-    "7 of 12 frozen window command lines differ"
+   "cells": [
+    [
+     10,
+     2
+    ],
+    [
+     9,
+     2
+    ]
    ],
+   "d1_episodes_in_window": 1,
+   "detector_clause": "D-1",
+   "detector_silent": false,
+   "id": "OSC-005",
    "kind": "D1_EPISODE",
-   "reproduces_the_recorded_episode": false,
+   "left_cycle": false,
+   "p4_violations_in_window": 0,
+   "progress_events": false,
+   "progress_restored": false,
+   "reproduces_the_recorded_episode": true,
    "unit": 2,
-   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
-   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "verdict": "NOT_FIXED",
+   "why": "detector still fires",
    "window": [
     7,
     18
@@ -162,7 +190,7 @@
   {
    "id": "OSC-011",
    "identity_reasons": [
-    "4 of 7 frozen window command lines differ"
+    "1 of 7 frozen window command lines differ"
    ],
    "kind": "D1_EPISODE",
    "reproduces_the_recorded_episode": false,
@@ -175,30 +203,58 @@
    ]
   },
   {
-   "id": "OSC-012",
-   "identity_reasons": [
-    "96 of 193 frozen window command lines differ"
+   "cells": [
+    [
+     9,
+     2
+    ],
+    [
+     10,
+     2
+    ]
    ],
+   "d1_episodes_in_window": 1,
+   "detector_clause": "D-1",
+   "detector_silent": false,
+   "id": "OSC-012",
    "kind": "D1_EPISODE",
-   "reproduces_the_recorded_episode": false,
+   "left_cycle": false,
+   "p4_violations_in_window": 1,
+   "progress_events": false,
+   "progress_restored": false,
+   "reproduces_the_recorded_episode": true,
    "unit": 0,
-   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
-   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "verdict": "NOT_FIXED",
+   "why": "detector still fires",
    "window": [
     8,
     200
    ]
   },
   {
-   "id": "OSC-013",
-   "identity_reasons": [
-    "94 of 187 frozen window command lines differ"
+   "cells": [
+    [
+     7,
+     2
+    ],
+    [
+     6,
+     2
+    ]
    ],
+   "d1_episodes_in_window": 1,
+   "detector_clause": "D-1",
+   "detector_silent": false,
+   "id": "OSC-013",
    "kind": "D1_EPISODE",
-   "reproduces_the_recorded_episode": false,
+   "left_cycle": false,
+   "p4_violations_in_window": 1,
+   "progress_events": false,
+   "progress_restored": false,
+   "reproduces_the_recorded_episode": true,
    "unit": 2,
-   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
-   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "verdict": "NOT_FIXED",
+   "why": "detector still fires",
    "window": [
     14,
     200
@@ -253,15 +309,29 @@
    ]
   },
   {
-   "id": "OSC-017",
-   "identity_reasons": [
-    "98 of 194 frozen window command lines differ"
+   "cells": [
+    [
+     10,
+     1
+    ],
+    [
+     9,
+     1
+    ]
    ],
+   "d1_episodes_in_window": 1,
+   "detector_clause": "D-1",
+   "detector_silent": false,
+   "id": "OSC-017",
    "kind": "D1_EPISODE",
-   "reproduces_the_recorded_episode": false,
+   "left_cycle": false,
+   "p4_violations_in_window": 1,
+   "progress_events": false,
+   "progress_restored": false,
+   "reproduces_the_recorded_episode": true,
    "unit": 2,
-   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
-   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "verdict": "NOT_FIXED",
+   "why": "detector still fires",
    "window": [
     7,
     200
@@ -316,16 +386,29 @@
    ]
   },
   {
-   "id": "OSC-021",
-   "identity_reasons": [
-    "85 of 169 frozen window command lines differ",
-    "the board at the window's first turn differs from the frozen entry state (units)"
+   "cells": [
+    [
+     7,
+     5
+    ],
+    [
+     6,
+     5
+    ]
    ],
+   "d1_episodes_in_window": 1,
+   "detector_clause": "D-1",
+   "detector_silent": false,
+   "id": "OSC-021",
    "kind": "D1_EPISODE",
-   "reproduces_the_recorded_episode": false,
+   "left_cycle": false,
+   "p4_violations_in_window": 1,
+   "progress_events": false,
+   "progress_restored": false,
+   "reproduces_the_recorded_episode": true,
    "unit": 0,
-   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
-   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "verdict": "NOT_FIXED",
+   "why": "detector still fires",
    "window": [
     32,
     200
@@ -364,15 +447,29 @@
    ]
   },
   {
-   "id": "OSC-024",
-   "identity_reasons": [
-    "32 of 65 frozen window command lines differ"
+   "cells": [
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     2
+    ]
    ],
+   "d1_episodes_in_window": 1,
+   "detector_clause": "D-1",
+   "detector_silent": false,
+   "id": "OSC-024",
    "kind": "D1_EPISODE",
-   "reproduces_the_recorded_episode": false,
+   "left_cycle": false,
+   "p4_violations_in_window": 1,
+   "progress_events": false,
+   "progress_restored": false,
+   "reproduces_the_recorded_episode": true,
    "unit": 0,
-   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
-   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "verdict": "NOT_FIXED",
+   "why": "detector still fires",
    "window": [
     5,
     69
@@ -381,7 +478,7 @@
   {
    "id": "OSC-025",
    "identity_reasons": [
-    "11 of 21 frozen window command lines differ"
+    "1 of 21 frozen window command lines differ"
    ],
    "kind": "D1_EPISODE",
    "reproduces_the_recorded_episode": false,
@@ -423,15 +520,29 @@
    ]
   },
   {
-   "id": "OSC-027",
-   "identity_reasons": [
-    "10 of 22 frozen window command lines differ"
+   "cells": [
+    [
+     5,
+     2
+    ],
+    [
+     4,
+     2
+    ]
    ],
+   "d1_episodes_in_window": 1,
+   "detector_clause": "D-1",
+   "detector_silent": false,
+   "id": "OSC-027",
    "kind": "D1_EPISODE",
-   "reproduces_the_recorded_episode": false,
+   "left_cycle": false,
+   "p4_violations_in_window": 0,
+   "progress_events": false,
+   "progress_restored": false,
+   "reproduces_the_recorded_episode": true,
    "unit": 2,
-   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
-   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "verdict": "NOT_FIXED",
+   "why": "detector still fires",
    "window": [
     3,
     24
@@ -470,16 +581,29 @@
    ]
   },
   {
-   "id": "OSC-030",
-   "identity_reasons": [
-    "8 of 8 frozen window command lines differ",
-    "the board at the window's first turn differs from the frozen entry state (plants, units)"
+   "cells": [
+    [
+     8,
+     2
+    ],
+    [
+     9,
+     2
+    ]
    ],
+   "d1_episodes_in_window": 1,
+   "detector_clause": "D-1",
+   "detector_silent": false,
+   "id": "OSC-030",
    "kind": "D1_EPISODE",
-   "reproduces_the_recorded_episode": false,
+   "left_cycle": false,
+   "p4_violations_in_window": 0,
+   "progress_events": false,
+   "progress_restored": false,
+   "reproduces_the_recorded_episode": true,
    "unit": 2,
-   "verdict": "NOT_REPRODUCIBLE_ON_BASE",
-   "why": "this run is a different game on the same map: the recorded window's turn bounds do not describe it, so neither FIXED nor NOT_FIXED is a statement about anything",
+   "verdict": "NOT_FIXED",
+   "why": "detector still fires",
    "window": [
     24,
     31

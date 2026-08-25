@@ -1,8 +1,108 @@
 {
-  "control_count": 10,
+  "control_count": 12,
   "controls": [
     {
-      "control": "codex_1 #1 \u2014 persistent regressive block cycles H(b=1), H(b=2), R(b=0), H(b=1)",
+      "control": "R-A \u2014 a blocker that stood on the same cell last turn and is stationary now produces NO hold: the base's regressive detour on every turn",
+      "expected": [
+        [
+          1,
+          "R",
+          0
+        ],
+        [
+          2,
+          "R",
+          0
+        ],
+        [
+          3,
+          "R",
+          0
+        ],
+        [
+          4,
+          "R",
+          0
+        ]
+      ],
+      "observed": [
+        [
+          1,
+          "R",
+          0
+        ],
+        [
+          2,
+          "R",
+          0
+        ],
+        [
+          3,
+          "R",
+          0
+        ],
+        [
+          4,
+          "R",
+          0
+        ]
+      ],
+      "pass": true,
+      "status": "checked",
+      "why": "the ruling of 20260825T094200Z: the standing is worthless exactly when the blocker will not move, and the never-moving worker is Candidate 2's tail, not this card's. This is the control that would catch R-A being silently absent"
+    },
+    {
+      "control": "R-A \u2014 rule-off is identical on the permanent-blocker situation",
+      "expected": [
+        [
+          1,
+          "R",
+          0
+        ],
+        [
+          2,
+          "R",
+          0
+        ],
+        [
+          3,
+          "R",
+          0
+        ],
+        [
+          4,
+          "R",
+          0
+        ]
+      ],
+      "observed": [
+        [
+          1,
+          "R",
+          0
+        ],
+        [
+          2,
+          "R",
+          0
+        ],
+        [
+          3,
+          "R",
+          0
+        ],
+        [
+          4,
+          "R",
+          0
+        ]
+      ],
+      "pass": true,
+      "status": "checked",
+      "why": "with the revision in place the rule-on and rule-off arms now agree on this whole class, which is why the panel's 240-game parity is not the only evidence for it"
+    },
+    {
+      "control": "codex_1 #1 \u2014 a regressive block by a TRANSIENT blocker cycles H(b=1), H(b=2), R(b=0), H(b=1)",
       "expected": [
         [
           1,
@@ -49,7 +149,7 @@
       ],
       "pass": true,
       "status": "checked",
-      "why": "the bound W is what stops a hold becoming a parked troll; if the counter did not reset on R the cycle would stall forever"
+      "why": "the bound W is what stops a hold becoming a parked troll; if the counter did not reset on R the cycle would stall forever. SYNTHETIC: the probe declares the blocker to have arrived on each of the four turns, because under R-A a real blocker that stays put stops being transient after one turn. This control is about the COUNTER, not about how often the sequence occurs in play"
     },
     {
       "control": "codex_1 #6a \u2014 the rule-off arm cannot emit H or a nonzero b on the same situation",
@@ -123,7 +223,7 @@
     },
     {
       "control": "codex_1 #2b \u2014 an EQUAL-distance detour after a prior hold is L0",
-      "expected": "NOT CONSTRUCTIBLE: on a 4-connected grid the BFS distances of adjacent cells differ by exactly one, and a free orthogonal neighbour of a reachable cell is itself reachable, so the manhattan fallback can never apply to one side of the comparison only. `toward_goal[detour] == d_cur` is unreachable and the predicate's `<=` is exactly `<`. The probe runs the sideways case and it resolves as H because the neighbour is d_cur+1.",
+      "expected": "NOT CONSTRUCTIBLE: on a 4-connected grid the BFS distances of adjacent cells differ by exactly one, and a free orthogonal neighbour of a reachable cell is itself reachable, so the manhattan fallback can never apply to one side of the comparison only. `toward_goal[detour] == d_cur` is unreachable and the predicate's `<=` is exactly `<`. The probe runs the sideways case against a TRANSIENT blocker and it resolves as H because the neighbour is d_cur+1, not equal.",
       "observed": [
         [
           1,
@@ -247,6 +347,14 @@
             ]
           ],
           [
+            1,
+            "N",
+            [
+              2,
+              0
+            ]
+          ],
+          [
             2,
             "P",
             [
@@ -281,8 +389,16 @@
             ]
           ],
           [
+            1,
+            "N",
+            [
+              2,
+              0
+            ]
+          ],
+          [
             2,
-            "H",
+            "P",
             [
               1,
               0
@@ -292,15 +408,15 @@
             3,
             "P",
             [
-              1,
+              2,
               0
             ]
           ],
           [
             4,
-            "P",
+            "W",
             [
-              2,
+              3,
               0
             ]
           ]
@@ -308,7 +424,7 @@
       },
       "pass": true,
       "status": "checked",
-      "why": "a cure that merely stops the backward step and then stands still forever is the polite-standstill failure this programme has shipped before"
+      "why": "a cure that merely stops the backward step and then stands still forever is the polite-standstill failure this programme has shipped before. REBUILT for revision R-A: the blocker is a teammate that has just ARRIVED on the cell and is busy this turn, then leaves \u2014 a permanent blocker no longer produces a hold at all and is covered by the R-A control above"
     }
   ],
   "gate": "G-1 resolver controls",

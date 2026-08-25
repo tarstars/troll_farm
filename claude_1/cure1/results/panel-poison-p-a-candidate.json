@@ -1,5 +1,5 @@
 {
- "candidate_sha256": "4fc4579880b3f9b9cd5f4d2cf67338e92a6783a6d7e10b58c43790fa324918a6",
+ "candidate_sha256": "3f79d3805ae48e27226fe363f9d96a3ab5d783b4ae0cd59a890c32de6d19ef56",
  "corpus_version": "c5-two-player-phase-merged-2026-08-11",
  "engine_sha256": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
  "games": [
@@ -879,7 +879,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 2,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -953,20 +953,51 @@
    "turns": 200,
    "violations": [
     {
-     "detail": {
-      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(10,2)/TREE(10,2)/r=P/b=0 u2=BANK(1,1)/BANK(1,1)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 1 2;MOVE 2 12 3",
-      "first_divergence_turn": 1,
-      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 2;MOVE 2 12 3"
-     },
-     "property": "P3"
+     "count": 2,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         10,
+         2
+        ],
+        [
+         11,
+         2
+        ]
+       ],
+       "k": 74,
+       "turn_end": 200,
+       "turn_start": 52,
+       "unit": 0
+      },
+      {
+       "cells": [
+        [
+         8,
+         2
+        ],
+        [
+         9,
+         2
+        ]
+       ],
+       "k": 3,
+       "turn_end": 31,
+       "turn_start": 24,
+       "unit": 2
+      }
+     ],
+     "property": "P1"
     },
     {
      "detail": {
       "live_end": 200,
       "terminal_from": 201,
-      "why": "candidate makes no own-inventory/own-cargo progress over turns 30-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]",
+      "why": "candidate makes no own-inventory/own-cargo progress over turns 42-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]",
       "window_end": 200,
-      "window_start": 30
+      "window_start": 42
      },
      "property": "P4"
     }
@@ -2988,7 +3019,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": true,
+   "block": false,
    "candidate": {
     "inventory": [
      0,
@@ -3087,16 +3118,7 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": [
-    {
-     "detail": {
-      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(10,0)/TREE(10,0)/r=P/b=0 u2=BANK(1,2)/BANK(1,2)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 1 3;MOVE 2 6 1",
-      "first_divergence_turn": 1,
-      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 3;MOVE 2 6 1"
-     },
-     "property": "P3"
-    }
-   ]
+   "violations": []
   },
   {
    "attempt": 0,
@@ -5357,7 +5379,7 @@
   {
    "attempt": 0,
    "banana_active": true,
-   "block": true,
+   "block": false,
    "candidate": {
     "inventory": [
      0,
@@ -5456,16 +5478,7 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": [
-    {
-     "detail": {
-      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(10,3)/TREE(10,3)/r=P/b=0 u2=TREE(11,6)/TREE(10,3)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 1 2;MOVE 2 4 5",
-      "first_divergence_turn": 1,
-      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 2;MOVE 2 4 5"
-     },
-     "property": "P3"
-    }
-   ]
+   "violations": []
   },
   {
    "attempt": 0,
@@ -7446,7 +7459,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": true,
+   "block": false,
    "candidate": {
     "inventory": [
      0,
@@ -7545,16 +7558,7 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": [
-    {
-     "detail": {
-      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(12,1)/TREE(9,3)/r=P/b=0 u2=TREE(9,3)/TREE(9,3)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 1 3;MOVE 2 6 3",
-      "first_divergence_turn": 1,
-      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 3;MOVE 2 6 3"
-     },
-     "property": "P3"
-    }
-   ]
+   "violations": []
   },
   {
    "attempt": 0,
@@ -10030,7 +10034,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": true,
+   "block": false,
    "candidate": {
     "inventory": [
      0,
@@ -10129,16 +10133,7 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": [
-    {
-     "detail": {
-      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(9,1)/TREE(9,1)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 1 7",
-      "first_divergence_turn": 1,
-      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 7"
-     },
-     "property": "P3"
-    }
-   ]
+   "violations": []
   },
   {
    "attempt": 0,
@@ -11944,7 +11939,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": true,
+   "block": false,
    "candidate": {
     "inventory": [
      0,
@@ -12043,16 +12038,7 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": [
-    {
-     "detail": {
-      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(11,1)/TREE(11,1)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 1 2",
-      "first_divergence_turn": 1,
-      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 2"
-     },
-     "property": "P3"
-    }
-   ]
+   "violations": []
   },
   {
    "attempt": 0,
@@ -14365,7 +14351,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": true,
+   "block": false,
    "candidate": {
     "inventory": [
      1,
@@ -14464,16 +14450,7 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": [
-    {
-     "detail": {
-      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=NONE/TREE(10,1)/r=N/b=0 u2=TREE(10,1)/TREE(10,1)/r=P/b=0 pz=1 sp=0 wc=0;WAIT;MOVE 2 8 1",
-      "first_divergence_turn": 1,
-      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;WAIT;MOVE 2 8 1"
-     },
-     "property": "P3"
-    }
-   ]
+   "violations": []
   },
   {
    "attempt": 0,
@@ -16340,7 +16317,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": true,
+   "block": false,
    "candidate": {
     "inventory": [
      0,
@@ -16439,16 +16416,7 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": [
-    {
-     "detail": {
-      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(10,0)/TREE(10,0)/r=P/b=0 u2=NONE/TREE(10,0)/r=N/b=0 pz=1 sp=0 wc=0;MOVE 0 1 7;WAIT",
-      "first_divergence_turn": 1,
-      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 7;WAIT"
-     },
-     "property": "P3"
-    }
-   ]
+   "violations": []
   },
   {
    "attempt": 0,
@@ -18846,14 +18814,6 @@
       }
      ],
      "property": "P1"
-    },
-    {
-     "detail": {
-      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=CELL(2,4)/CELL(2,4)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 1 5",
-      "first_divergence_turn": 1,
-      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 5"
-     },
-     "property": "P3"
     }
    ]
   },
@@ -21047,14 +21007,6 @@
       }
      ],
      "property": "P1"
-    },
-    {
-     "detail": {
-      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(9,2)/TREE(9,2)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 1 3",
-      "first_divergence_turn": 1,
-      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 3"
-     },
-     "property": "P3"
     }
    ]
   },
@@ -22864,7 +22816,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": true,
+   "block": false,
    "candidate": {
     "inventory": [
      0,
@@ -22963,16 +22915,7 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": [
-    {
-     "detail": {
-      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(11,4)/TREE(11,4)/r=P/b=0 u2=BANK(1,2)/BANK(1,2)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 0 4;MOVE 2 6 6",
-      "first_divergence_turn": 1,
-      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 0 4;MOVE 2 6 6"
-     },
-     "property": "P3"
-    }
-   ]
+   "violations": []
   },
   {
    "attempt": 0,
@@ -24978,7 +24921,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": true,
+   "block": false,
    "candidate": {
     "inventory": [
      1,
@@ -25077,16 +25020,7 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": [
-    {
-     "detail": {
-      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=NONE/TREE(12,3)/r=N/b=0 u2=TREE(12,3)/TREE(12,3)/r=P/b=0 pz=1 sp=0 wc=0;WAIT;MOVE 2 1 2",
-      "first_divergence_turn": 1,
-      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;WAIT;MOVE 2 1 2"
-     },
-     "property": "P3"
-    }
-   ]
+   "violations": []
   },
   {
    "attempt": 0,
@@ -26279,7 +26213,7 @@
  "run_identity": "candidate",
  "stats": {
   "banana_activated_games": 25,
-  "blocking_games": 49,
+  "blocking_games": 40,
   "by_class": {
    "choke_corridor": 60,
    "forest_dense": 20,
@@ -26295,7 +26229,7 @@
    "harvester": 96,
    "idle": 72
   },
-  "clean_games": 191,
+  "clean_games": 200,
   "flagged_games": 1,
   "games": 240,
   "games_with_a_successful_train": 2,
@@ -26304,13 +26238,13 @@
   "malformed_command_games": 0,
   "maps": 120,
   "orchard_eligible_games": 12,
-  "orchard_inertness_checks_passed": 0,
+  "orchard_inertness_checks_passed": 12,
   "parent_instrument_invalid_games": 0,
   "successful_train_events": 2,
   "turns_per_game": 200,
   "unsupported_command_games": 0,
-  "wall_time_seconds": 13.65
+  "wall_time_seconds": 13.59
  },
- "task": "20260825-dance-cure-candidate-1-hold POISON ARM: holds on every blocked step (W=255) vs the champion base 547fa706 \u2014 must be CAUGHT (telemetry variant, for the hold-run census)",
+ "task": "20260825-dance-cure-candidate-1-hold POISON P-A (candidate) \u2014 NOT a candidate",
  "verdict": "BLOCK"
 }

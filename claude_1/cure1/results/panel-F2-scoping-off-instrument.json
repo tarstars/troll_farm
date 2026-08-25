@@ -1,5 +1,5 @@
 {
- "candidate_sha256": "0972704aa4d48e1e810f0da11d8438eb9eb07e32847ef813d34adcb7cd146007",
+ "candidate_sha256": "a5173b47b4f1320cd1322bd22d6c250937ab037f91a3df12a802f2ad080a8778",
  "corpus_version": "c5-two-player-phase-merged-2026-08-11",
  "engine_sha256": "7c240abfcfdf678993960fe73440735a19f934596c9651bdf915e2902f78fb05",
  "games": [
@@ -879,7 +879,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -953,10 +953,33 @@
    "turns": 200,
    "violations": [
     {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         10,
+         2
+        ],
+        [
+         11,
+         2
+        ]
+       ],
+       "k": 80,
+       "turn_end": 200,
+       "turn_start": 40,
+       "unit": 0
+      }
+     ],
+     "property": "P1"
+    },
+    {
      "detail": {
-      "candidate": "WAIT;MOVE 2 7 2",
-      "first_divergence_turn": 7,
-      "parent": "MOVE 0 5 2;MOVE 2 7 2"
+      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(10,2)/TREE(10,2)/r=P/b=0 u2=BANK(1,1)/BANK(1,1)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 1 2;MOVE 2 12 3",
+      "first_divergence_turn": 1,
+      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 2;MOVE 2 12 3"
      },
      "property": "P3"
     },
@@ -2684,7 +2707,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -2757,6 +2780,29 @@
    "train_events": [],
    "turns": 200,
    "violations": [
+    {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         12,
+         2
+        ],
+        [
+         13,
+         2
+        ]
+       ],
+       "k": 10,
+       "turn_end": 32,
+       "turn_start": 12,
+       "unit": 0
+      }
+     ],
+     "property": "P1"
+    },
     {
      "count": 1,
      "detector": "D-6",
@@ -2988,7 +3034,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -3087,7 +3133,16 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "detail": {
+      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(10,0)/TREE(10,0)/r=P/b=0 u2=BANK(1,2)/BANK(1,2)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 1 3;MOVE 2 6 1",
+      "first_divergence_turn": 1,
+      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 3;MOVE 2 6 1"
+     },
+     "property": "P3"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -3119,7 +3174,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -3192,6 +3247,29 @@
    "train_events": [],
    "turns": 200,
    "violations": [
+    {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         10,
+         1
+        ],
+        [
+         9,
+         1
+        ]
+       ],
+       "k": 96,
+       "turn_end": 200,
+       "turn_start": 7,
+       "unit": 2
+      }
+     ],
+     "property": "P1"
+    },
     {
      "detail": {
       "live_end": 200,
@@ -4504,7 +4582,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -4577,6 +4655,29 @@
    "train_events": [],
    "turns": 200,
    "violations": [
+    {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         6,
+         2
+        ],
+        [
+         7,
+         2
+        ]
+       ],
+       "k": 86,
+       "turn_end": 200,
+       "turn_start": 27,
+       "unit": 0
+      }
+     ],
+     "property": "P1"
+    },
     {
      "detail": {
       "live_end": 200,
@@ -5348,7 +5449,7 @@
   {
    "attempt": 0,
    "banana_active": true,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -5447,7 +5548,16 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "detail": {
+      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(10,3)/TREE(10,3)/r=P/b=0 u2=TREE(11,6)/TREE(10,3)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 1 2;MOVE 2 4 5",
+      "first_divergence_turn": 1,
+      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 2;MOVE 2 4 5"
+     },
+     "property": "P3"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -6076,7 +6186,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -6103,7 +6213,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -6175,7 +6285,31 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         7,
+         4
+        ],
+        [
+         8,
+         4
+        ]
+       ],
+       "k": 3,
+       "turn_end": 32,
+       "turn_start": 26,
+       "unit": 0
+      }
+     ],
+     "property": "P1"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -7428,7 +7562,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -7527,7 +7661,16 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "detail": {
+      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(12,1)/TREE(9,3)/r=P/b=0 u2=TREE(9,3)/TREE(9,3)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 1 3;MOVE 2 6 3",
+      "first_divergence_turn": 1,
+      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 3;MOVE 2 6 3"
+     },
+     "property": "P3"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -8445,7 +8588,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -8519,6 +8662,29 @@
    "turns": 200,
    "violations": [
     {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         4,
+         2
+        ],
+        [
+         3,
+         2
+        ]
+       ],
+       "k": 84,
+       "turn_end": 200,
+       "turn_start": 32,
+       "unit": 0
+      }
+     ],
+     "property": "P1"
+    },
+    {
      "detail": {
       "live_end": 200,
       "terminal_from": 201,
@@ -8533,7 +8699,7 @@
   {
    "attempt": 0,
    "banana_active": true,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -8560,7 +8726,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -8840,7 +9006,31 @@
     }
    ],
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         2,
+         4
+        ],
+        [
+         3,
+         4
+        ]
+       ],
+       "k": 12,
+       "turn_end": 200,
+       "turn_start": 176,
+       "unit": 0
+      }
+     ],
+     "property": "P1"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -8855,16 +9045,16 @@
      0,
      23
     ],
-    "margin": 26,
+    "margin": 29,
     "opp_inventory": [
-     13,
+     12,
      0,
-     33,
-     20,
+     32,
+     19,
      0,
      0
     ],
-    "opp_score": 66,
+    "opp_score": 63,
     "score": 92
    },
    "class": "forest_dense",
@@ -8886,7 +9076,7 @@
    "execution_status": "ok",
    "flags": [],
    "map_id": "m040",
-   "opponent_commands_sha256": "9cda6154a5f97b12fda433db6f77a6bef74cb1e67862b903b673a84273610c8a",
+   "opponent_commands_sha256": "b20497286e29273191dcea90c14d3607d40e81c24ce0217dbbaec2ef58222c05",
    "orchard_eligible": false,
    "parent": {
     "inventory": [
@@ -9157,7 +9347,7 @@
   {
    "attempt": 1,
    "banana_active": false,
-   "block": true,
+   "block": false,
    "candidate": {
     "inventory": [
      0,
@@ -9187,7 +9377,7 @@
     "D-1": 0,
     "D-2": 0,
     "D-3": 0,
-    "D-4": 1,
+    "D-4": 0,
     "D-5": 0,
     "D-6": 0,
     "D-7": 0,
@@ -9256,21 +9446,7 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": [
-    {
-     "count": 1,
-     "detector": "D-4",
-     "episodes": [
-      {
-       "kind": "no_progress",
-       "turn_end": 8,
-       "turn_start": 6,
-       "unit": 2
-      }
-     ],
-     "property": "P1"
-    }
-   ]
+   "violations": []
   },
   {
    "attempt": 1,
@@ -9420,7 +9596,7 @@
    "execution_status": "ok",
    "flags": [],
    "map_id": "m042",
-   "opponent_commands_sha256": "71293523d1f8fa088c2ce6a913fdd8eb3f81142284a4b28bc708309eb819457b",
+   "opponent_commands_sha256": "90a8bda1f5950c57c1d2027be8393984ee34307fac18031a2f0707ff5b7a15ba",
    "orchard_eligible": false,
    "parent": {
     "inventory": [
@@ -10003,7 +10179,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -10102,7 +10278,16 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "detail": {
+      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(9,1)/TREE(9,1)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 1 7",
+      "first_divergence_turn": 1,
+      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 7"
+     },
+     "property": "P3"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -10238,7 +10423,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -10311,6 +10496,29 @@
    "train_events": [],
    "turns": 200,
    "violations": [
+    {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         7,
+         2
+        ],
+        [
+         6,
+         2
+        ]
+       ],
+       "k": 93,
+       "turn_end": 200,
+       "turn_start": 14,
+       "unit": 2
+      }
+     ],
+     "property": "P1"
+    },
     {
      "detail": {
       "live_end": 200,
@@ -11908,7 +12116,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -12007,7 +12215,16 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "detail": {
+      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(11,1)/TREE(11,1)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 1 2",
+      "first_divergence_turn": 1,
+      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 2"
+     },
+     "property": "P3"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -12324,7 +12541,7 @@
   {
    "attempt": 0,
    "banana_active": true,
-   "block": true,
+   "block": false,
    "candidate": {
     "inventory": [
      0,
@@ -12334,16 +12551,16 @@
      0,
      27
     ],
-    "margin": 57,
+    "margin": 60,
     "opp_inventory": [
      0,
      12,
-     32,
+     29,
      7,
      0,
      0
     ],
-    "opp_score": 51,
+    "opp_score": 48,
     "score": 108
    },
    "class": "forest_dense",
@@ -12354,7 +12571,7 @@
     "D-1": 0,
     "D-2": 0,
     "D-3": 0,
-    "D-4": 1,
+    "D-4": 0,
     "D-5": 0,
     "D-6": 0,
     "D-7": 0,
@@ -12365,7 +12582,7 @@
    "execution_status": "ok",
    "flags": [],
    "map_id": "m056",
-   "opponent_commands_sha256": "b33f264f060f7ebc60317e921d89c3882a131cb00ae8a120d338f4d29679b52d",
+   "opponent_commands_sha256": "7175287c5f2fa136da3b15bf2cd7ce4e64eabbb3cd37039a45b367989557b8d9",
    "orchard_eligible": false,
    "parent": {
     "inventory": [
@@ -12423,21 +12640,7 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": [
-    {
-     "count": 1,
-     "detector": "D-4",
-     "episodes": [
-      {
-       "kind": "no_progress",
-       "turn_end": 83,
-       "turn_start": 81,
-       "unit": 2
-      }
-     ],
-     "property": "P1"
-    }
-   ]
+   "violations": []
   },
   {
    "attempt": 0,
@@ -12858,7 +13061,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -12885,7 +13088,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -12957,7 +13160,31 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         6,
+         3
+        ],
+        [
+         6,
+         4
+        ]
+       ],
+       "k": 6,
+       "turn_end": 42,
+       "turn_start": 29,
+       "unit": 0
+      }
+     ],
+     "property": "P1"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -13104,7 +13331,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -13177,6 +13404,29 @@
    "train_events": [],
    "turns": 200,
    "violations": [
+    {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         8,
+         4
+        ],
+        [
+         7,
+         4
+        ]
+       ],
+       "k": 93,
+       "turn_end": 200,
+       "turn_start": 13,
+       "unit": 2
+      }
+     ],
+     "property": "P1"
+    },
     {
      "detail": {
       "live_end": 200,
@@ -13427,10 +13677,10 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
-    "D-4": 1,
+    "D-4": 0,
     "D-5": 0,
     "D-6": 0,
     "D-7": 0,
@@ -13502,16 +13752,31 @@
    "violations": [
     {
      "count": 1,
-     "detector": "D-4",
+     "detector": "D-1",
      "episodes": [
       {
-       "kind": "no_progress",
-       "turn_end": 5,
-       "turn_start": 3,
+       "cells": [
+        [
+         4,
+         2
+        ],
+        [
+         3,
+         2
+        ]
+       ],
+       "k": 3,
+       "turn_end": 9,
+       "turn_start": 2,
        "unit": 2
       }
      ],
      "property": "P1"
+    },
+    {
+     "detail": "full wood carrier (carry [0, 0, 0, 0, 0, 3], free_capacity 0) exhibits a two-cell alternation cells (4, 2)<->(3, 2) over turns 2-9 (8 states, >= 3 A->B->A cycles) with cargo unchanged and no DROP - violates I-19 (no monotone door approach), I-20 (non-progress beyond the one-turn conflict tolerance) and I-21 (banking commitment never completes); a D-1 episode by construction",
+     "property": "P2",
+     "unit": 2
     }
    ]
   },
@@ -13997,10 +14262,10 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
-    "D-4": 1,
+    "D-4": 0,
     "D-5": 0,
     "D-6": 0,
     "D-7": 0,
@@ -14072,16 +14337,31 @@
    "violations": [
     {
      "count": 1,
-     "detector": "D-4",
+     "detector": "D-1",
      "episodes": [
       {
-       "kind": "no_progress",
-       "turn_end": 53,
-       "turn_start": 51,
+       "cells": [
+        [
+         10,
+         3
+        ],
+        [
+         10,
+         4
+        ]
+       ],
+       "k": 75,
+       "turn_end": 200,
+       "turn_start": 50,
        "unit": 2
       }
      ],
      "property": "P1"
+    },
+    {
+     "detail": "full wood carrier (carry [0, 0, 0, 0, 0, 2], free_capacity 0) exhibits a two-cell alternation cells (10, 3)<->(10, 4) over turns 50-200 (151 states, >= 3 A->B->A cycles) with cargo unchanged and no DROP - violates I-19 (no monotone door approach), I-20 (non-progress beyond the one-turn conflict tolerance) and I-21 (banking commitment never completes); a D-1 episode by construction",
+     "property": "P2",
+     "unit": 2
     },
     {
      "detail": {
@@ -14320,7 +14600,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      1,
@@ -14419,7 +14699,16 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "detail": {
+      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=NONE/TREE(10,1)/r=N/b=0 u2=TREE(10,1)/TREE(10,1)/r=P/b=0 pz=1 sp=0 wc=0;WAIT;MOVE 2 8 1",
+      "first_divergence_turn": 1,
+      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;WAIT;MOVE 2 8 1"
+     },
+     "property": "P3"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -14555,10 +14844,10 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
-    "D-4": 1,
+    "D-4": 0,
     "D-5": 0,
     "D-6": 0,
     "D-7": 0,
@@ -14630,16 +14919,31 @@
    "violations": [
     {
      "count": 1,
-     "detector": "D-4",
+     "detector": "D-1",
      "episodes": [
       {
-       "kind": "no_progress",
-       "turn_end": 6,
-       "turn_start": 4,
+       "cells": [
+        [
+         5,
+         2
+        ],
+        [
+         4,
+         2
+        ]
+       ],
+       "k": 10,
+       "turn_end": 24,
+       "turn_start": 3,
        "unit": 2
       }
      ],
      "property": "P1"
+    },
+    {
+     "detail": "full wood carrier (carry [0, 0, 0, 0, 0, 2], free_capacity 0) exhibits a two-cell alternation cells (5, 2)<->(4, 2) over turns 3-24 (22 states, >= 3 A->B->A cycles) with cargo unchanged and no DROP - violates I-19 (no monotone door approach), I-20 (non-progress beyond the one-turn conflict tolerance) and I-21 (banking commitment never completes); a D-1 episode by construction",
+     "property": "P2",
+     "unit": 2
     }
    ]
   },
@@ -15401,7 +15705,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 1,
@@ -15476,6 +15780,29 @@
    "violations": [
     {
      "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         3,
+         2
+        ],
+        [
+         4,
+         2
+        ]
+       ],
+       "k": 3,
+       "turn_end": 9,
+       "turn_start": 3,
+       "unit": 2
+      }
+     ],
+     "property": "P1"
+    },
+    {
+     "count": 1,
      "detector": "D-4",
      "episodes": [
       {
@@ -15486,6 +15813,11 @@
       }
      ],
      "property": "P1"
+    },
+    {
+     "detail": "full wood carrier (carry [0, 0, 0, 0, 0, 1], free_capacity 0) exhibits a two-cell alternation cells (3, 2)<->(4, 2) over turns 3-9 (7 states, >= 3 A->B->A cycles) with cargo unchanged and no DROP - violates I-19 (no monotone door approach), I-20 (non-progress beyond the one-turn conflict tolerance) and I-21 (banking commitment never completes); a D-1 episode by construction",
+     "property": "P2",
+     "unit": 2
     }
    ]
   },
@@ -15519,7 +15851,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 2,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -15593,12 +15925,51 @@
    "turns": 200,
    "violations": [
     {
+     "count": 2,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         2,
+         2
+        ],
+        [
+         2,
+         1
+        ]
+       ],
+       "k": 74,
+       "turn_end": 200,
+       "turn_start": 52,
+       "unit": 0
+      },
+      {
+       "cells": [
+        [
+         10,
+         2
+        ],
+        [
+         9,
+         2
+        ]
+       ],
+       "k": 5,
+       "turn_end": 18,
+       "turn_start": 7,
+       "unit": 2
+      }
+     ],
+     "property": "P1"
+    },
+    {
      "detail": {
       "live_end": 200,
       "terminal_from": 201,
-      "why": "candidate makes no own-inventory/own-cargo progress over turns 43-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]",
+      "why": "candidate makes no own-inventory/own-cargo progress over turns 44-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]",
       "window_end": 200,
-      "window_start": 43
+      "window_start": 44
      },
      "property": "P4"
     }
@@ -16094,7 +16465,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -16168,11 +16539,34 @@
    "turns": 200,
    "violations": [
     {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         1,
+         2
+        ],
+        [
+         2,
+         2
+        ]
+       ],
+       "k": 32,
+       "turn_end": 69,
+       "turn_start": 5,
+       "unit": 0
+      }
+     ],
+     "property": "P1"
+    },
+    {
      "detail": {
-      "live_end": 69,
-      "terminal_from": 76,
-      "why": "candidate makes no own-inventory/own-cargo progress over turns 5-69 while work remains through turn 69 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]",
-      "window_end": 69,
+      "live_end": 68,
+      "terminal_from": 75,
+      "why": "candidate makes no own-inventory/own-cargo progress over turns 5-68 while work remains through turn 68 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]",
+      "window_end": 68,
       "window_start": 5
      },
      "property": "P4"
@@ -16286,7 +16680,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -16385,7 +16779,16 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "detail": {
+      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(10,0)/TREE(10,0)/r=P/b=0 u2=NONE/TREE(10,0)/r=N/b=0 pz=1 sp=0 wc=0;MOVE 0 1 7;WAIT",
+      "first_divergence_turn": 1,
+      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 7;WAIT"
+     },
+     "property": "P3"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -17263,7 +17666,7 @@
    "execution_status": "ok",
    "flags": [],
    "map_id": "m078",
-   "opponent_commands_sha256": "ae56a9bc325724f20438c698c1b1be0b5d87f528413cf29f5063805d64d53340",
+   "opponent_commands_sha256": "769780bf37308d1d43016abb802dada0f37b72538a6bf2b51d3893977af6835c",
    "orchard_eligible": false,
    "parent": {
     "inventory": [
@@ -17353,7 +17756,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -17426,6 +17829,29 @@
    "train_events": [],
    "turns": 200,
    "violations": [
+    {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         11,
+         3
+        ],
+        [
+         11,
+         2
+        ]
+       ],
+       "k": 81,
+       "turn_end": 200,
+       "turn_start": 38,
+       "unit": 2
+      }
+     ],
+     "property": "P1"
+    },
     {
      "detail": {
       "live_end": 200,
@@ -18092,10 +18518,10 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
-    "D-4": 1,
+    "D-4": 0,
     "D-5": 0,
     "D-6": 0,
     "D-7": 0,
@@ -18173,16 +18599,31 @@
    "violations": [
     {
      "count": 1,
-     "detector": "D-4",
+     "detector": "D-1",
      "episodes": [
       {
-       "kind": "no_progress",
-       "turn_end": 20,
-       "turn_start": 18,
+       "cells": [
+        [
+         3,
+         5
+        ],
+        [
+         4,
+         5
+        ]
+       ],
+       "k": 91,
+       "turn_end": 200,
+       "turn_start": 17,
        "unit": 2
       }
      ],
      "property": "P1"
+    },
+    {
+     "detail": "full wood carrier (carry [0, 0, 0, 0, 0, 2], free_capacity 0) exhibits a two-cell alternation cells (3, 5)<->(4, 5) over turns 17-200 (184 states, >= 3 A->B->A cycles) with cargo unchanged and no DROP - violates I-19 (no monotone door approach), I-20 (non-progress beyond the one-turn conflict tolerance) and I-21 (banking commitment never completes); a D-1 episode by construction",
+     "property": "P2",
+     "unit": 2
     },
     {
      "detail": {
@@ -18552,7 +18993,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -18625,6 +19066,29 @@
    "train_events": [],
    "turns": 200,
    "violations": [
+    {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         7,
+         5
+        ],
+        [
+         6,
+         5
+        ]
+       ],
+       "k": 84,
+       "turn_end": 200,
+       "turn_start": 32,
+       "unit": 0
+      }
+     ],
+     "property": "P1"
+    },
     {
      "detail": {
       "live_end": 200,
@@ -18783,6 +19247,14 @@
       }
      ],
      "property": "P1"
+    },
+    {
+     "detail": {
+      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=CELL(2,4)/CELL(2,4)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 1 5",
+      "first_divergence_turn": 1,
+      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 5"
+     },
+     "property": "P3"
     }
    ]
   },
@@ -19454,7 +19926,7 @@
    "execution_status": "ok",
    "flags": [],
    "map_id": "m088",
-   "opponent_commands_sha256": "393e1ab29b851881541286f3f8a99ba01cc85971528c2f78aa5560a652df35c8",
+   "opponent_commands_sha256": "71e8f9e754ea0b612698495de44aa987702237aa27d6386a1d201d279cf726cd",
    "orchard_eligible": false,
    "parent": {
     "inventory": [
@@ -19752,10 +20224,10 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
-    "D-4": 1,
+    "D-4": 0,
     "D-5": 0,
     "D-6": 0,
     "D-7": 0,
@@ -19827,16 +20299,31 @@
    "violations": [
     {
      "count": 1,
-     "detector": "D-4",
+     "detector": "D-1",
      "episodes": [
       {
-       "kind": "no_progress",
-       "turn_end": 5,
-       "turn_start": 3,
+       "cells": [
+        [
+         4,
+         5
+        ],
+        [
+         3,
+         5
+        ]
+       ],
+       "k": 3,
+       "turn_end": 9,
+       "turn_start": 2,
        "unit": 2
       }
      ],
      "property": "P1"
+    },
+    {
+     "detail": "full wood carrier (carry [0, 0, 0, 0, 0, 2], free_capacity 0) exhibits a two-cell alternation cells (4, 5)<->(3, 5) over turns 2-9 (8 states, >= 3 A->B->A cycles) with cargo unchanged and no DROP - violates I-19 (no monotone door approach), I-20 (non-progress beyond the one-turn conflict tolerance) and I-21 (banking commitment never completes); a D-1 episode by construction",
+     "property": "P2",
+     "unit": 2
     }
    ]
   },
@@ -20976,6 +21463,14 @@
       }
      ],
      "property": "P1"
+    },
+    {
+     "detail": {
+      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(9,2)/TREE(9,2)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 1 3",
+      "first_divergence_turn": 1,
+      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 1 3"
+     },
+     "property": "P3"
     }
    ]
   },
@@ -21502,7 +21997,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": true,
+   "block": false,
    "candidate": {
     "inventory": [
      0,
@@ -21510,9 +22005,9 @@
      1,
      1,
      0,
-     5
+     7
     ],
-    "margin": 7,
+    "margin": 15,
     "opp_inventory": [
      0,
      0,
@@ -21522,7 +22017,7 @@
      4
     ],
     "opp_score": 16,
-    "score": 23
+    "score": 31
    },
    "class": "open_field",
    "command_error_counts": {},
@@ -21532,7 +22027,7 @@
     "D-1": 0,
     "D-2": 0,
     "D-3": 0,
-    "D-4": 1,
+    "D-4": 0,
     "D-5": 0,
     "D-6": 0,
     "D-7": 0,
@@ -21543,7 +22038,7 @@
    "execution_status": "ok",
    "flags": [],
    "map_id": "m098",
-   "opponent_commands_sha256": "3f42a9a9db2184bffaba835fe4f9c14af0e9e0ab6da1a1d60ed429cf9888eb7d",
+   "opponent_commands_sha256": "af214d9ca441683a7492fe1ab6781fbbfd6a046e2e933868515a381675a44d09",
    "orchard_eligible": false,
    "parent": {
     "inventory": [
@@ -21601,31 +22096,7 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": [
-    {
-     "count": 1,
-     "detector": "D-4",
-     "episodes": [
-      {
-       "kind": "no_progress",
-       "turn_end": 25,
-       "turn_start": 23,
-       "unit": 0
-      }
-     ],
-     "property": "P1"
-    },
-    {
-     "detail": {
-      "live_end": 200,
-      "terminal_from": 201,
-      "why": "candidate makes no own-inventory/own-cargo progress over turns 23-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]",
-      "window_end": 200,
-      "window_start": 23
-     },
-     "property": "P4"
-    }
-   ]
+   "violations": []
   },
   {
    "attempt": 0,
@@ -21865,7 +22336,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -21938,6 +22409,29 @@
    "train_events": [],
    "turns": 200,
    "violations": [
+    {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         9,
+         2
+        ],
+        [
+         10,
+         2
+        ]
+       ],
+       "k": 96,
+       "turn_end": 200,
+       "turn_start": 8,
+       "unit": 0
+      }
+     ],
+     "property": "P1"
+    },
     {
      "detail": {
       "live_end": 200,
@@ -22785,7 +23279,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      0,
@@ -22884,7 +23378,16 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "detail": {
+      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=TREE(11,4)/TREE(11,4)/r=P/b=0 u2=BANK(1,2)/BANK(1,2)/r=P/b=0 pz=1 sp=0 wc=0;MOVE 0 0 4;MOVE 2 6 6",
+      "first_divergence_turn": 1,
+      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 0 4;MOVE 2 6 6"
+     },
+     "property": "P3"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -24178,7 +24681,7 @@
    "command_error_total": 0,
    "command_errors": [],
    "detector_counts": {
-    "D-1": 0,
+    "D-1": 1,
     "D-2": 0,
     "D-3": 0,
     "D-4": 0,
@@ -24251,6 +24754,29 @@
    "train_events": [],
    "turns": 200,
    "violations": [
+    {
+     "count": 1,
+     "detector": "D-1",
+     "episodes": [
+      {
+       "cells": [
+        [
+         6,
+         2
+        ],
+        [
+         5,
+         2
+        ]
+       ],
+       "k": 97,
+       "turn_end": 200,
+       "turn_start": 6,
+       "unit": 0
+      }
+     ],
+     "property": "P1"
+    },
     {
      "detail": {
       "live_end": 200,
@@ -24890,7 +25416,7 @@
   {
    "attempt": 0,
    "banana_active": false,
-   "block": false,
+   "block": true,
    "candidate": {
     "inventory": [
      1,
@@ -24989,7 +25515,16 @@
    "successful_train_turns": [],
    "train_events": [],
    "turns": 200,
-   "violations": []
+   "violations": [
+    {
+     "detail": {
+      "candidate": "MSG yamo-carry-regen-transit-idle-harvest-rust NARRATE v4 t=1 u0=NONE/TREE(12,3)/r=N/b=0 u2=TREE(12,3)/TREE(12,3)/r=P/b=0 pz=1 sp=0 wc=0;WAIT;MOVE 2 1 2",
+      "first_divergence_turn": 1,
+      "parent": "MSG yamo-carry-regen-transit-idle-harvest-rust;WAIT;MOVE 2 1 2"
+     },
+     "property": "P3"
+    }
+   ]
   },
   {
    "attempt": 0,
@@ -26182,7 +26717,7 @@
  "run_identity": "candidate",
  "stats": {
   "banana_activated_games": 25,
-  "blocking_games": 40,
+  "blocking_games": 49,
   "by_class": {
    "choke_corridor": 60,
    "forest_dense": 20,
@@ -26198,7 +26733,7 @@
    "harvester": 96,
    "idle": 72
   },
-  "clean_games": 200,
+  "clean_games": 191,
   "flagged_games": 1,
   "games": 240,
   "games_with_a_successful_train": 2,
@@ -26207,13 +26742,13 @@
   "malformed_command_games": 0,
   "maps": 120,
   "orchard_eligible_games": 12,
-  "orchard_inertness_checks_passed": 11,
+  "orchard_inertness_checks_passed": 0,
   "parent_instrument_invalid_games": 0,
   "successful_train_events": 2,
   "turns_per_game": 200,
   "unsupported_command_games": 0,
-  "wall_time_seconds": 8.41
+  "wall_time_seconds": 16.7
  },
- "task": "20260825-dance-cure-candidate-1-hold POISON ARM: holds on every blocked step (W=255) vs the champion base 547fa706 \u2014 must be CAUGHT",
+ "task": "20260825-dance-cure-candidate-1-hold REVISION CONTROL F2-scoping-off (instrument variant) \u2014 NOT a candidate",
  "verdict": "BLOCK"
 }

@@ -1,9 +1,9 @@
 {
   "bin_cache_dir": "/tmp/claude-1000/cure1/bin",
   "candidate": {
-    "crate": "cure1_poison_inst_seat_a",
-    "sha256": "4fc4579880b3f9b9cd5f4d2cf67338e92a6783a6d7e10b58c43790fa324918a6",
-    "source": "../../claude_1/cure1/poison-hold-forever-instrument.rs"
+    "crate": "cure1_poison_p_b_candidate",
+    "sha256": "945050a2c02222bf223efe06d136fc8f361c83e9aca17b4c8e898e701a2024a6",
+    "source": "../../claude_1/cure1/poison-p-b-candidate.rs"
   },
   "class_mix": {
     "choke_corridor": 0.25,
@@ -16,7 +16,7 @@
     "water_diagonal": 0.15
   },
   "corpus_version": "c5-two-player-phase-merged-2026-08-11",
-  "games_dir": "/tmp/claude-1000/cure1/cure1-poison/games-instrument",
+  "games_dir": "/tmp/claude-1000/cure1/poison-p-b-candidate/games",
   "instrument_invalid_rows": [
     {
       "corpus_version": "c4-engine-conformant-referee-2026-08-10",
@@ -65,7 +65,7 @@
   "margin_collapse_threshold": 100,
   "max_generation_attempts": 64,
   "notes": [
-    "POISON ARM. The charter's live control on the P4 gate. Not chartered as a candidate, not in arm-manifest.json, never to be submitted.",
+    "POISON ARM P-B: W=255 with R-A still on: what the transient predicate is worth alone. Never a candidate, never in arm-manifest.json, never submitted.",
     "Task 20260825-dance-cure-candidate-1-hold. Corpus, seeds, class/opponent mixes, turn budget and liveness window are COPIED UNCHANGED from picker2-door1-floor-config.json so that claude_1/picker2/panel-door1-floor.json (the champion 547fa706 judged against itself, 43 blocking games) is a valid matched floor for this run and does not have to be re-run."
   ],
   "opponent_mix": {
@@ -88,6 +88,6 @@
     67867967,
     86028121
   ],
-  "task": "20260825-dance-cure-candidate-1-hold POISON ARM: holds on every blocked step (W=255) vs the champion base 547fa706 \u2014 must be CAUGHT (telemetry variant, for the hold-run census)",
+  "task": "20260825-dance-cure-candidate-1-hold POISON P-B (candidate) \u2014 NOT a candidate",
   "turns": 200
 }

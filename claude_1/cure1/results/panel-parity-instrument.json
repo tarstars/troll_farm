@@ -1,28 +1,28 @@
 {
   "blocking_count_not_read_here": "a telemetry arm emits one MSG token per turn; eval_p3 compares command streams byte-wise, so the rule-off arm's blocking count is an instrument artifact. The blocking comparison that means something is the candidate arm's, which emits no MSG.",
-  "byte_identical_without_msg": 200,
+  "byte_identical_without_msg": 224,
   "census": {
     "available_states": {
       "ABSENT": 0,
-      "CONCRETE": 21130,
-      "NONE": 55618
+      "CONCRETE": 21117,
+      "NONE": 55631
     },
     "blocked_values": {
-      "0": 75469,
-      "1": 652,
-      "2": 627
+      "0": 76726,
+      "1": 21,
+      "2": 1
     },
     "branches": {
-      "H": 1279,
-      "L": 158,
-      "N": 65777,
-      "P": 8444,
-      "R": 618,
+      "H": 22,
+      "L": 299,
+      "N": 65781,
+      "P": 8926,
+      "R": 1248,
       "W": 472
     },
-    "chosen_ne_available": 4599,
-    "discarded_want": 2587,
-    "hold_turns": 1279,
+    "chosen_ne_available": 4591,
+    "discarded_want": 2570,
+    "hold_turns": 22,
     "lone_unit_turns": 19252,
     "max_passes": 2,
     "payload_max_chars": 142,
@@ -32,17 +32,8 @@
     "w_collision_events": 0,
     "w_collision_turns": 0
   },
-  "changed_game_count": 40,
+  "changed_game_count": 16,
   "changed_games": [
-    {
-      "first_divergence": {
-        "arm": "WAIT;MOVE 2 7 2",
-        "base": "MOVE 0 5 2;MOVE 2 7 2",
-        "turn": 7
-      },
-      "map_id": "m004",
-      "seat": 0
-    },
     {
       "first_divergence": {
         "arm": "WAIT;MOVE 2 5 2",
@@ -50,33 +41,6 @@
         "turn": 25
       },
       "map_id": "m007",
-      "seat": 0
-    },
-    {
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 12 2;WAIT",
-        "turn": 13
-      },
-      "map_id": "m012",
-      "seat": 1
-    },
-    {
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 9 1",
-        "turn": 7
-      },
-      "map_id": "m014",
-      "seat": 1
-    },
-    {
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 6 2;WAIT",
-        "turn": 28
-      },
-      "map_id": "m021",
       "seat": 0
     },
     {
@@ -90,33 +54,6 @@
     },
     {
       "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 7 4;WAIT",
-        "turn": 27
-      },
-      "map_id": "m028",
-      "seat": 1
-    },
-    {
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 4 2;WAIT",
-        "turn": 33
-      },
-      "map_id": "m039",
-      "seat": 1
-    },
-    {
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 2 4;WAIT",
-        "turn": 177
-      },
-      "map_id": "m040",
-      "seat": 0
-    },
-    {
-      "first_divergence": {
         "arm": "WAIT;MOVE 6 6 1",
         "base": "MOVE 0 5 0;MOVE 6 6 1",
         "turn": 22
@@ -126,56 +63,11 @@
     },
     {
       "first_divergence": {
-        "arm": "CHOP 0;WAIT",
-        "base": "CHOP 0;MOVE 2 4 2",
-        "turn": 6
-      },
-      "map_id": "m041",
-      "seat": 0
-    },
-    {
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 2 1",
-        "turn": 21
-      },
-      "map_id": "m042",
-      "seat": 0
-    },
-    {
-      "first_divergence": {
         "arm": "DROP 0;WAIT",
         "base": "DROP 0;MOVE 2 8 2",
         "turn": 15
       },
       "map_id": "m042",
-      "seat": 1
-    },
-    {
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 6 2",
-        "turn": 14
-      },
-      "map_id": "m046",
-      "seat": 0
-    },
-    {
-      "first_divergence": {
-        "arm": "CHOP 0;WAIT",
-        "base": "CHOP 0;MOVE 2 4 1",
-        "turn": 81
-      },
-      "map_id": "m056",
-      "seat": 0
-    },
-    {
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 6 4;WAIT",
-        "turn": 29
-      },
-      "map_id": "m058",
       "seat": 1
     },
     {
@@ -189,9 +81,9 @@
     },
     {
       "first_divergence": {
-        "arm": "CHOP 0;WAIT",
-        "base": "CHOP 0;MOVE 2 4 2",
-        "turn": 3
+        "arm": "WAIT;MOVE 2 5 2",
+        "base": "MOVE 0 7 2;MOVE 2 5 2",
+        "turn": 27
       },
       "map_id": "m061",
       "seat": 0
@@ -204,24 +96,6 @@
       },
       "map_id": "m061",
       "seat": 1
-    },
-    {
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 10 3",
-        "turn": 51
-      },
-      "map_id": "m063",
-      "seat": 1
-    },
-    {
-      "first_divergence": {
-        "arm": "CHOP 0;WAIT",
-        "base": "CHOP 0;MOVE 2 5 2",
-        "turn": 4
-      },
-      "map_id": "m066",
-      "seat": 0
     },
     {
       "first_divergence": {
@@ -252,24 +126,6 @@
     },
     {
       "first_divergence": {
-        "arm": "CHOP 0;WAIT",
-        "base": "CHOP 0;MOVE 2 10 2",
-        "turn": 8
-      },
-      "map_id": "m070",
-      "seat": 1
-    },
-    {
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 1 2;WAIT",
-        "turn": 6
-      },
-      "map_id": "m073",
-      "seat": 0
-    },
-    {
-      "first_divergence": {
         "arm": "WAIT;MOVE 2 6 2",
         "base": "MOVE 0 8 2;MOVE 2 6 2",
         "turn": 3
@@ -285,51 +141,6 @@
       },
       "map_id": "m078",
       "seat": 1
-    },
-    {
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 11 2",
-        "turn": 38
-      },
-      "map_id": "m079",
-      "seat": 0
-    },
-    {
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 3 5",
-        "turn": 18
-      },
-      "map_id": "m082",
-      "seat": 1
-    },
-    {
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 7 4;WAIT",
-        "turn": 30
-      },
-      "map_id": "m084",
-      "seat": 1
-    },
-    {
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 5 3",
-        "turn": 7
-      },
-      "map_id": "m088",
-      "seat": 1
-    },
-    {
-      "first_divergence": {
-        "arm": "CHOP 0;WAIT",
-        "base": "CHOP 0;MOVE 2 4 5",
-        "turn": 3
-      },
-      "map_id": "m090",
-      "seat": 0
     },
     {
       "first_divergence": {
@@ -351,24 +162,6 @@
     },
     {
       "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 2 3",
-        "turn": 20
-      },
-      "map_id": "m098",
-      "seat": 0
-    },
-    {
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 9 2;WAIT",
-        "turn": 9
-      },
-      "map_id": "m099",
-      "seat": 1
-    },
-    {
-      "first_divergence": {
         "arm": "WAIT;MOVE 2 7 2",
         "base": "MOVE 0 9 2;MOVE 2 7 2",
         "turn": 10
@@ -378,18 +171,9 @@
     },
     {
       "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 6 2;WAIT",
-        "turn": 7
-      },
-      "map_id": "m110",
-      "seat": 1
-    },
-    {
-      "first_divergence": {
-        "arm": "CHOP 0;WAIT",
-        "base": "CHOP 0;MOVE 2 7 6",
-        "turn": 8
+        "arm": "WAIT;MOVE 2 6 6",
+        "base": "MOVE 0 4 6;MOVE 2 6 6",
+        "turn": 11
       },
       "map_id": "m118",
       "seat": 1
@@ -464,12 +248,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;MOVE 2 7 2",
-        "base": "MOVE 0 5 2;MOVE 2 7 2",
-        "turn": 7
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m004",
       "seat": 0,
       "telemetry_errors": 0,
@@ -608,12 +388,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 12 2;WAIT",
-        "turn": 13
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m012",
       "seat": 1,
       "telemetry_errors": 0,
@@ -644,12 +420,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 9 1",
-        "turn": 7
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m014",
       "seat": 1,
       "telemetry_errors": 0,
@@ -752,12 +524,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 6 2;WAIT",
-        "turn": 28
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m021",
       "seat": 0,
       "telemetry_errors": 0,
@@ -880,12 +648,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 7 4;WAIT",
-        "turn": 27
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m028",
       "seat": 1,
       "telemetry_errors": 0,
@@ -1060,24 +824,16 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 4 2;WAIT",
-        "turn": 33
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m039",
       "seat": 1,
       "telemetry_errors": 0,
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 2 4;WAIT",
-        "turn": 177
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m040",
       "seat": 0,
       "telemetry_errors": 0,
@@ -1096,12 +852,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "CHOP 0;WAIT",
-        "base": "CHOP 0;MOVE 2 4 2",
-        "turn": 6
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m041",
       "seat": 0,
       "telemetry_errors": 0,
@@ -1116,12 +868,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 2 1",
-        "turn": 21
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m042",
       "seat": 0,
       "telemetry_errors": 0,
@@ -1188,12 +936,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 6 2",
-        "turn": 14
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m046",
       "seat": 0,
       "telemetry_errors": 0,
@@ -1352,12 +1096,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "CHOP 0;WAIT",
-        "base": "CHOP 0;MOVE 2 4 1",
-        "turn": 81
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m056",
       "seat": 0,
       "telemetry_errors": 0,
@@ -1396,12 +1136,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 6 4;WAIT",
-        "turn": 29
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m058",
       "seat": 1,
       "telemetry_errors": 0,
@@ -1446,9 +1182,9 @@
     {
       "byte_identical_without_msg": false,
       "first_divergence": {
-        "arm": "CHOP 0;WAIT",
-        "base": "CHOP 0;MOVE 2 4 2",
-        "turn": 3
+        "arm": "WAIT;MOVE 2 5 2",
+        "base": "MOVE 0 7 2;MOVE 2 5 2",
+        "turn": 27
       },
       "map_id": "m061",
       "seat": 0,
@@ -1492,12 +1228,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 10 3",
-        "turn": 51
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m063",
       "seat": 1,
       "telemetry_errors": 0,
@@ -1536,12 +1268,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "CHOP 0;WAIT",
-        "base": "CHOP 0;MOVE 2 5 2",
-        "turn": 4
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m066",
       "seat": 0,
       "telemetry_errors": 0,
@@ -1624,12 +1352,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "CHOP 0;WAIT",
-        "base": "CHOP 0;MOVE 2 10 2",
-        "turn": 8
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m070",
       "seat": 1,
       "telemetry_errors": 0,
@@ -1668,12 +1392,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 1 2;WAIT",
-        "turn": 6
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m073",
       "seat": 0,
       "telemetry_errors": 0,
@@ -1776,12 +1496,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 11 2",
-        "turn": 38
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m079",
       "seat": 0,
       "telemetry_errors": 0,
@@ -1836,12 +1552,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 3 5",
-        "turn": 18
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m082",
       "seat": 1,
       "telemetry_errors": 0,
@@ -1872,12 +1584,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 7 4;WAIT",
-        "turn": 30
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m084",
       "seat": 1,
       "telemetry_errors": 0,
@@ -1940,12 +1648,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 5 3",
-        "turn": 7
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m088",
       "seat": 1,
       "telemetry_errors": 0,
@@ -1968,12 +1672,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "CHOP 0;WAIT",
-        "base": "CHOP 0;MOVE 2 4 5",
-        "turn": 3
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m090",
       "seat": 0,
       "telemetry_errors": 0,
@@ -2108,12 +1808,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "WAIT;MOVE 2 2 3",
-        "turn": 20
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m098",
       "seat": 0,
       "telemetry_errors": 0,
@@ -2136,12 +1832,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 9 2;WAIT",
-        "turn": 9
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m099",
       "seat": 1,
       "telemetry_errors": 0,
@@ -2320,12 +2012,8 @@
       "turns": 200
     },
     {
-      "byte_identical_without_msg": false,
-      "first_divergence": {
-        "arm": "WAIT;WAIT",
-        "base": "MOVE 0 6 2;WAIT",
-        "turn": 7
-      },
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
       "map_id": "m110",
       "seat": 1,
       "telemetry_errors": 0,
@@ -2454,9 +2142,9 @@
     {
       "byte_identical_without_msg": false,
       "first_divergence": {
-        "arm": "CHOP 0;WAIT",
-        "base": "CHOP 0;MOVE 2 7 6",
-        "turn": 8
+        "arm": "WAIT;MOVE 2 6 6",
+        "base": "MOVE 0 4 6;MOVE 2 6 6",
+        "turn": 11
       },
       "map_id": "m118",
       "seat": 1,

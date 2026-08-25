@@ -5,26 +5,26 @@
       "lines_differing_from_source": 1,
       "narrate_v4_enabled": false,
       "path": "claude_1/cure1/arm-candidate.rs",
-      "sha256": "7651b69847aa5a70ae5922bafa4bcf7b2ea216adc523aa248850ed70deb55bb6"
+      "sha256": "be6d1ce9d278cd6285c0edc2ecf4876e281720080bf703a669ba0896979bab67"
     },
     "instrument": {
       "hold_rule_enabled": true,
       "lines_differing_from_source": 0,
       "narrate_v4_enabled": true,
       "path": "claude_1/cure1/arm-instrument.rs",
-      "sha256": "5e1e5b27322587eaa57a2f4c8974def5cf015b88c1f04372cd65a4c7df2a9b38"
+      "sha256": "cc4b308705883f10192065dd205a36eb78baee3c1068a0697131b791f3d46e9b"
     },
     "ruleoff": {
       "hold_rule_enabled": false,
       "lines_differing_from_source": 1,
       "narrate_v4_enabled": true,
       "path": "claude_1/cure1/arm-ruleoff.rs",
-      "sha256": "b1b565b85fddf16d0580a0bbafa937c1c81e95bee400bef3b279c3a604fc3543"
+      "sha256": "db68e5ab5856a414cecbdfca36e3440bbd2b9c2fd5a556e659d17bde6d4a41f9"
     }
   },
   "base": "cgauto/submissions/candidate-door1-pure-deletion.rs",
   "base_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0",
   "source": "claude_1/cure1/cure1-hold-v4.rs",
-  "source_sha256": "5e1e5b27322587eaa57a2f4c8974def5cf015b88c1f04372cd65a4c7df2a9b38",
+  "source_sha256": "cc4b308705883f10192065dd205a36eb78baee3c1068a0697131b791f3d46e9b",
   "task": "20260825-dance-cure-candidate-1-hold"
 }
