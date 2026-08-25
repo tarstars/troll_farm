@@ -17,6 +17,28 @@ the ONLY resolution (yielding has nowhere to go).
 - Origin: owner statement in the first adjudication, 2026-08-16; early written trace
   `docs/reference/2026-07-11-yannbot-design.md:55`.
 
+### R-1a — The swap carries no lock; a swap back must be impossible by construction, and proved (owner-approved 2026-08-25)
+
+The coordinated exchange of R-1 is issued when the mobile troll's next step is the square
+where its teammate stands still and works **and the mobile troll's road continues beyond
+that square**. No "no-swap-back" timer or lock is added: the rule must be such that the
+reverse exchange cannot be chosen — the mobile troll keeps going forward and the working
+troll steps back onto its square as the other leaves — and that must be **shown from the
+algorithm, not enforced by a counter**. A second exchange of the same pair can then only
+come from the planner changing the mobile troll's goal, which is measured, not prevented.
+
+- Owner's words (coordinator session, 2026-08-25 ~15:55Z, transcribed): *"I think there
+  should not be special lock. We are to check algorithm and check that it's impossible to
+  choose back swap, because the mobile troll want to go through the working. We should
+  prove this and this way it is moving project in right direction: simple, clear set of
+  rules."*
+- Supporting evidence: `local_claude_1/dance-geometry/owner-brief-2026-08-25.md` — the
+  standing teammate is on every shortest road on 91 % / 78 % of measurable turns and the
+  goal is unreachable without its square on 439 + 55 turns (no road around → the swap is
+  the only mover-side remedy); 24 of 25 real dances are the standing-teammate shape.
+- Consequence: `coordination/tasks/20260825-dance-cure-candidate-2-swap.md` (proof at
+  G-0, then build); the earlier proposal's six-turn pair lock is withdrawn.
+
 ## R-2 — A troll with available work must be employed (owner-approved 2026-08-20)
 
 There is work to do and the troll can do it — not doing it is a bug. No

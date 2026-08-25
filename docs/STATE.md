@@ -129,11 +129,11 @@ moving the ladder, so +3.64 will not come from more of it.
   (`20260824-dance-cure-proposal`), the coordinator proposing independently; the owner compares.
   **Candidate 1** (`20260825-dance-cure-candidate-1-hold`): **CLOSED AT G-2 — FAIL, safe, too small** (160 real games:
   the hold fired 253× within every bound, in **0 of 25 recorded dances**); 2nd Arena action unspent; P4 panel gate blind to one parked troll.
-  **★ Owner:** verdict sheet `local_claude_1/cure1/owner-verdict-sheet-2026-08-25.md`; Candidate 2 — swap or route
-  around? **DELIVERED 08-25 `20260825-dance-geometry-measurements`** (gates accepted, codex_1 byte-identical): the
-  standing teammate is on EVERY shortest road on 91 % / 78 % of measurable turns, the goal unreachable without its
-  cell on 439 + 55; 29 of 105 dances have no road around, 40 cost +1–2; `blocked_but_road_exists` 0/0; "nobody
-  adjacent" dances had our own troll on the wanted cell in 60 of 68 backward steps. **★ Brief `local_claude_1/dance-geometry/owner-brief-2026-08-25.md`.**
+  **Owner rulings 08-25 ~15:55Z:** Candidate 1 PARKED, code kept; **Candidate 2 = SWAP, NO LOCK — the swap back must be
+  impossible by construction and PROVED from the algorithm (R-1a)** → `20260825-dance-cure-candidate-2-swap` (claude_1
+  builds, codex_1 G-0 incl. the proof; Arena reads need the owner's go); per-troll stall gate `20260825-p4-per-troll-stall-gate`
+  (codex_1); quarantine list → `main` `20260825-quarantine-on-main`. Geometry DELIVERED (codex_1 byte-identical): teammate on
+  EVERY shortest road 91 % / 78 %, goal unreachable without its cell 439 + 55 turns, 29/105 no road; brief `local_claude_1/dance-geometry/owner-brief-2026-08-25.md`.
 
 ## 5. Reading order & pointers
 

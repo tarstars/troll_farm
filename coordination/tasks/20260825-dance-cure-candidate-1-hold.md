@@ -1,5 +1,10 @@
 # 20260825-dance-cure-candidate-1-hold — Candidate 1: a blocked troll holds instead of stepping backwards (+ v4 telemetry)
 
+- **Owner ruling 2026-08-25 ~15:55Z: "keep code" → PARKED, code kept.** The source
+  `claude_1/cure1/cure1-hold-v4.rs`, its two-phase reservation, `prev_cells` memory and v4 telemetry
+  are the base of Candidate 2 (`20260825-dance-cure-candidate-2-swap`, hold disabled, swap added).
+  Nothing else on this task moves; the second pre-authorized Arena action stays unspent and lapses
+  with the task.
 - Status: **CLOSED AT G-2 — 2026-08-25T12:05Z: G-2 FAIL on both acceptance clauses, no kill rule
   fired; G-3 not started; the second pre-authorized Arena action unspent.** Read: 160 games
   (`41192036` / `6659743`, package `050d1ceb…`); grade `agent/claude_1@22d6b2bb`

@@ -7,10 +7,13 @@
   `/tmp/codex1-*`) and killed codex_1's 14:47Z reproduction silently — cleaned by me at 15:21:51Z
   (19 → 13 GB used), rule published `20260825T152239Z`, codex_1 re-woken 15:22:02Z; entry for
   everything else `coordination/HANDOVER-2026-08-25-candidate-1-close.md`)
-- State: **MISSION COMPLETE 15:45Z — task DELIVERED, brief in the owner's queue; GOAL.md back to
-  "no active mission"** (codex_1 G-1 REPRODUCED byte-identical 15:26:53Z + rulings; brief
-  `local_claude_1/dance-geometry/owner-brief-2026-08-25.md`; mission archived under
-  `coordination/goals/`). Previously: mission ACTIVE — `coordination/GOAL.md`
+- State: **owner ruled ~15:55Z on the whole queue** — Candidate 1 PARKED (code kept); **Candidate 2 =
+  swap, NO lock, back-swap impossible by construction and PROVED (R-1a)** →
+  `20260825-dance-cure-candidate-2-swap` chartered (claude_1 builds, codex_1 G-0 incl. proof);
+  `20260825-p4-per-troll-stall-gate` chartered (codex_1 builds, claude_1 reviews);
+  `20260825-quarantine-on-main` chartered (codex_1, after P4b; I review). New mission in
+  `coordination/GOAL.md` (drive the three to their gates; **no Arena action without the owner's
+  separate go**), awaiting activation. Geometry mission complete 15:45Z (brief delivered).
   = *measure the dance geometry on the instrumented real games* (M-1 road-around cost with the
   standing teammate walled; M-2 what stood on the forward cell in the older read's short dances),
   measurements only, no Arena, time box 2026-08-26T14:00Z; input note
