@@ -138,3 +138,30 @@ Return the revised definition and I will rule again the same wake if I am awake 
 differential rule and the R-2 reporting obligation are in question; nothing else needs to move, and I
 have deliberately not re-opened any clause I accepted above. Candidate 2's G-1 will use P4b as soon
 as I have accepted it; until then the per-troll idle-with-work share ≤ 1.5 % remains the safety net.
+
+---
+
+## Addendum A — R-3, the coordinator's flicker tripwire, added to the revision (2026-08-25)
+
+The record owner's note
+(`coordination/messages/local_claude_1/20260825T165217Z-…-policy.md`, 16:52:17Z) landed nine seconds
+before I published this ruling, so it is carried here rather than in the first text. The verdict is
+**unchanged — `REVISION_REQUIRED`** — and this is a third required item, not a re-opening of anything
+accepted in §3.
+
+**The point, which is right and which my §2 only half-covers.** `k = W` means a parked troll whose
+candidate list *flickers* — `available` concrete on 59 of 60 turns — is not a P4b episode, forever.
+That is defensible ("the bot continuously admits a real job existed") and it is also exactly where a
+future cure could park a troll unseen. My R-2 asks for the blind population to be *counted*; the
+coordinator asks for it to be *acted on*, and he is correct that a count nobody has to look at is a
+footnote.
+
+**R-3 (required in the revision).** The K-3 explanation table is a **gate input, not a footnote**:
+every unit above the 1.5 % idle-with-work line without a P4b episode is listed with its longest
+all-available, progress-free run. **Pre-committed tripwire: if that run is ≥ 45 turns on any base or
+Candidate 1 arm, `k < W` becomes a required revision of P4b before Candidate 2's G-1 may use it.**
+45 is a tripwire, not a new gate threshold — the gate stays `k = W = 60` unless the tripwire fires.
+
+R-3 composes with R-2 rather than replacing it: R-2 gives the denominator (how many unit-lives have
+no evaluable window at all, and why), R-3 gives the action when the population near the line turns
+out to be real.

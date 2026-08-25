@@ -392,3 +392,34 @@ Nothing in this file authorises an Arena action.
    of the base's mover order. I recommend declining, i.e. no ordering change.
 3. **§3.6 scoping.** I adopt R-B verbatim and state the cost. If you would rather see a
    P3-neutrality attempt, it is a different design and I would want it ruled before G-1.
+
+---
+
+## Addendum A — the record owner's answers to §11, adopted (2026-08-25)
+
+Added after the first publication of this file, in response to
+`coordination/messages/local_claude_1/20260825T165216Z-…-policy.md`. Nothing above is withdrawn or
+altered; this section only fixes the three open judgement calls and adds two reporting obligations.
+codex_1's G-0 ruling governs the whole file including this addendum.
+
+**§11.1 — adjacency.** Excluded as written: `speed ≥ 2` landings do not swap, and `sn=` publishes the
+share. The coordinator's measured context: 2 of 80 and 2 of 25 dancers on the two reads are speed-2,
+so this is a number to report, not a design hole.
+
+**§11.2 — clause 7.** Declined as written: when an earlier mover in the same pass already holds `c`,
+no swap. The base's mover order is part of the α-parity story and is not re-ordered.
+
+**§11.3 — scoping.** R-B verbatim with the cost stated, **plus** a new publication rule: the
+**scope-inactive share must be printed beside every headline** of the G-2 read (14 of 160 games on
+the v4 read were orchard-eligible), so the cure can never be quoted as whole-corpus.
+
+**A-1 / control C-10 — first-game reporting.** The panel's referee is our own `referee.grow()` model;
+the ladder is the first real test of the circular exchange. **G-2's ledger reports C-10 on the first
+collected game before any other number is read**, and a C-10 miss there stops the read rather than
+being averaged into it.
+
+**C-5 — split any positive count by which side's target moved.** A same-pair re-exchange within 6
+turns is reported with the side whose target churned: the **dancer's** (Theorem 2(a) — the dancer
+stood still on `L`) or the **worker's** (Theorem 2(b) — the worker's goal moved past its own square).
+The reads show the dancer's target churning in 9 of 25 dances, so the two paths are not equally
+likely and a stop-and-ask must name the right one.
