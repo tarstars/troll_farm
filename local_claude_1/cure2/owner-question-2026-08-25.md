@@ -26,8 +26,14 @@ passed, **with a cost you should have beside the loop and `m061`:** of the 13 da
 touches on the panel, **9 end with progress** (three are exactly frozen library episodes, four
 would otherwise have run to the last turn) and **4 are silenced without progress** — the bot
 stops bouncing but does not get on with its work inside the window (one of the four is a loop
-game: three exchanges in eight turns, no progress). Remaining: the orchard-map checks and the
-per-troll safety net, then the reviewer's reproduction of the whole set.
+game: three exchanges in eight turns, no progress). Since then (22:45Z) the orchard-map checks and the safety net passed too: the orchard scoping
+does real work (with it switched off, 9 of 60 orchard views break the orchard rule, each at an
+exchange; with it on, 0 — at the price of dances on those maps staying untouched and +39 margin
+forgone), the candidate breaks the orchard rule on **0 of 240** views, and the trolls are **less
+idle** with the rule (idle-with-work 0.38 % vs 0.73 %; the worst troll 11.5 % vs 95 %; no troll
+newly above the 1.5 % line, three fewer). All that remains is the reviewer's reproduction of the
+whole set, then this page comes back to you with the final table — the rulings above are still
+yours to make and nothing waits on the reproduction to make them.
 
 ## Finding 1 — the loop, diagnosed: the goals stay with the cells
 

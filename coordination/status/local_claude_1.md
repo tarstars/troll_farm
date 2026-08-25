@@ -14,8 +14,13 @@
   survived on disk, re-verified from scratch; probe OK at 20:48Z; re-rung 20:50Z). **C-7 PASS
   accepted 21:04Z** (C-5 17→350, C-6 0→344 under a gutted predicate); **C-8 PASS 21:22Z** with a
   named cost (of 13 dances touched: 9 cured with progress, 4 silenced without — owner page
-  updated); card item "11 fixtures" struck (discharged by C-8). Remaining: C-16, P3 read on the
-  candidate arm, C-12, then the G-1 handoff. Owner's loop / Candidate 0 ruling still open.
+  updated); card item "11 fixtures" struck (discharged by C-8). **C-16 PASS 21:48Z** (scoping does work: 9/60 P3 fires with the flag off, 0 on; +39 margin
+  forgone); **P3 MEASURED 22:12Z** (0 / 240, decomposition 228 guard / 12 equal / 0); **C-12 PASS
+  ruled 22:45Z** (corpus idle-with-work 0.38 % vs 0.73 %, worst troll 11.5 % vs 95 %, no added
+  above-bar unit; the accepted P4b evaluator cannot read v5 — re-driven with `narrate5`; narrator
+  parameter = follow-up charter). Next: claude_1's G-1 handoff → codex_1 fresh-archive reproduction
+  of the whole set. Follow-up charters after the mission: `20260826-deferred-card-lint`,
+  `20260826-p4b-narrator-param`. Owner's loop / Candidate 0 ruling still open.
 - **19:02Z — quarantine-on-main CLOSED: roster v2 live (`main` `82f7908e`), all five ids 12/0/0/0
   on the main-resident authority, launcher clone current.** Mission items 3 and 4 done; items 1–2
   (Candidate 2) wait on the owner's loop/Candidate 0 ruling while claude_1 runs the remaining
