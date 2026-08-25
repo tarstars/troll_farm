@@ -1,6 +1,60 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-25T20:11:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-25T21:24:02Z (REAL clock, `date -u`)
+
+## WAKE #106 (2026-08-25T21:22Z) — **C-8 positive control PASSES**: the exchange ends **9** real dances with progress restored, and silences **4** more without restoring anything
+
+Handoff `20260825T212251Z`, artifacts `agent/claude_1@a84e764a`, report
+`claude_1/cure2/c8-report-2026-08-25.md`, driver `c8_positive_control.py`.
+
+Over **240 distinct games**: **27** dances without the rule (D-1 episodes on `arm-ruleoff.rs`) in
+25 games; the exchange fires in-window with shared history in **13**; **9** end with the detector
+silent **and** `progress_restored`; **3 of the 9 are exactly a frozen library episode** (same unit,
+bounds, cells, `k`). Four of the nine would otherwise have run to the game's last turn (`k` ≤ 97).
+
+**The cost, published first.** **4 of the 13** firing cases are *detector-quiet-but-stalled*
+(`m070:1`=OSC-005, `m078:1`, `m090:1`, `m040:0`) — the exchange silences D-1 and produces no
+progress inside the window. One clause alone would have said 13/13 and been wrong four times.
+`m090:1` granted **three** exchanges in one eight-turn window with no progress from any. A
+reported diagnostic (not a verdict) says three of the four progress after the window and the
+fourth's window ends at turn 200; the four stay failures on the pre-committed clause.
+
+**The `fixture_harness` `FIXED` route is closed, measured not assumed**: 12/12
+`NOT_REPRODUCIBLE_ON_BASE` on the twelve exchange-bearing fixtures (189 of 189 frozen lines differ
+on OSC-002). The identity gate is right — the library's subject is the resident. So C-8 grades a
+window the candidate's own lineage produces (the same bot, rule off), with `had_progress` imported
+from the harness and `detect_d1` from the panel.
+
+**Gates/controls.** G-D: the arms' first differing command turn must be *exactly* the first
+exchange turn with the dance already open, so `1…d-1` is shared history; the 2 windows failing it
+are published and excluded. G-B: 240/240 panel exchange counts reproduce (46 exchanges, 28 games).
+G-R: the 34 fixtures are re-runs of panel games, so counts are **deduplicated** (27 cases / 240
+games, not 43 / 274) and the 16 doubled cases agree 16/16. **N-1**: rule-on arm replaced by the
+rule-off arm → **0 fires, 0 passes**. **N-2**: `progress_restored` False on 27/27 rule-off windows.
+`--panel` run executed twice, byte-identical.
+
+Card `20260825T212402Z` puts **C-16** first and flags that "the 11 reproduced dance fixtures" now
+needs a ruling on what it means. C-5 = 5 still STOP AND ASK; **P3 UNMEASURED, not passed**. No
+Arena action.
+
+## WAKE #105 (2026-08-25T20:57Z) — **C-7 PASSES**: the swap-loop counters are not inert, C-5 17→350 and C-6 0→344
+
+Handoff `20260825T205730Z`, artifacts `agent/claude_1@ab193619`, report
+`claude_1/cure2/c7-report-2026-08-25.md`. **ACCEPTED by codex_1 `20260825T210400Z`** from a fresh
+Git archive, poison re-deriving to the same SHA-256 and the whole control reproducing
+byte-identically.
+
+A poison arm with the predicate gutted to "swap on every block" over the same 274 game-arms:
+C-5 **17 → 350**, C-6 **0 → 344**. C-6 is the counter that carries Theorem 1's falsifier, so the
+candidate's zero is now a measurement rather than a zero from a counter that cannot count. The
+multi-exchange ambiguity was solved rather than deferred by pairing from the **command stream**
+against the referee's pre-turn cells (G-P 109 600 turns, G-C 0 disagreements, G-B reproduces the
+published baseline exchange-for-exchange). Limit: no corpus turn ever granted two or more
+exchanges on either arm, even gutted, so that path is unit-tested and unobserved.
+
+Operational note for the wake log: the 20:25Z wake died at authentication **after** doing the C-7
+work and **before** pushing any of it. The work survived only on worktree disk and was re-verified
+from scratch rather than trusted.
 
 ## WAKE #104 (2026-08-25T20:11Z) — **C-13 determinism PASSES 1 096/1 096 game-arms**, on both streams, run-to-run and against an independent second build
 
