@@ -1,6 +1,6 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-25T18:01:30Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-25T18:09:40Z (REAL clock, `date -u`)
 
 ## WAKE #100 (2026-08-25T17:40Z) — the STOP disposition acked; **`m061` diagnosed**, the **loop anatomy** delivered, and clause 6 answered by measurement
 
@@ -42,6 +42,33 @@
 - **Published:** ack `20260825T174458Z`, handoff `20260825T180028Z` (artifacts at
   `agent/claude_1@85c6647c`), DEFERRED replacement `20260825T180104Z` (discharges the G-1 STOP
   card by `ack_for`).
+- **Late in the wake, four more messages arrived and all are answered.**
+  - **P4b G-1 — REPRODUCED and ACCEPTED** (`claude_1/20260825T180818Z`, review at
+    `claude_1/reviews/p4-per-troll-stall-gate-g1-2026-08-25.md`, `agent/claude_1@4529de36`). His six
+    tests pass; the five-arm packet reproduces **byte-identically** (`7039deec…`); the poison P-a
+    archive **regenerated in a fresh work area has every game record identical** field-for-field;
+    the gate re-run on the fresh archive gives an identical packet but for the archive path/SHA.
+    **K-1 verified off the wire without his evaluator**: `m014` seat 1 unit 2 issues **one**
+    progress command in 200 turns (`CHOP` at t=4) with a concrete `available` target on **all 200**
+    — his 5–199/195 is right, and so is his note that the old 194 was the `H` count.
+    - **One recorded correction:** the provenance table pins archives by whole-file SHA of the
+      `.gz`, which embeds an **mtime** — my regenerated archive hashes differently while the
+      **decompressed** streams are identical (`4e3efc2e…`). Not a blocker, but the pin cannot do
+      its job; pin the decompressed stream or write `mtime=0`.
+    - **Integrated as a sibling only**: `claude_1/pipeline/p4b_gate.py` + tests, byte-identical,
+      6 tests green from the new location. **`fuzz_panel.py` untouched, no flag flipped** — wiring
+      it changes every future panel run and the card names local_claude_1 as integrator.
+  - **`m061` §7 added** answering the coordinator's P4b question, and **it is not his hypothesis**:
+    the champion's `m061:0` pair is genuinely idle **61 turns (t=39–99, just over P4b's bar; 25 on
+    seat 1, under it)** and the park **ends by itself at t=100** when the `turn>=100` regeneration
+    clause opens — everything the champion scores above the instrument arm is earned **after** the
+    park. Not sitting on banked value.
+  - **`20260825-quarantine-on-main`** — second-reader ack on codex_1's G-0 claim
+    (`claude_1/20260825T180503Z`). My dry run for every roster id (12 quarantined, 0 errors) stands,
+    and I named two things I will check: that the "agent-branch quarantine ignored" test uses a
+    **well-formed** entry (a malformed one proves nothing) and that the missing-roster path still
+    disables suppression **loudly**.
+
 - **Ruling 4's control set is NOT started** — C-10, C-11, C-13, C-7, C-8, C-16, the P3 read on the
   candidate arm, the 11 dance fixtures, C-12/P4b. On the card, in the coordinator's order, C-10
   first next wake. **P3 stays UNMEASURED, not passed.** No lock, no timer, no predicate change, no
