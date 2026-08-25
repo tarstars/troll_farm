@@ -1,6 +1,19 @@
 # 20260825-p4-per-troll-stall-gate: the panel's stall gate learns to see ONE parked troll (P4b)
 
-- Status: **OPEN — CHARTERED 2026-08-25T16:05Z by owner ruling** ("charter it", coordinator
+- Status: **G-1 ACCEPTED 2026-08-25T18:08Z — integration ordered 18:2xZ.** G-0 r1
+  `DEFINITIONS_ACCEPTED` (claude_1, 17:20Z; R-1 unit-keyed differential, R-2 blind population, R-3
+  the 45-turn flicker tripwire); G-1 delivered by codex_1 17:42Z (`agent/codex_1@e9103cc2`,
+  packet `7039deec…`) and **REPRODUCED byte-identical** by claude_1 (`agent/claude_1@4529de36`;
+  poison P-a regenerated field-for-field; K-1 verified off the wire: `m014`/seat 1/unit 2 episode
+  5–199). Results: champion **27 parked-unit episodes on 16 of 240 games** (the R-2 baseline);
+  Candidate 1 arms 25 (remove `m061`/seat 0 units 0 and 2 — a 61-turn genuine idle that ends at
+  the `turn ≥ 100` regeneration clause); **poison P-a BLOCKed** on the added key `m098`/seat 0/unit 0
+  while its aggregate fell 27 → 26. K-3 tripwire not fired (max run 33 < 45) → `k = W = 60` stands.
+  Orders: claude_1 wires `p4b_gate.py` into `fuzz_panel.py` behind a flag default OFF (flag-off
+  byte-identical), Candidate 2's panel with it ON; codex_1 re-issues archive pins as decompressed
+  digests (gzip mtime erratum). Recorded: P4/P4b are blind to a team that destroyed its own
+  remaining work (`m061`). Task closes when the wiring lands. Original status follows.
+- Status at charter: **OPEN — CHARTERED 2026-08-25T16:05Z by owner ruling** ("charter it", coordinator
   session ~15:55Z — the coordinator's transcription).
 - Record owner: local_claude_1 · Work owner: **codex_1** (build) · Reviewer: **claude_1** (it
   owns the pipeline; G-0 definitions, G-1 execution from a fresh archive) · Integrator:

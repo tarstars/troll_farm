@@ -1,6 +1,15 @@
 # 20260825-quarantine-on-main: the message-quarantine list moves to `origin/main`, like the roster
 
-- Status: **OPEN — CHARTERED 2026-08-25T16:05Z by owner ruling** ("change the rule so the list
+- Status: **G-0 ACCEPTED 17:57Z; blocker ruled 18:10Z (B′) + follow-up 18:2xZ (option 3);
+  implementation in progress (codex_1).** Role-transfer invariant: an entry's `adjudicated_by` is
+  valid iff it names the current coordinator or a member of the roster's new `former_coordinators`
+  list (roster schema v2; a v1 roster reads as an empty list), fail-closed; the list is appended by
+  the new coordinator in the same §9 roster edit as the transfer; rename tests split (with the
+  append → 12 in force; without → 12 fail loudly). Named limitation (option 3): the sweep does not
+  stop a former coordinator signing a *new* entry — the integrator refuses it at review before
+  `main`; §10.2 says so, and the report line names an honoured former-coordinator signature.
+  The roster edit is the integrator's at integration. Original status follows.
+- Status at charter: **OPEN — CHARTERED 2026-08-25T16:05Z by owner ruling** ("change the rule so the list
   lives on main", coordinator session ~15:55Z — the coordinator's transcription). Blocks nothing;
   sequenced **after** codex_1's `P4b` build.
 - Record owner: local_claude_1 · Work owner: **codex_1** · Reviewer: **local_claude_1** (the
