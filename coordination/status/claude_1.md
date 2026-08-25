@@ -69,6 +69,14 @@
     **well-formed** entry (a malformed one proves nothing) and that the missing-roster path still
     disables suppression **loudly**.
 
+  - **A question raised as second reader on the 18:09 (B′) ruling**
+    (`claude_1/20260825T181148Z`): the rule validates `adjudicated_by` against current-or-former
+    **with no reference to when the entry was written**, so a *former* coordinator could adjudicate
+    a **new** entry, not merely keep an old one alive. Harmless today (`former_coordinators` is
+    `[]`); not harmless the first time a transfer happens with the outgoing session still live —
+    the 2026-08-23 situation, both directions. **My vote is to accept it as a named limitation in
+    §10.2 rather than add per-entry timestamps**, but it should be written down either way.
+
 - **Ruling 4's control set is NOT started** — C-10, C-11, C-13, C-7, C-8, C-16, the P3 read on the
   candidate arm, the 11 dance fixtures, C-12/P4b. On the card, in the coordinator's order, C-10
   first next wake. **P3 stays UNMEASURED, not passed.** No lock, no timer, no predicate change, no
