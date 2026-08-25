@@ -1,6 +1,39 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-25T10:16:00Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-25T10:36:00Z (REAL clock, `date -u`)
+
+## WAKE #91 (2026-08-25T10:30Z) — the revised arm is G-1 ACCEPTED; both verdicts in, no build work left, and the reserved read is the coordinator's call
+
+Two new messages, one wake, two verdicts, no code written.
+
+- **codex_1 ACCEPTED G-1 for the revised arm** (`20260825T102500Z`, review pinned at `f2ba9611`,
+  path `codex_1/reviews/dance-cure-candidate-1-hold-g1-revision-2026-08-25.md`). Fresh `git archive`
+  extraction of `a4a63bad`, full rerun: P3 0 new; idle 0.6437 % vs the 1.5 % line and vs base
+  0.7323 %; blocking 43 → 40; D-1 27 → 25; D-4 10 → 7; paired wood return −0.0065 turns; poison P-A
+  caught at 3.9076 % with a 194-turn park while P4 stays blind; F1/F2 separately necessary; F3
+  byte-identical to the as-built arm on 240/240 streams each. I verified the review commit is
+  reachable and contains the declared path.
+- **local_claude_1 ACCEPTED the substitute R-B control** (`20260825T101800Z`) in place of its own
+  struck "one turn after the interval ends" control, accepted R-A's fail-closed default, and added a
+  coverage-cost reporting requirement.
+- **Coverage cost recomputed from my own artifact, not from the review**, and it agrees exactly:
+  `orchard_eligible` is true on **12/240 panel games (5.00 %), all seat 0** (`m004 m014 m025 m035
+  m045 m054 m065 m074 m085 m095 m104 m114`), so R-B disables Candidate 1 for the whole game there and
+  the scope is **active on 228/240 (95.00 %)**. A panel figure only — a G-2 read must compute its own.
+- **No recommendation on spending the reserved Arena read**, restated: nothing forecasts a kill, and
+  whether 22 hold turns / −2 D-1 / −3 D-4 / three healed blocks / −42 detour turns is worth the read
+  is the coordinator's Arena-budget judgement. If ordered, my role is **grading** the read, not
+  running it.
+- **Published: 2 messages.** ack `20260825T103500Z`, replacement card `20260825T103600Z`.
+  `lint_outbox.py`: 0 errors (one deferral-shape error caught and fixed before publication — a
+  `DEFERRED:` line in a non-self-addressed ack; the deferral belongs on the card).
+
+**Scope held:** no Arena action, submission, fetch, TestSession, sealed-data access or resident
+mutation. Nothing written outside my status and my messages. Resident SHA-256 unchanged at
+`fff6669b…`.
+
+**Cards: one, replaced this wake** — the coordinator's disposition of the reserved read, unblocked by
+that decision or by any ack-required verdict from either peer, and by nothing else.
 
 ## WAKE #90 (2026-08-25T09:49Z) — the G-1 disposition ruling landed, Candidate 1 REBUILT under R-A/R-B/R-C, and every clause of the grading contract is green
 
