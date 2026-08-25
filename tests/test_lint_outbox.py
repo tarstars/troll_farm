@@ -320,7 +320,7 @@ def test_new_legacy_message_is_caught_by_lint_not_only_by_the_sweep(repo):
     # message linted clean and then became a permanent delivery error.
     old = msg_path(ME, "20260101T000000Z", "task-old", "handoff")
     repo.commit(f"agent/{ME}", {old: legacy_message("task-old", to=PEER)})
-    repo.commit(f"agent/{inbox_sweep_coordinator()}", {
+    repo.commit("main", {
         inbox_sweep.LEGACY_BASELINE_FILE: json.dumps(
             {"schema_version": 1, "frozen_at": repo.tips[f"agent/{ME}"],
              "paths": {old: repo.blob_oid(old)}}, indent=2) + "\n"})

@@ -1,0 +1,1702 @@
+{
+ "arm": "claude_1/cure2/arm-instrument.rs",
+ "cells_from": "the referee transcript via trace_detectors.build_trace",
+ "control": "C-10 \u2014 A-1 realised-cells check",
+ "fixture_summary": {
+  "exchanged": 20,
+  "exchanges_seen": 20,
+  "miss_rows": [],
+  "misses": 0,
+  "non_adjacent_before": [],
+  "not_observable": 0,
+  "not_observable_rows": [],
+  "observable": 20,
+  "rate_over_observable": 100.0,
+  "third_unit_cases": []
+ },
+ "gates": {
+  "G-B row identity (fixtures)": "PASS \u2014 12 fixtures reproduce their recorded exchange turns (20 exchanges)",
+  "G-B row identity (panel)": "PASS \u2014 28 panel games reproduce their recorded swap count (46 exchanges)",
+  "G-D unambiguous pairing": "PASS \u2014 every exchange turn carried exactly one S and one X",
+  "G-E observability": "0 exchange(s) had no observable next-turn state; they are excluded from the rate and listed, never counted as passes"
+ },
+ "pairs_from": "the S/X branch codes on the v5 wire",
+ "panel_summary": {
+  "exchanged": 46,
+  "exchanges_seen": 46,
+  "miss_rows": [],
+  "misses": 0,
+  "non_adjacent_before": [],
+  "not_observable": 0,
+  "not_observable_rows": [],
+  "observable": 46,
+  "rate_over_observable": 100.0,
+  "third_unit_cases": []
+ },
+ "rows": [
+  {
+   "game": "OSC-001",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    4,
+    2
+   ],
+   "mover_cell_before": [
+    5,
+    2
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    5,
+    2
+   ],
+   "partner_cell_before": [
+    4,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 7,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-002",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    8,
+    4
+   ],
+   "mover_cell_before": [
+    9,
+    4
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    9,
+    4
+   ],
+   "partner_cell_before": [
+    8,
+    4
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 12,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-002",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    9,
+    4
+   ],
+   "mover_cell_before": [
+    8,
+    4
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    8,
+    4
+   ],
+   "partner_cell_before": [
+    9,
+    4
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 31,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-005",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    8,
+    2
+   ],
+   "mover_cell_before": [
+    9,
+    2
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    9,
+    2
+   ],
+   "partner_cell_before": [
+    8,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 8,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-006",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    2,
+    3
+   ],
+   "mover_cell_before": [
+    1,
+    3
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    1,
+    3
+   ],
+   "partner_cell_before": [
+    2,
+    3
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 3,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-006",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    2,
+    3
+   ],
+   "mover_cell_before": [
+    1,
+    3
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    1,
+    3
+   ],
+   "partner_cell_before": [
+    2,
+    3
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 5,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-006",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    2,
+    3
+   ],
+   "mover_cell_before": [
+    1,
+    3
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    1,
+    3
+   ],
+   "partner_cell_before": [
+    2,
+    3
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 7,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-006",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    2,
+    3
+   ],
+   "mover_cell_before": [
+    1,
+    3
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    1,
+    3
+   ],
+   "partner_cell_before": [
+    2,
+    3
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 9,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-006",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    2,
+    3
+   ],
+   "mover_cell_before": [
+    1,
+    3
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    1,
+    3
+   ],
+   "partner_cell_before": [
+    2,
+    3
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 11,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-007",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    5,
+    6
+   ],
+   "mover_cell_before": [
+    6,
+    6
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    6,
+    6
+   ],
+   "partner_cell_before": [
+    5,
+    6
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 8,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-007",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    5,
+    6
+   ],
+   "mover_cell_before": [
+    6,
+    6
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    6,
+    6
+   ],
+   "partner_cell_before": [
+    5,
+    6
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 11,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-009",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    3,
+    1
+   ],
+   "mover_cell_before": [
+    3,
+    2
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    3,
+    2
+   ],
+   "partner_cell_before": [
+    3,
+    1
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 53,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-009",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    3,
+    1
+   ],
+   "mover_cell_before": [
+    4,
+    1
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    4,
+    1
+   ],
+   "partner_cell_before": [
+    3,
+    1
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 71,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-010",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    5,
+    0
+   ],
+   "mover_cell_before": [
+    4,
+    0
+   ],
+   "partner": 6,
+   "partner_cell_after": [
+    4,
+    0
+   ],
+   "partner_cell_before": [
+    5,
+    0
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 79,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-021",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    8,
+    5
+   ],
+   "mover_cell_before": [
+    8,
+    6
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    8,
+    6
+   ],
+   "partner_cell_before": [
+    8,
+    5
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 19,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-027",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    3,
+    2
+   ],
+   "mover_cell_before": [
+    4,
+    2
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    4,
+    2
+   ],
+   "partner_cell_before": [
+    3,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 4,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-028",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    3,
+    1
+   ],
+   "mover_cell_before": [
+    3,
+    2
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    3,
+    2
+   ],
+   "partner_cell_before": [
+    3,
+    1
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 53,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-028",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    3,
+    1
+   ],
+   "mover_cell_before": [
+    4,
+    1
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    4,
+    1
+   ],
+   "partner_cell_before": [
+    3,
+    1
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 71,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-029",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    6,
+    2
+   ],
+   "mover_cell_before": [
+    6,
+    3
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    6,
+    3
+   ],
+   "partner_cell_before": [
+    6,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 29,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "OSC-031",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    2,
+    4
+   ],
+   "mover_cell_before": [
+    2,
+    3
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    2,
+    3
+   ],
+   "partner_cell_before": [
+    2,
+    4
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 12,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m009:1",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    6,
+    1
+   ],
+   "mover_cell_before": [
+    7,
+    1
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    7,
+    1
+   ],
+   "partner_cell_before": [
+    6,
+    1
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 2,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m019:0",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    2,
+    5
+   ],
+   "mover_cell_before": [
+    3,
+    5
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    3,
+    5
+   ],
+   "partner_cell_before": [
+    2,
+    5
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 194,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m023:1",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    7,
+    2
+   ],
+   "mover_cell_before": [
+    8,
+    2
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    8,
+    2
+   ],
+   "partner_cell_before": [
+    7,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 28,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m040:0",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    4,
+    4
+   ],
+   "mover_cell_before": [
+    3,
+    4
+   ],
+   "partner": 6,
+   "partner_cell_after": [
+    3,
+    4
+   ],
+   "partner_cell_before": [
+    4,
+    4
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 177,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m040:1",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    5,
+    0
+   ],
+   "mover_cell_before": [
+    4,
+    0
+   ],
+   "partner": 6,
+   "partner_cell_after": [
+    4,
+    0
+   ],
+   "partner_cell_before": [
+    5,
+    0
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 79,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m041:0",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    2,
+    2
+   ],
+   "mover_cell_before": [
+    3,
+    2
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    3,
+    2
+   ],
+   "partner_cell_before": [
+    2,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 6,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m042:0",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    3,
+    2
+   ],
+   "mover_cell_before": [
+    2,
+    2
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    2,
+    2
+   ],
+   "partner_cell_before": [
+    3,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 21,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m042:0",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    2,
+    2
+   ],
+   "mover_cell_before": [
+    3,
+    2
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    3,
+    2
+   ],
+   "partner_cell_before": [
+    2,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 46,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m056:0",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    3,
+    2
+   ],
+   "mover_cell_before": [
+    4,
+    2
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    4,
+    2
+   ],
+   "partner_cell_before": [
+    3,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 81,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m056:0",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    6,
+    0
+   ],
+   "mover_cell_before": [
+    7,
+    0
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    7,
+    0
+   ],
+   "partner_cell_before": [
+    6,
+    0
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 118,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m058:1",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    6,
+    2
+   ],
+   "mover_cell_before": [
+    6,
+    3
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    6,
+    3
+   ],
+   "partner_cell_before": [
+    6,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 29,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m059:0",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    2,
+    4
+   ],
+   "mover_cell_before": [
+    2,
+    3
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    2,
+    3
+   ],
+   "partner_cell_before": [
+    2,
+    4
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 12,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m059:1",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    8,
+    4
+   ],
+   "mover_cell_before": [
+    9,
+    4
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    9,
+    4
+   ],
+   "partner_cell_before": [
+    8,
+    4
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 12,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m059:1",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    9,
+    4
+   ],
+   "mover_cell_before": [
+    8,
+    4
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    8,
+    4
+   ],
+   "partner_cell_before": [
+    9,
+    4
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 31,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m061:0",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    2,
+    2
+   ],
+   "mover_cell_before": [
+    3,
+    2
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    3,
+    2
+   ],
+   "partner_cell_before": [
+    2,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 3,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m061:0",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    6,
+    2
+   ],
+   "mover_cell_before": [
+    5,
+    2
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    5,
+    2
+   ],
+   "partner_cell_before": [
+    6,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 28,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m061:1",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    10,
+    2
+   ],
+   "mover_cell_before": [
+    11,
+    2
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    11,
+    2
+   ],
+   "partner_cell_before": [
+    10,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 76,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m063:1",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    10,
+    5
+   ],
+   "mover_cell_before": [
+    10,
+    4
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    10,
+    4
+   ],
+   "partner_cell_before": [
+    10,
+    5
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 51,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m066:0",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    3,
+    2
+   ],
+   "mover_cell_before": [
+    4,
+    2
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    4,
+    2
+   ],
+   "partner_cell_before": [
+    3,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 4,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m070:0",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    2,
+    2
+   ],
+   "mover_cell_before": [
+    3,
+    2
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    3,
+    2
+   ],
+   "partner_cell_before": [
+    2,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 4,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m070:1",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    8,
+    2
+   ],
+   "mover_cell_before": [
+    9,
+    2
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    9,
+    2
+   ],
+   "partner_cell_before": [
+    8,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 8,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m078:0",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    2,
+    3
+   ],
+   "mover_cell_before": [
+    1,
+    3
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    1,
+    3
+   ],
+   "partner_cell_before": [
+    2,
+    3
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 3,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m078:0",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    2,
+    3
+   ],
+   "mover_cell_before": [
+    1,
+    3
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    1,
+    3
+   ],
+   "partner_cell_before": [
+    2,
+    3
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 5,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m078:0",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    2,
+    3
+   ],
+   "mover_cell_before": [
+    1,
+    3
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    1,
+    3
+   ],
+   "partner_cell_before": [
+    2,
+    3
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 7,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m078:0",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    2,
+    3
+   ],
+   "mover_cell_before": [
+    1,
+    3
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    1,
+    3
+   ],
+   "partner_cell_before": [
+    2,
+    3
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 9,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m078:0",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    2,
+    3
+   ],
+   "mover_cell_before": [
+    1,
+    3
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    1,
+    3
+   ],
+   "partner_cell_before": [
+    2,
+    3
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 11,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m078:1",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    5,
+    3
+   ],
+   "mover_cell_before": [
+    6,
+    3
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    6,
+    3
+   ],
+   "partner_cell_before": [
+    5,
+    3
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 7,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m082:1",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    5,
+    5
+   ],
+   "mover_cell_before": [
+    4,
+    5
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    4,
+    5
+   ],
+   "partner_cell_before": [
+    5,
+    5
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 18,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m084:1",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    8,
+    5
+   ],
+   "mover_cell_before": [
+    8,
+    6
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    8,
+    6
+   ],
+   "partner_cell_before": [
+    8,
+    5
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 19,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m090:0",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    2,
+    5
+   ],
+   "mover_cell_before": [
+    3,
+    5
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    3,
+    5
+   ],
+   "partner_cell_before": [
+    2,
+    5
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 3,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m090:0",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    2,
+    5
+   ],
+   "mover_cell_before": [
+    1,
+    5
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    1,
+    5
+   ],
+   "partner_cell_before": [
+    2,
+    5
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 6,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m090:0",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    2,
+    5
+   ],
+   "mover_cell_before": [
+    1,
+    5
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    1,
+    5
+   ],
+   "partner_cell_before": [
+    2,
+    5
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 8,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m090:0",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    2,
+    5
+   ],
+   "mover_cell_before": [
+    1,
+    5
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    1,
+    5
+   ],
+   "partner_cell_before": [
+    2,
+    5
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 10,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m090:0",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    2,
+    5
+   ],
+   "mover_cell_before": [
+    1,
+    5
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    1,
+    5
+   ],
+   "partner_cell_before": [
+    2,
+    5
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 12,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m090:1",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    5,
+    5
+   ],
+   "mover_cell_before": [
+    6,
+    5
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    6,
+    5
+   ],
+   "partner_cell_before": [
+    5,
+    5
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 12,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m090:1",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    5,
+    5
+   ],
+   "mover_cell_before": [
+    6,
+    5
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    6,
+    5
+   ],
+   "partner_cell_before": [
+    5,
+    5
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 15,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m090:1",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    5,
+    5
+   ],
+   "mover_cell_before": [
+    6,
+    5
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    6,
+    5
+   ],
+   "partner_cell_before": [
+    5,
+    5
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 18,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m090:1",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    5,
+    5
+   ],
+   "mover_cell_before": [
+    6,
+    5
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    6,
+    5
+   ],
+   "partner_cell_before": [
+    5,
+    5
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 21,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m092:0",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    3,
+    1
+   ],
+   "mover_cell_before": [
+    3,
+    2
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    3,
+    2
+   ],
+   "partner_cell_before": [
+    3,
+    1
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 53,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m092:0",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    3,
+    1
+   ],
+   "mover_cell_before": [
+    4,
+    1
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    4,
+    1
+   ],
+   "partner_cell_before": [
+    3,
+    1
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 71,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m092:1",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    8,
+    2
+   ],
+   "mover_cell_before": [
+    8,
+    3
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    8,
+    3
+   ],
+   "partner_cell_before": [
+    8,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 61,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m109:0",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    3,
+    4
+   ],
+   "mover_cell_before": [
+    3,
+    3
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    3,
+    3
+   ],
+   "partner_cell_before": [
+    3,
+    4
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 6,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m109:0",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    3,
+    3
+   ],
+   "mover_cell_before": [
+    3,
+    4
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    3,
+    4
+   ],
+   "partner_cell_before": [
+    3,
+    3
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 25,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m110:1",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    4,
+    2
+   ],
+   "mover_cell_before": [
+    5,
+    2
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    5,
+    2
+   ],
+   "partner_cell_before": [
+    4,
+    2
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 7,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m118:1",
+   "manhattan_before": 1,
+   "mover": 2,
+   "mover_cell_after": [
+    5,
+    6
+   ],
+   "mover_cell_before": [
+    6,
+    6
+   ],
+   "partner": 0,
+   "partner_cell_after": [
+    6,
+    6
+   ],
+   "partner_cell_before": [
+    5,
+    6
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 8,
+   "verdict": "EXCHANGED"
+  },
+  {
+   "game": "m118:1",
+   "manhattan_before": 1,
+   "mover": 0,
+   "mover_cell_after": [
+    5,
+    6
+   ],
+   "mover_cell_before": [
+    6,
+    6
+   ],
+   "partner": 2,
+   "partner_cell_after": [
+    6,
+    6
+   ],
+   "partner_cell_before": [
+    5,
+    6
+   ],
+   "third_own_unit_on_either_cell_after": [],
+   "turn": 11,
+   "verdict": "EXCHANGED"
+  }
+ ],
+ "task": "20260825-dance-cure-candidate-2-swap",
+ "total_summary": {
+  "exchanged": 66,
+  "exchanges_seen": 66,
+  "miss_rows": [],
+  "misses": 0,
+  "non_adjacent_before": [],
+  "not_observable": 0,
+  "not_observable_rows": [],
+  "observable": 66,
+  "rate_over_observable": 100.0,
+  "third_unit_cases": []
+ },
+ "verdict": "PASS"
+}
