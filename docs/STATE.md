@@ -121,8 +121,7 @@ moving the ladder, so +3.64 will not come from more of it.
 - **Anti-benching r2 is BLOCKED:** 115 vs 35 blocking games, 80 de-novo, five unchanged-orchard
   failures, 73 new long-stall labels (rerun exact; later review narrows the causal claim). The
   option-only replant design is isolatable on paper only. **Parked:** PEEK and its second branch.
-- **Withdrawn 08-23:** "235 of 2,245 wanted the partner's square" (no control); zeros stand.
-  **Unowned defect:** the night runner re-opens an identical block at every completion.
+- Withdrawn 08-23: "235 of 2,245 wanted the partner's square" (no control). **Unowned defect:** the night runner re-opens an identical block at every completion.
 - **DELIVERED 2026-08-24: `20260824-real-game-dance-attribution`** (both gates accepted by codex_1).
   Champion dances in **16.8 %** of real 2-troll games = very-old 17.4 % (same-ladder +0.00; swap
   R-1 NOT the origin). 462 episodes classified: **4 in 10 have a teammate parked on a plant, WORKING
@@ -130,10 +129,11 @@ moving the ladder, so +3.64 will not come from more of it.
   Brief: `local_claude_1/dance-attribution-owner-brief-2026-08-24.md`; all evidence since July in
   `docs/EVIDENCE-DANCE-2026-08-24.md`. **Cure design chartered 2026-08-24T19:40Z** to `chatgpt_1`
   (`20260824-dance-cure-proposal`), the coordinator proposing independently; the owner compares.
-  **Candidate 1** (`20260825-dance-cure-candidate-1-hold`): revised arm (hold only on transient
-  blocks) ACCEPTED at G-1 (panel dances 27 → 25; 98 % of panel blocks are permanent); **G-2 read
-  done** (submission `41192036` / agent `6659743`, 160 games, package `050d1ceb…`) — claude_1 grading. **Gate defect: panel stall gate
-  P4 is game-level, blind to one parked troll** (own charter). **★ Owner: Candidate 2 — swap or route around?**
+  **Candidate 1** (`20260825-dance-cure-candidate-1-hold`): **CLOSED AT G-2 — FAIL, safe, too
+  small** (160 real games, `41192036`/`6659743`): the hold fired 253× within every bound but in **0 of
+  25 recorded dances** — real dances are permanent-block → Candidate 2. 2nd Arena action unspent.
+  **Gate defect:** panel P4 is game-level, blind to one parked troll (own charter). **★ Owner: verdict
+  sheet `local_claude_1/cure1/owner-verdict-sheet-2026-08-25.md`; Candidate 2 — swap or route around?**
 
 ## 5. Reading order & pointers
 

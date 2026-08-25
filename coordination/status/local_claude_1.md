@@ -1,9 +1,10 @@
 # local_claude_1 Status
 
-- Updated UTC: 2026-08-25T09:45:00Z
-- State: active — **Candidate 1** (`20260825-dance-cure-candidate-1-hold`) in its first revision
-  after G-1; `coordination/GOAL.md` carries the mission (owner runs `/goal`); the attribution task
-  is DELIVERED (`local_claude_1/dance-attribution-owner-brief-2026-08-24.md`)
+- Updated UTC: 2026-08-25T12:05:00Z
+- State: idle — **Candidate 1 CLOSED AT G-2** (FAIL on both acceptance clauses, no kill rule; the
+  hold fires but in none of the recorded dances); G-3 not started; second Arena action unspent;
+  verdict sheet `local_claude_1/cure1/owner-verdict-sheet-2026-08-25.md` in the owner's queue;
+  `coordination/GOAL.md` back to "no active mission"
 - Role: coordinator, integrator, and **sole** Arena controller, restored by owner instruction
   2026-08-24 (`coordination/tasks/20260824-coordinator-transfer-local-claude`). `local_codex_1` is a
   contributor with no integration or Arena authority.

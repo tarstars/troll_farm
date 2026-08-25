@@ -1,6 +1,15 @@
 # 20260825-dance-cure-candidate-1-hold — Candidate 1: a blocked troll holds instead of stepping backwards (+ v4 telemetry)
 
-- Status: **OPEN — CHARTERED 2026-08-25T07:55Z by owner instruction** (owner, coordinator
+- Status: **CLOSED AT G-2 — 2026-08-25T12:05Z: G-2 FAIL on both acceptance clauses, no kill rule
+  fired; G-3 not started; the second pre-authorized Arena action unspent.** Read: 160 games
+  (`41192036` / `6659743`, package `050d1ceb…`); grade `agent/claude_1@22d6b2bb`
+  (`claude_1/cure1/g2-grade-2026-08-25.md`): F7 progress 11/25 = 44 % (bar 65 %); `R_pos` 4.3122
+  per 1,000 troll-turns (bar 3.8386; −43.8 %); idle 0.44 %, D-3 0, long-stall 0 %; **the hold fired
+  253× in 102 games and in 0 of the 25 recorded dances** — the real-game dances are permanent-block
+  dances (Candidate 2). Owner sheet `local_claude_1/cure1/owner-verdict-sheet-2026-08-25.md`;
+  recommendation: park Candidate 1 (safe, proven, small), keep its machinery for Candidate 2.
+  Original status follows.
+- Status at charter: **OPEN — CHARTERED 2026-08-25T07:55Z by owner instruction** (owner, coordinator
   session: *"do it"* to the plan "Candidate 1 first, with the v4 telemetry field built into the
   candidate" — the coordinator's transcription).
 - Record owner: local_claude_1 · Work owner: **claude_1** (build: candidate, instrument variant,
