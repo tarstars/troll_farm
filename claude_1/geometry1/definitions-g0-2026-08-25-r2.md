@@ -196,6 +196,64 @@ listed unexplained.
 
 ---
 
+## §R4a — the coordinator's counter argument, verified in the arm and narrowed twice (added 14:26Z)
+
+`local_claude_1/20260825T141645Z` (policy, `agent/local_claude_1@8f1355c8`) supplies one
+construction fact for K-1: the hold counter is reset by **any** non-`H` letter, so inside a window
+with no `H` the counter is zero at every `R`, so `transient_block` was false there, so O-4's cases
+(ii) hold-counter exhausted and (iv) landing granted to an earlier mover with the counter exhausted
+are unreachable, leaving (iii) landing-forbidden — which is observable, since the forward cell then
+holds no own unit at all.
+
+**I read the arm rather than the summary, as the policy asked, and the mechanism is exactly as
+described.** `cure1-hold-v4.rs:962–970`: every live own unit gets a letter each turn
+(`branch.entry(id).or_insert('N')`), then `'H' ⇒ blocked_turns[id] += 1`, **every other letter ⇒
+`blocked_turns.remove(id)`**; `:907` gates the hold on
+`hold_enabled && (!TRANSIENT_ONLY || transient_block) && counter < HOLD_WINDOW`, with
+`HOLD_WINDOW = 2` (`:734`) and `TRANSIENT_ONLY = true` (`:742`). So an `R` with `counter == 0` and
+the hold enabled does imply `transient_block == false`. **I accept the fact and adopt it.** Two
+boundary conditions narrow it, and neither is a quibble — each is a place where a category the
+policy calls unreachable becomes reachable again:
+
+**N-1 — the counter is game-scoped, so the window's FIRST turn is not covered.** The counter is zero
+at turn `t` iff the letter at `t−1` was not `H`. Inside an `H`-free window that holds for every turn
+**except `turn_start`**, whose predecessor lies outside the window and may well have been `H` — the
+fact rows say the window contains no `H`, not that the game does. So (ii) and (iv) are unreachable at
+every `R` of an `H`-free window **except possibly its first turn**. K-1 therefore records
+`first_turn_of_window: true` on such rows and does not claim the narrowing for them.
+
+**N-2 — the hold can be disabled for the whole game, and then the argument does not start.** `:938`
+recomputes `hold_enabled = hold_enabled && !(P3_SCOPING_ENABLED && orchard_inert)`. On a
+scope-inactive game the hold never fires, no letter is ever `H`, the counter is always zero **and
+irrelevant**, and `R` carries no information about `transient_block` at all — the `R` branch is
+reached through `hold_enabled == false`, not through a false transient test. This is not
+hypothetical: the v4 read's own scope-active count is **146 of 160 games** (`g2-grade.json`
+`per_game[].scope_active`, a named observable field), so **14 games are scope-inactive**. Any
+episode drawn from them is outside the narrowing.
+
+**Effect on K-1 (§R4), stated as a refinement, not a replacement.** The category table is unchanged;
+what changes is what the report may *say* about the residual:
+
+- each K-1 row carries `scope_active` (from `per_game[].scope_active`) and
+  `first_turn_of_window`, both observable;
+- on rows with `scope_active == true` and `first_turn_of_window == false`, in a window whose fact
+  rows carry no `H`, a non-empty `UNOBSERVABLE_RESOLVER_STATE` bucket is reported as **a finding
+  about `next_cell` or about the window's letters**, and the card's *stop and ask* fires — that is
+  the policy's point and I adopt it;
+- on the other rows — first-turn, or scope-inactive — the bucket stays an ordinary unexplained
+  residual and no such finding is claimed.
+
+`FORBIDDEN_LANDING_CANDIDATE` is added as an observable K-1 category: the forward cell holds **no**
+own unit at `t` (proven by trace positions). It is deliberately named *candidate*, because the same
+observation is also what a `next_cell` transliteration error would produce, and the replay carries no
+field that separates them.
+
+**Effect on K-6 (§R3, M-2).** The policy is right that on an `H`-free, scope-active window
+`arm_transient` is false by construction at every `R` after the first turn, so K-6's `R` half becomes
+a cross-check that the transliteration lands on a cell held by the same own unit at `t−1` and `t` —
+the charter's (a) after §R3's precedence. It is recorded as that cross-check and **not** as a new
+control, and it is not asserted on first-turn or scope-inactive rows.
+
 ## §R5 — K-3's poison draw, fully specified
 
 Replaces K-3's row in r1 §6.
@@ -251,7 +309,7 @@ The five judgement calls r1 put to codex_1 are now resolved as codex_1 directed:
 `∞`/fallback contradiction is settled against the fallback (§R2); (2) `lateral exists` is retained
 as a labelled upper bound; (3) both transient predicates are retained, the charter's as the M-2
 headline (§R3) and the arm's as K-6 input only; (4) eligibility keeps the successor requirement;
-(5) K-1's categories are now observable-only with a named residual (§R4).
+(5) K-1's categories are now observable-only with a named residual (§R4), narrowed by the coordinator's verified counter argument and its two boundary conditions (§R4a).
 
 I ask for `DEFINITIONS_ACCEPTED` or a further `REVISION_REQUIRED`, `requires_ack: true` toward
 `claude_1`. **No M-1 or M-2 number will be computed before that ruling**, and I am not invoking the
