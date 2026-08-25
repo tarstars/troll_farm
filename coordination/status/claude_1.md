@@ -1,8 +1,8 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-25T15:29:08Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-25T15:41:12Z (REAL clock, `date -u`)
 
-## WAKE #97 (2026-08-25T15:29Z) — inbox only: the VM disk was full, codex_1's first G-1 reproduction died in `tar`, and the scratch rule is now mine too
+## WAKE #97 (2026-08-25T15:29Z) — the VM disk was full and codex_1's first G-1 reproduction died in `tar`; his second one **REPRODUCED G-1 byte-identically**, and I built the re-issue his two rulings ordered
 
 - **Three messages read, one ack published** (`claude_1/20260825T152824Z`, ack_for the coordinator's
   `152239Z` policy, his `145434Z` re-derivation and codex_1's `152308Z` phase marker).
@@ -24,9 +24,34 @@
   has no cost-bearing turn yet publishes cost class `0`. If R1 is re-read as *cost-bearing*, the
   change is mechanical and I re-issue: that episode `0 → n/a`, pooled `0` 8 → 7, v4 `0` 2 → 1, nothing
   else. **I started no re-issue** — it is a build and it waits for the ruling, with F-1 and F-2/K-10.
-- **Nothing else run this wake.** No measurement, no Arena action, submission, TestSession, replay
-  fetch or sealed-map access; no peer branch merged; nothing written outside my namespace and `/tmp`.
-  Deferrals: none.
+- **Then codex_1's G-1 verdict landed mid-ritual (`20260825T152653Z`): G-1 REPRODUCED** — his
+  fresh-archive run returned `geometry acb2feed…` and `controls b1189468…` byte-identical, K-4
+  passing between his two runs, every headline reproduced. He ruled F-1 and the R1 edge accepted,
+  F-2/K-10 accepted as a standing control, F-3 faithful.
+- **I built the re-issue this wake** (`agent/claude_1@6f44c228`, handoff `claude_1/20260825T154039Z`):
+  definitions **r3** (§R1′ `n/a` decided on the *cost-bearing* turns; §R4b `NON_COST_BEARING_STATUS`
+  leaves K-1's denominator and is published beside it, with `all_R_turns` unnarrowed as a guard).
+  Re-run twice, K-4 PASS, 105 episodes, 0 refusals. **`geometry`: one field of one episode differs**
+  — `900327649`/0/9/v4 `0 → n/a`; pooled `n/a` 1, `0` 7, `1–2` 40, `3–5` 15, `>5` 13, `inf` 29,
+  identical to codex_1's independent list. **`controls`: K-1 191/191 = 100 % PASS**, numerator
+  unmoved, 7 `TARGET_OCCUPIED` rows reported beside it, 198/198 `R` turns with the teammate on the
+  forward cell. Every M-1 and M-2 headline unchanged.
+- **A regression I caught in my own diff and reported rather than quietly fixing.** The first r3
+  implementation used `continue` to exclude the non-cost-bearing rows and thereby skipped K-6's
+  accumulator in the same loop — K-6 silently moved `R/False` 197 → 190. The whole-controls diff
+  against the published file surfaced it; now an `if/else`, K-6 back at 197 · 1. One control
+  narrowing a *different* control's population is precisely the failure §R4b's guards exist for.
+- **Determinism labels** are now explicit `--label`/`--peer-label` inputs, so the one presentation
+  difference codex_1's fresh-archive run reported is byte-reproducible.
+- **The coordinator closed the task DELIVERED at 15:45Z** (`local_claude_1/20260825T153752Z`) with
+  both rulings adopted as numbers in the owner brief, the mission archived and `GOAL.md` back to *no
+  active mission*. My re-issue makes those adopted numbers **computable from the code** rather than
+  carried as an erratum; the handoff was published **non-ack-required** so it cannot re-open a closed
+  task, and it owes nobody a reply. Nothing of mine is outstanding on this task.
+- **Nothing beyond that re-issue.** No new measurement invented, no Arena action, submission,
+  TestSession, replay fetch or sealed-map access; no peer branch merged; nothing written outside
+  `claude_1/geometry1/**`, my own message namespace and `/tmp`. No cure and no candidate decided.
+  Deferrals: none. `/tmp/geom1` removed at the end of this wake as declared.
 
 ## WAKE #96b (2026-08-25T14:55Z) — **G-1 EXECUTED**: M-1 and M-2 are measured. **There is usually no road around the standing teammate**, and the pre-committed `blocked_but_road_exists` column came back **0** on both reads
 
