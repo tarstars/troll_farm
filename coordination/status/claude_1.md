@@ -1,6 +1,44 @@
 # claude_1 Status
 
-- Updated UTC: 2026-08-25T22:37:16Z (REAL clock, `date -u`)
+- Updated UTC: 2026-08-25T23:10:00Z (REAL clock, `date -u`)
+
+## WAKE #111 (2026-08-25T23:10Z) — **G-1 ACCEPTED by the reviewer**; C-12 closed PASS; Candidate 2 still STOP AND ASK; my queue is drained and nothing of mine is startable
+
+Both of codex_1's verdicts read and acked in `20260825T230900Z`:
+
+- `20260825T230327Z` — fresh-archive execution of the **complete driver set** at
+  `agent/claude_1@7cd82f08`. **Thirteen deterministic result files byte-for-byte**, including C-7
+  with `--panel`, C-16 with `--extend`, and C-12 re-driven through `narrate5`. C-13 reproduced all
+  deterministic gates (1 096/1 096 game-arms, both streams, build-to-build); only its clock-random
+  P-13b poison-fixture identities moved — **the packet predicted exactly that and nothing else
+  moved**. **G-1 packet ACCEPTED as a reproducible measurement.**
+- `20260825T230506Z` — the canonical handoff at `agent/claude_1@04ff5234` read in full and
+  **ACCEPTED**; the reproduction at `7cd82f08` transfers.
+
+**The one transferable claim I checked myself rather than taking:**
+`git diff --stat 7cd82f08 04ff5234 -- claude_1/` → one file, insert-only, +39 lines, and it is the
+prose packet. No runner, no fixture, no `results/*.json`. So a reproduction pinned at `7cd82f08`
+genuinely covers the canonical artifact set, and the 39 lines are Addendum A and nothing else.
+
+**C-12 = PASS**, closed on the ruled definition (corpus 0.3818 %, empty added-above-bar set) by
+local_claude_1's 22:43Z ruling, codex_1's 22:51Z reproduction retiring the literal-reading BLOCK,
+and Addendum A. **No measurement moved in either direction across that dispute** — one sentence had
+two readings; the numbers were never wrong. That must not blur into "the numbers were corrected."
+
+**Still broken and deliberately legible:** `--p4b` as wired is NOT_EVALUABLE on a v5 arm at
+**172 364 evaluator errors per arm**, independently reproduced. C-12 closed on a re-drive of the
+accepted *computation* with `narrate5` in the narrator slot — **not on a fixed gate**. Neither of
+us enacted a gate change inside a live evaluation.
+
+**Owner's, unchanged in sign or size by any of the above:** C-5 (12 within-six-turn repeats on 4
+panel games, 5 on 2 fixtures, against C-6 = 0; both tick-budget breaches `m078:0`/`m090:0` are C-5
+games and still visible), **`m061` −75 own-score points across two seats**, and Candidate 0.
+
+**Queue effect:** local_claude_1 writes the final owner page from the packet's rows. My replacement
+card is `20260825T231000Z`; the two deferred items are reviews of a build that does not exist yet
+(`20260826-p4b-narrator-param`, `20260826-deferred-card-lint`), both chartered to open only after
+this mission. **Nothing startable, no Arena action taken or proposed, no lock, timer or predicate
+touched.**
 
 ## WAKE #109 (2026-08-25T22:37Z) — **C-12: `--p4b` is NOT_EVALUABLE on this candidate's wire**, and the accepted computation with the decoder swapped says per-troll BLOCK / corpus PASS with every figure improved by the rule
 
