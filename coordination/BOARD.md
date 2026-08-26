@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-26T18:50Z
+Last updated: 2026-08-26T19:45Z
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -25,7 +25,7 @@ Last updated: 2026-08-26T18:50Z
 | # | task | owner | stage | next concrete step | blocked on | budget left | last evidence |
 |---|---|---|---|---|---|---|---|
 | F-1 | Who ate the b100 farm? (`coordination/tasks/20260826-track-f-b100-theft-split.md`) | codex_1 (claude_1 reviewed) | **STOPPED under its dead condition 14:22Z; F-G1 ACCEPT-WITH-EDIT, edits published 14:41Z** — the corpus holds only 4 of the b100's 98 ladder games (the first batch, score still 0.0) and no per-turn detail; from the permitted checkpoint file: 98 games, mean margin +4.6, 49 losses, worst −348 — wins narrowly, loses catastrophically. **The theft-vs-own-crop split cannot be measured from what we kept**; with T-2 it becomes measurable on the 4 games only. | closed; re-ask on fresh instrumented games (0-3a/0-3) | — | spent | 14:41Z |
-| F-2 | CBF design + build (three states, two one-way edges, Spec B) | claude_1, after D-1 | queued | not before T-1 + F-1 answer "worth it" **and** the owner's go | T-1, F-1, owner go | ≤ 2 design rounds, 1 panel, 1 ladder slot | — |
+| F-2 | Banana wood farm — design + build (`docs/BANANA-FARM-CONTRACT-2026-08-26.md` is the design input: the owner's outline, the restored earlier rules, the verified numbers, three owner decisions: hut ring / one-way latch / mothers-only during denial) | claude_1 (after its L-1 file); codex_1 reviews | **contract written 19:4xZ; charter on the owner's "go"** | design packet (≤ 2 rounds): aim-selection rule, latch threshold and round K from the turn corpus, worker-rule tests, containment | owner go; L-1 occupies the ladder ~1.5 days | ≤ 2 design rounds, 1 panel, 1 ladder block | 19:4xZ |
 
 ## Track 0 — Instruments (a verdict that cannot be computed is a stall in disguise)
 
