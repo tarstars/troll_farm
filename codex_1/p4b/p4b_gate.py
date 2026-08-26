@@ -84,6 +84,15 @@ def narrator_fragments(line: str) -> list[str]:
             if frag.lstrip().upper().startswith("MSG ") and "NARRATE" in frag.split()]
 
 
+def decode_units(narrator, payload: str):
+    """Dialect-neutral boundary: P4b consumes only turn and per-unit availability/branch."""
+    turn, units, _order, _banner, _meta = narrator.decode(payload)
+    for uid, unit in units.items():
+        if len(unit) < 4:
+            raise ValueError(f"unit {uid} decoder tuple has {len(unit)} fields, expected >=4")
+    return turn, units
+
+
 def evaluate_not_applicable(path: Path) -> dict:
     """Validate an explicitly narrator-less arm without inventing P4b observations."""
     errors, games, map_seats = [], 0, collections.Counter()
@@ -130,7 +139,7 @@ def evaluate(path: Path, td, narrator, dialect: str) -> dict:
                 errors.append(f"{game_key} turn {index}: {len(msgs)} telemetry rows")
                 continue
             try:
-                turn, units, _, _, _ = narrator.decode(msgs[0].strip())
+                turn, units = decode_units(narrator, msgs[0].strip())
             except Exception as exc:
                 errors.append(f"{game_key} turn {index}: telemetry decode: {exc}")
                 continue

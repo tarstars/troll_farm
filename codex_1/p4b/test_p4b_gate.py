@@ -69,6 +69,21 @@ class P4bUnitTests(unittest.TestCase):
         ready = {"status": "READY", "unit_rows": [], "failed_units": []}
         self.assertEqual(p.compare(ready, na)["status"], "NOT_APPLICABLE")
 
+    def test_v6_fixture_decoder_contract(self):
+        class V6Fixture:
+            @staticmethod
+            def decode(payload):
+                self.assertIn("NARRATE v6", payload)
+                self.assertIn("/k=2", payload)
+                return 7, {0: ("TREE(3,4)", "TREE(3,4)", "P", 0, 2)}, [0], False, {"kp": 1}
+
+        turn, units = p.decode_units(
+            V6Fixture(),
+            "MSG NARRATE v6 t=7 u0=TREE(3,4)/TREE(3,4)/r=P/b=0/k=2 kp=1")
+        self.assertEqual(turn, 7)
+        self.assertEqual(units[0][1], "TREE(3,4)")
+        self.assertEqual(units[0][2], "P")
+
 
 if __name__ == "__main__":
     unittest.main()

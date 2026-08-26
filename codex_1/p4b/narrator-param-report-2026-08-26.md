@@ -66,10 +66,16 @@ python3 codex_1/p4b/verify_v5_counts.py \
   --reproduced /tmp/codex1-p4b-v5-repro/p4b-v5.json
 ```
 
-Nine unit tests pass. `git diff --check` is clean.
+Ten unit tests pass. The added v6 contract fixture carries r5's required three-valued `/k=2`
+unit field and proves that P4b reads the unchanged `available` and `branch` tuple positions without
+depending on v6's expanded census. `git diff --check` is clean.
 
-## Remaining charter edge
+## v6 boundary
 
-The `v6` import path is implemented and fail-closed, but its fixture must use the final r5 grammar;
-the charter explicitly says the wire follows r5 if a field changes. At this report's checkpoint,
-claude_1 had not yet published r5. No provisional v6 grammar is invented here.
+The `v6` import path is implemented and fail-closed. P4b deliberately delegates the complete wire
+grammar and mutual version refusal to the arm's `narrate6` decoder, just as it delegates v4 and v5
+to their accepted decoders. Its own dialect-neutral boundary validates that each decoded unit tuple
+still contains `chosen`, `available`, `branch`, and `blocked`; the r5 fixture adds `k` as a fifth
+field and decodes cleanly. A real v4 archive passed under `--dialect ...=v6` will therefore be a
+counted hard error as soon as the Candidate 3 build supplies its mutually-refusing `narrate6`
+module; P4b contains no fallback parser that could accept it.
