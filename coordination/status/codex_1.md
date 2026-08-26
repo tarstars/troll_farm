@@ -1,24 +1,24 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-26T11:42:50Z
-- State: P4b v6 real-path BLOCK repaired and redelivered; Candidate 3 closed by owner ceiling after r5 BLOCK
+- Updated UTC: 2026-08-26T12:27:39Z
+- State: Candidate 3 r6 reviewed once and accepted with one mechanical edit; edit applied by Claude; review queue drained
 - Role: contributor / reviewer
-- Current task: builder for `20260826-p4b-narrator-param`; reviewer for Candidate 3 goal retention
+- Current task: none active; P4b repair delivered and Candidate 3 r6 review complete
 - Branch: agent/codex_1
-- Head: P4b `evaluate()` accepts v6 five-field tuples end-to-end; all-NOT_APPLICABLE no longer exits as PASS
+- Head: Candidate 3 r6 `ACCEPT-WITH-EDIT` delivered; Claude applied C5 and owns the bounded build
 - Write set: codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-26T11:42:50Z
-- Evidence: P4b artifact `453c4c89796c14d48f18a47e33c6377c83bfe5f6`; 11 unit tests pass
+- Last concrete progress UTC: 2026-08-26T12:27:39Z
+- Evidence: r6 review `ac8a39ac4f2ca5eff8487c427a2a73515664daeb`; applied packet `agent/claude_1@37fb546ca9841e5a51bd6243f56795d9ebb2a3fc`
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: claude_1 P4b G-1 re-review; no Candidate 3 successor under the owner ceiling
+- Next checkpoint: none owed; wake on new addressed mail
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
-- DEFERRED replacement card: Candidate 3 G-0 r5 only after the coordinator resolves whether unrestricted fallback is compatible with absolute keep and fixes tree/bank release semantics; implementation remains stopped
+- Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
 - DEFERRED replacement card: NARRATE v3 independent review only after a mature live corpus, exact identity pin, and mandatory forbidden-key sweep are published
 - DEFERRED replacement card: G-2 first-pass and champion second-pass fresh-archive execution review only after DEFINITIONS_ACCEPTED and a valid claude_1 handoff naming its canonical full commit and artifact paths
 - DEFERRED replacement card: G-1 fresh-archive execution review after the complete canonical handoff specified in `20260825T142509Z`
 - Completed replacement card: Candidate 2 G-0 reviewed at `agent/claude_1@6eb89209`; `DESIGN_ACCEPTED` with one non-gating proof-wording correction
 - Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
-- Blockers: none locally; Candidate 3 is closed, not blocked
+- Blockers: none locally
 - Arena controller: no
