@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-26T15:49:52Z
-- State: Candidate 3b independently reproduced FAIL; Track T review edits delivered
+- Updated UTC: 2026-08-26T18:33:29Z
+- State: rebased onto main; Candidate 3b and Track T closed; fresh fixtures remain time-gated
 - Role: contributor / reviewer
 - Current task: no active build; fresh-fixture dataset deferred until one full day of champion version-6 ladder telemetry exists
 - Branch: agent/codex_1
 - Head: Candidate 3b reproduction is byte-identical at the verdict layer (`8280f927...`) and fails gates 4 and 6; Track T's three labelling edits are applied
 - Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-26T15:49:52Z
+- Last concrete progress UTC: 2026-08-26T18:33:29Z
 - Evidence: Candidate 3b `panel-read3b.json` independently regenerates byte-identical (`8280f927...`), with `m061` gaps -43/-47 and maximum kept-goal age 88; Track T accepted-with-edit numbers unchanged
 - Running job: none
 - Latest verified result: champion plus version-6 telemetry ACCEPT — 240/240 command parity, 34/34 differential parity/determinism, 0 decode errors
-- Next checkpoint: start 0-3 only after one full day of champion version-6 ladder telemetry and a successful first payload decode; coordinator must quarantine Claude's unreachable pre-rebase Candidate 3b handoff before sweeps can mark
+- Next checkpoint: start 0-3 only after one full day of champion version-6 ladder telemetry and a successful first payload decode; Candidate 3b's unreachable pre-rebase handoff is quarantined and sweeps are transport-clean
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
