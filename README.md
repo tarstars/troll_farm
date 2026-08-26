@@ -2,7 +2,8 @@
 
 Bot for the CodinGame Spring Challenge 2026 — *Troll Farm*.
 
-> **Start here: `docs/STATE.md`** — live state (resident, goal, standing rules, open
+> **Start here: `coordination/WORKING-RULES.md`** (how work is organised) and
+> `coordination/BOARD.md` (what is in motion), then **`docs/STATE.md`** — live state (resident, goal, standing rules, open
 > thread), then `docs/CONSTRAINTS.md` before proposing any experiment. Superseded docs:
 > `docs/archive/INDEX.md`. The Wood-league overview below is historical onboarding.
 

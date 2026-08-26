@@ -1,21 +1,6 @@
 # BOARD — the one file the owner reads (created 2026-08-26 by owner ruling "board")
 
-**Rules (owner-approved organisation, 2026-08-26):**
-- One row per task in motion; **at most 2 rows per track** (one active, one queued). Not on the
-  board = not happening.
-- Every task is born with three sentences in its card: **done means / dead means / budget**
-  (review rounds, calendar days, ladder slots). Same stages for every track:
-  **Read → Design (≤ 2 review rounds) → Build (validity gates) → Panel (one) → Ladder (one block) → Verdict written.**
-- Over budget, or no evidence of progress for 2 days ⇒ the row is marked **STALLED** by whoever
-  notices (coordinator at every session), and the owner's next session gets one line: *kill or
-  extend?* A killed task gets a paragraph in `coordination/GRAVEYARD.md`.
-- **Mail is for handoffs and verdicts.** Design discussion lives in the task's files. Two review
-  rounds, then the coordinator decides or kills.
-- **The ladder is a single queue** (bottom of this file). One bot at a time; one slot = 8 reads
-  ≈ 16 h; a slot may be booked only with a panel pass in hand.
-- Everything lands on `main` at every gate (the diff, the report, the verdict).
-- Owner cadence: one session a day — *what moved / what stalled / decisions (≤ 3)*. Decisions are
-  logged with their date in the **Decisions** section.
+**Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
 Last updated: 2026-08-26T12:40Z (coordinator). Trunk: see `git log -1 origin/main`.
 

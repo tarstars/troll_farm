@@ -1,5 +1,9 @@
 # Agent Operating Policy
 
+> **Read `coordination/WORKING-RULES.md` first** — how work moves here (the board, task birth,
+> two review rounds then decide-or-kill, stalls, the ladder queue, roles, the owner
+> conversation). Then `coordination/BOARD.md` for what is in motion. Owner-adopted 2026-08-26.
+
 This repository has a long experiment history. Reading order: `docs/STATE.md` (live state),
 then `docs/CONSTRAINTS.md` before proposing any experiment, then the tail of the live ledger
 volume named in STATE §5. Use `rg` and `docs/archive/INDEX.md` instead of loading frozen

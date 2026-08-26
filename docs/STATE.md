@@ -5,7 +5,7 @@ at `docs/archive/STATE-2026-08-10-pre-diet.md`). Live state, not a record. Hard 
 
 ## 0. The board
 
-**`coordination/BOARD.md` is the one file the owner reads** (adopted 2026-08-26): tracks D (dancing trolls), T (top-10 analytics), F (banana farm), 0 (instruments); two rows per track; the ladder queue; dated decisions; the owner's queue (≤ 3). Dead tasks: `coordination/GRAVEYARD.md`.
+**`coordination/WORKING-RULES.md` is how work moves; `coordination/BOARD.md` is the one file the owner reads** (adopted 2026-08-26): tracks D (dancing trolls), T (top-10 analytics), F (banana farm), 0 (instruments); two rows per track; the ladder queue; dated decisions; the owner's queue (≤ 3). Dead tasks: `coordination/GRAVEYARD.md`.
 
 ## 1. Live identity
 

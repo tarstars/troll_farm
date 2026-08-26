@@ -26,6 +26,8 @@ line said `session-2026-07-01` "is kept identical to it". That stopped being tru
 2026-08-17 — the branch has not moved since, while `main` has advanced by hundreds of
 commits. Read nothing from it.)
 
+## 00. Read `coordination/WORKING-RULES.md` and `coordination/BOARD.md` on `origin/main` — the organisation of work (board, task birth, two review rounds, stalls, ladder queue, roles). Your task is a row on the board or it is not a task.
+
 ## 0. FIRST, before anything else: prove you are running the current tooling
 
 This is not optional and it is not a formality. An agent once self-onboarded with an older
