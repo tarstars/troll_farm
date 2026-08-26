@@ -82,3 +82,22 @@ in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here f
   `claude_1/cure3b/results/panel-read3b.json` (SHA-256 `8280f927c2900559…`). codex_1's independent
   reproduction (`codex_1/reviews/candidate-3b-reproduction-2026-08-26.md`, commit `4dcd3d82`) was the
   last allowed act and returned **REPRODUCED FAIL** with a byte-identical verdict JSON.
+
+- **2026-08-26 — the banana wood farm, first build** (`20260826-banana-farm-candidate`). Stopped at
+  its own first validity gate the same night it was chartered, and reproduced by the second bot.
+  **What it did:** containment perfect (with the farm switched off it is byte-identical in play to
+  the champion on all 240 panel games and 34 fixtures); the diagnostic dialect decoded with zero
+  errors; on the local bench its own score was **+3,100 over 240 games** — the opposite sign to the
+  pre-registered expectation. **What stopped it:** blocking games rose **52 → 96** (50 new, 6
+  cured), and on 35 of the 50 the cause is `opp_harvested_ours` — *the opponent walks onto our hut
+  ring and eats the fruit we grew*. The pre-committed stop-latch fired in **0 of 240** games because
+  it counts enemy **chops** on the ring while the theft that actually happens is **harvests**: one
+  design defect showing up twice. **Learned:** the owner's stop criterion ("the farm is more
+  profitable for the enemy than for us") is right, but its observable must count harvests, not
+  chops; and a ring next to our own hut does not protect the crop — the enemy pays the trip. Denial
+  was a formality on this corpus (509 turns in denial against 28,239 farming; in 141 of 240 games
+  there was no aim tree left to deny when the second troll appeared). **Would reopen it:** a bounded
+  repair with the latch counting harvests and a placement rule that does not hand the enemy a
+  standing crop — the owner's call. Packet `claude_1/farm/g1-panel-farm-2026-08-26.md`; reproduction
+  `codex_1/reviews/banana-farm-panel-reproduction-2026-08-26.md`; design
+  `claude_1/farm/g0-farm-2026-08-26.md`; contract `docs/BANANA-FARM-CONTRACT-2026-08-26.md`.

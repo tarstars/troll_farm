@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-26T21:25Z (cron wake 2)
+Last updated: 2026-08-26T22:30Z (cron wake 3)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -25,7 +25,7 @@ Last updated: 2026-08-26T21:25Z (cron wake 2)
 | # | task | owner | stage | next concrete step | blocked on | budget left | last evidence |
 |---|---|---|---|---|---|---|---|
 | F-1 | Who ate the b100 farm? (`coordination/tasks/20260826-track-f-b100-theft-split.md`) | codex_1 (claude_1 reviewed) | **STOPPED under its dead condition 14:22Z; F-G1 ACCEPT-WITH-EDIT, edits published 14:41Z** — the corpus holds only 4 of the b100's 98 ladder games (the first batch, score still 0.0) and no per-turn detail; from the permitted checkpoint file: 98 games, mean margin +4.6, 49 losses, worst −348 — wins narrowly, loses catastrophically. **The theft-vs-own-crop split cannot be measured from what we kept**; with T-2 it becomes measurable on the 4 games only. | closed; re-ask on fresh instrumented games (0-3a/0-3) | — | spent | 14:41Z |
-| F-2 | **Banana wood farm candidate** (`coordination/tasks/20260826-banana-farm-candidate.md`; contract `docs/BANANA-FARM-CONTRACT-2026-08-26.md`) | claude_1 (build → panel); codex_1 (reproduction; the parked-troll gate learns the farm's diagnostic dialect `v8`) | **Design ACCEPTED 20:45Z (round 2 of 2, with one edit applied 20:57Z) → Build.** Round 1 was REVISION_REQUIRED (7 defects); round 2 replaced the latch with a measured rule (60-turn full windows, ≥ 6 own ring events, ratio ≥ 2.0 for 15 consecutive turns): fires on 2 of 36 leader seats, 6.7 % of ring-economy seats, earliest turn 74. The edit: a troll carrying wood is restricted to DROP or a move that strictly shortens its path to a drop cell, every turn until it drops (WAIT if nothing survives). | claude_1 builds (`readable/diffs/banana-farm.diff`, one flag line, farm-off byte-identical), then one panel, validity first | — | 1 build, 1 panel, 1 reproduction, 1 ladder block | 20:57Z |
+| F-2 | **Banana wood farm candidate** (`coordination/tasks/20260826-banana-farm-candidate.md`) | claude_1 (built + panel); codex_1 (reproduced) | **STOPPED at its first validity gate 21:55Z; REPRODUCED FAIL 22:04Z.** Containment perfect (farm-off byte-identical to the champion on 240/240 + 34/34), but **blocking games 52 → 96** (50 new, 6 cured; the dominant cause on 35 of 50 is *the opponent walking onto our ring and eating the fruit we grew*). The stop-latch fired in **0 of 240** games — it counts enemy *chops*, and the theft that happens is *harvests*: one design defect, stated twice. Local own-score +3,100 over 240 games (opposite sign to the expectation) — under a failed gate it buys nothing. Denial was a formality (509 turns vs 28,239 farming). **Nothing submitted; ladder slot 3 released.** | **owner decides in the morning:** charter a bounded repair (the latch must count harvests; the ring must not feed the enemy) or close the line | owner | spent | 22:04Z |
 
 ## Track 0 — Instruments (a verdict that cannot be computed is a stall in disguise)
 
@@ -43,8 +43,8 @@ Last updated: 2026-08-26T21:25Z (cron wake 2)
 | slot | bot | purpose | state |
 |---|---|---|---|
 | 1 | **champion + v6 instrument `72673124…` — submission `41198581` (08-26 15:10Z)**; replaces the bare champion `41197542` (11:38Z, never read) | the resident; identical in play to `547fa706`; its reads ARE the champion's baseline; its games carry telemetry | on the ladder; first read + first telemetry decode at the 08-27 02:17Z snapshot |
-| 2 | **B = the cured dancing troll + diagnostics** (row L-1) — submission `41199973` (19:58Z) | A-B-B-A measurement vs slot 1; reads every ~2 h overnight | **on the ladder (B1)**; A1 = 21.8 / rank 40 |
-| 3 | **the banana-farm candidate (F-2)** | A-B-B-A vs the champion, 8 reads each | **booked by the owner ("set it in the queue")** — submitted after L-1's last read, only if its validity gates pass |
+| 2 | **B = the cured dancing troll + diagnostics** — B1 submission `41199973` (19:58Z) → **read 18.4, rank 82**; B2 submission `41200547` (22:25Z) | A-B-B-A measurement vs slot 1; reads every ~2 h | running: A1 21.8/40, B1 **18.4**/82 |
+| 3 | *(released)* the banana-farm candidate | — | **not booked**: the farm failed its own first validity gate (blocking games 52 → 96); nothing was submitted |
 
 ## Decisions (dated)
 
