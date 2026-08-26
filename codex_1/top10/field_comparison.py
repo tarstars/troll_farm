@@ -131,7 +131,8 @@ def render_markdown(result: dict) -> str:
         "commands, plant-generation identity, harvest ownership, target cells, or idle episodes. "
         "Therefore this file alone cannot honestly fill planting turn buckets, who harvested a "
         "planted tree, near-shack suppression, teammate contention, or the last-30-turn verb mix. "
-        "Those cells remain unreported rather than guessed. Track F's four b100 games are present, "
+        "Those cells remain unreported rather than guessed. Track F's processed slice contains four "
+        "of the b100 bot's 98 recorded ladder games, all from its first batch, "
         "but this same boundary prevents the theft-versus-own-crop attribution required by its dead "
         "condition.",
         "",

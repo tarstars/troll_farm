@@ -10,6 +10,10 @@ from pathlib import Path
 
 AGENT_ID = 6590083
 CORPUS_SHA256 = "150a5507e90c2c00a5d22b34abf19b7a0ad933fc3b31e3abf3521d3bc4dc4d24"
+CHECKPOINT = Path(
+    "data/analysis/live-agent-6553250/"
+    "owner-banana-factory-b100-reconvergence-checkpoint-20260802T162907Z.json"
+)
 
 
 def banana_harvested(pp: dict) -> int:
@@ -48,6 +52,11 @@ def main() -> None:
             })
     if len(rows) != 4:
         raise SystemExit(f"expected 4 b100 games, found {len(rows)}")
+    checkpoint = json.loads(CHECKPOINT.read_text())
+    summary = checkpoint["summary"]
+    margins = [row["margin"] for row in checkpoint["rows"]]
+    if checkpoint["agent_id"] != AGENT_ID or summary["games"] != len(margins):
+        raise SystemExit("b100 checkpoint identity or game count mismatch")
     lines = [
         "# Track F read 1 — b100 theft split stops at the attribution gate", "",
         "- Date: 2026-08-26",
@@ -55,7 +64,8 @@ def main() -> None:
         "- Reproduce: `python3 codex_1/farm/b100_theft_split.py --output "
         "codex_1/farm/b100-theft-split-2026-08-26.md`", "",
         "## Verdict: DEAD CONDITION MET", "",
-        "All four b100 games are present, but the processed rows do not contain tree-generation "
+        "The b100 played 98 recorded ladder games. This corpus holds four of them, all from its "
+        "first batch, and the table below covers only those four. The processed rows do not contain tree-generation "
         "identity, per-turn cargo changes, or per-turn commands. They cannot distinguish bananas "
         "harvested from our trees from bananas harvested from starting or opponent-planted trees. "
         "They also cannot reconstruct the five-turn abort sensor. The card says to stop in exactly "
@@ -70,6 +80,13 @@ def main() -> None:
             f"{row['own_banana_harvest_units']} | {row['opponent_banana_plants']} | "
             f"{row['opponent_banana_harvest_units']} |"
         )
+    lines.extend([
+        "", "## Full recorded ladder run", "",
+        f"The permitted checkpoint `{CHECKPOINT}` records **{summary['games']} games**, a mean "
+        f"margin of **{summary['mean_margin']:+.1f}**, **{summary['losses']} losses**, and a worst "
+        f"game of **{min(margins):.0f}**. These are outcome counts, not harvest attribution; the "
+        "four-game corpus slice cannot represent the shape of the full ladder run.",
+    ])
     lines.extend(["", "## What is not attributable", "",
                   "The requested theft-versus-own-crop split and abort time are not identifiable "
                   "from these aggregates. Treating an opponent's total banana harvest as their "
