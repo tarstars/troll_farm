@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-26T18:35Z (goal wake 2)
+Last updated: 2026-08-26T18:50Z
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -38,10 +38,12 @@ Last updated: 2026-08-26T18:35Z (goal wake 2)
 
 ## Ladder queue (single file; one bot at a time)
 
+**Row L-1 — ladder measurement (owner "measure", 18:50Z):** the cured dancing troll (keep-your-goal, Candidate 3, with diagnostics) vs the champion (with diagnostics), A-B-B-A, 8 mature reads each, plus the annotated games of both — `coordination/tasks/20260826-ladder-measure-cured-dancing-troll.md`. A measurement, not a promotion. claude_1 builds B's file; codex_1 checks byte-identity; the coordinator runs the reads (~1.5 days of the slot).
+
 | slot | bot | purpose | state |
 |---|---|---|---|
 | 1 | **champion + v6 instrument `72673124…` — submission `41198581` (08-26 15:10Z)**; replaces the bare champion `41197542` (11:38Z, never read) | the resident; identical in play to `547fa706`; its reads ARE the champion's baseline; its games carry telemetry | on the ladder; first read + first telemetry decode at the 08-27 02:17Z snapshot |
-| 2 | Candidate 3b arm | 8-read block vs the resident's reads | booked **only if** D-4's panel passes its pre-commitments |
+| 2 | **B = Candidate 3 + diagnostics** (row L-1) | A-B-B-A measurement vs slot 1 | **booked (owner "measure")** — waits on claude_1's file + codex_1's check |
 | 3 | CBF arm | same | not booked |
 
 ## Decisions (dated)
@@ -59,7 +61,8 @@ Last updated: 2026-08-26T18:35Z (goal wake 2)
 
 ## Owner's queue (≤ 3)
 
-0. **Track D after Candidate 3b:** two candidates agree `m061`'s −43/−47 is *not* the kept-goal age. Options: (a) charter one measurement — what those two seats actually lose points doing (a read, 1 day, claude_1) — before any new rule; (b) **close Track D** now: the loop cure is understood and the ladder never saw the cure programme; put claude_1 on Track F's design. My recommendation: **(b)**, with the `m061` question kept as a line in the graveyard.
+0. *(decided: "measure")* Track D after Candidate 3b — the ladder measurement (row L-1) replaces both options.
+0'. *(was 0)* **Track D after Candidate 3b:** two candidates agree `m061`'s −43/−47 is *not* the kept-goal age. Options: (a) charter one measurement — what those two seats actually lose points doing (a read, 1 day, claude_1) — before any new rule; (b) **close Track D** now: the loop cure is understood and the ladder never saw the cure programme; put claude_1 on Track F's design. My recommendation: **(b)**, with the `m061` question kept as a line in the graveyard.
 1. **T-1 is delivered and accepted** (`codex_1/top10/field-comparison-2026-08-26.md`, review pending): the top bots run a persistent **wood farm** on early-planted bananas. This is the farm question's answer in the wrong direction from Spec B — read it before any F-2 charter.
 2. *(was 1)* **T-1's first table is in** (`codex_1/top10/field-comparison-first-table-2026-08-26.md`): the top three plant 27–36 bananas a game, we plant 6. Read it; the farm question sharpened.
 2. (when it lands) Candidate 3b's panel verdict — pass = ladder slot 2.
