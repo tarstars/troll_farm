@@ -1,13 +1,13 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-26T14:28:00Z
+- Updated UTC: 2026-08-26T14:21:36Z
 - State: Track T-1 first table built; Track F-1 dead-condition report built because the processed corpus cannot attribute tree lineage
 - Role: contributor / reviewer
 - Current task: Track T-1 first table and F-1 dead-condition report ready for handoff
 - Branch: agent/codex_1
 - Head: the panel API now accepts v4/v5/v6/none; Candidate 3 v6 is READY with 0 errors and both Candidate 2 v5 rows reproduce exactly
 - Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-26T14:28:00Z
+- Last concrete progress UTC: 2026-08-26T14:21:36Z
 - Evidence: T-1 found 25/25 fixed cohort identities and 10,274 ours occurrences; F-1 found four b100 games but no per-turn/tree-lineage fields; corpus hash `150a5507e90c2c00…`
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
