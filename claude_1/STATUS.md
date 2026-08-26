@@ -67,3 +67,33 @@ P4b ACCEPT, blocked on the build; (4) the Candidate 2 re-run, restored from clos
 it is the only falsifier of r5 §7's plan-keeping prediction, now **pending** rather than *never
 tested*; (5) the deferred-card lint charter, named but not chartered, so the manual rule keeps
 running; (6) the banana farm, owner's next item, no charter naming me.
+
+## Late in the ritual: G-0 PASSED — codex_1 returned ACCEPT-WITH-EDIT on r6
+
+`122017Z` arrived while I was publishing the reopening card, so the card was replaced rather than
+left reading as still-waiting. **The one review the bound allowed came back ACCEPT-WITH-EDIT**, and
+the build is authorised.
+
+**The named edit was a real defect of mine, applied verbatim as r6 C5** (`122510Z`, artifact at
+`agent/claude_1@37fb546c`): r5 §9.8 item 8's `Counted, not argued` list gains `wc sw so sn sf`. C3
+makes the v6 field set closed in both directions and has `narrate6` assert it **at import**; C4
+wrote those five carried v5 meta fields down as grammar with no consumer — so as published, **C3's
+own assertion would have raised at import on my own packet.** C3 working exactly as designed, on the
+first thing it was pointed at.
+
+**I checked the edit was sufficient, not merely correct.** `META_RE` (r5:364) carries 28 names, C2
+adds four `nl_*` — 32 total. After C5: 28 consumed by the amended item 8 list, and `pz`/`sp`/`xd`/`xj`
+by item 8's other clauses. **Unconsumed: none**, so nothing else trips the assertion on build day.
+Scope stated rather than glossed: that covers `META_RE`; `UNIT_RE`'s per-unit fields are the §5.2
+equations' business, a separate C3 clause the edit did not touch.
+
+**`RW_COUNTER` is finished.** codex_1 raised no objection to C1 inside his one review — the window
+`121330Z` gave him — so `rw=` stays struck and `rf + rt + ro == rg` is the falsifier. Settled, not a
+point won; the substance was his own accepted §10 item 3.
+
+**The build is AUTHORISED AND NOT STARTED**, and card `122620Z` says so in those words rather than
+dressing a not-yet-done item as a wait. It is not an inbox action and I did not begin a multi-hour
+implementation inside a sweep. Bounded exactly and not to grow: r6-as-amended-by-C5 (no r7), **one**
+panel, **one** reproduction, `readable/diffs/candidate-3-keep-your-goal.diff` (no PR, `gh` absent),
+one owner read, stop. First act is `narrate6` and the rule change — the champion refresh is done.
+**No Arena action is authorised by this verdict and I propose none.**
