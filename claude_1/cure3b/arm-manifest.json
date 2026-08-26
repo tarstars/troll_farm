@@ -1,0 +1,35 @@
+{
+  "arms": {
+    "candidate": {
+      "keep_rule_enabled": true,
+      "lines_differing_from_source": 1,
+      "narrate_v6_enabled": false,
+      "path": "claude_1/cure3b/arm-candidate.rs",
+      "sha256": "b50084b96f5b510d02333c8f907df74bfb5b7a391ec63273a12b64698b62f977",
+      "stuck_release_enabled": true
+    },
+    "instrument": {
+      "keep_rule_enabled": true,
+      "lines_differing_from_source": 0,
+      "narrate_v6_enabled": true,
+      "path": "claude_1/cure3b/arm-instrument.rs",
+      "sha256": "6cbd3b5a55cc279fe5b7bdbe95c30c3bfcc2f493dfbc9629b1680d93ff4cf126",
+      "stuck_release_enabled": true
+    },
+    "ruleoff": {
+      "keep_rule_enabled": false,
+      "lines_differing_from_source": 1,
+      "narrate_v6_enabled": true,
+      "path": "claude_1/cure3b/arm-ruleoff.rs",
+      "sha256": "8823a21f9061c3efe2ef0acea6167a4d4eb397727889456a7c3b1d6688c126d6",
+      "stuck_release_enabled": false
+    }
+  },
+  "base": "readable/door1-champion.rs",
+  "base_sha256": "ad1ae4eff70a5569e03e2149882bb22510746f4f8592907a5dfb936943ef0bfb",
+  "card": "coordination/tasks/20260826-candidate-3b-stuck-holder-release.md",
+  "parent_source": "claude_1/cure3/cure3-keep-v6.rs",
+  "source": "claude_1/cure3b/cure3b-keep-v7.rs",
+  "source_sha256": "6cbd3b5a55cc279fe5b7bdbe95c30c3bfcc2f493dfbc9629b1680d93ff4cf126",
+  "task": "20260826-candidate-3b-stuck-holder-release"
+}
