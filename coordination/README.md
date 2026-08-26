@@ -1,5 +1,8 @@
 # coordination/ — operational entry point
 
+**Organisation of work: [`WORKING-RULES.md`](WORKING-RULES.md) (read first) · live board:
+[`BOARD.md`](BOARD.md) · dead tasks: [`GRAVEYARD.md`](GRAVEYARD.md).** Adopted 2026-08-26.
+
 Normative spec: [`multi-agent-protocol.md`](multi-agent-protocol.md). Read it before
 writing anything here. This file is the practical index.
 

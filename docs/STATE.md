@@ -3,9 +3,15 @@
 Last updated: 2026-08-24 (§3 coordinator transfer); earlier 08-23 (§4), 08-22 (§1), 08-10 (doc diet,
 at `docs/archive/STATE-2026-08-10-pre-diet.md`). Live state, not a record. Hard budget: 150 lines.
 
+## 0. The board
+
+**`coordination/WORKING-RULES.md` is how work moves; `coordination/BOARD.md` is the one file the owner reads** (adopted 2026-08-26): tracks D (dancing trolls), T (top-10 analytics), F (banana farm), 0 (instruments); two rows per track; the ladder queue; dated decisions; the owner's queue (≤ 3). Dead tasks: `coordination/GRAVEYARD.md`.
+
 ## 1. Live identity
 
-### ★★★ Arena RUNNING (owner, 2026-08-23). Live: the **NARRATE instrument**. Champion of record: **door 1** `547fa706…`, off-ladder. **Owner 2026-08-23: who sits on the ladder does not need managing — restoring is NOT an obligation**; door 1 stays documented as the fallback, nothing more.
+### ★★★ 2026-08-26 11:38Z — CHAMPION RESTORED TO THE LADDER (owner ruling "the ladder goes back to measuring", coordinator session ~11:30Z). Submission **`41197542`**, source `cgauto/submissions/candidate-door1-pure-deletion.rs`, sha256 `547fa706…` verified by `api_submit_once.py` (one mutation call, HTTP 200). Agent id and first mature read pending. The NARRATE instrument (`41182608` / `6652642`) thereby leaves the ladder. Same session, three owner rulings (policy `20260826T113907Z`): (a) Candidate 3 **bounded** — one r5, one review, one panel, one reproduction, one owner read, then stop; Candidate 2 re-run only on an own-score gain; (b) the ladder measures again; (c) **≥ 25.40 stands and is not the only goal — control over the code and its cleanliness are goals too**; the current line is the code clean-up; **next item after it: the banana farm** (coordinator's assessment: `local_claude_1/banana-farm-assessment-2026-08-26.md`). The paragraph below is the pre-restore state, kept until the first read.
+
+### (pre-restore) Arena RUNNING (owner, 2026-08-23). Live: the **NARRATE instrument**. Champion of record: **door 1** `547fa706…`, off-ladder. **Owner 2026-08-23: who sits on the ladder does not need managing — restoring is NOT an obligation**; door 1 stays documented as the fallback, nothing more.
 
 Door 1 is cure C minus the fictional-decay hunk — a pure deletion, owner-ruled KEEP 2026-08-21 at
 +0.220 IMMATERIAL: at equal score the smaller program wins. Cure C `ad3bfefe…` retired.
@@ -129,10 +135,10 @@ moving the ladder, so +3.64 will not come from more of it.
   (`20260824-dance-cure-proposal`), the coordinator proposing independently; the owner compares.
   **Candidate 1** (`20260825-dance-cure-candidate-1-hold`): **CLOSED AT G-2 — FAIL, safe, too small** (160 real games:
   the hold fired 253× within every bound, in **0 of 25 recorded dances**); 2nd Arena action unspent; P4 panel gate blind to one parked troll.
-  **Owner rulings 08-25 ~15:55Z:** Candidate 1 PARKED, code kept; **Candidate 2 = SWAP, NO LOCK — the swap back must be
-  impossible by construction and PROVED from the algorithm (R-1a)** → `20260825-dance-cure-candidate-2-swap` (claude_1
-  builds, codex_1 G-0 incl. the proof; Arena reads need the owner's go); per-troll stall gate `20260825-p4-per-troll-stall-gate`
-  (codex_1); quarantine list → `main` `20260825-quarantine-on-main`. Geometry DELIVERED (codex_1 byte-identical): teammate on
+  **Owner rulings 08-25 ~15:55Z:** C1 PARKED, code kept; **C2 = SWAP, NO LOCK, PROVED (R-1a)** → `20260825-dance-cure-candidate-2-swap`:
+  **G-1 complete + reproduced 23:05Z, NOT QUALIFIED** — dances 27→13, 16 controls pass, but the stops fired: **the loop** (goals stay with
+  the cells; −5 on 1/240) and **`m061` −75 = a champion `idle_regeneration` fallback bug** → **★ owner page v3 `local_claude_1/cure2/owner-question-2026-08-25.md`** → **owner 08-26: diffs in files (`readable/diffs/`), not PRs. C0 `20260826-candidate-0-regeneration-fallback` BLOCKED at G-1 (blocking 118/240 vs 43, PICK↔DROP two-cycle; +530 panel pts unsafe) — the "−75 on m061" was the SWAP's cost, not the champion's; C3 `20260826-candidate-3-keep-your-goal`: fixed margin FALSIFIED (rho→0.27) → corrected to ABSOLUTE KEEP (done/gone/impossible), base = champion readable**; per-troll stall gate `20260825-p4-per-troll-stall-gate`
+  (codex_1, DONE 18:45Z: `--p4b` gate, champion parks 27 units on 16/240 games); quarantine list → `main` DONE 19:02Z (roster v2, succession list). Geometry DELIVERED (codex_1 byte-identical): teammate on
   EVERY shortest road 91 % / 78 %, goal unreachable without its cell 439 + 55 turns, 29/105 no road; brief `local_claude_1/dance-geometry/owner-brief-2026-08-25.md`.
 
 ## 5. Reading order & pointers

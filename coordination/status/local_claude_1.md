@@ -1,12 +1,49 @@
 # local_claude_1 Status
 
-- Updated UTC: 2026-08-25T15:25:00Z (**G-1 DELIVERED** by claude_1 at 14:45:54Z, pin
-  `agent/claude_1@c5727dc6`; my re-derivation from the rows reproduces every headline number
-  (`20260825T145434Z`); owner brief DRAFTED locally, held for codex_1's fresh-archive verdict;
-  **incident:** the VM disk hit 100 % (codex_1's 16 stale fresh-archive extracts, 6.5 GB under
-  `/tmp/codex1-*`) and killed codex_1's 14:47Z reproduction silently — cleaned by me at 15:21:51Z
-  (19 → 13 GB used), rule published `20260825T152239Z`, codex_1 re-woken 15:22:02Z; entry for
-  everything else `coordination/HANDOVER-2026-08-25-candidate-1-close.md`)
+- Updated UTC: 2026-08-26T10:40:00Z (flush at the owner's request; entry `coordination/HANDOVER-2026-08-26-candidate-0-blocked-candidate-3-corrected.md`; `/goal` cleared by the owner — nothing runs unattended; earlier entries `…-08-25c-candidate-2-stop.md`, `…-08-25b-dance-geometry.md`, `…-08-25-candidate-1-close.md`)
+- **2026-08-26 08:10Z — both morning candidates hit walls, correctly:** Candidate 0's exact
+  clause BLOCKED at G-1 (codex_1 fresh-archive: blocking 118/240 vs 43/240, D-2 0→387, P4 16→85,
+  P3 0→5, `m061` −18/−9 — a PICK↔DROP two-cycle; +530 panel points do not pass the safety gate);
+  task CLOSED; the −75-on-`m061` attribution corrected on the owner's page (it was the swap's
+  cost); the 8-read block lapses. Candidate 3's fixed-margin form FALSIFIED (rho rises to 0.27
+  on the loop games) → charter corrected to absolute keep (done/gone/impossible; plan-keeping
+  for PICK→PLANT), base = champion readable, G-0 r4 requested. `readable/door1-champion.rs`
+  header corrected (two false digest claims). Owner amendment 06:10Z: deliverable = diff files
+  in `readable/diffs/` (champion, Candidate 1, Candidate 2 diffs published), not PRs.
+- **2026-08-26 06:05Z — OWNER RULED on the v3 page: Candidate 0 (fix the champion's replant
+  fallback) and Candidate 3 ("a troll keeps its goal") go ahead, each as a GitHub PR with the
+  patch visible on the readable source (`docs/readable-format.md`, delivery ruling); Candidate 0
+  then gets an 8-exposure self-replacement platform block — AUTHORIZED, after the PR is merged.**
+  Baseline check done: the champion `547fa706` has ≥ 11 mature platform reads (mean ≈ 22.9).
+  Charters `20260826-candidate-0-regeneration-fallback`, `20260826-candidate-3-keep-your-goal`;
+  new mission in `coordination/GOAL.md` (time box 08-27T23:00Z).
+- **23:15Z — CANDIDATE 2 G-1 COMPLETE AND REPRODUCED (codex_1, fresh archive, 13 result files
+  byte-identical); NOT QUALIFIED at the two pre-committed stops; owner page v3 in the queue;
+  mission closed (items 3–4 done; items 1–2 end at the stop-and-ask by design).** Entry:
+  `coordination/HANDOVER-2026-08-25c-candidate-2-stop.md`.
+- **20:50Z — Candidate 2 controls: C-10 66/66, C-11 54,800/54,800, C-13 1,096/1,096 all
+  ACCEPTED by codex_1 from fresh archives; C-7 next.** Two wake stalls handled: the launcher rings
+  only on ack-required news (plain receipts cannot wake a peer — re-rung 19:46Z), and claude_1's
+  20:25Z wake died on a transient 403 at the proxy **after doing C-7 and before pushing it** (work
+  survived on disk, re-verified from scratch; probe OK at 20:48Z; re-rung 20:50Z). **C-7 PASS
+  accepted 21:04Z** (C-5 17→350, C-6 0→344 under a gutted predicate); **C-8 PASS 21:22Z** with a
+  named cost (of 13 dances touched: 9 cured with progress, 4 silenced without — owner page
+  updated); card item "11 fixtures" struck (discharged by C-8). **C-16 PASS 21:48Z** (scoping does work: 9/60 P3 fires with the flag off, 0 on; +39 margin
+  forgone); **P3 MEASURED 22:12Z** (0 / 240, decomposition 228 guard / 12 equal / 0); **C-12 PASS
+  ruled 22:45Z** (corpus idle-with-work 0.38 % vs 0.73 %, worst troll 11.5 % vs 95 %, no added
+  above-bar unit; the accepted P4b evaluator cannot read v5 — re-driven with `narrate5`; narrator
+  parameter = follow-up charter). Next: claude_1's G-1 handoff → codex_1 fresh-archive reproduction
+  of the whole set. Follow-up charters after the mission: `20260826-deferred-card-lint`,
+  `20260826-p4b-narrator-param`. Owner's loop / Candidate 0 ruling still open.
+- **19:02Z — quarantine-on-main CLOSED: roster v2 live (`main` `82f7908e`), all five ids 12/0/0/0
+  on the main-resident authority, launcher clone current.** Mission items 3 and 4 done; items 1–2
+  (Candidate 2) wait on the owner's loop/Candidate 0 ruling while claude_1 runs the remaining
+  controls (C-10 PASS 66/66; C-11 next).
+- **18:45Z — P4b CLOSED (wired behind `--p4b`, default OFF; R-2 baseline 27/27/16 reproduced
+  end to end); quarantine-on-main INTEGRATED at `main` `6a8d4db0`** (pinned bytes, 134/134, five
+  roster ids 12/0/0/0, claude_1 second read identical; launcher clone refreshed from 197 behind;
+  peers refresh next; roster v2 after their confirmation). Candidate 2: owner ruling still open
+  (page v2); its ruling-independent controls (C-10 first) resume on claude_1's next wake.
 - **18:15Z — diagnoses in (`agent/claude_1@85c6647c`), owner page v2:** the loop = positional goal
   re-assignment (goals stay with the cells; only when the landing is a work square; **−5 on 1 of
   240**); `m061` = **champion planner bug** (`idle_regeneration` fallback returns `[WAIT]` discarding

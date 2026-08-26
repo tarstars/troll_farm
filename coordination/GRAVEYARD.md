@@ -1,0 +1,51 @@
+# GRAVEYARD — one paragraph per dead task (created 2026-08-26)
+
+Format: **what it was · what killed it · what we learned · what would reopen it.** A dead task is
+closed, not "in progress"; this file is the library the graveyard was missing. Older closures live
+in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here first.
+
+- **2026-08-26 — Candidate 0, the champion's replant fallback fix** (`20260826-candidate-0-regeneration-fallback`).
+  One-hunk change: when a troll's idle-regeneration plan has no chops, extend the command list
+  instead of replacing it. Killed at G-1, reproduced by codex_1: blocking games 118/240 vs 43/240 —
+  the surviving 7,500-point regeneration `PICK` beats every job for an empty-handed troll next to
+  the shack, the bank clause offers `DROP` next turn, nothing links `PICK` to `PLANT`: a PICK↔DROP
+  two-cycle. Learned: the regeneration value is real (+530 own-score points across the panel) but
+  only a *plan-keeping* successor can capture it; also, the "−75 on m061" was Candidate 2's cost,
+  not the champion's. Reopens only as Candidate 3's plan-keeping case (`PICK` and `PLANT` share
+  `Target::Cell(c)`), tested on `m061` at G-2.
+
+- **2026-08-25 — Candidate 1, the resolver hold** (`cure1`). A hold in the resolver against the
+  dance; fired 253× on 160 real games, kept every bound, and appeared in **0 of 25** recorded
+  dances — real dances are permanent-block dances, not transient ones. Learned: the library's
+  idle-blocker fixture shape is 0 of 80 in real games; measure on real games before building.
+  Reopens: never in this form; the code is kept.
+
+- **2026-08-25 — Candidate 2, the swap, as a qualified cure** (`cure2`). Panel dances 27→13, 16
+  controls pass, but the pre-committed stops fired: the goals stay with the cells, so the two
+  trolls swap and swap back (the loop, C-5 = 5), −5/game. Learned: a swap needs goals that travel
+  with the troll — that is Candidate 3. Reopens: on top of Candidate 3, only if Candidate 3's
+  panel shows an own-score gain (owner bound 08-26).
+
+- **2026-08-26 — Candidate 3, the fixed-margin form** ("keep unless a challenger is clearly
+  better by `M`"). Falsified, not mis-tuned: on the six loop games the challenger's advantage
+  rises monotonically as the shared tree nears completion (0.02 → 0.27), so no constant `M`
+  proves "no second exchange". Learned: a margin cannot bound a quantity that grows with the
+  loop's length. Replaced by the absolute-keep form (same task, still alive).
+
+- **2026-08-26 — Candidate 3, "a troll keeps its goal" (absolute form)** (`20260826-candidate-3-keep-your-goal`).
+  A troll keeps its chosen goal until done (a tree: chopped there and carry full), gone, impossible
+  or dead; when two kept goals cannot be paired the younger is released (contested release);
+  telemetry v6. Built and measured in one day under the owner's bound. **What it did:** the loop it
+  was built to remove is gone (`xc = 0` on all six loop games; blocking games 52 → 40; D-1 27 → 23;
+  containment perfect, 0 telemetry errors over 48,000 turns). **What killed it:** its own
+  pre-registered risk gate — **−65 own-score points over 240 games** (`m061` −47/−43, D-9 24 → 28)
+  and a goal kept **171 turns** against a 30-turn stop; the packet says "the absolute form is too
+  strong" and forbids repairing it with a margin. **Learned:** goals that travel with the troll do
+  cure the swap loop, so the *mechanism* is right; a keep with no release for "a better tree is
+  now beside me" is a keep that outlives its usefulness — the release list, not the keep, is the
+  design problem. Also: a rule that is inert on `>= 3` units and never made a partner wait (`xp`,
+  `xg`, `xw` all 0) is cheaper than feared on those axes. **Would reopen it:** a *bounded* keep —
+  release on a strictly-better adjacent goal or a turn cap — as a new candidate with its own
+  card, only if a top-10 read (Track T) says goal stability is something the strong bots have.
+  Diff kept on `main`: `readable/diffs/candidate-3-keep-your-goal.diff`; packet
+  `claude_1/cure3/g1-packet-2026-08-26.md`; codex_1's reproduction is the last act.

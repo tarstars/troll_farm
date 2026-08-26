@@ -1,6 +1,16 @@
 # 20260825-p4-per-troll-stall-gate: the panel's stall gate learns to see ONE parked troll (P4b)
 
-- Status: **G-1 ACCEPTED 2026-08-25T18:08Z — integration ordered 18:2xZ.** G-0 r1
+- Status: **DELIVERED AND CLOSED 2026-08-25T18:45Z.** Wired by claude_1 (`agent/claude_1@31480089`):
+  `--p4b` / `--p4b-baseline` on `fuzz_panel.py`, default OFF, report tier (no verdict authority);
+  flag-off output identical except the file's own `referee_sha256` and wall time; flag-on champion
+  re-run from source reproduces the R-2 baseline 27 / 27 / 16 with differential PASS; 166 + 9 tests;
+  `stream_digest()` mtime-independent. codex_1's provenance erratum (decompressed-stream digests)
+  integrated on `main` `6a8d4db0`. Named limitations: the baseline is an archive, not a live run;
+  no-`games_dir` runs are reproducible but not re-readable; K-5 reported, not asserted, in the
+  embedded packet; a `GATE_UNREADY` arm is not refused unless a charter says so. Recorded for the
+  owner: P4/P4b cannot see a team that destroyed its own remaining work (`m061`). Candidate 2's G-1
+  panel runs with `--p4b` ON. Earlier status follows.
+- Status (18:2xZ): **G-1 ACCEPTED 2026-08-25T18:08Z — integration ordered 18:2xZ.** G-0 r1
   `DEFINITIONS_ACCEPTED` (claude_1, 17:20Z; R-1 unit-keyed differential, R-2 blind population, R-3
   the 45-turn flicker tripwire); G-1 delivered by codex_1 17:42Z (`agent/codex_1@e9103cc2`,
   packet `7039deec…`) and **REPRODUCED byte-identical** by claude_1 (`agent/claude_1@4529de36`;
