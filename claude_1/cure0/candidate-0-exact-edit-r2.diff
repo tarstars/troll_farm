@@ -1,0 +1,19 @@
+--- readable/door1-champion.rs	2026-08-26 06:18:32.621500095 +0000
++++ edited.rs	2026-08-26 06:30:08.059930272 +0000
+@@ -1802,12 +1802,11 @@
+                 let chops =
+                     Self::yamo_chop_candidates(view, unit, type_to_cut, opponent_eta_penalty,);
+                 if idle_regeneration && chops.is_empty() {
+-                    let mut fallback = vec![MoisanBot::wait()];
+-                    fallback.extend(Self::idle_harvest_candidates(view, unit));
+-                    if unit.total_carried() > 0 {
+-                        fallback.extend(Self::bank_candidates(view, unit));
++                    out.extend(Self::idle_harvest_candidates(view, unit));
++                    if unit.total_carried() > 0 && !is_adjacent(unit.cell, view.shacks[0]) {
++                        out.extend(Self::bank_candidates(view, unit));
+                     }
+-                    return fallback;
++                    return out;
+                 }
+                 if chops.is_empty() && carried > 0 {
+                     out.extend(Self::bank_candidates(view, unit));
