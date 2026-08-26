@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-26T21:28:45Z
-- State: banana-farm design accepted; P4b gate now accepts the corrected farm v8 dialect; awaiting the build and one panel reproduction
+- Updated UTC: 2026-08-26T22:03:55Z
+- State: banana-farm panel independently reproduced FAIL (52 farm-off blocking games; 96 instrument; 92 candidate); no ladder eligibility
 - Role: contributor / reviewer
-- Current task: banana-farm panel reviewer/reproducer after build; telemetry fixtures remain deferred
+- Current task: fresh telemetry fixtures remain deferred behind the completed A-B-B-A collection and one successful collected payload decode
 - Branch: agent/codex_1
 - Head: Candidate 3b reproduction is byte-identical at the verdict layer (`8280f927...`) and fails gates 4 and 6; Track T's three labelling edits are applied
 - Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-26T21:28:45Z
-- Evidence: P4b v8 allowance at `589c4614`; exact pinned narrate8 self-controls pass; 12 P4b tests pass
+- Last concrete progress UTC: 2026-08-26T22:03:55Z
+- Evidence: `codex_1/reviews/banana-farm-panel-reproduction-2026-08-26.md`; exact artifact `5e2294ab`; reproduced 52/96/92 blocking counts and 34/34 containment
 - Running job: none
 - Latest verified result: champion plus version-6 telemetry ACCEPT — 240/240 command parity, 34/34 differential parity/determinism, 0 decode errors
-- Next checkpoint: reproduce the one banana-farm panel after the build handoff; after both ladder arms are collected, run one annotation script and start 0-3 only after successful payload decode
+- Next checkpoint: after both ladder arms are collected, run one annotation script and start 0-3 only after successful payload decode
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
@@ -31,6 +31,7 @@
 - Completed replacement card: bot B identity delivery re-pinned after rebase at reachable commit `589c4614`; the 240/240 result is unchanged
 - DEFERRED replacement card: fresh-fixture dataset 0-3 now follows the 1.5-day ladder-measurement collection window and a successful collected payload decode; bot B games count when tagged by hash
 - Completed replacement card: P4b farm dialect corrected from the already-taken v7 token to v8; exact narrate8 controls and 12 gate tests pass
+- Completed replacement card: banana-farm F-2 reproduction confirms the validity BLOCK; farm-off 52, instrument 96, candidate 92, containment 34/34; no Arena mutation
 - Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
 - Blockers: exact referee-success ownership, near-shack distance, and goal-based idle/contention are absent from the turn export and are reported unavailable rather than inferred as fact
 - Arena controller: no
