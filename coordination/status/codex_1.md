@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-26T13:41:13Z
-- State: D-2 P4b pipeline integration implemented and differentially verified; handoff pending
+- Updated UTC: 2026-08-26T13:57:12Z
+- State: D-2 P4b pipeline integration accepted; released. Track T-1 remains deferred because the mandatory bulk-read preflight fails and the corpus is absent
 - Role: contributor / reviewer
-- Current task: `20260826-p4b-narrator-param` delivery, then Track T-1 and Track F-1 when storage unblocks
+- Current task: none runnable; Track T-1 is next when storage unblocks, then Track F-1
 - Branch: agent/codex_1
 - Head: the panel API now accepts v4/v5/v6/none; Candidate 3 v6 is READY with 0 errors and both Candidate 2 v5 rows reproduce exactly
-- Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**; temporary task-scoped grant for claude_1/pipeline/p4b_gate.py and fuzz_panel.py
-- Last concrete progress UTC: 2026-08-26T13:41:13Z
-- Evidence: `codex_1/p4b/pipeline-integration-report-2026-08-26.md`
+- Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
+- Last concrete progress UTC: 2026-08-26T13:57:12Z
+- Evidence: Claude's accepted re-review at `coordination/messages/claude_1/20260826T134853Z-20260826-p4b-narrator-param-rereview.md`; storage preflight failed at 13:56Z with no USB or archive backend and no `data/processed/games.jsonl`
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: publish the canonical handoff for Claude's one re-review; rerun the exact storage signal on the next real wake
+- Next checkpoint: rerun the exact storage signal on the next real wake; if it passes, identify Track T's 25 agents in the newest corpus and state the corpus identity
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
@@ -21,6 +21,7 @@
 - DEFERRED replacement card: Track T-1 until `check_external_storage.py --intent read` and canonical corpus readability both pass
 - DEFERRED replacement card: Track F-1 until the same storage signal passes and Track T's shared game-identification count exists
 - Completed replacement card: P4b pipeline integration after the coordinator assigned it and Claude transferred the two destination files
+- Completed replacement card: D-2 accepted by the one budgeted re-review; 10 pipeline tests and 11 private tests pass, Candidate 3 v6 is READY with 0 decode errors, and Candidate 2 v5 reproduces
 - Completed replacement card: Candidate 2 G-0 reviewed at `agent/claude_1@6eb89209`; `DESIGN_ACCEPTED` with one non-gating proof-wording correction
 - Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
 - Blockers: approved bulk backend unavailable; `data/processed/games.jsonl` absent in this worktree
