@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Evaluate the accepted P4b per-troll stall definition on v4 panel archives."""
+"""Evaluate the accepted P4b per-troll stall definition across narrator dialects."""
 from __future__ import annotations
 
 import argparse
 import collections
 import gzip
 import hashlib
+import importlib
 import json
 import sys
 from pathlib import Path
@@ -77,14 +78,57 @@ def archive_sha(path: Path) -> str:
     return h.hexdigest()
 
 
-def evaluate(path: Path, td, n4) -> dict:
+def decode_units(narrator, payload: str):
+    """Dialect-neutral boundary: P4b needs only turn and unit tuples."""
+    turn, units, _order, _banner, _meta = narrator.decode(payload)
+    for uid, unit in units.items():
+        if len(unit) < 4:
+            raise ValueError(f"unit {uid} decoder tuple has {len(unit)} fields, expected >=4")
+    return turn, units
+
+
+def narrator_fragments(line: str) -> list[str]:
+    return [frag for frag in line.split(";")
+            if frag.lstrip().upper().startswith("MSG ") and "NARRATE" in frag.split()]
+
+
+def evaluate_not_applicable_rows(source_rows, archive_label: str,
+                                 archive_digest: str) -> dict:
+    errors = []
+    map_seats = collections.Counter()
+    for row_number, game in enumerate(source_rows, 1):
+        map_seats[game["map_id"]] += 1
+        commands = game["artifacts"]["candidate_commands"]
+        narrated = sum(bool(narrator_fragments(line))
+                       for line in commands.rstrip("\n").split("\n"))
+        if narrated:
+            errors.append(f"row {row_number} {game['map_id']}:{game['seat']}: "
+                          f"declared none but found {narrated} NARRATE turns")
+    return {"archive": archive_label, "archive_sha256": archive_digest, "dialect": "none",
+            "status": "GATE_UNREADY" if errors else "NOT_APPLICABLE",
+            "errors": errors, "games": len(source_rows), "map_ids": len(map_seats),
+            "both_seats_per_map": bool(map_seats) and all(v == 2 for v in map_seats.values()),
+            "totals": {}, "failed_units": [], "failed_games": [], "unit_rows": [],
+            "blind_population": {},
+            "longest_run_distribution": {"min": None, "q1": None, "median": None,
+                                         "q3": None, "max": None},
+            "idle_share_above_1_5_pct": [], "tripwire_45": []}
+
+
+def evaluate_not_applicable(path: Path) -> dict:
+    with gzip.open(path, "rt", encoding="utf-8") as fh:
+        rows = [json.loads(line) for line in fh]
+    return evaluate_not_applicable_rows(rows, str(path), archive_sha(path))
+
+
+def evaluate(path: Path, td, narrator, dialect: str = "v4") -> dict:
     with gzip.open(path, "rt", encoding="utf-8") as fh:
         source_rows = [json.loads(line) for line in fh]
-    return evaluate_rows(source_rows, td, n4, str(path), archive_sha(path))
+    return evaluate_rows(source_rows, td, narrator, str(path), archive_sha(path), dialect)
 
 
-def evaluate_rows(source_rows, td, n4, archive_label: str,
-                  archive_digest: str) -> dict:
+def evaluate_rows(source_rows, td, narrator, archive_label: str,
+                  archive_digest: str, dialect: str = "v4") -> dict:
     """The body of `evaluate`, over rows already in memory.
 
     Split out (claude_1, 2026-08-25) so an in-process caller -- fuzz_panel's
@@ -108,18 +152,19 @@ def evaluate_rows(source_rows, td, n4, archive_label: str,
         telemetry = {}
         branches = {}
         for index, line in enumerate(lines, 1):
-            msgs = n4.msg_fragments(line)
+            msgs = narrator.msg_fragments(line)
             if len(msgs) != 1:
                 errors.append(f"{game_key} turn {index}: {len(msgs)} telemetry rows")
                 continue
             try:
-                turn, units, _, _, _ = n4.decode(msgs[0].strip())
+                turn, units = decode_units(narrator, msgs[0].strip())
             except Exception as exc:
                 errors.append(f"{game_key} turn {index}: telemetry decode: {exc}")
                 continue
             if turn != index:
                 errors.append(f"{game_key} turn {index}: telemetry says turn {turn}")
-            for uid, (_, available, branch, _) in units.items():
+            for uid, unit in units.items():
+                available, branch = unit[1], unit[2]
                 key = (turn, uid)
                 if key in telemetry:
                     errors.append(f"{game_key} turn {turn} unit {uid}: duplicate telemetry")
@@ -218,6 +263,7 @@ def evaluate_rows(source_rows, td, n4, archive_label: str,
                           "longest_run": r["longest_all_available_progress_free_run"],
                           "explanation": ("P4b episode" if r["episodes"] else "run below W")})
     return {"archive": archive_label, "archive_sha256": archive_digest,
+            "dialect": dialect,
             "status": "GATE_UNREADY" if errors else "READY", "errors": errors,
             "games": len(games), "map_ids": len(map_seats),
             "both_seats_per_map": all(v == 2 for v in map_seats.values()),
@@ -236,6 +282,11 @@ def unit_key(row):
 
 
 def compare(base: dict, candidate: dict) -> dict:
+    if base["status"] == "NOT_APPLICABLE" or candidate["status"] == "NOT_APPLICABLE":
+        return {"status": "NOT_APPLICABLE", "reason": "one or both arms are narrator-less",
+                "roster_lifetime_mismatches": [], "added_unit_keys": [],
+                "removed_unit_keys": [], "added_game_keys": [], "removed_game_keys": [],
+                "common_failure_longest_deltas": []}
     b_life = {unit_key(r): r["alive_interval"] for r in base["unit_rows"]}
     c_life = {unit_key(r): r["alive_interval"] for r in candidate["unit_rows"]}
     mismatch = []
@@ -257,9 +308,9 @@ def compare(base: dict, candidate: dict) -> dict:
             "common_failure_longest_deltas": sorted(growth, key=lambda r: (-r["candidate_minus_base"], r["key"]))}
 
 
-def panel_packet(source_rows, td, n4, archive_label: str,
+def panel_packet(source_rows, td, narrator, archive_label: str,
                  archive_digest: str, baseline=None,
-                 baseline_label: str = "baseline") -> dict:
+                 baseline_label: str = "baseline", dialect: str = "v4") -> dict:
     """The packet fuzz_panel embeds when --p4b is ON.
 
     One arm ('panel') evaluated from the panel's own rows, plus -- when a
@@ -268,8 +319,10 @@ def panel_packet(source_rows, td, n4, archive_label: str,
     is REPORTED, not asserted: a smaller panel is not a K-5 failure, it is a
     smaller panel, and the row says which it was.
     """
-    arms = {"panel": evaluate_rows(source_rows, td, n4, archive_label,
-                                   archive_digest)}
+    panel = (evaluate_not_applicable_rows(source_rows, archive_label, archive_digest)
+             if dialect == "none" else
+             evaluate_rows(source_rows, td, narrator, archive_label, archive_digest, dialect))
+    arms = {"panel": panel}
     if baseline is not None:
         arms[baseline_label] = baseline
     comparisons = ({baseline_label: compare(arms[baseline_label], arms["panel"])}
@@ -376,17 +429,24 @@ def render_markdown(packet: dict) -> list:
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--module-root", required=True, help="root containing banana-restoration-r2 and narrate4")
+    ap.add_argument("--module-root", required=True,
+                    help="root containing banana-restoration-r2 and narrate4/5/6")
     ap.add_argument("--arm", action="append", required=True, help="LABEL=archive.jsonl.gz")
     ap.add_argument("--base", default="champion")
+    ap.add_argument("--dialect", choices=("v4", "v5", "v6", "none"), default="v4")
     ap.add_argument("--json", required=True)
     args = ap.parse_args(argv)
     root = Path(args.module_root)
-    sys.path[:0] = [str(root / "banana-restoration-r2"), str(root / "narrate4")]
+    sys.path.insert(0, str(root / "banana-restoration-r2"))
     import trace_detectors as td
-    import narrate4 as n4
+    narrator = None
+    if args.dialect != "none":
+        sys.path.insert(0, str(root / f"narrate{args.dialect[1:]}"))
+        narrator = importlib.import_module(f"narrate{args.dialect[1:]}")
     arms = dict(item.split("=", 1) for item in args.arm)
-    evaluated = {label: evaluate(Path(path), td, n4) for label, path in sorted(arms.items())}
+    evaluated = {label: (evaluate_not_applicable(Path(path)) if args.dialect == "none" else
+                         evaluate(Path(path), td, narrator, args.dialect))
+                 for label, path in sorted(arms.items())}
     if args.base not in evaluated:
         raise SystemExit(f"base arm {args.base!r} not supplied")
     comparisons = {label: compare(evaluated[args.base], row) for label, row in evaluated.items()

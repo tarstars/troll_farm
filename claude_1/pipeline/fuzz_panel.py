@@ -2438,24 +2438,30 @@ def load_archive_rows(path: Path) -> list:
         return [json.loads(line) for line in fh]
 
 
-def p4b_evaluate(rows, archive_path, baseline_path):
+def p4b_evaluate(rows, archive_path, baseline_path, dialect="v4"):
     """Build the embedded P4b packet from the panel's own rows."""
-    sys.path[:0] = [str(HERE.parent / "narrate4")]
-    import narrate4 as n4                          # noqa: PLC0415
+    import importlib                               # noqa: PLC0415
+    narrator = None
+    if dialect != "none":
+        narrator_dir = HERE.parent / ("narrate" + dialect[1:])
+        sys.path.insert(0, str(narrator_dir))
+        narrator = importlib.import_module("narrate" + dialect[1:])
     import p4b_gate                                # noqa: PLC0415
     baseline = None
     if baseline_path is not None:
         b_rows = load_archive_rows(baseline_path)
-        baseline = p4b_gate.evaluate_rows(
-            b_rows, td, n4, str(baseline_path), stream_digest(b_rows))
+        baseline = (p4b_gate.evaluate_not_applicable_rows(
+            b_rows, str(baseline_path), stream_digest(b_rows)) if dialect == "none" else
+            p4b_gate.evaluate_rows(
+                b_rows, td, narrator, str(baseline_path), stream_digest(b_rows), dialect))
     label = str(archive_path) if archive_path else "(panel rows, not archived)"
-    return p4b_gate.panel_packet(rows, td, n4, label, stream_digest(rows),
-                                 baseline=baseline)
+    return p4b_gate.panel_packet(rows, td, narrator, label, stream_digest(rows),
+                                 baseline=baseline, dialect=dialect)
 
 
 def run_panel(cfg, report_path: Path, json_path: Path | None,
               save_failures: Path | None, p4b: bool = False,
-              p4b_baseline: Path | None = None) -> int:
+              p4b_baseline: Path | None = None, p4b_dialect: str = "v4") -> int:
     started = time.monotonic()
     with tempfile.TemporaryDirectory(prefix="fuzz-panel-") as workdir:
         candidate = compile_bot(cfg, "candidate", Path(workdir))
@@ -2481,7 +2487,7 @@ def run_panel(cfg, report_path: Path, json_path: Path | None,
     verdict = aggregate_verdict(rows)
     p4b_packet, p4b_sections = None, None
     if p4b:
-        p4b_packet = p4b_evaluate(rows, archive_path, p4b_baseline)
+        p4b_packet = p4b_evaluate(rows, archive_path, p4b_baseline, p4b_dialect)
         import p4b_gate                            # noqa: PLC0415
         p4b_sections = p4b_gate.render_markdown(p4b_packet)
     write_report(report_path, cfg, rows, stats, verdict, p4b_sections)
@@ -2536,6 +2542,9 @@ def main(argv=None) -> int:
     parser.add_argument(
         "--p4b-baseline", dest="p4b_baseline",
         help="games.jsonl.gz of the arm to difference against (optional)")
+    parser.add_argument(
+        "--p4b-dialect", choices=("v4", "v5", "v6", "none"), default="v4",
+        help="NARRATE wire dialect used by the panel and baseline (default: v4)")
     args = parser.parse_args(argv)
     try:
         cfg = load_config(Path(args.config))
@@ -2545,7 +2554,8 @@ def main(argv=None) -> int:
             Path(args.save_failures) if args.save_failures else None,
             p4b=args.p4b,
             p4b_baseline=(Path(args.p4b_baseline) if args.p4b_baseline
-                          else None))
+                          else None),
+            p4b_dialect=args.p4b_dialect)
     except PanelError as exc:
         print("fuzz_panel: tool/config error: %s" % exc, file=sys.stderr)
         return EXIT_ERROR

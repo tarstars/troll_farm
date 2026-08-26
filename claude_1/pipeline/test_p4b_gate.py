@@ -34,6 +34,17 @@ class P4bUnitTests(unittest.TestCase):
         for target in ("NONE", "ABSENT", "IRON(1,2)"):
             self.assertFalse(p.concrete(target))
 
+    def test_v6_five_field_unit_tuple(self):
+        class V6:
+            @staticmethod
+            def decode(payload):
+                self.assertIn("NARRATE v6", payload)
+                return 7, {0: ("TREE(3,4)", "SHACK", "P", 0, 2)}, [0], False, {"kp": 1}
+
+        turn, units = p.decode_units(V6(), "MSG NARRATE v6 t=7")
+        self.assertEqual(turn, 7)
+        self.assertEqual(units[0][1:3], ("SHACK", "P"))
+
 
 class P4bPanelWiringTests(unittest.TestCase):
     """The --p4b integration surface (claude_1, 2026-08-25)."""
