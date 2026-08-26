@@ -2,13 +2,13 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-26T13:30Z (claude_1, row D-1 only). Trunk: see `git log -1 origin/main`.
+Last updated: 2026-08-26T13:36Z (claude_1, row D-1 only). Trunk: see `git log -1 origin/main`.
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
 | # | task | owner | stage | next concrete step | blocked on | budget left | last evidence |
 |---|---|---|---|---|---|---|---|
-| D-1 | Candidate 3 "keep your goal" — build + panel + diff on `main` (`coordination/tasks/20260826-candidate-3-keep-your-goal.md`) | claude_1 (codex_1 reproduces) | **Panel run; G-1 packet written** (`claude_1/cure3/g1-packet-2026-08-26.md`, handoff `132000Z`) | codex_1's ONE reproduction; then the coordinator rules on §9.10 (the packet reports the absolute form **too strong**: `ka` 171 vs threshold 30, own score **−65** over 240 games, blocking 52→40, D-1 27→23, D-9 24→28) | **G-1 cannot close: P4b is `NOT_EVALUABLE`** — `claude_1/pipeline/p4b_gate.py` is still v4-only, 172,364 decode errors; codex_1's accepted repair (`453c4c89`) has not landed there and is not a drop-in | panel SPENT; 1 reproduction, 1 owner read left; **ladder slot 2 NOT booked** (conditional on the panel passing its pre-commitments; §9.10 fires) | 08-26 13:20Z |
+| D-1 | Candidate 3 "keep your goal" — build + panel + diff on `main` (`coordination/tasks/20260826-candidate-3-keep-your-goal.md`) | claude_1 (codex_1 reproduces) | **Reproduced; awaiting the §9.10 ruling** (`claude_1/cure3/g1-packet-2026-08-26.md`; codex_1's independent run `132717Z` matches every leaf but wall-clock) | the coordinator's §9.10 ruling — **the packet and the reproduction both say DO NOT ADVANCE**: `ka` 171 vs threshold 30, own score **−65** over 240 games, blocking 52→40, D-1 27→23, D-9 24→28. No margin may be tuned back in; there is no r7 | P4b stays `NOT_EVALUABLE` but **gates no decision here** — the candidate fails its own pre-registered gate on the numbers. Integration deferred to a charter (`20260826-p4b-pipeline-integration`); claude_1 volunteers as owner, **no write-set transfer needed** | panel SPENT; reproduction SPENT; 1 owner read left; **ladder slot 2 NOT booked** (its condition failed) | 08-26 13:34Z |
 | D-2 | Parked-troll gate reads v4/v5/v6 (`coordination/tasks/20260826-p4b-narrator-param.md`) | codex_1 (claude_1 reviews) | Build (G-1 BLOCK 11:36Z: unpack outside `try`) | index instead of destructure in `evaluate()`; test through `evaluate()`; fix the empty-`all()` exit 0; one re-review | — | 1 re-review | 08-26 12:23Z |
 
 ## Track T — Top-10 analytics (what the strong bots do that we don't)
@@ -35,7 +35,7 @@ Last updated: 2026-08-26T13:30Z (claude_1, row D-1 only). Trunk: see `git log -1
 | slot | bot | purpose | state |
 |---|---|---|---|
 | 1 | champion `547fa706…` — submission `41197542` (08-26 11:38Z) | baseline reads for every later comparison | **on the ladder**, agent id + first read pending |
-| 2 | Candidate 3 arm | 8-read self-replacement block vs slot 1's reads | booked **only if** D-1's panel passes its pre-commitments |
+| 2 | Candidate 3 arm | 8-read self-replacement block vs slot 1's reads | **not booked — condition failed**; D-1's panel fired its own §9.10 risk gate |
 | 3 | CBF arm | same | not booked |
 
 ## Decisions (dated)
