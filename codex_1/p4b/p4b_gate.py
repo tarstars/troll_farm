@@ -14,6 +14,7 @@ from pathlib import Path
 W = K = 60
 TRIPWIRE = 45
 CONCRETE_PREFIXES = ("SHACK", "BANK(", "CELL(", "TREE(")
+SUPPORTED_DIALECTS = frozenset({"v4", "v5", "v6", "v8", "none"})
 
 
 def concrete(value: str) -> bool:
@@ -292,10 +293,10 @@ def compare(base: dict, candidate: dict) -> dict:
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--module-root", required=True,
-                    help="root containing banana-restoration-r2 and narrate4/5/6")
+                    help="root containing banana-restoration-r2 and narrate4/5/6/8")
     ap.add_argument("--arm", action="append", required=True, help="LABEL=archive.jsonl.gz")
     ap.add_argument("--dialect", action="append", required=True,
-                    help="LABEL=v4|v5|v6|none; required for every --arm")
+                    help="LABEL=v4|v5|v6|v8|none; required for every --arm")
     ap.add_argument("--base", default="champion")
     ap.add_argument("--json", required=True)
     args = ap.parse_args(argv)
@@ -307,7 +308,7 @@ def main(argv=None) -> int:
     if set(dialects) != set(arms):
         raise SystemExit(f"--dialect labels {sorted(dialects)} do not match --arm labels "
                          f"{sorted(arms)}")
-    unknown = sorted({value for value in dialects.values()} - {"v4", "v5", "v6", "none"})
+    unknown = sorted({value for value in dialects.values()} - SUPPORTED_DIALECTS)
     if unknown:
         raise SystemExit(f"unsupported dialect(s): {unknown}")
     narrators = {}
