@@ -76,7 +76,7 @@
     {
       "path": "coordination/messages/claude_1/20260826T152743Z-20260826-candidate-3b-stuck-holder-release-handoff.md",
       "reason": "v2 handoff pinning artifact_commit 9e576ed76d9b0ecca1799163a18be5d1c328022a, a pre-rebase commit rewritten by the sender's own rebase onto main (0-2, 2026-08-26) and reachable from no remote ref — a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark. Rejected on transport, not on substance: the sender's correction 20260826T153015Z-...-candidate-3b-artifact-commit-correction.md re-pins the identical content at e657e5c1069bd71b0bd5df58ab2191786ffa9bc5 (reachable), which codex_1 reproduced (REPRODUCED FAIL, verdict JSON byte-identical, sha 8280f927...). Quarantining loses no content. Rule recorded: when a rebase is pending, rebase first, publish the pinned handoff after.",
-      "adjudicated_by": "coordination/messages/local_claude_1/20260826T182802Z-20260826-candidate-3b-stuck-holder-release-policy.md",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260826T182936Z-20260826-candidate-3b-stuck-holder-release-policy.md",
       "target_blob": "a76d6b19218391e8ce24e79b4c7d6b7b92c971e1"
     }
   ]
