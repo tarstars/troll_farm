@@ -1,0 +1,39 @@
+{
+  "arm": {
+    "bytes": 146397,
+    "lines": 3129,
+    "path": "claude_1/instrument6/champion-v6-instrument.rs",
+    "sha256": "0f75e7d61c71d4881502aac2204faf6fb5035331857a9f400ea2647bccd94141"
+  },
+  "base_compacted": {
+    "path": "cgauto/submissions/candidate-door1-pure-deletion.rs",
+    "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+  },
+  "base_readable": {
+    "path": "readable/door1-champion.rs",
+    "sha256": "ad1ae4eff70a5569e03e2149882bb22510746f4f8592907a5dfb936943ef0bfb"
+  },
+  "base_readable_and_ladder_champion_same_token_stream": true,
+  "board_row": "0-3a",
+  "canonical_token_stream_identical": true,
+  "compacted": {
+    "bytes": 63962,
+    "path": "cgauto/submissions/candidate-champion-v6-instrument.rs",
+    "sha256": "726731247910d846242fdabd0371c6f99ceb5c12de5e47d2b750d065b2b58c82"
+  },
+  "compiles": true,
+  "flag_line_number": 602,
+  "gated_ruleoff_arm": {
+    "path": "claude_1/cure3/arm-ruleoff.rs",
+    "sha256": "0f75e7d61c71d4881502aac2204faf6fb5035331857a9f400ea2647bccd94141"
+  },
+  "identical_to_gated_ruleoff_arm": true,
+  "lines_differing_from_source": 1,
+  "schema": "troll-farm-readable-source-v2",
+  "source": {
+    "path": "claude_1/cure3/cure3-keep-v6.rs",
+    "sha256": "01b61444a109c1d190fba5b0a103c861c6f9e772596e97cf9042b9b2c516b3b3"
+  },
+  "task": "20260826-champion-instrument-v6",
+  "verdict": "CHAMPION_V6_INSTRUMENT_ROUND_TRIP_EXACT"
+}

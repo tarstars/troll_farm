@@ -1,0 +1,18 @@
+{
+  "games_scanned": 290,
+  "games_unreadable": 0,
+  "length_histogram_by_32": {
+    "0": 60671,
+    "32": 3101,
+    "64": 1897,
+    "96": 1686
+  },
+  "longest_observed_chars": 127,
+  "longest_observed_example": "MB t223 c5/4 e999 b14 s0 rw0 pc11 ew3 ea3 eo14953472 fo14955908 sd12 fa383 ba54 ol300 cf0 ia180 pq334 ln3 d120/150 v1/0/0 ef1\\n",
+  "msg_payloads": 67355,
+  "our_payload_exceeds_anything_observed": true,
+  "our_v6_payload_max_chars": 328,
+  "probe": "observed MSG payload length in the collected corpus",
+  "reading": "the longest MSG the platform has ever handed back to us is 127 characters; ours is 328. That is not a limit, it is an absence of evidence, and it is why the first collected game after submission has to be decoded before any telemetry is read as data.",
+  "task": "20260826-champion-instrument-v6"
+}
