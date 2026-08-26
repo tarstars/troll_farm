@@ -1,87 +1,69 @@
-# claude_1 status — wake #120, 2026-08-26
+# claude_1 status — wake #121, 2026-08-26
 
-**Both of the last card's waits resolved, and for the first time in this run neither produced
-follow-on work.** The owner's ~11:30Z ceiling reached me as `local_claude_1@20260826T113907Z` and
-codex_1's `114250Z` acked it the same minute: Candidate 3 got exactly one r5 and one review, the
-review returned the allowed BLOCK, so **Candidate 3 is closed**. In the same sweep codex_1 delivered
-`453c4c89`, the repair of the P4b v6 BLOCK I raised last wake. **The ceiling is accepted without
-dispute and the P4b repair is ACCEPTED on evidence.** My queue is drained.
+**Candidate 3 is not closed. The owner's `121330Z` reverses the reading I published forty minutes
+earlier, and I accept the reversal without dispute.** I read the ~11:30Z ceiling (`113907Z`) as
+already-closing on codex_1's r5 BLOCK; the owner rules that BLOCK **mechanical** — the v6 regex
+against the census equations — and its substance accepted, so it is **not** the bound's second
+BLOCK. **r6 (`113736Z`) is the last packet, codex_1 reviews it once, and a BLOCK on r6 closes the
+task at G-0 with no r7.** My queue is refilled, and it refills with the items I wrongly closed.
 
-## The Candidate 3 close — accepted as written, and I opened nothing in its place
+## The correction is the substance of this ritual
 
-`114802Z`, ack-not-required, because nothing is owed back. The bound said a second BLOCK at r5 closes
-the task with no r6 and no re-tuning; codex_1's r5 review returned that BLOCK. Three items my own
-card `113820Z` had listed as *waiting* are therefore **closed rather than postponed**, and get no
-replacement cards: the r6 ruling, the Candidate 3 build/panel/G-1, and the Candidate 2 re-run on top.
+`114802Z`'s title said *"Candidate 3 stops here; r6 is a record, not a queue item"*, and its body
+told codex_1 in as many words that r6 "is **not** a request for review" and that he was right not to
+review it. That is the kind of wrong that stalls a peer: he has a valid, ack-required handoff in his
+queue that my own message told him to disregard. `122140Z` supersedes `114802Z` in whole and
+retracts four sentences by name — the close, the "record not review request", the "closed rather
+than postponed, no replacement cards", and "`RW_COUNTER` closes unruled".
 
-**r6 crossed the ceiling in flight** — published `113736Z`, about a minute before `113907Z` arrived.
-It stays in the tree as a **record of the repair r5's BLOCK required** and is explicitly **not** a
-review request. codex_1 is right that he did not review it and right that reviewing it would reopen
-a closed task.
+**r6 is not republished.** The `113736Z` handoff is valid, addressed to codex_1 and unacknowledged;
+a second copy would only split the record. The review surface is r6's four blocks C1–C4 — everything
+else is r5 verbatim. I note the owner's **ACCEPT-WITH-EDIT** door and do not argue against its use.
 
-Two consequences written down so they are not later misremembered:
+**`RW_COUNTER` is ruled, not procedurally closed.** Last ritual I recorded it as closing unruled and
+said I was not pressing it. Superseded: the Bank has no accepts/fullness predicate in the champion,
+so bank-full is not a gone case and **neither `rb=` nor `rw=` is emitted — r6 C1 stands unless
+codex_1 objects in the same review.** The switch stays open exactly as r6 published it (recommended
+`false`); the ruling does not pre-decide an objection he has not yet had the chance to make.
 
-- **`RW_COUNTER` closes unruled.** r6 **struck** the `rw` field codex_1 recommended **adding**,
-  because his own accepted §10 item 3 had already removed that always-zero counter under the name
-  `rb=`, so requiring it reintroduces what he removed. Nobody ruled and nobody now will. I adopt
-  codex_1's framing exactly: **a procedural close, not a technical verdict** for either side. I am
-  not pressing it and I do not claim the closure vindicates me.
-- **r5 §7's prediction is never tested.** "Plan-keeping needs no new machinery" was to be falsified
-  by `m061`'s `PICK`↔`DROP` two-cycle surviving a Candidate 2 re-run that will not now happen.
-  Recorded as **untested**, not as supported.
+## The one thing I executed: the pre-build champion refresh
 
-## The P4b repair — ACCEPT, proved old-versus-new rather than read off the diff
+The policy's last line and r6's own closing clause both require it. Done and verified three ways:
 
-`114911Z`, artifact `claude_1/reviews/p4b-narrator-param-repair-verification-2026-08-26.md` at
-`agent/claude_1@674f973a`. I extracted the **pre-repair** gate `cfcb9688` and the repaired
-`453c4c89` into **separate** scratch trees so neither could shadow the other on `sys.path`, then put
-the same inputs through both.
+- **2,206 → 2,210 lines**, byte-identical to `origin/main`, sha256
+  `ad1ae4eff70a5569e03e2149882bb22510746f4f8592907a5dfb936943ef0bfb` — **the exact hash r5 §0 and
+  r6 anchor every line number against**, so the packet's anchors now resolve in this worktree.
+- **Comment-only, checked rather than assumed.** All five diff hunks lie inside lines 1–24 (the
+  header block: source, lineage, round-trip recipe). No token below line 24 differs.
+- **Round-trip gate re-run, not cited.** The refreshed file and
+  `cgauto/submissions/candidate-door1-pure-deletion.rs` both compact to
+  `0da12c33e07a4524a5411a624d0d0da12b2e2f815b176b75df9d6d97c5c3ca01`, exit 0 on both, matching the
+  value the header itself declares. Program-preserving **as executed**.
 
-- **F1, the BLOCK — repaired.** `evaluate()` now indexes `unit[1], unit[2]`, which is what
-  `decode_units()`'s `>= 4` contract actually guarantees. My own repro from the BLOCK, unchanged:
-  the five-field v6 tuple gives `UNCAUGHT ValueError: too many values to unpack (expected 4)` on
-  `cfcb9688` and **returns normally** on `453c4c89`, matching its own four-field control. I checked
-  the surrounding level too, since the BLOCK was itself about checking the wrong level: `decode_units`
-  is the only call site, it sits **inside** the `try/except` that appends to `errors`, and the loop
-  below can no longer raise for any width `>= 4`. Short tuple → counted error; wide tuple → consumed.
-  Neither is a traceback.
-- **F2, the non-blocking finding — repaired.** Same two-arm all-`none` invocation through both gates:
-  `all_applicable_arms_ready` is `true` on the old gate and **`false`** on the new one, and it is in
-  `required`, so a non-evaluable run is no longer exit-code-indistinguishable from a `PASS`.
-- **No regression, run in full rather than argued.** `reproduce_v5.py` rebuilt both 240-game archives
-  from the hash-pinned configs in my own scratch (exit 0), then the **repaired** gate: **16 / 27**
-  failed units, **7,137 / 8,839** all-available windows, **277 / 268** blind unit lives, 76,364
-  transitions, 53,708 windows, 384 unit lives, `K3`/`K5`/`all_applicable_arms_ready` true,
-  differential `PASS` with no added unit key, gate exit **0**, `verify_v5_counts.py` exit **0** with
-  `matches: true` on both arms, 11 unit tests OK. Identical to the accepted row in **every** field,
-  so the indexing change is behaviour-preserving **as executed**.
+**No code, no build, no panel, no `narrate6`, no rule change, no Candidate 2 stacking, no Arena
+action, no platform measurement.** The reopening restores a *wait*, not a licence to start work
+codex_1 has not authorised.
 
-**Recorded in the ACCEPT, not raised as a finding:** the v6 arm is exercised **only by fixture** and
-never by a real archive, because the ceiling closed the only v6 producer. Written down so the
-instrument's coverage is not overclaimed later.
+## P4b needs nothing further from me
 
-## The ladder and the owner's goals
+The policy directs repair-per-my-exact-edit plus one re-review; that happened ahead of the policy.
+codex_1 delivered `453c4c89` and I returned **ACCEPT** at `114911Z` on an old-versus-new differential
+from separate extracts: the five-field v6 tuple raises `UNCAUGHT ValueError` on `cfcb9688` and
+returns on `453c4c89`; `all_applicable_arms_ready` flips `true`→`false` on an all-`none` run; and the
+full v5 reproduction against the repaired gate is identical to the accepted row in every field
+(16/27, 7,137/8,839, 277/268, `PASS`, both exits 0, 11 tests OK). Ruling 3's evaluable P4b row exists.
 
-Read and obeyed. Champion `547fa706…` is on the ladder as submission **`41197542`** by the
-coordinator's hand, the NARRATE instrument is off it, and **nobody else touches the Arena** — I have
-not and I propose nothing. Goal (c) noted: **≥ 25.40 stands but is not the only goal**; the readable
-source / diffs-in-files / owner-reads-every-change line is wanted **for its own sake**; the **banana
-farm is next**, with the coordinator's assessment going to the **owner** first and **no charter yet**.
-I hold no banana-farm work and open none.
+**One carried note changes meaning.** P4b's v6 arm is still exercised only by fixture, never by a
+real archive — but last ritual's reason (the ceiling closed the only v6 producer) is now **void**.
+The producer is Candidate 3 and it is live again, so an ACCEPT would make a real v6 archive
+reachable for the first time.
 
-## This ritual, in whole
+## Queue
 
-No code of my own, no build, no panel, no Candidate 2 stacking, no Arena action, no platform
-measurement, no lock, no timer. Two acks and one replacement card published; one verification
-artifact written; the v5 reproduction re-run end-to-end in scratch.
-
-**Open and not mine to close:** the **23 of 34 fixtures `NOT_REPRODUCIBLE_ON_BASE`** on every arm and
-the shipping-form question (both `local_claude_1`'s); `format_readable.py`'s header template being
-wrong for any non-minified parent (recorded in `docs/readable-format.md`, generator still
-unchartered); and the **residual walk-back the capacity middle does not close**, which rode on a
-panel that will now not run and is therefore carried as an unmeasured property of **the base**, not
-of any candidate. **Nothing measured says the candidate's C-5 = 5 is benign** — that STOP AND ASK
-stands and is the owner's.
-
-Standing card (wake #120): `20260826T115018Z-20260826-queue-drained-deferred.md`, which discharges
-`20260826T113820Z`.
+Card `122320Z` supersedes `115018Z` and discharges it in `ack_for`. Six items: (1) codex_1's one
+review of r6 — the only live item; (2) the build on ACCEPT only, one panel, one reproduction, the
+diff on `main`, one owner read, stop; (3) Candidate 3's G-1 row, instrument-side unblocked by the
+P4b ACCEPT, blocked on the build; (4) the Candidate 2 re-run, restored from closed to postponed —
+it is the only falsifier of r5 §7's plan-keeping prediction, now **pending** rather than *never
+tested*; (5) the deferred-card lint charter, named but not chartered, so the manual rule keeps
+running; (6) the banana farm, owner's next item, no charter naming me.
