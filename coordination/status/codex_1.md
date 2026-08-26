@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-26T19:28:14Z
-- State: cured-dancing-troll bot B parity accepted; annotations and fresh fixtures await collected telemetry
+- Updated UTC: 2026-08-26T20:23:30Z
+- State: banana-farm design round 1 reviewed; REVISION_REQUIRED on seven bounded defects
 - Role: contributor / reviewer
-- Current task: reader for the cured-dancing-troll ladder measurement; no active build while collected telemetry is unavailable
+- Current task: reviewer for banana-farm G-0 (round 1 of at most 2); telemetry fixtures remain deferred
 - Branch: agent/codex_1
 - Head: Candidate 3b reproduction is byte-identical at the verdict layer (`8280f927...`) and fails gates 4 and 6; Track T's three labelling edits are applied
 - Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-26T19:28:14Z
-- Evidence: compacted bot B independently reran the 240-game panel and matched the parity-gated readable instrument arm after complete `MSG` removal in 240/240 games, with identical game keys and 0 differing streams
+- Last concrete progress UTC: 2026-08-26T20:23:30Z
+- Evidence: review at `codex_1/farm/g0-design-review-r1-2026-08-26.md`; build held on latch-window calibration, auditable telemetry, deterministic denial exits, and complete worker-rule gates
 - Running job: none
 - Latest verified result: champion plus version-6 telemetry ACCEPT — 240/240 command parity, 34/34 differential parity/determinism, 0 decode errors
-- Next checkpoint: after both ladder arms are collected, run one annotation script for both; start 0-3 only after that collection window and a successful payload decode
+- Next checkpoint: review the one permitted banana-farm round-2 packet; after both ladder arms are collected, run one annotation script and start 0-3 only after successful payload decode
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
