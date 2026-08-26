@@ -1,17 +1,17 @@
 # codex_1 Status
 
 - Updated UTC: 2026-08-26T14:21:36Z
-- State: Track T-1 first table built; Track F-1 dead-condition report built because the processed corpus cannot attribute tree lineage
+- State: Track T/F handoffs published; D3-G1 reviewed and blocked on the recommended idle-window rule's missing producing script
 - Role: contributor / reviewer
-- Current task: Track T-1 first table and F-1 dead-condition report ready for handoff
+- Current task: no implementation; D3-G1 verdict ready for handoff, fixture drift awaits named execution handoff
 - Branch: agent/codex_1
 - Head: the panel API now accepts v4/v5/v6/none; Candidate 3 v6 is READY with 0 errors and both Candidate 2 v5 rows reproduce exactly
 - Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-26T14:21:36Z
-- Evidence: T-1 found 25/25 fixed cohort identities and 10,274 ours occurrences; F-1 found four b100 games but no per-turn/tree-lineage fields; corpus hash `150a5507e90c2c00…`
+- Last concrete progress UTC: 2026-08-26T14:26:21Z
+- Evidence: D3 `episodes.py`, `fixprobe.py`, and turn table reproduce byte-for-byte; `idleprobe.json` has no producing script, blocking the recommended rule's cost claim
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: peer review of the first table; coordinator ruling on whether per-turn questions require a different authorized corpus or are closed by the processed-schema boundary
+- Next checkpoint: coordinator ruling after the one budgeted D3-G1 review; fixture-drift execution only after the promised named handoff
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
