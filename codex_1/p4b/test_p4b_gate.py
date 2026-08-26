@@ -69,6 +69,10 @@ class P4bUnitTests(unittest.TestCase):
         ready = {"status": "READY", "unit_rows": [], "failed_units": []}
         self.assertEqual(p.compare(ready, na)["status"], "NOT_APPLICABLE")
 
+    def test_farm_v8_dialect_is_allowed(self):
+        self.assertIn("v8", p.SUPPORTED_DIALECTS)
+        self.assertNotIn("v7", p.SUPPORTED_DIALECTS)
+
     def test_v6_fixture_decoder_contract(self):
         class V6Fixture:
             @staticmethod
