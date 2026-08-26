@@ -1,3 +1,82 @@
+# claude_1 status — wake #112, 2026-08-26
+
+**Two charters landed at 06:04Z, both naming me work owner; I claimed both, delivered the one that
+unblocks the reviewer, and deferred the one whose hardest half is a per-game wire proof.**
+Candidate 0 (`20260826-candidate-0-regeneration-fallback`): step 1 complete, G-0 published and then
+**re-published amended** after the owner's 06:10Z ruling landed 100 seconds later. Candidate 3
+(`20260826-candidate-3-keep-your-goal`): claimed, G-0 deferred to my next wake on card
+`20260826T061626Z`. **No code written on either. No Arena action taken or proposed.**
+
+**Candidate 0's edit, fixed and unchanged through the amendment.** One hunk, **−8/+6**, at
+`readable/door1-champion.rs:1804–1811`: the `idle_regeneration && chops.is_empty()` fallback
+**extends `out`** instead of replacing it. `out` is already `vec![wait()]` at line 1773, so the
+deleted `let mut fallback = vec![…wait()]` was a **duplicate WAIT** — order preserved, nothing built
+discarded, nothing invented. This is the clause that costs `m061` **75 own-score points** across two
+seats and leaves both trolls goal-less for 131 / 96 turns.
+
+**Two assertions on the cards are false of these bytes, and I said so instead of shipping around
+them.** (1) The round-trip gate as `docs/readable-format.md` and both cards word it — compaction
+reproducing `547fa706…` — **is not satisfiable**: that digest is not a compactor output but a
+75,653-byte annotated expansion. What holds byte-for-byte is the fixed point,
+`compact(readable) == compact(champion) == 0da12c33e07a…`, 47,822 bytes. The coordinator's 06:16Z
+amendment reached the same conclusion independently, so this one is **granted and withdrawn**.
+(2) **The readable file's own header asserts two digests that do not reproduce** — injected lines
+6–8 (the `547fa706…` sentence) and lines 17–20 inherited from the champion's head (`102caecd…`,
+true of the champion's *ancestor*, false since the pure deletion). **Still unruled**, and now more
+urgent, not less: the amendment points **the owner** at this exact file as where he reads diffs, so
+the first sentence he reads is one the same amendment declares false. A comment-only fix is proposed.
+
+**The amendment, adopted before publishing rather than after.** `20260826T061613Z` (owner: *"it
+shouldn't be exactly PRs — I want to see diffs in files"*) retires the PR as the deliverable of
+record in favour of `readable/diffs/<candidate>.diff` on `main`. I superseded my own G-0 handoff
+rather than let codex_1 rule on a layout the owner had already retired. The missing `gh` on this VM
+stops being a blocker at all.
+
+**The baseline is the coordinator's file, adopted; mine is deleted.** The two independently
+generated baselines differed: 97,849 vs 97,784 bytes, **four changed lines, all inside the injected
+header comment** (`--title champion` passed or not); same 2,206 lines, same token stream, same
+compaction. Verified before relying on it — `sed -n 1804,1811p` identical across the two, header
+diff in-place — so **every line number in the G-0 holds on the adopted file**. Incidental finding:
+**`--title` is an unpinned input to a "canonical" artifact.**
+
+**Asked to check the three readable diffs on `main`, I did, and two are mislabelled.** All three
+**reproduce byte-for-byte** and the 327-line figure is right. But `readable/candidate-2-swap.rs`
+compacts to `33d4821d…` = `cure2/arm-instrument.rs` — the **instrument** arm
+(`NARRATE_V5_ENABLED = true`), which the cure2 record says **can never be champion** — not
+`arm-candidate.rs`; same for `readable/candidate-1-hold.rs`. So `candidate-2-swap.diff` (797 lines)
+is the swap rule **plus the whole v5 narrator plus the disabled Candidate 1 hold machinery**, and
+the 327-line diff described as *"the swap rule alone"* also carries the **v4 → v5 narrator version
+change**. Not a defect in the files — a mismatch between what the owner is told he is reading and
+what is in the bytes.
+
+**Pre-committed before any run, so they can be wrong:** byte-identical in play on every game where
+the probe logs zero fallback firings, **a single counterexample being a BLOCK on my own arm**;
+changed set ⊆ near-empty-map-with-fruit games, guess single digits of 240; `m061` both seats
+**+75 own-score points** with the replant cycle resuming, and **if `m061` does not change the packet
+is withdrawn**; D-1/D-3/P3/P4 not worse, and I do **not** expect D-1 to improve — this is not a dance
+fix; determinism; every changed game named with its delta **in own-score points**, margin points
+never summed with them. And in advance: **if `--p4b` returns `GATE_UNREADY` on these arms too I
+report `NOT_EVALUABLE` with the error count — no proxy, no dropped table row, and no enactment of
+the unchartered `20260826-p4b-narrator-param` amendment to make it green.**
+
+**One hazard the edit introduces, named before it is measured.** With `carried > 0 && adjacent(shack)`
+the fix appends `bank_candidates` twice. Argued inert across all three `select` paths (packet §5:
+1-unit `max_by`, the 2-unit `|A|×|B|` joint enumeration on strict `>`, the ≥3-unit stable greedy),
+**and still to be measured** by the probe arm. Argued ≠ measured; I declined to add a guard, because
+adding a guard to avoid measuring something is already in the instrument ledger.
+
+**Why Candidate 3 is deferred rather than half-delivered.** `MoisanBot::select` (line 933) has
+**three** paths, and the two-unit path — the one that governs a two-troll dance — is a **joint**
+maximisation over pairs. So *"the troll prefers its kept goal" cannot be written as a per-unit
+filter* there, which is exactly codex_1's pre-announced bar (*"the selector claim is algorithmic
+rather than aspirational"*). That, plus the release predicate (the load-bearing half) and the
+six-game no-second-exchange proof from the recorded goals, is a packet, not a postscript.
+
+Queue: 6 messages read this ritual (local_claude_1 ×3 incl. the mid-ritual amendment, codex_1 ×2
+reviewer cards arriving mid-ritual, plus the swap-close ack). 6 published: two charter acks, the
+G-0, its amended supersession, the reviewer ack, and the replacement DEFERRED card. Drained and
+pushed.
+
 # claude_1 status — wake #110, 2026-08-25
 
 **The complete G-1 packet is delivered, and C-12 closed PASS after a verdict conflict that
