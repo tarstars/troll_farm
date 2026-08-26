@@ -2,15 +2,15 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-26T15:05Z (coordinator). Trunk: see `git log -1 origin/main`.
+Last updated: 2026-08-26T15:25Z (coordinator). Trunk: see `git log -1 origin/main`.
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
 | # | task | owner | stage | next concrete step | blocked on | budget left | last evidence |
 |---|---|---|---|---|---|---|---|
 | D-1 | Candidate 3 "keep your goal" (`coordination/tasks/20260826-candidate-3-keep-your-goal.md`) | claude_1 (codex_1 reproduces) | **Verdict — CLOSING under the bound.** The one panel ran 13:20Z: the loop is cured (`xc=0` on all six loop games; blocking games 52→40; D-1 27→23) **but −65 own-score points / 240 games** (`m061` −47/−43) and a goal kept **171 turns** vs the 30-turn stop → the pre-committed §9.10 gate fires: *the absolute form is too strong*; no re-tuning (owner bound). | codex_1: the one reproduction (last allowed act); coordinator: obituary in GRAVEYARD, owner reads the diff | — | 1 reproduction, 1 owner read, then stop | 08-26 13:20Z (G-1 handoff `132000Z`; diff `readable/diffs/candidate-3-keep-your-goal.diff` +927/−9 and packet `claude_1/cure3/g1-packet-2026-08-26.md` now on `main`) |
-| D-2 | Parked-troll gate reads v4/v5/v6 (`coordination/tasks/20260826-p4b-narrator-param.md`) | codex_1 (claude_1 reviews) | Build — **last mile is an integration**: the accepted narrator (`codex_1/p4b/p4b_gate.py@453c4c89`) is not where the gate runs (`claude_1/pipeline/p4b_gate.py`, v4-only, imported by `fuzz_panel`; needs `evaluate_rows`) | codex_1 lands it behind the API `fuzz_panel` calls; proof = Candidate 3's v6 archives evaluate (172,364 errors → 0) and Candidate 2's v5 row reproduces; one claude_1 re-review | — | 1 re-review | 08-26 13:35Z |
-| D-3 | Why did a troll on `m061` keep one goal for 171 turns, and what did it cost? — read on the Candidate 3 archives (`coordination/tasks/20260826-m061-stale-goal-read.md`) | claude_1 (codex_1 reviews) | **Read** (chartered 14:30Z, owner "go") | turn-by-turn account of the 171-turn goal, both seats; mechanism in one sentence; cost attributed; for each release fix: the turn it would have fired + its cost on the other 119 maps; `ka` distribution over 240 games | — | 1 day, 0 builds, 0 ladder | chartered 14:30Z |
+| D-2 | Parked-troll gate reads v4/v5/v6 (`coordination/tasks/20260826-p4b-narrator-param.md`) | codex_1 (claude_1 reviewed) | **DONE 13:57Z** — integrated behind the panel API; claude_1 re-review ACCEPT (Candidate 3's v6 archive: 0 decode errors, 15 episodes; Candidate 2's v5 row reproduces) | record only: the two proof inputs live in `/tmp` on the VM (915 KB + 437 KB) — owner decision whether to keep them out-of-tree | — | spent | 08-26 13:57Z |
+| D-3 | Why did a troll on `m061` keep one goal for 171 turns? (`coordination/tasks/20260826-m061-stale-goal-read.md`) | claude_1 (codex_1 reviews) | **DELIVERED 14:17Z, at gate D3-G1** — report `claude_1/cure3/m061-stale-goal-read-2026-08-26.md`: the immortal tree goal pinned the tree to one troll, the other troll got `WAIT` and stood in the corridor; the −43/−47 is the turn-100 shack engine never starting (the stranded troll is not adjacent to the shack); a turn cap would cost +39 in won games; the data's own rule (holder on ≤2 cells for 20 turns with no work command → release) fires t72/t108 and touches 4 non-winning games (+risk 0) | codex_1: one review; then the owner decides whether Candidate 3b is chartered | — | 1 review | 08-26 14:17Z |
 
 ## Track T — Top-10 analytics (what the strong bots do that we don't)
 
@@ -30,7 +30,7 @@ Last updated: 2026-08-26T15:05Z (coordinator). Trunk: see `git log -1 origin/mai
 | # | task | owner | stage | next concrete step | blocked on | budget left | last evidence |
 |---|---|---|---|---|---|---|---|
 | 0-2 | Integrate the peer branches onto `main` — `main` wins on shared files, quarantine re-verified, peers rebase (`coordination/tasks/20260826-integrate-peer-branches.md`) | local_claude_1 (codex_1 verifies) | queued | after D-1 reaches Panel: merge `agent/claude_1` (287 ahead) and `agent/codex_1` (262 ahead) per the card's method | D-1 at Panel | one session, one review | chartered 13:40Z; branch hygiene done (3 dead branches deleted, archive → tag, stale worktree removed, local_codex_1's transfer messages merged) |
-| 0-1 | 23 of 34 frozen fixtures `NOT_REPRODUCIBLE_ON_BASE` on every arm (`coordination/tasks/20260826-fixture-drift.md`) | local_claude_1 via a local subagent (diagnosis); execution to whom the diagnosis names (codex_1 default); codex_1 reviews | **Read** (subagent started 15:05Z) | per-fixture cause + RE-FREEZE / RETIRE / REPAIR-HARNESS table; then execute; harness must count skips out loud | — | diagnosis today, execution ≤ 1 day; **before F-2's panel** | chartered 15:05Z |
+| 0-1 | 23 of 34 frozen fixtures `NOT_REPRODUCIBLE_ON_BASE` (`coordination/tasks/20260826-fixture-drift.md`) | local_claude_1 (subagent diagnosed); execution codex_1; codex_1 reviews | **Diagnosis DONE 15:15Z** — nothing rotted: the 34 were recorded from the very-old bot `98628e98`, and "reproducible" means the champion replays that bot's exact episode; 23 fail because the champion is a different bot (first divergence before the window's end). The 34/34 *containment* checks really do cover 34; only FIXED/NOT-FIXED grading is 11. Skips are printed, not hidden. | owner decision: retire 19 (Group A; coverage = the 21 champion-lineage fixtures) + re-freeze 4 (011/025/031/034, ~2 h); then codex_1 executes | owner | execution ≤ 1 day, before F-2's panel | 08-26 15:15Z |
 
 ## Ladder queue (single file; one bot at a time)
 
@@ -53,6 +53,8 @@ Last updated: 2026-08-26T15:05Z (coordinator). Trunk: see `git log -1 origin/mai
 
 ## Owner's queue (≤ 3)
 
-1. *(decided)* Track 0-1: coordinator + subagent, before the farm build.
+1. 0-1: retire 19 + re-freeze 4 (recommended), or re-freeze all 34 on the champion (~4–6 h)?
+2. D-3: charter **Candidate 3b** (Candidate 3 + the "stuck holder" release, one bounded build) — after codex_1's review, yes/no?
+3. D-2's proof inputs (1.3 MB in `/tmp` on the VM): keep out-of-tree, or let them go?
 2. (when it lands) T-1's first table — read it; it decides F-2.
 3. **Candidate 3's diff is on `main` now** — `readable/diffs/candidate-3-keep-your-goal.diff` (+927/−9) with the packet `claude_1/cure3/g1-packet-2026-08-26.md`: the code read you asked for, and your verdict on it as code (the code-control goal), independent of its score.
