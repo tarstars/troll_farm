@@ -1,4 +1,7 @@
 import sys
+import gzip
+import json
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -33,6 +36,38 @@ class P4bUnitTests(unittest.TestCase):
             self.assertTrue(p.concrete(target))
         for target in ("NONE", "ABSENT", "IRON(1,2)"):
             self.assertFalse(p.concrete(target))
+
+    def archive(self, commands):
+        tmp = tempfile.NamedTemporaryFile(suffix=".jsonl.gz", delete=False)
+        tmp.close()
+        row = {"map_id": "m000", "seat": 0,
+               "artifacts": {"candidate_commands": commands}}
+        with gzip.open(tmp.name, "wt", encoding="utf-8") as fh:
+            fh.write(json.dumps(row) + "\n")
+        return Path(tmp.name)
+
+    def test_none_is_not_applicable_with_banner_msg(self):
+        path = self.archive("MSG readable_banner;WAIT\nWAIT\n")
+        try:
+            result = p.evaluate_not_applicable(path)
+            self.assertEqual(result["status"], "NOT_APPLICABLE")
+            self.assertEqual(result["errors"], [])
+        finally:
+            path.unlink()
+
+    def test_none_fails_closed_on_narrate_payload(self):
+        path = self.archive("MSG NARRATE v4 t=1;WAIT\n")
+        try:
+            result = p.evaluate_not_applicable(path)
+            self.assertEqual(result["status"], "GATE_UNREADY")
+            self.assertEqual(len(result["errors"]), 1)
+        finally:
+            path.unlink()
+
+    def test_not_applicable_comparison_is_explicit(self):
+        na = {"status": "NOT_APPLICABLE", "unit_rows": [], "failed_units": []}
+        ready = {"status": "READY", "unit_rows": [], "failed_units": []}
+        self.assertEqual(p.compare(ready, na)["status"], "NOT_APPLICABLE")
 
 
 if __name__ == "__main__":

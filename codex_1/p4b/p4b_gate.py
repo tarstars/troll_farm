@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Evaluate the accepted P4b per-troll stall definition on v4 panel archives."""
+"""Evaluate the accepted P4b per-troll stall definition across narrator dialects."""
 from __future__ import annotations
 
 import argparse
 import collections
 import gzip
 import hashlib
+import importlib
 import json
 import sys
 from pathlib import Path
@@ -77,7 +78,36 @@ def archive_sha(path: Path) -> str:
     return h.hexdigest()
 
 
-def evaluate(path: Path, td, n4) -> dict:
+def narrator_fragments(line: str) -> list[str]:
+    """Return MSG fragments that actually contain a NARRATE payload."""
+    return [frag for frag in line.split(";")
+            if frag.lstrip().upper().startswith("MSG ") and "NARRATE" in frag.split()]
+
+
+def evaluate_not_applicable(path: Path) -> dict:
+    """Validate an explicitly narrator-less arm without inventing P4b observations."""
+    errors, games, map_seats = [], 0, collections.Counter()
+    with gzip.open(path, "rt", encoding="utf-8") as fh:
+        for row_number, line in enumerate(fh, 1):
+            game = json.loads(line)
+            games += 1
+            map_seats[game["map_id"]] += 1
+            commands = game["artifacts"]["candidate_commands"]
+            narrated = sum(bool(narrator_fragments(command))
+                           for command in commands.rstrip("\n").split("\n"))
+            if narrated:
+                errors.append(f"row {row_number} {game['map_id']}:{game['seat']}: "
+                              f"declared none but found {narrated} NARRATE turns")
+    return {"archive": str(path), "archive_sha256": archive_sha(path), "dialect": "none",
+            "status": "GATE_UNREADY" if errors else "NOT_APPLICABLE",
+            "reason": ("declared narrator-less arm contains NARRATE telemetry" if errors else
+                       "arm explicitly declared narrator-less; P4b wire gate does not apply"),
+            "errors": errors, "games": games, "map_ids": len(map_seats),
+            "both_seats_per_map": bool(map_seats) and all(v == 2 for v in map_seats.values()),
+            "totals": {}, "failed_units": [], "failed_games": [], "unit_rows": []}
+
+
+def evaluate(path: Path, td, narrator, dialect: str) -> dict:
     games, unit_rows, errors = [], [], []
     seen_games, map_seats = set(), collections.Counter()
     totals = collections.Counter()
@@ -95,12 +125,12 @@ def evaluate(path: Path, td, n4) -> dict:
         telemetry = {}
         branches = {}
         for index, line in enumerate(lines, 1):
-            msgs = n4.msg_fragments(line)
+            msgs = narrator.msg_fragments(line)
             if len(msgs) != 1:
                 errors.append(f"{game_key} turn {index}: {len(msgs)} telemetry rows")
                 continue
             try:
-                turn, units, _, _, _ = n4.decode(msgs[0].strip())
+                turn, units, _, _, _ = narrator.decode(msgs[0].strip())
             except Exception as exc:
                 errors.append(f"{game_key} turn {index}: telemetry decode: {exc}")
                 continue
@@ -204,7 +234,7 @@ def evaluate(path: Path, td, n4) -> dict:
                           "p4b_failure": bool(r["episodes"]),
                           "longest_run": r["longest_all_available_progress_free_run"],
                           "explanation": ("P4b episode" if r["episodes"] else "run below W")})
-    return {"archive": str(path), "archive_sha256": archive_sha(path),
+    return {"archive": str(path), "archive_sha256": archive_sha(path), "dialect": dialect,
             "status": "GATE_UNREADY" if errors else "READY", "errors": errors,
             "games": len(games), "map_ids": len(map_seats),
             "both_seats_per_map": all(v == 2 for v in map_seats.values()),
@@ -223,6 +253,11 @@ def unit_key(row):
 
 
 def compare(base: dict, candidate: dict) -> dict:
+    if base["status"] == "NOT_APPLICABLE" or candidate["status"] == "NOT_APPLICABLE":
+        return {"status": "NOT_APPLICABLE", "reason": "one or both arms are narrator-less",
+                "roster_lifetime_mismatches": [], "added_unit_keys": [],
+                "removed_unit_keys": [], "added_game_keys": [], "removed_game_keys": [],
+                "common_failure_longest_deltas": []}
     b_life = {unit_key(r): r["alive_interval"] for r in base["unit_rows"]}
     c_life = {unit_key(r): r["alive_interval"] for r in candidate["unit_rows"]}
     mismatch = []
@@ -246,36 +281,60 @@ def compare(base: dict, candidate: dict) -> dict:
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--module-root", required=True, help="root containing banana-restoration-r2 and narrate4")
+    ap.add_argument("--module-root", required=True,
+                    help="root containing banana-restoration-r2 and narrate4/5/6")
     ap.add_argument("--arm", action="append", required=True, help="LABEL=archive.jsonl.gz")
+    ap.add_argument("--dialect", action="append", required=True,
+                    help="LABEL=v4|v5|v6|none; required for every --arm")
     ap.add_argument("--base", default="champion")
     ap.add_argument("--json", required=True)
     args = ap.parse_args(argv)
     root = Path(args.module_root)
-    sys.path[:0] = [str(root / "banana-restoration-r2"), str(root / "narrate4")]
+    sys.path[:0] = [str(root / "banana-restoration-r2")]
     import trace_detectors as td
-    import narrate4 as n4
     arms = dict(item.split("=", 1) for item in args.arm)
-    evaluated = {label: evaluate(Path(path), td, n4) for label, path in sorted(arms.items())}
+    dialects = dict(item.split("=", 1) for item in args.dialect)
+    if set(dialects) != set(arms):
+        raise SystemExit(f"--dialect labels {sorted(dialects)} do not match --arm labels "
+                         f"{sorted(arms)}")
+    unknown = sorted({value for value in dialects.values()} - {"v4", "v5", "v6", "none"})
+    if unknown:
+        raise SystemExit(f"unsupported dialect(s): {unknown}")
+    narrators = {}
+    for dialect in sorted(set(dialects.values()) - {"none"}):
+        sys.path.insert(0, str(root / f"narrate{dialect[1:]}"))
+        narrators[dialect] = importlib.import_module(f"narrate{dialect[1:]}")
+    evaluated = {}
+    for label, path in sorted(arms.items()):
+        dialect = dialects[label]
+        evaluated[label] = (evaluate_not_applicable(Path(path)) if dialect == "none" else
+                            evaluate(Path(path), td, narrators[dialect], dialect))
     if args.base not in evaluated:
         raise SystemExit(f"base arm {args.base!r} not supplied")
     comparisons = {label: compare(evaluated[args.base], row) for label, row in evaluated.items()
                    if label != args.base}
+    applicable = [r for r in evaluated.values() if r["status"] != "NOT_APPLICABLE"]
     poison = evaluated.get("poison_a", {})
     k1 = next((r for r in poison.get("failed_units", [])
                if unit_key(r) == ("m014", 1, 2) and r["longest"] >= 60), None)
+    controls = {"K1_m014_seat1_unit2": {"applicable": bool(poison),
+                                         "pass": k1 is not None, "row": k1},
+                "K3_tripwire_clear": all(not r["tripwire_45"] for r in applicable),
+                "K5_exact_240": all(r["games"] == 240 and r["map_ids"] == 120 and
+                                    r["both_seats_per_map"] for r in evaluated.values()),
+                "all_applicable_arms_ready": all(r["status"] == "READY" for r in applicable)}
     packet = {"schema": "p4b-g1/1", "definition": {"W": W, "k": K, "tripwire": TRIPWIRE},
               "arms": evaluated, "comparisons": comparisons,
-              "controls": {"K1_m014_seat1_unit2": {"pass": k1 is not None, "row": k1},
-                           "K3_tripwire_clear": all(not r["tripwire_45"] for r in evaluated.values()),
-                           "K5_exact_240": all(r["games"] == 240 and r["map_ids"] == 120 and
-                                               r["both_seats_per_map"] for r in evaluated.values()),
-                           "all_arms_ready": all(r["status"] == "READY" for r in evaluated.values())}}
+              "controls": controls}
     Path(args.json).write_text(json.dumps(packet, indent=2, sort_keys=True) + "\n")
     print(json.dumps({"controls": packet["controls"],
                       "failed_units": {k: len(v["failed_units"]) for k, v in evaluated.items()},
                       "comparisons": {k: v["status"] for k, v in comparisons.items()}}, indent=2))
-    return 0 if all(packet["controls"].values()) else 2
+    required = [controls["K3_tripwire_clear"], controls["K5_exact_240"],
+                controls["all_applicable_arms_ready"]]
+    if controls["K1_m014_seat1_unit2"]["applicable"]:
+        required.append(controls["K1_m014_seat1_unit2"]["pass"])
+    return 0 if all(required) else 2
 
 
 if __name__ == "__main__":
