@@ -1,0 +1,427 @@
+{
+  "candidate3_wins": 208,
+  "candidate3b_wins": 208,
+  "changed_games_commands": 78,
+  "changed_games_own_score": 33,
+  "containment_first_differing": [],
+  "containment_games_differing": 0,
+  "containment_score_identical": true,
+  "games": 240,
+  "games_won_by_3_lost_by_3b": [],
+  "gates": {
+    "0_probe_parity": true,
+    "1_containment_ruleoff_byte_identical": true,
+    "2_xc_zero_on_loop_games": true,
+    "3_own_score_outside_m061_at_least_20": true,
+    "4_m061_within_10_of_champion": false,
+    "5_no_candidate3_win_lost": true,
+    "6_ka_max_below_60": false,
+    "8_every_changed_game_named": true
+  },
+  "gates_failed": [
+    "4_m061_within_10_of_champion",
+    "6_ka_max_below_60"
+  ],
+  "ka_max_by_game_top": {
+    "m005:0": 59,
+    "m029:1": 57,
+    "m034:0": 56,
+    "m051:0": 57,
+    "m061:1": 78,
+    "m068:0": 82,
+    "m068:1": 88,
+    "m089:0": 65,
+    "m092:1": 68,
+    "m096:0": 67
+  },
+  "ka_max_over_panel": 88,
+  "loop_games_xc": {
+    "m078:0": 0,
+    "m090:0": 0,
+    "m090:1": 0,
+    "m118:1": 0
+  },
+  "m061": {
+    "m061:0": {
+      "candidate3": 32,
+      "candidate3b": 32,
+      "champion": 75,
+      "gap": -43
+    },
+    "m061:1": {
+      "candidate3": 35,
+      "candidate3b": 35,
+      "champion": 82,
+      "gap": -47
+    }
+  },
+  "own_score_delta_outside_m061": 25,
+  "own_score_delta_total": -65,
+  "own_score_deltas": [
+    {
+      "candidate3b": 17,
+      "class": "water_diagonal",
+      "delta_own_points": -2,
+      "map": "m001",
+      "profile": "idle",
+      "rs_fires": 0,
+      "ruleoff": 19,
+      "seat": 1
+    },
+    {
+      "candidate3b": 16,
+      "class": "orchard_eligible",
+      "delta_own_points": 4,
+      "map": "m004",
+      "profile": "idle",
+      "rs_fires": 0,
+      "ruleoff": 12,
+      "seat": 0
+    },
+    {
+      "candidate3b": 21,
+      "class": "multi_door",
+      "delta_own_points": -8,
+      "map": "m005",
+      "profile": "chopper_aggressor",
+      "rs_fires": 0,
+      "ruleoff": 29,
+      "seat": 0
+    },
+    {
+      "candidate3b": 12,
+      "class": "multi_door",
+      "delta_own_points": -7,
+      "map": "m005",
+      "profile": "chopper_aggressor",
+      "rs_fires": 0,
+      "ruleoff": 19,
+      "seat": 1
+    },
+    {
+      "candidate3b": 92,
+      "class": "forest_dense",
+      "delta_own_points": 5,
+      "map": "m007",
+      "profile": "idle",
+      "rs_fires": 0,
+      "ruleoff": 87,
+      "seat": 1
+    },
+    {
+      "candidate3b": 13,
+      "class": "single_door_tent",
+      "delta_own_points": -3,
+      "map": "m012",
+      "profile": "chopper_aggressor",
+      "rs_fires": 0,
+      "ruleoff": 16,
+      "seat": 1
+    },
+    {
+      "candidate3b": 20,
+      "class": "orchard_eligible",
+      "delta_own_points": 8,
+      "map": "m014",
+      "profile": "idle",
+      "rs_fires": 0,
+      "ruleoff": 12,
+      "seat": 1
+    },
+    {
+      "candidate3b": 22,
+      "class": "choke_corridor",
+      "delta_own_points": 4,
+      "map": "m021",
+      "profile": "idle",
+      "rs_fires": 0,
+      "ruleoff": 18,
+      "seat": 0
+    },
+    {
+      "candidate3b": 20,
+      "class": "water_diagonal",
+      "delta_own_points": -5,
+      "map": "m028",
+      "profile": "chopper_aggressor",
+      "rs_fires": 0,
+      "ruleoff": 25,
+      "seat": 0
+    },
+    {
+      "candidate3b": 29,
+      "class": "water_diagonal",
+      "delta_own_points": 4,
+      "map": "m028",
+      "profile": "chopper_aggressor",
+      "rs_fires": 0,
+      "ruleoff": 25,
+      "seat": 1
+    },
+    {
+      "candidate3b": 61,
+      "class": "forest_dense",
+      "delta_own_points": 8,
+      "map": "m031",
+      "profile": "idle",
+      "rs_fires": 0,
+      "ruleoff": 53,
+      "seat": 0
+    },
+    {
+      "candidate3b": 68,
+      "class": "forest_dense",
+      "delta_own_points": -1,
+      "map": "m031",
+      "profile": "idle",
+      "rs_fires": 0,
+      "ruleoff": 69,
+      "seat": 1
+    },
+    {
+      "candidate3b": 88,
+      "class": "forest_dense",
+      "delta_own_points": -4,
+      "map": "m040",
+      "profile": "harvester",
+      "rs_fires": 0,
+      "ruleoff": 92,
+      "seat": 0
+    },
+    {
+      "candidate3b": 34,
+      "class": "choke_corridor",
+      "delta_own_points": 8,
+      "map": "m046",
+      "profile": "harvester",
+      "rs_fires": 0,
+      "ruleoff": 26,
+      "seat": 0
+    },
+    {
+      "candidate3b": 35,
+      "class": "open_field",
+      "delta_own_points": -1,
+      "map": "m051",
+      "profile": "idle",
+      "rs_fires": 0,
+      "ruleoff": 36,
+      "seat": 1
+    },
+    {
+      "candidate3b": 20,
+      "class": "choke_corridor",
+      "delta_own_points": 1,
+      "map": "m053",
+      "profile": "harvester",
+      "rs_fires": 0,
+      "ruleoff": 19,
+      "seat": 0
+    },
+    {
+      "candidate3b": 20,
+      "class": "choke_corridor",
+      "delta_own_points": -1,
+      "map": "m053",
+      "profile": "harvester",
+      "rs_fires": 0,
+      "ruleoff": 21,
+      "seat": 1
+    },
+    {
+      "candidate3b": 33,
+      "class": "open_field",
+      "delta_own_points": 4,
+      "map": "m058",
+      "profile": "chopper_aggressor",
+      "rs_fires": 0,
+      "ruleoff": 29,
+      "seat": 1
+    },
+    {
+      "candidate3b": 32,
+      "class": "choke_corridor",
+      "delta_own_points": -43,
+      "map": "m061",
+      "profile": "idle",
+      "rs_fires": 1,
+      "ruleoff": 75,
+      "seat": 0
+    },
+    {
+      "candidate3b": 35,
+      "class": "choke_corridor",
+      "delta_own_points": -47,
+      "map": "m061",
+      "profile": "idle",
+      "rs_fires": 1,
+      "ruleoff": 82,
+      "seat": 1
+    },
+    {
+      "candidate3b": 25,
+      "class": "water_diagonal",
+      "delta_own_points": 6,
+      "map": "m062",
+      "profile": "chopper_aggressor",
+      "rs_fires": 0,
+      "ruleoff": 19,
+      "seat": 0
+    },
+    {
+      "candidate3b": 76,
+      "class": "forest_dense",
+      "delta_own_points": 16,
+      "map": "m068",
+      "profile": "chopper_aggressor",
+      "rs_fires": 0,
+      "ruleoff": 60,
+      "seat": 0
+    },
+    {
+      "candidate3b": 60,
+      "class": "forest_dense",
+      "delta_own_points": -6,
+      "map": "m068",
+      "profile": "chopper_aggressor",
+      "rs_fires": 0,
+      "ruleoff": 66,
+      "seat": 1
+    },
+    {
+      "candidate3b": 24,
+      "class": "choke_corridor",
+      "delta_own_points": 4,
+      "map": "m070",
+      "profile": "harvester",
+      "rs_fires": 0,
+      "ruleoff": 20,
+      "seat": 1
+    },
+    {
+      "candidate3b": 32,
+      "class": "forest_sparse",
+      "delta_own_points": 8,
+      "map": "m079",
+      "profile": "harvester",
+      "rs_fires": 0,
+      "ruleoff": 24,
+      "seat": 0
+    },
+    {
+      "candidate3b": 68,
+      "class": "forest_dense",
+      "delta_own_points": -1,
+      "map": "m080",
+      "profile": "harvester",
+      "rs_fires": 0,
+      "ruleoff": 69,
+      "seat": 0
+    },
+    {
+      "candidate3b": 18,
+      "class": "single_door_tent",
+      "delta_own_points": 4,
+      "map": "m084",
+      "profile": "idle",
+      "rs_fires": 0,
+      "ruleoff": 14,
+      "seat": 1
+    },
+    {
+      "candidate3b": 48,
+      "class": "forest_dense",
+      "delta_own_points": -16,
+      "map": "m092",
+      "profile": "chopper_aggressor",
+      "rs_fires": 0,
+      "ruleoff": 64,
+      "seat": 0
+    },
+    {
+      "candidate3b": 60,
+      "class": "forest_dense",
+      "delta_own_points": 14,
+      "map": "m092",
+      "profile": "chopper_aggressor",
+      "rs_fires": 0,
+      "ruleoff": 46,
+      "seat": 1
+    },
+    {
+      "candidate3b": 68,
+      "class": "forest_dense",
+      "delta_own_points": -8,
+      "map": "m107",
+      "profile": "idle",
+      "rs_fires": 0,
+      "ruleoff": 76,
+      "seat": 0
+    },
+    {
+      "candidate3b": 25,
+      "class": "choke_corridor",
+      "delta_own_points": -8,
+      "map": "m118",
+      "profile": "chopper_aggressor",
+      "rs_fires": 0,
+      "ruleoff": 33,
+      "seat": 0
+    },
+    {
+      "candidate3b": 67,
+      "class": "forest_dense",
+      "delta_own_points": -1,
+      "map": "m119",
+      "profile": "harvester",
+      "rs_fires": 0,
+      "ruleoff": 68,
+      "seat": 0
+    },
+    {
+      "candidate3b": 68,
+      "class": "forest_dense",
+      "delta_own_points": -1,
+      "map": "m119",
+      "profile": "harvester",
+      "rs_fires": 0,
+      "ruleoff": 69,
+      "seat": 1
+    }
+  ],
+  "probe_parity_first_differing": [],
+  "probe_parity_games_differing": 0,
+  "rs_fires_by_game": {
+    "m061:0": 1,
+    "m061:1": 1
+  },
+  "rs_total": 2,
+  "telemetry_errors": 0,
+  "telemetry_errors_sample": [],
+  "verdict": "FAIL",
+  "vs_candidate3": [
+    {
+      "commands_identical": false,
+      "delta_vs_candidate3": 0,
+      "map": "m061",
+      "rs_fires": 1,
+      "seat": 0
+    },
+    {
+      "commands_identical": false,
+      "delta_vs_candidate3": 0,
+      "map": "m061",
+      "rs_fires": 1,
+      "seat": 1
+    }
+  ],
+  "vs_candidate3_games_touched": 2,
+  "vs_candidate3_score_total": 0,
+  "xc_by_game": {
+    "m005:1": 1,
+    "m040:1": 1,
+    "m061:1": 2,
+    "m068:0": 1,
+    "m068:1": 1
+  }
+}

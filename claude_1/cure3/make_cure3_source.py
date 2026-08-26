@@ -1172,11 +1172,14 @@ TAIL_NEW = """                // Which units the door clearance REPLACED the lis
             }"""
 
 
-def main() -> int:
-    base = BASE.read_text()
-    sha = hashlib.sha256(base.encode()).hexdigest()
-    if sha != BASE_SHA:
-        raise GenError(f"base {BASE} is {sha}, expected {BASE_SHA} — refuse to guess")
+def build_text(base: str) -> str:
+    """The thirteen anchored replacements, in order — Candidate 3's source and nothing else.
+
+    Split out of `main` so that Candidate 3b's generator
+    (`claude_1/cure3b/make_cure3b_source.py`) can build on this exact text instead of copying it.
+    Candidate 3's own output is unchanged by the split: `main` calls this and writes the same
+    bytes, which `make_cure3b_source.py --check-parent` re-verifies against the recorded sha.
+    """
     text = base
     text = replace_once(text, FLAGS_OLD, FLAGS_NEW, "flag block")
     text = replace_once(text, META_OLD, META_NEW, "KeepMeta")
@@ -1191,6 +1194,21 @@ def main() -> int:
     text = replace_once(text, RELEASE_OLD, RELEASE_NEW, "release call")
     text = replace_once(text, BANNER_OLD, BANNER_NEW, "banner")
     text = replace_once(text, TAIL_OLD, TAIL_NEW, "commands tail")
+    return text
+
+
+def load_base() -> str:
+    base = BASE.read_text()
+    sha = hashlib.sha256(base.encode()).hexdigest()
+    if sha != BASE_SHA:
+        raise GenError(f"base {BASE} is {sha}, expected {BASE_SHA} — refuse to guess")
+    return base
+
+
+def main() -> int:
+    base = load_base()
+    sha = hashlib.sha256(base.encode()).hexdigest()
+    text = build_text(base)
     OUT.write_text(text)
     out_sha = hashlib.sha256(text.encode()).hexdigest()
     print(f"  base   {BASE.relative_to(REPO)}  sha256 {sha[:16]}  {len(base.splitlines())} lines")

@@ -1,0 +1,149 @@
+--- claude_1/cure3/cure3-keep-v6.rs	2026-08-26 15:17:21.310320057 +0000
++++ claude_1/cure3b/cure3b-keep-v7.rs	2026-08-26 15:18:35.081270576 +0000
+@@ -472,6 +472,10 @@
+         // is without a consumer and no consumed field is off the grammar (r6 C3).
+         #[derive(Clone, Debug, Default)]
+         struct KeepMeta {
++            // Candidate 3b: releases by rule iii (stuck holder). Counted into `kr` like every
++            // other cause, which is why v7's census equation carries an `rs` term and v6's
++            // cannot. Identically 0 in an arm with `STUCK_RELEASE_ENABLED = false`.
++            rs: u32,
+             kp: u32,
+             kq: u32,
+             kl: u32,
+@@ -574,6 +578,10 @@
+             kept_kinds: BTreeMap<i32, PlantKind>,
+             last_command: BTreeMap<i32, String>,
+             last_cell: BTreeMap<i32, Cell>,
++            // Candidate 3b: (turn, cell, worked) per own troll, most recent last, at most
++            // STUCK_WINDOW entries. Written once per turn in `record_kept_goals`, read only by
++            // `stuck_holder`.
++            move_trace: BTreeMap<i32, Vec<(i32, Cell, bool)>>,
+         }
+         #[derive(Clone, Copy)]
+         struct PredictedTree {
+@@ -599,7 +607,18 @@
+             //
+             // `build_arms3.py` rewrites exactly the line below to make the three arms, and
+             // nothing else differs between them.
+-            const KEEP_RULE_ENABLED: bool = true; const NARRATE_V6_ENABLED: bool = true;
++            // ------------------------------------------------------------- Candidate 3b
++            // Task 20260826-candidate-3b-stuck-holder-release, owner-chartered 15:45Z.
++            // `STUCK_RELEASE_ENABLED` adds ONE release cause to R5(a) -- rule iii of D-3's read
++            // §4(d) -- and changes nothing else. The two window constants below are the rule as
++            // measured; they are not knobs and no other value was tried.
++            const KEEP_RULE_ENABLED: bool = true; const NARRATE_V6_ENABLED: bool = true; const STUCK_RELEASE_ENABLED: bool = true;
++            // 20 turns, at most 2 distinct cells, no work command in the window.
++            const STUCK_WINDOW: i32 = 20;
++            const STUCK_CELLS: usize = 2;
++            // The work set of D-3's probe (`fixprobe.py:32`), verbatim. A holder that swung an
++            // axe or moved fruit inside the window is working, not stuck, however little it moved.
++            const STUCK_WORK: [&'static str; 5] = ["CHOP", "HARVEST", "DROP", "PLANT", "PICK"];
+             // Ruled at G-0 and NOT a knob: a Tree goal is done on CHOP *or* HARVEST at the cell
+             // with the carry full (r5 F1, ruled `true` by codex_1 20260826T122017Z).
+             const DONE_ON_HARVEST: bool = true;
+@@ -1240,6 +1259,7 @@
+                     kept_kinds: BTreeMap::new(),
+                     last_command: BTreeMap::new(),
+                     last_cell: BTreeMap::new(),
++                    move_trace: BTreeMap::new(),
+                 }
+             }
+             pub fn tuned_carry_regeneration_transit_idle_harvest() -> Self {
+@@ -2298,9 +2318,55 @@
+                         self.forget_goal(id);
+                         meta.rd += 1;
+                         meta.kr += 1;
++                        continue;
++                    }
++                    // ---- rule iii, Candidate 3b -------------------------------------------
++                    if MoisanBot::STUCK_RELEASE_ENABLED && self.stuck_holder(view, unit.id) {
++                        self.forget_goal(id);
++                        meta.rs += 1;
++                        meta.kr += 1;
+                     }
+                 }
+             }
++            // A holder is stuck when the last STUCK_WINDOW turns it actually played sit on at
++            // most STUCK_CELLS distinct cells and contain no work command. Three ways to decline,
++            // all of them silent and all of them deliberate:
++            //   * the goal is younger than the window -- the window would reach back before the
++            //     goal existed, which is a different unit's history, not this goal's;
++            //   * the trace holds fewer than STUCK_WINDOW entries, or its entries are not the
++            //     consecutive turns `t-STUCK_WINDOW .. t-1` -- a gap means the unit emitted
++            //     nothing on some turn and the window is not what it claims to be;
++            //   * any entry in the window carries a work command.
++            fn stuck_holder(&self, view: &GameState, id: i32) -> bool {
++                let window = MoisanBot::STUCK_WINDOW;
++                let since = match self.kept_since.get(&id) {
++                    Some(turn) => *turn,
++                    None => return false,
++                };
++                if view.turn - since < window {
++                    return false;
++                }
++                let trace = match self.move_trace.get(&id) {
++                    Some(trace) => trace,
++                    None => return false,
++                };
++                if trace.len() < window as usize {
++                    return false;
++                }
++                let span = &trace[trace.len() - window as usize..];
++                for (offset, entry) in span.iter().enumerate() {
++                    if entry.0 != view.turn - window + offset as i32 {
++                        return false;
++                    }
++                    if entry.2 {
++                        return false;
++                    }
++                }
++                let mut cells: Vec<Cell> = span.iter().map(|entry| entry.1).collect();
++                cells.sort();
++                cells.dedup();
++                cells.len() <= MoisanBot::STUCK_CELLS
++            }
+             fn forget_goal(&mut self, id: i32) {
+                 self.kept_goals.remove(&id);
+                 self.kept_since.remove(&id);
+@@ -2730,6 +2796,15 @@
+                         Some(command) => {
+                             self.last_command.insert(*id, command.clone());
+                             self.last_cell.insert(*id, unit.cell);
++                            let verb = command.split_whitespace().next().unwrap_or("");
++                            let worked = MoisanBot::STUCK_WORK.contains(&verb);
++                            let trace = self.move_trace.entry(*id).or_insert_with(Vec::new);
++                            trace.push((view.turn, unit.cell, worked));
++                            let window = MoisanBot::STUCK_WINDOW as usize;
++                            if trace.len() > window {
++                                let excess = trace.len() - window;
++                                trace.drain(0..excess);
++                            }
+                         }
+                         None => {
+                             self.last_command.remove(id);
+@@ -2764,6 +2839,7 @@
+                     .collect();
+                 self.last_command.retain(|id, _| alive.contains(id));
+                 self.last_cell.retain(|id, _| alive.contains(id));
++                self.move_trace.retain(|id, _| alive.contains(id));
+             }
+             // ---- the v6 wire -----------------------------------------------------------------
+             // Reads only. Nothing here decides anything. v6 is v5's payload with `m=` deleted --
+@@ -2828,7 +2904,7 @@
+                     .map(|unit| unit.id)
+                     .collect();
+                 ids.sort();
+-                let mut tokens: Vec<String> = vec![format!("NARRATE v6 t={}", view.turn)];
++                let mut tokens: Vec<String> = vec![format!("NARRATE v7 t={}", view.turn)];
+                 for id in ids {
+                     let chosen = MoisanBot::command_for_unit(commands, id)
+                         .and_then(|command| {
+@@ -2877,6 +2953,7 @@
+                 tokens.push(format!("rg={}", meta.rg));
+                 tokens.push(format!("ri={}", meta.ri));
+                 tokens.push(format!("rx={}", meta.rx));
++                tokens.push(format!("rs={}", meta.rs));
+                 tokens.push(format!("rf={}", meta.rf));
+                 tokens.push(format!("rt={}", meta.rt));
+                 tokens.push(format!("ro={}", meta.ro));

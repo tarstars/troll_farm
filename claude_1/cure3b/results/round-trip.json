@@ -1,0 +1,22 @@
+{
+  "arms": {
+    "candidate": "b50084b96f5b510d02333c8f907df74bfb5b7a391ec63273a12b64698b62f977",
+    "instrument": "6cbd3b5a55cc279fe5b7bdbe95c30c3bfcc2f493dfbc9629b1680d93ff4cf126",
+    "ruleoff": "8823a21f9061c3efe2ef0acea6167a4d4eb397727889456a7c3b1d6688c126d6"
+  },
+  "champion": "readable/door1-champion.rs",
+  "champion_sha256": "ad1ae4eff70a5569e03e2149882bb22510746f4f8592907a5dfb936943ef0bfb",
+  "check": "round-trip identity: regenerating the source from the generator reproduces it byte for byte",
+  "diffs": {
+    "readable/diffs/candidate-3b-stuck-holder-release.diff": "cba3aff77ae4be5f5b3179815af3963898269327f7a0fef57edf8d6aad9a5bcf",
+    "readable/diffs/candidate-3b-vs-champion.diff": "e2ace6f2279c01bb11f9a535bd7256290311fe854d2baa66835fd86269a50d99"
+  },
+  "identical": true,
+  "narrate6_unchanged": true,
+  "parent_sha256": "01b61444a109c1d190fba5b0a103c861c6f9e772596e97cf9042b9b2c516b3b3",
+  "parent_source": "claude_1/cure3/cure3-keep-v6.rs",
+  "sha256_after": "6cbd3b5a55cc279fe5b7bdbe95c30c3bfcc2f493dfbc9629b1680d93ff4cf126",
+  "sha256_before": "6cbd3b5a55cc279fe5b7bdbe95c30c3bfcc2f493dfbc9629b1680d93ff4cf126",
+  "source": "claude_1/cure3b/cure3b-keep-v7.rs",
+  "task": "20260826-candidate-3b-stuck-holder-release"
+}
