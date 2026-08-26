@@ -26,7 +26,8 @@ where and why.
 - **Planting:** a troll plants on its own cell; a seed is one fruit of that type; planting is free of any other cost. The starting inventory in the shack holds fruit of all types (expected 24 in total, drawn at random and mirrored — line 21–23), so the first seeds are available at turn 1 via PICK from the shack.
 - **Training:** the second troll costs, per talent, (number of existing trolls) + talent² of each fruit: plums for speed, lemons for capacity, apples for harvest power, iron for chop power; bananas and wood are never a training cost (line 89–91). A capacity-2 second troll = 5 lemons + 2 plums + 2 apples + 2 iron.
 - **No fruit→wood conversion action exists.** "Late conversion" means planting the fruit and chopping the tree. It pays down to about ten turns before the end (a size-1 tree chopped = 4 points vs 1 banked).
-- Game length 200 turns.
+- **Game length: 300 turns** (corrected 2026-08-26 20:25Z — the contract first said 200; claude_1's F-2 packet measured 301 keyframes in 266 of 290 replays and the champion's own endgame gate is `turn > 250`). The late wave therefore has far more room than "ten turns before the end" suggested.
+- Capacity and wood: `docs/mechanics.md` line 61–62 ("Wood = 1 fruit then full") reads as *one unit of wood fills a troll whatever its capacity*; if so, capacity 2 helps only the seed/fruit trips, not the wood leg. The design packet may take either reading with its evidence.
 
 ## 2. The stages, as the owner ordered them
 

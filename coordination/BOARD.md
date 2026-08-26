@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-26T20:05Z
+Last updated: 2026-08-26T20:25Z (cron wake 1)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -25,7 +25,7 @@ Last updated: 2026-08-26T20:05Z
 | # | task | owner | stage | next concrete step | blocked on | budget left | last evidence |
 |---|---|---|---|---|---|---|---|
 | F-1 | Who ate the b100 farm? (`coordination/tasks/20260826-track-f-b100-theft-split.md`) | codex_1 (claude_1 reviewed) | **STOPPED under its dead condition 14:22Z; F-G1 ACCEPT-WITH-EDIT, edits published 14:41Z** — the corpus holds only 4 of the b100's 98 ladder games (the first batch, score still 0.0) and no per-turn detail; from the permitted checkpoint file: 98 games, mean margin +4.6, 49 losses, worst −348 — wins narrowly, loses catastrophically. **The theft-vs-own-crop split cannot be measured from what we kept**; with T-2 it becomes measurable on the 4 games only. | closed; re-ask on fresh instrumented games (0-3a/0-3) | — | spent | 14:41Z |
-| F-2 | **Banana wood farm candidate** (`coordination/tasks/20260826-banana-farm-candidate.md`; design input `docs/BANANA-FARM-CONTRACT-2026-08-26.md`) | claude_1 (design → build → panel); codex_1 (≤ 2 design rounds, 1 reproduction) | **Design** (chartered 19:55Z, owner: create it and queue it) | design packet tonight (aim rule, latch threshold + round K from the turn corpus, state machine, pre-committed gates) → codex_1 → build → one panel (validity first) → slot 3 | — | ≤ 2 rounds, 1 build, 1 panel, 1 ladder block | 19:55Z |
+| F-2 | **Banana wood farm candidate** (`coordination/tasks/20260826-banana-farm-candidate.md`; contract `docs/BANANA-FARM-CONTRACT-2026-08-26.md`) | claude_1 (design → build → panel); codex_1 (≤ 2 rounds, 1 reproduction) | **Design round 1 DELIVERED 20:15Z** — `claude_1/farm/g0-farm-2026-08-26.md`: latch at ring-pressure ratio > 1.0 over 60 turns (leaders' median 0.21, tail 3–16), K = 2 rounds with a denial deadline at turn 120, ring degrades to what is walkable (4/3/2/1 orthogonal cells on 49/35/12/4 % of seats; a single door cell is never planted), same-turn mixed-species PLANT cancel as a gate, capacity 2 not forced; **the game is 300 turns, not 200** (contract corrected). Seven departures named in §10. | codex_1: round 1 review | codex_1 | ≤ 2 rounds, 1 build, 1 panel, 1 ladder block | 20:15Z |
 
 ## Track 0 — Instruments (a verdict that cannot be computed is a stall in disguise)
 
