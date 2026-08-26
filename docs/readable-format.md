@@ -31,3 +31,23 @@ A line figure under the canonical format may be derived on demand with
 Related, distinct tool: `claude_1/readable-source/expand_to_readable.py` is a
 whitespace-and-comments-only annotator — valid as a measurement/annotation instrument,
 not the canonical reading format.
+
+## Delivery of bot changes — owner ruling 2026-08-26 (morning)
+
+The owner wants to get acquainted with the code and read every change: **candidate changes to a
+bot are delivered as GitHub pull requests against `main`**, with the patch visible on the
+canonical readable source (a `readable/*.rs` file produced by `format_readable.py`, round-trip
+proven against its compact parent). Shape of a candidate PR:
+
+1. **Commit 1 — the readable baseline** of the base bot (no behaviour change; the round-trip
+   report beside it), if that baseline is not already on `main`.
+2. **Commit 2 — the change** on the readable file (the diff the owner reads), the regenerated
+   compact submission file under `cgauto/submissions/` with its sha256 pinned in a manifest, and
+   the panel evidence.
+3. A plain-words PR body: the question, the clause before/after, the panel table, the named
+   games, the digests, the platform plan.
+
+The owner reviews and merges (or says "merge"). Code reaches `main` by no other route. The
+formatter hazard is unchanged: `format_readable.py` writes a *new* readable file; nothing runs in
+place over `cgauto/` or `rust/src/bin/`. First instances: `20260826-candidate-0-regeneration-fallback`,
+`20260826-candidate-3-keep-your-goal`.
