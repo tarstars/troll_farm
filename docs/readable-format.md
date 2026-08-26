@@ -32,12 +32,18 @@ Related, distinct tool: `claude_1/readable-source/expand_to_readable.py` is a
 whitespace-and-comments-only annotator — valid as a measurement/annotation instrument,
 not the canonical reading format.
 
-## Delivery of bot changes — owner ruling 2026-08-26 (morning)
+## Delivery of bot changes — owner ruling 2026-08-26 (morning), amended the same morning
 
-The owner wants to get acquainted with the code and read every change: **candidate changes to a
-bot are delivered as GitHub pull requests against `main`**, with the patch visible on the
-canonical readable source (a `readable/*.rs` file produced by `format_readable.py`, round-trip
-proven against its compact parent). Shape of a candidate PR:
+The owner wants to get acquainted with the code and read every change. **Amendment (owner,
+06:10Z): "it shouldn't be exactly PRs — I want to see diffs in files."** So the deliverable of
+record is a **readable diff file in the repository**: `readable/diffs/<candidate>.diff`, a
+unified diff of the canonical readable source (base → candidate), produced from
+`format_readable.py` outputs that both pass the round-trip gate, committed on `main` and viewable
+on GitHub at `https://github.com/tarstars/troll_farm/blob/main/readable/diffs/<candidate>.diff`
+(GitHub colours `.diff` files). Beside it: the full readable candidate source
+`readable/<candidate>.rs` and its round-trip report `readable/reports/<candidate>.round-trip.json`.
+A pull request is optional and never a substitute for the diff file. The shape below stays as the
+description of what the change consists of:
 
 1. **Commit 1 — the readable baseline** of the base bot (no behaviour change; the round-trip
    report beside it), if that baseline is not already on `main`.

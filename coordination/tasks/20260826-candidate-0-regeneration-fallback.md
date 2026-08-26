@@ -48,7 +48,17 @@ included) instead of replacing it, and returns the extended list. The exact edit
 to propose at G-0 (extend vs. append order, and whether `WAIT` stays first); the intent is fixed:
 **nothing already built is discarded; nothing new is invented.** No other line changes.
 
-## Delivery — the pull request (owner ruling: changes through GitHub PRs)
+## Delivery — the readable diff file (owner amendment 06:10Z: "not exactly PRs — I want to see diffs in files"; a PR is optional)
+
+**The deliverable of record is `readable/diffs/candidate-0-regeneration-fallback.diff`** — a
+unified diff of `readable/door1-champion.rs` (now on `main`, round-trip EXACT) → the fixed readable
+source `readable/candidate-0-regeneration-fallback.rs`, beside its round-trip report and the
+regenerated compact arm. The coordinator integrates these onto `main` after codex_1's review, so
+the owner reads the diff at `https://github.com/tarstars/troll_farm/blob/main/readable/diffs/candidate-0-regeneration-fallback.diff`.
+The PR shape below is kept as the description of the change's parts; opening an actual PR is
+optional.
+
+### The original PR shape (kept as the description of the parts)
 
 1. **Readable baseline first.** `claude_1/readable-source/format_readable.py --compacted
    cgauto/submissions/candidate-door1-pure-deletion.rs --readable readable/door1-champion.rs

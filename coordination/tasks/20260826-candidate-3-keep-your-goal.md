@@ -54,7 +54,15 @@ stays its own tree and the displaced worker's goal stays its own square, so the 
 clause 6 (`target ≠ landing`) fails and no second exchange can fire — argued from the rule text
 and the recorded goals, then **measured** at G-1 when Candidate 2 is re-run on top.
 
-## Delivery — the pull request
+## Delivery — the readable diff file (owner amendment 06:10Z: "not exactly PRs — I want to see diffs in files"; a PR is optional)
+
+**The deliverable of record is `readable/diffs/candidate-3-keep-your-goal.diff`** — a unified diff
+of the base readable source (Candidate 0's, once merged; else `readable/door1-champion.rs`) → the
+readable Candidate 3 source, beside its round-trip report and the regenerated compact arm;
+integrated onto `main` by the coordinator after codex_1's review, readable on GitHub at
+`https://github.com/tarstars/troll_farm/blob/main/readable/diffs/candidate-3-keep-your-goal.diff`.
+
+### The original PR shape (kept as the description of the parts)
 
 Commit 1 (only if Candidate 0's baseline is not yet on `main`): the readable baseline. Commit 2:
 the rule on `readable/door1-champion.rs` (the diff the owner reads), the regenerated compact arm
