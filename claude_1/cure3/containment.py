@@ -26,21 +26,21 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent.parent
-for _p in ("claude_1/t1", "claude_1/pipeline", "claude_1/banana-restoration-r2"):
+for _p in ("claude_1/t1", "claude_1/pipeline", "claude_1/banana-restoration-r2",
+           "claude_1/narrate6"):
     sys.path.insert(0, str(REPO / _p))
 
 import fixture_harness as fh        # noqa: E402
 import fuzz_panel as fp             # noqa: E402
 import regression_tests as rt       # noqa: E402
 import semantic_harness as sh       # noqa: E402
+import narrate6 as n6               # noqa: E402
 
 BASE = REPO / "readable" / "door1-champion.rs"
 BASE_SHA = "ad1ae4eff70a5569e03e2149882bb22510746f4f8592907a5dfb936943ef0bfb"
 
 
-def strip_msg(line: str) -> str:
-    return ";".join(frag for frag in line.split(";")
-                    if not frag.strip().upper().startswith("MSG"))
+strip_msg = n6.strip_msg
 
 
 def referee_state(ref) -> str:
@@ -60,8 +60,10 @@ def referee_state(ref) -> str:
 def run_arm(sit, binary, cfg):
     spec = fh.spec_for(sit, cfg)
     ref = fp.make_referee(spec)
-    _transcript, commands = rt.run_binary_custom(Path(binary), ref, int(cfg["turns"]))
-    return commands.rstrip("\n").split("\n"), referee_state(ref)
+    transcript, commands = rt.run_binary_custom(Path(binary), ref, int(cfg["turns"]))
+    import trace_detectors as td
+    tr = td.build_trace(transcript, commands)
+    return commands.rstrip("\n").split("\n"), referee_state(ref), tr
 
 
 def main() -> int:
@@ -86,7 +88,8 @@ def main() -> int:
     out.parent.mkdir(parents=True, exist_ok=True)
     cfg = json.loads(fh.CONFIG.read_text())
     sits = fh.load_situations(args.only.split(",") if args.only else None)
-    rows = []
+    rows, telemetry_errors = [], []
+    census = n6.new_census()
     with tempfile.TemporaryDirectory(prefix="cure3-containment-") as wd:
         wd = Path(wd)
         base_bin, arm_bin = wd / "base.bin", wd / "arm.bin"
@@ -94,8 +97,8 @@ def main() -> int:
         sh.compile_text(arm.read_text(), arm_bin, crate="cure3_arm")
         for sit in sits:
             sid = sit["id"]
-            base_lines, base_state = run_arm(sit, base_bin, cfg)
-            arm_lines, arm_state = run_arm(sit, arm_bin, cfg)
+            base_lines, base_state, _ = run_arm(sit, base_bin, cfg)
+            arm_lines, arm_state, arm_trace = run_arm(sit, arm_bin, cfg)
             stripped = [strip_msg(line) for line in arm_lines]
             base_stripped = [strip_msg(line) for line in base_lines]
             identical = stripped == base_stripped
@@ -108,19 +111,23 @@ def main() -> int:
                 if first_diff is None:
                     first_diff = {"turn": None, "base_turns": len(base_stripped),
                                   "arm_turns": len(stripped)}
+            errs = n6.check_telemetry(sid, arm_trace, arm_lines, census,
+                                      rule_off=not args.rule_on)
+            telemetry_errors.extend(f"{sid}: {e}" for e in errs)
             rows.append({
-                "id": sid, "turns": len(arm_lines),
+                "id": sid, "turns": len(arm_lines), "telemetry_errors": len(errs),
                 "byte_identical_without_msg": identical,
                 "referee_state_identical": base_state == arm_state,
                 "first_divergence": first_diff,
             })
-            mark = ("PARITY" if identical and base_state == arm_state
-                    else "DIVERGES" if args.rule_on else "FAILED")
-            print(f"  {mark:<8} {sid:<10} turns {len(arm_lines):>3}")
+            mark = ("PARITY" if identical and base_state == arm_state and not errs
+                    else "DIVERGES" if args.rule_on and not errs else "FAILED")
+            print(f"  {mark:<8} {sid:<10} turns {len(arm_lines):>3}  "
+                  f"telemetry errors {len(errs)}")
 
     parity = sum(1 for r in rows if r["byte_identical_without_msg"])
     states = sum(1 for r in rows if r["referee_state_identical"])
-    ok = args.rule_on or (parity == len(rows) == states)
+    ok = (not telemetry_errors) and (args.rule_on or (parity == len(rows) == states))
     report = {
         "gate": f"containment, r5 §9.1 (NARRATE v6, arm {args.arm})",
         "task": "20260826-candidate-3-keep-your-goal",
@@ -132,6 +139,9 @@ def main() -> int:
         "byte_identical": parity,
         "referee_state_identical": states,
         "status": "PASS" if ok else "FAIL",
+        "telemetry_error_count": len(telemetry_errors),
+        "telemetry_errors": telemetry_errors[:200],
+        "census": census,
         "rows": rows,
     }
     out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
