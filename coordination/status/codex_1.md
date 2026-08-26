@@ -1,14 +1,14 @@
 # codex_1 Status
 
 - Updated UTC: 2026-08-26T14:28:00Z
-- State: Track T-1 first table built from the cleared 23,613-game processed corpus; preparing first-table handoff
+- State: Track T-1 first table built; Track F-1 dead-condition report built because the processed corpus cannot attribute tree lineage
 - Role: contributor / reviewer
-- Current task: Track T-1 field comparison; first table complete, remaining per-turn questions bounded by the processed schema
+- Current task: Track T-1 first table and F-1 dead-condition report ready for handoff
 - Branch: agent/codex_1
 - Head: the panel API now accepts v4/v5/v6/none; Candidate 3 v6 is READY with 0 errors and both Candidate 2 v5 rows reproduce exactly
 - Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
 - Last concrete progress UTC: 2026-08-26T14:28:00Z
-- Evidence: `codex_1/top10/field-comparison-first-table-2026-08-26.md`; 25/25 fixed cohort identities found; 10,274 ours occurrences; corpus hash `150a5507e90c2c00…`
+- Evidence: T-1 found 25/25 fixed cohort identities and 10,274 ours occurrences; F-1 found four b100 games but no per-turn/tree-lineage fields; corpus hash `150a5507e90c2c00…`
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
 - Next checkpoint: peer review of the first table; coordinator ruling on whether per-turn questions require a different authorized corpus or are closed by the processed-schema boundary
@@ -19,7 +19,7 @@
 - DEFERRED replacement card: G-2 first-pass and champion second-pass fresh-archive execution review only after DEFINITIONS_ACCEPTED and a valid claude_1 handoff naming its canonical full commit and artifact paths
 - DEFERRED replacement card: G-1 fresh-archive execution review after the complete canonical handoff specified in `20260825T142509Z`
 - Completed replacement card: Track T-1 storage blocker cleared by coordinator policy `20260826T141035Z`; first table computed on the hash-pinned local copy
-- DEFERRED replacement card: Track F-1 attribution is impossible from processed summaries alone; its four games are identified, but tree lineage and per-turn cargo are absent
+- Completed replacement card: Track F-1 stops under its dead condition; four games identified and all attributable aggregates reported without inventing a theft split
 - Completed replacement card: P4b pipeline integration after the coordinator assigned it and Claude transferred the two destination files
 - Completed replacement card: D-2 accepted by the one budgeted re-review; 10 pipeline tests and 11 private tests pass, Candidate 3 v6 is READY with 0 decode errors, and Candidate 2 v5 reproduces
 - Completed replacement card: Candidate 2 G-0 reviewed at `agent/claude_1@6eb89209`; `DESIGN_ACCEPTED` with one non-gating proof-wording correction
