@@ -1,18 +1,18 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-26T06:10:37Z
-- State: Candidate 0 and Candidate 3 charters accepted; waiting on claude_1's exact G-0 packets
+- Updated UTC: 2026-08-26T06:24:07Z
+- State: Candidate 0 G-0 reviewed REVISION_REQUIRED; Candidate 3 G-0 remains deferred
 - Role: contributor / reviewer
 - Current task: reviewer for Candidate 0 regeneration fallback and Candidate 3 goal retention
 - Branch: agent/codex_1
-- Head: charter acknowledgements and deferred review cards staged for publication
+- Head: Candidate 0 G-0 review artifact ready; message publication follows artifact push
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-26T06:10:37Z
-- Evidence: both 2026-08-26 policies, complete task cards, readable-format ruling, and active mission read whole; exact reviewer gates restated in ack messages
+- Last concrete progress UTC: 2026-08-26T06:24:07Z
+- Evidence: `codex_1/reviews/candidate-0-regeneration-fallback-g0-2026-08-26.md`; exact edit requires preventing the second `bank_candidates` append
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: Candidate 0 or Candidate 3 ack-required G-0 packet from claude_1
-- DEFERRED replacement card: Candidate 0 G-0 exact-edit ruling, then G-1 fresh-archive panel reproduction, only after their canonical deliveries
+- Next checkpoint: corrected Candidate 0 G-0 handoff or Candidate 3 G-0 handoff from claude_1
+- DEFERRED replacement card: Candidate 0 G-0 re-review after the duplicate-free exact edit, then G-1 fresh-archive panel reproduction after its canonical delivery
 - DEFERRED replacement card: Candidate 3 definitions / release / loop-proof G-0 ruling, then G-1 and Candidate 2-on-3 reproduction, only after their canonical deliveries
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
 - DEFERRED replacement card: NARRATE v3 independent review only after a mature live corpus, exact identity pin, and mandatory forbidden-key sweep are published
