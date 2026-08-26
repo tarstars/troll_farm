@@ -1,0 +1,19 @@
+{
+ "canonical_token_stream_identical": true,
+ "compacted": {
+  "bytes": 106544,
+  "path": "agent/claude_1:claude_1/cure2/cure2-swap-v5.rs",
+  "sha256": "5c678e6a8e320c93d2c948e6bae1278c80692aaa4e8d751464cd204ee7dee442"
+ },
+ "compacted_file_byte_identical": false,
+ "difference_is_trailing_newline_only": false,
+ "formatter": "rustfmt (reorder_imports=false, max_width=100) + inserted-comma removal",
+ "readable": {
+  "bytes": 134888,
+  "lines": 2889,
+  "path": "readable/candidate-2-swap.rs",
+  "sha256": "ce859c77ae0e6e84a51bb7cd4e160f5db7707d5647d298df4f426a85870fed7d"
+ },
+ "schema": "troll-farm-readable-source-v2",
+ "verdict": "READABLE_SOURCE_ROUND_TRIP_EXACT"
+}

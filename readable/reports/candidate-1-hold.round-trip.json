@@ -1,0 +1,19 @@
+{
+ "canonical_token_stream_identical": true,
+ "compacted": {
+  "bytes": 98199,
+  "path": "agent/claude_1:claude_1/cure1/cure1-hold-v4.rs",
+  "sha256": "cc4b308705883f10192065dd205a36eb78baee3c1068a0697131b791f3d46e9b"
+ },
+ "compacted_file_byte_identical": false,
+ "difference_is_trailing_newline_only": false,
+ "formatter": "rustfmt (reorder_imports=false, max_width=100) + inserted-comma removal",
+ "readable": {
+  "bytes": 124839,
+  "lines": 2719,
+  "path": "readable/candidate-1-hold.rs",
+  "sha256": "bb11adc132131cc360304c886e0f1f04bae47274c9f591054dde723822c300a5"
+ },
+ "schema": "troll-farm-readable-source-v2",
+ "verdict": "READABLE_SOURCE_ROUND_TRIP_EXACT"
+}
