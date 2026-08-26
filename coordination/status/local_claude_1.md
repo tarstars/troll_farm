@@ -7,6 +7,15 @@
   `/tmp/codex1-*`) and killed codex_1's 14:47Z reproduction silently — cleaned by me at 15:21:51Z
   (19 → 13 GB used), rule published `20260825T152239Z`, codex_1 re-woken 15:22:02Z; entry for
   everything else `coordination/HANDOVER-2026-08-25-candidate-1-close.md`)
+- **2026-08-26 08:10Z — both morning candidates hit walls, correctly:** Candidate 0's exact
+  clause BLOCKED at G-1 (codex_1 fresh-archive: blocking 118/240 vs 43/240, D-2 0→387, P4 16→85,
+  P3 0→5, `m061` −18/−9 — a PICK↔DROP two-cycle; +530 panel points do not pass the safety gate);
+  task CLOSED; the −75-on-`m061` attribution corrected on the owner's page (it was the swap's
+  cost); the 8-read block lapses. Candidate 3's fixed-margin form FALSIFIED (rho rises to 0.27
+  on the loop games) → charter corrected to absolute keep (done/gone/impossible; plan-keeping
+  for PICK→PLANT), base = champion readable, G-0 r4 requested. `readable/door1-champion.rs`
+  header corrected (two false digest claims). Owner amendment 06:10Z: deliverable = diff files
+  in `readable/diffs/` (champion, Candidate 1, Candidate 2 diffs published), not PRs.
 - **2026-08-26 06:05Z — OWNER RULED on the v3 page: Candidate 0 (fix the champion's replant
   fallback) and Candidate 3 ("a troll keeps its goal") go ahead, each as a GitHub PR with the
   patch visible on the readable source (`docs/readable-format.md`, delivery ruling); Candidate 0

@@ -1,6 +1,26 @@
 # 20260826-candidate-0-regeneration-fallback: Candidate 0 — the champion's replant fallback keeps the moves it built; delivered as a GitHub PR; measured on the platform as an 8-exposure self-replacement block
 
-- Status: **OPEN — CHARTERED 2026-08-26T06:05Z by owner ruling** (coordinator session ~06:00Z,
+- Status: **CLOSED 2026-08-26T08:10Z — BLOCKED AT G-1; the exact clause is abandoned.** G-0
+  accepted (one hunk, −8/+6, `readable/door1-champion.rs:1804–1811`: the fallback extends `out`).
+  G-1 (claude_1 `agent/claude_1@efe41b1b`, independently reproduced by codex_1 from a fresh
+  archive, `codex_1/reviews/candidate-0-regeneration-fallback-g1-2026-08-26.md`): containment
+  held (97 diverging games, every one a game where the fallback fires; 34/34 fixtures identical;
+  determinism PASS) but **the clause is unsafe** — blocking games **118/240 vs 43/240**, D-2
+  0 → 387 episodes, P4 16 → 85, P3 0 → 5, `m061` **worse** by 18 and 9 own-score points: the
+  surviving 7,500-point regeneration `PICK` beats every job for a shack-adjacent empty-handed
+  troll, the bank clause offers `DROP` next turn, and nothing links the `PICK` to a `PLANT` — a
+  **PICK↔DROP two-cycle**. Panel aggregate **+530 own-score points** (88 up, 9 down) recorded as
+  the size of the regeneration value that a *plan-keeping* successor could capture; it does not
+  override the hard safety gate. **Correction to the record (claude_1, G-1):** the "−75 on `m061`"
+  was the cost of Candidate 2's swap (rule-off 75/82 → instrument 39/43), not of the champion's
+  fallback — the champion scores 75 and 82 on `m061` in this panel; the fallback defect is real
+  but its price was never measured on the champion. Successor design (a fallback-specific
+  suppression of the `PICK`, or a PICK→PLANT plan the troll keeps) = a **new G-0**, folded into
+  Candidate 3's "a troll keeps its goal" as the plan-keeping case, at the owner's or coordinator's
+  word. The owner-authorized 8-read block **lapses with this task** (nothing to measure). The
+  header of `readable/door1-champion.rs` corrected 08:10Z (two false digest claims). Original
+  status follows.
+- Status at charter: **OPEN — CHARTERED 2026-08-26T06:05Z by owner ruling** (coordinator session ~06:00Z,
   the coordinator's transcription): *"I want to measure impact of these changes on platform: check
   that the bot we are going to fix as Candidate 0 has its score on platform. After change give it
   platform measurement AAAAAAAA (8 expositions, self-replacement). I want to get acquainted with

@@ -1,6 +1,23 @@
 # 20260826-candidate-3-keep-your-goal: Candidate 3 — "a troll keeps its goal"; delivered as a GitHub PR with the patch visible
 
-- Status: **OPEN — CHARTERED 2026-08-26T06:05Z by owner ruling** (coordinator session ~06:00Z,
+- Status: **CHARTER CORRECTED 2026-08-26T08:10Z (coordinator) after G-0 r3 BLOCK-pending-correction
+  (codex_1 `20260826T074444Z`).** The measurement is accepted: on the six loop games the challenger's
+  advantage `rho` rises monotonically as the shared tree nears completion (0.02 → 0.27), so **no
+  fixed margin `M` can prove "no second exchange"** — the fixed-margin form is falsified, not
+  mis-tuned. **Corrected rule form: absolute keep.** A troll keeps its chosen goal until it is
+  **done** (progress at it), **gone** (the plant/bank/cell no longer exists), or **impossible**
+  (no path even with the teammate's cell free — the swap handles a standing teammate); **no
+  challenger overrules a valid kept goal** — the "clearly better by a margin" clause is removed.
+  The loop proof is then immediate (a valid kept goal never changes, so clause 6 fails for the
+  reverse exchange). Also: a **kept plan** — a `PICK` taken to plant is kept until the `PLANT`
+  happens or becomes impossible (Candidate 0's PICK↔DROP two-cycle is the same disease). **Base:
+  the champion readable `readable/door1-champion.rs`** (Candidate 0 is closed). Telemetry v6 with
+  mutual refusal against v4/v5 (its own decoder). Round-trip gate = canonical-compaction identity.
+  G-0 r4 requested: the exact release predicates (each with its observable), the pair-selector
+  interaction, the plan-keeping case, the panel expectations (MIXED windows ↓; parked-troll and
+  idle share not worse — the risk of the no-margin form; score in units), determinism.
+  Original status follows.
+- Status at charter: **OPEN — CHARTERED 2026-08-26T06:05Z by owner ruling** (coordinator session ~06:00Z,
   the coordinator's transcription: *"the same for candidate 3 — prepare PR in which code patch is
   visible"*, after the owner's page recommended Candidate 3 = "a troll keeps its goal" as the
   remedy for the swap's loop).

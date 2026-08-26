@@ -90,6 +90,31 @@ Nothing on Candidate 2 — it waits on 1 and 2. Two small tool follow-ups are ch
 mission (the panel gate learns to read the new telemetry; a lint for a message-card defect that
 recurred today). The peers owe nothing; the ladder holds the harmless Candidate 1 instrument.
 
+## Addendum 2026-08-26 08:10Z — what happened to Candidate 0 and Candidate 3, and one correction of mine
+
+**Candidate 0 was built and measured, and it is unsafe as written.** Keeping the replant moves
+turns out to make the troll pick a fruit (worth 7,500 to the planner), drop it at the shack next
+turn, pick it again — a two-step loop to the end of the game — because nothing in the planner
+links "pick to plant" with "plant". On the 240-game panel: games with trolls blocking each other
+**118 vs 43** for the champion, parked-troll episodes 16 → 85, and `m061` *worse*. The panel total
+was +530 points, which shows how much replanting is worth when it works — but the safety gates
+fail, so the clause is abandoned. Both the builder and the reviewer reproduced this independently.
+
+**My correction.** I told you `m061` was "a champion bug worth 75 points". The bug is real (the
+champion throws away replant moves), but the 75 points were the cost of the *swap* on that map
+(75 → 39 and 82 → 43 with the swap on); the champion itself scores 75 and 82 there. I carried the
+builder's number into the wrong sentence. The eight-read platform block for Candidate 0 has
+nothing to measure and lapses.
+
+**Candidate 3's rule needed one change.** "Keep your goal unless something clearly better appears
+(by a margin)" cannot be proved to stop the swap's loop: the advantage of trading places grows as
+the shared tree gets close to falling, so any fixed margin is eventually exceeded (measured on the
+six loop games: 0.02 → 0.27). The corrected rule is simpler: **a troll keeps its goal until it is
+done, gone, or impossible — nothing overrules a valid goal.** It also covers Candidate 0's
+disease: a fruit picked *to plant* is kept until it is planted. This is the form now being
+designed; the risk it carries (keeping a poor goal) is measured on the panel by the parked-troll
+gate and the idle share. If you would rather keep a margin in some other form, say so.
+
 ## Where everything lives
 
 `claude_1/cure2/g1-packet-2026-08-25.md` (the complete packet, `agent/claude_1@04ff5234`), the

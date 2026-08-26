@@ -53,7 +53,13 @@ description of what the change consists of:
 3. A plain-words PR body: the question, the clause before/after, the panel table, the named
    games, the digests, the platform plan.
 
-The owner reviews and merges (or says "merge"). Code reaches `main` by no other route. The
+The owner reads the diff; the coordinator integrates after review. Two facts learned on
+2026-08-26: (1) for a parent that was never fully minified (the champion, 75,653 bytes) the gate is
+**canonical-compaction identity** (`compact(readable) == compact(parent)`), not byte identity
+with the parent's digest — `format_readable.py`'s injected header must not claim otherwise;
+(2) `--title` is an unpinned input to the "canonical" artifact (it changes four header lines and
+the readable file's digest) — record the title used, and never regenerate a baseline that is
+already on `main`. The
 formatter hazard is unchanged: `format_readable.py` writes a *new* readable file; nothing runs in
 place over `cgauto/` or `rust/src/bin/`. First instances: `20260826-candidate-0-regeneration-fallback`,
 `20260826-candidate-3-keep-your-goal`.

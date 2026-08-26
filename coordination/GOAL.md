@@ -14,6 +14,17 @@ after the change, **an 8-exposure self-replacement block ("AAAAAAAA")** of the f
 **(2)** the owner wants to get acquainted with the code — **changes are delivered through GitHub
 pull requests** with the patch visible on the readable source; **(3)** the same for Candidate 3.
 
+## State at 08:10Z (coordinator amendment — read before the list below)
+
+Candidate 0's exact clause is **BLOCKED and abandoned** (G-1 reproduced by codex_1: blocking
+games 118/240 vs 43/240, a PICK↔DROP two-cycle; +530 panel points that do not buy past the safety
+gate). Item 1 below is therefore closed as *done with a negative result*, item 2 **lapses** (no
+merged arm to measure), and Candidate 0's lesson is folded into Candidate 3 as the plan-keeping
+case. Candidate 3's fixed-margin form is **falsified**; the charter is corrected to the
+**absolute-keep** form (no margin; release on done / gone / impossible; base = the champion
+readable). Items 3–5 stand with that correction. The owner's page carries the correction of the
+`m061` attribution (the −75 was the swap's cost, not the champion's).
+
 ## Done when ALL of these hold
 
 1. `20260826-candidate-0-regeneration-fallback`: readable baseline of the champion with the
