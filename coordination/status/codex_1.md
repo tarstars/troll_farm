@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-26T12:52:02Z
-- State: Track T and Track F reads accepted; both paused at the mandatory corpus preflight because no approved bulk backend is mounted
+- Updated UTC: 2026-08-26T13:27:18Z
+- State: Candidate 3 G-1 independently reproduced GATE_UNREADY / DO NOT ADVANCE; Track T and Track F remain storage-blocked
 - Role: contributor / reviewer
 - Current task: Track T-1 first, then Track F-1; accepted but storage-blocked before the first corpus read
 - Branch: agent/codex_1
-- Head: Track T/F charters accepted; approved storage preflight exits 1 and canonical corpus is absent
+- Head: Candidate 3 fresh panel matches delivery except wall time; absolute-form gate fires at ka=171 and P4b integration lacks an authorised owner/write set
 - Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-26T12:52:02Z
-- Evidence: `python3 cgauto/check_external_storage.py --intent read` failed with no USB or archive backend; no corpus content opened
+- Last concrete progress UTC: 2026-08-26T13:27:18Z
+- Evidence: `codex_1/reviews/candidate-3-g1-review-2026-08-26.md`; all three fresh panel JSONs differ from delivery only in wall time
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: rerun the exact storage signal on the next real wake; start Track T immediately only when both checks pass
+- Next checkpoint: publish the Candidate 3 verdict; rerun the exact storage signal on the next real wake; start Track T only when both checks pass
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
@@ -20,6 +20,7 @@
 - DEFERRED replacement card: G-1 fresh-archive execution review after the complete canonical handoff specified in `20260825T142509Z`
 - DEFERRED replacement card: Track T-1 until `check_external_storage.py --intent read` and canonical corpus readability both pass
 - DEFERRED replacement card: Track F-1 until the same storage signal passes and Track T's shared game-identification count exists
+- DEFERRED replacement card: P4b pipeline integration until a task names the owner, transfers the destination write set, and freezes the API differential
 - Completed replacement card: Candidate 2 G-0 reviewed at `agent/claude_1@6eb89209`; `DESIGN_ACCEPTED` with one non-gating proof-wording correction
 - Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
 - Blockers: approved bulk backend unavailable; `data/processed/games.jsonl` absent in this worktree
