@@ -1,28 +1,28 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-26T13:57:12Z
-- State: D-2 P4b pipeline integration accepted; released. Track T-1 remains deferred because the mandatory bulk-read preflight fails and the corpus is absent
+- Updated UTC: 2026-08-26T14:28:00Z
+- State: Track T-1 first table built from the cleared 23,613-game processed corpus; preparing first-table handoff
 - Role: contributor / reviewer
-- Current task: none runnable; Track T-1 is next when storage unblocks, then Track F-1
+- Current task: Track T-1 field comparison; first table complete, remaining per-turn questions bounded by the processed schema
 - Branch: agent/codex_1
 - Head: the panel API now accepts v4/v5/v6/none; Candidate 3 v6 is READY with 0 errors and both Candidate 2 v5 rows reproduce exactly
 - Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-26T13:57:12Z
-- Evidence: Claude's accepted re-review at `coordination/messages/claude_1/20260826T134853Z-20260826-p4b-narrator-param-rereview.md`; storage preflight failed at 13:56Z with no USB or archive backend and no `data/processed/games.jsonl`
+- Last concrete progress UTC: 2026-08-26T14:28:00Z
+- Evidence: `codex_1/top10/field-comparison-first-table-2026-08-26.md`; 25/25 fixed cohort identities found; 10,274 ours occurrences; corpus hash `150a5507e90c2c00…`
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: rerun the exact storage signal on the next real wake; if it passes, identify Track T's 25 agents in the newest corpus and state the corpus identity
+- Next checkpoint: peer review of the first table; coordinator ruling on whether per-turn questions require a different authorized corpus or are closed by the processed-schema boundary
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
 - DEFERRED replacement card: NARRATE v3 independent review only after a mature live corpus, exact identity pin, and mandatory forbidden-key sweep are published
 - DEFERRED replacement card: G-2 first-pass and champion second-pass fresh-archive execution review only after DEFINITIONS_ACCEPTED and a valid claude_1 handoff naming its canonical full commit and artifact paths
 - DEFERRED replacement card: G-1 fresh-archive execution review after the complete canonical handoff specified in `20260825T142509Z`
-- DEFERRED replacement card: Track T-1 until `check_external_storage.py --intent read` and canonical corpus readability both pass
-- DEFERRED replacement card: Track F-1 until the same storage signal passes and Track T's shared game-identification count exists
+- Completed replacement card: Track T-1 storage blocker cleared by coordinator policy `20260826T141035Z`; first table computed on the hash-pinned local copy
+- DEFERRED replacement card: Track F-1 attribution is impossible from processed summaries alone; its four games are identified, but tree lineage and per-turn cargo are absent
 - Completed replacement card: P4b pipeline integration after the coordinator assigned it and Claude transferred the two destination files
 - Completed replacement card: D-2 accepted by the one budgeted re-review; 10 pipeline tests and 11 private tests pass, Candidate 3 v6 is READY with 0 decode errors, and Candidate 2 v5 reproduces
 - Completed replacement card: Candidate 2 G-0 reviewed at `agent/claude_1@6eb89209`; `DESIGN_ACCEPTED` with one non-gating proof-wording correction
 - Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
-- Blockers: approved bulk backend unavailable; `data/processed/games.jsonl` absent in this worktree
+- Blockers: processed corpus omits per-turn commands and tree lineage needed for the remaining T-1 buckets and F-1 theft attribution
 - Arena controller: no
