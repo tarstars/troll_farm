@@ -1,0 +1,797 @@
+--- readable/door1-champion.rs
++++ readable/candidate-2-swap.rs
+@@ -1,11 +1,11 @@
+-// champion
++// cand2-swap
+ //
+ // This file is for READING. It is idiomatic rustfmt layout with explanatory
+ // comments, and it is the same program as the compacted artifact:
+ //
+ //   python3 cgauto/compact_rust_source.py <this file> out.rs
+-//   -> champion.rs, SHA-256
+-//      547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0
++//   -> cand2-swap.rs, SHA-256
++//      5c678e6a8e320c93d2c948e6bae1278c80692aaa4e8d751464cd204ee7dee442
+ //
+ // The compactor deletes comments and optional whitespace, so comments and layout
+ // here are free and cannot change the program. Changing any *token* produces a new
+@@ -514,6 +514,17 @@
+             stats: Stats,
+             estimated_eta: i32,
+         }
++        #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
++        struct HoldMeta {
++            passes: u32,
++            stale_protections: u32,
++            w_collisions: u32,
++            movers: u32,
++            swaps: u32,
++            target_occupied: u32,
++            non_adjacent: u32,
++            slot_fail: u32,
++        }
+         pub struct YamoBot {
+             announced: bool,
+             announcement: &'static str,
+@@ -530,6 +541,9 @@
+             idle_harvest_clock_only: bool,
+             regeneration_commitments: BTreeMap<i32, PlantKind>,
+             opponent_eta_penalty: i32,
++            blocked_turns: BTreeMap<i32, u8>,
++            prev_cells: BTreeMap<i32, Cell>,
++            orchard_inert: Option<bool>,
+         }
+         #[derive(Clone, Copy)]
+         struct PredictedTree {
+@@ -934,6 +948,14 @@
+                 candidates_by_id: BTreeMap<i32, Vec<Candidate>>,
+                 inventory: &[i32; 6],
+             ) -> Vec<String> {
++                let mut narrate_discarded: BTreeMap<i32, Target> = BTreeMap::new();
++                Self::select_recording(candidates_by_id, inventory, &mut narrate_discarded)
++            }
++            fn select_recording(
++                candidates_by_id: BTreeMap<i32, Vec<Candidate>>,
++                inventory: &[i32; 6],
++                narrate_chosen: &mut BTreeMap<i32, Target>,
++            ) -> Vec<String> {
+                 let ids: Vec<i32> = candidates_by_id.keys().copied().collect();
+                 if ids.is_empty() {
+                     return Vec::new();
+@@ -943,6 +965,7 @@
+                         .iter()
+                         .max_by(|a, b| a.score.total_cmp(&b.score))
+                         .unwrap();
++                    narrate_chosen.insert(ids[0], best.target);
+                     return vec![best.command.clone()];
+                 }
+                 if ids.len() == 2 {
+@@ -958,11 +981,18 @@
+                             let score = a.score + b.score;
+                             if score > best_score {
+                                 best_score = score;
+-                                best_pair = Some((a.command.clone(), b.command.clone()));
++                                best_pair = Some((
++                                    a.command.clone(),
++                                    b.command.clone(),
++                                    a.target,
++                                    b.target,
++                                ));
+                             }
+                         }
+                     }
+-                    if let Some((a, b)) = best_pair {
++                    if let Some((a, b, a_target, b_target)) = best_pair {
++                        narrate_chosen.insert(ids[0], a_target);
++                        narrate_chosen.insert(ids[1], b_target);
+                         return vec![a, b];
+                     }
+                 }
+@@ -984,6 +1014,7 @@
+                         })
+                         .unwrap_or_else(Self::wait);
+                     used_targets.push(best.target);
++                    narrate_chosen.insert(id, best.target);
+                     if let Some(item) = Self::picked_item(&best.command) {
+                         used_stock[item] += 1;
+                     }
+@@ -1001,6 +1032,531 @@
+                     (fields[2].parse().ok()?, fields[3].parse().ok()?),
+                 ))
+             }
++            // ---------------------------------------------------------------- Candidate 1
++            // Task 20260825-dance-cure-candidate-1-hold. Compile-time flags; `build_arms.py`
++            // rewrites exactly this line to make the three arms, and nothing else differs
++            // between them.
++            const HOLD_RULE_ENABLED: bool = false;
++            const NARRATE_V4_ENABLED: bool = false;
++            // ---------------------------------------------------------------- Candidate 2
++            // Task 20260825-dance-cure-candidate-2-swap, G-0 DESIGN_ACCEPTED by codex_1
++            // 2026-08-25. Candidate 1 above is PARKED: its hold rule is off in every arm here and
++            // its code is untouched, so `H` is unreachable and `blocked_turns` has no writer.
++            //
++            // SWAP_P3_SCOPING_ENABLED is rule R-B, adopted verbatim from Candidate 1: on a seat
++            // view satisfying the orchard-eligibility predicate the exchange is inert for the
++            // WHOLE game. Flipping THIS line alone is control C-16's red half.
++            const SWAP_P3_SCOPING_ENABLED: bool = true;
++            // `build_arms.py` rewrites exactly the line below to make the three arms, and nothing
++            // else differs between them.
++            const SWAP_RULE_ENABLED: bool = true;
++            const NARRATE_V5_ENABLED: bool = true;
++            // The charter's bound W: at most this many CONSECUTIVE holds per unit. The next
++            // block takes the regressive detour and resets the counter, so a hold can slow a
++            // dance but can never park a troll.
++            const HOLD_WINDOW: u8 = 2;
++            // ------------------------------------------------- revision R-A (ruling 20260825T094200Z)
++            // TRANSIENT_ONLY: the hold fires only when the block is TRANSIENT -- the blocking own
++            // unit is itself a mover this turn, or its cell was not that unit's cell on the
++            // previous turn. A blocker that stood on the same cell last turn and is stationary now
++            // (the working teammate that never leaves) gets the base's regressive detour instead.
++            // An UNKNOWN previous cell fails CLOSED: no hold. Flipping this line alone produces the
++            // as-built arm's hold policy and is the red half of the R-A control.
++            const TRANSIENT_ONLY: bool = true;
++            // ------------------------------------------------- revision R-B (ruling 20260825T094200Z)
++            // P3_SCOPING_ENABLED: on a seat view that satisfies the orchard-eligibility predicate
++            // -- the same gates fuzz_panel.orchard_eligible_view mirrors from
++            // SecureOrchardBot::initialize -- the hold is INERT for the whole game, because
++            // fuzz_panel.eval_p3 compares the WHOLE command stream on those maps. Flipping this
++            // line alone is the red half of the R-B control on the identical map.
++            const P3_SCOPING_ENABLED: bool = true;
++            // The orchard-eligibility predicate, read from the bot's own view: >= 2 own doors; at
++            // least one live natural plant; every natural reachable from the own doors with median
++            // own-door distance >= 8; and a free own door that is water-adjacent with enemy-door
++            // BFS distance >= 11 (a door the enemy BFS cannot reach counts as far, exactly as the
++            // panel's `edist.get(door, BIG)` does). Integer median: for an even count the panel
++            // averages the two middles and compares against 8.0, so the sum is compared against 16.
++            fn orchard_eligible(view: &GameState) -> bool {
++                let doors: Vec<Cell> = ortho_neighbors(view.shacks[0])
++                    .into_iter()
++                    .filter(|cell| view.walkable.contains(cell))
++                    .collect();
++                if doors.len() < 2 {
++                    return false;
++                }
++                let natural: Vec<Cell> = view
++                    .plants
++                    .iter()
++                    .filter(|plant| plant.health > 0)
++                    .map(|plant| plant.cell)
++                    .collect();
++                if natural.is_empty() {
++                    return false;
++                }
++                let home = bfs_distances(&view.walkable, &doors);
++                let mut returns: Vec<i32> = Vec::new();
++                for cell in &natural {
++                    match home.get(cell) {
++                        Some(distance) => returns.push(*distance),
++                        None => return false,
++                    }
++                }
++                returns.sort();
++                let n = returns.len();
++                let median_ok = if n % 2 == 1 {
++                    returns[n / 2] >= 8
++                } else {
++                    returns[n / 2 - 1] + returns[n / 2] >= 16
++                };
++                if !median_ok {
++                    return false;
++                }
++                let enemy_doors: Vec<Cell> = ortho_neighbors(view.shacks[1])
++                    .into_iter()
++                    .filter(|cell| view.walkable.contains(cell))
++                    .collect();
++                let enemy_distance = bfs_distances(&view.walkable, &enemy_doors);
++                let plant_cells: BTreeSet<Cell> =
++                    view.plants.iter().map(|plant| plant.cell).collect();
++                for door in &doors {
++                    if plant_cells.contains(door) {
++                        continue;
++                    }
++                    if !ortho_neighbors(*door)
++                        .into_iter()
++                        .any(|cell| view.water.contains(&cell))
++                    {
++                        continue;
++                    }
++                    match enemy_distance.get(door) {
++                        Some(distance) => {
++                            if *distance >= 11 {
++                                return true;
++                            }
++                        }
++                        None => return true,
++                    }
++                }
++                false
++            }
++            // ONE PASS of the base resolver over the base mover order, with `hold_cells` added
++            // to the INITIAL reserved set. The input slice is never mutated: a pass is a pure
++            // function of (view, original commands, K), which is what lets it be re-run.
++            //
++            // Returns: the resolved commands, the per-unit branch code, the ids that chose to
++            // hold, the mover count, and the W-collision count (a forced-WAIT mover whose own
++            // cell was granted to somebody else -- the base's pre-existing exposure, measured
++            // here and deliberately NOT repaired, per section 2 of the construction ruling).
++            //
++            // With hold_enabled=false and hold_cells empty this is the base loop verbatim: the
++            // `H` arm is unreachable, so L and R both take the detour exactly as the base does.
++            fn hold_pass(
++                view: &GameState,
++                original: &[String],
++                priority_ids: &BTreeSet<i32>,
++                forbidden_for_non_priority: &BTreeSet<Cell>,
++                hold_cells: &BTreeSet<Cell>,
++                hold_enabled: bool,
++                counters: &BTreeMap<i32, u8>,
++                prev_cells: &BTreeMap<i32, Cell>,
++                swap_enabled: bool,
++            ) -> (
++                Vec<String>,
++                BTreeMap<i32, char>,
++                BTreeSet<i32>,
++                u32,
++                u32,
++                [u32; 4]
++            ) {
++                let mut commands: Vec<String> = original.to_vec();
++                let mut branch: BTreeMap<i32, char> = BTreeMap::new();
++                let mut holders: BTreeSet<i32> = BTreeSet::new();
++                let mut waiting_cells: BTreeSet<Cell> = BTreeSet::new();
++                let mut granted: BTreeSet<Cell> = BTreeSet::new();
++                let mut distance_cache: BTreeMap<Cell, BTreeMap<Cell, i32>> = BTreeMap::new();
++                // Candidate 2, per-pass locals. `displaced` is the set of partners already taken
++                // as an exchange partner in THIS pass (G-0 clause 4); `swap_counts` is
++                // [sw, so, sn, sf].
++                let mut displaced: BTreeSet<i32> = BTreeSet::new();
++                let mut swap_counts: [u32; 4] = [0, 0, 0, 0];
++                let command_by_id: BTreeMap<i32, usize> = commands
++                    .iter()
++                    .enumerate()
++                    .filter_map(|(index, command)| 
++                        Self::move_command(command).map(|(id, _)| (id, index))
++                    )
++                    .collect();
++                let projections: Vec<(i32, usize, Cell, Cell, Cell)> = command_by_id
++                    .iter()
++                    .filter_map(|(id, index)| {
++                        let unit = view.unit(*id)?;
++                        let (_, target) = Self::move_command(&commands[*index])?;
++                        let landing =
++                            next_cell(&view.walkable, unit.cell, target, unit.stats.movement_speed);
++                        Some((*id, *index, unit.cell, target, landing))
++                    })
++                    .collect();
++                let moving_ids: BTreeSet<i32> = projections
++                    .iter()
++                    .filter(|(_, _, current, _, landing)| landing != current)
++                    .map(|(id, _, _, _, _)| *id)
++                    .collect();
++                // Candidate 2, G-0 clause 2. `select_recording` emits exactly one command per own
++                // unit, ids ascending, so command index k belongs to the k-th own id. That is a
++                // POSITIONAL claim about another unit's command, so it is checked twice before it
++                // is used: the arity must match, and every own unit whose command parses as a MOVE
++                // must sit where the positional map says it does. Either check failing discards
++                // the map and NO swap fires this turn (`sf=`).
++                let mut own_ids: Vec<i32> = view
++                    .units
++                    .iter()
++                    .filter(|unit| unit.player == 0)
++                    .map(|unit| unit.id)
++                    .collect();
++                own_ids.sort();
++                let slot_by_id: Option<BTreeMap<i32, usize>> = if !swap_enabled {
++                    None
++                } else if own_ids.len() != commands.len() {
++                    None
++                } else {
++                    let map: BTreeMap<i32, usize> = own_ids
++                        .iter()
++                        .enumerate()
++                        .map(|(slot, id)| (*id, slot))
++                        .collect();
++                    if command_by_id
++                        .iter()
++                        .all(|(id, index)| map.get(id) == Some(index))
++                    {
++                        Some(map)
++                    } else {
++                        None
++                    }
++                };
++                let occupied_now: BTreeSet<Cell> = view
++                    .units
++                    .iter()
++                    .filter(|unit| unit.player == 0)
++                    .map(|unit| unit.cell)
++                    .collect();
++                let mut reserved: BTreeSet<Cell> = view
++                    .units
++                    .iter()
++                    .filter(|unit| unit.player == 0 && !moving_ids.contains(&unit.id))
++                    .map(|unit| unit.cell)
++                    .collect();
++                for cell in hold_cells {
++                    reserved.insert(*cell);
++                }
++                for (id, index, current, _, landing) in &projections {
++                    if landing == current {
++                        commands[*index] = "WAIT".to_string();
++                        // A self-targeting MOVE resolved to WAIT is W with the counter cleared
++                        // (codex_1 definition 3). Its cell IS reserved: it is not in moving_ids.
++                        branch.insert(*id, 'W');
++                    }
++                }
++                let mut movers: Vec<(i32, usize, Cell, Cell)> = projections
++                    .into_iter()
++                    .filter(|(_, _, current, _, landing)| landing != current)
++                    .map(|(id, index, _, target, landing)| (id, index, target, landing))
++                    .collect();
++                movers.sort_by(|a, b| {
++                    let a_priority = priority_ids.contains(&a.0);
++                    let b_priority = priority_ids.contains(&b.0);
++                    b_priority.cmp(&a_priority).then_with(|| b.0.cmp(&a.0))
++                });
++                let mover_count = movers.len() as u32;
++                for (id, index, target, landing) in movers {
++                    let Some(unit) = view.unit(id) else { continue };
++                    // R-A. Is the block TRANSIENT? The blocker is the own unit standing on our
++                    // landing; if no own unit stands there, the square was handed to another mover
++                    // in THIS pass, which is a mover by definition. A blocker that is itself a
++                    // mover, or that arrived on that cell only last turn, will plausibly leave;
++                    // anything else -- including an unknown previous cell -- is treated as
++                    // permanent and gets the detour.
++                    let transient_block = match view
++                        .units
++                        .iter()
++                        .find(|other| other.player == 0 && other.cell == landing)
++                    {
++                        Some(blocker) => 
++                            moving_ids.contains(&blocker.id)
++                                || match prev_cells.get(&blocker.id) {
++                                    Some(previous) => *previous != landing,
++                                    None => false,
++                                }
++                        ,
++                        None => granted.contains(&landing),
++                    };
++                    let landing_forbidden = !priority_ids.contains(&id)
++                        && forbidden_for_non_priority.contains(&landing);
++                    if !landing_forbidden && !reserved.contains(&landing) {
++                        reserved.insert(landing);
++                        granted.insert(landing);
++                        commands[index] = format!("MOVE {} {} {}", id, landing.0, landing.1);
++                        branch.insert(id, 'P');
++                        continue;
++                    }
++                    // ------------------------------------------------ Candidate 2: the exchange
++                    // G-0 §2.3, clauses in order. Reached only when the landing is unavailable --
++                    // exactly the turns that are L, R or W in the v4 grammar. No lock, no timer,
++                    // no counter, no new memory: `prev_cells` is Candidate 1's, already written on
++                    // every turn of every arm, and `displaced`/`slot_by_id` are per-pass locals.
++                    if swap_enabled && !landing_forbidden {
++                        let partner = view
++                            .units
++                            .iter()
++                            .find(|other| 
++                                other.player == 0 && other.id != id && other.cell == landing
++                            )
++                            .map(|other| other.id);
++                        // Clause 4: a STANDING own partner -- not a mover this pass, on that same
++                        // cell last turn too, not already exchanged. An UNKNOWN previous cell
++                        // fails CLOSED, exactly as Candidate 1's accepted R-A treatment.
++                        let standing = match partner {
++                            Some(other) => 
++                                !moving_ids.contains(&other)
++                                    && matches!(prev_cells.get(&other),Some(previous)if*previous==landing)
++                                    && !displaced.contains(&other)
++                            ,
++                            None => false,
++                        };
++                        if standing {
++                            let other = partner.unwrap_or(id);
++                            if !is_adjacent(unit.cell, landing) {
++                                // Clause 5: a landing two cells away (movement_speed >= 2) is
++                                // EXCLUDED, not handled. G-0 edge case E-2.
++                                swap_counts[2] += 1;
++                            } else if target == landing {
++                                // Clause 6, first half: the teammate is ON the goal. Recorded and
++                                // left to the planner, per the card.
++                                swap_counts[1] += 1;
++                            } else {
++                                match slot_by_id.as_ref().and_then(|map| map.get(&other).copied()) {
++                                    None => {
++                                        swap_counts[3] += 1;
++                                    }
++                                    Some(other_index) => {
++                                        // Clause 6, second half: the target lies strictly beyond
++                                        // the landing. Each cell keyed by its OWN manhattan
++                                        // fallback (codex_1 definition 7). Normally automatic --
++                                        // L is the first step of a BFS path -- and it bites
++                                        // exactly where `next_cell` fell back off the map, which
++                                        // is where "beyond" is not meaningful. Not a refusal of a
++                                        // would-be cure, so it charges no counter.
++                                        let toward_goal = distance_cache
++                                            .entry(target)
++                                            .or_insert_with(|| 
++                                                bfs_distances(&view.walkable, &[target])
++                                            )
++                                            .clone();
++                                        let d_landing = toward_goal
++                                            .get(&landing)
++                                            .copied()
++                                            .unwrap_or_else(|| manhattan(landing, target));
++                                        let d_here = toward_goal
++                                            .get(&unit.cell)
++                                            .copied()
++                                            .unwrap_or_else(|| manhattan(unit.cell, target));
++                                        if d_landing < d_here {
++                                            reserved.insert(landing);
++                                            granted.insert(landing);
++                                            reserved.insert(unit.cell);
++                                            granted.insert(unit.cell);
++                                            displaced.insert(other);
++                                            commands[index] =
++                                                format!("MOVE {} {} {}", id, landing.0, landing.1);
++                                            commands[other_index] = format!(
++                                                "MOVE {} {} {}",
++                                                other, unit.cell.0, unit.cell.1
++                                            );
++                                            branch.insert(id, 'S');
++                                            branch.insert(other, 'X');
++                                            swap_counts[0] += 1;
++                                            continue;
++                                        }
++                                    }
++                                }
++                            }
++                        }
++                    }
++                    // Memoized per target within the turn. bfs_distances is pure, so this changes
++                    // cost and nothing else; passes do not multiply BFS work.
++                    let toward_goal = distance_cache
++                        .entry(target)
++                        .or_insert_with(|| bfs_distances(&view.walkable, &[target]))
++                        .clone();
++                    let detour = ortho_neighbors(unit.cell)
++                        .into_iter()
++                        .filter(|cell| view.walkable.contains(cell))
++                        .filter(|cell| !reserved.contains(cell))
++                        .filter(|cell| !occupied_now.contains(cell))
++                        .filter(|cell| {
++                            priority_ids.contains(&id) || !forbidden_for_non_priority.contains(cell)
++                        })
++                        .min_by_key(|cell| {
++                            (
++                                toward_goal
++                                    .get(cell)
++                                    .copied()
++                                    .unwrap_or_else(|| manhattan(*cell, target)),
++                                *cell,
++                            )
++                        });
++                    // d_cur uses the detour key's OWN fallback (codex_1 definition 7), or L and H
++                    // would be decided by comparing two different metrics.
++                    let d_cur = toward_goal
++                        .get(&unit.cell)
++                        .copied()
++                        .unwrap_or_else(|| manhattan(unit.cell, target));
++                    match detour {
++                        None => {
++                            // No legal detour: the base's forced WAIT, never a hold.
++                            commands[index] = "WAIT".to_string();
++                            waiting_cells.insert(unit.cell);
++                            branch.insert(id, 'W');
++                        }
++                        Some(cell) => {
++                            let d_detour = toward_goal
++                                .get(&cell)
++                                .copied()
++                                .unwrap_or_else(|| manhattan(cell, target));
++                            if d_detour <= d_cur {
++                                reserved.insert(cell);
++                                granted.insert(cell);
++                                commands[index] = format!("MOVE {} {} {}", id, cell.0, cell.1);
++                                branch.insert(id, 'L');
++                            } else if hold_enabled
++                                && (!Self::TRANSIENT_ONLY || transient_block)
++                                && counters.get(&id).copied().unwrap_or(0) < Self::HOLD_WINDOW
++                            {
++                                commands[index] = "WAIT".to_string();
++                                holders.insert(id);
++                                branch.insert(id, 'H');
++                            } else {
++                                reserved.insert(cell);
++                                granted.insert(cell);
++                                commands[index] = format!("MOVE {} {} {}", id, cell.0, cell.1);
++                                branch.insert(id, 'R');
++                            }
++                        }
++                    }
++                }
++                let w_collisions = waiting_cells
++                    .iter()
++                    .filter(|cell| granted.contains(cell))
++                    .count() as u32;
++                (
++                    commands,
++                    branch,
++                    holders,
++                    mover_count,
++                    w_collisions,
++                    swap_counts
++                )
++            }
++            // The stateful entry point, called from YamoBot::commands. The static entry points
++            // above are byte-identical to the base and are not on this path (codex_1 def. 5).
++            //
++            // K starts empty and grows by union with each pass's holders; the first pass that
++            // adds no new holder IS the accepted resolution. K is bounded by the mover count, so
++            // at most movers+1 passes run -- the guard below can only fire if that reasoning is
++            // wrong, and `pz` is published every turn so the panel can check it independently.
++            fn resolve_move_conflicts_hold(
++                view: &GameState,
++                commands: &mut [String],
++                blocked_turns: &mut BTreeMap<i32, u8>,
++                prev_cells: &mut BTreeMap<i32, Cell>,
++                orchard_inert: &mut Option<bool>,
++                hold_enabled: bool,
++                branch_out: &mut BTreeMap<i32, char>,
++                meta: &mut HoldMeta,
++            ) {
++                // R-B. The predicate is a property of the map+seat, so it is evaluated once,
++                // on the first view this bot ever sees, and cached -- exactly as fuzz_panel
++                // computes spec["orchard_eligible"] once from the initial rows and plants.
++                if orchard_inert.is_none() {
++                    *orchard_inert = Some(Self::orchard_eligible(view));
++                }
++                let hold_enabled =
++                    hold_enabled && !(Self::P3_SCOPING_ENABLED && orchard_inert.unwrap_or(false));
++                // R-B for the exchange, evaluated from the SAME cached predicate: on an
++                // orchard-eligible seat view the swap is inert for the whole game.
++                let swap_enabled = Self::SWAP_RULE_ENABLED
++                    && !(Self::SWAP_P3_SCOPING_ENABLED && orchard_inert.unwrap_or(false));
++                let original: Vec<String> = commands.to_vec();
++                let priority_ids: BTreeSet<i32> = BTreeSet::new();
++                let forbidden: BTreeSet<Cell> = BTreeSet::new();
++                let mut k: BTreeSet<i32> = BTreeSet::new();
++                let mut passes: u32 = 0;
++                loop {
++                    let hold_cells: BTreeSet<Cell> = k
++                        .iter()
++                        .filter_map(|id| view.unit(*id).map(|unit| unit.cell))
++                        .collect();
++                    let (out, mut branch, holders, mover_count, w_collisions, swap_counts) =
++                        Self::hold_pass(
++                            view,
++                            &original,
++                            &priority_ids,
++                            &forbidden,
++                            &hold_cells,
++                            hold_enabled,
++                            blocked_turns,
++                            prev_cells,
++                            swap_enabled,
++                        );
++                    passes += 1;
++                    if !holders.is_subset(&k) && passes <= mover_count + 1 {
++                        for id in holders {
++                            k.insert(id);
++                        }
++                        continue;
++                    }
++                    for (index, command) in out.into_iter().enumerate() {
++                        commands[index] = command;
++                    }
++                    let live: BTreeSet<i32> = view
++                        .units
++                        .iter()
++                        .filter(|unit| unit.player == 0)
++                        .map(|unit| unit.id)
++                        .collect();
++                    for id in &live {
++                        branch.entry(*id).or_insert('N');
++                    }
++                    blocked_turns.retain(|id, _| live.contains(id));
++                    for id in &live {
++                        if branch.get(id).copied().unwrap_or('N') == 'H' {
++                            let entry = blocked_turns.entry(*id).or_insert(0);
++                            *entry = entry.saturating_add(1);
++                        } else {
++                            blocked_turns.remove(id);
++                        }
++                    }
++                    // R-A's one new memory: where every own unit STOOD this turn, read next turn
++                    // as "the previous turn's cell". Written on every turn of every arm, read only
++                    // inside the hold branch, so it cannot move a rule-off command.
++                    *prev_cells = view
++                        .units
++                        .iter()
++                        .filter(|unit| unit.player == 0)
++                        .map(|unit| (unit.id, unit.cell))
++                        .collect();
++                    meta.passes = passes;
++                    meta.movers = mover_count;
++                    meta.w_collisions = w_collisions;
++                    meta.stale_protections =
++                        k.iter().filter(|id| !holders.contains(id)).count() as u32;
++                    meta.swaps = swap_counts[0];
++                    meta.target_occupied = swap_counts[1];
++                    meta.non_adjacent = swap_counts[2];
++                    meta.slot_fail = swap_counts[3];
++                    *branch_out = branch;
++                    return;
++                }
++            }
+             fn resolve_move_conflicts(view: &GameState, commands: &mut [String]) {
+                 Self::resolve_move_conflicts_with_priority(view, commands, &BTreeSet::new());
+             }
+@@ -1125,6 +1681,9 @@
+                     idle_harvest_clock_only: false,
+                     regeneration_commitments: BTreeMap::new(),
+                     opponent_eta_penalty: 0,
++                    blocked_turns: BTreeMap::new(),
++                    prev_cells: BTreeMap::new(),
++                    orchard_inert: None,
+                 }
+             }
+             pub fn tuned_carry_regeneration_transit_idle_harvest() -> Self {
+@@ -2059,6 +2618,94 @@
+                     || (view.plants.len() <= 4
+                         && score(&view.inventories[0]) < score(&view.inventories[1]))
+             }
++            // NARRATE v5 telemetry. v4's reads are unchanged in name and meaning; v5 adds the
++            // four Candidate 2 per-turn fields sw=/so=/sn=/sf= and RETIRES `H`, which is
++            // unreachable with the hold rule off. `b=` is kept in the shape for the decoder and is
++            // identically 0 in every v5 arm (blocked_turns' only writer was H); control C-9
++            // asserts both. v4's own words follow:
++            // tick-local map select_recording filled, and the unit-local best taken from the
++            // candidate map BEFORE selection consumes it); v4 adds the resolver branch `r=` and
++            // the post-decision counter `b=` per unit, and three per-turn measurements:
++            //   pz= passes of the fixed point (1 whenever the rule is off)
++            //   sp= stale protections: members of K* that did not hold in the final pass
++            //   wc= W-collisions: forced-WAIT movers whose own cell was granted to another mover
++            //       (the base's pre-existing exposure, measured, not repaired)
++            // Reads only. Nothing here decides anything.
++            fn narrate_target(target: Target) -> String {
++                match target {
++                    Target::None => "NONE".to_string(),
++                    Target::Shack => "SHACK".to_string(),
++                    Target::Bank(cell) => format!("BANK({},{})", cell.0, cell.1),
++                    Target::Cell(cell) => format!("CELL({},{})", cell.0, cell.1),
++                    Target::Tree(cell) => format!("TREE({},{})", cell.0, cell.1),
++                }
++            }
++            // The unit-local best BEFORE joint pairing. `None` means the unit had no candidate
++            // vector at all (ABSENT on the wire); `Some(Target::None)` means an explicit WAIT was
++            // locally best. Same expression as select_recording's ids.len()==1 branch.
++            fn narrate_available(
++                by_id: &BTreeMap<i32, Vec<Candidate>>,
++            ) -> BTreeMap<i32, Option<Target>> {
++                let mut out: BTreeMap<i32, Option<Target>> = BTreeMap::new();
++                for (id, candidates) in by_id {
++                    out.insert(
++                        *id,
++                        candidates
++                            .iter()
++                            .max_by(|a, b| a.score.total_cmp(&b.score))
++                            .map(|candidate| candidate.target),
++                    );
++                }
++                out
++            }
++            fn narrate_message(
++                view: &GameState,
++                chosen: &BTreeMap<i32, Target>,
++                available: &BTreeMap<i32, Option<Target>>,
++                branch: &BTreeMap<i32, char>,
++                counters: &BTreeMap<i32, u8>,
++                meta: &HoldMeta,
++                banner: Option<&str>,
++            ) -> String {
++                // Every live own unit exactly once, ids ascending, roster taken from the VIEW.
++                let mut ids: Vec<i32> = view
++                    .units
++                    .iter()
++                    .filter(|unit| unit.player == 0)
++                    .map(|unit| unit.id)
++                    .collect();
++                ids.sort();
++                let mut tokens: Vec<String> = vec![format!("NARRATE v5 t={}", view.turn)];
++                for id in ids {
++                    let target = chosen.get(&id).copied().unwrap_or(Target::None);
++                    let want = match available.get(&id).copied().flatten() {
++                        Some(target) => Self::narrate_target(target),
++                        None => "ABSENT".to_string(),
++                    };
++                    let code = branch.get(&id).copied().unwrap_or('N');
++                    let blocked = counters.get(&id).copied().unwrap_or(0);
++                    tokens.push(format!(
++                        "u{}={}/{}/r={}/b={}",
++                        id,
++                        Self::narrate_target(target),
++                        want,
++                        code,
++                        blocked
++                    ));
++                }
++                tokens.push(format!("pz={}", meta.passes));
++                tokens.push(format!("sp={}", meta.stale_protections));
++                tokens.push(format!("wc={}", meta.w_collisions));
++                tokens.push(format!("sw={}", meta.swaps));
++                tokens.push(format!("so={}", meta.target_occupied));
++                tokens.push(format!("sn={}", meta.non_adjacent));
++                tokens.push(format!("sf={}", meta.slot_fail));
++                let body = tokens.join(" ");
++                match banner {
++                    Some(text) => format!("MSG {} {}", text, body),
++                    None => format!("MSG {}", body),
++                }
++            }
+         }
+         impl Bot for YamoBot {
+             fn commands(&mut self, view: &GameState) -> Vec<String> {
+@@ -2071,10 +2718,15 @@
+                     .unwrap_or_else(Self::fallback_second_troll);
+                 let train_now = !self.opening_abandoned && MoisanBot::can_train(view, desired);
+                 let mut out = Vec::new();
+-                if !self.announced {
++                let narrate_banner = if !self.announced {
+                     self.announced = true;
+-                    out.push(format!("MSG {}", self.announcement));
+-                }
++                    if !MoisanBot::NARRATE_V5_ENABLED {
++                        out.push(format!("MSG {}", self.announcement));
++                    }
++                    Some(self.announcement)
++                } else {
++                    None
++                };
+                 if train_now {
+                     out.push(format!(
+                         "TRAIN {} {} {} {}",
+@@ -2167,10 +2819,41 @@
+                 if self.door_unblocking {
+                     self.force_unique_door_clear(view, &mut by_id);
+                 }
+-                let mut selected = MoisanBot::select(by_id, &view.inventories[0]);
+-                MoisanBot::resolve_move_conflicts(view, &mut selected);
++                let narrate_available = Self::narrate_available(&by_id);
++                let mut narrate_chosen: BTreeMap<i32, Target> = BTreeMap::new();
++                let mut selected =
++                    MoisanBot::select_recording(by_id, &view.inventories[0], &mut narrate_chosen,);
++                let mut narrate_branch: BTreeMap<i32, char> = BTreeMap::new();
++                let mut narrate_meta = HoldMeta::default();
++                MoisanBot::resolve_move_conflicts_hold(
++                    view,
++                    &mut selected,
++                    &mut self.blocked_turns,
++                    &mut self.prev_cells,
++                    &mut self.orchard_inert,
++                    MoisanBot::HOLD_RULE_ENABLED,
++                    &mut narrate_branch,
++                    &mut narrate_meta,
++                );
+                 self.remember_selected_regeneration(&selected);
+                 out.extend(selected);
++                if MoisanBot::NARRATE_V5_ENABLED {
++                    // Exactly one MSG per turn, FIRST in the list. The empty-check below
++                    // runs on the gameplay tokens alone, so the payload can never
++                    // suppress the base's WAIT.
++                    out.insert(
++                        0,
++                        Self::narrate_message(
++                            view,
++                            &narrate_chosen,
++                            &narrate_available,
++                            &narrate_branch,
++                            &self.blocked_turns,
++                            &narrate_meta,
++                            narrate_banner
++                        ),
++                    );
++                }
+                 if out.is_empty() {
+                     out.push("WAIT".to_string());
+                 }

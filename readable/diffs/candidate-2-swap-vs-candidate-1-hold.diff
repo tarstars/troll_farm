@@ -1,0 +1,327 @@
+--- readable/candidate-1-hold.rs
++++ readable/candidate-2-swap.rs
+@@ -1,11 +1,11 @@
+-// cand1-hold
++// cand2-swap
+ //
+ // This file is for READING. It is idiomatic rustfmt layout with explanatory
+ // comments, and it is the same program as the compacted artifact:
+ //
+ //   python3 cgauto/compact_rust_source.py <this file> out.rs
+-//   -> cand1-hold.rs, SHA-256
+-//      cc4b308705883f10192065dd205a36eb78baee3c1068a0697131b791f3d46e9b
++//   -> cand2-swap.rs, SHA-256
++//      5c678e6a8e320c93d2c948e6bae1278c80692aaa4e8d751464cd204ee7dee442
+ //
+ // The compactor deletes comments and optional whitespace, so comments and layout
+ // here are free and cannot change the program. Changing any *token* produces a new
+@@ -520,6 +520,10 @@
+             stale_protections: u32,
+             w_collisions: u32,
+             movers: u32,
++            swaps: u32,
++            target_occupied: u32,
++            non_adjacent: u32,
++            slot_fail: u32,
+         }
+         pub struct YamoBot {
+             announced: bool,
+@@ -1032,8 +1036,21 @@
+             // Task 20260825-dance-cure-candidate-1-hold. Compile-time flags; `build_arms.py`
+             // rewrites exactly this line to make the three arms, and nothing else differs
+             // between them.
+-            const HOLD_RULE_ENABLED: bool = true;
+-            const NARRATE_V4_ENABLED: bool = true;
++            const HOLD_RULE_ENABLED: bool = false;
++            const NARRATE_V4_ENABLED: bool = false;
++            // ---------------------------------------------------------------- Candidate 2
++            // Task 20260825-dance-cure-candidate-2-swap, G-0 DESIGN_ACCEPTED by codex_1
++            // 2026-08-25. Candidate 1 above is PARKED: its hold rule is off in every arm here and
++            // its code is untouched, so `H` is unreachable and `blocked_turns` has no writer.
++            //
++            // SWAP_P3_SCOPING_ENABLED is rule R-B, adopted verbatim from Candidate 1: on a seat
++            // view satisfying the orchard-eligibility predicate the exchange is inert for the
++            // WHOLE game. Flipping THIS line alone is control C-16's red half.
++            const SWAP_P3_SCOPING_ENABLED: bool = true;
++            // `build_arms.py` rewrites exactly the line below to make the three arms, and nothing
++            // else differs between them.
++            const SWAP_RULE_ENABLED: bool = true;
++            const NARRATE_V5_ENABLED: bool = true;
+             // The charter's bound W: at most this many CONSECUTIVE holds per unit. The next
+             // block takes the regressive detour and resets the counter, so a hold can slow a
+             // dance but can never park a troll.
+@@ -1142,13 +1159,26 @@
+                 hold_enabled: bool,
+                 counters: &BTreeMap<i32, u8>,
+                 prev_cells: &BTreeMap<i32, Cell>,
+-            ) -> (Vec<String>, BTreeMap<i32, char>, BTreeSet<i32>, u32, u32) {
++                swap_enabled: bool,
++            ) -> (
++                Vec<String>,
++                BTreeMap<i32, char>,
++                BTreeSet<i32>,
++                u32,
++                u32,
++                [u32; 4]
++            ) {
+                 let mut commands: Vec<String> = original.to_vec();
+                 let mut branch: BTreeMap<i32, char> = BTreeMap::new();
+                 let mut holders: BTreeSet<i32> = BTreeSet::new();
+                 let mut waiting_cells: BTreeSet<Cell> = BTreeSet::new();
+                 let mut granted: BTreeSet<Cell> = BTreeSet::new();
+                 let mut distance_cache: BTreeMap<Cell, BTreeMap<Cell, i32>> = BTreeMap::new();
++                // Candidate 2, per-pass locals. `displaced` is the set of partners already taken
++                // as an exchange partner in THIS pass (G-0 clause 4); `swap_counts` is
++                // [sw, so, sn, sf].
++                let mut displaced: BTreeSet<i32> = BTreeSet::new();
++                let mut swap_counts: [u32; 4] = [0, 0, 0, 0];
+                 let command_by_id: BTreeMap<i32, usize> = commands
+                     .iter()
+                     .enumerate()
+@@ -1171,6 +1201,38 @@
+                     .filter(|(_, _, current, _, landing)| landing != current)
+                     .map(|(id, _, _, _, _)| *id)
+                     .collect();
++                // Candidate 2, G-0 clause 2. `select_recording` emits exactly one command per own
++                // unit, ids ascending, so command index k belongs to the k-th own id. That is a
++                // POSITIONAL claim about another unit's command, so it is checked twice before it
++                // is used: the arity must match, and every own unit whose command parses as a MOVE
++                // must sit where the positional map says it does. Either check failing discards
++                // the map and NO swap fires this turn (`sf=`).
++                let mut own_ids: Vec<i32> = view
++                    .units
++                    .iter()
++                    .filter(|unit| unit.player == 0)
++                    .map(|unit| unit.id)
++                    .collect();
++                own_ids.sort();
++                let slot_by_id: Option<BTreeMap<i32, usize>> = if !swap_enabled {
++                    None
++                } else if own_ids.len() != commands.len() {
++                    None
++                } else {
++                    let map: BTreeMap<i32, usize> = own_ids
++                        .iter()
++                        .enumerate()
++                        .map(|(slot, id)| (*id, slot))
++                        .collect();
++                    if command_by_id
++                        .iter()
++                        .all(|(id, index)| map.get(id) == Some(index))
++                    {
++                        Some(map)
++                    } else {
++                        None
++                    }
++                };
+                 let occupied_now: BTreeSet<Cell> = view
+                     .units
+                     .iter()
+@@ -1236,6 +1298,89 @@
+                         branch.insert(id, 'P');
+                         continue;
+                     }
++                    // ------------------------------------------------ Candidate 2: the exchange
++                    // G-0 §2.3, clauses in order. Reached only when the landing is unavailable --
++                    // exactly the turns that are L, R or W in the v4 grammar. No lock, no timer,
++                    // no counter, no new memory: `prev_cells` is Candidate 1's, already written on
++                    // every turn of every arm, and `displaced`/`slot_by_id` are per-pass locals.
++                    if swap_enabled && !landing_forbidden {
++                        let partner = view
++                            .units
++                            .iter()
++                            .find(|other| 
++                                other.player == 0 && other.id != id && other.cell == landing
++                            )
++                            .map(|other| other.id);
++                        // Clause 4: a STANDING own partner -- not a mover this pass, on that same
++                        // cell last turn too, not already exchanged. An UNKNOWN previous cell
++                        // fails CLOSED, exactly as Candidate 1's accepted R-A treatment.
++                        let standing = match partner {
++                            Some(other) => 
++                                !moving_ids.contains(&other)
++                                    && matches!(prev_cells.get(&other),Some(previous)if*previous==landing)
++                                    && !displaced.contains(&other)
++                            ,
++                            None => false,
++                        };
++                        if standing {
++                            let other = partner.unwrap_or(id);
++                            if !is_adjacent(unit.cell, landing) {
++                                // Clause 5: a landing two cells away (movement_speed >= 2) is
++                                // EXCLUDED, not handled. G-0 edge case E-2.
++                                swap_counts[2] += 1;
++                            } else if target == landing {
++                                // Clause 6, first half: the teammate is ON the goal. Recorded and
++                                // left to the planner, per the card.
++                                swap_counts[1] += 1;
++                            } else {
++                                match slot_by_id.as_ref().and_then(|map| map.get(&other).copied()) {
++                                    None => {
++                                        swap_counts[3] += 1;
++                                    }
++                                    Some(other_index) => {
++                                        // Clause 6, second half: the target lies strictly beyond
++                                        // the landing. Each cell keyed by its OWN manhattan
++                                        // fallback (codex_1 definition 7). Normally automatic --
++                                        // L is the first step of a BFS path -- and it bites
++                                        // exactly where `next_cell` fell back off the map, which
++                                        // is where "beyond" is not meaningful. Not a refusal of a
++                                        // would-be cure, so it charges no counter.
++                                        let toward_goal = distance_cache
++                                            .entry(target)
++                                            .or_insert_with(|| 
++                                                bfs_distances(&view.walkable, &[target])
++                                            )
++                                            .clone();
++                                        let d_landing = toward_goal
++                                            .get(&landing)
++                                            .copied()
++                                            .unwrap_or_else(|| manhattan(landing, target));
++                                        let d_here = toward_goal
++                                            .get(&unit.cell)
++                                            .copied()
++                                            .unwrap_or_else(|| manhattan(unit.cell, target));
++                                        if d_landing < d_here {
++                                            reserved.insert(landing);
++                                            granted.insert(landing);
++                                            reserved.insert(unit.cell);
++                                            granted.insert(unit.cell);
++                                            displaced.insert(other);
++                                            commands[index] =
++                                                format!("MOVE {} {} {}", id, landing.0, landing.1);
++                                            commands[other_index] = format!(
++                                                "MOVE {} {} {}",
++                                                other, unit.cell.0, unit.cell.1
++                                            );
++                                            branch.insert(id, 'S');
++                                            branch.insert(other, 'X');
++                                            swap_counts[0] += 1;
++                                            continue;
++                                        }
++                                    }
++                                }
++                            }
++                        }
++                    }
+                     // Memoized per target within the turn. bfs_distances is pure, so this changes
+                     // cost and nothing else; passes do not multiply BFS work.
+                     let toward_goal = distance_cache
+@@ -1302,7 +1447,14 @@
+                     .iter()
+                     .filter(|cell| granted.contains(cell))
+                     .count() as u32;
+-                (commands, branch, holders, mover_count, w_collisions)
++                (
++                    commands,
++                    branch,
++                    holders,
++                    mover_count,
++                    w_collisions,
++                    swap_counts
++                )
+             }
+             // The stateful entry point, called from YamoBot::commands. The static entry points
+             // above are byte-identical to the base and are not on this path (codex_1 def. 5).
+@@ -1329,6 +1481,10 @@
+                 }
+                 let hold_enabled =
+                     hold_enabled && !(Self::P3_SCOPING_ENABLED && orchard_inert.unwrap_or(false));
++                // R-B for the exchange, evaluated from the SAME cached predicate: on an
++                // orchard-eligible seat view the swap is inert for the whole game.
++                let swap_enabled = Self::SWAP_RULE_ENABLED
++                    && !(Self::SWAP_P3_SCOPING_ENABLED && orchard_inert.unwrap_or(false));
+                 let original: Vec<String> = commands.to_vec();
+                 let priority_ids: BTreeSet<i32> = BTreeSet::new();
+                 let forbidden: BTreeSet<Cell> = BTreeSet::new();
+@@ -1339,16 +1495,18 @@
+                         .iter()
+                         .filter_map(|id| view.unit(*id).map(|unit| unit.cell))
+                         .collect();
+-                    let (out, mut branch, holders, mover_count, w_collisions) = Self::hold_pass(
+-                        view,
+-                        &original,
+-                        &priority_ids,
+-                        &forbidden,
+-                        &hold_cells,
+-                        hold_enabled,
+-                        blocked_turns,
+-                        prev_cells,
+-                    );
++                    let (out, mut branch, holders, mover_count, w_collisions, swap_counts) =
++                        Self::hold_pass(
++                            view,
++                            &original,
++                            &priority_ids,
++                            &forbidden,
++                            &hold_cells,
++                            hold_enabled,
++                            blocked_turns,
++                            prev_cells,
++                            swap_enabled,
++                        );
+                     passes += 1;
+                     if !holders.is_subset(&k) && passes <= mover_count + 1 {
+                         for id in holders {
+@@ -1391,6 +1549,10 @@
+                     meta.w_collisions = w_collisions;
+                     meta.stale_protections =
+                         k.iter().filter(|id| !holders.contains(id)).count() as u32;
++                    meta.swaps = swap_counts[0];
++                    meta.target_occupied = swap_counts[1];
++                    meta.non_adjacent = swap_counts[2];
++                    meta.slot_fail = swap_counts[3];
+                     *branch_out = branch;
+                     return;
+                 }
+@@ -2456,7 +2618,11 @@
+                     || (view.plants.len() <= 4
+                         && score(&view.inventories[0]) < score(&view.inventories[1]))
+             }
+-            // NARRATE v4 telemetry. v3's two reads are unchanged in name and meaning (the
++            // NARRATE v5 telemetry. v4's reads are unchanged in name and meaning; v5 adds the
++            // four Candidate 2 per-turn fields sw=/so=/sn=/sf= and RETIRES `H`, which is
++            // unreachable with the hold rule off. `b=` is kept in the shape for the decoder and is
++            // identically 0 in every v5 arm (blocked_turns' only writer was H); control C-9
++            // asserts both. v4's own words follow:
+             // tick-local map select_recording filled, and the unit-local best taken from the
+             // candidate map BEFORE selection consumes it); v4 adds the resolver branch `r=` and
+             // the post-decision counter `b=` per unit, and three per-turn measurements:
+@@ -2509,7 +2675,7 @@
+                     .map(|unit| unit.id)
+                     .collect();
+                 ids.sort();
+-                let mut tokens: Vec<String> = vec![format!("NARRATE v4 t={}", view.turn)];
++                let mut tokens: Vec<String> = vec![format!("NARRATE v5 t={}", view.turn)];
+                 for id in ids {
+                     let target = chosen.get(&id).copied().unwrap_or(Target::None);
+                     let want = match available.get(&id).copied().flatten() {
+@@ -2530,6 +2696,10 @@
+                 tokens.push(format!("pz={}", meta.passes));
+                 tokens.push(format!("sp={}", meta.stale_protections));
+                 tokens.push(format!("wc={}", meta.w_collisions));
++                tokens.push(format!("sw={}", meta.swaps));
++                tokens.push(format!("so={}", meta.target_occupied));
++                tokens.push(format!("sn={}", meta.non_adjacent));
++                tokens.push(format!("sf={}", meta.slot_fail));
+                 let body = tokens.join(" ");
+                 match banner {
+                     Some(text) => format!("MSG {} {}", text, body),
+@@ -2550,7 +2720,7 @@
+                 let mut out = Vec::new();
+                 let narrate_banner = if !self.announced {
+                     self.announced = true;
+-                    if !MoisanBot::NARRATE_V4_ENABLED {
++                    if !MoisanBot::NARRATE_V5_ENABLED {
+                         out.push(format!("MSG {}", self.announcement));
+                     }
+                     Some(self.announcement)
+@@ -2667,7 +2837,7 @@
+                 );
+                 self.remember_selected_regeneration(&selected);
+                 out.extend(selected);
+-                if MoisanBot::NARRATE_V4_ENABLED {
++                if MoisanBot::NARRATE_V5_ENABLED {
+                     // Exactly one MSG per turn, FIRST in the list. The empty-check below
+                     // runs on the gameplay tokens alone, so the payload can never
+                     // suppress the base's WAIT.
