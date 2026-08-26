@@ -1,6 +1,6 @@
 # 20260826-fixture-drift: Track 0-1 — 23 of the 34 frozen fixtures are `NOT_REPRODUCIBLE_ON_BASE` and silently skipped
 
-- Status: **OPEN — CHARTERED 2026-08-26T15:05Z by owner ruling** ("you can even start a subagent
+- Status: **CLOSED 2026-08-26T15:45Z — the 34 are RETIRED as gates by owner ruling** ("retire old data, build fresh"); files stay as history; successor = `20260826-fresh-fixture-dataset.md`. Diagnosis (subagent, 15:15Z): nothing rotted; the 34 were recorded from the very-old bot `98628e98` and 23 fail only because the champion is a different bot; containment checks all 34; grading was 11/34 and said so. Original status: **OPEN — CHARTERED 2026-08-26T15:05Z by owner ruling** ("you can even start a subagent
   for this task"; "before banana farm build"). Board row 0-1.
 - Record owner: local_claude_1 · Work owner: **local_claude_1 via a local subagent** (diagnosis
   phase, started 15:05Z), then whoever the diagnosis names for execution (codex_1 by default —

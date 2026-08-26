@@ -49,3 +49,12 @@ in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here f
   card, only if a top-10 read (Track T) says goal stability is something the strong bots have.
   Diff kept on `main`: `readable/diffs/candidate-3-keep-your-goal.diff`; packet
   `claude_1/cure3/g1-packet-2026-08-26.md`; codex_1's reproduction is the last act.
+
+- **2026-08-26 — the 34 frozen oscillation fixtures (OSC-001…034) as gates** (`20260826-fixture-drift`).
+  Cut in July from local games of the very-old bot `98628e98`; "reproducible on base" meant the
+  candidate replays that bot's exact episode, so every bot generation since silently failed more of
+  them (23 of 34 by the champion). Killed by the owner's ruling to retire old data and generate
+  fixtures from fresh instrumented real games instead. Learned: a frozen position from an old bot is
+  a wasting asset; fixtures must be a script's output tagged with the bot hash. The files and the
+  08-21 verdicts stay as history. Would reopen: never as gates; the successor is
+  `20260826-fresh-fixture-dataset`.
