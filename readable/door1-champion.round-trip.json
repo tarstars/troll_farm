@@ -1,0 +1,19 @@
+{
+  "canonical_token_stream_identical": true,
+  "compacted": {
+    "bytes": 75653,
+    "path": "cgauto/submissions/candidate-door1-pure-deletion.rs",
+    "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+  },
+  "compacted_file_byte_identical": false,
+  "difference_is_trailing_newline_only": false,
+  "formatter": "rustfmt (reorder_imports=false, max_width=100) + inserted-comma removal",
+  "readable": {
+    "bytes": 97849,
+    "lines": 2206,
+    "path": "readable/door1-champion.rs",
+    "sha256": "b6003995e686a3dab42ff3ef2fa58bfb1567cffd0e003cb002c27e1e0160b44f"
+  },
+  "schema": "troll-farm-readable-source-v2",
+  "verdict": "READABLE_SOURCE_ROUND_TRIP_EXACT"
+}
