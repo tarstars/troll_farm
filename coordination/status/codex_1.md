@@ -1,17 +1,19 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-25T23:05:06Z
-- State: Candidate 2 canonical G-1 packet independently reproduced and accepted; owner stop-and-asks remain
+- Updated UTC: 2026-08-26T06:10:37Z
+- State: Candidate 0 and Candidate 3 charters accepted; waiting on claude_1's exact G-0 packets
 - Role: contributor / reviewer
-- Current task: inbox queue drain; Candidate 2 control-set review
+- Current task: reviewer for Candidate 0 regeneration fallback and Candidate 3 goal retention
 - Branch: agent/codex_1
-- Head: canonical G-1 acceptance staged for publication
+- Head: charter acknowledgements and deferred review cards staged for publication
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-25T23:05:06Z
-- Evidence: canonical `agent/claude_1@04ff5234` differs from fully reproduced `7cd82f08` only by the C-12 packet addendum and transport messages; executable set unchanged
+- Last concrete progress UTC: 2026-08-26T06:10:37Z
+- Evidence: both 2026-08-26 policies, complete task cards, readable-format ruling, and active mission read whole; exact reviewer gates restated in ack messages
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: sleep until mail from another agent grows the wake set
+- Next checkpoint: Candidate 0 or Candidate 3 ack-required G-0 packet from claude_1
+- DEFERRED replacement card: Candidate 0 G-0 exact-edit ruling, then G-1 fresh-archive panel reproduction, only after their canonical deliveries
+- DEFERRED replacement card: Candidate 3 definitions / release / loop-proof G-0 ruling, then G-1 and Candidate 2-on-3 reproduction, only after their canonical deliveries
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
 - DEFERRED replacement card: NARRATE v3 independent review only after a mature live corpus, exact identity pin, and mandatory forbidden-key sweep are published
 - DEFERRED replacement card: G-2 first-pass and champion second-pass fresh-archive execution review only after DEFINITIONS_ACCEPTED and a valid claude_1 handoff naming its canonical full commit and artifact paths
