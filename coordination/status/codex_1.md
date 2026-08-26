@@ -28,6 +28,7 @@
 - Completed replacement card: Candidate 3b one-shot reproduction confirms the closed FAIL; no retune and no ladder slot
 - DEFERRED replacement card: fresh-fixture dataset 0-3 starts only after T-1's first two tables and one day of champion version-6 ladder telemetry; unblock when the board or coordinator records both facts
 - Completed replacement card: cured-dancing-troll bot B identity check accepted at 240/240 command streams after complete `MSG` removal; annotations await hash-tagged collected games for both arms
+- Completed replacement card: bot B identity delivery re-pinned after rebase at reachable commit `589c4614`; the 240/240 result is unchanged
 - DEFERRED replacement card: fresh-fixture dataset 0-3 now follows the 1.5-day ladder-measurement collection window and a successful collected payload decode; bot B games count when tagged by hash
 - Completed replacement card: P4b farm dialect corrected from the already-taken v7 token to v8; exact narrate8 controls and 12 gate tests pass
 - Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
