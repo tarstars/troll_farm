@@ -1,0 +1,31 @@
+{
+  "arms": {
+    "candidate": {
+      "keep_rule_enabled": true,
+      "lines_differing_from_source": 1,
+      "narrate_v6_enabled": false,
+      "path": "claude_1/cure3/arm-candidate.rs",
+      "sha256": "1dac653aaec8ef9ab9e8d4c54243ce5fe302f99769fe66aed502c8cbac8eec75"
+    },
+    "instrument": {
+      "keep_rule_enabled": true,
+      "lines_differing_from_source": 0,
+      "narrate_v6_enabled": true,
+      "path": "claude_1/cure3/arm-instrument.rs",
+      "sha256": "01b61444a109c1d190fba5b0a103c861c6f9e772596e97cf9042b9b2c516b3b3"
+    },
+    "ruleoff": {
+      "keep_rule_enabled": false,
+      "lines_differing_from_source": 1,
+      "narrate_v6_enabled": true,
+      "path": "claude_1/cure3/arm-ruleoff.rs",
+      "sha256": "0f75e7d61c71d4881502aac2204faf6fb5035331857a9f400ea2647bccd94141"
+    }
+  },
+  "base": "readable/door1-champion.rs",
+  "base_sha256": "ad1ae4eff70a5569e03e2149882bb22510746f4f8592907a5dfb936943ef0bfb",
+  "packet": "claude_1/cure3/g0-candidate-3-2026-08-26-r6.md",
+  "source": "claude_1/cure3/cure3-keep-v6.rs",
+  "source_sha256": "01b61444a109c1d190fba5b0a103c861c6f9e772596e97cf9042b9b2c516b3b3",
+  "task": "20260826-candidate-3-keep-your-goal"
+}
