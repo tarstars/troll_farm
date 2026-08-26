@@ -1,0 +1,829 @@
+{
+  "arm": "claude_1/cure2/arm-instrument.rs",
+  "base": "cgauto/submissions/candidate-door1-pure-deletion.rs",
+  "better": 5,
+  "changed_score": 6,
+  "control": "C-15 named costs (34 frozen fixtures)",
+  "fixtures": 34,
+  "rows": [
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        2,
+        0,
+        2
+      ],
+      "arm_opponent": 0,
+      "arm_score": 10,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        2,
+        0,
+        0
+      ],
+      "base_opponent": 26,
+      "base_score": 2,
+      "delta": 8,
+      "id": "OSC-001"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        8
+      ],
+      "arm_opponent": 0,
+      "arm_score": 32,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        5
+      ],
+      "base_opponent": 24,
+      "base_score": 20,
+      "delta": 12,
+      "id": "OSC-002"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        4
+      ],
+      "arm_opponent": 8,
+      "arm_score": 16,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        4
+      ],
+      "base_opponent": 8,
+      "base_score": 16,
+      "delta": 0,
+      "id": "OSC-003"
+    },
+    {
+      "arm_inventory": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        2
+      ],
+      "arm_opponent": 0,
+      "arm_score": 10,
+      "base_inventory": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        2
+      ],
+      "base_opponent": 0,
+      "base_score": 10,
+      "delta": 0,
+      "id": "OSC-004"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        6
+      ],
+      "arm_opponent": 3,
+      "arm_score": 24,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        5
+      ],
+      "base_opponent": 18,
+      "base_score": 20,
+      "delta": 4,
+      "id": "OSC-005"
+    },
+    {
+      "arm_inventory": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        5
+      ],
+      "arm_opponent": 12,
+      "arm_score": 21,
+      "base_inventory": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        6
+      ],
+      "base_opponent": 12,
+      "base_score": 26,
+      "delta": -5,
+      "id": "OSC-006"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        4
+      ],
+      "arm_opponent": 16,
+      "arm_score": 17,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        4
+      ],
+      "base_opponent": 16,
+      "base_score": 17,
+      "delta": 0,
+      "id": "OSC-007"
+    },
+    {
+      "arm_inventory": [
+        1,
+        10,
+        0,
+        7,
+        0,
+        12
+      ],
+      "arm_opponent": 36,
+      "arm_score": 66,
+      "base_inventory": [
+        1,
+        10,
+        0,
+        7,
+        0,
+        12
+      ],
+      "base_opponent": 36,
+      "base_score": 66,
+      "delta": 0,
+      "id": "OSC-008"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        16
+      ],
+      "arm_opponent": 72,
+      "arm_score": 64,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        16
+      ],
+      "base_opponent": 68,
+      "base_score": 64,
+      "delta": 0,
+      "id": "OSC-009"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        23
+      ],
+      "arm_opponent": 63,
+      "arm_score": 92,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        23
+      ],
+      "base_opponent": 63,
+      "base_score": 92,
+      "delta": 0,
+      "id": "OSC-010"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        6
+      ],
+      "arm_opponent": 12,
+      "arm_score": 25,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        6
+      ],
+      "base_opponent": 12,
+      "base_score": 25,
+      "delta": 0,
+      "id": "OSC-011"
+    },
+    {
+      "arm_inventory": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "arm_opponent": 22,
+      "arm_score": 6,
+      "base_inventory": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1
+      ],
+      "base_opponent": 22,
+      "base_score": 6,
+      "delta": 0,
+      "id": "OSC-012"
+    },
+    {
+      "arm_inventory": [
+        1,
+        0,
+        1,
+        0,
+        0,
+        6
+      ],
+      "arm_opponent": 18,
+      "arm_score": 26,
+      "base_inventory": [
+        1,
+        0,
+        1,
+        0,
+        0,
+        6
+      ],
+      "base_opponent": 18,
+      "base_score": 26,
+      "delta": 0,
+      "id": "OSC-013"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        8
+      ],
+      "arm_opponent": 5,
+      "arm_score": 32,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        8
+      ],
+      "base_opponent": 5,
+      "base_score": 32,
+      "delta": 0,
+      "id": "OSC-014"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        8
+      ],
+      "arm_opponent": 3,
+      "arm_score": 33,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        8
+      ],
+      "base_opponent": 3,
+      "base_score": 33,
+      "delta": 0,
+      "id": "OSC-015"
+    },
+    {
+      "arm_inventory": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        2
+      ],
+      "arm_opponent": 0,
+      "arm_score": 10,
+      "base_inventory": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        2
+      ],
+      "base_opponent": 0,
+      "base_score": 10,
+      "delta": 0,
+      "id": "OSC-016"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        3
+      ],
+      "arm_opponent": 0,
+      "arm_score": 12,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        3
+      ],
+      "base_opponent": 0,
+      "base_score": 12,
+      "delta": 0,
+      "id": "OSC-017"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        2
+      ],
+      "arm_opponent": 0,
+      "arm_score": 9,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        2
+      ],
+      "base_opponent": 0,
+      "base_score": 9,
+      "delta": 0,
+      "id": "OSC-018"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        1,
+        2,
+        0,
+        6
+      ],
+      "arm_opponent": 0,
+      "arm_score": 27,
+      "base_inventory": [
+        0,
+        0,
+        1,
+        2,
+        0,
+        6
+      ],
+      "base_opponent": 0,
+      "base_score": 27,
+      "delta": 0,
+      "id": "OSC-019"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        8
+      ],
+      "arm_opponent": 0,
+      "arm_score": 33,
+      "base_inventory": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        8
+      ],
+      "base_opponent": 0,
+      "base_score": 33,
+      "delta": 0,
+      "id": "OSC-020"
+    },
+    {
+      "arm_inventory": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        3
+      ],
+      "arm_opponent": 0,
+      "arm_score": 14,
+      "base_inventory": [
+        1,
+        0,
+        0,
+        1,
+        0,
+        3
+      ],
+      "base_opponent": 0,
+      "base_score": 14,
+      "delta": 0,
+      "id": "OSC-021"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        6
+      ],
+      "arm_opponent": 0,
+      "arm_score": 25,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        6
+      ],
+      "base_opponent": 0,
+      "base_score": 25,
+      "delta": 0,
+      "id": "OSC-022"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        6
+      ],
+      "arm_opponent": 0,
+      "arm_score": 25,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        6
+      ],
+      "base_opponent": 0,
+      "base_score": 25,
+      "delta": 0,
+      "id": "OSC-023"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        3
+      ],
+      "arm_opponent": 6,
+      "arm_score": 12,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        3
+      ],
+      "base_opponent": 6,
+      "base_score": 12,
+      "delta": 0,
+      "id": "OSC-024"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        4
+      ],
+      "arm_opponent": 20,
+      "arm_score": 16,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        4
+      ],
+      "base_opponent": 20,
+      "base_score": 16,
+      "delta": 0,
+      "id": "OSC-025"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        3
+      ],
+      "arm_opponent": 24,
+      "arm_score": 12,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        3
+      ],
+      "base_opponent": 24,
+      "base_score": 12,
+      "delta": 0,
+      "id": "OSC-026"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        4
+      ],
+      "arm_opponent": 0,
+      "arm_score": 17,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        4
+      ],
+      "base_opponent": 0,
+      "base_score": 17,
+      "delta": 0,
+      "id": "OSC-027"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        16
+      ],
+      "arm_opponent": 72,
+      "arm_score": 64,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        16
+      ],
+      "base_opponent": 68,
+      "base_score": 64,
+      "delta": 0,
+      "id": "OSC-028"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        8
+      ],
+      "arm_opponent": 24,
+      "arm_score": 33,
+      "base_inventory": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        7
+      ],
+      "base_opponent": 24,
+      "base_score": 29,
+      "delta": 4,
+      "id": "OSC-029"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        3
+      ],
+      "arm_opponent": 0,
+      "arm_score": 12,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        3
+      ],
+      "base_opponent": 0,
+      "base_score": 12,
+      "delta": 0,
+      "id": "OSC-030"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        8
+      ],
+      "arm_opponent": 2,
+      "arm_score": 32,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        5
+      ],
+      "base_opponent": 24,
+      "base_score": 20,
+      "delta": 12,
+      "id": "OSC-031"
+    },
+    {
+      "arm_inventory": [
+        0,
+        2,
+        0,
+        1,
+        0,
+        4
+      ],
+      "arm_opponent": 0,
+      "arm_score": 19,
+      "base_inventory": [
+        0,
+        2,
+        0,
+        1,
+        0,
+        4
+      ],
+      "base_opponent": 0,
+      "base_score": 19,
+      "delta": 0,
+      "id": "OSC-032"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        2
+      ],
+      "arm_opponent": 0,
+      "arm_score": 10,
+      "base_inventory": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        2
+      ],
+      "base_opponent": 0,
+      "base_score": 10,
+      "delta": 0,
+      "id": "OSC-033"
+    },
+    {
+      "arm_inventory": [
+        0,
+        0,
+        0,
+        2,
+        0,
+        4
+      ],
+      "arm_opponent": 0,
+      "arm_score": 18,
+      "base_inventory": [
+        0,
+        0,
+        0,
+        2,
+        0,
+        4
+      ],
+      "base_opponent": 0,
+      "base_score": 18,
+      "delta": 0,
+      "id": "OSC-034"
+    }
+  ],
+  "task": "20260825-dance-cure-candidate-2-swap",
+  "total_delta": 35,
+  "worse": 1
+}

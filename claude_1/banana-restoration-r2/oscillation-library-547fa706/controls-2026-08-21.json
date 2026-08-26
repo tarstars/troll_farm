@@ -1,0 +1,46 @@
+{
+ "cases": [
+  {
+   "check": "C-1a the accepted 98628e98 library rebuilds with every MEASURED field identical",
+   "pass": true,
+   "detail": "the ONLY differing paths across all 34 situations are ['/content_sha256', '/provenance/panel_config_sha256'] -- no window, world state, command line, classification or detector field differs"
+  },
+  {
+   "check": "C-1b payloads are byte-identical once the FROZEN config digest is restored",
+   "pass": true,
+   "detail": "34/34 payload digests reproduce exactly; live config 49bb35516b0b3a43 != frozen eca5cb32e8fc5daa, an edit of 2026-08-12 (07cb2bd7, source-portability) to a file the library had already pinned"
+  },
+  {
+   "check": "C-1c the rebuilt index agrees on counts, histograms and every entry but its digests",
+   "pass": true,
+   "detail": "34 situations / 46 episodes, mechanisms {'M1': 11, 'M2': 14, 'M3': 1, 'UNCLASSIFIED': 8}"
+  },
+  {
+   "check": "C-2 a wrong subject sha256 in the panel config is REFUSED",
+   "pass": true,
+   "detail": "exit 1, stderr 'panel config candidate.sha256 is not the champion', output dir created: False"
+  },
+  {
+   "check": "C-3 a non-floor run_identity is REFUSED",
+   "pass": true,
+   "detail": "exit 1, \"panel config must declare run_identity 'floor'\""
+  },
+  {
+   "check": "C-4 a MODIFIED accepted builder is REFUSED",
+   "pass": true,
+   "detail": "exit 1, 'o call unmodified has changed; get the change reviewed before harvesting anything with it.'"
+  },
+  {
+   "check": "C-5 the champion library is deterministic (same games -> same library_sha256)",
+   "pass": true,
+   "detail": "4d3b36558f317a05 vs 4d3b36558f317a05"
+  },
+  {
+   "check": "C-6 the identity digests REJECT a changed command line and a moved unit",
+   "pass": true,
+   "detail": "commands detected=True, entry detected=True"
+  }
+ ],
+ "passed": 8,
+ "total": 8
+}

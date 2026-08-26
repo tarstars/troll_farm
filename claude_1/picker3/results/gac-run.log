@@ -1,0 +1,78 @@
+
+=== subject cureC
+  shipped-source inertness (§5a): OK  graded c55f9ef2d23fe82a…
+  OK   OSC-001    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-002    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-003    EFFECT    formed   2 selected   1 Δ-B   0 identical=False
+  OK   OSC-004    EFFECT    formed   2 selected   2 Δ-B   0 identical=False
+  OK   OSC-005    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-006    EFFECT    formed   2 selected   2 Δ-B   0 identical=False
+  OK   OSC-007    EFFECT    formed   1 selected   1 Δ-B   0 identical=False
+  OK   OSC-008    EFFECT    formed  67 selected  67 Δ-B   0 identical=False
+  OK   OSC-009    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-010    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-011    EFFECT    formed   2 selected   1 Δ-B   0 identical=False
+  OK   OSC-012    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-013    EFFECT    formed   2 selected   2 Δ-B   0 identical=False
+  OK   OSC-014    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-015    EFFECT    formed   2 selected   1 Δ-B   0 identical=False
+  OK   OSC-016    EFFECT    formed   2 selected   2 Δ-B   0 identical=False
+  OK   OSC-017    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-018    EFFECT    formed   1 selected   1 Δ-B   0 identical=False
+  OK   OSC-019    EFFECT    formed   3 selected   3 Δ-B   0 identical=False
+  OK   OSC-020    EFFECT    formed   2 selected   1 Δ-B   0 identical=False
+  OK   OSC-021    EFFECT    formed   2 selected   2 Δ-B   0 identical=False
+  OK   OSC-022    EFFECT    formed   2 selected   1 Δ-B   0 identical=False
+  OK   OSC-023    EFFECT    formed   2 selected   1 Δ-B   0 identical=False
+  OK   OSC-024    EFFECT    formed   2 selected   1 Δ-B   0 identical=False
+  OK   OSC-025    EFFECT    formed   2 selected   1 Δ-B   0 identical=False
+  OK   OSC-026    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-027    EFFECT    formed 102 selected  51 Δ-B   0 identical=False
+  OK   OSC-028    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-029    EFFECT    formed   1 selected   1 Δ-B   0 identical=False
+  OK   OSC-030    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-031    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-032    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-033    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-034    EFFECT    formed   2 selected   2 Δ-B   0 identical=False
+  cureC: 20 EFFECT / 14 NO-EFFECT, Δ-A formed 203 ticks, selected 144, Δ-B 0 -> PASS
+
+=== subject door1
+  shipped-source inertness (§5a): OK  graded 457360589a65cb26…
+  OK   OSC-001    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-002    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-003    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-004    EFFECT    formed   2 selected   2 Δ-B   0 identical=False
+  OK   OSC-005    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-006    EFFECT    formed   2 selected   2 Δ-B   0 identical=False
+  OK   OSC-007    EFFECT    formed   1 selected   1 Δ-B   0 identical=False
+  OK   OSC-008    EFFECT    formed  67 selected  67 Δ-B   0 identical=False
+  OK   OSC-009    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-010    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-011    EFFECT    formed   2 selected   1 Δ-B   0 identical=False
+  OK   OSC-012    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-013    EFFECT    formed   2 selected   2 Δ-B   0 identical=False
+  OK   OSC-014    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-015    EFFECT    formed   2 selected   1 Δ-B   0 identical=False
+  OK   OSC-016    EFFECT    formed   2 selected   2 Δ-B   0 identical=False
+  OK   OSC-017    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-018    EFFECT    formed   1 selected   1 Δ-B   0 identical=False
+  OK   OSC-019    EFFECT    formed   3 selected   3 Δ-B   0 identical=False
+  OK   OSC-020    EFFECT    formed   2 selected   1 Δ-B   0 identical=False
+  OK   OSC-021    EFFECT    formed   2 selected   2 Δ-B   0 identical=False
+  OK   OSC-022    EFFECT    formed   2 selected   1 Δ-B   0 identical=False
+  OK   OSC-023    EFFECT    formed   2 selected   1 Δ-B   0 identical=False
+  OK   OSC-024    EFFECT    formed   2 selected   1 Δ-B   0 identical=False
+  OK   OSC-025    EFFECT    formed   2 selected   1 Δ-B   0 identical=False
+  OK   OSC-026    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-027    EFFECT    formed 102 selected  51 Δ-B   0 identical=False
+  OK   OSC-028    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-029    EFFECT    formed   1 selected   1 Δ-B   0 identical=False
+  OK   OSC-030    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-031    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-032    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-033    NO-EFFECT formed   0 selected   0 Δ-B   0 identical=True
+  OK   OSC-034    EFFECT    formed   2 selected   2 Δ-B   0 identical=False
+  door1: 19 EFFECT / 15 NO-EFFECT, Δ-A formed 201 ticks, selected 143, Δ-B 0 -> PASS
+
+  G-a + G-c: PASS

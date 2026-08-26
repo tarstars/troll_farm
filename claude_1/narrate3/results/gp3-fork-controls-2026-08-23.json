@@ -1,0 +1,77 @@
+{
+  "all_fired": true,
+  "controls": [
+    {
+      "expected": "parity holds and ABSENT appears, distinct from NONE and from a concrete target",
+      "fired": true,
+      "fork": "attest-absent",
+      "observed": {
+        "absent_rows": 6800,
+        "absent_rows_honest": 0,
+        "parity": "34/34",
+        "telemetry_errors": 0
+      }
+    },
+    {
+      "expected": "the lone-unit tie parity check FIRES, and the discarded-want census collapses",
+      "fired": true,
+      "fork": "poison-worst",
+      "observed": {
+        "discarded_want": 0,
+        "discarded_want_honest": 315,
+        "first_errors": [
+          "OSC-010: turn 1: lone-unit tie parity broken \u2014 chosen TREE(6,1) != available NONE",
+          "OSC-010: turn 2: lone-unit tie parity broken \u2014 chosen TREE(6,1) != available NONE"
+        ],
+        "lone_unit_turns": 619,
+        "telemetry_errors": 168
+      }
+    },
+    {
+      "expected": "play diverges from the base and the discarded-want census moves",
+      "fired": true,
+      "fork": "poison-pair",
+      "observed": {
+        "discarded_want": 38,
+        "discarded_want_honest": 49,
+        "parity": "3/6"
+      }
+    },
+    {
+      "expected": "play diverges from the base and the discarded-want census moves",
+      "fired": true,
+      "fork": "poison-score",
+      "observed": {
+        "discarded_want": 1960,
+        "discarded_want_honest": 49,
+        "parity": "0/6"
+      }
+    }
+  ],
+  "gate": "G-P (NARRATE v3) live forks",
+  "honest_full_census": {
+    "available_states": {
+      "ABSENT": 0,
+      "CONCRETE": 2629,
+      "NONE": 10352
+    },
+    "chosen_ne_available": 773,
+    "discarded_want": 315,
+    "lone_unit_turns": 619,
+    "payload_max_chars": 111,
+    "rows": 12981
+  },
+  "honest_subset_census": {
+    "available_states": {
+      "ABSENT": 0,
+      "CONCRETE": 342,
+      "NONE": 2058
+    },
+    "chosen_ne_available": 75,
+    "discarded_want": 49,
+    "lone_unit_turns": 0,
+    "payload_max_chars": 111,
+    "rows": 2400
+  },
+  "subset": "OSC-001,OSC-004,OSC-009,OSC-017,OSC-025,OSC-031"
+}

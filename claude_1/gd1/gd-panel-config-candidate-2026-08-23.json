@@ -1,0 +1,114 @@
+{
+ "bin_cache_dir": "/tmp/claude-1000/p3b-gd/candidate/bin",
+ "candidate": {
+  "crate": "p3b_door1_candidate_seat_a",
+  "sha256": "457360589a65cb2662950761deba817852ea9eb0d2c53b05a3e6fd2ab9dfda8a",
+  "source": "claude_1/picker3/candidate-door1-p3b.rs",
+  "source_git": {
+   "commit": "09ed550f91936818425ad2611c1b875531f32a35",
+   "path": "claude_1/picker3/candidate-door1-p3b.rs"
+  }
+ },
+ "class_mix": {
+  "choke_corridor": 0.25,
+  "forest_dense": 0.08,
+  "forest_sparse": 0.07,
+  "multi_door": 0.1,
+  "open_field": 0.15,
+  "orchard_eligible": 0.1,
+  "single_door_tent": 0.1,
+  "water_diagonal": 0.15
+ },
+ "corpus_version": "c5-two-player-phase-merged-2026-08-11",
+ "games_dir": "/tmp/claude-1000/p3b-gd/candidate/games",
+ "instrument_invalid_rows": [
+  {
+   "corpus_version": "c4-engine-conformant-referee-2026-08-10",
+   "eligible_for_calibration": false,
+   "map_id": "*",
+   "reason": "The c4 referee applied only the candidate's phases and then let a scripted policy mutate opponent units directly (review B2), read only the candidate's execution status when rendering the aggregate (B3), and stripped/capped the raw command evidence (B4). Opponent-sensitive detector, score and margin evidence came from a world transition engine.rs::step cannot produce.",
+   "seat": -1,
+   "status": "instrument_invalid"
+  },
+  {
+   "corpus_version": "c1-silent-train-2026-08-09",
+   "eligible_for_calibration": false,
+   "map_id": "m040",
+   "reason": "The c1 referee silently discarded TRAIN and MINE. m040 seat 0 emitted TRAIN on 166 of 200 turns because the own worker count never rose, and the game still scored CLEAN (D-1..D-9 all zero). The row measured a world that never happened.",
+   "seat": 0,
+   "status": "instrument_invalid"
+  },
+  {
+   "corpus_version": "c1-silent-train-2026-08-09",
+   "eligible_for_calibration": false,
+   "map_id": "m040",
+   "reason": "As seat 0: TRAIN emitted on 182 of 200 turns under the c1 silent dispatcher, scored CLEAN.",
+   "seat": 1,
+   "status": "instrument_invalid"
+  },
+  {
+   "corpus_version": "c2-train-repair-2026-08-09",
+   "eligible_for_calibration": false,
+   "map_id": "*",
+   "reason": "The c2 referee derived TRAIN legality from MoisanBot::can_train (a bot's self-restraint) rather than engine.rs::apply_train, so it forbade what the engine permits.",
+   "seat": -1,
+   "status": "instrument_invalid"
+  },
+  {
+   "corpus_version": "c3-train-engine-authority-2026-08-09",
+   "eligible_for_calibration": false,
+   "map_id": "*",
+   "reason": "The c3 referee executed command fragments in textual order with only TRAIN repositioned, kept the inherited silent dispatcher for MOVE/HARVEST/PLANT/CHOP/PICK/DROP, and coerced malformed TRAIN talents to zero. Rejected by chatgpt_1/referee-train-repair-r2-review-2026-08-10.md (blockers B1-B11).",
+   "seat": -1,
+   "status": "instrument_invalid"
+  }
+ ],
+ "instrument_version": "fuzz-panel/5-two-player-phase-merged-referee",
+ "liveness_window": 60,
+ "maps": 120,
+ "margin_collapse_threshold": 100,
+ "max_generation_attempts": 64,
+ "notes": [
+  "MECHANICAL COPY of claude_1/banana-restoration-r2/oscillation-library-547fa706/panel-config.json (sha256 d51a4b975b4d90248d660f45da54d4673bc36e4a18908d22437248e3adbab18b) with EXACTLY four kinds of field changed: candidate/parent, the two OUTPUT paths (bin_cache_dir, games_dir), run_identity, the task string and these notes. Every MEASURED field -- seeds, maps, class_mix, opponent_mix, turns, liveness_window, margin_collapse_threshold, max_generation_attempts, corpus_version, instrument_version, instrument_invalid_rows -- is byte-identical to that config, which is what makes the candidate and floor panels here matched to each other AND comparable to the champion library's population.",
+  "THE PARENT IS THE r2 BUILD'S OWN BASE, NOT THE CHAMPION. Phase 3b's door-1 candidate is P1+P2 door-1 (5e1f4df4...) plus exactly the design r2 SS1 hunk. Grading it against the champion of record (547fa706) would price P1+P2 and the hunk together and attribute the sum to Phase 3b. The parent here is therefore P1+P2 door-1, so the measured delta is the hunk and nothing else.",
+  "THE RULE (owner-approved 2026-08-21): a recorded episode belongs to the bot that produced it. This library is the champion's own exhibit set; it does not re-rule and does not supersede the mechanism rulings taken on the 98628e98 library, which remain rulings about MECHANISMS.",
+  "SUBJECT CORRECTION (2026-08-11). This config is a COPY of claude_1/pipeline/fuzz-panel-floor-config.json with both sources repointed to the M3a SUBJECT `readable__no_orchard` = cgauto/submissions/submitted-agent6593838-readable-no-orchard.rs (read as `git show origin/main:<path>`, sha256 98628e98dce4a33b4f24308be3111595927b2ea8469c94a8d781cc85d41fbc29). The earlier M3a library was harvested from the PARENT candidate-agent6553250-preseed-orchard-coverage-slim.min.rs (a8eb3b2b...), which is a DIFFERENT PROGRAM. Zero situations in that library came from the named subject. This config corrects that.",
+  "The subject file is not present in the working tree of this branch; it is read from origin/main and materialised at the absolute path above. Its SHA-256 is pinned in this config and re-checked by fuzz_panel.load_config.",
+  "THE FLOOR. This config runs the PARENT SUBMISSION AGAINST ITSELF over the identical 240-game corpus the candidate config uses (same seeds, same map and opponent mixes, same turn budget). Its blocking count is the instrument's own baseline: the number of games the panel blocks when the candidate IS the parent. It is the only number that may be called 'the floor'. A candidate config's blocking count is a CANDIDATE number and answers a different question. load_config enforces the distinction: run_identity 'floor' requires the two sources to be the same bytes.",
+  "CORPUS BUMP c4 -> c5 (two-player phase-merged referee, revision r4, 2026-08-11, against chatgpt_1/referee-train-repair-r3-review-2026-08-09.md, disposition DISPATCH_LAYER_ACCEPTED -- PANEL_REVISION_REQUIRED). Three trust-envelope repairs, each of which changes what the instrument measures: (B2) the opponent profiles no longer mutate the world through a direct post-phase mini-simulator -- they emit a COMMAND LINE for player 1 which is parsed by the same trust boundary and merged with the candidate's stream into ONE engine.rs::step transition (engine.rs:755-806), so cross-player MOVE contention, the per-player first-command rule, multi-round HARVEST, the CHOP snapshot and DROP/PICK banking are now the engine's rules for BOTH seats; (B3) a malformed or unsupported PARENT command now makes the aggregate GATE_UNREADY and its complete error ledger is retained on the row, where r3 read only the candidate's status; (B4) the durable error packet retains each offending fragment verbatim with its exact [start, end) character span, the verbatim stdout line and its sha256, and the stream is no longer capped at 50. c4 results remain useful diagnostics but are NOT eligible for calibration.",
+  "RUN IDENTITY (review B5, 2026-08-11). Every config declares run_identity. 'candidate' means candidate-vs-parent and requires two different bots; 'floor' means the parent judged against ITSELF and requires candidate.source and parent.source to be the same bytes. load_config checks the declaration against the actual source digests, and the identity is carried into the report title, the JSON packet and every row. THIS config is the CANDIDATE run; the floor lives in fuzz-panel-floor-config.json. r3's handoff committed only this config and then quoted a floor from it, which is the confusion the check now makes impossible.",
+  "CORPUS BUMP c3 -> c4 (engine-conformance revision r3, 2026-08-10, against the frozen acceptance contract chatgpt_1/referee-train-acceptance-contract-2026-08-09.md as reviewed in chatgpt_1/referee-train-repair-r2-review-2026-08-10.md). c3 executed raw command fragments sequentially and only repositioned TRAIN, so the panel contained a second, informal command language: textual semicolon order decided PICK/DROP/MINE timing, a unit could execute several non-TRAIN commands in one turn, PICK/DROP refused the shack cell itself (engine.rs:205-208 is `<= 1`), HARVEST took at most one fruit regardless of harvest power (engine.rs:389-410 is multi-round), MOVE had no contention resolution (engine.rs:213-357), and malformed bot output was silently coerced. c4 parses the whole line before any mutation and applies the eight engine phases in engine order MOVE -> HARVEST -> PLANT -> CHOP -> PICK -> TRAIN -> DROP -> MINE (engine.rs:755-806). Every own-side effect is now written from rust/src/game/engine.rs and differentially checked against that file's own compiled bytes. Results are NOT comparable across the bump: this changes many games for reasons unrelated to TRAIN.",
+  "CORPUS BUMP c2 -> c3 (TRAIN engine-authority revision, 2026-08-09). The c2 referee derived TRAIN legality from MoisanBot::can_train (rust/src/bin/yamo_orchard_live.rs:836, 'if n >= 2 || TOTAL_TURNS - view.turn <= 20 { return false; }'). That is ONE BOT'S SELF-RESTRAINT. The authority is rust/src/game/engine.rs::apply_train (525-568), which enforces NEITHER the two-worker cap NOR the final-20-turn guard: between the own-unit count at 527 (used only to price the bill at 528) and the spawn at 556-567 the only rejections are affordability (539-541) and an occupied shack (545-547). The c2 referee therefore forbade what the engine permits and would have silently rejected a candidate that trains a third worker. c3 removes both bot-derived restrictions and mirrors engine.rs alone. Permitting a third (and fourth, ...) worker changes many games; results are NOT comparable across the bump.",
+  "CORPUS BUMP c1 -> c2 (referee TRAIN repair, 2026-08-09). The referee now implements TRAIN and MINE and dispatches commands EXHAUSTIVELY: a verb with no handler terminates the run as GATE_UNREADY / unsupported_command instead of being silently discarded. Under c1 the referee silently dropped TRAIN and MINE, so every game in which the bot trained or mined was simulated against a world that never happened -- m040 seat 0 / seat 1 emitted TRAIN on 166 / 182 of 200 turns and still scored CLEAN. Results are NOT comparable across the bump; load_config refuses a config declaring a different version.",
+  "RAW/ABSOLUTE gate (owner ruling 2026-08-06): every detector D-1..D-9 episode blocks, inherited-from-parent or not, on every map, and P4 liveness has no parent exemption. The round-6 ROOT-A D-9 parent-differential gate and the D-1 inherited-report-only downgrade are both REMOVED. The parent run is still computed for the P3 orchard-inertness check (an absolute candidate==parent requirement, kept) and for diagnostics, but never exempts a candidate detector episode. trace_detectors is unmodified.",
+  "P4 ABSOLUTE terminal-state calibration (gate repair #2, 2026-08-06): a stall window blocks only over the turns in which the referee world state still offers the own player a resource action -- i.e. some own unit still carries something to bank/plant, or some plant still stands on a cell an own unit can walk to (harvest/chop) -- so a stall that begins after the world is exhausted for the rest of the game is excused while any stall of >= liveness_window LIVE turns, mid-game or running to the sim horizon, still blocks. The predicate reads only the candidate's own transcript (static map + plants + own units): no parent reference, no all-WAIT command heuristic.",
+  "SOURCE PORTABILITY REPAIR (2026-08-12, against chatgpt_1's M3a review 20260811T230000Z: REVISION_REQUIRED -- SOURCE REPLAY NOT PORTABLE). `candidate.source` and `parent.source` previously held absolute paths under /tmp/claude-1000/<session-id>/scratchpad and /home/tarstars, which exist on no clean runner and not on this host once the session scratchpad is reaped. Each entry now carries `source_git` = {commit, path}: an IMMUTABLE commit id, not a moving branch. The replay materialises the blob from that commit into a temp dir and re-checks it against the `sha256` pin above before compiling, so provenance is fixed by the commit and content by the digest. `source` now holds the repo-relative path for the record; a direct panel run that does not materialise will fail loudly on a missing path rather than silently depend on a scratch directory. NOTHING measured changes: same seeds, same mixes, same corpus_version, same instrument_version, same sha256 pins, same run_identity.",
+  "OUTPUT PATHS (same repair). `bin_cache_dir` and `games_dir` were absolute paths under the same session scratchpad. They are now names resolved relative to this config's own directory by fuzz_panel.resolve(), so no absolute host path remains anywhere in this config. Both are untracked build/output directories; the replay does not read either, and overrides them into a temp dir regardless."
+ ],
+ "opponent_mix": {
+  "chopper_aggressor": 0.3,
+  "harvester": 0.4,
+  "idle": 0.3
+ },
+ "parent": {
+  "crate": "p3b_door1_candidate_seat_b",
+  "sha256": "5e1f4df406480f678ff03677cdda0f69d510c5c94efe90d4f0a8231b70c3339e",
+  "source": "claude_1/picker2/candidate-door1-p1p2.rs",
+  "source_git": {
+   "commit": "5409ba13c04d87f81dbad4b13138986da2942898",
+   "path": "claude_1/picker2/candidate-door1-p1p2.rs"
+  }
+ },
+ "processes": 8,
+ "run_identity": "candidate",
+ "seeds": [
+  982451653,
+  15485863,
+  32452843,
+  49979687,
+  67867967,
+  86028121
+ ],
+ "task": "20260820-pair-selector-anti-benching G-d -- Phase 3b (design r2 SS1 hunk) on the door-1 lineage vs its own P1+P2 base, matched 240-game panel, named-costs gate; CANDIDATE run. Authorized by local_codex_1's PROCEED ruling 20260823T155558Z.",
+ "turns": 200
+}

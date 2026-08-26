@@ -544,7 +544,14 @@ render();
     return out
 
 
-def index_page(situations):
+def index_page(situations, subject=None):
+    """`subject` is the library index's own `subject` block: {name, sha256}.
+
+    It used to be a hard-coded string naming `readable__no_orchard`. Once a SECOND library
+    exists — the champion's, card `20260821-champion-subject-library` — a hard-coded subject
+    line is a page that lies about whose episodes it is showing, which is the exact defect
+    that library exists to repair. Default None keeps the old header for the old tree.
+    """
     rows = []
     for s in sorted(situations, key=lambda x: x["id"]):
         w = s["window"]
@@ -558,9 +565,11 @@ def index_page(situations):
     kinds = {}
     for s in situations:
         kinds[s["kind"]] = kinds.get(s["kind"], 0) + 1
+    sub_name = (subject or {}).get("name", "readable__no_orchard")
+    sub_sha = (subject or {}).get("sha256", "98628e98")[:8]
     body = f"""<h1>Oscillation situations — {len(situations)} frozen</h1>
-<p class="sub">Subject <code>readable__no_orchard</code>
-<code>98628e98…</code> · {' · '.join(f'{v} {k}' for k, v in sorted(kinds.items()))} ·
+<p class="sub">Subject <code>{html.escape(sub_name)}</code>
+<code>{sub_sha}…</code> · {' · '.join(f'{v} {k}' for k, v in sorted(kinds.items()))} ·
 display-only, nothing here is a ruling</p>
 <div class="warn"><b>How to read these pages.</b> Solid marks are recorded facts — the command
 line and the opponent/plant snapshot at the moment the episode begins. The dashed hollow circle
@@ -582,9 +591,9 @@ def load(directory=LIB_DIR):
     return ol.load_library(directory)
 
 
-def build(outdir, situations=None):
+def build(outdir, situations=None, expected=34, subject=None):
     situations = load() if situations is None else situations
-    check_situation_count(situations)
+    check_situation_count(situations, expected)
     check_visual_distinction(CSS)
     check_slot_order()
     os.makedirs(outdir, exist_ok=True)
@@ -596,7 +605,7 @@ def build(outdir, situations=None):
         written.append(p)
     p = os.path.join(outdir, "index.html")
     with open(p, "w", encoding="utf-8") as fh:
-        fh.write(index_page(situations))
+        fh.write(index_page(situations, subject))
     written.append(p)
     return written
 

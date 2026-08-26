@@ -1,0 +1,320 @@
+{
+  "all_fired": true,
+  "control_count": 38,
+  "controls": [
+    {
+      "control": "unmutated v4 telemetry is accepted",
+      "errors": [],
+      "expected": "no errors",
+      "fired": true
+    },
+    {
+      "control": "turn misalignment",
+      "errors": [
+        "turn 2: telemetry says t=3 \u2014 turn misalignment"
+      ],
+      "expected": "turn misalignment",
+      "fired": true
+    },
+    {
+      "control": "a unit dropped from the roster",
+      "errors": [
+        "turn 2: roster [0] != live own units [0, 2]"
+      ],
+      "expected": "roster",
+      "fired": true
+    },
+    {
+      "control": "ids out of order",
+      "errors": [
+        "turn 2: ids not ascending: [2, 0]",
+        "turn 2: roster [2, 0] != live own units [0, 2]"
+      ],
+      "expected": "not ascending",
+      "fired": true
+    },
+    {
+      "control": "a second MSG token",
+      "errors": [
+        "turn 2: 2 MSG tokens, expected exactly 1"
+      ],
+      "expected": "2 MSG tokens",
+      "fired": true
+    },
+    {
+      "control": "MSG not first",
+      "errors": [
+        "turn 2: the MSG token is not first in the command list"
+      ],
+      "expected": "not first",
+      "fired": true
+    },
+    {
+      "control": "banner on a later turn",
+      "errors": [
+        "turn 2: banner present=True, expected False"
+      ],
+      "expected": "banner present",
+      "fired": true
+    },
+    {
+      "control": "a duplicated unit",
+      "errors": [
+        "turn 2: unit 0 appears twice in 'MSG NARRATE v4 t=2 u0=NONE/NONE/r=P/b=0 u0=SHACK/SHACK/r=P/b=0 u2=NONE/SHACK/r=P/b=0 pz=2 sp=0 wc=0'"
+      ],
+      "expected": "appears twice",
+      "fired": true
+    },
+    {
+      "control": "lone-unit tie parity broken",
+      "errors": [
+        "turn 1: lone-unit tie parity broken \u2014 chosen NONE != available TREE(3,4)"
+      ],
+      "expected": "tie parity broken",
+      "fired": true
+    },
+    {
+      "control": "payload over the 2,000-character budget",
+      "errors": [
+        "turn 1: MSG payload 2074 chars exceeds 2000",
+        "turn 1: off-grammar unit token 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' in 'MSG yamo-waypoint-rust NARRATE v4 t=1 u0=NONE/NONE/r=N/b=0 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx pz=1 sp=0 wc=0'"
+      ],
+      "expected": "exceeds 2000",
+      "fired": true
+    },
+    {
+      "control": "b= rises by more than one on a hold",
+      "errors": [
+        "turn 2: u0 held with b=2, expected 1 (previous 0)"
+      ],
+      "expected": "held with b=2",
+      "fired": true
+    },
+    {
+      "control": "b= nonzero on a branch that is not H",
+      "errors": [
+        "turn 2: u2 branch P with b=3, expected 0"
+      ],
+      "expected": "branch P with b=3",
+      "fired": true
+    },
+    {
+      "control": "the fixed point exceeds its movers+1 bound",
+      "errors": [
+        "turn 2: pz=9 exceeds movers+1=3 \u2014 the fixed point did not terminate within its bound"
+      ],
+      "expected": "exceeds movers+1",
+      "fired": true
+    },
+    {
+      "control": "pz=0 \u2014 a turn that ran no pass at all",
+      "errors": [
+        "turn 2: pz=0 \u2014 a turn always runs at least one pass"
+      ],
+      "expected": "at least one pass",
+      "fired": true
+    },
+    {
+      "control": "rule-off arm emits a hold",
+      "errors": [
+        "turn 2: rule-off ran pz=2 passes, expected 1",
+        "turn 2: rule-off emitted r=H for u0",
+        "turn 2: rule-off emitted b=1 for u0"
+      ],
+      "expected": "rule-off emitted r=H",
+      "fired": true
+    },
+    {
+      "control": "rule-off arm runs two passes",
+      "errors": [
+        "turn 2: rule-off ran pz=2 passes, expected 1",
+        "turn 2: rule-off emitted r=H for u0",
+        "turn 2: rule-off emitted b=1 for u0"
+      ],
+      "expected": "rule-off ran pz=2 passes",
+      "fired": true
+    },
+    {
+      "control": "rule-off arm reports a stale protection",
+      "errors": [
+        "turn 1: rule-off reports sp=1, expected 0"
+      ],
+      "expected": "rule-off reports sp=1",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 a v3-shaped unit token (no r=/b= fields)",
+      "errors": [
+        "MSG NARRATE v4 t=1 u0=NONE/NONE pz=1 sp=0 wc=0"
+      ],
+      "expected": "off-grammar unit token",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 branch code that is not one of PLHRWN",
+      "errors": [
+        "MSG NARRATE v4 t=1 u0=NONE/NONE/r=X/b=0 pz=1 sp=0 wc=0"
+      ],
+      "expected": "off-grammar branch code",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 empty branch code",
+      "errors": [
+        "MSG NARRATE v4 t=1 u0=NONE/NONE/r=/b=0 pz=1 sp=0 wc=0"
+      ],
+      "expected": "off-grammar branch code",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 non-numeric b=",
+      "errors": [
+        "MSG NARRATE v4 t=1 u0=NONE/NONE/r=H/b=x pz=1 sp=0 wc=0"
+      ],
+      "expected": "off-grammar b= value",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 missing pz=",
+      "errors": [
+        "MSG NARRATE v4 t=1 u0=NONE/NONE/r=N/b=0 sp=0 wc=0"
+      ],
+      "expected": "missing per-turn field",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 missing sp=",
+      "errors": [
+        "MSG NARRATE v4 t=1 u0=NONE/NONE/r=N/b=0 pz=1 wc=0"
+      ],
+      "expected": "missing per-turn field",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 missing wc=",
+      "errors": [
+        "MSG NARRATE v4 t=1 u0=NONE/NONE/r=N/b=0 pz=1 sp=0"
+      ],
+      "expected": "missing per-turn field",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 a duplicated per-turn field",
+      "errors": [
+        "MSG NARRATE v4 t=1 u0=NONE/NONE/r=N/b=0 pz=1 pz=2 sp=0 wc=0"
+      ],
+      "expected": "appears twice",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 a unit token after the per-turn fields",
+      "errors": [
+        "MSG NARRATE v4 t=1 pz=1 sp=0 wc=0 u0=NONE/NONE/r=N/b=0"
+      ],
+      "expected": "after a per-turn field",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 ABSENT in the chosen position",
+      "errors": [
+        "MSG NARRATE v4 t=1 u0=ABSENT/NONE/r=N/b=0 pz=1 sp=0 wc=0"
+      ],
+      "expected": "off-grammar chosen",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 off-grammar available target",
+      "errors": [
+        "MSG NARRATE v4 t=1 u0=NONE/HOME/r=N/b=0 pz=1 sp=0 wc=0"
+      ],
+      "expected": "off-grammar available",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 no t= field",
+      "errors": [
+        "MSG NARRATE v4 u0=NONE/NONE/r=N/b=0 pz=1 sp=0 wc=0"
+      ],
+      "expected": "no t= field",
+      "fired": true
+    },
+    {
+      "control": "malformed input \u2014 not an MSG token",
+      "errors": [
+        "NARRATE v4 t=1 u0=NONE/NONE/r=N/b=0 pz=1 sp=0 wc=0"
+      ],
+      "expected": "not an MSG token",
+      "fired": true
+    },
+    {
+      "control": "the v4 decoder REFUSES v3 (the previous live grammar)",
+      "errors": [
+        "MSG NARRATE v3 t=1 u0=NONE/NONE"
+      ],
+      "expected": "unsupported NARRATE version",
+      "fired": true
+    },
+    {
+      "control": "the v4 decoder REFUSES v2",
+      "errors": [
+        "MSG NARRATE v2 t=1 u0=NONE"
+      ],
+      "expected": "unsupported NARRATE version",
+      "fired": true
+    },
+    {
+      "control": "the v4 decoder REFUSES v5 (a future grammar)",
+      "errors": [
+        "MSG NARRATE v5 t=1 u0=NONE/NONE/r=N/b=0 pz=1 sp=0 wc=0"
+      ],
+      "expected": "unsupported NARRATE version",
+      "fired": true
+    },
+    {
+      "control": "the v4 decoder REFUSES no version token at all",
+      "errors": [
+        "MSG NARRATE t=1 u0=NONE/NONE/r=N/b=0"
+      ],
+      "expected": "unsupported NARRATE version",
+      "fired": true
+    },
+    {
+      "control": "the LIVE v3 decoder REFUSES a v4 payload rather than mis-reading it",
+      "errors": [
+        "unsupported NARRATE version 'v4', this decoder reads v3 only",
+        "unsupported NARRATE version 'v4', this decoder reads v3 only",
+        "unsupported NARRATE version 'v4', this decoder reads v3 only"
+      ],
+      "expected": "unsupported NARRATE version, on all three shapes",
+      "fired": true
+    },
+    {
+      "control": "three-state round trip \u2014 ABSENT, NONE and a concrete target stay pairwise distinct through the v4 grammar",
+      "errors": [
+        "discarded real want: ('NONE', 'TREE(3,4)', 'N', 0)",
+        "explicit WAIT was locally best: ('NONE', 'NONE', 'N', 0)",
+        "no candidate vector at all: ('NONE', 'ABSENT', 'N', 0)"
+      ],
+      "expected": "3 distinct wire forms, 3 distinct decoded values, all with chosen=NONE",
+      "fired": true
+    },
+    {
+      "control": "strip_msg removes the complete token, and only it",
+      "errors": [
+        "WAIT;MOVE 2 1 1"
+      ],
+      "expected": "stripped == the gameplay tokens; unstripped still carries MSG",
+      "fired": true
+    },
+    {
+      "control": "a gameplay token containing the letters MSG is NOT stripped",
+      "errors": [
+        "MOVE 0 3 4;MSGX 1"
+      ],
+      "expected": "kept",
+      "fired": true
+    }
+  ],
+  "gate": "NARRATE v4 decode controls",
+  "task": "20260825-dance-cure-candidate-1-hold"
+}

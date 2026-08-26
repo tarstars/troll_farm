@@ -1,0 +1,76 @@
+ka over all 240 Candidate 3 panel games (instrument arm, 48,000 turns)
+
+  ka_max 0      :  16 games
+  ka_max 1-10   :  78 games
+  ka_max 11-20  :  82 games
+  ka_max 21-30  :   7 games
+  ka_max 31-40  :  15 games
+  ka_max 41-50  :  24 games
+  ka_max 51-60  :  11 games
+  ka_max 61-100 :   5 games
+  ka_max >100   :   2 games
+  total 240 games; 16 games never record a goal at all (ka_max 0)
+
+EVERY game whose longest kept goal exceeds 30 turns, named (ka_max = longest kept-goal age; delta = own score, candidate minus champion):
+
+  game       ka_max  cand champ  delta  class            holder / turns / how it ended
+  m061:0          171    32    75    -43  choke_corridor   u2 t30-t200 (171) game_end
+  m061:1          170    35    82    -47  choke_corridor   u2 t31-t200 (170) game_end
+  m068:1           88    60    66     -6  forest_dense     u2 t3-t90 (88) rf
+  m068:0           82    76    60    +16  forest_dense     u2 t6-t87 (82) rf
+  m092:1           68    60    46    +14  forest_dense     u2 t6-t73 (68) rf
+  m096:0           67    26    26     +0  multi_door       u0 t5-t71 (67) rf
+  m089:0           65    35    35     +0  open_field       u0 t7-t71 (65) rf
+  m005:0           59    21    29     -8  multi_door       u2 t12-t70 (59) rf
+  m029:1           57    45    45     +0  open_field       u0 t3-t59 (57) rf
+  m051:0           57    36    36     +0  open_field       u0 t8-t64 (57) rf
+  m034:0           56    27    27     +0  single_door_tent u0 t2-t57 (56) rf
+  m053:0           54    20    19     +1  choke_corridor   u0 t3-t56 (54) rf
+  m001:1           53    17    19     -2  water_diagonal   u0 t2-t54 (53) rf
+  m092:0           53    48    64    -16  forest_dense     u2 t14-t66 (53) ambiguous
+  m029:0           52    44    44     +0  open_field       u0 t8-t59 (52) rf
+  m034:1           52    28    28     +0  single_door_tent u0 t2-t53 (52) rf
+  m117:0           52    45    45     +0  open_field       u0 t8-t59 (52) rf
+  m044:0           51    29    29     +0  single_door_tent u0 t5-t55 (51) rf
+  m076:1           49    20    20     +0  water_diagonal   u0 t5-t53 (49) rf
+  m020:1           48    28    28     +0  forest_sparse    u0 t8-t55 (48) rf
+  m037:0           48    35    35     +0  water_diagonal   u0 t13-t60 (48) rf
+  m037:1           48    36    36     +0  water_diagonal   u0 t6-t53 (48) rf
+  m067:0           48    28    28     +0  multi_door       u0 t5-t52 (48) rf
+  m080:0           48    68    69     -1  forest_dense     u0 t7-t54 (48) rf
+  m080:1           48    69    69     +0  forest_dense     u0 t3-t50 (48) rf
+  m116:0           48    28    28     +0  water_diagonal   u0 t11-t58 (48) rf
+  m117:1           48    45    45     +0  open_field       u0 t7-t54 (48) rf
+  m001:0           47    19    19     +0  water_diagonal   u0 t5-t51 (47) rf
+  m044:1           47    30    30     +0  single_door_tent u0 t3-t49 (47) rf
+  m081:1           47    11    11     +0  choke_corridor   u0 t9-t55 (47) rf
+  m107:0           47    68    76     -8  forest_dense     u0 t2-t48 (47) rf
+  m031:1           46    68    69     -1  forest_dense     u0 t2-t47 (46) rf
+  m107:1           46    68    68     +0  forest_dense     u0 t4-t49 (46) rf
+  m116:1           46    28    28     +0  water_diagonal   u0 t8-t53 (46) rf
+  m091:0           45    19    19     +0  forest_sparse    u0 t13-t57 (45) rf
+  m051:1           43    35    36     -1  open_field       u0 t6-t48 (43) rf
+  m067:1           43    28    28     +0  multi_door       u0 t8-t50 (43) rf
+  m031:0           42    61    53     +8  forest_dense     u0 t7-t48 (42) rf
+  m089:1           42    35    35     +0  open_field       u0 t6-t47 (42) rf
+  m011:1           41    49    49     +0  open_field       u0 t3-t43 (41) rf
+  m057:0           41    26    26     +0  water_diagonal   u0 t12-t52 (41) rf
+  m076:0           41    19    19     +0  water_diagonal   u0 t11-t51 (41) rf
+  m011:0           40    45    45     +0  open_field       u0 t9-t48 (40) rf
+  m020:0           40    26    26     +0  forest_sparse    u0 t18-t57 (40) rf
+  m053:1           40    20    21     -1  choke_corridor   u0 t4-t43 (40) rf
+  m119:1           40    68    69     -1  forest_dense     u0 t10-t49 (40) rf
+  m043:1           39    30    30     +0  open_field       u0 t14-t52 (39) rf
+  m115:1           39    20    20     +0  multi_door       u0 t2-t40 (39) rf
+  m119:0           38    67    68     -1  forest_dense     u0 t12-t49 (38) rf
+  m040:0           37    88    92     -4  forest_dense     u0 t8-t44 (37) rf
+  m091:1           37    20    20     +0  forest_sparse    u0 t5-t41 (37) rf
+  m010:0           34    27    27     +0  choke_corridor   u0 t10-t43 (34) rf
+  m047:0           34    27    27     +0  multi_door       u0 t12-t45 (34) rf
+  m010:1           32    28    28     +0  choke_corridor   u0 t2-t33 (32) rf
+  m047:1           32    27    27     +0  multi_door       u0 t6-t37 (32) rf
+  m057:1           31    26    26     +0  water_diagonal   u0 t6-t36 (31) rf
+  m115:0           31    16    16     +0  multi_door       u0 t9-t39 (31) rf
+
+  57 games of 240.
+  Their own-score deltas sum to -101; without the two m061 seats, -11.

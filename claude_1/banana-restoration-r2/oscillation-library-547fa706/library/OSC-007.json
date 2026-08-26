@@ -1,0 +1,499 @@
+{
+ "classification": {
+  "all_own_peers_at_entry": [
+   {
+    "carry_at_entry": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "cell_at_entry": [
+     8,
+     2
+    ],
+    "distinct_cells_in_window": 1,
+    "distinct_cells_to_game_end": 10,
+    "idle_by_analysis_criterion": false,
+    "non_wait_verbs_in_window": [
+     "CHOP",
+     "MOVE"
+    ],
+    "orth_adjacent_to_oscillation_cells": true,
+    "plant_on_cell_at_entry": [
+     "LEMON",
+     4,
+     10,
+     0,
+     7
+    ],
+    "stats": {
+     "capacity": 2,
+     "chop_power": 1,
+     "harvest_power": 1,
+     "speed": 1
+    },
+    "unit": 0,
+    "wait_fraction_in_window": 0.0833
+   }
+  ],
+  "blocker": {
+   "carry_at_entry": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "cell_at_entry": [
+    8,
+    2
+   ],
+   "distinct_cells_in_window": 1,
+   "distinct_cells_to_game_end": 10,
+   "idle_by_analysis_criterion": false,
+   "non_wait_verbs_in_window": [
+    "CHOP",
+    "MOVE"
+   ],
+   "orth_adjacent_to_oscillation_cells": true,
+   "plant_on_cell_at_entry": [
+    "LEMON",
+    4,
+    10,
+    0,
+    7
+   ],
+   "stats": {
+    "capacity": 2,
+    "chop_power": 1,
+    "harvest_power": 1,
+    "speed": 1
+   },
+   "unit": 0,
+   "wait_fraction_in_window": 0.0833
+  },
+  "blocker_state": "WORKING",
+  "classifier_version": "m3a-observational/1",
+  "geometry_excerpt": [
+   "######",
+   "######",
+   "PxoS##",
+   "######",
+   "######"
+  ],
+  "geometry_excerpt_legend": "5 rows x 6 cols centred on the first oscillation cell (origin at row 2, col 2); o/x oscillation cells, B blocker, P blocker standing on a plant, T other plant, S own shack, s opponent shack, . walkable, # not. Documentation only.",
+  "geometry_stencil": "-1,-1#;-1,0#;0,-2P;0,-1x;0,0o;0,1#;1,-1#;1,0#;",
+  "mechanism": "M1",
+  "mechanism_evidence": "peer 0 holds cell (8, 2) for the whole window and is working -- a stationary unit on the route rather than an idle occupier of the goal cell (wait fraction 0.08, plant on its cell: LEMON)",
+  "shack_door_evidence": {
+   "cells_that_are_opponent_shack_doors": [],
+   "cells_that_are_own_shack_doors": [
+    [
+     10,
+     2
+    ]
+   ],
+   "opponent_shack": [
+    1,
+    1
+   ],
+   "own_shack": [
+    11,
+    2
+   ]
+  }
+ },
+ "completeness": "FULL",
+ "content_sha256": "39751ef28f225ad5541bfe191bf73bc07957835d35c6b88d17876cfacbd56cf8",
+ "detectors": {
+  "counts": {
+   "D-1": 2,
+   "D-2": 0,
+   "D-3": 0,
+   "D-4": 0,
+   "D-5": 0,
+   "D-6": 0,
+   "D-7": 0,
+   "D-8": 0,
+   "D-9": 0
+  },
+  "d1_episodes": [
+   {
+    "cells": [
+     [
+      2,
+      2
+     ],
+     [
+      2,
+      1
+     ]
+    ],
+    "k": 74,
+    "turn_end": 200,
+    "turn_start": 52,
+    "unit": 0
+   },
+   {
+    "cells": [
+     [
+      10,
+      2
+     ],
+     [
+      9,
+      2
+     ]
+    ],
+    "k": 5,
+    "turn_end": 18,
+    "turn_start": 7,
+    "unit": 2
+   }
+  ],
+  "live_horizon": 201,
+  "p4_violations": [
+   {
+    "live_end": 200,
+    "terminal_from": 201,
+    "why": "candidate makes no own-inventory/own-cargo progress over turns 44-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]",
+    "window_end": 200,
+    "window_start": 44
+   }
+  ],
+  "turns_simulated": 200
+ },
+ "id": "OSC-007",
+ "initial_world_state": {
+  "inventories": {
+   "opponent": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "own": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  "plants": [
+   [
+    "APPLE",
+    1,
+    2,
+    2,
+    14,
+    0,
+    5
+   ],
+   [
+    "BANANA",
+    2,
+    2,
+    4,
+    6,
+    0,
+    60
+   ],
+   [
+    "LEMON",
+    8,
+    2,
+    3,
+    10,
+    0,
+    5
+   ]
+  ],
+  "turn": 1,
+  "units": [
+   [
+    0,
+    0,
+    10,
+    2,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    6,
+    2,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ],
+   [
+    5,
+    1,
+    1,
+    2,
+    2,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ },
+ "kind": "D1_EPISODE",
+ "multiplicity": {
+  "dedupe_key_sha256": "dbc2f01637fc44ffc7f290c543039b6b9dd7abc2ff81e0ecb77781c471a18e10",
+  "episodes": 1,
+  "members": [
+   {
+    "game_id": null,
+    "length_turns": 12,
+    "map_id": "m070",
+    "seat": 1,
+    "source": "fuzz-panel-floor",
+    "turn_end": 18,
+    "turn_start": 7,
+    "unit": 2
+   }
+  ],
+  "representative_rule": "longest window; ties broken by (map_id, seat, unit, turn_start)"
+ },
+ "provenance": {
+  "bot_source": "claude_1/chop4c/candidate-door1.rs",
+  "bot_source_git_ref": "dc43d633ab30154d78bad05425b026ca5487d797:claude_1/chop4c/candidate-door1.rs",
+  "bot_source_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0",
+  "corpus_version": "c5-two-player-phase-merged-2026-08-11",
+  "generation_attempt": 0,
+  "instrument_version": "fuzz-panel/5-two-player-phase-merged-referee",
+  "map_class": "choke_corridor",
+  "map_height": 7,
+  "map_id": "m070",
+  "map_width": 12,
+  "note": "candidate and parent are the SAME source -- the CHAMPION OF RECORD (dc43d633ab30154d78bad05425b026ca5487d797:claude_1/chop4c/candidate-door1.rs, sha256 547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0) judged against itself. This is the panel FLOOR for the champion, not a candidate regression, and not the `readable__no_orchard` lineage `98628e98...`.",
+  "opponent_profile": "harvester",
+  "panel_config_sha256": "d51a4b975b4d90248d660f45da54d4673bc36e4a18908d22437248e3adbab18b",
+  "panel_liveness_window": 60,
+  "panel_maps": 120,
+  "panel_seeds": [
+   982451653,
+   15485863,
+   32452843,
+   49979687,
+   67867967,
+   86028121
+  ],
+  "panel_turns": 200,
+  "seat": 1,
+  "seed": 67867967,
+  "source": "fuzz-panel-floor",
+  "subject": "door1_champion_547fa706"
+ },
+ "schema": "troll-farm-oscillation-situation-v1",
+ "static_map_rows": [
+  "############",
+  "#1.#########",
+  "#..........0",
+  "############",
+  "############",
+  "############",
+  "############"
+ ],
+ "unresolved": [
+  "The goal the bot actually held during the window is NOT observable in the transcript, so the M1 / M2 discriminator (is the blocker's cell the target, or merely on the route?) is INFERRED from the mechanism analysis rather than measured. Settled by an instrumented build that logs the resolver's goal per turn -- out of boundary for M3a, which may not modify any bot -- or by the Decision Packet."
+ ],
+ "window": {
+  "cells": [
+   [
+    10,
+    2
+   ],
+   [
+    9,
+    2
+   ]
+  ],
+  "commands": [
+   {
+    "line": "CHOP 0;MOVE 2 9 2",
+    "turn": 7
+   },
+   {
+    "line": "CHOP 0;MOVE 2 10 2",
+    "turn": 8
+   },
+   {
+    "line": "CHOP 0;MOVE 2 9 2",
+    "turn": 9
+   },
+   {
+    "line": "CHOP 0;MOVE 2 10 2",
+    "turn": 10
+   },
+   {
+    "line": "CHOP 0;MOVE 2 9 2",
+    "turn": 11
+   },
+   {
+    "line": "CHOP 0;MOVE 2 10 2",
+    "turn": 12
+   },
+   {
+    "line": "CHOP 0;MOVE 2 9 2",
+    "turn": 13
+   },
+   {
+    "line": "CHOP 0;MOVE 2 10 2",
+    "turn": 14
+   },
+   {
+    "line": "CHOP 0;MOVE 2 9 2",
+    "turn": 15
+   },
+   {
+    "line": "CHOP 0;MOVE 2 10 2",
+    "turn": 16
+   },
+   {
+    "line": "WAIT;MOVE 2 9 2",
+    "turn": 17
+   },
+   {
+    "line": "MOVE 0 9 2;MOVE 2 8 2",
+    "turn": 18
+   }
+  ],
+  "k": 5,
+  "length_turns": 12,
+  "turn_end": 18,
+  "turn_start": 7,
+  "unit": 2
+ },
+ "world_state_at_entry": {
+  "inventories": {
+   "opponent": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "own": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  "plants": [
+   [
+    "APPLE",
+    1,
+    2,
+    3,
+    17,
+    0,
+    8
+   ],
+   [
+    "BANANA",
+    2,
+    2,
+    4,
+    6,
+    0,
+    54
+   ],
+   [
+    "LEMON",
+    8,
+    2,
+    4,
+    10,
+    0,
+    7
+   ]
+  ],
+  "turn": 7,
+  "units": [
+   [
+    0,
+    0,
+    8,
+    2,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    10,
+    2,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    5,
+    1,
+    1,
+    2,
+    2,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ }
+}

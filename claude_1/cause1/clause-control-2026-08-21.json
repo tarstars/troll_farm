@@ -1,0 +1,342 @@
+{
+  "chop_clause_counts": {
+    "ACCEPTED": 7265,
+    "FN:FN_NO_CHOP_POWER": 1091,
+    "PREDICT_TREE_NONE": 103
+  },
+  "chop_clauses_unobserved": [
+    "PLANT_DEAD",
+    "UNREACHABLE_FROM_UNIT",
+    "PREDICTED_SIZE_NONPOSITIVE",
+    "PREDICTED_HEALTH_NONPOSITIVE",
+    "CHOP_OUTCOME_NONE",
+    "TRIP_LONGER_THAN_GAME",
+    "WOOD_NONPOSITIVE"
+  ],
+  "control": "rejection side of the clause tap, over the whole fixture corpus",
+  "gate": "at least one rejection clause of each family must be OBSERVED firing; the per-clause table is reported, not gated, so an unobserved clause is recorded as a limit of the evidence rather than hunted for",
+  "idle_harvest_clause_counts": {
+    "ACCEPTED": 361,
+    "FN:FN_NO_HARVEST_POWER": 991,
+    "NO_FRUITS": 425,
+    "OPPONENT_EMPTY_HANDED_ON_CELL": 77
+  },
+  "idle_harvest_clauses_unobserved": [
+    "PLANT_DEAD",
+    "UNREACHABLE_FROM_UNIT",
+    "NO_PATH_TO_SHACK_DOOR",
+    "TRIP_LONGER_THAN_GAME"
+  ],
+  "per_fixture": {
+    "OSC-001": {
+      "chop": {
+        "ACCEPTED": 200,
+        "FN:FN_NO_CHOP_POWER": 200
+      },
+      "harvest": {
+        "ACCEPTED": 27,
+        "NO_FRUITS": 159,
+        "OPPONENT_EMPTY_HANDED_ON_CELL": 14
+      }
+    },
+    "OSC-002": {
+      "chop": {
+        "ACCEPTED": 393
+      },
+      "harvest": {}
+    },
+    "OSC-003": {
+      "chop": {
+        "ACCEPTED": 70,
+        "PREDICT_TREE_NONE": 1
+      },
+      "harvest": {
+        "FN:FN_NO_HARVEST_POWER": 172
+      }
+    },
+    "OSC-004": {
+      "chop": {
+        "ACCEPTED": 26,
+        "PREDICT_TREE_NONE": 4
+      },
+      "harvest": {
+        "OPPONENT_EMPTY_HANDED_ON_CELL": 4
+      }
+    },
+    "OSC-005": {
+      "chop": {
+        "ACCEPTED": 465
+      },
+      "harvest": {}
+    },
+    "OSC-006": {
+      "chop": {
+        "ACCEPTED": 61,
+        "PREDICT_TREE_NONE": 4
+      },
+      "harvest": {
+        "ACCEPTED": 1
+      }
+    },
+    "OSC-007": {
+      "chop": {
+        "ACCEPTED": 34,
+        "PREDICT_TREE_NONE": 12
+      },
+      "harvest": {
+        "OPPONENT_EMPTY_HANDED_ON_CELL": 3
+      }
+    },
+    "OSC-008": {
+      "chop": {
+        "ACCEPTED": 274,
+        "FN:FN_NO_CHOP_POWER": 169,
+        "PREDICT_TREE_NONE": 12
+      },
+      "harvest": {
+        "ACCEPTED": 140,
+        "NO_FRUITS": 53,
+        "OPPONENT_EMPTY_HANDED_ON_CELL": 15
+      }
+    },
+    "OSC-009": {
+      "chop": {
+        "ACCEPTED": 254,
+        "FN:FN_NO_CHOP_POWER": 178,
+        "PREDICT_TREE_NONE": 13
+      },
+      "harvest": {
+        "ACCEPTED": 96,
+        "NO_FRUITS": 106,
+        "OPPONENT_EMPTY_HANDED_ON_CELL": 18
+      }
+    },
+    "OSC-010": {
+      "chop": {
+        "ACCEPTED": 1578
+      },
+      "harvest": {
+        "FN:FN_NO_HARVEST_POWER": 6
+      }
+    },
+    "OSC-011": {
+      "chop": {
+        "ACCEPTED": 134,
+        "PREDICT_TREE_NONE": 4
+      },
+      "harvest": {
+        "ACCEPTED": 1
+      }
+    },
+    "OSC-012": {
+      "chop": {
+        "ACCEPTED": 200,
+        "FN:FN_NO_CHOP_POWER": 193
+      },
+      "harvest": {
+        "FN:FN_NO_HARVEST_POWER": 193
+      }
+    },
+    "OSC-013": {
+      "chop": {
+        "ACCEPTED": 408
+      },
+      "harvest": {}
+    },
+    "OSC-014": {
+      "chop": {
+        "ACCEPTED": 148
+      },
+      "harvest": {
+        "FN:FN_NO_HARVEST_POWER": 159
+      }
+    },
+    "OSC-015": {
+      "chop": {
+        "ACCEPTED": 172
+      },
+      "harvest": {
+        "FN:FN_NO_HARVEST_POWER": 148
+      }
+    },
+    "OSC-016": {
+      "chop": {
+        "ACCEPTED": 26
+      },
+      "harvest": {}
+    },
+    "OSC-017": {
+      "chop": {
+        "ACCEPTED": 396
+      },
+      "harvest": {}
+    },
+    "OSC-018": {
+      "chop": {
+        "ACCEPTED": 28
+      },
+      "harvest": {
+        "FN:FN_NO_HARVEST_POWER": 186
+      }
+    },
+    "OSC-019": {
+      "chop": {
+        "ACCEPTED": 104
+      },
+      "harvest": {}
+    },
+    "OSC-020": {
+      "chop": {
+        "ACCEPTED": 71
+      },
+      "harvest": {}
+    },
+    "OSC-021": {
+      "chop": {
+        "ACCEPTED": 425
+      },
+      "harvest": {}
+    },
+    "OSC-022": {
+      "chop": {
+        "ACCEPTED": 109
+      },
+      "harvest": {}
+    },
+    "OSC-023": {
+      "chop": {
+        "ACCEPTED": 109
+      },
+      "harvest": {}
+    },
+    "OSC-024": {
+      "chop": {
+        "ACCEPTED": 144
+      },
+      "harvest": {
+        "FN:FN_NO_HARVEST_POWER": 127
+      }
+    },
+    "OSC-025": {
+      "chop": {
+        "ACCEPTED": 92,
+        "PREDICT_TREE_NONE": 16
+      },
+      "harvest": {
+        "NO_FRUITS": 1,
+        "OPPONENT_EMPTY_HANDED_ON_CELL": 1
+      }
+    },
+    "OSC-026": {
+      "chop": {
+        "ACCEPTED": 29,
+        "PREDICT_TREE_NONE": 7
+      },
+      "harvest": {}
+    },
+    "OSC-027": {
+      "chop": {
+        "ACCEPTED": 22,
+        "FN:FN_NO_CHOP_POWER": 173
+      },
+      "harvest": {}
+    },
+    "OSC-028": {
+      "chop": {
+        "ACCEPTED": 254,
+        "FN:FN_NO_CHOP_POWER": 178,
+        "PREDICT_TREE_NONE": 13
+      },
+      "harvest": {
+        "ACCEPTED": 96,
+        "NO_FRUITS": 106,
+        "OPPONENT_EMPTY_HANDED_ON_CELL": 18
+      }
+    },
+    "OSC-029": {
+      "chop": {
+        "ACCEPTED": 163,
+        "PREDICT_TREE_NONE": 17
+      },
+      "harvest": {
+        "OPPONENT_EMPTY_HANDED_ON_CELL": 4
+      }
+    },
+    "OSC-030": {
+      "chop": {
+        "ACCEPTED": 419
+      },
+      "harvest": {}
+    },
+    "OSC-031": {
+      "chop": {
+        "ACCEPTED": 395
+      },
+      "harvest": {}
+    },
+    "OSC-032": {
+      "chop": {
+        "ACCEPTED": 41
+      },
+      "harvest": {}
+    },
+    "OSC-033": {
+      "chop": {
+        "ACCEPTED": 12
+      },
+      "harvest": {}
+    },
+    "OSC-034": {
+      "chop": {
+        "ACCEPTED": 9
+      },
+      "harvest": {}
+    }
+  },
+  "probe": {
+    "path": "claude_1/picker2/routeprobe-door1-clause.rs",
+    "sha256": "64094f36fa704b7aff697c4c4f368c8c57747a04908980124387da29dd3885ed"
+  },
+  "returned_vector_identity_join": {
+    "candidates_joined_corpus_wide": 7626,
+    "gate": "for every call in every situation, the ordered target cells of the vector chop_candidates / idle_harvest_candidates RETURNED equal the ordered cells of that call's own clause=ACCEPTED rows"
+  },
+  "situations": [
+    "OSC-001",
+    "OSC-002",
+    "OSC-003",
+    "OSC-004",
+    "OSC-005",
+    "OSC-006",
+    "OSC-007",
+    "OSC-008",
+    "OSC-009",
+    "OSC-010",
+    "OSC-011",
+    "OSC-012",
+    "OSC-013",
+    "OSC-014",
+    "OSC-015",
+    "OSC-016",
+    "OSC-017",
+    "OSC-018",
+    "OSC-019",
+    "OSC-020",
+    "OSC-021",
+    "OSC-022",
+    "OSC-023",
+    "OSC-024",
+    "OSC-025",
+    "OSC-026",
+    "OSC-027",
+    "OSC-028",
+    "OSC-029",
+    "OSC-030",
+    "OSC-031",
+    "OSC-032",
+    "OSC-033",
+    "OSC-034"
+  ],
+  "task": "20260821-osc032-033-cause-attribution",
+  "why": "on OSC-032 and OSC-033 the tap emitted ZERO rejection rows because view.plants was empty on the audited turns; the charter's both-ways control therefore tests only the ACCEPTED direction and leaves every rejecting clause unobserved"
+}

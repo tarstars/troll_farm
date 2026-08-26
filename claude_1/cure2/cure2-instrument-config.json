@@ -1,0 +1,93 @@
+{
+  "bin_cache_dir": "/tmp/claude-1000/cure2/bin",
+  "candidate": {
+    "crate": "cure2_arm_instrument_seat_a",
+    "sha256": "5c678e6a8e320c93d2c948e6bae1278c80692aaa4e8d751464cd204ee7dee442",
+    "source": "../../claude_1/cure2/arm-instrument.rs"
+  },
+  "class_mix": {
+    "choke_corridor": 0.25,
+    "forest_dense": 0.08,
+    "forest_sparse": 0.07,
+    "multi_door": 0.1,
+    "open_field": 0.15,
+    "orchard_eligible": 0.1,
+    "single_door_tent": 0.1,
+    "water_diagonal": 0.15
+  },
+  "corpus_version": "c5-two-player-phase-merged-2026-08-11",
+  "games_dir": "/tmp/claude-1000/cure2/cure2-instrument/games",
+  "instrument_invalid_rows": [
+    {
+      "corpus_version": "c4-engine-conformant-referee-2026-08-10",
+      "eligible_for_calibration": false,
+      "map_id": "*",
+      "reason": "The c4 referee applied only the candidate's phases and then let a scripted policy mutate opponent units directly (review B2), read only the candidate's execution status when rendering the aggregate (B3), and stripped/capped the raw command evidence (B4). Opponent-sensitive detector, score and margin evidence came from a world transition engine.rs::step cannot produce.",
+      "seat": -1,
+      "status": "instrument_invalid"
+    },
+    {
+      "corpus_version": "c1-silent-train-2026-08-09",
+      "eligible_for_calibration": false,
+      "map_id": "m040",
+      "reason": "The c1 referee silently discarded TRAIN and MINE. m040 seat 0 emitted TRAIN on 166 of 200 turns because the own worker count never rose, and the game still scored CLEAN (D-1..D-9 all zero). The row measured a world that never happened.",
+      "seat": 0,
+      "status": "instrument_invalid"
+    },
+    {
+      "corpus_version": "c1-silent-train-2026-08-09",
+      "eligible_for_calibration": false,
+      "map_id": "m040",
+      "reason": "As seat 0: TRAIN emitted on 182 of 200 turns under the c1 silent dispatcher, scored CLEAN.",
+      "seat": 1,
+      "status": "instrument_invalid"
+    },
+    {
+      "corpus_version": "c2-train-repair-2026-08-09",
+      "eligible_for_calibration": false,
+      "map_id": "*",
+      "reason": "The c2 referee derived TRAIN legality from MoisanBot::can_train (a bot's self-restraint) rather than engine.rs::apply_train, so it forbade what the engine permits.",
+      "seat": -1,
+      "status": "instrument_invalid"
+    },
+    {
+      "corpus_version": "c3-train-engine-authority-2026-08-09",
+      "eligible_for_calibration": false,
+      "map_id": "*",
+      "reason": "The c3 referee executed command fragments in textual order with only TRAIN repositioned, kept the inherited silent dispatcher for MOVE/HARVEST/PLANT/CHOP/PICK/DROP, and coerced malformed TRAIN talents to zero. Rejected by chatgpt_1/referee-train-repair-r2-review-2026-08-10.md (blockers B1-B11).",
+      "seat": -1,
+      "status": "instrument_invalid"
+    }
+  ],
+  "instrument_version": "fuzz-panel/5-two-player-phase-merged-referee",
+  "liveness_window": 60,
+  "maps": 120,
+  "margin_collapse_threshold": 100,
+  "max_generation_attempts": 64,
+  "notes": [
+    "INSTRUMENT ARM: base + hold rule + v4 telemetry. Run for the rule-on TELEMETRY census (branch counts, holds, passes, stale protections, W-collisions) over 240 real games. Its blocking count is an instrument artifact -- the MSG token alone changes eval_p3 and the command-line shape -- and is not read as a property result; the candidate arm carries that.",
+    "Task 20260825-dance-cure-candidate-1-hold. Corpus, seeds, class/opponent mixes, turn budget and liveness window are COPIED UNCHANGED from picker2-door1-floor-config.json so that claude_1/picker2/panel-door1-floor.json (the champion 547fa706 judged against itself, 43 blocking games) is a valid matched floor for this run and does not have to be re-run."
+  ],
+  "opponent_mix": {
+    "chopper_aggressor": 0.3,
+    "harvester": 0.4,
+    "idle": 0.3
+  },
+  "parent": {
+    "crate": "cure1_base_seat_b",
+    "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0",
+    "source": "../../cgauto/submissions/candidate-door1-pure-deletion.rs"
+  },
+  "processes": 4,
+  "run_identity": "candidate",
+  "seeds": [
+    982451653,
+    15485863,
+    32452843,
+    49979687,
+    67867967,
+    86028121
+  ],
+  "task": "20260825-dance-cure-candidate-2-swap G-1 panel (instrument arm) \u2014 EVIDENCE for the C-5 stop, not a gate pass",
+  "turns": 200
+}

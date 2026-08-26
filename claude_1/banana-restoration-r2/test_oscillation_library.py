@@ -35,6 +35,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import tempfile
@@ -978,6 +979,29 @@ class TestParentLineageIsLabelled(unittest.TestCase):
             index["library_sha256"],
             "5858d35122973f017374ed2136aa2855e8e2ace68114b1e8e6f52759e0136c61")
         self.assertEqual(len(ol.load_library(LIB)), 33)
+
+    def test_the_stale_readme_still_describes_the_tree_it_sits_in(self):
+        """The loud README is the whole guard against reading this tree by
+        path, and it is the one part of that guard nothing tested.  It also
+        survives an overwrite: `build_oscillation_library.write_library`
+        unlinks `*.json` only, so a run of the builder that omits `--out`
+        (whose default is this directory) would replace the cases and leave
+        the README behind describing 33 cases that are no longer here.  Tying
+        the README's ID map to the tree's actual IDs makes that state fail
+        loudly instead of standing as a false document."""
+        readme = LIB / "README.md"
+        self.assertTrue(readme.exists(), "the stale tree lost its marker README")
+        text = readme.read_text()
+        self.assertIn("STALE", text.splitlines()[0])
+        self.assertIn("Do not read a case out of this directory", text)
+        self.assertIn("oscillation-library-98628e98/library", text,
+                      "the README must name the authoritative sibling tree")
+        tabled = re.findall(r"^\| `(OSC-\d{3})` \|", text, re.M)
+        self.assertEqual(len(tabled), len(set(tabled)),
+                         "the README's ID map repeats an ID")
+        present = sorted(p.stem for p in LIB.glob("OSC-*.json"))
+        self.assertEqual(sorted(tabled), present,
+                         "the README's ID map and this tree have diverged")
 
     def test_the_two_libraries_are_distinct_trees(self):
         self.assertNotEqual(ol.load_index(LIB)["library_sha256"],

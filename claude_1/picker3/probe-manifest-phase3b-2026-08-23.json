@@ -1,0 +1,29 @@
+{
+  "builder": "claude_1/picker3/make_phase3b_probe.py",
+  "probes": {
+    "cureC-base": {
+      "probe": "claude_1/picker3/probe-cureC-base.rs",
+      "probe_sha256": "037299680fdb6ac6c3e46b1dfdd28c14f57e90701dbb7dd7e499bf1bec38b2f4",
+      "subject": "claude_1/picker2/candidate-cureC-p1p2.rs",
+      "subject_sha256": "d127cf861ad7f145e5693b0a595bcc8e3c870f424926b18bdbb3debec80b0412"
+    },
+    "cureC-p3b": {
+      "probe": "claude_1/picker3/probe-cureC-p3b.rs",
+      "probe_sha256": "df38c5e00fe3861db3092b1917c43dbe0ae8a280cc1572f98f91c8a60435ba7e",
+      "subject": "claude_1/picker3/candidate-cureC-p3b.rs",
+      "subject_sha256": "c55f9ef2d23fe82afff4e631c49c5edd70929c7ef0b3b57b8f04107ba5f4d226"
+    },
+    "door1-base": {
+      "probe": "claude_1/picker3/probe-door1-base.rs",
+      "probe_sha256": "177c6a80c7f604402e3aa4fde6f89f74500c47b3849cf2d2528616359f3bc7c9",
+      "subject": "claude_1/picker2/candidate-door1-p1p2.rs",
+      "subject_sha256": "5e1f4df406480f678ff03677cdda0f69d510c5c94efe90d4f0a8231b70c3339e"
+    },
+    "door1-p3b": {
+      "probe": "claude_1/picker3/probe-door1-p3b.rs",
+      "probe_sha256": "662849ed2c193f8f3d326165f23ab862cf4a5134fe76d830a468a9c8dbd9f530",
+      "subject": "claude_1/picker3/candidate-door1-p3b.rs",
+      "subject_sha256": "457360589a65cb2662950761deba817852ea9eb0d2c53b05a3e6fd2ab9dfda8a"
+    }
+  }
+}

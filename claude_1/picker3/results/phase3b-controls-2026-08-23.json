@@ -1,0 +1,50 @@
+{
+  "controls": 8,
+  "fired": 8,
+  "gate": "G-a/G-c controls",
+  "inert": [],
+  "rows": [
+    {
+      "control": "CLEAN  real OSC-013 grades OK",
+      "detail": "OSC-013 graded EFFECT class_ok=True",
+      "fired": true
+    },
+    {
+      "control": "C1     \u00a75a refuses an edit outside main_candidates",
+      "detail": "refused: cureC: the graded source is NOT the pinned source plus the \u00a71 hunk",
+      "fired": true
+    },
+    {
+      "control": "C2     probe/plain stream mismatch is visible",
+      "detail": "a stream substituted for its own arm's is detected as different (first divergence turn 100)",
+      "fired": true
+    },
+    {
+      "control": "C3     EFFECT: divergence before the first selected tick",
+      "detail": "diverged at turn 2, before the first selected \u0394-A tick 4",
+      "fired": true
+    },
+    {
+      "control": "C4     NO-EFFECT: any divergence",
+      "detail": "NO-EFFECT game diverged at turn 2",
+      "fired": true
+    },
+    {
+      "control": "C5     EFFECT: changed command is not a preserved PICK",
+      "detail": "on tick 3 the changed commands ['PICK 3 Plum', 'MOVE 9 2 2'] are not all preserved \u0394-A PICKs ['PICK 3 Plum']",
+      "fired": true
+    },
+    {
+      "control": "C6     \u00a72 mutual exclusion is reported, not absorbed",
+      "detail": "turn 2 unit 3: \u0394-A and \u0394-B co-occur \u2014 \u00a72 mutual exclusion refuted; turn 2 unit 3: a replant PICK stood in `out` with carried=2",
+      "fired": true
+    },
+    {
+      "control": "C7     a PICK on an unformed tick is not counted as selected",
+      "detail": "selected=[] why=NO-EFFECT game diverged at turn 2",
+      "fired": true
+    }
+  ],
+  "task": "20260820-pair-selector-anti-benching",
+  "verdict": "PASS"
+}

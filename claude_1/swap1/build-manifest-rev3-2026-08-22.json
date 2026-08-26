@@ -1,0 +1,18 @@
+{
+  "task": "20260822-peek-planner-target-map",
+  "gate": "G-1",
+  "revision": 3,
+  "fire_predicate": "if Self::peek_swap_allowed(view,peek_targets,u_id,target,landing,unit.stats.movement_speed){",
+  "base": {
+    "path": "cgauto/submissions/candidate-door1-pure-deletion.rs",
+    "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+  },
+  "outputs": {
+    "cgauto/submissions/candidate-swap-r1-rev3.rs": "e13b3cc0c15631e1fa4d80af053ebe3ef01163d03ce3c938fbdb1986627e7bff",
+    "claude_1/swap1/probe-swap-r1-rev3.rs": "d2444111616e84e21edf1beb247cc20e67b673f7ee6ee2e02d187f9db9ae88c1",
+    "claude_1/swap1/control-base.rs": "622f21e373169d6cff13b4e31b7d74f6dcd611286a58b08b2bcf79152145e2f6",
+    "claude_1/swap1/control-swap-r1-rev3.rs": "c7a4706d46c807b244b2b73346d6c1a47a5f3a9939e07eae32294c100845edc3",
+    "claude_1/swap1/control-base-peek-rev3.rs": "ab7bfe91bf8e3a3236663c61c3cb913e2469e0884ae0be21749be00c37fb5c2b",
+    "claude_1/swap1/control-swap-r1-peek-rev3.rs": "028cc2ef5bb5e71f210aef5552db7eeb9435def99aa10a5f92b9be5051380435"
+  }
+}

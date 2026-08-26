@@ -1,0 +1,386 @@
+{
+  "arm": "claude_1/cure1/arm-ruleoff.rs",
+  "base": "cgauto/submissions/candidate-door1-pure-deletion.rs",
+  "byte_identical_without_msg": 34,
+  "census": {
+    "available_states": {
+      "ABSENT": 0,
+      "CONCRETE": 5383,
+      "NONE": 7598
+    },
+    "blocked_values": {
+      "0": 12981
+    },
+    "branches": {
+      "H": 0,
+      "L": 201,
+      "N": 10208,
+      "P": 1576,
+      "R": 798,
+      "W": 198
+    },
+    "chosen_ne_available": 1995,
+    "discarded_want": 1578,
+    "hold_turns": 0,
+    "lone_unit_turns": 619,
+    "max_passes": 1,
+    "payload_max_chars": 142,
+    "rows": 12981,
+    "stale_protections": 0,
+    "turns": 6800,
+    "w_collision_events": 0,
+    "w_collision_turns": 0
+  },
+  "fixtures": 34,
+  "gate": "alpha parity (NARRATE v4, arm ruleoff)",
+  "not_proven_here": "platform non-interference: this harness does not react to command count, ordering or line length; a telemetry arm emits a MSG token on every turn where the base emits one on turn 1 only",
+  "referee_state_identical": 34,
+  "rows": [
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-001",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-002",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-003",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-004",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-005",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-006",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-007",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-008",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-009",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-010",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-011",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-012",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-013",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-014",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-015",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-016",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-017",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-018",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-019",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-020",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-021",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-022",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-023",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-024",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-025",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-026",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-027",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-028",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-029",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-030",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-031",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-032",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-033",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "arm_msg_tokens": 200,
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-034",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    }
+  ],
+  "rule_on": false,
+  "ruling": "charter local_claude_1 20260825T075500Z; construction ruling 20260825T085500Z; parity definition codex_1 20260825T080228Z item 4",
+  "task": "20260825-dance-cure-candidate-1-hold",
+  "telemetry_error_count": 0,
+  "telemetry_errors": [],
+  "verdict": "PASS"
+}

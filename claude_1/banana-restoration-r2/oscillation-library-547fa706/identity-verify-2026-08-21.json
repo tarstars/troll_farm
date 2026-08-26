@@ -1,0 +1,240 @@
+{
+ "cases": 21,
+ "failures": 0,
+ "library_sha256": "4d3b36558f317a05acf65c3588bd9b572939645463b938274bc4c588c11e4d45",
+ "reproduced": 21,
+ "rows": [
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 1,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-001",
+   "p4_violations_in_replay": 1,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 195
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 1,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-002",
+   "p4_violations_in_replay": 1,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 189
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 1,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-003",
+   "p4_violations_in_replay": 1,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 184
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 1,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-004",
+   "p4_violations_in_replay": 1,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 151
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 1,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-005",
+   "p4_violations_in_replay": 0,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 25
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 1,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-006",
+   "p4_violations_in_replay": 0,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 14
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 2,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-007",
+   "p4_violations_in_replay": 1,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 12
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 1,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-008",
+   "p4_violations_in_replay": 0,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 7
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 1,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-009",
+   "p4_violations_in_replay": 1,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 193
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 1,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-010",
+   "p4_violations_in_replay": 1,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 194
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 1,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-011",
+   "p4_violations_in_replay": 1,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 187
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 1,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-012",
+   "p4_violations_in_replay": 1,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 169
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 1,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-013",
+   "p4_violations_in_replay": 1,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 163
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 2,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-014",
+   "p4_violations_in_replay": 1,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 149
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 2,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-015",
+   "p4_violations_in_replay": 1,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 149
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 1,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-016",
+   "p4_violations_in_replay": 1,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 65
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 1,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-017",
+   "p4_violations_in_replay": 0,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 21
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 1,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-018",
+   "p4_violations_in_replay": 0,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 9
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 1,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-019",
+   "p4_violations_in_replay": 0,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 22
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 2,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-020",
+   "p4_violations_in_replay": 1,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 8
+  },
+  {
+   "command_mismatches": 0,
+   "d1_episodes_in_replay": 0,
+   "digest_matches_frozen_payload": true,
+   "entry_state_matches": true,
+   "id": "OSC-021",
+   "p4_violations_in_replay": 1,
+   "reasons": [],
+   "reproduces_the_recorded_episode": true,
+   "window_turns_checked": 190
+  }
+ ],
+ "subject": "dc43d633ab30154d78bad05425b026ca5487d797:claude_1/chop4c/candidate-door1.rs"
+}

@@ -1,0 +1,91 @@
+{
+  "adjudication": {
+    "games_with_divergence_refused": 14,
+    "games_with_divergence_verified": 20,
+    "verdicts": {
+      "MANUFACTURED": 9,
+      "NOT_VERIFIED": 66,
+      "REWRITTEN_TO_WAIT": 45,
+      "site:blocked-no-detour": 7,
+      "site:no-progress": 38,
+      "site:swap": 9
+    }
+  },
+  "adjudication_rows_adjudicable": 54,
+  "classes": {
+    "NO_WANT_COMMANDED": 11,
+    "NO_WANT_SILENT_PARTIAL": 1786,
+    "NO_WANT_SILENT_TEAM": 1718,
+    "WANT_COMMANDED": 72681,
+    "WANT_SILENT_PARTIAL": 11,
+    "WANT_SILENT_TEAM": 98
+  },
+  "controls": [
+    {
+      "control": "1 all six classes are reachable and the classifier assigns each",
+      "detail": "['WANT_SILENT_TEAM', 'NO_WANT_SILENT_TEAM', 'WANT_SILENT_PARTIAL', 'NO_WANT_SILENT_PARTIAL', 'WANT_COMMANDED', 'NO_WANT_COMMANDED']",
+      "fired": true
+    },
+    {
+      "control": "2 the TEAM/PARTIAL primitive is live: the same row flips when a sibling is commanded",
+      "detail": "turn1=WANT_SILENT_TEAM turn2=WANT_SILENT_PARTIAL",
+      "fired": true
+    },
+    {
+      "control": "3 the classes are exhaustive and disjoint on the real corpus",
+      "detail": "sum=76305 rows=76305",
+      "fired": true
+    },
+    {
+      "control": "4 no class is silently merged away: every class is reported, empty or not",
+      "detail": "empty classes reported as empty: []",
+      "fired": true
+    },
+    {
+      "control": "5 divergence is not folded into idleness and excludes want-nothing-do-nothing",
+      "detail": "divergence=120 classes=120 NONE|(none)=3504",
+      "fired": true
+    },
+    {
+      "control": "6 an agent id absent from the replay is refused",
+      "detail": "adapter refused this replay: agent 1 appears 0 times in this replay's agent table",
+      "fired": true
+    },
+    {
+      "control": "7 adjudication probe is inert against the uninstrumented binary",
+      "detail": "streams equal=True",
+      "fired": true
+    },
+    {
+      "control": "8 the adjudication parity gate can reject a corrupted transcript",
+      "detail": "diverged=True",
+      "fired": true
+    }
+  ],
+  "corpus": {
+    "agent_id": 6652424,
+    "digest_sha256": "a319f02c055950dce81c7fa586af01cb3c60a3f873386fcce9e6dd05d323ac7c",
+    "games": 149,
+    "refused": [],
+    "rows": 76305
+  },
+  "divergence_rows": 120,
+  "idle_rows_want_something_did_nothing": 109,
+  "joint_intent_verb": {
+    "BANK|(none)": 5,
+    "BANK|DROP": 4738,
+    "BANK|MOVE": 17100,
+    "CELL|DROP": 32,
+    "CELL|MINE": 101,
+    "CELL|MOVE": 548,
+    "CELL|PICK": 1480,
+    "CELL|PLANT": 1479,
+    "NONE|(none)": 3504,
+    "NONE|MOVE": 11,
+    "TREE|(none)": 104,
+    "TREE|CHOP": 25096,
+    "TREE|HARVEST": 148,
+    "TREE|MOVE": 21959
+  },
+  "status": "PASS"
+}

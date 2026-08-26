@@ -1,0 +1,7327 @@
+[
+ {
+  "command_args": [
+   [
+    4,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   7,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 1,
+  "unit": 0,
+  "unit_cell": [
+   3,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   7,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 2,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   7,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 3,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   7,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 4,
+  "unit": 0,
+  "unit_cell": [
+   6,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "MINE",
+  "intent_cell": [
+   7,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 5,
+  "unit": 0,
+  "unit_cell": [
+   7,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 6,
+  "unit": 0,
+  "unit_cell": [
+   7,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 7,
+  "unit": 0,
+  "unit_cell": [
+   6,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 8,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 9,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 10,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 11,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 12,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    1
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 13,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    1
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 14,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   1
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "HARVEST",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 15,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   1
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    1
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 16,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   1
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 17,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   1
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 18,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    3,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 19,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    3,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 20,
+  "unit": 0,
+  "unit_cell": [
+   3,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 21,
+  "unit": 0,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 22,
+  "unit": 0,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    3,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 23,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   16,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 23,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 24,
+  "unit": 0,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   16,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 24,
+  "unit": 2,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 25,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    11,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   16,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 25,
+  "unit": 2,
+  "unit_cell": [
+   8,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 26,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    14,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   16,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 26,
+  "unit": 2,
+  "unit_cell": [
+   11,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 27,
+  "unit": 0,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    16,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   16,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 27,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 28,
+  "unit": 0,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   16,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 28,
+  "unit": 2,
+  "unit_cell": [
+   16,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    9,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 29,
+  "unit": 0,
+  "unit_cell": [
+   8,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   16,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 29,
+  "unit": 2,
+  "unit_cell": [
+   16,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 30,
+  "unit": 0,
+  "unit_cell": [
+   9,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   16,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 30,
+  "unit": 2,
+  "unit_cell": [
+   16,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    11,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 31,
+  "unit": 0,
+  "unit_cell": [
+   10,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   16,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 31,
+  "unit": 2,
+  "unit_cell": [
+   16,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    12,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 32,
+  "unit": 0,
+  "unit_cell": [
+   11,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   16,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 32,
+  "unit": 2,
+  "unit_cell": [
+   16,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    13,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 33,
+  "unit": 0,
+  "unit_cell": [
+   12,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   16,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 33,
+  "unit": 2,
+  "unit_cell": [
+   16,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    12,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 34,
+  "unit": 0,
+  "unit_cell": [
+   13,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    14,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 34,
+  "unit": 2,
+  "unit_cell": [
+   16,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    13,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 35,
+  "unit": 0,
+  "unit_cell": [
+   12,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    11,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 35,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    14,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 36,
+  "unit": 0,
+  "unit_cell": [
+   13,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 36,
+  "unit": 2,
+  "unit_cell": [
+   11,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    15,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 37,
+  "unit": 0,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 37,
+  "unit": 2,
+  "unit_cell": [
+   8,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    15,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 38,
+  "unit": 0,
+  "unit_cell": [
+   15,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 38,
+  "unit": 2,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 39,
+  "unit": 0,
+  "unit_cell": [
+   15,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 39,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 40,
+  "unit": 0,
+  "unit_cell": [
+   15,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    2,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   2,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 40,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 41,
+  "unit": 0,
+  "unit_cell": [
+   15,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    2,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   2,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 41,
+  "unit": 2,
+  "unit_cell": [
+   2,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 42,
+  "unit": 0,
+  "unit_cell": [
+   15,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   2,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 42,
+  "unit": 2,
+  "unit_cell": [
+   2,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 43,
+  "unit": 0,
+  "unit_cell": [
+   15,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   2,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 43,
+  "unit": 2,
+  "unit_cell": [
+   2,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 44,
+  "unit": 0,
+  "unit_cell": [
+   15,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    1,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   1,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 44,
+  "unit": 2,
+  "unit_cell": [
+   2,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 45,
+  "unit": 0,
+  "unit_cell": [
+   15,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   1,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 45,
+  "unit": 2,
+  "unit_cell": [
+   1,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 46,
+  "unit": 0,
+  "unit_cell": [
+   15,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   1,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 46,
+  "unit": 2,
+  "unit_cell": [
+   1,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 47,
+  "unit": 0,
+  "unit_cell": [
+   15,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   1,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 47,
+  "unit": 2,
+  "unit_cell": [
+   1,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 48,
+  "unit": 0,
+  "unit_cell": [
+   15,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    3,
+    6
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 48,
+  "unit": 2,
+  "unit_cell": [
+   1,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 49,
+  "unit": 0,
+  "unit_cell": [
+   15,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 49,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   6
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 50,
+  "unit": 0,
+  "unit_cell": [
+   15,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   5,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 50,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   6
+  ]
+ },
+ {
+  "command_args": [
+   [
+    15,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 51,
+  "unit": 0,
+  "unit_cell": [
+   15,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   5,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 51,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    14,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 52,
+  "unit": 0,
+  "unit_cell": [
+   15,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   5,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 52,
+  "unit": 2,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    13,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 53,
+  "unit": 0,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   5,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 53,
+  "unit": 2,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    12,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 54,
+  "unit": 0,
+  "unit_cell": [
+   13,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   5,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 54,
+  "unit": 2,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    11,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 55,
+  "unit": 0,
+  "unit_cell": [
+   12,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    3,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 55,
+  "unit": 2,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 56,
+  "unit": 0,
+  "unit_cell": [
+   11,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 56,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    9,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 57,
+  "unit": 0,
+  "unit_cell": [
+   10,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   5,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 57,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 58,
+  "unit": 0,
+  "unit_cell": [
+   9,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   5,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 58,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 59,
+  "unit": 0,
+  "unit_cell": [
+   8,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   5,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 59,
+  "unit": 2,
+  "unit_cell": [
+   5,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 60,
+  "unit": 0,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   5,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 60,
+  "unit": 2,
+  "unit_cell": [
+   5,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 61,
+  "unit": 0,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   5,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 61,
+  "unit": 2,
+  "unit_cell": [
+   5,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 62,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 62,
+  "unit": 2,
+  "unit_cell": [
+   5,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 63,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    3,
+    6
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 63,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 64,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 64,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   6
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 65,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    0,
+    6
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   0,
+   6
+  ],
+  "intent_kind": "TREE",
+  "turn": 65,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   6
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 66,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   0,
+   6
+  ],
+  "intent_kind": "TREE",
+  "turn": 66,
+  "unit": 2,
+  "unit_cell": [
+   0,
+   6
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 67,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   0,
+   6
+  ],
+  "intent_kind": "TREE",
+  "turn": 67,
+  "unit": 2,
+  "unit_cell": [
+   0,
+   6
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    1
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 68,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   2
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   0,
+   6
+  ],
+  "intent_kind": "TREE",
+  "turn": 68,
+  "unit": 2,
+  "unit_cell": [
+   0,
+   6
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    1
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 69,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   1
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   0,
+   6
+  ],
+  "intent_kind": "TREE",
+  "turn": 69,
+  "unit": 2,
+  "unit_cell": [
+   0,
+   6
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 70,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   1
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   0,
+   6
+  ],
+  "intent_kind": "TREE",
+  "turn": 70,
+  "unit": 2,
+  "unit_cell": [
+   0,
+   6
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 71,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   1
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   0,
+   6
+  ],
+  "intent_kind": "TREE",
+  "turn": 71,
+  "unit": 2,
+  "unit_cell": [
+   0,
+   6
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 72,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   1
+  ]
+ },
+ {
+  "command_args": [
+   [
+    3,
+    6
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 72,
+  "unit": 2,
+  "unit_cell": [
+   0,
+   6
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 73,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   1
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 73,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   6
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 74,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   1
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 74,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   6
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 75,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   1
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 75,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 76,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   1
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 76,
+  "unit": 2,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 77,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   1
+  ]
+ },
+ {
+  "command_args": [
+   [
+    13,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   13,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 77,
+  "unit": 2,
+  "unit_cell": [
+   10,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 78,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   1
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   13,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 78,
+  "unit": 2,
+  "unit_cell": [
+   13,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 79,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   1
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 79,
+  "unit": 2,
+  "unit_cell": [
+   13,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   5,
+   1
+  ],
+  "intent_kind": "TREE",
+  "turn": 80,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   1
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 80,
+  "unit": 2,
+  "unit_cell": [
+   10,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    1
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 81,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   1
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 81,
+  "unit": 2,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 82,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   1
+  ]
+ },
+ {
+  "command_args": [
+   [
+    3,
+    6
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 82,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 83,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   2
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 83,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   6
+  ]
+ },
+ {
+  "command_args": [
+   [
+    3,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 84,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 84,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   6
+  ]
+ },
+ {
+  "command_args": [
+   [
+    3,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 85,
+  "unit": 0,
+  "unit_cell": [
+   3,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 85,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 86,
+  "unit": 0,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 86,
+  "unit": 2,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 87,
+  "unit": 0,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    12,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 87,
+  "unit": 2,
+  "unit_cell": [
+   10,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 88,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   12,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 88,
+  "unit": 2,
+  "unit_cell": [
+   12,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 89,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   12,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 89,
+  "unit": 2,
+  "unit_cell": [
+   12,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 90,
+  "unit": 0,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   12,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 90,
+  "unit": 2,
+  "unit_cell": [
+   12,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 91,
+  "unit": 0,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    9,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 91,
+  "unit": 2,
+  "unit_cell": [
+   12,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    9,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 92,
+  "unit": 0,
+  "unit_cell": [
+   8,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 92,
+  "unit": 2,
+  "unit_cell": [
+   9,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 93,
+  "unit": 0,
+  "unit_cell": [
+   9,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 93,
+  "unit": 2,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 94,
+  "unit": 0,
+  "unit_cell": [
+   10,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 94,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    11,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 95,
+  "unit": 0,
+  "unit_cell": [
+   10,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    7
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   6
+  ],
+  "intent_kind": "TREE",
+  "turn": 95,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    12,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 96,
+  "unit": 0,
+  "unit_cell": [
+   11,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    7
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   6
+  ],
+  "intent_kind": "TREE",
+  "turn": 96,
+  "unit": 2,
+  "unit_cell": [
+   5,
+   7
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   12,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 97,
+  "unit": 0,
+  "unit_cell": [
+   12,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    6
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   6
+  ],
+  "intent_kind": "TREE",
+  "turn": 97,
+  "unit": 2,
+  "unit_cell": [
+   8,
+   7
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   12,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 98,
+  "unit": 0,
+  "unit_cell": [
+   12,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    12,
+    6
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   12,
+   6
+  ],
+  "intent_kind": "TREE",
+  "turn": 98,
+  "unit": 2,
+  "unit_cell": [
+   10,
+   6
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   12,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 99,
+  "unit": 0,
+  "unit_cell": [
+   12,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   12,
+   6
+  ],
+  "intent_kind": "TREE",
+  "turn": 99,
+  "unit": 2,
+  "unit_cell": [
+   12,
+   6
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   12,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 100,
+  "unit": 0,
+  "unit_cell": [
+   12,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   12,
+   6
+  ],
+  "intent_kind": "TREE",
+  "turn": 100,
+  "unit": 2,
+  "unit_cell": [
+   12,
+   6
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   12,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 101,
+  "unit": 0,
+  "unit_cell": [
+   12,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   12,
+   6
+  ],
+  "intent_kind": "TREE",
+  "turn": 101,
+  "unit": 2,
+  "unit_cell": [
+   12,
+   6
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   12,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 102,
+  "unit": 0,
+  "unit_cell": [
+   12,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    7
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 102,
+  "unit": 2,
+  "unit_cell": [
+   12,
+   6
+  ]
+ },
+ {
+  "command_args": [
+   [
+    11,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 103,
+  "unit": 0,
+  "unit_cell": [
+   12,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    7
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 103,
+  "unit": 2,
+  "unit_cell": [
+   10,
+   7
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 104,
+  "unit": 0,
+  "unit_cell": [
+   11,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    7
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 104,
+  "unit": 2,
+  "unit_cell": [
+   7,
+   7
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 105,
+  "unit": 0,
+  "unit_cell": [
+   10,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    3,
+    6
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 105,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   7
+  ]
+ },
+ {
+  "command_args": [
+   [
+    9,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 106,
+  "unit": 0,
+  "unit_cell": [
+   10,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 106,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   6
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 107,
+  "unit": 0,
+  "unit_cell": [
+   9,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 107,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   6
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 108,
+  "unit": 0,
+  "unit_cell": [
+   8,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 108,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 109,
+  "unit": 0,
+  "unit_cell": [
+   8,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 109,
+  "unit": 2,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 110,
+  "unit": 0,
+  "unit_cell": [
+   7,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    11,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 110,
+  "unit": 2,
+  "unit_cell": [
+   10,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 111,
+  "unit": 0,
+  "unit_cell": [
+   6,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    14,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 111,
+  "unit": 2,
+  "unit_cell": [
+   11,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 112,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   14,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 112,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 113,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    11,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 113,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 114,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 114,
+  "unit": 2,
+  "unit_cell": [
+   11,
+   2
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 115,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 115,
+  "unit": 2,
+  "unit_cell": [
+   10,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 116,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 116,
+  "unit": 2,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 117,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    3,
+    6
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 117,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 118,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 118,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   6
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 119,
+  "unit": 0,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   13,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 119,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   6
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 120,
+  "unit": 0,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   13,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 120,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    9,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   13,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 121,
+  "unit": 0,
+  "unit_cell": [
+   8,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   13,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 121,
+  "unit": 2,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   13,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 122,
+  "unit": 0,
+  "unit_cell": [
+   9,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    11,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   13,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 122,
+  "unit": 2,
+  "unit_cell": [
+   10,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   13,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 123,
+  "unit": 0,
+  "unit_cell": [
+   10,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    13,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   13,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 123,
+  "unit": 2,
+  "unit_cell": [
+   11,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    11,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   13,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 124,
+  "unit": 0,
+  "unit_cell": [
+   10,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   13,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 124,
+  "unit": 2,
+  "unit_cell": [
+   13,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    12,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   13,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 125,
+  "unit": 0,
+  "unit_cell": [
+   11,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   13,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 125,
+  "unit": 2,
+  "unit_cell": [
+   13,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    13,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   13,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 126,
+  "unit": 0,
+  "unit_cell": [
+   12,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   13,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 126,
+  "unit": 2,
+  "unit_cell": [
+   13,
+   2
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   13,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 127,
+  "unit": 0,
+  "unit_cell": [
+   13,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 127,
+  "unit": 2,
+  "unit_cell": [
+   13,
+   2
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   13,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 128,
+  "unit": 0,
+  "unit_cell": [
+   13,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    9,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 128,
+  "unit": 2,
+  "unit_cell": [
+   10,
+   2
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   13,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 129,
+  "unit": 0,
+  "unit_cell": [
+   13,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 129,
+  "unit": 2,
+  "unit_cell": [
+   9,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   13,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 130,
+  "unit": 0,
+  "unit_cell": [
+   13,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 130,
+  "unit": 2,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    12,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 131,
+  "unit": 0,
+  "unit_cell": [
+   13,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 131,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    11,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 132,
+  "unit": 0,
+  "unit_cell": [
+   12,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 132,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 133,
+  "unit": 0,
+  "unit_cell": [
+   11,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    9,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 133,
+  "unit": 2,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 134,
+  "unit": 0,
+  "unit_cell": [
+   10,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    12,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 134,
+  "unit": 2,
+  "unit_cell": [
+   9,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    9,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 135,
+  "unit": 0,
+  "unit_cell": [
+   10,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    14,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 135,
+  "unit": 2,
+  "unit_cell": [
+   12,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 136,
+  "unit": 0,
+  "unit_cell": [
+   9,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 136,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 137,
+  "unit": 0,
+  "unit_cell": [
+   8,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 137,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 138,
+  "unit": 0,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 138,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 139,
+  "unit": 0,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    11,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 139,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 140,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 140,
+  "unit": 2,
+  "unit_cell": [
+   11,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 141,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 141,
+  "unit": 2,
+  "unit_cell": [
+   8,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 142,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    3,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 142,
+  "unit": 2,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 143,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 143,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 144,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 144,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 145,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    9,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 145,
+  "unit": 2,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 146,
+  "unit": 0,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    12,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 146,
+  "unit": 2,
+  "unit_cell": [
+   9,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 147,
+  "unit": 0,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    14,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 147,
+  "unit": 2,
+  "unit_cell": [
+   12,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 148,
+  "unit": 0,
+  "unit_cell": [
+   8,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 148,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 149,
+  "unit": 0,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 149,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 150,
+  "unit": 0,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    11,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 150,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 151,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 151,
+  "unit": 2,
+  "unit_cell": [
+   11,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 152,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 152,
+  "unit": 2,
+  "unit_cell": [
+   8,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   "BANANA"
+  ],
+  "command_verb": "PICK",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 153,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    3,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 153,
+  "unit": 2,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   "BANANA"
+  ],
+  "command_verb": "PLANT",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 154,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 154,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 155,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 155,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 156,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    9,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 156,
+  "unit": 2,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 157,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    12,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 157,
+  "unit": 2,
+  "unit_cell": [
+   9,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 158,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    15,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 158,
+  "unit": 2,
+  "unit_cell": [
+   12,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 159,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    15,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 159,
+  "unit": 2,
+  "unit_cell": [
+   15,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 160,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 160,
+  "unit": 2,
+  "unit_cell": [
+   15,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 161,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 161,
+  "unit": 2,
+  "unit_cell": [
+   15,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 162,
+  "unit": 0,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 162,
+  "unit": 2,
+  "unit_cell": [
+   15,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 163,
+  "unit": 0,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    13,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 163,
+  "unit": 2,
+  "unit_cell": [
+   15,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 164,
+  "unit": 0,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 164,
+  "unit": 2,
+  "unit_cell": [
+   13,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 165,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 165,
+  "unit": 2,
+  "unit_cell": [
+   10,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 166,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 166,
+  "unit": 2,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   "BANANA"
+  ],
+  "command_verb": "PICK",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 167,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    3,
+    6
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 167,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   "BANANA"
+  ],
+  "command_verb": "PLANT",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 168,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   3,
+   6
+  ],
+  "intent_kind": "BANK",
+  "turn": 168,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   6
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 169,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 169,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   6
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 170,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 170,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 171,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 171,
+  "unit": 2,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 172,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    13,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 172,
+  "unit": 2,
+  "unit_cell": [
+   10,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   "BANANA"
+  ],
+  "command_verb": "PICK",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 173,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    14,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 173,
+  "unit": 2,
+  "unit_cell": [
+   13,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   "BANANA"
+  ],
+  "command_verb": "PLANT",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 174,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 174,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 175,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 175,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 176,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    11,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 176,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 177,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 177,
+  "unit": 2,
+  "unit_cell": [
+   11,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 178,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 178,
+  "unit": 2,
+  "unit_cell": [
+   8,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   "BANANA"
+  ],
+  "command_verb": "PICK",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 179,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    3,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 179,
+  "unit": 2,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   "BANANA"
+  ],
+  "command_verb": "PLANT",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "CELL",
+  "turn": 180,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 180,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 181,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 181,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 182,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    9,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   13,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 182,
+  "unit": 2,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "TREE",
+  "turn": 183,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    11,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   13,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 183,
+  "unit": 2,
+  "unit_cell": [
+   9,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 184,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    13,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   13,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 184,
+  "unit": 2,
+  "unit_cell": [
+   11,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 185,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   13,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 185,
+  "unit": 2,
+  "unit_cell": [
+   13,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 186,
+  "unit": 0,
+  "unit_cell": [
+   4,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   13,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 186,
+  "unit": 2,
+  "unit_cell": [
+   13,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 187,
+  "unit": 0,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 187,
+  "unit": 2,
+  "unit_cell": [
+   13,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 188,
+  "unit": 0,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 188,
+  "unit": 2,
+  "unit_cell": [
+   10,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 189,
+  "unit": 0,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 189,
+  "unit": 2,
+  "unit_cell": [
+   8,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    9,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 190,
+  "unit": 0,
+  "unit_cell": [
+   8,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    4,
+    5
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 190,
+  "unit": 2,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 191,
+  "unit": 0,
+  "unit_cell": [
+   9,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 191,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    11,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 192,
+  "unit": 0,
+  "unit_cell": [
+   10,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 192,
+  "unit": 2,
+  "unit_cell": [
+   4,
+   5
+  ]
+ },
+ {
+  "command_args": [
+   [
+    12,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 193,
+  "unit": 0,
+  "unit_cell": [
+   11,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    9,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 193,
+  "unit": 2,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    13,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 194,
+  "unit": 0,
+  "unit_cell": [
+   12,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    12,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 194,
+  "unit": 2,
+  "unit_cell": [
+   9,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    13,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 195,
+  "unit": 0,
+  "unit_cell": [
+   13,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    14,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 195,
+  "unit": 2,
+  "unit_cell": [
+   12,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    13,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   15,
+   3
+  ],
+  "intent_kind": "TREE",
+  "turn": 196,
+  "unit": 0,
+  "unit_cell": [
+   13,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 196,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    14,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   14,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 197,
+  "unit": 0,
+  "unit_cell": [
+   13,
+   2
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 197,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   14,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 198,
+  "unit": 0,
+  "unit_cell": [
+   14,
+   2
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 198,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   14,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 199,
+  "unit": 0,
+  "unit_cell": [
+   14,
+   2
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   14,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 199,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   14,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 200,
+  "unit": 0,
+  "unit_cell": [
+   14,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    15,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   17,
+   2
+  ],
+  "intent_kind": "TREE",
+  "turn": 200,
+  "unit": 2,
+  "unit_cell": [
+   14,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    13,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 201,
+  "unit": 0,
+  "unit_cell": [
+   14,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    12,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 201,
+  "unit": 2,
+  "unit_cell": [
+   15,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    12,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 202,
+  "unit": 0,
+  "unit_cell": [
+   13,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 202,
+  "unit": 2,
+  "unit_cell": [
+   12,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    11,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 203,
+  "unit": 0,
+  "unit_cell": [
+   12,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 203,
+  "unit": 2,
+  "unit_cell": [
+   10,
+   3
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    2
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 204,
+  "unit": 0,
+  "unit_cell": [
+   11,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 204,
+  "unit": 2,
+  "unit_cell": [
+   8,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    3
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 205,
+  "unit": 0,
+  "unit_cell": [
+   10,
+   2
+  ]
+ },
+ {
+  "command_args": [
+   [
+    3,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 205,
+  "unit": 2,
+  "unit_cell": [
+   5,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    10,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 206,
+  "unit": 0,
+  "unit_cell": [
+   10,
+   3
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 206,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    9,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 207,
+  "unit": 0,
+  "unit_cell": [
+   10,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   "BANANA"
+  ],
+  "command_verb": "PICK",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "CELL",
+  "turn": 207,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    8,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 208,
+  "unit": 0,
+  "unit_cell": [
+   9,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   "BANANA"
+  ],
+  "command_verb": "PLANT",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "CELL",
+  "turn": 208,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    7,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 209,
+  "unit": 0,
+  "unit_cell": [
+   8,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 209,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    6,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 210,
+  "unit": 0,
+  "unit_cell": [
+   7,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "CHOP",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "TREE",
+  "turn": 210,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   4
+  ]
+ },
+ {
+  "command_args": [
+   [
+    5,
+    4
+   ]
+  ],
+  "command_verb": "MOVE",
+  "intent_cell": [
+   4,
+   5
+  ],
+  "intent_kind": "BANK",
+  "turn": 211,
+  "unit": 0,
+  "unit_cell": [
+   6,
+   4
+  ]
+ },
+ {
+  "command_args": [],
+  "command_verb": "DROP",
+  "intent_cell": [
+   3,
+   4
+  ],
+  "intent_kind": "BANK",
+  "turn": 211,
+  "unit": 2,
+  "unit_cell": [
+   3,
+   4
+  ]
+ }
+]

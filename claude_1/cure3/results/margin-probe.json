@@ -1,0 +1,2514 @@
+{
+ "M": 0.25,
+ "gates": {
+  "G-A print-only": "PASS on all six games",
+  "G-B recorded exchange turns reproduced": "PASS on all six games"
+ },
+ "rows": [
+  {
+   "S_A_keeping_post": 505.3571428571429,
+   "S_A_keeping_pre": 392.8571428571429,
+   "S_B_chosen_post": 531.547619047619,
+   "S_B_chosen_pre": 419.04761904761904,
+   "chosen": {
+    "0": [
+     2,
+     3
+    ],
+    "2": [
+     2,
+     2
+    ]
+   },
+   "game": "OSC-006",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,2": {
+     "K": 13,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 142.85714285714286,
+     "ret": 0,
+     "score_post": 255.35714285714286,
+     "travel": 1,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 14,
+     "wood": 2
+    },
+    "u0:2,3": {
+     "K": 7,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 5,
+     "freecap": 2,
+     "pre": 285.7142857142857,
+     "ret": 1,
+     "score_post": 285.7142857142857,
+     "travel": 0,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 7,
+     "wood": 2
+    },
+    "u2:2,2": {
+     "K": 13,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 133.33333333333334,
+     "ret": 0,
+     "score_post": 245.83333333333334,
+     "travel": 2,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 15,
+     "wood": 2
+    },
+    "u2:2,3": {
+     "K": 7,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 5,
+     "freecap": 2,
+     "pre": 250.0,
+     "ret": 1,
+     "score_post": 250.0,
+     "travel": 1,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 8,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     2,
+     2
+    ],
+    "2": [
+     2,
+     3
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 0,
+   "partner": 2,
+   "rho": 0.06666666666666665,
+   "rho_post": 0.051825677267373305,
+   "status": "OK",
+   "turn": 3
+  },
+  {
+   "S_A_keeping_post": 541.0714285714286,
+   "S_A_keeping_pre": 428.57142857142856,
+   "S_B_chosen_post": 579.1666666666666,
+   "S_B_chosen_pre": 466.66666666666663,
+   "chosen": {
+    "0": [
+     2,
+     2
+    ],
+    "2": [
+     2,
+     3
+    ]
+   },
+   "game": "OSC-006",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,2": {
+     "K": 13,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 133.33333333333334,
+     "ret": 0,
+     "score_post": 245.83333333333334,
+     "travel": 2,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 15,
+     "wood": 2
+    },
+    "u0:2,3": {
+     "K": 6,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 4,
+     "freecap": 2,
+     "pre": 285.7142857142857,
+     "ret": 1,
+     "score_post": 285.7142857142857,
+     "travel": 1,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 7,
+     "wood": 2
+    },
+    "u2:2,2": {
+     "K": 13,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 142.85714285714286,
+     "ret": 0,
+     "score_post": 255.35714285714286,
+     "travel": 1,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 14,
+     "wood": 2
+    },
+    "u2:2,3": {
+     "K": 6,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 4,
+     "freecap": 2,
+     "pre": 333.3333333333333,
+     "ret": 1,
+     "score_post": 333.3333333333333,
+     "travel": 0,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 6,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     2,
+     3
+    ],
+    "2": [
+     2,
+     2
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 2,
+   "partner": 0,
+   "rho": 0.0888888888888888,
+   "rho_post": 0.07040704070407044,
+   "status": "OK",
+   "turn": 5
+  },
+  {
+   "S_A_keeping_post": 588.6904761904761,
+   "S_A_keeping_pre": 476.19047619047615,
+   "S_B_chosen_post": 645.8333333333334,
+   "S_B_chosen_pre": 533.3333333333334,
+   "chosen": {
+    "0": [
+     2,
+     3
+    ],
+    "2": [
+     2,
+     2
+    ]
+   },
+   "game": "OSC-006",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,2": {
+     "K": 13,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 142.85714285714286,
+     "ret": 0,
+     "score_post": 255.35714285714286,
+     "travel": 1,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 14,
+     "wood": 2
+    },
+    "u0:2,3": {
+     "K": 5,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 3,
+     "freecap": 2,
+     "pre": 400.0,
+     "ret": 1,
+     "score_post": 400.0,
+     "travel": 0,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 5,
+     "wood": 2
+    },
+    "u2:2,2": {
+     "K": 13,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 133.33333333333334,
+     "ret": 0,
+     "score_post": 245.83333333333334,
+     "travel": 2,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 15,
+     "wood": 2
+    },
+    "u2:2,3": {
+     "K": 5,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 3,
+     "freecap": 2,
+     "pre": 333.3333333333333,
+     "ret": 1,
+     "score_post": 333.3333333333333,
+     "travel": 1,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 6,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     2,
+     2
+    ],
+    "2": [
+     2,
+     3
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 0,
+   "partner": 2,
+   "rho": 0.1200000000000001,
+   "rho_post": 0.0970677451971691,
+   "status": "OK",
+   "turn": 7
+  },
+  {
+   "S_A_keeping_post": 655.3571428571429,
+   "S_A_keeping_pre": 542.8571428571429,
+   "S_B_chosen_post": 745.8333333333334,
+   "S_B_chosen_pre": 633.3333333333334,
+   "chosen": {
+    "0": [
+     2,
+     2
+    ],
+    "2": [
+     2,
+     3
+    ]
+   },
+   "game": "OSC-006",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,2": {
+     "K": 13,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 133.33333333333334,
+     "ret": 0,
+     "score_post": 245.83333333333334,
+     "travel": 2,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 15,
+     "wood": 2
+    },
+    "u0:2,3": {
+     "K": 4,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 2,
+     "freecap": 2,
+     "pre": 400.0,
+     "ret": 1,
+     "score_post": 400.0,
+     "travel": 1,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 5,
+     "wood": 2
+    },
+    "u2:2,2": {
+     "K": 13,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 142.85714285714286,
+     "ret": 0,
+     "score_post": 255.35714285714286,
+     "travel": 1,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 14,
+     "wood": 2
+    },
+    "u2:2,3": {
+     "K": 4,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 2,
+     "freecap": 2,
+     "pre": 500.0,
+     "ret": 1,
+     "score_post": 500.0,
+     "travel": 0,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 4,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     2,
+     3
+    ],
+    "2": [
+     2,
+     2
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 2,
+   "partner": 0,
+   "rho": 0.16666666666666674,
+   "rho_post": 0.13805631244323346,
+   "status": "OK",
+   "turn": 9
+  },
+  {
+   "S_A_keeping_post": 755.3571428571429,
+   "S_A_keeping_pre": 642.8571428571429,
+   "S_B_chosen_post": 912.5,
+   "S_B_chosen_pre": 800.0,
+   "chosen": {
+    "0": [
+     2,
+     3
+    ],
+    "2": [
+     2,
+     2
+    ]
+   },
+   "game": "OSC-006",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,2": {
+     "K": 13,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 142.85714285714286,
+     "ret": 0,
+     "score_post": 255.35714285714286,
+     "travel": 1,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 14,
+     "wood": 2
+    },
+    "u0:2,3": {
+     "K": 3,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 1,
+     "freecap": 2,
+     "pre": 666.6666666666666,
+     "ret": 1,
+     "score_post": 666.6666666666666,
+     "travel": 0,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 3,
+     "wood": 2
+    },
+    "u2:2,2": {
+     "K": 13,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 133.33333333333334,
+     "ret": 0,
+     "score_post": 245.83333333333334,
+     "travel": 2,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 15,
+     "wood": 2
+    },
+    "u2:2,3": {
+     "K": 3,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 1,
+     "freecap": 2,
+     "pre": 500.0,
+     "ret": 1,
+     "score_post": 500.0,
+     "travel": 1,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 4,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     2,
+     2
+    ],
+    "2": [
+     2,
+     3
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 0,
+   "partner": 2,
+   "rho": 0.24444444444444446,
+   "rho_post": 0.2080378250591015,
+   "status": "OK",
+   "turn": 11
+  },
+  {
+   "S_A_keeping_post": 797.2222222222222,
+   "S_A_keeping_pre": 347.22222222222223,
+   "S_B_chosen_post": 817.6470588235294,
+   "S_B_chosen_pre": 367.6470588235294,
+   "chosen": {
+    "0": [
+     2,
+     5
+    ],
+    "2": [
+     5,
+     6
+    ]
+   },
+   "game": "OSC-007",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,5": {
+     "K": 12,
+     "cell": [
+      6,
+      6
+     ],
+     "chop": 3,
+     "freecap": 2,
+     "pre": 117.6470588235294,
+     "ret": 8,
+     "score_post": 567.6470588235294,
+     "travel": 5,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 17,
+     "wood": 2
+    },
+    "u0:5,6": {
+     "K": 8,
+     "cell": [
+      6,
+      6
+     ],
+     "chop": 3,
+     "freecap": 2,
+     "pre": 222.22222222222223,
+     "ret": 4,
+     "score_post": 222.22222222222223,
+     "travel": 1,
+     "tree": [
+      5,
+      6
+     ],
+     "turns": 9,
+     "wood": 2
+    },
+    "u2:2,5": {
+     "K": 12,
+     "cell": [
+      5,
+      6
+     ],
+     "chop": 3,
+     "freecap": 2,
+     "pre": 125.0,
+     "ret": 8,
+     "score_post": 575.0,
+     "travel": 4,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 16,
+     "wood": 2
+    },
+    "u2:5,6": {
+     "K": 8,
+     "cell": [
+      5,
+      6
+     ],
+     "chop": 3,
+     "freecap": 2,
+     "pre": 250.0,
+     "ret": 4,
+     "score_post": 250.0,
+     "travel": 0,
+     "tree": [
+      5,
+      6
+     ],
+     "turns": 8,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     5,
+     6
+    ],
+    "2": [
+     2,
+     5
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 2,
+   "partner": 0,
+   "rho": 0.05882352941176472,
+   "rho_post": 0.025620004099200733,
+   "status": "OK",
+   "turn": 8
+  },
+  {
+   "chosen": {
+    "0": [
+     5,
+     6
+    ],
+    "2": null
+   },
+   "game": "OSC-007",
+   "inputs": {
+    "u0:5,6": {
+     "K": 6,
+     "cell": [
+      5,
+      6
+     ],
+     "chop": 1,
+     "freecap": 2,
+     "pre": 333.3333333333333,
+     "ret": 4,
+     "score_post": 333.3333333333333,
+     "travel": 0,
+     "tree": [
+      5,
+      6
+     ],
+     "turns": 6,
+     "wood": 2
+    },
+    "u2:5,6": {
+     "K": 6,
+     "cell": [
+      6,
+      6
+     ],
+     "chop": 1,
+     "freecap": 2,
+     "pre": 285.7142857142857,
+     "ret": 4,
+     "score_post": 285.7142857142857,
+     "travel": 1,
+     "tree": [
+      5,
+      6
+     ],
+     "turns": 7,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     2,
+     5
+    ],
+    "2": [
+     5,
+     6
+    ]
+   },
+   "missing": [
+    "u0:kept=TREE(2, 5) not scored at t+1",
+    "u2:chosen=not a tree"
+   ],
+   "mover": 0,
+   "partner": 2,
+   "status": "NOT_SCOREABLE",
+   "turn": 11
+  },
+  {
+   "S_A_keeping_post": 505.3571428571429,
+   "S_A_keeping_pre": 392.8571428571429,
+   "S_B_chosen_post": 531.547619047619,
+   "S_B_chosen_pre": 419.04761904761904,
+   "chosen": {
+    "0": [
+     2,
+     3
+    ],
+    "2": [
+     2,
+     2
+    ]
+   },
+   "game": "m078:0",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,2": {
+     "K": 13,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 142.85714285714286,
+     "ret": 0,
+     "score_post": 255.35714285714286,
+     "travel": 1,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 14,
+     "wood": 2
+    },
+    "u0:2,3": {
+     "K": 7,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 5,
+     "freecap": 2,
+     "pre": 285.7142857142857,
+     "ret": 1,
+     "score_post": 285.7142857142857,
+     "travel": 0,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 7,
+     "wood": 2
+    },
+    "u2:2,2": {
+     "K": 13,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 133.33333333333334,
+     "ret": 0,
+     "score_post": 245.83333333333334,
+     "travel": 2,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 15,
+     "wood": 2
+    },
+    "u2:2,3": {
+     "K": 7,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 5,
+     "freecap": 2,
+     "pre": 250.0,
+     "ret": 1,
+     "score_post": 250.0,
+     "travel": 1,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 8,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     2,
+     2
+    ],
+    "2": [
+     2,
+     3
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 0,
+   "partner": 2,
+   "rho": 0.06666666666666665,
+   "rho_post": 0.051825677267373305,
+   "status": "OK",
+   "turn": 3
+  },
+  {
+   "S_A_keeping_post": 541.0714285714286,
+   "S_A_keeping_pre": 428.57142857142856,
+   "S_B_chosen_post": 579.1666666666666,
+   "S_B_chosen_pre": 466.66666666666663,
+   "chosen": {
+    "0": [
+     2,
+     2
+    ],
+    "2": [
+     2,
+     3
+    ]
+   },
+   "game": "m078:0",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,2": {
+     "K": 13,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 133.33333333333334,
+     "ret": 0,
+     "score_post": 245.83333333333334,
+     "travel": 2,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 15,
+     "wood": 2
+    },
+    "u0:2,3": {
+     "K": 6,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 4,
+     "freecap": 2,
+     "pre": 285.7142857142857,
+     "ret": 1,
+     "score_post": 285.7142857142857,
+     "travel": 1,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 7,
+     "wood": 2
+    },
+    "u2:2,2": {
+     "K": 13,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 142.85714285714286,
+     "ret": 0,
+     "score_post": 255.35714285714286,
+     "travel": 1,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 14,
+     "wood": 2
+    },
+    "u2:2,3": {
+     "K": 6,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 4,
+     "freecap": 2,
+     "pre": 333.3333333333333,
+     "ret": 1,
+     "score_post": 333.3333333333333,
+     "travel": 0,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 6,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     2,
+     3
+    ],
+    "2": [
+     2,
+     2
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 2,
+   "partner": 0,
+   "rho": 0.0888888888888888,
+   "rho_post": 0.07040704070407044,
+   "status": "OK",
+   "turn": 5
+  },
+  {
+   "S_A_keeping_post": 588.6904761904761,
+   "S_A_keeping_pre": 476.19047619047615,
+   "S_B_chosen_post": 645.8333333333334,
+   "S_B_chosen_pre": 533.3333333333334,
+   "chosen": {
+    "0": [
+     2,
+     3
+    ],
+    "2": [
+     2,
+     2
+    ]
+   },
+   "game": "m078:0",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,2": {
+     "K": 13,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 142.85714285714286,
+     "ret": 0,
+     "score_post": 255.35714285714286,
+     "travel": 1,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 14,
+     "wood": 2
+    },
+    "u0:2,3": {
+     "K": 5,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 3,
+     "freecap": 2,
+     "pre": 400.0,
+     "ret": 1,
+     "score_post": 400.0,
+     "travel": 0,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 5,
+     "wood": 2
+    },
+    "u2:2,2": {
+     "K": 13,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 133.33333333333334,
+     "ret": 0,
+     "score_post": 245.83333333333334,
+     "travel": 2,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 15,
+     "wood": 2
+    },
+    "u2:2,3": {
+     "K": 5,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 3,
+     "freecap": 2,
+     "pre": 333.3333333333333,
+     "ret": 1,
+     "score_post": 333.3333333333333,
+     "travel": 1,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 6,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     2,
+     2
+    ],
+    "2": [
+     2,
+     3
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 0,
+   "partner": 2,
+   "rho": 0.1200000000000001,
+   "rho_post": 0.0970677451971691,
+   "status": "OK",
+   "turn": 7
+  },
+  {
+   "S_A_keeping_post": 655.3571428571429,
+   "S_A_keeping_pre": 542.8571428571429,
+   "S_B_chosen_post": 745.8333333333334,
+   "S_B_chosen_pre": 633.3333333333334,
+   "chosen": {
+    "0": [
+     2,
+     2
+    ],
+    "2": [
+     2,
+     3
+    ]
+   },
+   "game": "m078:0",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,2": {
+     "K": 13,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 133.33333333333334,
+     "ret": 0,
+     "score_post": 245.83333333333334,
+     "travel": 2,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 15,
+     "wood": 2
+    },
+    "u0:2,3": {
+     "K": 4,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 2,
+     "freecap": 2,
+     "pre": 400.0,
+     "ret": 1,
+     "score_post": 400.0,
+     "travel": 1,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 5,
+     "wood": 2
+    },
+    "u2:2,2": {
+     "K": 13,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 142.85714285714286,
+     "ret": 0,
+     "score_post": 255.35714285714286,
+     "travel": 1,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 14,
+     "wood": 2
+    },
+    "u2:2,3": {
+     "K": 4,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 2,
+     "freecap": 2,
+     "pre": 500.0,
+     "ret": 1,
+     "score_post": 500.0,
+     "travel": 0,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 4,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     2,
+     3
+    ],
+    "2": [
+     2,
+     2
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 2,
+   "partner": 0,
+   "rho": 0.16666666666666674,
+   "rho_post": 0.13805631244323346,
+   "status": "OK",
+   "turn": 9
+  },
+  {
+   "S_A_keeping_post": 755.3571428571429,
+   "S_A_keeping_pre": 642.8571428571429,
+   "S_B_chosen_post": 912.5,
+   "S_B_chosen_pre": 800.0,
+   "chosen": {
+    "0": [
+     2,
+     3
+    ],
+    "2": [
+     2,
+     2
+    ]
+   },
+   "game": "m078:0",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,2": {
+     "K": 13,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 142.85714285714286,
+     "ret": 0,
+     "score_post": 255.35714285714286,
+     "travel": 1,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 14,
+     "wood": 2
+    },
+    "u0:2,3": {
+     "K": 3,
+     "cell": [
+      2,
+      3
+     ],
+     "chop": 1,
+     "freecap": 2,
+     "pre": 666.6666666666666,
+     "ret": 1,
+     "score_post": 666.6666666666666,
+     "travel": 0,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 3,
+     "wood": 2
+    },
+    "u2:2,2": {
+     "K": 13,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 133.33333333333334,
+     "ret": 0,
+     "score_post": 245.83333333333334,
+     "travel": 2,
+     "tree": [
+      2,
+      2
+     ],
+     "turns": 15,
+     "wood": 2
+    },
+    "u2:2,3": {
+     "K": 3,
+     "cell": [
+      1,
+      3
+     ],
+     "chop": 1,
+     "freecap": 2,
+     "pre": 500.0,
+     "ret": 1,
+     "score_post": 500.0,
+     "travel": 1,
+     "tree": [
+      2,
+      3
+     ],
+     "turns": 4,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     2,
+     2
+    ],
+    "2": [
+     2,
+     3
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 0,
+   "partner": 2,
+   "rho": 0.24444444444444446,
+   "rho_post": 0.2080378250591015,
+   "status": "OK",
+   "turn": 11
+  },
+  {
+   "chosen": {
+    "0": [
+     2,
+     5
+    ],
+    "2": null
+   },
+   "game": "m090:0",
+   "inputs": {
+    "u0:2,5": {
+     "K": 7,
+     "cell": [
+      3,
+      5
+     ],
+     "chop": 5,
+     "freecap": 2,
+     "pre": 250.0,
+     "ret": 1,
+     "score_post": 250.0,
+     "travel": 1,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 8,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     2,
+     5
+    ],
+    "2": null
+   },
+   "missing": [
+    "u2:kept=not a tree",
+    "u2:chosen=not a tree"
+   ],
+   "mover": 2,
+   "partner": 0,
+   "status": "NOT_SCOREABLE",
+   "turn": 3
+  },
+  {
+   "S_A_keeping_post": 396.82539682539687,
+   "S_A_keeping_pre": 396.82539682539687,
+   "S_B_chosen_post": 438.59649122807014,
+   "S_B_chosen_pre": 438.59649122807014,
+   "chosen": {
+    "0": [
+     5,
+     5
+    ],
+    "2": [
+     2,
+     5
+    ]
+   },
+   "game": "m090:0",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,5": {
+     "K": 6,
+     "cell": [
+      1,
+      5
+     ],
+     "chop": 4,
+     "freecap": 2,
+     "pre": 285.7142857142857,
+     "ret": 1,
+     "score_post": 285.7142857142857,
+     "travel": 1,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 7,
+     "wood": 2
+    },
+    "u0:5,5": {
+     "K": 15,
+     "cell": [
+      1,
+      5
+     ],
+     "chop": 10,
+     "freecap": 2,
+     "pre": 105.26315789473684,
+     "ret": 4,
+     "score_post": 105.26315789473684,
+     "travel": 4,
+     "tree": [
+      5,
+      5
+     ],
+     "turns": 19,
+     "wood": 2
+    },
+    "u2:2,5": {
+     "K": 6,
+     "cell": [
+      2,
+      5
+     ],
+     "chop": 4,
+     "freecap": 2,
+     "pre": 333.3333333333333,
+     "ret": 1,
+     "score_post": 333.3333333333333,
+     "travel": 0,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 6,
+     "wood": 2
+    },
+    "u2:5,5": {
+     "K": 15,
+     "cell": [
+      2,
+      5
+     ],
+     "chop": 10,
+     "freecap": 2,
+     "pre": 111.11111111111111,
+     "ret": 4,
+     "score_post": 111.11111111111111,
+     "travel": 3,
+     "tree": [
+      5,
+      5
+     ],
+     "turns": 18,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     2,
+     5
+    ],
+    "2": [
+     5,
+     5
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 2,
+   "partner": 0,
+   "rho": 0.10526315789473673,
+   "rho_post": 0.10526315789473673,
+   "status": "OK",
+   "turn": 6
+  },
+  {
+   "S_A_keeping_post": 444.44444444444446,
+   "S_A_keeping_pre": 444.44444444444446,
+   "S_B_chosen_post": 505.2631578947368,
+   "S_B_chosen_pre": 505.2631578947368,
+   "chosen": {
+    "0": [
+     2,
+     5
+    ],
+    "2": [
+     5,
+     5
+    ]
+   },
+   "game": "m090:0",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,5": {
+     "K": 5,
+     "cell": [
+      2,
+      5
+     ],
+     "chop": 3,
+     "freecap": 2,
+     "pre": 400.0,
+     "ret": 1,
+     "score_post": 400.0,
+     "travel": 0,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 5,
+     "wood": 2
+    },
+    "u0:5,5": {
+     "K": 15,
+     "cell": [
+      2,
+      5
+     ],
+     "chop": 10,
+     "freecap": 2,
+     "pre": 111.11111111111111,
+     "ret": 4,
+     "score_post": 111.11111111111111,
+     "travel": 3,
+     "tree": [
+      5,
+      5
+     ],
+     "turns": 18,
+     "wood": 2
+    },
+    "u2:2,5": {
+     "K": 5,
+     "cell": [
+      1,
+      5
+     ],
+     "chop": 3,
+     "freecap": 2,
+     "pre": 333.3333333333333,
+     "ret": 1,
+     "score_post": 333.3333333333333,
+     "travel": 1,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 6,
+     "wood": 2
+    },
+    "u2:5,5": {
+     "K": 15,
+     "cell": [
+      1,
+      5
+     ],
+     "chop": 10,
+     "freecap": 2,
+     "pre": 105.26315789473684,
+     "ret": 4,
+     "score_post": 105.26315789473684,
+     "travel": 4,
+     "tree": [
+      5,
+      5
+     ],
+     "turns": 19,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     5,
+     5
+    ],
+    "2": [
+     2,
+     5
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 0,
+   "partner": 2,
+   "rho": 0.13684210526315788,
+   "rho_post": 0.13684210526315788,
+   "status": "OK",
+   "turn": 8
+  },
+  {
+   "S_A_keeping_post": 511.1111111111111,
+   "S_A_keeping_pre": 511.1111111111111,
+   "S_B_chosen_post": 605.2631578947369,
+   "S_B_chosen_pre": 605.2631578947369,
+   "chosen": {
+    "0": [
+     5,
+     5
+    ],
+    "2": [
+     2,
+     5
+    ]
+   },
+   "game": "m090:0",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,5": {
+     "K": 4,
+     "cell": [
+      1,
+      5
+     ],
+     "chop": 2,
+     "freecap": 2,
+     "pre": 400.0,
+     "ret": 1,
+     "score_post": 400.0,
+     "travel": 1,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 5,
+     "wood": 2
+    },
+    "u0:5,5": {
+     "K": 15,
+     "cell": [
+      1,
+      5
+     ],
+     "chop": 10,
+     "freecap": 2,
+     "pre": 105.26315789473684,
+     "ret": 4,
+     "score_post": 105.26315789473684,
+     "travel": 4,
+     "tree": [
+      5,
+      5
+     ],
+     "turns": 19,
+     "wood": 2
+    },
+    "u2:2,5": {
+     "K": 4,
+     "cell": [
+      2,
+      5
+     ],
+     "chop": 2,
+     "freecap": 2,
+     "pre": 500.0,
+     "ret": 1,
+     "score_post": 500.0,
+     "travel": 0,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 4,
+     "wood": 2
+    },
+    "u2:5,5": {
+     "K": 15,
+     "cell": [
+      2,
+      5
+     ],
+     "chop": 10,
+     "freecap": 2,
+     "pre": 111.11111111111111,
+     "ret": 4,
+     "score_post": 111.11111111111111,
+     "travel": 3,
+     "tree": [
+      5,
+      5
+     ],
+     "turns": 18,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     2,
+     5
+    ],
+    "2": [
+     5,
+     5
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 2,
+   "partner": 0,
+   "rho": 0.1842105263157896,
+   "rho_post": 0.1842105263157896,
+   "status": "OK",
+   "turn": 10
+  },
+  {
+   "S_A_keeping_post": 600.0,
+   "S_A_keeping_pre": 600.0,
+   "S_B_chosen_post": 761.9047619047619,
+   "S_B_chosen_pre": 761.9047619047619,
+   "chosen": {
+    "0": [
+     2,
+     5
+    ],
+    "2": [
+     5,
+     5
+    ]
+   },
+   "game": "m090:0",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,5": {
+     "K": 3,
+     "cell": [
+      2,
+      5
+     ],
+     "chop": 1,
+     "freecap": 2,
+     "pre": 666.6666666666666,
+     "ret": 1,
+     "score_post": 666.6666666666666,
+     "travel": 0,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 3,
+     "wood": 2
+    },
+    "u0:5,5": {
+     "K": 17,
+     "cell": [
+      2,
+      5
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 100.0,
+     "ret": 4,
+     "score_post": 100.0,
+     "travel": 3,
+     "tree": [
+      5,
+      5
+     ],
+     "turns": 20,
+     "wood": 2
+    },
+    "u2:2,5": {
+     "K": 3,
+     "cell": [
+      1,
+      5
+     ],
+     "chop": 1,
+     "freecap": 2,
+     "pre": 500.0,
+     "ret": 1,
+     "score_post": 500.0,
+     "travel": 1,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 4,
+     "wood": 2
+    },
+    "u2:5,5": {
+     "K": 17,
+     "cell": [
+      1,
+      5
+     ],
+     "chop": 12,
+     "freecap": 2,
+     "pre": 95.23809523809524,
+     "ret": 4,
+     "score_post": 95.23809523809524,
+     "travel": 4,
+     "tree": [
+      5,
+      5
+     ],
+     "turns": 21,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     5,
+     5
+    ],
+    "2": [
+     2,
+     5
+    ]
+   },
+   "margin_holds": false,
+   "missing": [],
+   "mover": 0,
+   "partner": 2,
+   "rho": 0.26984126984126977,
+   "rho_post": 0.26984126984126977,
+   "status": "OK",
+   "turn": 12
+  },
+  {
+   "S_A_keeping_post": 271.49321266968326,
+   "S_A_keeping_pre": 271.49321266968326,
+   "S_B_chosen_post": 277.77777777777777,
+   "S_B_chosen_pre": 277.77777777777777,
+   "chosen": {
+    "0": [
+     2,
+     5
+    ],
+    "2": [
+     5,
+     5
+    ]
+   },
+   "game": "m090:1",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,5": {
+     "K": 14,
+     "cell": [
+      6,
+      5
+     ],
+     "chop": 6,
+     "freecap": 2,
+     "pre": 111.11111111111111,
+     "ret": 7,
+     "score_post": 111.11111111111111,
+     "travel": 4,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 18,
+     "wood": 2
+    },
+    "u0:5,5": {
+     "K": 12,
+     "cell": [
+      6,
+      5
+     ],
+     "chop": 7,
+     "freecap": 2,
+     "pre": 153.84615384615384,
+     "ret": 4,
+     "score_post": 153.84615384615384,
+     "travel": 1,
+     "tree": [
+      5,
+      5
+     ],
+     "turns": 13,
+     "wood": 2
+    },
+    "u2:2,5": {
+     "K": 14,
+     "cell": [
+      5,
+      5
+     ],
+     "chop": 6,
+     "freecap": 2,
+     "pre": 117.6470588235294,
+     "ret": 7,
+     "score_post": 117.6470588235294,
+     "travel": 3,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 17,
+     "wood": 2
+    },
+    "u2:5,5": {
+     "K": 12,
+     "cell": [
+      5,
+      5
+     ],
+     "chop": 7,
+     "freecap": 2,
+     "pre": 166.66666666666666,
+     "ret": 4,
+     "score_post": 166.66666666666666,
+     "travel": 0,
+     "tree": [
+      5,
+      5
+     ],
+     "turns": 12,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     5,
+     5
+    ],
+    "2": [
+     2,
+     5
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 2,
+   "partner": 0,
+   "rho": 0.02314814814814814,
+   "rho_post": 0.02314814814814814,
+   "status": "OK",
+   "turn": 12
+  },
+  {
+   "S_A_keeping_post": 299.4652406417112,
+   "S_A_keeping_pre": 299.4652406417112,
+   "S_B_chosen_post": 311.1111111111111,
+   "S_B_chosen_pre": 311.1111111111111,
+   "chosen": {
+    "0": [
+     5,
+     5
+    ],
+    "2": [
+     2,
+     5
+    ]
+   },
+   "game": "m090:1",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,5": {
+     "K": 14,
+     "cell": [
+      5,
+      5
+     ],
+     "chop": 6,
+     "freecap": 2,
+     "pre": 117.6470588235294,
+     "ret": 7,
+     "score_post": 117.6470588235294,
+     "travel": 3,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 17,
+     "wood": 2
+    },
+    "u0:5,5": {
+     "K": 10,
+     "cell": [
+      5,
+      5
+     ],
+     "chop": 5,
+     "freecap": 2,
+     "pre": 200.0,
+     "ret": 4,
+     "score_post": 200.0,
+     "travel": 0,
+     "tree": [
+      5,
+      5
+     ],
+     "turns": 10,
+     "wood": 2
+    },
+    "u2:2,5": {
+     "K": 14,
+     "cell": [
+      6,
+      5
+     ],
+     "chop": 6,
+     "freecap": 2,
+     "pre": 111.11111111111111,
+     "ret": 7,
+     "score_post": 111.11111111111111,
+     "travel": 4,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 18,
+     "wood": 2
+    },
+    "u2:5,5": {
+     "K": 10,
+     "cell": [
+      6,
+      5
+     ],
+     "chop": 5,
+     "freecap": 2,
+     "pre": 181.8181818181818,
+     "ret": 4,
+     "score_post": 181.8181818181818,
+     "travel": 1,
+     "tree": [
+      5,
+      5
+     ],
+     "turns": 11,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     2,
+     5
+    ],
+    "2": [
+     5,
+     5
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 0,
+   "partner": 2,
+   "rho": 0.03888888888888897,
+   "rho_post": 0.03888888888888897,
+   "status": "OK",
+   "turn": 15
+  },
+  {
+   "S_A_keeping_post": 339.8692810457516,
+   "S_A_keeping_pre": 339.8692810457516,
+   "S_B_chosen_post": 361.1111111111111,
+   "S_B_chosen_pre": 361.1111111111111,
+   "chosen": {
+    "0": [
+     2,
+     5
+    ],
+    "2": [
+     5,
+     5
+    ]
+   },
+   "game": "m090:1",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,5": {
+     "K": 14,
+     "cell": [
+      6,
+      5
+     ],
+     "chop": 6,
+     "freecap": 2,
+     "pre": 111.11111111111111,
+     "ret": 7,
+     "score_post": 111.11111111111111,
+     "travel": 4,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 18,
+     "wood": 2
+    },
+    "u0:5,5": {
+     "K": 8,
+     "cell": [
+      6,
+      5
+     ],
+     "chop": 3,
+     "freecap": 2,
+     "pre": 222.22222222222223,
+     "ret": 4,
+     "score_post": 222.22222222222223,
+     "travel": 1,
+     "tree": [
+      5,
+      5
+     ],
+     "turns": 9,
+     "wood": 2
+    },
+    "u2:2,5": {
+     "K": 14,
+     "cell": [
+      5,
+      5
+     ],
+     "chop": 6,
+     "freecap": 2,
+     "pre": 117.6470588235294,
+     "ret": 7,
+     "score_post": 117.6470588235294,
+     "travel": 3,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 17,
+     "wood": 2
+    },
+    "u2:5,5": {
+     "K": 8,
+     "cell": [
+      5,
+      5
+     ],
+     "chop": 3,
+     "freecap": 2,
+     "pre": 250.0,
+     "ret": 4,
+     "score_post": 250.0,
+     "travel": 0,
+     "tree": [
+      5,
+      5
+     ],
+     "turns": 8,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     5,
+     5
+    ],
+    "2": [
+     2,
+     5
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 2,
+   "partner": 0,
+   "rho": 0.0625,
+   "rho_post": 0.0625,
+   "status": "OK",
+   "turn": 18
+  },
+  {
+   "S_A_keeping_post": 403.3613445378151,
+   "S_A_keeping_pre": 403.3613445378151,
+   "S_B_chosen_post": 444.44444444444446,
+   "S_B_chosen_pre": 444.44444444444446,
+   "chosen": {
+    "0": [
+     5,
+     5
+    ],
+    "2": [
+     2,
+     5
+    ]
+   },
+   "game": "m090:1",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,5": {
+     "K": 14,
+     "cell": [
+      5,
+      5
+     ],
+     "chop": 6,
+     "freecap": 2,
+     "pre": 117.6470588235294,
+     "ret": 7,
+     "score_post": 117.6470588235294,
+     "travel": 3,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 17,
+     "wood": 2
+    },
+    "u0:5,5": {
+     "K": 6,
+     "cell": [
+      5,
+      5
+     ],
+     "chop": 1,
+     "freecap": 2,
+     "pre": 333.3333333333333,
+     "ret": 4,
+     "score_post": 333.3333333333333,
+     "travel": 0,
+     "tree": [
+      5,
+      5
+     ],
+     "turns": 6,
+     "wood": 2
+    },
+    "u2:2,5": {
+     "K": 14,
+     "cell": [
+      6,
+      5
+     ],
+     "chop": 6,
+     "freecap": 2,
+     "pre": 111.11111111111111,
+     "ret": 7,
+     "score_post": 111.11111111111111,
+     "travel": 4,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 18,
+     "wood": 2
+    },
+    "u2:5,5": {
+     "K": 6,
+     "cell": [
+      6,
+      5
+     ],
+     "chop": 1,
+     "freecap": 2,
+     "pre": 285.7142857142857,
+     "ret": 4,
+     "score_post": 285.7142857142857,
+     "travel": 1,
+     "tree": [
+      5,
+      5
+     ],
+     "turns": 7,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     2,
+     5
+    ],
+    "2": [
+     5,
+     5
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 0,
+   "partner": 2,
+   "rho": 0.10185185185185186,
+   "rho_post": 0.10185185185185186,
+   "status": "OK",
+   "turn": 21
+  },
+  {
+   "S_A_keeping_post": 797.2222222222222,
+   "S_A_keeping_pre": 347.22222222222223,
+   "S_B_chosen_post": 817.6470588235294,
+   "S_B_chosen_pre": 367.6470588235294,
+   "chosen": {
+    "0": [
+     2,
+     5
+    ],
+    "2": [
+     5,
+     6
+    ]
+   },
+   "game": "m118:1",
+   "goals_traded": true,
+   "inputs": {
+    "u0:2,5": {
+     "K": 12,
+     "cell": [
+      6,
+      6
+     ],
+     "chop": 3,
+     "freecap": 2,
+     "pre": 117.6470588235294,
+     "ret": 8,
+     "score_post": 567.6470588235294,
+     "travel": 5,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 17,
+     "wood": 2
+    },
+    "u0:5,6": {
+     "K": 8,
+     "cell": [
+      6,
+      6
+     ],
+     "chop": 3,
+     "freecap": 2,
+     "pre": 222.22222222222223,
+     "ret": 4,
+     "score_post": 222.22222222222223,
+     "travel": 1,
+     "tree": [
+      5,
+      6
+     ],
+     "turns": 9,
+     "wood": 2
+    },
+    "u2:2,5": {
+     "K": 12,
+     "cell": [
+      5,
+      6
+     ],
+     "chop": 3,
+     "freecap": 2,
+     "pre": 125.0,
+     "ret": 8,
+     "score_post": 575.0,
+     "travel": 4,
+     "tree": [
+      2,
+      5
+     ],
+     "turns": 16,
+     "wood": 2
+    },
+    "u2:5,6": {
+     "K": 8,
+     "cell": [
+      5,
+      6
+     ],
+     "chop": 3,
+     "freecap": 2,
+     "pre": 250.0,
+     "ret": 4,
+     "score_post": 250.0,
+     "travel": 0,
+     "tree": [
+      5,
+      6
+     ],
+     "turns": 8,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     5,
+     6
+    ],
+    "2": [
+     2,
+     5
+    ]
+   },
+   "margin_holds": true,
+   "missing": [],
+   "mover": 2,
+   "partner": 0,
+   "rho": 0.05882352941176472,
+   "rho_post": 0.025620004099200733,
+   "status": "OK",
+   "turn": 8
+  },
+  {
+   "chosen": {
+    "0": [
+     5,
+     6
+    ],
+    "2": null
+   },
+   "game": "m118:1",
+   "inputs": {
+    "u0:5,6": {
+     "K": 6,
+     "cell": [
+      5,
+      6
+     ],
+     "chop": 1,
+     "freecap": 2,
+     "pre": 333.3333333333333,
+     "ret": 4,
+     "score_post": 333.3333333333333,
+     "travel": 0,
+     "tree": [
+      5,
+      6
+     ],
+     "turns": 6,
+     "wood": 2
+    },
+    "u2:5,6": {
+     "K": 6,
+     "cell": [
+      6,
+      6
+     ],
+     "chop": 1,
+     "freecap": 2,
+     "pre": 285.7142857142857,
+     "ret": 4,
+     "score_post": 285.7142857142857,
+     "travel": 1,
+     "tree": [
+      5,
+      6
+     ],
+     "turns": 7,
+     "wood": 2
+    }
+   },
+   "kept": {
+    "0": [
+     2,
+     5
+    ],
+    "2": [
+     5,
+     6
+    ]
+   },
+   "missing": [
+    "u0:kept=TREE(2, 5) not scored at t+1",
+    "u2:chosen=not a tree"
+   ],
+   "mover": 0,
+   "partner": 2,
+   "status": "NOT_SCOREABLE",
+   "turn": 11
+  }
+ ],
+ "ruling": "coordination/messages/codex_1/20260826T071429Z-20260826-candidate-3-g0-r2-ack.md item 1",
+ "summary": {
+  "exchanges": 23,
+  "margin_holds_everywhere": false,
+  "max_rho": 0.26984126984126977,
+  "max_rho_at": "m090:0:12",
+  "min_Delta": 0,
+  "min_K": 3,
+  "not_scoreable": [
+   {
+    "game": "OSC-007",
+    "missing": [
+     "u0:kept=TREE(2, 5) not scored at t+1",
+     "u2:chosen=not a tree"
+    ],
+    "status": "NOT_SCOREABLE",
+    "turn": 11
+   },
+   {
+    "game": "m090:0",
+    "missing": [
+     "u2:kept=not a tree",
+     "u2:chosen=not a tree"
+    ],
+    "status": "NOT_SCOREABLE",
+    "turn": 3
+   },
+   {
+    "game": "m118:1",
+    "missing": [
+     "u0:kept=TREE(2, 5) not scored at t+1",
+     "u2:chosen=not a tree"
+    ],
+    "status": "NOT_SCOREABLE",
+    "turn": 11
+   }
+  ],
+  "scoreable": 20,
+  "violations": [
+   "m090:0:12"
+  ]
+ },
+ "task": "20260826-candidate-3-keep-your-goal"
+}

@@ -66,3 +66,22 @@ python3 build_subject_library.py --games <games_dir>/games.jsonl.gz
 
 Full method, measurements and the three-way reconciliation with `chatgpt_1`:
 `../oscillation-library-subject-correction-2026-08-11.md`.
+
+## Provenance note added 2026-08-21 (card `20260821-champion-subject-library`, control C-1)
+
+The `panel-config.json` **in this directory today** hashes to
+`49bb35516b0b3a43781253cf1f9ac7be7c3da772d8871ffe60740cd183b0cbbd`, not to the
+`eca5cb32e8fc5daa61dd69d0753f9a3962eff5cbce10cf12e8410ba36c903fe5` quoted in the table above and
+recorded inside every frozen situation. That is not drift in the library: the config was edited on
+2026-08-12 by the source-portability repair (commit `07cb2bd7`), **after** this library was
+accepted on 2026-08-11. The config as frozen is `d9d041bb:…/panel-config.json`.
+
+Measured, not assumed: rebuilding all 34 situations from the current config reproduces every
+window, world state, command line, classification, detector count and index histogram
+**byte-identically**; the only differing fields anywhere are `provenance.panel_config_sha256` and
+the `content_sha256` that covers it, and restoring the frozen digest reproduces all 34
+`content_sha256` values exactly. Evidence:
+`../oscillation-library-547fa706/controls-2026-08-21.json`, checks C-1a / C-1b / C-1c.
+
+**Whose episodes these are:** `readable__no_orchard` (`98628e98…`), which is no longer the
+champion. The champion of record's own exhibits are in `../oscillation-library-547fa706/`.

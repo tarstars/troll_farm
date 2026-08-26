@@ -1,0 +1,17 @@
+{
+ "K-4_determinism": "PASS",
+ "files": {
+  "controls-2026-08-25.json": {
+   "identical": true,
+   "run_a": "c7c61f9617937ad9e0919a511ce15694bfc09e28d4f21407dbbba94f0fb3177e",
+   "run_b": "c7c61f9617937ad9e0919a511ce15694bfc09e28d4f21407dbbba94f0fb3177e"
+  },
+  "geometry-2026-08-25.json": {
+   "identical": true,
+   "run_a": "2a33930a61f0c320a170b558bf289d6bfa5ad0ab952375e56dd5d7f4c1219fdd",
+   "run_b": "2a33930a61f0c320a170b558bf289d6bfa5ad0ab952375e56dd5d7f4c1219fdd"
+  }
+ },
+ "run_a": "run A (published)",
+ "run_b": "run B (second run, separate directory)"
+}

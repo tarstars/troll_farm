@@ -1,0 +1,1566 @@
+{
+  "task": "20260821-swap-r1-cure",
+  "gate": "G-1 diagnostic (probe only, no candidate edit)",
+  "ruling": "codex_1/reviews/swap-r1-g1-remedy-ruling-2026-08-21.md",
+  "fixtures": [
+    "OSC-001",
+    "OSC-005",
+    "OSC-006",
+    "OSC-011",
+    "OSC-012",
+    "OSC-027"
+  ],
+  "fires_per_fixture": {
+    "OSC-001": 1,
+    "OSC-005": 1,
+    "OSC-006": 27,
+    "OSC-011": 6,
+    "OSC-012": 1,
+    "OSC-027": 0
+  },
+  "caveat": "The predicate replay is an UPPER BOUND on the recorded fires only: suppressing a fire changes every later tick, so a clean replay is not a G-1 result. Only a G-1 rev 2 rerun can produce one.",
+  "predicate_replay": {
+    "P1 pass-through viability (target beyond the cell AND next step vacates it)": {
+      "fires_kept": {
+        "OSC-001": 1,
+        "OSC-005": 0,
+        "OSC-006": 27,
+        "OSC-011": 1,
+        "OSC-012": 0,
+        "OSC-027": 0
+      },
+      "fires_seen": {
+        "OSC-001": 1,
+        "OSC-005": 1,
+        "OSC-006": 27,
+        "OSC-011": 6,
+        "OSC-012": 1,
+        "OSC-027": 0
+      },
+      "drops_every_repeated_pair_fire": false,
+      "keeps_every_working_fire": false,
+      "separates_on_the_recorded_fires": false
+    },
+    "P2 landing is not the mover's final target": {
+      "fires_kept": {
+        "OSC-001": 1,
+        "OSC-005": 0,
+        "OSC-006": 27,
+        "OSC-011": 1,
+        "OSC-012": 0,
+        "OSC-027": 0
+      },
+      "fires_seen": {
+        "OSC-001": 1,
+        "OSC-005": 1,
+        "OSC-006": 27,
+        "OSC-011": 6,
+        "OSC-012": 1,
+        "OSC-027": 0
+      },
+      "drops_every_repeated_pair_fire": false,
+      "keeps_every_working_fire": false,
+      "separates_on_the_recorded_fires": false
+    },
+    "P3 mover BFS distance strictly decreases": {
+      "fires_kept": {
+        "OSC-001": 1,
+        "OSC-005": 1,
+        "OSC-006": 27,
+        "OSC-011": 6,
+        "OSC-012": 1,
+        "OSC-027": 0
+      },
+      "fires_seen": {
+        "OSC-001": 1,
+        "OSC-005": 1,
+        "OSC-006": 27,
+        "OSC-011": 6,
+        "OSC-012": 1,
+        "OSC-027": 0
+      },
+      "drops_every_repeated_pair_fire": false,
+      "keeps_every_working_fire": true,
+      "separates_on_the_recorded_fires": false
+    },
+    "P4 partner is not WAIT (drops the yield path entirely)": {
+      "fires_kept": {
+        "OSC-001": 0,
+        "OSC-005": 0,
+        "OSC-006": 27,
+        "OSC-011": 0,
+        "OSC-012": 0,
+        "OSC-027": 0
+      },
+      "fires_seen": {
+        "OSC-001": 1,
+        "OSC-005": 1,
+        "OSC-006": 27,
+        "OSC-011": 6,
+        "OSC-012": 1,
+        "OSC-027": 0
+      },
+      "drops_every_repeated_pair_fire": false,
+      "keeps_every_working_fire": false,
+      "separates_on_the_recorded_fires": false
+    },
+    "P5 partner IS WAIT (drops the no-detour/working-partner path entirely)": {
+      "fires_kept": {
+        "OSC-001": 1,
+        "OSC-005": 1,
+        "OSC-006": 0,
+        "OSC-011": 6,
+        "OSC-012": 1,
+        "OSC-027": 0
+      },
+      "fires_seen": {
+        "OSC-001": 1,
+        "OSC-005": 1,
+        "OSC-006": 27,
+        "OSC-011": 6,
+        "OSC-012": 1,
+        "OSC-027": 0
+      },
+      "drops_every_repeated_pair_fire": false,
+      "keeps_every_working_fire": true,
+      "separates_on_the_recorded_fires": false
+    },
+    "P6 P5 and pass-through viability": {
+      "fires_kept": {
+        "OSC-001": 1,
+        "OSC-005": 0,
+        "OSC-006": 0,
+        "OSC-011": 1,
+        "OSC-012": 0,
+        "OSC-027": 0
+      },
+      "fires_seen": {
+        "OSC-001": 1,
+        "OSC-005": 1,
+        "OSC-006": 27,
+        "OSC-011": 6,
+        "OSC-012": 1,
+        "OSC-027": 0
+      },
+      "drops_every_repeated_pair_fire": false,
+      "keeps_every_working_fire": false,
+      "separates_on_the_recorded_fires": false
+    }
+  },
+  "seam_shape_collisions": [
+    {
+      "seam_shape": {
+        "vacates_partner_cell": true,
+        "target_is_landing": false,
+        "partner_was_wait": true,
+        "partner_verb": "WAIT",
+        "path": "YIELD",
+        "detour_existed": true,
+        "bfs_from_mover_cell": 3,
+        "bfs_from_landing": 2
+      },
+      "must_drop_fixtures": [
+        "OSC-011"
+      ],
+      "must_keep_fixtures": [
+        "OSC-001"
+      ],
+      "fires": [
+        {
+          "fixture": "OSC-001",
+          "turn": 7,
+          "mover": 0,
+          "partner": 2,
+          "reverse_swap_turn": null,
+          "partner_next_candidate": "WAIT"
+        },
+        {
+          "fixture": "OSC-011",
+          "turn": 33,
+          "mover": 0,
+          "partner": 2,
+          "reverse_swap_turn": null,
+          "partner_next_candidate": "WAIT"
+        }
+      ]
+    },
+    {
+      "seam_shape": {
+        "vacates_partner_cell": false,
+        "target_is_landing": true,
+        "partner_was_wait": true,
+        "partner_verb": "WAIT",
+        "path": "YIELD",
+        "detour_existed": true,
+        "bfs_from_mover_cell": 1,
+        "bfs_from_landing": 0
+      },
+      "must_drop_fixtures": [
+        "OSC-011"
+      ],
+      "must_keep_fixtures": [
+        "OSC-005",
+        "OSC-012"
+      ],
+      "fires": [
+        {
+          "fixture": "OSC-005",
+          "turn": 52,
+          "mover": 0,
+          "partner": 2,
+          "reverse_swap_turn": null,
+          "partner_next_candidate": "WAIT"
+        },
+        {
+          "fixture": "OSC-011",
+          "turn": 27,
+          "mover": 0,
+          "partner": 2,
+          "reverse_swap_turn": 28,
+          "partner_next_candidate": "MOVE 2 9 4"
+        },
+        {
+          "fixture": "OSC-011",
+          "turn": 28,
+          "mover": 2,
+          "partner": 0,
+          "reverse_swap_turn": 29,
+          "partner_next_candidate": "MOVE 0 9 4"
+        },
+        {
+          "fixture": "OSC-011",
+          "turn": 29,
+          "mover": 0,
+          "partner": 2,
+          "reverse_swap_turn": 30,
+          "partner_next_candidate": "MOVE 2 9 4"
+        },
+        {
+          "fixture": "OSC-011",
+          "turn": 30,
+          "mover": 2,
+          "partner": 0,
+          "reverse_swap_turn": 31,
+          "partner_next_candidate": "MOVE 0 9 4"
+        },
+        {
+          "fixture": "OSC-011",
+          "turn": 31,
+          "mover": 0,
+          "partner": 2,
+          "reverse_swap_turn": 33,
+          "partner_next_candidate": "WAIT"
+        },
+        {
+          "fixture": "OSC-012",
+          "turn": 9,
+          "mover": 0,
+          "partner": 2,
+          "reverse_swap_turn": null,
+          "partner_next_candidate": "WAIT"
+        }
+      ]
+    }
+  ],
+  "no_stateless_predicate_exists_for": [
+    "OSC-011"
+  ],
+  "events": [
+    {
+      "fixture": "OSC-001",
+      "turn": 7,
+      "mover": 0,
+      "mover_cell": [
+        5,
+        2
+      ],
+      "landing": [
+        4,
+        2
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        3,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 3,
+      "bfs_from_landing": 2,
+      "partner": 2,
+      "partner_cmd": "WAIT",
+      "partner_was_wait": true,
+      "partner_verb": "WAIT",
+      "path": "YIELD",
+      "detour_existed": true,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "WAIT",
+      "reverse_swap_turn": null,
+      "reverse_within_4": false
+    },
+    {
+      "fixture": "OSC-005",
+      "turn": 52,
+      "mover": 0,
+      "mover_cell": [
+        2,
+        2
+      ],
+      "landing": [
+        1,
+        2
+      ],
+      "mover_target": [
+        1,
+        2
+      ],
+      "next_from_landing": [
+        1,
+        2
+      ],
+      "vacates_partner_cell": false,
+      "target_is_landing": true,
+      "bfs_from_mover_cell": 1,
+      "bfs_from_landing": 0,
+      "partner": 2,
+      "partner_cmd": "WAIT",
+      "partner_was_wait": true,
+      "partner_verb": "WAIT",
+      "path": "YIELD",
+      "detour_existed": true,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "WAIT",
+      "reverse_swap_turn": null,
+      "reverse_within_4": false
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 2,
+      "mover": 0,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 2,
+      "partner_cmd": "CHOP 2",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": "CHOP 2",
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 2 2 3",
+      "reverse_swap_turn": 3,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 3,
+      "mover": 2,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 0,
+      "partner_cmd": "CHOP 0",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 0 2 3",
+      "reverse_swap_turn": 4,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 4,
+      "mover": 0,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 2,
+      "partner_cmd": "CHOP 2",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": "CHOP 2",
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 2 2 3",
+      "reverse_swap_turn": 5,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 5,
+      "mover": 2,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 0,
+      "partner_cmd": "CHOP 0",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 0 2 3",
+      "reverse_swap_turn": 6,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 6,
+      "mover": 0,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 2,
+      "partner_cmd": "CHOP 2",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": "CHOP 2",
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 2 2 3",
+      "reverse_swap_turn": 7,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 7,
+      "mover": 2,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 0,
+      "partner_cmd": "CHOP 0",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": "MOVE 0 2 3",
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 0 2 3",
+      "reverse_swap_turn": 8,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 8,
+      "mover": 0,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 2,
+      "partner_cmd": "CHOP 2",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": "DROP 2",
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 2 2 3",
+      "reverse_swap_turn": 9,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 9,
+      "mover": 2,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 0,
+      "partner_cmd": "CHOP 0",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": "MOVE 0 4 3",
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 0 2 3",
+      "reverse_swap_turn": 10,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 10,
+      "mover": 0,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 2,
+      "partner_cmd": "CHOP 2",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": "CHOP 2",
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 2 2 3",
+      "reverse_swap_turn": 11,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 11,
+      "mover": 2,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 0,
+      "partner_cmd": "CHOP 0",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": "CHOP 0",
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 0 2 3",
+      "reverse_swap_turn": 12,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 12,
+      "mover": 0,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 2,
+      "partner_cmd": "CHOP 2",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": "CHOP 2",
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 2 2 3",
+      "reverse_swap_turn": 13,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 13,
+      "mover": 2,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 0,
+      "partner_cmd": "CHOP 0",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": "MOVE 0 3 3",
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 0 2 3",
+      "reverse_swap_turn": 14,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 14,
+      "mover": 0,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 2,
+      "partner_cmd": "CHOP 2",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": "CHOP 2",
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 2 2 3",
+      "reverse_swap_turn": 15,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 15,
+      "mover": 2,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 0,
+      "partner_cmd": "CHOP 0",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": "MOVE 0 1 3",
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 0 2 3",
+      "reverse_swap_turn": 16,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 16,
+      "mover": 0,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 2,
+      "partner_cmd": "CHOP 2",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": "CHOP 2",
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 2 2 3",
+      "reverse_swap_turn": 17,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 17,
+      "mover": 2,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 0,
+      "partner_cmd": "CHOP 0",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 0 2 3",
+      "reverse_swap_turn": 18,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 18,
+      "mover": 0,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 2,
+      "partner_cmd": "CHOP 2",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": "DROP 2",
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 2 2 3",
+      "reverse_swap_turn": 19,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 19,
+      "mover": 2,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 0,
+      "partner_cmd": "CHOP 0",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 0 2 3",
+      "reverse_swap_turn": 20,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 20,
+      "mover": 0,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 2,
+      "partner_cmd": "CHOP 2",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 2 2 3",
+      "reverse_swap_turn": 21,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 21,
+      "mover": 2,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 0,
+      "partner_cmd": "CHOP 0",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 0 2 3",
+      "reverse_swap_turn": 22,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 22,
+      "mover": 0,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 2,
+      "partner_cmd": "CHOP 2",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 2 2 3",
+      "reverse_swap_turn": 23,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 23,
+      "mover": 2,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 0,
+      "partner_cmd": "CHOP 0",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 0 2 3",
+      "reverse_swap_turn": 24,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 24,
+      "mover": 0,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 2,
+      "partner_cmd": "CHOP 2",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 2 2 3",
+      "reverse_swap_turn": 25,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 25,
+      "mover": 2,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 0,
+      "partner_cmd": "CHOP 0",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 0 2 3",
+      "reverse_swap_turn": 26,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 26,
+      "mover": 0,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 2,
+      "partner_cmd": "CHOP 2",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 2 2 3",
+      "reverse_swap_turn": 27,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 27,
+      "mover": 2,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 0,
+      "partner_cmd": "CHOP 0",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 0 2 3",
+      "reverse_swap_turn": 28,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-006",
+      "turn": 28,
+      "mover": 0,
+      "mover_cell": [
+        1,
+        3
+      ],
+      "landing": [
+        2,
+        3
+      ],
+      "mover_target": [
+        2,
+        2
+      ],
+      "next_from_landing": [
+        2,
+        2
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 2,
+      "bfs_from_landing": 1,
+      "partner": 2,
+      "partner_cmd": "CHOP 2",
+      "partner_was_wait": false,
+      "partner_verb": "CHOP",
+      "path": "NODETOUR",
+      "detour_existed": false,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "PICK 2 PLUM",
+      "reverse_swap_turn": null,
+      "reverse_within_4": false
+    },
+    {
+      "fixture": "OSC-011",
+      "turn": 27,
+      "mover": 0,
+      "mover_cell": [
+        8,
+        4
+      ],
+      "landing": [
+        9,
+        4
+      ],
+      "mover_target": [
+        9,
+        4
+      ],
+      "next_from_landing": [
+        9,
+        4
+      ],
+      "vacates_partner_cell": false,
+      "target_is_landing": true,
+      "bfs_from_mover_cell": 1,
+      "bfs_from_landing": 0,
+      "partner": 2,
+      "partner_cmd": "WAIT",
+      "partner_was_wait": true,
+      "partner_verb": "WAIT",
+      "path": "YIELD",
+      "detour_existed": true,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 2 9 4",
+      "reverse_swap_turn": 28,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-011",
+      "turn": 28,
+      "mover": 2,
+      "mover_cell": [
+        8,
+        4
+      ],
+      "landing": [
+        9,
+        4
+      ],
+      "mover_target": [
+        9,
+        4
+      ],
+      "next_from_landing": [
+        9,
+        4
+      ],
+      "vacates_partner_cell": false,
+      "target_is_landing": true,
+      "bfs_from_mover_cell": 1,
+      "bfs_from_landing": 0,
+      "partner": 0,
+      "partner_cmd": "WAIT",
+      "partner_was_wait": true,
+      "partner_verb": "WAIT",
+      "path": "YIELD",
+      "detour_existed": true,
+      "partner_next_base": "MOVE 0 7 4",
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 0 9 4",
+      "reverse_swap_turn": 29,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-011",
+      "turn": 29,
+      "mover": 0,
+      "mover_cell": [
+        8,
+        4
+      ],
+      "landing": [
+        9,
+        4
+      ],
+      "mover_target": [
+        9,
+        4
+      ],
+      "next_from_landing": [
+        9,
+        4
+      ],
+      "vacates_partner_cell": false,
+      "target_is_landing": true,
+      "bfs_from_mover_cell": 1,
+      "bfs_from_landing": 0,
+      "partner": 2,
+      "partner_cmd": "WAIT",
+      "partner_was_wait": true,
+      "partner_verb": "WAIT",
+      "path": "YIELD",
+      "detour_existed": true,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 2 9 4",
+      "reverse_swap_turn": 30,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-011",
+      "turn": 30,
+      "mover": 2,
+      "mover_cell": [
+        8,
+        4
+      ],
+      "landing": [
+        9,
+        4
+      ],
+      "mover_target": [
+        9,
+        4
+      ],
+      "next_from_landing": [
+        9,
+        4
+      ],
+      "vacates_partner_cell": false,
+      "target_is_landing": true,
+      "bfs_from_mover_cell": 1,
+      "bfs_from_landing": 0,
+      "partner": 0,
+      "partner_cmd": "WAIT",
+      "partner_was_wait": true,
+      "partner_verb": "WAIT",
+      "path": "YIELD",
+      "detour_existed": true,
+      "partner_next_base": "MOVE 0 7 4",
+      "base_same_world": false,
+      "partner_next_candidate": "MOVE 0 9 4",
+      "reverse_swap_turn": 31,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-011",
+      "turn": 31,
+      "mover": 0,
+      "mover_cell": [
+        8,
+        4
+      ],
+      "landing": [
+        9,
+        4
+      ],
+      "mover_target": [
+        9,
+        4
+      ],
+      "next_from_landing": [
+        9,
+        4
+      ],
+      "vacates_partner_cell": false,
+      "target_is_landing": true,
+      "bfs_from_mover_cell": 1,
+      "bfs_from_landing": 0,
+      "partner": 2,
+      "partner_cmd": "WAIT",
+      "partner_was_wait": true,
+      "partner_verb": "WAIT",
+      "path": "YIELD",
+      "detour_existed": true,
+      "partner_next_base": "CHOP 2",
+      "base_same_world": false,
+      "partner_next_candidate": "WAIT",
+      "reverse_swap_turn": 33,
+      "reverse_within_4": true
+    },
+    {
+      "fixture": "OSC-011",
+      "turn": 33,
+      "mover": 0,
+      "mover_cell": [
+        9,
+        4
+      ],
+      "landing": [
+        8,
+        4
+      ],
+      "mover_target": [
+        8,
+        2
+      ],
+      "next_from_landing": [
+        8,
+        3
+      ],
+      "vacates_partner_cell": true,
+      "target_is_landing": false,
+      "bfs_from_mover_cell": 3,
+      "bfs_from_landing": 2,
+      "partner": 2,
+      "partner_cmd": "WAIT",
+      "partner_was_wait": true,
+      "partner_verb": "WAIT",
+      "path": "YIELD",
+      "detour_existed": true,
+      "partner_next_base": "MOVE 2 8 3",
+      "base_same_world": false,
+      "partner_next_candidate": "WAIT",
+      "reverse_swap_turn": null,
+      "reverse_within_4": false
+    },
+    {
+      "fixture": "OSC-012",
+      "turn": 9,
+      "mover": 0,
+      "mover_cell": [
+        10,
+        2
+      ],
+      "landing": [
+        11,
+        2
+      ],
+      "mover_target": [
+        11,
+        2
+      ],
+      "next_from_landing": [
+        11,
+        2
+      ],
+      "vacates_partner_cell": false,
+      "target_is_landing": true,
+      "bfs_from_mover_cell": 1,
+      "bfs_from_landing": 0,
+      "partner": 2,
+      "partner_cmd": "WAIT",
+      "partner_was_wait": true,
+      "partner_verb": "WAIT",
+      "path": "YIELD",
+      "detour_existed": true,
+      "partner_next_base": null,
+      "base_same_world": false,
+      "partner_next_candidate": "WAIT",
+      "reverse_swap_turn": null,
+      "reverse_within_4": false
+    }
+  ]
+}

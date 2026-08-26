@@ -1,0 +1,1143 @@
+{
+  "control": "revision controls \u2014 R-A and R-B flipped back, one line at a time",
+  "forks": {
+    "F1-transient-off": {
+      "arms": {
+        "candidate": {
+          "blocking_games": 41,
+          "games_archive": "/tmp/claude-1000/cure1/F1-transient-off-candidate/games/games.jsonl.gz",
+          "p3_games": [],
+          "sha256": "fa8c2136b4df8ee65ccc6ec49849a0c494c27b88f31909928bbd0c5ae67eaa50",
+          "source": "claude_1/cure1/fork-F1-transient-off-candidate.rs"
+        },
+        "instrument": {
+          "blocking_games": 50,
+          "games_archive": "/tmp/claude-1000/cure1/F1-transient-off-instrument/games/games.jsonl.gz",
+          "p3_games": [
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m004",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m014",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m025",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m035",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m045",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m054",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m065",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m074",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m085",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m095",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m104",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m114",
+              "seat": 0
+            }
+          ],
+          "sha256": "600960bdb682d78c4c61f39d0bff0110f0dc85dcad9138715458779e045e2db2",
+          "source": "claude_1/cure1/fork-F1-transient-off-instrument.rs"
+        }
+      },
+      "idle": {
+        "branches": {
+          "H": 1197,
+          "L": 159,
+          "N": 65771,
+          "P": 8487,
+          "R": 662,
+          "W": 472
+        },
+        "games_archive": "/tmp/claude-1000/cure1/F1-transient-off-instrument/games/games.jsonl.gz",
+        "hold_share_pct": 1.5596,
+        "idle_with_work_share_pct": 2.1746,
+        "idle_with_work_turns": 1669,
+        "longest_consecutive_hold_run": 2,
+        "longest_consecutive_hold_run_where": {
+          "map_id": "m012",
+          "seat": 1,
+          "unit": 0
+        },
+        "own_troll_turns": 76748,
+        "trolls": 384,
+        "trolls_above_the_line": [
+          {
+            "map_id": "m001",
+            "seat": 0,
+            "share_pct": 8.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m001",
+            "seat": 1,
+            "share_pct": 6.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m002",
+            "seat": 1,
+            "share_pct": 5.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m010",
+            "seat": 1,
+            "share_pct": 6.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m011",
+            "seat": 1,
+            "share_pct": 2.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m012",
+            "seat": 1,
+            "share_pct": 5.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m014",
+            "seat": 1,
+            "share_pct": 49.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m021",
+            "seat": 0,
+            "share_pct": 43.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m029",
+            "seat": 0,
+            "share_pct": 3.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m029",
+            "seat": 1,
+            "share_pct": 7.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m031",
+            "seat": 1,
+            "share_pct": 2.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m034",
+            "seat": 1,
+            "share_pct": 10.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m039",
+            "seat": 1,
+            "share_pct": 42.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m040",
+            "seat": 0,
+            "share_pct": 6.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m040",
+            "seat": 1,
+            "share_pct": 2.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m042",
+            "seat": 0,
+            "share_pct": 2.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m044",
+            "seat": 1,
+            "share_pct": 2.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m046",
+            "seat": 0,
+            "share_pct": 47.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m047",
+            "seat": 1,
+            "share_pct": 4.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m053",
+            "seat": 1,
+            "share_pct": 2.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m055",
+            "seat": 1,
+            "share_pct": 2.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m057",
+            "seat": 1,
+            "share_pct": 3.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m058",
+            "seat": 1,
+            "share_pct": 4.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m059",
+            "seat": 0,
+            "share_pct": 95.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m059",
+            "seat": 1,
+            "share_pct": 47.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m063",
+            "seat": 1,
+            "share_pct": 38.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m066",
+            "seat": 0,
+            "share_pct": 5.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m070",
+            "seat": 0,
+            "share_pct": 2.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m070",
+            "seat": 1,
+            "share_pct": 38.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m070",
+            "seat": 1,
+            "share_pct": 2.5,
+            "unit": 2
+          },
+          {
+            "map_id": "m072",
+            "seat": 0,
+            "share_pct": 3.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m073",
+            "seat": 0,
+            "share_pct": 16.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m075",
+            "seat": 0,
+            "share_pct": 8.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m076",
+            "seat": 0,
+            "share_pct": 5.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m076",
+            "seat": 1,
+            "share_pct": 8.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m078",
+            "seat": 0,
+            "share_pct": 3.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m078",
+            "seat": 1,
+            "share_pct": 2.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m079",
+            "seat": 0,
+            "share_pct": 41.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m082",
+            "seat": 1,
+            "share_pct": 46.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m084",
+            "seat": 1,
+            "share_pct": 43.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m088",
+            "seat": 1,
+            "share_pct": 2.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m096",
+            "seat": 0,
+            "share_pct": 3.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m099",
+            "seat": 1,
+            "share_pct": 48.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m101",
+            "seat": 0,
+            "share_pct": 11.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m105",
+            "seat": 1,
+            "share_pct": 2.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m107",
+            "seat": 1,
+            "share_pct": 4.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m110",
+            "seat": 1,
+            "share_pct": 49.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m112",
+            "seat": 0,
+            "share_pct": 5.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m117",
+            "seat": 1,
+            "share_pct": 3.0,
+            "unit": 0
+          }
+        ],
+        "trolls_above_the_line_count": 49,
+        "wait_share_pct": 0.615,
+        "worst_troll": {
+          "idle_turns": 190,
+          "map_id": "m059",
+          "seat": 0,
+          "share_pct": 95.0,
+          "turns": 200,
+          "unit": 2
+        }
+      },
+      "what": "R-A off: the hold fires on permanent blocks again"
+    },
+    "F2-scoping-off": {
+      "arms": {
+        "candidate": {
+          "blocking_games": 40,
+          "games_archive": "/tmp/claude-1000/cure1/F2-scoping-off-candidate/games/games.jsonl.gz",
+          "p3_games": [
+            {
+              "first_divergence_turn": 7,
+              "map_id": "m004",
+              "seat": 0
+            }
+          ],
+          "sha256": "74336b45c2b055eb56906773126104e3ea8913578a04391cc00d775a8bd5b10b",
+          "source": "claude_1/cure1/fork-F2-scoping-off-candidate.rs"
+        },
+        "instrument": {
+          "blocking_games": 49,
+          "games_archive": "/tmp/claude-1000/cure1/F2-scoping-off-instrument/games/games.jsonl.gz",
+          "p3_games": [
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m004",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m014",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m025",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m035",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m045",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m054",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m065",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m074",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m085",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m095",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m104",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m114",
+              "seat": 0
+            }
+          ],
+          "sha256": "a5173b47b4f1320cd1322bd22d6c250937ab037f91a3df12a802f2ad080a8778",
+          "source": "claude_1/cure1/fork-F2-scoping-off-instrument.rs"
+        }
+      },
+      "idle": {
+        "branches": {
+          "H": 24,
+          "L": 298,
+          "N": 65787,
+          "P": 8923,
+          "R": 1244,
+          "W": 472
+        },
+        "games_archive": "/tmp/claude-1000/cure1/F2-scoping-off-instrument/games/games.jsonl.gz",
+        "hold_share_pct": 0.0313,
+        "idle_with_work_share_pct": 0.6463,
+        "idle_with_work_turns": 496,
+        "longest_consecutive_hold_run": 2,
+        "longest_consecutive_hold_run_where": {
+          "map_id": "m040",
+          "seat": 1,
+          "unit": 0
+        },
+        "own_troll_turns": 76748,
+        "trolls": 384,
+        "trolls_above_the_line": [
+          {
+            "map_id": "m001",
+            "seat": 0,
+            "share_pct": 8.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m001",
+            "seat": 1,
+            "share_pct": 6.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m002",
+            "seat": 1,
+            "share_pct": 5.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m010",
+            "seat": 1,
+            "share_pct": 6.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m011",
+            "seat": 1,
+            "share_pct": 2.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m029",
+            "seat": 0,
+            "share_pct": 3.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m029",
+            "seat": 1,
+            "share_pct": 7.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m031",
+            "seat": 1,
+            "share_pct": 2.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m034",
+            "seat": 1,
+            "share_pct": 10.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m044",
+            "seat": 1,
+            "share_pct": 2.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m047",
+            "seat": 1,
+            "share_pct": 4.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m053",
+            "seat": 1,
+            "share_pct": 2.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m055",
+            "seat": 1,
+            "share_pct": 2.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m057",
+            "seat": 1,
+            "share_pct": 3.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m059",
+            "seat": 0,
+            "share_pct": 95.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m072",
+            "seat": 0,
+            "share_pct": 3.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m075",
+            "seat": 0,
+            "share_pct": 8.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m076",
+            "seat": 0,
+            "share_pct": 5.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m076",
+            "seat": 1,
+            "share_pct": 8.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m078",
+            "seat": 0,
+            "share_pct": 3.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m096",
+            "seat": 0,
+            "share_pct": 3.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m101",
+            "seat": 0,
+            "share_pct": 11.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m105",
+            "seat": 1,
+            "share_pct": 2.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m107",
+            "seat": 1,
+            "share_pct": 4.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m112",
+            "seat": 0,
+            "share_pct": 5.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m117",
+            "seat": 1,
+            "share_pct": 3.0,
+            "unit": 0
+          }
+        ],
+        "trolls_above_the_line_count": 26,
+        "wait_share_pct": 0.615,
+        "worst_troll": {
+          "idle_turns": 190,
+          "map_id": "m059",
+          "seat": 0,
+          "share_pct": 95.0,
+          "turns": 200,
+          "unit": 2
+        }
+      },
+      "what": "R-B off: the hold is live on orchard-eligible maps again"
+    },
+    "F3-as-built-policy": {
+      "arms": {
+        "candidate": {
+          "blocking_games": 41,
+          "games_archive": "/tmp/claude-1000/cure1/F3-as-built-policy-candidate/games/games.jsonl.gz",
+          "p3_games": [
+            {
+              "first_divergence_turn": 7,
+              "map_id": "m004",
+              "seat": 0
+            }
+          ],
+          "sha256": "510488e7e67535f717da73a0fe1d74c34d81ddbca8e5f870cd5d33794ebdd050",
+          "source": "claude_1/cure1/fork-F3-as-built-policy-candidate.rs"
+        },
+        "instrument": {
+          "blocking_games": 50,
+          "games_archive": "/tmp/claude-1000/cure1/F3-as-built-policy-instrument/games/games.jsonl.gz",
+          "p3_games": [
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m004",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m014",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m025",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m035",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m045",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m054",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m065",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m074",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m085",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m095",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m104",
+              "seat": 0
+            },
+            {
+              "first_divergence_turn": 1,
+              "map_id": "m114",
+              "seat": 0
+            }
+          ],
+          "sha256": "d5a4d86b0ccfff6631796bc164a89129b603ae47c816ffdb5b1a2999816c6bd9",
+          "source": "claude_1/cure1/fork-F3-as-built-policy-instrument.rs"
+        }
+      },
+      "idle": {
+        "branches": {
+          "H": 1279,
+          "L": 158,
+          "N": 65777,
+          "P": 8444,
+          "R": 618,
+          "W": 472
+        },
+        "games_archive": "/tmp/claude-1000/cure1/F3-as-built-policy-instrument/games/games.jsonl.gz",
+        "hold_share_pct": 1.6665,
+        "idle_with_work_share_pct": 2.2815,
+        "idle_with_work_turns": 1751,
+        "longest_consecutive_hold_run": 2,
+        "longest_consecutive_hold_run_where": {
+          "map_id": "m004",
+          "seat": 0,
+          "unit": 0
+        },
+        "own_troll_turns": 76748,
+        "trolls": 384,
+        "trolls_above_the_line": [
+          {
+            "map_id": "m001",
+            "seat": 0,
+            "share_pct": 8.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m001",
+            "seat": 1,
+            "share_pct": 6.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m002",
+            "seat": 1,
+            "share_pct": 5.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m004",
+            "seat": 0,
+            "share_pct": 41.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m010",
+            "seat": 1,
+            "share_pct": 6.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m011",
+            "seat": 1,
+            "share_pct": 2.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m012",
+            "seat": 1,
+            "share_pct": 5.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m014",
+            "seat": 1,
+            "share_pct": 49.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m021",
+            "seat": 0,
+            "share_pct": 43.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m029",
+            "seat": 0,
+            "share_pct": 3.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m029",
+            "seat": 1,
+            "share_pct": 7.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m031",
+            "seat": 1,
+            "share_pct": 2.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m034",
+            "seat": 1,
+            "share_pct": 10.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m039",
+            "seat": 1,
+            "share_pct": 42.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m040",
+            "seat": 0,
+            "share_pct": 6.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m040",
+            "seat": 1,
+            "share_pct": 2.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m042",
+            "seat": 0,
+            "share_pct": 2.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m044",
+            "seat": 1,
+            "share_pct": 2.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m046",
+            "seat": 0,
+            "share_pct": 47.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m047",
+            "seat": 1,
+            "share_pct": 4.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m053",
+            "seat": 1,
+            "share_pct": 2.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m055",
+            "seat": 1,
+            "share_pct": 2.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m057",
+            "seat": 1,
+            "share_pct": 3.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m058",
+            "seat": 1,
+            "share_pct": 4.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m059",
+            "seat": 0,
+            "share_pct": 95.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m059",
+            "seat": 1,
+            "share_pct": 47.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m063",
+            "seat": 1,
+            "share_pct": 38.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m066",
+            "seat": 0,
+            "share_pct": 5.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m070",
+            "seat": 0,
+            "share_pct": 2.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m070",
+            "seat": 1,
+            "share_pct": 38.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m070",
+            "seat": 1,
+            "share_pct": 2.5,
+            "unit": 2
+          },
+          {
+            "map_id": "m072",
+            "seat": 0,
+            "share_pct": 3.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m073",
+            "seat": 0,
+            "share_pct": 16.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m075",
+            "seat": 0,
+            "share_pct": 8.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m076",
+            "seat": 0,
+            "share_pct": 5.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m076",
+            "seat": 1,
+            "share_pct": 8.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m078",
+            "seat": 0,
+            "share_pct": 3.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m078",
+            "seat": 1,
+            "share_pct": 2.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m079",
+            "seat": 0,
+            "share_pct": 41.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m082",
+            "seat": 1,
+            "share_pct": 46.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m084",
+            "seat": 1,
+            "share_pct": 43.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m088",
+            "seat": 1,
+            "share_pct": 2.0,
+            "unit": 2
+          },
+          {
+            "map_id": "m096",
+            "seat": 0,
+            "share_pct": 3.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m099",
+            "seat": 1,
+            "share_pct": 48.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m101",
+            "seat": 0,
+            "share_pct": 11.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m105",
+            "seat": 1,
+            "share_pct": 2.5,
+            "unit": 0
+          },
+          {
+            "map_id": "m107",
+            "seat": 1,
+            "share_pct": 4.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m110",
+            "seat": 1,
+            "share_pct": 49.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m112",
+            "seat": 0,
+            "share_pct": 5.0,
+            "unit": 0
+          },
+          {
+            "map_id": "m117",
+            "seat": 1,
+            "share_pct": 3.0,
+            "unit": 0
+          }
+        ],
+        "trolls_above_the_line_count": 50,
+        "wait_share_pct": 0.615,
+        "worst_troll": {
+          "idle_turns": 190,
+          "map_id": "m059",
+          "seat": 0,
+          "share_pct": 95.0,
+          "turns": 200,
+          "unit": 2
+        }
+      },
+      "what": "both revisions off: the as-built arm's hold policy"
+    }
+  },
+  "r_a_control": {
+    "as_built_policy_hold_turns": 1279,
+    "as_built_policy_idle_share_pct": 2.2815,
+    "ratio": 58.14,
+    "revised_hold_turns": 22,
+    "revised_idle_share_pct": 0.6437,
+    "verdict": "PASS \u2014 the transient predicate is the lever: it removes the great majority of hold turns and takes the idle share with them"
+  },
+  "r_b_control": {
+    "asked_for": "the hold firing on the same map one turn after the P3 interval ends \u2014 NOT CONSTRUCTIBLE: fuzz_panel.eval_p3 compares the whole command stream and spec['orchard_eligible'] is computed once per map+seat, so the covered interval is the whole game",
+    "f2_p3_games": [
+      {
+        "first_divergence_turn": 7,
+        "map_id": "m004",
+        "seat": 0
+      }
+    ],
+    "f3_p3_games": [
+      {
+        "first_divergence_turn": 7,
+        "map_id": "m004",
+        "seat": 0
+      }
+    ],
+    "substitute": "scoping off (F2) on the identical corpus must reproduce a P3 violation",
+    "verdict": "PASS \u2014 scoping off reproduces a P3 violation the revised arm does not have"
+  },
+  "revised_arm": {
+    "blocking_games": 40,
+    "hold_turns": 22,
+    "idle_with_work_share_pct": 0.6437,
+    "p3_games": []
+  },
+  "ruling": "coordination/messages/local_claude_1/20260825T094200Z-20260825-dance-cure-candidate-1-hold-policy.md"
+}

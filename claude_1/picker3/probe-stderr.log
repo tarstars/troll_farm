@@ -1,0 +1,3583 @@
+PS2GAME map=m004 seat=0
+PS2TURN turn=1
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=74.074074 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=54.054054 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6986.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6986.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=74.074074
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7060.074074
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=54.054054
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7040.054054
+PS2WIN ai=1 bi=1 sum=7060.074074
+PS2TURN turn=2
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=76.923077 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=55.555556 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6987.000000 target=Bank((0, 2)) cmd=MOVE 2 0 2
+PS2CAND unit=2 idx=2 score=6987.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6987.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=6987.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=76.923077
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7063.923077
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=7063.923077
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=55.555556
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7042.555556
+PS2PAIR ai=2 bi=2 compat=true stock=true p1drop=false waits=0 sum=7042.555556
+PS2WIN ai=1 bi=1 sum=7063.923077
+PS2TURN turn=3
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=80.000000 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=57.142857 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6988.000000 target=Bank((0, 2)) cmd=MOVE 2 0 2
+PS2CAND unit=2 idx=2 score=6988.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6988.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=6988.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=80.000000
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7068.000000
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=7068.000000
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=57.142857
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7045.142857
+PS2PAIR ai=2 bi=2 compat=true stock=true p1drop=false waits=0 sum=7045.142857
+PS2WIN ai=1 bi=1 sum=7068.000000
+PS2TURN turn=4
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=83.333333 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=58.823529 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6989.000000 target=Bank((0, 2)) cmd=MOVE 2 0 2
+PS2CAND unit=2 idx=2 score=6989.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6989.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=6989.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=83.333333
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7072.333333
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=7072.333333
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=58.823529
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7047.823529
+PS2PAIR ai=2 bi=2 compat=true stock=true p1drop=false waits=0 sum=7047.823529
+PS2WIN ai=1 bi=1 sum=7072.333333
+PS2TURN turn=5
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=86.956522 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=60.606061 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6990.000000 target=Bank((0, 2)) cmd=MOVE 2 0 2
+PS2CAND unit=2 idx=2 score=6990.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6990.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=6990.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=86.956522
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7076.956522
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=7076.956522
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=60.606061
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7050.606061
+PS2PAIR ai=2 bi=2 compat=true stock=true p1drop=false waits=0 sum=7050.606061
+PS2WIN ai=1 bi=1 sum=7076.956522
+PS2TURN turn=6
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=90.909091 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=62.500000 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6991.000000 target=Bank((0, 2)) cmd=MOVE 2 0 2
+PS2CAND unit=2 idx=2 score=6991.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6991.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=6991.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=90.909091
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7081.909091
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=7081.909091
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=62.500000
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7053.500000
+PS2PAIR ai=2 bi=2 compat=true stock=true p1drop=false waits=0 sum=7053.500000
+PS2WIN ai=1 bi=1 sum=7081.909091
+PS2TURN turn=7
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=95.238095 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=64.516129 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6992.000000 target=Bank((0, 2)) cmd=MOVE 2 0 2
+PS2CAND unit=2 idx=2 score=6992.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6992.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=6992.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=95.238095
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7087.238095
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=7087.238095
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=64.516129
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7056.516129
+PS2PAIR ai=2 bi=2 compat=true stock=true p1drop=false waits=0 sum=7056.516129
+PS2WIN ai=1 bi=1 sum=7087.238095
+PS2TURN turn=8
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=90.909091 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=62.500000 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6993.000000 target=Bank((0, 2)) cmd=MOVE 2 0 2
+PS2CAND unit=2 idx=2 score=6993.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6993.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=6993.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=90.909091
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7083.909091
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=7083.909091
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=62.500000
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7055.500000
+PS2PAIR ai=2 bi=2 compat=true stock=true p1drop=false waits=0 sum=7055.500000
+PS2WIN ai=1 bi=1 sum=7083.909091
+PS2TURN turn=9
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=86.956522 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=60.606061 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6994.000000 target=Bank((0, 2)) cmd=MOVE 2 0 2
+PS2CAND unit=2 idx=2 score=6994.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6994.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=6994.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=86.956522
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7080.956522
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=7080.956522
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=60.606061
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7054.606061
+PS2PAIR ai=2 bi=2 compat=true stock=true p1drop=false waits=0 sum=7054.606061
+PS2WIN ai=1 bi=1 sum=7080.956522
+PS2TURN turn=10
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=83.333333 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=58.823529 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6995.000000 target=Bank((0, 2)) cmd=MOVE 2 0 2
+PS2CAND unit=2 idx=2 score=6995.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6995.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=6995.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=83.333333
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7078.333333
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=7078.333333
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=58.823529
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7053.823529
+PS2PAIR ai=2 bi=2 compat=true stock=true p1drop=false waits=0 sum=7053.823529
+PS2WIN ai=1 bi=1 sum=7078.333333
+PS2TURN turn=11
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=80.000000 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=57.142857 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6996.000000 target=Bank((0, 2)) cmd=MOVE 2 0 2
+PS2CAND unit=2 idx=2 score=6996.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6996.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=6996.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=80.000000
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7076.000000
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=7076.000000
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=57.142857
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7053.142857
+PS2PAIR ai=2 bi=2 compat=true stock=true p1drop=false waits=0 sum=7053.142857
+PS2WIN ai=1 bi=1 sum=7076.000000
+PS2TURN turn=12
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=76.923077 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=55.555556 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6997.000000 target=Bank((0, 2)) cmd=MOVE 2 0 2
+PS2CAND unit=2 idx=2 score=6997.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6997.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=6997.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=76.923077
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7073.923077
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=7073.923077
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=55.555556
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7052.555556
+PS2PAIR ai=2 bi=2 compat=true stock=true p1drop=false waits=0 sum=7052.555556
+PS2WIN ai=1 bi=1 sum=7073.923077
+PS2TURN turn=13
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=74.074074 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=54.054054 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6998.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6998.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=74.074074
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7072.074074
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=54.054054
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7052.054054
+PS2WIN ai=1 bi=1 sum=7072.074074
+PS2TURN turn=14
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=71.428571 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=52.631579 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6999.000000 target=Bank((0, 2)) cmd=MOVE 2 0 2
+PS2CAND unit=2 idx=2 score=6999.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6999.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=6999.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=71.428571
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7070.428571
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=7070.428571
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=52.631579
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7051.631579
+PS2PAIR ai=2 bi=2 compat=true stock=true p1drop=false waits=0 sum=7051.631579
+PS2WIN ai=1 bi=1 sum=7070.428571
+PS2TURN turn=15
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=74.074074 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=54.054054 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=8000.000000 target=Bank((0, 2)) cmd=DROP 2
+PS2CAND unit=2 idx=2 score=6998.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2CAND unit=2 idx=3 score=8000.000000 target=Bank((0, 2)) cmd=DROP 2
+PS2CAND unit=2 idx=4 score=6998.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=8000.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=6998.000000
+PS2PAIR ai=0 bi=3 compat=true stock=true p1drop=false waits=1 sum=8000.000000
+PS2PAIR ai=0 bi=4 compat=true stock=true p1drop=false waits=1 sum=6998.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=74.074074
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=8074.074074
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=7072.074074
+PS2PAIR ai=1 bi=3 compat=true stock=true p1drop=false waits=0 sum=8074.074074
+PS2PAIR ai=1 bi=4 compat=true stock=true p1drop=false waits=0 sum=7072.074074
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=54.054054
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=8054.054054
+PS2PAIR ai=2 bi=2 compat=true stock=true p1drop=false waits=0 sum=7052.054054
+PS2PAIR ai=2 bi=3 compat=true stock=true p1drop=false waits=0 sum=8054.054054
+PS2PAIR ai=2 bi=4 compat=true stock=true p1drop=false waits=0 sum=7052.054054
+PS2WIN ai=1 bi=1 sum=8074.074074
+PS2TURN turn=16
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=76.923077 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=55.555556 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=37.037037 target=Tree((10, 2)) cmd=MOVE 2 10 2
+PS2CAND unit=2 idx=2 score=27.027027 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=37.037037
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=27.027027
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=76.923077
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=113.960114
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=103.950104
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=55.555556
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=92.592593
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=82.582583
+PS2WIN ai=1 bi=2 sum=103.950104
+PS2TURN turn=17
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=80.000000 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=57.142857 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=38.461538 target=Tree((10, 2)) cmd=MOVE 2 10 2
+PS2CAND unit=2 idx=2 score=27.777778 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=38.461538
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=27.777778
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=80.000000
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=118.461538
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=107.777778
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=57.142857
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=95.604396
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=84.920635
+PS2WIN ai=1 bi=2 sum=107.777778
+PS2TURN turn=18
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=83.333333 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=58.823529 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=40.000000 target=Tree((10, 2)) cmd=MOVE 2 10 2
+PS2CAND unit=2 idx=2 score=28.571429 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=40.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=28.571429
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=83.333333
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=123.333333
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=111.904762
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=58.823529
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=98.823529
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=87.394958
+PS2WIN ai=1 bi=2 sum=111.904762
+PS2TURN turn=19
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=86.956522 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=60.606061 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=41.666667 target=Tree((10, 2)) cmd=MOVE 2 10 2
+PS2CAND unit=2 idx=2 score=29.411765 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=41.666667
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=29.411765
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=86.956522
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=128.623188
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=116.368286
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=60.606061
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=102.272727
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=90.017825
+PS2WIN ai=1 bi=2 sum=116.368286
+PS2TURN turn=20
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=90.909091 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=62.500000 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=43.478261 target=Tree((10, 2)) cmd=MOVE 2 10 2
+PS2CAND unit=2 idx=2 score=30.303030 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=43.478261
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=30.303030
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=90.909091
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=134.387352
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=121.212121
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=62.500000
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=105.978261
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=92.803030
+PS2WIN ai=1 bi=2 sum=121.212121
+PS2TURN turn=21
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=95.238095 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=64.516129 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=45.454545 target=Tree((10, 2)) cmd=MOVE 2 10 2
+PS2CAND unit=2 idx=2 score=31.250000 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=45.454545
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=31.250000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=95.238095
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=140.692641
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=126.488095
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=64.516129
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=109.970674
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=95.766129
+PS2WIN ai=1 bi=2 sum=126.488095
+PS2TURN turn=22
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=100.000000 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=66.666667 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=47.619048 target=Tree((10, 2)) cmd=MOVE 2 10 2
+PS2CAND unit=2 idx=2 score=32.258065 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=47.619048
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=32.258065
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=100.000000
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=147.619048
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=132.258065
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=66.666667
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=114.285714
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=98.924731
+PS2WIN ai=1 bi=2 sum=132.258065
+PS2TURN turn=23
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=105.263158 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=68.965517 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=50.000000 target=Tree((10, 2)) cmd=MOVE 2 10 2
+PS2CAND unit=2 idx=2 score=33.333333 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=50.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=33.333333
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=105.263158
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=155.263158
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=138.596491
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=68.965517
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=118.965517
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=102.298851
+PS2WIN ai=1 bi=2 sum=138.596491
+PS2TURN turn=24
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=111.111111 target=Tree((10, 2)) cmd=MOVE 0 10 2
+PS2CAND unit=0 idx=2 score=71.428571 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=52.631579 target=Tree((10, 2)) cmd=MOVE 2 10 2
+PS2CAND unit=2 idx=2 score=34.482759 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=52.631579
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=34.482759
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=111.111111
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=163.742690
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=145.593870
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=71.428571
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=124.060150
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=105.911330
+PS2WIN ai=1 bi=2 sum=145.593870
+PS2TURN turn=25
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=117.647059 target=Tree((10, 2)) cmd=CHOP 0
+PS2CAND unit=0 idx=2 score=74.074074 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=55.555556 target=Tree((10, 2)) cmd=MOVE 2 10 2
+PS2CAND unit=2 idx=2 score=35.714286 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=true waits=1 sum=55.555556
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=35.714286
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=117.647059
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=173.202614
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=153.361345
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=74.074074
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=129.629630
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=109.788360
+PS2WIN ai=1 bi=2 sum=153.361345
+PS2TURN turn=26
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=125.000000 target=Tree((10, 2)) cmd=CHOP 0
+PS2CAND unit=0 idx=2 score=74.074074 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=55.555556 target=Tree((10, 2)) cmd=MOVE 2 10 2
+PS2CAND unit=2 idx=2 score=34.482759 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=true waits=1 sum=55.555556
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=34.482759
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=125.000000
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=180.555556
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=159.482759
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=74.074074
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=129.629630
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=108.556833
+PS2WIN ai=1 bi=2 sum=159.482759
+PS2TURN turn=27
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=133.333333 target=Tree((10, 2)) cmd=CHOP 0
+PS2CAND unit=0 idx=2 score=74.074074 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=62.500000 target=Tree((10, 2)) cmd=MOVE 2 10 2
+PS2CAND unit=2 idx=2 score=35.714286 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=true waits=1 sum=62.500000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=35.714286
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=133.333333
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=195.833333
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=169.047619
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=74.074074
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=136.574074
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=109.788360
+PS2WIN ai=1 bi=2 sum=169.047619
+PS2TURN turn=28
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=142.857143 target=Tree((10, 2)) cmd=CHOP 0
+PS2CAND unit=0 idx=2 score=74.074074 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=62.500000 target=Tree((10, 2)) cmd=MOVE 2 10 2
+PS2CAND unit=2 idx=2 score=34.482759 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=true waits=1 sum=62.500000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=34.482759
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=142.857143
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=205.357143
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=177.339901
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=74.074074
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=136.574074
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=108.556833
+PS2WIN ai=1 bi=2 sum=177.339901
+PS2TURN turn=29
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=153.846154 target=Tree((10, 2)) cmd=CHOP 0
+PS2CAND unit=0 idx=2 score=74.074074 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=71.428571 target=Tree((10, 2)) cmd=MOVE 2 10 2
+PS2CAND unit=2 idx=2 score=35.714286 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=true waits=1 sum=71.428571
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=35.714286
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=153.846154
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=225.274725
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=189.560440
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=74.074074
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=145.502646
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=109.788360
+PS2WIN ai=1 bi=2 sum=189.560440
+PS2TURN turn=30
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=166.666667 target=Tree((10, 2)) cmd=CHOP 0
+PS2CAND unit=0 idx=2 score=74.074074 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=71.428571 target=Tree((10, 2)) cmd=MOVE 2 10 2
+PS2CAND unit=2 idx=2 score=34.482759 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=true waits=1 sum=71.428571
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=34.482759
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=166.666667
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=238.095238
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=201.149425
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=74.074074
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=145.502646
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=108.556833
+PS2WIN ai=1 bi=2 sum=201.149425
+PS2TURN turn=31
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6990.000000 target=Bank((0, 2)) cmd=MOVE 0 0 2
+PS2CAND unit=0 idx=2 score=6990.000000 target=Bank((1, 1)) cmd=MOVE 0 1 1
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=35.714286 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=35.714286
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6990.000000
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7025.714286
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=6990.000000
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7025.714286
+PS2WIN ai=1 bi=1 sum=7025.714286
+PS2TURN turn=32
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6991.000000 target=Bank((0, 2)) cmd=MOVE 0 0 2
+PS2CAND unit=0 idx=2 score=6991.000000 target=Bank((1, 1)) cmd=MOVE 0 1 1
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=37.037037 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=37.037037
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6991.000000
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7028.037037
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=6991.000000
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7028.037037
+PS2WIN ai=1 bi=1 sum=7028.037037
+PS2TURN turn=33
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6992.000000 target=Bank((0, 2)) cmd=MOVE 0 0 2
+PS2CAND unit=0 idx=2 score=6992.000000 target=Bank((1, 1)) cmd=MOVE 0 1 1
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=38.461538 target=Tree((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=38.461538
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6992.000000
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7030.461538
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=6992.000000
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7030.461538
+PS2WIN ai=1 bi=1 sum=7030.461538
+PS2TURN turn=34
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6993.000000 target=Bank((0, 2)) cmd=MOVE 0 0 2
+PS2CAND unit=0 idx=2 score=6993.000000 target=Bank((1, 1)) cmd=MOVE 0 1 1
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=40.000000 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=40.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6993.000000
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7033.000000
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=6993.000000
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7033.000000
+PS2WIN ai=1 bi=1 sum=7033.000000
+PS2TURN turn=35
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6994.000000 target=Bank((0, 2)) cmd=MOVE 0 0 2
+PS2CAND unit=0 idx=2 score=6994.000000 target=Bank((1, 1)) cmd=MOVE 0 1 1
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=41.666667 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=41.666667
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6994.000000
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7035.666667
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=6994.000000
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7035.666667
+PS2WIN ai=1 bi=1 sum=7035.666667
+PS2TURN turn=36
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6995.000000 target=Bank((0, 2)) cmd=MOVE 0 0 2
+PS2CAND unit=0 idx=2 score=6995.000000 target=Bank((1, 1)) cmd=MOVE 0 1 1
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=43.478261 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=43.478261
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6995.000000
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7038.478261
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=6995.000000
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7038.478261
+PS2WIN ai=1 bi=1 sum=7038.478261
+PS2TURN turn=37
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6996.000000 target=Bank((0, 2)) cmd=MOVE 0 0 2
+PS2CAND unit=0 idx=2 score=6996.000000 target=Bank((1, 1)) cmd=MOVE 0 1 1
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=45.454545 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=45.454545
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6996.000000
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7041.454545
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=6996.000000
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7041.454545
+PS2WIN ai=1 bi=1 sum=7041.454545
+PS2TURN turn=38
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6997.000000 target=Bank((0, 2)) cmd=MOVE 0 0 2
+PS2CAND unit=0 idx=2 score=6997.000000 target=Bank((1, 1)) cmd=MOVE 0 1 1
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=47.619048 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=47.619048
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6997.000000
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7044.619048
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=6997.000000
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7044.619048
+PS2WIN ai=1 bi=1 sum=7044.619048
+PS2TURN turn=39
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6998.000000 target=Bank((0, 2)) cmd=MOVE 0 0 2
+PS2CAND unit=0 idx=2 score=6998.000000 target=Bank((1, 1)) cmd=MOVE 0 1 1
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=50.000000 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=50.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6998.000000
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7048.000000
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=6998.000000
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7048.000000
+PS2WIN ai=1 bi=1 sum=7048.000000
+PS2TURN turn=40
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6999.000000 target=Bank((0, 2)) cmd=MOVE 0 0 2
+PS2CAND unit=0 idx=2 score=6999.000000 target=Bank((1, 1)) cmd=MOVE 0 1 1
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=52.631579 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=52.631579
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6999.000000
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7051.631579
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=6999.000000
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7051.631579
+PS2WIN ai=1 bi=1 sum=7051.631579
+PS2TURN turn=41
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=8000.000000 target=Bank((0, 2)) cmd=DROP 0
+PS2CAND unit=0 idx=2 score=6998.000000 target=Bank((1, 1)) cmd=MOVE 0 1 1
+PS2CAND unit=0 idx=3 score=8000.000000 target=Bank((0, 2)) cmd=DROP 0
+PS2CAND unit=0 idx=4 score=6998.000000 target=Bank((1, 1)) cmd=MOVE 0 1 1
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=55.555556 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=55.555556
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=8000.000000
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=8055.555556
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=6998.000000
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7053.555556
+PS2PAIR ai=3 bi=0 compat=true stock=true p1drop=false waits=1 sum=8000.000000
+PS2PAIR ai=3 bi=1 compat=true stock=true p1drop=false waits=0 sum=8055.555556
+PS2PAIR ai=4 bi=0 compat=true stock=true p1drop=false waits=1 sum=6998.000000
+PS2PAIR ai=4 bi=1 compat=true stock=true p1drop=false waits=0 sum=7053.555556
+PS2WIN ai=1 bi=1 sum=8055.555556
+PS2TURN turn=42
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=68.965517 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=58.823529 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=58.823529
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=68.965517
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=127.789047
+PS2WIN ai=0 bi=1 sum=58.823529
+PS2TURN turn=43
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=71.428571 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=62.500000 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=62.500000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=71.428571
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=133.928571
+PS2WIN ai=0 bi=1 sum=62.500000
+PS2TURN turn=44
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=74.074074 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=66.666667 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=66.666667
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=74.074074
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=140.740741
+PS2WIN ai=0 bi=1 sum=66.666667
+PS2TURN turn=45
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=76.923077 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=71.428571 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=71.428571
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=76.923077
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=148.351648
+PS2WIN ai=0 bi=1 sum=71.428571
+PS2TURN turn=46
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6988.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6988.000000
+PS2WIN ai=0 bi=1 sum=6988.000000
+PS2TURN turn=47
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6989.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6989.000000
+PS2WIN ai=0 bi=1 sum=6989.000000
+PS2TURN turn=48
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6990.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6990.000000
+PS2WIN ai=0 bi=1 sum=6990.000000
+PS2TURN turn=49
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6991.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6991.000000
+PS2WIN ai=0 bi=1 sum=6991.000000
+PS2TURN turn=50
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6992.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6992.000000
+PS2WIN ai=0 bi=1 sum=6992.000000
+PS2TURN turn=51
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6993.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6993.000000
+PS2WIN ai=0 bi=1 sum=6993.000000
+PS2TURN turn=52
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6994.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6994.000000
+PS2WIN ai=0 bi=1 sum=6994.000000
+PS2TURN turn=53
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6995.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6995.000000
+PS2WIN ai=0 bi=1 sum=6995.000000
+PS2TURN turn=54
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6996.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6996.000000
+PS2WIN ai=0 bi=1 sum=6996.000000
+PS2TURN turn=55
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6997.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6997.000000
+PS2WIN ai=0 bi=1 sum=6997.000000
+PS2TURN turn=56
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6998.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6998.000000
+PS2WIN ai=0 bi=1 sum=6998.000000
+PS2TURN turn=57
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6999.000000 target=Bank((1, 1)) cmd=MOVE 2 1 1
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6999.000000
+PS2WIN ai=0 bi=1 sum=6999.000000
+PS2TURN turn=58
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=8000.000000 target=Bank((1, 1)) cmd=DROP 2
+PS2CAND unit=2 idx=2 score=8000.000000 target=Bank((1, 1)) cmd=DROP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=8000.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=8000.000000
+PS2WIN ai=0 bi=1 sum=8000.000000
+PS2TURN turn=59
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=60
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=61
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=62
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=63
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=64
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=65
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=66
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=67
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=68
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=69
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=70
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=71
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=72
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=73
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=74
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=75
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=76
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=77
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=78
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=79
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=80
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=81
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=82
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=83
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=84
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=85
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=86
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=87
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=88
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=89
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=90
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=91
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=92
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=93
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=94
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=95
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=96
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=97
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=98
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=99
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=100
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=101
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=102
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=103
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=104
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=105
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=106
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=107
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=108
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=109
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=110
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=111
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=112
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=113
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=114
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=115
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=116
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=117
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=118
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=119
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=120
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=121
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=122
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=123
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=124
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=125
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=126
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=127
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=128
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=129
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=130
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=131
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=132
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=133
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=134
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=135
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=136
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=137
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=138
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=139
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=140
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=141
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=142
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=143
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=144
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=145
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=146
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=147
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=148
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=149
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=150
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=151
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=152
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=153
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=154
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=155
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=156
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=157
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=158
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=159
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=160
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=161
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=162
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=163
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=164
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=165
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=166
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=167
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=168
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=169
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=170
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=171
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=172
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=173
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=174
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=175
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=176
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=177
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=178
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=179
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=180
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=181
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=182
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=183
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=184
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=185
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=186
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=187
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=188
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=189
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=190
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=191
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=192
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=193
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=194
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=195
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=196
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=197
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=198
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=199
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=200
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2GAME map=m021 seat=1
+PS2TURN turn=1
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=74.074074 target=Tree((2, 2)) cmd=MOVE 0 2 2
+PS2CAND unit=0 idx=2 score=62.500000 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=0 idx=3 score=105.263158 target=Tree((8, 2)) cmd=MOVE 0 8 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=45.454545 target=Tree((2, 2)) cmd=MOVE 2 2 2
+PS2CAND unit=2 idx=2 score=41.666667 target=Tree((5, 2)) cmd=MOVE 2 5 2
+PS2CAND unit=2 idx=3 score=62.500000 target=Tree((8, 2)) cmd=MOVE 2 8 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=45.454545
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=41.666667
+PS2PAIR ai=0 bi=3 compat=true stock=true p1drop=false waits=1 sum=62.500000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=74.074074
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=119.528620
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=115.740741
+PS2PAIR ai=1 bi=3 compat=true stock=true p1drop=false waits=0 sum=136.574074
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=62.500000
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=107.954545
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=104.166667
+PS2PAIR ai=2 bi=3 compat=true stock=true p1drop=false waits=0 sum=125.000000
+PS2PAIR ai=3 bi=0 compat=true stock=true p1drop=false waits=1 sum=105.263158
+PS2PAIR ai=3 bi=1 compat=true stock=true p1drop=false waits=0 sum=150.717703
+PS2PAIR ai=3 bi=2 compat=true stock=true p1drop=false waits=0 sum=146.929825
+PS2PAIR ai=3 bi=3 compat=false stock=true p1drop=false waits=0 sum=167.763158
+PS2WIN ai=3 bi=1 sum=150.717703
+PS2TURN turn=2
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=76.923077 target=Tree((2, 2)) cmd=MOVE 0 2 2
+PS2CAND unit=0 idx=2 score=64.516129 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=0 idx=3 score=111.111111 target=Tree((8, 2)) cmd=MOVE 0 8 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=47.619048 target=Tree((2, 2)) cmd=MOVE 2 2 2
+PS2CAND unit=2 idx=2 score=43.478261 target=Tree((5, 2)) cmd=MOVE 2 5 2
+PS2CAND unit=2 idx=3 score=58.823529 target=Tree((8, 2)) cmd=MOVE 2 8 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=47.619048
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=43.478261
+PS2PAIR ai=0 bi=3 compat=true stock=true p1drop=false waits=1 sum=58.823529
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=76.923077
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=124.542125
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=120.401338
+PS2PAIR ai=1 bi=3 compat=true stock=true p1drop=false waits=0 sum=135.746606
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=64.516129
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=112.135177
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=107.994390
+PS2PAIR ai=2 bi=3 compat=true stock=true p1drop=false waits=0 sum=123.339658
+PS2PAIR ai=3 bi=0 compat=true stock=true p1drop=false waits=1 sum=111.111111
+PS2PAIR ai=3 bi=1 compat=true stock=true p1drop=false waits=0 sum=158.730159
+PS2PAIR ai=3 bi=2 compat=true stock=true p1drop=false waits=0 sum=154.589372
+PS2PAIR ai=3 bi=3 compat=false stock=true p1drop=false waits=0 sum=169.934641
+PS2WIN ai=3 bi=1 sum=158.730159
+PS2TURN turn=3
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=80.000000 target=Tree((2, 2)) cmd=MOVE 0 2 2
+PS2CAND unit=0 idx=2 score=66.666667 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=0 idx=3 score=117.647059 target=Tree((8, 2)) cmd=MOVE 0 8 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=50.000000 target=Tree((2, 2)) cmd=MOVE 2 2 2
+PS2CAND unit=2 idx=2 score=45.454545 target=Tree((5, 2)) cmd=CHOP 2
+PS2CAND unit=2 idx=3 score=55.555556 target=Tree((8, 2)) cmd=MOVE 2 8 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=50.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=45.454545
+PS2PAIR ai=0 bi=3 compat=true stock=true p1drop=false waits=1 sum=55.555556
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=80.000000
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=130.000000
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=125.454545
+PS2PAIR ai=1 bi=3 compat=true stock=true p1drop=false waits=0 sum=135.555556
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=true waits=1 sum=66.666667
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=116.666667
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=112.121212
+PS2PAIR ai=2 bi=3 compat=true stock=true p1drop=false waits=0 sum=122.222222
+PS2PAIR ai=3 bi=0 compat=true stock=true p1drop=false waits=1 sum=117.647059
+PS2PAIR ai=3 bi=1 compat=true stock=true p1drop=false waits=0 sum=167.647059
+PS2PAIR ai=3 bi=2 compat=true stock=true p1drop=false waits=0 sum=163.101604
+PS2PAIR ai=3 bi=3 compat=false stock=true p1drop=false waits=0 sum=173.202614
+PS2WIN ai=3 bi=1 sum=167.647059
+PS2TURN turn=4
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=83.333333 target=Tree((2, 2)) cmd=MOVE 0 2 2
+PS2CAND unit=0 idx=2 score=68.965517 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=0 idx=3 score=125.000000 target=Tree((8, 2)) cmd=MOVE 0 8 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=52.631579 target=Tree((2, 2)) cmd=MOVE 2 2 2
+PS2CAND unit=2 idx=2 score=38.461538 target=Tree((5, 2)) cmd=MOVE 2 5 2
+PS2CAND unit=2 idx=3 score=47.619048 target=Tree((8, 2)) cmd=MOVE 2 8 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=52.631579
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=38.461538
+PS2PAIR ai=0 bi=3 compat=true stock=true p1drop=false waits=1 sum=47.619048
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=83.333333
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=135.964912
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=121.794872
+PS2PAIR ai=1 bi=3 compat=true stock=true p1drop=false waits=0 sum=130.952381
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=68.965517
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=121.597096
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=107.427056
+PS2PAIR ai=2 bi=3 compat=true stock=true p1drop=false waits=0 sum=116.584565
+PS2PAIR ai=3 bi=0 compat=true stock=true p1drop=false waits=1 sum=125.000000
+PS2PAIR ai=3 bi=1 compat=true stock=true p1drop=false waits=0 sum=177.631579
+PS2PAIR ai=3 bi=2 compat=true stock=true p1drop=false waits=0 sum=163.461538
+PS2PAIR ai=3 bi=3 compat=false stock=true p1drop=false waits=0 sum=172.619048
+PS2WIN ai=3 bi=1 sum=177.631579
+PS2TURN turn=5
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=86.956522 target=Tree((2, 2)) cmd=MOVE 0 2 2
+PS2CAND unit=0 idx=2 score=71.428571 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=0 idx=3 score=133.333333 target=Tree((8, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=55.555556 target=Tree((2, 2)) cmd=MOVE 2 2 2
+PS2CAND unit=2 idx=2 score=37.037037 target=Tree((5, 2)) cmd=MOVE 2 5 2
+PS2CAND unit=2 idx=3 score=45.454545 target=Tree((8, 2)) cmd=MOVE 2 8 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=55.555556
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=37.037037
+PS2PAIR ai=0 bi=3 compat=true stock=true p1drop=true waits=1 sum=45.454545
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=86.956522
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=142.512077
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=123.993559
+PS2PAIR ai=1 bi=3 compat=true stock=true p1drop=false waits=0 sum=132.411067
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=71.428571
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=126.984127
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=108.465608
+PS2PAIR ai=2 bi=3 compat=true stock=true p1drop=false waits=0 sum=116.883117
+PS2PAIR ai=3 bi=0 compat=true stock=true p1drop=false waits=1 sum=133.333333
+PS2PAIR ai=3 bi=1 compat=true stock=true p1drop=false waits=0 sum=188.888889
+PS2PAIR ai=3 bi=2 compat=true stock=true p1drop=false waits=0 sum=170.370370
+PS2PAIR ai=3 bi=3 compat=false stock=true p1drop=false waits=0 sum=178.787879
+PS2WIN ai=3 bi=1 sum=188.888889
+PS2TURN turn=6
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=86.956522 target=Tree((2, 2)) cmd=MOVE 0 2 2
+PS2CAND unit=0 idx=2 score=71.428571 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=0 idx=3 score=142.857143 target=Tree((8, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=58.823529 target=Tree((2, 2)) cmd=CHOP 2
+PS2CAND unit=2 idx=2 score=35.714286 target=Tree((5, 2)) cmd=MOVE 2 5 2
+PS2CAND unit=2 idx=3 score=45.454545 target=Tree((8, 2)) cmd=MOVE 2 8 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=58.823529
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=35.714286
+PS2PAIR ai=0 bi=3 compat=true stock=true p1drop=true waits=1 sum=45.454545
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=86.956522
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=145.780051
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=122.670807
+PS2PAIR ai=1 bi=3 compat=true stock=true p1drop=false waits=0 sum=132.411067
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=71.428571
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=130.252101
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=107.142857
+PS2PAIR ai=2 bi=3 compat=true stock=true p1drop=false waits=0 sum=116.883117
+PS2PAIR ai=3 bi=0 compat=true stock=true p1drop=false waits=1 sum=142.857143
+PS2PAIR ai=3 bi=1 compat=true stock=true p1drop=false waits=0 sum=201.680672
+PS2PAIR ai=3 bi=2 compat=true stock=true p1drop=false waits=0 sum=178.571429
+PS2PAIR ai=3 bi=3 compat=false stock=true p1drop=false waits=0 sum=188.311688
+PS2WIN ai=3 bi=1 sum=201.680672
+PS2TURN turn=7
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=90.909091 target=Tree((2, 2)) cmd=MOVE 0 2 2
+PS2CAND unit=0 idx=2 score=64.516129 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=0 idx=3 score=153.846154 target=Tree((8, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=62.500000 target=Tree((2, 2)) cmd=CHOP 2
+PS2CAND unit=2 idx=2 score=32.258065 target=Tree((5, 2)) cmd=MOVE 2 5 2
+PS2CAND unit=2 idx=3 score=47.619048 target=Tree((8, 2)) cmd=MOVE 2 8 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=62.500000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=32.258065
+PS2PAIR ai=0 bi=3 compat=true stock=true p1drop=true waits=1 sum=47.619048
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=90.909091
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=153.409091
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=123.167155
+PS2PAIR ai=1 bi=3 compat=true stock=true p1drop=false waits=0 sum=138.528139
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=64.516129
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=127.016129
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=96.774194
+PS2PAIR ai=2 bi=3 compat=true stock=true p1drop=false waits=0 sum=112.135177
+PS2PAIR ai=3 bi=0 compat=true stock=true p1drop=false waits=1 sum=153.846154
+PS2PAIR ai=3 bi=1 compat=true stock=true p1drop=false waits=0 sum=216.346154
+PS2PAIR ai=3 bi=2 compat=true stock=true p1drop=false waits=0 sum=186.104218
+PS2PAIR ai=3 bi=3 compat=false stock=true p1drop=false waits=0 sum=201.465201
+PS2WIN ai=3 bi=1 sum=216.346154
+PS2TURN turn=8
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=95.238095 target=Tree((2, 2)) cmd=MOVE 0 2 2
+PS2CAND unit=0 idx=2 score=64.516129 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=0 idx=3 score=166.666667 target=Tree((8, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=66.666667 target=Tree((2, 2)) cmd=CHOP 2
+PS2CAND unit=2 idx=2 score=32.258065 target=Tree((5, 2)) cmd=MOVE 2 5 2
+PS2CAND unit=2 idx=3 score=50.000000 target=Tree((8, 2)) cmd=MOVE 2 8 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=66.666667
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=32.258065
+PS2PAIR ai=0 bi=3 compat=true stock=true p1drop=true waits=1 sum=50.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=95.238095
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=161.904762
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=127.496160
+PS2PAIR ai=1 bi=3 compat=true stock=true p1drop=false waits=0 sum=145.238095
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=64.516129
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=131.182796
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=96.774194
+PS2PAIR ai=2 bi=3 compat=true stock=true p1drop=false waits=0 sum=114.516129
+PS2PAIR ai=3 bi=0 compat=true stock=true p1drop=false waits=1 sum=166.666667
+PS2PAIR ai=3 bi=1 compat=true stock=true p1drop=false waits=0 sum=233.333333
+PS2PAIR ai=3 bi=2 compat=true stock=true p1drop=false waits=0 sum=198.924731
+PS2PAIR ai=3 bi=3 compat=false stock=true p1drop=false waits=0 sum=216.666667
+PS2WIN ai=3 bi=1 sum=233.333333
+PS2TURN turn=9
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=100.000000 target=Tree((2, 2)) cmd=MOVE 0 2 2
+PS2CAND unit=0 idx=2 score=64.516129 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=0 idx=3 score=181.818182 target=Tree((8, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=71.428571 target=Tree((2, 2)) cmd=CHOP 2
+PS2CAND unit=2 idx=2 score=32.258065 target=Tree((5, 2)) cmd=MOVE 2 5 2
+PS2CAND unit=2 idx=3 score=52.631579 target=Tree((8, 2)) cmd=MOVE 2 8 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=71.428571
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=32.258065
+PS2PAIR ai=0 bi=3 compat=true stock=true p1drop=true waits=1 sum=52.631579
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=100.000000
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=171.428571
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=132.258065
+PS2PAIR ai=1 bi=3 compat=true stock=true p1drop=false waits=0 sum=152.631579
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=64.516129
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=135.944700
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=96.774194
+PS2PAIR ai=2 bi=3 compat=true stock=true p1drop=false waits=0 sum=117.147708
+PS2PAIR ai=3 bi=0 compat=true stock=true p1drop=false waits=1 sum=181.818182
+PS2PAIR ai=3 bi=1 compat=true stock=true p1drop=false waits=0 sum=253.246753
+PS2PAIR ai=3 bi=2 compat=true stock=true p1drop=false waits=0 sum=214.076246
+PS2PAIR ai=3 bi=3 compat=false stock=true p1drop=false waits=0 sum=234.449761
+PS2WIN ai=3 bi=1 sum=253.246753
+PS2TURN turn=10
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=105.263158 target=Tree((2, 2)) cmd=MOVE 0 2 2
+PS2CAND unit=0 idx=2 score=64.516129 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=0 idx=3 score=200.000000 target=Tree((8, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=76.923077 target=Tree((2, 2)) cmd=CHOP 2
+PS2CAND unit=2 idx=2 score=32.258065 target=Tree((5, 2)) cmd=MOVE 2 5 2
+PS2CAND unit=2 idx=3 score=55.555556 target=Tree((8, 2)) cmd=MOVE 2 8 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=76.923077
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=32.258065
+PS2PAIR ai=0 bi=3 compat=true stock=true p1drop=true waits=1 sum=55.555556
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=105.263158
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=182.186235
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=137.521222
+PS2PAIR ai=1 bi=3 compat=true stock=true p1drop=false waits=0 sum=160.818713
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=64.516129
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=141.439206
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=96.774194
+PS2PAIR ai=2 bi=3 compat=true stock=true p1drop=false waits=0 sum=120.071685
+PS2PAIR ai=3 bi=0 compat=true stock=true p1drop=false waits=1 sum=200.000000
+PS2PAIR ai=3 bi=1 compat=true stock=true p1drop=false waits=0 sum=276.923077
+PS2PAIR ai=3 bi=2 compat=true stock=true p1drop=false waits=0 sum=232.258065
+PS2PAIR ai=3 bi=3 compat=false stock=true p1drop=false waits=0 sum=255.555556
+PS2WIN ai=3 bi=1 sum=276.923077
+PS2TURN turn=11
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=111.111111 target=Tree((2, 2)) cmd=MOVE 0 2 2
+PS2CAND unit=0 idx=2 score=64.516129 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=0 idx=3 score=222.222222 target=Tree((8, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=83.333333 target=Tree((2, 2)) cmd=CHOP 2
+PS2CAND unit=2 idx=2 score=32.258065 target=Tree((5, 2)) cmd=MOVE 2 5 2
+PS2CAND unit=2 idx=3 score=58.823529 target=Tree((8, 2)) cmd=MOVE 2 8 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=83.333333
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=32.258065
+PS2PAIR ai=0 bi=3 compat=true stock=true p1drop=true waits=1 sum=58.823529
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=111.111111
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=194.444444
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=143.369176
+PS2PAIR ai=1 bi=3 compat=true stock=true p1drop=false waits=0 sum=169.934641
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=64.516129
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=147.849462
+PS2PAIR ai=2 bi=2 compat=false stock=true p1drop=false waits=0 sum=96.774194
+PS2PAIR ai=2 bi=3 compat=true stock=true p1drop=false waits=0 sum=123.339658
+PS2PAIR ai=3 bi=0 compat=true stock=true p1drop=false waits=1 sum=222.222222
+PS2PAIR ai=3 bi=1 compat=true stock=true p1drop=false waits=0 sum=305.555556
+PS2PAIR ai=3 bi=2 compat=true stock=true p1drop=false waits=0 sum=254.480287
+PS2PAIR ai=3 bi=3 compat=false stock=true p1drop=false waits=0 sum=281.045752
+PS2WIN ai=3 bi=1 sum=305.555556
+PS2TURN turn=12
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=64.516129 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=0 idx=2 score=250.000000 target=Tree((8, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6990.000000 target=Bank((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6990.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=64.516129
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7054.516129
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=250.000000
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7240.000000
+PS2WIN ai=2 bi=1 sum=7240.000000
+PS2TURN turn=13
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=64.516129 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=0 idx=2 score=285.714286 target=Tree((8, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6991.000000 target=Bank((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6991.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=64.516129
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7055.516129
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=285.714286
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7276.714286
+PS2WIN ai=2 bi=1 sum=7276.714286
+PS2TURN turn=14
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=64.516129 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=0 idx=2 score=333.333333 target=Tree((8, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6992.000000 target=Bank((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6992.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=64.516129
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7056.516129
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=333.333333
+PS2PAIR ai=2 bi=1 compat=true stock=true p1drop=false waits=0 sum=7325.333333
+PS2WIN ai=2 bi=1 sum=7325.333333
+PS2TURN turn=15
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6996.000000 target=Bank((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6993.000000 target=Bank((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6993.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6996.000000
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=13989.000000
+PS2WIN ai=1 bi=0 sum=6996.000000
+PS2TURN turn=16
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6997.000000 target=Bank((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6993.000000 target=Bank((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6993.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6997.000000
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=13990.000000
+PS2WIN ai=1 bi=0 sum=6997.000000
+PS2TURN turn=17
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6998.000000 target=Bank((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6993.000000 target=Bank((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6993.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6998.000000
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=13991.000000
+PS2WIN ai=1 bi=0 sum=6998.000000
+PS2TURN turn=18
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6999.000000 target=Bank((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6993.000000 target=Bank((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6993.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6999.000000
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=13992.000000
+PS2WIN ai=1 bi=0 sum=6999.000000
+PS2TURN turn=19
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=20000.000000 target=Cell((12, 2)) cmd=DROP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=1 sum=20000.000000
+PS2WIN ai=0 bi=0 sum=20000.000000
+PS2TURN turn=20
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=21
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=22
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=23
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=24
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=25
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=26
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=27
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=28
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=29
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=30
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=31
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=32
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=33
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=34
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=35
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=36
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=37
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=38
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=39
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=40
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=41
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=42
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=43
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=44
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=45
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=46
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=47
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=48
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=49
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=50
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=51
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=52
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=53
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=54
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=55
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=56
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=57
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=58
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=59
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=60
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=61
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=62
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=63
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=64
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=65
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=66
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=67
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=68
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=69
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=70
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=71
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=72
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=73
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=74
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=75
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=76
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=77
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=78
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=79
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=80
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=81
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=82
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=83
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=84
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=85
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=86
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=87
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=88
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=89
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=90
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=91
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=92
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=93
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=94
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=95
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=96
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=97
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=98
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=99
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=57.142857 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=true waits=1 sum=57.142857
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=100
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=20000.000000 target=Cell((11, 2)) cmd=MOVE 0 11 2
+PS2CAND unit=2 idx=0 score=20000.000000 target=Cell((6, 2)) cmd=MOVE 2 6 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=0 sum=40000.000000
+PS2WIN ai=0 bi=0 sum=40000.000000
+PS2TURN turn=101
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=58.823529 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6994.000000 target=Bank((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6994.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=58.823529
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7052.823529
+PS2WIN ai=1 bi=1 sum=7052.823529
+PS2TURN turn=102
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=60.606061 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6995.000000 target=Bank((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6995.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=60.606061
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7055.606061
+PS2WIN ai=1 bi=1 sum=7055.606061
+PS2TURN turn=103
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=20000.000000 target=Cell((8, 2)) cmd=MOVE 0 8 2
+PS2CAND unit=2 idx=0 score=20000.000000 target=Cell((9, 2)) cmd=MOVE 2 9 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=0 sum=40000.000000
+PS2WIN ai=0 bi=0 sum=40000.000000
+PS2TURN turn=104
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=64.516129 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6997.000000 target=Bank((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6997.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=64.516129
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7061.516129
+PS2WIN ai=1 bi=1 sum=7061.516129
+PS2TURN turn=105
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=66.666667 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6998.000000 target=Bank((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6998.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=66.666667
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7064.666667
+PS2WIN ai=1 bi=1 sum=7064.666667
+PS2TURN turn=106
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=68.965517 target=Tree((5, 2)) cmd=MOVE 0 5 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=6999.000000 target=Bank((12, 2)) cmd=MOVE 2 12 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=6999.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=68.965517
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7067.965517
+PS2WIN ai=1 bi=1 sum=7067.965517
+PS2TURN turn=107
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=71.428571 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=8000.000000 target=Bank((12, 2)) cmd=DROP 2
+PS2CAND unit=2 idx=2 score=8000.000000 target=Bank((12, 2)) cmd=DROP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=8000.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=8000.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=71.428571
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=8071.428571
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=8071.428571
+PS2WIN ai=1 bi=1 sum=8071.428571
+PS2TURN turn=108
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=74.074074 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=7500.000000 target=Cell((12, 2)) cmd=PICK 2 BANANA
+PS2CAND unit=2 idx=2 score=7499.000000 target=Cell((12, 2)) cmd=PICK 2 LEMON
+PS2CAND unit=2 idx=3 score=29.411765 target=Tree((5, 2)) cmd=MOVE 2 5 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=7500.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=7499.000000
+PS2PAIR ai=0 bi=3 compat=true stock=true p1drop=true waits=1 sum=29.411765
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=74.074074
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7574.074074
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=7573.074074
+PS2PAIR ai=1 bi=3 compat=false stock=true p1drop=false waits=0 sum=103.485839
+PS2WIN ai=1 bi=1 sum=7574.074074
+PS2TURN turn=109
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=76.923077 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=7989.000000 target=Cell((1, 2)) cmd=MOVE 2 1 2
+PS2CAND unit=2 idx=2 score=7989.000000 target=Cell((2, 1)) cmd=MOVE 2 2 1
+PS2CAND unit=2 idx=3 score=7990.000000 target=Cell((2, 2)) cmd=MOVE 2 2 2
+PS2CAND unit=2 idx=4 score=7991.000000 target=Cell((3, 2)) cmd=MOVE 2 3 2
+PS2CAND unit=2 idx=5 score=7992.000000 target=Cell((4, 2)) cmd=MOVE 2 4 2
+PS2CAND unit=2 idx=6 score=7994.000000 target=Cell((6, 2)) cmd=MOVE 2 6 2
+PS2CAND unit=2 idx=7 score=7995.000000 target=Cell((7, 2)) cmd=MOVE 2 7 2
+PS2CAND unit=2 idx=8 score=7996.000000 target=Cell((8, 2)) cmd=MOVE 2 8 2
+PS2CAND unit=2 idx=9 score=7997.000000 target=Cell((9, 2)) cmd=MOVE 2 9 2
+PS2CAND unit=2 idx=10 score=7998.000000 target=Cell((10, 2)) cmd=MOVE 2 10 2
+PS2CAND unit=2 idx=11 score=7999.000000 target=Cell((11, 2)) cmd=MOVE 2 11 2
+PS2CAND unit=2 idx=12 score=9000.000000 target=Cell((12, 2)) cmd=PLANT 2 BANANA
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=7989.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=7989.000000
+PS2PAIR ai=0 bi=3 compat=true stock=true p1drop=false waits=1 sum=7990.000000
+PS2PAIR ai=0 bi=4 compat=true stock=true p1drop=false waits=1 sum=7991.000000
+PS2PAIR ai=0 bi=5 compat=true stock=true p1drop=false waits=1 sum=7992.000000
+PS2PAIR ai=0 bi=6 compat=true stock=true p1drop=false waits=1 sum=7994.000000
+PS2PAIR ai=0 bi=7 compat=true stock=true p1drop=false waits=1 sum=7995.000000
+PS2PAIR ai=0 bi=8 compat=true stock=true p1drop=false waits=1 sum=7996.000000
+PS2PAIR ai=0 bi=9 compat=true stock=true p1drop=false waits=1 sum=7997.000000
+PS2PAIR ai=0 bi=10 compat=true stock=true p1drop=false waits=1 sum=7998.000000
+PS2PAIR ai=0 bi=11 compat=true stock=true p1drop=false waits=1 sum=7999.000000
+PS2PAIR ai=0 bi=12 compat=true stock=true p1drop=false waits=1 sum=9000.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=76.923077
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=8065.923077
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=8065.923077
+PS2PAIR ai=1 bi=3 compat=true stock=true p1drop=false waits=0 sum=8066.923077
+PS2PAIR ai=1 bi=4 compat=true stock=true p1drop=false waits=0 sum=8067.923077
+PS2PAIR ai=1 bi=5 compat=true stock=true p1drop=false waits=0 sum=8068.923077
+PS2PAIR ai=1 bi=6 compat=true stock=true p1drop=false waits=0 sum=8070.923077
+PS2PAIR ai=1 bi=7 compat=true stock=true p1drop=false waits=0 sum=8071.923077
+PS2PAIR ai=1 bi=8 compat=true stock=true p1drop=false waits=0 sum=8072.923077
+PS2PAIR ai=1 bi=9 compat=true stock=true p1drop=false waits=0 sum=8073.923077
+PS2PAIR ai=1 bi=10 compat=true stock=true p1drop=false waits=0 sum=8074.923077
+PS2PAIR ai=1 bi=11 compat=true stock=true p1drop=false waits=0 sum=8075.923077
+PS2PAIR ai=1 bi=12 compat=true stock=true p1drop=false waits=0 sum=9076.923077
+PS2WIN ai=1 bi=12 sum=9076.923077
+PS2TURN turn=110
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=80.000000 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=0 idx=2 score=166.666667 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=10000.000000 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=10000.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=80.000000
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=10080.000000
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=true waits=1 sum=166.666667
+PS2PAIR ai=2 bi=1 compat=false stock=true p1drop=false waits=0 sum=10166.666667
+PS2WIN ai=1 bi=1 sum=10080.000000
+PS2TURN turn=111
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=83.333333 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=0 idx=2 score=181.818182 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=10000.000000 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=10000.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=83.333333
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=10083.333333
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=true waits=1 sum=181.818182
+PS2PAIR ai=2 bi=1 compat=false stock=true p1drop=false waits=0 sum=10181.818182
+PS2WIN ai=1 bi=1 sum=10083.333333
+PS2TURN turn=112
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=86.956522 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=0 idx=2 score=200.000000 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=10000.000000 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=10000.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=86.956522
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=10086.956522
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=true waits=1 sum=200.000000
+PS2PAIR ai=2 bi=1 compat=false stock=true p1drop=false waits=0 sum=10200.000000
+PS2WIN ai=1 bi=1 sum=10086.956522
+PS2TURN turn=113
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=90.909091 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=8000.000000 target=Bank((12, 2)) cmd=DROP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=8000.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=90.909091
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=8090.909091
+PS2WIN ai=1 bi=1 sum=8090.909091
+PS2TURN turn=114
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=95.238095 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=7500.000000 target=Cell((12, 2)) cmd=PICK 2 LEMON
+PS2CAND unit=2 idx=2 score=35.714286 target=Tree((5, 2)) cmd=MOVE 2 5 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=7500.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=true waits=1 sum=35.714286
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=95.238095
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=7595.238095
+PS2PAIR ai=1 bi=2 compat=false stock=true p1drop=false waits=0 sum=130.952381
+PS2WIN ai=1 bi=1 sum=7595.238095
+PS2TURN turn=115
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=100.000000 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=7989.000000 target=Cell((1, 2)) cmd=MOVE 2 1 2
+PS2CAND unit=2 idx=2 score=7989.000000 target=Cell((2, 1)) cmd=MOVE 2 2 1
+PS2CAND unit=2 idx=3 score=7990.000000 target=Cell((2, 2)) cmd=MOVE 2 2 2
+PS2CAND unit=2 idx=4 score=7991.000000 target=Cell((3, 2)) cmd=MOVE 2 3 2
+PS2CAND unit=2 idx=5 score=7992.000000 target=Cell((4, 2)) cmd=MOVE 2 4 2
+PS2CAND unit=2 idx=6 score=7994.000000 target=Cell((6, 2)) cmd=MOVE 2 6 2
+PS2CAND unit=2 idx=7 score=7995.000000 target=Cell((7, 2)) cmd=MOVE 2 7 2
+PS2CAND unit=2 idx=8 score=7996.000000 target=Cell((8, 2)) cmd=MOVE 2 8 2
+PS2CAND unit=2 idx=9 score=7997.000000 target=Cell((9, 2)) cmd=MOVE 2 9 2
+PS2CAND unit=2 idx=10 score=7998.000000 target=Cell((10, 2)) cmd=MOVE 2 10 2
+PS2CAND unit=2 idx=11 score=7999.000000 target=Cell((11, 2)) cmd=MOVE 2 11 2
+PS2CAND unit=2 idx=12 score=9000.000000 target=Cell((12, 2)) cmd=PLANT 2 LEMON
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=7989.000000
+PS2PAIR ai=0 bi=2 compat=true stock=true p1drop=false waits=1 sum=7989.000000
+PS2PAIR ai=0 bi=3 compat=true stock=true p1drop=false waits=1 sum=7990.000000
+PS2PAIR ai=0 bi=4 compat=true stock=true p1drop=false waits=1 sum=7991.000000
+PS2PAIR ai=0 bi=5 compat=true stock=true p1drop=false waits=1 sum=7992.000000
+PS2PAIR ai=0 bi=6 compat=true stock=true p1drop=false waits=1 sum=7994.000000
+PS2PAIR ai=0 bi=7 compat=true stock=true p1drop=false waits=1 sum=7995.000000
+PS2PAIR ai=0 bi=8 compat=true stock=true p1drop=false waits=1 sum=7996.000000
+PS2PAIR ai=0 bi=9 compat=true stock=true p1drop=false waits=1 sum=7997.000000
+PS2PAIR ai=0 bi=10 compat=true stock=true p1drop=false waits=1 sum=7998.000000
+PS2PAIR ai=0 bi=11 compat=true stock=true p1drop=false waits=1 sum=7999.000000
+PS2PAIR ai=0 bi=12 compat=true stock=true p1drop=false waits=1 sum=9000.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=100.000000
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=8089.000000
+PS2PAIR ai=1 bi=2 compat=true stock=true p1drop=false waits=0 sum=8089.000000
+PS2PAIR ai=1 bi=3 compat=true stock=true p1drop=false waits=0 sum=8090.000000
+PS2PAIR ai=1 bi=4 compat=true stock=true p1drop=false waits=0 sum=8091.000000
+PS2PAIR ai=1 bi=5 compat=true stock=true p1drop=false waits=0 sum=8092.000000
+PS2PAIR ai=1 bi=6 compat=true stock=true p1drop=false waits=0 sum=8094.000000
+PS2PAIR ai=1 bi=7 compat=true stock=true p1drop=false waits=0 sum=8095.000000
+PS2PAIR ai=1 bi=8 compat=true stock=true p1drop=false waits=0 sum=8096.000000
+PS2PAIR ai=1 bi=9 compat=true stock=true p1drop=false waits=0 sum=8097.000000
+PS2PAIR ai=1 bi=10 compat=true stock=true p1drop=false waits=0 sum=8098.000000
+PS2PAIR ai=1 bi=11 compat=true stock=true p1drop=false waits=0 sum=8099.000000
+PS2PAIR ai=1 bi=12 compat=true stock=true p1drop=false waits=0 sum=9100.000000
+PS2WIN ai=1 bi=12 sum=9100.000000
+PS2TURN turn=116
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=105.263158 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=0 idx=2 score=125.000000 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=10000.000000 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=10000.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=105.263158
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=10105.263158
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=true waits=1 sum=125.000000
+PS2PAIR ai=2 bi=1 compat=false stock=true p1drop=false waits=0 sum=10125.000000
+PS2WIN ai=1 bi=1 sum=10105.263158
+PS2TURN turn=117
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=111.111111 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=0 idx=2 score=133.333333 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=10000.000000 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=10000.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=111.111111
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=10111.111111
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=true waits=1 sum=133.333333
+PS2PAIR ai=2 bi=1 compat=false stock=true p1drop=false waits=0 sum=10133.333333
+PS2WIN ai=1 bi=1 sum=10111.111111
+PS2TURN turn=118
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=117.647059 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=0 idx=2 score=142.857143 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=10000.000000 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=10000.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=117.647059
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=10117.647059
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=true waits=1 sum=142.857143
+PS2PAIR ai=2 bi=1 compat=false stock=true p1drop=false waits=0 sum=10142.857143
+PS2WIN ai=1 bi=1 sum=10117.647059
+PS2TURN turn=119
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=125.000000 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=0 idx=2 score=153.846154 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=10000.000000 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=10000.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=125.000000
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=10125.000000
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=true waits=1 sum=153.846154
+PS2PAIR ai=2 bi=1 compat=false stock=true p1drop=false waits=0 sum=10153.846154
+PS2WIN ai=1 bi=1 sum=10125.000000
+PS2TURN turn=120
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=133.333333 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=0 idx=2 score=166.666667 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=10000.000000 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=10000.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=133.333333
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=10133.333333
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=true waits=1 sum=166.666667
+PS2PAIR ai=2 bi=1 compat=false stock=true p1drop=false waits=0 sum=10166.666667
+PS2WIN ai=1 bi=1 sum=10133.333333
+PS2TURN turn=121
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=142.857143 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=0 idx=2 score=181.818182 target=Tree((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=10000.000000 target=Tree((12, 2)) cmd=CHOP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=10000.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=142.857143
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=10142.857143
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=true waits=1 sum=181.818182
+PS2PAIR ai=2 bi=1 compat=false stock=true p1drop=false waits=0 sum=10181.818182
+PS2WIN ai=1 bi=1 sum=10142.857143
+PS2TURN turn=122
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=153.846154 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=8000.000000 target=Bank((12, 2)) cmd=DROP 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=false waits=1 sum=8000.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=153.846154
+PS2PAIR ai=1 bi=1 compat=true stock=true p1drop=false waits=0 sum=8153.846154
+PS2WIN ai=1 bi=1 sum=8153.846154
+PS2TURN turn=123
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=166.666667 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=52.631579 target=Tree((5, 2)) cmd=MOVE 2 5 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=true waits=1 sum=52.631579
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=166.666667
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=219.298246
+PS2WIN ai=1 bi=0 sum=166.666667
+PS2TURN turn=124
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=181.818182 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=55.555556 target=Tree((5, 2)) cmd=MOVE 2 5 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=true waits=1 sum=55.555556
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=181.818182
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=237.373737
+PS2WIN ai=1 bi=0 sum=181.818182
+PS2TURN turn=125
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=200.000000 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=58.823529 target=Tree((5, 2)) cmd=MOVE 2 5 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=true waits=1 sum=58.823529
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=200.000000
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=258.823529
+PS2WIN ai=1 bi=0 sum=200.000000
+PS2TURN turn=126
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=222.222222 target=Tree((5, 2)) cmd=CHOP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=1 score=62.500000 target=Tree((5, 2)) cmd=MOVE 2 5 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=0 bi=1 compat=true stock=true p1drop=true waits=1 sum=62.500000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=222.222222
+PS2PAIR ai=1 bi=1 compat=false stock=true p1drop=false waits=0 sum=284.722222
+PS2WIN ai=1 bi=0 sum=222.222222
+PS2TURN turn=127
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=20000.000000 target=Cell((6, 2)) cmd=MOVE 0 6 2
+PS2CAND unit=2 idx=0 score=20000.000000 target=Cell((11, 2)) cmd=MOVE 2 11 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=0 sum=40000.000000
+PS2WIN ai=0 bi=0 sum=40000.000000
+PS2TURN turn=128
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6994.000000 target=Bank((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6994.000000
+PS2WIN ai=1 bi=0 sum=6994.000000
+PS2TURN turn=129
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6995.000000 target=Bank((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6995.000000
+PS2WIN ai=1 bi=0 sum=6995.000000
+PS2TURN turn=130
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6996.000000 target=Bank((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6996.000000
+PS2WIN ai=1 bi=0 sum=6996.000000
+PS2TURN turn=131
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6997.000000 target=Bank((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6997.000000
+PS2WIN ai=1 bi=0 sum=6997.000000
+PS2TURN turn=132
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=20000.000000 target=Cell((11, 2)) cmd=MOVE 0 11 2
+PS2CAND unit=2 idx=0 score=20000.000000 target=Cell((10, 2)) cmd=MOVE 2 10 2
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=0 sum=40000.000000
+PS2WIN ai=0 bi=0 sum=40000.000000
+PS2TURN turn=133
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=6999.000000 target=Bank((12, 2)) cmd=MOVE 0 12 2
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=6999.000000
+PS2WIN ai=1 bi=0 sum=6999.000000
+PS2TURN turn=134
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=0 idx=1 score=8000.000000 target=Bank((12, 2)) cmd=DROP 0
+PS2CAND unit=0 idx=2 score=8000.000000 target=Bank((12, 2)) cmd=DROP 0
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2PAIR ai=1 bi=0 compat=true stock=true p1drop=false waits=1 sum=8000.000000
+PS2PAIR ai=2 bi=0 compat=true stock=true p1drop=false waits=1 sum=8000.000000
+PS2WIN ai=1 bi=0 sum=8000.000000
+PS2TURN turn=135
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=136
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=137
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=138
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=139
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=140
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=141
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=142
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=143
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=144
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=145
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=146
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=147
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=148
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=149
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=150
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=151
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=152
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=153
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=154
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=155
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=156
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=157
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=158
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=159
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=160
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=161
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=162
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=163
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=164
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=165
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=166
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=167
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=168
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=169
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=170
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=171
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=172
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=173
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=174
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=175
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=176
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=177
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=178
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=179
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=180
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=181
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=182
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=183
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=184
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=185
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=186
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=187
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=188
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=189
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=190
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=191
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=192
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=193
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=194
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=195
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=196
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=197
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=198
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=199
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000
+PS2TURN turn=200
+PS2BRANCH n_ids=2 arm=PAIR
+PS2CAND unit=0 idx=0 score=0.000000 target=None cmd=WAIT
+PS2CAND unit=2 idx=0 score=0.000000 target=None cmd=WAIT
+PS2PAIR ai=0 bi=0 compat=true stock=true p1drop=false waits=2 sum=0.000000
+PS2WIN ai=0 bi=0 sum=0.000000

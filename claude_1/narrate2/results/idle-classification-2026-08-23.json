@@ -1,0 +1,3950 @@
+{
+  "classes": {
+    "NO_WANT_COMMANDED": 11,
+    "NO_WANT_SILENT_PARTIAL": 1786,
+    "NO_WANT_SILENT_TEAM": 1718,
+    "WANT_COMMANDED": 72681,
+    "WANT_SILENT_PARTIAL": 11,
+    "WANT_SILENT_TEAM": 98
+  },
+  "divergence_detail": [
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089741,
+      "intent_cell": [
+        16,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        16,
+        3
+      ]
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          11,
+          10
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900089904,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "turn": 240,
+      "unit": 3,
+      "unit_cell": [
+        12,
+        10
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 8,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 13,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 14,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 15,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 16,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090089,
+      "intent_cell": [
+        8,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 3,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090089,
+      "intent_cell": [
+        8,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090089,
+      "intent_cell": [
+        8,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090150,
+      "intent_cell": [
+        13,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090150,
+      "intent_cell": [
+        13,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090150,
+      "intent_cell": [
+        13,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090150,
+      "intent_cell": [
+        13,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090150,
+      "intent_cell": [
+        13,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 8,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090186,
+      "intent_cell": [
+        7,
+        7
+      ],
+      "intent_kind": "TREE",
+      "turn": 40,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090390,
+      "intent_cell": [
+        8,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090390,
+      "intent_cell": [
+        8,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        1
+      ]
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          10,
+          6
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900090390,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "turn": 94,
+      "unit": 0,
+      "unit_cell": [
+        11,
+        6
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 10,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 13,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 14,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 15,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 16,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 17,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 18,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 21,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 22,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 23,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 24,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 25,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 26,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        4,
+        6
+      ],
+      "intent_kind": "TREE",
+      "turn": 145,
+      "unit": 0,
+      "unit_cell": [
+        6,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        6,
+        1
+      ],
+      "intent_kind": "BANK",
+      "turn": 176,
+      "unit": 0,
+      "unit_cell": [
+        5,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090587,
+      "intent_cell": [
+        11,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 3,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090587,
+      "intent_cell": [
+        11,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090623,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        7
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090623,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        7
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090623,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        7
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090623,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        7
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090623,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "turn": 8,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        7
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090810,
+      "intent_cell": [
+        10,
+        2
+      ],
+      "intent_kind": "TREE",
+      "turn": 10,
+      "unit": 0,
+      "unit_cell": [
+        10,
+        2
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090810,
+      "intent_cell": [
+        10,
+        2
+      ],
+      "intent_kind": "TREE",
+      "turn": 11,
+      "unit": 0,
+      "unit_cell": [
+        10,
+        2
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090810,
+      "intent_cell": [
+        10,
+        2
+      ],
+      "intent_kind": "TREE",
+      "turn": 12,
+      "unit": 0,
+      "unit_cell": [
+        10,
+        2
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090810,
+      "intent_cell": [
+        9,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 18,
+      "unit": 0,
+      "unit_cell": [
+        9,
+        0
+      ]
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          10,
+          4
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900090849,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "turn": 293,
+      "unit": 0,
+      "unit_cell": [
+        9,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090870,
+      "intent_cell": [
+        8,
+        2
+      ],
+      "intent_kind": "TREE",
+      "turn": 182,
+      "unit": 1,
+      "unit_cell": [
+        8,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090870,
+      "intent_cell": [
+        8,
+        2
+      ],
+      "intent_kind": "TREE",
+      "turn": 208,
+      "unit": 1,
+      "unit_cell": [
+        8,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091110,
+      "intent_cell": [
+        4,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 8,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091110,
+      "intent_cell": [
+        4,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 9,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091110,
+      "intent_cell": [
+        4,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 10,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091110,
+      "intent_cell": [
+        4,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 11,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091110,
+      "intent_cell": [
+        4,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 12,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        3
+      ]
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          11,
+          6
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900091394,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "turn": 177,
+      "unit": 0,
+      "unit_cell": [
+        12,
+        6
+      ]
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          12,
+          6
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900091394,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "turn": 192,
+      "unit": 0,
+      "unit_cell": [
+        11,
+        6
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091594,
+      "intent_cell": [
+        12,
+        5
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        12,
+        5
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091594,
+      "intent_cell": [
+        12,
+        5
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        12,
+        5
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091594,
+      "intent_cell": [
+        12,
+        5
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        12,
+        5
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091594,
+      "intent_cell": [
+        12,
+        5
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        12,
+        5
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091690,
+      "intent_cell": [
+        11,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 12,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 10,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 13,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 14,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 15,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 16,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 17,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 18,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091939,
+      "intent_cell": [
+        8,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        8,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091939,
+      "intent_cell": [
+        8,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        8,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 2,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 3,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 9,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 12,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 15,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092073,
+      "intent_cell": [
+        4,
+        6
+      ],
+      "intent_kind": "TREE",
+      "turn": 2,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        6
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092073,
+      "intent_cell": [
+        4,
+        6
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        6
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092107,
+      "intent_cell": [
+        3,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 221,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092318,
+      "intent_cell": [
+        9,
+        5
+      ],
+      "intent_kind": "BANK",
+      "turn": 124,
+      "unit": 0,
+      "unit_cell": [
+        10,
+        5
+      ]
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          10,
+          5
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900092318,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "turn": 297,
+      "unit": 3,
+      "unit_cell": [
+        9,
+        5
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092332,
+      "intent_cell": [
+        10,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092332,
+      "intent_cell": [
+        10,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092332,
+      "intent_cell": [
+        10,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092332,
+      "intent_cell": [
+        10,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092504,
+      "intent_cell": [
+        10,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 23,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 3,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 8,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 9,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 10,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 11,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 12,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 13,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 14,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 15,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 20,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 21,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 22,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 23,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092777,
+      "intent_cell": [
+        11,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        8
+      ]
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          15,
+          1
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900092800,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "turn": 95,
+      "unit": 1,
+      "unit_cell": [
+        15,
+        2
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        4,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 3,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        4,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        4,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        4,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        4,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        7,
+        8
+      ],
+      "intent_kind": "BANK",
+      "turn": 165,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093179,
+      "intent_cell": [
+        12,
+        7
+      ],
+      "intent_kind": "BANK",
+      "turn": 40,
+      "unit": 1,
+      "unit_cell": [
+        8,
+        7
+      ]
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          4,
+          2
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900093311,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "turn": 298,
+      "unit": 3,
+      "unit_cell": [
+        4,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093423,
+      "intent_cell": [
+        7,
+        2
+      ],
+      "intent_kind": "BANK",
+      "turn": 80,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093423,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "turn": 170,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        7
+      ]
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          10,
+          6
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900093465,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "turn": 283,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        5
+      ]
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          10,
+          5
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900093465,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "turn": 291,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        6
+      ]
+    },
+    {
+      "class": "NO_WANT_COMMANDED",
+      "command_args": [
+        [
+          6,
+          6
+        ]
+      ],
+      "command_verb": "MOVE",
+      "game": 900093504,
+      "intent_cell": null,
+      "intent_kind": "NONE",
+      "turn": 251,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        6
+      ]
+    }
+  ],
+  "divergence_rows": 120,
+  "games": 149,
+  "idle_detail": [
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089741,
+      "intent_cell": [
+        16,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        16,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 8,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 13,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 14,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 15,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900089972,
+      "intent_cell": [
+        3,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 16,
+      "unit": 0,
+      "unit_cell": [
+        3,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090089,
+      "intent_cell": [
+        8,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 3,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090089,
+      "intent_cell": [
+        8,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090089,
+      "intent_cell": [
+        8,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090150,
+      "intent_cell": [
+        13,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090150,
+      "intent_cell": [
+        13,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090150,
+      "intent_cell": [
+        13,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090150,
+      "intent_cell": [
+        13,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090150,
+      "intent_cell": [
+        13,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 8,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090186,
+      "intent_cell": [
+        7,
+        7
+      ],
+      "intent_kind": "TREE",
+      "turn": 40,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090390,
+      "intent_cell": [
+        8,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090390,
+      "intent_cell": [
+        8,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 10,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 13,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 14,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 15,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 16,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 17,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 18,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 21,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 22,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 23,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 24,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 25,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        7,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 26,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        4,
+        6
+      ],
+      "intent_kind": "TREE",
+      "turn": 145,
+      "unit": 0,
+      "unit_cell": [
+        6,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090486,
+      "intent_cell": [
+        6,
+        1
+      ],
+      "intent_kind": "BANK",
+      "turn": 176,
+      "unit": 0,
+      "unit_cell": [
+        5,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090587,
+      "intent_cell": [
+        11,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 3,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090587,
+      "intent_cell": [
+        11,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090623,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        7
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090623,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        7
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090623,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        7
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090623,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        7
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090623,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "turn": 8,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        7
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090810,
+      "intent_cell": [
+        10,
+        2
+      ],
+      "intent_kind": "TREE",
+      "turn": 10,
+      "unit": 0,
+      "unit_cell": [
+        10,
+        2
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090810,
+      "intent_cell": [
+        10,
+        2
+      ],
+      "intent_kind": "TREE",
+      "turn": 11,
+      "unit": 0,
+      "unit_cell": [
+        10,
+        2
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090810,
+      "intent_cell": [
+        10,
+        2
+      ],
+      "intent_kind": "TREE",
+      "turn": 12,
+      "unit": 0,
+      "unit_cell": [
+        10,
+        2
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090810,
+      "intent_cell": [
+        9,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 18,
+      "unit": 0,
+      "unit_cell": [
+        9,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090870,
+      "intent_cell": [
+        8,
+        2
+      ],
+      "intent_kind": "TREE",
+      "turn": 182,
+      "unit": 1,
+      "unit_cell": [
+        8,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900090870,
+      "intent_cell": [
+        8,
+        2
+      ],
+      "intent_kind": "TREE",
+      "turn": 208,
+      "unit": 1,
+      "unit_cell": [
+        8,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091110,
+      "intent_cell": [
+        4,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 8,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091110,
+      "intent_cell": [
+        4,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 9,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091110,
+      "intent_cell": [
+        4,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 10,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091110,
+      "intent_cell": [
+        4,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 11,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091110,
+      "intent_cell": [
+        4,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 12,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091594,
+      "intent_cell": [
+        12,
+        5
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        12,
+        5
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091594,
+      "intent_cell": [
+        12,
+        5
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        12,
+        5
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091594,
+      "intent_cell": [
+        12,
+        5
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        12,
+        5
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091594,
+      "intent_cell": [
+        12,
+        5
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        12,
+        5
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091690,
+      "intent_cell": [
+        11,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 12,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 10,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 13,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 14,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 15,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 16,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 17,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091814,
+      "intent_cell": [
+        11,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 18,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091939,
+      "intent_cell": [
+        8,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        8,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091939,
+      "intent_cell": [
+        8,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        8,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 2,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 3,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 9,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 12,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900091967,
+      "intent_cell": [
+        13,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 15,
+      "unit": 1,
+      "unit_cell": [
+        13,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092073,
+      "intent_cell": [
+        4,
+        6
+      ],
+      "intent_kind": "TREE",
+      "turn": 2,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        6
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092073,
+      "intent_cell": [
+        4,
+        6
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        6
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092107,
+      "intent_cell": [
+        3,
+        4
+      ],
+      "intent_kind": "TREE",
+      "turn": 221,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092318,
+      "intent_cell": [
+        9,
+        5
+      ],
+      "intent_kind": "BANK",
+      "turn": 124,
+      "unit": 0,
+      "unit_cell": [
+        10,
+        5
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092332,
+      "intent_cell": [
+        10,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092332,
+      "intent_cell": [
+        10,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092332,
+      "intent_cell": [
+        10,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092332,
+      "intent_cell": [
+        10,
+        0
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        0
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092504,
+      "intent_cell": [
+        10,
+        1
+      ],
+      "intent_kind": "TREE",
+      "turn": 23,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        1
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 3,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 8,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 9,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 10,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 11,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 12,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 13,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 14,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 15,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 20,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 21,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 22,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092719,
+      "intent_cell": [
+        10,
+        3
+      ],
+      "intent_kind": "TREE",
+      "turn": 23,
+      "unit": 1,
+      "unit_cell": [
+        10,
+        3
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900092777,
+      "intent_cell": [
+        11,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 1,
+      "unit_cell": [
+        11,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        4,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 3,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        4,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 4,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        4,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 5,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        4,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 6,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_TEAM",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        4,
+        8
+      ],
+      "intent_kind": "TREE",
+      "turn": 7,
+      "unit": 0,
+      "unit_cell": [
+        4,
+        8
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093102,
+      "intent_cell": [
+        7,
+        8
+      ],
+      "intent_kind": "BANK",
+      "turn": 165,
+      "unit": 0,
+      "unit_cell": [
+        8,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093179,
+      "intent_cell": [
+        12,
+        7
+      ],
+      "intent_kind": "BANK",
+      "turn": 40,
+      "unit": 1,
+      "unit_cell": [
+        8,
+        7
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093423,
+      "intent_cell": [
+        7,
+        2
+      ],
+      "intent_kind": "BANK",
+      "turn": 80,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        4
+      ]
+    },
+    {
+      "class": "WANT_SILENT_PARTIAL",
+      "command_args": null,
+      "command_verb": null,
+      "game": 900093423,
+      "intent_cell": [
+        11,
+        7
+      ],
+      "intent_kind": "TREE",
+      "turn": 170,
+      "unit": 0,
+      "unit_cell": [
+        7,
+        7
+      ]
+    }
+  ],
+  "idle_rows": 109,
+  "joint_intent_verb": {
+    "BANK|(none)": 5,
+    "BANK|DROP": 4738,
+    "BANK|MOVE": 17100,
+    "CELL|DROP": 32,
+    "CELL|MINE": 101,
+    "CELL|MOVE": 548,
+    "CELL|PICK": 1480,
+    "CELL|PLANT": 1479,
+    "NONE|(none)": 3504,
+    "NONE|MOVE": 11,
+    "TREE|(none)": 104,
+    "TREE|CHOP": 25096,
+    "TREE|HARVEST": 148,
+    "TREE|MOVE": 21959
+  },
+  "refused": [],
+  "rows": 76305
+}

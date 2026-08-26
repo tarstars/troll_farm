@@ -1,0 +1,791 @@
+{
+ "carry_over": [
+  {
+   "basis": "classifier label M1",
+   "champion_cases": [
+    "OSC-001",
+    "OSC-002",
+    "OSC-003",
+    "OSC-004",
+    "OSC-005",
+    "OSC-006",
+    "OSC-007",
+    "OSC-008"
+   ],
+   "cited": "docs/RULES-LEDGER.md R-1; local_claude_1/adjudications/OSC-001-ruling-2026-08-16.md",
+   "exhibit_on_champion": true,
+   "library_label": "M1",
+   "mechanism": "corridor pass -> swap",
+   "old_cases": [
+    "OSC-001"
+   ],
+   "old_class_note": "expected to bear on the 11 M1 corridor episodes",
+   "rule": "R-1 (owner-approved 2026-08-16)",
+   "shares_its_label_with": [
+    "open-map pass -> teammate-aware routing"
+   ],
+   "status": "exhibit present"
+  },
+  {
+   "basis": "classifier label M1",
+   "champion_cases": [
+    "OSC-001",
+    "OSC-002",
+    "OSC-003",
+    "OSC-004",
+    "OSC-005",
+    "OSC-006",
+    "OSC-007",
+    "OSC-008"
+   ],
+   "cited": "claude_1/swap1/g0-design-swap-r1-2026-08-21.md section 6",
+   "exhibit_on_champion": true,
+   "library_label": "M1",
+   "mechanism": "open-map pass -> teammate-aware routing",
+   "old_cases": [
+    "OSC-010"
+   ],
+   "old_class_note": "named as a beta target; OSC-010 is M1/WORKING in the old tree",
+   "rule": "cure beta, designed, not built",
+   "shares_its_label_with": [
+    "corridor pass -> swap"
+   ],
+   "status": "exhibit present"
+  },
+  {
+   "basis": "NOT SEPARABLE by this library's vocabulary: the discriminator is the resolver's goal, which every situation records as UNRESOLVED",
+   "champion_cases": [],
+   "cited": "claude_1/swap1/g0-design-swap-r1-2026-08-21.md section 6",
+   "exhibit_on_champion": false,
+   "library_label": null,
+   "mechanism": "same tree wanted -> reservation",
+   "old_cases": [
+    "OSC-030"
+   ],
+   "old_class_note": "named as a beta target; OSC-030 is UNCLASSIFIED in the old tree",
+   "rule": "cure beta, designed, not built",
+   "shares_its_label_with": [],
+   "status": "NO EXHIBIT -- not a claim that it is fixed"
+  },
+  {
+   "basis": "classifier label M3",
+   "champion_cases": [
+    "OSC-018"
+   ],
+   "cited": "claude_1/swap1/g0-design-swap-r1-2026-08-21.md section 6; local_claude_1/session-inputs/4b-sitting-package-2026-08-21.md bucket D",
+   "exhibit_on_champion": true,
+   "library_label": "M3",
+   "mechanism": "single-troll goal flip",
+   "old_cases": [
+    "OSC-026"
+   ],
+   "old_class_note": "the only M3 case in the old tree (no peer alive in the window)",
+   "rule": "cure gamma, designed, not built; OSC-026 stamp candidate at 4b",
+   "shares_its_label_with": [],
+   "status": "exhibit present"
+  },
+  {
+   "basis": "classifier label M2",
+   "champion_cases": [
+    "OSC-009",
+    "OSC-010",
+    "OSC-011",
+    "OSC-012",
+    "OSC-013",
+    "OSC-014",
+    "OSC-015",
+    "OSC-016",
+    "OSC-017"
+   ],
+   "cited": "coordination/messages/local_claude_1/20260821T105914Z-20260821-swap-r1-cure-gate-amendment-policy.md; build_oscillation_library.classify",
+   "exhibit_on_champion": true,
+   "library_label": "M2",
+   "mechanism": "idle troll parked on a plant",
+   "old_cases": [
+    "OSC-012",
+    "OSC-013",
+    "OSC-017"
+   ],
+   "old_class_note": "the M2 discriminator IS this shape, by the classifier's definition",
+   "rule": "cure alpha target shape (amended G-2, 20260821T105914Z)",
+   "shares_its_label_with": [],
+   "status": "exhibit present"
+  },
+  {
+   "basis": "cases with at least one benched unit-turn under the eligible-action oracle",
+   "champion_cases": [
+    "OSC-001",
+    "OSC-002",
+    "OSC-005",
+    "OSC-006",
+    "OSC-007",
+    "OSC-008",
+    "OSC-010",
+    "OSC-011",
+    "OSC-012",
+    "OSC-013",
+    "OSC-014",
+    "OSC-015",
+    "OSC-016",
+    "OSC-017",
+    "OSC-021"
+   ],
+   "cited": "docs/RULES-LEDGER.md R-2; local_claude_1/session-inputs/4a-sitting-package-2026-08-19.md",
+   "exhibit_on_champion": true,
+   "library_label": "ORACLE",
+   "mechanism": "benching: a troll with available work is not employed",
+   "old_cases": [
+    "OSC-017",
+    "OSC-013",
+    "OSC-034",
+    "OSC-004"
+   ],
+   "old_class_note": "class = all 24 GOAL_SPLIT cases of the pool-3 table; decided by the eligible-action oracle, NOT by the library's classifier",
+   "rule": "R-2 (owner-approved 2026-08-20), class-wide",
+   "shares_its_label_with": [],
+   "status": "exhibit present"
+  }
+ ],
+ "champion_library_sha256": "4d3b36558f317a05acf65c3588bd9b572939645463b938274bc4c588c11e4d45",
+ "champion_situations": 21,
+ "label_histogram_champion": {
+  "M1": 8,
+  "M2": 9,
+  "M3": 1,
+  "UNCLASSIFIED": 3
+ },
+ "label_histogram_old": {
+  "M1": 11,
+  "M2": 14,
+  "M3": 1,
+  "UNCLASSIFIED": 8
+ },
+ "old_cases_whose_GAME_has_no_champion_case": [
+  "OSC-003",
+  "OSC-004",
+  "OSC-006",
+  "OSC-007",
+  "OSC-008",
+  "OSC-010",
+  "OSC-014",
+  "OSC-015",
+  "OSC-016",
+  "OSC-018",
+  "OSC-019",
+  "OSC-020",
+  "OSC-023",
+  "OSC-028",
+  "OSC-032",
+  "OSC-033",
+  "OSC-034"
+ ],
+ "old_library_sha256": "1370384da9cad46e4f60617b2c9edd076de6ffd9f26d30d0066528de414f9174",
+ "old_situations": 34,
+ "per_case": [
+  {
+   "benched_unit_turns": 39,
+   "blocker_state": "IDLE",
+   "episodes": 1,
+   "free_neighbours_proxy": 2.0,
+   "id": "OSC-001",
+   "kind": "D1_EPISODE",
+   "map_id": "m110",
+   "mechanism_label": "M1",
+   "old_cases_same_game": [
+    {
+     "id": "OSC-001",
+     "mechanism": "M1",
+     "same_window": true,
+     "window": [
+      6,
+      200
+     ]
+    }
+   ],
+   "per_unit": {
+    "2": 39
+   },
+   "seat": 1,
+   "unit": 0,
+   "window": [
+    6,
+    200
+   ],
+   "window_turns": 195
+  },
+  {
+   "benched_unit_turns": 189,
+   "blocker_state": "IDLE",
+   "episodes": 1,
+   "free_neighbours_proxy": 2.5,
+   "id": "OSC-002",
+   "kind": "D1_EPISODE",
+   "map_id": "m059",
+   "mechanism_label": "M1",
+   "old_cases_same_game": [
+    {
+     "id": "OSC-002",
+     "mechanism": "M1",
+     "same_window": true,
+     "window": [
+      12,
+      200
+     ]
+    }
+   ],
+   "per_unit": {
+    "0": 189
+   },
+   "seat": 1,
+   "unit": 2,
+   "window": [
+    12,
+    200
+   ],
+   "window_turns": 189
+  },
+  {
+   "benched_unit_turns": 0,
+   "blocker_state": "IDLE",
+   "episodes": 1,
+   "free_neighbours_proxy": 3.5,
+   "id": "OSC-003",
+   "kind": "D1_EPISODE",
+   "map_id": "m082",
+   "mechanism_label": "M1",
+   "old_cases_same_game": [],
+   "per_unit": {},
+   "seat": 1,
+   "unit": 2,
+   "window": [
+    17,
+    200
+   ],
+   "window_turns": 184
+  },
+  {
+   "benched_unit_turns": 0,
+   "blocker_state": "IDLE",
+   "episodes": 1,
+   "free_neighbours_proxy": 2.5,
+   "id": "OSC-004",
+   "kind": "D1_EPISODE",
+   "map_id": "m063",
+   "mechanism_label": "M1",
+   "old_cases_same_game": [],
+   "per_unit": {},
+   "seat": 1,
+   "unit": 2,
+   "window": [
+    50,
+    200
+   ],
+   "window_turns": 151
+  },
+  {
+   "benched_unit_turns": 25,
+   "blocker_state": "IDLE",
+   "episodes": 1,
+   "free_neighbours_proxy": 3.0,
+   "id": "OSC-005",
+   "kind": "D1_EPISODE",
+   "map_id": "m040",
+   "mechanism_label": "M1",
+   "old_cases_same_game": [],
+   "per_unit": {
+    "6": 25
+   },
+   "seat": 0,
+   "unit": 0,
+   "window": [
+    176,
+    200
+   ],
+   "window_turns": 25
+  },
+  {
+   "benched_unit_turns": 14,
+   "blocker_state": "WORKING",
+   "episodes": 1,
+   "free_neighbours_proxy": 3.0,
+   "id": "OSC-006",
+   "kind": "D1_EPISODE",
+   "map_id": "m058",
+   "mechanism_label": "M1",
+   "old_cases_same_game": [
+    {
+     "id": "OSC-029",
+     "mechanism": "UNCLASSIFIED",
+     "same_window": false,
+     "window": [
+      28,
+      44
+     ]
+    }
+   ],
+   "per_unit": {
+    "0": 1,
+    "2": 13
+   },
+   "seat": 1,
+   "unit": 0,
+   "window": [
+    29,
+    42
+   ],
+   "window_turns": 14
+  },
+  {
+   "benched_unit_turns": 1,
+   "blocker_state": "WORKING",
+   "episodes": 1,
+   "free_neighbours_proxy": 2.0,
+   "id": "OSC-007",
+   "kind": "D1_EPISODE",
+   "map_id": "m070",
+   "mechanism_label": "M1",
+   "old_cases_same_game": [
+    {
+     "id": "OSC-005",
+     "mechanism": "M1",
+     "same_window": true,
+     "window": [
+      7,
+      18
+     ]
+    }
+   ],
+   "per_unit": {
+    "0": 1
+   },
+   "seat": 1,
+   "unit": 2,
+   "window": [
+    7,
+    18
+   ],
+   "window_turns": 12
+  },
+  {
+   "benched_unit_turns": 7,
+   "blocker_state": "WORKING",
+   "episodes": 1,
+   "free_neighbours_proxy": 3.0,
+   "id": "OSC-008",
+   "kind": "D1_EPISODE",
+   "map_id": "m028",
+   "mechanism_label": "M1",
+   "old_cases_same_game": [
+    {
+     "id": "OSC-011",
+     "mechanism": "M1",
+     "same_window": true,
+     "window": [
+      26,
+      32
+     ]
+    }
+   ],
+   "per_unit": {
+    "0": 1,
+    "2": 6
+   },
+   "seat": 1,
+   "unit": 0,
+   "window": [
+    26,
+    32
+   ],
+   "window_turns": 7
+  },
+  {
+   "benched_unit_turns": 0,
+   "blocker_state": "IDLE",
+   "episodes": 3,
+   "free_neighbours_proxy": 2.0,
+   "id": "OSC-009",
+   "kind": "D1_EPISODE",
+   "map_id": "m099",
+   "mechanism_label": "M2",
+   "old_cases_same_game": [
+    {
+     "id": "OSC-012",
+     "mechanism": "M2",
+     "same_window": true,
+     "window": [
+      8,
+      200
+     ]
+    }
+   ],
+   "per_unit": {},
+   "seat": 1,
+   "unit": 0,
+   "window": [
+    8,
+    200
+   ],
+   "window_turns": 193
+  },
+  {
+   "benched_unit_turns": 194,
+   "blocker_state": "IDLE",
+   "episodes": 1,
+   "free_neighbours_proxy": 3.5,
+   "id": "OSC-010",
+   "kind": "D1_EPISODE",
+   "map_id": "m014",
+   "mechanism_label": "M2",
+   "old_cases_same_game": [
+    {
+     "id": "OSC-017",
+     "mechanism": "M2",
+     "same_window": true,
+     "window": [
+      7,
+      200
+     ]
+    }
+   ],
+   "per_unit": {
+    "0": 194
+   },
+   "seat": 1,
+   "unit": 2,
+   "window": [
+    7,
+    200
+   ],
+   "window_turns": 194
+  },
+  {
+   "benched_unit_turns": 187,
+   "blocker_state": "IDLE",
+   "episodes": 1,
+   "free_neighbours_proxy": 2.0,
+   "id": "OSC-011",
+   "kind": "D1_EPISODE",
+   "map_id": "m046",
+   "mechanism_label": "M2",
+   "old_cases_same_game": [
+    {
+     "id": "OSC-013",
+     "mechanism": "M2",
+     "same_window": true,
+     "window": [
+      14,
+      200
+     ]
+    }
+   ],
+   "per_unit": {
+    "0": 187
+   },
+   "seat": 0,
+   "unit": 2,
+   "window": [
+    14,
+    200
+   ],
+   "window_turns": 187
+  },
+  {
+   "benched_unit_turns": 169,
+   "blocker_state": "IDLE",
+   "episodes": 1,
+   "free_neighbours_proxy": 3.5,
+   "id": "OSC-012",
+   "kind": "D1_EPISODE",
+   "map_id": "m084",
+   "mechanism_label": "M2",
+   "old_cases_same_game": [
+    {
+     "id": "OSC-021",
+     "mechanism": "M2",
+     "same_window": true,
+     "window": [
+      32,
+      200
+     ]
+    }
+   ],
+   "per_unit": {
+    "2": 169
+   },
+   "seat": 1,
+   "unit": 0,
+   "window": [
+    32,
+    200
+   ],
+   "window_turns": 169
+  },
+  {
+   "benched_unit_turns": 163,
+   "blocker_state": "IDLE",
+   "episodes": 1,
+   "free_neighbours_proxy": 4.0,
+   "id": "OSC-013",
+   "kind": "D1_EPISODE",
+   "map_id": "m079",
+   "mechanism_label": "M2",
+   "old_cases_same_game": [],
+   "per_unit": {
+    "0": 163
+   },
+   "seat": 0,
+   "unit": 2,
+   "window": [
+    38,
+    200
+   ],
+   "window_turns": 163
+  },
+  {
+   "benched_unit_turns": 149,
+   "blocker_state": "IDLE",
+   "episodes": 1,
+   "free_neighbours_proxy": 2.5,
+   "id": "OSC-014",
+   "kind": "D1_EPISODE",
+   "map_id": "m070",
+   "mechanism_label": "M2",
+   "old_cases_same_game": [
+    {
+     "id": "OSC-005",
+     "mechanism": "M1",
+     "same_window": false,
+     "window": [
+      7,
+      18
+     ]
+    }
+   ],
+   "per_unit": {
+    "2": 149
+   },
+   "seat": 1,
+   "unit": 0,
+   "window": [
+    52,
+    200
+   ],
+   "window_turns": 149
+  },
+  {
+   "benched_unit_turns": 149,
+   "blocker_state": "IDLE",
+   "episodes": 1,
+   "free_neighbours_proxy": 4.0,
+   "id": "OSC-015",
+   "kind": "D1_EPISODE",
+   "map_id": "m004",
+   "mechanism_label": "M2",
+   "old_cases_same_game": [
+    {
+     "id": "OSC-030",
+     "mechanism": "UNCLASSIFIED",
+     "same_window": false,
+     "window": [
+      24,
+      31
+     ]
+    }
+   ],
+   "per_unit": {
+    "2": 149
+   },
+   "seat": 0,
+   "unit": 0,
+   "window": [
+    52,
+    200
+   ],
+   "window_turns": 149
+  },
+  {
+   "benched_unit_turns": 64,
+   "blocker_state": "IDLE",
+   "episodes": 1,
+   "free_neighbours_proxy": 2.5,
+   "id": "OSC-016",
+   "kind": "D1_EPISODE",
+   "map_id": "m073",
+   "mechanism_label": "M2",
+   "old_cases_same_game": [
+    {
+     "id": "OSC-024",
+     "mechanism": "M2",
+     "same_window": true,
+     "window": [
+      5,
+      69
+     ]
+    }
+   ],
+   "per_unit": {
+    "2": 64
+   },
+   "seat": 0,
+   "unit": 0,
+   "window": [
+    5,
+    69
+   ],
+   "window_turns": 65
+  },
+  {
+   "benched_unit_turns": 21,
+   "blocker_state": "IDLE",
+   "episodes": 1,
+   "free_neighbours_proxy": 3.5,
+   "id": "OSC-017",
+   "kind": "D1_EPISODE",
+   "map_id": "m012",
+   "mechanism_label": "M2",
+   "old_cases_same_game": [
+    {
+     "id": "OSC-025",
+     "mechanism": "M2",
+     "same_window": true,
+     "window": [
+      12,
+      32
+     ]
+    }
+   ],
+   "per_unit": {
+    "0": 1,
+    "2": 20
+   },
+   "seat": 1,
+   "unit": 0,
+   "window": [
+    12,
+    32
+   ],
+   "window_turns": 21
+  },
+  {
+   "benched_unit_turns": 0,
+   "blocker_state": "NONE",
+   "episodes": 1,
+   "free_neighbours_proxy": 3.5,
+   "id": "OSC-018",
+   "kind": "D1_EPISODE",
+   "map_id": "m085",
+   "mechanism_label": "M3",
+   "old_cases_same_game": [
+    {
+     "id": "OSC-026",
+     "mechanism": "M3",
+     "same_window": true,
+     "window": [
+      17,
+      25
+     ]
+    }
+   ],
+   "per_unit": {},
+   "seat": 0,
+   "unit": 0,
+   "window": [
+    17,
+    25
+   ],
+   "window_turns": 9
+  },
+  {
+   "benched_unit_turns": 0,
+   "blocker_state": "NONE",
+   "episodes": 6,
+   "free_neighbours_proxy": 2.0,
+   "id": "OSC-019",
+   "kind": "D1_EPISODE",
+   "map_id": "m066",
+   "mechanism_label": "UNCLASSIFIED",
+   "old_cases_same_game": [
+    {
+     "id": "OSC-027",
+     "mechanism": "UNCLASSIFIED",
+     "same_window": true,
+     "window": [
+      3,
+      24
+     ]
+    }
+   ],
+   "per_unit": {},
+   "seat": 0,
+   "unit": 2,
+   "window": [
+    3,
+    24
+   ],
+   "window_turns": 22
+  },
+  {
+   "benched_unit_turns": 0,
+   "blocker_state": "NONE",
+   "episodes": 1,
+   "free_neighbours_proxy": 3.5,
+   "id": "OSC-020",
+   "kind": "D1_EPISODE",
+   "map_id": "m004",
+   "mechanism_label": "UNCLASSIFIED",
+   "old_cases_same_game": [
+    {
+     "id": "OSC-030",
+     "mechanism": "UNCLASSIFIED",
+     "same_window": true,
+     "window": [
+      24,
+      31
+     ]
+    }
+   ],
+   "per_unit": {},
+   "seat": 0,
+   "unit": 2,
+   "window": [
+    24,
+    31
+   ],
+   "window_turns": 8
+  },
+  {
+   "benched_unit_turns": 380,
+   "blocker_state": "NONE",
+   "episodes": 1,
+   "free_neighbours_proxy": 2.5,
+   "id": "OSC-021",
+   "kind": "P4_STALL",
+   "map_id": "m059",
+   "mechanism_label": "UNCLASSIFIED",
+   "old_cases_same_game": [
+    {
+     "id": "OSC-031",
+     "mechanism": "UNCLASSIFIED",
+     "same_window": true,
+     "window": [
+      11,
+      200
+     ]
+    }
+   ],
+   "per_unit": {
+    "0": 190,
+    "2": 190
+   },
+   "seat": 0,
+   "unit": 0,
+   "window": [
+    11,
+    200
+   ],
+   "window_turns": 190
+  }
+ ],
+ "subject": "dc43d633ab30154d78bad05425b026ca5487d797:claude_1/chop4c/candidate-door1.rs",
+ "what_no_exhibit_means": "A mechanism with no case here has NO EXHIBIT on the champion. It is NOT a claim that the champion has stopped doing it: the champion's floor is 240 games and a shape can be absent because it did not occur in those games. The owner's rulings on the old cases are rulings about MECHANISMS and stand unchanged."
+}

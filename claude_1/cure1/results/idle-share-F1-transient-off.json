@@ -1,0 +1,338 @@
+{
+  "arms": {
+    "candidate (F1-transient-off)": {
+      "branches": {
+        "H": 1197,
+        "L": 159,
+        "N": 65771,
+        "P": 8487,
+        "R": 662,
+        "W": 472
+      },
+      "games_archive": "/tmp/claude-1000/cure1/F1-transient-off-instrument/games/games.jsonl.gz",
+      "hold_share_pct": 1.5596,
+      "idle_with_work_share_pct": 2.1746,
+      "idle_with_work_turns": 1669,
+      "longest_consecutive_hold_run": 2,
+      "longest_consecutive_hold_run_where": {
+        "map_id": "m012",
+        "seat": 1,
+        "unit": 0
+      },
+      "own_troll_turns": 76748,
+      "trolls": 384,
+      "trolls_above_the_line": [
+        {
+          "map_id": "m001",
+          "seat": 0,
+          "share_pct": 8.5,
+          "unit": 0
+        },
+        {
+          "map_id": "m001",
+          "seat": 1,
+          "share_pct": 6.5,
+          "unit": 0
+        },
+        {
+          "map_id": "m002",
+          "seat": 1,
+          "share_pct": 5.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m010",
+          "seat": 1,
+          "share_pct": 6.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m011",
+          "seat": 1,
+          "share_pct": 2.5,
+          "unit": 0
+        },
+        {
+          "map_id": "m012",
+          "seat": 1,
+          "share_pct": 5.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m014",
+          "seat": 1,
+          "share_pct": 49.0,
+          "unit": 2
+        },
+        {
+          "map_id": "m021",
+          "seat": 0,
+          "share_pct": 43.5,
+          "unit": 0
+        },
+        {
+          "map_id": "m029",
+          "seat": 0,
+          "share_pct": 3.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m029",
+          "seat": 1,
+          "share_pct": 7.5,
+          "unit": 0
+        },
+        {
+          "map_id": "m031",
+          "seat": 1,
+          "share_pct": 2.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m034",
+          "seat": 1,
+          "share_pct": 10.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m039",
+          "seat": 1,
+          "share_pct": 42.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m040",
+          "seat": 0,
+          "share_pct": 6.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m040",
+          "seat": 1,
+          "share_pct": 2.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m042",
+          "seat": 0,
+          "share_pct": 2.0,
+          "unit": 2
+        },
+        {
+          "map_id": "m044",
+          "seat": 1,
+          "share_pct": 2.5,
+          "unit": 0
+        },
+        {
+          "map_id": "m046",
+          "seat": 0,
+          "share_pct": 47.0,
+          "unit": 2
+        },
+        {
+          "map_id": "m047",
+          "seat": 1,
+          "share_pct": 4.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m053",
+          "seat": 1,
+          "share_pct": 2.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m055",
+          "seat": 1,
+          "share_pct": 2.5,
+          "unit": 0
+        },
+        {
+          "map_id": "m057",
+          "seat": 1,
+          "share_pct": 3.5,
+          "unit": 0
+        },
+        {
+          "map_id": "m058",
+          "seat": 1,
+          "share_pct": 4.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m059",
+          "seat": 0,
+          "share_pct": 95.0,
+          "unit": 2
+        },
+        {
+          "map_id": "m059",
+          "seat": 1,
+          "share_pct": 47.0,
+          "unit": 2
+        },
+        {
+          "map_id": "m063",
+          "seat": 1,
+          "share_pct": 38.0,
+          "unit": 2
+        },
+        {
+          "map_id": "m066",
+          "seat": 0,
+          "share_pct": 5.0,
+          "unit": 2
+        },
+        {
+          "map_id": "m070",
+          "seat": 0,
+          "share_pct": 2.0,
+          "unit": 2
+        },
+        {
+          "map_id": "m070",
+          "seat": 1,
+          "share_pct": 38.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m070",
+          "seat": 1,
+          "share_pct": 2.5,
+          "unit": 2
+        },
+        {
+          "map_id": "m072",
+          "seat": 0,
+          "share_pct": 3.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m073",
+          "seat": 0,
+          "share_pct": 16.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m075",
+          "seat": 0,
+          "share_pct": 8.5,
+          "unit": 0
+        },
+        {
+          "map_id": "m076",
+          "seat": 0,
+          "share_pct": 5.5,
+          "unit": 0
+        },
+        {
+          "map_id": "m076",
+          "seat": 1,
+          "share_pct": 8.5,
+          "unit": 0
+        },
+        {
+          "map_id": "m078",
+          "seat": 0,
+          "share_pct": 3.5,
+          "unit": 0
+        },
+        {
+          "map_id": "m078",
+          "seat": 1,
+          "share_pct": 2.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m079",
+          "seat": 0,
+          "share_pct": 41.0,
+          "unit": 2
+        },
+        {
+          "map_id": "m082",
+          "seat": 1,
+          "share_pct": 46.0,
+          "unit": 2
+        },
+        {
+          "map_id": "m084",
+          "seat": 1,
+          "share_pct": 43.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m088",
+          "seat": 1,
+          "share_pct": 2.0,
+          "unit": 2
+        },
+        {
+          "map_id": "m096",
+          "seat": 0,
+          "share_pct": 3.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m099",
+          "seat": 1,
+          "share_pct": 48.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m101",
+          "seat": 0,
+          "share_pct": 11.5,
+          "unit": 0
+        },
+        {
+          "map_id": "m105",
+          "seat": 1,
+          "share_pct": 2.5,
+          "unit": 0
+        },
+        {
+          "map_id": "m107",
+          "seat": 1,
+          "share_pct": 4.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m110",
+          "seat": 1,
+          "share_pct": 49.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m112",
+          "seat": 0,
+          "share_pct": 5.0,
+          "unit": 0
+        },
+        {
+          "map_id": "m117",
+          "seat": 1,
+          "share_pct": 3.0,
+          "unit": 0
+        }
+      ],
+      "trolls_above_the_line_count": 49,
+      "wait_share_pct": 0.615,
+      "worst_troll": {
+        "idle_turns": 190,
+        "map_id": "m059",
+        "seat": 0,
+        "share_pct": 95.0,
+        "turns": 200,
+        "unit": 2
+      }
+    }
+  },
+  "clause": "R-C / disposition 4b -- per-troll idle-with-work share (H + W over own troll-turns) <= 1.5 %, the G-1 safety net that replaces the blind P4 clause",
+  "graded_arm": "candidate (F1-transient-off)",
+  "graded_share_pct": 2.1746,
+  "line_pct": 1.5,
+  "ruling": "coordination/messages/local_claude_1/20260825T094200Z-20260825-dance-cure-candidate-1-hold-policy.md",
+  "verdict": "FAIL"
+}

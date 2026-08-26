@@ -1,0 +1,17 @@
+rule       runs  turns  work | games ex-m061  pos  +risk  -sum | m061 fire s0/s1
+cap20        64   1842   834 |    64      62    4    +39   -57 |    49/50   
+cap30        57   1238   635 |    57      55    4    +39   -50 |    59/60   
+cap40        42    724   341 |    42      40    4    +39   -43 |    69/70   
+cap60         7    291    30 |     7       5    2    +30    -6 |    89/90   
+dance8      355   3316  2485 |   161     159   14    +90   -60 |    60/96   
+dance12     152   1679  1126 |   103     101    8    +42   -49 |    64/100  
+dance20      26    536   195 |    26      24    0     +0   -27 |    72/108  
+idle8        25    990   341 |    25      23    2     +9   -21 |    60/96   
+idle12       14    614   171 |    14      12    0     +0   -21 |    64/100  
+idle20        6    317    58 |     6       4    0     +0   -18 |    72/108  
+bps0         84   1709  1074 |    69      68    7    +44   -58 |  None/None 
+bps100       77   1228   945 |    62      61    6    +43   -55 |  None/None 
+bps1000      68   1044   837 |    56      55    5    +39   -52 |  None/None 
+
+panel own-score: candidate total vs parent total
+ games with a kept goal at all: 224

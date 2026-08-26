@@ -1,0 +1,4262 @@
+{
+  "base": {
+    "name": "door1-clause",
+    "source": "claude_1/chop4c/candidate-door1.rs",
+    "source_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+  },
+  "fixtures": [
+    {
+      "d3_out_of_window_clause_rows": {
+        "clause_counts": {
+          "chop:ACCEPTED": 41
+        },
+        "rows": [
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "8",
+                  "trip": "26",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              },
+              {
+                "cell": [
+                  11,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "1",
+                  "return": "11",
+                  "travel": "11",
+                  "trip": "24",
+                  "wood": "2"
+                },
+                "kind": "PLUM"
+              }
+            ],
+            "turn": 41
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "7",
+                  "trip": "25",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              },
+              {
+                "cell": [
+                  11,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "1",
+                  "return": "11",
+                  "travel": "10",
+                  "trip": "23",
+                  "wood": "2"
+                },
+                "kind": "PLUM"
+              }
+            ],
+            "turn": 42
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "6",
+                  "trip": "24",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              },
+              {
+                "cell": [
+                  11,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "1",
+                  "return": "11",
+                  "travel": "9",
+                  "trip": "22",
+                  "wood": "2"
+                },
+                "kind": "PLUM"
+              }
+            ],
+            "turn": 43
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "5",
+                  "trip": "23",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              },
+              {
+                "cell": [
+                  11,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "1",
+                  "return": "11",
+                  "travel": "8",
+                  "trip": "21",
+                  "wood": "2"
+                },
+                "kind": "PLUM"
+              }
+            ],
+            "turn": 44
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "4",
+                  "trip": "22",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              },
+              {
+                "cell": [
+                  11,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "1",
+                  "return": "11",
+                  "travel": "7",
+                  "trip": "20",
+                  "wood": "2"
+                },
+                "kind": "PLUM"
+              }
+            ],
+            "turn": 45
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "3",
+                  "trip": "21",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              },
+              {
+                "cell": [
+                  11,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "1",
+                  "return": "11",
+                  "travel": "6",
+                  "trip": "19",
+                  "wood": "2"
+                },
+                "kind": "PLUM"
+              }
+            ],
+            "turn": 46
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "2",
+                  "trip": "20",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              },
+              {
+                "cell": [
+                  11,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "1",
+                  "return": "11",
+                  "travel": "5",
+                  "trip": "18",
+                  "wood": "2"
+                },
+                "kind": "PLUM"
+              }
+            ],
+            "turn": 47
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "1",
+                  "trip": "19",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              },
+              {
+                "cell": [
+                  11,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "1",
+                  "return": "11",
+                  "travel": "4",
+                  "trip": "17",
+                  "wood": "2"
+                },
+                "kind": "PLUM"
+              }
+            ],
+            "turn": 48
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "0",
+                  "trip": "18",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              },
+              {
+                "cell": [
+                  11,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "1",
+                  "return": "11",
+                  "travel": "3",
+                  "trip": "16",
+                  "wood": "2"
+                },
+                "kind": "PLUM"
+              }
+            ],
+            "turn": 49
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "1",
+                  "trip": "19",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              },
+              {
+                "cell": [
+                  11,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "1",
+                  "return": "11",
+                  "travel": "2",
+                  "trip": "15",
+                  "wood": "2"
+                },
+                "kind": "PLUM"
+              }
+            ],
+            "turn": 50
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "2",
+                  "trip": "20",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              },
+              {
+                "cell": [
+                  11,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "1",
+                  "return": "11",
+                  "travel": "1",
+                  "trip": "14",
+                  "wood": "2"
+                },
+                "kind": "PLUM"
+              }
+            ],
+            "turn": 51
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "3",
+                  "trip": "21",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              },
+              {
+                "cell": [
+                  11,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "1",
+                  "return": "11",
+                  "travel": "0",
+                  "trip": "13",
+                  "wood": "2"
+                },
+                "kind": "PLUM"
+              }
+            ],
+            "turn": 52
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "8",
+                  "trip": "26",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              }
+            ],
+            "turn": 65
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "7",
+                  "trip": "25",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              }
+            ],
+            "turn": 66
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "6",
+                  "trip": "24",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              }
+            ],
+            "turn": 67
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "5",
+                  "trip": "23",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              }
+            ],
+            "turn": 68
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "4",
+                  "trip": "22",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              }
+            ],
+            "turn": 69
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "3",
+                  "trip": "21",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              }
+            ],
+            "turn": 70
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "2",
+                  "trip": "20",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              }
+            ],
+            "turn": 71
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "1",
+                  "trip": "19",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              }
+            ],
+            "turn": 72
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "9",
+                  "return": "8",
+                  "travel": "0",
+                  "trip": "18",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              }
+            ],
+            "turn": 73
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "8",
+                  "return": "8",
+                  "travel": "0",
+                  "trip": "17",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              }
+            ],
+            "turn": 74
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "7",
+                  "return": "8",
+                  "travel": "0",
+                  "trip": "16",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              }
+            ],
+            "turn": 75
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "6",
+                  "return": "8",
+                  "travel": "0",
+                  "trip": "15",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              }
+            ],
+            "turn": 76
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "5",
+                  "return": "8",
+                  "travel": "0",
+                  "trip": "14",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              }
+            ],
+            "turn": 77
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "4",
+                  "return": "8",
+                  "travel": "0",
+                  "trip": "13",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              }
+            ],
+            "turn": 78
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "3",
+                  "return": "8",
+                  "travel": "0",
+                  "trip": "12",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              }
+            ],
+            "turn": 79
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "2",
+                  "return": "8",
+                  "travel": "0",
+                  "trip": "11",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              }
+            ],
+            "turn": 80
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  5
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "1",
+                  "return": "8",
+                  "travel": "0",
+                  "trip": "10",
+                  "wood": "2"
+                },
+                "kind": "LEMON"
+              }
+            ],
+            "turn": 81
+          }
+        ]
+      },
+      "id": "OSC-032",
+      "q1_map_went_bare": {
+        "bare_turns": 119,
+        "first_bare_turn": 82,
+        "last_plant_bearing_turn": 81,
+        "last_plants": [
+          {
+            "audited_unit_chop_power": 1,
+            "cell": [
+              8,
+              5
+            ],
+            "evidence": "trace command on turn 81: 'CHOP 0', audited unit on the plant's own cell [8, 5], chop_power 1, plant health 1",
+            "felled_by": "OWN_UNIT_CHOP",
+            "fruits_on_its_last_turn": 3,
+            "health_on_its_last_turn": 1,
+            "kind": "LEMON",
+            "size": 4
+          }
+        ],
+        "replant_material_in_shack": {
+          "BANANA": 1,
+          "LEMON": 2
+        },
+        "replant_material_present": true,
+        "shack_inventory_at_that_moment": {
+          "APPLE": 0,
+          "BANANA": 1,
+          "IRON": 0,
+          "LEMON": 2,
+          "PLUM": 0,
+          "WOOD": 2
+        },
+        "went_bare": true
+      },
+      "q2_referee_stall_projection": {
+        "first_stalled_turn": 82,
+        "grace_only_end_turn": 96,
+        "grace_only_note": "the turn the no-plants grace counter alone would have expired, ignoring the mercy and both-stuck clauses; conservative bound that does not depend on the opponent's state",
+        "harness_horizon_turns": 200,
+        "per_turn": [
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 1,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 2,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 3,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 4,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 5,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 6,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 7,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 8,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 9,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 10,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 11,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 12,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 13,
+            "turns_until_end": 15
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 14,
+            "turns_until_end": 15
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 15,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 16,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 17,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 18,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 19,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 20,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 21,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 22,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 23,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 24,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 25,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 26,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 27,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 28,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 29,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 30,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 31,
+            "turns_until_end": 15
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 32,
+            "turns_until_end": 15
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 33,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 34,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 35,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 36,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 37,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 38,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 39,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 40,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 41,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 42,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 43,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 44,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 45,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 46,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 47,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 48,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 49,
+            "turns_until_end": 15
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 50,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 51,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 2,
+            "reason": null,
+            "stalled": false,
+            "turn": 52,
+            "turns_until_end": 18
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 53,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 54,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 55,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 56,
+            "turns_until_end": 15
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 57,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 58,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 59,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 60,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 61,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 62,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 63,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 64,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 65,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 66,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 67,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 68,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 69,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 70,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 71,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 72,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 73,
+            "turns_until_end": 15
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 74,
+            "turns_until_end": 15
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 75,
+            "turns_until_end": 15
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 76,
+            "turns_until_end": 15
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 77,
+            "turns_until_end": 15
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 78,
+            "turns_until_end": 15
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 79,
+            "turns_until_end": 15
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 80,
+            "turns_until_end": 15
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 81,
+            "turns_until_end": 15
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 82,
+            "turns_until_end": 14
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 83,
+            "turns_until_end": 13
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 84,
+            "turns_until_end": 12
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 85,
+            "turns_until_end": 11
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 86,
+            "turns_until_end": 10
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 87,
+            "turns_until_end": 9
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 88,
+            "turns_until_end": 8
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 89,
+            "turns_until_end": 7
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 90,
+            "turns_until_end": 6
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 91,
+            "turns_until_end": 5
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 92,
+            "turns_until_end": 4
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 93,
+            "turns_until_end": 3
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 94,
+            "turns_until_end": 2
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 95,
+            "turns_until_end": 1
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 96,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 97,
+            "turns_until_end": -1
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 98,
+            "turns_until_end": -2
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 99,
+            "turns_until_end": -3
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 100,
+            "turns_until_end": -4
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 101,
+            "turns_until_end": -5
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 102,
+            "turns_until_end": -6
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 103,
+            "turns_until_end": -7
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 104,
+            "turns_until_end": -8
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 105,
+            "turns_until_end": -9
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 106,
+            "turns_until_end": -10
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 107,
+            "turns_until_end": -11
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 108,
+            "turns_until_end": -12
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 109,
+            "turns_until_end": -13
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 110,
+            "turns_until_end": -14
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 111,
+            "turns_until_end": -15
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 112,
+            "turns_until_end": -16
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 113,
+            "turns_until_end": -17
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 114,
+            "turns_until_end": -18
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 115,
+            "turns_until_end": -19
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 116,
+            "turns_until_end": -20
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 117,
+            "turns_until_end": -21
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 118,
+            "turns_until_end": -22
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 119,
+            "turns_until_end": -23
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 120,
+            "turns_until_end": -24
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 121,
+            "turns_until_end": -25
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 122,
+            "turns_until_end": -26
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 123,
+            "turns_until_end": -27
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 124,
+            "turns_until_end": -28
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 125,
+            "turns_until_end": -29
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 126,
+            "turns_until_end": -30
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 127,
+            "turns_until_end": -31
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 128,
+            "turns_until_end": -32
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 129,
+            "turns_until_end": -33
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 130,
+            "turns_until_end": -34
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 131,
+            "turns_until_end": -35
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 132,
+            "turns_until_end": -36
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 133,
+            "turns_until_end": -37
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 134,
+            "turns_until_end": -38
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 135,
+            "turns_until_end": -39
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 136,
+            "turns_until_end": -40
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 137,
+            "turns_until_end": -41
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 138,
+            "turns_until_end": -42
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 139,
+            "turns_until_end": -43
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 140,
+            "turns_until_end": -44
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 141,
+            "turns_until_end": -45
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 142,
+            "turns_until_end": -46
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 143,
+            "turns_until_end": -47
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 144,
+            "turns_until_end": -48
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 145,
+            "turns_until_end": -49
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 146,
+            "turns_until_end": -50
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 147,
+            "turns_until_end": -51
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 148,
+            "turns_until_end": -52
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 149,
+            "turns_until_end": -53
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 150,
+            "turns_until_end": -54
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 151,
+            "turns_until_end": -55
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 152,
+            "turns_until_end": -56
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 153,
+            "turns_until_end": -57
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 154,
+            "turns_until_end": -58
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 155,
+            "turns_until_end": -59
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 156,
+            "turns_until_end": -60
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 157,
+            "turns_until_end": -61
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 158,
+            "turns_until_end": -62
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 159,
+            "turns_until_end": -63
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 160,
+            "turns_until_end": -64
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 161,
+            "turns_until_end": -65
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 162,
+            "turns_until_end": -66
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 163,
+            "turns_until_end": -67
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 164,
+            "turns_until_end": -68
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 165,
+            "turns_until_end": -69
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 166,
+            "turns_until_end": -70
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 167,
+            "turns_until_end": -71
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 168,
+            "turns_until_end": -72
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 169,
+            "turns_until_end": -73
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 170,
+            "turns_until_end": -74
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 171,
+            "turns_until_end": -75
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 172,
+            "turns_until_end": -76
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 173,
+            "turns_until_end": -77
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 174,
+            "turns_until_end": -78
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 175,
+            "turns_until_end": -79
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 176,
+            "turns_until_end": -80
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 177,
+            "turns_until_end": -81
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 178,
+            "turns_until_end": -82
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 179,
+            "turns_until_end": -83
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 180,
+            "turns_until_end": -84
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 181,
+            "turns_until_end": -85
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 182,
+            "turns_until_end": -86
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 183,
+            "turns_until_end": -87
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 184,
+            "turns_until_end": -88
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 185,
+            "turns_until_end": -89
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 186,
+            "turns_until_end": -90
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 187,
+            "turns_until_end": -91
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 188,
+            "turns_until_end": -92
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 189,
+            "turns_until_end": -93
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 190,
+            "turns_until_end": -94
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 191,
+            "turns_until_end": -95
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 192,
+            "turns_until_end": -96
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 193,
+            "turns_until_end": -97
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 194,
+            "turns_until_end": -98
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 195,
+            "turns_until_end": -99
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 196,
+            "turns_until_end": -100
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 197,
+            "turns_until_end": -101
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 198,
+            "turns_until_end": -102
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 199,
+            "turns_until_end": -103
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 200,
+            "turns_until_end": -104
+          }
+        ],
+        "reason": "mercy_player_1",
+        "turns_after_the_referee_would_have_ended": 118
+      },
+      "q2_window_turns_after_the_referee_end": {
+        "audited_window": [
+          91,
+          200
+        ],
+        "window_turns_in_the_harness": 110,
+        "window_turns_the_referee_would_have_played_full_rule": 0,
+        "window_turns_the_referee_would_have_played_grace_only": 5
+      },
+      "q3_min_second_troll_cost": {
+        "best_shack_holding_over_the_whole_replay": {
+          "APPLE": 0,
+          "LEMON": 2,
+          "PLUM": 0
+        },
+        "floor_over_every_opening_option": {
+          "APPLE": 1,
+          "LEMON": 2,
+          "PLUM": 2
+        },
+        "floor_source": "opening_options ms 1..3 / cc 1..max / chop 1..max, harvest_power 0 (candidate-door1.rs:842) x training_cost n + stat^2 (bot/main.py:128) with n = 1",
+        "iron_charged": false,
+        "items_no_live_source_ever_existed_for": [
+          "APPLE"
+        ],
+        "items_the_shack_never_held_enough_of": [
+          "APPLE",
+          "PLUM"
+        ],
+        "kind_ever_alive_on_the_map": {
+          "APPLE": false,
+          "LEMON": true,
+          "PLUM": true
+        },
+        "second_troll_affordable_on_any_turn_under_any_stats": false,
+        "second_troll_impossible_from_turn_1_by_map_content": true
+      },
+      "q3_opening": {
+        "abandon_turn": 35,
+        "missing_at_abandon": {
+          "apple": 1,
+          "lemon": 1,
+          "plum": 2
+        },
+        "per_item": {
+          "apple": {
+            "first_turn_reachable_with_fruit": null,
+            "kind_ever_on_the_map_at_all": false,
+            "one_fruit_round_trip_lower_bound": null,
+            "short_by": 1,
+            "turns_a_live_source_existed_anywhere": 0,
+            "turns_a_live_source_was_reachable": 0,
+            "turns_a_reachable_live_source_carried_fruit": 0,
+            "turns_an_opponent_unit_stood_on_a_source": 0,
+            "turns_before_deadline": 34
+          },
+          "lemon": {
+            "first_turn_reachable_with_fruit": 7,
+            "kind_ever_on_the_map_at_all": true,
+            "one_fruit_round_trip_lower_bound": {
+              "bound_is_past_the_deadline": false,
+              "deadline_turn": 35,
+              "earliest_turn_one_fruit_could_be_banked": 23,
+              "from_turn": 7,
+              "steps_source_to_shack_door": 8,
+              "steps_unit_to_source": 6,
+              "unit_speed": 1
+            },
+            "short_by": 1,
+            "turns_a_live_source_existed_anywhere": 34,
+            "turns_a_live_source_was_reachable": 34,
+            "turns_a_reachable_live_source_carried_fruit": 27,
+            "turns_an_opponent_unit_stood_on_a_source": 0,
+            "turns_before_deadline": 34
+          },
+          "plum": {
+            "first_turn_reachable_with_fruit": 1,
+            "kind_ever_on_the_map_at_all": true,
+            "one_fruit_round_trip_lower_bound": {
+              "bound_is_past_the_deadline": false,
+              "deadline_turn": 35,
+              "earliest_turn_one_fruit_could_be_banked": 29,
+              "from_turn": 1,
+              "steps_source_to_shack_door": 11,
+              "steps_unit_to_source": 15,
+              "unit_speed": 1
+            },
+            "short_by": 2,
+            "turns_a_live_source_existed_anywhere": 34,
+            "turns_a_live_source_was_reachable": 34,
+            "turns_a_reachable_live_source_carried_fruit": 34,
+            "turns_an_opponent_unit_stood_on_a_source": 0,
+            "turns_before_deadline": 34
+          }
+        }
+      },
+      "q3_opponent": {
+        "opponent_unit_turns_by_chop_power": {
+          "0": 200
+        }
+      },
+      "q4_replant_full_game": {
+        "always_false_conjuncts": [
+          "c5_own_units_ge_2"
+        ],
+        "co_false_with_c5_own_units_ge_2": {
+          "(none)": 101,
+          "c2_carried_zero,c3_turn_ge_100": 2,
+          "c2_carried_zero,c3_turn_ge_100,c6_adjacent_shack": 18,
+          "c2_carried_zero,c3_turn_ge_100,c6_adjacent_shack,c7_cell_free": 1,
+          "c3_turn_ge_100": 11,
+          "c3_turn_ge_100,c6_adjacent_shack": 16,
+          "c3_turn_ge_100,c6_adjacent_shack,c7_cell_free": 11
+        },
+        "conjunct_false_counts": {
+          "c2_carried_zero": 21,
+          "c3_turn_ge_100": 59,
+          "c5_own_units_ge_2": 160,
+          "c6_adjacent_shack": 46,
+          "c7_cell_free": 12
+        },
+        "turns_all_seven_true": [],
+        "turns_measured": 160
+      },
+      "q5_hc_observation_denominator": {
+        "accepted_plant_rows": 41,
+        "guard_returns": [],
+        "h_c_is_unobserved_on_turns": 52,
+        "plant_bearing_turns": 81,
+        "rejected_plant_rows": 0,
+        "rejection_clauses_seen": {},
+        "routes_on_those_turns": {
+          "early:EARLY_CARRY_BANK": 12,
+          "early:EARLY_GATHER": 22,
+          "main:FULL_BANK": 12,
+          "main:SAFE_REGEN_BANK": 6
+        },
+        "turns_it_returned_at_a_function_guard": 0,
+        "turns_the_chop_generator_entered_the_loop": 29,
+        "turns_with_no_chop_call_at_all_route_never_reached_it": 52
+      },
+      "unit": 0,
+      "window": [
+        91,
+        200
+      ]
+    },
+    {
+      "d3_out_of_window_clause_rows": {
+        "clause_counts": {
+          "chop:ACCEPTED": 12
+        },
+        "rows": [
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  3
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "5",
+                  "return": "7",
+                  "travel": "7",
+                  "trip": "20",
+                  "wood": "2"
+                },
+                "kind": "APPLE"
+              }
+            ],
+            "turn": 1
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  3
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "5",
+                  "return": "7",
+                  "travel": "6",
+                  "trip": "19",
+                  "wood": "2"
+                },
+                "kind": "APPLE"
+              }
+            ],
+            "turn": 2
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  3
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "5",
+                  "return": "7",
+                  "travel": "5",
+                  "trip": "18",
+                  "wood": "2"
+                },
+                "kind": "APPLE"
+              }
+            ],
+            "turn": 3
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  3
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "5",
+                  "return": "7",
+                  "travel": "4",
+                  "trip": "17",
+                  "wood": "2"
+                },
+                "kind": "APPLE"
+              }
+            ],
+            "turn": 4
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  3
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "5",
+                  "return": "7",
+                  "travel": "3",
+                  "trip": "16",
+                  "wood": "2"
+                },
+                "kind": "APPLE"
+              }
+            ],
+            "turn": 5
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  3
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "5",
+                  "return": "7",
+                  "travel": "2",
+                  "trip": "15",
+                  "wood": "2"
+                },
+                "kind": "APPLE"
+              }
+            ],
+            "turn": 6
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  3
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "5",
+                  "return": "7",
+                  "travel": "1",
+                  "trip": "14",
+                  "wood": "2"
+                },
+                "kind": "APPLE"
+              }
+            ],
+            "turn": 7
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  3
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "5",
+                  "return": "7",
+                  "travel": "0",
+                  "trip": "13",
+                  "wood": "2"
+                },
+                "kind": "APPLE"
+              }
+            ],
+            "turn": 8
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  3
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "4",
+                  "return": "7",
+                  "travel": "0",
+                  "trip": "12",
+                  "wood": "2"
+                },
+                "kind": "APPLE"
+              }
+            ],
+            "turn": 9
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  3
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "3",
+                  "return": "7",
+                  "travel": "0",
+                  "trip": "11",
+                  "wood": "2"
+                },
+                "kind": "APPLE"
+              }
+            ],
+            "turn": 10
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  3
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "2",
+                  "return": "7",
+                  "travel": "0",
+                  "trip": "10",
+                  "wood": "2"
+                },
+                "kind": "APPLE"
+              }
+            ],
+            "turn": 11
+          },
+          {
+            "call": "chop",
+            "plants": [
+              {
+                "cell": [
+                  8,
+                  3
+                ],
+                "clause": "ACCEPTED",
+                "fields": {
+                  "chop_turns": "1",
+                  "return": "7",
+                  "travel": "0",
+                  "trip": "9",
+                  "wood": "2"
+                },
+                "kind": "APPLE"
+              }
+            ],
+            "turn": 12
+          }
+        ]
+      },
+      "id": "OSC-033",
+      "q1_map_went_bare": {
+        "bare_turns": 188,
+        "first_bare_turn": 13,
+        "last_plant_bearing_turn": 12,
+        "last_plants": [
+          {
+            "audited_unit_chop_power": 1,
+            "cell": [
+              8,
+              3
+            ],
+            "evidence": "trace command on turn 12: 'CHOP 0', audited unit on the plant's own cell [8, 3], chop_power 1, plant health 1",
+            "felled_by": "OWN_UNIT_CHOP",
+            "fruits_on_its_last_turn": 3,
+            "health_on_its_last_turn": 1,
+            "kind": "APPLE",
+            "size": 4
+          }
+        ],
+        "replant_material_in_shack": {
+          "APPLE": 1,
+          "BANANA": 1
+        },
+        "replant_material_present": true,
+        "shack_inventory_at_that_moment": {
+          "APPLE": 1,
+          "BANANA": 1,
+          "IRON": 0,
+          "LEMON": 0,
+          "PLUM": 0,
+          "WOOD": 0
+        },
+        "went_bare": true
+      },
+      "q2_referee_stall_projection": {
+        "first_stalled_turn": 13,
+        "grace_only_end_turn": 26,
+        "grace_only_note": "the turn the no-plants grace counter alone would have expired, ignoring the mercy and both-stuck clauses; conservative bound that does not depend on the opponent's state",
+        "harness_horizon_turns": 200,
+        "per_turn": [
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 1,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 2,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 3,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 4,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 5,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 6,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 7,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 8,
+            "turns_until_end": 14
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 9,
+            "turns_until_end": 14
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 10,
+            "turns_until_end": 14
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 11,
+            "turns_until_end": 14
+          },
+          {
+            "plants": 1,
+            "reason": null,
+            "stalled": false,
+            "turn": 12,
+            "turns_until_end": 14
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 13,
+            "turns_until_end": 13
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 14,
+            "turns_until_end": 12
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 15,
+            "turns_until_end": 11
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 16,
+            "turns_until_end": 10
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 17,
+            "turns_until_end": 9
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 18,
+            "turns_until_end": 8
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 19,
+            "turns_until_end": 7
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 20,
+            "turns_until_end": 6
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 21,
+            "turns_until_end": 5
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 22,
+            "turns_until_end": 4
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 23,
+            "turns_until_end": 3
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 24,
+            "turns_until_end": 2
+          },
+          {
+            "plants": 0,
+            "reason": "mercy_player_1",
+            "stalled": true,
+            "turn": 25,
+            "turns_until_end": 1
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 26,
+            "turns_until_end": 0
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 27,
+            "turns_until_end": -1
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 28,
+            "turns_until_end": -2
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 29,
+            "turns_until_end": -3
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 30,
+            "turns_until_end": -4
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 31,
+            "turns_until_end": -5
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 32,
+            "turns_until_end": -6
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 33,
+            "turns_until_end": -7
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 34,
+            "turns_until_end": -8
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 35,
+            "turns_until_end": -9
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 36,
+            "turns_until_end": -10
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 37,
+            "turns_until_end": -11
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 38,
+            "turns_until_end": -12
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 39,
+            "turns_until_end": -13
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 40,
+            "turns_until_end": -14
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 41,
+            "turns_until_end": -15
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 42,
+            "turns_until_end": -16
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 43,
+            "turns_until_end": -17
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 44,
+            "turns_until_end": -18
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 45,
+            "turns_until_end": -19
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 46,
+            "turns_until_end": -20
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 47,
+            "turns_until_end": -21
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 48,
+            "turns_until_end": -22
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 49,
+            "turns_until_end": -23
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 50,
+            "turns_until_end": -24
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 51,
+            "turns_until_end": -25
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 52,
+            "turns_until_end": -26
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 53,
+            "turns_until_end": -27
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 54,
+            "turns_until_end": -28
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 55,
+            "turns_until_end": -29
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 56,
+            "turns_until_end": -30
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 57,
+            "turns_until_end": -31
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 58,
+            "turns_until_end": -32
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 59,
+            "turns_until_end": -33
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 60,
+            "turns_until_end": -34
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 61,
+            "turns_until_end": -35
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 62,
+            "turns_until_end": -36
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 63,
+            "turns_until_end": -37
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 64,
+            "turns_until_end": -38
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 65,
+            "turns_until_end": -39
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 66,
+            "turns_until_end": -40
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 67,
+            "turns_until_end": -41
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 68,
+            "turns_until_end": -42
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 69,
+            "turns_until_end": -43
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 70,
+            "turns_until_end": -44
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 71,
+            "turns_until_end": -45
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 72,
+            "turns_until_end": -46
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 73,
+            "turns_until_end": -47
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 74,
+            "turns_until_end": -48
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 75,
+            "turns_until_end": -49
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 76,
+            "turns_until_end": -50
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 77,
+            "turns_until_end": -51
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 78,
+            "turns_until_end": -52
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 79,
+            "turns_until_end": -53
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 80,
+            "turns_until_end": -54
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 81,
+            "turns_until_end": -55
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 82,
+            "turns_until_end": -56
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 83,
+            "turns_until_end": -57
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 84,
+            "turns_until_end": -58
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 85,
+            "turns_until_end": -59
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 86,
+            "turns_until_end": -60
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 87,
+            "turns_until_end": -61
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 88,
+            "turns_until_end": -62
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 89,
+            "turns_until_end": -63
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 90,
+            "turns_until_end": -64
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 91,
+            "turns_until_end": -65
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 92,
+            "turns_until_end": -66
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 93,
+            "turns_until_end": -67
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 94,
+            "turns_until_end": -68
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 95,
+            "turns_until_end": -69
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 96,
+            "turns_until_end": -70
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 97,
+            "turns_until_end": -71
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 98,
+            "turns_until_end": -72
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 99,
+            "turns_until_end": -73
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 100,
+            "turns_until_end": -74
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 101,
+            "turns_until_end": -75
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 102,
+            "turns_until_end": -76
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 103,
+            "turns_until_end": -77
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 104,
+            "turns_until_end": -78
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 105,
+            "turns_until_end": -79
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 106,
+            "turns_until_end": -80
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 107,
+            "turns_until_end": -81
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 108,
+            "turns_until_end": -82
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 109,
+            "turns_until_end": -83
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 110,
+            "turns_until_end": -84
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 111,
+            "turns_until_end": -85
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 112,
+            "turns_until_end": -86
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 113,
+            "turns_until_end": -87
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 114,
+            "turns_until_end": -88
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 115,
+            "turns_until_end": -89
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 116,
+            "turns_until_end": -90
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 117,
+            "turns_until_end": -91
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 118,
+            "turns_until_end": -92
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 119,
+            "turns_until_end": -93
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 120,
+            "turns_until_end": -94
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 121,
+            "turns_until_end": -95
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 122,
+            "turns_until_end": -96
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 123,
+            "turns_until_end": -97
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 124,
+            "turns_until_end": -98
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 125,
+            "turns_until_end": -99
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 126,
+            "turns_until_end": -100
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 127,
+            "turns_until_end": -101
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 128,
+            "turns_until_end": -102
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 129,
+            "turns_until_end": -103
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 130,
+            "turns_until_end": -104
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 131,
+            "turns_until_end": -105
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 132,
+            "turns_until_end": -106
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 133,
+            "turns_until_end": -107
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 134,
+            "turns_until_end": -108
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 135,
+            "turns_until_end": -109
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 136,
+            "turns_until_end": -110
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 137,
+            "turns_until_end": -111
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 138,
+            "turns_until_end": -112
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 139,
+            "turns_until_end": -113
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 140,
+            "turns_until_end": -114
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 141,
+            "turns_until_end": -115
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 142,
+            "turns_until_end": -116
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 143,
+            "turns_until_end": -117
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 144,
+            "turns_until_end": -118
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 145,
+            "turns_until_end": -119
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 146,
+            "turns_until_end": -120
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 147,
+            "turns_until_end": -121
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 148,
+            "turns_until_end": -122
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 149,
+            "turns_until_end": -123
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 150,
+            "turns_until_end": -124
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 151,
+            "turns_until_end": -125
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 152,
+            "turns_until_end": -126
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 153,
+            "turns_until_end": -127
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 154,
+            "turns_until_end": -128
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 155,
+            "turns_until_end": -129
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 156,
+            "turns_until_end": -130
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 157,
+            "turns_until_end": -131
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 158,
+            "turns_until_end": -132
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 159,
+            "turns_until_end": -133
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 160,
+            "turns_until_end": -134
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 161,
+            "turns_until_end": -135
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 162,
+            "turns_until_end": -136
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 163,
+            "turns_until_end": -137
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 164,
+            "turns_until_end": -138
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 165,
+            "turns_until_end": -139
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 166,
+            "turns_until_end": -140
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 167,
+            "turns_until_end": -141
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 168,
+            "turns_until_end": -142
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 169,
+            "turns_until_end": -143
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 170,
+            "turns_until_end": -144
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 171,
+            "turns_until_end": -145
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 172,
+            "turns_until_end": -146
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 173,
+            "turns_until_end": -147
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 174,
+            "turns_until_end": -148
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 175,
+            "turns_until_end": -149
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 176,
+            "turns_until_end": -150
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 177,
+            "turns_until_end": -151
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 178,
+            "turns_until_end": -152
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 179,
+            "turns_until_end": -153
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 180,
+            "turns_until_end": -154
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 181,
+            "turns_until_end": -155
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 182,
+            "turns_until_end": -156
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 183,
+            "turns_until_end": -157
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 184,
+            "turns_until_end": -158
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 185,
+            "turns_until_end": -159
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 186,
+            "turns_until_end": -160
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 187,
+            "turns_until_end": -161
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 188,
+            "turns_until_end": -162
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 189,
+            "turns_until_end": -163
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 190,
+            "turns_until_end": -164
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 191,
+            "turns_until_end": -165
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 192,
+            "turns_until_end": -166
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 193,
+            "turns_until_end": -167
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 194,
+            "turns_until_end": -168
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 195,
+            "turns_until_end": -169
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 196,
+            "turns_until_end": -170
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 197,
+            "turns_until_end": -171
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 198,
+            "turns_until_end": -172
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 199,
+            "turns_until_end": -173
+          },
+          {
+            "plants": 0,
+            "reason": "grace_expired",
+            "stalled": true,
+            "turn": 200,
+            "turns_until_end": -174
+          }
+        ],
+        "reason": "mercy_player_1",
+        "turns_after_the_referee_would_have_ended": 187
+      },
+      "q2_window_turns_after_the_referee_end": {
+        "audited_window": [
+          58,
+          200
+        ],
+        "window_turns_in_the_harness": 143,
+        "window_turns_the_referee_would_have_played_full_rule": 0,
+        "window_turns_the_referee_would_have_played_grace_only": 0
+      },
+      "q3_min_second_troll_cost": {
+        "best_shack_holding_over_the_whole_replay": {
+          "APPLE": 1,
+          "LEMON": 0,
+          "PLUM": 0
+        },
+        "floor_over_every_opening_option": {
+          "APPLE": 1,
+          "LEMON": 2,
+          "PLUM": 2
+        },
+        "floor_source": "opening_options ms 1..3 / cc 1..max / chop 1..max, harvest_power 0 (candidate-door1.rs:842) x training_cost n + stat^2 (bot/main.py:128) with n = 1",
+        "iron_charged": false,
+        "items_no_live_source_ever_existed_for": [
+          "LEMON",
+          "PLUM"
+        ],
+        "items_the_shack_never_held_enough_of": [
+          "LEMON",
+          "PLUM"
+        ],
+        "kind_ever_alive_on_the_map": {
+          "APPLE": true,
+          "LEMON": false,
+          "PLUM": false
+        },
+        "second_troll_affordable_on_any_turn_under_any_stats": false,
+        "second_troll_impossible_from_turn_1_by_map_content": true
+      },
+      "q3_opening": {
+        "abandon_turn": 35,
+        "missing_at_abandon": {
+          "lemon": 2,
+          "plum": 2
+        },
+        "per_item": {
+          "lemon": {
+            "first_turn_reachable_with_fruit": null,
+            "kind_ever_on_the_map_at_all": false,
+            "one_fruit_round_trip_lower_bound": null,
+            "short_by": 2,
+            "turns_a_live_source_existed_anywhere": 0,
+            "turns_a_live_source_was_reachable": 0,
+            "turns_a_reachable_live_source_carried_fruit": 0,
+            "turns_an_opponent_unit_stood_on_a_source": 0,
+            "turns_before_deadline": 34
+          },
+          "plum": {
+            "first_turn_reachable_with_fruit": null,
+            "kind_ever_on_the_map_at_all": false,
+            "one_fruit_round_trip_lower_bound": null,
+            "short_by": 2,
+            "turns_a_live_source_existed_anywhere": 0,
+            "turns_a_live_source_was_reachable": 0,
+            "turns_a_reachable_live_source_carried_fruit": 0,
+            "turns_an_opponent_unit_stood_on_a_source": 0,
+            "turns_before_deadline": 34
+          }
+        }
+      },
+      "q3_opponent": {
+        "opponent_unit_turns_by_chop_power": {
+          "0": 200
+        }
+      },
+      "q4_replant_full_game": {
+        "always_false_conjuncts": [
+          "c5_own_units_ge_2"
+        ],
+        "co_false_with_c5_own_units_ge_2": {
+          "(none)": 101,
+          "c3_turn_ge_100": 65
+        },
+        "conjunct_false_counts": {
+          "c3_turn_ge_100": 65,
+          "c5_own_units_ge_2": 166
+        },
+        "turns_all_seven_true": [],
+        "turns_measured": 166
+      },
+      "q5_hc_observation_denominator": {
+        "accepted_plant_rows": 12,
+        "guard_returns": [],
+        "h_c_is_unobserved_on_turns": 0,
+        "plant_bearing_turns": 12,
+        "rejected_plant_rows": 0,
+        "rejection_clauses_seen": {},
+        "routes_on_those_turns": {},
+        "turns_it_returned_at_a_function_guard": 0,
+        "turns_the_chop_generator_entered_the_loop": 12,
+        "turns_with_no_chop_call_at_all_route_never_reached_it": 0
+      },
+      "unit": 0,
+      "window": [
+        58,
+        200
+      ]
+    }
+  ],
+  "frozen_predicate": {
+    "function": "has_stalled",
+    "module": "sim/engine.py",
+    "note": "unmodified and unwrapped; this file builds sim.state.GameState from the referee trace and hands it over. Scores from sim.engine.recompute_scores.",
+    "rust_original": "rust/src/game/engine.rs:819 has_stalled (referee v1.0.5 Board.hasStalled)"
+  },
+  "gate": "G-3",
+  "gates": [
+    "parity: the clause probe's command stream is byte-identical to the uninstrumented champion's on both fixtures (the G-2-accepted gate, re-run here unchanged)",
+    "clause-tap gates 1-5 and the referee/tap IDENTITY agreement gate, re-run unchanged",
+    "adapter fidelity, per turn: the sim.state.GameState handed to the frozen predicate matches the referee trace by plant canonical record, unit (id, player, cell, ms, carry) and BOTH inventories; a mismatch fails the run",
+    "stall non-vacuity, per fixture: has_stalled must be observed returning False on a plant-bearing turn AND True on a bare one, or no end turn is reported",
+    "stall predicate control: four constructed states, two that must stall and two that must not, covering the grace counter, the both-stuck rule and the fruit-held escape",
+    "felling attribution is command-evidenced or UNATTRIBUTED; standing on the tree is not accepted as evidence, and the opponent is never named because the transcript carries our side's commands only",
+    "deliverable 3 out-of-window: at least one call must have seen a real plant, or the run fails rather than reporting a vacuous per-plant attribution"
+  ],
+  "harness_note": "claude_1/banana-restoration-r2/regression_tests.py:run_binary_custom runs a FIXED cfg['turns'] horizon and never calls a stall check, which is why the replay reaches turns a real game would not.",
+  "probe": {
+    "path": "claude_1/picker2/routeprobe-door1-clause.rs",
+    "sha256": "64094f36fa704b7aff697c4c4f368c8c57747a04908980124387da29dd3885ed"
+  },
+  "scope": "measurement only; no fix, no candidate, no behaviour change, no class-wide claim; bug-versus-correct-caution is the OWNER's ruling and is not made here",
+  "stall_predicate_control": [
+    {
+      "case": "plant_exists_unit_on_it",
+      "must_be": false,
+      "note": "counter is set to walk-home/ms + 6 because the unit stands on the plant",
+      "stalled": false,
+      "turns_until_end": 10
+    },
+    {
+      "case": "bare_board_grace_expires",
+      "must_be": true,
+      "reason": "grace_expired",
+      "stalled": true,
+      "turns_until_end": 0
+    },
+    {
+      "case": "bare_board_both_hold_fruit_grace_left",
+      "must_be": false,
+      "stalled": false,
+      "turns_until_end": 4
+    },
+    {
+      "case": "bare_board_both_stuck_grace_left",
+      "must_be": true,
+      "reason": "both_stuck",
+      "stalled": true,
+      "turns_until_end": 4
+    }
+  ],
+  "task": "20260821-osc032-033-cause-attribution"
+}

@@ -1,0 +1,462 @@
+{
+  "census_refused_games_not_counted": {
+    "delta_b_ticks": 2,
+    "detail": [
+      {
+        "before_divergence": false,
+        "duplicates_only": true,
+        "first_divergent_turn": 7,
+        "game": 900090452,
+        "turn": 196,
+        "unit": 3
+      },
+      {
+        "before_divergence": false,
+        "duplicates_only": true,
+        "first_divergent_turn": 100,
+        "game": 900092622,
+        "turn": 227,
+        "unit": 3
+      }
+    ],
+    "fallback_entries": 606
+  },
+  "census_verified": {
+    "delta_a_ticks": 546,
+    "delta_b_ticks": 1,
+    "fallback_entries": 729,
+    "fallback_entries_carrying": 4,
+    "traced_turns": 21478
+  },
+  "controls": [
+    {
+      "control": "1 baseline: probe reproduces the recorded game and reaches Delta-B",
+      "detail": "parity=True delta_b=1",
+      "fired": true
+    },
+    {
+      "control": "2 probe inertness: probe stream == plain instrument stream",
+      "detail": "226/226 lines equal",
+      "fired": true
+    },
+    {
+      "control": "3 parity gate is live: one own-unit cell moved one step -> stream diverges",
+      "detail": "corrupted line 1561; diverged=True",
+      "fired": true
+    },
+    {
+      "control": "4 the fork is not inert: poisoned EXTEND body changes the Delta-B unit's command",
+      "detail": "delta_b_unit_changed on turns [196]",
+      "fired": true
+    },
+    {
+      "control": "5 unknown agent id is refused",
+      "detail": "agent 1 appears 0 times in this replay's agent table",
+      "fired": true
+    },
+    {
+      "control": "6 duplicates-only check is live: an altered score and a removed candidate both fail",
+      "detail": "altered_rejected=True removed_rejected=True",
+      "fired": true
+    },
+    {
+      "control": "7 Delta-A/Delta-B co-occurrence is a violation, not an absorption",
+      "detail": "synthetic co-occurrence flagged=True",
+      "fired": true
+    },
+    {
+      "control": "8 a game with no Delta-B state contributes zero ticks",
+      "detail": "900089738 parity=True ticks=0",
+      "fired": true
+    }
+  ],
+  "corpus": {
+    "agent_id": 6652424,
+    "digest_sha256": "a319f02c055950dce81c7fa586af01cb3c60a3f873386fcce9e6dd05d323ac7c",
+    "dir": "/home/tarstars/.cache/troll-farm/narrate-games-ac65523b",
+    "games": 149
+  },
+  "delta_b_detail_verified": [
+    {
+      "added": [
+        "MOVE 3 13 3|6998.000000|Bank((13, 3))",
+        "MOVE 3 12 2|6999.000000|Bank((12, 2))",
+        "DROP 3|8000.000000|Bank((11, 3))"
+      ],
+      "carried": 1,
+      "duplicates_only": true,
+      "game": 900089943,
+      "removed": [],
+      "turn": 196,
+      "unit": 3
+    }
+  ],
+  "duplicates_only_failures": [],
+  "fork_differences_attributed_to_sibling_delta_a": [
+    {
+      "differing": [
+        [
+          "WAIT",
+          "PICK 1 APPLE"
+        ]
+      ],
+      "game": 900089943,
+      "turn": 196,
+      "unit_ids": [
+        1
+      ]
+    }
+  ],
+  "measured": true,
+  "mutual_exclusion_violations": [],
+  "parity": {
+    "refused": [
+      {
+        "first_divergent_turn": 40,
+        "game": 900089739,
+        "traced_turns": 199
+      },
+      {
+        "first_divergent_turn": 22,
+        "game": 900089745,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 116,
+        "game": 900089746,
+        "traced_turns": 215
+      },
+      {
+        "first_divergent_turn": 44,
+        "game": 900089747,
+        "traced_turns": 299
+      },
+      {
+        "first_divergent_turn": 27,
+        "game": 900089884,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 60,
+        "game": 900089972,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 148,
+        "game": 900090025,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 64,
+        "game": 900090040,
+        "traced_turns": 180
+      },
+      {
+        "first_divergent_turn": 108,
+        "game": 900090150,
+        "traced_turns": 269
+      },
+      {
+        "first_divergent_turn": 41,
+        "game": 900090172,
+        "traced_turns": 135
+      },
+      {
+        "first_divergent_turn": 92,
+        "game": 900090186,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 11,
+        "game": 900090232,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 152,
+        "game": 900090255,
+        "traced_turns": 296
+      },
+      {
+        "first_divergent_turn": 89,
+        "game": 900090273,
+        "traced_turns": 246
+      },
+      {
+        "first_divergent_turn": 1,
+        "game": 900090284,
+        "traced_turns": 24
+      },
+      {
+        "first_divergent_turn": 7,
+        "game": 900090452,
+        "traced_turns": 199
+      },
+      {
+        "first_divergent_turn": 140,
+        "game": 900090502,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 80,
+        "game": 900090525,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 104,
+        "game": 900090587,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 64,
+        "game": 900090613,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 172,
+        "game": 900090680,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 73,
+        "game": 900090762,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 173,
+        "game": 900090776,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 1,
+        "game": 900090849,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 99,
+        "game": 900090910,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 44,
+        "game": 900090942,
+        "traced_turns": 220
+      },
+      {
+        "first_divergent_turn": 45,
+        "game": 900091027,
+        "traced_turns": 179
+      },
+      {
+        "first_divergent_turn": 80,
+        "game": 900091075,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 67,
+        "game": 900091110,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 202,
+        "game": 900091141,
+        "traced_turns": 297
+      },
+      {
+        "first_divergent_turn": 110,
+        "game": 900091164,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 18,
+        "game": 900091203,
+        "traced_turns": 201
+      },
+      {
+        "first_divergent_turn": 105,
+        "game": 900091242,
+        "traced_turns": 244
+      },
+      {
+        "first_divergent_turn": 25,
+        "game": 900091352,
+        "traced_turns": 118
+      },
+      {
+        "first_divergent_turn": 20,
+        "game": 900091479,
+        "traced_turns": 296
+      },
+      {
+        "first_divergent_turn": 162,
+        "game": 900091673,
+        "traced_turns": 289
+      },
+      {
+        "first_divergent_turn": 35,
+        "game": 900091739,
+        "traced_turns": 249
+      },
+      {
+        "first_divergent_turn": 27,
+        "game": 900091761,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 99,
+        "game": 900091814,
+        "traced_turns": 154
+      },
+      {
+        "first_divergent_turn": 61,
+        "game": 900091869,
+        "traced_turns": 159
+      },
+      {
+        "first_divergent_turn": 165,
+        "game": 900091890,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 97,
+        "game": 900091967,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 23,
+        "game": 900092026,
+        "traced_turns": 161
+      },
+      {
+        "first_divergent_turn": 25,
+        "game": 900092063,
+        "traced_turns": 288
+      },
+      {
+        "first_divergent_turn": 138,
+        "game": 900092121,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 155,
+        "game": 900092154,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 72,
+        "game": 900092186,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 127,
+        "game": 900092332,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 60,
+        "game": 900092370,
+        "traced_turns": 267
+      },
+      {
+        "first_divergent_turn": 32,
+        "game": 900092408,
+        "traced_turns": 139
+      },
+      {
+        "first_divergent_turn": 52,
+        "game": 900092436,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 12,
+        "game": 900092474,
+        "traced_turns": 250
+      },
+      {
+        "first_divergent_turn": 178,
+        "game": 900092566,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 172,
+        "game": 900092586,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 100,
+        "game": 900092622,
+        "traced_turns": 231
+      },
+      {
+        "first_divergent_turn": 58,
+        "game": 900092687,
+        "traced_turns": 114
+      },
+      {
+        "first_divergent_turn": 210,
+        "game": 900092719,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 62,
+        "game": 900092760,
+        "traced_turns": 215
+      },
+      {
+        "first_divergent_turn": 53,
+        "game": 900092777,
+        "traced_turns": 231
+      },
+      {
+        "first_divergent_turn": 64,
+        "game": 900092998,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 62,
+        "game": 900093102,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 57,
+        "game": 900093143,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 39,
+        "game": 900093161,
+        "traced_turns": 183
+      },
+      {
+        "first_divergent_turn": 30,
+        "game": 900093226,
+        "traced_turns": 131
+      },
+      {
+        "first_divergent_turn": 45,
+        "game": 900093265,
+        "traced_turns": 213
+      },
+      {
+        "first_divergent_turn": 125,
+        "game": 900093311,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 70,
+        "game": 900093404,
+        "traced_turns": 300
+      },
+      {
+        "first_divergent_turn": 19,
+        "game": 900093423,
+        "traced_turns": 300
+      }
+    ],
+    "refused_games": 68,
+    "verified_games": 81
+  },
+  "probe_inertness_failures": [],
+  "status": "PASS",
+  "step4_delta_b_unit_changed": [],
+  "subject_sha256": "aaebc503cc2660e920d45858767c6932575324085c93ef9345906f683b5a9271"
+}

@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import ast
 import contextlib
+import gzip
 import hashlib
 import inspect
 import io
@@ -3336,6 +3337,53 @@ class TestR4CorpusBump(unittest.TestCase):
         self.assertTrue(any(v.startswith("c4") for v in retired))
         for row in cfg["instrument_invalid_rows"]:
             self.assertFalse(row["eligible_for_calibration"])
+
+
+class TestP4bFlagIsOffByDefault(unittest.TestCase):
+    """Coordinator order 20260825T181413Z item 1: the P4b gate is wired in
+    BEHIND A FLAG, DEFAULT OFF, and report tier only."""
+
+    def test_flag_defaults_to_off_on_the_cli(self):
+        parser_src = inspect.getsource(fp.main)
+        self.assertIn('"--p4b"', parser_src)
+        self.assertIn('action="store_true"', parser_src)
+        sig = inspect.signature(fp.run_panel)
+        self.assertIs(sig.parameters["p4b"].default, False)
+        self.assertIsNone(sig.parameters["p4b_baseline"].default)
+
+    def test_report_is_unchanged_when_no_sections_are_supplied(self):
+        cfg = json.loads(CANDIDATE_CONFIG.read_text())
+        rows, stats = [], fp.summarize(cfg, [], 0.0)
+        with tempfile.TemporaryDirectory() as d:
+            a, b = Path(d) / "a.md", Path(d) / "b.md"
+            fp.write_report(a, cfg, rows, stats, "CLEAR")
+            fp.write_report(b, cfg, rows, stats, "CLEAR", None)
+            self.assertEqual(a.read_bytes(), b.read_bytes())
+            fp.write_report(b, cfg, rows, stats, "CLEAR", ["## P4b", ""])
+            self.assertNotEqual(a.read_bytes(), b.read_bytes())
+            self.assertIn("## P4b", b.read_text())
+            self.assertLess(b.read_text().index("## P4b"),
+                            b.read_text().index("**VERDICT:"))
+
+    def test_archive_digest_is_the_decompressed_stream_not_the_gz_file(self):
+        """The G-1 provenance erratum: a gzip member embeds an mtime, so the
+        file digest of two identical archives differs.  The digest the panel
+        publishes must not."""
+        rows = [{"map_id": "m000", "seat": 0, "artifacts": {"x": 1}}]
+        with tempfile.TemporaryDirectory() as d:
+            one, two = Path(d) / "1.gz", Path(d) / "2.gz"
+            for path, mtime in ((one, 0), (two, 1_000_000_000)):
+                raw = b"".join(
+                    (json.dumps(r, sort_keys=True) + "\n").encode()
+                    for r in rows)
+                with open(path, "wb") as fh:
+                    with gzip.GzipFile(fileobj=fh, mode="wb",
+                                       mtime=mtime) as gz:
+                        gz.write(raw)
+            self.assertNotEqual(hashlib.sha256(one.read_bytes()).hexdigest(),
+                                hashlib.sha256(two.read_bytes()).hexdigest())
+            self.assertEqual(fp.stream_digest(fp.load_archive_rows(one)),
+                             fp.stream_digest(fp.load_archive_rows(two)))
 
 
 if __name__ == "__main__":

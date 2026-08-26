@@ -1,0 +1,19 @@
+--- a/candidate-cureC-p1p2.rs
++++ b/candidate-cureC-p1p2.rs
+@@ -1213,12 +1213,11 @@
+                     }
+                 let chops=Self::yamo_chop_candidates(view,unit,type_to_cut,opponent_eta_penalty,);
+                 if idle_regeneration&&chops.is_empty(){
+-                    let mut fallback=vec![MoisanBot::wait()];
+-                    fallback.extend(Self::idle_harvest_candidates(view,unit));
++                    out.extend(Self::idle_harvest_candidates(view,unit));
+                     if unit.total_carried()>0{
+-                        fallback.extend(Self::bank_candidates(view,unit));
+-                        }
+-                    return fallback;
++                        out.extend(Self::bank_candidates(view,unit));
++                        }
++                    return out;
+                     }
+                 if chops.is_empty()&&carried>0{
+                     out.extend(Self::bank_candidates(view,unit));

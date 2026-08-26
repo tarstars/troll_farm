@@ -1,0 +1,417 @@
+{
+ "classification": {
+  "all_own_peers_at_entry": [
+   {
+    "carry_at_entry": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "cell_at_entry": [
+     9,
+     2
+    ],
+    "distinct_cells_in_window": 2,
+    "distinct_cells_to_game_end": 12,
+    "idle_by_analysis_criterion": false,
+    "non_wait_verbs_in_window": [
+     "CHOP",
+     "MOVE"
+    ],
+    "orth_adjacent_to_oscillation_cells": true,
+    "plant_on_cell_at_entry": null,
+    "stats": {
+     "capacity": 2,
+     "chop_power": 1,
+     "harvest_power": 1,
+     "speed": 1
+    },
+    "unit": 0,
+    "wait_fraction_in_window": 0.0
+   }
+  ],
+  "blocker": null,
+  "blocker_state": "NONE",
+  "classifier_version": "m3a-observational/1",
+  "geometry_excerpt": [
+   "......",
+   "......",
+   "..oxT.",
+   "..#...",
+   "......"
+  ],
+  "geometry_excerpt_legend": "5 rows x 6 cols centred on the first oscillation cell (origin at row 2, col 2); o/x oscillation cells, B blocker, P blocker standing on a plant, T other plant, S own shack, s opponent shack, . walkable, # not. Documentation only.",
+  "geometry_stencil": "-1,-1.;-1,0#;0,-2.;0,-1x;0,0o;0,1.;1,-1.;1,0.;",
+  "mechanism": "UNCLASSIFIED",
+  "mechanism_evidence": "own peers exist but none holds a single cell orthogonally adjacent to an oscillation cell, so neither the detour branch nor a stationary occupation is established by the transcript",
+  "shack_door_evidence": {
+   "cells_that_are_opponent_shack_doors": [],
+   "cells_that_are_own_shack_doors": [],
+   "opponent_shack": [
+    13,
+    2
+   ],
+   "own_shack": [
+    0,
+    1
+   ]
+  }
+ },
+ "completeness": "FULL",
+ "content_sha256": "80256901c2137f216e30563e1151321da140dd62c0a3c846cb52e756ca277d19",
+ "detectors": {
+  "counts": {
+   "D-1": 2,
+   "D-2": 0,
+   "D-3": 0,
+   "D-4": 0,
+   "D-5": 0,
+   "D-6": 0,
+   "D-7": 0,
+   "D-8": 0,
+   "D-9": 0
+  },
+  "d1_episodes": [
+   {
+    "cells": [
+     [
+      10,
+      2
+     ],
+     [
+      11,
+      2
+     ]
+    ],
+    "k": 74,
+    "turn_end": 200,
+    "turn_start": 52,
+    "unit": 0
+   },
+   {
+    "cells": [
+     [
+      8,
+      2
+     ],
+     [
+      9,
+      2
+     ]
+    ],
+    "k": 3,
+    "turn_end": 31,
+    "turn_start": 24,
+    "unit": 2
+   }
+  ],
+  "live_horizon": 201,
+  "p4_violations": [
+   {
+    "live_end": 200,
+    "terminal_from": 201,
+    "why": "candidate makes no own-inventory/own-cargo progress over turns 42-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]",
+    "window_end": 200,
+    "window_start": 42
+   }
+  ],
+  "turns_simulated": 200
+ },
+ "id": "OSC-020",
+ "initial_world_state": {
+  "inventories": {
+   "opponent": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "own": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  "plants": [
+   [
+    "BANANA",
+    10,
+    2,
+    4,
+    6,
+    3,
+    6
+   ],
+   [
+    "LEMON",
+    12,
+    2,
+    4,
+    12,
+    1,
+    8
+   ]
+  ],
+  "turn": 1,
+  "units": [
+   [
+    0,
+    0,
+    0,
+    2,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    13,
+    3,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ],
+   [
+    5,
+    1,
+    12,
+    2,
+    1,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ },
+ "kind": "D1_EPISODE",
+ "multiplicity": {
+  "dedupe_key_sha256": "a0834f0121c2808075e0bbe970a152a733210765d08d02f38005bf5bf42e16ed",
+  "episodes": 1,
+  "members": [
+   {
+    "game_id": null,
+    "length_turns": 8,
+    "map_id": "m004",
+    "seat": 0,
+    "source": "fuzz-panel-floor",
+    "turn_end": 31,
+    "turn_start": 24,
+    "unit": 2
+   }
+  ],
+  "representative_rule": "longest window; ties broken by (map_id, seat, unit, turn_start)"
+ },
+ "provenance": {
+  "bot_source": "claude_1/chop4c/candidate-door1.rs",
+  "bot_source_git_ref": "dc43d633ab30154d78bad05425b026ca5487d797:claude_1/chop4c/candidate-door1.rs",
+  "bot_source_sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0",
+  "corpus_version": "c5-two-player-phase-merged-2026-08-11",
+  "generation_attempt": 0,
+  "instrument_version": "fuzz-panel/5-two-player-phase-merged-referee",
+  "map_class": "orchard_eligible",
+  "map_height": 6,
+  "map_id": "m004",
+  "map_width": 14,
+  "note": "candidate and parent are the SAME source -- the CHAMPION OF RECORD (dc43d633ab30154d78bad05425b026ca5487d797:claude_1/chop4c/candidate-door1.rs, sha256 547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0) judged against itself. This is the panel FLOOR for the champion, not a candidate regression, and not the `readable__no_orchard` lineage `98628e98...`.",
+  "opponent_profile": "idle",
+  "panel_config_sha256": "d51a4b975b4d90248d660f45da54d4673bc36e4a18908d22437248e3adbab18b",
+  "panel_liveness_window": 60,
+  "panel_maps": 120,
+  "panel_seeds": [
+   982451653,
+   15485863,
+   32452843,
+   49979687,
+   67867967,
+   86028121
+  ],
+  "panel_turns": 200,
+  "seat": 0,
+  "seed": 67867967,
+  "source": "fuzz-panel-floor",
+  "subject": "door1_champion_547fa706"
+ },
+ "schema": "troll-farm-oscillation-situation-v1",
+ "static_map_rows": [
+  "#~............",
+  "0.............",
+  ".............1",
+  "........#.....",
+  "..............",
+  ".............."
+ ],
+ "unresolved": [
+  "No own peer holds a single cell orthogonally adjacent to an oscillation cell for the whole window, so neither the forced-detour mechanism nor a stationary occupation is established. Settled by a resolver/goal trace over this frozen state."
+ ],
+ "window": {
+  "cells": [
+   [
+    8,
+    2
+   ],
+   [
+    9,
+    2
+   ]
+  ],
+  "commands": [
+   {
+    "line": "MOVE 0 10 2;MOVE 2 9 2",
+    "turn": 24
+   },
+   {
+    "line": "CHOP 0;MOVE 2 8 2",
+    "turn": 25
+   },
+   {
+    "line": "CHOP 0;MOVE 2 9 2",
+    "turn": 26
+   },
+   {
+    "line": "CHOP 0;MOVE 2 8 2",
+    "turn": 27
+   },
+   {
+    "line": "CHOP 0;MOVE 2 9 2",
+    "turn": 28
+   },
+   {
+    "line": "CHOP 0;MOVE 2 8 2",
+    "turn": 29
+   },
+   {
+    "line": "CHOP 0;MOVE 2 9 2",
+    "turn": 30
+   },
+   {
+    "line": "MOVE 0 9 2;MOVE 2 10 2",
+    "turn": 31
+   }
+  ],
+  "k": 3,
+  "length_turns": 8,
+  "turn_end": 31,
+  "turn_start": 24,
+  "unit": 2
+ },
+ "world_state_at_entry": {
+  "inventories": {
+   "opponent": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "own": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+   ]
+  },
+  "plants": [
+   [
+    "BANANA",
+    10,
+    2,
+    4,
+    6,
+    3,
+    0
+   ],
+   [
+    "LEMON",
+    12,
+    2,
+    4,
+    12,
+    3,
+    1
+   ]
+  ],
+  "turn": 24,
+  "units": [
+   [
+    0,
+    0,
+    9,
+    2,
+    1,
+    2,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    2,
+    0,
+    8,
+    2,
+    1,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    5,
+    1,
+    12,
+    2,
+    1,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ]
+ }
+}

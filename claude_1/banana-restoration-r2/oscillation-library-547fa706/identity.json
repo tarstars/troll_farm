@@ -1,0 +1,437 @@
+{
+ "case_count": 21,
+ "cases": [
+  {
+   "content_sha256": "5502a26e8c671cea0470b80c837033362c5fcad79dfc80a64f2c05b7e328ef9e",
+   "entry_state_sha256": "9c7e11664e1fb22e364437ce962bdee0f82108414353c98136682694d2828e5f",
+   "entry_turn": 6,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-001",
+   "identity_sha256": "8daaba1a2f4e8cc4b6e84afd8824d53aa95b90a73119018f63137e9115767389",
+   "map_id": "m110",
+   "opponent_profile": "harvester",
+   "seat": 1,
+   "seed": 32452843,
+   "unit": 0,
+   "window_commands_count": 195,
+   "window_commands_sha256": "fd311692719b8327e124dc19c8413a915d615b85f0a74a8b8e9bbccabd769e52",
+   "window_turns": [
+    6,
+    200
+   ]
+  },
+  {
+   "content_sha256": "4fb97efe488bc5ba2c200588fa7016b8818845ca0fbc2d41824fe85309938a2c",
+   "entry_state_sha256": "c47e0a7368da62bdb311690afb35f5f64db72b0ef402c6fbbbae9b1119f52af4",
+   "entry_turn": 12,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-002",
+   "identity_sha256": "07ae005f10d502c1cbeb4588ca5e4836aa35a8d4201fcdbc382fe598022fc35b",
+   "map_id": "m059",
+   "opponent_profile": "harvester",
+   "seat": 1,
+   "seed": 86028121,
+   "unit": 2,
+   "window_commands_count": 189,
+   "window_commands_sha256": "c4bb636fdcdf565ba77433f44ced4c3fd4c9489241703e6af565bbecf0c4bfca",
+   "window_turns": [
+    12,
+    200
+   ]
+  },
+  {
+   "content_sha256": "9e2d3bebaa2c566d6226069e01d35b2a10efe87454a056fd92db33eee3d62d59",
+   "entry_state_sha256": "b88f47c2db5ed1e2f5919ca42f78c57c1956a6654195cac966d2e36497cd2b48",
+   "entry_turn": 17,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-003",
+   "identity_sha256": "ff6a0f6ed03eb9a0f25bc9cb62f4b2be278d8d3fe2541b7405cc37d3c526d081",
+   "map_id": "m082",
+   "opponent_profile": "chopper_aggressor",
+   "seat": 1,
+   "seed": 67867967,
+   "unit": 2,
+   "window_commands_count": 184,
+   "window_commands_sha256": "e2dfbb12e71266cf0d45bc646de23c40a80f4b7133e5c7ff25b52b76c6555f75",
+   "window_turns": [
+    17,
+    200
+   ]
+  },
+  {
+   "content_sha256": "124061c57d9224f0662577ef850f2f9d3c1cfc6da97e47bdd43fd5773c23d4b4",
+   "entry_state_sha256": "e71754e1d48efa1e1e0b652a3f62c4f037e730e4b8e87bad02ff612939efedb1",
+   "entry_turn": 50,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-004",
+   "identity_sha256": "160a3339c9e9ed1534f9e9e966e88de5398454b9c42a5b35e4bd6bc03d47cb47",
+   "map_id": "m063",
+   "opponent_profile": "harvester",
+   "seat": 1,
+   "seed": 49979687,
+   "unit": 2,
+   "window_commands_count": 151,
+   "window_commands_sha256": "e420ccf67a7bf1a4a4c996a5befbc31e7dfe5654fe1d0a8610e6734b60012589",
+   "window_turns": [
+    50,
+    200
+   ]
+  },
+  {
+   "content_sha256": "fe9630428e1a2ea4f79693cfb1cd8b20ecca34bcccae272e4275450c6c6c40c4",
+   "entry_state_sha256": "dbde1b3a9ec7c198705cc8ad0b18850636f8ba352716c9af022c7dd763f70079",
+   "entry_turn": 176,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-005",
+   "identity_sha256": "412b8e552c8336e2b1b05690d12b14b5af918ed92fbf4904a1c1818253c0fd4c",
+   "map_id": "m040",
+   "opponent_profile": "harvester",
+   "seat": 0,
+   "seed": 67867967,
+   "unit": 0,
+   "window_commands_count": 25,
+   "window_commands_sha256": "aa8137e0b9c8ad20fbe1b1c60ab5dd1ca68ed42700522d668d965bbc480f171b",
+   "window_turns": [
+    176,
+    200
+   ]
+  },
+  {
+   "content_sha256": "48d128f74490e24fa22d523412f709de5b02bb313f03b72554d27321ea0446ec",
+   "entry_state_sha256": "dc549040f2bdc17a060bd12b75303152b7dd36119f7ad1b9815afebb114180cb",
+   "entry_turn": 29,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-006",
+   "identity_sha256": "7ce87f5c83f8c177f52f86f555a8874b59807d2400d5b978b69852f2b1c62de0",
+   "map_id": "m058",
+   "opponent_profile": "chopper_aggressor",
+   "seat": 1,
+   "seed": 67867967,
+   "unit": 0,
+   "window_commands_count": 14,
+   "window_commands_sha256": "abc618b253925d1dd1fee3e04716c7feb204167d5565900e62e3b2e12e953491",
+   "window_turns": [
+    29,
+    42
+   ]
+  },
+  {
+   "content_sha256": "39751ef28f225ad5541bfe191bf73bc07957835d35c6b88d17876cfacbd56cf8",
+   "entry_state_sha256": "39c01a8cf05844b73a0900ba5685e7378c8c968c781a11ba63e20c62023aadf5",
+   "entry_turn": 7,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-007",
+   "identity_sha256": "2016b55676971f70389ce64f45275579d347dd2588b2451758b0beab30aa3d60",
+   "map_id": "m070",
+   "opponent_profile": "harvester",
+   "seat": 1,
+   "seed": 67867967,
+   "unit": 2,
+   "window_commands_count": 12,
+   "window_commands_sha256": "fa0ab9bb637d6fea7bcdc8d470405f87d8ad6659be8fd0ab84720a88f942db45",
+   "window_turns": [
+    7,
+    18
+   ]
+  },
+  {
+   "content_sha256": "0f13e17c4a5c5244cfbde9ad5c751ce0b09484bced7fcca46b927ef795afedad",
+   "entry_state_sha256": "c661c1b55b0a88b4d1a4c05d6530a0bc2133a67c19b3f085a10a95b69d399111",
+   "entry_turn": 26,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-008",
+   "identity_sha256": "4ff9d7f299e2d3cf4bdc5595a51d658d306a9a3075ee581319ffb00451761362",
+   "map_id": "m028",
+   "opponent_profile": "chopper_aggressor",
+   "seat": 1,
+   "seed": 67867967,
+   "unit": 0,
+   "window_commands_count": 7,
+   "window_commands_sha256": "deb2f01270cd395a3e9e4fe344a42e3e40bc409bf5289cec819756f7f877a219",
+   "window_turns": [
+    26,
+    32
+   ]
+  },
+  {
+   "content_sha256": "c0186ce853e3bf3c826c7e6ea6fc81c4aec0462e7ab6bd73aa36a261e09a2ce8",
+   "entry_state_sha256": "8aeb4a23b5a2f368fb1bd62782f0aa4640033e1281f2d6cd93a9e2267976f75c",
+   "entry_turn": 8,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-009",
+   "identity_sha256": "1526056da4c1065303a9a228887a601c2f84928cf933c9f97e69e5b36816e08f",
+   "map_id": "m099",
+   "opponent_profile": "harvester",
+   "seat": 1,
+   "seed": 49979687,
+   "unit": 0,
+   "window_commands_count": 193,
+   "window_commands_sha256": "5afc056b0022384a28d69847f9f539d74ae49c1c992c1755cad2ede8b36d3285",
+   "window_turns": [
+    8,
+    200
+   ]
+  },
+  {
+   "content_sha256": "d4226c9ee9dc606056c3087318f83f770af6b9d33760750e9b26ce937f713709",
+   "entry_state_sha256": "8de7f74915800ca549c4071f8a0c3dfe89aaa42d0fc3660e8b793a3c02072d03",
+   "entry_turn": 7,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-010",
+   "identity_sha256": "f3b35212abcac91a8301f5e36a6f5afd945424a67bf928d22b6a005f5dfa073b",
+   "map_id": "m014",
+   "opponent_profile": "idle",
+   "seat": 1,
+   "seed": 32452843,
+   "unit": 2,
+   "window_commands_count": 194,
+   "window_commands_sha256": "7eaac47ebab863e8f6c31e6366b29090e6c786fb6e7b45a66e030f2792453538",
+   "window_turns": [
+    7,
+    200
+   ]
+  },
+  {
+   "content_sha256": "a39aa760cf4abfbb195402239c607c9aee6f8474ed8a85a2c4ad769823334c97",
+   "entry_state_sha256": "c7cde11a716ab766aadbc702ce40fcf59ab6371ff60643f18e18fcfd8223b3ba",
+   "entry_turn": 14,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-011",
+   "identity_sha256": "767e335b0ca5d4b9a26516e97bc0002bc7e8799b89f393714948903ea629f99c",
+   "map_id": "m046",
+   "opponent_profile": "harvester",
+   "seat": 0,
+   "seed": 67867967,
+   "unit": 2,
+   "window_commands_count": 187,
+   "window_commands_sha256": "37019374c4a7479fd6c5d0d05bf69802fe1fbafbf6e98aea3aa06e2a8e85fe6e",
+   "window_turns": [
+    14,
+    200
+   ]
+  },
+  {
+   "content_sha256": "043ce27e0c6fc534b2a5c54a5ab66d102fcb906e5c6db58af2acb902bd7e7f97",
+   "entry_state_sha256": "61496d0de45673781c0b6c56de851f66cab73b954dac98a3fe54b0361b3c8d6c",
+   "entry_turn": 32,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-012",
+   "identity_sha256": "e2ff8c99a2093edc27cf592b6ecce5fcc652516287f5e78db81a1f5f7cf8a320",
+   "map_id": "m084",
+   "opponent_profile": "idle",
+   "seat": 1,
+   "seed": 982451653,
+   "unit": 0,
+   "window_commands_count": 169,
+   "window_commands_sha256": "ad68c2052cb9b94caf7ac1753e5dd8d81f2e5a8d8e2f0d2a96a9a9433c62bbe1",
+   "window_turns": [
+    32,
+    200
+   ]
+  },
+  {
+   "content_sha256": "96df69df6c766679d06adf996b8cd0af7a5c4475ba3bcc515d835ddbc13a4148",
+   "entry_state_sha256": "87be4427eddf348768af38b70a6f63f17613a7eb6a5ed09cc3d08af64b9af7aa",
+   "entry_turn": 38,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-013",
+   "identity_sha256": "7a74370bb2a0a28b6c0a77fade9cdaf2c972a274886325f50e89b1f298d2a8e7",
+   "map_id": "m079",
+   "opponent_profile": "harvester",
+   "seat": 0,
+   "seed": 15485863,
+   "unit": 2,
+   "window_commands_count": 163,
+   "window_commands_sha256": "00c0f282de0dea1e861797d3543c3f60274a63c2e569fa050596c3ae6333ab03",
+   "window_turns": [
+    38,
+    200
+   ]
+  },
+  {
+   "content_sha256": "924866d98e9b2fbe8460b8bd17f4840f2bcd0bb98273e331194fc704faeed68a",
+   "entry_state_sha256": "c4f2ad161ea15fc37fbdd2aeed67a814d6c6a9cbd53b5733aea70360c01a2df9",
+   "entry_turn": 52,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-014",
+   "identity_sha256": "c77cc93dffeecb99dddcfd07545e8a64fcc234ffa35187a80d4b2ca92fe5e49b",
+   "map_id": "m070",
+   "opponent_profile": "harvester",
+   "seat": 1,
+   "seed": 67867967,
+   "unit": 0,
+   "window_commands_count": 149,
+   "window_commands_sha256": "2aefb6aa6bf22bf75ea8a2181f43642e07b7af1a7042644b7ceb8fce6a0eba2d",
+   "window_turns": [
+    52,
+    200
+   ]
+  },
+  {
+   "content_sha256": "6d979f86de2167629a35645f6f77f34c47743660928172d448d9fa166443c55b",
+   "entry_state_sha256": "e563974531162bd45410997d764b1754d90214ff4bbd059fa3e35f714b06dd18",
+   "entry_turn": 52,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-015",
+   "identity_sha256": "b64e7103989c75c2436146869810b508520128827688a3ba9e81940b027910ff",
+   "map_id": "m004",
+   "opponent_profile": "idle",
+   "seat": 0,
+   "seed": 67867967,
+   "unit": 0,
+   "window_commands_count": 149,
+   "window_commands_sha256": "1a4308c6d982e7a9e50bea58583342a444174749067611fbfb62b9e3a368b681",
+   "window_turns": [
+    52,
+    200
+   ]
+  },
+  {
+   "content_sha256": "09e65270a495d7690f729e25f67c8dafdb7e371cbd3efb729a37157d3534a639",
+   "entry_state_sha256": "709400413511e5d45bbd24ddb1253584805ea1ac8c4caee4a951bcc8a6eb7d92",
+   "entry_turn": 5,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-016",
+   "identity_sha256": "63e2a2128b73e3bf2fdf9988dd480458730e7ce5cf97aa43cbee73bbe7fe55ba",
+   "map_id": "m073",
+   "opponent_profile": "harvester",
+   "seat": 0,
+   "seed": 15485863,
+   "unit": 0,
+   "window_commands_count": 65,
+   "window_commands_sha256": "d3c26090fd9dce9f79c3dd8303fe9eeed3fa6f35aac136195d623922265a2e39",
+   "window_turns": [
+    5,
+    69
+   ]
+  },
+  {
+   "content_sha256": "aef9b27100c9ce4901405f7eabef5d24655a204be01b2f6c1327d6f9c2216808",
+   "entry_state_sha256": "17d4779c154d959dd9b7a7eb2fc75d8b493aabdd08c429d91376e5e1e96cf475",
+   "entry_turn": 12,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-017",
+   "identity_sha256": "ad5fc3713066ff919d27d72573b32cde3a7600f9576e9d2d27ad55759238648e",
+   "map_id": "m012",
+   "opponent_profile": "chopper_aggressor",
+   "seat": 1,
+   "seed": 982451653,
+   "unit": 0,
+   "window_commands_count": 21,
+   "window_commands_sha256": "ac0a0e36610dd6546788c477146928d25527055cbce540b8e05048cb509e971b",
+   "window_turns": [
+    12,
+    32
+   ]
+  },
+  {
+   "content_sha256": "96d60391691b01a78c212ade125eab815b9919aa46d80da54804dbba64bdd5fe",
+   "entry_state_sha256": "0c6b5c5f6e2855354f9c4b3258379e42c730efd29880ca62c891df5e6ea15abe",
+   "entry_turn": 17,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-018",
+   "identity_sha256": "10621e9d5d46a303b61798d4ba8994d63dd1ea72d7b666d2fcd7481fe817b039",
+   "map_id": "m085",
+   "opponent_profile": "chopper_aggressor",
+   "seat": 0,
+   "seed": 15485863,
+   "unit": 0,
+   "window_commands_count": 9,
+   "window_commands_sha256": "0921ed54fe568986fda7dc0efe5e6fe6896ec7a4c33e279c07ccaf2346cf9860",
+   "window_turns": [
+    17,
+    25
+   ]
+  },
+  {
+   "content_sha256": "0d663d332998c7c390a2bbcc04f0e0035a4e3289a7f97be6acdacd927a455865",
+   "entry_state_sha256": "c5a5d3fb42f22312c06d8127784864ff81eb26aba6c07433c319ad8891574f58",
+   "entry_turn": 3,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-019",
+   "identity_sha256": "dbc887b95bbd246e6f92cd1ccc850673532cbcdb426fe5c75ed4ccd2b49b6db5",
+   "map_id": "m066",
+   "opponent_profile": "harvester",
+   "seat": 0,
+   "seed": 982451653,
+   "unit": 2,
+   "window_commands_count": 22,
+   "window_commands_sha256": "9d3452028db0736d6f5bb80546d50b85c794e325ee6b73e9414863cc2fc6477e",
+   "window_turns": [
+    3,
+    24
+   ]
+  },
+  {
+   "content_sha256": "80256901c2137f216e30563e1151321da140dd62c0a3c846cb52e756ca277d19",
+   "entry_state_sha256": "dea8c148d6dc5c5db919f5feaef543b61b407c5bfd028a77e62674cec8a62c89",
+   "entry_turn": 24,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-020",
+   "identity_sha256": "859c0995b8bf5c3398671ee59b3714f8f81ebd7b0ba8f73e7d8e57e6e5f1f2db",
+   "map_id": "m004",
+   "opponent_profile": "idle",
+   "seat": 0,
+   "seed": 67867967,
+   "unit": 2,
+   "window_commands_count": 8,
+   "window_commands_sha256": "bf6a75e7e3ea2580772eb5793ae70c73e3af7a976e57f8add20c6f7660f9278f",
+   "window_turns": [
+    24,
+    31
+   ]
+  },
+  {
+   "content_sha256": "99c6ccb00a53c06ab808dcbd4ce18ea63de21a17732f4bc091e4237c92083797",
+   "entry_state_sha256": "a3dea72cf6fa315755a8e71ffa89219cd3d6fc6b80e1f4d4208652b64d3e96ba",
+   "entry_turn": 11,
+   "gate_notes": [],
+   "gate_ready": true,
+   "id": "OSC-021",
+   "identity_sha256": "7929dc5e1476e62b3578a3ca761b3ed93e9b71fc10a475e4008557d6165cc723",
+   "map_id": "m059",
+   "opponent_profile": "harvester",
+   "seat": 0,
+   "seed": 86028121,
+   "unit": 0,
+   "window_commands_count": 190,
+   "window_commands_sha256": "0538fb6a1dd75a33eb29daab52d8384e28b864f5c68656c28b0d61153d8a9316",
+   "window_turns": [
+    11,
+    200
+   ]
+  }
+ ],
+ "gate_ready_count": 21,
+ "gate_source": "claude_1/t1/fixture_harness.py::episode_identity",
+ "library_sha256": "4d3b36558f317a05acf65c3588bd9b572939645463b938274bc4c588c11e4d45",
+ "not_a_verdict": "This records WHICH episode a case is. It says nothing about whether any bot should have acted differently; that judgement is not in this library.",
+ "panel_config_sha256": "d51a4b975b4d90248d660f45da54d4673bc36e4a18908d22437248e3adbab18b",
+ "schema": "troll-farm-oscillation-episode-identity-v1",
+ "subject": {
+  "git_ref": "dc43d633ab30154d78bad05425b026ca5487d797:claude_1/chop4c/candidate-door1.rs",
+  "path": "claude_1/chop4c/candidate-door1.rs",
+  "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+ },
+ "what_this_is": "The two inputs `claude_1/t1/fixture_harness.episode_identity` reads, digested per case: the frozen window command lines (turn, line) and the frozen entry board (turn, plants, units, inventories) in the same canonical form `check_entry_state` builds. A replay reproduces a case only if BOTH digests match; neither alone is sufficient (an all-WAIT window agrees between two different games -- that is why the entry board is here)."
+}

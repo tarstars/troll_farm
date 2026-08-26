@@ -1,0 +1,775 @@
+{
+  "task": "20260821-swap-r1-cure",
+  "gate": "G-2",
+  "revision": 2,
+  "amendment": "coordination/messages/local_claude_1/20260821T105914Z-20260821-swap-r1-cure-gate-amendment-policy.md",
+  "subject_reproduces": 34,
+  "fixtures": 34,
+  "reproducing_on_the_base": 11,
+  "healed_by_alpha_where_alpha_fires": [],
+  "fixed_on_the_base_and_lost": [],
+  "reproducing_but_not_alphas_shape": [
+    "OSC-026",
+    "OSC-027"
+  ],
+  "named_by_the_amendment": {
+    "OSC-001": {
+      "reproduces_on_the_base": true,
+      "base_verdict": "NOT_FIXED",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 1,
+      "meets_the_amendment": false
+    },
+    "OSC-005": {
+      "reproduces_on_the_base": true,
+      "base_verdict": "NOT_FIXED",
+      "alpha_rev2_verdict": "NOT_FIXED",
+      "alpha_fires": 1,
+      "meets_the_amendment": false
+    },
+    "OSC-012": {
+      "reproduces_on_the_base": true,
+      "base_verdict": "NOT_FIXED",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 1,
+      "meets_the_amendment": false
+    },
+    "OSC-027": {
+      "reproduces_on_the_base": true,
+      "base_verdict": "NOT_FIXED",
+      "alpha_rev2_verdict": "NOT_FIXED",
+      "alpha_fires": 0,
+      "meets_the_amendment": true
+    }
+  },
+  "rows": [
+    {
+      "id": "OSC-001",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_FIXED",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 1,
+      "reproduces_on_the_base": true,
+      "changed": true,
+      "alphas_shape": true,
+      "identity_reasons": [
+        "193 of 195 frozen window command lines differ"
+      ],
+      "window_turns": [
+        6,
+        200
+      ],
+      "alpha_fire_turns": [
+        7
+      ],
+      "alpha_fires_inside_the_recorded_window": true
+    },
+    {
+      "id": "OSC-002",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_FIXED",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 2,
+      "reproduces_on_the_base": true,
+      "changed": true,
+      "alphas_shape": true,
+      "identity_reasons": [
+        "189 of 189 frozen window command lines differ"
+      ],
+      "window_turns": [
+        12,
+        200
+      ],
+      "alpha_fire_turns": [
+        12,
+        31
+      ],
+      "alpha_fires_inside_the_recorded_window": true
+    },
+    {
+      "id": "OSC-003",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [
+        "23 of 23 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+      ],
+      "window_turns": [
+        25,
+        47
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-004",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [
+        "14 of 14 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "window_turns": [
+        9,
+        22
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-005",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_FIXED",
+      "alpha_rev2_verdict": "NOT_FIXED",
+      "alpha_fires": 1,
+      "reproduces_on_the_base": true,
+      "changed": false,
+      "alphas_shape": true,
+      "identity_reasons": [],
+      "window_turns": [
+        7,
+        18
+      ],
+      "alpha_fire_turns": [
+        52
+      ],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-006",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [
+        "9 of 9 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "window_turns": [
+        12,
+        20
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-007",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [
+        "9 of 9 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "window_turns": [
+        8,
+        16
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-008",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [
+        "8 of 8 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+      ],
+      "window_turns": [
+        57,
+        64
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-009",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 2,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": true,
+      "identity_reasons": [
+        "7 of 7 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+      ],
+      "window_turns": [
+        77,
+        83
+      ],
+      "alpha_fire_turns": [
+        53,
+        71
+      ],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-010",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [
+        "7 of 7 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "window_turns": [
+        80,
+        86
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-011",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 6,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": true,
+      "identity_reasons": [
+        "6 of 7 frozen window command lines differ"
+      ],
+      "window_turns": [
+        26,
+        32
+      ],
+      "alpha_fire_turns": [
+        27,
+        28,
+        29,
+        30,
+        31,
+        33
+      ],
+      "alpha_fires_inside_the_recorded_window": true
+    },
+    {
+      "id": "OSC-012",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_FIXED",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 1,
+      "reproduces_on_the_base": true,
+      "changed": true,
+      "alphas_shape": true,
+      "identity_reasons": [
+        "192 of 193 frozen window command lines differ"
+      ],
+      "window_turns": [
+        8,
+        200
+      ],
+      "alpha_fire_turns": [
+        9
+      ],
+      "alpha_fires_inside_the_recorded_window": true
+    },
+    {
+      "id": "OSC-013",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_FIXED",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 1,
+      "reproduces_on_the_base": true,
+      "changed": true,
+      "alphas_shape": true,
+      "identity_reasons": [
+        "186 of 187 frozen window command lines differ"
+      ],
+      "window_turns": [
+        14,
+        200
+      ],
+      "alpha_fire_turns": [
+        14
+      ],
+      "alpha_fires_inside_the_recorded_window": true
+    },
+    {
+      "id": "OSC-014",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [
+        "167 of 168 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+      ],
+      "window_turns": [
+        33,
+        200
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-015",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [
+        "157 of 157 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "window_turns": [
+        44,
+        200
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-016",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [
+        "194 of 194 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "window_turns": [
+        7,
+        200
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-017",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_FIXED",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 1,
+      "reproduces_on_the_base": true,
+      "changed": true,
+      "alphas_shape": true,
+      "identity_reasons": [
+        "194 of 194 frozen window command lines differ"
+      ],
+      "window_turns": [
+        7,
+        200
+      ],
+      "alpha_fire_turns": [
+        7
+      ],
+      "alpha_fires_inside_the_recorded_window": true
+    },
+    {
+      "id": "OSC-018",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [
+        "191 of 191 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "window_turns": [
+        10,
+        200
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-019",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [
+        "178 of 178 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "window_turns": [
+        23,
+        200
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-020",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [
+        "172 of 172 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+      ],
+      "window_turns": [
+        29,
+        200
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-021",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_FIXED",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 2,
+      "reproduces_on_the_base": true,
+      "changed": true,
+      "alphas_shape": true,
+      "identity_reasons": [
+        "169 of 169 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "window_turns": [
+        32,
+        200
+      ],
+      "alpha_fire_turns": [
+        30,
+        41
+      ],
+      "alpha_fires_inside_the_recorded_window": true
+    },
+    {
+      "id": "OSC-022",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [
+        "95 of 95 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units, inventories)"
+      ],
+      "window_turns": [
+        106,
+        200
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-023",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [
+        "74 of 74 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (plants, units)"
+      ],
+      "window_turns": [
+        27,
+        100
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-024",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_FIXED",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 1,
+      "reproduces_on_the_base": true,
+      "changed": true,
+      "alphas_shape": true,
+      "identity_reasons": [
+        "64 of 65 frozen window command lines differ"
+      ],
+      "window_turns": [
+        5,
+        69
+      ],
+      "alpha_fire_turns": [
+        6
+      ],
+      "alpha_fires_inside_the_recorded_window": true
+    },
+    {
+      "id": "OSC-025",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 1,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": true,
+      "identity_reasons": [
+        "20 of 21 frozen window command lines differ"
+      ],
+      "window_turns": [
+        12,
+        32
+      ],
+      "alpha_fire_turns": [
+        13
+      ],
+      "alpha_fires_inside_the_recorded_window": true
+    },
+    {
+      "id": "OSC-026",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_FIXED",
+      "alpha_rev2_verdict": "NOT_FIXED",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": true,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [],
+      "window_turns": [
+        17,
+        25
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-027",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_FIXED",
+      "alpha_rev2_verdict": "NOT_FIXED",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": true,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [],
+      "window_turns": [
+        3,
+        24
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-028",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 2,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": true,
+      "identity_reasons": [
+        "53 of 53 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (units)"
+      ],
+      "window_turns": [
+        2,
+        54
+      ],
+      "alpha_fire_turns": [
+        53,
+        71
+      ],
+      "alpha_fires_inside_the_recorded_window": true
+    },
+    {
+      "id": "OSC-029",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 1,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": true,
+      "identity_reasons": [
+        "17 of 17 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (units, inventories)"
+      ],
+      "window_turns": [
+        28,
+        44
+      ],
+      "alpha_fire_turns": [
+        29
+      ],
+      "alpha_fires_inside_the_recorded_window": true
+    },
+    {
+      "id": "OSC-030",
+      "kind": "D1_EPISODE",
+      "base_verdict": "NOT_FIXED",
+      "alpha_rev2_verdict": "NOT_FIXED",
+      "alpha_fires": 2,
+      "reproduces_on_the_base": true,
+      "changed": false,
+      "alphas_shape": true,
+      "identity_reasons": [],
+      "window_turns": [
+        24,
+        31
+      ],
+      "alpha_fire_turns": [
+        53,
+        58
+      ],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-031",
+      "kind": "P4_STALL",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 1,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": true,
+      "identity_reasons": [
+        "24 of 190 frozen window command lines differ",
+        "the board at the window's first turn differs from the frozen entry state (units)"
+      ],
+      "window_turns": [
+        11,
+        200
+      ],
+      "alpha_fire_turns": [
+        11
+      ],
+      "alpha_fires_inside_the_recorded_window": true
+    },
+    {
+      "id": "OSC-032",
+      "kind": "P4_STALL",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [
+        "the board at the window's first turn differs from the frozen entry state (plants, inventories)"
+      ],
+      "window_turns": [
+        91,
+        200
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-033",
+      "kind": "P4_STALL",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [
+        "the board at the window's first turn differs from the frozen entry state (plants, inventories)"
+      ],
+      "window_turns": [
+        58,
+        200
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    },
+    {
+      "id": "OSC-034",
+      "kind": "P4_STALL",
+      "base_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_rev2_verdict": "NOT_REPRODUCIBLE_ON_BASE",
+      "alpha_fires": 0,
+      "reproduces_on_the_base": false,
+      "changed": false,
+      "alphas_shape": false,
+      "identity_reasons": [
+        "4 of 94 frozen window command lines differ"
+      ],
+      "window_turns": [
+        6,
+        99
+      ],
+      "alpha_fire_turns": [],
+      "alpha_fires_inside_the_recorded_window": false
+    }
+  ],
+  "named_all_met": false,
+  "identity_gate_on_a_cure_arm": {
+    "population": "the fixtures whose recorded episode reproduces on the base",
+    "alpha_fires_inside_the_recorded_window": [
+      "OSC-001",
+      "OSC-002",
+      "OSC-012",
+      "OSC-013",
+      "OSC-017",
+      "OSC-021",
+      "OSC-024"
+    ],
+    "fires_inside_a_window_but_the_base_already_failed_to_replay_it": [
+      "OSC-011",
+      "OSC-025",
+      "OSC-028",
+      "OSC-029",
+      "OSC-031"
+    ],
+    "newly_rejected_by_identity_on_the_alpha_arm": [
+      "OSC-001",
+      "OSC-002",
+      "OSC-012",
+      "OSC-013",
+      "OSC-017",
+      "OSC-021",
+      "OSC-024"
+    ],
+    "the_two_sets_are_equal": true,
+    "why": "fixture_harness.episode_identity asks whether the run replays the RECORDED window. An alpha fire at or before the window's last turn necessarily rewrites those command lines, so grade() returns NOT_REPRODUCIBLE_ON_BASE for precisely the fixtures where the cure acted on the episode. On a CURE arm the gate is therefore incapable of returning FIXED for a fixture the cure reached, which makes the amendment's 'must turn FIXED there' unreachable as written for those fixtures. Handed back, not worked around."
+  }
+}

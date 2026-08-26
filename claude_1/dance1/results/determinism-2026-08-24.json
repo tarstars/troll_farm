@@ -1,0 +1,10 @@
+{
+  "check": "the results files must be byte-identical on a second run (definitions g1-r3 section 3)",
+  "method": "the same panel re-run over the same pinned inputs into a separate output directory, then SHA-256 compared",
+  "identical": true,
+  "artefacts": {
+    "dance-panel-2026-08-24.json": "dc3286f33fcdc242b20c1ef0f4ae91df917035c704c80e83f1426b1f7818560a",
+    "dance-facts-instrument-2026-08-24.json": "7cd3631ce13205ec681941224b78834dbcbadc3a542495c145188cb08e8937b6",
+    "dance-facts-champion-2026-08-24.json": "55562205d3f216b22551d820c506c1682536bdc926ed605baf42caf3db43e627"
+  }
+}

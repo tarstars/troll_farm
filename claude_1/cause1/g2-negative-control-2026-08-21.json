@@ -1,0 +1,141 @@
+{
+ "all_behaved": true,
+ "cases": [
+  {
+   "case": "parity/clean",
+   "gate": "parity",
+   "must_be_rejected": false,
+   "rejected": false,
+   "rejection": ""
+  },
+  {
+   "case": "parity/one-changed-command",
+   "gate": "parity",
+   "must_be_rejected": true,
+   "rejected": true,
+   "rejection": "G2Error: OSC-032: PARITY FAILED. The uninstrumented champion's command stream hashes 84b88f49f9ad and the instrumented one 8483f1a472f4. The probe is supposed to only PRINT; a stream that differs is a different bot and every clause measured on it would be about that different bot."
+  },
+  {
+   "case": "parity/both-streams-empty",
+   "gate": "parity",
+   "must_be_rejected": true,
+   "rejected": true,
+   "rejection": "G2Error: OSC-032: both command streams are EMPTY, so their equality says nothing. Parity on two empty streams is not parity."
+  },
+  {
+   "case": "coverage/clean",
+   "gate": "coverage",
+   "must_be_rejected": false,
+   "rejected": false,
+   "rejection": ""
+  },
+  {
+   "case": "coverage/deleted-window-call",
+   "gate": "coverage",
+   "must_be_rejected": true,
+   "rejected": true,
+   "rejection": "G2Error: OSC-032 chop: 1 window turn(s) with no call at all, first [91]. The window 91-200 is the fixture's own; a turn the tap never saw is a gap, and a cause cannot be attributed on a turn that was not measured."
+  },
+  {
+   "case": "coverage/duplicated-call-group",
+   "gate": "coverage",
+   "must_be_rejected": true,
+   "rejected": true,
+   "rejection": "G2Error: OSC-032 chop: 1 window turn(s) with more than one call group, first [91]. Duplicates would double-count clauses."
+  },
+  {
+   "case": "coverage/claims-more-plants-than-rows",
+   "gate": "coverage",
+   "must_be_rejected": true,
+   "rejected": true,
+   "rejection": "G2Error: OSC-032 chop turn 91: the call printed plants=1 from `view.plants` but emitted 0 plant row(s). Coverage must be one named clause per plant, derived from the call's own board, not from a count this reader chose."
+  },
+  {
+   "case": "coverage/planted-turns-clean",
+   "gate": "coverage",
+   "must_be_rejected": false,
+   "rejected": false,
+   "rejection": ""
+  },
+  {
+   "case": "coverage/claims-fewer-plants-than-rows",
+   "gate": "coverage",
+   "must_be_rejected": true,
+   "rejected": true,
+   "rejection": "G2Error: OSC-032 chop turn 41: the call printed plants=1 from `view.plants` but emitted 2 plant row(s). Coverage must be one named clause per plant, derived from the call's own board, not from a count this reader chose."
+  },
+  {
+   "case": "coverage/same-cell-named-twice",
+   "gate": "coverage",
+   "must_be_rejected": true,
+   "rejected": true,
+   "rejection": "G2Error: OSC-032 chop turn 41: a plant cell is named twice [(8, 5), (8, 5)]."
+  },
+  {
+   "case": "coverage/plant-row-under-guard-return",
+   "gate": "coverage",
+   "must_be_rejected": true,
+   "rejected": true,
+   "rejection": "G2Error: OSC-032 chop turn 91: the call returned at the guard (FN_NO_CHOP_POWER) yet emitted 1 plant row(s). A clause named on a plant the loop never reached is unattributable."
+  },
+  {
+   "case": "both-ways/clean",
+   "gate": "both ways",
+   "must_be_rejected": false,
+   "rejected": false,
+   "rejection": ""
+  },
+  {
+   "case": "both-ways/no-ACCEPTED-anywhere",
+   "gate": "both ways",
+   "must_be_rejected": true,
+   "rejected": true,
+   "rejection": "G2Error: OSC-032: the clause tap never reported ACCEPTED on ANY turn of the whole game. A tap that can only say 'rejected' would produce exactly this, and the rejections it reports in the window would be worthless."
+  },
+  {
+   "case": "both-ways/acceptance-missed-on-a-CHOPS-turn",
+   "gate": "both ways",
+   "must_be_rejected": true,
+   "rejected": true,
+   "rejection": "G2Error: OSC-032: 1 turn(s) routed through main:CHOPS with no ACCEPTED tree in the tap, first [41]. The route only exists because the chop list was non-empty, so the tap missed an acceptance."
+  },
+  {
+   "case": "both-ways/two-routes-in-one-turn",
+   "gate": "both ways",
+   "must_be_rejected": true,
+   "rejected": true,
+   "rejection": "G2Error: unit 0 turn 41: two different routes ('main:CHOPS' and 'main:FULL_BANK') in one turn. A unit takes one return path per turn; the both-ways join would be attributing acceptance to a route that did not run."
+  },
+  {
+   "case": "card-cross/clean",
+   "gate": "card",
+   "must_be_rejected": false,
+   "rejected": false,
+   "rejection": ""
+  },
+  {
+   "case": "card-cross/one-CHOPS-turn-dropped",
+   "gate": "card",
+   "must_be_rejected": true,
+   "rejected": true,
+   "rejection": "G2Error: the measured main:CHOPS turn count 28 disagrees with the 29 the card names for OSC-032. The card's number is not a threshold to match, but a disagreement means one of the two is stale and must be resolved before the count is used as evidence."
+  }
+ ],
+ "fixture": "OSC-032",
+ "gate": "negative control over the G-2 gates",
+ "n_cases": 17,
+ "n_clean": 5,
+ "n_corruptions": 12,
+ "planted_control_window": [
+  41,
+  52
+ ],
+ "planted_window_note": "the audited window contains no plants at all, so the per-plant coverage cases are exercised on turns 41-52, which do. This controls the CHECK; it claims nothing about the window.",
+ "scope": "measurement only; no fix, no candidate, no hypothesis verdict",
+ "task": "20260821-osc032-033-cause-attribution",
+ "unit": 0,
+ "window": [
+  91,
+  200
+ ]
+}

@@ -1,0 +1,16 @@
+{
+  "task": "20260821-swap-r1-cure",
+  "gate": "G-1",
+  "revision": 1,
+  "fire_predicate": "if yielding||detour.is_none(){",
+  "base": {
+    "path": "cgauto/submissions/candidate-door1-pure-deletion.rs",
+    "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+  },
+  "outputs": {
+    "cgauto/submissions/candidate-swap-r1.rs": "bbbb75d3d3cfa9b5de05fdc68785fd2b2fb2de18d04344e021233ada26dc7fc3",
+    "claude_1/swap1/probe-swap-r1.rs": "9c2947b3849a99ef1727e11242ce1299386149a8159524f945e9c0823fa02709",
+    "claude_1/swap1/control-base.rs": "622f21e373169d6cff13b4e31b7d74f6dcd611286a58b08b2bcf79152145e2f6",
+    "claude_1/swap1/control-swap-r1.rs": "5a7e66e67ee09fdb896cc9ef431d4d3122367fa8a0c55204aee3a80f25e56ff5"
+  }
+}

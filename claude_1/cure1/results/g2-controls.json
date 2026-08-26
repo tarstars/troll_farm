@@ -1,0 +1,243 @@
+{
+  "K-CH champion long-stall": {
+    "criterion": "the same function on both corpora; the kill rule fires only if the read's share is ABOVE the champion's",
+    "games": 306,
+    "long_stall_games": 4,
+    "long_stall_share_pct": 1.3072,
+    "read_share_pct": 0.0,
+    "refused": 0,
+    "result": "PASS"
+  },
+  "K-DET determinism": {
+    "criterion": "the grade carries no clock and is written sort_keys=True, so a second run is byte-identical or something is reading the environment",
+    "result": "PASS",
+    "sha256_published": "45f5f22a1b2004886d59cc172586e0c132cae3b3e3c4c08e0d30ca742b4c90f9",
+    "sha256_rerun": "45f5f22a1b2004886d59cc172586e0c132cae3b3e3c4c08e0d30ca742b4c90f9"
+  },
+  "K-IND independent branch census": {
+    "branches_independent": {
+      "H": 253,
+      "L": 245,
+      "N": 39706,
+      "P": 42136,
+      "R": 341,
+      "W": 108
+    },
+    "branches_published": {
+      "H": 253,
+      "L": 245,
+      "N": 39706,
+      "P": 42136,
+      "R": 341,
+      "W": 108
+    },
+    "criterion": "a second reading of the same wire by a path that shares no code with the graded one must produce the identical census",
+    "narrate_turns_independent": 42070,
+    "result": "PASS"
+  },
+  "K-PW clause (a) power": {
+    "bar_inside_the_interval": true,
+    "bar_pct": 65.0,
+    "clopper_pearson_95_pct": [
+      24.4,
+      65.07
+    ],
+    "criterion": "does NOT move the grade \u2014 the bar was pre-committed and the read is under it. It states what the read can and cannot distinguish.",
+    "fisher_two_sided_p": 0.1003,
+    "read": "11 of 25",
+    "share_pct": 44.0,
+    "v3_reference": "52 of 80"
+  },
+  "K-X crosswalk structure": {
+    "criterion": "reported, not gated: a disagreement whose every row sits off the BFS map is the fallback's, and says the two labels differ where the instrument itself is approximating",
+    "disagreeing_rows": 18,
+    "explained_by_the_manhattan_fallback": 18,
+    "r_eq_R_only": 0,
+    "r_pos_only": 18,
+    "rows": [
+      {
+        "branch": "P",
+        "chosen": "TREE(5,7)",
+        "game": 900326739,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 9,
+        "unit": 2
+      },
+      {
+        "branch": "P",
+        "chosen": "TREE(12,1)",
+        "game": 900326907,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 1,
+        "unit": 0
+      },
+      {
+        "branch": "P",
+        "chosen": "TREE(6,8)",
+        "game": 900326935,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 27,
+        "unit": 2
+      },
+      {
+        "branch": "P",
+        "chosen": "TREE(4,6)",
+        "game": 900327169,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 1,
+        "unit": 1
+      },
+      {
+        "branch": "P",
+        "chosen": "TREE(14,1)",
+        "game": 900327195,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 1,
+        "unit": 0
+      },
+      {
+        "branch": "P",
+        "chosen": "TREE(0,5)",
+        "game": 900327216,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 1,
+        "unit": 1
+      },
+      {
+        "branch": "P",
+        "chosen": "TREE(7,1)",
+        "game": 900327374,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 1,
+        "unit": 0
+      },
+      {
+        "branch": "P",
+        "chosen": "TREE(16,5)",
+        "game": 900327786,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 1,
+        "unit": 0
+      },
+      {
+        "branch": "P",
+        "chosen": "TREE(11,0)",
+        "game": 900328242,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 1,
+        "unit": 0
+      },
+      {
+        "branch": "P",
+        "chosen": "TREE(1,7)",
+        "game": 900328335,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 1,
+        "unit": 1
+      },
+      {
+        "branch": "P",
+        "chosen": "TREE(3,4)",
+        "game": 900328493,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 1,
+        "unit": 1
+      },
+      {
+        "branch": "P",
+        "chosen": "TREE(5,0)",
+        "game": 900328641,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 1,
+        "unit": 1
+      },
+      {
+        "branch": "P",
+        "chosen": "TREE(15,5)",
+        "game": 900328931,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 1,
+        "unit": 1
+      },
+      {
+        "branch": "P",
+        "chosen": "TREE(18,6)",
+        "game": 900329361,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 1,
+        "unit": 0
+      },
+      {
+        "branch": "P",
+        "chosen": "TREE(14,1)",
+        "game": 900329556,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 1,
+        "unit": 0
+      },
+      {
+        "branch": "P",
+        "chosen": "TREE(6,0)",
+        "game": 900329812,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 1,
+        "unit": 1
+      },
+      {
+        "branch": "P",
+        "chosen": "TREE(3,2)",
+        "game": 900329844,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 13,
+        "unit": 3
+      },
+      {
+        "branch": "P",
+        "chosen": "TREE(0,4)",
+        "game": 900330009,
+        "off_bfs_map": true,
+        "r_pos": "MOVED_REGRESSIVE",
+        "target_on_bfs_map": true,
+        "turn": 1,
+        "unit": 1
+      }
+    ],
+    "unexplained": 0
+  },
+  "gate": "G-2 controls",
+  "task": "20260825-dance-cure-candidate-1-hold"
+}

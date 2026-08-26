@@ -1,0 +1,2381 @@
+{
+  "agent_id": 6652424,
+  "command_verbs": {
+    "(none)": 3613,
+    "CHOP": 25096,
+    "DROP": 4770,
+    "HARVEST": 148,
+    "MINE": 101,
+    "MOVE": 39618,
+    "PICK": 1480,
+    "PLANT": 1479
+  },
+  "controls": {
+    "agent_id": 6652424,
+    "control_game": "900089738.json.gz",
+    "controls": [
+      {
+        "control": "clean case: the unmutated replay decodes",
+        "expected": "accepted",
+        "fired": true,
+        "reason": "502 join rows over 262 turns, seat 0, leak 0"
+      },
+      {
+        "control": "wrong seat: decoding as the opponent's agent id",
+        "expected": "opponent's seat",
+        "fired": true,
+        "reason": "NARRATE telemetry appears on the opponent's seat (262 turns of seat 0); the seat join is wrong or the opponent is running our instrument"
+      },
+      {
+        "control": "opponent's MSG mistaken for ours",
+        "expected": "opponent's seat",
+        "fired": true,
+        "reason": "NARRATE telemetry appears on the opponent's seat (1 turns of seat 1); the seat join is wrong or the opponent is running our instrument"
+      },
+      {
+        "control": "dropped turn: a turn with no NARRATE segment",
+        "expected": "0 NARRATE segments",
+        "fired": true,
+        "reason": "turn 41 carries 0 NARRATE segments; exactly one per turn is the grammar"
+      },
+      {
+        "control": "two NARRATE segments in one turn",
+        "expected": "2 NARRATE segments",
+        "fired": true,
+        "reason": "turn 42 carries 2 NARRATE segments; exactly one per turn is the grammar"
+      },
+      {
+        "control": "corrupted grammar: unrecognised version token",
+        "expected": "unrecognised NARRATE grammar version",
+        "fired": true,
+        "reason": "unrecognised NARRATE grammar version 'v3' (this decoder reads v2 only and refuses rather than guessing)"
+      },
+      {
+        "control": "corrupted grammar: malformed unit token",
+        "expected": "malformed unit token",
+        "fired": true,
+        "reason": "malformed unit token 'x0=TREE(5,1)'"
+      },
+      {
+        "control": "corrupted grammar: unknown target shape",
+        "expected": "target",
+        "fired": true,
+        "reason": "target kind 'FIELD' is not one of BANK/CELL/TREE"
+      },
+      {
+        "control": "corrupted grammar: a unit id twice in one payload",
+        "expected": "appears twice",
+        "fired": true,
+        "reason": "unit 0 appears twice in one payload"
+      },
+      {
+        "control": "turn misalignment: t= shifted by one",
+        "expected": "turn misalignment",
+        "fired": true,
+        "reason": "turn misalignment: payload says t=22 on traced turn 21"
+      },
+      {
+        "control": "roster incompleteness: a live unit missing from the payload",
+        "expected": "roster mismatch",
+        "fired": true,
+        "reason": "turn 201 roster mismatch: payload [0], state [0, 2] (a unit absent from the payload is a decode error, never a NONE)"
+      },
+      {
+        "control": "unknown agent id",
+        "expected": "adapter refused",
+        "fired": true,
+        "reason": "adapter refused this replay: agent 1 appears 0 times in this replay's agent table"
+      }
+    ],
+    "fired": 12,
+    "seat": 0,
+    "total": 12
+  },
+  "corpus": {
+    "digest_sha256": "a319f02c055950dce81c7fa586af01cb3c60a3f873386fcce9e6dd05d323ac7c",
+    "games": 149,
+    "games_dir": "/home/tarstars/.cache/troll-farm/narrate-games-ac65523b",
+    "source_ref": "agent/local_claude_1@ac65523b:local_claude_1/narrate/games"
+  },
+  "grammar": "NARRATE v2",
+  "intent_by_verb": {
+    "BANK|(none)": 5,
+    "BANK|DROP": 4738,
+    "BANK|MOVE": 17100,
+    "CELL|DROP": 32,
+    "CELL|MINE": 101,
+    "CELL|MOVE": 548,
+    "CELL|PICK": 1480,
+    "CELL|PLANT": 1479,
+    "NONE|(none)": 3504,
+    "NONE|MOVE": 11,
+    "TREE|(none)": 104,
+    "TREE|CHOP": 25096,
+    "TREE|HARVEST": 148,
+    "TREE|MOVE": 21959
+  },
+  "intent_kinds": {
+    "BANK": 21843,
+    "CELL": 3640,
+    "NONE": 3515,
+    "TREE": 47307
+  },
+  "panel": "PASS",
+  "per_game": [
+    {
+      "agent_id": 6652424,
+      "game_id": 900089738,
+      "grammar": "NARRATE v2",
+      "join_rows": 502,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 262,
+      "trailing_empty_command_rows": 0,
+      "turns": 262
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900089739,
+      "grammar": "NARRATE v2",
+      "join_rows": 382,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        4
+      ],
+      "seat": 1,
+      "traced_turns": 199,
+      "trailing_empty_command_rows": 0,
+      "turns": 199
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900089740,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900089741,
+      "grammar": "NARRATE v2",
+      "join_rows": 283,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 146,
+      "trailing_empty_command_rows": 0,
+      "turns": 146
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900089742,
+      "grammar": "NARRATE v2",
+      "join_rows": 586,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900089743,
+      "grammar": "NARRATE v2",
+      "join_rows": 580,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900089744,
+      "grammar": "NARRATE v2",
+      "join_rows": 584,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900089745,
+      "grammar": "NARRATE v2",
+      "join_rows": 586,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900089746,
+      "grammar": "NARRATE v2",
+      "join_rows": 429,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 215,
+      "trailing_empty_command_rows": 0,
+      "turns": 215
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900089747,
+      "grammar": "NARRATE v2",
+      "join_rows": 597,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 299,
+      "trailing_empty_command_rows": 0,
+      "turns": 299
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900089806,
+      "grammar": "NARRATE v2",
+      "join_rows": 590,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900089853,
+      "grammar": "NARRATE v2",
+      "join_rows": 379,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 190,
+      "trailing_empty_command_rows": 0,
+      "turns": 190
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900089884,
+      "grammar": "NARRATE v2",
+      "join_rows": 588,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900089904,
+      "grammar": "NARRATE v2",
+      "join_rows": 586,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900089943,
+      "grammar": "NARRATE v2",
+      "join_rows": 442,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 226,
+      "trailing_empty_command_rows": 0,
+      "turns": 226
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900089972,
+      "grammar": "NARRATE v2",
+      "join_rows": 580,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090025,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090040,
+      "grammar": "NARRATE v2",
+      "join_rows": 359,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 180,
+      "trailing_empty_command_rows": 0,
+      "turns": 180
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090065,
+      "grammar": "NARRATE v2",
+      "join_rows": 176,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 93,
+      "trailing_empty_command_rows": 0,
+      "turns": 93
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090089,
+      "grammar": "NARRATE v2",
+      "join_rows": 591,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090130,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090150,
+      "grammar": "NARRATE v2",
+      "join_rows": 509,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 269,
+      "trailing_empty_command_rows": 0,
+      "turns": 269
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090172,
+      "grammar": "NARRATE v2",
+      "join_rows": 254,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 135,
+      "trailing_empty_command_rows": 0,
+      "turns": 135
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090186,
+      "grammar": "NARRATE v2",
+      "join_rows": 594,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090220,
+      "grammar": "NARRATE v2",
+      "join_rows": 37,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 19,
+      "trailing_empty_command_rows": 0,
+      "turns": 19
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090232,
+      "grammar": "NARRATE v2",
+      "join_rows": 590,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090255,
+      "grammar": "NARRATE v2",
+      "join_rows": 582,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 296,
+      "trailing_empty_command_rows": 0,
+      "turns": 296
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090273,
+      "grammar": "NARRATE v2",
+      "join_rows": 484,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 246,
+      "trailing_empty_command_rows": 0,
+      "turns": 246
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090284,
+      "grammar": "NARRATE v2",
+      "join_rows": 30,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 24,
+      "trailing_empty_command_rows": 0,
+      "turns": 24
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090330,
+      "grammar": "NARRATE v2",
+      "join_rows": 537,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 269,
+      "trailing_empty_command_rows": 0,
+      "turns": 269
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090390,
+      "grammar": "NARRATE v2",
+      "join_rows": 462,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 238,
+      "trailing_empty_command_rows": 0,
+      "turns": 238
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090408,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090452,
+      "grammar": "NARRATE v2",
+      "join_rows": 392,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 199,
+      "trailing_empty_command_rows": 0,
+      "turns": 199
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090486,
+      "grammar": "NARRATE v2",
+      "join_rows": 571,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090502,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090525,
+      "grammar": "NARRATE v2",
+      "join_rows": 586,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090569,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090587,
+      "grammar": "NARRATE v2",
+      "join_rows": 592,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090613,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090623,
+      "grammar": "NARRATE v2",
+      "join_rows": 587,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090642,
+      "grammar": "NARRATE v2",
+      "join_rows": 541,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 271,
+      "trailing_empty_command_rows": 0,
+      "turns": 271
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090680,
+      "grammar": "NARRATE v2",
+      "join_rows": 572,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090705,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090748,
+      "grammar": "NARRATE v2",
+      "join_rows": 586,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090755,
+      "grammar": "NARRATE v2",
+      "join_rows": 278,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 143,
+      "trailing_empty_command_rows": 0,
+      "turns": 143
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090762,
+      "grammar": "NARRATE v2",
+      "join_rows": 592,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090776,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090810,
+      "grammar": "NARRATE v2",
+      "join_rows": 486,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 256,
+      "trailing_empty_command_rows": 0,
+      "turns": 256
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090849,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090870,
+      "grammar": "NARRATE v2",
+      "join_rows": 570,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090910,
+      "grammar": "NARRATE v2",
+      "join_rows": 586,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090942,
+      "grammar": "NARRATE v2",
+      "join_rows": 430,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 220,
+      "trailing_empty_command_rows": 0,
+      "turns": 220
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090961,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090987,
+      "grammar": "NARRATE v2",
+      "join_rows": 590,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900090996,
+      "grammar": "NARRATE v2",
+      "join_rows": 306,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 161,
+      "trailing_empty_command_rows": 0,
+      "turns": 161
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091027,
+      "grammar": "NARRATE v2",
+      "join_rows": 336,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 179,
+      "trailing_empty_command_rows": 0,
+      "turns": 179
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091075,
+      "grammar": "NARRATE v2",
+      "join_rows": 580,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091089,
+      "grammar": "NARRATE v2",
+      "join_rows": 594,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091110,
+      "grammar": "NARRATE v2",
+      "join_rows": 573,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091141,
+      "grammar": "NARRATE v2",
+      "join_rows": 593,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 297,
+      "trailing_empty_command_rows": 0,
+      "turns": 297
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091164,
+      "grammar": "NARRATE v2",
+      "join_rows": 586,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091203,
+      "grammar": "NARRATE v2",
+      "join_rows": 396,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 201,
+      "trailing_empty_command_rows": 0,
+      "turns": 201
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091229,
+      "grammar": "NARRATE v2",
+      "join_rows": 590,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091242,
+      "grammar": "NARRATE v2",
+      "join_rows": 480,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 244,
+      "trailing_empty_command_rows": 0,
+      "turns": 244
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091259,
+      "grammar": "NARRATE v2",
+      "join_rows": 590,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091292,
+      "grammar": "NARRATE v2",
+      "join_rows": 411,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 206,
+      "trailing_empty_command_rows": 0,
+      "turns": 206
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091310,
+      "grammar": "NARRATE v2",
+      "join_rows": 507,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 254,
+      "trailing_empty_command_rows": 0,
+      "turns": 254
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091352,
+      "grammar": "NARRATE v2",
+      "join_rows": 224,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 118,
+      "trailing_empty_command_rows": 0,
+      "turns": 118
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091361,
+      "grammar": "NARRATE v2",
+      "join_rows": 360,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 185,
+      "trailing_empty_command_rows": 0,
+      "turns": 185
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091394,
+      "grammar": "NARRATE v2",
+      "join_rows": 388,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 200,
+      "trailing_empty_command_rows": 0,
+      "turns": 200
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091416,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091479,
+      "grammar": "NARRATE v2",
+      "join_rows": 591,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 296,
+      "trailing_empty_command_rows": 0,
+      "turns": 296
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091501,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091527,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091540,
+      "grammar": "NARRATE v2",
+      "join_rows": 594,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091567,
+      "grammar": "NARRATE v2",
+      "join_rows": 584,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091594,
+      "grammar": "NARRATE v2",
+      "join_rows": 360,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 186,
+      "trailing_empty_command_rows": 0,
+      "turns": 186
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091617,
+      "grammar": "NARRATE v2",
+      "join_rows": 330,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 169,
+      "trailing_empty_command_rows": 0,
+      "turns": 169
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091633,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091673,
+      "grammar": "NARRATE v2",
+      "join_rows": 556,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 289,
+      "trailing_empty_command_rows": 0,
+      "turns": 289
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091690,
+      "grammar": "NARRATE v2",
+      "join_rows": 585,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091713,
+      "grammar": "NARRATE v2",
+      "join_rows": 592,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091739,
+      "grammar": "NARRATE v2",
+      "join_rows": 484,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 249,
+      "trailing_empty_command_rows": 0,
+      "turns": 249
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091761,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091814,
+      "grammar": "NARRATE v2",
+      "join_rows": 287,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 154,
+      "trailing_empty_command_rows": 0,
+      "turns": 154
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091821,
+      "grammar": "NARRATE v2",
+      "join_rows": 512,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 259,
+      "trailing_empty_command_rows": 0,
+      "turns": 259
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091869,
+      "grammar": "NARRATE v2",
+      "join_rows": 317,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 159,
+      "trailing_empty_command_rows": 0,
+      "turns": 159
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091890,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091939,
+      "grammar": "NARRATE v2",
+      "join_rows": 576,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091967,
+      "grammar": "NARRATE v2",
+      "join_rows": 582,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900091991,
+      "grammar": "NARRATE v2",
+      "join_rows": 590,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092011,
+      "grammar": "NARRATE v2",
+      "join_rows": 364,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 185,
+      "trailing_empty_command_rows": 0,
+      "turns": 185
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092026,
+      "grammar": "NARRATE v2",
+      "join_rows": 321,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 161,
+      "trailing_empty_command_rows": 0,
+      "turns": 161
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092063,
+      "grammar": "NARRATE v2",
+      "join_rows": 575,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 288,
+      "trailing_empty_command_rows": 0,
+      "turns": 288
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092073,
+      "grammar": "NARRATE v2",
+      "join_rows": 330,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 169,
+      "trailing_empty_command_rows": 0,
+      "turns": 169
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092107,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092121,
+      "grammar": "NARRATE v2",
+      "join_rows": 586,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092154,
+      "grammar": "NARRATE v2",
+      "join_rows": 588,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092173,
+      "grammar": "NARRATE v2",
+      "join_rows": 415,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 208,
+      "trailing_empty_command_rows": 0,
+      "turns": 208
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092186,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092233,
+      "grammar": "NARRATE v2",
+      "join_rows": 586,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092260,
+      "grammar": "NARRATE v2",
+      "join_rows": 590,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092318,
+      "grammar": "NARRATE v2",
+      "join_rows": 590,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092332,
+      "grammar": "NARRATE v2",
+      "join_rows": 588,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092352,
+      "grammar": "NARRATE v2",
+      "join_rows": 593,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 297,
+      "trailing_empty_command_rows": 0,
+      "turns": 297
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092370,
+      "grammar": "NARRATE v2",
+      "join_rows": 533,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 267,
+      "trailing_empty_command_rows": 0,
+      "turns": 267
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092408,
+      "grammar": "NARRATE v2",
+      "join_rows": 277,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 139,
+      "trailing_empty_command_rows": 0,
+      "turns": 139
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092436,
+      "grammar": "NARRATE v2",
+      "join_rows": 594,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092456,
+      "grammar": "NARRATE v2",
+      "join_rows": 582,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092474,
+      "grammar": "NARRATE v2",
+      "join_rows": 496,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 250,
+      "trailing_empty_command_rows": 0,
+      "turns": 250
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092504,
+      "grammar": "NARRATE v2",
+      "join_rows": 573,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092529,
+      "grammar": "NARRATE v2",
+      "join_rows": 588,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092566,
+      "grammar": "NARRATE v2",
+      "join_rows": 592,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092586,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092622,
+      "grammar": "NARRATE v2",
+      "join_rows": 450,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 231,
+      "trailing_empty_command_rows": 0,
+      "turns": 231
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092636,
+      "grammar": "NARRATE v2",
+      "join_rows": 574,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092661,
+      "grammar": "NARRATE v2",
+      "join_rows": 452,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 233,
+      "trailing_empty_command_rows": 0,
+      "turns": 233
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092674,
+      "grammar": "NARRATE v2",
+      "join_rows": 400,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 208,
+      "trailing_empty_command_rows": 0,
+      "turns": 208
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092687,
+      "grammar": "NARRATE v2",
+      "join_rows": 212,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 114,
+      "trailing_empty_command_rows": 0,
+      "turns": 114
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092700,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092719,
+      "grammar": "NARRATE v2",
+      "join_rows": 573,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092727,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092744,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092760,
+      "grammar": "NARRATE v2",
+      "join_rows": 429,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 215,
+      "trailing_empty_command_rows": 0,
+      "turns": 215
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092777,
+      "grammar": "NARRATE v2",
+      "join_rows": 453,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 231,
+      "trailing_empty_command_rows": 0,
+      "turns": 231
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092800,
+      "grammar": "NARRATE v2",
+      "join_rows": 258,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 135,
+      "trailing_empty_command_rows": 0,
+      "turns": 135
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092845,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092867,
+      "grammar": "NARRATE v2",
+      "join_rows": 586,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092883,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092906,
+      "grammar": "NARRATE v2",
+      "join_rows": 594,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092927,
+      "grammar": "NARRATE v2",
+      "join_rows": 568,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 288,
+      "trailing_empty_command_rows": 0,
+      "turns": 288
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092941,
+      "grammar": "NARRATE v2",
+      "join_rows": 320,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 174,
+      "trailing_empty_command_rows": 0,
+      "turns": 174
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900092998,
+      "grammar": "NARRATE v2",
+      "join_rows": 590,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900093102,
+      "grammar": "NARRATE v2",
+      "join_rows": 589,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900093143,
+      "grammar": "NARRATE v2",
+      "join_rows": 592,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900093161,
+      "grammar": "NARRATE v2",
+      "join_rows": 356,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 183,
+      "trailing_empty_command_rows": 0,
+      "turns": 183
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900093179,
+      "grammar": "NARRATE v2",
+      "join_rows": 592,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900093210,
+      "grammar": "NARRATE v2",
+      "join_rows": 590,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900093226,
+      "grammar": "NARRATE v2",
+      "join_rows": 246,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 131,
+      "trailing_empty_command_rows": 0,
+      "turns": 131
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900093265,
+      "grammar": "NARRATE v2",
+      "join_rows": 425,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 213,
+      "trailing_empty_command_rows": 0,
+      "turns": 213
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900093311,
+      "grammar": "NARRATE v2",
+      "join_rows": 594,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900093357,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900093387,
+      "grammar": "NARRATE v2",
+      "join_rows": 582,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900093404,
+      "grammar": "NARRATE v2",
+      "join_rows": 580,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900093423,
+      "grammar": "NARRATE v2",
+      "join_rows": 590,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        3
+      ],
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900093436,
+      "grammar": "NARRATE v2",
+      "join_rows": 588,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900093465,
+      "grammar": "NARRATE v2",
+      "join_rows": 576,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        3
+      ],
+      "seat": 1,
+      "traced_turns": 295,
+      "trailing_empty_command_rows": 0,
+      "turns": 295
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900093504,
+      "grammar": "NARRATE v2",
+      "join_rows": 500,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        0,
+        2
+      ],
+      "seat": 0,
+      "traced_turns": 253,
+      "trailing_empty_command_rows": 0,
+      "turns": 253
+    },
+    {
+      "agent_id": 6652424,
+      "game_id": 900093520,
+      "grammar": "NARRATE v2",
+      "join_rows": 599,
+      "opponent_narrate_turns": 0,
+      "own_unit_ids": [
+        1,
+        2
+      ],
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    }
+  ],
+  "sweep": {
+    "decoded": 149,
+    "join_rows": 76305,
+    "opponent_narrate_turns_total": 0,
+    "refusals": [],
+    "refused": 0,
+    "seats_played": {
+      "0": 61,
+      "1": 88
+    },
+    "traced_turns": 38869,
+    "unit_id_sets": [
+      "0,2",
+      "0,3",
+      "1,2",
+      "1,3",
+      "1,4"
+    ]
+  },
+  "task_id": "20260823-narrate-real-game-telemetry"
+}

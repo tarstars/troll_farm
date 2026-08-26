@@ -1,0 +1,245 @@
+{
+ "K-1_positive_R_v4": {
+  "agree": 191,
+  "all_R_turns": 198,
+  "all_R_turns_forward_cell_is_teammate": 198,
+  "bar": 0.95,
+  "categories": {},
+  "disagreements": [],
+  "k1_residue_scope_disabled": 0,
+  "non_cost_bearing_excluded": 7,
+  "non_cost_bearing_rows": [
+   {
+    "category": "NON_COST_BEARING_STATUS",
+    "first_turn_of_window": false,
+    "game": 900327649,
+    "occupant": 0,
+    "occupant_is_teammate": true,
+    "scope_active": true,
+    "status": "TARGET_OCCUPIED",
+    "teammate": 0,
+    "turn": 72
+   },
+   {
+    "category": "NON_COST_BEARING_STATUS",
+    "first_turn_of_window": false,
+    "game": 900327649,
+    "occupant": 0,
+    "occupant_is_teammate": true,
+    "scope_active": true,
+    "status": "TARGET_OCCUPIED",
+    "teammate": 0,
+    "turn": 74
+   },
+   {
+    "category": "NON_COST_BEARING_STATUS",
+    "first_turn_of_window": false,
+    "game": 900327649,
+    "occupant": 0,
+    "occupant_is_teammate": true,
+    "scope_active": true,
+    "status": "TARGET_OCCUPIED",
+    "teammate": 0,
+    "turn": 76
+   },
+   {
+    "category": "NON_COST_BEARING_STATUS",
+    "first_turn_of_window": false,
+    "game": 900327649,
+    "occupant": 0,
+    "occupant_is_teammate": true,
+    "scope_active": true,
+    "status": "TARGET_OCCUPIED",
+    "teammate": 0,
+    "turn": 78
+   },
+   {
+    "category": "NON_COST_BEARING_STATUS",
+    "first_turn_of_window": false,
+    "game": 900327649,
+    "occupant": 0,
+    "occupant_is_teammate": true,
+    "scope_active": true,
+    "status": "TARGET_OCCUPIED",
+    "teammate": 0,
+    "turn": 80
+   },
+   {
+    "category": "NON_COST_BEARING_STATUS",
+    "first_turn_of_window": false,
+    "game": 900327649,
+    "occupant": 0,
+    "occupant_is_teammate": true,
+    "scope_active": true,
+    "status": "TARGET_OCCUPIED",
+    "teammate": 0,
+    "turn": 82
+   },
+   {
+    "category": "NON_COST_BEARING_STATUS",
+    "first_turn_of_window": false,
+    "game": 900327649,
+    "occupant": 0,
+    "occupant_is_teammate": true,
+    "scope_active": true,
+    "status": "TARGET_OCCUPIED",
+    "teammate": 0,
+    "turn": 84
+   }
+  ],
+  "non_cost_bearing_statuses": {
+   "TARGET_OCCUPIED": 7
+  },
+  "population": 191,
+  "residue_scope_active_nonfirst": 0,
+  "share": 1.0,
+  "verdict": "PASS"
+ },
+ "K-2_negative_P_v4": {
+  "exceptions": [
+   {
+    "explained_by": "OCCUPANT_IS_A_MOVER -- its cell is not in `reserved` (cure1-hold-v4.rs:833)",
+    "game": 900326481,
+    "occupant": 2,
+    "occupant_is_a_mover": true,
+    "turn": 58
+   },
+   {
+    "explained_by": "OCCUPANT_IS_A_MOVER -- its cell is not in `reserved` (cure1-hold-v4.rs:833)",
+    "game": 900326532,
+    "occupant": 0,
+    "occupant_is_a_mover": true,
+    "turn": 11
+   },
+   {
+    "explained_by": "OCCUPANT_IS_A_MOVER -- its cell is not in `reserved` (cure1-hold-v4.rs:833)",
+    "game": 900326532,
+    "occupant": 0,
+    "occupant_is_a_mover": true,
+    "turn": 24
+   },
+   {
+    "explained_by": "OCCUPANT_IS_A_MOVER -- its cell is not in `reserved` (cure1-hold-v4.rs:833)",
+    "game": 900326617,
+    "occupant": 2,
+    "occupant_is_a_mover": true,
+    "turn": 52
+   },
+   {
+    "explained_by": "OCCUPANT_IS_A_MOVER -- its cell is not in `reserved` (cure1-hold-v4.rs:833)",
+    "game": 900327873,
+    "occupant": 2,
+    "occupant_is_a_mover": true,
+    "turn": 73
+   },
+   {
+    "explained_by": "OCCUPANT_IS_A_MOVER -- its cell is not in `reserved` (cure1-hold-v4.rs:833)",
+    "game": 900328084,
+    "occupant": 2,
+    "occupant_is_a_mover": true,
+    "turn": 284
+   },
+   {
+    "explained_by": "OCCUPANT_IS_A_MOVER -- its cell is not in `reserved` (cure1-hold-v4.rs:833)",
+    "game": 900328242,
+    "occupant": 2,
+    "occupant_is_a_mover": true,
+    "turn": 214
+   },
+   {
+    "explained_by": "OCCUPANT_IS_A_MOVER -- its cell is not in `reserved` (cure1-hold-v4.rs:833)",
+    "game": 900329090,
+    "occupant": 2,
+    "occupant_is_a_mover": true,
+    "turn": 249
+   },
+   {
+    "explained_by": "OCCUPANT_IS_A_MOVER -- its cell is not in `reserved` (cure1-hold-v4.rs:833)",
+    "game": 900329900,
+    "occupant": 3,
+    "occupant_is_a_mover": true,
+    "turn": 282
+   },
+   {
+    "explained_by": "OCCUPANT_IS_A_MOVER -- its cell is not in `reserved` (cure1-hold-v4.rs:833)",
+    "game": 900330091,
+    "occupant": 2,
+    "occupant_is_a_mover": true,
+    "turn": 21
+   },
+   {
+    "explained_by": "OCCUPANT_IS_A_MOVER -- its cell is not in `reserved` (cure1-hold-v4.rs:833)",
+    "game": 900330216,
+    "occupant": 2,
+    "occupant_is_a_mover": true,
+    "turn": 74
+   }
+  ],
+  "exceptions_explained_occupant_is_a_mover": 11,
+  "free": 217,
+  "population": 228,
+  "verdict": "EXCEPTIONS - ALL EXPLAINED"
+ },
+ "K-3_poison": {
+  "blocked": 21,
+  "draws": 1852,
+  "draws_on_a_cell_holding_an_own_unit": 0,
+  "no_candidate_turns": 0,
+  "note": "reported, not asserted",
+  "order": "read (older, then v4), then episode by (game, episode_index), then turn ascending; one randrange per drawing turn against the tuple-sorted candidate list",
+  "seed": 20260825,
+  "share": 0.011339092872570195
+ },
+ "K-5_exhaustiveness": {
+  "episodes_off": 0,
+  "episodes_reconciled": 105,
+  "episodes_total": 105,
+  "per_read": {
+   "older": 80,
+   "v4": 25
+  },
+  "refused": 0,
+  "verdict": "PASS"
+ },
+ "K-6_arm_transient_v4": {
+  "H_population": 0,
+  "counts": {
+   "R/False": 197,
+   "R/True": 1
+  },
+  "verdict": "VACUOUS - NOT MEASURED (no H turns)"
+ },
+ "K-7_reread_identity": {
+  "published": "8e2159e3ba114f61262bf853819a9ca7cfba59ae4e221ddf8e1e03cfae616596",
+  "recomputed": "8e2159e3ba114f61262bf853819a9ca7cfba59ae4e221ddf8e1e03cfae616596",
+  "verdict": "PASS"
+ },
+ "K-8_peer_uniqueness": {
+  "episodes": 105,
+  "refused_multiple_or_no_peer": 0,
+  "verdict": "PASS"
+ },
+ "K-9_v2_shim_fidelity": {
+  "checked": 865,
+  "mismatches": 0,
+  "rows": [],
+  "verdict": "PASS"
+ },
+ "imports": {
+  "claude_1/adapter1/replay_to_trace.py": "df2f1187cb5b3187f80e31f22f2e207fdc84a333e63175297695e689e132b43e",
+  "claude_1/banana-restoration-r2/trace_detectors.py": "59dce10dc87797bc6b1b8da0f628f4ddd82b561d93946fa91453d2ea40805209",
+  "claude_1/cure1/cure1-hold-v4.rs": "cc4b308705883f10192065dd205a36eb78baee3c1068a0697131b791f3d46e9b",
+  "claude_1/cure1/regressive_baseline.py": "733fce408550c47e203738afd86e9bc9c0cd8a546d8f969ed62db42d83c2f935",
+  "claude_1/dance1/dance_facts.py": "1155cf266037d43a4bf3f1b6999688ef20237d1cc46f24324f9b80ca4d7354ec",
+  "claude_1/dance1/narrate3_decode.py": "d791a7d0cba201fe9becf71010603c589e2e514deface624faaa57bcc30c8692",
+  "claude_1/narrate1/narrate_decode.py": "d40a64af6569ba0e5c818ef049b9fd6a5a50b6e7479c8ea7278ae1c0747d4b10",
+  "claude_1/narrate4/narrate4_join.py": "53e2c41ce264b6ce6a56197741e6bc0b2e55bdea0c89b87bf4acb7ecb25e93ba"
+ },
+ "reread_shapes_sha256": "7c2c4b955a4f4e5cb1f2dc8a2ec5e738eab342ff53e359344524fc2c35efe628",
+ "shape_join_one_to_one": {
+  "collisions_under_a_position_derived_key": 1,
+  "episodes": 105,
+  "keys": 105,
+  "verdict": "PASS"
+ }
+}

@@ -1,0 +1,3366 @@
+{
+  "clause": "G-2 (b) baseline",
+  "controls": {
+    "K-E exhaustiveness": {
+      "classes_total_equals_moved": true,
+      "equal": 0,
+      "moved_eligible_troll_turns": 44363,
+      "progressive": 43711,
+      "regressive": 652,
+      "result": "PASS"
+    },
+    "K-F manhattan fallback": {
+      "criterion": "reported, not gated: the fallback mirrors the arm's own (cure1-hold-v4.rs:891/:900), so it is kept whichever way it fires; an inert one would have to be reported as inert rather than quoted as if it had been exercised",
+      "moved_eligible_rows_needing_the_fallback": 320,
+      "regressive_restricted_to_rows_needing_none": 636,
+      "regressive_turns_that_depend_on_it": 16,
+      "regressive_with_fallback": 652,
+      "result": "FIRES"
+    },
+    "K-P poison target": {
+      "criterion": "a mislabelled target must produce strictly more than twice the regressive count, or the measure is not reading the target",
+      "ratio": 32.686,
+      "regressive_under_mislabelled_target": 21311,
+      "result": "PASS",
+      "shift": 1,
+      "true_regressive": 652
+    }
+  },
+  "corpus": {
+    "agent_id": 6652642,
+    "games_decoded": 160,
+    "games_refused": 0,
+    "path": "/tmp/claude-1000/cure1/g2base/v3.jsonl.gz",
+    "sha256": "0116994468cb6d23702511d0cefce28eeaeeb049eb8e7fc24ccdc29b886c3ceb"
+  },
+  "denominators": {
+    "eligible_troll_turns": 81367,
+    "game_turns": 43300,
+    "moved_eligible_troll_turns": 44363,
+    "troll_turns": 84928
+  },
+  "graded_denominator": "troll_turns",
+  "grammar": {
+    "matches_reviewed": true,
+    "v3_payload_decoder_sha256": "0537741d53e65da10b10a0a5cb88f6a78fbee5234672488f9dc3a1d68cf293bf"
+  },
+  "label": "v3 read (agent 6652642)",
+  "per_game": [
+    {
+      "eligible_turns": 597,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106657,
+      "moved_eligible_turns": 296,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 150,
+      "progressive_turns": 296,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 348,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106658,
+      "moved_eligible_turns": 164,
+      "per_unit_regressive": {
+        "1": 4
+      },
+      "per_unit_turns": {
+        "1": 196,
+        "3": 195
+      },
+      "poison_regressive_turns": 73,
+      "progressive_turns": 160,
+      "regressive_turns": 4,
+      "regressive_turns_no_fallback": 3,
+      "seat": 1,
+      "troll_turns": 391,
+      "turns": 196
+    },
+    {
+      "eligible_turns": 568,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106659,
+      "moved_eligible_turns": 356,
+      "per_unit_regressive": {
+        "1": 4
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 272
+      },
+      "poison_regressive_turns": 160,
+      "progressive_turns": 352,
+      "regressive_turns": 4,
+      "regressive_turns_no_fallback": 4,
+      "seat": 1,
+      "troll_turns": 572,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 582,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106660,
+      "moved_eligible_turns": 358,
+      "per_unit_regressive": {
+        "0": 1
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 128,
+      "progressive_turns": 357,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 0,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 255,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106661,
+      "moved_eligible_turns": 164,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "1": 140,
+        "3": 130
+      },
+      "poison_regressive_turns": 76,
+      "progressive_turns": 164,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 1,
+      "troll_turns": 270,
+      "turns": 140
+    },
+    {
+      "eligible_turns": 539,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106662,
+      "moved_eligible_turns": 349,
+      "per_unit_regressive": {
+        "0": 3
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 199,
+      "progressive_turns": 346,
+      "regressive_turns": 3,
+      "regressive_turns_no_fallback": 3,
+      "seat": 0,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 582,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106663,
+      "moved_eligible_turns": 358,
+      "per_unit_regressive": {
+        "0": 3
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 292
+      },
+      "poison_regressive_turns": 178,
+      "progressive_turns": 355,
+      "regressive_turns": 3,
+      "regressive_turns_no_fallback": 3,
+      "seat": 0,
+      "troll_turns": 592,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 504,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106664,
+      "moved_eligible_turns": 305,
+      "per_unit_regressive": {
+        "0": 2
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 284
+      },
+      "poison_regressive_turns": 153,
+      "progressive_turns": 303,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 0,
+      "troll_turns": 584,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 583,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106665,
+      "moved_eligible_turns": 348,
+      "per_unit_regressive": {
+        "0": 2
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 221,
+      "progressive_turns": 346,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 0,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 573,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106666,
+      "moved_eligible_turns": 262,
+      "per_unit_regressive": {
+        "1": 3
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 286
+      },
+      "poison_regressive_turns": 132,
+      "progressive_turns": 259,
+      "regressive_turns": 3,
+      "regressive_turns_no_fallback": 3,
+      "seat": 1,
+      "troll_turns": 586,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 446,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106711,
+      "moved_eligible_turns": 224,
+      "per_unit_regressive": {
+        "1": 9
+      },
+      "per_unit_turns": {
+        "1": 238,
+        "2": 230
+      },
+      "poison_regressive_turns": 90,
+      "progressive_turns": 215,
+      "regressive_turns": 9,
+      "regressive_turns_no_fallback": 9,
+      "seat": 1,
+      "troll_turns": 468,
+      "turns": 238
+    },
+    {
+      "eligible_turns": 579,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106722,
+      "moved_eligible_turns": 345,
+      "per_unit_regressive": {
+        "0": 6
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 162,
+      "progressive_turns": 339,
+      "regressive_turns": 6,
+      "regressive_turns_no_fallback": 6,
+      "seat": 0,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 478,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106807,
+      "moved_eligible_turns": 213,
+      "per_unit_regressive": {
+        "0": 4
+      },
+      "per_unit_turns": {
+        "0": 250,
+        "2": 234
+      },
+      "poison_regressive_turns": 113,
+      "progressive_turns": 209,
+      "regressive_turns": 4,
+      "regressive_turns_no_fallback": 4,
+      "seat": 0,
+      "troll_turns": 484,
+      "turns": 250
+    },
+    {
+      "eligible_turns": 578,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106823,
+      "moved_eligible_turns": 370,
+      "per_unit_regressive": {
+        "1": 4
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 292
+      },
+      "poison_regressive_turns": 180,
+      "progressive_turns": 366,
+      "regressive_turns": 4,
+      "regressive_turns_no_fallback": 4,
+      "seat": 1,
+      "troll_turns": 592,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 594,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106846,
+      "moved_eligible_turns": 304,
+      "per_unit_regressive": {
+        "1": 2
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "3": 299
+      },
+      "poison_regressive_turns": 130,
+      "progressive_turns": 302,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 1,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 584,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106869,
+      "moved_eligible_turns": 343,
+      "per_unit_regressive": {
+        "0": 7
+      },
+      "per_unit_turns": {
+        "0": 299,
+        "2": 298
+      },
+      "poison_regressive_turns": 164,
+      "progressive_turns": 336,
+      "regressive_turns": 7,
+      "regressive_turns_no_fallback": 7,
+      "seat": 0,
+      "troll_turns": 597,
+      "turns": 299
+    },
+    {
+      "eligible_turns": 570,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106907,
+      "moved_eligible_turns": 306,
+      "per_unit_regressive": {
+        "1": 2
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 286
+      },
+      "poison_regressive_turns": 161,
+      "progressive_turns": 304,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 1,
+      "troll_turns": 586,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 406,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106917,
+      "moved_eligible_turns": 192,
+      "per_unit_regressive": {
+        "1": 2
+      },
+      "per_unit_turns": {
+        "1": 212,
+        "2": 196
+      },
+      "poison_regressive_turns": 93,
+      "progressive_turns": 190,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 1,
+      "troll_turns": 408,
+      "turns": 212
+    },
+    {
+      "eligible_turns": 572,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106926,
+      "moved_eligible_turns": 336,
+      "per_unit_regressive": {
+        "0": 3
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 286
+      },
+      "poison_regressive_turns": 163,
+      "progressive_turns": 333,
+      "regressive_turns": 3,
+      "regressive_turns_no_fallback": 3,
+      "seat": 0,
+      "troll_turns": 586,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 240,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106938,
+      "moved_eligible_turns": 149,
+      "per_unit_regressive": {
+        "1": 1
+      },
+      "per_unit_turns": {
+        "1": 142,
+        "3": 118
+      },
+      "poison_regressive_turns": 68,
+      "progressive_turns": 148,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 1,
+      "troll_turns": 260,
+      "turns": 142
+    },
+    {
+      "eligible_turns": 583,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106970,
+      "moved_eligible_turns": 338,
+      "per_unit_regressive": {
+        "0": 9
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 294
+      },
+      "poison_regressive_turns": 159,
+      "progressive_turns": 329,
+      "regressive_turns": 9,
+      "regressive_turns_no_fallback": 9,
+      "seat": 0,
+      "troll_turns": 594,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 562,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106983,
+      "moved_eligible_turns": 347,
+      "per_unit_regressive": {
+        "1": 3,
+        "3": 1
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "3": 276
+      },
+      "poison_regressive_turns": 147,
+      "progressive_turns": 343,
+      "regressive_turns": 4,
+      "regressive_turns_no_fallback": 3,
+      "seat": 1,
+      "troll_turns": 576,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 570,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900106993,
+      "moved_eligible_turns": 279,
+      "per_unit_regressive": {
+        "0": 7
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 290
+      },
+      "poison_regressive_turns": 136,
+      "progressive_turns": 272,
+      "regressive_turns": 7,
+      "regressive_turns_no_fallback": 7,
+      "seat": 0,
+      "troll_turns": 590,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 428,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107001,
+      "moved_eligible_turns": 192,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 233,
+        "2": 219
+      },
+      "poison_regressive_turns": 94,
+      "progressive_turns": 192,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 452,
+      "turns": 233
+    },
+    {
+      "eligible_turns": 527,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107012,
+      "moved_eligible_turns": 222,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 281,
+        "2": 273
+      },
+      "poison_regressive_turns": 108,
+      "progressive_turns": 222,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 554,
+      "turns": 281
+    },
+    {
+      "eligible_turns": 580,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107025,
+      "moved_eligible_turns": 370,
+      "per_unit_regressive": {
+        "1": 2
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 288
+      },
+      "poison_regressive_turns": 155,
+      "progressive_turns": 368,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 1,
+      "troll_turns": 588,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 580,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107061,
+      "moved_eligible_turns": 319,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 300,
+        "3": 292
+      },
+      "poison_regressive_turns": 165,
+      "progressive_turns": 319,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 592,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 585,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107084,
+      "moved_eligible_turns": 331,
+      "per_unit_regressive": {
+        "0": 1
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 160,
+      "progressive_turns": 330,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 0,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 559,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107100,
+      "moved_eligible_turns": 292,
+      "per_unit_regressive": {
+        "1": 9
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "3": 278
+      },
+      "poison_regressive_turns": 121,
+      "progressive_turns": 283,
+      "regressive_turns": 9,
+      "regressive_turns_no_fallback": 9,
+      "seat": 1,
+      "troll_turns": 578,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 571,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107158,
+      "moved_eligible_turns": 316,
+      "per_unit_regressive": {
+        "0": 1
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 286
+      },
+      "poison_regressive_turns": 175,
+      "progressive_turns": 315,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 0,
+      "troll_turns": 586,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 570,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107180,
+      "moved_eligible_turns": 300,
+      "per_unit_regressive": {
+        "0": 3
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 284
+      },
+      "poison_regressive_turns": 163,
+      "progressive_turns": 297,
+      "regressive_turns": 3,
+      "regressive_turns_no_fallback": 3,
+      "seat": 0,
+      "troll_turns": 584,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 563,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107224,
+      "moved_eligible_turns": 280,
+      "per_unit_regressive": {
+        "1": 2
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 133,
+      "progressive_turns": 278,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 1,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 470,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107237,
+      "moved_eligible_turns": 219,
+      "per_unit_regressive": {
+        "1": 1
+      },
+      "per_unit_turns": {
+        "1": 279,
+        "2": 278
+      },
+      "poison_regressive_turns": 108,
+      "progressive_turns": 218,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 1,
+      "troll_turns": 557,
+      "turns": 279
+    },
+    {
+      "eligible_turns": 587,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107259,
+      "moved_eligible_turns": 321,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "1": 300,
+        "2": 290
+      },
+      "poison_regressive_turns": 140,
+      "progressive_turns": 321,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 1,
+      "troll_turns": 590,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 570,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107292,
+      "moved_eligible_turns": 301,
+      "per_unit_regressive": {
+        "0": 1
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 284
+      },
+      "poison_regressive_turns": 173,
+      "progressive_turns": 300,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 0,
+      "troll_turns": 584,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 563,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107336,
+      "moved_eligible_turns": 312,
+      "per_unit_regressive": {
+        "1": 54
+      },
+      "per_unit_turns": {
+        "1": 286,
+        "3": 280
+      },
+      "poison_regressive_turns": 161,
+      "progressive_turns": 258,
+      "regressive_turns": 54,
+      "regressive_turns_no_fallback": 54,
+      "seat": 1,
+      "troll_turns": 566,
+      "turns": 286
+    },
+    {
+      "eligible_turns": 571,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107356,
+      "moved_eligible_turns": 396,
+      "per_unit_regressive": {
+        "0": 29,
+        "2": 19
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 282
+      },
+      "poison_regressive_turns": 214,
+      "progressive_turns": 348,
+      "regressive_turns": 48,
+      "regressive_turns_no_fallback": 48,
+      "seat": 0,
+      "troll_turns": 582,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 365,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107376,
+      "moved_eligible_turns": 163,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "1": 220,
+        "2": 198
+      },
+      "poison_regressive_turns": 81,
+      "progressive_turns": 163,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 1,
+      "troll_turns": 418,
+      "turns": 220
+    },
+    {
+      "eligible_turns": 593,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107406,
+      "moved_eligible_turns": 361,
+      "per_unit_regressive": {
+        "1": 2
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 157,
+      "progressive_turns": 359,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 1,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 537,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107424,
+      "moved_eligible_turns": 216,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "1": 300,
+        "3": 290
+      },
+      "poison_regressive_turns": 117,
+      "progressive_turns": 216,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 1,
+      "troll_turns": 590,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 590,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107443,
+      "moved_eligible_turns": 286,
+      "per_unit_regressive": {
+        "0": 3
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 164,
+      "progressive_turns": 283,
+      "regressive_turns": 3,
+      "regressive_turns_no_fallback": 3,
+      "seat": 0,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 151,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107462,
+      "moved_eligible_turns": 63,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 107,
+        "3": 101
+      },
+      "poison_regressive_turns": 24,
+      "progressive_turns": 63,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 208,
+      "turns": 107
+    },
+    {
+      "eligible_turns": 591,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107506,
+      "moved_eligible_turns": 343,
+      "per_unit_regressive": {
+        "1": 1
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "3": 299
+      },
+      "poison_regressive_turns": 176,
+      "progressive_turns": 342,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 1,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 563,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107528,
+      "moved_eligible_turns": 308,
+      "per_unit_regressive": {
+        "2": 6
+      },
+      "per_unit_turns": {
+        "0": 290,
+        "2": 289
+      },
+      "poison_regressive_turns": 135,
+      "progressive_turns": 302,
+      "regressive_turns": 6,
+      "regressive_turns_no_fallback": 6,
+      "seat": 0,
+      "troll_turns": 579,
+      "turns": 290
+    },
+    {
+      "eligible_turns": 587,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107550,
+      "moved_eligible_turns": 392,
+      "per_unit_regressive": {
+        "0": 1
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 178,
+      "progressive_turns": 391,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 579,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107573,
+      "moved_eligible_turns": 290,
+      "per_unit_regressive": {
+        "1": 2
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "3": 286
+      },
+      "poison_regressive_turns": 123,
+      "progressive_turns": 288,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 1,
+      "troll_turns": 586,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 468,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107588,
+      "moved_eligible_turns": 186,
+      "per_unit_regressive": {
+        "2": 1
+      },
+      "per_unit_turns": {
+        "1": 247,
+        "2": 223
+      },
+      "poison_regressive_turns": 75,
+      "progressive_turns": 185,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 0,
+      "seat": 1,
+      "troll_turns": 470,
+      "turns": 247
+    },
+    {
+      "eligible_turns": 554,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107618,
+      "moved_eligible_turns": 284,
+      "per_unit_regressive": {
+        "1": 3
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 274
+      },
+      "poison_regressive_turns": 137,
+      "progressive_turns": 281,
+      "regressive_turns": 3,
+      "regressive_turns_no_fallback": 3,
+      "seat": 1,
+      "troll_turns": 574,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 554,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107635,
+      "moved_eligible_turns": 252,
+      "per_unit_regressive": {
+        "1": 2
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "3": 290
+      },
+      "poison_regressive_turns": 113,
+      "progressive_turns": 250,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 1,
+      "troll_turns": 590,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 575,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107655,
+      "moved_eligible_turns": 279,
+      "per_unit_regressive": {
+        "1": 5
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 286
+      },
+      "poison_regressive_turns": 130,
+      "progressive_turns": 274,
+      "regressive_turns": 5,
+      "regressive_turns_no_fallback": 5,
+      "seat": 1,
+      "troll_turns": 586,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 406,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107702,
+      "moved_eligible_turns": 248,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 213,
+        "3": 197
+      },
+      "poison_regressive_turns": 132,
+      "progressive_turns": 248,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 410,
+      "turns": 213
+    },
+    {
+      "eligible_turns": 298,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107776,
+      "moved_eligible_turns": 182,
+      "per_unit_regressive": {
+        "0": 2
+      },
+      "per_unit_turns": {
+        "0": 167,
+        "2": 166
+      },
+      "poison_regressive_turns": 93,
+      "progressive_turns": 180,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 0,
+      "troll_turns": 333,
+      "turns": 167
+    },
+    {
+      "eligible_turns": 551,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107799,
+      "moved_eligible_turns": 323,
+      "per_unit_regressive": {
+        "0": 5
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 278
+      },
+      "poison_regressive_turns": 129,
+      "progressive_turns": 318,
+      "regressive_turns": 5,
+      "regressive_turns_no_fallback": 5,
+      "seat": 0,
+      "troll_turns": 578,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 557,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107873,
+      "moved_eligible_turns": 289,
+      "per_unit_regressive": {
+        "1": 1
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 290
+      },
+      "poison_regressive_turns": 126,
+      "progressive_turns": 288,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 1,
+      "troll_turns": 590,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 577,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107921,
+      "moved_eligible_turns": 291,
+      "per_unit_regressive": {
+        "1": 3
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "3": 290
+      },
+      "poison_regressive_turns": 165,
+      "progressive_turns": 288,
+      "regressive_turns": 3,
+      "regressive_turns_no_fallback": 3,
+      "seat": 1,
+      "troll_turns": 590,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 186,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900107989,
+      "moved_eligible_turns": 99,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 109,
+        "2": 108
+      },
+      "poison_regressive_turns": 52,
+      "progressive_turns": 99,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 217,
+      "turns": 109
+    },
+    {
+      "eligible_turns": 282,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108004,
+      "moved_eligible_turns": 142,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "1": 208,
+        "2": 200
+      },
+      "poison_regressive_turns": 76,
+      "progressive_turns": 142,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 1,
+      "troll_turns": 408,
+      "turns": 208
+    },
+    {
+      "eligible_turns": 274,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108081,
+      "moved_eligible_turns": 141,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 187,
+        "2": 169
+      },
+      "poison_regressive_turns": 58,
+      "progressive_turns": 141,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 356,
+      "turns": 187
+    },
+    {
+      "eligible_turns": 512,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108104,
+      "moved_eligible_turns": 379,
+      "per_unit_regressive": {
+        "0": 4
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 292
+      },
+      "poison_regressive_turns": 204,
+      "progressive_turns": 375,
+      "regressive_turns": 4,
+      "regressive_turns_no_fallback": 4,
+      "seat": 0,
+      "troll_turns": 592,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 584,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108129,
+      "moved_eligible_turns": 311,
+      "per_unit_regressive": {
+        "0": 26
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 286
+      },
+      "poison_regressive_turns": 141,
+      "progressive_turns": 285,
+      "regressive_turns": 26,
+      "regressive_turns_no_fallback": 26,
+      "seat": 0,
+      "troll_turns": 586,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 552,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108213,
+      "moved_eligible_turns": 207,
+      "per_unit_regressive": {
+        "1": 1
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 292
+      },
+      "poison_regressive_turns": 114,
+      "progressive_turns": 206,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 1,
+      "troll_turns": 592,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 451,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108234,
+      "moved_eligible_turns": 198,
+      "per_unit_regressive": {
+        "0": 2
+      },
+      "per_unit_turns": {
+        "0": 237,
+        "2": 227
+      },
+      "poison_regressive_turns": 85,
+      "progressive_turns": 196,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 0,
+      "troll_turns": 464,
+      "turns": 237
+    },
+    {
+      "eligible_turns": 583,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108253,
+      "moved_eligible_turns": 358,
+      "per_unit_regressive": {
+        "0": 11
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 160,
+      "progressive_turns": 347,
+      "regressive_turns": 11,
+      "regressive_turns_no_fallback": 10,
+      "seat": 0,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 562,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108277,
+      "moved_eligible_turns": 252,
+      "per_unit_regressive": {
+        "1": 6
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "3": 288
+      },
+      "poison_regressive_turns": 114,
+      "progressive_turns": 246,
+      "regressive_turns": 6,
+      "regressive_turns_no_fallback": 6,
+      "seat": 1,
+      "troll_turns": 588,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 567,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108323,
+      "moved_eligible_turns": 339,
+      "per_unit_regressive": {
+        "1": 5
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 286
+      },
+      "poison_regressive_turns": 167,
+      "progressive_turns": 334,
+      "regressive_turns": 5,
+      "regressive_turns_no_fallback": 5,
+      "seat": 1,
+      "troll_turns": 586,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 305,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108364,
+      "moved_eligible_turns": 189,
+      "per_unit_regressive": {
+        "0": 1
+      },
+      "per_unit_turns": {
+        "0": 177,
+        "3": 169
+      },
+      "poison_regressive_turns": 92,
+      "progressive_turns": 188,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 0,
+      "troll_turns": 346,
+      "turns": 177
+    },
+    {
+      "eligible_turns": 538,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108380,
+      "moved_eligible_turns": 253,
+      "per_unit_regressive": {
+        "0": 1
+      },
+      "per_unit_turns": {
+        "0": 284,
+        "2": 270
+      },
+      "poison_regressive_turns": 116,
+      "progressive_turns": 252,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 0,
+      "troll_turns": 554,
+      "turns": 284
+    },
+    {
+      "eligible_turns": 574,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108411,
+      "moved_eligible_turns": 282,
+      "per_unit_regressive": {
+        "0": 3
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 286
+      },
+      "poison_regressive_turns": 138,
+      "progressive_turns": 279,
+      "regressive_turns": 3,
+      "regressive_turns_no_fallback": 3,
+      "seat": 0,
+      "troll_turns": 586,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 359,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108475,
+      "moved_eligible_turns": 199,
+      "per_unit_regressive": {
+        "1": 1
+      },
+      "per_unit_turns": {
+        "1": 191,
+        "3": 190
+      },
+      "poison_regressive_turns": 74,
+      "progressive_turns": 198,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 0,
+      "seat": 1,
+      "troll_turns": 381,
+      "turns": 191
+    },
+    {
+      "eligible_turns": 416,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108490,
+      "moved_eligible_turns": 208,
+      "per_unit_regressive": {
+        "1": 13
+      },
+      "per_unit_turns": {
+        "1": 271,
+        "3": 263
+      },
+      "poison_regressive_turns": 84,
+      "progressive_turns": 195,
+      "regressive_turns": 13,
+      "regressive_turns_no_fallback": 13,
+      "seat": 1,
+      "troll_turns": 534,
+      "turns": 271
+    },
+    {
+      "eligible_turns": 571,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108555,
+      "moved_eligible_turns": 314,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "1": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 165,
+      "progressive_turns": 314,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 1,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 559,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108570,
+      "moved_eligible_turns": 340,
+      "per_unit_regressive": {
+        "0": 2
+      },
+      "per_unit_turns": {
+        "0": 296,
+        "2": 292
+      },
+      "poison_regressive_turns": 138,
+      "progressive_turns": 338,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 0,
+      "troll_turns": 588,
+      "turns": 296
+    },
+    {
+      "eligible_turns": 350,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108600,
+      "moved_eligible_turns": 134,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 185,
+        "3": 177
+      },
+      "poison_regressive_turns": 69,
+      "progressive_turns": 134,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 362,
+      "turns": 185
+    },
+    {
+      "eligible_turns": 580,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108615,
+      "moved_eligible_turns": 226,
+      "per_unit_regressive": {
+        "1": 2
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 114,
+      "progressive_turns": 224,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 1,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 562,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108649,
+      "moved_eligible_turns": 296,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "1": 300,
+        "2": 286
+      },
+      "poison_regressive_turns": 129,
+      "progressive_turns": 296,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 1,
+      "troll_turns": 586,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 570,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108665,
+      "moved_eligible_turns": 284,
+      "per_unit_regressive": {
+        "0": 6
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "3": 290
+      },
+      "poison_regressive_turns": 153,
+      "progressive_turns": 278,
+      "regressive_turns": 6,
+      "regressive_turns_no_fallback": 6,
+      "seat": 0,
+      "troll_turns": 590,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 299,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108712,
+      "moved_eligible_turns": 214,
+      "per_unit_regressive": {
+        "0": 2
+      },
+      "per_unit_turns": {
+        "0": 161,
+        "2": 151
+      },
+      "poison_regressive_turns": 96,
+      "progressive_turns": 212,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 0,
+      "troll_turns": 312,
+      "turns": 161
+    },
+    {
+      "eligible_turns": 371,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108725,
+      "moved_eligible_turns": 230,
+      "per_unit_regressive": {
+        "0": 4
+      },
+      "per_unit_turns": {
+        "0": 203,
+        "2": 181
+      },
+      "poison_regressive_turns": 99,
+      "progressive_turns": 226,
+      "regressive_turns": 4,
+      "regressive_turns_no_fallback": 4,
+      "seat": 0,
+      "troll_turns": 384,
+      "turns": 203
+    },
+    {
+      "eligible_turns": 586,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108754,
+      "moved_eligible_turns": 311,
+      "per_unit_regressive": {
+        "1": 1
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "3": 294
+      },
+      "poison_regressive_turns": 165,
+      "progressive_turns": 310,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 1,
+      "troll_turns": 594,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 581,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108767,
+      "moved_eligible_turns": 248,
+      "per_unit_regressive": {
+        "0": 13
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 133,
+      "progressive_turns": 235,
+      "regressive_turns": 13,
+      "regressive_turns_no_fallback": 13,
+      "seat": 0,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 244,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108788,
+      "moved_eligible_turns": 157,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "1": 139,
+        "3": 138
+      },
+      "poison_regressive_turns": 78,
+      "progressive_turns": 157,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 1,
+      "troll_turns": 277,
+      "turns": 139
+    },
+    {
+      "eligible_turns": 558,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108849,
+      "moved_eligible_turns": 291,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 294,
+        "3": 269
+      },
+      "poison_regressive_turns": 153,
+      "progressive_turns": 291,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 563,
+      "turns": 294
+    },
+    {
+      "eligible_turns": 173,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108871,
+      "moved_eligible_turns": 114,
+      "per_unit_regressive": {
+        "0": 1
+      },
+      "per_unit_turns": {
+        "0": 99,
+        "2": 98
+      },
+      "poison_regressive_turns": 48,
+      "progressive_turns": 113,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 197,
+      "turns": 99
+    },
+    {
+      "eligible_turns": 427,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108884,
+      "moved_eligible_turns": 156,
+      "per_unit_regressive": {
+        "1": 2
+      },
+      "per_unit_turns": {
+        "1": 228,
+        "3": 206
+      },
+      "poison_regressive_turns": 76,
+      "progressive_turns": 154,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 1,
+      "troll_turns": 434,
+      "turns": 228
+    },
+    {
+      "eligible_turns": 549,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108910,
+      "moved_eligible_turns": 307,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 300,
+        "2": 292
+      },
+      "poison_regressive_turns": 154,
+      "progressive_turns": 307,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 592,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 586,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108932,
+      "moved_eligible_turns": 346,
+      "per_unit_regressive": {
+        "1": 2
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 161,
+      "progressive_turns": 344,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 1,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 592,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108949,
+      "moved_eligible_turns": 420,
+      "per_unit_regressive": {
+        "1": 7
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 139,
+      "progressive_turns": 413,
+      "regressive_turns": 7,
+      "regressive_turns_no_fallback": 6,
+      "seat": 1,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 222,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108963,
+      "moved_eligible_turns": 119,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 129,
+        "3": 119
+      },
+      "poison_regressive_turns": 57,
+      "progressive_turns": 119,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 248,
+      "turns": 129
+    },
+    {
+      "eligible_turns": 580,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108974,
+      "moved_eligible_turns": 374,
+      "per_unit_regressive": {
+        "0": 2
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "3": 290
+      },
+      "poison_regressive_turns": 204,
+      "progressive_turns": 372,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 0,
+      "troll_turns": 590,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 585,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900108989,
+      "moved_eligible_turns": 292,
+      "per_unit_regressive": {
+        "1": 4
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "3": 299
+      },
+      "poison_regressive_turns": 156,
+      "progressive_turns": 288,
+      "regressive_turns": 4,
+      "regressive_turns_no_fallback": 3,
+      "seat": 1,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 564,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109028,
+      "moved_eligible_turns": 278,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "1": 300,
+        "2": 276
+      },
+      "poison_regressive_turns": 111,
+      "progressive_turns": 278,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 1,
+      "troll_turns": 576,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 421,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109048,
+      "moved_eligible_turns": 260,
+      "per_unit_regressive": {
+        "0": 4
+      },
+      "per_unit_turns": {
+        "0": 241,
+        "2": 240
+      },
+      "poison_regressive_turns": 133,
+      "progressive_turns": 256,
+      "regressive_turns": 4,
+      "regressive_turns_no_fallback": 4,
+      "seat": 0,
+      "troll_turns": 481,
+      "turns": 241
+    },
+    {
+      "eligible_turns": 583,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109090,
+      "moved_eligible_turns": 372,
+      "per_unit_regressive": {
+        "0": 2
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 165,
+      "progressive_turns": 370,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 1,
+      "seat": 0,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 588,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109112,
+      "moved_eligible_turns": 346,
+      "per_unit_regressive": {
+        "1": 2,
+        "2": 1
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 175,
+      "progressive_turns": 343,
+      "regressive_turns": 3,
+      "regressive_turns_no_fallback": 3,
+      "seat": 1,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 591,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109142,
+      "moved_eligible_turns": 224,
+      "per_unit_regressive": {
+        "1": 1,
+        "2": 1
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 121,
+      "progressive_turns": 222,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 1,
+      "seat": 1,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 573,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109188,
+      "moved_eligible_turns": 323,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 300,
+        "2": 289
+      },
+      "poison_regressive_turns": 147,
+      "progressive_turns": 323,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 589,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 302,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109206,
+      "moved_eligible_turns": 145,
+      "per_unit_regressive": {
+        "0": 2
+      },
+      "per_unit_turns": {
+        "0": 177,
+        "2": 157
+      },
+      "poison_regressive_turns": 61,
+      "progressive_turns": 143,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 0,
+      "troll_turns": 334,
+      "turns": 177
+    },
+    {
+      "eligible_turns": 573,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109260,
+      "moved_eligible_turns": 328,
+      "per_unit_regressive": {
+        "0": 9
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 284
+      },
+      "poison_regressive_turns": 160,
+      "progressive_turns": 319,
+      "regressive_turns": 9,
+      "regressive_turns_no_fallback": 9,
+      "seat": 0,
+      "troll_turns": 584,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 537,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109277,
+      "moved_eligible_turns": 376,
+      "per_unit_regressive": {
+        "0": 6
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 274
+      },
+      "poison_regressive_turns": 187,
+      "progressive_turns": 370,
+      "regressive_turns": 6,
+      "regressive_turns_no_fallback": 6,
+      "seat": 0,
+      "troll_turns": 574,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 588,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109297,
+      "moved_eligible_turns": 325,
+      "per_unit_regressive": {
+        "1": 1
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 151,
+      "progressive_turns": 324,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 1,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 583,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109360,
+      "moved_eligible_turns": 324,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "1": 300,
+        "2": 294
+      },
+      "poison_regressive_turns": 168,
+      "progressive_turns": 324,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 1,
+      "troll_turns": 594,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 580,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109410,
+      "moved_eligible_turns": 168,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "1": 300,
+        "3": 286
+      },
+      "poison_regressive_turns": 91,
+      "progressive_turns": 168,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 1,
+      "troll_turns": 586,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 540,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109430,
+      "moved_eligible_turns": 246,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 280,
+        "2": 272
+      },
+      "poison_regressive_turns": 137,
+      "progressive_turns": 246,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 552,
+      "turns": 280
+    },
+    {
+      "eligible_turns": 523,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109451,
+      "moved_eligible_turns": 305,
+      "per_unit_regressive": {
+        "0": 1
+      },
+      "per_unit_turns": {
+        "0": 275,
+        "2": 274
+      },
+      "poison_regressive_turns": 136,
+      "progressive_turns": 304,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 0,
+      "troll_turns": 549,
+      "turns": 275
+    },
+    {
+      "eligible_turns": 517,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109483,
+      "moved_eligible_turns": 282,
+      "per_unit_regressive": {
+        "1": 3
+      },
+      "per_unit_turns": {
+        "1": 272,
+        "3": 260
+      },
+      "poison_regressive_turns": 136,
+      "progressive_turns": 279,
+      "regressive_turns": 3,
+      "regressive_turns_no_fallback": 3,
+      "seat": 1,
+      "troll_turns": 532,
+      "turns": 272
+    },
+    {
+      "eligible_turns": 565,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109500,
+      "moved_eligible_turns": 392,
+      "per_unit_regressive": {
+        "0": 18
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 290
+      },
+      "poison_regressive_turns": 178,
+      "progressive_turns": 374,
+      "regressive_turns": 18,
+      "regressive_turns_no_fallback": 18,
+      "seat": 0,
+      "troll_turns": 590,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 590,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109517,
+      "moved_eligible_turns": 302,
+      "per_unit_regressive": {
+        "1": 3
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 156,
+      "progressive_turns": 299,
+      "regressive_turns": 3,
+      "regressive_turns_no_fallback": 2,
+      "seat": 1,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 281,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109557,
+      "moved_eligible_turns": 116,
+      "per_unit_regressive": {
+        "1": 1
+      },
+      "per_unit_turns": {
+        "1": 178,
+        "3": 162
+      },
+      "poison_regressive_turns": 42,
+      "progressive_turns": 115,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 1,
+      "troll_turns": 340,
+      "turns": 178
+    },
+    {
+      "eligible_turns": 558,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109575,
+      "moved_eligible_turns": 242,
+      "per_unit_regressive": {
+        "1": 3
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "3": 284
+      },
+      "poison_regressive_turns": 110,
+      "progressive_turns": 239,
+      "regressive_turns": 3,
+      "regressive_turns_no_fallback": 3,
+      "seat": 1,
+      "troll_turns": 584,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 553,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109606,
+      "moved_eligible_turns": 325,
+      "per_unit_regressive": {
+        "0": 8
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "3": 265
+      },
+      "poison_regressive_turns": 151,
+      "progressive_turns": 317,
+      "regressive_turns": 8,
+      "regressive_turns_no_fallback": 8,
+      "seat": 0,
+      "troll_turns": 565,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 582,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109621,
+      "moved_eligible_turns": 345,
+      "per_unit_regressive": {
+        "0": 2
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "3": 286
+      },
+      "poison_regressive_turns": 168,
+      "progressive_turns": 343,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 0,
+      "troll_turns": 586,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 415,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109645,
+      "moved_eligible_turns": 230,
+      "per_unit_regressive": {
+        "1": 8
+      },
+      "per_unit_turns": {
+        "1": 233,
+        "2": 214
+      },
+      "poison_regressive_turns": 102,
+      "progressive_turns": 222,
+      "regressive_turns": 8,
+      "regressive_turns_no_fallback": 8,
+      "seat": 1,
+      "troll_turns": 447,
+      "turns": 233
+    },
+    {
+      "eligible_turns": 566,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109656,
+      "moved_eligible_turns": 296,
+      "per_unit_regressive": {
+        "0": 4
+      },
+      "per_unit_turns": {
+        "0": 292,
+        "3": 278
+      },
+      "poison_regressive_turns": 135,
+      "progressive_turns": 292,
+      "regressive_turns": 4,
+      "regressive_turns_no_fallback": 3,
+      "seat": 0,
+      "troll_turns": 570,
+      "turns": 292
+    },
+    {
+      "eligible_turns": 567,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109670,
+      "moved_eligible_turns": 346,
+      "per_unit_regressive": {
+        "0": 4
+      },
+      "per_unit_turns": {
+        "0": 297,
+        "3": 287
+      },
+      "poison_regressive_turns": 163,
+      "progressive_turns": 342,
+      "regressive_turns": 4,
+      "regressive_turns_no_fallback": 4,
+      "seat": 0,
+      "troll_turns": 584,
+      "turns": 297
+    },
+    {
+      "eligible_turns": 484,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109689,
+      "moved_eligible_turns": 245,
+      "per_unit_regressive": {
+        "0": 4
+      },
+      "per_unit_turns": {
+        "0": 264,
+        "3": 252
+      },
+      "poison_regressive_turns": 115,
+      "progressive_turns": 241,
+      "regressive_turns": 4,
+      "regressive_turns_no_fallback": 4,
+      "seat": 0,
+      "troll_turns": 516,
+      "turns": 264
+    },
+    {
+      "eligible_turns": 537,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109734,
+      "moved_eligible_turns": 328,
+      "per_unit_regressive": {
+        "2": 3
+      },
+      "per_unit_turns": {
+        "1": 277,
+        "2": 271
+      },
+      "poison_regressive_turns": 183,
+      "progressive_turns": 325,
+      "regressive_turns": 3,
+      "regressive_turns_no_fallback": 3,
+      "seat": 1,
+      "troll_turns": 548,
+      "turns": 277
+    },
+    {
+      "eligible_turns": 574,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109745,
+      "moved_eligible_turns": 349,
+      "per_unit_regressive": {
+        "0": 1
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 183,
+      "progressive_turns": 348,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 0,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 545,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109763,
+      "moved_eligible_turns": 348,
+      "per_unit_regressive": {
+        "1": 12
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "3": 279
+      },
+      "poison_regressive_turns": 190,
+      "progressive_turns": 336,
+      "regressive_turns": 12,
+      "regressive_turns_no_fallback": 12,
+      "seat": 1,
+      "troll_turns": 579,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 564,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109777,
+      "moved_eligible_turns": 334,
+      "per_unit_regressive": {
+        "0": 8
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 282
+      },
+      "poison_regressive_turns": 173,
+      "progressive_turns": 326,
+      "regressive_turns": 8,
+      "regressive_turns_no_fallback": 7,
+      "seat": 0,
+      "troll_turns": 582,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 570,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109797,
+      "moved_eligible_turns": 351,
+      "per_unit_regressive": {
+        "0": 12
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "3": 288
+      },
+      "poison_regressive_turns": 180,
+      "progressive_turns": 339,
+      "regressive_turns": 12,
+      "regressive_turns_no_fallback": 12,
+      "seat": 0,
+      "troll_turns": 588,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 582,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109816,
+      "moved_eligible_turns": 366,
+      "per_unit_regressive": {
+        "1": 6
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 286
+      },
+      "poison_regressive_turns": 174,
+      "progressive_turns": 360,
+      "regressive_turns": 6,
+      "regressive_turns_no_fallback": 6,
+      "seat": 1,
+      "troll_turns": 586,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 588,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109828,
+      "moved_eligible_turns": 323,
+      "per_unit_regressive": {
+        "0": 2
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 294
+      },
+      "poison_regressive_turns": 149,
+      "progressive_turns": 321,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 0,
+      "troll_turns": 594,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 432,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109881,
+      "moved_eligible_turns": 218,
+      "per_unit_regressive": {
+        "1": 6
+      },
+      "per_unit_turns": {
+        "1": 241,
+        "2": 240
+      },
+      "poison_regressive_turns": 91,
+      "progressive_turns": 212,
+      "regressive_turns": 6,
+      "regressive_turns_no_fallback": 6,
+      "seat": 1,
+      "troll_turns": 481,
+      "turns": 241
+    },
+    {
+      "eligible_turns": 568,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109931,
+      "moved_eligible_turns": 254,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "1": 300,
+        "2": 276
+      },
+      "poison_regressive_turns": 145,
+      "progressive_turns": 254,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 1,
+      "troll_turns": 576,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 296,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109982,
+      "moved_eligible_turns": 188,
+      "per_unit_regressive": {
+        "0": 1,
+        "3": 1
+      },
+      "per_unit_turns": {
+        "0": 180,
+        "3": 157
+      },
+      "poison_regressive_turns": 81,
+      "progressive_turns": 186,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 0,
+      "troll_turns": 337,
+      "turns": 180
+    },
+    {
+      "eligible_turns": 428,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900109996,
+      "moved_eligible_turns": 202,
+      "per_unit_regressive": {
+        "1": 4
+      },
+      "per_unit_turns": {
+        "1": 240,
+        "3": 222
+      },
+      "poison_regressive_turns": 86,
+      "progressive_turns": 198,
+      "regressive_turns": 4,
+      "regressive_turns_no_fallback": 4,
+      "seat": 1,
+      "troll_turns": 462,
+      "turns": 240
+    },
+    {
+      "eligible_turns": 460,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110024,
+      "moved_eligible_turns": 240,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "1": 241,
+        "3": 223
+      },
+      "poison_regressive_turns": 131,
+      "progressive_turns": 240,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 1,
+      "troll_turns": 464,
+      "turns": 241
+    },
+    {
+      "eligible_turns": 569,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110048,
+      "moved_eligible_turns": 316,
+      "per_unit_regressive": {
+        "0": 2
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 143,
+      "progressive_turns": 314,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 0,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 553,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110059,
+      "moved_eligible_turns": 374,
+      "per_unit_regressive": {
+        "0": 9,
+        "2": 19
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 265
+      },
+      "poison_regressive_turns": 205,
+      "progressive_turns": 346,
+      "regressive_turns": 28,
+      "regressive_turns_no_fallback": 28,
+      "seat": 0,
+      "troll_turns": 565,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 571,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110085,
+      "moved_eligible_turns": 321,
+      "per_unit_regressive": {
+        "0": 4
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 284
+      },
+      "poison_regressive_turns": 153,
+      "progressive_turns": 317,
+      "regressive_turns": 4,
+      "regressive_turns_no_fallback": 4,
+      "seat": 0,
+      "troll_turns": 584,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 536,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110102,
+      "moved_eligible_turns": 319,
+      "per_unit_regressive": {
+        "1": 1
+      },
+      "per_unit_turns": {
+        "1": 272,
+        "3": 271
+      },
+      "poison_regressive_turns": 135,
+      "progressive_turns": 318,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 1,
+      "troll_turns": 543,
+      "turns": 272
+    },
+    {
+      "eligible_turns": 566,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110123,
+      "moved_eligible_turns": 360,
+      "per_unit_regressive": {
+        "1": 1
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 288
+      },
+      "poison_regressive_turns": 144,
+      "progressive_turns": 359,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 1,
+      "troll_turns": 588,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 577,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110139,
+      "moved_eligible_turns": 328,
+      "per_unit_regressive": {
+        "1": 8
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 294
+      },
+      "poison_regressive_turns": 131,
+      "progressive_turns": 320,
+      "regressive_turns": 8,
+      "regressive_turns_no_fallback": 8,
+      "seat": 1,
+      "troll_turns": 594,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 587,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110148,
+      "moved_eligible_turns": 322,
+      "per_unit_regressive": {
+        "1": 1
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 290
+      },
+      "poison_regressive_turns": 162,
+      "progressive_turns": 321,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 1,
+      "troll_turns": 590,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 235,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110189,
+      "moved_eligible_turns": 93,
+      "per_unit_regressive": {
+        "1": 1
+      },
+      "per_unit_turns": {
+        "1": 165,
+        "3": 149
+      },
+      "poison_regressive_turns": 33,
+      "progressive_turns": 92,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 1,
+      "troll_turns": 314,
+      "turns": 165
+    },
+    {
+      "eligible_turns": 580,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110209,
+      "moved_eligible_turns": 347,
+      "per_unit_regressive": {
+        "1": 3
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "3": 288
+      },
+      "poison_regressive_turns": 176,
+      "progressive_turns": 344,
+      "regressive_turns": 3,
+      "regressive_turns_no_fallback": 3,
+      "seat": 1,
+      "troll_turns": 588,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 593,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110221,
+      "moved_eligible_turns": 345,
+      "per_unit_regressive": {
+        "1": 10
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 157,
+      "progressive_turns": 335,
+      "regressive_turns": 10,
+      "regressive_turns_no_fallback": 9,
+      "seat": 1,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 572,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110267,
+      "moved_eligible_turns": 386,
+      "per_unit_regressive": {
+        "0": 2
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 286
+      },
+      "poison_regressive_turns": 192,
+      "progressive_turns": 384,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 0,
+      "troll_turns": 586,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 509,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110289,
+      "moved_eligible_turns": 225,
+      "per_unit_regressive": {
+        "1": 5
+      },
+      "per_unit_turns": {
+        "1": 277,
+        "3": 259
+      },
+      "poison_regressive_turns": 96,
+      "progressive_turns": 220,
+      "regressive_turns": 5,
+      "regressive_turns_no_fallback": 5,
+      "seat": 1,
+      "troll_turns": 536,
+      "turns": 277
+    },
+    {
+      "eligible_turns": 357,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110315,
+      "moved_eligible_turns": 139,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 196,
+        "2": 188
+      },
+      "poison_regressive_turns": 71,
+      "progressive_turns": 139,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 384,
+      "turns": 196
+    },
+    {
+      "eligible_turns": 584,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110342,
+      "moved_eligible_turns": 329,
+      "per_unit_regressive": {
+        "0": 1
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 159,
+      "progressive_turns": 328,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 0,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 231,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110361,
+      "moved_eligible_turns": 136,
+      "per_unit_regressive": {
+        "0": 1
+      },
+      "per_unit_turns": {
+        "0": 137,
+        "3": 121
+      },
+      "poison_regressive_turns": 54,
+      "progressive_turns": 135,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 258,
+      "turns": 137
+    },
+    {
+      "eligible_turns": 578,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110372,
+      "moved_eligible_turns": 254,
+      "per_unit_regressive": {
+        "0": 5
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 108,
+      "progressive_turns": 249,
+      "regressive_turns": 5,
+      "regressive_turns_no_fallback": 5,
+      "seat": 0,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 587,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110390,
+      "moved_eligible_turns": 307,
+      "per_unit_regressive": {
+        "0": 4
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 150,
+      "progressive_turns": 303,
+      "regressive_turns": 4,
+      "regressive_turns_no_fallback": 4,
+      "seat": 0,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 580,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110401,
+      "moved_eligible_turns": 335,
+      "per_unit_regressive": {
+        "0": 3
+      },
+      "per_unit_turns": {
+        "0": 298,
+        "2": 297
+      },
+      "poison_regressive_turns": 152,
+      "progressive_turns": 332,
+      "regressive_turns": 3,
+      "regressive_turns_no_fallback": 3,
+      "seat": 0,
+      "troll_turns": 595,
+      "turns": 298
+    },
+    {
+      "eligible_turns": 525,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110426,
+      "moved_eligible_turns": 365,
+      "per_unit_regressive": {
+        "0": 3
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 299
+      },
+      "poison_regressive_turns": 207,
+      "progressive_turns": 362,
+      "regressive_turns": 3,
+      "regressive_turns_no_fallback": 3,
+      "seat": 0,
+      "troll_turns": 599,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 507,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110452,
+      "moved_eligible_turns": 202,
+      "per_unit_regressive": {
+        "0": 7
+      },
+      "per_unit_turns": {
+        "0": 281,
+        "2": 255
+      },
+      "poison_regressive_turns": 87,
+      "progressive_turns": 195,
+      "regressive_turns": 7,
+      "regressive_turns_no_fallback": 7,
+      "seat": 0,
+      "troll_turns": 536,
+      "turns": 281
+    },
+    {
+      "eligible_turns": 559,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110469,
+      "moved_eligible_turns": 271,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 300,
+        "3": 280
+      },
+      "poison_regressive_turns": 139,
+      "progressive_turns": 271,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 580,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 576,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110481,
+      "moved_eligible_turns": 351,
+      "per_unit_regressive": {
+        "1": 1
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 289
+      },
+      "poison_regressive_turns": 150,
+      "progressive_turns": 350,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 1,
+      "troll_turns": 589,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 203,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110497,
+      "moved_eligible_turns": 118,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "1": 125,
+        "3": 117
+      },
+      "poison_regressive_turns": 56,
+      "progressive_turns": 118,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 1,
+      "troll_turns": 242,
+      "turns": 125
+    },
+    {
+      "eligible_turns": 575,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110509,
+      "moved_eligible_turns": 261,
+      "per_unit_regressive": {
+        "0": 2
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "3": 284
+      },
+      "poison_regressive_turns": 127,
+      "progressive_turns": 259,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 0,
+      "troll_turns": 584,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 454,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110522,
+      "moved_eligible_turns": 127,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 234,
+        "3": 224
+      },
+      "poison_regressive_turns": 68,
+      "progressive_turns": 127,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 458,
+      "turns": 234
+    },
+    {
+      "eligible_turns": 554,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110576,
+      "moved_eligible_turns": 318,
+      "per_unit_regressive": {
+        "0": 10
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "2": 282
+      },
+      "poison_regressive_turns": 156,
+      "progressive_turns": 308,
+      "regressive_turns": 10,
+      "regressive_turns_no_fallback": 10,
+      "seat": 0,
+      "troll_turns": 582,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 568,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110599,
+      "moved_eligible_turns": 317,
+      "per_unit_regressive": {
+        "0": 1
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "3": 290
+      },
+      "poison_regressive_turns": 178,
+      "progressive_turns": 316,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 0,
+      "troll_turns": 590,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 582,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110614,
+      "moved_eligible_turns": 334,
+      "per_unit_regressive": {
+        "1": 9
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 286
+      },
+      "poison_regressive_turns": 164,
+      "progressive_turns": 325,
+      "regressive_turns": 9,
+      "regressive_turns_no_fallback": 9,
+      "seat": 1,
+      "troll_turns": 586,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 296,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110641,
+      "moved_eligible_turns": 166,
+      "per_unit_regressive": {},
+      "per_unit_turns": {
+        "0": 168,
+        "3": 160
+      },
+      "poison_regressive_turns": 77,
+      "progressive_turns": 166,
+      "regressive_turns": 0,
+      "regressive_turns_no_fallback": 0,
+      "seat": 0,
+      "troll_turns": 328,
+      "turns": 168
+    },
+    {
+      "eligible_turns": 570,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110652,
+      "moved_eligible_turns": 292,
+      "per_unit_regressive": {
+        "1": 1
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 287
+      },
+      "poison_regressive_turns": 142,
+      "progressive_turns": 291,
+      "regressive_turns": 1,
+      "regressive_turns_no_fallback": 1,
+      "seat": 1,
+      "troll_turns": 587,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 505,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110665,
+      "moved_eligible_turns": 264,
+      "per_unit_regressive": {
+        "0": 2
+      },
+      "per_unit_turns": {
+        "0": 261,
+        "3": 247
+      },
+      "poison_regressive_turns": 107,
+      "progressive_turns": 262,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 0,
+      "troll_turns": 508,
+      "turns": 261
+    },
+    {
+      "eligible_turns": 588,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110684,
+      "moved_eligible_turns": 424,
+      "per_unit_regressive": {
+        "1": 8,
+        "2": 19
+      },
+      "per_unit_turns": {
+        "1": 300,
+        "2": 290
+      },
+      "poison_regressive_turns": 206,
+      "progressive_turns": 397,
+      "regressive_turns": 27,
+      "regressive_turns_no_fallback": 27,
+      "seat": 1,
+      "troll_turns": 590,
+      "turns": 300
+    },
+    {
+      "eligible_turns": 569,
+      "equal_turns": 0,
+      "fallback_rows": 2,
+      "game_id": 900110702,
+      "moved_eligible_turns": 312,
+      "per_unit_regressive": {
+        "0": 2
+      },
+      "per_unit_turns": {
+        "0": 300,
+        "3": 286
+      },
+      "poison_regressive_turns": 138,
+      "progressive_turns": 310,
+      "regressive_turns": 2,
+      "regressive_turns_no_fallback": 2,
+      "seat": 0,
+      "troll_turns": 586,
+      "turns": 300
+    }
+  ],
+  "rate_per_1000_game_turns": 15.0577,
+  "rate_per_1000_troll_turns": 7.6771,
+  "refusals": [],
+  "regressive_turns": 652,
+  "share_of_eligible_pct": 0.8013,
+  "share_of_moved_eligible_pct": 1.4697,
+  "task": "20260825-dance-cure-candidate-1-hold",
+  "worst_troll": {
+    "game_id": 900107336,
+    "regressive_turns": 54,
+    "troll_turns": 286,
+    "unit": 1
+  }
+}

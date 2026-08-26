@@ -1,0 +1,118 @@
+{
+  "task": "20260821-swap-r1-cure",
+  "gate": "G-1",
+  "candidate_control": "/home/tarstars/prj/troll_farm-claude_1/claude_1/swap1/control-swap-r1.rs",
+  "controls": [
+    {
+      "name": "T2b-decline",
+      "conjunct": "T2b",
+      "why": "an EARLIER accepted mover (id 3, sorted first on descending id) has already reserved (1,0) \u2014 m's own cell \u2014 as its landing, so the exchange would create a contested landing the engine would break on id. alpha must decline.",
+      "expect": "IDENTICAL",
+      "base": "WAIT;WAIT;MOVE 3 1 0",
+      "candidate": "WAIT;WAIT;MOVE 3 1 0",
+      "status": "OK",
+      "detail": "byte-identical to the base"
+    },
+    {
+      "name": "T2b-fire-twin",
+      "conjunct": "T2b",
+      "why": "the same board with the earlier mover sent the other way, so (1,0) is NOT reserved. One fact changed; alpha must now fire. This is what makes the decline above evidence about T2b rather than about an inert alpha.",
+      "expect": "EXCHANGE",
+      "base": "WAIT;MOVE 2 0 0;WAIT",
+      "candidate": "MOVE 1 1 0;MOVE 2 2 0;WAIT",
+      "status": "OK",
+      "detail": "exchange emitted"
+    },
+    {
+      "name": "T2-decline-speed",
+      "conjunct": "T2",
+      "why": "m has movement_speed 2, so its landing (3,0) is two cells from its own cell (1,0); U at (3,0) has speed 1 and cannot reach (1,0) in one tick. A bare adjacency test would wave this through; next_cell rejects it.",
+      "expect": "IDENTICAL",
+      "base": "WAIT;MOVE 2 2 0",
+      "candidate": "WAIT;MOVE 2 2 0",
+      "status": "OK",
+      "detail": "byte-identical to the base"
+    },
+    {
+      "name": "T2-fire-twin-speed",
+      "conjunct": "T2",
+      "why": "the same board with U's speed raised to 2, which makes the exchange a legal single tick for U. Also the T4(a) demonstration: a detour DOES exist here ((2,0) is free), and the ruled construction swaps anyway because U is idle.",
+      "expect": "EXCHANGE",
+      "base": "WAIT;MOVE 2 2 0",
+      "candidate": "MOVE 1 1 0;MOVE 2 3 0",
+      "status": "OK",
+      "detail": "exchange emitted"
+    },
+    {
+      "name": "T3-partner-forbidden-decline",
+      "conjunct": "T3 (door unblocking)",
+      "why": "m.cell (1,0) is forbidden to non-priority units and U (id 1) is not a priority id, so the exchange would push U into a door cell it is forbidden to enter. The base never had to ask this because U was not moving; alpha makes it move, so alpha owes the check.",
+      "expect": "IDENTICAL",
+      "base": "WAIT;MOVE 2 0 0",
+      "candidate": "WAIT;MOVE 2 0 0",
+      "status": "OK",
+      "detail": "byte-identical to the base"
+    },
+    {
+      "name": "T3-partner-forbidden-fire-twin",
+      "conjunct": "T3 (door unblocking)",
+      "why": "the same board with U also a priority id, which is exactly the fact the clause tests. alpha fires.",
+      "expect": "EXCHANGE",
+      "base": "WAIT;MOVE 2 0 0",
+      "candidate": "MOVE 1 1 0;MOVE 2 2 0",
+      "status": "OK",
+      "detail": "exchange emitted"
+    },
+    {
+      "name": "positional-map-count-mismatch",
+      "conjunct": "\u00a74 fail-closed positional map",
+      "why": "three own units, two commands: the one-command-per-unit invariant does not hold, so a positional map cannot be trusted and alpha disables itself for the tick. The board is otherwise the firing board.",
+      "expect": "IDENTICAL",
+      "base": "WAIT;MOVE 2 0 0",
+      "candidate": "WAIT;MOVE 2 0 0",
+      "status": "OK",
+      "detail": "byte-identical to the base"
+    },
+    {
+      "name": "positional-map-id-mismatch",
+      "conjunct": "\u00a74 fail-closed positional map",
+      "why": "the command count matches but a MOVE names an id that is not the positionally-derived one (slot 1 belongs to id 2 and carries `MOVE 4 \u2026`), so the map disagrees with the ids alpha can actually read and alpha disables itself. A cure that rewrites the wrong troll's command is worse than no cure.",
+      "expect": "IDENTICAL",
+      "base": "WAIT;MOVE 4 4 0;MOVE 2 0 0",
+      "candidate": "WAIT;MOVE 4 4 0;MOVE 2 0 0",
+      "status": "OK",
+      "detail": "byte-identical to the base"
+    },
+    {
+      "name": "T1-enemy-blocker",
+      "conjunct": "T1",
+      "why": "the blocker on the landing cell is an ENEMY unit. Enemies may share our cell, so they are never in `reserved` and the branch is not even reached \u2014 recorded as a control so the claim is measured rather than asserted.",
+      "expect": "IDENTICAL",
+      "base": "MOVE 2 2 0",
+      "candidate": "MOVE 2 2 0",
+      "status": "OK",
+      "detail": "byte-identical to the base"
+    },
+    {
+      "name": "T4b-no-detour-working-partner",
+      "conjunct": "T4(b)",
+      "why": "U is CHOPping, not idle, and m sits in a DEAD END at (0,0) with no detour. the OSC-005/027 shape: the exchange is the only resolution, and U's chop is displaced for the tick.",
+      "expect": "EXCHANGE",
+      "base": "CHOP 1;WAIT",
+      "candidate": "MOVE 1 0 0;MOVE 2 1 0",
+      "status": "OK",
+      "detail": "exchange emitted"
+    },
+    {
+      "name": "T4-working-partner-with-detour",
+      "conjunct": "T4",
+      "why": "U is working (not idle) and a detour DOES exist (the dead end at (0,0) is widened by (0,1)). Neither T4 clause holds, so alpha must decline and the base's detour must stand. This is the boundary of the one declared behaviour change.",
+      "expect": "IDENTICAL",
+      "base": "CHOP 1;MOVE 2 0 1",
+      "candidate": "CHOP 1;MOVE 2 0 1",
+      "status": "OK",
+      "detail": "byte-identical to the base"
+    }
+  ],
+  "all_ok": true
+}

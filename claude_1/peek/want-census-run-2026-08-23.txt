@@ -1,0 +1,44 @@
+  classifier control: PASS (6 constructed cases, all four labels reached)
+  OSC-001: 97 encounters  {'NO_WANT': 71, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 26}
+  OSC-002: 95 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 95}
+  OSC-003: 0 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-004: 0 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-005: 80 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 80, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-006: 6 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 5, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 1}
+  OSC-007: 2 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 2}
+  OSC-008: 0 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-009: 2 encounters  {'NO_WANT': 1, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 1}
+  OSC-010: 2 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 2, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-011: 3 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 3, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-012: 96 encounters  {'NO_WANT': 96, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-013: 94 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 94, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-014: 0 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-015: 0 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-016: 0 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-017: 97 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 97, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-018: 0 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-019: 0 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-020: 0 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-021: 87 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 87, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-022: 0 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-023: 0 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-024: 32 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 32, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-025: 10 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 10, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-026: 0 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-027: 10 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 10, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-028: 2 encounters  {'NO_WANT': 1, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 1}
+  OSC-029: 7 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 7}
+  OSC-030: 77 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 77, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-031: 190 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 190}
+  OSC-032: 0 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-033: 0 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+  OSC-034: 0 encounters  {'NO_WANT': 0, 'WANT_NOT_A_MOVE': 0, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 0}
+
+  encounters joined: 989/989
+  classes: {'NO_WANT': 169, 'WANT_NOT_A_MOVE': 497, 'WANT_MOVE_TO_OWN_CELL': 0, 'WANT_MOVE_ELSEWHERE': 323}
+  want_dest == mover_target: 323
+  REOPEN CLASS (a genuine THIRD square): 0
+  WAITs manufactured by the resolver, not the selector: 0
+  MOVE candidates offered corpus-wide (liveness): 9061
+  permutation control: true 320/320 vs shifted 320/320 — the equality is STRUCTURAL — a wrong pairing scores as well, so 'want_dest == mover_target' carries no information on this case set
+wrote /home/tarstars/prj/troll_farm-claude_1/claude_1/peek/want-census-champion-2026-08-23.json

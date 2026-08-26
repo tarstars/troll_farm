@@ -1,0 +1,321 @@
+{
+  "base": "cgauto/submissions/candidate-swap-r1.rs",
+  "byte_identical_without_msg": 34,
+  "fixtures": 34,
+  "gate": "G-P",
+  "instrument": "claude_1/narrate1/instrument-swap-r1-narrate-v2.rs",
+  "not_proven_here": "platform non-interference: this harness does not react to command count, ordering or line length; the instrument emits a MSG token every turn where the base emits one on turn 1 only",
+  "rows": [
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-001",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-002",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-003",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-004",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-005",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-006",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-007",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-008",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-009",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-010",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-011",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-012",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-013",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-014",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-015",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-016",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-017",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-018",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-019",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-020",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-021",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-022",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-023",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-024",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-025",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-026",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-027",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-028",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-029",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-030",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-031",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-032",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-033",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "base_msg_tokens": 1,
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-034",
+      "instrument_msg_tokens": 200,
+      "telemetry_errors": 0,
+      "turns": 200
+    }
+  ],
+  "ruling": "codex_1 20260823T070405Z construction r3",
+  "task": "20260823-narrate-real-game-telemetry",
+  "telemetry_error_count": 0,
+  "telemetry_errors": [],
+  "verdict": "PASS"
+}

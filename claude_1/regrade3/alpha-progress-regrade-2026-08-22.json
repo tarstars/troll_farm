@@ -1,0 +1,3180 @@
+{
+  "card": "20260822-alpha-progress-regrade",
+  "packet_provenance": {
+    "candidate_panel": {
+      "path": "/tmp/claude-1000/swap-g2/games/games.jsonl.gz",
+      "sha256": "cb14ef2c566184f20d5739fe0f66eb34e65c0eb4810e415ffa5b1eed8bea68a1"
+    },
+    "floor_panel": {
+      "path": "/tmp/claude-1000/swap-g2-floor/games/games.jsonl.gz",
+      "sha256": "3678412ecabcd5139c6c9b87fe5dded6dd3dbe3fefa64d8d786f7c1476b00c46"
+    }
+  },
+  "packet_provenance_note": "Both packets are SCRATCH under /tmp and will not survive a reboot. They are the retained traces of the 2026-08-21 rev-2 panel run and are pinned here by sha256 so a re-run can be proven identical rather than assumed. Rebuild command is in claude_1/swap1/g2-report-rev2-2026-08-21.md (~15 s wall per arm).",
+  "graded_against": "cure alpha rev 2, matched 240-game panel (task 20260821-swap-r1-cure)",
+  "predicate": "claude_1/t1/fixture_harness.py:grade \u2014 imported, not copied, not modified",
+  "panel_games": 240,
+  "changed_games": 30,
+  "changed_game_keys": [
+    {
+      "map_id": "m004",
+      "seat": 0
+    },
+    {
+      "map_id": "m009",
+      "seat": 1
+    },
+    {
+      "map_id": "m012",
+      "seat": 1
+    },
+    {
+      "map_id": "m014",
+      "seat": 1
+    },
+    {
+      "map_id": "m019",
+      "seat": 0
+    },
+    {
+      "map_id": "m021",
+      "seat": 0
+    },
+    {
+      "map_id": "m023",
+      "seat": 1
+    },
+    {
+      "map_id": "m028",
+      "seat": 1
+    },
+    {
+      "map_id": "m039",
+      "seat": 1
+    },
+    {
+      "map_id": "m040",
+      "seat": 0
+    },
+    {
+      "map_id": "m042",
+      "seat": 0
+    },
+    {
+      "map_id": "m046",
+      "seat": 0
+    },
+    {
+      "map_id": "m058",
+      "seat": 1
+    },
+    {
+      "map_id": "m059",
+      "seat": 0
+    },
+    {
+      "map_id": "m059",
+      "seat": 1
+    },
+    {
+      "map_id": "m061",
+      "seat": 0
+    },
+    {
+      "map_id": "m061",
+      "seat": 1
+    },
+    {
+      "map_id": "m063",
+      "seat": 1
+    },
+    {
+      "map_id": "m070",
+      "seat": 1
+    },
+    {
+      "map_id": "m073",
+      "seat": 0
+    },
+    {
+      "map_id": "m079",
+      "seat": 0
+    },
+    {
+      "map_id": "m082",
+      "seat": 1
+    },
+    {
+      "map_id": "m084",
+      "seat": 1
+    },
+    {
+      "map_id": "m088",
+      "seat": 1
+    },
+    {
+      "map_id": "m092",
+      "seat": 0
+    },
+    {
+      "map_id": "m092",
+      "seat": 1
+    },
+    {
+      "map_id": "m098",
+      "seat": 0
+    },
+    {
+      "map_id": "m099",
+      "seat": 1
+    },
+    {
+      "map_id": "m109",
+      "seat": 0
+    },
+    {
+      "map_id": "m110",
+      "seat": 1
+    }
+  ],
+  "buckets_by_shape": {
+    "D-1": {
+      "HEALED_WITH_PROGRESS": 16,
+      "STILL_FIRING": 3,
+      "QUIET_BUT_STALLED": 2
+    },
+    "P4": {
+      "HEALED_WITH_PROGRESS": 16
+    }
+  },
+  "events": [
+    {
+      "map_id": "m004",
+      "seat": 0,
+      "shape": "D-1",
+      "event_id": "m004/s0/D-1@52-200/u0",
+      "window": [
+        52,
+        200
+      ],
+      "unit": 0,
+      "cells": [
+        [
+          10,
+          2
+        ],
+        [
+          11,
+          2
+        ]
+      ],
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m004/s0/D-1@52-200/u0",
+          "kind": "D1_EPISODE",
+          "unit": 0,
+          "window": [
+            52,
+            200
+          ],
+          "cells": [
+            [
+              10,
+              2
+            ],
+            [
+              11,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              52,
+              200
+            ],
+            "unit_present_turns": 149
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m004",
+      "seat": 0,
+      "shape": "D-1",
+      "event_id": "m004/s0/D-1@24-31/u2",
+      "window": [
+        24,
+        31
+      ],
+      "unit": 2,
+      "cells": [
+        [
+          8,
+          2
+        ],
+        [
+          9,
+          2
+        ]
+      ],
+      "bucket": "STILL_FIRING",
+      "unit_rows": [
+        {
+          "id": "m004/s0/D-1@24-31/u2",
+          "kind": "D1_EPISODE",
+          "unit": 2,
+          "window": [
+            24,
+            31
+          ],
+          "cells": [
+            [
+              8,
+              2
+            ],
+            [
+              9,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": false,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 1,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": false,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector still fires",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              24,
+              31
+            ],
+            "unit_present_turns": 8
+          },
+          "identity_reasons": [],
+          "bucket": "STILL_FIRING",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m004",
+      "seat": 0,
+      "shape": "P4",
+      "event_id": "m004/s0/P4@42-200",
+      "window": [
+        42,
+        200
+      ],
+      "unit": null,
+      "cells": null,
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m004/s0/P4@42-200/u0",
+          "kind": "P4_STALL",
+          "unit": 0,
+          "window": [
+            42,
+            200
+          ],
+          "cells": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              9,
+              2
+            ],
+            [
+              10,
+              2
+            ],
+            [
+              11,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              42,
+              200
+            ],
+            "unit_present_turns": 159
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "P4"
+        },
+        {
+          "id": "m004/s0/P4@42-200/u2",
+          "kind": "P4_STALL",
+          "unit": 2,
+          "window": [
+            42,
+            200
+          ],
+          "cells": [
+            [
+              12,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              42,
+              200
+            ],
+            "unit_present_turns": 159
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "P4"
+        }
+      ],
+      "p4_why": "candidate makes no own-inventory/own-cargo progress over turns 42-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]"
+    },
+    {
+      "map_id": "m012",
+      "seat": 1,
+      "shape": "D-1",
+      "event_id": "m012/s1/D-1@12-32/u0",
+      "window": [
+        12,
+        32
+      ],
+      "unit": 0,
+      "cells": [
+        [
+          12,
+          2
+        ],
+        [
+          13,
+          2
+        ]
+      ],
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m012/s1/D-1@12-32/u0",
+          "kind": "D1_EPISODE",
+          "unit": 0,
+          "window": [
+            12,
+            32
+          ],
+          "cells": [
+            [
+              12,
+              2
+            ],
+            [
+              13,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              12,
+              32
+            ],
+            "unit_present_turns": 21
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m014",
+      "seat": 1,
+      "shape": "D-1",
+      "event_id": "m014/s1/D-1@7-200/u2",
+      "window": [
+        7,
+        200
+      ],
+      "unit": 2,
+      "cells": [
+        [
+          10,
+          1
+        ],
+        [
+          9,
+          1
+        ]
+      ],
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m014/s1/D-1@7-200/u2",
+          "kind": "D1_EPISODE",
+          "unit": 2,
+          "window": [
+            7,
+            200
+          ],
+          "cells": [
+            [
+              10,
+              1
+            ],
+            [
+              9,
+              1
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              7,
+              200
+            ],
+            "unit_present_turns": 194
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m014",
+      "seat": 1,
+      "shape": "P4",
+      "event_id": "m014/s1/P4@5-200",
+      "window": [
+        5,
+        200
+      ],
+      "unit": null,
+      "cells": null,
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m014/s1/P4@5-200/u0",
+          "kind": "P4_STALL",
+          "unit": 0,
+          "window": [
+            5,
+            200
+          ],
+          "cells": [
+            [
+              10,
+              0
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              5,
+              200
+            ],
+            "unit_present_turns": 196
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "P4"
+        },
+        {
+          "id": "m014/s1/P4@5-200/u2",
+          "kind": "P4_STALL",
+          "unit": 2,
+          "window": [
+            5,
+            200
+          ],
+          "cells": [
+            [
+              13,
+              2
+            ],
+            [
+              11,
+              2
+            ],
+            [
+              10,
+              1
+            ],
+            [
+              9,
+              1
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              5,
+              200
+            ],
+            "unit_present_turns": 196
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "P4"
+        }
+      ],
+      "p4_why": "candidate makes no own-inventory/own-cargo progress over turns 5-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]"
+    },
+    {
+      "map_id": "m021",
+      "seat": 0,
+      "shape": "D-1",
+      "event_id": "m021/s0/D-1@27-200/u0",
+      "window": [
+        27,
+        200
+      ],
+      "unit": 0,
+      "cells": [
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          2
+        ]
+      ],
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m021/s0/D-1@27-200/u0",
+          "kind": "D1_EPISODE",
+          "unit": 0,
+          "window": [
+            27,
+            200
+          ],
+          "cells": [
+            [
+              6,
+              2
+            ],
+            [
+              7,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              27,
+              200
+            ],
+            "unit_present_turns": 174
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m021",
+      "seat": 0,
+      "shape": "P4",
+      "event_id": "m021/s0/P4@22-200",
+      "window": [
+        22,
+        200
+      ],
+      "unit": null,
+      "cells": null,
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m021/s0/P4@22-200/u0",
+          "kind": "P4_STALL",
+          "unit": 0,
+          "window": [
+            22,
+            200
+          ],
+          "cells": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              7,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              22,
+              200
+            ],
+            "unit_present_turns": 179
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "P4"
+        },
+        {
+          "id": "m021/s0/P4@22-200/u2",
+          "kind": "P4_STALL",
+          "unit": 2,
+          "window": [
+            22,
+            200
+          ],
+          "cells": [
+            [
+              8,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              22,
+              200
+            ],
+            "unit_present_turns": 179
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "P4"
+        }
+      ],
+      "p4_why": "candidate makes no own-inventory/own-cargo progress over turns 22-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]"
+    },
+    {
+      "map_id": "m028",
+      "seat": 1,
+      "shape": "D-1",
+      "event_id": "m028/s1/D-1@26-32/u0",
+      "window": [
+        26,
+        32
+      ],
+      "unit": 0,
+      "cells": [
+        [
+          7,
+          4
+        ],
+        [
+          8,
+          4
+        ]
+      ],
+      "bucket": "QUIET_BUT_STALLED",
+      "unit_rows": [
+        {
+          "id": "m028/s1/D-1@26-32/u0",
+          "kind": "D1_EPISODE",
+          "unit": 0,
+          "window": [
+            26,
+            32
+          ],
+          "cells": [
+            [
+              7,
+              4
+            ],
+            [
+              8,
+              4
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              26,
+              32
+            ],
+            "unit_present_turns": 7
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m039",
+      "seat": 1,
+      "shape": "D-1",
+      "event_id": "m039/s1/D-1@32-200/u0",
+      "window": [
+        32,
+        200
+      ],
+      "unit": 0,
+      "cells": [
+        [
+          4,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m039/s1/D-1@32-200/u0",
+          "kind": "D1_EPISODE",
+          "unit": 0,
+          "window": [
+            32,
+            200
+          ],
+          "cells": [
+            [
+              4,
+              2
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              32,
+              200
+            ],
+            "unit_present_turns": 169
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m039",
+      "seat": 1,
+      "shape": "P4",
+      "event_id": "m039/s1/P4@26-200",
+      "window": [
+        26,
+        200
+      ],
+      "unit": null,
+      "cells": null,
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m039/s1/P4@26-200/u0",
+          "kind": "P4_STALL",
+          "unit": 0,
+          "window": [
+            26,
+            200
+          ],
+          "cells": [
+            [
+              10,
+              2
+            ],
+            [
+              9,
+              2
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              26,
+              200
+            ],
+            "unit_present_turns": 175
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "P4"
+        },
+        {
+          "id": "m039/s1/P4@26-200/u2",
+          "kind": "P4_STALL",
+          "unit": 2,
+          "window": [
+            26,
+            200
+          ],
+          "cells": [
+            [
+              2,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              26,
+              200
+            ],
+            "unit_present_turns": 175
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "P4"
+        }
+      ],
+      "p4_why": "candidate makes no own-inventory/own-cargo progress over turns 26-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]"
+    },
+    {
+      "map_id": "m040",
+      "seat": 0,
+      "shape": "D-1",
+      "event_id": "m040/s0/D-1@176-200/u0",
+      "window": [
+        176,
+        200
+      ],
+      "unit": 0,
+      "cells": [
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "bucket": "QUIET_BUT_STALLED",
+      "unit_rows": [
+        {
+          "id": "m040/s0/D-1@176-200/u0",
+          "kind": "D1_EPISODE",
+          "unit": 0,
+          "window": [
+            176,
+            200
+          ],
+          "cells": [
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              176,
+              200
+            ],
+            "unit_present_turns": 25
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m046",
+      "seat": 0,
+      "shape": "D-1",
+      "event_id": "m046/s0/D-1@14-200/u2",
+      "window": [
+        14,
+        200
+      ],
+      "unit": 2,
+      "cells": [
+        [
+          7,
+          2
+        ],
+        [
+          6,
+          2
+        ]
+      ],
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m046/s0/D-1@14-200/u2",
+          "kind": "D1_EPISODE",
+          "unit": 2,
+          "window": [
+            14,
+            200
+          ],
+          "cells": [
+            [
+              7,
+              2
+            ],
+            [
+              6,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              14,
+              200
+            ],
+            "unit_present_turns": 187
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m046",
+      "seat": 0,
+      "shape": "P4",
+      "event_id": "m046/s0/P4@11-200",
+      "window": [
+        11,
+        200
+      ],
+      "unit": null,
+      "cells": null,
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m046/s0/P4@11-200/u0",
+          "kind": "P4_STALL",
+          "unit": 0,
+          "window": [
+            11,
+            200
+          ],
+          "cells": [
+            [
+              8,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              11,
+              200
+            ],
+            "unit_present_turns": 190
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "P4"
+        },
+        {
+          "id": "m046/s0/P4@11-200/u2",
+          "kind": "P4_STALL",
+          "unit": 2,
+          "window": [
+            11,
+            200
+          ],
+          "cells": [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              6,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              11,
+              200
+            ],
+            "unit_present_turns": 190
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "P4"
+        }
+      ],
+      "p4_why": "candidate makes no own-inventory/own-cargo progress over turns 11-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]"
+    },
+    {
+      "map_id": "m058",
+      "seat": 1,
+      "shape": "D-1",
+      "event_id": "m058/s1/D-1@29-42/u0",
+      "window": [
+        29,
+        42
+      ],
+      "unit": 0,
+      "cells": [
+        [
+          6,
+          3
+        ],
+        [
+          6,
+          4
+        ]
+      ],
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m058/s1/D-1@29-42/u0",
+          "kind": "D1_EPISODE",
+          "unit": 0,
+          "window": [
+            29,
+            42
+          ],
+          "cells": [
+            [
+              6,
+              3
+            ],
+            [
+              6,
+              4
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              29,
+              42
+            ],
+            "unit_present_turns": 14
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m059",
+      "seat": 0,
+      "shape": "P4",
+      "event_id": "m059/s0/P4@11-200",
+      "window": [
+        11,
+        200
+      ],
+      "unit": null,
+      "cells": null,
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m059/s0/P4@11-200/u0",
+          "kind": "P4_STALL",
+          "unit": 0,
+          "window": [
+            11,
+            200
+          ],
+          "cells": [
+            [
+              2,
+              4
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              11,
+              200
+            ],
+            "unit_present_turns": 190
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "P4"
+        },
+        {
+          "id": "m059/s0/P4@11-200/u2",
+          "kind": "P4_STALL",
+          "unit": 2,
+          "window": [
+            11,
+            200
+          ],
+          "cells": [
+            [
+              2,
+              3
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              11,
+              200
+            ],
+            "unit_present_turns": 190
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "P4"
+        }
+      ],
+      "p4_why": "candidate makes no own-inventory/own-cargo progress over turns 11-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]"
+    },
+    {
+      "map_id": "m059",
+      "seat": 1,
+      "shape": "D-1",
+      "event_id": "m059/s1/D-1@12-200/u2",
+      "window": [
+        12,
+        200
+      ],
+      "unit": 2,
+      "cells": [
+        [
+          9,
+          4
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m059/s1/D-1@12-200/u2",
+          "kind": "D1_EPISODE",
+          "unit": 2,
+          "window": [
+            12,
+            200
+          ],
+          "cells": [
+            [
+              9,
+              4
+            ],
+            [
+              9,
+              3
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              12,
+              200
+            ],
+            "unit_present_turns": 189
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m059",
+      "seat": 1,
+      "shape": "P4",
+      "event_id": "m059/s1/P4@11-200",
+      "window": [
+        11,
+        200
+      ],
+      "unit": null,
+      "cells": null,
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m059/s1/P4@11-200/u0",
+          "kind": "P4_STALL",
+          "unit": 0,
+          "window": [
+            11,
+            200
+          ],
+          "cells": [
+            [
+              8,
+              4
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              11,
+              200
+            ],
+            "unit_present_turns": 190
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "P4"
+        },
+        {
+          "id": "m059/s1/P4@11-200/u2",
+          "kind": "P4_STALL",
+          "unit": 2,
+          "window": [
+            11,
+            200
+          ],
+          "cells": [
+            [
+              10,
+              4
+            ],
+            [
+              9,
+              4
+            ],
+            [
+              9,
+              3
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              11,
+              200
+            ],
+            "unit_present_turns": 190
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "P4"
+        }
+      ],
+      "p4_why": "candidate makes no own-inventory/own-cargo progress over turns 11-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]"
+    },
+    {
+      "map_id": "m061",
+      "seat": 0,
+      "shape": "D-1",
+      "event_id": "m061/s0/D-1@2-9/u2",
+      "window": [
+        2,
+        9
+      ],
+      "unit": 2,
+      "cells": [
+        [
+          4,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "bucket": "STILL_FIRING",
+      "unit_rows": [
+        {
+          "id": "m061/s0/D-1@2-9/u2",
+          "kind": "D1_EPISODE",
+          "unit": 2,
+          "window": [
+            2,
+            9
+          ],
+          "cells": [
+            [
+              4,
+              2
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": false,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 1,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": false,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector still fires",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              2,
+              9
+            ],
+            "unit_present_turns": 8
+          },
+          "identity_reasons": [],
+          "bucket": "STILL_FIRING",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m061",
+      "seat": 0,
+      "shape": "P4",
+      "event_id": "m061/s0/P4@39-99",
+      "window": [
+        39,
+        99
+      ],
+      "unit": null,
+      "cells": null,
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m061/s0/P4@39-99/u0",
+          "kind": "P4_STALL",
+          "unit": 0,
+          "window": [
+            39,
+            99
+          ],
+          "cells": [
+            [
+              1,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              39,
+              99
+            ],
+            "unit_present_turns": 61
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "P4"
+        },
+        {
+          "id": "m061/s0/P4@39-99/u2",
+          "kind": "P4_STALL",
+          "unit": 2,
+          "window": [
+            39,
+            99
+          ],
+          "cells": [
+            [
+              2,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              39,
+              99
+            ],
+            "unit_present_turns": 61
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "P4"
+        }
+      ],
+      "p4_why": "candidate makes no own-inventory/own-cargo progress over turns 39-99 while work remains through turn 99 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]"
+    },
+    {
+      "map_id": "m063",
+      "seat": 1,
+      "shape": "D-1",
+      "event_id": "m063/s1/D-1@50-200/u2",
+      "window": [
+        50,
+        200
+      ],
+      "unit": 2,
+      "cells": [
+        [
+          10,
+          3
+        ],
+        [
+          10,
+          4
+        ]
+      ],
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m063/s1/D-1@50-200/u2",
+          "kind": "D1_EPISODE",
+          "unit": 2,
+          "window": [
+            50,
+            200
+          ],
+          "cells": [
+            [
+              10,
+              3
+            ],
+            [
+              10,
+              4
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              50,
+              200
+            ],
+            "unit_present_turns": 151
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m063",
+      "seat": 1,
+      "shape": "P4",
+      "event_id": "m063/s1/P4@47-200",
+      "window": [
+        47,
+        200
+      ],
+      "unit": null,
+      "cells": null,
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m063/s1/P4@47-200/u0",
+          "kind": "P4_STALL",
+          "unit": 0,
+          "window": [
+            47,
+            200
+          ],
+          "cells": [
+            [
+              10,
+              5
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              47,
+              200
+            ],
+            "unit_present_turns": 154
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "P4"
+        },
+        {
+          "id": "m063/s1/P4@47-200/u2",
+          "kind": "P4_STALL",
+          "unit": 2,
+          "window": [
+            47,
+            200
+          ],
+          "cells": [
+            [
+              8,
+              2
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              9,
+              3
+            ],
+            [
+              10,
+              3
+            ],
+            [
+              10,
+              4
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              47,
+              200
+            ],
+            "unit_present_turns": 154
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "P4"
+        }
+      ],
+      "p4_why": "candidate makes no own-inventory/own-cargo progress over turns 47-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]"
+    },
+    {
+      "map_id": "m070",
+      "seat": 1,
+      "shape": "D-1",
+      "event_id": "m070/s1/D-1@52-200/u0",
+      "window": [
+        52,
+        200
+      ],
+      "unit": 0,
+      "cells": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m070/s1/D-1@52-200/u0",
+          "kind": "D1_EPISODE",
+          "unit": 0,
+          "window": [
+            52,
+            200
+          ],
+          "cells": [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              52,
+              200
+            ],
+            "unit_present_turns": 149
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m070",
+      "seat": 1,
+      "shape": "D-1",
+      "event_id": "m070/s1/D-1@7-18/u2",
+      "window": [
+        7,
+        18
+      ],
+      "unit": 2,
+      "cells": [
+        [
+          10,
+          2
+        ],
+        [
+          9,
+          2
+        ]
+      ],
+      "bucket": "STILL_FIRING",
+      "unit_rows": [
+        {
+          "id": "m070/s1/D-1@7-18/u2",
+          "kind": "D1_EPISODE",
+          "unit": 2,
+          "window": [
+            7,
+            18
+          ],
+          "cells": [
+            [
+              10,
+              2
+            ],
+            [
+              9,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": false,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 1,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": false,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector still fires",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              7,
+              18
+            ],
+            "unit_present_turns": 12
+          },
+          "identity_reasons": [],
+          "bucket": "STILL_FIRING",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m070",
+      "seat": 1,
+      "shape": "P4",
+      "event_id": "m070/s1/P4@44-200",
+      "window": [
+        44,
+        200
+      ],
+      "unit": null,
+      "cells": null,
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m070/s1/P4@44-200/u0",
+          "kind": "P4_STALL",
+          "unit": 0,
+          "window": [
+            44,
+            200
+          ],
+          "cells": [
+            [
+              10,
+              2
+            ],
+            [
+              9,
+              2
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              44,
+              200
+            ],
+            "unit_present_turns": 157
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "P4"
+        },
+        {
+          "id": "m070/s1/P4@44-200/u2",
+          "kind": "P4_STALL",
+          "unit": 2,
+          "window": [
+            44,
+            200
+          ],
+          "cells": [
+            [
+              1,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              44,
+              200
+            ],
+            "unit_present_turns": 157
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "P4"
+        }
+      ],
+      "p4_why": "candidate makes no own-inventory/own-cargo progress over turns 44-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]"
+    },
+    {
+      "map_id": "m073",
+      "seat": 0,
+      "shape": "D-1",
+      "event_id": "m073/s0/D-1@5-69/u0",
+      "window": [
+        5,
+        69
+      ],
+      "unit": 0,
+      "cells": [
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m073/s0/D-1@5-69/u0",
+          "kind": "D1_EPISODE",
+          "unit": 0,
+          "window": [
+            5,
+            69
+          ],
+          "cells": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              5,
+              69
+            ],
+            "unit_present_turns": 65
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m073",
+      "seat": 0,
+      "shape": "P4",
+      "event_id": "m073/s0/P4@5-68",
+      "window": [
+        5,
+        68
+      ],
+      "unit": null,
+      "cells": null,
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m073/s0/P4@5-68/u0",
+          "kind": "P4_STALL",
+          "unit": 0,
+          "window": [
+            5,
+            68
+          ],
+          "cells": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              5,
+              68
+            ],
+            "unit_present_turns": 64
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "P4"
+        },
+        {
+          "id": "m073/s0/P4@5-68/u2",
+          "kind": "P4_STALL",
+          "unit": 2,
+          "window": [
+            5,
+            68
+          ],
+          "cells": [
+            [
+              2,
+              1
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              5,
+              68
+            ],
+            "unit_present_turns": 64
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "P4"
+        }
+      ],
+      "p4_why": "candidate makes no own-inventory/own-cargo progress over turns 5-68 while work remains through turn 68 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]"
+    },
+    {
+      "map_id": "m079",
+      "seat": 0,
+      "shape": "D-1",
+      "event_id": "m079/s0/D-1@38-200/u2",
+      "window": [
+        38,
+        200
+      ],
+      "unit": 2,
+      "cells": [
+        [
+          11,
+          3
+        ],
+        [
+          11,
+          2
+        ]
+      ],
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m079/s0/D-1@38-200/u2",
+          "kind": "D1_EPISODE",
+          "unit": 2,
+          "window": [
+            38,
+            200
+          ],
+          "cells": [
+            [
+              11,
+              3
+            ],
+            [
+              11,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              38,
+              200
+            ],
+            "unit_present_turns": 163
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m079",
+      "seat": 0,
+      "shape": "P4",
+      "event_id": "m079/s0/P4@33-200",
+      "window": [
+        33,
+        200
+      ],
+      "unit": null,
+      "cells": null,
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m079/s0/P4@33-200/u0",
+          "kind": "P4_STALL",
+          "unit": 0,
+          "window": [
+            33,
+            200
+          ],
+          "cells": [
+            [
+              12,
+              3
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              33,
+              200
+            ],
+            "unit_present_turns": 168
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "P4"
+        },
+        {
+          "id": "m079/s0/P4@33-200/u2",
+          "kind": "P4_STALL",
+          "unit": 2,
+          "window": [
+            33,
+            200
+          ],
+          "cells": [
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              10,
+              2
+            ],
+            [
+              11,
+              3
+            ],
+            [
+              11,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              33,
+              200
+            ],
+            "unit_present_turns": 168
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "P4"
+        }
+      ],
+      "p4_why": "candidate makes no own-inventory/own-cargo progress over turns 33-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]"
+    },
+    {
+      "map_id": "m082",
+      "seat": 1,
+      "shape": "D-1",
+      "event_id": "m082/s1/D-1@17-200/u2",
+      "window": [
+        17,
+        200
+      ],
+      "unit": 2,
+      "cells": [
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m082/s1/D-1@17-200/u2",
+          "kind": "D1_EPISODE",
+          "unit": 2,
+          "window": [
+            17,
+            200
+          ],
+          "cells": [
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              17,
+              200
+            ],
+            "unit_present_turns": 184
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m082",
+      "seat": 1,
+      "shape": "P4",
+      "event_id": "m082/s1/P4@16-200",
+      "window": [
+        16,
+        200
+      ],
+      "unit": null,
+      "cells": null,
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m082/s1/P4@16-200/u0",
+          "kind": "P4_STALL",
+          "unit": 0,
+          "window": [
+            16,
+            200
+          ],
+          "cells": [
+            [
+              5,
+              5
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              16,
+              200
+            ],
+            "unit_present_turns": 185
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "P4"
+        },
+        {
+          "id": "m082/s1/P4@16-200/u2",
+          "kind": "P4_STALL",
+          "unit": 2,
+          "window": [
+            16,
+            200
+          ],
+          "cells": [
+            [
+              3,
+              6
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              16,
+              200
+            ],
+            "unit_present_turns": 185
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "P4"
+        }
+      ],
+      "p4_why": "candidate makes no own-inventory/own-cargo progress over turns 16-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]"
+    },
+    {
+      "map_id": "m084",
+      "seat": 1,
+      "shape": "D-1",
+      "event_id": "m084/s1/D-1@32-200/u0",
+      "window": [
+        32,
+        200
+      ],
+      "unit": 0,
+      "cells": [
+        [
+          7,
+          5
+        ],
+        [
+          6,
+          5
+        ]
+      ],
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m084/s1/D-1@32-200/u0",
+          "kind": "D1_EPISODE",
+          "unit": 0,
+          "window": [
+            32,
+            200
+          ],
+          "cells": [
+            [
+              7,
+              5
+            ],
+            [
+              6,
+              5
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              32,
+              200
+            ],
+            "unit_present_turns": 169
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m084",
+      "seat": 1,
+      "shape": "P4",
+      "event_id": "m084/s1/P4@26-200",
+      "window": [
+        26,
+        200
+      ],
+      "unit": null,
+      "cells": null,
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m084/s1/P4@26-200/u0",
+          "kind": "P4_STALL",
+          "unit": 0,
+          "window": [
+            26,
+            200
+          ],
+          "cells": [
+            [
+              10,
+              2
+            ],
+            [
+              9,
+              2
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              6,
+              5
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              26,
+              200
+            ],
+            "unit_present_turns": 175
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "P4"
+        },
+        {
+          "id": "m084/s1/P4@26-200/u2",
+          "kind": "P4_STALL",
+          "unit": 2,
+          "window": [
+            26,
+            200
+          ],
+          "cells": [
+            [
+              8,
+              5
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              26,
+              200
+            ],
+            "unit_present_turns": 175
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "P4"
+        }
+      ],
+      "p4_why": "candidate makes no own-inventory/own-cargo progress over turns 26-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]"
+    },
+    {
+      "map_id": "m099",
+      "seat": 1,
+      "shape": "D-1",
+      "event_id": "m099/s1/D-1@8-200/u0",
+      "window": [
+        8,
+        200
+      ],
+      "unit": 0,
+      "cells": [
+        [
+          9,
+          2
+        ],
+        [
+          10,
+          2
+        ]
+      ],
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m099/s1/D-1@8-200/u0",
+          "kind": "D1_EPISODE",
+          "unit": 0,
+          "window": [
+            8,
+            200
+          ],
+          "cells": [
+            [
+              9,
+              2
+            ],
+            [
+              10,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              8,
+              200
+            ],
+            "unit_present_turns": 193
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m099",
+      "seat": 1,
+      "shape": "P4",
+      "event_id": "m099/s1/P4@8-200",
+      "window": [
+        8,
+        200
+      ],
+      "unit": null,
+      "cells": null,
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m099/s1/P4@8-200/u0",
+          "kind": "P4_STALL",
+          "unit": 0,
+          "window": [
+            8,
+            200
+          ],
+          "cells": [
+            [
+              9,
+              2
+            ],
+            [
+              10,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              8,
+              200
+            ],
+            "unit_present_turns": 193
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "P4"
+        },
+        {
+          "id": "m099/s1/P4@8-200/u2",
+          "kind": "P4_STALL",
+          "unit": 2,
+          "window": [
+            8,
+            200
+          ],
+          "cells": [
+            [
+              11,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              8,
+              200
+            ],
+            "unit_present_turns": 193
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "P4"
+        }
+      ],
+      "p4_why": "candidate makes no own-inventory/own-cargo progress over turns 8-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]"
+    },
+    {
+      "map_id": "m110",
+      "seat": 1,
+      "shape": "D-1",
+      "event_id": "m110/s1/D-1@6-200/u0",
+      "window": [
+        6,
+        200
+      ],
+      "unit": 0,
+      "cells": [
+        [
+          6,
+          2
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m110/s1/D-1@6-200/u0",
+          "kind": "D1_EPISODE",
+          "unit": 0,
+          "window": [
+            6,
+            200
+          ],
+          "cells": [
+            [
+              6,
+              2
+            ],
+            [
+              5,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "D-1",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              6,
+              200
+            ],
+            "unit_present_turns": 195
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "D-1"
+        }
+      ]
+    },
+    {
+      "map_id": "m110",
+      "seat": 1,
+      "shape": "P4",
+      "event_id": "m110/s1/P4@1-200",
+      "window": [
+        1,
+        200
+      ],
+      "unit": null,
+      "cells": null,
+      "bucket": "HEALED_WITH_PROGRESS",
+      "unit_rows": [
+        {
+          "id": "m110/s1/P4@1-200/u0",
+          "kind": "P4_STALL",
+          "unit": 0,
+          "window": [
+            1,
+            200
+          ],
+          "cells": [
+            [
+              11,
+              2
+            ],
+            [
+              10,
+              2
+            ],
+            [
+              9,
+              2
+            ],
+            [
+              8,
+              2
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              5,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": true,
+          "left_cycle": true,
+          "progress_restored": true,
+          "verdict": "FIXED",
+          "why": "detector silent and progress restored",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              1,
+              200
+            ],
+            "unit_present_turns": 200
+          },
+          "identity_reasons": [],
+          "bucket": "HEALED_WITH_PROGRESS",
+          "shape": "P4"
+        },
+        {
+          "id": "m110/s1/P4@1-200/u2",
+          "kind": "P4_STALL",
+          "unit": 2,
+          "window": [
+            1,
+            200
+          ],
+          "cells": [
+            [
+              4,
+              2
+            ]
+          ],
+          "reproduces_the_recorded_episode": true,
+          "detector_silent": true,
+          "detector_clause": "P4",
+          "d1_episodes_in_window": 0,
+          "p4_violations_in_window": 0,
+          "progress_events": false,
+          "left_cycle": true,
+          "progress_restored": false,
+          "verdict": "NOT_FIXED",
+          "why": "detector quiet but the unit never progressed or left its cycle",
+          "panel_identity": {
+            "candidate_horizon": 200,
+            "window": [
+              1,
+              200
+            ],
+            "unit_present_turns": 200
+          },
+          "identity_reasons": [],
+          "bucket": "QUIET_BUT_STALLED",
+          "shape": "P4"
+        }
+      ],
+      "p4_why": "candidate makes no own-inventory/own-cargo progress over turns 1-200 while work remains through turn 200 (>= 60 live turns) [RAW liveness: every stall window over a non-terminal world blocks]"
+    }
+  ]
+}

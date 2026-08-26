@@ -1,0 +1,21 @@
+{
+  "arms": {
+    "candidate": {
+      "as_built_sha256": "7651b69847aa5a70ae5922bafa4bcf7b2ea216adc523aa248850ed70deb55bb6",
+      "differing_command_streams": 0,
+      "differing_games": [],
+      "games": 240,
+      "same_game_set": true
+    },
+    "instrument": {
+      "as_built_sha256": "5e1e5b27322587eaa57a2f4c8974def5cf015b88c1f04372cd65a4c7df2a9b38",
+      "differing_command_streams": 0,
+      "differing_games": [],
+      "games": 240,
+      "same_game_set": true
+    }
+  },
+  "as_built_commit": "abeda52a6f42d6f34e57e5268c9a7188732b98f3",
+  "check": "fork F3 (both revisions flipped back) == the as-built arm, byte for byte",
+  "verdict": "PASS"
+}

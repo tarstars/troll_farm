@@ -1,0 +1,6378 @@
+{
+  "controls": [
+    {
+      "control": "a dropped mid-game keyframe",
+      "expected": "AdapterError",
+      "fired": true,
+      "message": "decoded 300 states for 300 turns; expected T+1 (a dropped keyframe shifts every later state one turn early and the length note cannot see it)"
+    },
+    {
+      "control": "broken seat alternation",
+      "expected": "AdapterError",
+      "fired": true,
+      "message": "frame 8 belongs to agent 0, not the alternating seat 1"
+    },
+    {
+      "control": "a missing stdout frame",
+      "expected": "AdapterError",
+      "fired": true,
+      "message": "frame 9 has no stdout"
+    },
+    {
+      "control": "an unknown diff token",
+      "expected": "AdapterError",
+      "fired": true,
+      "message": "decoder left 1 unknown diff updates; the state is not exact and will not be traced"
+    },
+    {
+      "control": "seat resolution is live",
+      "expected": "different own units and different tent",
+      "fired": true,
+      "message": "agent_id=6536563 -> seat 1 own_ids [1, 2] tent (14, 8) ; seat 0 own_ids [0, 3] tent (7, 2)"
+    },
+    {
+      "control": "one-turn COMMAND shift changes D-1",
+      "detail": [
+        {
+          "aligned": 2,
+          "changed": false,
+          "game": "893172014",
+          "seat": 1,
+          "shifted": 2
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "893202307",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 2,
+          "changed": false,
+          "game": "893466920",
+          "seat": 1,
+          "shifted": 2
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "893469455",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "893718277",
+          "seat": 1,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "893996642",
+          "seat": 1,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "894198524",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 3,
+          "changed": false,
+          "game": "894577644",
+          "seat": 0,
+          "shifted": 3
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "894975401",
+          "seat": 1,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "894976005",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "894976058",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "894976760",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "894976884",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 3,
+          "changed": true,
+          "game": "894980131",
+          "seat": 1,
+          "shifted": 3
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "894986266",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 3,
+          "changed": false,
+          "game": "894986919",
+          "seat": 1,
+          "shifted": 3
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "895033269",
+          "seat": 1,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "895033352",
+          "seat": 1,
+          "shifted": 1
+        },
+        {
+          "aligned": 2,
+          "changed": true,
+          "game": "895033423",
+          "seat": 1,
+          "shifted": 2
+        },
+        {
+          "aligned": 2,
+          "changed": false,
+          "game": "895033457",
+          "seat": 0,
+          "shifted": 2
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "895033474",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 11,
+          "changed": false,
+          "game": "895033555",
+          "seat": 0,
+          "shifted": 11
+        },
+        {
+          "aligned": 3,
+          "changed": false,
+          "game": "895033570",
+          "seat": 0,
+          "shifted": 3
+        },
+        {
+          "aligned": 6,
+          "changed": true,
+          "game": "895033612",
+          "seat": 0,
+          "shifted": 6
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "895033672",
+          "seat": 1,
+          "shifted": 1
+        },
+        {
+          "aligned": 2,
+          "changed": false,
+          "game": "895033799",
+          "seat": 1,
+          "shifted": 2
+        },
+        {
+          "aligned": 2,
+          "changed": false,
+          "game": "895033816",
+          "seat": 1,
+          "shifted": 2
+        },
+        {
+          "aligned": 6,
+          "changed": true,
+          "game": "895033844",
+          "seat": 0,
+          "shifted": 5
+        },
+        {
+          "aligned": 2,
+          "changed": false,
+          "game": "895033893",
+          "seat": 1,
+          "shifted": 2
+        },
+        {
+          "aligned": 4,
+          "changed": true,
+          "game": "895033986",
+          "seat": 1,
+          "shifted": 4
+        },
+        {
+          "aligned": 2,
+          "changed": false,
+          "game": "895034107",
+          "seat": 1,
+          "shifted": 2
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "895034143",
+          "seat": 0,
+          "shifted": 0
+        },
+        {
+          "aligned": 2,
+          "changed": false,
+          "game": "895034208",
+          "seat": 0,
+          "shifted": 2
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "895034302",
+          "seat": 1,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "895034399",
+          "seat": 1,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "895034539",
+          "seat": 1,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": false,
+          "game": "895034682",
+          "seat": 0,
+          "shifted": 1
+        }
+      ],
+      "expected": "MEASUREMENT, not a gate -- see message",
+      "fired": true,
+      "measurement_only": true,
+      "message": "7 of 37 flagged pairs changed under a one-turn command shift. This is a FINDING, not a pass: D-1 reads positions from the states and consults the command stream only for the DROP/PICK inventory clause, so a command misalignment is very nearly invisible in D-1's own output. The detector cannot police the join; only the adapter's structural invariants can."
+    },
+    {
+      "control": "one-turn STATE shift changes D-1",
+      "detail": [
+        {
+          "aligned": 2,
+          "changed": true,
+          "game": "893172014",
+          "seat": 1,
+          "shifted": 2
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "893202307",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 2,
+          "changed": true,
+          "game": "893466920",
+          "seat": 1,
+          "shifted": 2
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "893469455",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "893718277",
+          "seat": 1,
+          "shifted": 0
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "893996642",
+          "seat": 1,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "894198524",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 3,
+          "changed": true,
+          "game": "894577644",
+          "seat": 0,
+          "shifted": 3
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "894975401",
+          "seat": 1,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "894976005",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "894976058",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "894976760",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "894976884",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 3,
+          "changed": true,
+          "game": "894980131",
+          "seat": 1,
+          "shifted": 3
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "894986266",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 3,
+          "changed": true,
+          "game": "894986919",
+          "seat": 1,
+          "shifted": 3
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "895033269",
+          "seat": 1,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "895033352",
+          "seat": 1,
+          "shifted": 1
+        },
+        {
+          "aligned": 2,
+          "changed": true,
+          "game": "895033423",
+          "seat": 1,
+          "shifted": 2
+        },
+        {
+          "aligned": 2,
+          "changed": true,
+          "game": "895033457",
+          "seat": 0,
+          "shifted": 2
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "895033474",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 11,
+          "changed": true,
+          "game": "895033555",
+          "seat": 0,
+          "shifted": 11
+        },
+        {
+          "aligned": 3,
+          "changed": true,
+          "game": "895033570",
+          "seat": 0,
+          "shifted": 3
+        },
+        {
+          "aligned": 6,
+          "changed": true,
+          "game": "895033612",
+          "seat": 0,
+          "shifted": 5
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "895033672",
+          "seat": 1,
+          "shifted": 1
+        },
+        {
+          "aligned": 2,
+          "changed": true,
+          "game": "895033799",
+          "seat": 1,
+          "shifted": 2
+        },
+        {
+          "aligned": 2,
+          "changed": true,
+          "game": "895033816",
+          "seat": 1,
+          "shifted": 2
+        },
+        {
+          "aligned": 6,
+          "changed": true,
+          "game": "895033844",
+          "seat": 0,
+          "shifted": 6
+        },
+        {
+          "aligned": 2,
+          "changed": true,
+          "game": "895033893",
+          "seat": 1,
+          "shifted": 2
+        },
+        {
+          "aligned": 4,
+          "changed": true,
+          "game": "895033986",
+          "seat": 1,
+          "shifted": 4
+        },
+        {
+          "aligned": 2,
+          "changed": true,
+          "game": "895034107",
+          "seat": 1,
+          "shifted": 2
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "895034143",
+          "seat": 0,
+          "shifted": 1
+        },
+        {
+          "aligned": 2,
+          "changed": true,
+          "game": "895034208",
+          "seat": 0,
+          "shifted": 2
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "895034302",
+          "seat": 1,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "895034399",
+          "seat": 1,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "895034539",
+          "seat": 1,
+          "shifted": 1
+        },
+        {
+          "aligned": 1,
+          "changed": true,
+          "game": "895034682",
+          "seat": 0,
+          "shifted": 1
+        }
+      ],
+      "expected": "the episode set moves on every D-1-flagged pair",
+      "fired": true,
+      "message": "37 of 37 flagged pairs changed when the states were slid one turn against the commands"
+    }
+  ],
+  "controls_all_fired": true,
+  "d1_episodes_total": 77,
+  "d1_flagged_pairs": 37,
+  "games": 290,
+  "pairs_adapted": 580,
+  "pairs_attempted": 580,
+  "refusals": [],
+  "rows": [
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "892621271",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "892621271",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "892874069",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "892874069",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "892881842",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 219,
+      "trailing_empty_command_rows": 0,
+      "turns": 219
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "892881842",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 219,
+      "trailing_empty_command_rows": 0,
+      "turns": 219
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "892907456",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 203,
+      "trailing_empty_command_rows": 0,
+      "turns": 203
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "892907456",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 203,
+      "trailing_empty_command_rows": 0,
+      "turns": 203
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "892925601",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 249,
+      "trailing_empty_command_rows": 0,
+      "turns": 249
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "892925601",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 249,
+      "trailing_empty_command_rows": 0,
+      "turns": 249
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "892992658",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "892992658",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893001832",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 269,
+      "trailing_empty_command_rows": 0,
+      "turns": 269
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893001832",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 269,
+      "trailing_empty_command_rows": 0,
+      "turns": 269
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893004231",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 253,
+      "trailing_empty_command_rows": 0,
+      "turns": 253
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893004231",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 253,
+      "trailing_empty_command_rows": 0,
+      "turns": 253
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893009790",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893009790",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893050129",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893050129",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893172014",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 2,
+      "d1_verdict": "FAIL",
+      "game": "893172014",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893174122",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893174122",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "893202307",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893202307",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893254039",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893254039",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893255095",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 254,
+      "trailing_empty_command_rows": 0,
+      "turns": 254
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893255095",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 254,
+      "trailing_empty_command_rows": 0,
+      "turns": 254
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893255096",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893255096",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893255452",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893255452",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893306189",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 207,
+      "trailing_empty_command_rows": 0,
+      "turns": 207
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893306189",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 207,
+      "trailing_empty_command_rows": 0,
+      "turns": 207
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893396225",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893396225",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893404526",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893404526",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893407296",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 264,
+      "trailing_empty_command_rows": 0,
+      "turns": 264
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893407296",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 264,
+      "trailing_empty_command_rows": 0,
+      "turns": 264
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893412043",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 296,
+      "trailing_empty_command_rows": 0,
+      "turns": 296
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893412043",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 296,
+      "trailing_empty_command_rows": 0,
+      "turns": 296
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893466386",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893466386",
+      "own_units": 5,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893466920",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 2,
+      "d1_verdict": "FAIL",
+      "game": "893466920",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "893469455",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893469455",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893482868",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 165,
+      "trailing_empty_command_rows": 0,
+      "turns": 165
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893482868",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 165,
+      "trailing_empty_command_rows": 0,
+      "turns": 165
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893509519",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 236,
+      "trailing_empty_command_rows": 0,
+      "turns": 236
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893509519",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 236,
+      "trailing_empty_command_rows": 0,
+      "turns": 236
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893510324",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893510324",
+      "own_units": 1,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893510823",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893510823",
+      "own_units": 1,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893586127",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893586127",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893586128",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893586128",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893607640",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893607640",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893607641",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893607641",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893693185",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893693185",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893696571",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893696571",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893718276",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893718276",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893718277",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "893718277",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893876322",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893876322",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893962248",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893962248",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893988700",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893988700",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893988701",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893988701",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893996642",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "893996642",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893999013",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893999013",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893999322",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893999322",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893999352",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893999352",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893999459",
+      "own_units": 6,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893999459",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893999537",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893999537",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893999566",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893999566",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893999587",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893999587",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893999637",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "893999637",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894182213",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894182213",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894193042",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894193042",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894196843",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 298,
+      "trailing_empty_command_rows": 0,
+      "turns": 298
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894196843",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 298,
+      "trailing_empty_command_rows": 0,
+      "turns": 298
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894196844",
+      "own_units": 7,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894196844",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "894198524",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894198524",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894198525",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894198525",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894199896",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894199896",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894397581",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894397581",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894397582",
+      "own_units": 6,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894397582",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894419355",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894419355",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894419356",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894419356",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894576036",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894576036",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894576037",
+      "own_units": 1,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894576037",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 3,
+      "d1_verdict": "FAIL",
+      "game": "894577644",
+      "own_units": 1,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894577644",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894579124",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894579124",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894579125",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894579125",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894635116",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894635116",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894635117",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894635117",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894975115",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894975115",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894975255",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894975255",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894975401",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "894975401",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894975958",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894975958",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "894976005",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976005",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "894976058",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976058",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976307",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976307",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976432",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976432",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "894976760",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976760",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "894976884",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976884",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976897",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976897",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976908",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976908",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976917",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976917",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976932",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976932",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976946",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976946",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976955",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976955",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976973",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976973",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976998",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976998",
+      "own_units": 1,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976999",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894976999",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894980131",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 3,
+      "d1_verdict": "FAIL",
+      "game": "894980131",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894980132",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894980132",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894981863",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894981863",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894985308",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894985308",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894985309",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894985309",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894985358",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894985358",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986254",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986254",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "894986266",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986266",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986288",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986288",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986356",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986356",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986405",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986405",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986429",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986429",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986468",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986468",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986479",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986479",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986517",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986517",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986523",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986523",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986580",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986580",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986601",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986601",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986626",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986626",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986640",
+      "own_units": 1,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986640",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986651",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986651",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986718",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986718",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986765",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986765",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986778",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986778",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986790",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 268,
+      "trailing_empty_command_rows": 0,
+      "turns": 268
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986790",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 268,
+      "trailing_empty_command_rows": 0,
+      "turns": 268
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986834",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986834",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986850",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986850",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986876",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986876",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986884",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986884",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986898",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986898",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986911",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986911",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986919",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 3,
+      "d1_verdict": "FAIL",
+      "game": "894986919",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986933",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986933",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986949",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 284,
+      "trailing_empty_command_rows": 0,
+      "turns": 284
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986949",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 284,
+      "trailing_empty_command_rows": 0,
+      "turns": 284
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986967",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986967",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986978",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894986978",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987051",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987051",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987063",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987063",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987088",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987088",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987110",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987110",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987116",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987116",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987125",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987125",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987140",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987140",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987233",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987233",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987246",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987246",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987288",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987288",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987381",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987381",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987399",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987399",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987409",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987409",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987414",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987414",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987435",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987435",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987444",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987444",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987454",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987454",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987467",
+      "own_units": 1,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987467",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987511",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987511",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987523",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987523",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987550",
+      "own_units": 1,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987550",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987567",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987567",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987584",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894987584",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894996938",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "894996938",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895009569",
+      "own_units": 1,
+      "seat": 0,
+      "traced_turns": 138,
+      "trailing_empty_command_rows": 0,
+      "turns": 138
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895009569",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 138,
+      "trailing_empty_command_rows": 0,
+      "turns": 138
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895017865",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895017865",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895025386",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895025386",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033264",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033264",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033265",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033265",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033266",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033266",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033267",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033267",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033268",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033268",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033269",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "895033269",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033270",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 167,
+      "trailing_empty_command_rows": 0,
+      "turns": 167
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033270",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 167,
+      "trailing_empty_command_rows": 0,
+      "turns": 167
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033271",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033271",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033272",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033272",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033273",
+      "own_units": 1,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033273",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033294",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033294",
+      "own_units": 1,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033310",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033310",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033321",
+      "own_units": 1,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033321",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033338",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033338",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033352",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "895033352",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033359",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033359",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033379",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033379",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033391",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 267,
+      "trailing_empty_command_rows": 0,
+      "turns": 267
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033391",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 267,
+      "trailing_empty_command_rows": 0,
+      "turns": 267
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033402",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033402",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033415",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033415",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033423",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 2,
+      "d1_verdict": "FAIL",
+      "game": "895033423",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033435",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033435",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033445",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033445",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 2,
+      "d1_verdict": "FAIL",
+      "game": "895033457",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033457",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033464",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033464",
+      "own_units": 1,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "895033474",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033474",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033489",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033489",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033522",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033522",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033544",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033544",
+      "own_units": 1,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 11,
+      "d1_verdict": "FAIL",
+      "game": "895033555",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033555",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 3,
+      "d1_verdict": "FAIL",
+      "game": "895033570",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033570",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033588",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033588",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033605",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 168,
+      "trailing_empty_command_rows": 0,
+      "turns": 168
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033605",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 168,
+      "trailing_empty_command_rows": 0,
+      "turns": 168
+    },
+    {
+      "d1_episodes": 6,
+      "d1_verdict": "FAIL",
+      "game": "895033612",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033612",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033630",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033630",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033636",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033636",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033654",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033654",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033672",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "895033672",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033692",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033692",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033710",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033710",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033728",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033728",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033745",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033745",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033759",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033759",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033770",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033770",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033779",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033779",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033799",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 2,
+      "d1_verdict": "FAIL",
+      "game": "895033799",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033816",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 2,
+      "d1_verdict": "FAIL",
+      "game": "895033816",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033829",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033829",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 6,
+      "d1_verdict": "FAIL",
+      "game": "895033844",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033844",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033882",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033882",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033893",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 2,
+      "d1_verdict": "FAIL",
+      "game": "895033893",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033914",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033914",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033931",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033931",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033951",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033951",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033972",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033972",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895033986",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 4,
+      "d1_verdict": "FAIL",
+      "game": "895033986",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034009",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034009",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034023",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034023",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034041",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034041",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034057",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034057",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034083",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034083",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034107",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 2,
+      "d1_verdict": "FAIL",
+      "game": "895034107",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034122",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034122",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "895034143",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034143",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034161",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034161",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034179",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034179",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034196",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 189,
+      "trailing_empty_command_rows": 0,
+      "turns": 189
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034196",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 189,
+      "trailing_empty_command_rows": 0,
+      "turns": 189
+    },
+    {
+      "d1_episodes": 2,
+      "d1_verdict": "FAIL",
+      "game": "895034208",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034208",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034225",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034225",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034242",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034242",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034258",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034258",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034275",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034275",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034302",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "895034302",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034318",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034318",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034336",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034336",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034356",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034356",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034386",
+      "own_units": 5,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034386",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034399",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "895034399",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034410",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 228,
+      "trailing_empty_command_rows": 0,
+      "turns": 228
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034410",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 228,
+      "trailing_empty_command_rows": 0,
+      "turns": 228
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034418",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034418",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034439",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034439",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034452",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034452",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034470",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034470",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034487",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034487",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034495",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034495",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034506",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034506",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034528",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034528",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034539",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "895034539",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034548",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034548",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034568",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034568",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034574",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034574",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034582",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034582",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034589",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034589",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034602",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034602",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034607",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034607",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034616",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034616",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034627",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034627",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034634",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034634",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034645",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034645",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034654",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034654",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034666",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034666",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 1,
+      "d1_verdict": "FAIL",
+      "game": "895034682",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034682",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034690",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034690",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034708",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034708",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034715",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034715",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034765",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034765",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034778",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034778",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034830",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034830",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034850",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034850",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034865",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034865",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034890",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034890",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034913",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034913",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034924",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034924",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034942",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034942",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034959",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034959",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034972",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895034972",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035014",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035014",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035034",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035034",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035051",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035051",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035064",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 261,
+      "trailing_empty_command_rows": 0,
+      "turns": 261
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035064",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 261,
+      "trailing_empty_command_rows": 0,
+      "turns": 261
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035078",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035078",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035085",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035085",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035101",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035101",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035117",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035117",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035132",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035132",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035144",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035144",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035167",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 293,
+      "trailing_empty_command_rows": 0,
+      "turns": 293
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035167",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 293,
+      "trailing_empty_command_rows": 0,
+      "turns": 293
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035180",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035180",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035190",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035190",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035200",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 47,
+      "trailing_empty_command_rows": 1,
+      "turns": 48
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035200",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 48,
+      "trailing_empty_command_rows": 0,
+      "turns": 48
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035209",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035209",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035224",
+      "own_units": 1,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035224",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035231",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035231",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035240",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035240",
+      "own_units": 1,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035249",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 292,
+      "trailing_empty_command_rows": 0,
+      "turns": 292
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035249",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 292,
+      "trailing_empty_command_rows": 0,
+      "turns": 292
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035255",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035255",
+      "own_units": 3,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035268",
+      "own_units": 4,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035268",
+      "own_units": 4,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035278",
+      "own_units": 3,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035278",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035289",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035289",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035298",
+      "own_units": 2,
+      "seat": 0,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    },
+    {
+      "d1_episodes": 0,
+      "d1_verdict": "PASS",
+      "game": "895035298",
+      "own_units": 2,
+      "seat": 1,
+      "traced_turns": 300,
+      "trailing_empty_command_rows": 0,
+      "turns": 300
+    }
+  ]
+}
