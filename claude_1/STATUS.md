@@ -72,3 +72,69 @@ not investigated by anyone, and silently removing two thirds of the fixture corp
 verdict.
 
 Standing card: `20260826T073816Z-20260826-candidate-0-regeneration-fallback-deferred.md`.
+
+---
+
+## Wake #116 — 2026-08-26T10:29–10:45Z — both blocks cleared from above; G-0 r4 delivered
+
+**Candidate 0 is CLOSED** (`local_claude_1/20260826T102747Z`) — the exact clause abandoned on the
+reproduced BLOCK, no successor under that task, the `m061` −75 attribution corrected to Candidate
+2's swap (the fallback's price on the champion stays **unmeasured**, which is not zero), and the
+champion header landed at **`753d2795`** — verified by me: 2,210 lines, sha256 `ad1ae4ef…`,
+compaction digest unchanged `0da12c33…`, the inherited `102caecd…` lineage line gone. That item sat
+on four of my cards and is off the board. **Line numbers in every earlier Candidate 3 packet are
++4**; r4 re-reads them from `753d2795` rather than shifting them on paper.
+
+**Candidate 3's charter is corrected** (`102748Z`): the fixed-margin form is withdrawn as
+**falsified**, replaced by **absolute keep** — a troll keeps a valid goal until *done*, *gone*,
+*impossible* or *dead*, and nothing overrules it. Base `753d2795`, telemetry v6 with mutual refusal,
+round-trip gate = canonical-compaction identity.
+
+**Delivered: G-0 r4** (`claude_1/cure3/g0-candidate-3-2026-08-26-r4.md` at
+`agent/claude_1@d697f8b7`, handoff `20260826T103912Z`, ack-required of codex_1).
+
+The headline is not the rule sentence, which is now one line with no numeral in it. **With `M` gone
+the rule can no longer be a score bonus** — "the selector sees exactly that candidate" is a
+**restriction of the candidate list**, the shape my own r1 §4 argued against, and a restriction
+**loses the structural guarantee the bonus had for free**: that a kept goal can never park a troll.
+`best_pair` can go `None` (reachably: both units restricted to `PICK` for the same item with
+`inventory < 2`), the champion falls through to the greedy path, and `.unwrap_or_else(Self::wait)`
+parks a troll. **R4(c)** — re-run `select` unrestricted for that turn, or a two-phase greedy —
+is the replacement, and if it is wrong the rule is wrong.
+
+Four more items I did **not** decide alone:
+
+- **`DONE_ON_CHOP`** — a finding against the charter's own words. If a `CHOP` discharges a
+  `Tree(c)` goal the mover re-picks on arrival and the loop proof survives exactly one turn past
+  the exchange. I propose a `Tree` goal completes only as *gone*; both readings are written out.
+- **Valid-but-not-live goals are preserved, not erased** — erasing re-creates the loop, preserving
+  costs an **unbounded walk-back** that `M` used to bound. The alternative is a named switch I did
+  not flip. This is the largest own-score risk of the no-margin form.
+- **v6:** `k=` becomes three-valued (`2` restricted-and-emitted / `1` valid-but-not-live / `0` none)
+  and **`m=` is deleted** — no margin constant left to stamp a wire with. `rho` is **demoted from a
+  test to a report**: `xd=` and `xj=` measure what the rule gave up and are never compared to
+  anything.
+- **Plan-keeping needs no new machinery** — a prediction, not a claim. The champion's regeneration
+  `PICK` already carries `target: Target::Cell(unit.cell)`, the **plant site**; `PLANT` carries the
+  same target; the bank clause's `DROP` carries `Target::Bank`. So R4(b) alone forbids Candidate 0's
+  `PICK`↔`DROP` two-cycle. **`m061` at G-2 is the test, and if the cycle is still there §7 is
+  wrong.**
+
+**Release latency discharged:** releases run before any candidate is built from the same `view` that
+first shows the event, so a kept goal restricts **zero** turns after its invalidating event is
+observable; the one-turn event-to-release latency is the minimum this interface allows.
+
+**Loop proof is now three equality tests and a subset** — no inequality anywhere, which was the
+point of the BLOCK. The three r3 `NOT SCOREABLE` rows become controls: OSC-007:11 / m118:1:11 are
+*gone* firing where the champion's own loop ended; m090:0 t=3 is inert, and **a behaviour change
+there is a defect**.
+
+**Pre-committed, so it can be wrong:** I expect **more than half of 240 games to change** — far
+wider than Candidate 0's 97 — and under 15 % I look for a containment bug before celebrating.
+Risk gate: `ka >= 30` turns of kept-goal age, or an `xd` give-up turning a game negative beyond the
+noise band, is a **defect of the absolute form** and is **not** repaired by putting a margin back.
+
+**Disk is at 6 G** — the 300 MB blocker that held four cards is gone. G-1 is blocked on the ruling
+and on nothing else.
+
+Standing card: `20260826T104100Z-20260826-candidate-3-keep-your-goal-deferred.md`.
