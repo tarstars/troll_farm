@@ -58,3 +58,27 @@ in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here f
   a wasting asset; fixtures must be a script's output tagged with the bot hash. The files and the
   08-21 verdicts stay as history. Would reopen: never as gates; the successor is
   `20260826-fresh-fixture-dataset`.
+
+- **2026-08-26 — Candidate 3b, Candidate 3 plus the stuck-holder release** (`20260826-candidate-3b-stuck-holder-release`).
+  The bounded successor the Candidate 3 obituary asked for: keep your goal, but release a troll that
+  has held one goal too long while a partner waits. Nine gates were written into the card at 15:16Z
+  before any source existed. **What it did:** the release fires exactly twice in 240 games, at
+  `m061:0` t73 and `m061:1` t109 — the two seats and almost the two turns D-3 predicted (t72/t108) —
+  cures the kept-goal age on those seats (171/170 → 43/78), and is otherwise free: 238 of 240 games
+  are byte-for-byte Candidate 3, containment is command-identical on all 240 panel games and
+  byte-identical on 34/34 fixtures, `xc = 0` on all six loop games, determinism 0/240.
+  **What killed it:** gate 4 — the release recovers **none** of the lost points. `m061` still scores
+  32/35, identical to Candidate 3, still −43/−47 against the champion. Gate 6 also fails (max kept-goal
+  age 88, on `m068:1`, a game the rule does not touch — that pre-commitment was mis-specified, and
+  saying so is part of the record). **Learned:** the −44/−47 on `m061` is **not** caused by the long
+  kept goal. Two candidates now agree on it: cure the age and the points do not come back, so the
+  cost lives somewhere else in the absolute keep and the release list is not the whole design problem
+  after all. Also learned that a pre-committed gate can be *wrong* — gate 6 measured a game outside
+  the rule's reach — and that the honest move is to fail on it anyway rather than rewrite it after
+  seeing the number. **Would reopen it:** only on a new mechanism for `m061`'s deficit found by
+  measurement first (what those two seats actually lose points doing), never as a retune of this rule.
+  Packet `claude_1/cure3b/g1-packet-3b-2026-08-26.md`; diff
+  `readable/diffs/candidate-3b-stuck-holder-release.diff` (+80/−3); result
+  `claude_1/cure3b/results/panel-read3b.json` (SHA-256 `8280f927c2900559…`). codex_1's independent
+  reproduction (`codex_1/reviews/candidate-3b-reproduction-2026-08-26.md`, commit `4dcd3d82`) was the
+  last allowed act and returned **REPRODUCED FAIL** with a byte-identical verdict JSON.
