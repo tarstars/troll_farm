@@ -15,7 +15,7 @@ The turn corpus records commands the bots issued, not whether the referee accept
 
 All 25 historically identified agents are present. The complete identity table, game counts, score at collection, score composition, training, and successful plant totals is in `field-comparison-first-table-2026-08-26.md`. The leading contrast is:
 
-| bot | historical rank | games | raw score/game | fruit points | wood points | banana plants/game |
+| bot | historical rank | games | raw score/game | fruit points | wood points | successful banana plants/game |
 |---|---:|---:|---:|---:|---:|---:|
 | yaichi | 7 | 222 | 252.4 | 7.2 | 245.2 | 29.03 |
 | Stounate | 8 | 303 | 198.7 | 17.3 | 181.4 | 27.26 |
@@ -24,6 +24,8 @@ All 25 historically identified agents are present. The complete identity table, 
 | **ours** | — | 10,274 | 187.4 | 5.4 | 182.0 | 5.95 |
 
 Wood supplies more than 90% of score for these bots. The banana loop is therefore primarily a renewable **wood** loop, not banana points banked at the end.
+
+The successful-plant totals above come from the game summaries. Section 3 instead counts issued PLANT commands from the independent turn corpus. The two measures agree to two decimals for all four heavy planters; ours differs slightly (5.95 successful plants versus 5.98 issued commands).
 
 ## 2. Training
 
@@ -41,7 +43,7 @@ The leaders do not win by training the second troll earlier. They train it later
 
 Banana PLANT commands per game by turn bucket:
 
-| bot | turns 1–50 | 51–100 | 101–150 | 151+ | total |
+| bot | turns 1–50 | 51–100 | 101–150 | 151+ | issued PLANT commands/game |
 |---|---:|---:|---:|---:|---:|
 | yaichi | 5.87 | 6.13 | 5.19 | 11.83 | 29.03 |
 | Stounate | 4.54 | 5.27 | 4.08 | 13.38 | 27.26 |
@@ -77,15 +79,17 @@ The command chain does not support “the leaders suppress more.” Ours issues 
 
 Issued commands per game in the final 30 turns:
 
-| bot | PLANT | HARVEST | CHOP | DROP | MOVE |
-|---|---:|---:|---:|---:|---:|
-| yaichi | 1.87 | 1.87 | 14.16 | 3.64 | 38.19 |
-| Stounate | 2.41 | 0.49 | 9.74 | 5.70 | 37.17 |
-| skotz | 3.30 | 4.67 | 12.38 | 3.79 | 34.88 |
-| goq | 1.93 | 0.50 | 21.50 | 3.93 | 32.18 |
-| **ours** | **3.40** | **0.38** | **23.97** | **5.41** | **7.96** |
+| bot | PLANT | HARVEST | CHOP | DROP | PICK | MOVE |
+|---|---:|---:|---:|---:|---:|---:|
+| yaichi | 1.87 | 1.87 | 14.16 | 3.64 | 0.00 | 38.19 |
+| Stounate | 2.41 | 0.49 | 9.74 | 5.70 | 3.43 | 37.17 |
+| skotz | 3.30 | 4.67 | 12.38 | 3.79 | 0.00 | 34.88 |
+| goq | 1.93 | 0.50 | 21.50 | 3.93 | 0.99 | 32.18 |
+| **ours** | **3.40** | **0.38** | **23.97** | **5.41** | **3.16** | **7.96** |
 
 Ours does not lack terminal planting or banking commands. It lacks the earlier crop generations that make terminal HARVEST productive; skotz is the clearest late-harvest example.
+
+Ours also issues far fewer MOVE commands in this window (7.96 per game versus 32.18–38.19 for the four leaders), even while issuing the most CHOP commands. This may be real endgame parking or an emission-level difference between WAIT and MOVE; the available command corpus does not distinguish them, so it remains unexplained.
 
 ## 6. Idle and contention
 
