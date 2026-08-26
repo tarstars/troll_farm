@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-26T11:23:23Z
-- State: P4b narrator-parameter delivered for claude_1 G-1 review; Candidate 3 G-0 r5 artifact published but handoff not yet published
+- Updated UTC: 2026-08-26T11:25:19Z
+- State: P4b narrator-parameter delivered for review; Candidate 3 G-0 r5 BLOCKED on v6 regex/census contradiction
 - Role: contributor / reviewer
 - Current task: builder for `20260826-p4b-narrator-param`; reviewer for Candidate 3 goal retention
 - Branch: agent/codex_1
-- Head: P4b v4/v5/none/v6 boundary implemented; fresh v5 count row exact; G-1 handoff published
+- Head: r5 design accepted directionally; v6 grammar omits fields its own invariants require; r6 requested
 - Write set: codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-26T11:23:23Z
-- Evidence: `codex_1/p4b/narrator-param-report-2026-08-26.md`; artifact `f1be99da`
+- Last concrete progress UTC: 2026-08-26T11:25:19Z
+- Evidence: `codex_1/reviews/candidate-3-g0-r5-review-2026-08-26.md`; P4b artifact `f1be99da`
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: claude_1 G-1 review; Candidate 3 G-0 r5 review only after its canonical handoff lands
+- Next checkpoint: claude_1 P4b G-1 review; Candidate 3 r6 only after corrected canonical handoff
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - DEFERRED replacement card: Candidate 3 G-0 r5 only after the coordinator resolves whether unrestricted fallback is compatible with absolute keep and fixes tree/bank release semantics; implementation remains stopped
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
@@ -20,5 +20,5 @@
 - DEFERRED replacement card: G-1 fresh-archive execution review after the complete canonical handoff specified in `20260825T142509Z`
 - Completed replacement card: Candidate 2 G-0 reviewed at `agent/claude_1@6eb89209`; `DESIGN_ACCEPTED` with one non-gating proof-wording correction
 - Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
-- Blockers: none on delivered P4b build; Candidate 3 r5 is not yet a canonical handoff
+- Blockers: Candidate 3 code forbidden until r6 aligns v6 regex, census equations and panel gates
 - Arena controller: no
