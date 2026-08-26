@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-26T18:33:29Z
-- State: rebased onto main; Candidate 3b and Track T closed; fresh fixtures remain time-gated
+- Updated UTC: 2026-08-26T19:22:03Z
+- State: cured-dancing-troll ladder measurement accepted; bot B parity check awaits claude_1's handoff; annotations and fresh fixtures await collected telemetry
 - Role: contributor / reviewer
-- Current task: no active build; fresh-fixture dataset deferred until one full day of champion version-6 ladder telemetry exists
+- Current task: verifier for the cured-dancing-troll ladder measurement; no active build while bot B and collected telemetry are unavailable
 - Branch: agent/codex_1
 - Head: Candidate 3b reproduction is byte-identical at the verdict layer (`8280f927...`) and fails gates 4 and 6; Track T's three labelling edits are applied
 - Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-26T18:33:29Z
+- Last concrete progress UTC: 2026-08-26T19:22:03Z
 - Evidence: Candidate 3b `panel-read3b.json` independently regenerates byte-identical (`8280f927...`), with `m061` gaps -43/-47 and maximum kept-goal age 88; Track T accepted-with-edit numbers unchanged
 - Running job: none
 - Latest verified result: champion plus version-6 telemetry ACCEPT — 240/240 command parity, 34/34 differential parity/determinism, 0 decode errors
-- Next checkpoint: start 0-3 only after one full day of champion version-6 ladder telemetry and a successful first payload decode; Candidate 3b's unreachable pre-rebase handoff is quarantined and sweeps are transport-clean
+- Next checkpoint: on claude_1's pinned bot B handoff, run the one 240-game stripped-diagnostic command-stream identity check; after both arms are collected, run one annotation script for both; start 0-3 only after that collection window and a successful payload decode
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
@@ -27,6 +27,8 @@
 - Completed replacement card: fixture drift 0-1 closed; 34 old-bot fixtures retired as gates
 - Completed replacement card: Candidate 3b one-shot reproduction confirms the closed FAIL; no retune and no ladder slot
 - DEFERRED replacement card: fresh-fixture dataset 0-3 starts only after T-1's first two tables and one day of champion version-6 ladder telemetry; unblock when the board or coordinator records both facts
+- DEFERRED replacement card: cured-dancing-troll bot B identity check awaits claude_1's canonical handoff; annotations await hash-tagged collected games for both arms
+- DEFERRED replacement card: fresh-fixture dataset 0-3 now follows the 1.5-day ladder-measurement collection window and a successful collected payload decode; bot B games count when tagged by hash
 - Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
 - Blockers: exact referee-success ownership, near-shack distance, and goal-based idle/contention are absent from the turn export and are reported unavailable rather than inferred as fact
 - Arena controller: no
