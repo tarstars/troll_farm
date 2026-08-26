@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-26T15:15Z (goal wake 1; earlier prose times this afternoon corrected −1 h — the message stamps were always right) (coordinator). Trunk: see `git log -1 origin/main`.
+Last updated: 2026-08-26T15:40Z (goal wake 1, cont.)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -17,7 +17,7 @@ Last updated: 2026-08-26T15:15Z (goal wake 1; earlier prose times this afternoon
 
 | # | task | owner | stage | next concrete step | blocked on | budget left | last evidence |
 |---|---|---|---|---|---|---|---|
-| T-1 | Field comparison of the 25 strong two-troll Legend bots vs the champion (`coordination/tasks/20260826-track-t-top10-field-comparison.md`) | codex_1 (claude_1 reviews) | **First table DELIVERED 14:21Z** (`codex_1/top10/field-comparison-first-table-2026-08-26.md`, claude_1: no defect). Headline: the top three (yaichi 26.6, Stounate 26.4, skotz 25.6) plant **27–36 bananas per game**; the next tier (Escdemon, therealbeef, yamo) ≈ 6; **we plant 5.95**; wood is 95 %+ of everyone's score. Remaining columns (planting by turn, harvest ownership, idle/contention, endgame) **wait on T-2** — the processed corpus has no per-turn commands. | after T-2: the remaining six tables from `turns.jsonl.gz` | T-2 | Per-turn commands from the raw replays (`coordination/tasks/20260826-track-t-per-turn-extraction.md`) | local_claude_1 (subagent); codex_1 consumes | **DONE 15:10Z** — `scripts/extract_turns.py` on `main`; `data/processed/turns.jsonl.gz` 174 MB gz (3.2 GB raw), 13,313,072 turn records, 0 parse failures, all 47,226 game-seat command counts reconcile with `games.jsonl`; sha `1e0ea236…`; 12 silent seat-turns (turn-1 timeouts) | **on the VM 15:20Z** (hash verified) → T-1's remaining tables, 0-3's generator | — | spent | 15:20Z |
+| T-1 | Field comparison of the 25 strong two-troll Legend bots vs the champion (`coordination/tasks/20260826-track-t-top10-field-comparison.md`) | codex_1 (claude_1 reviews, one round) | **DELIVERED 15:15Z, at gate T-G1** — `codex_1/top10/field-comparison-2026-08-26.md`: **the top banana planters (yaichi, Stounate, skotz, goq) run a persistent wood farm** — 3.2–5.9 banana PLANTs/game in turns 1–50 (ours 0.05), 21–30 HARVESTs at own-planted cells (ours 2.85); our suppression is already stronger (8.7 CHOPs at opponent-planted cells vs 0.5–2.5). Boundary: commands issued, not referee-accepted. | claude_1: one review round | claude_1 | spent | 15:15Z |
 | T-2 | Per-turn commands extracted from the 6.6 GB raw replays (`coordination/tasks/20260826-track-t-per-turn-extraction.md`) | local_claude_1 (subagent on the host); codex_1 consumes + reviews | **Running** (subagent started 15:00Z) | `scripts/extract_turns.py` → `data/processed/turns.jsonl.gz` + manifest; sanity vs `games.jsonl`; ship to the VM if it fits | — | ~1 h | 15:00Z |
 
 ## Track F — Banana farm (conditional, smallest form)
@@ -31,7 +31,7 @@ Last updated: 2026-08-26T15:15Z (goal wake 1; earlier prose times this afternoon
 
 | # | task | owner | stage | next concrete step | blocked on | budget left | last evidence |
 |---|---|---|---|---|---|---|---|
-| 0-2 | Integrate the peer branches onto `main` — `main` wins on shared files, quarantine re-verified, peers rebase (`coordination/tasks/20260826-integrate-peer-branches.md`) | local_claude_1 (codex_1 verifies) | queued | after D-1 reaches Panel: merge `agent/claude_1` (287 ahead) and `agent/codex_1` (262 ahead) per the card's method | D-1 at Panel | one session, one review | chartered 13:40Z; branch hygiene done (3 dead branches deleted, archive → tag, stale worktree removed, local_codex_1's transfer messages merged) |
+| 0-2 | Integrate the peer branches onto `main` (`coordination/tasks/20260826-integrate-peer-branches.md`) | local_claude_1 (codex_1 verifies) | **DONE 15:35Z** — `agent/claude_1` (304), `agent/codex_1` (282), `agent/chatgpt_1` (36) merged; `main` won on every shared path (one BOARD conflict, `docs/sentinel.md` change not taken — claude_1 may resubmit it as a diff); `claude_1/pipeline` = codex_1's accepted gate; champion readable `ad1ae4ef` 2,210 lines; quarantine + delivery errors 0; all three peers 0 ahead. Peers told to **rebase** (not merge). | codex_1: one verification (sweep clean on its side after rebase) | — | spent | 15:35Z |
 | 0-1 | 34 frozen fixtures (`coordination/tasks/20260826-fixture-drift.md`) | — | **CLOSED 14:45Z — RETIRED as gates (owner)**; successor 0-3 | — | — | spent | 14:45Z |
 | 0-3a | Champion + v6 telemetry arm (`coordination/tasks/20260826-champion-instrument-v6.md`) | claude_1 (codex_1 ACCEPT 15:06Z); coordinator submitted | **DONE — ON THE LADDER 15:10Z, submission `41198581`** (sha `72673124…`, 63,962 B; parity 240/240 command streams + 34/34 fixtures, 0 decode errors). Condition from codex_1: the 328-char payload exceeds anything collected so far (127) — **decode the first collected ladder game before treating telemetry as evidence** | first collected game (08-27 02:17Z snapshot) → decode check | — | spent | 15:10Z |
 | 0-3 | Fixtures as a generated dataset from real instrumented games (`coordination/tasks/20260826-fresh-fixture-dataset.md`) | codex_1 (claude_1 reviews) | queued — after T-1's first tables and one day of instrument games | `cut_fixtures.py`: windows of interest by class, tagged with bot hash; first library from the instrument's first day | 0-3a on the ladder; T-1 first tables | 1–2 days | 14:45Z |
@@ -59,7 +59,8 @@ Last updated: 2026-08-26T15:15Z (goal wake 1; earlier prose times this afternoon
 
 ## Owner's queue (≤ 3)
 
-1. **T-1's first table is in** (`codex_1/top10/field-comparison-first-table-2026-08-26.md`): the top three plant 27–36 bananas a game, we plant 6. Read it; the farm question sharpened.
+1. **T-1 is delivered** (`codex_1/top10/field-comparison-2026-08-26.md`, review pending): the top bots run a persistent **wood farm** on early-planted bananas. This is the farm question's answer in the wrong direction from Spec B — read it before any F-2 charter.
+2. *(was 1)* **T-1's first table is in** (`codex_1/top10/field-comparison-first-table-2026-08-26.md`): the top three plant 27–36 bananas a game, we plant 6. Read it; the farm question sharpened.
 2. (when it lands) Candidate 3b's panel verdict — pass = ladder slot 2.
 2. (when it lands) T-1's first table — read it; it decides F-2.
 3. **Candidate 3's diff is on `main` now** — `readable/diffs/candidate-3-keep-your-goal.diff` (+927/−9) with the packet `claude_1/cure3/g1-packet-2026-08-26.md`: the code read you asked for, and your verdict on it as code (the code-control goal), independent of its score.
