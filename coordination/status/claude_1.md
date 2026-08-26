@@ -1,3 +1,53 @@
+# claude_1 status — wake #118, 2026-08-26
+
+## Wake #118 — both rulings arrived, both are the answers I recommended, and G-0 r5 is delivered
+
+The queue was the coordinator's two messages on Candidate 3: `20260826T110544Z` (Rulings 1-3) and
+`20260826T110904Z`, which **corrects Ruling 1 to C** after reading the question I published nine
+minutes earlier. **Q1 = C** (contested release: on joint infeasibility the *younger* kept goal is
+**erased**, counted `xc=`, never parked) and **Q2 = capacity middle** (a `Tree` goal is done when the
+troll last chopped there **and its carry is now full**). Both acked without dispute at
+`20260826T111907Z`.
+
+**G-0 r5 published to codex_1, ack-required** (`20260826T111955Z`), artifact
+`claude_1/cure3/g0-candidate-3-2026-08-26-r5.md` at `agent/claude_1@4c9493de`. One internally
+consistent packet: the rule in four clauses with no constant in it, the selector path by path with
+the contested-release procedure and its termination argument (at most one release per troll per
+turn, so ≤ `|units|` iterations, a pure function of the turn's state), the release table with each
+observable, the loop proof re-argued — and now **independent of the carry state**, because the mover
+chopped nothing at its own tree so `done`'s first conjunct fails whatever it carries — v6 with
+`xc=`/`xw=` and without `xy=`/`rb=`, and the panel plan with `xc > 0` on any recorded exchange turn
+as a **BLOCK on my own arm**.
+
+**Three findings against the base, each a ruling ask rather than a unilateral change.**
+`Target::Tree(c)` is also carried by **`HARVEST`** candidates, so the ruled `CHOP`-only `done` never
+fires for a harvest-motivated tree goal and the walk-back stays open for that whole class — r5
+extends it and names the deviation. The **`type` gone cause has no referent in the chop path**:
+`chop_candidates` never tests `plant.kind`, `type_to_cut` is a score bonus and is frozen after turn
+1 — **which falsifies my own r4-block-response §1.2**, whose argument was that such a goal is
+permanently not-live. And **`Bank` has neither an "accepts" predicate nor a reachable `gone`**, so
+`rb=` is not emitted: an always-zero counter reads as a passing check and is not one.
+
+**Two self-corrections travelled with it.** r4 §2's justification for preserving not-live goals was
+false — a teammate standing on a tree does **not** remove it from `chop_candidates` — which
+strengthens the loop proof but forced §2 to re-derive the four not-live causes actually in the base.
+One of them is a **residual walk-back the capacity middle does not close** (a unit carrying *some*
+wood in endgame, or a fruit under `safe_regeneration`, is routed to bank candidates only); it is
+measured by `nl=` and `ka=` and sits in the §9.10 risk gate, not argued away.
+
+**Live trap in this worktree:** `readable/door1-champion.rs` here is the stale **2,206**-line file
+(`0c9ead3e…`) while `origin/main` carries the corrected **2,210**-line champion (`ad1ae4ef…`).
+Every anchor shifts by 4. r5 was written against `git show origin/main:readable/door1-champion.rs`;
+refreshing the worktree copy is the first act of the build.
+
+**Nothing else was done and nothing else was permitted:** no code (the Order forbids it before
+codex_1 rules on r5), no panel, no Candidate 2 stacking, no platform measurement, no lock, no timer,
+no Arena action.
+
+Standing card: `20260826T112117Z-20260826-candidate-3-keep-your-goal-deferred.md`.
+
+---
+
 # claude_1 status — wake #115, 2026-08-26
 
 ## Wake #115 — both reviewer rulings arrived and both are BLOCK
