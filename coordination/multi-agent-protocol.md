@@ -33,18 +33,21 @@ index — path ownership alone cannot make simultaneous staging and commits safe
   platform-side mutations (see §6).
 
 **The roster of record is `coordination/roster.json` on `origin/main`, not this
-paragraph.** §10.2 already reads the coordinator from there, and a second list that
-drifts is worse than no list — this one did, for nine days. As of 2026-08-21 it says:
-**`local_claude_1`** — coordinator (integrator) and arena controller;
-**`claude_1`** — active contributor; **`codex_1`** — active contributor and the standing
-reviewer (onboarded 2026-08-09, a NEW agent, **not** `local_codex_1`, and absent from
-this paragraph until today); **`local_codex_1`** — dormant since the 2026-08-06
-coordinator transfer; **`chatgpt_1`** / **`chatgpt_2`** — declared unreachable by the
-owner 2026-08-12, advisory only (messages they already published stay authoritative and
-their quarantines stay quarantined). Handover brief:
-`coordination/HANDOVER-2026-08-06-local_codex_1-to-local_claude_1.md`. Roles are
-defaults, not capability limits; a task record says who owns that particular outcome,
-and the user may reassign at any time.
+paragraph.** §10.2 reads the coordinator from there, and a second list that drifts is
+worse than no list. As of the owner transfer on 2026-08-24 it says:
+**`local_claude_1`** — coordinator (integrator) and sole Arena controller;
+**`claude_1`** — active contributor; **`codex_1`** — active contributor and standing
+reviewer (a separate agent from `local_codex_1`); **`local_codex_1`** — contributor with
+no integration or Arena authority; **`chatgpt_1`** — reachable reviewer through its
+interactive session; **`chatgpt_2`** — unreachable. Historical messages and quarantines
+remain authoritative. Current transfer brief:
+`coordination/HANDOVER-2026-08-24-local_codex_1-to-local_claude_1.md`. Roles are defaults,
+not capability limits; a task record says who owns a particular outcome, and the user may
+reassign at any time.
+
+A coordinator transfer updates the roster on `main` in one act: set the new `coordinator` and
+append the outgoing id to `former_coordinators`. Omitting the append invalidates prior quarantine
+adjudications loudly at the next sweep; no quarantine file is copied between agent branches.
 
 Agent ids are lowercase `[a-z0-9_]+`. A newcomer claims an unused id, creates its own
 status file and message directory, and follows these rules; no spec change is needed.
@@ -522,10 +525,18 @@ rewriting is closed (`docs/STATE.md` §3), the coordinator may record an adjudic
 ]}
 ```
 
-**Authority is the coordinator's canonical ref**, `refs/remotes/origin/agent/<coordinator>`,
-never the worktree — otherwise two agents at the same fetched state get different inbox truth
-from their local checkouts, and any local edit suppresses a message. The sweep prints the ref
-and blob it used and warns when the local copy drifts.
+**Authority is `refs/remotes/origin/main`**, beside the roster, never an agent branch or the
+worktree — otherwise two agents at the same fetched state get different inbox truth from their
+local checkouts, and any local or coordinator-branch edit suppresses a message. An entry takes
+effect only when the coordinator integrates it into `main`. A coordinator role transfer changes
+the identity authorized to adjudicate and edit the list; it does not relocate either authority
+file. The sweep prints the ref and blob it used and warns when the local copy drifts.
+
+The roster's `former_coordinators` list keeps entries adjudicated during an earlier term valid
+after a transfer. A former coordinator's id in that list does **not** authorize new entries: the
+sweep cannot establish when a signature was made, so the current integrator must refuse new
+entries signed by former coordinators before they reach `main`; the sweep reports every honoured
+former-coordinator signature explicitly.
 
 **An adjudication must actually adjudicate.** It must be a valid v2 message, authored by the
 coordinator, present on the coordinator's canonical ref, naming the exact target in a
@@ -570,7 +581,7 @@ instead, so the record is preserved rather than erased. Rules:
   invalid original is quarantined, or it disappears from the transport's view.
 
 **Frozen legacy baseline.** Rule 5 grandfathers pre-v2 messages, but only the exact paths
-pinned by blob in `coordination/legacy-baseline.json` on the coordinator's canonical ref
+pinned by blob in `coordination/legacy-baseline.json` on `origin/main`
 (691 at the migration). Any message outside that baseline must be v2, enforced by the
 *receiver*. Otherwise omitting `schema_version` skips v2 validation entirely for anyone who
 does not voluntarily run the lint, and a backdated filename defeats a date cutoff. The

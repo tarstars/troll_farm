@@ -110,6 +110,136 @@ viewer Phase 2; full Decision Packet contract; ALL Arena actions (resident untou
 
 ## Progress log (newest first)
 
+- 2026-08-21 (~11:45Z — **OWNER NARROWED the 032/033 stamp**): from "unplayable" to
+  NOT REPRODUCIBLE ON THE CHAMPION — the recorded stalls were real on the retired
+  bot (trees on the map); the 82/13 endings are the champion's different games;
+  closed for the bot that produced them; the champion-subject library answers
+  whether the champion carries the mechanism. Identity gate already delivered into
+  the shared harness (`5d54a723`, under review): champion's 8 FIXED → 0 with
+  identity enforced. α: event table shows the reviewer's first predicate inverted
+  (keeps the dance, kills the clean fires); smallest clean rule = swap only with an
+  idle partner (yield-only) — scope reduction awaiting codex_1's ruling.
+
+- 2026-08-21 (~11:20Z — **OWNER "go": FIXTURES FOLLOW THE CHAMPION; cures graded on
+  the panel population**): the owner named the stale-basket problem and approved the
+  method change. Rule: a recorded episode belongs to the bot that produced it;
+  fixtures = exhibits + regression checks for that bot, regenerated on every KEEP;
+  cure verdicts = panel population (healed − new, named costs), baskets read only
+  through the identity gate. Chartered `20260821-champion-subject-library`
+  (re-freeze on `547fa706`, mechanism carry-over table, auto-refresh hook designed
+  not deployed) and `20260821-corpus-prevalence` (detectors + oracle over our own
+  streams in the ~9k-game corpus → which mechanism deserves Arena time first).
+  α G-2 and benching R-2 amended; the old-34 identity re-grade downgraded to an
+  exhibit. claude_1 order: α remedy → identity gate → champion library →
+  prevalence → Phase 3a.
+
+- 2026-08-21 (~11:00Z — **METHOD HOLE: the champion reproduces 11 of 34 recorded
+  episodes; the "unplayable" premise crossed two games**): the re-grade card
+  (claude_1 `4502c655`, codex_1 ACCEPTED) shows no recorded window is artifact on
+  the bot that produced them (`98628e98`: 18 games never stall, 16 end 3–46 turns
+  after their window) — the recorded 032/033 stalls were real, with trees present;
+  only the CHAMPION's different game ends at 82/13. The champion reproduces
+  001 002 005 012 013 017 021 024 026 027 030 and NOT the other 23 — including
+  ALL 8 "FIXED on the champion" and 032/033. Coordinator error owned (the card
+  asked for the wrong bot). Q1 (narrow or re-open the 032/033 stamp) goes to the
+  owner with a recommendation to narrow and to RE-FREEZE the library on the
+  champion. Chartered `20260821-episode-identity-regrade` (identity gate in the
+  shared harness, NOT_REPRODUCIBLE_ON_BASE, re-grade of the 34). Cure α: G-1
+  BLOCKED by its own re-swap gate (swap-dance on OSC-006/011), codex_1 ruled a
+  probe-first remedy; 027 never fires (goal flip, not a transport block).
+
+- 2026-08-21 (~10:05Z — **OWNER RULED D3 = "revise"**): of the three doors for the
+  shelved benching cure (retire / revise / change the panel rule) the owner chose
+  revise. Anti-benching task gets Phase 3: 3a diagnosis — why un-benched ≠
+  progress on 004/013/017 under P1+P2 (the OSC-013 extend-vs-replace collision
+  must be stated, and goes back to the owner if it binds), plus the m004 P3 and
+  m021 P4/r5 mechanisms; 3b design → codex_1 pre-build → owner design go (β's
+  tree reservation decided there); 3c build, sweep34 with progress restored
+  (>0 FIXED added, none lost), P3-clean panel, no new P4, codex_1 verdict; Arena
+  only on the owner's go, order vs α the owner's. α keeps build precedence.
+
+- 2026-08-21 (~09:50Z — **OWNER CHARTERED CURE α (R-1 swap/yield)**): the six
+  4b-ruled cases reduced to three cures — α swap/yield (005, 027, 012, 001), β
+  occupancy-aware planning (010, 030; picker territory, parked until D3), γ goal
+  hysteresis (026; not chartered). Owner: "charter α".
+  `coordination/tasks/20260821-swap-r1-cure.md`: transport-level only
+  (`resolve_move_conflicts*`), inert-by-construction parity, G-0 design → codex_1
+  pre-build ruling, G-1 build + parity over the 34, G-2 sweep34 (four → FIXED, none
+  lost), G-3 panel with a >2 %-firing kill rule and codex_1's unified verdict, G-4
+  Arena only on the owner's go after session 3; subject rebases on REVERT.
+  Expectations recorded honestly (dance fix was +0.045; 012's shape is the reason).
+
+- 2026-08-21 (~09:35Z — **OSC-032/033 RULED UNPLAYABLE; THE OSCILLATION INVESTIGATION
+  IS CLOSED, 34/34**): G-3 ACCEPTED (codex_1 09:07Z): our own troll felled the last
+  fruiting tree on both maps with seeds in the shack; the bot's `own units >= 2`
+  replant rule barred the lone troll; a second troll was unaffordable from turn 1
+  (the map lacked a fruit kind — owner's "denial" REFUTED, "absent" CONFIRMED);
+  the real referee ends the game at the first bare turn (82 / 13; grace bound
+  96 / 26), so 0 of the 110/143 idle turns exist. Owner: "OK, unplayable" — stamp
+  recorded with the strategy-S annotation. Final: 8 FIXED · 18 benching BUG (cure
+  on the shelf) · 6 BUG today · 2 UNPLAYABLE; no case stamped harmless. Open owner
+  questions: cures for the six mechanisms (R-1 swap already an owner-approved rule,
+  unimplemented), lone-troll replant / last fruiting tree, 0/0-troll opening,
+  game-shortening, extend-vs-replace. Chartered on coordinator authority:
+  `20260821-p4-stalls-real-end-regrade` (all 34 vs `has_stalled`). Records:
+  `local_claude_1/adjudications/OSC-032-033-ruling-2026-08-21.md`.
+
+- 2026-08-21 (~09:00Z — **4b CLOSED: OSC-026 and OSC-012 RULED BUG**): the
+  owner ruled the last two — 026 a single-troll goal-selector flip (9 turns
+  beside a reachable lemon; M3) and 012 a zero-power troll parked on the only
+  tree for 193 turns while the able troll danced (M2; a swap at turn 8 would
+  have ended it; the most expensive case of the 34). All six 4b candidates were
+  bugs; no "harmless" stamp was issued. The 34 now read: 8 FIXED · 18 bucket C
+  (cure on the shelf) · 6 ruled today · 2 (032/033) in the cause-attribution
+  measurement. Five mechanisms named for any future cure charter (none
+  chartered): swap, teammate-aware routing, tree reservation, goal-selector
+  flip, idle-occupier yield — a swap rule alone covers 005/027/012. Open owner
+  questions: charter cures? why did the opening train a 0/0 troll (012)?
+  Record: `local_claude_1/adjudications/4b-buckets-D-E-ruling-2026-08-21.md`.
+
+- 2026-08-21 (~08:40Z — **CAUSE ATTRIBUTION G-1 ACCEPTED; the premise falls**):
+  claude_1's clause instrument was REVISION_REQUIRED (count-only joins) then
+  ACCEPTED at rev 2 `2764db56` (identity joins, 14/14 negative controls, a
+  dropped-failures defect disclosed and repaired). Its output refutes the card's
+  premise: the eligible-action oracle returns NO legal action on any window turn
+  — the map is bare from turn 82 (OSC-032) / turn 13 (OSC-033) on the champion;
+  the 4b package's "usable work every turn" was the raw-liveness predicate
+  (coordinator's conflation, corrected in the package). Also measured: opening
+  abandoned at turn 35 in both; replant conjunct `own units ≥ 2` always false.
+  Card amended: G-3 must say when/how the map went bare, whether the REAL
+  referee would have ended the game (`has_stalled` — sim-artifact question),
+  why the opening failed (H-A), and which other conjuncts were false (H-B).
+
+- 2026-08-21 (~08:25Z — **4b BUCKET B RULED BUG, stamps withdrawn**): the owner
+  watched OSC-005/010/027/030 and ruled BUG under R-2, known-open, naming three
+  mechanisms — corridor pass blocked by a working teammate → swap (005, 027; R-1
+  shape), open-map pass blocked → teammate-aware routing (010), same tree wanted
+  → tree reservation (030; picker family). All four NOT FIXED on the champion;
+  no cure chartered (owner's call). My four "harmless" stamps were wrong: the
+  audit's subject was the blocker, not the dancer, and "never waits" ≠ "works".
+  Found en route: `claude_1/banana-restoration-r2/oscillation-library/` is a
+  STALE second library (14/33 aligned) — card to claude_1 to retire it; the
+  frozen `…-98628e98/library/` is authoritative. 4b remaining: OSC-026, OSC-012.
+  Record: `local_claude_1/adjudications/4b-bucket-B-ruling-2026-08-21.md`.
+
+- 2026-08-21 (~07:45Z — **OSC-032/033 CAUSE ATTRIBUTION CHARTERED** at the owner's
+  request): the no-goal instrument closed (G-3 ACCEPTED by codex_1 06:55Z — one
+  seeded WAIT per window turn, nothing real formed or discarded, one own unit all
+  game in both fixtures). Owner asked for a critical review of "a tree was there →
+  bug" and to check their idea "opening starved by lemon/plum denial → never left
+  that phase"; the route table already shows the early branch ending at turn 34,
+  so the live question is whether the opening FAILED and what followed. Chartered
+  `coordination/tasks/20260821-osc032-033-cause-attribution.md`: per-turn world
+  state, opening state, one named rejecting chop/harvest clause per plant per
+  turn, the replant block's seven conjuncts (own units ≥ 2 suspected), the
+  oracle's eligible set — hypotheses H-A/H-B/H-C confirmed or refuted, owner
+  brief, no fix. Owner directive recorded: coordinator delegates work to
+  claude_1/codex_1 (token cost). Same hour: 7 acks discharged, §10 amended (self-
+  addressed cards = obligations, after the `8c531096` repair), claude_1 + codex_1
+  branches merged to trunk (145 tests green), no-goal task record CLOSED. **Owner
+  ruled ALL** on the sweep-policy question (every open card shows, not only the
+  newest per task) — §10 updated, policy published.
+
 - 2026-08-21 (**4b SITTING RAN — stamps HELD, the two stalls CHARTERED**): the
   4b package was built and sat the same morning
   (`local_claude_1/session-inputs/4b-sitting-package-2026-08-21.md`): all 34

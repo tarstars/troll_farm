@@ -17,6 +17,28 @@ the ONLY resolution (yielding has nowhere to go).
 - Origin: owner statement in the first adjudication, 2026-08-16; early written trace
   `docs/reference/2026-07-11-yannbot-design.md:55`.
 
+### R-1a — The swap carries no lock; a swap back must be impossible by construction, and proved (owner-approved 2026-08-25)
+
+The coordinated exchange of R-1 is issued when the mobile troll's next step is the square
+where its teammate stands still and works **and the mobile troll's road continues beyond
+that square**. No "no-swap-back" timer or lock is added: the rule must be such that the
+reverse exchange cannot be chosen — the mobile troll keeps going forward and the working
+troll steps back onto its square as the other leaves — and that must be **shown from the
+algorithm, not enforced by a counter**. A second exchange of the same pair can then only
+come from the planner changing the mobile troll's goal, which is measured, not prevented.
+
+- Owner's words (coordinator session, 2026-08-25 ~15:55Z, transcribed): *"I think there
+  should not be special lock. We are to check algorithm and check that it's impossible to
+  choose back swap, because the mobile troll want to go through the working. We should
+  prove this and this way it is moving project in right direction: simple, clear set of
+  rules."*
+- Supporting evidence: `local_claude_1/dance-geometry/owner-brief-2026-08-25.md` — the
+  standing teammate is on every shortest road on 91 % / 78 % of measurable turns and the
+  goal is unreachable without its square on 439 + 55 turns (no road around → the swap is
+  the only mover-side remedy); 24 of 25 real dances are the standing-teammate shape.
+- Consequence: `coordination/tasks/20260825-dance-cure-candidate-2-swap.md` (proof at
+  G-0, then build); the earlier proposal's six-turn pair lock is withdrawn.
+
 ## R-2 — A troll with available work must be employed (owner-approved 2026-08-20)
 
 There is work to do and the troll can do it — not doing it is a bug. No
@@ -37,3 +59,18 @@ defect mechanism; the movement-level swap (R-1) treats only the symptom.
   (`coordination/tasks/20260820-pair-selector-anti-benching.md`), evidence
   first; sibling of the pool verdict rule's generator-coverage property, one
   level up (the picker must not discard what the generator offers).
+- 4b bucket B (owner rulings 2026-08-21, the four "harmless" stamps withdrawn):
+  OSC-005 and OSC-027 — pass blocked by a working teammate in a one-wide
+  corridor (the R-1 swap shape); OSC-010 — open-map pass blocked, a zero-cost
+  detour ignored (teammate-aware routing); OSC-030 — same tree wanted while a
+  teammate works it, a free tree two cells further (tree reservation, the
+  picker family). All four NOT FIXED on champion `547fa706`; no cure chartered.
+  Record: `local_claude_1/adjudications/4b-bucket-B-ruling-2026-08-21.md`.
+- 4b buckets D/E (owner rulings 2026-08-21, stamps withdrawn; 4b CLOSED):
+  OSC-026 — a single troll flips between two nearly-tied jobs for 9 turns with
+  a reachable lemon on the map (goal-selector flip, M3); OSC-012 — a troll with
+  no chop/harvest power parks on the only tree for 193 turns while the able
+  troll dances in front of it (idle occupier invisible to the compatibility
+  check, M2; a swap would have resolved it at turn 8). Both NOT FIXED on the
+  champion; no cure chartered. Record:
+  `local_claude_1/adjudications/4b-buckets-D-E-ruling-2026-08-21.md`.

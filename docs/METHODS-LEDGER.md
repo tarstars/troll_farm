@@ -18,6 +18,13 @@ omitted-grow). This project paid twice: `next_cell` (main/sim divergence era)
 and the h-starve-1 runner bug (2026-08-16).
 
 - Origin: `coordination/messages/local_claude_1/20260816T163830Z-20260816-h-starve-1-runner-bug-adjudication-ack.md` item 5.
+- Instance (2026-08-23, the coordinator, against himself): 149 Arena replays were fetched and
+  committed raw, carrying both players' `codingamer` block — `userId`, `pseudo`, `avatar`.
+  `cgauto/export_agent_replays.py` already existed for exactly this, with a `FORBIDDEN_KEYS`
+  frozenset naming those fields. The store path was re-implemented without looking. Sanitised at
+  `agent/local_claude_1@ac65523b`; every measurement reproduced bit-identically, which is luck about
+  the harm and says nothing about the process. **Widened form of this rule: before writing collected
+  external data into the repo, find the existing sanitiser/exporter first.**
 
 ## observed-failing — every new check is observed FAILING before its green is trusted
 
@@ -221,6 +228,78 @@ costs on the table. Gate class is chosen PER CHARTER, before any result.
   `coordination/messages/claude_1/20260819T185411Z-20260819-osc031-two-truths-exposure-blocker.md`
   and the five-game diagnosis proved the dead end. Task:
   `coordination/tasks/20260819-osc031-forecast-fix-door1b.md`.
+
+## paired-order-carries-the-drift — alternate the PAIR ORDER; pairing cancels noise, not trend
+
+A paired night run as ABAB and scored on adjacent (A, the next B) pairs puts arm A in the
+**earlier slot of every pair**. Pairing removes noise; it does not remove a within-night
+trend, which enters every difference with a fixed sign. Re-pairing the same reads the other
+way — each A against the B **before** it — costs nothing, brackets the true difference, and
+its average with the primary cancels a linear drift.
+
+Measured 2026-08-22 across all three recorded nights: the night with no slope is stable
+under re-pairing (+0.22 → +0.30); **both nights with a downward slope roughly halve**
+(+1.02 → +0.43; +0.55 → +0.13). The first of those is the number that cleared the 1.0
+materiality floor and carried the cure-C KEEP of 2026-08-19 — symmetrised it is +0.72,
+below the floor. With 4–5 pairs, and two pairings sharing reads, this does **not** overturn
+that ruling; what stands is the design fault, which needs no estimate: **with a fixed
+A-then-B order, drift has nowhere to cancel.**
+
+Rule: alternate the order between pairs (ABBA), or report both pairings beside the primary.
+**A verdict landing within about 0.3 of the floor or the bar is not reportable from a single
+pairing.**
+
+- Origin: `docs/DISCUSSION-architecture-over-score-2026-08-22.md` §4 — owner session; the
+  owner asked whether the delta measurement was sound, and on this axis it was not.
+- Amends the ABAB element of the M-1 measurement rule cross-referenced below.
+
+## seat-from-the-replay — resolve our seat from the replay's own identity, never from the battle listing
+
+`gamesPlayersRanking/findLastBattlesByTestSessionHandle` gives each player a
+`position`. `gameResult/findByGameId` labels every frame with an `agentId`.
+**These are different fields and they disagree.** Joining our command stream by
+`position` attaches it to the opponent's frames — and then prints numbers rather
+than raising errors, which is the dangerous half.
+
+Resolve the seat from the replay's own `agents` array: the entry whose `agentId`
+is ours carries `index`, and that index is the frame `agentId`. Then **assert our
+own marker is present on that seat and absent on the other**, and refuse the game
+if either fails. Any per-seat measurement off a replay carries this assertion.
+
+- Instance (2026-08-23, NARRATE identity check): a first pass over 10 real Arena
+  games reported **1,074 decode errors in 4 of 10 games**. The payloads were
+  intact; the seat was inverted. It surfaced only because the check also counted
+  our telemetry appearing on the *opponent's* seat — a control, not a
+  measurement — and that count equalled the error count exactly. On the corrected
+  run: 20 games, 5,257 turns, 0 errors, 0 leakage.
+- Independent confirmation of the same hazard reached from the other direction:
+  claude_1's replay→`Trace` adapter, whose acceptance panel notes that of our
+  lineage's 141 appearances in the in-repo corpus **72 are at seat 1**, so a
+  defaulted seat is a live path rather than a hypothetical.
+- Origin: `coordination/messages/local_claude_1/20260823T103000Z-20260823-narrate-real-game-telemetry-handoff.md`,
+  artifact `local_claude_1/narrate/arena-identity-check-2026-08-23.json`.
+
+## collect-before-you-resubmit — the battle listing is a ROLLING WINDOW, and a submission evicts the previous one's games
+
+`gamesPlayersRanking/findLastBattlesByTestSessionHandle` returns roughly the last **160** battles for
+the session, not the history. Submitting again fills that window with the new agent's games, and the
+previous read's battles become **unreachable by that route** — you cannot enumerate the game ids any
+more, so you cannot fetch the replays.
+
+**Therefore: collect a read's games BEFORE submitting the next arm.** Any measurement wanting a
+specific submission's play must fetch during that submission's residency. This is a hard ordering
+constraint on every multi-read block, not a preference.
+
+- Instance (2026-08-23, NARRATE AAAAA): read 1's 149 games were collected at 10:27 and read 2 was
+  submitted at 11:08. At 11:55 a query for submission `41182039` returned **0 rows** — the window
+  held 160 battles and every one was read 2's. The corpus survives only because the collection
+  happened to come first; nothing in the process required it.
+- The **02:17 UTC collector** is a separate route into `data/raw/games/` and is not a substitute:
+  it runs on its own schedule, which is far later than a 2-hour read cycle.
+- Canonical collection path, proven end to end 2026-08-23: fetch raw replays →
+  `cgauto/export_agent_replays.py` → store the package. It pseudonymises players to `PLAYER_0`/
+  `PLAYER_1`, strips `userId`/`avatar`/`publicHandle`/`testSessionHandle`, keeps `agentId` and
+  `index`, and its output is accepted unchanged by the replay→`Trace` adapter (5/5 on live games).
 
 ## Cross-references (law living elsewhere)
 

@@ -1,7 +1,14 @@
 # 20260821-osc032-033-no-goal-instrument — why these two trolls were never given a job
 
-- Status: **OPEN — OWNER-CHARTERED 2026-08-21** in the 4b sitting ("charter a
-  small look"). Package that raised it:
+- Status: **CLOSED — DELIVERED 2026-08-21** (G-1 `c0bdb4d6` → REVISION_REQUIRED →
+  revised `a7c57893` ACCEPTED_FOR_G3 06:41Z; G-3 `50fa5a8e` ACCEPTED by codex_1
+  06:55Z; owner brief `claude_1/nogoal/owner-brief-2026-08-21.md` delivered to the
+  owner by the integrator 07:1xZ). Finding: every window turn one seeded `WAIT`
+  via `main:IDLE_REGEN_FALLBACK`, nothing real formed or discarded, one own unit
+  all game in both fixtures. Bug-vs-correct-caution: **owner ruling pending**;
+  follow-up measurement chartered at the owner's request:
+  `20260821-osc032-033-cause-attribution`. Owner-chartered in the 4b sitting
+  ("charter a small look"); package that raised it:
   `local_claude_1/session-inputs/4b-sitting-package-2026-08-21.md` bucket F.
 - Record owner: local_claude_1 · Work owner: **claude_1** (instrument) ·
   Reviewer: **codex_1** (instrument-first) · Integrator: local_claude_1

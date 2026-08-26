@@ -17,6 +17,26 @@ The owner sat with this package the morning it was written and ruled twice:
 
 Bucket C is unchanged and needed no ruling. Bucket A is unchanged and closed.
 
+## SITTING RESULT 2 — 2026-08-21 ~08:20Z: bucket B RULED BUG, the four stamps WITHDRAWN
+
+The owner judged OSC-005/010/027/030 from the games and ruled **BUG under R-2,
+known-open**, naming three mechanisms (corridor pass → swap; open-map pass →
+route around; same tree wanted → tree reservation). All four are still NOT
+FIXED on the champion. The "harmless" stamps below were wrong — they judged
+the blocker instead of the dancer and read "never waits" as "works". Full
+record: `local_claude_1/adjudications/4b-bucket-B-ruling-2026-08-21.md`. No
+cure chartered (owner's call, open). ~~**Remaining for 4b: OSC-026 and OSC-012.**~~
+
+## SITTING RESULT 3 — 2026-08-21 ~08:55Z: OSC-026 and OSC-012 RULED BUG — **4b CLOSED**
+
+The owner ruled OSC-026 (single-troll goal flip, 9 turns beside a reachable
+lemon) and OSC-012 (a troll with no chop/harvest power parked on the only tree
+for 193 turns while the able troll danced in front of it) **BUG under R-2,
+known-open**; both stamps withdrawn. All six 4b candidates are now ruled, none
+was stamped harmless. Record and the 34-case tally:
+`local_claude_1/adjudications/4b-buckets-D-E-ruling-2026-08-21.md`. Only
+OSC-032/033 remain, in the cause-attribution measurement.
+
 ### The six held cases, with the game to watch
 
 Open `claude_1/viewer/out/<CASE>.html` in a browser and judge the position.
@@ -156,10 +176,17 @@ what rule R-2 calls a bug:
 | OSC-032 | 110 | 110 | detector quiet, but the unit is still stalled |
 | OSC-033 | 143 | 143 | detector quiet, but the unit is still stalled |
 
-Every single turn the troll waited, work was available to it. If R-2 is read
-literally, these are bugs — but they are **not** benching cases (no pair
-mis-selection was measured), so the P1+P2 cure on the shelf does not address
-them, and nothing else is chartered that would.
+~~Every single turn the troll waited, work was available to it.~~ **CORRECTED
+2026-08-21 ~08:40Z:** the "turns with usable work" column above is the
+fixture's raw-liveness predicate ("the world is non-terminal"), not the
+eligible-action oracle. Under the accepted cause-attribution instrument the
+oracle reports **no legal action on any window turn** — the map is bare from
+turn 82 (OSC-032) and turn 13 (OSC-033) on the champion; one own troll all
+game; opening abandoned at turn 35; replanting forbidden below two trolls.
+G-3 of `20260821-osc032-033-cause-attribution` now asks when the map went bare,
+whether the real referee would have ended the game there, and why the opening
+failed. The coordinator's conflation, not the investigation's. They are still
+**not** benching cases, so the P1+P2 cure on the shelf does not address them.
 
 **Ruling asked, and this is the one real decision in the sitting:**
 
@@ -182,12 +209,12 @@ than assumed.
 
 | bucket | cases | ruling |
 |---|---|---|
-| B — not starved | OSC-005/010/027/030 | |
+| B — not starved | OSC-005/010/027/030 | **BUG / known-open (owner, 08-21 08:20Z)** — stamps withdrawn; corridor swap (005, 027), teammate-aware routing (010), tree reservation (030) |
 | C — benching | the 18 | |
 | C — OSC-031 specifically | | |
-| D — single troll | OSC-026 | |
-| E — empty hands | OSC-012 | |
-| F — the two stalls | OSC-032, OSC-033 | |
+| D — single troll | OSC-026 | **BUG / known-open (owner, 08-21 08:55Z)** — stamp withdrawn; single-troll goal-selector flip (M3) |
+| E — empty hands | OSC-012 | **BUG / known-open (owner, 08-21 08:55Z)** — stamp withdrawn; zero-power troll parked on the only tree 193 turns, the able troll dances (M2); swap never considered |
+| F — the two stalls | OSC-032, OSC-033 | **NOT REPRODUCIBLE ON THE CHAMPION (owner, narrowed 08-21 ~11:40Z from "unplayable")** — the champion's game on these maps ends at 82 / 13 and never reaches the recorded positions; the recorded stalls were real on the retired bot `98628e98` (trees on the map), mechanism unknown and untested on the champion; closed for the bot that produced them; the champion-subject library answers whether the champion carries it. Record: `local_claude_1/adjudications/OSC-032-033-ruling-2026-08-21.md`. **Investigation CLOSED, 34/34.** |
 
 When this sheet is filled, the oscillation investigation is **closed**: every
 one of the 34 cases ends either FIXED-with-proof or owner-stamped, and no ghost

@@ -8,11 +8,13 @@
  "compacted_file_byte_identical": false,
  "difference_is_trailing_newline_only": false,
  "formatter": "rustfmt (reorder_imports=false, max_width=100) + inserted-comma removal",
+ "header_corrected_utc": "2026-08-26T08:10Z",
+ "note": "Header rewritten 2026-08-26: the gate is canonical-compaction identity; the parent is not minified. readable sha256 changes with the header; the compaction digest does not.",
  "readable": {
-  "bytes": 97784,
-  "lines": 2206,
+  "bytes": 98444,
+  "lines": 2210,
   "path": "readable/door1-champion.rs",
-  "sha256": "0c9ead3e107a11ac4b4b7b6f085e069ba98415f3233fb71443ee8a5f2185bc89"
+  "sha256": "ad1ae4eff70a5569e03e2149882bb22510746f4f8592907a5dfb936943ef0bfb"
  },
  "schema": "troll-farm-readable-source-v2",
  "verdict": "READABLE_SOURCE_ROUND_TRIP_EXACT"

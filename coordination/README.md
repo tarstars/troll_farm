@@ -1,5 +1,8 @@
 # coordination/ — operational entry point
 
+**Organisation of work: [`WORKING-RULES.md`](WORKING-RULES.md) (read first) · live board:
+[`BOARD.md`](BOARD.md) · dead tasks: [`GRAVEYARD.md`](GRAVEYARD.md).** Adopted 2026-08-26.
+
 Normative spec: [`multi-agent-protocol.md`](multi-agent-protocol.md). Read it before
 writing anything here. This file is the practical index.
 
@@ -26,18 +29,17 @@ acknowledgements, which go in the acknowledger's own message namespace.
 | `local_claude_1` | **coordinator (integrator)**; sole Arena controller | [`status/local_claude_1.md`](status/local_claude_1.md) |
 | `claude_1` | active contributor | [`status/claude_1.md`](status/claude_1.md) |
 | `codex_1` | active contributor / reviewer (onboarded 2026-08-09) | **none on this branch** — `codex_1` has not created `coordination/status/codex_1.md`; its namespace exists only on `origin/agent/codex_1` |
-| `local_codex_1` | **dormant** since the 2026-08-06 coordinator transfer; no Arena authority | [`status/local_codex_1.md`](status/local_codex_1.md) |
-| `chatgpt_1`, `chatgpt_2` | **unreachable** 2026-08-12 (owner ruling); zero live slots | [`status/chatgpt_1.md`](status/chatgpt_1.md) |
+| `local_codex_1` | contributor; no integration or Arena authority after the 2026-08-24 transfer | [`status/local_codex_1.md`](status/local_codex_1.md) |
+| `chatgpt_1` | reachable reviewer through an interactive session | [`status/chatgpt_1.md`](status/chatgpt_1.md) |
+| `chatgpt_2` | unreachable | none |
 
 `codex_1` and `local_codex_1` are **different agents**. See `roster.json`, which is the
 machine-readable authority; this table is the human index.
 
-Current handover briefs (2026-08-10):
-[`HANDOVER-2026-08-10-local_claude_1-session-close.md`](HANDOVER-2026-08-10-local_claude_1-session-close.md)
-and [`HANDOVER-2026-08-10-coordination-audit-and-cleanup.md`](HANDOVER-2026-08-10-coordination-audit-and-cleanup.md).
-The role-transfer brief is `HANDOVER-2026-08-06-local_codex_1-to-local_claude_1.md`; prior
-handovers remain historical evidence. Note: the two files named `2026-08-12` were written
-by a fabricated-clock session on 2026-08-09.
+Current role-transfer brief:
+[`HANDOVER-2026-08-24-local_codex_1-to-local_claude_1.md`](HANDOVER-2026-08-24-local_codex_1-to-local_claude_1.md).
+Prior handovers remain historical evidence. Note: the two files named `2026-08-12` were written by
+a fabricated-clock session on 2026-08-09.
 
 ## First-time setup for a new agent
 

@@ -1,0 +1,2024 @@
+{
+ "probe": "NARRATE step 1 \u2014 MSG length ramp, 8 chars per turn",
+ "channel": "TestSession/play (never the Arena)",
+ "game_id": 900074185,
+ "opponent": "escdemon 6479768",
+ "scores": [
+  100.0,
+  104.0
+ ],
+ "ranks": [
+  1,
+  0
+ ],
+ "base": "cgauto/submissions/candidate-door1-pure-deletion.rs sha256 547fa706cc1c684a\u2026",
+ "probe_sha256": "e0206f9d127ae1cc9b859f85d75963f167238a01d242e97c6568278663030ccb",
+ "our_turns": 250,
+ "max_declared_payload": 2000,
+ "max_full_stdout_chars": 2028,
+ "turns_truncated": 0,
+ "turns_not_byte_exact": 0,
+ "limit_found": false,
+ "rows": [
+  {
+   "turn": 1,
+   "declared_payload": 8,
+   "arrived_payload": 8,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 46
+  },
+  {
+   "turn": 2,
+   "declared_payload": 16,
+   "arrived_payload": 16,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 52
+  },
+  {
+   "turn": 3,
+   "declared_payload": 24,
+   "arrived_payload": 24,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 61
+  },
+  {
+   "turn": 4,
+   "declared_payload": 32,
+   "arrived_payload": 32,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 69
+  },
+  {
+   "turn": 5,
+   "declared_payload": 40,
+   "arrived_payload": 40,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 77
+  },
+  {
+   "turn": 6,
+   "declared_payload": 48,
+   "arrived_payload": 48,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 81
+  },
+  {
+   "turn": 7,
+   "declared_payload": 56,
+   "arrived_payload": 56,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 89
+  },
+  {
+   "turn": 8,
+   "declared_payload": 64,
+   "arrived_payload": 64,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 97
+  },
+  {
+   "turn": 9,
+   "declared_payload": 72,
+   "arrived_payload": 72,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 100
+  },
+  {
+   "turn": 10,
+   "declared_payload": 80,
+   "arrived_payload": 80,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 113
+  },
+  {
+   "turn": 11,
+   "declared_payload": 88,
+   "arrived_payload": 88,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 121
+  },
+  {
+   "turn": 12,
+   "declared_payload": 96,
+   "arrived_payload": 96,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 134
+  },
+  {
+   "turn": 13,
+   "declared_payload": 104,
+   "arrived_payload": 104,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 139
+  },
+  {
+   "turn": 14,
+   "declared_payload": 112,
+   "arrived_payload": 112,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 151
+  },
+  {
+   "turn": 15,
+   "declared_payload": 120,
+   "arrived_payload": 120,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 159
+  },
+  {
+   "turn": 16,
+   "declared_payload": 128,
+   "arrived_payload": 128,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 167
+  },
+  {
+   "turn": 17,
+   "declared_payload": 136,
+   "arrived_payload": 136,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 174
+  },
+  {
+   "turn": 18,
+   "declared_payload": 144,
+   "arrived_payload": 144,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 182
+  },
+  {
+   "turn": 19,
+   "declared_payload": 152,
+   "arrived_payload": 152,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 187
+  },
+  {
+   "turn": 20,
+   "declared_payload": 160,
+   "arrived_payload": 160,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 199
+  },
+  {
+   "turn": 21,
+   "declared_payload": 168,
+   "arrived_payload": 168,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 208
+  },
+  {
+   "turn": 22,
+   "declared_payload": 176,
+   "arrived_payload": 176,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 216
+  },
+  {
+   "turn": 23,
+   "declared_payload": 184,
+   "arrived_payload": 184,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 224
+  },
+  {
+   "turn": 24,
+   "declared_payload": 192,
+   "arrived_payload": 192,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 232
+  },
+  {
+   "turn": 25,
+   "declared_payload": 200,
+   "arrived_payload": 200,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 240
+  },
+  {
+   "turn": 26,
+   "declared_payload": 208,
+   "arrived_payload": 208,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 248
+  },
+  {
+   "turn": 27,
+   "declared_payload": 216,
+   "arrived_payload": 216,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 256
+  },
+  {
+   "turn": 28,
+   "declared_payload": 224,
+   "arrived_payload": 224,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 259
+  },
+  {
+   "turn": 29,
+   "declared_payload": 232,
+   "arrived_payload": 232,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 272
+  },
+  {
+   "turn": 30,
+   "declared_payload": 240,
+   "arrived_payload": 240,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 275
+  },
+  {
+   "turn": 31,
+   "declared_payload": 248,
+   "arrived_payload": 248,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 288
+  },
+  {
+   "turn": 32,
+   "declared_payload": 256,
+   "arrived_payload": 256,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 296
+  },
+  {
+   "turn": 33,
+   "declared_payload": 264,
+   "arrived_payload": 264,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 304
+  },
+  {
+   "turn": 34,
+   "declared_payload": 272,
+   "arrived_payload": 272,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 307
+  },
+  {
+   "turn": 35,
+   "declared_payload": 280,
+   "arrived_payload": 280,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 315
+  },
+  {
+   "turn": 36,
+   "declared_payload": 288,
+   "arrived_payload": 288,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 323
+  },
+  {
+   "turn": 37,
+   "declared_payload": 296,
+   "arrived_payload": 296,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 331
+  },
+  {
+   "turn": 38,
+   "declared_payload": 304,
+   "arrived_payload": 304,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 339
+  },
+  {
+   "turn": 39,
+   "declared_payload": 312,
+   "arrived_payload": 312,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 346
+  },
+  {
+   "turn": 40,
+   "declared_payload": 320,
+   "arrived_payload": 320,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 359
+  },
+  {
+   "turn": 41,
+   "declared_payload": 328,
+   "arrived_payload": 328,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 363
+  },
+  {
+   "turn": 42,
+   "declared_payload": 336,
+   "arrived_payload": 336,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 375
+  },
+  {
+   "turn": 43,
+   "declared_payload": 344,
+   "arrived_payload": 344,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 383
+  },
+  {
+   "turn": 44,
+   "declared_payload": 352,
+   "arrived_payload": 352,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 391
+  },
+  {
+   "turn": 45,
+   "declared_payload": 360,
+   "arrived_payload": 360,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 399
+  },
+  {
+   "turn": 46,
+   "declared_payload": 368,
+   "arrived_payload": 368,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 407
+  },
+  {
+   "turn": 47,
+   "declared_payload": 376,
+   "arrived_payload": 376,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 415
+  },
+  {
+   "turn": 48,
+   "declared_payload": 384,
+   "arrived_payload": 384,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 423
+  },
+  {
+   "turn": 49,
+   "declared_payload": 392,
+   "arrived_payload": 392,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 431
+  },
+  {
+   "turn": 50,
+   "declared_payload": 400,
+   "arrived_payload": 400,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 439
+  },
+  {
+   "turn": 51,
+   "declared_payload": 408,
+   "arrived_payload": 408,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 447
+  },
+  {
+   "turn": 52,
+   "declared_payload": 416,
+   "arrived_payload": 416,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 455
+  },
+  {
+   "turn": 53,
+   "declared_payload": 424,
+   "arrived_payload": 424,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 462
+  },
+  {
+   "turn": 54,
+   "declared_payload": 432,
+   "arrived_payload": 432,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 470
+  },
+  {
+   "turn": 55,
+   "declared_payload": 440,
+   "arrived_payload": 440,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 470
+  },
+  {
+   "turn": 56,
+   "declared_payload": 448,
+   "arrived_payload": 448,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 482
+  },
+  {
+   "turn": 57,
+   "declared_payload": 456,
+   "arrived_payload": 456,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 490
+  },
+  {
+   "turn": 58,
+   "declared_payload": 464,
+   "arrived_payload": 464,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 498
+  },
+  {
+   "turn": 59,
+   "declared_payload": 472,
+   "arrived_payload": 472,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 506
+  },
+  {
+   "turn": 60,
+   "declared_payload": 480,
+   "arrived_payload": 480,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 514
+  },
+  {
+   "turn": 61,
+   "declared_payload": 488,
+   "arrived_payload": 488,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 522
+  },
+  {
+   "turn": 62,
+   "declared_payload": 496,
+   "arrived_payload": 496,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 530
+  },
+  {
+   "turn": 63,
+   "declared_payload": 504,
+   "arrived_payload": 504,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 538
+  },
+  {
+   "turn": 64,
+   "declared_payload": 512,
+   "arrived_payload": 512,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 546
+  },
+  {
+   "turn": 65,
+   "declared_payload": 520,
+   "arrived_payload": 520,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 554
+  },
+  {
+   "turn": 66,
+   "declared_payload": 528,
+   "arrived_payload": 528,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 562
+  },
+  {
+   "turn": 67,
+   "declared_payload": 536,
+   "arrived_payload": 536,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 574
+  },
+  {
+   "turn": 68,
+   "declared_payload": 544,
+   "arrived_payload": 544,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 582
+  },
+  {
+   "turn": 69,
+   "declared_payload": 552,
+   "arrived_payload": 552,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 586
+  },
+  {
+   "turn": 70,
+   "declared_payload": 560,
+   "arrived_payload": 560,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 594
+  },
+  {
+   "turn": 71,
+   "declared_payload": 568,
+   "arrived_payload": 568,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 602
+  },
+  {
+   "turn": 72,
+   "declared_payload": 576,
+   "arrived_payload": 576,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 614
+  },
+  {
+   "turn": 73,
+   "declared_payload": 584,
+   "arrived_payload": 584,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 622
+  },
+  {
+   "turn": 74,
+   "declared_payload": 592,
+   "arrived_payload": 592,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 630
+  },
+  {
+   "turn": 75,
+   "declared_payload": 600,
+   "arrived_payload": 600,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 638
+  },
+  {
+   "turn": 76,
+   "declared_payload": 608,
+   "arrived_payload": 608,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 646
+  },
+  {
+   "turn": 77,
+   "declared_payload": 616,
+   "arrived_payload": 616,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 654
+  },
+  {
+   "turn": 78,
+   "declared_payload": 624,
+   "arrived_payload": 624,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 658
+  },
+  {
+   "turn": 79,
+   "declared_payload": 632,
+   "arrived_payload": 632,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 670
+  },
+  {
+   "turn": 80,
+   "declared_payload": 640,
+   "arrived_payload": 640,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 678
+  },
+  {
+   "turn": 81,
+   "declared_payload": 648,
+   "arrived_payload": 648,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 686
+  },
+  {
+   "turn": 82,
+   "declared_payload": 656,
+   "arrived_payload": 656,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 694
+  },
+  {
+   "turn": 83,
+   "declared_payload": 664,
+   "arrived_payload": 664,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 698
+  },
+  {
+   "turn": 84,
+   "declared_payload": 672,
+   "arrived_payload": 672,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 710
+  },
+  {
+   "turn": 85,
+   "declared_payload": 680,
+   "arrived_payload": 680,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 718
+  },
+  {
+   "turn": 86,
+   "declared_payload": 688,
+   "arrived_payload": 688,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 726
+  },
+  {
+   "turn": 87,
+   "declared_payload": 696,
+   "arrived_payload": 696,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 734
+  },
+  {
+   "turn": 88,
+   "declared_payload": 704,
+   "arrived_payload": 704,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 742
+  },
+  {
+   "turn": 89,
+   "declared_payload": 712,
+   "arrived_payload": 712,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 750
+  },
+  {
+   "turn": 90,
+   "declared_payload": 720,
+   "arrived_payload": 720,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 758
+  },
+  {
+   "turn": 91,
+   "declared_payload": 728,
+   "arrived_payload": 728,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 766
+  },
+  {
+   "turn": 92,
+   "declared_payload": 736,
+   "arrived_payload": 736,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 774
+  },
+  {
+   "turn": 93,
+   "declared_payload": 744,
+   "arrived_payload": 744,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 782
+  },
+  {
+   "turn": 94,
+   "declared_payload": 752,
+   "arrived_payload": 752,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 786
+  },
+  {
+   "turn": 95,
+   "declared_payload": 760,
+   "arrived_payload": 760,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 794
+  },
+  {
+   "turn": 96,
+   "declared_payload": 768,
+   "arrived_payload": 768,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 798
+  },
+  {
+   "turn": 97,
+   "declared_payload": 776,
+   "arrived_payload": 776,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 806
+  },
+  {
+   "turn": 98,
+   "declared_payload": 784,
+   "arrived_payload": 784,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 814
+  },
+  {
+   "turn": 99,
+   "declared_payload": 792,
+   "arrived_payload": 792,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 822
+  },
+  {
+   "turn": 100,
+   "declared_payload": 800,
+   "arrived_payload": 800,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 835
+  },
+  {
+   "turn": 101,
+   "declared_payload": 808,
+   "arrived_payload": 808,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 843
+  },
+  {
+   "turn": 102,
+   "declared_payload": 816,
+   "arrived_payload": 816,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 855
+  },
+  {
+   "turn": 103,
+   "declared_payload": 824,
+   "arrived_payload": 824,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 863
+  },
+  {
+   "turn": 104,
+   "declared_payload": 832,
+   "arrived_payload": 832,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 871
+  },
+  {
+   "turn": 105,
+   "declared_payload": 840,
+   "arrived_payload": 840,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 879
+  },
+  {
+   "turn": 106,
+   "declared_payload": 848,
+   "arrived_payload": 848,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 887
+  },
+  {
+   "turn": 107,
+   "declared_payload": 856,
+   "arrived_payload": 856,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 895
+  },
+  {
+   "turn": 108,
+   "declared_payload": 864,
+   "arrived_payload": 864,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 903
+  },
+  {
+   "turn": 109,
+   "declared_payload": 872,
+   "arrived_payload": 872,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 911
+  },
+  {
+   "turn": 110,
+   "declared_payload": 880,
+   "arrived_payload": 880,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 915
+  },
+  {
+   "turn": 111,
+   "declared_payload": 888,
+   "arrived_payload": 888,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 927
+  },
+  {
+   "turn": 112,
+   "declared_payload": 896,
+   "arrived_payload": 896,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 935
+  },
+  {
+   "turn": 113,
+   "declared_payload": 904,
+   "arrived_payload": 904,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 943
+  },
+  {
+   "turn": 114,
+   "declared_payload": 912,
+   "arrived_payload": 912,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 951
+  },
+  {
+   "turn": 115,
+   "declared_payload": 920,
+   "arrived_payload": 920,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 959
+  },
+  {
+   "turn": 116,
+   "declared_payload": 928,
+   "arrived_payload": 928,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 967
+  },
+  {
+   "turn": 117,
+   "declared_payload": 936,
+   "arrived_payload": 936,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 971
+  },
+  {
+   "turn": 118,
+   "declared_payload": 944,
+   "arrived_payload": 944,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 983
+  },
+  {
+   "turn": 119,
+   "declared_payload": 952,
+   "arrived_payload": 952,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 991
+  },
+  {
+   "turn": 120,
+   "declared_payload": 960,
+   "arrived_payload": 960,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 995
+  },
+  {
+   "turn": 121,
+   "declared_payload": 968,
+   "arrived_payload": 968,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1003
+  },
+  {
+   "turn": 122,
+   "declared_payload": 976,
+   "arrived_payload": 976,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1011
+  },
+  {
+   "turn": 123,
+   "declared_payload": 984,
+   "arrived_payload": 984,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1019
+  },
+  {
+   "turn": 124,
+   "declared_payload": 992,
+   "arrived_payload": 992,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1027
+  },
+  {
+   "turn": 125,
+   "declared_payload": 1000,
+   "arrived_payload": 1000,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1036
+  },
+  {
+   "turn": 126,
+   "declared_payload": 1008,
+   "arrived_payload": 1008,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1044
+  },
+  {
+   "turn": 127,
+   "declared_payload": 1016,
+   "arrived_payload": 1016,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1056
+  },
+  {
+   "turn": 128,
+   "declared_payload": 1024,
+   "arrived_payload": 1024,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1064
+  },
+  {
+   "turn": 129,
+   "declared_payload": 1032,
+   "arrived_payload": 1032,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1072
+  },
+  {
+   "turn": 130,
+   "declared_payload": 1040,
+   "arrived_payload": 1040,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1080
+  },
+  {
+   "turn": 131,
+   "declared_payload": 1048,
+   "arrived_payload": 1048,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1088
+  },
+  {
+   "turn": 132,
+   "declared_payload": 1056,
+   "arrived_payload": 1056,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1096
+  },
+  {
+   "turn": 133,
+   "declared_payload": 1064,
+   "arrived_payload": 1064,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1100
+  },
+  {
+   "turn": 134,
+   "declared_payload": 1072,
+   "arrived_payload": 1072,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1108
+  },
+  {
+   "turn": 135,
+   "declared_payload": 1080,
+   "arrived_payload": 1080,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1116
+  },
+  {
+   "turn": 136,
+   "declared_payload": 1088,
+   "arrived_payload": 1088,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1120
+  },
+  {
+   "turn": 137,
+   "declared_payload": 1096,
+   "arrived_payload": 1096,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1132
+  },
+  {
+   "turn": 138,
+   "declared_payload": 1104,
+   "arrived_payload": 1104,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1140
+  },
+  {
+   "turn": 139,
+   "declared_payload": 1112,
+   "arrived_payload": 1112,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1148
+  },
+  {
+   "turn": 140,
+   "declared_payload": 1120,
+   "arrived_payload": 1120,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1156
+  },
+  {
+   "turn": 141,
+   "declared_payload": 1128,
+   "arrived_payload": 1128,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1164
+  },
+  {
+   "turn": 142,
+   "declared_payload": 1136,
+   "arrived_payload": 1136,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1172
+  },
+  {
+   "turn": 143,
+   "declared_payload": 1144,
+   "arrived_payload": 1144,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1180
+  },
+  {
+   "turn": 144,
+   "declared_payload": 1152,
+   "arrived_payload": 1152,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1188
+  },
+  {
+   "turn": 145,
+   "declared_payload": 1160,
+   "arrived_payload": 1160,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1196
+  },
+  {
+   "turn": 146,
+   "declared_payload": 1168,
+   "arrived_payload": 1168,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1204
+  },
+  {
+   "turn": 147,
+   "declared_payload": 1176,
+   "arrived_payload": 1176,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1212
+  },
+  {
+   "turn": 148,
+   "declared_payload": 1184,
+   "arrived_payload": 1184,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1220
+  },
+  {
+   "turn": 149,
+   "declared_payload": 1192,
+   "arrived_payload": 1192,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1228
+  },
+  {
+   "turn": 150,
+   "declared_payload": 1200,
+   "arrived_payload": 1200,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1236
+  },
+  {
+   "turn": 151,
+   "declared_payload": 1208,
+   "arrived_payload": 1208,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1244
+  },
+  {
+   "turn": 152,
+   "declared_payload": 1216,
+   "arrived_payload": 1216,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1252
+  },
+  {
+   "turn": 153,
+   "declared_payload": 1224,
+   "arrived_payload": 1224,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1264
+  },
+  {
+   "turn": 154,
+   "declared_payload": 1232,
+   "arrived_payload": 1232,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1272
+  },
+  {
+   "turn": 155,
+   "declared_payload": 1240,
+   "arrived_payload": 1240,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1280
+  },
+  {
+   "turn": 156,
+   "declared_payload": 1248,
+   "arrived_payload": 1248,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1284
+  },
+  {
+   "turn": 157,
+   "declared_payload": 1256,
+   "arrived_payload": 1256,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1292
+  },
+  {
+   "turn": 158,
+   "declared_payload": 1264,
+   "arrived_payload": 1264,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1300
+  },
+  {
+   "turn": 159,
+   "declared_payload": 1272,
+   "arrived_payload": 1272,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1308
+  },
+  {
+   "turn": 160,
+   "declared_payload": 1280,
+   "arrived_payload": 1280,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1316
+  },
+  {
+   "turn": 161,
+   "declared_payload": 1288,
+   "arrived_payload": 1288,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1324
+  },
+  {
+   "turn": 162,
+   "declared_payload": 1296,
+   "arrived_payload": 1296,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1336
+  },
+  {
+   "turn": 163,
+   "declared_payload": 1304,
+   "arrived_payload": 1304,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1344
+  },
+  {
+   "turn": 164,
+   "declared_payload": 1312,
+   "arrived_payload": 1312,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1352
+  },
+  {
+   "turn": 165,
+   "declared_payload": 1320,
+   "arrived_payload": 1320,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1360
+  },
+  {
+   "turn": 166,
+   "declared_payload": 1328,
+   "arrived_payload": 1328,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1364
+  },
+  {
+   "turn": 167,
+   "declared_payload": 1336,
+   "arrived_payload": 1336,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1370
+  },
+  {
+   "turn": 168,
+   "declared_payload": 1344,
+   "arrived_payload": 1344,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1378
+  },
+  {
+   "turn": 169,
+   "declared_payload": 1352,
+   "arrived_payload": 1352,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1386
+  },
+  {
+   "turn": 170,
+   "declared_payload": 1360,
+   "arrived_payload": 1360,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1394
+  },
+  {
+   "turn": 171,
+   "declared_payload": 1368,
+   "arrived_payload": 1368,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1402
+  },
+  {
+   "turn": 172,
+   "declared_payload": 1376,
+   "arrived_payload": 1376,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1410
+  },
+  {
+   "turn": 173,
+   "declared_payload": 1384,
+   "arrived_payload": 1384,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1418
+  },
+  {
+   "turn": 174,
+   "declared_payload": 1392,
+   "arrived_payload": 1392,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1426
+  },
+  {
+   "turn": 175,
+   "declared_payload": 1400,
+   "arrived_payload": 1400,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1434
+  },
+  {
+   "turn": 176,
+   "declared_payload": 1408,
+   "arrived_payload": 1408,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1442
+  },
+  {
+   "turn": 177,
+   "declared_payload": 1416,
+   "arrived_payload": 1416,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1459
+  },
+  {
+   "turn": 178,
+   "declared_payload": 1424,
+   "arrived_payload": 1424,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1468
+  },
+  {
+   "turn": 179,
+   "declared_payload": 1432,
+   "arrived_payload": 1432,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1468
+  },
+  {
+   "turn": 180,
+   "declared_payload": 1440,
+   "arrived_payload": 1440,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1476
+  },
+  {
+   "turn": 181,
+   "declared_payload": 1448,
+   "arrived_payload": 1448,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1480
+  },
+  {
+   "turn": 182,
+   "declared_payload": 1456,
+   "arrived_payload": 1456,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1486
+  },
+  {
+   "turn": 183,
+   "declared_payload": 1464,
+   "arrived_payload": 1464,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1492
+  },
+  {
+   "turn": 184,
+   "declared_payload": 1472,
+   "arrived_payload": 1472,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1500
+  },
+  {
+   "turn": 185,
+   "declared_payload": 1480,
+   "arrived_payload": 1480,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1508
+  },
+  {
+   "turn": 186,
+   "declared_payload": 1488,
+   "arrived_payload": 1488,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1516
+  },
+  {
+   "turn": 187,
+   "declared_payload": 1496,
+   "arrived_payload": 1496,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1524
+  },
+  {
+   "turn": 188,
+   "declared_payload": 1504,
+   "arrived_payload": 1504,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1532
+  },
+  {
+   "turn": 189,
+   "declared_payload": 1512,
+   "arrived_payload": 1512,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1558
+  },
+  {
+   "turn": 190,
+   "declared_payload": 1520,
+   "arrived_payload": 1520,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1568
+  },
+  {
+   "turn": 191,
+   "declared_payload": 1528,
+   "arrived_payload": 1528,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1560
+  },
+  {
+   "turn": 192,
+   "declared_payload": 1536,
+   "arrived_payload": 1536,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1568
+  },
+  {
+   "turn": 193,
+   "declared_payload": 1544,
+   "arrived_payload": 1544,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1576
+  },
+  {
+   "turn": 194,
+   "declared_payload": 1552,
+   "arrived_payload": 1552,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1582
+  },
+  {
+   "turn": 195,
+   "declared_payload": 1560,
+   "arrived_payload": 1560,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1588
+  },
+  {
+   "turn": 196,
+   "declared_payload": 1568,
+   "arrived_payload": 1568,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1596
+  },
+  {
+   "turn": 197,
+   "declared_payload": 1576,
+   "arrived_payload": 1576,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1604
+  },
+  {
+   "turn": 198,
+   "declared_payload": 1584,
+   "arrived_payload": 1584,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1630
+  },
+  {
+   "turn": 199,
+   "declared_payload": 1592,
+   "arrived_payload": 1592,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1640
+  },
+  {
+   "turn": 200,
+   "declared_payload": 1600,
+   "arrived_payload": 1600,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1632
+  },
+  {
+   "turn": 201,
+   "declared_payload": 1608,
+   "arrived_payload": 1608,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1640
+  },
+  {
+   "turn": 202,
+   "declared_payload": 1616,
+   "arrived_payload": 1616,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1648
+  },
+  {
+   "turn": 203,
+   "declared_payload": 1624,
+   "arrived_payload": 1624,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1663
+  },
+  {
+   "turn": 204,
+   "declared_payload": 1632,
+   "arrived_payload": 1632,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1670
+  },
+  {
+   "turn": 205,
+   "declared_payload": 1640,
+   "arrived_payload": 1640,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1679
+  },
+  {
+   "turn": 206,
+   "declared_payload": 1648,
+   "arrived_payload": 1648,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1688
+  },
+  {
+   "turn": 207,
+   "declared_payload": 1656,
+   "arrived_payload": 1656,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1688
+  },
+  {
+   "turn": 208,
+   "declared_payload": 1664,
+   "arrived_payload": 1664,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1703
+  },
+  {
+   "turn": 209,
+   "declared_payload": 1672,
+   "arrived_payload": 1672,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1712
+  },
+  {
+   "turn": 210,
+   "declared_payload": 1680,
+   "arrived_payload": 1680,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1712
+  },
+  {
+   "turn": 211,
+   "declared_payload": 1688,
+   "arrived_payload": 1688,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1727
+  },
+  {
+   "turn": 212,
+   "declared_payload": 1696,
+   "arrived_payload": 1696,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1736
+  },
+  {
+   "turn": 213,
+   "declared_payload": 1704,
+   "arrived_payload": 1704,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1743
+  },
+  {
+   "turn": 214,
+   "declared_payload": 1712,
+   "arrived_payload": 1712,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1752
+  },
+  {
+   "turn": 215,
+   "declared_payload": 1720,
+   "arrived_payload": 1720,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1752
+  },
+  {
+   "turn": 216,
+   "declared_payload": 1728,
+   "arrived_payload": 1728,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1760
+  },
+  {
+   "turn": 217,
+   "declared_payload": 1736,
+   "arrived_payload": 1736,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1766
+  },
+  {
+   "turn": 218,
+   "declared_payload": 1744,
+   "arrived_payload": 1744,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1772
+  },
+  {
+   "turn": 219,
+   "declared_payload": 1752,
+   "arrived_payload": 1752,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1780
+  },
+  {
+   "turn": 220,
+   "declared_payload": 1760,
+   "arrived_payload": 1760,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1788
+  },
+  {
+   "turn": 221,
+   "declared_payload": 1768,
+   "arrived_payload": 1768,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1796
+  },
+  {
+   "turn": 222,
+   "declared_payload": 1776,
+   "arrived_payload": 1776,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1818
+  },
+  {
+   "turn": 223,
+   "declared_payload": 1784,
+   "arrived_payload": 1784,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1828
+  },
+  {
+   "turn": 224,
+   "declared_payload": 1792,
+   "arrived_payload": 1792,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1824
+  },
+  {
+   "turn": 225,
+   "declared_payload": 1800,
+   "arrived_payload": 1800,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1832
+  },
+  {
+   "turn": 226,
+   "declared_payload": 1808,
+   "arrived_payload": 1808,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1840
+  },
+  {
+   "turn": 227,
+   "declared_payload": 1816,
+   "arrived_payload": 1816,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1848
+  },
+  {
+   "turn": 228,
+   "declared_payload": 1824,
+   "arrived_payload": 1824,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1862
+  },
+  {
+   "turn": 229,
+   "declared_payload": 1832,
+   "arrived_payload": 1832,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1871
+  },
+  {
+   "turn": 230,
+   "declared_payload": 1840,
+   "arrived_payload": 1840,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1872
+  },
+  {
+   "turn": 231,
+   "declared_payload": 1848,
+   "arrived_payload": 1848,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1886
+  },
+  {
+   "turn": 232,
+   "declared_payload": 1856,
+   "arrived_payload": 1856,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1895
+  },
+  {
+   "turn": 233,
+   "declared_payload": 1864,
+   "arrived_payload": 1864,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1896
+  },
+  {
+   "turn": 234,
+   "declared_payload": 1872,
+   "arrived_payload": 1872,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1902
+  },
+  {
+   "turn": 235,
+   "declared_payload": 1880,
+   "arrived_payload": 1880,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1910
+  },
+  {
+   "turn": 236,
+   "declared_payload": 1888,
+   "arrived_payload": 1888,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1918
+  },
+  {
+   "turn": 237,
+   "declared_payload": 1896,
+   "arrived_payload": 1896,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1926
+  },
+  {
+   "turn": 238,
+   "declared_payload": 1904,
+   "arrived_payload": 1904,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1934
+  },
+  {
+   "turn": 239,
+   "declared_payload": 1912,
+   "arrived_payload": 1912,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1942
+  },
+  {
+   "turn": 240,
+   "declared_payload": 1920,
+   "arrived_payload": 1920,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1950
+  },
+  {
+   "turn": 241,
+   "declared_payload": 1928,
+   "arrived_payload": 1928,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1958
+  },
+  {
+   "turn": 242,
+   "declared_payload": 1936,
+   "arrived_payload": 1936,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1966
+  },
+  {
+   "turn": 243,
+   "declared_payload": 1944,
+   "arrived_payload": 1944,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1974
+  },
+  {
+   "turn": 244,
+   "declared_payload": 1952,
+   "arrived_payload": 1952,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1982
+  },
+  {
+   "turn": 245,
+   "declared_payload": 1960,
+   "arrived_payload": 1960,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1988
+  },
+  {
+   "turn": 246,
+   "declared_payload": 1968,
+   "arrived_payload": 1968,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 1996
+  },
+  {
+   "turn": 247,
+   "declared_payload": 1976,
+   "arrived_payload": 1976,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 2004
+  },
+  {
+   "turn": 248,
+   "declared_payload": 1984,
+   "arrived_payload": 1984,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 2012
+  },
+  {
+   "turn": 249,
+   "declared_payload": 1992,
+   "arrived_payload": 1992,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 2020
+  },
+  {
+   "turn": 250,
+   "declared_payload": 2000,
+   "arrived_payload": 2000,
+   "end_marker": true,
+   "ruler_byte_exact": true,
+   "full_stdout_chars": 2028
+  }
+ ]
+}
