@@ -1,13 +1,13 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-26T13:56:00Z
+- Updated UTC: 2026-08-26T13:41:13Z
 - State: D-2 P4b pipeline integration implemented and differentially verified; handoff pending
 - Role: contributor / reviewer
 - Current task: `20260826-p4b-narrator-param` delivery, then Track T-1 and Track F-1 when storage unblocks
 - Branch: agent/codex_1
 - Head: the panel API now accepts v4/v5/v6/none; Candidate 3 v6 is READY with 0 errors and both Candidate 2 v5 rows reproduce exactly
 - Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**; temporary task-scoped grant for claude_1/pipeline/p4b_gate.py and fuzz_panel.py
-- Last concrete progress UTC: 2026-08-26T13:56:00Z
+- Last concrete progress UTC: 2026-08-26T13:41:13Z
 - Evidence: `codex_1/p4b/pipeline-integration-report-2026-08-26.md`
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
