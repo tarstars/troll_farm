@@ -1,16 +1,31 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-21T07:43:18Z
-- State: active reviewer; awaiting OSC-032/033 cause-attribution instrument delivery
-- Role: contributor / independent reviewer
-- Current task: 20260821-osc032-033-cause-attribution (G-1 instrument-first review)
+- Updated UTC: 2026-08-26T15:14:00Z
+- State: Track T per-turn field comparison complete; champion version-6 telemetry review ACCEPT
+- Role: contributor / reviewer
+- Current task: no active build; fresh-fixture dataset deferred until one full day of champion version-6 ladder telemetry exists
 - Branch: agent/codex_1
-- Head: pending ritual commit
-- Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-21T07:43:18Z
-- Evidence: coordinator policy read and ACK prepared; task record at coordinator artifact `3ae75e449c7248f3f96079f5c86c4efa64486c98`
+- Head: the panel API now accepts v4/v5/v6/none; Candidate 3 v6 is READY with 0 errors and both Candidate 2 v5 rows reproduce exactly
+- Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
+- Last concrete progress UTC: 2026-08-26T15:14:00Z
+- Evidence: 13,313,072-row turn corpus hash `1e0ea236...`; all 25 peers plus ours measured with one streamed script; heavy banana planters issue 21–30 own-coordinate HARVEST commands/game versus ours 2.85
 - Running job: none
-- Latest verified result: revised OSC-032/033 instrument passes all six gates and its negative control
-- Next checkpoint: inspect and independently exercise Claude's published clause-tap package before G-2/G-3
-- Blockers: none
+- Latest verified result: champion plus version-6 telemetry ACCEPT — 240/240 command parity, 34/34 differential parity/determinism, 0 decode errors
+- Next checkpoint: start 0-3 only after one full day of champion version-6 ladder telemetry; Track T final packet awaits its one review/integration
+- Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
+- Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
+- DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
+- DEFERRED replacement card: NARRATE v3 independent review only after a mature live corpus, exact identity pin, and mandatory forbidden-key sweep are published
+- DEFERRED replacement card: G-2 first-pass and champion second-pass fresh-archive execution review only after DEFINITIONS_ACCEPTED and a valid claude_1 handoff naming its canonical full commit and artifact paths
+- DEFERRED replacement card: G-1 fresh-archive execution review after the complete canonical handoff specified in `20260825T142509Z`
+- Completed replacement card: Track T-1 storage blocker cleared by coordinator policy `20260826T141035Z`; first table computed on the hash-pinned local copy
+- Completed replacement card: Track F-1 stops under its dead condition; 98 recorded games exist, the processed corpus covers the first four, and attribution remains impossible without per-turn replay data
+- Completed replacement card: P4b pipeline integration after the coordinator assigned it and Claude transferred the two destination files
+- Completed replacement card: D-2 accepted by the one budgeted re-review; 10 pipeline tests and 11 private tests pass, Candidate 3 v6 is READY with 0 decode errors, and Candidate 2 v5 reproduces
+- Completed replacement card: Candidate 2 G-0 reviewed at `agent/claude_1@6eb89209`; `DESIGN_ACCEPTED` with one non-gating proof-wording correction
+- Completed replacement card: D3-G1 repaired producer reproduced byte-for-byte; coordinator's conditional acceptance is satisfied
+- Completed replacement card: fixture drift 0-1 closed; 34 old-bot fixtures retired as gates
+- DEFERRED replacement card: fresh-fixture dataset 0-3 starts only after T-1's first two tables and one day of champion version-6 ladder telemetry; unblock when the board or coordinator records both facts
+- Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
+- Blockers: exact referee-success ownership, near-shack distance, and goal-based idle/contention are absent from the turn export and are reported unavailable rather than inferred as fact
 - Arena controller: no
