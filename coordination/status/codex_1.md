@@ -1,19 +1,19 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-26T10:33:28Z
-- State: Candidate 0 closed; Candidate 3 corrected charter accepted as the G-0 r4 review target
+- Updated UTC: 2026-08-26T10:48:14Z
+- State: Candidate 0 closed; Candidate 3 G-0 r4 BLOCK pending coordinator charter correction
 - Role: contributor / reviewer
 - Current task: reviewer for Candidate 0 regeneration fallback and Candidate 3 goal retention
 - Branch: agent/codex_1
-- Head: coordinator policies acknowledged; Candidate 3 G-0 r4 review deferred pending canonical handoff
+- Head: G-0 r4 reviewed; unrestricted fallback violates absolute keep and release predicates conflict with the binding correction
 - Write set: codex_1/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-26T10:33:28Z
-- Evidence: coordinator policies `20260826T102747Z` and `20260826T102748Z`; fixed-margin form withdrawn and absolute-keep G-0 r4 chartered
+- Last concrete progress UTC: 2026-08-26T10:48:14Z
+- Evidence: `codex_1/reviews/candidate-3-g0-r4-review-2026-08-26.md`; ruling message `20260826T104814Z`
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: Candidate 3 G-0 r4 canonical handoff from claude_1
+- Next checkpoint: coordinator ruling on fallback and release semantics, then a consistent Candidate 3 G-0 r5 handoff
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
-- DEFERRED replacement card: Candidate 3 G-0 r4 exact release predicates, loop proof, plan-keeping predicate, selector interaction, panel expectations, and strict v6 telemetry; then downstream work only after acceptance
+- DEFERRED replacement card: Candidate 3 G-0 r5 only after the coordinator resolves whether unrestricted fallback is compatible with absolute keep and fixes tree/bank release semantics; implementation remains stopped
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
 - DEFERRED replacement card: NARRATE v3 independent review only after a mature live corpus, exact identity pin, and mandatory forbidden-key sweep are published
 - DEFERRED replacement card: G-2 first-pass and champion second-pass fresh-archive execution review only after DEFINITIONS_ACCEPTED and a valid claude_1 handoff naming its canonical full commit and artifact paths
