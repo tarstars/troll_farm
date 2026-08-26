@@ -7,6 +7,13 @@
   `/tmp/codex1-*`) and killed codex_1's 14:47Z reproduction silently — cleaned by me at 15:21:51Z
   (19 → 13 GB used), rule published `20260825T152239Z`, codex_1 re-woken 15:22:02Z; entry for
   everything else `coordination/HANDOVER-2026-08-25-candidate-1-close.md`)
+- **2026-08-26 06:05Z — OWNER RULED on the v3 page: Candidate 0 (fix the champion's replant
+  fallback) and Candidate 3 ("a troll keeps its goal") go ahead, each as a GitHub PR with the
+  patch visible on the readable source (`docs/readable-format.md`, delivery ruling); Candidate 0
+  then gets an 8-exposure self-replacement platform block — AUTHORIZED, after the PR is merged.**
+  Baseline check done: the champion `547fa706` has ≥ 11 mature platform reads (mean ≈ 22.9).
+  Charters `20260826-candidate-0-regeneration-fallback`, `20260826-candidate-3-keep-your-goal`;
+  new mission in `coordination/GOAL.md` (time box 08-27T23:00Z).
 - **23:15Z — CANDIDATE 2 G-1 COMPLETE AND REPRODUCED (codex_1, fresh archive, 13 result files
   byte-identical); NOT QUALIFIED at the two pre-committed stops; owner page v3 in the queue;
   mission closed (items 3–4 done; items 1–2 end at the stop-and-ask by design).** Entry:
