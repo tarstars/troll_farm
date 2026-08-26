@@ -1,252 +1,87 @@
-# claude_1 status — wake #119, 2026-08-26
+# claude_1 status — wake #120, 2026-08-26
 
-**Both of the last card's waits fired in the same ritual, and both came back as work.** codex_1
-BLOCKed G-0 r5 (`20260826T112519Z`) on a mechanical defect, and codex_1's P4b narrator-param build
-landed for G-1 review (`20260826T112323Z`). **The r5 BLOCK is accepted without dispute and repaired
-as r6** (`20260826T113709Z` ack, `20260826T113736Z` handoff, artifact
-`claude_1/cure3/g0-candidate-3-2026-08-26-r6.md` at `agent/claude_1@7c1722e6`). **P4b returned
-BLOCK** on one finding (`20260826T113651Z`, review
-`claude_1/reviews/p4b-narrator-param-g1-review-2026-08-26.md`). **No code, no panel, no Candidate 2
-stacking, no Arena action, no platform measurement.**
+**Both of the last card's waits resolved, and for the first time in this run neither produced
+follow-on work.** The owner's ~11:30Z ceiling reached me as `local_claude_1@20260826T113907Z` and
+codex_1's `114250Z` acked it the same minute: Candidate 3 got exactly one r5 and one review, the
+review returned the allowed BLOCK, so **Candidate 3 is closed**. In the same sweep codex_1 delivered
+`453c4c89`, the repair of the P4b v6 BLOCK I raised last wake. **The ceiling is accepted without
+dispute and the P4b repair is ACCEPTED on evidence.** My queue is drained.
 
-**The P4b BLOCK is one finding and one line, and it is the wrong-level check again.** Commit
-`f1be99da` exists to validate the v6 decoder boundary and does not. `decode_units()` accepts a unit
-tuple of `>= 4` fields; the caller in `evaluate()` destructures **exactly 4**; the r5 v6 unit carries
-five (`k=`), and codex_1's own fixture returns five. Fed through `evaluate()` that is
-`UNCAUGHT ValueError: too many values to unpack (expected 4)`, with a 4-field control returning
-normally. The unpack sits **outside** the `try/except`, so a v6 arm is a **traceback**, not the
-counted hard error the charter requires — and the new test calls `decode_units()` directly, so it
-cannot fail when `evaluate()` is broken. Repro is an artifact: `claude_1/reviews/p4b-v6-boundary-demo.py`.
+## The Candidate 3 close — accepted as written, and I opened nothing in its place
 
-**Everything else in P4b is accepted, and was reproduced in my own worktree and my own scratch**,
-never read from codex_1's: **16 versus 27** failed units, **7,137 / 8,839** all-available windows,
-**277 / 268** blind unit lives, 76,364 transitions, 53,708 windows, `PASS` with no added unit key,
-`verify_v5_counts.py` exit 0 with both arms `matches=true`. Candidate 0's two real narrator-less
-archives are `NOT_APPLICABLE` with zero errors under `none`, and **exactly 172,364** errors per arm
-with exit 2 when deliberately declared `v5`. That is the proof I pre-registered — the Candidate 2 v5
-panel reproducing its *accepted* row, not a v6 pass — and it holds. Two non-blocking findings ride
-along: an all-`NOT_APPLICABLE` run **exits 0**, indistinguishable from a real `PASS`, which is the
-one channel where Ruling 3's non-evaluable row could discharge G-1; and `blind_cause`'s
-`elif errors:` is evaluation-order dependent, **pre-existing at `e9103cc2:167` and not codex_1's**.
+`114802Z`, ack-not-required, because nothing is owed back. The bound said a second BLOCK at r5 closes
+the task with no r6 and no re-tuning; codex_1's r5 review returned that BLOCK. Three items my own
+card `113820Z` had listed as *waiting* are therefore **closed rather than postponed**, and get no
+replacement cards: the r6 ruling, the Candidate 3 build/panel/G-1, and the Candidate 2 re-run on top.
 
-**r6 is a delta, not a packet: four changes and nothing else.** The BLOCK was real and mine — §5.1's
-alternation has no `rw` and no `nl_*` while §3.3 and §5.2 require `rf+rt+rw+ro == rg` and a four-way
-`nl` split. **C2** adds the four `nl_*` cause fields as required, exactly as recommended, with the
-alternation *executed* rather than eyeballed. **C3** adds a field-set closure rule asserted by
-`narrate6` at import, so two lists of field names can never drift again. **C4** writes down the five
-v5 meta fields (`wc sw so sn sf`) that v6 inherits and r5 never defined.
+**r6 crossed the ceiling in flight** — published `113736Z`, about a minute before `113907Z` arrived.
+It stays in the tree as a **record of the repair r5's BLOCK required** and is explicitly **not** a
+review request. codex_1 is right that he did not review it and right that reviewing it would reopen
+a closed task.
 
-**C1 is the one place r6 does not do what it was told, and it says so.** codex_1 recommends adding a
-required `rw`; **r6 strikes it** and corrects the equation to `rf + rt + ro == rg`, because his own
-accepted §10 item 3 removes that same cause's always-zero counter under the name `rb=` — *"an
-always-zero counter reads as a passing check and is not one"* — and the two cannot both stand. With
-no sub-count the **equation itself is the falsifier**: a Bank gone event breaks it and the decoder
-raises. Offered back as a one-word switch, `RW_COUNTER`, recommended `false`.
+Two consequences written down so they are not later misremembered:
 
-**Both blocks are one-line repairs, and neither is mine to make.** r6 waits on codex_1's ruling; the
-Candidate 3 build waits on r6 *and* on an evaluable P4b row, because Ruling 3's gate is hard and
-Candidate 3's arm is v6. Build's first act is unchanged and re-verified this ritual: refresh this
-worktree's `readable/door1-champion.rs`, **2,206 lines here versus `origin/main`'s 2,210**.
+- **`RW_COUNTER` closes unruled.** r6 **struck** the `rw` field codex_1 recommended **adding**,
+  because his own accepted §10 item 3 had already removed that always-zero counter under the name
+  `rb=`, so requiring it reintroduces what he removed. Nobody ruled and nobody now will. I adopt
+  codex_1's framing exactly: **a procedural close, not a technical verdict** for either side. I am
+  not pressing it and I do not claim the closure vindicates me.
+- **r5 §7's prediction is never tested.** "Plan-keeping needs no new machinery" was to be falsified
+  by `m061`'s `PICK`↔`DROP` two-cycle surviving a Candidate 2 re-run that will not now happen.
+  Recorded as **untested**, not as supported.
 
----
+## The P4b repair — ACCEPT, proved old-versus-new rather than read off the diff
 
-## Wake #117 record — kept for the escalation pattern and the two questions it raised
+`114911Z`, artifact `claude_1/reviews/p4b-narrator-param-repair-verification-2026-08-26.md` at
+`agent/claude_1@674f973a`. I extracted the **pre-repair** gate `cfcb9688` and the repaired
+`453c4c89` into **separate** scratch trees so neither could shadow the other on `sys.path`, then put
+the same inputs through both.
 
-**The r4 ruling came back a BLOCK, and the right response to it was to shrink it.** codex_1
-BLOCKed G-0 r4 (`20260826T104814Z`, review `codex_1/reviews/candidate-3-g0-r4-review-2026-08-26.md`)
-on three findings and required a coordinator ruling before r5 exists. **Accepted without dispute**
-(`20260826T105652Z`). **Two of the three findings were mine outright and are repaired here**, so
-they never reach the coordinator; the remainder is escalated to `local_claude_1` **by name** as
-**two questions, each answerable in one word** (`20260826T105653Z`). Artifact:
-`claude_1/cure3/g0-candidate-3-2026-08-26-r4-block-response.md`. **No r5 written. No code, no
-panel, no Candidate 2 stacking, no Arena action, no platform measurement.**
+- **F1, the BLOCK — repaired.** `evaluate()` now indexes `unit[1], unit[2]`, which is what
+  `decode_units()`'s `>= 4` contract actually guarantees. My own repro from the BLOCK, unchanged:
+  the five-field v6 tuple gives `UNCAUGHT ValueError: too many values to unpack (expected 4)` on
+  `cfcb9688` and **returns normally** on `453c4c89`, matching its own four-field control. I checked
+  the surrounding level too, since the BLOCK was itself about checking the wrong level: `decode_units`
+  is the only call site, it sits **inside** the `try/except` that appends to `errors`, and the loop
+  below can no longer raise for any width `>= 4`. Short tuple → counted error; wide tuple → consumed.
+  Neither is a traceback.
+- **F2, the non-blocking finding — repaired.** Same two-arm all-`none` invocation through both gates:
+  `all_applicable_arms_ready` is `true` on the old gate and **`false`** on the new one, and it is in
+  `required`, so a non-evaluable run is no longer exit-code-indistinguishable from a `PASS`.
+- **No regression, run in full rather than argued.** `reproduce_v5.py` rebuilt both 240-game archives
+  from the hash-pinned configs in my own scratch (exit 0), then the **repaired** gate: **16 / 27**
+  failed units, **7,137 / 8,839** all-available windows, **277 / 268** blind unit lives, 76,364
+  transitions, 53,708 windows, 384 unit lives, `K3`/`K5`/`all_applicable_arms_ready` true,
+  differential `PASS` with no added unit key, gate exit **0**, `verify_v5_counts.py` exit **0** with
+  `matches: true` on both arms, 11 unit tests OK. Identical to the accepted row in **every** field,
+  so the indexing change is behaviour-preserving **as executed**.
 
-**Repaired without a ruling — and one of them is a failure mode this programme has paid for twice.**
-(1) **Bank-full is a `gone` case**: the charter's own example, omitted from r4 §3.3 with no argument
-behind it; new sub-count `rb=`. (2) **A tree that stops matching `type_to_cut` is `gone`**: r4
-preserved it as valid-but-not-live so a reviewer could want the opposite, and the reviewer did — but
-the decisive point is that **my counter-argument fails on my own R4(d)**. Only a unit *without* a
-valid kept goal may take one, so a permanently not-live goal does not cost nothing: it **silently
-disables the rule for that troll for the rest of the game** while `ka=` reports a large, healthy
-age. An instrument reading high with the mechanism switched off. New pre-registered count `rt=`.
+**Recorded in the ACCEPT, not raised as a finding:** the v6 arm is exercised **only by fixture** and
+never by a real archive, because the ceiling closed the only v6 producer. Written down so the
+instrument's coverage is not overclaimed later.
 
-**The framing I withdrew.** R4(c)'s "it is an infeasibility, not an overrule" is a label, not a
-difference — the emitted command is the observable, and by it a challenger won while a valid goal
-was stored. What survives and belongs in the ruling is r4 §1.1: **the corrected charter, taken
-literally and with no fallback, has no no-parking guarantee at all.** A bonus could not park a troll;
-a restriction can shrink a list until the joint selector cannot pair it, and the champion's
-fall-through emits `wait()` (`:989`) — while the same charter forbids parked episodes from
-worsening. That collision is question 1.
+## The ladder and the owner's goals
 
-**Question 1 — A / B / C / D, and I recommend C.** A = r4's unrestricted re-run (needs a charter
-sentence authorizing fallback); B = strict `WAIT` (literal, shortest proof, **but it parks trolls on
-purpose and the gate that would bound the damage is the unevaluable P4b gate — so a B ruling puts
-Candidate 3 behind a coordinator-owned repair**); **C = contested release** — joint infeasibility
-becomes a fifth *release* predicate (release the younger kept goal, rebuild, re-run; ≤ one release
-per unit per turn, terminating, a pure function of the turn), so **no challenger ever overrules a
-*valid* goal because the goal is not valid when the challenger is scored**; D = asymmetric preserve,
-a strict subset of A with A's defect. C's cost is named: a goal can die for a reason about the
-*pair* rather than the *world*, and `xc=` non-zero on a recorded exchange turn is pre-committed as a
-**BLOCK on my own arm**.
+Read and obeyed. Champion `547fa706…` is on the ladder as submission **`41197542`** by the
+coordinator's hand, the NARRATE instrument is off it, and **nobody else touches the Arena** — I have
+not and I propose nothing. Goal (c) noted: **≥ 25.40 stands but is not the only goal**; the readable
+source / diffs-in-files / owner-reads-every-change line is wanted **for its own sake**; the **banana
+farm is next**, with the coordinator's assessment going to the **owner** first and **no charter yet**.
+I hold no banana-farm work and open none.
 
-**Question 2 — `DONE_ON_CHOP`.** Unchanged from r4 §3.2 and still the only release question I am not
-free to decide: `true` is the charter's literal words and **I do not have a loop proof under it and
-do not believe one exists** (I would report that, not build to a proof I do not have); `false` is
-r4's proposal and contradicts the plain list; and a **capacity middle** offered here for the first
-time — done when `free_capacity()` reaches 0 on a `CHOP` turn at the goal — releases without firing
-on the mid-carry exchange turns and preserves §8 as written. Recommendation: `false`, middle
-acceptable.
+## This ritual, in whole
 
-**Agreed and not mine.** With P4b at `GATE_UNREADY` / 172,364 errors, **G-1 cannot return ACCEPT for
-the chartered parked-unit gate at all**. r4 §9.6's `NOT_EVALUABLE` row is honest reporting, not a
-discharge; no proxy proposed, and the unchartered `20260826-p4b-narrator-param` amendment **not**
-enacted to make it green.
+No code of my own, no build, no panel, no Candidate 2 stacking, no Arena action, no platform
+measurement, no lock, no timer. Two acks and one replacement card published; one verification
+artifact written; the v5 reproduction re-run end-to-end in scratch.
 
-**The lesson from wake #114 was applied, not restated.** "A blocker I cannot clear should be raised
-to its owner by name in the first card." This is the first card where that happened in the ritual the
-blocker appeared: the ruling request is addressed to `local_claude_1` alone, with the options
-enumerated and costed so the reply can be two words.
+**Open and not mine to close:** the **23 of 34 fixtures `NOT_REPRODUCIBLE_ON_BASE`** on every arm and
+the shipping-form question (both `local_claude_1`'s); `format_readable.py`'s header template being
+wrong for any non-minified parent (recorded in `docs/readable-format.md`, generator still
+unchartered); and the **residual walk-back the capacity middle does not close**, which rode on a
+panel that will now not run and is therefore carried as an unmeasured property of **the base**, not
+of any candidate. **Nothing measured says the candidate's C-5 = 5 is benign** — that STOP AND ASK
+stands and is the owner's.
 
----
-
-## Wake #114 record — kept for the measurements, which nothing since has changed
-
-
-**The disk cleared, both panels ran in under ten minutes of compute, and both came back negative.**
-Candidate 0 (`20260826-candidate-0-regeneration-fallback`): G-1 delivered as a **STOP AND ASK**
-(`20260826T073701Z`). Candidate 3 (`20260826-candidate-3-keep-your-goal`): corrected G-0 **r3**
-delivered (`20260826T073700Z`), with `M = 0.25` **falsified by measurement**. **No code written on
-either. No Arena action taken or proposed. Nothing re-tuned after a run.**
-
-**Candidate 0's panel: containment held perfectly and the run still says do not ship.** 240 games,
-18.2 s. **97 diverging games, every one a game where the champion's fallback fires — zero
-counterexamples**, which was the expectation whose violation I had pre-committed as a BLOCK on my
-own arm. Determinism PASS (two runs, all 240 rows byte-identical, uncompressed games stream
-`4898bd4a…`; only `wall_time_seconds` differs). Fixtures **34/34 identical** to the champion.
-Probe gates PASS on 240 games — print-only **and** readable-plays-like-compacted, in one comparison
-against the panel's own recorded streams. The r2 suppression census: the new guard bit on
-**2 turns in 240 games**, neither a divergence turn, so r2 §3's inertness argument is confirmed
-empirically.
-
-**What killed it.** Against a matched floor re-run here (the `picker2` floor used a different
-referee build, so it is not a matched comparison): **D-2 0 → 387 episodes over 18 games**, **P4 16 →
-85**, **P3 0 → 5**, **blocking games 43 → 118 — 75 newly blocking, none cured**. D-1 (27), D-3 (0),
-D-4, D-5, D-9 unchanged, as predicted. Panel total **+530 own-score points** (88 up, 9 down; seven
-of the nine down games inside the σ ≈ 1.501 band). The mechanism is one line of wire: the surviving
-7,500-point regeneration `PICK` beats every job for a shack-adjacent empty-handed troll, the
-`carried > 0 && adjacent` clause offers the `DROP` back next turn, and nothing makes the `PICK` lead
-to a `PLANT` — a **PICK↔DROP two-cycle to the end of the game**.
-
-**Three of my own pre-registrations are falsified, and one of them was a category error.** (1)
-`m061` went **−18 / −9**, not +75 — and the `−75` I predicted from was *rule-off → instrument*, the
-cost of **Candidate 2's swap rule**; the rule-off arm is behaviourally the champion and already
-scores 75 and 82, exactly what the champion scores here. I carried a number measured against a
-different arm into a prediction about the champion, and G-0 was accepted with that error inside it.
-(2) "single digits out of 240" was wrong by an order of magnitude — the clause fires **50,974 times
-on 210 of 240 games**. (3) P4b: I expected these non-v5 arms to be evaluable; `--p4b` returns
-**GATE_UNREADY at 172,364 errors** because the champion emits a banner MSG, not telemetry. Reported
-as `NOT_EVALUABLE` with the count: no proxy, no dropped row, and the unchartered
-`20260826-p4b-narrator-param` amendment **not** enacted to make it green.
-
-**Candidate 3's residual is measured and `M = 0.25` does not survive it.** 23 exchanges over the six
-games, **20 scoreable** and 3 not (each reason named). Realised `rho` runs **0.0231 → 0.26984**, and
-the requirement `M > rho` **fails at `m090:0` t=12** (keeping 600.0, chosen 761.9). Per my own r2
-pre-registration this is **re-ruled, not re-tuned**: `M` has not moved and I proposed no
-replacement. Two corrections to my own packets: my swept region (`K ∈ [4,14]`, `Delta ∈ {1,3}`)
-**did not contain the data** — the recordings have `K = 3` and `Delta = 0`; and `rho` **rises
-monotonically along every loop** as the shared tree's `K` falls, so **no fixed multiplicative `M`**
-can discharge the chartered obligation for a loop of unbounded length. That is a finding about the
-rule's form, not its constant.
-
-**Method note, because the ruling named the recordings.** `loop-anatomy.json` cannot support the
-calculation — it has plants, cells, goals and commands but not the map, shack, water or unit stats,
-and `Delta`, `K`, `w` are functions of those. Rather than reimplement `bfs_distances` /
-`predict_tree` / `chop_outcome` in Python and hope it agrees, the inputs are measured at the arm
-that produced the recordings: **two `eprintln!` lines over the accepted instrument arm**, gated
-print-only and gated to reproduce the recorded exchange turns. Offered for withdrawal if the
-reviewer wanted no new arm at all.
-
-**The blocker that cost three wakes cost one peer one `rm`.** Both panels were deferred across
-three rituals for 300 MB. The compute was eight minutes. The lesson for my own cards: **a blocker I
-cannot clear should be raised to its owner by name in the first card**, not restated in the third.
-
-Artifacts at `agent/claude_1@efe41b1b`: `claude_1/cure0/g1-packet-2026-08-26.md`,
-`claude_1/cure3/g0-candidate-3-2026-08-26-r3.md`, both panel configs, both probe generators, and
-the results (panel JSONs trimmed of per-game command streams and of the 172,364-entry P4b error
-list, both reproducible byte-for-byte from the committed configs — determinism is proved, not
-assumed).
-
-**Open and not mine to close:** whether Candidate 0 continues at all; Candidate 3's rule form; the
-champion header correction (still OPEN, now unblocked — the pin-invalidation objection expired with
-the panel); the v6 decoder question; the round-trip gate's wording on Candidate 3's card; and the
-**23 of 34 fixtures that are `NOT_REPRODUCIBLE_ON_BASE` on both arms** — not caused by this arm,
-not investigated by anyone, and silently removing two thirds of the fixture corpus from every
-verdict.
-
-Standing card: `20260826T073816Z-20260826-candidate-0-regeneration-fallback-deferred.md`.
-
----
-
-## Wake #116 — 2026-08-26T10:29–10:45Z — both blocks cleared from above; G-0 r4 delivered
-
-**Candidate 0 is CLOSED** (`local_claude_1/20260826T102747Z`) — the exact clause abandoned on the
-reproduced BLOCK, no successor under that task, the `m061` −75 attribution corrected to Candidate
-2's swap (the fallback's price on the champion stays **unmeasured**, which is not zero), and the
-champion header landed at **`753d2795`** — verified by me: 2,210 lines, sha256 `ad1ae4ef…`,
-compaction digest unchanged `0da12c33…`, the inherited `102caecd…` lineage line gone. That item sat
-on four of my cards and is off the board. **Line numbers in every earlier Candidate 3 packet are
-+4**; r4 re-reads them from `753d2795` rather than shifting them on paper.
-
-**Candidate 3's charter is corrected** (`102748Z`): the fixed-margin form is withdrawn as
-**falsified**, replaced by **absolute keep** — a troll keeps a valid goal until *done*, *gone*,
-*impossible* or *dead*, and nothing overrules it. Base `753d2795`, telemetry v6 with mutual refusal,
-round-trip gate = canonical-compaction identity.
-
-**Delivered: G-0 r4** (`claude_1/cure3/g0-candidate-3-2026-08-26-r4.md` at
-`agent/claude_1@d697f8b7`, handoff `20260826T103912Z`, ack-required of codex_1).
-
-The headline is not the rule sentence, which is now one line with no numeral in it. **With `M` gone
-the rule can no longer be a score bonus** — "the selector sees exactly that candidate" is a
-**restriction of the candidate list**, the shape my own r1 §4 argued against, and a restriction
-**loses the structural guarantee the bonus had for free**: that a kept goal can never park a troll.
-`best_pair` can go `None` (reachably: both units restricted to `PICK` for the same item with
-`inventory < 2`), the champion falls through to the greedy path, and `.unwrap_or_else(Self::wait)`
-parks a troll. **R4(c)** — re-run `select` unrestricted for that turn, or a two-phase greedy —
-is the replacement, and if it is wrong the rule is wrong.
-
-Four more items I did **not** decide alone:
-
-- **`DONE_ON_CHOP`** — a finding against the charter's own words. If a `CHOP` discharges a
-  `Tree(c)` goal the mover re-picks on arrival and the loop proof survives exactly one turn past
-  the exchange. I propose a `Tree` goal completes only as *gone*; both readings are written out.
-- **Valid-but-not-live goals are preserved, not erased** — erasing re-creates the loop, preserving
-  costs an **unbounded walk-back** that `M` used to bound. The alternative is a named switch I did
-  not flip. This is the largest own-score risk of the no-margin form.
-- **v6:** `k=` becomes three-valued (`2` restricted-and-emitted / `1` valid-but-not-live / `0` none)
-  and **`m=` is deleted** — no margin constant left to stamp a wire with. `rho` is **demoted from a
-  test to a report**: `xd=` and `xj=` measure what the rule gave up and are never compared to
-  anything.
-- **Plan-keeping needs no new machinery** — a prediction, not a claim. The champion's regeneration
-  `PICK` already carries `target: Target::Cell(unit.cell)`, the **plant site**; `PLANT` carries the
-  same target; the bank clause's `DROP` carries `Target::Bank`. So R4(b) alone forbids Candidate 0's
-  `PICK`↔`DROP` two-cycle. **`m061` at G-2 is the test, and if the cycle is still there §7 is
-  wrong.**
-
-**Release latency discharged:** releases run before any candidate is built from the same `view` that
-first shows the event, so a kept goal restricts **zero** turns after its invalidating event is
-observable; the one-turn event-to-release latency is the minimum this interface allows.
-
-**Loop proof is now three equality tests and a subset** — no inequality anywhere, which was the
-point of the BLOCK. The three r3 `NOT SCOREABLE` rows become controls: OSC-007:11 / m118:1:11 are
-*gone* firing where the champion's own loop ended; m090:0 t=3 is inert, and **a behaviour change
-there is a defect**.
-
-**Pre-committed, so it can be wrong:** I expect **more than half of 240 games to change** — far
-wider than Candidate 0's 97 — and under 15 % I look for a containment bug before celebrating.
-Risk gate: `ka >= 30` turns of kept-goal age, or an `xd` give-up turning a game negative beyond the
-noise band, is a **defect of the absolute form** and is **not** repaired by putting a margin back.
-
-**Disk is at 6 G** — the 300 MB blocker that held four cards is gone. G-1 is blocked on the ruling
-and on nothing else.
-
-Standing card: `20260826T104100Z-20260826-candidate-3-keep-your-goal-deferred.md`.
+Standing card (wake #120): `20260826T115018Z-20260826-queue-drained-deferred.md`, which discharges
+`20260826T113820Z`.
