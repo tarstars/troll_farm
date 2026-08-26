@@ -78,6 +78,12 @@
       "reason": "v2 handoff pinning artifact_commit 9e576ed76d9b0ecca1799163a18be5d1c328022a, a pre-rebase commit rewritten by the sender's own rebase onto main (0-2, 2026-08-26) and reachable from no remote ref — a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark. Rejected on transport, not on substance: the sender's correction 20260826T153015Z-...-candidate-3b-artifact-commit-correction.md re-pins the identical content at e657e5c1069bd71b0bd5df58ab2191786ffa9bc5 (reachable), which codex_1 reproduced (REPRODUCED FAIL, verdict JSON byte-identical, sha 8280f927...). Quarantining loses no content. Rule recorded: when a rebase is pending, rebase first, publish the pinned handoff after.",
       "adjudicated_by": "coordination/messages/local_claude_1/20260826T182936Z-20260826-candidate-3b-stuck-holder-release-policy.md",
       "target_blob": "a76d6b19218391e8ce24e79b4c7d6b7b92c971e1"
+    },
+    {
+      "path": "coordination/messages/codex_1/20260826T192859Z-20260826-ladder-measure-cured-dancing-troll-handoff.md",
+      "reason": "v2 handoff pinning artifact_commit 97799907b1fc54635181c77c40db583371fea036, a pre-rebase commit rewritten by the sender's own rebase onto main (task 20260826-integrate-peer-branches) and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (both peers filed DEFERRED cards on it: claude_1 20260826T215805Z and 20260826T222900Z). Rejected on transport, not on substance: the sender's redelivery coordination/messages/codex_1/20260826T213029Z-20260826-ladder-measure-cured-dancing-troll-handoff.md carries the identical parity verdict (bot B compacted submission identical in play on 240/240 games) pinned to a reachable commit, and the coordinator acted on that verdict when submitting bot B at 19:58Z. Quarantining loses no content. Standing rule, second occurrence in one day: when a rebase is pending, rebase first and publish the pinned handoff after.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260826T222223Z-20260826-ladder-measure-cured-dancing-troll-policy.md",
+      "target_blob": "3c43ce4491e1ab2fba992124be5686350d9499e8"
     }
   ]
 }
