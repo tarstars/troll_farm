@@ -1,0 +1,454 @@
+{
+  "arm": "claude_1/farm/arm-instrument.rs",
+  "base": "readable/door1-champion.rs",
+  "base_sha256": "ad1ae4eff70a5569e03e2149882bb22510746f4f8592907a5dfb936943ef0bfb",
+  "byte_identical": 16,
+  "census": {
+    "available_states": {
+      "ABSENT": 0,
+      "CONCRETE": 5538,
+      "NONE": 7443
+    },
+    "branches": {
+      "L": 203,
+      "N": 10500,
+      "P": 1390,
+      "R": 690,
+      "W": 198
+    },
+    "chosen_ne_available": 3932,
+    "contest_events": [],
+    "contested_turns": 0,
+    "denial_end_reasons": {
+      "a": 31,
+      "b": 0,
+      "c": 0,
+      "d": 0,
+      "t": 0
+    },
+    "discarded_want": 3748,
+    "farm_harvests_final": 0,
+    "farm_plants_final": 2,
+    "farm_state_turns": {
+      "0": 619,
+      "1": 18,
+      "2": 6163,
+      "3": 0
+    },
+    "ka_max": 0,
+    "keep_codes": {
+      "0": 12981,
+      "1": 0,
+      "2": 0
+    },
+    "l4_failures": 0,
+    "latch_games": 0,
+    "latch_snapshots": [],
+    "latch_turns": [],
+    "lone_unit_turns": 619,
+    "parked_with_goal": 0,
+    "payload_max_chars": 374,
+    "phased_turns": 0,
+    "restricted_turns": 0,
+    "ring_enemy_final": 0,
+    "ring_own_final": 12,
+    "rows": 12981,
+    "three_plus_selector_turns": 0,
+    "totals": {
+      "ka": 0,
+      "kc": 0,
+      "kl": 0,
+      "kp": 0,
+      "kq": 0,
+      "kr": 0,
+      "nl": 0,
+      "nl_admissibility": 0,
+      "nl_door": 0,
+      "nl_other": 0,
+      "nl_producer": 0,
+      "pz": 6800,
+      "rd": 0,
+      "rf": 0,
+      "rg": 0,
+      "ri": 0,
+      "ro": 0,
+      "rt": 0,
+      "rx": 0,
+      "sf": 0,
+      "sn": 0,
+      "so": 0,
+      "sp": 0,
+      "sw": 0,
+      "wc": 0,
+      "xc": 0,
+      "xd": 0,
+      "xg": 0,
+      "xj": 0,
+      "xn": 0,
+      "xp": 0,
+      "xw": 0
+    },
+    "turns": 6800,
+    "w_collision_events": 0,
+    "w_collision_turns": 0,
+    "xd_histogram": {},
+    "xd_max": 0,
+    "xj_histogram": {},
+    "xj_max": 0
+  },
+  "fixtures": 34,
+  "gate": "containment, r5 \u00a79.1 (NARRATE v6, arm instrument)",
+  "packet": "claude_1/cure3/g0-candidate-3-2026-08-26-r6.md",
+  "referee_state_identical": 16,
+  "rows": [
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-001",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-002",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "MOVE 0 11 5;MOVE 2 11 4",
+        "base": "MOVE 0 11 5;MOVE 2 10 3",
+        "turn": 1
+      },
+      "id": "OSC-003",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "PICK 0 BANANA;MOVE 2 6 2",
+        "base": "MOVE 0 11 2;WAIT",
+        "turn": 1
+      },
+      "id": "OSC-004",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-005",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-006",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-007",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "MOVE 0 7 3;PICK 2 BANANA",
+        "base": "MOVE 0 7 3;MOVE 2 10 4",
+        "turn": 1
+      },
+      "id": "OSC-008",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "MOVE 0 4 1;PICK 2 BANANA",
+        "base": "MOVE 0 4 1;MOVE 2 2 3",
+        "turn": 13
+      },
+      "id": "OSC-009",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "MOVE 0 6 0;PICK 6 BANANA",
+        "base": "MOVE 0 6 0;MOVE 6 7 1",
+        "turn": 21
+      },
+      "id": "OSC-010",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "MOVE 0 6 1;CHOP 2",
+        "base": "MOVE 0 5 0;CHOP 2",
+        "turn": 11
+      },
+      "id": "OSC-011",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-012",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-013",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-014",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "PICK 0 BANANA;DROP 2",
+        "base": "MOVE 0 0 2;DROP 2",
+        "turn": 1
+      },
+      "id": "OSC-015",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "MOVE 0 12 3;PICK 2 BANANA",
+        "base": "MOVE 0 12 3;WAIT",
+        "turn": 1
+      },
+      "id": "OSC-016",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-017",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "PICK 0 BANANA;MOVE 2 10 4",
+        "base": "MOVE 0 8 1;WAIT",
+        "turn": 1
+      },
+      "id": "OSC-018",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "MOVE 0 1 3;MOVE 2 3 5",
+        "base": "MOVE 0 1 3;WAIT",
+        "turn": 16
+      },
+      "id": "OSC-019",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-020",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "MOVE 0 8 1;MOVE 2 7 3",
+        "base": "MOVE 0 8 1;MOVE 2 6 4",
+        "turn": 1
+      },
+      "id": "OSC-021",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "PICK 0 BANANA;MOVE 2 6 3",
+        "base": "MOVE 0 11 4;MOVE 2 6 3",
+        "turn": 15
+      },
+      "id": "OSC-022",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "PICK 0 BANANA;MOVE 2 6 3",
+        "base": "MOVE 0 11 4;MOVE 2 6 3",
+        "turn": 15
+      },
+      "id": "OSC-023",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "PICK 0 BANANA;MOVE 2 5 2",
+        "base": "WAIT;MOVE 2 5 2",
+        "turn": 1
+      },
+      "id": "OSC-024",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "MOVE 0 11 0;MOVE 2 4 2",
+        "base": "MOVE 0 11 2;MOVE 2 4 2",
+        "turn": 1
+      },
+      "id": "OSC-025",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-026",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "PICK 0 BANANA;MOVE 2 6 2",
+        "base": "MOVE 0 2 2;MOVE 2 6 2",
+        "turn": 1
+      },
+      "id": "OSC-027",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "MOVE 0 4 1;PICK 2 BANANA",
+        "base": "MOVE 0 4 1;MOVE 2 2 3",
+        "turn": 13
+      },
+      "id": "OSC-028",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-029",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-030",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-031",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-032",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-033",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": false,
+      "first_divergence": {
+        "arm": "CHOP 0;PICK 2 BANANA",
+        "base": "CHOP 0;WAIT",
+        "turn": 6
+      },
+      "id": "OSC-034",
+      "referee_state_identical": false,
+      "telemetry_errors": 0,
+      "turns": 200
+    }
+  ],
+  "rule_on": true,
+  "status": "PASS",
+  "task": "20260826-candidate-3-keep-your-goal",
+  "telemetry_error_count": 0,
+  "telemetry_errors": []
+}
