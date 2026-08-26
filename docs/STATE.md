@@ -5,7 +5,9 @@ at `docs/archive/STATE-2026-08-10-pre-diet.md`). Live state, not a record. Hard 
 
 ## 1. Live identity
 
-### ★★★ Arena RUNNING (owner, 2026-08-23). Live: the **NARRATE instrument**. Champion of record: **door 1** `547fa706…`, off-ladder. **Owner 2026-08-23: who sits on the ladder does not need managing — restoring is NOT an obligation**; door 1 stays documented as the fallback, nothing more.
+### ★★★ 2026-08-26 11:38Z — CHAMPION RESTORED TO THE LADDER (owner ruling "the ladder goes back to measuring", coordinator session ~11:30Z). Submission **`41197542`**, source `cgauto/submissions/candidate-door1-pure-deletion.rs`, sha256 `547fa706…` verified by `api_submit_once.py` (one mutation call, HTTP 200). Agent id and first mature read pending. The NARRATE instrument (`41182608` / `6652642`) thereby leaves the ladder. Same session, three owner rulings (policy `20260826T113907Z`): (a) Candidate 3 **bounded** — one r5, one review, one panel, one reproduction, one owner read, then stop; Candidate 2 re-run only on an own-score gain; (b) the ladder measures again; (c) **≥ 25.40 stands and is not the only goal — control over the code and its cleanliness are goals too**; the current line is the code clean-up; **next item after it: the banana farm** (coordinator's assessment: `local_claude_1/banana-farm-assessment-2026-08-26.md`). The paragraph below is the pre-restore state, kept until the first read.
+
+### (pre-restore) Arena RUNNING (owner, 2026-08-23). Live: the **NARRATE instrument**. Champion of record: **door 1** `547fa706…`, off-ladder. **Owner 2026-08-23: who sits on the ladder does not need managing — restoring is NOT an obligation**; door 1 stays documented as the fallback, nothing more.
 
 Door 1 is cure C minus the fictional-decay hunk — a pure deletion, owner-ruled KEEP 2026-08-21 at
 +0.220 IMMATERIAL: at equal score the smaller program wins. Cure C `ad3bfefe…` retired.
