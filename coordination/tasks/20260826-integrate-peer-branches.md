@@ -27,6 +27,10 @@ backlog. A blind merge is not acceptable: the quarantine has silently broken on 
 far, and a peer's stale copy of `readable/door1-champion.rs` (2,206 lines) would overwrite the
 corrected one.
 
+## Transport lesson (2026-08-26 15:25Z, coordinator)
+
+Deleting `agent/chatgpt_2` and `agent/local_codex_1` broke the sweep for everyone: every past message is validated against its sender's `agent/<id>` ref, so 34 old messages became delivery errors and `--mark` refused to run. **Recreated as transport anchors 15:25Z:** `agent/local_codex_1` at its true old tip `dddef0a6`, `agent/chatgpt_2` at `main` (content-equal; it had nothing outside `main`). Rule from now: **a retired sender's `agent/*` ref stays until the sweep has a retired-sender rule** (roster `former_*` + legacy baseline); retiring the ref is a transport change, not branch hygiene.
+
 ## Method
 
 1. Fresh branch from `main`; `git merge --no-ff --no-commit origin/agent/<peer>`; for every
