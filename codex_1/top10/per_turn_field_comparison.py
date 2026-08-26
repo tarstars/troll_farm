@@ -63,8 +63,10 @@ def main() -> None:
     # First pass gives the last-30-turn boundary and one occurrence per game-seat.
     last_turn: dict[int, int] = {}
     games: dict[str, set[tuple[int, int]]] = defaultdict(set)
+    corpus_rows = 0
     with gzip.open(args.turns, "rt") as f:
         for line in f:
+            corpus_rows += 1
             r = json.loads(line)
             last_turn[r["gameId"]] = max(last_turn.get(r["gameId"], 0), r["turn"])
             lab = label(r)
@@ -129,7 +131,8 @@ def main() -> None:
     result = {
         "task": "20260826-track-t-top10-field-comparison",
         "corpus": {"path": str(args.turns), "sha256": got,
-                   "rows": sum(c["seat_turns"] for c in counts.values())},
+                   "corpus_rows": corpus_rows,
+                   "seat_turn_rows_measured": sum(c["seat_turns"] for c in counts.values())},
         "definitions": {
             "provenance": "issued command at last-known unit coordinate previously targeted by a PLANT command; success is unobserved",
             "no_work": "seat-turn with no issued HARVEST/CHOP/DROP/MINE/PLANT/PICK/TRAIN command",

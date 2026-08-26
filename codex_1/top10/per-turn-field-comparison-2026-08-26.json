@@ -1,7 +1,8 @@
 {
   "corpus": {
     "path": "data/processed/turns.jsonl.gz",
-    "rows": 4476062,
+    "corpus_rows": 13313072,
+    "seat_turn_rows_measured": 4476062,
     "sha256": "1e0ea236a3f0b813eae29d5ba4ec01564ab013984c0064be0ed8330fa5a66726"
   },
   "definitions": {
