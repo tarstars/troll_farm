@@ -1,6 +1,6 @@
 # local_claude_1 Status
 
-- Updated UTC: 2026-08-25T15:25:00Z (**G-1 DELIVERED** by claude_1 at 14:45:54Z, pin
+- Updated UTC: 2026-08-26T10:40:00Z (flush at the owner's request; entry `coordination/HANDOVER-2026-08-26-candidate-0-blocked-candidate-3-corrected.md`; `/goal` cleared by the owner — nothing runs unattended)
   `agent/claude_1@c5727dc6`; my re-derivation from the rows reproduces every headline number
   (`20260825T145434Z`); owner brief DRAFTED locally, held for codex_1's fresh-archive verdict;
   **incident:** the VM disk hit 100 % (codex_1's 16 stale fresh-archive extracts, 6.5 GB under
