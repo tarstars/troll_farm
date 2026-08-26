@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-26T14:45Z (coordinator). Trunk: see `git log -1 origin/main`.
+Last updated: 2026-08-26T15:05Z (coordinator). Trunk: see `git log -1 origin/main`.
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -30,7 +30,7 @@ Last updated: 2026-08-26T14:45Z (coordinator). Trunk: see `git log -1 origin/mai
 | # | task | owner | stage | next concrete step | blocked on | budget left | last evidence |
 |---|---|---|---|---|---|---|---|
 | 0-2 | Integrate the peer branches onto `main` — `main` wins on shared files, quarantine re-verified, peers rebase (`coordination/tasks/20260826-integrate-peer-branches.md`) | local_claude_1 (codex_1 verifies) | queued | after D-1 reaches Panel: merge `agent/claude_1` (287 ahead) and `agent/codex_1` (262 ahead) per the card's method | D-1 at Panel | one session, one review | chartered 13:40Z; branch hygiene done (3 dead branches deleted, archive → tag, stale worktree removed, local_codex_1's transfer messages merged) |
-| 0-1 | 23 of 34 frozen fixtures `NOT_REPRODUCIBLE_ON_BASE` on every arm | **unassigned — owner decision: who, and before or after F-2?** | not started | charter: re-freeze the fixtures against the current referee build or retire them with a note | owner decision | — | surfaced 08-26 |
+| 0-1 | 23 of 34 frozen fixtures `NOT_REPRODUCIBLE_ON_BASE` on every arm (`coordination/tasks/20260826-fixture-drift.md`) | local_claude_1 via a local subagent (diagnosis); execution to whom the diagnosis names (codex_1 default); codex_1 reviews | **Read** (subagent started 15:05Z) | per-fixture cause + RE-FREEZE / RETIRE / REPAIR-HARNESS table; then execute; harness must count skips out loud | — | diagnosis today, execution ≤ 1 day; **before F-2's panel** | chartered 15:05Z |
 
 ## Ladder queue (single file; one bot at a time)
 
@@ -44,6 +44,7 @@ Last updated: 2026-08-26T14:45Z (coordinator). Trunk: see `git log -1 origin/mai
 
 - 2026-08-26: Candidate 3 bounded (one packet, one review, one panel, one reproduction, one owner read; Candidate 2 re-run only on an own-score gain). Ladder measures again (champion restored). Goals: ≥ 25.40 **and** control over the code / cleanliness. Next item after the code clean-up: the banana farm. Board organisation adopted. — owner
 - 2026-08-26: `/home/tarstars/prj/troll_farm` (the checkout new agents start in, host of the 05:17 collector cron) switched from `session-2026-07-01` to `main` — owner ("b"); cron paths verified. `coordination/WORKING-RULES.md` written and linked from every entry file. — owner
+- 2026-08-26: 0-1 fixture drift — owner: "you can even start a subagent", "before banana farm build". Chartered; diagnosis subagent running. Owner read the Candidate 3 diff. — owner
 - 2026-08-26: owner "wifi" — the 85.6 MB corpus copied to codex_1's VM worktree (hash verified); the bulk-storage check is not required for a read of a hash-verified corpus copy. — owner / coordinator
 - 2026-08-26: D-3 chartered — find why `m061` keeps a goal 171 turns; a fix would be **Candidate 3b**, a new bounded candidate, not a reopening. — owner "go"
 - 2026-08-26: Candidate 3 CLOSED at G-1 by the owner's bound — the panel failed its pre-committed risk gate (−65 own-score, `ka`=171). Loop cure confirmed as a mechanism (`xc=0`); no Candidate 2 re-run (no own-score gain); slot 2 released. — coordinator applying the owner's bound
@@ -52,6 +53,6 @@ Last updated: 2026-08-26T14:45Z (coordinator). Trunk: see `git log -1 origin/mai
 
 ## Owner's queue (≤ 3)
 
-1. Track 0-1: who owns the fixture drift, and does it go before F-2?
+1. *(decided)* Track 0-1: coordinator + subagent, before the farm build.
 2. (when it lands) T-1's first table — read it; it decides F-2.
 3. **Candidate 3's diff is on `main` now** — `readable/diffs/candidate-3-keep-your-goal.diff` (+927/−9) with the packet `claude_1/cure3/g1-packet-2026-08-26.md`: the code read you asked for, and your verdict on it as code (the code-control goal), independent of its score.
