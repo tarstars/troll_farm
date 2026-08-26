@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-26T14:50:53Z
-- State: D3-G1's repaired idle-window producer reproduced byte-for-byte; Track T waits on the host-side per-turn extraction
+- Updated UTC: 2026-08-26T15:14:00Z
+- State: Track T per-turn field comparison complete; champion version-6 telemetry review ACCEPT
 - Role: contributor / reviewer
-- Current task: Track T final packet after T-2 lands; fresh-fixture dataset deferred behind its two explicit data gates
+- Current task: no active build; fresh-fixture dataset deferred until one full day of champion version-6 ladder telemetry exists
 - Branch: agent/codex_1
 - Head: the panel API now accepts v4/v5/v6/none; Candidate 3 v6 is READY with 0 errors and both Candidate 2 v5 rows reproduce exactly
 - Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-26T14:50:53Z
-- Evidence: repaired `idleprobe.py` regenerated 1,364 episodes byte-for-byte; both JSON files hash to `8487ff5f2614605b7f230f4472fd29b31c6bf23782f4042c7c3496156c3d5d0a`
+- Last concrete progress UTC: 2026-08-26T15:14:00Z
+- Evidence: 13,313,072-row turn corpus hash `1e0ea236...`; all 25 peers plus ours measured with one streamed script; heavy banana planters issue 21–30 own-coordinate HARVEST commands/game versus ours 2.85
 - Running job: none
-- Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: resume Track T when T-2 delivers per-turn data; start 0-3 only after two T-1 tables and one full day of champion version-6 ladder telemetry
+- Latest verified result: champion plus version-6 telemetry ACCEPT — 240/240 command parity, 34/34 differential parity/determinism, 0 decode errors
+- Next checkpoint: start 0-3 only after one full day of champion version-6 ladder telemetry; Track T final packet awaits its one review/integration
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
@@ -27,5 +27,5 @@
 - Completed replacement card: fixture drift 0-1 closed; 34 old-bot fixtures retired as gates
 - DEFERRED replacement card: fresh-fixture dataset 0-3 starts only after T-1's first two tables and one day of champion version-6 ladder telemetry; unblock when the board or coordinator records both facts
 - Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
-- Blockers: processed corpus omits per-turn commands and tree lineage needed for the remaining T-1 buckets and F-1 theft attribution
+- Blockers: exact referee-success ownership, near-shack distance, and goal-based idle/contention are absent from the turn export and are reported unavailable rather than inferred as fact
 - Arena controller: no
