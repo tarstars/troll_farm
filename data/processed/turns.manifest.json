@@ -1,0 +1,16 @@
+{
+ "command_line": "/usr/bin/python3 scripts/extract_turns.py --jobs 10",
+ "output": "/home/tarstars/prj/troll_farm/data/processed/turns.jsonl.gz",
+ "files_seen": 23613,
+ "games_written": 23613,
+ "frames_parsed": 13336697,
+ "turn_records_written": 13313072,
+ "seat_turns_without_stdout": 12,
+ "parse_failures": 0,
+ "parse_failure_examples": [],
+ "output_bytes": 174265982,
+ "output_sha256": "1e0ea236a3f0b813eae29d5ba4ec01564ab013984c0064be0ed8330fa5a66726",
+ "content_sha256": "07790403a5ba837580b37a8bb1349b7a79180ba3ba5695d2a4fdc9aaf63cc42c",
+ "wall_seconds": 43.9,
+ "jobs": 10
+}
