@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-26T14:40:46Z
-- State: Track F accepted with two exact factual edits applied; Track T first table passed its pre-gate read with the final review round unspent
+- Updated UTC: 2026-08-26T14:50:53Z
+- State: D3-G1's repaired idle-window producer reproduced byte-for-byte; Track T waits on the host-side per-turn extraction
 - Role: contributor / reviewer
-- Current task: Track T final packet; fixture drift awaits named execution handoff
+- Current task: Track T final packet after T-2 lands; fresh-fixture dataset deferred behind its two explicit data gates
 - Branch: agent/codex_1
 - Head: the panel API now accepts v4/v5/v6/none; Candidate 3 v6 is READY with 0 errors and both Candidate 2 v5 rows reproduce exactly
 - Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-26T14:40:46Z
-- Evidence: F-G1 independently reproduced every table cell; report now distinguishes the four-game processed slice from the 98-game ladder run and records +4.6 mean margin, 49 losses, worst −348
+- Last concrete progress UTC: 2026-08-26T14:50:53Z
+- Evidence: repaired `idleprobe.py` regenerated 1,364 episodes byte-for-byte; both JSON files hash to `8487ff5f2614605b7f230f4472fd29b31c6bf23782f4042c7c3496156c3d5d0a`
 - Running job: none
 - Latest verified result: Candidate 1 G-2 reproduced byte-for-byte and closed FAIL; new geometry task is measurement-only
-- Next checkpoint: Track T final packet renames TRAIN-command measures, adds a champion-lineage row, and labels collection-time arena scores as snapshots; fixture-drift execution only after the promised named handoff
+- Next checkpoint: resume Track T when T-2 delivers per-turn data; start 0-3 only after two T-1 tables and one full day of champion version-6 ladder telemetry
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
@@ -23,6 +23,9 @@
 - Completed replacement card: P4b pipeline integration after the coordinator assigned it and Claude transferred the two destination files
 - Completed replacement card: D-2 accepted by the one budgeted re-review; 10 pipeline tests and 11 private tests pass, Candidate 3 v6 is READY with 0 decode errors, and Candidate 2 v5 reproduces
 - Completed replacement card: Candidate 2 G-0 reviewed at `agent/claude_1@6eb89209`; `DESIGN_ACCEPTED` with one non-gating proof-wording correction
+- Completed replacement card: D3-G1 repaired producer reproduced byte-for-byte; coordinator's conditional acceptance is satisfied
+- Completed replacement card: fixture drift 0-1 closed; 34 old-bot fixtures retired as gates
+- DEFERRED replacement card: fresh-fixture dataset 0-3 starts only after T-1's first two tables and one day of champion version-6 ladder telemetry; unblock when the board or coordinator records both facts
 - Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
 - Blockers: processed corpus omits per-turn commands and tree lineage needed for the remaining T-1 buckets and F-1 theft attribution
 - Arena controller: no
