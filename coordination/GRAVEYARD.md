@@ -31,3 +31,21 @@ in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here f
   rises monotonically as the shared tree nears completion (0.02 → 0.27), so no constant `M`
   proves "no second exchange". Learned: a margin cannot bound a quantity that grows with the
   loop's length. Replaced by the absolute-keep form (same task, still alive).
+
+- **2026-08-26 — Candidate 3, "a troll keeps its goal" (absolute form)** (`20260826-candidate-3-keep-your-goal`).
+  A troll keeps its chosen goal until done (a tree: chopped there and carry full), gone, impossible
+  or dead; when two kept goals cannot be paired the younger is released (contested release);
+  telemetry v6. Built and measured in one day under the owner's bound. **What it did:** the loop it
+  was built to remove is gone (`xc = 0` on all six loop games; blocking games 52 → 40; D-1 27 → 23;
+  containment perfect, 0 telemetry errors over 48,000 turns). **What killed it:** its own
+  pre-registered risk gate — **−65 own-score points over 240 games** (`m061` −47/−43, D-9 24 → 28)
+  and a goal kept **171 turns** against a 30-turn stop; the packet says "the absolute form is too
+  strong" and forbids repairing it with a margin. **Learned:** goals that travel with the troll do
+  cure the swap loop, so the *mechanism* is right; a keep with no release for "a better tree is
+  now beside me" is a keep that outlives its usefulness — the release list, not the keep, is the
+  design problem. Also: a rule that is inert on `>= 3` units and never made a partner wait (`xp`,
+  `xg`, `xw` all 0) is cheaper than feared on those axes. **Would reopen it:** a *bounded* keep —
+  release on a strictly-better adjacent goal or a turn cap — as a new candidate with its own
+  card, only if a top-10 read (Track T) says goal stability is something the strong bots have.
+  Diff kept on `main`: `readable/diffs/candidate-3-keep-your-goal.diff`; packet
+  `claude_1/cure3/g1-packet-2026-08-26.md`; codex_1's reproduction is the last act.
