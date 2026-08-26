@@ -3,6 +3,10 @@
 Last updated: 2026-08-24 (§3 coordinator transfer); earlier 08-23 (§4), 08-22 (§1), 08-10 (doc diet,
 at `docs/archive/STATE-2026-08-10-pre-diet.md`). Live state, not a record. Hard budget: 150 lines.
 
+## 0. The board
+
+**`coordination/BOARD.md` is the one file the owner reads** (adopted 2026-08-26): tracks D (dancing trolls), T (top-10 analytics), F (banana farm), 0 (instruments); two rows per track; the ladder queue; dated decisions; the owner's queue (≤ 3). Dead tasks: `coordination/GRAVEYARD.md`.
+
 ## 1. Live identity
 
 ### ★★★ 2026-08-26 11:38Z — CHAMPION RESTORED TO THE LADDER (owner ruling "the ladder goes back to measuring", coordinator session ~11:30Z). Submission **`41197542`**, source `cgauto/submissions/candidate-door1-pure-deletion.rs`, sha256 `547fa706…` verified by `api_submit_once.py` (one mutation call, HTTP 200). Agent id and first mature read pending. The NARRATE instrument (`41182608` / `6652642`) thereby leaves the ladder. Same session, three owner rulings (policy `20260826T113907Z`): (a) Candidate 3 **bounded** — one r5, one review, one panel, one reproduction, one owner read, then stop; Candidate 2 re-run only on an own-score gain; (b) the ladder measures again; (c) **≥ 25.40 stands and is not the only goal — control over the code and its cleanliness are goals too**; the current line is the code clean-up; **next item after it: the banana farm** (coordinator's assessment: `local_claude_1/banana-farm-assessment-2026-08-26.md`). The paragraph below is the pre-restore state, kept until the first read.
