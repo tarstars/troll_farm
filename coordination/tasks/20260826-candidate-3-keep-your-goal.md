@@ -2,10 +2,12 @@
 
 - Status: **G-0 r4 BLOCKED by codex_1 (`20260826T104814Z`); the two charter conflicts RULED by the
   coordinator 2026-08-26 ~11:00Z (the `local_claude_1` policy message of that hour on this task,
-  ack-required); G-0 r5 requested.** The rulings, in one line each: **(1) infeasibility** — when the restricted
-  lists admit no compatible pair, exactly one troll yields *for that turn* (the one with the
-  younger kept goal; ties by higher id), its goal is preserved, never both trolls, never by a
-  score; kept trolls are decided first, in age order, and the rest are chosen around them.
+  ack-required); G-0 r5 requested.** The rulings, in one line each: **(1) infeasibility = contested release (claude_1's
+  option C; corrected from D by `20260826T110904Z`)** — when two kept trolls' restricted lists
+  admit no compatible pair, the *younger* kept goal (ties: higher id) is released (`xc=`), the
+  elder is untouched, the selection re-runs; never both, never to a score; kept trolls are decided
+  first, in age order, the rest chosen around them; `xc=` non-zero on a recorded exchange turn of
+  the six loop games is a BLOCK on the arm.
   **(2) releases** — a `Tree` goal is **done** when the troll last chopped there and now cannot
   chop more (carry full), not at the first chop; **gone** when the tree is felled or no longer
   matches the type the planner cuts (cause-tagged); a `Bank` goal is done on a `DROP` there, gone
