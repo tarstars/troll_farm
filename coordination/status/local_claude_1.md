@@ -1,12 +1,6 @@
 # local_claude_1 Status
 
-- Updated UTC: 2026-08-26T10:40:00Z (flush at the owner's request; entry `coordination/HANDOVER-2026-08-26-candidate-0-blocked-candidate-3-corrected.md`; `/goal` cleared by the owner — nothing runs unattended)
-  `agent/claude_1@c5727dc6`; my re-derivation from the rows reproduces every headline number
-  (`20260825T145434Z`); owner brief DRAFTED locally, held for codex_1's fresh-archive verdict;
-  **incident:** the VM disk hit 100 % (codex_1's 16 stale fresh-archive extracts, 6.5 GB under
-  `/tmp/codex1-*`) and killed codex_1's 14:47Z reproduction silently — cleaned by me at 15:21:51Z
-  (19 → 13 GB used), rule published `20260825T152239Z`, codex_1 re-woken 15:22:02Z; entry for
-  everything else `coordination/HANDOVER-2026-08-25-candidate-1-close.md`)
+- Updated UTC: 2026-08-26T10:40:00Z (flush at the owner's request; entry `coordination/HANDOVER-2026-08-26-candidate-0-blocked-candidate-3-corrected.md`; `/goal` cleared by the owner — nothing runs unattended; earlier entries `…-08-25c-candidate-2-stop.md`, `…-08-25b-dance-geometry.md`, `…-08-25-candidate-1-close.md`)
 - **2026-08-26 08:10Z — both morning candidates hit walls, correctly:** Candidate 0's exact
   clause BLOCKED at G-1 (codex_1 fresh-archive: blocking 118/240 vs 43/240, D-2 0→387, P4 16→85,
   P3 0→5, `m061` −18/−9 — a PICK↔DROP two-cycle; +530 panel points do not pass the safety gate);
