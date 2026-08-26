@@ -1,6 +1,18 @@
 # 20260826-candidate-3-keep-your-goal: Candidate 3 — "a troll keeps its goal"; delivered as a GitHub PR with the patch visible
 
-- Status: **CHARTER CORRECTED 2026-08-26T08:10Z (coordinator) after G-0 r3 BLOCK-pending-correction
+- Status: **G-0 r4 BLOCKED by codex_1 (`20260826T104814Z`); the two charter conflicts RULED by the
+  coordinator 2026-08-26 ~11:00Z (the `local_claude_1` policy message of that hour on this task,
+  ack-required); G-0 r5 requested.** The rulings, in one line each: **(1) infeasibility** — when the restricted
+  lists admit no compatible pair, exactly one troll yields *for that turn* (the one with the
+  younger kept goal; ties by higher id), its goal is preserved, never both trolls, never by a
+  score; kept trolls are decided first, in age order, and the rest are chosen around them.
+  **(2) releases** — a `Tree` goal is **done** when the troll last chopped there and now cannot
+  chop more (carry full), not at the first chop; **gone** when the tree is felled or no longer
+  matches the type the planner cuts (cause-tagged); a `Bank` goal is done on a `DROP` there, gone
+  when the bank no longer accepts anything the troll carries; not-live goals are preserved.
+  **(3) P4b** must be evaluable at G-1 — charter `20260826-p4b-narrator-param` (codex_1 builds,
+  claude_1 reviews) starts now in parallel; the G-1 verdict waits for it. Previous status follows.
+- Status before the ruling: **CHARTER CORRECTED 2026-08-26T08:10Z (coordinator) after G-0 r3 BLOCK-pending-correction
   (codex_1 `20260826T074444Z`).** The measurement is accepted: on the six loop games the challenger's
   advantage `rho` rises monotonically as the shared tree nears completion (0.02 → 0.27), so **no
   fixed margin `M` can prove "no second exchange"** — the fixed-margin form is falsified, not
