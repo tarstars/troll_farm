@@ -84,6 +84,51 @@ class P4bUnitTests(unittest.TestCase):
         self.assertEqual(units[0][1], "TREE(3,4)")
         self.assertEqual(units[0][2], "P")
 
+    def test_v6_five_field_tuple_runs_through_evaluate(self):
+        class Unit:
+            id = 0
+
+        class State:
+            @staticmethod
+            def own_units():
+                return [Unit()]
+
+        class Trace:
+            T = 1
+
+            @staticmethod
+            def state(_turn):
+                return State()
+
+        class TraceDetectors:
+            @staticmethod
+            def build_trace(_transcript, _commands):
+                return Trace()
+
+        class V6Fixture:
+            @staticmethod
+            def msg_fragments(_line):
+                return ["MSG NARRATE v6 t=1 u0=TREE(3,4)/TREE(3,4)/r=P/b=0/k=2 kp=1"]
+
+            @staticmethod
+            def decode(_payload):
+                return 1, {0: ("TREE(3,4)", "TREE(3,4)", "P", 0, 2)}, [0], False, {"kp": 1}
+
+        tmp = tempfile.NamedTemporaryFile(suffix=".jsonl.gz", delete=False)
+        tmp.close()
+        row = {"map_id": "m000", "seat": 0,
+               "artifacts": {"candidate_commands": "WAIT\n", "candidate_transcript": ""}}
+        path = Path(tmp.name)
+        try:
+            with gzip.open(path, "wt", encoding="utf-8") as fh:
+                fh.write(json.dumps(row) + "\n")
+            result = p.evaluate(path, TraceDetectors(), V6Fixture(), "v6")
+            self.assertEqual(result["status"], "READY")
+            self.assertEqual(result["errors"], [])
+            self.assertEqual(result["unit_rows"][0]["unit_id"], 0)
+        finally:
+            path.unlink()
+
 
 if __name__ == "__main__":
     unittest.main()

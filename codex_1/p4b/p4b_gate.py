@@ -145,7 +145,8 @@ def evaluate(path: Path, td, narrator, dialect: str) -> dict:
                 continue
             if turn != index:
                 errors.append(f"{game_key} turn {index}: telemetry says turn {turn}")
-            for uid, (_, available, branch, _) in units.items():
+            for uid, unit in units.items():
+                available, branch = unit[1], unit[2]
                 key = (turn, uid)
                 if key in telemetry:
                     errors.append(f"{game_key} turn {turn} unit {uid}: duplicate telemetry")
@@ -331,7 +332,8 @@ def main(argv=None) -> int:
                 "K3_tripwire_clear": all(not r["tripwire_45"] for r in applicable),
                 "K5_exact_240": all(r["games"] == 240 and r["map_ids"] == 120 and
                                     r["both_seats_per_map"] for r in evaluated.values()),
-                "all_applicable_arms_ready": all(r["status"] == "READY" for r in applicable)}
+                "all_applicable_arms_ready": (bool(applicable) and
+                                                all(r["status"] == "READY" for r in applicable))}
     packet = {"schema": "p4b-g1/1", "definition": {"W": W, "k": K, "tripwire": TRIPWIRE},
               "arms": evaluated, "comparisons": comparisons,
               "controls": controls}
