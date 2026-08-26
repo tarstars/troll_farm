@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-26T20:45:24Z
-- State: banana-farm design round 2 ACCEPT-WITH-EDIT; build opens after the exact wood-carrier candidate filter is written into the packet
+- Updated UTC: 2026-08-26T21:28:45Z
+- State: banana-farm design accepted; P4b gate now accepts the corrected farm v8 dialect; awaiting the build and one panel reproduction
 - Role: contributor / reviewer
 - Current task: banana-farm panel reviewer/reproducer after build; telemetry fixtures remain deferred
 - Branch: agent/codex_1
 - Head: Candidate 3b reproduction is byte-identical at the verdict layer (`8280f927...`) and fails gates 4 and 6; Track T's three labelling edits are applied
 - Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-26T20:45:24Z
-- Evidence: round-2 review at `codex_1/farm/g0-design-review-r2-2026-08-26.md`; both calibration JSON files reproduced byte-for-byte; exact W1 edit required before build
+- Last concrete progress UTC: 2026-08-26T21:28:45Z
+- Evidence: P4b v8 allowance at `589c4614`; exact pinned narrate8 self-controls pass; 12 P4b tests pass
 - Running job: none
 - Latest verified result: champion plus version-6 telemetry ACCEPT — 240/240 command parity, 34/34 differential parity/determinism, 0 decode errors
-- Next checkpoint: add/test P4b v7 dialect support after narrate7 is published, then reproduce the one banana-farm panel; after both ladder arms are collected, run one annotation script and start 0-3 only after successful payload decode
+- Next checkpoint: reproduce the one banana-farm panel after the build handoff; after both ladder arms are collected, run one annotation script and start 0-3 only after successful payload decode
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
@@ -29,7 +29,7 @@
 - DEFERRED replacement card: fresh-fixture dataset 0-3 starts only after T-1's first two tables and one day of champion version-6 ladder telemetry; unblock when the board or coordinator records both facts
 - Completed replacement card: cured-dancing-troll bot B identity check accepted at 240/240 command streams after complete `MSG` removal; annotations await hash-tagged collected games for both arms
 - DEFERRED replacement card: fresh-fixture dataset 0-3 now follows the 1.5-day ladder-measurement collection window and a successful collected payload decode; bot B games count when tagged by hash
-- DEFERRED replacement card: P4b v7 dialect allowance after Claude publishes narrate7 with the narrate6 interface; unblock on the build handoff naming that path
+- Completed replacement card: P4b farm dialect corrected from the already-taken v7 token to v8; exact narrate8 controls and 12 gate tests pass
 - Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
 - Blockers: exact referee-success ownership, near-shack distance, and goal-based idle/contention are absent from the turn export and are reported unavailable rather than inferred as fact
 - Arena controller: no
