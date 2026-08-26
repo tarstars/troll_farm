@@ -1,0 +1,413 @@
+# m061 seat 0 — candidate arm
+
+# `kept-goal-carried` is the wire's `chosen`: the target of the candidate the
+# EMITTED command matched (NONE = the command matched no candidate, or matched
+# the always-present WAIT candidate, whose target is None — the two are the same
+# token on this wire). `best-available` is `want`: the highest-scoring candidate
+# the unit had this turn. r: P primary . L improving detour . R regressive detour
+# . W forced WAIT . N the emitted command was not a MOVE. k: 2 restricted and
+# carrying the kept goal . 1 holds a valid kept goal the command does not carry
+# . 0 no valid kept goal.
+
+turn  unit  kept-goal-carried/best-available  r  k   cell  carry  command        | kp kq kl kr rd rf ro xc ka | own
+
+   1  u0      TREE(2,2)/TREE(2,2)    P  0  (1, 2)  0  MOVE 0 2 2     | 0 0 0 0 0 0 0 0   0 |   2
+   1  u2           NONE/BANK(2,1)    P  0  (5, 2)  3  MOVE 2 4 2    
+   2  u0      TREE(2,2)/TREE(2,2)    N  2  (2, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0   1 |   2
+   2  u2           NONE/BANK(2,1)    P  0  (4, 2)  3  MOVE 2 3 2    
+   3  u0      TREE(2,2)/TREE(2,2)    N  2  (2, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0   2 |   2
+   3  u2           NONE/BANK(2,1)    R  0  (3, 2)  3  MOVE 2 4 2    
+   4  u0      TREE(2,2)/TREE(2,2)    N  2  (2, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0   3 |   2
+   4  u2           NONE/BANK(2,1)    P  0  (4, 2)  3  MOVE 2 3 2    
+   5  u0      TREE(2,2)/TREE(2,2)    N  2  (2, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0   4 |   2
+   5  u2           NONE/BANK(2,1)    R  0  (3, 2)  3  MOVE 2 4 2    
+   6  u0      TREE(2,2)/TREE(2,2)    N  2  (2, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0   5 |   2
+   6  u2           NONE/BANK(2,1)    P  0  (4, 2)  3  MOVE 2 3 2    
+   7  u0      TREE(2,2)/TREE(2,2)    N  2  (2, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0   6 |   2
+   7  u2           NONE/BANK(2,1)    R  0  (3, 2)  3  MOVE 2 4 2    
+   8  u0      BANK(1,2)/BANK(2,1)    P  0  (2, 2)  2  MOVE 0 1 2     | 0 0 0 1 0 1 0 0   0 |   2
+   8  u2           NONE/BANK(2,1)    P  0  (4, 2)  3  MOVE 2 3 2    
+   9  u0      BANK(1,2)/BANK(1,2)    N  2  (1, 2)  2  DROP 0         | 1 1 0 0 0 0 0 0   1 |   2
+   9  u2           NONE/BANK(2,1)    P  0  (3, 2)  3  MOVE 2 2 2    
+  10  u0           NONE/TREE(6,2)    P  0  (1, 2)  0  MOVE 0 2 2     | 0 0 0 1 1 0 0 0   0 |  10
+  10  u2      BANK(2,1)/BANK(2,1)    P  0  (2, 2)  3  MOVE 2 2 1    
+  11  u0           NONE/TREE(6,2)    P  0  (2, 2)  0  MOVE 0 3 2     | 1 1 0 0 0 0 0 0   1 |  10
+  11  u2      BANK(2,1)/BANK(2,1)    N  2  (2, 1)  3  DROP 2        
+  12  u0           NONE/TREE(6,2)    P  0  (3, 2)  0  MOVE 0 4 2     | 0 0 0 1 1 0 0 0   0 |  22
+  12  u2           NONE/TREE(6,2)    N  0  (2, 1)  0  WAIT          
+  13  u0           NONE/TREE(6,2)    P  0  (4, 2)  0  MOVE 0 5 2     | 0 0 0 0 0 0 0 0   0 |  22
+  13  u2           NONE/TREE(6,2)    N  0  (2, 1)  0  WAIT          
+  14  u0      TREE(6,2)/TREE(6,2)    P  0  (5, 2)  0  MOVE 0 6 2     | 0 0 0 0 0 0 0 0   0 |  22
+  14  u2           NONE/TREE(6,2)    N  0  (2, 1)  0  WAIT          
+  15  u0      TREE(6,2)/TREE(6,2)    N  2  (6, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0   1 |  22
+  15  u2           NONE/TREE(6,2)    N  0  (2, 1)  0  WAIT          
+  16  u0      TREE(6,2)/TREE(6,2)    N  2  (6, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0   2 |  22
+  16  u2           NONE/TREE(6,2)    N  0  (2, 1)  0  WAIT          
+  17  u0      TREE(6,2)/TREE(6,2)    N  2  (6, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0   3 |  22
+  17  u2           NONE/TREE(6,2)    N  0  (2, 1)  0  WAIT          
+  18  u0      TREE(6,2)/TREE(6,2)    N  2  (6, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0   4 |  22
+  18  u2           NONE/TREE(6,2)    N  0  (2, 1)  0  WAIT          
+  19  u0      TREE(6,2)/TREE(6,2)    N  2  (6, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0   5 |  22
+  19  u2           NONE/TREE(6,2)    N  0  (2, 1)  0  WAIT          
+  20  u0      TREE(6,2)/TREE(6,2)    N  2  (6, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0   6 |  22
+  20  u2           NONE/TREE(6,2)    N  0  (2, 1)  0  WAIT          
+  21  u0      TREE(6,2)/TREE(6,2)    N  2  (6, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0   7 |  22
+  21  u2           NONE/TREE(6,2)    N  0  (2, 1)  0  WAIT          
+  22  u0      TREE(6,2)/TREE(6,2)    N  2  (6, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0   8 |  22
+  22  u2           NONE/TREE(6,2)    N  0  (2, 1)  0  WAIT          
+  23  u0      TREE(6,2)/TREE(6,2)    N  2  (6, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0   9 |  22
+  23  u2           NONE/TREE(6,2)    N  0  (2, 1)  0  WAIT          
+  24  u0      TREE(6,2)/TREE(6,2)    N  2  (6, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0  10 |  22
+  24  u2           NONE/TREE(6,2)    P  0  (2, 1)  0  MOVE 2 2 2    
+  25  u0      TREE(6,2)/TREE(6,2)    N  2  (6, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0  11 |  22
+  25  u2           NONE/TREE(6,2)    P  0  (2, 2)  0  MOVE 2 3 2    
+  26  u0      TREE(6,2)/TREE(6,2)    N  2  (6, 2)  0  CHOP 0         | 1 1 0 0 0 0 0 0  12 |  22
+  26  u2           NONE/TREE(6,2)    P  0  (3, 2)  0  MOVE 2 4 2    
+  27  u0           NONE/BANK(2,1)    R  0  (6, 2)  2  MOVE 0 7 2     | 0 0 0 1 0 1 0 0   0 |  22
+  27  u2           NONE/TREE(7,2)    P  0  (4, 2)  0  MOVE 2 5 2    
+  28  u0           NONE/BANK(2,1)    R  0  (7, 2)  2  MOVE 0 8 2     | 0 0 0 0 0 0 0 0   0 |  22
+  28  u2           NONE/TREE(7,2)    P  0  (5, 2)  0  MOVE 2 6 2    
+  29  u0           NONE/BANK(2,1)    R  0  (8, 2)  2  MOVE 0 9 2     | 0 0 0 0 0 0 0 0   0 |  22
+  29  u2      TREE(7,2)/TREE(7,2)    P  0  (6, 2)  0  MOVE 2 7 2    
+  30  u0           NONE/BANK(2,1)    P  0  (9, 2)  2  MOVE 0 8 2     | 1 1 0 0 0 0 0 0   1 |  22
+  30  u2      TREE(7,2)/TREE(7,2)    N  2  (7, 2)  0  HARVEST 2     
+  31  u0           NONE/BANK(2,1)    P  0  (8, 2)  2  MOVE 0 7 2     | 1 0 1 0 0 0 0 0   2 |  22
+  31  u2           NONE/BANK(2,1)    P  1  (7, 2)  1  MOVE 2 6 2    
+  32  u0           NONE/BANK(2,1)    P  0  (7, 2)  2  MOVE 0 6 2     | 1 0 1 0 0 0 0 0   3 |  22
+  32  u2           NONE/BANK(2,1)    P  1  (6, 2)  1  MOVE 2 5 2    
+  33  u0           NONE/BANK(2,1)    P  0  (6, 2)  2  MOVE 0 5 2     | 1 0 1 0 0 0 0 0   4 |  22
+  33  u2           NONE/BANK(2,1)    P  1  (5, 2)  1  MOVE 2 4 2    
+  34  u0           NONE/BANK(2,1)    P  0  (5, 2)  2  MOVE 0 4 2     | 1 0 1 0 0 0 0 0   5 |  22
+  34  u2           NONE/BANK(2,1)    P  1  (4, 2)  1  MOVE 2 3 2    
+  35  u0           NONE/BANK(2,1)    P  0  (4, 2)  2  MOVE 0 3 2     | 1 0 1 0 0 0 0 0   6 |  22
+  35  u2           NONE/BANK(2,1)    P  1  (3, 2)  1  MOVE 2 2 2    
+  36  u0           NONE/BANK(2,1)    P  0  (3, 2)  2  MOVE 0 2 2     | 1 0 1 0 0 0 0 0   7 |  22
+  36  u2      BANK(2,1)/BANK(2,1)    P  1  (2, 2)  1  MOVE 2 2 1    
+  37  u0      BANK(1,2)/BANK(1,2)    P  0  (2, 2)  2  MOVE 0 1 2     | 1 0 1 0 0 0 0 0   8 |  22
+  37  u2      BANK(2,1)/BANK(2,1)    N  1  (2, 1)  1  DROP 2        
+  38  u0      BANK(1,2)/BANK(1,2)    N  2  (1, 2)  2  DROP 0         | 2 2 0 0 0 0 0 0   9 |  23
+  38  u2           NONE/TREE(7,2)    P  1  (2, 1)  0  MOVE 2 2 2    
+  39  u0           NONE/TREE(7,2)    N  0  (1, 2)  0  WAIT           | 1 1 0 1 1 0 0 0  10 |  31
+  39  u2           NONE/TREE(7,2)    P  1  (2, 2)  0  MOVE 2 3 2    
+  40  u0           NONE/TREE(7,2)    N  0  (1, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  11 |  31
+  40  u2           NONE/TREE(7,2)    P  1  (3, 2)  0  MOVE 2 4 2    
+  41  u0           NONE/TREE(7,2)    N  0  (1, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  12 |  31
+  41  u2           NONE/TREE(7,2)    P  1  (4, 2)  0  MOVE 2 5 2    
+  42  u0           NONE/TREE(7,2)    N  0  (1, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  13 |  31
+  42  u2           NONE/TREE(7,2)    P  1  (5, 2)  0  MOVE 2 6 2    
+  43  u0           NONE/TREE(7,2)    N  0  (1, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  14 |  31
+  43  u2      TREE(7,2)/TREE(7,2)    P  2  (6, 2)  0  MOVE 2 7 2    
+  44  u0           NONE/TREE(7,2)    N  0  (1, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  15 |  31
+  44  u2      TREE(7,2)/TREE(7,2)    N  2  (7, 2)  0  HARVEST 2     
+  45  u0           NONE/TREE(7,2)    P  0  (1, 2)  0  MOVE 0 2 2     | 1 0 1 0 0 0 0 0  16 |  31
+  45  u2           NONE/BANK(2,1)    P  1  (7, 2)  1  MOVE 2 6 2    
+  46  u0           NONE/TREE(7,2)    P  0  (2, 2)  0  MOVE 0 3 2     | 1 0 1 0 0 0 0 0  17 |  31
+  46  u2           NONE/BANK(2,1)    P  1  (6, 2)  1  MOVE 2 5 2    
+  47  u0           NONE/TREE(7,2)    R  0  (3, 2)  0  MOVE 0 2 2     | 1 0 1 0 0 0 0 0  18 |  31
+  47  u2           NONE/BANK(2,1)    P  1  (5, 2)  1  MOVE 2 4 2    
+  48  u0           NONE/TREE(7,2)    R  0  (2, 2)  0  MOVE 0 1 2     | 1 0 1 0 0 0 0 0  19 |  31
+  48  u2           NONE/BANK(2,1)    P  1  (4, 2)  1  MOVE 2 3 2    
+  49  u0           NONE/TREE(7,2)    W  0  (1, 2)  0  WAIT           | 1 0 1 0 0 0 0 0  20 |  31
+  49  u2           NONE/BANK(2,1)    P  1  (3, 2)  1  MOVE 2 2 2    
+  50  u0           NONE/TREE(7,2)    P  0  (1, 2)  0  MOVE 0 2 2     | 1 0 1 0 0 0 0 0  21 |  31
+  50  u2      BANK(2,1)/BANK(2,1)    P  1  (2, 2)  1  MOVE 2 2 1    
+  51  u0           NONE/TREE(7,2)    P  0  (2, 2)  0  MOVE 0 3 2     | 1 0 1 0 0 0 0 0  22 |  31
+  51  u2      BANK(2,1)/BANK(2,1)    N  1  (2, 1)  1  DROP 2        
+  52  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  23 |  32
+  52  u2           NONE/TREE(7,2)    P  1  (2, 1)  0  MOVE 2 2 2    
+  53  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  24 |  32
+  53  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  54  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  25 |  32
+  54  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  55  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  26 |  32
+  55  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  56  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  27 |  32
+  56  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  57  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  28 |  32
+  57  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  58  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  29 |  32
+  58  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  59  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  30 |  32
+  59  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  60  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  31 |  32
+  60  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  61  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  32 |  32
+  61  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  62  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  33 |  32
+  62  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  63  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  34 |  32
+  63  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  64  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  35 |  32
+  64  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  65  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  36 |  32
+  65  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  66  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  37 |  32
+  66  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  67  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  38 |  32
+  67  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  68  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  39 |  32
+  68  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  69  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  40 |  32
+  69  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  70  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  41 |  32
+  70  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  71  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  42 |  32
+  71  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  72  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  43 |  32
+  72  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  73  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  44 |  32
+  73  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  74  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  45 |  32
+  74  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  75  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  46 |  32
+  75  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  76  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  47 |  32
+  76  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  77  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  48 |  32
+  77  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  78  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  49 |  32
+  78  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  79  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  50 |  32
+  79  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  80  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  51 |  32
+  80  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  81  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  52 |  32
+  81  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  82  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  53 |  32
+  82  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  83  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  54 |  32
+  83  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  84  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  55 |  32
+  84  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  85  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  56 |  32
+  85  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  86  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  57 |  32
+  86  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  87  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  58 |  32
+  87  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  88  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  59 |  32
+  88  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  89  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  60 |  32
+  89  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  90  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  61 |  32
+  90  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  91  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  62 |  32
+  91  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  92  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  63 |  32
+  92  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  93  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  64 |  32
+  93  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  94  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  65 |  32
+  94  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  95  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  66 |  32
+  95  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  96  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  67 |  32
+  96  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  97  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  68 |  32
+  97  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+  98  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  69 |  32
+  98  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+  99  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  70 |  32
+  99  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 100  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  71 |  32
+ 100  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 101  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  72 |  32
+ 101  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 102  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  73 |  32
+ 102  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 103  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  74 |  32
+ 103  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 104  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  75 |  32
+ 104  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 105  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  76 |  32
+ 105  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 106  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  77 |  32
+ 106  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 107  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  78 |  32
+ 107  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 108  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  79 |  32
+ 108  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 109  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  80 |  32
+ 109  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 110  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  81 |  32
+ 110  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 111  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  82 |  32
+ 111  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 112  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  83 |  32
+ 112  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 113  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  84 |  32
+ 113  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 114  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  85 |  32
+ 114  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 115  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  86 |  32
+ 115  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 116  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  87 |  32
+ 116  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 117  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  88 |  32
+ 117  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 118  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  89 |  32
+ 118  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 119  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  90 |  32
+ 119  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 120  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  91 |  32
+ 120  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 121  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  92 |  32
+ 121  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 122  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  93 |  32
+ 122  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 123  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  94 |  32
+ 123  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 124  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  95 |  32
+ 124  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 125  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  96 |  32
+ 125  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 126  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  97 |  32
+ 126  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 127  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  98 |  32
+ 127  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 128  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0  99 |  32
+ 128  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 129  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 100 |  32
+ 129  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 130  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 101 |  32
+ 130  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 131  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 102 |  32
+ 131  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 132  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 103 |  32
+ 132  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 133  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 104 |  32
+ 133  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 134  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 105 |  32
+ 134  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 135  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 106 |  32
+ 135  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 136  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 107 |  32
+ 136  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 137  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 108 |  32
+ 137  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 138  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 109 |  32
+ 138  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 139  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 110 |  32
+ 139  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 140  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 111 |  32
+ 140  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 141  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 112 |  32
+ 141  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 142  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 113 |  32
+ 142  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 143  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 114 |  32
+ 143  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 144  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 115 |  32
+ 144  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 145  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 116 |  32
+ 145  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 146  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 117 |  32
+ 146  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 147  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 118 |  32
+ 147  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 148  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 119 |  32
+ 148  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 149  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 120 |  32
+ 149  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 150  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 121 |  32
+ 150  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 151  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 122 |  32
+ 151  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 152  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 123 |  32
+ 152  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 153  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 124 |  32
+ 153  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 154  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 125 |  32
+ 154  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 155  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 126 |  32
+ 155  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 156  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 127 |  32
+ 156  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 157  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 128 |  32
+ 157  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 158  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 129 |  32
+ 158  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 159  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 130 |  32
+ 159  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 160  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 131 |  32
+ 160  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 161  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 132 |  32
+ 161  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 162  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 133 |  32
+ 162  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 163  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 134 |  32
+ 163  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 164  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 135 |  32
+ 164  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 165  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 136 |  32
+ 165  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 166  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 137 |  32
+ 166  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 167  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 138 |  32
+ 167  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 168  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 139 |  32
+ 168  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 169  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 140 |  32
+ 169  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 170  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 141 |  32
+ 170  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 171  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 142 |  32
+ 171  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 172  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 143 |  32
+ 172  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 173  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 144 |  32
+ 173  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 174  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 145 |  32
+ 174  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 175  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 146 |  32
+ 175  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 176  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 147 |  32
+ 176  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 177  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 148 |  32
+ 177  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 178  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 149 |  32
+ 178  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 179  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 150 |  32
+ 179  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 180  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 151 |  32
+ 180  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 181  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 152 |  32
+ 181  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 182  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 153 |  32
+ 182  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 183  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 154 |  32
+ 183  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 184  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 155 |  32
+ 184  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 185  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 156 |  32
+ 185  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 186  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 157 |  32
+ 186  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 187  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 158 |  32
+ 187  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 188  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 159 |  32
+ 188  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 189  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 160 |  32
+ 189  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 190  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 161 |  32
+ 190  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 191  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 162 |  32
+ 191  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 192  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 163 |  32
+ 192  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 193  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 164 |  32
+ 193  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 194  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 165 |  32
+ 194  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 195  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 166 |  32
+ 195  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 196  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 167 |  32
+ 196  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 197  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 168 |  32
+ 197  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 198  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 169 |  32
+ 198  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
+ 199  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 170 |  32
+ 199  u2           NONE/TREE(7,2)    R  1  (2, 2)  0  MOVE 2 1 2    
+ 200  u0           NONE/TREE(7,2)    N  0  (3, 2)  0  WAIT           | 1 1 0 0 0 0 0 0 171 |  32
+ 200  u2           NONE/TREE(7,2)    P  1  (1, 2)  0  MOVE 2 2 2    
