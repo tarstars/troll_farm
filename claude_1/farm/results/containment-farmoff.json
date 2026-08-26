@@ -1,0 +1,382 @@
+{
+  "arm": "claude_1/farm/arm-farmoff.rs",
+  "base": "readable/door1-champion.rs",
+  "base_sha256": "ad1ae4eff70a5569e03e2149882bb22510746f4f8592907a5dfb936943ef0bfb",
+  "byte_identical": 34,
+  "census": {
+    "available_states": {
+      "ABSENT": 0,
+      "CONCRETE": 5383,
+      "NONE": 7598
+    },
+    "branches": {
+      "L": 201,
+      "N": 10208,
+      "P": 1576,
+      "R": 798,
+      "W": 198
+    },
+    "chosen_ne_available": 4252,
+    "contest_events": [],
+    "contested_turns": 0,
+    "denial_end_reasons": {
+      "a": 0,
+      "b": 0,
+      "c": 0,
+      "d": 0,
+      "t": 0
+    },
+    "discarded_want": 4089,
+    "farm_harvests_final": 0,
+    "farm_plants_final": 0,
+    "farm_state_turns": {
+      "0": 6800,
+      "1": 0,
+      "2": 0,
+      "3": 0
+    },
+    "ka_max": 0,
+    "keep_codes": {
+      "0": 12981,
+      "1": 0,
+      "2": 0
+    },
+    "l4_failures": 0,
+    "latch_games": 0,
+    "latch_snapshots": [],
+    "latch_turns": [],
+    "lone_unit_turns": 619,
+    "parked_with_goal": 0,
+    "payload_max_chars": 372,
+    "phased_turns": 0,
+    "restricted_turns": 0,
+    "ring_enemy_final": 0,
+    "ring_own_final": 0,
+    "rows": 12981,
+    "three_plus_selector_turns": 0,
+    "totals": {
+      "ka": 0,
+      "kc": 0,
+      "kl": 0,
+      "kp": 0,
+      "kq": 0,
+      "kr": 0,
+      "nl": 0,
+      "nl_admissibility": 0,
+      "nl_door": 0,
+      "nl_other": 0,
+      "nl_producer": 0,
+      "pz": 6800,
+      "rd": 0,
+      "rf": 0,
+      "rg": 0,
+      "ri": 0,
+      "ro": 0,
+      "rt": 0,
+      "rx": 0,
+      "sf": 0,
+      "sn": 0,
+      "so": 0,
+      "sp": 0,
+      "sw": 0,
+      "wc": 0,
+      "xc": 0,
+      "xd": 0,
+      "xg": 0,
+      "xj": 0,
+      "xn": 0,
+      "xp": 0,
+      "xw": 0
+    },
+    "turns": 6800,
+    "w_collision_events": 0,
+    "w_collision_turns": 0,
+    "xd_histogram": {},
+    "xd_max": 0,
+    "xj_histogram": {},
+    "xj_max": 0
+  },
+  "fixtures": 34,
+  "gate": "containment, r5 \u00a79.1 (NARRATE v6, arm farmoff)",
+  "packet": "claude_1/cure3/g0-candidate-3-2026-08-26-r6.md",
+  "referee_state_identical": 34,
+  "rows": [
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-001",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-002",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-003",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-004",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-005",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-006",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-007",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-008",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-009",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-010",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-011",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-012",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-013",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-014",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-015",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-016",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-017",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-018",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-019",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-020",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-021",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-022",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-023",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-024",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-025",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-026",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-027",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-028",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-029",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-030",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-031",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-032",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-033",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    },
+    {
+      "byte_identical_without_msg": true,
+      "first_divergence": null,
+      "id": "OSC-034",
+      "referee_state_identical": true,
+      "telemetry_errors": 0,
+      "turns": 200
+    }
+  ],
+  "rule_on": false,
+  "status": "PASS",
+  "task": "20260826-candidate-3-keep-your-goal",
+  "telemetry_error_count": 0,
+  "telemetry_errors": []
+}

@@ -1,0 +1,38 @@
+{
+  "arms": {
+    "candidate": {
+      "farm_enabled": true,
+      "keep_rule_enabled": false,
+      "lines_differing_from_source": 1,
+      "narrate_enabled": false,
+      "path": "claude_1/farm/arm-candidate.rs",
+      "sha256": "5365985c9b5163dbf0cbfb42e3212e2c102abe9838885bfe4a1f1511aed8c8ba"
+    },
+    "farmoff": {
+      "farm_enabled": false,
+      "keep_rule_enabled": false,
+      "lines_differing_from_source": 1,
+      "narrate_enabled": true,
+      "path": "claude_1/farm/arm-farmoff.rs",
+      "sha256": "eb84bb415051b35d6a82d14a707730f487f0ecbbdb43d03f37b279027a67c9d8"
+    },
+    "instrument": {
+      "farm_enabled": true,
+      "keep_rule_enabled": false,
+      "lines_differing_from_source": 0,
+      "narrate_enabled": true,
+      "path": "claude_1/farm/arm-instrument.rs",
+      "sha256": "354d1302f79ddc241ae49c5c0b1763ad045077bfb5f74d6e850bf43a43376b41"
+    }
+  },
+  "base": "readable/door1-champion.rs",
+  "base_sha256": "ad1ae4eff70a5569e03e2149882bb22510746f4f8592907a5dfb936943ef0bfb",
+  "card": "coordination/tasks/20260826-banana-farm-candidate.md",
+  "decoder": "claude_1/narrate8/narrate8.py",
+  "dialect": "v8",
+  "packet": "claude_1/farm/g0-farm-2026-08-26.md",
+  "parent_source": "claude_1/cure3/cure3-keep-v6.rs",
+  "source": "claude_1/farm/farm-v8.rs",
+  "source_sha256": "354d1302f79ddc241ae49c5c0b1763ad045077bfb5f74d6e850bf43a43376b41",
+  "task": "20260826-banana-farm-candidate"
+}
