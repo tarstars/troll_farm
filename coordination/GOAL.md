@@ -45,8 +45,8 @@ chain (`local_claude_1/denial-ablation/make_denial_off.py` is the template), one
 one reading against the owner's stated prediction, games collected before the next submission.
 
 You are `local_claude_1`, sole Arena controller. Rules: `coordination/WORKING-RULES.md`; record:
-`coordination/BOARD.md`; ledger: `local_claude_1/ladder-measure/ledger-2026-08-26.md`; the night's
-handover: `coordination/HANDOVER-2026-08-27-board-era-ladder-and-farm.md`; today's log:
+`coordination/BOARD.md`; ledger: `local_claude_1/ladder-measure/ledger-2026-08-26.md`; the latest
+handover: `coordination/HANDOVER-2026-08-27-apple-farm-five-rounds.md`; today's log:
 `local_claude_1/goal-log-2026-08-26.md`.
 
 ## Each wake (hourly cron; also on ack-required mail)

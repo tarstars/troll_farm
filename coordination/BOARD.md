@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-27T15:12Z (owner: five more rounds of the apple farm; round 2 `41203992` up 15:04:07Z, reading 16:04Z; round 1's deeper cuts on the card)
+Last updated: 2026-08-27T15:40Z (flush handover written; the apple farm's round 2 `41203992` up since 15:04:07Z, reading 16:06Z; rounds 3–6 follow; the "why is it lower" analysis on the card)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -81,4 +81,4 @@ Last updated: 2026-08-27T15:12Z (owner: five more rounds of the apple farm; roun
 
 1. Nothing pending until the sixth reading (~20:30Z at one hour a round): the apple farm's five rounds run on their own (round 2 up 15:04Z); each reading is reported as it comes. Then the six numbers and your ruling.
 
-**★ Flush entry for the next session: `coordination/HANDOVER-2026-08-27-simplified-champion.md`** — today's rulings in order, where the ladder stands, what is proven, the artifacts, the operational notes.
+**★ Flush entry for the next session: `coordination/HANDOVER-2026-08-27-apple-farm-five-rounds.md`** (15:40Z — the apple farm from the economy question to five ladder rounds: round 2 up, the protocol, the crons, the analysis, the artifacts). Previous: `coordination/HANDOVER-2026-08-27-simplified-champion.md` (11:45Z).
