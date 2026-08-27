@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-27T00:35Z (cron wake 5)
+Last updated: 2026-08-27T01:35Z (cron wake 6)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -34,7 +34,7 @@ Last updated: 2026-08-27T00:35Z (cron wake 5)
 | 0-2 | Integrate the peer branches onto `main` (`coordination/tasks/20260826-integrate-peer-branches.md`) | local_claude_1 (codex_1 verified) | **DONE** — round 1 15:35Z (304+282+36 commits), round 2 18:30Z (11+5, the 3b and T-1 artifacts); both peers rebased and verified; the one leftover — claude_1's pre-rebase pin `152743Z` — quarantined by adjudication 18:3xZ (content redelivered at `153015Z`) | standing: peers rebase; coordinator lands artifacts at each gate | — | spent | 18:35Z |
 | 0-1 | 34 frozen fixtures (`coordination/tasks/20260826-fixture-drift.md`) | — | **CLOSED 14:45Z — RETIRED as gates (owner)**; successor 0-3 | — | — | spent | 14:45Z |
 | 0-3a | Champion + v6 telemetry arm (`coordination/tasks/20260826-champion-instrument-v6.md`) | claude_1 (codex_1 ACCEPT 15:06Z); coordinator submitted | **DONE — ON THE LADDER 15:10Z, submission `41198581`** (sha `72673124…`, 63,962 B; parity 240/240 command streams + 34/34 fixtures, 0 decode errors). Condition from codex_1: the 328-char payload exceeds anything collected so far (127) — **decode the first collected ladder game before treating telemetry as evidence** | first collected game (08-27 02:17Z snapshot) → decode check | — | spent | 15:10Z |
-| 0-3 | Fixtures as a generated dataset from real instrumented games (`coordination/tasks/20260826-fresh-fixture-dataset.md`) | codex_1 (claude_1 reviews) | queued — after T-1's first tables and one day of instrument games | `cut_fixtures.py`: windows of interest by class, tagged with bot hash; first library from the instrument's first day | 0-3a on the ladder; T-1 first tables | 1–2 days | 14:45Z |
+| 0-3 | Fixtures as a generated dataset from real instrumented games (`coordination/tasks/20260826-fresh-fixture-dataset.md`) | codex_1 (claude_1 reviews) | queued — the payload check is tooled (`local_claude_1/narrate/collected_payload_check.py`, smoke-tested); it runs on the 02:17Z collector output; after T-1's first tables and one day of instrument games | `cut_fixtures.py`: windows of interest by class, tagged with bot hash; first library from the instrument's first day | 0-3a on the ladder; T-1 first tables | 1–2 days | 14:45Z |
 
 ## Ladder queue (single file; one bot at a time)
 
