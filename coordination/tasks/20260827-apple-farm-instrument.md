@@ -68,3 +68,13 @@ On the two fixture worlds that have a water-side door (OSC-026, OSC-030) the far
   | opponents rated ≥ 21 | 32 % (wins 16/51) | 19 % | 44 % |
 
   Reading of the table: the mechanism ran exactly as in round 1 (same plant turn, harvest count and apple yield), but this batch's farm maps drew more 3-troll opponents (18 of 52 against 12 of 53) and the bot lost most of those games (6/18); its farm-map losses were closer (median margin 112 against 236). The identical-play half went the other way (53 % against 43 %). The two 3-troll bots that beat round 1 five times each returned: `6480516` 2/9, `6491567` 0/6 — 2 wins in 15 games. Against the 32 opponents met in both rounds: 56/123 (46 %) vs 51/119 (43 %). Pooled over two rounds: farm maps 59/105 (56 %) vs the champion's 42 %; identical-play maps 103/215 (48 %) vs 60 %. **Round 3 submitted 16:44:19Z as `41204464`**; timer 17:46Z.
+- **17:46Z round 3 reading: 18.6 at rank 78/176** (`41204464`, agent `6668420`; 62 min in; batch complete). 1.2 below rounds 1–2, 2.6 below the champion. Games collected (`games-41204464/`, 160, sha `fff7bc89…`) and read:
+
+  | bucket | round 3 | round 2 | round 1 | the champion (09:25Z batch) |
+  |---|---|---|---|---|
+  | all 160 | **90–70 (56 %)**, own 224.5 / opp 231.2; opponents' mean rating **17.0** | 83–77 (52 %); opp rating 19.4 | 79–81 (49 %); opp rating 19.8 | 85–75 (53 %); opp rating 20.7 |
+  | maps with a farm cell | 34–26 (57 %), own 296.4 / opp 324.9 — the rule ran in all 60 (planted turn 3 in 47; median 130 harvests; 125 apples + 43 wood; replanted in 33); opponents with 3+ trolls 80 % | 26–26 (50 %) | 33–20 (62 %) | 25–35 (42 %) |
+  | maps without one (identical play) | 56–44 (56 %), own 181.3 / opp 175.0 | 57–51 (53 %) | 46–61 (43 %) | 60–40 (60 %) |
+  | our second troll at/above `2/2/0/2` vs weaker | 50/82 (61 %, own 249) vs 39/77 (51 %, own 201) | 58/88 (66 %) vs 24/71 (34 %) | — | — |
+
+  Reading of the table: the highest win rate of the three rounds and the lowest rating — this batch's opponents were the weakest (17.0): the rating climb started among weaker bots and stayed there (68 distinct opponents, none met more than 6 times; 18 losses by 150+ points against 11 such wins). Pooled over three rounds: farm maps 93/165 (56 %) against the champion's 42 %; identical-play maps 159/315 (50 %) against 60 %. Three readings 19.8, 19.8, 18.6 — mean 19.4, spread 1.2, all below the champion's single 21.2. **Round 4 submitted 17:49:29Z as `41204747`**; timer 18:51Z.

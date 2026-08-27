@@ -14,8 +14,8 @@ rank 49 of 176 — 1.4 below the champion's 21.2/42** (ledger row `APL-1h`; its 
 The same file (`cgauto/submissions/candidate-apple-farm-v6-instrument.rs`, sha
 `8c6bc206417c6d22b593372ce42e74ce5698646c1f8a860073f349a2a082708c`) is submitted five more times,
 one hour each; six readings in all with round 1's 19.8/49. **Readings so far: round 1 19.8/49
-(`41203549`), round 2 19.8/50 (`41203992`, read 16:41Z); round 3 = `41204464`, submitted 16:44:19Z,
-reading 17:46Z.** The reader `ladder_read.py` takes the package's `.jsonl.gz` file, not the directory. Each round, ≥ 60 min after its submission (a one-shot session cron at +62 min):
+(`41203549`), round 2 19.8/50 (`41203992`), round 3 18.6/78 (`41204464`, read 17:46Z); round 4 =
+`41204747`, submitted 17:49:29Z, reading 18:51Z.** The reader `ladder_read.py` takes the package's `.jsonl.gz` file, not the directory. Each round, ≥ 60 min after its submission (a one-shot session cron at +62 min):
 (1) `python3 cgauto/cg_rank.py` — the reading; ledger row `APL-r<n>` (score, rank, agent id, time);
 (2) collect its games — `local_claude_1/narrate/collect_submission_games.py --agent-id <id>
 --submission-id <id> --scratch <scratchpad>/… --output-dir local_claude_1/apple-farm/games-<id>
