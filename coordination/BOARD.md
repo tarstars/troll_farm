@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-26T23:35Z (cron wake 4)
+Last updated: 2026-08-27T00:35Z (cron wake 5)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -43,7 +43,7 @@ Last updated: 2026-08-26T23:35Z (cron wake 4)
 | slot | bot | purpose | state |
 |---|---|---|---|
 | 1 | **champion + v6 instrument `72673124…` — submission `41198581` (08-26 15:10Z)**; replaces the bare champion `41197542` (11:38Z, never read) | the resident; identical in play to `547fa706`; its reads ARE the champion's baseline; its games carry telemetry | on the ladder; first read + first telemetry decode at the 08-27 02:17Z snapshot |
-| 2 | **B = the cured dancing troll + diagnostics** — B1 submission `41199973` (19:58Z) → **read 18.4, rank 82**; B2 submission `41200547` (22:25Z) | A-B-B-A measurement vs slot 1; reads every ~2 h | running: A1 21.8/40, B1 **18.4**/82 |
+| 2 | **B = the cured dancing troll + diagnostics** — reads **18.4** (rank 82) and **19.2** (rank 68); mean 18.8 so far | A-B-B-A vs slot 1; two of eight reads done | A now up as A2 (`41200776`, 00:29Z); A has one read (21.8) — **A leads by ~3 points on the reads taken, four each still to come** |
 | 3 | *(released)* the banana-farm candidate | — | **not booked**: the farm failed its own first validity gate (blocking games 52 → 96); nothing was submitted |
 
 ## Decisions (dated)
