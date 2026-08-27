@@ -138,19 +138,50 @@ def main() -> int:
     ap.add_argument("--maps", type=int, default=12)
     ap.add_argument("--turns", type=int, default=300)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--write-records", type=Path, default=None,
+                    help="sample from the corpus, write the sampled maps with their draws and "
+                         "opponent profiles as JSON lines to this path, and exit without playing "
+                         "(a slice a peer without the 53 MB corpus can replay exactly)")
+    ap.add_argument("--records", type=Path, default=None,
+                    help="play the maps in this JSON-lines slice (from --write-records) instead "
+                         "of sampling the corpus; --maps/--seed are ignored")
     args = ap.parse_args()
-    maps_path = MAPS if MAPS.exists() else MAPS_FALLBACK
-    rng = random.Random(args.seed)
-    records = []
-    with open(maps_path) as fh:
-        for line in fh:
-            rec = json.loads(line)
-            farm = farm_cell_of(rec)
-            if farm is not None:
-                records.append((rec, farm))
-    rng.shuffle(records)
-    sample = records[:args.maps]
-    print(f"maps with a water-side door in the corpus: {len(records)}; sampled {len(sample)}")
+    if args.records is not None:
+        plan = []
+        with open(args.records) as fh:
+            for line in fh:
+                item = json.loads(line)
+                plan.append((item["rec"], tuple(item["farm"]), item["draw"], item["profile"]))
+        eligible = None
+        print(f"maps from the slice {args.records}: {len(plan)}")
+    else:
+        maps_path = MAPS if MAPS.exists() else MAPS_FALLBACK
+        rng = random.Random(args.seed)
+        records = []
+        with open(maps_path) as fh:
+            for line in fh:
+                rec = json.loads(line)
+                farm = farm_cell_of(rec)
+                if farm is not None:
+                    records.append((rec, farm))
+        rng.shuffle(records)
+        sample = records[:args.maps]
+        eligible = len(records)
+        print(f"maps with a water-side door in the corpus: {len(records)}; sampled {len(sample)}")
+        # The draws are taken from the same generator, in the same order, whether the games are
+        # played here or replayed from the slice -- so the slice reproduces this run exactly.
+        plan = []
+        for i, (rec, farm) in enumerate(sample):
+            draw = [rng.randint(2, 10) for _ in range(5)] + [0]   # plum lemon apple banana iron wood
+            profile = ["harvester", "chopper_aggressor"][i % 2]
+            plan.append((rec, farm, draw, profile))
+        if args.write_records is not None:
+            with open(args.write_records, "w") as out:
+                for rec, farm, draw, profile in plan:
+                    out.write(json.dumps({"rec": rec, "farm": list(farm), "draw": draw,
+                                          "profile": profile}, sort_keys=True) + "\n")
+            print(f"  wrote {len(plan)} records to {args.write_records}; not playing (--write-records)")
+            return 0
 
     arm_text, res_text = ARM.read_text(), RESIDENT.read_text()
     rows_out = []
@@ -159,9 +190,7 @@ def main() -> int:
         arm_bin, res_bin = wd / "arm.bin", wd / "res.bin"
         sh.compile_text(arm_text, arm_bin, crate="apple_farm_smoke_arm")
         sh.compile_text(res_text, res_bin, crate="apple_farm_smoke_resident")
-        for i, (rec, farm) in enumerate(sample):
-            draw = [rng.randint(2, 10) for _ in range(5)] + [0]   # plum lemon apple banana iron wood
-            profile = ["harvester", "chopper_aggressor"][i % 2]
+        for rec, farm, draw, profile in plan:
             row = {"map_hash": rec["map_hash"], "farm_cell": list(farm), "profile": profile,
                    "start_inventory": draw,
                    "apple_already_there": any(t["type"] == "APPLE" and (t["x"], t["y"]) == farm
@@ -211,8 +240,8 @@ def main() -> int:
         "what": "smoke on real ladder maps with a water-side door: mechanics only, not a value gate",
         "arm": str(ARM.relative_to(REPO)), "arm_sha256": sha(arm_text),
         "resident": str(RESIDENT.relative_to(REPO)), "resident_sha256": sha(res_text),
-        "maps_in_corpus_with_water_side_door": len(records), "maps_played": n, "turns": args.turns,
-        "seed": args.seed,
+        "maps_in_corpus_with_water_side_door": eligible, "maps_played": n, "turns": args.turns,
+        "seed": args.seed, "records": str(args.records) if args.records else None,
         "all_mechanics_ok": good, "own_score_sum_arm_minus_resident": margin,
         "rows": rows_out,
         "status": "PASS" if good == n else "FAIL",
