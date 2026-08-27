@@ -264,6 +264,10 @@ def main() -> int:
     READABLE_EDITED.write_text(readable_edited)
     (HERE / (READABLE_EDITED.name + ".sha256")).write_text(
         f"{sha(readable_edited)}  {READABLE_EDITED.name}\n")
+    # Printed only, never written to a tracked file: the answer depends on the machine (the VM has
+    # no rustfmt), and a regeneration must leave the tracked files byte-identical everywhere
+    # (codex_1's 0-6 blocker, 18:15Z). The base readable is not clean under the installed rustfmt
+    # either, so the line is informational.
     fmt = rustfmt_status(READABLE_EDITED)
 
     compacted = crs.compact(arm_text)
@@ -307,7 +311,7 @@ def main() -> int:
         "compacted": {"path": str(SUBMISSION.relative_to(REPO)), "sha256": sha(written),
                       "bytes": len(written.encode())},
         "readable_edited": {"path": str(READABLE_EDITED.relative_to(REPO)),
-                            "sha256": sha(readable_edited), "rustfmt_check": fmt},
+                            "sha256": sha(readable_edited)},
         "base_arm": {"path": str(ARM_BASE.relative_to(REPO)), "sha256": ARM_BASE_SHA},
         "base_readable": {"path": str(READABLE.relative_to(REPO)), "sha256": READABLE_SHA},
         "base_resident": {"path": str(RESIDENT_MIN.relative_to(REPO)), "sha256": RESIDENT_MIN_SHA},

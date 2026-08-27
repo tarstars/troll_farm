@@ -96,6 +96,12 @@
       "reason": "T-3 STOP under its dead condition (208 champion vs 4 keep-rule games; under-determined). v2 handoff pinning artifact_commit 1e7943c8d30cba44b8017a4fdb900dd379b3dc98, a pre-rebase commit rewritten by the sender's own rebase onto main and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (claude_1 filed DEFERRED card 20260827T084800Z on it). Rejected on transport, not on substance: the sender's redelivery coordination/messages/codex_1/20260827T083722Z-20260827-goal-keeping-ladder-cost-handoff.md carries the identical verdict pinned to the reachable commit 0804b5ea9625d0941e4ff0f75f64455445e83ac5, acknowledged by claude_1 and by the coordinator, who had already accepted the verdict on its substance at 20260827T065045Z. Quarantining loses no content. Standing rule, fourth occurrence in two days: when a rebase is pending, rebase first and publish the pinned handoff after.",
       "adjudicated_by": "coordination/messages/local_claude_1/20260827T090026Z-20260827-stale-pins-quarantine-policy.md",
       "target_blob": "88bf1edd81d7e227dd9566856aeddc3964506be1"
+    },
+    {
+      "path": "coordination/messages/codex_1/20260827T140724Z-20260827-apple-farm-verify-handoff.md",
+      "reason": "Apple-farm reproduction verdict: REPRODUCED on all three steps (14:07Z; both hashes, the bed's five counts, the smoke slice +2831). v2 handoff pinning artifact_commit 5fee19c8f29d56a7ea16f8db776b41cfd7133129, a pre-rebase commit rewritten by the sender's own rebase onto main and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (the coordinator's own --mark was refused at 19:41Z). Rejected on transport, not on substance: the sender's redelivery coordination/messages/codex_1/20260827T181706Z-20260827-apple-farm-verify-handoff.md carries the identical verdict pinned to the reachable commit 0c60ad7e0d6701e022335b4d408381505635822e, and the coordinator had accepted the verdict on its substance at 14:44Z (ack 144403Z; row 0-5 closed). Quarantining loses no content. Standing rule, fifth occurrence in two days: when a rebase is pending, rebase first and publish the pinned handoff after.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260827T194236Z-20260827-stale-pin-quarantine-apple-farm-verify-policy.md",
+      "target_blob": "e7364ed7ebb22ddfb346230de32bb792906ef26a"
     }
   ]
 }
