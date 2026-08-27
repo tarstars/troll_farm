@@ -1,0 +1,1641 @@
+{
+  "all_mechanics_ok": 24,
+  "arm": "local_claude_1/the-floor/champion-the-floor-v6-instrument.rs",
+  "arm_sha256": "75afaf8bd1d380fc3a0178d9c3002e1cd9d224fdc96fd6ab30346bc72d4b8c04",
+  "arm_train_turn_median": 30,
+  "maps_in_corpus": null,
+  "maps_played": 24,
+  "own_score_sum_arm_minus_resident": 149,
+  "own_score_sum_arm_minus_resident_on_resident_below_floor_maps": 149,
+  "records": "local_claude_1/the-floor/smoke-maps-seed0.jsonl",
+  "resident": "local_claude_1/denial-ablation/champion-denial-off-v6-instrument.rs",
+  "resident_below_floor_maps": [
+    "4468b1745eabe180",
+    "e3347cc71898ea7e",
+    "d731d35b5b4dcb18",
+    "6dff57bfaad98d2b",
+    "0946610c17dce3be",
+    "f4800772e59f70e0",
+    "4c632b6eb07ccc04",
+    "e78d9571ecc88095",
+    "b758027034dd16b7",
+    "8ad42db47916ac11",
+    "1ebd2357cb7e57ea"
+  ],
+  "resident_sha256": "321723933c2a0cfb6bfcd62c57e0d25b6783ffb8ddcfea37c05b053e2e46cd4f",
+  "resident_train_turn_median": 11,
+  "rows": [
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 50,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          47
+        ],
+        "own_score": 188,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 35
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "8de8adf7711fd46c",
+      "profile": "harvester",
+      "resident": {
+        "floored": true,
+        "opp_score": 50,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          47
+        ],
+        "own_score": 188,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 35
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        3,
+        8,
+        7,
+        3,
+        7,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 48,
+        "own_inventory": [
+          0,
+          0,
+          7,
+          0,
+          1,
+          28
+        ],
+        "own_score": 119,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "2b842391abffc3f6",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "floored": true,
+        "opp_score": 48,
+        "own_inventory": [
+          0,
+          0,
+          7,
+          0,
+          1,
+          28
+        ],
+        "own_score": 119,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        7,
+        8,
+        8,
+        9,
+        6,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 55,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          5,
+          46
+        ],
+        "own_score": 184,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 40
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "4468b1745eabe180",
+      "profile": "harvester",
+      "resident": {
+        "floored": false,
+        "opp_score": 53,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          43
+        ],
+        "own_score": 172,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "1 2 0 3",
+          "stats": [
+            1,
+            2,
+            0,
+            3
+          ],
+          "turn": 10
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        2,
+        3,
+        10,
+        8,
+        10,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 63,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          41
+        ],
+        "own_score": 164,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 32
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "e3347cc71898ea7e",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "floored": false,
+        "opp_score": 59,
+        "own_inventory": [
+          0,
+          0,
+          1,
+          0,
+          1,
+          28
+        ],
+        "own_score": 113,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "1 1 0 2",
+          "stats": [
+            1,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        3,
+        2,
+        7,
+        7,
+        6,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 41,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          37
+        ],
+        "own_score": 148,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 3",
+          "stats": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 12
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "dc84138afe6c78db",
+      "profile": "harvester",
+      "resident": {
+        "floored": true,
+        "opp_score": 41,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          37
+        ],
+        "own_score": 148,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "2 2 0 3",
+          "stats": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 12
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        4,
+        7,
+        3,
+        4,
+        9,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 53,
+        "own_inventory": [
+          0,
+          0,
+          2,
+          0,
+          0,
+          32
+        ],
+        "own_score": 130,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 6
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "ae9d47038d1a1503",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "floored": true,
+        "opp_score": 53,
+        "own_inventory": [
+          0,
+          0,
+          2,
+          0,
+          0,
+          32
+        ],
+        "own_score": 130,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 6
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        6,
+        7,
+        7,
+        5,
+        4,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 43,
+        "own_inventory": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          37
+        ],
+        "own_score": 149,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 62
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "d731d35b5b4dcb18",
+      "profile": "harvester",
+      "resident": {
+        "floored": false,
+        "opp_score": 35,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          30
+        ],
+        "own_score": 120,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "2 1 0 3",
+          "stats": [
+            2,
+            1,
+            0,
+            3
+          ],
+          "turn": 12
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        6,
+        3,
+        2,
+        9,
+        5,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 68,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          51
+        ],
+        "own_score": 204,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 3 0 2",
+          "stats": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 18
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "f849d0039465d164",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "floored": true,
+        "opp_score": 68,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          51
+        ],
+        "own_score": 204,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "2 3 0 2",
+          "stats": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 18
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        6,
+        9,
+        7,
+        10,
+        3,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 51,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          34
+        ],
+        "own_score": 136,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 90
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "6dff57bfaad98d2b",
+      "profile": "harvester",
+      "resident": {
+        "floored": false,
+        "opp_score": 44,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          23
+        ],
+        "own_score": 92,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "3 1 0 1",
+          "stats": [
+            3,
+            1,
+            0,
+            1
+          ],
+          "turn": 8
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        9,
+        4,
+        2,
+        8,
+        2,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 64,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          46
+        ],
+        "own_score": 184,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "3 3 0 2",
+          "stats": [
+            3,
+            3,
+            0,
+            2
+          ],
+          "turn": 18
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "3f022170dacac470",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "floored": true,
+        "opp_score": 64,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          46
+        ],
+        "own_score": 184,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "3 3 0 2",
+          "stats": [
+            3,
+            3,
+            0,
+            2
+          ],
+          "turn": 18
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        9,
+        10,
+        6,
+        3,
+        2,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 38,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          36
+        ],
+        "own_score": 144,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 34
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "0946610c17dce3be",
+      "profile": "harvester",
+      "resident": {
+        "floored": false,
+        "opp_score": 39,
+        "own_inventory": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          27
+        ],
+        "own_score": 109,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "2 1 0 1",
+          "stats": [
+            2,
+            1,
+            0,
+            1
+          ],
+          "turn": 1
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        6,
+        4,
+        8,
+        4,
+        2,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 58,
+        "own_inventory": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          29
+        ],
+        "own_score": 117,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 62
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "f4800772e59f70e0",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "floored": false,
+        "opp_score": 58,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          38
+        ],
+        "own_score": 152,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "3 2 0 1",
+          "stats": [
+            3,
+            2,
+            0,
+            1
+          ],
+          "turn": 11
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        8,
+        5,
+        6,
+        7,
+        2,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 59,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          41
+        ],
+        "own_score": 164,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "3 2 0 2",
+          "stats": [
+            3,
+            2,
+            0,
+            2
+          ],
+          "turn": 10
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "7129a0bc165344ba",
+      "profile": "harvester",
+      "resident": {
+        "floored": true,
+        "opp_score": 59,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          41
+        ],
+        "own_score": 164,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "3 2 0 2",
+          "stats": [
+            3,
+            2,
+            0,
+            2
+          ],
+          "turn": 10
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        10,
+        5,
+        4,
+        10,
+        4,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 45,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          3,
+          21
+        ],
+        "own_score": 84,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 68
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "4c632b6eb07ccc04",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "floored": false,
+        "opp_score": 49,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          31
+        ],
+        "own_score": 124,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "1 3 0 3",
+          "stats": [
+            1,
+            3,
+            0,
+            3
+          ],
+          "turn": 21
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        2,
+        5,
+        3,
+        7,
+        8,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 36,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          38
+        ],
+        "own_score": 152,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 8
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "49d797dace81a12f",
+      "profile": "harvester",
+      "resident": {
+        "floored": true,
+        "opp_score": 36,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          38
+        ],
+        "own_score": 152,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 8
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        4,
+        9,
+        6,
+        2,
+        6,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 55,
+        "own_inventory": [
+          0,
+          0,
+          5,
+          0,
+          3,
+          28
+        ],
+        "own_score": 117,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 50
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "e78d9571ecc88095",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "floored": false,
+        "opp_score": 47,
+        "own_inventory": [
+          0,
+          2,
+          6,
+          0,
+          3,
+          19
+        ],
+        "own_score": 84,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "2 1 0 2",
+          "stats": [
+            2,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        7,
+        4,
+        7,
+        5,
+        8,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 45,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          40
+        ],
+        "own_score": 160,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 40
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "b758027034dd16b7",
+      "profile": "harvester",
+      "resident": {
+        "floored": false,
+        "opp_score": 44,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          38
+        ],
+        "own_score": 152,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "1 2 0 3",
+          "stats": [
+            1,
+            2,
+            0,
+            3
+          ],
+          "turn": 16
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        3,
+        8,
+        3,
+        8,
+        3,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 54,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          39
+        ],
+        "own_score": 156,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "3 2 0 3",
+          "stats": [
+            3,
+            2,
+            0,
+            3
+          ],
+          "turn": 12
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "25c10549ceb1f73f",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "floored": true,
+        "opp_score": 54,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          39
+        ],
+        "own_score": 156,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "3 2 0 3",
+          "stats": [
+            3,
+            2,
+            0,
+            3
+          ],
+          "turn": 12
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        10,
+        4,
+        4,
+        4,
+        10,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 46,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          3,
+          38
+        ],
+        "own_score": 152,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 20
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "5406af02cd888788",
+      "profile": "harvester",
+      "resident": {
+        "floored": true,
+        "opp_score": 46,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          3,
+          38
+        ],
+        "own_score": 152,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 20
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        8,
+        4,
+        7,
+        8,
+        8,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 65,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          42
+        ],
+        "own_score": 168,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "84f3fdfd8684b5f8",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "floored": true,
+        "opp_score": 65,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          42
+        ],
+        "own_score": 168,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        7,
+        5,
+        9,
+        4,
+        5,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 45,
+        "own_inventory": [
+          0,
+          0,
+          5,
+          0,
+          0,
+          25
+        ],
+        "own_score": 105,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 134
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "8ad42db47916ac11",
+      "profile": "harvester",
+      "resident": {
+        "floored": false,
+        "opp_score": 37,
+        "own_inventory": [
+          0,
+          0,
+          5,
+          0,
+          2,
+          22
+        ],
+        "own_score": 93,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "1 1 0 1",
+          "stats": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "turn": 1
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        2,
+        4,
+        6,
+        10,
+        4,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 53,
+        "own_inventory": [
+          0,
+          0,
+          5,
+          0,
+          1,
+          31
+        ],
+        "own_score": 129,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "9e956fab8d2c6277",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "floored": true,
+        "opp_score": 53,
+        "own_inventory": [
+          0,
+          0,
+          5,
+          0,
+          1,
+          31
+        ],
+        "own_score": 129,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        5,
+        7,
+        7,
+        10,
+        6,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 57,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          5,
+          46
+        ],
+        "own_score": 184,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 24
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "0d79097b58d42280",
+      "profile": "harvester",
+      "resident": {
+        "floored": true,
+        "opp_score": 56,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          46
+        ],
+        "own_score": 184,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "2 2 0 3",
+          "stats": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 24
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        6,
+        4,
+        4,
+        10,
+        10,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "floored": true,
+        "opp_score": 44,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          24
+        ],
+        "own_score": 96,
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "train": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 30
+        },
+        "trains": true,
+        "turns_answered": 300
+      },
+      "map_hash": "1ebd2357cb7e57ea",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "floored": false,
+        "opp_score": 40,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          24
+        ],
+        "own_score": 96,
+        "own_units": 2,
+        "referee_errors": {},
+        "train": {
+          "spec": "1 2 0 3",
+          "stats": [
+            1,
+            2,
+            0,
+            3
+          ],
+          "turn": 12
+        },
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        3,
+        5,
+        5,
+        3,
+        5,
+        0
+      ]
+    }
+  ],
+  "seed": 0,
+  "status": "PASS",
+  "turns": 300,
+  "what": "smoke on real ladder maps: mechanics only, not a value gate"
+}

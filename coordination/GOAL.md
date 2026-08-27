@@ -28,6 +28,16 @@ reading against the champion's 21.2/42 and the earlier rounds. **After the sixth
 submission — the six numbers (mean, spread) go to the owner, who rules.** The hourly wake in between
 reads the current submission and does nothing else. The champion of record remains `41202036`.
 
+**THE FLOOR (owner 17:5xZ: "let's build the_floor") is BUILT and waits for the slot:** the champion
+of record with one change — the second troll is never weaker than speed 2, carry 2, chop 2 (card
+`coordination/tasks/20260827-the-floor.md`; file `cgauto/submissions/candidate-the-floor-v6-instrument.rs`,
+sha `31cd23c0…`, 63,791 B; generator `local_claude_1/the-floor/make_the_floor.py`; bed and smoke PASS;
+codex_1 reproduces as row 0-6). **After the apple farm's sixth reading and the collection of its games,
+submit the floor** (`python3 cgauto/api_submit_once.py cgauto/submissions/candidate-the-floor-v6-instrument.rs
+--expected-sha256 <the sidecar's sha>`), one-shot timer at +62 min, one-hour reading against the owner's
+stated prediction, its 160 games collected and read (second-troll spec and turn per game) — unless the
+owner rules otherwise first. Ledger rows `FLR`, `FLR-1h`.
+
 **The champion of record is the simplified bot** (owner ruling 2026-08-27 09:05Z: *"One point is not
 enough to make a decisive conclusion. But I like simplification of the algorithm, so let's name the
 current approach the champion."*): submission **`41202036`** (08:21:51Z), agent `6667789`, file
