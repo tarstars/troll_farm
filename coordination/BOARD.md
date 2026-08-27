@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-27T14:50Z (the apple farm's one-hour reading: 19.8 at rank 49 — 1.4 below the champion; the rule ran in all 53 farm-map games and won 62 % of them, the 107 identical-play games went 43 %; codex_1 REPRODUCED the build, bed and smoke; the owner rules — nothing submitted)
+Last updated: 2026-08-27T15:00Z (hourly wake: the apple farm still 19.8 at rank 49, batch complete; no mail; the owner's ruling on the farm pending — nothing submitted)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
