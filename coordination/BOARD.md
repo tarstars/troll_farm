@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-27T06:40Z (owner session + wake)
+Last updated: 2026-08-27T08:08Z (owner session + hourly wake)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -18,8 +18,7 @@ Last updated: 2026-08-27T06:40Z (owner session + wake)
 | # | task | owner | stage | next concrete step | blocked on | budget left | last evidence |
 |---|---|---|---|---|---|---|---|
 | T-1 | Field comparison of the 25 strong two-troll Legend bots vs the champion (`coordination/tasks/20260826-track-t-top10-field-comparison.md`) | codex_1 (claude_1 reviewed) | **DONE — T-G1 ACCEPT 15:58Z** (three labelling edits, no number changed). `codex_1/top10/field-comparison-2026-08-26.md` on `main`: **the top banana planters run a persistent wood farm** — 3–6 banana PLANTs in turns 1–50 (ours 0.05), 21–30 own-cell HARVESTs (ours 2.85); our suppression already stronger; one unexplained gap: our endgame MOVEs 7.96 vs 32–38. | owner reads it; it reframes Track F | owner | spent | 15:58Z |
-| T-2 | Per-turn commands extracted from the 6.6 GB raw replays (`coordination/tasks/20260826-track-t-per-turn-extraction.md`) | local_claude_1 (subagent on the host); codex_1 consumes + reviews | **Running** (subagent started 15:00Z) | `scripts/extract_turns.py` → `data/processed/turns.jsonl.gz` + manifest; sanity vs `games.jsonl`; ship to the VM if it fits | — | ~1 h | 15:00Z |
-
+| T-2 | Per-turn commands extracted from the 6.6 GB raw replays (`coordination/tasks/20260826-track-t-per-turn-extraction.md`) | local_claude_1 (subagent on the host); codex_1 consumes + reviews | **DONE** — `data/processed/turns.jsonl.gz` produced and the 174 MB corpus copied to the VM (owner "wifi", 15:20Z) | — | — | spent | 08-26 15:20Z |
 | T-3 | Why goal-keeping costs points on the ladder (`coordination/tasks/20260827-goal-keeping-ladder-cost.md`) — the owner's robustness hypothesis | codex_1 (read); claude_1 (reviewed, ACCEPT) | **STOPPED under its own dead condition 06:25Z, review accepted 06:31Z** — the 212-game slice splits **208 champion / 4 keep-rule**, and all four keep games are heavy losses, so the hypothesis is **under-determined**. One directional signal survives a confound test: the keep bot reverses direction **16.10 times per 100 moves** against the champion's 11.95, and the champion's rate is flat across wins (11.87) and bad losses (11.53) — so it is not just "losing makes you walk". | **owner decision:** charter a balanced slice (tens of keep-rule games incl. wins) + three missing telemetry fields, or leave it | owner | spent | 06:31Z |
 
 ## Track F — Banana farm (conditional, smallest form)
@@ -27,7 +26,7 @@ Last updated: 2026-08-27T06:40Z (owner session + wake)
 | # | task | owner | stage | next concrete step | blocked on | budget left | last evidence |
 |---|---|---|---|---|---|---|---|
 | F-1 | Who ate the b100 farm? (`coordination/tasks/20260826-track-f-b100-theft-split.md`) | codex_1 (claude_1 reviewed) | **STOPPED under its dead condition 14:22Z; F-G1 ACCEPT-WITH-EDIT, edits published 14:41Z** — the corpus holds only 4 of the b100's 98 ladder games (the first batch, score still 0.0) and no per-turn detail; from the permitted checkpoint file: 98 games, mean margin +4.6, 49 losses, worst −348 — wins narrowly, loses catastrophically. **The theft-vs-own-crop split cannot be measured from what we kept**; with T-2 it becomes measurable on the 4 games only. | closed; re-ask on fresh instrumented games (0-3a/0-3) | — | spent | 14:41Z |
-| F-2 | **Banana wood farm candidate** (`coordination/tasks/20260826-banana-farm-candidate.md`) | claude_1 (built, panelled, diffs published); codex_1 (reproduced the failure) | **STOPPED at validity (52 → 96 blocking games), reproduced; nothing submitted.** Readable diffs now on `main`: `readable/diffs/banana-farm.diff` (champion → farm, +1,811/−9 — carries Candidate 3's keep machinery switched off) and **`readable/diffs/banana-farm-vs-v6-instrument.diff` (+887/−3, the farm rule and its telemetry alone — read this one)** | **owner decides:** bounded repair (the stop-latch must count harvests, not chops; placement must not hand the enemy a standing crop) or close the line | owner | spent | 04:40Z |
+| F-2 | **Banana wood farm candidate** (`coordination/tasks/20260826-banana-farm-candidate.md`) | claude_1 (built, panelled, diffs published); codex_1 (reproduced the failure); coordinator (submitted for viewing, collected the games) | **VIEWED on the ladder for one hour (owner ruling 06:06Z): 10.8 at rank 172 of 176 at 07:57Z** (submission `41201668`, agent `6667061`). Its 160 games are collected (`local_claude_1/farm-watch/games-41201668/`, 6.6 MB) and decoded: 81 wins / 79 losses, mean margin −26 (own 169 vs opponent 195); 24 losses by 150 or more, with the opponent at ~400 in those. **On the ladder its denial stage did run** — entered at turn ~10, 65 turns a game on average, never zero (the local panel had said "instantly over"; the panel's maps and opponents are not the ladder's) — ending by "all aim trees felled" 66, "trees regrow" 35, "opponent's third troll" 31, the turn-120 deadline 14, still denying at the end 14. It planted 16 bananas a game and harvested 4.8 from mothers (48 games: none); the stop-latch fired in 2 games. Validity verdict unchanged (52 → 96 blocking games on the panel). Readable diff to read: `readable/diffs/banana-farm-vs-v6-instrument.diff` (+887/−3). | **owner 07:10–08:05Z:** a denial-first repair (chop the opponent's plums/lemons first, nothing planted until denial ends, farm next) was designed and discussed, then **parked behind a cleaner one-variable experiment on the champion** (ladder queue, slot 2). Repair or close the line after that result. | owner (after slot 2's reading) | spent | 07:57Z |
 
 ## Track 0 — Instruments (a verdict that cannot be computed is a stall in disguise)
 
@@ -44,12 +43,16 @@ Last updated: 2026-08-27T06:40Z (owner session + wake)
 
 | slot | bot | purpose | state |
 |---|---|---|---|
-| 1 | **THE BANANA FARM (watching)** — submission `41201668`, 06:35Z, sha `443a196e…`, parity 240/240 (both bots) | **viewing, not a measurement** (owner ruling): the farm failed its validity gate and is expected to score badly; it is up to be seen and to send home annotated games. **One-hour rounds** (owner) | on the ladder; first reading ~07:35Z |
-| 2 | *(off the ladder)* the cured dancing troll | measurement **stopped at six readings**: A 21.8/21.6/22.1 (mean 21.83, flat) vs B 18.4/19.2/**21.0** (mean 19.53, **climbing**) | **verdict: UNDER-DETERMINED** — B is not shown equal to A, and not shown to cost 3 points; two more B readings would settle it (~4 h of the slot) |
-| 3 | the champion | returns when the farm's viewing ends | queued |
+| 1 | **THE BANANA FARM (watching)** — submission `41201668`, 06:35Z, sha `443a196e…`, agent `6667061` | **viewing, not a measurement** (owner ruling) | **one-hour reading 10.8 at rank 172/176 (07:57Z); its 160 games collected and decoded (row F-2). Viewing done** — stays up only until slot 2 is ready |
+| 2 | **the champion with its early plum/lemon denial switched off** — the owner's one-variable experiment (08:05Z): the diagnostics champion (identical in play to the champion) with one rule removed: the bonus of 900 ÷ (1 + distance to the opponent's shack) for chopping a plum or lemon of the "focus" species while the opponent has at most two trolls (`readable/door1-champion.rs`, `chop_candidates`, line 888). **One hour, one reading.** The owner predicts a sharp drop; the July bench agreed (rule off: 0 wins–6 losses, −150.7 a game) but the ladder has never seen it | **awaiting the owner's yes on the design** (base = diagnostics champion; one line; coordinator builds it as an instrument, the compactor's round trip is the check) | queued |
+| 3 | the champion (`candidate-champion-v6-instrument.rs`, sha `72673124…`) | returns after slot 2's hour — or by 12:00Z if nothing else goes up | queued |
+| — | *(off the ladder)* the cured dancing troll | measurement **stopped at six readings**: A 21.8/21.6/22.1 (mean 21.83, flat) vs B 18.4/19.2/**21.0** (mean 19.53, **climbing**) | **verdict: UNDER-DETERMINED** — two more B readings would settle it (~4 h of the slot); owner's call |
 
 ## Decisions (dated)
 
+- 2026-08-27 07:10Z: owner — "denial logic matters": repair the farm denial-first (chop the opponent's plums and lemons first, **nothing planted until denial ends** — option (a) —, farm next), then one hour on the ladder and a reading. Design presented and discussed (coordinator's assessment: the opponent's second troll is paid from the starting shack; the leaders never train a third; expect a point or two either way). — owner
+- 2026-08-27 08:05Z: owner — **the farm was a dirty experiment (several things changed at once); parked.** Instead, one variable: the champion with its early plum/lemon denial rule switched off, one hour on the ladder, rating. Prediction: a sharp drop. — owner
+- 2026-08-27 06:06Z: owner — the farm goes on the ladder to be watched, one-hour rounds; the keep-rule measurement stops at six readings (under-determined). — owner
 - 2026-08-26: Candidate 3 bounded (one packet, one review, one panel, one reproduction, one owner read; Candidate 2 re-run only on an own-score gain). Ladder measures again (champion restored). Goals: ≥ 25.40 **and** control over the code / cleanliness. Next item after the code clean-up: the banana farm. Board organisation adopted. — owner
 - 2026-08-26: `/home/tarstars/prj/troll_farm` (the checkout new agents start in, host of the 05:17 collector cron) switched from `session-2026-07-01` to `main` — owner ("b"); cron paths verified. `coordination/WORKING-RULES.md` written and linked from every entry file. — owner
 - 2026-08-26 15:20Z: owner "wifi" (2nd) — the 174 MB per-turn corpus copied to the VM. — owner
@@ -65,10 +68,6 @@ Last updated: 2026-08-27T06:40Z (owner session + wake)
 
 ## Owner's queue (≤ 3)
 
-0. *(decided: "measure")* Track D after Candidate 3b — the ladder measurement (row L-1) replaces both options.
-0'. *(was 0)* **Track D after Candidate 3b:** two candidates agree `m061`'s −43/−47 is *not* the kept-goal age. Options: (a) charter one measurement — what those two seats actually lose points doing (a read, 1 day, claude_1) — before any new rule; (b) **close Track D** now: the loop cure is understood and the ladder never saw the cure programme; put claude_1 on Track F's design. My recommendation: **(b)**, with the `m061` question kept as a line in the graveyard.
-1. **T-1 is delivered and accepted** (`codex_1/top10/field-comparison-2026-08-26.md`, review pending): the top bots run a persistent **wood farm** on early-planted bananas. This is the farm question's answer in the wrong direction from Spec B — read it before any F-2 charter.
-2. *(was 1)* **T-1's first table is in** (`codex_1/top10/field-comparison-first-table-2026-08-26.md`): the top three plant 27–36 bananas a game, we plant 6. Read it; the farm question sharpened.
-2. (when it lands) Candidate 3b's panel verdict — pass = ladder slot 2.
-2. (when it lands) T-1's first table — read it; it decides F-2.
-3. **Candidate 3's diff is on `main` now** — `readable/diffs/candidate-3-keep-your-goal.diff` (+927/−9) with the packet `claude_1/cure3/g1-packet-2026-08-26.md`: the code read you asked for, and your verdict on it as code (the code-control goal), independent of its score.
+1. **The one-variable experiment — yes or no:** the diagnostics champion with the plum/lemon denial bonus removed (one line), one hour on the ladder, one reading. (Ladder queue, slot 2.)
+2. After that reading: **the farm** — repair it denial-first as designed, or close the line (obituary in the graveyard).
+3. Unchanged: the keep-your-goal rule (two more readings, ~4 h, or leave it under-determined); the analytics (a balanced slice of keep-rule games plus three telemetry fields, or leave it).
