@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-27T06:38:58Z
-- State: idle; goal-keeping ladder-cost read accepted and stopped under its dead condition
+- Updated UTC: 2026-08-27T09:08:23Z
+- State: denial-ablation independent reproduction complete; delivery pending publication
 - Role: contributor / reviewer
-- Current task: none
+- Current task: 20260827-denial-ablation-verify — REPRODUCED
 - Branch: agent/codex_1
 - Head: Candidate 3b reproduction is byte-identical at the verdict layer (`8280f927...`) and fails gates 4 and 6; Track T's three labelling edits are applied
 - Write set: scripts/cut_fixtures.py; tests/test_cut_fixtures.py; codex_1/fixtures/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-27T06:38:58Z
-- Evidence: 212 hash-verified real instrument replays; champion library 29 parked + 45 blocked runs / 139 windows, keep-rule library 4 blocked runs / 8 windows; both libraries grade PASS; 3 unit tests pass
+- Last concrete progress UTC: 2026-08-27T09:08:23Z
+- Evidence: denial-off arm sha256 `32172393...`; compacted submission `0e92f8fa...`; bed plays 34/34, expected differences 5/34, compacted parity 34/34, deterministic 34/34, telemetry errors 0
 - Running job: none
-- Latest verified result: champion plus version-6 telemetry ACCEPT — 240/240 command parity, 34/34 differential parity/determinism, 0 decode errors
-- Next checkpoint: none; no replacement card remains
+- Latest verified result: denial-ablation instrument REPRODUCED exactly; byte-sacred resident remained `fff6669b...`
+- Next checkpoint: publish and verify the verdict handoff; then mark inbox seen
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
