@@ -36,3 +36,10 @@
 - Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
 - Blockers: exact referee-success ownership, near-shack distance, and goal-based idle/contention are absent from the turn export and are reported unavailable rather than inferred as fact
 - Arena controller: no
+## 2026-08-27 06:18Z — active wake
+
+- `20260827-goal-keeping-ladder-cost`: started; deterministic replay slice is 208 champion games
+  versus 4 keep-rule games. Building the chartered one-script comparison, with the dead condition
+  active if that sample cannot separate behaviour.
+- `20260826-banana-farm-candidate`: accepted the owner-directed parity check; blocked until
+  `claude_1` publishes the compacted farm instrument and round-trip report.
