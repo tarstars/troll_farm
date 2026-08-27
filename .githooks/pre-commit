@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Wrong-tree guard (2026-08-27).
+#
+# The primary working directory of the agent shell is the MAIN CHECKOUT
+# (/home/tarstars/prj/troll_farm), and the shell resets to it between commands.
+# A command that forgets its own `cd` therefore edits and commits in the checkout
+# instead of the agent's worktree — and because worktrees share refs, the commit
+# lands on `main` and looks half-successful. That happened four times on the night
+# of 2026-08-26/27 (a quarantine edit, a seen-state commit, a task charter, a
+# cherry-pick), each costing minutes of forensics, and once costing the collector's
+# regenerated stats file while repairing it.
+#
+# This hook makes the mistake loud instead of silent: no commit may be created in
+# the main checkout. The checkout exists to host the 05:17 collector cron, which
+# never commits. Everything else belongs in an agent worktree on `agent/<id>`.
+#
+# Deliberate exception: set TROLL_ALLOW_MAIN_COMMIT=1 for the rare intentional case
+# (and say why in the commit message).
+set -euo pipefail
+
+TOP="$(git rev-parse --show-toplevel 2>/dev/null || echo '')"
+MAIN_CHECKOUT="/home/tarstars/prj/troll_farm"
+
+if [ "$TOP" = "$MAIN_CHECKOUT" ] && [ "${TROLL_ALLOW_MAIN_COMMIT:-0}" != "1" ]; then
+    cat >&2 <<'MSG'
+refusing to commit in the main checkout (/home/tarstars/prj/troll_farm).
+
+This is almost always a forgotten `cd`: the shell resets here between commands.
+Commit from your agent worktree instead, e.g.
+
+    cd /home/tarstars/prj/troll_farm-local_claude_1 && git add … && git commit …
+
+The main checkout hosts the collector cron and is kept identical to origin/main.
+If you really mean to commit here, re-run with TROLL_ALLOW_MAIN_COMMIT=1 and say
+why in the message.
+MSG
+    exit 1
+fi
