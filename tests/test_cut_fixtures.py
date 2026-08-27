@@ -30,3 +30,7 @@ def test_grader_requires_zero_count_reason():
     library = {"errors": [], "fixtures": [], "counts": {name: 0 for name in cut.CLASSES}, "absent_classes": {}}
     errors = cut.grade(library)
     assert len(errors) == len(cut.CLASSES)
+
+
+def test_runs_coalesce_adjacent_blocked_turns():
+    assert cut.runs([1, 2, 3, 7, 9, 10]) == [(1, 3), (7, 7), (9, 10)]

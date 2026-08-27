@@ -1,7 +1,7 @@
 {
   "absent_classes": {
-    "dance": "not observed in the selected hash-pinned replay slice",
-    "long_kept_goal": "not observed in the selected hash-pinned replay slice",
+    "dance": "xc is inapplicable because keep machinery is inactive; wc was not observed and has no positive control in this real slice",
+    "long_kept_goal": "inapplicable to this arm: keep machinery is inactive (k=0 on every decoded unit-row)",
     "stall": "not observed in the selected hash-pinned replay slice",
     "turn_100_shack_engine_not_starting": "v6 does not expose referee-success ownership or the shack-engine start predicate; unavailable, not inferred"
   },
@@ -13,6 +13,16 @@
     "parked_troll": 29,
     "stall": 0,
     "turn_100_shack_engine_not_starting": 0
+  },
+  "decode_census": {
+    "games_decoded": 208,
+    "games_matched": 208,
+    "games_zero_telemetry": 0,
+    "rows_total": 56288
+  },
+  "detector_metrics": {
+    "blocked_troll_runs": 45,
+    "blocked_troll_turn_windows": 139
   },
   "errors": [],
   "fixtures": [
@@ -8657,7 +8667,7 @@
       "unit_id": 1
     }
   ],
-  "regenerate": "Run scripts/cut_fixtures.py again with the next bot hash and collector manifest; old libraries are records, never gates.",
+  "regenerate": "Run scripts/cut_fixtures.py again with the next bot hash and collector manifest; old libraries are records, never gates. Consumers should import scripts.cut_fixtures.decode for v6 rows.",
   "schema_version": 1,
   "source_manifest_sha256": "dacd2e6ebfbc11a68ce37b291bee6441076a19fbd37e9fc52378151f59212653",
   "window_radius": 3

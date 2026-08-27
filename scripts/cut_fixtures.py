@@ -142,9 +142,14 @@ def window(rows: list[dict[str, Any]], start: int, end: int, radius: int) -> lis
 def generate(manifest_path: Path, games_dir: Path, bot_hash: str, radius: int) -> dict[str, Any]:
     manifest = json.loads(manifest_path.read_text())
     fixtures, counts, errors = [], Counter(), []
+    census = {"games_matched": 0, "games_decoded": 0, "games_zero_telemetry": 0, "rows_total": 0}
+    blocked_turns: dict[tuple[str, str], list[int]] = defaultdict(list)
+    keep_active = False
+    max_wc = 0
     for entry in manifest["entries"]:
         if not str(entry["source_sha256_prefix"]).startswith(bot_hash):
             continue
+        census["games_matched"] += 1
         game_path = games_dir / f"{entry['game_id']}.json"
         if not game_path.exists():
             errors.append(f"missing game {entry['game_id']}")
@@ -154,6 +159,14 @@ def generate(manifest_path: Path, games_dir: Path, bot_hash: str, radius: int) -
             continue
         try:
             rows = replay_rows(game_path, int(entry["our_seat"]))
+            census["games_decoded"] += 1
+            census["rows_total"] += len(rows)
+            if not rows:
+                census["games_zero_telemetry"] += 1
+            keep_active = keep_active or any(
+                unit["keep"] != "0" for row in rows for unit in row["units"].values()
+            )
+            max_wc = max([max_wc] + [row["meta"]["wc"] for row in rows])
             for klass, start, end, uid, detector in selected(rows):
                 fixture_id = f"{klass}:{entry['game_id']}:s{entry['our_seat']}:u{uid or '-'}:t{start}-{end}"
                 fixtures.append({
@@ -168,21 +181,38 @@ def generate(manifest_path: Path, games_dir: Path, bot_hash: str, radius: int) -
                     "rows": window(rows, start, end, radius),
                 })
                 counts[klass] += 1
+                if klass == "blocked_troll" and uid is not None:
+                    blocked_turns[(str(entry["game_id"]), uid)].append(start)
         except (ValueError, KeyError, json.JSONDecodeError) as exc:
             errors.append(f"game {entry['game_id']}: {exc}")
     fixtures.sort(key=lambda item: item["fixture_id"])
-    absent = {
-        klass: ("not observed in the selected hash-pinned replay slice" if klass != "turn_100_shack_engine_not_starting"
-                else "v6 does not expose referee-success ownership or the shack-engine start predicate; unavailable, not inferred")
-        for klass in CLASSES if not counts[klass]
-    }
+    absent = {}
+    for klass in CLASSES:
+        if counts[klass]:
+            continue
+        if klass == "turn_100_shack_engine_not_starting":
+            absent[klass] = "v6 does not expose referee-success ownership or the shack-engine start predicate; unavailable, not inferred"
+        elif klass == "long_kept_goal" and not keep_active:
+            absent[klass] = "inapplicable to this arm: keep machinery is inactive (k=0 on every decoded unit-row)"
+        elif klass == "dance" and not keep_active and max_wc == 0:
+            absent[klass] = "xc is inapplicable because keep machinery is inactive; wc was not observed and has no positive control in this real slice"
+        elif klass == "dance" and max_wc == 0:
+            absent[klass] = "not observed; wc has no positive control in this real slice"
+        else:
+            absent[klass] = "not observed in the selected hash-pinned replay slice"
+    blocked_runs = sum(len(runs(sorted(turns))) for turns in blocked_turns.values())
     return {
         "schema_version": 1,
-        "regenerate": "Run scripts/cut_fixtures.py again with the next bot hash and collector manifest; old libraries are records, never gates.",
+        "regenerate": "Run scripts/cut_fixtures.py again with the next bot hash and collector manifest; old libraries are records, never gates. Consumers should import scripts.cut_fixtures.decode for v6 rows.",
         "source_manifest_sha256": sha256(manifest_path),
         "bot_hash_filter": bot_hash,
         "window_radius": radius,
         "counts": {klass: counts[klass] for klass in CLASSES},
+        "detector_metrics": {
+            "blocked_troll_runs": blocked_runs,
+            "blocked_troll_turn_windows": counts["blocked_troll"],
+        },
+        "decode_census": census,
         "absent_classes": absent,
         "errors": errors,
         "fixtures": fixtures,
