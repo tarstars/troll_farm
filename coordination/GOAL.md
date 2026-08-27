@@ -5,14 +5,13 @@
 `coordination/tasks/20260827-apple-farm-instrument.md`; ladder queue slot 3), the owner's one-variable
 experiment ("let's do it", design approved "1 c / 2 yes"): the champion of record plus one rule —
 the starting troll plants an apple on a water-side cell touching the shack on turns 1–3 and, once the
-second troll is trained, harvests it to the end. **The one-hour reading is due at ≥ 14:35Z** (one-shot
-cron at 14:36Z): `python3 cgauto/cg_rank.py`, ledger row `APL-1h`, reported against the owner's
-prediction (not yet stated; the coordinator's on record: a rise, visible within the hour); then collect
-its 160 games (`local_claude_1/narrate/collect_submission_games.py --agent-id <id> --submission-id
-41203549 …` → `local_claude_1/apple-farm/games-41203549/`) **before anything else is submitted**. After
-the reading the owner rules: the farm stays as the champion, or the champion `41202036` returns —
-**no submission without that word**. The hourly wake reads `41203549` while it is up; the champion's
-own rows are history for the hour.
+second troll is trained, harvests it to the end. **The one-hour reading was taken at 14:36Z: 19.8 at
+rank 49 of 176 — 1.4 below the champion's 21.2/42** (ledger row `APL-1h`; its 160 games collected in
+`local_claude_1/apple-farm/games-41203549/` and read: the rule ran in all 53 farm-map games and won
+62 % of them; the 107 identical-play games went 43 % — a harder draw). **The farm stays up until the
+owner rules** — a second hour, the champion `41202036` returns, or a refinement — **no submission without
+that word**. The hourly wake reads `41203549` while it is up (its batch is complete; the number moves
+only as other players' submissions meet it) and does nothing else.
 
 **The champion of record is the simplified bot** (owner ruling 2026-08-27 09:05Z: *"One point is not
 enough to make a decisive conclusion. But I like simplification of the algorithm, so let's name the

@@ -2,7 +2,7 @@
 
 - Born 2026-08-27 ~13:10Z by the owner's word ("let's do it"; design approved "1 c, 2 yes").
 - Record owner: local_claude_1 (coordinator) · Work owner: **local_claude_1** (builds it itself, as with the denial ablation: the owner is waiting and a bot's wake latency doubles the loop) · Reviewer: **codex_1** (reproduces the build afterwards, as row 0-4 did) · Arena: the coordinator submits (ladder queue slot 3).
-- Status line: **ON THE LADDER — submission `41203549`, 13:34:48Z; the one-hour reading due ≥ 14:35Z** (build 13:2xZ: arm sha `82c8ddd1…`, submission sha `8c6bc206…`, 66,082 B, +120/−0; bed PASS 34/34 with 2 differing; smoke PASS 24/24 real maps, +118 own-score a game vs the resident).
+- Status line: **READ 14:36Z — 19.8 at rank 49/176, 1.4 below the champion's 21.2/42; the games collected and read; the owner rules (keep for a second hour / return the champion / refine).** Submission `41203549`, 13:34:48Z, agent `6668182` (build: arm sha `82c8ddd1…`, submission sha `8c6bc206…`, 66,082 B, +120/−0; bed PASS 34/34 with 2 differing; smoke PASS 24/24 real maps; codex_1 REPRODUCED all three 14:07Z).
 
 ## The rule (owner, plain words)
 
@@ -42,3 +42,14 @@ On the two fixture worlds that have a water-side door (OSC-026, OSC-030) the far
 - 13:2xZ build: `make_apple_farm.py` first run clean (+120/−0, round trip exact, distinct from every bot). Bed PASS (34/34 play; differs 2/34; deterministic; compacted == arm; telemetry 0). Smoke first run 8/12 "BAD" = my script's door order (right-left-down-up) differed from the bot's (down-right-up-left) on maps with two wet doors — the bot had planted and harvested on all 12; order fixed, re-run: PASS 24/24.
 - 13:33Z collector re-run for the champion `41202036`: identical package to 09:25Z (sha `3fe5dc49…`) — no new games; the duplicate directory removed.
 - **13:34:48Z submitted as `41203549`** (sha `8c6bc206…`, 66,082 B). Early look 13:35Z: 5.2 at rank 174, 26 s in (not a reading). One-shot cron for the reading at 14:36Z.
+- 13:48Z–14:07Z codex_1: build and bed REPRODUCED; smoke blocked (corpus absent on the VM) → unblocked by the 67.5 KB slice → **REPRODUCED on all three** (+2831 on the slice).
+- **14:36Z the reading: 19.8 at rank 49/176** (61 min in; agent `6668182`). Games collected (`games-41203549/`, 160, sha `7e542953…`) and read with `ladder_read.py` (fixed once: our starting troll's id is the seat number):
+
+  | bucket | apple farm (this batch) | the champion (its 09:25Z batch) |
+  |---|---|---|
+  | all 160 | 79–81 (49 %), own 213.7 / opp 255.1 | 85–75 (53 %), own 183.5 / opp 197.3 |
+  | maps with a farm cell | **33–20 (62 %)**, own 284.9 / opp 318.7 — the rule ran in all 53 (planted turn 3 in 44; ~126 harvests; ~116 apples banked; replanted after an enemy felling in 36) | 25–35 (42 %), own 190.7 / opp 231.4 (60 games) |
+  | maps without one (identical play) | **46–61 (43 %)**, own 178.5 / opp 223.6 | 60–40 (60 %), own 179.2 / opp 176.8 |
+  | opponents with 3+ trolls | 54 % | 50 % |
+
+  Reading of the table: the farm turned its maps from our worse class into our better one (≈ +38 points of win rate, difference-in-differences), while the identical-play games went 17 points worse — the batch's draw was harder. Two costs: the opponents fell the tree and take its wood (36 replants), and on farm maps the opponent scored +87 against the champion's batch (+47 elsewhere). The prediction "a rise, visible within the hour" was wrong on the number.
