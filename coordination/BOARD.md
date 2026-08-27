@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-27T11:48Z (wake after the context flush: the champion's reading 21.2/42 unchanged; no mail)
+Last updated: 2026-08-27T12:00Z (hourly wake: the champion's reading 21.2/42 unchanged; no mail; owner asked for the fruit-collection economy — answered in conversation, nothing chartered)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
