@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-27T08:08Z (owner session + hourly wake)
+Last updated: 2026-08-27T08:25Z (owner session: the ablation is on the ladder)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -43,15 +43,16 @@ Last updated: 2026-08-27T08:08Z (owner session + hourly wake)
 
 | slot | bot | purpose | state |
 |---|---|---|---|
-| 1 | **THE BANANA FARM (watching)** — submission `41201668`, 06:35Z, sha `443a196e…`, agent `6667061` | **viewing, not a measurement** (owner ruling) | **one-hour reading 10.8 at rank 172/176 (07:57Z); its 160 games collected and decoded (row F-2). Viewing done** — stays up only until slot 2 is ready |
-| 2 | **the champion with its early plum/lemon denial switched off** — the owner's one-variable experiment (08:05Z): the diagnostics champion (identical in play to the champion) with one rule removed: the bonus of 900 ÷ (1 + distance to the opponent's shack) for chopping a plum or lemon of the "focus" species while the opponent has at most two trolls (`readable/door1-champion.rs`, `chop_candidates`, line 888). **One hour, one reading.** The owner predicts a sharp drop; the July bench agreed (rule off: 0 wins–6 losses, −150.7 a game) but the ladder has never seen it | **awaiting the owner's yes on the design** (base = diagnostics champion; one line; coordinator builds it as an instrument, the compactor's round trip is the check) | queued |
-| 3 | the champion (`candidate-champion-v6-instrument.rs`, sha `72673124…`) | returns after slot 2's hour — or by 12:00Z if nothing else goes up | queued |
+| 1 | **THE BANANA FARM (watching)** — submission `41201668`, 06:35Z, sha `443a196e…`, agent `6667061` | **viewing, not a measurement** (owner ruling) | **one-hour reading 10.8 at rank 172/176 (07:57Z); its 160 games collected and decoded (row F-2). Viewing closed 08:21:51Z** — replaced by slot 2 |
+| 2 | **the champion with its early plum/lemon denial switched off** — the owner's one-variable experiment (08:05Z, yes 08:20Z): the diagnostics champion (identical in play to the champion) with one rule removed: the bonus of 900 ÷ (1 + distance to the opponent's shack) for chopping a plum or lemon of the "focus" species while the opponent has at most two trolls (`readable/diffs/denial-bonus-off.diff`, four lines, nothing else). The owner predicts a sharp drop; the July bench agreed (rule off: 0 wins–6 losses, −150.7 a game) but the ladder has never seen it | **ON THE LADDER — submission `41202036`, 08:21:51Z**, sha `0e92f8fa…`, 63,808 B; bed: plays 34/34, differs from the champion on 5/34, compacted == arm 34/34, telemetry 0 errors (`local_claude_1/denial-ablation/`) | **reading due ≥ 09:22Z** (one-shot wake 09:24Z), then its games are collected and the champion returns |
+| 3 | the champion (`candidate-champion-v6-instrument.rs`, sha `72673124…`) | returns after slot 2's reading | queued |
 | — | *(off the ladder)* the cured dancing troll | measurement **stopped at six readings**: A 21.8/21.6/22.1 (mean 21.83, flat) vs B 18.4/19.2/**21.0** (mean 19.53, **climbing**) | **verdict: UNDER-DETERMINED** — two more B readings would settle it (~4 h of the slot); owner's call |
 
 ## Decisions (dated)
 
 - 2026-08-27 07:10Z: owner — "denial logic matters": repair the farm denial-first (chop the opponent's plums and lemons first, **nothing planted until denial ends** — option (a) —, farm next), then one hour on the ladder and a reading. Design presented and discussed (coordinator's assessment: the opponent's second troll is paid from the starting shack; the leaders never train a third; expect a point or two either way). — owner
 - 2026-08-27 08:05Z: owner — **the farm was a dirty experiment (several things changed at once); parked.** Instead, one variable: the champion with its early plum/lemon denial rule switched off, one hour on the ladder, rating. Prediction: a sharp drop. — owner
+- 2026-08-27 08:20Z: owner — **yes** to the ablation design (base = the diagnostics champion; the four-line bonus removed; the coordinator builds it as an instrument). Submitted 08:21:51Z as `41202036`. — owner
 - 2026-08-27 06:06Z: owner — the farm goes on the ladder to be watched, one-hour rounds; the keep-rule measurement stops at six readings (under-determined). — owner
 - 2026-08-26: Candidate 3 bounded (one packet, one review, one panel, one reproduction, one owner read; Candidate 2 re-run only on an own-score gain). Ladder measures again (champion restored). Goals: ≥ 25.40 **and** control over the code / cleanliness. Next item after the code clean-up: the banana farm. Board organisation adopted. — owner
 - 2026-08-26: `/home/tarstars/prj/troll_farm` (the checkout new agents start in, host of the 05:17 collector cron) switched from `session-2026-07-01` to `main` — owner ("b"); cron paths verified. `coordination/WORKING-RULES.md` written and linked from every entry file. — owner
@@ -68,6 +69,6 @@ Last updated: 2026-08-27T08:08Z (owner session + hourly wake)
 
 ## Owner's queue (≤ 3)
 
-1. **The one-variable experiment — yes or no:** the diagnostics champion with the plum/lemon denial bonus removed (one line), one hour on the ladder, one reading. (Ladder queue, slot 2.)
+1. *(decided: yes, 08:20Z — up at 08:21:51Z as `41202036`; reading ~09:24Z)* The one-variable experiment: the diagnostics champion with the plum/lemon denial bonus removed, one hour, one reading.
 2. After that reading: **the farm** — repair it denial-first as designed, or close the line (obituary in the graveyard).
 3. Unchanged: the keep-your-goal rule (two more readings, ~4 h, or leave it under-determined); the analytics (a balanced slice of keep-rule games plus three telemetry fields, or leave it).

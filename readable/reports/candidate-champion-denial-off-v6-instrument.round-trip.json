@@ -1,0 +1,76 @@
+{
+  "arm": {
+    "bytes": 146134,
+    "lines": 3125,
+    "path": "local_claude_1/denial-ablation/champion-denial-off-v6-instrument.rs",
+    "sha256": "321723933c2a0cfb6bfcd62c57e0d25b6783ffb8ddcfea37c05b053e2e46cd4f"
+  },
+  "base_compacted": {
+    "path": "cgauto/submissions/candidate-door1-pure-deletion.rs",
+    "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+  },
+  "base_readable": {
+    "path": "readable/door1-champion.rs",
+    "sha256": "ad1ae4eff70a5569e03e2149882bb22510746f4f8592907a5dfb936943ef0bfb"
+  },
+  "base_readable_and_ladder_champion_same_token_stream": true,
+  "board_row": "ladder queue slot 2",
+  "bot": "the diagnostics champion with the plum/lemon denial bonus removed",
+  "bot_a_arm": {
+    "flag_line_number": 602,
+    "path": "claude_1/instrument6/champion-v6-instrument.rs",
+    "regenerated_byte_identical": true,
+    "sha256": "0f75e7d61c71d4881502aac2204faf6fb5035331857a9f400ea2647bccd94141"
+  },
+  "canonical_token_stream_identical": true,
+  "compacted": {
+    "bytes": 63808,
+    "path": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+    "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c"
+  },
+  "compiles": true,
+  "distinct_from": {
+    "bare champion": {
+      "path": "cgauto/submissions/candidate-door1-pure-deletion.rs",
+      "same_token_stream": false,
+      "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+    },
+    "bot A": {
+      "path": "cgauto/submissions/candidate-champion-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "726731247910d846242fdabd0371c6f99ceb5c12de5e47d2b750d065b2b58c82"
+    },
+    "bot B": {
+      "path": "cgauto/submissions/candidate-3-keep-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "04e3db43865121e82a8c6fab65e9fa09f6be487406af3a1fdd8e2a7807a0d879"
+    },
+    "farm": {
+      "path": "cgauto/submissions/candidate-banana-farm-v8-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "443a196e51ca8a87066ef25ff88b81800601a6c901d3fe3e684effcad453a536"
+    }
+  },
+  "edit": {
+    "hunk": "                    if Some(plant.kind) == type_to_cut && opponent_trolls <= 2 {\n                        let opponent_distance = manhattan(plant.cell, view.shacks[1]);\n                        score += 900.0 / (1 + opponent_distance) as f64;\n                    }\n",
+    "lines_added": 0,
+    "lines_removed": 4,
+    "occurrences_in_arm": 1,
+    "occurrences_in_readable": 1,
+    "what": "the four-line plum/lemon denial bonus in chop_candidates removed"
+  },
+  "keep_rule_enabled": false,
+  "narrate_v6_enabled": true,
+  "readable_diff": {
+    "added": 0,
+    "path": "readable/diffs/denial-bonus-off.diff",
+    "removed": 4
+  },
+  "schema": "troll-farm-readable-source-v2",
+  "source": {
+    "path": "claude_1/cure3/cure3-keep-v6.rs",
+    "sha256": "01b61444a109c1d190fba5b0a103c861c6f9e772596e97cf9042b9b2c516b3b3"
+  },
+  "task": "denial-ablation (owner's one-variable experiment, 2026-08-27 08:05Z)",
+  "verdict": "CHAMPION_DENIAL_OFF_V6_INSTRUMENT_ROUND_TRIP_EXACT"
+}

@@ -20,17 +20,19 @@ handover: `coordination/HANDOVER-2026-08-27-board-era-ladder-and-farm.md`.
 2. **Ladder.** The farm (`41201668`, agent `6667061`) stays up only until the next submission; its
    games are already collected (`local_claude_1/farm-watch/games-41201668/`). **Do not resubmit
    the farm.**
-   - **After the owner's yes:** build the ablation instrument — the diagnostics champion
-     (`claude_1/cure3/cure3-keep-v6.rs`, flags KEEP=false NARRATE=true, i.e. bot A) with the
-     `score += 900.0 / (1 + opponent_distance)` bonus in `chop_candidates` removed — under
-     `local_claude_1/denial-ablation/` by the same generator-and-compactor chain as
-     `claude_1/ladder-measure-b/make_candidate3_v6.py` (compile, round trip, sha recorded, the
-     file must differ from bot A); readable diff `readable/diffs/denial-bonus-off.diff`; submit
-     with `cgauto/api_submit_once.py <file> --expected-sha256 <sha>`; read it after **one hour**
-     with `python3 cgauto/cg_rank.py`; write the ledger row; collect its games before the next
-     submission; report the reading to the owner in plain words against their prediction.
+   - **The owner said yes (08:20Z) and the ablation is UP: submission `41202036`, 08:21:51Z**
+     (`cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs`, sha `0e92f8fa…`;
+     built by `local_claude_1/denial-ablation/make_denial_off.py`, bed `fixtures_diff.py`,
+     diff `readable/diffs/denial-bonus-off.diff`). **Read it once at ≥ 09:22Z** (a one-shot wake
+     is set for 09:24Z; the hourly wake at 09:37Z does it if that missed) with
+     `python3 cgauto/cg_rank.py` → ledger row (score, rank, agent id, time) → **collect its
+     games first** (`python3 local_claude_1/narrate/collect_submission_games.py --agent-id
+     <agent> --submission-id 41202036 --scratch <scratchpad>/abl-41202036 --output-dir
+     local_claude_1/denial-ablation/games-41202036 --observed-at-utc <date -u>`) → report the
+     number to the owner in plain words against their prediction ("a sharp drop"; noise ≈ 1.5 a
+     reading; the champion's own readings were 21.8 / 21.6 / 22.1).
    - Then **return the champion** (`cgauto/submissions/candidate-champion-v6-instrument.rs`, sha
-     `72673124…`) as the resident — also by **2026-08-27T12:00Z** if no yes has come by then.
+     `72673124…`) as the resident — the reading first, the champion second, same wake.
 3. Rule on anything that blocks a peer; land artifacts on `main` at each gate; mark stalls.
 4. Board note (Moved / Stalled / Ladder / Decisions / Corrections) appended to
    `local_claude_1/goal-log-2026-08-26.md`, board rows updated in the same commit; fast-forward
