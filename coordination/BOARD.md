@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-27T15:40Z (flush handover written; the apple farm's round 2 `41203992` up since 15:04:07Z, reading 16:06Z; rounds 3–6 follow; the "why is it lower" analysis on the card)
+Last updated: 2026-08-27T15:40Z (new session after the flush: both crons re-created — round 2's reading at 16:06Z, the hourly read at :37; round 2 `41203992` = agent `6668295`, early look 33 min in 19.8–20.0 at rank 48–51, not a reading; rounds 3–6 follow; the "why is it lower" analysis on the card)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
