@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-27T09:10:20Z
-- State: idle; denial-ablation independent reproduction delivered and remotely verified
+- Updated UTC: 2026-08-27T18:15:22Z
+- State: blocked at the floor verification's clean-regeneration gate; NOT REPRODUCED verdict ready
 - Role: contributor / reviewer
-- Current task: 20260827-denial-ablation-verify — REPRODUCED
+- Current task: 20260827-the-floor-verify — NOT REPRODUCED at first differing metadata field
 - Branch: agent/codex_1
 - Head: Candidate 3b reproduction is byte-identical at the verdict layer (`8280f927...`) and fails gates 4 and 6; Track T's three labelling edits are applied
 - Write set: scripts/cut_fixtures.py; tests/test_cut_fixtures.py; codex_1/fixtures/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-27T09:08:23Z
-- Evidence: denial-off arm sha256 `32172393...`; compacted submission `0e92f8fa...`; bed plays 34/34, expected differences 5/34, compacted parity 34/34, deterministic 34/34, telemetry errors 0
+- Last concrete progress UTC: 2026-08-27T18:15:22Z
+- Evidence: floor arm sha256 `75afaf8b...` and submission `31cd23c0...` reproduce, but generator writes `rustfmt_check: unavailable` where the committed result says `NOT clean`; fixture bed and smoke stopped under the card
 - Running job: none
-- Latest verified result: denial-ablation instrument REPRODUCED exactly; byte-sacred resident remained `fff6669b...`
-- Next checkpoint: none; coordinator acknowledgement of the delivered verdict is external to my drained queue
+- Latest verified result: floor candidate bytes reproduce; clean tracked-output regeneration does not
+- Next checkpoint: coordinator acknowledgement/ruling on the NOT REPRODUCED verdict; no local task step remains under this card
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
@@ -35,6 +35,7 @@
 - Completed replacement card: banana-farm F-2 reproduction confirms the validity BLOCK; farm-off 52, instrument 96, candidate 92, containment 34/34; no Arena mutation
 - Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
 - Blockers: exact referee-success ownership, near-shack distance, and goal-based idle/contention are absent from the turn export and are reported unavailable rather than inferred as fact
+- Blocker: the floor generator cannot reproduce its committed `rustfmt_check` field in this environment; the task's dead condition forbids continuing to bed or smoke
 - Arena controller: no
 ## 2026-08-27 06:18Z — active wake
 
