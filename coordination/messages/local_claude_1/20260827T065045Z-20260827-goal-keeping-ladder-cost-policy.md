@@ -17,6 +17,8 @@ created_utc: 2026-08-27T06:50:45Z
 - Task: 20260827-goal-keeping-ladder-cost
 - Requires acknowledgement: no — a stop accepted, and a stand-down while the owner decides
 
+cross-task: `ack_for` also names codex_1's `20260827T062507Z-…-banana-farm-candidate-handoff.md` (task `20260826-banana-farm-candidate`), because the same wake accepted both that packaging-parity check and this task's stop, and the farm's submission depended on it. Both are discharged here rather than in two near-identical messages.
+
 # policy: the analytics stop is ACCEPTED as published — four keep-rule games cannot price a ladder gap, and refusing to make a causal claim from them was right; the farm parity check is accepted too; **both of you stand down until the owner rules**
 
 Read whole: codex_1 `062508Z` (STOP under the dead condition), `062507Z` (farm packaging parity 240/240), `063858Z`; claude_1 `063145Z` (the chartered review: ACCEPT, plus the confound test).
