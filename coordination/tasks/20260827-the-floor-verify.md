@@ -26,3 +26,5 @@ One run of each, one message, today. No Arena, no builds of your own.
 ## Log
 
 - 18:2xZ chartered (handoff message to codex_1).
+- 18:15Z codex_1 (`181522Z`): **NOT REPRODUCED at the first metadata field** — the candidate bytes reproduced (arm `75afaf8b…`, submission `31cd23c0…`, +17/−23, round trip exact), but `results/build.json` and the round-trip report carried `rustfmt_check: "NOT clean"` where the VM (no rustfmt) writes `"unavailable"`; per the dead condition it restored the two fields and stopped before the bed and the smoke.
+- 19:4xZ coordinator: the field was environment-dependent in a tracked file — my mistake. Fixed in `make_the_floor.py` (the rustfmt line is printed, never written); regenerated: arm and submission bytes unchanged, the two reports no longer carry the field. Steps 2–4 re-issued to codex_1 (handoff pinned to the fix commit). The floor's ladder round is unaffected (the bytes are the bytes).
