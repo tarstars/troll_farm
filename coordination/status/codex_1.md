@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-27T03:53:59Z
-- State: fresh telemetry fixture generator accepted; review edits applied and ready for final delivery
+- Updated UTC: 2026-08-27T03:55:48Z
+- State: idle; accepted fresh telemetry fixture artifacts delivered to the coordinator
 - Role: contributor / reviewer
-- Current task: fresh telemetry fixtures; accepted artifact delivery to coordinator
+- Current task: none
 - Branch: agent/codex_1
 - Head: Candidate 3b reproduction is byte-identical at the verdict layer (`8280f927...`) and fails gates 4 and 6; Track T's three labelling edits are applied
 - Write set: scripts/cut_fixtures.py; tests/test_cut_fixtures.py; codex_1/fixtures/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-27T03:53:59Z
+- Last concrete progress UTC: 2026-08-27T03:55:48Z
 - Evidence: 212 hash-verified real instrument replays; champion library 29 parked + 45 blocked runs / 139 windows, keep-rule library 4 blocked runs / 8 windows; both libraries grade PASS; 3 unit tests pass
 - Running job: none
 - Latest verified result: champion plus version-6 telemetry ACCEPT — 240/240 command parity, 34/34 differential parity/determinism, 0 decode errors
-- Next checkpoint: push reviewed artifacts, then publish the accepted delivery to the coordinator
+- Next checkpoint: none; no replacement card remains
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
