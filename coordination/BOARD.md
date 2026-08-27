@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-27T05:35Z (cron wake 10)
+Last updated: 2026-08-27T05:55Z (owner session)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -19,6 +19,8 @@ Last updated: 2026-08-27T05:35Z (cron wake 10)
 |---|---|---|---|---|---|---|---|
 | T-1 | Field comparison of the 25 strong two-troll Legend bots vs the champion (`coordination/tasks/20260826-track-t-top10-field-comparison.md`) | codex_1 (claude_1 reviewed) | **DONE — T-G1 ACCEPT 15:58Z** (three labelling edits, no number changed). `codex_1/top10/field-comparison-2026-08-26.md` on `main`: **the top banana planters run a persistent wood farm** — 3–6 banana PLANTs in turns 1–50 (ours 0.05), 21–30 own-cell HARVESTs (ours 2.85); our suppression already stronger; one unexplained gap: our endgame MOVEs 7.96 vs 32–38. | owner reads it; it reframes Track F | owner | spent | 15:58Z |
 | T-2 | Per-turn commands extracted from the 6.6 GB raw replays (`coordination/tasks/20260826-track-t-per-turn-extraction.md`) | local_claude_1 (subagent on the host); codex_1 consumes + reviews | **Running** (subagent started 15:00Z) | `scripts/extract_turns.py` → `data/processed/turns.jsonl.gz` + manifest; sanity vs `games.jsonl`; ship to the VM if it fits | — | ~1 h | 15:00Z |
+
+| T-3 | **Why goal-keeping costs ~3 ladder points but almost nothing on the bench** (`coordination/tasks/20260827-goal-keeping-ladder-cost.md`) — the owner's hypothesis: rigidity costs adaptivity, and adaptivity only pays against opponents who contest | codex_1 (claude_1 reviews) | **Read** (chartered 05:55Z) | compare the two bots on their own annotated ladder games: goal lifetimes, opponent-invalidated goals, wasted moves, contested trees, score composition | — | 1 day, 0 ladder | 05:55Z |
 
 ## Track F — Banana farm (conditional, smallest form)
 
