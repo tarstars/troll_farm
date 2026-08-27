@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-27T10:58Z (hourly wake)
+Last updated: 2026-08-27T11:45Z (flush handover written)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -75,3 +75,5 @@ Last updated: 2026-08-27T10:58Z (hourly wake)
 *(all three of the 2026-08-27 09:45Z board decisions are taken: the farm — **closed**; the dead-code deletion on the new champion — **leave it be** ("probably it'll be convenient for the nearest experiments"); the keep-your-goal rule — **on hold** ("a little bit different angle soon"))*
 
 1. Nothing is pending. The next item is the owner's: the next one-variable experiment on the champion, or the new angle on goal-keeping.
+
+**★ Flush entry for the next session: `coordination/HANDOVER-2026-08-27-simplified-champion.md`** — today's rulings in order, where the ladder stands, what is proven, the artifacts, the operational notes.
