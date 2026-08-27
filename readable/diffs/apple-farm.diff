@@ -1,0 +1,150 @@
+--- readable/denial-off-champion.rs
++++ readable/denial-off-champion.rs (apple farm)
+@@ -854,6 +854,9 @@
+                     if plant.health <= 0 || !from_unit.contains_key(&plant.cell) {
+                         continue;
+                     }
++                    if Self::farm_cell(view) == Some(plant.cell) {
++                        continue;
++                    }
+                     let travel_turns =
+                         Self::ceil_div(from_unit[&plant.cell], unit.stats.movement_speed);
+                     let Some(predicted) = Self::predict_tree(view, plant, travel_turns) else {
+@@ -897,6 +900,50 @@
+                     });
+                 }
+                 out
++            }
++
++            // --------------------------------------------------------------------------
++            // Apple farm — indexed block `apple-farm` [feature]
++            //
++            // The owner's one-variable experiment of 2026-08-27 ("let's do it"; design 1c, 2 yes).
++            // If a grass cell touching our shack also touches water, the starting troll plants an
++            // apple there on turns 1-3 (a water-side apple regrows a fruit every 2 turns), runs the
++            // normal opening, and once the second troll exists returns to harvest it to the end
++            // of the game -- HARVEST and DROP alternating without moving, half a point a turn.
++            // No own troll ever fells the farm tree. Everything else is the champion.
++            //
++            // The farm cell: a door of our shack (walkable, touching water, never the shack's
++            // only door), preferring one that already holds an apple, else an empty one.
++            // --------------------------------------------------------------------------
++            fn farm_cell(view: &GameState) -> Option<Cell> {
++                let doors: Vec<Cell> = ortho_neighbors(view.shacks[0])
++                    .into_iter()
++                    .filter(|cell| view.walkable.contains(cell))
++                    .collect();
++                if doors.len() < 2 {
++                    return None;
++                }
++                let wet: Vec<Cell> = doors
++                    .into_iter()
++                    .filter(|cell| view.water.iter().any(|water| is_adjacent(*water, *cell)))
++                    .collect();
++                let holds_apple = |cell: &Cell| {
++                    view.plant_at(*cell).is_some_and(|index| {
++                        view.plants[index].kind == PlantKind::Apple && view.plants[index].health > 0
++                    })
++                };
++                wet.iter()
++                    .find(|cell| holds_apple(cell))
++                    .or_else(|| wet.iter().find(|cell| view.plant_at(**cell).is_none()))
++                    .copied()
++            }
++            // The farm troll: the starting troll -- the own unit with harvest power, lowest id.
++            fn farm_unit(view: &GameState) -> Option<i32> {
++                view.units
++                    .iter()
++                    .filter(|unit| unit.player == 0 && unit.stats.harvest_power > 0)
++                    .map(|unit| unit.id)
++                    .min()
+             }
+             fn wait() -> Candidate {
+                 Candidate {
+@@ -2054,6 +2101,76 @@
+                     })
+                     .collect()
+             }
++
++            // --------------------------------------------------------------------------
++            // Apple farm — indexed block `apple-farm` [feature]: the farm troll's turn
++            //
++            // Returns the farm troll's whole candidate list when the farm owns its turn: while
++            // the farm cell has no tree (plant it, in any phase -- turns 1-3 in the normal case),
++            // and from the second troll on (harvest it). While the tree grows during the opening
++            // the troll is the champion's. Stateless: if the opponent fells the tree, the same
++            // rule replants it.
++            // --------------------------------------------------------------------------
++            fn farm_candidates(
++                &mut self,
++                view: &GameState,
++                unit: &Unit,
++                train_now: bool,
++            ) -> Option<Vec<Candidate>> {
++                let farm = MoisanBot::farm_cell(view)?;
++                if MoisanBot::farm_unit(view) != Some(unit.id) {
++                    return None;
++                }
++                let tree = view.plant_at(farm).map(|index| &view.plants[index]);
++                let trolls = view.units.iter().filter(|unit| unit.player == 0).count();
++                let harvesting = trolls >= 2 || self.opening_abandoned;
++                if tree.is_some() && !harvesting {
++                    return None;
++                }
++                // A farm PICK is not a conversion commitment (pick -> plant anywhere -> chop).
++                self.regeneration_commitments.remove(&unit.id);
++                let farm_action = |command: String, target: Target| Candidate {
++                    command,
++                    score: 50_000.0,
++                    target,
++                };
++                let mut out = vec![MoisanBot::wait()];
++                if unit.cell != farm {
++                    out.push(farm_action(
++                        format!("MOVE {} {} {}", unit.id, farm.0, farm.1),
++                        Target::Cell(farm),
++                    ));
++                    return Some(out);
++                }
++                // Before the second troll is paid for, one apple stays in the shack for its bill.
++                let apples_kept = if trolls >= 2 { 0 } else { 1 };
++                let apple = PlantKind::Apple.as_str();
++                let action = match tree {
++                    None if unit.carry[APPLE] > 0 => {
++                        Some((format!("PLANT {} {}", unit.id, apple), Target::Cell(farm)))
++                    }
++                    None if unit.total_carried() > 0 => {
++                        Some((format!("DROP {}", unit.id), Target::Bank(farm)))
++                    }
++                    None if !train_now
++                        && unit.free_capacity() > 0
++                        && view.inventories[0][APPLE] > apples_kept =>
++                    {
++                        Some((format!("PICK {} {}", unit.id, apple), Target::Cell(farm)))
++                    }
++                    Some(_) if unit.total_carried() > 0 => {
++                        Some((format!("DROP {}", unit.id), Target::Bank(farm)))
++                    }
++                    Some(plant) if plant.fruits > 0 && unit.free_capacity() > 0 => {
++                        Some((format!("HARVEST {}", unit.id), Target::Tree(farm)))
++                    }
++                    _ => None,
++                };
++                if let Some((command, target)) = action {
++                    out.push(farm_action(command, target));
++                }
++                Some(out)
++            }
+             fn endgame(view: &GameState) -> bool {
+                 view.turn > 250
+                     || (view.plants.len() <= 4
+@@ -2162,6 +2279,9 @@
+                             });
+                         }
+                     }
++                    if let Some(farm) = self.farm_candidates(view, unit, train_now) {
++                        candidates = farm;
++                    }
+                     by_id.insert(unit.id, candidates);
+                 }
+                 if self.door_unblocking {

@@ -1,0 +1,108 @@
+{
+  "arm": {
+    "bytes": 146011,
+    "lines": 3119,
+    "path": "local_claude_1/the-floor/champion-the-floor-v6-instrument.rs",
+    "sha256": "75afaf8bd1d380fc3a0178d9c3002e1cd9d224fdc96fd6ab30346bc72d4b8c04"
+  },
+  "base_arm": {
+    "path": "local_claude_1/denial-ablation/champion-denial-off-v6-instrument.rs",
+    "sha256": "321723933c2a0cfb6bfcd62c57e0d25b6783ffb8ddcfea37c05b053e2e46cd4f"
+  },
+  "base_arm_and_resident_same_token_stream": true,
+  "base_readable": {
+    "path": "readable/denial-off-champion.rs",
+    "sha256": "4ce3d1e85e8962d84c0ecb1a071de46e844d24f7dbe5a31bd6ca0579db552143"
+  },
+  "base_resident": {
+    "path": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+    "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c"
+  },
+  "board_row": "ladder queue slot 4",
+  "bot": "the champion of record; the second troll never weaker than 2/2/0/2",
+  "canonical_token_stream_identical": true,
+  "compacted": {
+    "bytes": 63791,
+    "path": "cgauto/submissions/candidate-the-floor-v6-instrument.rs",
+    "sha256": "31cd23c021f184b0cc39aa7f38d4bfb099d56a9f815ce892bee1f3dada10d420"
+  },
+  "compiles": true,
+  "distinct_from": {
+    "apple farm": {
+      "path": "cgauto/submissions/candidate-apple-farm-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "8c6bc206417c6d22b593372ce42e74ce5698646c1f8a860073f349a2a082708c"
+    },
+    "banana farm": {
+      "path": "cgauto/submissions/candidate-banana-farm-v8-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "443a196e51ca8a87066ef25ff88b81800601a6c901d3fe3e684effcad453a536"
+    },
+    "bare champion (old)": {
+      "path": "cgauto/submissions/candidate-door1-pure-deletion.rs",
+      "same_token_stream": false,
+      "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+    },
+    "bot A (old champion + diagnostics)": {
+      "path": "cgauto/submissions/candidate-champion-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "726731247910d846242fdabd0371c6f99ceb5c12de5e47d2b750d065b2b58c82"
+    },
+    "bot B (keep-your-goal)": {
+      "path": "cgauto/submissions/candidate-3-keep-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "04e3db43865121e82a8c6fab65e9fa09f6be487406af3a1fdd8e2a7807a0d879"
+    },
+    "the resident (champion of record)": {
+      "path": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c"
+    }
+  },
+  "edit": {
+    "lines_added": 17,
+    "lines_removed": 23,
+    "replacements": [
+      {
+        "added": 5,
+        "name": "opening_options: the grid starts at 2 for speed, carry and chop",
+        "removed": 5
+      },
+      {
+        "added": 1,
+        "name": "choose_second_troll: the baseline is the fallback troll (one definition)",
+        "removed": 9
+      },
+      {
+        "added": 3,
+        "name": "fallback_second_troll: 1/1/0/1 -> 2/2/0/2",
+        "removed": 3
+      },
+      {
+        "added": 5,
+        "name": "enforce_training_deadline: strongest affordable floored troll, else wait for 2/2/0/2",
+        "removed": 4
+      },
+      {
+        "added": 3,
+        "name": "the deadline block's comment",
+        "removed": 2
+      }
+    ],
+    "what": "five replacements: the floor"
+  },
+  "keep_rule_enabled": false,
+  "narrate_v6_enabled": true,
+  "readable_diff": {
+    "added": 17,
+    "path": "readable/diffs/the-floor.diff",
+    "removed": 23
+  },
+  "readable_edited": {
+    "path": "local_claude_1/the-floor/the-floor-readable.rs",
+    "sha256": "97fae166f400228c6979c2aafce3730a660d1929a8037983c0bb10c22e3f63a6"
+  },
+  "schema": "troll-farm-readable-source-v2",
+  "task": "the floor (owner's one-variable experiment, 2026-08-27: 'let's build the_floor')",
+  "verdict": "CHAMPION_THE_FLOOR_V6_INSTRUMENT_ROUND_TRIP_EXACT"
+}

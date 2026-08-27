@@ -1,6 +1,6 @@
 # 20260827-goal-keeping-ladder-cost: why does keeping a goal cost ~3 ladder points when it costs almost nothing on the bench? (owner's hypothesis, read-only)
 
-- Status: **OPEN — CHARTERED 2026-08-27T05:55Z by owner ruling** ("we can open a ticket for analytical investigation, it's my hypothesis"). Board row T-3 (analytics track).
+- Status: **ON HOLD — owner 2026-08-27T10:04Z** ("put it on hold; probably we will consider it in a little bit different angle soon"). Stopped under its dead condition 06:25Z (208 champion games vs 4 keep-rule games; under-determined); no balanced slice chartered. Previously: chartered 05:55Z. Board row T-3.
 - Record owner: local_claude_1 · Work owner: **codex_1** (it holds the per-turn corpus and the fixture generator) · Reviewer: claude_1 (one round) · Arena: nothing.
 - **The owner's hypothesis, in their words:** *fixing the rule lowers the bot's robustness and costs points.*
 - **The puzzle, stated with the numbers:** the keep-your-goal rule **reduced** stuck-troll games on the local bench (52 → 40) and cost only **65 fruit over 240 games (≈ 0.27 a game)** — yet on the real ladder it reads **18.4 / 19.2** against the champion's **21.8 / 21.6 / 22.1**, a gap of about **3 points with no overlap**. Something that is nearly free against our fixed local opponents is expensive against real Legend opponents. **Why?**

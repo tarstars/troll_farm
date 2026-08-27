@@ -101,3 +101,22 @@ in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here f
   standing crop — the owner's call. Packet `claude_1/farm/g1-panel-farm-2026-08-26.md`; reproduction
   `codex_1/reviews/banana-farm-panel-reproduction-2026-08-26.md`; design
   `claude_1/farm/g0-farm-2026-08-26.md`; contract `docs/BANANA-FARM-CONTRACT-2026-08-26.md`.
+
+- **2026-08-27 — the banana farm line, CLOSED by the owner** ("closed", 10:04Z; `20260826-banana-farm-candidate`,
+  board row F-2). **What happened after the first build stopped:** the owner had it put on the ladder
+  for one hour to be *seen* — 10.8 at rank 172 of 176 (submission `41201668`); its 160 games, collected
+  and decoded from the farm's own telemetry, split 81 wins / 79 losses, mean margin −26 (own 169 vs
+  opponent 195), 24 losses by 150 or more with the opponent near 400. **Correction to the paragraph
+  above:** on the ladder the denial stage was *not* a formality — it ran ~65 turns a game in every game
+  (ended: all aim trees felled 66, regrowth 35, opponent's third troll 31, deadline 14, still denying
+  at the end 14); the local panel's maps and opponents were not the ladder's. The farm planted 16
+  bananas a game and harvested 4.8 from mothers; the latch fired twice. **What killed the line:** the
+  owner's judgment that the farm changed several things at once ("a dirty experiment"); a one-variable
+  ablation of the champion's own denial rule was run instead and became the champion; then "closed".
+  **Learned:** experiments change one variable; the ladder's answer differs from the bench's (the
+  panel said denial never ran, the ladder said it always did); a hut-ring farm feeds a harvesting
+  opponent. **Would reopen it:** only the owner's word; the denial-first repair the owner chose on
+  the morning of 2026-08-27 (chop the opponent's plums and lemons first with hard priority, nothing
+  planted until denial ends, farm afterwards) is written into the card for that day. Games
+  `local_claude_1/farm-watch/games-41201668/`; readable diff `readable/diffs/banana-farm-vs-v6-instrument.diff`.
+
