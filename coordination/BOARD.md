@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-27T05:55Z (owner session)
+Last updated: 2026-08-27T06:40Z (owner session + wake)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -20,7 +20,7 @@ Last updated: 2026-08-27T05:55Z (owner session)
 | T-1 | Field comparison of the 25 strong two-troll Legend bots vs the champion (`coordination/tasks/20260826-track-t-top10-field-comparison.md`) | codex_1 (claude_1 reviewed) | **DONE — T-G1 ACCEPT 15:58Z** (three labelling edits, no number changed). `codex_1/top10/field-comparison-2026-08-26.md` on `main`: **the top banana planters run a persistent wood farm** — 3–6 banana PLANTs in turns 1–50 (ours 0.05), 21–30 own-cell HARVESTs (ours 2.85); our suppression already stronger; one unexplained gap: our endgame MOVEs 7.96 vs 32–38. | owner reads it; it reframes Track F | owner | spent | 15:58Z |
 | T-2 | Per-turn commands extracted from the 6.6 GB raw replays (`coordination/tasks/20260826-track-t-per-turn-extraction.md`) | local_claude_1 (subagent on the host); codex_1 consumes + reviews | **Running** (subagent started 15:00Z) | `scripts/extract_turns.py` → `data/processed/turns.jsonl.gz` + manifest; sanity vs `games.jsonl`; ship to the VM if it fits | — | ~1 h | 15:00Z |
 
-| T-3 | **Why goal-keeping costs ~3 ladder points but almost nothing on the bench** (`coordination/tasks/20260827-goal-keeping-ladder-cost.md`) — the owner's hypothesis: rigidity costs adaptivity, and adaptivity only pays against opponents who contest | codex_1 (claude_1 reviews) | **Read** (chartered 05:55Z) | compare the two bots on their own annotated ladder games: goal lifetimes, opponent-invalidated goals, wasted moves, contested trees, score composition | — | 1 day, 0 ladder | 05:55Z |
+| T-3 | Why goal-keeping costs points on the ladder (`coordination/tasks/20260827-goal-keeping-ladder-cost.md`) — the owner's robustness hypothesis | codex_1 (read); claude_1 (reviewed, ACCEPT) | **STOPPED under its own dead condition 06:25Z, review accepted 06:31Z** — the 212-game slice splits **208 champion / 4 keep-rule**, and all four keep games are heavy losses, so the hypothesis is **under-determined**. One directional signal survives a confound test: the keep bot reverses direction **16.10 times per 100 moves** against the champion's 11.95, and the champion's rate is flat across wins (11.87) and bad losses (11.53) — so it is not just "losing makes you walk". | **owner decision:** charter a balanced slice (tens of keep-rule games incl. wins) + three missing telemetry fields, or leave it | owner | spent | 06:31Z |
 
 ## Track F — Banana farm (conditional, smallest form)
 
@@ -44,9 +44,9 @@ Last updated: 2026-08-27T05:55Z (owner session)
 
 | slot | bot | purpose | state |
 |---|---|---|---|
-| 1 | **champion + v6 instrument `72673124…`** — A1 `41198581`, A2 `41200776` (21.6/40), A3 `41201060` (**22.1 / rank 37**) | the baseline; its games carry telemetry, proven to arrive intact | three reads taken |
-| 2 | **B = the cured dancing troll + diagnostics** — reads 18.4, 19.2 (mean 18.80); B3 up (`41201376`, 04:33Z) | A-B-B-A vs slot 1; five of sixteen reads done | **A 21.8, 21.6, 22.1 (mean 21.83) vs B 18.80 — a 3.03-point gap and the two sets do not overlap** |
-| 3 | *(released)* the banana-farm candidate | — | **not booked**: the farm failed its own first validity gate (blocking games 52 → 96); nothing was submitted |
+| 1 | **THE BANANA FARM (watching)** — submission `41201668`, 06:35Z, sha `443a196e…`, parity 240/240 (both bots) | **viewing, not a measurement** (owner ruling): the farm failed its validity gate and is expected to score badly; it is up to be seen and to send home annotated games. **One-hour rounds** (owner) | on the ladder; first reading ~07:35Z |
+| 2 | *(off the ladder)* the cured dancing troll | measurement **stopped at six readings**: A 21.8/21.6/22.1 (mean 21.83, flat) vs B 18.4/19.2/**21.0** (mean 19.53, **climbing**) | **verdict: UNDER-DETERMINED** — B is not shown equal to A, and not shown to cost 3 points; two more B readings would settle it (~4 h of the slot) |
+| 3 | the champion | returns when the farm's viewing ends | queued |
 
 ## Decisions (dated)
 
