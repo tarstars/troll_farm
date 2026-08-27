@@ -1,0 +1,369 @@
+{
+  "absent_classes": {
+    "dance": "not observed in the selected hash-pinned replay slice",
+    "long_kept_goal": "not observed in the selected hash-pinned replay slice",
+    "parked_troll": "not observed in the selected hash-pinned replay slice",
+    "stall": "not observed in the selected hash-pinned replay slice",
+    "turn_100_shack_engine_not_starting": "v6 does not expose referee-success ownership or the shack-engine start predicate; unavailable, not inferred"
+  },
+  "bot_hash_filter": "04e3db43",
+  "counts": {
+    "blocked_troll": 8,
+    "dance": 0,
+    "long_kept_goal": 0,
+    "parked_troll": 0,
+    "stall": 0,
+    "turn_100_shack_engine_not_starting": 0
+  },
+  "errors": [],
+  "fixtures": [
+    {
+      "bot_hash": "04e3db43\u2026",
+      "class": "blocked_troll",
+      "detector": "resolver branch W",
+      "event_window": [
+        10,
+        10
+      ],
+      "fixture_id": "blocked_troll:900530827:s1:u1:t10-10",
+      "game_id": "900530827",
+      "rows": [
+        {
+          "telemetry": "NARRATE v6 t=7 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=2 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 7
+        },
+        {
+          "telemetry": "NARRATE v6 t=8 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=3 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 8
+        },
+        {
+          "telemetry": "NARRATE v6 t=9 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=4 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 9
+        },
+        {
+          "telemetry": "NARRATE v6 t=10 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=5 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 10
+        },
+        {
+          "telemetry": "NARRATE v6 t=11 u1=TREE(12,6)/TREE(12,6)/r=N/b=0/k=2 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=6 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 11
+        },
+        {
+          "telemetry": "NARRATE v6 t=12 u1=NONE/BANK(11,3)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=1 rd=1 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 12
+        },
+        {
+          "telemetry": "NARRATE v6 t=13 u1=NONE/BANK(11,3)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 13
+        }
+      ],
+      "seat": 1,
+      "unit_id": 1
+    },
+    {
+      "bot_hash": "04e3db43\u2026",
+      "class": "blocked_troll",
+      "detector": "resolver branch W",
+      "event_window": [
+        6,
+        6
+      ],
+      "fixture_id": "blocked_troll:900530827:s1:u1:t6-6",
+      "game_id": "900530827",
+      "rows": [
+        {
+          "telemetry": "NARRATE v6 t=3 u1=NONE/TREE(12,6)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 3
+        },
+        {
+          "telemetry": "NARRATE v6 t=4 u1=NONE/TREE(12,6)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 4
+        },
+        {
+          "telemetry": "NARRATE v6 t=5 u1=TREE(12,6)/TREE(12,6)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 5
+        },
+        {
+          "telemetry": "NARRATE v6 t=6 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=1 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 6
+        },
+        {
+          "telemetry": "NARRATE v6 t=7 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=2 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 7
+        },
+        {
+          "telemetry": "NARRATE v6 t=8 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=3 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 8
+        },
+        {
+          "telemetry": "NARRATE v6 t=9 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=4 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 9
+        }
+      ],
+      "seat": 1,
+      "unit_id": 1
+    },
+    {
+      "bot_hash": "04e3db43\u2026",
+      "class": "blocked_troll",
+      "detector": "resolver branch W",
+      "event_window": [
+        7,
+        7
+      ],
+      "fixture_id": "blocked_troll:900530827:s1:u1:t7-7",
+      "game_id": "900530827",
+      "rows": [
+        {
+          "telemetry": "NARRATE v6 t=4 u1=NONE/TREE(12,6)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 4
+        },
+        {
+          "telemetry": "NARRATE v6 t=5 u1=TREE(12,6)/TREE(12,6)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 5
+        },
+        {
+          "telemetry": "NARRATE v6 t=6 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=1 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 6
+        },
+        {
+          "telemetry": "NARRATE v6 t=7 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=2 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 7
+        },
+        {
+          "telemetry": "NARRATE v6 t=8 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=3 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 8
+        },
+        {
+          "telemetry": "NARRATE v6 t=9 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=4 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 9
+        },
+        {
+          "telemetry": "NARRATE v6 t=10 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=5 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 10
+        }
+      ],
+      "seat": 1,
+      "unit_id": 1
+    },
+    {
+      "bot_hash": "04e3db43\u2026",
+      "class": "blocked_troll",
+      "detector": "resolver branch W",
+      "event_window": [
+        8,
+        8
+      ],
+      "fixture_id": "blocked_troll:900530827:s1:u1:t8-8",
+      "game_id": "900530827",
+      "rows": [
+        {
+          "telemetry": "NARRATE v6 t=5 u1=TREE(12,6)/TREE(12,6)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 5
+        },
+        {
+          "telemetry": "NARRATE v6 t=6 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=1 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 6
+        },
+        {
+          "telemetry": "NARRATE v6 t=7 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=2 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 7
+        },
+        {
+          "telemetry": "NARRATE v6 t=8 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=3 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 8
+        },
+        {
+          "telemetry": "NARRATE v6 t=9 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=4 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 9
+        },
+        {
+          "telemetry": "NARRATE v6 t=10 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=5 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 10
+        },
+        {
+          "telemetry": "NARRATE v6 t=11 u1=TREE(12,6)/TREE(12,6)/r=N/b=0/k=2 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=6 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 11
+        }
+      ],
+      "seat": 1,
+      "unit_id": 1
+    },
+    {
+      "bot_hash": "04e3db43\u2026",
+      "class": "blocked_troll",
+      "detector": "resolver branch W",
+      "event_window": [
+        9,
+        9
+      ],
+      "fixture_id": "blocked_troll:900530827:s1:u1:t9-9",
+      "game_id": "900530827",
+      "rows": [
+        {
+          "telemetry": "NARRATE v6 t=6 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=1 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 6
+        },
+        {
+          "telemetry": "NARRATE v6 t=7 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=2 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 7
+        },
+        {
+          "telemetry": "NARRATE v6 t=8 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=3 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 8
+        },
+        {
+          "telemetry": "NARRATE v6 t=9 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=4 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 9
+        },
+        {
+          "telemetry": "NARRATE v6 t=10 u1=NONE/TREE(12,6)/r=W/b=0/k=1 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=5 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 10
+        },
+        {
+          "telemetry": "NARRATE v6 t=11 u1=TREE(12,6)/TREE(12,6)/r=N/b=0/k=2 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=6 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 11
+        },
+        {
+          "telemetry": "NARRATE v6 t=12 u1=NONE/BANK(11,3)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=1 rd=1 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 12
+        }
+      ],
+      "seat": 1,
+      "unit_id": 1
+    },
+    {
+      "bot_hash": "04e3db43\u2026",
+      "class": "blocked_troll",
+      "detector": "resolver branch W",
+      "event_window": [
+        187,
+        187
+      ],
+      "fixture_id": "blocked_troll:900530828:s0:u0:t187-187",
+      "game_id": "900530828",
+      "rows": [
+        {
+          "telemetry": "NARRATE v6 t=184 u0=NONE/TREE(12,1)/r=P/b=0/k=0 u2=NONE/BANK(3,7)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 184
+        },
+        {
+          "telemetry": "NARRATE v6 t=185 u0=NONE/TREE(13,2)/r=P/b=0/k=0 u2=BANK(4,6)/BANK(4,6)/r=N/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 185
+        },
+        {
+          "telemetry": "NARRATE v6 t=186 u0=NONE/TREE(13,2)/r=P/b=0/k=0 u2=NONE/TREE(14,0)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=1 rd=1 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 186
+        },
+        {
+          "telemetry": "NARRATE v6 t=187 u0=NONE/TREE(13,1)/r=W/b=0/k=0 u2=NONE/TREE(14,0)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 187
+        },
+        {
+          "telemetry": "NARRATE v6 t=188 u0=NONE/TREE(14,0)/r=P/b=0/k=0 u2=NONE/TREE(14,0)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 188
+        },
+        {
+          "telemetry": "NARRATE v6 t=189 u0=NONE/TREE(14,0)/r=P/b=0/k=0 u2=NONE/TREE(14,0)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 189
+        },
+        {
+          "telemetry": "NARRATE v6 t=190 u0=NONE/TREE(14,0)/r=P/b=0/k=0 u2=NONE/TREE(14,0)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 190
+        }
+      ],
+      "seat": 0,
+      "unit_id": 0
+    },
+    {
+      "bot_hash": "04e3db43\u2026",
+      "class": "blocked_troll",
+      "detector": "resolver branch W",
+      "event_window": [
+        39,
+        39
+      ],
+      "fixture_id": "blocked_troll:900530828:s0:u0:t39-39",
+      "game_id": "900530828",
+      "rows": [
+        {
+          "telemetry": "NARRATE v6 t=36 u0=NONE/TREE(13,2)/r=P/b=0/k=0 u2=NONE/TREE(13,2)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=1 rd=1 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 36
+        },
+        {
+          "telemetry": "NARRATE v6 t=37 u0=NONE/TREE(13,2)/r=P/b=0/k=0 u2=NONE/TREE(13,2)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 37
+        },
+        {
+          "telemetry": "NARRATE v6 t=38 u0=NONE/TREE(13,2)/r=P/b=0/k=0 u2=NONE/TREE(13,2)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 38
+        },
+        {
+          "telemetry": "NARRATE v6 t=39 u0=NONE/TREE(13,2)/r=W/b=0/k=0 u2=NONE/TREE(13,2)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 39
+        },
+        {
+          "telemetry": "NARRATE v6 t=40 u0=NONE/TREE(13,2)/r=P/b=0/k=0 u2=TREE(11,3)/TREE(13,2)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 40
+        },
+        {
+          "telemetry": "NARRATE v6 t=41 u0=NONE/TREE(13,2)/r=P/b=0/k=0 u2=TREE(11,3)/TREE(13,2)/r=N/b=0/k=2 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=1 kc=1 xc=0 xw=0 xn=0 xp=0 xg=0 xd=5601 xj=0",
+          "turn": 41
+        },
+        {
+          "telemetry": "NARRATE v6 t=42 u0=NONE/TREE(13,2)/r=R/b=0/k=0 u2=TREE(11,3)/TREE(13,2)/r=N/b=0/k=2 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=2 kc=1 xc=0 xw=0 xn=0 xp=0 xg=0 xd=4739 xj=0",
+          "turn": 42
+        }
+      ],
+      "seat": 0,
+      "unit_id": 0
+    },
+    {
+      "bot_hash": "04e3db43\u2026",
+      "class": "blocked_troll",
+      "detector": "resolver branch W",
+      "event_window": [
+        63,
+        63
+      ],
+      "fixture_id": "blocked_troll:900530828:s0:u0:t63-63",
+      "game_id": "900530828",
+      "rows": [
+        {
+          "telemetry": "NARRATE v6 t=60 u0=TREE(12,2)/TREE(13,2)/r=N/b=0/k=2 u2=TREE(13,2)/TREE(13,2)/r=N/b=0/k=2 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=2 kq=2 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=12 kc=2 xc=0 xw=0 xn=0 xp=0 xg=0 xd=59999 xj=5694",
+          "turn": 60
+        },
+        {
+          "telemetry": "NARRATE v6 t=61 u0=NONE/BANK(4,6)/r=P/b=0/k=0 u2=TREE(13,2)/TREE(13,2)/r=N/b=0/k=2 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=1 kq=1 kl=0 kr=1 rd=0 rg=1 ri=0 rx=0 rf=1 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=4 kc=1 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 61
+        },
+        {
+          "telemetry": "NARRATE v6 t=62 u0=NONE/BANK(4,6)/r=P/b=0/k=0 u2=NONE/BANK(4,6)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=1 rd=0 rg=1 ri=0 rx=0 rf=1 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 62
+        },
+        {
+          "telemetry": "NARRATE v6 t=63 u0=NONE/BANK(4,6)/r=W/b=0/k=0 u2=NONE/BANK(4,6)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 63
+        },
+        {
+          "telemetry": "NARRATE v6 t=64 u0=NONE/BANK(4,6)/r=P/b=0/k=0 u2=NONE/BANK(4,6)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 64
+        },
+        {
+          "telemetry": "NARRATE v6 t=65 u0=NONE/BANK(4,6)/r=P/b=0/k=0 u2=NONE/BANK(4,6)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 65
+        },
+        {
+          "telemetry": "NARRATE v6 t=66 u0=NONE/BANK(4,6)/r=P/b=0/k=0 u2=NONE/BANK(4,6)/r=P/b=0/k=0 pz=1 sp=0 wc=0 sw=0 so=0 sn=0 sf=0 kp=0 kq=0 kl=0 kr=0 rd=0 rg=0 ri=0 rx=0 rf=0 rt=0 ro=0 nl=0 nl_producer=0 nl_door=0 nl_admissibility=0 nl_other=0 ka=0 kc=0 xc=0 xw=0 xn=0 xp=0 xg=0 xd=0 xj=0",
+          "turn": 66
+        }
+      ],
+      "seat": 0,
+      "unit_id": 0
+    }
+  ],
+  "regenerate": "Run scripts/cut_fixtures.py again with the next bot hash and collector manifest; old libraries are records, never gates.",
+  "schema_version": 1,
+  "source_manifest_sha256": "dacd2e6ebfbc11a68ce37b291bee6441076a19fbd37e9fc52378151f59212653",
+  "window_radius": 3
+}

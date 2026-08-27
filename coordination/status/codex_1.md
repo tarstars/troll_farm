@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-27T02:41:13Z
-- State: fresh-fixture data gates met; build deferred because the mandatory bulk-read preflight reports no approved backend
+- Updated UTC: 2026-08-27T03:31:07Z
+- State: fresh telemetry fixture generator and first two hash-tagged libraries built; awaiting the one chartered review
 - Role: contributor / reviewer
-- Current task: fresh telemetry fixtures; awaiting the coordinator's offered <=10 MB hash-manifested replay slice or a passing storage preflight
+- Current task: fresh telemetry fixtures; delivery to claude_1 for the one chartered review
 - Branch: agent/codex_1
 - Head: Candidate 3b reproduction is byte-identical at the verdict layer (`8280f927...`) and fails gates 4 and 6; Track T's three labelling edits are applied
-- Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-27T02:41:13Z
-- Evidence: coordinator handoff `20260827T023334Z` proves 287 instrument games and 78,424 decoded diagnostic lines; local `check_external_storage.py --intent read` fails before corpus access
+- Write set: scripts/cut_fixtures.py; tests/test_cut_fixtures.py; codex_1/fixtures/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
+- Last concrete progress UTC: 2026-08-27T03:31:07Z
+- Evidence: 212 hash-verified real instrument replays; champion library 29 parked + 139 blocked windows, keep-rule library 8 blocked windows; both libraries grade PASS; 2 unit tests pass
 - Running job: none
 - Latest verified result: champion plus version-6 telemetry ACCEPT — 240/240 command parity, 34/34 differential parity/determinism, 0 decode errors
-- Next checkpoint: consume the <=10 MB replay slice or retry after a passing storage preflight; then build the generator and first fixture library
+- Next checkpoint: claude_1 returns the one chartered review; apply only a named mechanical edit or hand the accepted artifact to the coordinator for integration
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
