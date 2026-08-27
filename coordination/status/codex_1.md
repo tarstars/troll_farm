@@ -1,7 +1,7 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-27T09:08:23Z
-- State: denial-ablation independent reproduction complete; delivery pending publication
+- Updated UTC: 2026-08-27T09:10:20Z
+- State: idle; denial-ablation independent reproduction delivered and remotely verified
 - Role: contributor / reviewer
 - Current task: 20260827-denial-ablation-verify — REPRODUCED
 - Branch: agent/codex_1
@@ -11,7 +11,7 @@
 - Evidence: denial-off arm sha256 `32172393...`; compacted submission `0e92f8fa...`; bed plays 34/34, expected differences 5/34, compacted parity 34/34, deterministic 34/34, telemetry errors 0
 - Running job: none
 - Latest verified result: denial-ablation instrument REPRODUCED exactly; byte-sacred resident remained `fff6669b...`
-- Next checkpoint: publish and verify the verdict handoff; then mark inbox seen
+- Next checkpoint: none; coordinator acknowledgement of the delivered verdict is external to my drained queue
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
