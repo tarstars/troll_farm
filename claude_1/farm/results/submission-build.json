@@ -1,0 +1,63 @@
+{
+  "arm": {
+    "bytes": 194311,
+    "lines": 4013,
+    "path": "claude_1/farm/arm-instrument.rs",
+    "sha256": "354d1302f79ddc241ae49c5c0b1763ad045077bfb5f74d6e850bf43a43376b41"
+  },
+  "base_compacted": {
+    "path": "cgauto/submissions/candidate-door1-pure-deletion.rs",
+    "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+  },
+  "base_readable": {
+    "path": "readable/door1-champion.rs",
+    "sha256": "ad1ae4eff70a5569e03e2149882bb22510746f4f8592907a5dfb936943ef0bfb"
+  },
+  "base_readable_and_ladder_champion_same_token_stream": true,
+  "board_row": "F-2",
+  "canonical_token_stream_identical": true,
+  "compacted": {
+    "bytes": 79083,
+    "lines": 2,
+    "path": "cgauto/submissions/candidate-banana-farm-v8-instrument.rs",
+    "sha256": "443a196e51ca8a87066ef25ff88b81800601a6c901d3fe3e684effcad453a536"
+  },
+  "compiles": true,
+  "dialect": "v8 (claude_1/narrate8/narrate8.py)",
+  "distinct_from_other_ladder_bots": {
+    "bot_a_champion_v6_instrument": {
+      "path": "cgauto/submissions/candidate-champion-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "726731247910d846242fdabd0371c6f99ceb5c12de5e47d2b750d065b2b58c82"
+    },
+    "bot_b_candidate_3_keep_v6_instrument": {
+      "path": "cgauto/submissions/candidate-3-keep-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "04e3db43865121e82a8c6fab65e9fa09f6be487406af3a1fdd8e2a7807a0d879"
+    },
+    "ladder_champion": {
+      "path": "cgauto/submissions/candidate-door1-pure-deletion.rs",
+      "same_token_stream": false,
+      "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+    }
+  },
+  "farm_enabled": true,
+  "flag_line_number": 636,
+  "gated_instrument_arm": {
+    "path": "claude_1/farm/arm-instrument.rs",
+    "sha256": "354d1302f79ddc241ae49c5c0b1763ad045077bfb5f74d6e850bf43a43376b41"
+  },
+  "generator_of_source": "claude_1/farm/make_farm_source.py",
+  "identical_to_gated_instrument_arm": true,
+  "keep_rule_enabled": false,
+  "lines_differing_from_source": 0,
+  "narrate_v8_enabled": true,
+  "purpose": "owner ruling 2026-08-27 06:06Z: the farm goes on the ladder to be WATCHED, not promoted. The V1 validity failure stands; this build carries no verdict about the farm's value and the champion of record remains the champion.",
+  "schema": "troll-farm-readable-source-v2",
+  "source": {
+    "path": "claude_1/farm/farm-v8.rs",
+    "sha256": "354d1302f79ddc241ae49c5c0b1763ad045077bfb5f74d6e850bf43a43376b41"
+  },
+  "task": "20260826-banana-farm-candidate",
+  "verdict": "BANANA_FARM_V8_INSTRUMENT_ROUND_TRIP_EXACT"
+}
