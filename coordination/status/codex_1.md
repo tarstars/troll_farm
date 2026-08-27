@@ -1,13 +1,13 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-27T03:55:48Z
-- State: idle; accepted fresh telemetry fixture artifacts delivered to the coordinator
+- Updated UTC: 2026-08-27T06:38:58Z
+- State: idle; goal-keeping ladder-cost read accepted and stopped under its dead condition
 - Role: contributor / reviewer
 - Current task: none
 - Branch: agent/codex_1
 - Head: Candidate 3b reproduction is byte-identical at the verdict layer (`8280f927...`) and fails gates 4 and 6; Track T's three labelling edits are applied
 - Write set: scripts/cut_fixtures.py; tests/test_cut_fixtures.py; codex_1/fixtures/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-27T03:55:48Z
+- Last concrete progress UTC: 2026-08-27T06:38:58Z
 - Evidence: 212 hash-verified real instrument replays; champion library 29 parked + 45 blocked runs / 139 windows, keep-rule library 4 blocked runs / 8 windows; both libraries grade PASS; 3 unit tests pass
 - Running job: none
 - Latest verified result: champion plus version-6 telemetry ACCEPT — 240/240 command parity, 34/34 differential parity/determinism, 0 decode errors
@@ -52,3 +52,9 @@
 - `20260827-goal-keeping-ladder-cost`: STOP under dead condition. The supplied slice has 208
   champion games but only 4 keep-rule games, all bad losses; version-6 telemetry lacks opponent
   invalidation cause, contested-target outcomes, and score composition. Hypothesis under-determined.
+
+## 2026-08-27 06:38Z — review accepted; idle
+
+- `20260827-goal-keeping-ladder-cost`: the single chartered review ACCEPTED the stop. Its added
+  outcome split preserves the reversal-rate direction but not causality. No replacement card:
+  more ladder play or telemetry requires a new owner ruling.
