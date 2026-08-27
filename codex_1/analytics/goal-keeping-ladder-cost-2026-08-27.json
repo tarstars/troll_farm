@@ -1,0 +1,116 @@
+{
+  "arms": {
+    "champion_v6": {
+      "actions": {
+        "CHOP": 37326,
+        "DROP": 6769,
+        "HARVEST": 191,
+        "MOVE": 56796,
+        "PICK": 2147,
+        "PLANT": 2147,
+        "TRAIN": 208,
+        "WAIT": 5289
+      },
+      "games": 208,
+      "goal_lifetimes": {
+        "max": 21,
+        "mean": 3.206,
+        "median": 2,
+        "n": 18989
+      },
+      "mean_margin": 2.663,
+      "mean_score": 188.389,
+      "move_command_share_pct": 51.226,
+      "reverse_per_100_moves": 11.948,
+      "reverse_within_two_moves": 6786,
+      "splits": {
+        "lost": {
+          "games": 97,
+          "mean_margin": -83.237,
+          "mean_score": 187.093,
+          "move_command_share_pct": 52.194,
+          "working_command_share_pct": 43.334
+        },
+        "lost_badly_margin_le_minus_50": {
+          "games": 49,
+          "mean_margin": -146.102,
+          "mean_score": 198.612,
+          "move_command_share_pct": 55.214,
+          "working_command_share_pct": 41.63
+        },
+        "won": {
+          "games": 111,
+          "mean_margin": 77.73,
+          "mean_score": 189.523,
+          "move_command_share_pct": 50.337,
+          "working_command_share_pct": 44.619
+        }
+      },
+      "turns": 56288,
+      "turns_with_chosen_goal": 60873,
+      "turns_with_keep_active": 0,
+      "working_command_share_pct": 44.003
+    },
+    "keep_v6": {
+      "actions": {
+        "CHOP": 882,
+        "DROP": 164,
+        "HARVEST": 4,
+        "MOVE": 1093,
+        "PICK": 39,
+        "PLANT": 39,
+        "TRAIN": 4,
+        "WAIT": 94
+      },
+      "games": 4,
+      "goal_lifetimes": {
+        "max": 21,
+        "mean": 3.667,
+        "median": 2,
+        "n": 375
+      },
+      "mean_margin": -222.5,
+      "mean_score": 231.25,
+      "move_command_share_pct": 47.132,
+      "reverse_per_100_moves": 16.102,
+      "reverse_within_two_moves": 176,
+      "splits": {
+        "lost": {
+          "games": 4,
+          "mean_margin": -222.5,
+          "mean_score": 231.25,
+          "move_command_share_pct": 47.132,
+          "working_command_share_pct": 48.814
+        },
+        "lost_badly_margin_le_minus_50": {
+          "games": 4,
+          "mean_margin": -222.5,
+          "mean_score": 231.25,
+          "move_command_share_pct": 47.132,
+          "working_command_share_pct": 48.814
+        },
+        "won": {
+          "games": 0,
+          "mean_margin": null,
+          "mean_score": null,
+          "move_command_share_pct": null,
+          "working_command_share_pct": null
+        }
+      },
+      "turns": 1200,
+      "turns_with_chosen_goal": 1375,
+      "turns_with_keep_active": 1003,
+      "working_command_share_pct": 48.814
+    }
+  },
+  "dead_condition": true,
+  "dead_condition_reason": "only 4 keep-rule games versus 208 champion games",
+  "errors": [],
+  "manifest_sha256": "dacd2e6ebfbc11a68ce37b291bee6441076a19fbd37e9fc52378151f59212653",
+  "schema_version": 1,
+  "unavailable_from_v6_replays": [
+    "why a goal ceased to be valid (opponent took tree/cell/plant)",
+    "contested-tree episode outcome",
+    "score composition by resource and timing"
+  ]
+}

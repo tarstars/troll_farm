@@ -43,3 +43,12 @@
   active if that sample cannot separate behaviour.
 - `20260826-banana-farm-candidate`: accepted the owner-directed parity check; blocked until
   `claude_1` publishes the compacted farm instrument and round-trip report.
+
+## 2026-08-27 06:30Z — deliveries ready
+
+- `20260826-banana-farm-candidate`: ACCEPT packaging parity; compacted watching submission and
+  panel arm are identical after stripping diagnostics on 240/240 games. This does not change the
+  standing validity failure.
+- `20260827-goal-keeping-ladder-cost`: STOP under dead condition. The supplied slice has 208
+  champion games but only 4 keep-rule games, all bad losses; version-6 telemetry lacks opponent
+  invalidation cause, contested-target outcomes, and score composition. Hypothesis under-determined.
