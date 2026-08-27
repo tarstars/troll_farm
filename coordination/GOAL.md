@@ -1,23 +1,60 @@
-# GOAL — overnight 2026-08-26/27: run the ladder measurement L-1 and push the banana-farm candidate F-2 to the ladder queue; hourly wakes (cron 38e277ae at :13)
+# GOAL — the farm's viewing is done; run the owner's one-variable experiment when they say yes; return the champion
 
-You are `local_claude_1`, sole Arena controller. Rules: `coordination/WORKING-RULES.md`. Cards:
-`coordination/tasks/20260826-ladder-measure-cured-dancing-troll.md` (L-1, ledger
-`local_claude_1/ladder-measure/ledger-2026-08-26.md`) and
-`coordination/tasks/20260826-banana-farm-candidate.md` (F-2, design input
-`docs/BANANA-FARM-CONTRACT-2026-08-26.md`). The owner is asleep ~20:00Z → ~05:00Z.
+Owner rulings 2026-08-27: ~06:00Z *"the farm now to diagnose … one hour round is enough"* —
+delivered (reading 10.8 at rank 172/176, 160 games collected and decoded, ledger row FARM-1h).
+07:10Z *"denial logic matters … chop plum or lemon first, banana farm next … of course (a)"* —
+designed and discussed, then **parked** by the owner's 08:05Z ruling: *"we conducted a dirty
+experiment … take our champion with the simplest code and highest rating and turn this plum-lemon
+denial logic at the beginning of the game off. I predict one hour exposition to arena will show
+drastical rating drop."* The design for that experiment is with the owner; **build nothing until
+they say yes.**
 
-## Each wake (hourly, cron; also on any ack-required mail if the session is awake)
-1. `cd /home/tarstars/prj/troll_farm-local_claude_1`; `inbox_sweep --fetch`; read every new message whole before publishing anything; mark seen as its own step.
-2. **L-1 ledger step:** if the resident was submitted ≥ 2 h ago and its read is not in the table → `python3 cgauto/cg_rank.py`, write the row. Then submit the next bot in the plan (A1 → B1 → B2 → A2 → A3 → B3 → B4 → A4 → A5 → B5 → B6 → A6 → A7 → B7 → B8 → A8) with `api_submit_once.py` and the ledger's sha; write the submission row. After A8's read: resubmit A as the resident; compute mean(A), mean(B), difference, noise band; verdict line + plain-words sheet `local_claude_1/ladder-measure/owner-sheet-2026-08-27.md`.
-3. **F-2:** rule on whatever blocks a peer (design round verdicts up to two; a hash confirmation); land artifacts on `main` at each gate; when the panel is reproduced with the validity gates PASSED, book ladder slot 3 in the ledger (submission after A8, not before); if validity FAILS, write the obituary line and put the repair question in the owner's queue — do not submit.
-4. Mark stalls; append the five-part board note to `local_claude_1/goal-log-2026-08-26.md`; update board rows in the same commit; fast-forward `main`; pull the checkout `/home/tarstars/prj/troll_farm`.
-5. ~02:30Z: check the collector snapshot (`data/raw/snapshots/<latest>/leaderboard.json`, pseudo `tass`) and decode one collected game's diagnostic line (the 328-char payload) — record the result on the board (row 0-3's data gate).
+You are `local_claude_1`, sole Arena controller. Rules: `coordination/WORKING-RULES.md`; record:
+`coordination/BOARD.md`; ledger: `local_claude_1/ladder-measure/ledger-2026-08-26.md`; the night's
+handover: `coordination/HANDOVER-2026-08-27-board-era-ladder-and-farm.md`.
+
+## Each wake (hourly cron; also on ack-required mail)
+
+1. `cd /home/tarstars/prj/troll_farm-local_claude_1 && python3 scripts/inbox_sweep.py --me local_claude_1 --fetch`;
+   read every new message whole **before publishing anything**; `--mark` as its own step.
+2. **Ladder.** The farm (`41201668`, agent `6667061`) stays up only until the next submission; its
+   games are already collected (`local_claude_1/farm-watch/games-41201668/`). **Do not resubmit
+   the farm.**
+   - **The owner said yes (08:20Z) and the ablation is UP: submission `41202036`, 08:21:51Z**
+     (`cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs`, sha `0e92f8fa…`;
+     built by `local_claude_1/denial-ablation/make_denial_off.py`, bed `fixtures_diff.py`,
+     diff `readable/diffs/denial-bonus-off.diff`). **Read it once at ≥ 09:22Z** (a one-shot wake
+     is set for 09:24Z; the hourly wake at 09:37Z does it if that missed) with
+     `python3 cgauto/cg_rank.py` → ledger row (score, rank, agent id, time) → **collect its
+     games first** (`python3 local_claude_1/narrate/collect_submission_games.py --agent-id
+     <agent> --submission-id 41202036 --scratch <scratchpad>/abl-41202036 --output-dir
+     local_claude_1/denial-ablation/games-41202036 --observed-at-utc <date -u>`) → report the
+     number to the owner in plain words against their prediction ("a sharp drop"; noise ≈ 1.5 a
+     reading; the champion's own readings were 21.8 / 21.6 / 22.1).
+   - Then **return the champion** (`cgauto/submissions/candidate-champion-v6-instrument.rs`, sha
+     `72673124…`) as the resident — the reading first, the champion second, same wake.
+3. Rule on anything that blocks a peer; land artifacts on `main` at each gate; mark stalls.
+4. Board note (Moved / Stalled / Ladder / Decisions / Corrections) appended to
+   `local_claude_1/goal-log-2026-08-26.md`, board rows updated in the same commit; fast-forward
+   `main`; pull the checkout `/home/tarstars/prj/troll_farm`.
 
 ## Allowed without the owner
-The reads and the planned submissions of L-1; F-2's slot-3 submission only after A8 and only with validity PASSED; rulings that unblock a peer; stalls; landing artifacts; copies ≤ 10 MB.
+The hourly reading; collecting a resident's games; returning the champion as described; rulings
+that unblock a peer; stalls; landing artifacts; slices ≤ 10 MB on request. **With the owner's
+yes:** the ablation build and its one submission.
 
 ## Not allowed
-Any other submission; KEEP/REVERT/promotion rulings; new charters or tracks; rule changes; a third design round; transfers > 10 MB; deletions.
+Any other submission (no farm resubmission, no farm repair build, no keep-rule readings);
+promotion or revert rulings; new charters beyond the ablation; rule changes; transfers > 10 MB;
+deletions.
 
 ## Done when
-L-1: 16 reads, A resubmitted, verdict + sheet written. F-2: design accepted, built, panel reproduced, slot 3 booked or the obituary written. Board truthful; `main` == branch == checkout. **Time box:** 2026-08-28T12:00Z; then write the state, resubmit A if B or the farm is up, archive this file, set "no active mission".
+The ablation's one-hour reading is in the ledger and reported to the owner against their
+prediction (or the owner said no and the champion simply returned); the champion is back as the
+resident; the board is truthful and `origin/main` == `agent/local_claude_1` == the checkout.
+**Time box: 2026-08-27T18:00Z.**
+
+## Waiting on the owner (do not act on these)
+The farm — repair denial-first (designed) or close the line, after the ablation's reading; the
+keep rule — two more readings or leave it; the analytics — a balanced keep-rule slice plus three
+telemetry fields, or leave it.

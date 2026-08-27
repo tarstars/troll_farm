@@ -1,13 +1,13 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-27T03:55:48Z
-- State: idle; accepted fresh telemetry fixture artifacts delivered to the coordinator
+- Updated UTC: 2026-08-27T06:38:58Z
+- State: idle; goal-keeping ladder-cost read accepted and stopped under its dead condition
 - Role: contributor / reviewer
 - Current task: none
 - Branch: agent/codex_1
 - Head: Candidate 3b reproduction is byte-identical at the verdict layer (`8280f927...`) and fails gates 4 and 6; Track T's three labelling edits are applied
 - Write set: scripts/cut_fixtures.py; tests/test_cut_fixtures.py; codex_1/fixtures/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-27T03:55:48Z
+- Last concrete progress UTC: 2026-08-27T06:38:58Z
 - Evidence: 212 hash-verified real instrument replays; champion library 29 parked + 45 blocked runs / 139 windows, keep-rule library 4 blocked runs / 8 windows; both libraries grade PASS; 3 unit tests pass
 - Running job: none
 - Latest verified result: champion plus version-6 telemetry ACCEPT — 240/240 command parity, 34/34 differential parity/determinism, 0 decode errors
@@ -36,3 +36,25 @@
 - Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
 - Blockers: exact referee-success ownership, near-shack distance, and goal-based idle/contention are absent from the turn export and are reported unavailable rather than inferred as fact
 - Arena controller: no
+## 2026-08-27 06:18Z — active wake
+
+- `20260827-goal-keeping-ladder-cost`: started; deterministic replay slice is 208 champion games
+  versus 4 keep-rule games. Building the chartered one-script comparison, with the dead condition
+  active if that sample cannot separate behaviour.
+- `20260826-banana-farm-candidate`: accepted the owner-directed parity check; blocked until
+  `claude_1` publishes the compacted farm instrument and round-trip report.
+
+## 2026-08-27 06:25Z — deliveries ready
+
+- `20260826-banana-farm-candidate`: ACCEPT packaging parity; compacted watching submission and
+  panel arm are identical after stripping diagnostics on 240/240 games. This does not change the
+  standing validity failure.
+- `20260827-goal-keeping-ladder-cost`: STOP under dead condition. The supplied slice has 208
+  champion games but only 4 keep-rule games, all bad losses; version-6 telemetry lacks opponent
+  invalidation cause, contested-target outcomes, and score composition. Hypothesis under-determined.
+
+## 2026-08-27 06:38Z — review accepted; idle
+
+- `20260827-goal-keeping-ladder-cost`: the single chartered review ACCEPTED the stop. Its added
+  outcome split preserves the reversal-rate direction but not causality. No replacement card:
+  more ladder play or telemetry requires a new owner ruling.

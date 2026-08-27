@@ -1,0 +1,13 @@
+--- readable/door1-champion.rs
++++ readable/door1-champion.rs (plum/lemon denial bonus removed)
+@@ -885,10 +885,6 @@
+                         continue;
+                     }
+                     let mut score = 1000.0 * wood as f64 / turns as f64;
+-                    if Some(plant.kind) == type_to_cut && opponent_trolls <= 2 {
+-                        let opponent_distance = manhattan(plant.cell, view.shacks[1]);
+-                        score += 900.0 / (1 + opponent_distance) as f64;
+-                    }
+                     let command = if plant.cell == unit.cell {
+                         format!("CHOP {}", unit.id)
+                     } else {
