@@ -13,6 +13,8 @@ Owner ruling 2026-08-26: *"I want to see diffs in files."* This directory is whe
 | `diffs/candidate-1-hold.diff` | champion → Candidate 1 |
 | `diffs/candidate-2-swap.diff` | champion → Candidate 2 |
 | `diffs/candidate-2-swap-vs-candidate-1-hold.diff` | Candidate 1 → Candidate 2: **the swap rule itself**, the v5 telemetry letters, the hold switched off |
+| `diffs/banana-farm.diff` | champion → the banana wood farm (F-2), `claude_1/farm/farm-v8.rs`, +1811/−9. It also carries Candidate 3's keep machinery **switched off**, because the farm was built on the v6 emitter (the champion plus Candidate 3 behind a flag) |
+| `diffs/banana-farm-vs-v6-instrument.diff` | champion+v6 instrument → the farm, +887/−3: **the farm rule and its v8 telemetry group alone**, the smallest honest view. The arm was STOPPED at validity gate V1 and never submitted (`readable/reports/banana-farm.round-trip.json`) |
 
 Every future candidate adds `<candidate>.rs`, its report, and `diffs/<candidate>.diff` (base →
 candidate). GitHub renders `.diff` files with colouring: open
