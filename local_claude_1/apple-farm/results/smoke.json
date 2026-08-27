@@ -1,0 +1,2078 @@
+{
+  "all_mechanics_ok": 24,
+  "arm": "local_claude_1/apple-farm/champion-apple-farm-v6-instrument.rs",
+  "arm_sha256": "82c8ddd1347c8016aa80cdf883819e28ac867e7a193223f0c5311568d4833cf4",
+  "maps_in_corpus_with_water_side_door": 8867,
+  "maps_played": 24,
+  "own_score_sum_arm_minus_resident": 2831,
+  "resident": "local_claude_1/denial-ablation/champion-denial-off-v6-instrument.rs",
+  "resident_sha256": "321723933c2a0cfb6bfcd62c57e0d25b6783ffb8ddcfea37c05b053e2e46cd4f",
+  "rows": [
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 1,
+          "fruits": 0,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@farm": 13,
+          "HARVEST@farm": 12,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 41,
+        "own_inventory": [
+          0,
+          0,
+          148,
+          0,
+          0,
+          39
+        ],
+        "own_score": 304,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@farm": 144,
+          "HARVEST@farm": 145,
+          "PICK@farm": 1,
+          "PLANT@farm": 1
+        }
+      },
+      "farm_cell": [
+        8,
+        7
+      ],
+      "map_hash": "260fff3555adc8dd",
+      "profile": "harvester",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 5,
+          "DROP@elsewhere": 28,
+          "DROP@farm": 94,
+          "PICK@elsewhere": 272,
+          "PLANT@elsewhere": 273
+        },
+        "opp_score": 43,
+        "own_inventory": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          47
+        ],
+        "own_score": 189,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 81,
+          "DROP@elsewhere": 5,
+          "DROP@farm": 1,
+          "PICK@elsewhere": 1,
+          "PLANT@elsewhere": 1
+        }
+      },
+      "start_inventory": [
+        8,
+        7,
+        6,
+        2,
+        10,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": null,
+        "first": {
+          "DROP@elsewhere": 17,
+          "DROP@farm": 25,
+          "HARVEST@elsewhere": 13,
+          "HARVEST@farm": 24,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 72,
+        "own_inventory": [
+          0,
+          0,
+          123,
+          0,
+          1,
+          30
+        ],
+        "own_score": 243,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@elsewhere": 1,
+          "DROP@farm": 117,
+          "HARVEST@elsewhere": 1,
+          "HARVEST@farm": 118,
+          "PICK@farm": 1,
+          "PLANT@farm": 2
+        }
+      },
+      "farm_cell": [
+        1,
+        5
+      ],
+      "map_hash": "736f65f60eae2d97",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 12,
+          "DROP@elsewhere": 9,
+          "HARVEST@elsewhere": 5,
+          "PICK@elsewhere": 251,
+          "PLANT@elsewhere": 252
+        },
+        "opp_score": 64,
+        "own_inventory": [
+          0,
+          0,
+          7,
+          0,
+          1,
+          34
+        ],
+        "own_score": 143,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 83,
+          "DROP@elsewhere": 9,
+          "HARVEST@elsewhere": 1,
+          "PICK@elsewhere": 5,
+          "PLANT@elsewhere": 5
+        }
+      },
+      "start_inventory": [
+        9,
+        10,
+        10,
+        7,
+        3,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 2,
+          "fruits": 3,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@farm": 7,
+          "HARVEST@farm": 18,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 74,
+        "own_inventory": [
+          2,
+          1,
+          141,
+          0,
+          0,
+          34
+        ],
+        "own_score": 280,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@farm": 144,
+          "HARVEST@farm": 142,
+          "PICK@farm": 1,
+          "PLANT@farm": 1
+        }
+      },
+      "farm_cell": [
+        3,
+        6
+      ],
+      "map_hash": "8f5ef44241163b24",
+      "profile": "harvester",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 16,
+          "DROP@elsewhere": 199,
+          "DROP@farm": 5,
+          "PICK@elsewhere": 200,
+          "PLANT@elsewhere": 201
+        },
+        "opp_score": 60,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          39
+        ],
+        "own_score": 156,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 98,
+          "DROP@elsewhere": 4,
+          "DROP@farm": 5,
+          "PICK@elsewhere": 3,
+          "PLANT@elsewhere": 3
+        }
+      },
+      "start_inventory": [
+        7,
+        6,
+        2,
+        6,
+        2,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 1,
+          "fruits": 0,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@elsewhere": 9,
+          "DROP@farm": 21,
+          "HARVEST@farm": 20,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 59,
+        "own_inventory": [
+          0,
+          0,
+          113,
+          0,
+          0,
+          36
+        ],
+        "own_score": 257,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@elsewhere": 1,
+          "DROP@farm": 125,
+          "HARVEST@farm": 127,
+          "PICK@farm": 3,
+          "PLANT@farm": 4
+        }
+      },
+      "farm_cell": [
+        7,
+        8
+      ],
+      "map_hash": "7c8daf653be4fdb8",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 10,
+          "DROP@elsewhere": 5,
+          "PICK@elsewhere": 145,
+          "PLANT@elsewhere": 146
+        },
+        "opp_score": 55,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          31
+        ],
+        "own_score": 124,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 87,
+          "DROP@elsewhere": 9,
+          "PICK@elsewhere": 4,
+          "PLANT@elsewhere": 4
+        }
+      },
+      "start_inventory": [
+        2,
+        8,
+        7,
+        2,
+        9,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 2,
+          "fruits": 3,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@elsewhere": 13,
+          "DROP@farm": 21,
+          "HARVEST@elsewhere": 10,
+          "HARVEST@farm": 20,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 106,
+        "own_inventory": [
+          0,
+          0,
+          141,
+          0,
+          0,
+          44
+        ],
+        "own_score": 317,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@elsewhere": 1,
+          "DROP@farm": 140,
+          "HARVEST@elsewhere": 1,
+          "HARVEST@farm": 141,
+          "PICK@farm": 1,
+          "PLANT@farm": 1
+        }
+      },
+      "farm_cell": [
+        5,
+        3
+      ],
+      "map_hash": "49233d71291380f8",
+      "profile": "harvester",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 11,
+          "DROP@elsewhere": 7,
+          "DROP@farm": 105,
+          "HARVEST@elsewhere": 4
+        },
+        "opp_score": 79,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          50
+        ],
+        "own_score": 200,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 80,
+          "DROP@elsewhere": 2,
+          "DROP@farm": 3,
+          "HARVEST@elsewhere": 1
+        }
+      },
+      "start_inventory": [
+        7,
+        4,
+        5,
+        4,
+        10,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 1,
+          "fruits": 0,
+          "health": 7,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@elsewhere": 17,
+          "DROP@farm": 23,
+          "HARVEST@farm": 22,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 68,
+        "own_inventory": [
+          2,
+          1,
+          135,
+          0,
+          0,
+          29
+        ],
+        "own_score": 254,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@elsewhere": 1,
+          "DROP@farm": 129,
+          "HARVEST@farm": 131,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        }
+      },
+      "farm_cell": [
+        5,
+        2
+      ],
+      "map_hash": "bd1596f5b3c08ec9",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 15,
+          "DROP@elsewhere": 13,
+          "PICK@elsewhere": 251,
+          "PLANT@elsewhere": 252
+        },
+        "opp_score": 56,
+        "own_inventory": [
+          0,
+          0,
+          6,
+          0,
+          0,
+          34
+        ],
+        "own_score": 142,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 73,
+          "DROP@elsewhere": 12,
+          "PICK@elsewhere": 6,
+          "PLANT@elsewhere": 6
+        }
+      },
+      "start_inventory": [
+        4,
+        6,
+        9,
+        9,
+        4,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 1,
+          "fruits": 0,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@farm": 13,
+          "HARVEST@farm": 12,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 51,
+        "own_inventory": [
+          0,
+          0,
+          143,
+          0,
+          0,
+          35
+        ],
+        "own_score": 283,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@farm": 144,
+          "HARVEST@farm": 145,
+          "PICK@farm": 1,
+          "PLANT@farm": 1
+        }
+      },
+      "farm_cell": [
+        8,
+        2
+      ],
+      "map_hash": "5ffc09d119316a82",
+      "profile": "harvester",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 2,
+          "CHOP@farm": 180,
+          "DROP@elsewhere": 8,
+          "DROP@farm": 73,
+          "PICK@farm": 178,
+          "PLANT@farm": 179
+        },
+        "opp_score": 41,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          38
+        ],
+        "own_score": 152,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 67,
+          "CHOP@farm": 46,
+          "DROP@elsewhere": 2,
+          "DROP@farm": 7,
+          "PICK@farm": 4,
+          "PLANT@farm": 4
+        }
+      },
+      "start_inventory": [
+        5,
+        6,
+        4,
+        3,
+        5,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 2,
+          "fruits": 1,
+          "health": 10,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@elsewhere": 16,
+          "DROP@farm": 32,
+          "HARVEST@elsewhere": 13,
+          "HARVEST@farm": 31,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 70,
+        "own_inventory": [
+          2,
+          0,
+          101,
+          0,
+          4,
+          29
+        ],
+        "own_score": 219,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@elsewhere": 2,
+          "DROP@farm": 100,
+          "HARVEST@elsewhere": 2,
+          "HARVEST@farm": 104,
+          "PICK@farm": 4,
+          "PLANT@farm": 8
+        }
+      },
+      "farm_cell": [
+        8,
+        5
+      ],
+      "map_hash": "ad5aa1ab65c3ab45",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 27,
+          "DROP@elsewhere": 16,
+          "DROP@farm": 45,
+          "HARVEST@elsewhere": 13,
+          "PICK@elsewhere": 251,
+          "PLANT@elsewhere": 252
+        },
+        "opp_score": 62,
+        "own_inventory": [
+          0,
+          0,
+          3,
+          0,
+          4,
+          35
+        ],
+        "own_score": 143,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 83,
+          "DROP@elsewhere": 9,
+          "DROP@farm": 4,
+          "HARVEST@elsewhere": 2,
+          "PICK@elsewhere": 6,
+          "PLANT@elsewhere": 6
+        }
+      },
+      "start_inventory": [
+        4,
+        3,
+        6,
+        9,
+        9,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 1,
+          "fruits": 0,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@farm": 13,
+          "HARVEST@farm": 12,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 61,
+        "own_inventory": [
+          2,
+          0,
+          146,
+          0,
+          2,
+          20
+        ],
+        "own_score": 228,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@farm": 144,
+          "HARVEST@farm": 145,
+          "PICK@farm": 1,
+          "PLANT@farm": 1
+        }
+      },
+      "farm_cell": [
+        2,
+        2
+      ],
+      "map_hash": "1342d8f2bfd65d32",
+      "profile": "harvester",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 4,
+          "DROP@elsewhere": 12,
+          "DROP@farm": 84
+        },
+        "opp_score": 48,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          26
+        ],
+        "own_score": 104,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 80,
+          "DROP@elsewhere": 2,
+          "DROP@farm": 3
+        }
+      },
+      "start_inventory": [
+        7,
+        2,
+        4,
+        5,
+        7,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 1,
+          "fruits": 0,
+          "health": 17,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@elsewhere": 9,
+          "DROP@farm": 27,
+          "HARVEST@elsewhere": 6,
+          "HARVEST@farm": 26,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 63,
+        "own_inventory": [
+          0,
+          0,
+          99,
+          0,
+          2,
+          30
+        ],
+        "own_score": 219,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@elsewhere": 3,
+          "DROP@farm": 102,
+          "HARVEST@elsewhere": 3,
+          "HARVEST@farm": 107,
+          "PICK@farm": 4,
+          "PLANT@farm": 8
+        }
+      },
+      "farm_cell": [
+        6,
+        4
+      ],
+      "map_hash": "72fb8a8b7cae0ae4",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 23,
+          "DROP@elsewhere": 7,
+          "DROP@farm": 102,
+          "HARVEST@elsewhere": 4
+        },
+        "opp_score": 51,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          28
+        ],
+        "own_score": 112,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 32,
+          "DROP@elsewhere": 6,
+          "DROP@farm": 3,
+          "HARVEST@elsewhere": 3
+        }
+      },
+      "start_inventory": [
+        5,
+        2,
+        2,
+        6,
+        4,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 2,
+          "fruits": 3,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@farm": 5,
+          "HARVEST@farm": 20,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 70,
+        "own_inventory": [
+          0,
+          1,
+          144,
+          0,
+          0,
+          34
+        ],
+        "own_score": 281,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@farm": 147,
+          "HARVEST@farm": 141,
+          "PICK@farm": 1,
+          "PLANT@farm": 1
+        }
+      },
+      "farm_cell": [
+        4,
+        5
+      ],
+      "map_hash": "773a82cb88c49dfc",
+      "profile": "harvester",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 18,
+          "DROP@elsewhere": 3,
+          "DROP@farm": 64,
+          "PICK@elsewhere": 263,
+          "PLANT@elsewhere": 264
+        },
+        "opp_score": 61,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          44
+        ],
+        "own_score": 176,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 96,
+          "DROP@elsewhere": 13,
+          "DROP@farm": 3,
+          "PICK@elsewhere": 2,
+          "PLANT@elsewhere": 2
+        }
+      },
+      "start_inventory": [
+        2,
+        9,
+        6,
+        7,
+        3,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 1,
+          "fruits": 0,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@farm": 13,
+          "HARVEST@farm": 12,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 77,
+        "own_inventory": [
+          0,
+          0,
+          134,
+          0,
+          2,
+          46
+        ],
+        "own_score": 318,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@farm": 134,
+          "HARVEST@farm": 136,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        }
+      },
+      "farm_cell": [
+        8,
+        1
+      ],
+      "map_hash": "1b4573d6d8ae4694",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 3,
+          "DROP@elsewhere": 44,
+          "PICK@elsewhere": 146,
+          "PLANT@elsewhere": 147
+        },
+        "opp_score": 73,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          51
+        ],
+        "own_score": 204,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 121,
+          "DROP@elsewhere": 13,
+          "PICK@elsewhere": 10,
+          "PLANT@elsewhere": 10
+        }
+      },
+      "start_inventory": [
+        8,
+        6,
+        7,
+        8,
+        7,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 1,
+          "fruits": 2,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@farm": 7,
+          "HARVEST@elsewhere": 5,
+          "HARVEST@farm": 15,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 61,
+        "own_inventory": [
+          0,
+          0,
+          142,
+          0,
+          0,
+          45
+        ],
+        "own_score": 322,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@farm": 145,
+          "HARVEST@elsewhere": 2,
+          "HARVEST@farm": 143,
+          "PICK@farm": 1,
+          "PLANT@farm": 1
+        }
+      },
+      "farm_cell": [
+        6,
+        3
+      ],
+      "map_hash": "80cb31aba92bcfb7",
+      "profile": "harvester",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 15,
+          "DROP@farm": 5,
+          "HARVEST@elsewhere": 3
+        },
+        "opp_score": 50,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          44
+        ],
+        "own_score": 176,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 44,
+          "DROP@farm": 5,
+          "HARVEST@elsewhere": 2
+        }
+      },
+      "start_inventory": [
+        8,
+        7,
+        7,
+        5,
+        10,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 1,
+          "fruits": 0,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@farm": 13,
+          "HARVEST@farm": 12,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 58,
+        "own_inventory": [
+          0,
+          1,
+          136,
+          0,
+          0,
+          24
+        ],
+        "own_score": 233,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@farm": 134,
+          "HARVEST@farm": 136,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        }
+      },
+      "farm_cell": [
+        4,
+        2
+      ],
+      "map_hash": "030c620b076994e3",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 12,
+          "CHOP@farm": 138,
+          "DROP@farm": 40,
+          "PICK@farm": 136,
+          "PLANT@farm": 137
+        },
+        "opp_score": 50,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          30
+        ],
+        "own_score": 120,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 49,
+          "CHOP@farm": 61,
+          "DROP@farm": 7,
+          "PICK@farm": 4,
+          "PLANT@farm": 4
+        }
+      },
+      "start_inventory": [
+        6,
+        9,
+        5,
+        2,
+        2,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 1,
+          "fruits": 0,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@farm": 13,
+          "HARVEST@farm": 12,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 78,
+        "own_inventory": [
+          1,
+          2,
+          146,
+          0,
+          1,
+          43
+        ],
+        "own_score": 321,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@farm": 144,
+          "HARVEST@farm": 145,
+          "PICK@farm": 1,
+          "PLANT@farm": 1
+        }
+      },
+      "farm_cell": [
+        10,
+        0
+      ],
+      "map_hash": "e94c0500e094a478",
+      "profile": "harvester",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 4,
+          "DROP@elsewhere": 14,
+          "PICK@elsewhere": 178,
+          "PLANT@elsewhere": 179
+        },
+        "opp_score": 65,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          50
+        ],
+        "own_score": 200,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 115,
+          "DROP@elsewhere": 15,
+          "PICK@elsewhere": 10,
+          "PLANT@elsewhere": 10
+        }
+      },
+      "start_inventory": [
+        6,
+        7,
+        4,
+        9,
+        6,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 1,
+          "fruits": 0,
+          "health": 17,
+          "kind": "APPLE",
+          "size": 3
+        },
+        "first": {
+          "DROP@farm": 13,
+          "HARVEST@farm": 12,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 63,
+        "own_inventory": [
+          0,
+          0,
+          127,
+          0,
+          0,
+          36
+        ],
+        "own_score": 271,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@farm": 131,
+          "HARVEST@farm": 133,
+          "PICK@farm": 2,
+          "PLANT@farm": 4
+        }
+      },
+      "farm_cell": [
+        6,
+        1
+      ],
+      "map_hash": "30b117d200efa93d",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 3,
+          "CHOP@farm": 253,
+          "DROP@elsewhere": 47,
+          "DROP@farm": 151,
+          "PICK@farm": 251,
+          "PLANT@farm": 252
+        },
+        "opp_score": 55,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          35
+        ],
+        "own_score": 140,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 63,
+          "CHOP@farm": 14,
+          "DROP@elsewhere": 2,
+          "DROP@farm": 4,
+          "PICK@farm": 3,
+          "PLANT@farm": 3
+        }
+      },
+      "start_inventory": [
+        8,
+        5,
+        2,
+        4,
+        10,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 2,
+          "fruits": 3,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@elsewhere": 17,
+          "DROP@farm": 23,
+          "HARVEST@elsewhere": 11,
+          "HARVEST@farm": 22,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 89,
+        "own_inventory": [
+          0,
+          0,
+          145,
+          0,
+          1,
+          43
+        ],
+        "own_score": 317,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@elsewhere": 1,
+          "DROP@farm": 139,
+          "HARVEST@elsewhere": 1,
+          "HARVEST@farm": 140,
+          "PICK@farm": 1,
+          "PLANT@farm": 1
+        }
+      },
+      "farm_cell": [
+        6,
+        8
+      ],
+      "map_hash": "38a6874182367748",
+      "profile": "harvester",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 17,
+          "DROP@elsewhere": 13,
+          "HARVEST@elsewhere": 7,
+          "PICK@elsewhere": 208,
+          "PLANT@elsewhere": 209
+        },
+        "opp_score": 79,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          51
+        ],
+        "own_score": 204,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 135,
+          "DROP@elsewhere": 14,
+          "HARVEST@elsewhere": 1,
+          "PICK@elsewhere": 8,
+          "PLANT@elsewhere": 8
+        }
+      },
+      "start_inventory": [
+        6,
+        4,
+        8,
+        6,
+        6,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 1,
+          "fruits": 0,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@farm": 13,
+          "HARVEST@farm": 12,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 59,
+        "own_inventory": [
+          0,
+          0,
+          129,
+          0,
+          2,
+          23
+        ],
+        "own_score": 221,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@farm": 129,
+          "HARVEST@farm": 132,
+          "PICK@farm": 2,
+          "PLANT@farm": 4
+        }
+      },
+      "farm_cell": [
+        10,
+        0
+      ],
+      "map_hash": "f9924a6d5bf8ffd6",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 4,
+          "DROP@elsewhere": 9,
+          "PICK@elsewhere": 101,
+          "PLANT@elsewhere": 102
+        },
+        "opp_score": 43,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          26
+        ],
+        "own_score": 104,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 54,
+          "DROP@elsewhere": 11,
+          "PICK@elsewhere": 7,
+          "PLANT@elsewhere": 7
+        }
+      },
+      "start_inventory": [
+        2,
+        7,
+        3,
+        7,
+        7,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 1,
+          "fruits": 0,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@farm": 13,
+          "HARVEST@farm": 12,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 88,
+        "own_inventory": [
+          0,
+          0,
+          147,
+          0,
+          0,
+          42
+        ],
+        "own_score": 315,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@farm": 144,
+          "HARVEST@farm": 145,
+          "PICK@farm": 1,
+          "PLANT@farm": 1
+        }
+      },
+      "farm_cell": [
+        6,
+        6
+      ],
+      "map_hash": "10fe3c252cd1c78f",
+      "profile": "harvester",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 3,
+          "CHOP@farm": 172,
+          "DROP@farm": 10,
+          "PICK@farm": 170,
+          "PLANT@farm": 171
+        },
+        "opp_score": 73,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          44
+        ],
+        "own_score": 176,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 72,
+          "CHOP@farm": 41,
+          "DROP@farm": 9,
+          "PICK@farm": 5,
+          "PLANT@farm": 5
+        }
+      },
+      "start_inventory": [
+        10,
+        7,
+        5,
+        10,
+        5,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": null,
+        "first": {
+          "DROP@farm": 5,
+          "HARVEST@farm": 12,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 70,
+        "own_inventory": [
+          0,
+          0,
+          87,
+          0,
+          0,
+          26
+        ],
+        "own_score": 191,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@farm": 93,
+          "HARVEST@farm": 91,
+          "PICK@farm": 1,
+          "PLANT@farm": 1
+        }
+      },
+      "farm_cell": [
+        5,
+        1
+      ],
+      "map_hash": "5613b0f699f9ee3e",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 13,
+          "DROP@elsewhere": 32,
+          "DROP@farm": 3,
+          "PICK@elsewhere": 264,
+          "PLANT@elsewhere": 265
+        },
+        "opp_score": 46,
+        "own_inventory": [
+          0,
+          0,
+          4,
+          0,
+          0,
+          21
+        ],
+        "own_score": 88,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 51,
+          "DROP@elsewhere": 5,
+          "DROP@farm": 3,
+          "PICK@elsewhere": 3,
+          "PLANT@elsewhere": 3
+        }
+      },
+      "start_inventory": [
+        6,
+        2,
+        10,
+        4,
+        7,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 1,
+          "fruits": 0,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@farm": 13,
+          "HARVEST@farm": 12,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 52,
+        "own_inventory": [
+          0,
+          0,
+          138,
+          0,
+          0,
+          43
+        ],
+        "own_score": 310,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@farm": 144,
+          "HARVEST@farm": 145,
+          "PICK@farm": 1,
+          "PLANT@farm": 1
+        }
+      },
+      "farm_cell": [
+        7,
+        6
+      ],
+      "map_hash": "94cee030bb30e25a",
+      "profile": "harvester",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 3,
+          "DROP@elsewhere": 16
+        },
+        "opp_score": 49,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          38
+        ],
+        "own_score": 152,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 75,
+          "DROP@elsewhere": 2
+        }
+      },
+      "start_inventory": [
+        10,
+        5,
+        6,
+        7,
+        5,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 2,
+          "fruits": 0,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "CHOP@elsewhere": 14,
+          "DROP@elsewhere": 9,
+          "DROP@farm": 20,
+          "HARVEST@elsewhere": 8,
+          "HARVEST@farm": 19,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 73,
+        "own_inventory": [
+          3,
+          0,
+          117,
+          1,
+          2,
+          49
+        ],
+        "own_score": 317,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 1,
+          "DROP@elsewhere": 3,
+          "DROP@farm": 112,
+          "HARVEST@elsewhere": 3,
+          "HARVEST@farm": 115,
+          "PICK@farm": 4,
+          "PLANT@farm": 7
+        }
+      },
+      "farm_cell": [
+        8,
+        4
+      ],
+      "map_hash": "994c122784372a05",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 12,
+          "DROP@elsewhere": 3,
+          "DROP@farm": 92,
+          "HARVEST@elsewhere": 2,
+          "PICK@elsewhere": 251,
+          "PLANT@elsewhere": 252
+        },
+        "opp_score": 73,
+        "own_inventory": [
+          0,
+          0,
+          3,
+          0,
+          2,
+          55
+        ],
+        "own_score": 223,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 95,
+          "DROP@elsewhere": 9,
+          "DROP@farm": 2,
+          "HARVEST@elsewhere": 3,
+          "PICK@elsewhere": 3,
+          "PLANT@elsewhere": 3
+        }
+      },
+      "start_inventory": [
+        8,
+        7,
+        10,
+        8,
+        7,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 1,
+          "fruits": 0,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@farm": 13,
+          "HARVEST@farm": 12,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 70,
+        "own_inventory": [
+          0,
+          0,
+          143,
+          0,
+          0,
+          40
+        ],
+        "own_score": 303,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@farm": 144,
+          "HARVEST@farm": 145,
+          "PICK@farm": 1,
+          "PLANT@farm": 1
+        }
+      },
+      "farm_cell": [
+        5,
+        7
+      ],
+      "map_hash": "79018495111e9062",
+      "profile": "harvester",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 8,
+          "DROP@elsewhere": 20,
+          "PICK@elsewhere": 106,
+          "PLANT@elsewhere": 107
+        },
+        "opp_score": 59,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          43
+        ],
+        "own_score": 172,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 115,
+          "DROP@elsewhere": 12,
+          "PICK@elsewhere": 9,
+          "PLANT@elsewhere": 9
+        }
+      },
+      "start_inventory": [
+        7,
+        8,
+        8,
+        6,
+        5,
+        0
+      ]
+    },
+    {
+      "apple_already_there": false,
+      "arm": {
+        "farm_tree_at_end": {
+          "cd": 1,
+          "fruits": 0,
+          "health": 20,
+          "kind": "APPLE",
+          "size": 4
+        },
+        "first": {
+          "DROP@farm": 13,
+          "HARVEST@farm": 12,
+          "PICK@farm": 2,
+          "PLANT@farm": 3
+        },
+        "harvested": true,
+        "no_felling": true,
+        "opp_score": 62,
+        "own_inventory": [
+          0,
+          0,
+          123,
+          0,
+          2,
+          17
+        ],
+        "own_score": 191,
+        "own_units": 2,
+        "planted_by_turn_4": true,
+        "plays": true,
+        "referee_errors": {},
+        "telemetry_errors": [],
+        "turns_answered": 300,
+        "verbs": {
+          "DROP@farm": 124,
+          "HARVEST@farm": 127,
+          "PICK@farm": 3,
+          "PLANT@farm": 5
+        }
+      },
+      "farm_cell": [
+        4,
+        2
+      ],
+      "map_hash": "39a7fa1145e5d58e",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "farm_tree_at_end": null,
+        "first": {
+          "CHOP@elsewhere": 3,
+          "CHOP@farm": 255,
+          "DROP@farm": 16,
+          "PICK@farm": 253,
+          "PLANT@farm": 254
+        },
+        "opp_score": 46,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          21
+        ],
+        "own_score": 84,
+        "own_units": 2,
+        "referee_errors": {},
+        "turns_answered": 300,
+        "verbs": {
+          "CHOP@elsewhere": 44,
+          "CHOP@farm": 33,
+          "DROP@farm": 6,
+          "PICK@farm": 3,
+          "PLANT@farm": 3
+        }
+      },
+      "start_inventory": [
+        10,
+        3,
+        6,
+        3,
+        7,
+        0
+      ]
+    }
+  ],
+  "seed": 0,
+  "status": "PASS",
+  "turns": 300,
+  "what": "smoke on real ladder maps with a water-side door: mechanics only, not a value gate"
+}

@@ -1,0 +1,98 @@
+{
+  "arm": {
+    "bytes": 152424,
+    "lines": 3245,
+    "path": "local_claude_1/apple-farm/champion-apple-farm-v6-instrument.rs",
+    "sha256": "82c8ddd1347c8016aa80cdf883819e28ac867e7a193223f0c5311568d4833cf4"
+  },
+  "base_arm": {
+    "path": "local_claude_1/denial-ablation/champion-denial-off-v6-instrument.rs",
+    "sha256": "321723933c2a0cfb6bfcd62c57e0d25b6783ffb8ddcfea37c05b053e2e46cd4f"
+  },
+  "base_arm_and_resident_same_token_stream": true,
+  "base_readable": {
+    "path": "readable/denial-off-champion.rs",
+    "sha256": "4ce3d1e85e8962d84c0ecb1a071de46e844d24f7dbe5a31bd6ca0579db552143"
+  },
+  "base_resident": {
+    "path": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+    "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c"
+  },
+  "board_row": "ladder queue slot 3",
+  "bot": "the champion of record plus the apple-farm rule",
+  "canonical_token_stream_identical": true,
+  "compacted": {
+    "bytes": 66082,
+    "path": "cgauto/submissions/candidate-apple-farm-v6-instrument.rs",
+    "sha256": "8c6bc206417c6d22b593372ce42e74ce5698646c1f8a860073f349a2a082708c"
+  },
+  "compiles": true,
+  "distinct_from": {
+    "banana farm": {
+      "path": "cgauto/submissions/candidate-banana-farm-v8-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "443a196e51ca8a87066ef25ff88b81800601a6c901d3fe3e684effcad453a536"
+    },
+    "bare champion (old)": {
+      "path": "cgauto/submissions/candidate-door1-pure-deletion.rs",
+      "same_token_stream": false,
+      "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+    },
+    "bot A (old champion + diagnostics)": {
+      "path": "cgauto/submissions/candidate-champion-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "726731247910d846242fdabd0371c6f99ceb5c12de5e47d2b750d065b2b58c82"
+    },
+    "bot B (keep-your-goal)": {
+      "path": "cgauto/submissions/candidate-3-keep-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "04e3db43865121e82a8c6fab65e9fa09f6be487406af3a1fdd8e2a7807a0d879"
+    },
+    "the resident (champion of record)": {
+      "path": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c"
+    }
+  },
+  "edit": {
+    "insertions": [
+      {
+        "lines": 3,
+        "name": "chop_candidates skips the farm tree",
+        "where": "after"
+      },
+      {
+        "lines": 44,
+        "name": "farm_cell + farm_unit (impl MoisanBot)",
+        "where": "before"
+      },
+      {
+        "lines": 70,
+        "name": "farm_candidates (impl YamoBot)",
+        "where": "before"
+      },
+      {
+        "lines": 3,
+        "name": "commands: the farm owns its troll's turn",
+        "where": "before"
+      }
+    ],
+    "lines_added": 120,
+    "lines_removed": 0,
+    "what": "four pure insertions: the apple-farm rule"
+  },
+  "keep_rule_enabled": false,
+  "narrate_v6_enabled": true,
+  "readable_diff": {
+    "added": 120,
+    "path": "readable/diffs/apple-farm.diff",
+    "removed": 0
+  },
+  "readable_edited": {
+    "path": "local_claude_1/apple-farm/apple-farm-readable.rs",
+    "sha256": "b709a8166ecb86ded18b21af891f615acfeff95bb44b08bdfd8494609a9fa934"
+  },
+  "schema": "troll-farm-readable-source-v2",
+  "task": "apple-farm instrument (owner's one-variable experiment, 2026-08-27; design 1c/2yes)",
+  "verdict": "CHAMPION_APPLE_FARM_V6_INSTRUMENT_ROUND_TRIP_EXACT"
+}
