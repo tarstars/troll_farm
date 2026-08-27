@@ -1,6 +1,6 @@
 # GOAL — steady state: keep the champion read, the board truthful, the mail clean; nothing new without the owner's word
 
-**THIS HOUR (from 2026-08-27 13:34:48Z): the apple farm is on the ladder** — submission **`41203549`**
+**THIS HOUR (from 2026-08-27 13:34:48Z; round 3 `41204464` up since 16:44:19Z): the apple farm is on the ladder** — round 1 was submission **`41203549`**
 (sha `8c6bc206…`, `cgauto/submissions/candidate-apple-farm-v6-instrument.rs`; card
 `coordination/tasks/20260827-apple-farm-instrument.md`; ladder queue slot 3), the owner's one-variable
 experiment ("let's do it", design approved "1 c / 2 yes"): the champion of record plus one rule —
@@ -13,8 +13,9 @@ rank 49 of 176 — 1.4 below the champion's 21.2/42** (ledger row `APL-1h`; its 
 **THE FIVE ROUNDS (owner 15:0xZ: "let's just resubmit apple farm 5 times and see where it lands").**
 The same file (`cgauto/submissions/candidate-apple-farm-v6-instrument.rs`, sha
 `8c6bc206417c6d22b593372ce42e74ce5698646c1f8a860073f349a2a082708c`) is submitted five more times,
-one hour each; six readings in all with round 1's 19.8/49. **Round 2 = `41203992`, submitted
-15:04:07Z.** Each round, ≥ 60 min after its submission (a one-shot session cron at +62 min):
+one hour each; six readings in all with round 1's 19.8/49. **Readings so far: round 1 19.8/49
+(`41203549`), round 2 19.8/50 (`41203992`, read 16:41Z); round 3 = `41204464`, submitted 16:44:19Z,
+reading 17:46Z.** The reader `ladder_read.py` takes the package's `.jsonl.gz` file, not the directory. Each round, ≥ 60 min after its submission (a one-shot session cron at +62 min):
 (1) `python3 cgauto/cg_rank.py` — the reading; ledger row `APL-r<n>` (score, rank, agent id, time);
 (2) collect its games — `local_claude_1/narrate/collect_submission_games.py --agent-id <id>
 --submission-id <id> --scratch <scratchpad>/… --output-dir local_claude_1/apple-farm/games-<id>
