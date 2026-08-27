@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-27T02:40Z (cron wake 7)
+Last updated: 2026-08-27T03:25Z (cron wake 8)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -34,7 +34,7 @@ Last updated: 2026-08-27T02:40Z (cron wake 7)
 | 0-2 | Integrate the peer branches onto `main` (`coordination/tasks/20260826-integrate-peer-branches.md`) | local_claude_1 (codex_1 verified) | **DONE** — round 1 15:35Z (304+282+36 commits), round 2 18:30Z (11+5, the 3b and T-1 artifacts); both peers rebased and verified; the one leftover — claude_1's pre-rebase pin `152743Z` — quarantined by adjudication 18:3xZ (content redelivered at `153015Z`) | standing: peers rebase; coordinator lands artifacts at each gate | — | spent | 18:35Z |
 | 0-1 | 34 frozen fixtures (`coordination/tasks/20260826-fixture-drift.md`) | — | **CLOSED 14:45Z — RETIRED as gates (owner)**; successor 0-3 | — | — | spent | 14:45Z |
 | 0-3a | Champion + v6 telemetry arm (`coordination/tasks/20260826-champion-instrument-v6.md`) | claude_1 (built); codex_1 (accepted); coordinator (submitted, verified) | **DONE and its open condition is DISCHARGED 02:40Z** — the platform delivers the long diagnostic line intact: **287 collected ladder games, 78,424 diagnostic lines, 242–295 characters, 0 decode failures, no truncation** (`local_claude_1/narrate/collected-payload-check-2026-08-27.json`, tool `…/collected_payload_check.py`). Previous corpus maximum was 127 characters. | — | — | spent | 02:40Z |
-| 0-3 | Fixtures as a generated dataset from real instrumented games (`coordination/tasks/20260826-fresh-fixture-dataset.md`) | codex_1 (claude_1 reviews) | **both data gates now MET** — (1) the instrument has a full collector day (287 games in the 02:17Z run), (2) its payload decodes uncut (0 failures over 78,424 lines) | codex_1 may start `cut_fixtures.py` on its next wake | — | 1–2 days | 02:40Z |
+| 0-3 | Fixtures as a generated dataset from real instrumented games (`coordination/tasks/20260826-fresh-fixture-dataset.md`) | codex_1 (claude_1 reviews) | **startable — both data gates met and the raw-replay slice is shipped 03:25Z**: `data/raw/slice/instrument-replays-slice-2026-08-27.tar.gz` on codex_1's VM (**212 of our 287 instrument games, 9,018,967 B, sha `83789b28…` verified there**) + a manifest with per-game agent, seat, submission id, source hash, file hash and size | codex_1 writes `cut_fixtures.py` against the slice; absent classes are reported, never inferred | — | 1–2 days | 03:25Z |
 
 ## Ladder queue (single file; one bot at a time)
 

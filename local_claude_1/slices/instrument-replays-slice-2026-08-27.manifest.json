@@ -1,0 +1,2131 @@
+{
+  "slice": "deterministic, game-id ascending, our instrument games only",
+  "source_host": "/home/tarstars/prj/troll_farm/data/raw/games",
+  "collector_run": "20260827T021702Z-d61p-wide",
+  "games": 212,
+  "archive": "instrument-replays-slice-2026-08-27.tar.gz",
+  "archive_bytes": 9018967,
+  "archive_sha256": "83789b28d3b77410961f7d2ceb81f8254d96a80ccc99a478e010571f9af21ada",
+  "entries": [
+    {
+      "game_id": "900485844",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "23d023fe099d3a5360f324c5132d347cf149481b527d3ae7a82efb80b7ba7f93",
+      "bytes": 483956
+    },
+    {
+      "game_id": "900485845",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "5f74b95366f2972fd294b25f620a8d988a4be50e7f15a12629a1f431dc712397",
+      "bytes": 264305
+    },
+    {
+      "game_id": "900485846",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "eb24b8656738d1d04c82de0fa26d8ca8ec67be4db8d01fe9440fd96cce07c4d6",
+      "bytes": 436989
+    },
+    {
+      "game_id": "900486405",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "9c3dc1954b7152fc45914aff6ce5d0c07a5c9e588cd7c94e63df565d380982ea",
+      "bytes": 271786
+    },
+    {
+      "game_id": "900486423",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "ccab794803dd03e0b847e7edb7e3e7a4f0c3b8d111b3328b5fec158fa8b487ba",
+      "bytes": 306075
+    },
+    {
+      "game_id": "900486451",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "d2d49226adcea555f48bd50441bcd7b7856818fd55c138a12a003ead7931ac6f",
+      "bytes": 432947
+    },
+    {
+      "game_id": "900486503",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "6cb50f8c3dfb92d5b32f98391d93de19119dc6eacc3f109ac793dc1ef91774a3",
+      "bytes": 392359
+    },
+    {
+      "game_id": "900486526",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "ff8596496f4f77b215e43ca18a1772f0df117848c0aa65e073cabe2097277b7a",
+      "bytes": 359025
+    },
+    {
+      "game_id": "900486559",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "bdfa232a5fdd36ac690f65df676f1740fd08d9dce0b715f322a7d145d90262f9",
+      "bytes": 330302
+    },
+    {
+      "game_id": "900486571",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "d9038262a062ce63e4d425568ba27c51c0807b1cad3d893ba68d97a5687f53d2",
+      "bytes": 497924
+    },
+    {
+      "game_id": "900486600",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "8a1a81f086a2fe312573062fa4aadd062ce90717cf1b39229ad55b3c9559aee7",
+      "bytes": 347930
+    },
+    {
+      "game_id": "900486616",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "ec0880d7ab04768e47d5d5af78fa5661ce4b1b29d164e61409ab66e023900a66",
+      "bytes": 485761
+    },
+    {
+      "game_id": "900486637",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "6bb393c9abe77cf4693d611c74b47ec748fe2986ddfc6049a0b2a645c2088727",
+      "bytes": 234734
+    },
+    {
+      "game_id": "900486658",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "70c01f27edb05f006b0cd04dcc9cc45eef32c8b527d77812713913d567d005d7",
+      "bytes": 343998
+    },
+    {
+      "game_id": "900486686",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "f68b6dbe382fae32ac6ca5c5948ac9bef5b08058caef57e059ccecb786959a45",
+      "bytes": 449228
+    },
+    {
+      "game_id": "900486716",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "c6a2ddbbfaf93773af21784bd15ca4d3d43ef460a315cbb6371863b82fdceff7",
+      "bytes": 402716
+    },
+    {
+      "game_id": "900486752",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "b1fee0b202b45b3d02d48466ddcfa40be5df695d1e54460f6c6b51f2971abf76",
+      "bytes": 453270
+    },
+    {
+      "game_id": "900486775",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "6cef8ae4eece969b03d6d06175ecb31efad211eb852287870b06dd75ba41444e",
+      "bytes": 436192
+    },
+    {
+      "game_id": "900486807",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "9072e4eb23cd07db5502eccf00ad1fe0e425d3ac875ee43a8e87fda693d473f2",
+      "bytes": 464249
+    },
+    {
+      "game_id": "900486848",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "019d8af0db09d405f112b37c0a5622c932f6d0745fdb0445a1286c8bfc62e1d9",
+      "bytes": 513133
+    },
+    {
+      "game_id": "900486896",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "337c374448c5da3f936b26a82dee9a01a91ef35f50ed59ca9cd22a7be276ff52",
+      "bytes": 398246
+    },
+    {
+      "game_id": "900486926",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "619bbca627d33bb02d740486de83c582fe34c434ed43080fb8caad7dc4cef9f2",
+      "bytes": 333095
+    },
+    {
+      "game_id": "900486942",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "7b78b509ecab6523e406a5001f9436db225dc7145f0fbddddc7d857b82e3b4e5",
+      "bytes": 446837
+    },
+    {
+      "game_id": "900486967",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "2b6784b330f66a76e023a53832bc42c686fa4e813e327281190c2baf90bf24bb",
+      "bytes": 440674
+    },
+    {
+      "game_id": "900486990",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "b329c8c6dd6e301a9612e9ed7ec2e945a077eafcb8a8dc19783182a3ccd1eee3",
+      "bytes": 447094
+    },
+    {
+      "game_id": "900487025",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "4761e505c147ef99e152204136b29985e901b0bda96498c72beff4e352190b67",
+      "bytes": 462770
+    },
+    {
+      "game_id": "900487047",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "49b3bd6cb1bd18fd764e4abf9c568a881b10d5dce2cc743b539827269bdfbcf6",
+      "bytes": 455681
+    },
+    {
+      "game_id": "900487065",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "4b5aa299607c7f16cc0251b30e7c3c9ae526f5e561d75545a4fba4ae26b5f83c",
+      "bytes": 513744
+    },
+    {
+      "game_id": "900487114",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "1c49e12380764ffc33adaff055f60364317cb1652e99ad6729e63eb9b53750e9",
+      "bytes": 547098
+    },
+    {
+      "game_id": "900487146",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "9b666cb09c8c486d4227da3af936748713992d390b992197136d2dc625b38c25",
+      "bytes": 166856
+    },
+    {
+      "game_id": "900487178",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "3abfc5cfa3ea474ff6a3fbfd9305fdf09d11803c5bcadbb00ed63006d8cee7ed",
+      "bytes": 268819
+    },
+    {
+      "game_id": "900487202",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "a4377fa5bbbb40802e63dc19859258fffe9f736c0f63a7bb7ec897e24803bb9a",
+      "bytes": 448724
+    },
+    {
+      "game_id": "900487223",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "2d39c5a8638d113cdf860dd61467a60598f1105eae899d2831b4146d0d403262",
+      "bytes": 379267
+    },
+    {
+      "game_id": "900487294",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "c57f85f7b602002bc4b1188471d58a16fa4423be832dfe4360518d96f45a7dee",
+      "bytes": 370231
+    },
+    {
+      "game_id": "900487326",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "154d66ba714cfab97dfb482964d257f1a9cf7421cec296570c9f18824ac063de",
+      "bytes": 420066
+    },
+    {
+      "game_id": "900487377",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "0c6096f4d53c5e6f36cc38eaa2b7ce172bbe0bb595cab9125dc76b93913a8a70",
+      "bytes": 296802
+    },
+    {
+      "game_id": "900487400",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "49be02478427e4a823f2f171fbc1e0af33a7c32e9f03b3b7c106b62cee6e7bcb",
+      "bytes": 297237
+    },
+    {
+      "game_id": "900487453",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "4493f00c3759f013430ef9b20b124ed0d6e37b1b6ab61a707443ac04e8ac3b68",
+      "bytes": 407680
+    },
+    {
+      "game_id": "900487492",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "7d842280e8b749e3434a6dbf7ce447f7179ad181e5583ec95e5764f8b7800196",
+      "bytes": 481274
+    },
+    {
+      "game_id": "900487542",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "ff3911ea955f53871b17e3ed11b603c1954c22456fd649fe972fcc78c3665c98",
+      "bytes": 474237
+    },
+    {
+      "game_id": "900487564",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "9137b17208c43f6691b33c10596314a0de34bad281bee169d0ae3bff82a9724d",
+      "bytes": 348339
+    },
+    {
+      "game_id": "900487591",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "5814c43cf3304c37a96e3add83661f43622e7c6edb70499e65b10ecdaec6cdee",
+      "bytes": 492199
+    },
+    {
+      "game_id": "900487630",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "70ab10c12a34a41a7cd7fa62a4c15e7389ddc5103cc36ff8da8190f2e616a302",
+      "bytes": 476312
+    },
+    {
+      "game_id": "900487655",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "0aa84201a4dfb818197e5924c3f4dd676a8c32fcf8503de8c80dcfce1641fe0a",
+      "bytes": 318567
+    },
+    {
+      "game_id": "900487679",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "e4523e281a5d16d47901fec106eda0a552752e3ce83524408ce10da452331c8f",
+      "bytes": 471771
+    },
+    {
+      "game_id": "900487711",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "d2626c15b89a83967a9ef2a93f25e67be668491f1db73b6bf410790130b05728",
+      "bytes": 418903
+    },
+    {
+      "game_id": "900487732",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "dc742e003d140fd3d1aa483992828d4d5858c64263e37a9108f02eeb171602b5",
+      "bytes": 443929
+    },
+    {
+      "game_id": "900487763",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "7ef7ec474e9ffe56b10e835a6d034f7da45ab19712f59a8c39622a17e4e94e26",
+      "bytes": 438001
+    },
+    {
+      "game_id": "900487786",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "10563f1ab0207c2aa311c4ad22451d211b8da05156428403b47482b119b44159",
+      "bytes": 312807
+    },
+    {
+      "game_id": "900487820",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "893c4a5faf24a24e77f9399e01c570a95a94ce394a28dc7402e20f1737e144e7",
+      "bytes": 463350
+    },
+    {
+      "game_id": "900487844",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "49abefad2e13bcec71675b247d6dd64135b6e0ccc361adbae59f45e705064863",
+      "bytes": 538443
+    },
+    {
+      "game_id": "900487887",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "0e1d955e2d4f3f29e19aa5387944b4c65afac7589677813e10573c49ea56d81c",
+      "bytes": 434480
+    },
+    {
+      "game_id": "900487907",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "3279af5498c440db19a6905c825572cb4d8f8ac79a1da15e5e674192afe82bfa",
+      "bytes": 428914
+    },
+    {
+      "game_id": "900487937",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "10982845fb7dea084ce351a793048effbbc721964f5c49970c5270c3abfe03fc",
+      "bytes": 457507
+    },
+    {
+      "game_id": "900487960",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "3ff0309aff8c355dc825d717bca929ab8b8bc1f611130d163e936093d3cb0d02",
+      "bytes": 287120
+    },
+    {
+      "game_id": "900487972",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "a270763d21554973b0e39271553baaf33d2ea1f2df12f19c8698c9936e847a66",
+      "bytes": 204641
+    },
+    {
+      "game_id": "900487988",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "6f0513b662eb9184395063dce0bef9805e8f6992696b4c2da29339b3f49a7b9f",
+      "bytes": 465171
+    },
+    {
+      "game_id": "900488008",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "5f89b504363b2b8385a4abc34571ef68bace3e09a48ce01d25e7339ed9455bbf",
+      "bytes": 432990
+    },
+    {
+      "game_id": "900488034",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "0b55c20cc5f77b350106857499921a6c161f5be8fab2138e66343d35f6361bf3",
+      "bytes": 221154
+    },
+    {
+      "game_id": "900488088",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "951b1aa8d06139ab210e10c1b96b379692c7095a08e6f2db1e3aa756f288744f",
+      "bytes": 450275
+    },
+    {
+      "game_id": "900488133",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "205dc62747ebc2738a1e9bccf11202a8ea272ff525fb7a7d5e199322a9e1d643",
+      "bytes": 456416
+    },
+    {
+      "game_id": "900488217",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "a3e67fdda7b1c55d659d34598dab84702e7c7949c235050c81a71fa01f924834",
+      "bytes": 316888
+    },
+    {
+      "game_id": "900488237",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "4024fcc3bd29ba371e4b9a517e638da626134cb7a3cb1fe667cf0a5e97456b66",
+      "bytes": 435281
+    },
+    {
+      "game_id": "900488306",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "7c9c4efa8db5440e414ba793a7e2103e3d0e0a89ff2c3d4b0d630ff5ee1b557b",
+      "bytes": 405045
+    },
+    {
+      "game_id": "900488344",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "4217811e6cc629866d552c265fcd05ab89922a7e0912d2ff34aca4dde69b1d56",
+      "bytes": 454991
+    },
+    {
+      "game_id": "900488381",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "e77275282e40a0dc7e75413d38279bc655639c884f3818011bedaeb91772726c",
+      "bytes": 340836
+    },
+    {
+      "game_id": "900488428",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "073f3126dfcc1c3da8f5b2d7c2aa9cd7f316f6da3a4b80068814c70fbb0b41ce",
+      "bytes": 359477
+    },
+    {
+      "game_id": "900488504",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "b06c27eddd557690ef2958bcf319e0432ddec63780d6bdc3af42047c7b3c7047",
+      "bytes": 464928
+    },
+    {
+      "game_id": "900488526",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "320412eb3e669da1e81933c38ebfc77d678b2cbd4a485c044510d548779869db",
+      "bytes": 406246
+    },
+    {
+      "game_id": "900488550",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "5372b5d2e4bddd566f1a7d33659f908cfaecb943b70f1b4b1c393ebcce222d7c",
+      "bytes": 497606
+    },
+    {
+      "game_id": "900488590",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "b1dbaf0e7537e2a8f5322e0b0b41125298abb9a9f8372cea2ce7aa9f2e88a1c5",
+      "bytes": 426220
+    },
+    {
+      "game_id": "900488611",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "e1a51bd38726357334d4abf0c9be04616381c8c657b7ca973e0d12dfb2f33a11",
+      "bytes": 404252
+    },
+    {
+      "game_id": "900488651",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "355ebc995c1d53549669cb1a92d2e8ac0827619c5ca5c12a6a8a613e62cd9cb9",
+      "bytes": 485355
+    },
+    {
+      "game_id": "900488686",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "c99f42660712472dac86d3691d6c51140306018b0ca9cc5f9bd2a302b75c463e",
+      "bytes": 419448
+    },
+    {
+      "game_id": "900488743",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "a74607c6706799d07887d703bb7bf5b4f92836098592575358642c1d36883282",
+      "bytes": 454665
+    },
+    {
+      "game_id": "900488800",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "acb0d5d5f78ecc9aa404bb6f859b43168b9b250f9485f9cf590c5cb7591ab47b",
+      "bytes": 403084
+    },
+    {
+      "game_id": "900488854",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "10a4532fed2576638a02a332b4263126055bc330994fa9d3e1a5ad00c7ac8741",
+      "bytes": 380811
+    },
+    {
+      "game_id": "900488894",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "fcc42fb16e2927bb94d43089d5d86bd242036337b88d0220c3ad0fcca8787bfa",
+      "bytes": 405590
+    },
+    {
+      "game_id": "900488944",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "479d510050b8bfec39469737ad3924c0e5ad520cc55beb909e8afcbef50dde2f",
+      "bytes": 341134
+    },
+    {
+      "game_id": "900488996",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "d19ec4dcc88ad9fd6f4cc6419d9b2e3f8f79eec2a487267fab0fe4fac09a8238",
+      "bytes": 333373
+    },
+    {
+      "game_id": "900489036",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "69dce09fba28e0d8772a5722e7ff2a5369c4349294d5a4d44fced6a9a7d90ae4",
+      "bytes": 430955
+    },
+    {
+      "game_id": "900489090",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "124ca8f9ce56bff6677f73910e922f5812cdf3bbdddc04257d4954cffb0c14ae",
+      "bytes": 445924
+    },
+    {
+      "game_id": "900489129",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "c0cb4f23bbe3e692202b9247d61f07b024e49e7e640acdf63a264a10ecdcb45a",
+      "bytes": 395749
+    },
+    {
+      "game_id": "900489153",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "e66e451963e39998ce4d1c56a9a2da5eb0d4fde24a173a798d5d98a39fb20b06",
+      "bytes": 436617
+    },
+    {
+      "game_id": "900489201",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "6047f018cefb1f71837302bcca600248d13d942e6d2d45fc4263d13148d2d310",
+      "bytes": 400028
+    },
+    {
+      "game_id": "900489232",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "ed04f14e05736687318ce7b790df5d437a2f554435b78678e433d5b8eea5bbc1",
+      "bytes": 448679
+    },
+    {
+      "game_id": "900489261",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "7d781d1c1e4080f669757076e24f8c0d2264c9ae7879895d6cf5a2c671194da7",
+      "bytes": 421391
+    },
+    {
+      "game_id": "900489286",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "77b0e29f8af64b82f3f98e7ff6825ad625ae6d1e72821d19af86c7756d55c362",
+      "bytes": 485868
+    },
+    {
+      "game_id": "900489315",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "a19c32ab7946eba82a768c34f526f680fae0c5eebf2b5a32688af2b8378c2177",
+      "bytes": 495399
+    },
+    {
+      "game_id": "900489350",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "ab51da075801e47f74764fe0d072f4ad2b8812b28f4633c86cfbf630687354d6",
+      "bytes": 364603
+    },
+    {
+      "game_id": "900489374",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "fe3c72d838bee4ce80420a80f69bacb3390a5c6249b92d7890d81f0c793d1c59",
+      "bytes": 307154
+    },
+    {
+      "game_id": "900489394",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "a389c495ba708f6c47e2ed587291409c82933af1907d7e9a85dea4db6a860d57",
+      "bytes": 425055
+    },
+    {
+      "game_id": "900489472",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "50b4e9b28e791b70862e77c5245d892573af1c3d0d29694f4dbdc78f4771440a",
+      "bytes": 500453
+    },
+    {
+      "game_id": "900489524",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "c5d2ffcee504723848e7d634e9382bb9318be03d7f42e2e0e0d8841e2bbeca08",
+      "bytes": 449428
+    },
+    {
+      "game_id": "900489550",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "7992a781de497bbbbf0bd3cf713e7fa26d78b7d83664b21f122cf804b8281cbc",
+      "bytes": 454342
+    },
+    {
+      "game_id": "900489607",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "24177d1f8223bb85704205e5770d506614501b392f63a7232c2db9f4a2c6703c",
+      "bytes": 454998
+    },
+    {
+      "game_id": "900489628",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "104664f64d489e0d497d1117ad95091482b0aa2ce0257dd29def1590feff92f2",
+      "bytes": 433460
+    },
+    {
+      "game_id": "900489648",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "ed588e3116bea680ef27f13341f4eea4ef71a0c581207f533dbde7dddc668efb",
+      "bytes": 352047
+    },
+    {
+      "game_id": "900489675",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "6dca9d016b5695c79f4448a64611f71b6ff0b71bc9472c0adb319b2ff6fd3498",
+      "bytes": 250773
+    },
+    {
+      "game_id": "900489699",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "591c250a89af25d0b7a86806304e0285eb05938e90a2298be1a5df5d1dec80af",
+      "bytes": 461350
+    },
+    {
+      "game_id": "900489720",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "c13fef1f4487eb319d8c0dff8395cfd1d77486db782aaf2cbe43e7db3f005601",
+      "bytes": 453853
+    },
+    {
+      "game_id": "900489739",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "50384cd22441f7916b05cd4f4a9683bff824c1b645c97311736955e76133f0c0",
+      "bytes": 404551
+    },
+    {
+      "game_id": "900489774",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "fb6c69c6993eaf845381afe413e1a1babe1cc2742675d467f934f6853420e2d2",
+      "bytes": 452381
+    },
+    {
+      "game_id": "900489789",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "63ba2ee307c17595ab74a08fbeea7742e0619225b800aead12a27d662149115e",
+      "bytes": 460274
+    },
+    {
+      "game_id": "900489834",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "b81e0b5ca08c1c26f7ffec2928625bb42c1304ae78b565e121e2131ebf29c825",
+      "bytes": 468704
+    },
+    {
+      "game_id": "900489871",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "33866f13b788c340bcf510544d7dce85eb2b24c0bb4834022e235a1d9874b91d",
+      "bytes": 271171
+    },
+    {
+      "game_id": "900489896",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "7166a3aed7673aa552c04b5c9d926eb32e6ce2eb25ed2562c37bc1d31f9f59b4",
+      "bytes": 447243
+    },
+    {
+      "game_id": "900489923",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "95b485ef741655324803a48384c6545428e10509c2c3fcaa5e93f1432208b518",
+      "bytes": 407924
+    },
+    {
+      "game_id": "900489965",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "d8cebe57451d2e30558b02614a8d9548fd64fc1c89814254003091ff00b81c0a",
+      "bytes": 418065
+    },
+    {
+      "game_id": "900490003",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "385d3606802f20350a987ea7bd60c011d7fda13a4486a0dc07f488b7985a676e",
+      "bytes": 441108
+    },
+    {
+      "game_id": "900490039",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "3041ddcb5dce094af514841885ff4cb5fefc028636827926512f1a264b6a26ac",
+      "bytes": 305329
+    },
+    {
+      "game_id": "900490060",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "932e4ab59b784b70001ac2be235321b7aca833b1aaf48df04c075c54b440e6f5",
+      "bytes": 505475
+    },
+    {
+      "game_id": "900490096",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "34ca1e22275e14a04991bea475e6d2686bdfad3e97e64f089149cdb8bea63af6",
+      "bytes": 221391
+    },
+    {
+      "game_id": "900490119",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "fdd126d3c98228292bed466ad8f008451b62d7bdf95c78df7912c2363f5128cf",
+      "bytes": 349920
+    },
+    {
+      "game_id": "900490208",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "92e058e2a4d01e211512a2cf67385f5b8f490c89fc19e568d5434741afca9e03",
+      "bytes": 442683
+    },
+    {
+      "game_id": "900490236",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "3f5d52113306f7c086e86c8dff47668f61e09869b8f04428c586d142553894b7",
+      "bytes": 366754
+    },
+    {
+      "game_id": "900490262",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "826de4c17b41cd2ada406ff64ae115479f6bc414802df4b3b3703d736a0ff318",
+      "bytes": 380182
+    },
+    {
+      "game_id": "900490292",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "5d37229342767aeec54ddeed2a7cd0aceddda1e5af20421b2dfcd58bb21f48a2",
+      "bytes": 334361
+    },
+    {
+      "game_id": "900490317",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "7fcc313b1fc71c16332f5a0423763875a8a582dde3048fe41cf47b1254d2adc5",
+      "bytes": 462715
+    },
+    {
+      "game_id": "900490347",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "bdee976c6ff4775b9ae8bfa1a84854ea1b7a030aff40af367b8e0911db9b6425",
+      "bytes": 251816
+    },
+    {
+      "game_id": "900490379",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "69aec64735059a5b8d1b2e5efb7ee927385426a55d712d3b788275d8d03d259d",
+      "bytes": 378865
+    },
+    {
+      "game_id": "900490427",
+      "our_agent_id": 6664057,
+      "our_seat": 0,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "685f34286549ede91e296d798fb8f0f378547abca5ec7d5ef03cecc63ca9da8d",
+      "bytes": 512673
+    },
+    {
+      "game_id": "900490459",
+      "our_agent_id": 6664057,
+      "our_seat": 1,
+      "submission_id": "41198581",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "cce333225c23a148de269da627a185eaabb68d9b080ac84a131f79aa60b775c9",
+      "bytes": 479683
+    },
+    {
+      "game_id": "900518535",
+      "our_agent_id": 6664418,
+      "our_seat": 1,
+      "submission_id": "41199973",
+      "source_sha256_prefix": "04e3db43\u2026",
+      "arm": "B keep-rule+v6",
+      "file_sha256": "e53612116637551414f0658fa17df47d0d94388271dbfa8b17486355c42ff2e9",
+      "bytes": 501322
+    },
+    {
+      "game_id": "900518536",
+      "our_agent_id": 6664418,
+      "our_seat": 1,
+      "submission_id": "41199973",
+      "source_sha256_prefix": "04e3db43\u2026",
+      "arm": "B keep-rule+v6",
+      "file_sha256": "041d3fd2228e8dc195c2755bc37278b409b19939ca2232ffb160e0737204a163",
+      "bytes": 497206
+    },
+    {
+      "game_id": "900530827",
+      "our_agent_id": 6664787,
+      "our_seat": 1,
+      "submission_id": "41200547",
+      "source_sha256_prefix": "04e3db43\u2026",
+      "arm": "B keep-rule+v6",
+      "file_sha256": "f6b2cd4c69b6c8e0b48e7f956c9c9a25db36122d527c651bb03b457db497888d",
+      "bytes": 504833
+    },
+    {
+      "game_id": "900530828",
+      "our_agent_id": 6664787,
+      "our_seat": 0,
+      "submission_id": "41200547",
+      "source_sha256_prefix": "04e3db43\u2026",
+      "arm": "B keep-rule+v6",
+      "file_sha256": "ae5bd3f675fdaff5f520d278e062a6f5eff50e8586325c60d1adf8264d601391",
+      "bytes": 501321
+    },
+    {
+      "game_id": "900537143",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "6ef5ab4ff531db13ff0fc257ed82c635913bc23cd9cdd6e193ca95717e62c1d7",
+      "bytes": 523587
+    },
+    {
+      "game_id": "900537144",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "bed3100d10c156358dbb8c075749ede297d6fb2ff536140d27544bbb654c9ead",
+      "bytes": 440319
+    },
+    {
+      "game_id": "900537145",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "ea599de463b162eecb861693b2ccacde971a1b73e228b9c61f05e96dec4ce3b5",
+      "bytes": 420796
+    },
+    {
+      "game_id": "900537146",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "0c61d7b1957d63f6403c9cab947e1dc9b42a8a009e1741c5fb4272863cf1bdeb",
+      "bytes": 442155
+    },
+    {
+      "game_id": "900537147",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "ab05aee13f3066c45a1c761fedc1b08a9bab619f5a02d9a5b5c966c72deda220",
+      "bytes": 463462
+    },
+    {
+      "game_id": "900537148",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "c4824e717f3e11dbc8484c3eaec57af543a491bb2d5cfb331ce4301e5c92b839",
+      "bytes": 427248
+    },
+    {
+      "game_id": "900537149",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "592977b135e127600351e4df0754e5f7068df94d2ca714e377b3c299f2d0d8a8",
+      "bytes": 440818
+    },
+    {
+      "game_id": "900537150",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "38ed986a3d7d537a9bd9496e17da6674dfca8164bd778359210caea918c900bc",
+      "bytes": 452106
+    },
+    {
+      "game_id": "900537151",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "913b55e5eceeac18e9bf3008d09fd08c9b238671e6a418dbcda0d170c357ca4d",
+      "bytes": 423533
+    },
+    {
+      "game_id": "900537152",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "4549d3c7583a57ca4abb6162947c9014e9aa344d268f4a6195b72cef4c6d10e4",
+      "bytes": 442139
+    },
+    {
+      "game_id": "900537177",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "f8f056db91710c524bb45470bc59de6eb6397f69d6ec10537a06b1e8a722263a",
+      "bytes": 430892
+    },
+    {
+      "game_id": "900537194",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "522b0dbbf07f323714c65fc87cee01f10009bf600f095961f8e3fddbbf727916",
+      "bytes": 379371
+    },
+    {
+      "game_id": "900537204",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "505b6d9112fba491fc98323041699b5dcc36b1a2530aead80992f544bcfa35c3",
+      "bytes": 289349
+    },
+    {
+      "game_id": "900537212",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "0c2d7c98e238f2c628f77632f79ebc119c8a1c505a2bcd498b3ca708ad9bb2d8",
+      "bytes": 414400
+    },
+    {
+      "game_id": "900537223",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "4944f605abdcf035b9d2f7b6d7e5983067dac2e7c678ca8036c0c6fd79af08fb",
+      "bytes": 319351
+    },
+    {
+      "game_id": "900537231",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "a6a771fb084b2e3ff0cb12f822466c749f00420be20a8fda1c31e4f727a749b1",
+      "bytes": 451432
+    },
+    {
+      "game_id": "900537245",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "d11829cf63e480d1f627dea001d084cf3cabcf81bf877bc549b7046660619243",
+      "bytes": 378848
+    },
+    {
+      "game_id": "900537252",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "8b006e93557249e2d5d322285b125d92cecad8bb7f5acaa33899ee735d3815eb",
+      "bytes": 404903
+    },
+    {
+      "game_id": "900537266",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "127cd4baf9d9a7336f5f3a34d2fca4e8d2c1ec9d3d104edbb705a190a8d33493",
+      "bytes": 452865
+    },
+    {
+      "game_id": "900537284",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "8910448cdfdf4524808b66a35806b9ef63fabaa33063bf2aed64998183d2b47a",
+      "bytes": 446035
+    },
+    {
+      "game_id": "900537293",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "144febca8671fe32a7fc4bc6a2324c5bd86be4607ee3b4b7405bf866402773e8",
+      "bytes": 500418
+    },
+    {
+      "game_id": "900537303",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "e2e709294efb15690a2dcf34d92399ca9db11e0dd2227fa5b6c127e767afbbe4",
+      "bytes": 505372
+    },
+    {
+      "game_id": "900537318",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "d3fa70e9b293446008da195723100a1ebd1c7c43b74f37afcf6fddc698ff92ba",
+      "bytes": 444619
+    },
+    {
+      "game_id": "900537328",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "cb56027caadfbc5a275efc532b3a076d3ae39d6a3ad94087d6df468c12d4fab2",
+      "bytes": 372014
+    },
+    {
+      "game_id": "900537334",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "c26101c1430a1bc870537dbbf511f5fb83c2aef0fe4607245cc89c3b2982205b",
+      "bytes": 451072
+    },
+    {
+      "game_id": "900537345",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "4f5514426a40cc530f2760b1f07032b9723deccc114fbc039ddc628b9bcdd523",
+      "bytes": 236493
+    },
+    {
+      "game_id": "900537351",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "9e5537bf45db2b77482d9fa5919d6c30f237e4c9629d1523c4d054733a0c6d85",
+      "bytes": 517487
+    },
+    {
+      "game_id": "900537358",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "830d14ae8608388380eff9189ee1c695abd6b29820304d82684b99e1c2f7a014",
+      "bytes": 219603
+    },
+    {
+      "game_id": "900537371",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "3676f3108b6f9f3ce5755d1222e9a7770e08ff67cad729a8e8727e10bfcfcb6e",
+      "bytes": 452472
+    },
+    {
+      "game_id": "900537416",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "f57078ee65a01f4be19e4a8d2a27e0e26b5cc89f63936ac99afbd88cf0fbc769",
+      "bytes": 452190
+    },
+    {
+      "game_id": "900537426",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "3c667c39ce10b2b0282d30f162ab78f62d1f6a11c3c800de210db0657dc4f70c",
+      "bytes": 478925
+    },
+    {
+      "game_id": "900537438",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "3be77c17ba18562c52706d17d12c11025d6769e6726bc6402d033114e2efce85",
+      "bytes": 487730
+    },
+    {
+      "game_id": "900537481",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "f20d2df79656e7ddd109e4fe80e8a82e2a16f18cdaecb5e597f2ddd8e8e42186",
+      "bytes": 515106
+    },
+    {
+      "game_id": "900537524",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "886c866a6058a8c968dcad53a629d2d31f1f1d7b6eee43b44a0e664279ef003e",
+      "bytes": 410232
+    },
+    {
+      "game_id": "900537534",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "f5b80ec2eddbc7ee7c6934fb45953a04ab3762dfeac5f059ec6598cc95302b20",
+      "bytes": 413146
+    },
+    {
+      "game_id": "900537545",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "084da72ffbe545af808eabb18d81f37d4b56c81d0e42678220acee77661e4159",
+      "bytes": 446778
+    },
+    {
+      "game_id": "900537556",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "f8cab8cd8172cafb659d5c9c651a17b764e9de2e0e2aef2c8130150fc0b20e9a",
+      "bytes": 396857
+    },
+    {
+      "game_id": "900537566",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "6892480de43aacfedf0f8de681ae18f00293fa6700576963791d400a9153bace",
+      "bytes": 296153
+    },
+    {
+      "game_id": "900537571",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "d78f3ae8b8d49ac2c27512bd781e01f781ad7735f0f344aeec25001d8ac69648",
+      "bytes": 482138
+    },
+    {
+      "game_id": "900537577",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "615874e72f9a988baf78cf0c09ca3caf6a240a851807bd1938ccce58005a66d1",
+      "bytes": 261757
+    },
+    {
+      "game_id": "900537583",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "604eb45f18d5f2e0a8b18b37e0f39e68b30b8d6a8e6a98cf2275024a136eb266",
+      "bytes": 396638
+    },
+    {
+      "game_id": "900537590",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "0e9f249e13035aa7cc16775f644cdabdafcf87743711cbbceb892d9ab48f2a93",
+      "bytes": 444984
+    },
+    {
+      "game_id": "900537601",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "5750a457682cde6ff93bfb9471f5ac543d8621767683cb5dc2c38ba036b50145",
+      "bytes": 334235
+    },
+    {
+      "game_id": "900537607",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "8a16fc02b8f119ff6a4275591a657174636581e4bc7fcbecbd2d36dc3af61c87",
+      "bytes": 439259
+    },
+    {
+      "game_id": "900537617",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "1ff02dcf683ff079c8474b0c0871a435a7b47612f28ad46414b9c0d323f32205",
+      "bytes": 447262
+    },
+    {
+      "game_id": "900537629",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "a52b9dd1a54f918acef08ea5229430b80ebe5ec55efd3f182bf9d20fd16d2bb8",
+      "bytes": 445842
+    },
+    {
+      "game_id": "900537638",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "8294c251b60108612a8981994be9b0f9b493507d8e99e83531b7581c3beede33",
+      "bytes": 412892
+    },
+    {
+      "game_id": "900537649",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "b1bd0678b54f0679428200c4dccc17240042b32aa6e4630818c05a72871c57ab",
+      "bytes": 489041
+    },
+    {
+      "game_id": "900537659",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "1bba83f454c1cbdede249906c92899ffc5ab0a4d61ef869f76f0d254633f8239",
+      "bytes": 468179
+    },
+    {
+      "game_id": "900537666",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "684c5764f7cb087c5640d55c0c15415a9aeaeaac4b9c0505fa9f43feccac206d",
+      "bytes": 367607
+    },
+    {
+      "game_id": "900537675",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "fe60862a0cf33b09ea3ac46ee6b7c3ac9d514caa6d3221eee56aad0286bb6aed",
+      "bytes": 217179
+    },
+    {
+      "game_id": "900537685",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "03bab4f7f38273dc3ba5cc55af61766999fa4a86af9fa7a2aa8ca85ed94c79dc",
+      "bytes": 425070
+    },
+    {
+      "game_id": "900537700",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "ec90571b1c15ab9e4c68059748ce21c6f2b3463e963baccebc89239c4dfefd1f",
+      "bytes": 437540
+    },
+    {
+      "game_id": "900537710",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "9001652cd9d0eb33e798d157008304881c2ad893e63e63ced4dc2f59f3b885f9",
+      "bytes": 413744
+    },
+    {
+      "game_id": "900537720",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "468ff40e287cb4aa1be24e4ccfbf36a9e13e83019b480cba6e3606e434fbf42b",
+      "bytes": 425166
+    },
+    {
+      "game_id": "900537730",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "9d628baf3a587f8bded67e2deaff3a9e1d635da8f4865b6379fdbc08bb518cc4",
+      "bytes": 442420
+    },
+    {
+      "game_id": "900537757",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "0678a6485398ab7f73e099ed59ba71c6ea51386e50f7ef9db9c62302bfc1d3f7",
+      "bytes": 307642
+    },
+    {
+      "game_id": "900537766",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "5b7db0454b4bfdaf9da39bb4fbcf5dcf4053980ccd71960cb3ff0884052f26c4",
+      "bytes": 444732
+    },
+    {
+      "game_id": "900537778",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "c89b65a04add09fd738cd7def5d4e97a06a214b794784b3307440ff6dd01e766",
+      "bytes": 315465
+    },
+    {
+      "game_id": "900537792",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "f5b166daa1a04f94022b5bee522aa14f645b276014448d3f1c2fc429779d2712",
+      "bytes": 393490
+    },
+    {
+      "game_id": "900537802",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "fd52c31b87e5b1ea3e2298356fb667a0baa38d65e4679fde7268e31b30c10214",
+      "bytes": 470807
+    },
+    {
+      "game_id": "900537819",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "d42689c4e8ed5ac5042382b09087de3e1317d0cc86993ce2aa6552c4c215acf6",
+      "bytes": 476752
+    },
+    {
+      "game_id": "900537831",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "a285a4294ca21eabb43eedc652f076bad89db81478eeb4d2650734d8ab229f31",
+      "bytes": 430774
+    },
+    {
+      "game_id": "900537841",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "2fb1114a27933377bc578c93b5214d64b96fd5dce09730335223ce06bb32ada2",
+      "bytes": 396181
+    },
+    {
+      "game_id": "900537855",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "c9aaa7484d1d8dea29a909f82498d3a1e6f5111ca3d8e9cdca05950525ea3d59",
+      "bytes": 486077
+    },
+    {
+      "game_id": "900537867",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "a2bcb42dec0eda108a663328669540813e01155edb0c2e611cccd3185e81f45c",
+      "bytes": 279059
+    },
+    {
+      "game_id": "900537878",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "7538e49528ddcb37c97fe872afdc9f5455d49d0bb9112e3139391b68527b2b02",
+      "bytes": 254183
+    },
+    {
+      "game_id": "900537904",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "d8e9e211a22a8a2d29b22049ded905071c3563cf06f9d2154ed30489c0b25372",
+      "bytes": 436502
+    },
+    {
+      "game_id": "900537922",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "73f27f7a8674d7c1f965a80ab16f725ac688faa69404dab7c0b57e5938474b7a",
+      "bytes": 346415
+    },
+    {
+      "game_id": "900537934",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "cd00e6dcc4f31b98af52a6d66edc85244a98eff41572594891559b90620c14f1",
+      "bytes": 533929
+    },
+    {
+      "game_id": "900537947",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "7d74cbdd9ba33d10681f16140422aede4e3233b43dfc4f4738a306b64b96172f",
+      "bytes": 447321
+    },
+    {
+      "game_id": "900537955",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "686f7e5e732699197222a79ec8219146d7c75b0fe9bf8bcc630a838500395a27",
+      "bytes": 444414
+    },
+    {
+      "game_id": "900537961",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "bddb8d3545fc27ce19fe198f8fba2a0b3217318e1a1be25b26e07efb050e20bc",
+      "bytes": 217940
+    },
+    {
+      "game_id": "900537968",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "685996ee3cde58cf0874753065a8d9ce21b8230b9de4f52d40028f0085b668a1",
+      "bytes": 352497
+    },
+    {
+      "game_id": "900537998",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "79bcc8dbc0143f4f37437d9105a34a1322bacbf9a87c066d7ea54327eefacf53",
+      "bytes": 431963
+    },
+    {
+      "game_id": "900538010",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "7c8969e6ab393d4c10e9b3792a89476fac6d56588bdb4fb5accde566e9e415d4",
+      "bytes": 345793
+    },
+    {
+      "game_id": "900538022",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "ddac9761522a3abb72398aae1a3a0e24d5b696a6f96b9180d88230030ea37e55",
+      "bytes": 447535
+    },
+    {
+      "game_id": "900538036",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "59211b87dd423c1e41f2fe48b46c0dd0a59b518c45ae991f8c741017c62bc417",
+      "bytes": 392380
+    },
+    {
+      "game_id": "900538046",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "22adc64d4cd9f9eefaa167ecad93a4d00ac6ff65ad2af88e59a923f59c4afaf0",
+      "bytes": 428960
+    },
+    {
+      "game_id": "900538058",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "aa7c5d50309200fecb31bd99664e206de24515c0dd12ec7e6e68bdf85bbc0d7f",
+      "bytes": 437218
+    },
+    {
+      "game_id": "900538090",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "d0383358027c72212b2fc7c4d81e7311b713f2b6d35f28e5fd9f9c1cb459cb61",
+      "bytes": 412014
+    },
+    {
+      "game_id": "900538107",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "ad099d776097a4dd69e91ff6c9378e4e304dabc25171458173573f5e7cbaeb99",
+      "bytes": 233513
+    },
+    {
+      "game_id": "900538155",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "3b4a1c7a3d4514fe548606d3b3df54c92cc2d58ef07360d1e19eefb538f059a0",
+      "bytes": 500509
+    },
+    {
+      "game_id": "900538175",
+      "our_agent_id": 6665150,
+      "our_seat": 1,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "cda0eb8acb5752acb2aa7e04654816d0c80ff904b8fe3dcd980cc526c24c3083",
+      "bytes": 367352
+    },
+    {
+      "game_id": "900538190",
+      "our_agent_id": 6665150,
+      "our_seat": 0,
+      "submission_id": "41200776",
+      "source_sha256_prefix": "72673124\u2026",
+      "arm": "A champion+v6",
+      "file_sha256": "4fd7f2e1e4ce60780948d984f093160ac9700869e7dd3b6c5c4eeaacbf25d66b",
+      "bytes": 456420
+    }
+  ]
+}
