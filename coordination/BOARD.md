@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-27T10:04Z (owner rulings: farm closed; dead code stays; keep rule on hold)
+Last updated: 2026-08-27T10:58Z (hourly wake)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
