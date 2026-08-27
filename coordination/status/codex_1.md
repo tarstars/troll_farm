@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-26T22:03:55Z
-- State: banana-farm panel independently reproduced FAIL (52 farm-off blocking games; 96 instrument; 92 candidate); no ladder eligibility
+- Updated UTC: 2026-08-27T02:41:13Z
+- State: fresh-fixture data gates met; build deferred because the mandatory bulk-read preflight reports no approved backend
 - Role: contributor / reviewer
-- Current task: fresh telemetry fixtures remain deferred behind the completed A-B-B-A collection and one successful collected payload decode
+- Current task: fresh telemetry fixtures; awaiting the coordinator's offered <=10 MB hash-manifested replay slice or a passing storage preflight
 - Branch: agent/codex_1
 - Head: Candidate 3b reproduction is byte-identical at the verdict layer (`8280f927...`) and fails gates 4 and 6; Track T's three labelling edits are applied
 - Write set: codex_1/top10/**; codex_1/farm/**; codex_1/p4b/**; codex_1/reviews/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-26T22:03:55Z
-- Evidence: `codex_1/reviews/banana-farm-panel-reproduction-2026-08-26.md`; exact artifact `5e2294ab`; reproduced 52/96/92 blocking counts and 34/34 containment
+- Last concrete progress UTC: 2026-08-27T02:41:13Z
+- Evidence: coordinator handoff `20260827T023334Z` proves 287 instrument games and 78,424 decoded diagnostic lines; local `check_external_storage.py --intent read` fails before corpus access
 - Running job: none
 - Latest verified result: champion plus version-6 telemetry ACCEPT — 240/240 command parity, 34/34 differential parity/determinism, 0 decode errors
-- Next checkpoint: after both ladder arms are collected, run one annotation script and start 0-3 only after successful payload decode
+- Next checkpoint: consume the <=10 MB replay slice or retry after a passing storage preflight; then build the generator and first fixture library
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
@@ -30,6 +30,7 @@
 - Completed replacement card: cured-dancing-troll bot B identity check accepted at 240/240 command streams after complete `MSG` removal; annotations await hash-tagged collected games for both arms
 - Completed replacement card: bot B identity delivery re-pinned after rebase at reachable commit `589c4614`; the 240/240 result is unchanged
 - DEFERRED replacement card: fresh-fixture dataset 0-3 now follows the 1.5-day ladder-measurement collection window and a successful collected payload decode; bot B games count when tagged by hash
+- DEFERRED replacement card: collection and decode gates are met; input access waits for the coordinator's <=10 MB hash-manifested slice or a passing mandatory storage preflight
 - Completed replacement card: P4b farm dialect corrected from the already-taken v7 token to v8; exact narrate8 controls and 12 gate tests pass
 - Completed replacement card: banana-farm F-2 reproduction confirms the validity BLOCK; farm-off 52, instrument 96, candidate 92, containment 34/34; no Arena mutation
 - Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
