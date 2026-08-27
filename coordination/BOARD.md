@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-27T03:25Z (cron wake 8)
+Last updated: 2026-08-27T04:45Z (cron wake 9)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -25,7 +25,7 @@ Last updated: 2026-08-27T03:25Z (cron wake 8)
 | # | task | owner | stage | next concrete step | blocked on | budget left | last evidence |
 |---|---|---|---|---|---|---|---|
 | F-1 | Who ate the b100 farm? (`coordination/tasks/20260826-track-f-b100-theft-split.md`) | codex_1 (claude_1 reviewed) | **STOPPED under its dead condition 14:22Z; F-G1 ACCEPT-WITH-EDIT, edits published 14:41Z** — the corpus holds only 4 of the b100's 98 ladder games (the first batch, score still 0.0) and no per-turn detail; from the permitted checkpoint file: 98 games, mean margin +4.6, 49 losses, worst −348 — wins narrowly, loses catastrophically. **The theft-vs-own-crop split cannot be measured from what we kept**; with T-2 it becomes measurable on the 4 games only. | closed; re-ask on fresh instrumented games (0-3a/0-3) | — | spent | 14:41Z |
-| F-2 | **Banana wood farm candidate** (`coordination/tasks/20260826-banana-farm-candidate.md`) | claude_1 (built + panel); codex_1 (reproduced) | **STOPPED at its first validity gate 21:55Z; REPRODUCED FAIL 22:04Z.** Containment perfect (farm-off byte-identical to the champion on 240/240 + 34/34), but **blocking games 52 → 96** (50 new, 6 cured; the dominant cause on 35 of 50 is *the opponent walking onto our ring and eating the fruit we grew*). The stop-latch fired in **0 of 240** games — it counts enemy *chops*, and the theft that happens is *harvests*: one design defect, stated twice. Local own-score +3,100 over 240 games (opposite sign to the expectation) — under a failed gate it buys nothing. Denial was a formality (509 turns vs 28,239 farming). **Nothing submitted; ladder slot 3 released.** | **owner decides in the morning:** charter a bounded repair (the latch must count harvests; the ring must not feed the enemy) or close the line ; **the whole record is now on `main`**: design `claude_1/farm/g0-farm-2026-08-26.md`, panel `claude_1/farm/g1-panel-farm-2026-08-26.md`, arms + scripts, codex_1's two reviews and its reproduction `codex_1/reviews/banana-farm-panel-reproduction-2026-08-26.md` | owner | spent | 22:04Z |
+| F-2 | **Banana wood farm candidate** (`coordination/tasks/20260826-banana-farm-candidate.md`) | claude_1 (built, panelled, diffs published); codex_1 (reproduced the failure) | **STOPPED at validity (52 → 96 blocking games), reproduced; nothing submitted.** Readable diffs now on `main`: `readable/diffs/banana-farm.diff` (champion → farm, +1,811/−9 — carries Candidate 3's keep machinery switched off) and **`readable/diffs/banana-farm-vs-v6-instrument.diff` (+887/−3, the farm rule and its telemetry alone — read this one)** | **owner decides:** bounded repair (the stop-latch must count harvests, not chops; placement must not hand the enemy a standing crop) or close the line | owner | spent | 04:40Z |
 
 ## Track 0 — Instruments (a verdict that cannot be computed is a stall in disguise)
 
@@ -34,7 +34,7 @@ Last updated: 2026-08-27T03:25Z (cron wake 8)
 | 0-2 | Integrate the peer branches onto `main` (`coordination/tasks/20260826-integrate-peer-branches.md`) | local_claude_1 (codex_1 verified) | **DONE** — round 1 15:35Z (304+282+36 commits), round 2 18:30Z (11+5, the 3b and T-1 artifacts); both peers rebased and verified; the one leftover — claude_1's pre-rebase pin `152743Z` — quarantined by adjudication 18:3xZ (content redelivered at `153015Z`) | standing: peers rebase; coordinator lands artifacts at each gate | — | spent | 18:35Z |
 | 0-1 | 34 frozen fixtures (`coordination/tasks/20260826-fixture-drift.md`) | — | **CLOSED 14:45Z — RETIRED as gates (owner)**; successor 0-3 | — | — | spent | 14:45Z |
 | 0-3a | Champion + v6 telemetry arm (`coordination/tasks/20260826-champion-instrument-v6.md`) | claude_1 (built); codex_1 (accepted); coordinator (submitted, verified) | **DONE and its open condition is DISCHARGED 02:40Z** — the platform delivers the long diagnostic line intact: **287 collected ladder games, 78,424 diagnostic lines, 242–295 characters, 0 decode failures, no truncation** (`local_claude_1/narrate/collected-payload-check-2026-08-27.json`, tool `…/collected_payload_check.py`). Previous corpus maximum was 127 characters. | — | — | spent | 02:40Z |
-| 0-3 | Fixtures as a generated dataset from real instrumented games (`coordination/tasks/20260826-fresh-fixture-dataset.md`) | codex_1 (claude_1 reviews) | **startable — both data gates met and the raw-replay slice is shipped 03:25Z**: `data/raw/slice/instrument-replays-slice-2026-08-27.tar.gz` on codex_1's VM (**212 of our 287 instrument games, 9,018,967 B, sha `83789b28…` verified there**) + a manifest with per-game agent, seat, submission id, source hash, file hash and size | codex_1 writes `cut_fixtures.py` against the slice; absent classes are reported, never inferred | — | 1–2 days | 03:25Z |
+| 0-3 | Fixtures generated from real instrumented games (`coordination/tasks/20260826-fresh-fixture-dataset.md`) | codex_1 (built); claude_1 (reviewed, ACCEPT-WITH-EDIT → edits landed → ACCEPT) | **DELIVERED and on `main` 04:40Z** — `scripts/cut_fixtures.py` + `tests/test_cut_fixtures.py`, and the first two bot-hash-tagged libraries from the 212-game slice: champion (56,288 rows, 45 blocked-troll runs / 139 windows) and cured-dancing-troll (1,200 rows, 4 runs / 8 windows); all 212 games decode, none lack telemetry; report `codex_1/fixtures/first-library-report-2026-08-27.md` | the keep-rule sample is only 4 games — a second, disjoint slice is offered when the owner wants it | — | spent | 04:40Z |
 
 ## Ladder queue (single file; one bot at a time)
 
@@ -42,8 +42,8 @@ Last updated: 2026-08-27T03:25Z (cron wake 8)
 
 | slot | bot | purpose | state |
 |---|---|---|---|
-| 1 | **champion + v6 instrument `72673124…`** — A1 `41198581`, A2 `41200776` (read 21.6 / rank 40), A3 `41201060` (02:33Z) | the baseline; its games carry telemetry, now proven to arrive intact | on the ladder |
-| 2 | **B = the cured dancing troll + diagnostics** — reads 18.4, 19.2 (mean **18.8**) | A-B-B-A vs slot 1; four of sixteen reads done | **A leads: 21.8, 21.6 (mean 21.7) vs 18.8 — a 2.9-point gap, and every B read is below every A read**; A3 up |
+| 1 | **champion + v6 instrument `72673124…`** — A1 `41198581`, A2 `41200776` (21.6/40), A3 `41201060` (**22.1 / rank 37**) | the baseline; its games carry telemetry, proven to arrive intact | three reads taken |
+| 2 | **B = the cured dancing troll + diagnostics** — reads 18.4, 19.2 (mean 18.80); B3 up (`41201376`, 04:33Z) | A-B-B-A vs slot 1; five of sixteen reads done | **A 21.8, 21.6, 22.1 (mean 21.83) vs B 18.80 — a 3.03-point gap and the two sets do not overlap** |
 | 3 | *(released)* the banana-farm candidate | — | **not booked**: the farm failed its own first validity gate (blocking games 52 → 96); nothing was submitted |
 
 ## Decisions (dated)
