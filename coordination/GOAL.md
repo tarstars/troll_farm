@@ -23,16 +23,21 @@ handover: `coordination/HANDOVER-2026-08-27-board-era-ladder-and-farm.md`.
    - **The owner said yes (08:20Z) and the ablation is UP: submission `41202036`, 08:21:51Z**
      (`cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs`, sha `0e92f8fa…`;
      built by `local_claude_1/denial-ablation/make_denial_off.py`, bed `fixtures_diff.py`,
-     diff `readable/diffs/denial-bonus-off.diff`). **Read it once at ≥ 09:22Z** (a one-shot wake
-     is set for 09:24Z; the hourly wake at 09:37Z does it if that missed) with
+     diff `readable/diffs/denial-bonus-off.diff`). **READ 09:25Z: 21.2 at rank 42/176 — no drop; its 160 games are collected**
+     (`local_claude_1/denial-ablation/games-41202036/`). The reading step, as it was written, was:
      `python3 cgauto/cg_rank.py` → ledger row (score, rank, agent id, time) → **collect its
      games first** (`python3 local_claude_1/narrate/collect_submission_games.py --agent-id
      <agent> --submission-id 41202036 --scratch <scratchpad>/abl-41202036 --output-dir
      local_claude_1/denial-ablation/games-41202036 --observed-at-utc <date -u>`) → report the
      number to the owner in plain words against their prediction ("a sharp drop"; noise ≈ 1.5 a
      reading; the champion's own readings were 21.8 / 21.6 / 22.1).
-   - Then **return the champion** (`cgauto/submissions/candidate-champion-v6-instrument.rs`, sha
-     `72673124…`) as the resident — the reading first, the champion second, same wake.
+   - **OWNER RULING 09:05Z — the ablation IS the champion now:** *"One point is not enough to make
+     a decisive conclusion. But I like simplification of the algorithm, so let's name the current
+     approach the champion."* The bot on the ladder (`41202036`, sha `0e92f8fa…`, the champion
+     minus its four-line plum/lemon denial bonus) **stays up as the champion of record. Do NOT
+     resubmit the old champion; the 12:00Z return clause is void.** The reading is still taken and
+     reported against the prediction; if it shows a real drop, that goes to the owner as a fact,
+     not as a revert.
 3. Rule on anything that blocks a peer; land artifacts on `main` at each gate; mark stalls.
 4. Board note (Moved / Stalled / Ladder / Decisions / Corrections) appended to
    `local_claude_1/goal-log-2026-08-26.md`, board rows updated in the same commit; fast-forward
