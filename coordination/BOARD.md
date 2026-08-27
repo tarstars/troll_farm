@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-27T01:35Z (cron wake 6)
+Last updated: 2026-08-27T02:40Z (cron wake 7)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -33,8 +33,8 @@ Last updated: 2026-08-27T01:35Z (cron wake 6)
 |---|---|---|---|---|---|---|---|
 | 0-2 | Integrate the peer branches onto `main` (`coordination/tasks/20260826-integrate-peer-branches.md`) | local_claude_1 (codex_1 verified) | **DONE** — round 1 15:35Z (304+282+36 commits), round 2 18:30Z (11+5, the 3b and T-1 artifacts); both peers rebased and verified; the one leftover — claude_1's pre-rebase pin `152743Z` — quarantined by adjudication 18:3xZ (content redelivered at `153015Z`) | standing: peers rebase; coordinator lands artifacts at each gate | — | spent | 18:35Z |
 | 0-1 | 34 frozen fixtures (`coordination/tasks/20260826-fixture-drift.md`) | — | **CLOSED 14:45Z — RETIRED as gates (owner)**; successor 0-3 | — | — | spent | 14:45Z |
-| 0-3a | Champion + v6 telemetry arm (`coordination/tasks/20260826-champion-instrument-v6.md`) | claude_1 (codex_1 ACCEPT 15:06Z); coordinator submitted | **DONE — ON THE LADDER 15:10Z, submission `41198581`** (sha `72673124…`, 63,962 B; parity 240/240 command streams + 34/34 fixtures, 0 decode errors). Condition from codex_1: the 328-char payload exceeds anything collected so far (127) — **decode the first collected ladder game before treating telemetry as evidence** | first collected game (08-27 02:17Z snapshot) → decode check | — | spent | 15:10Z |
-| 0-3 | Fixtures as a generated dataset from real instrumented games (`coordination/tasks/20260826-fresh-fixture-dataset.md`) | codex_1 (claude_1 reviews) | queued — the payload check is tooled (`local_claude_1/narrate/collected_payload_check.py`, smoke-tested); it runs on the 02:17Z collector output; after T-1's first tables and one day of instrument games | `cut_fixtures.py`: windows of interest by class, tagged with bot hash; first library from the instrument's first day | 0-3a on the ladder; T-1 first tables | 1–2 days | 14:45Z |
+| 0-3a | Champion + v6 telemetry arm (`coordination/tasks/20260826-champion-instrument-v6.md`) | claude_1 (built); codex_1 (accepted); coordinator (submitted, verified) | **DONE and its open condition is DISCHARGED 02:40Z** — the platform delivers the long diagnostic line intact: **287 collected ladder games, 78,424 diagnostic lines, 242–295 characters, 0 decode failures, no truncation** (`local_claude_1/narrate/collected-payload-check-2026-08-27.json`, tool `…/collected_payload_check.py`). Previous corpus maximum was 127 characters. | — | — | spent | 02:40Z |
+| 0-3 | Fixtures as a generated dataset from real instrumented games (`coordination/tasks/20260826-fresh-fixture-dataset.md`) | codex_1 (claude_1 reviews) | **both data gates now MET** — (1) the instrument has a full collector day (287 games in the 02:17Z run), (2) its payload decodes uncut (0 failures over 78,424 lines) | codex_1 may start `cut_fixtures.py` on its next wake | — | 1–2 days | 02:40Z |
 
 ## Ladder queue (single file; one bot at a time)
 
@@ -42,8 +42,8 @@ Last updated: 2026-08-27T01:35Z (cron wake 6)
 
 | slot | bot | purpose | state |
 |---|---|---|---|
-| 1 | **champion + v6 instrument `72673124…` — submission `41198581` (08-26 15:10Z)**; replaces the bare champion `41197542` (11:38Z, never read) | the resident; identical in play to `547fa706`; its reads ARE the champion's baseline; its games carry telemetry | on the ladder; first read + first telemetry decode at the 08-27 02:17Z snapshot |
-| 2 | **B = the cured dancing troll + diagnostics** — reads **18.4** (rank 82) and **19.2** (rank 68); mean 18.8 so far | A-B-B-A vs slot 1; two of eight reads done | A now up as A2 (`41200776`, 00:29Z); A has one read (21.8) — **A leads by ~3 points on the reads taken, four each still to come** |
+| 1 | **champion + v6 instrument `72673124…`** — A1 `41198581`, A2 `41200776` (read 21.6 / rank 40), A3 `41201060` (02:33Z) | the baseline; its games carry telemetry, now proven to arrive intact | on the ladder |
+| 2 | **B = the cured dancing troll + diagnostics** — reads 18.4, 19.2 (mean **18.8**) | A-B-B-A vs slot 1; four of sixteen reads done | **A leads: 21.8, 21.6 (mean 21.7) vs 18.8 — a 2.9-point gap, and every B read is below every A read**; A3 up |
 | 3 | *(released)* the banana-farm candidate | — | **not booked**: the farm failed its own first validity gate (blocking games 52 → 96); nothing was submitted |
 
 ## Decisions (dated)

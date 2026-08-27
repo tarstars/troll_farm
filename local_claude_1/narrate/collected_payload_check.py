@@ -92,16 +92,21 @@ def main() -> int:
                 continue
             stdout = frame.get("stdout") or ""
             for line in stdout.splitlines():
-                for chunk in line.split(";"):
-                    chunk = chunk.strip()
-                    if not chunk.startswith("MSG "):
-                        continue
-                    payload = chunk[4:]
+                # The decoder owns the wire syntax: it knows which `;`-separated fragments
+                # are MSG tokens. Splitting the line here instead was wrong and produced
+                # decode "failures" that were the harness's, not the platform's.
+                fragments = (
+                    decoder.msg_fragments(line)
+                    if decoder is not None
+                    else [f for f in line.split(";") if f.strip().startswith("MSG ")]
+                )
+                for fragment in fragments:
+                    payload = fragment.strip()
                     game_lengths.append(len(payload))
                     lengths.append(len(payload))
                     if decoder is not None:
                         try:
-                            decoder.decode(decoder.strip_msg(chunk))
+                            decoder.decode(payload)
                         except Exception as exc:
                             game_fail += 1
                             if len(decode_fail) < 20:
