@@ -1,0 +1,85 @@
+{
+  "arms": {
+    "candidate": {
+      "compiles": true,
+      "farm_enabled": true,
+      "lines_differing_from_source": 1,
+      "narrate_enabled": false,
+      "path": "claude_1/farm/arm-candidate.rs",
+      "sha256": "5365985c9b5163dbf0cbfb42e3212e2c102abe9838885bfe4a1f1511aed8c8ba"
+    },
+    "farmoff": {
+      "compiles": true,
+      "farm_enabled": false,
+      "lines_differing_from_source": 1,
+      "narrate_enabled": true,
+      "path": "claude_1/farm/arm-farmoff.rs",
+      "sha256": "eb84bb415051b35d6a82d14a707730f487f0ecbbdb43d03f37b279027a67c9d8"
+    },
+    "instrument": {
+      "compiles": true,
+      "farm_enabled": true,
+      "lines_differing_from_source": 0,
+      "narrate_enabled": true,
+      "path": "claude_1/farm/arm-instrument.rs",
+      "sha256": "354d1302f79ddc241ae49c5c0b1763ad045077bfb5f74d6e850bf43a43376b41"
+    }
+  },
+  "base_compacted": {
+    "path": "cgauto/submissions/candidate-door1-pure-deletion.rs",
+    "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+  },
+  "base_readable": {
+    "bytes": 98444,
+    "lines": 2210,
+    "path": "readable/door1-champion.rs",
+    "sha256": "ad1ae4eff70a5569e03e2149882bb22510746f4f8592907a5dfb936943ef0bfb"
+  },
+  "base_readable_and_ladder_champion_same_token_stream": true,
+  "base_shared_compaction_sha256": "0da12c33e07a4524a5411a624d0d0da12b2e2f815b176b75df9d6d97c5c3ca01",
+  "board_row": "F-2",
+  "compacted_candidate_arm": {
+    "bytes": 79083,
+    "sha256": "691adf041f8b3609e30cff3c723f0007cd4dc9a6afa7e5d46ace9cfe92bb2291"
+  },
+  "compacted_source": {
+    "bytes": 79082,
+    "sha256": "c5e36c0baee751a2ea1971ee9a983ea0c0d4f4745b7ba7be51f965dc5a80d77e"
+  },
+  "compiler": "rustc 1.97.1 (8bab26f4f 2026-07-14), --edition 2021 -O",
+  "dialect": "v8 (claude_1/narrate8/narrate8.py)",
+  "diff": {
+    "base": "readable/door1-champion.rs",
+    "hunks": 13,
+    "lines_added": 1811,
+    "lines_removed": 9,
+    "note": "champion to the farm source. It carries the whole Candidate 3 keep machinery too, switched OFF (KEEP_RULE_ENABLED=false), because the farm was built on the v6 emitter, which is the champion plus Candidate 3 behind a flag.",
+    "path": "readable/diffs/banana-farm.diff"
+  },
+  "diff_isolating_the_farm": {
+    "base": "claude_1/instrument6/champion-v6-instrument.rs",
+    "base_sha256": "0f75e7d61c71d4881502aac2204faf6fb5035331857a9f400ea2647bccd94141",
+    "hunks": 9,
+    "lines_added": 887,
+    "lines_removed": 3,
+    "note": "the same base with the keep rule off and v6 telemetry on, so this diff is the farm rule and the v8 farm telemetry group and nothing else. The smallest honest view, as candidate-2-swap-vs-candidate-1-hold.diff is for Candidate 2.",
+    "path": "readable/diffs/banana-farm-vs-v6-instrument.diff"
+  },
+  "flag_line_number": 636,
+  "generator": "claude_1/farm/make_farm_source.py",
+  "no_compacted_submission_artifact": "The farm was never submitted: its panel failed validity gate V1 (blocking games 52 to 96, reproduced by codex_1 at 22:04Z) and ladder slot 3 was released. There is therefore no ladder-side compacted artifact to compare against, unlike readable/reports/champion-v6-instrument.round-trip.json. The round trip proven here is base identity, generator determinism, arm derivation and compilation.",
+  "parent_source": {
+    "path": "claude_1/cure3/cure3-keep-v6.rs",
+    "sha256": "01b61444a109c1d190fba5b0a103c861c6f9e772596e97cf9042b9b2c516b3b3"
+  },
+  "regeneration_deterministic": true,
+  "schema": "troll-farm-readable-source-v2",
+  "source": {
+    "bytes": 194311,
+    "lines": 4012,
+    "path": "claude_1/farm/farm-v8.rs",
+    "sha256": "354d1302f79ddc241ae49c5c0b1763ad045077bfb5f74d6e850bf43a43376b41"
+  },
+  "task": "20260826-banana-farm-candidate",
+  "verdict": "BANANA_FARM_READABLE_ROUND_TRIP_EXACT"
+}
