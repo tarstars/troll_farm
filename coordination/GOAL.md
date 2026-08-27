@@ -8,10 +8,24 @@ the starting troll plants an apple on a water-side cell touching the shack on tu
 second troll is trained, harvests it to the end. **The one-hour reading was taken at 14:36Z: 19.8 at
 rank 49 of 176 — 1.4 below the champion's 21.2/42** (ledger row `APL-1h`; its 160 games collected in
 `local_claude_1/apple-farm/games-41203549/` and read: the rule ran in all 53 farm-map games and won
-62 % of them; the 107 identical-play games went 43 % — a harder draw). **The farm stays up until the
-owner rules** — a second hour, the champion `41202036` returns, or a refinement — **no submission without
-that word**. The hourly wake reads `41203549` while it is up (its batch is complete; the number moves
-only as other players' submissions meet it) and does nothing else.
+62 % of them; the 107 identical-play games went 43 % — a harder draw).
+
+**THE FIVE ROUNDS (owner 15:0xZ: "let's just resubmit apple farm 5 times and see where it lands").**
+The same file (`cgauto/submissions/candidate-apple-farm-v6-instrument.rs`, sha
+`8c6bc206417c6d22b593372ce42e74ce5698646c1f8a860073f349a2a082708c`) is submitted five more times,
+one hour each; six readings in all with round 1's 19.8/49. **Round 2 = `41203992`, submitted
+15:04:07Z.** Each round, ≥ 60 min after its submission (a one-shot session cron at +62 min):
+(1) `python3 cgauto/cg_rank.py` — the reading; ledger row `APL-r<n>` (score, rank, agent id, time);
+(2) collect its games — `local_claude_1/narrate/collect_submission_games.py --agent-id <id>
+--submission-id <id> --scratch <scratchpad>/… --output-dir local_claude_1/apple-farm/games-<id>
+--observed-at-utc $(date -u …)` — and read them with `local_claude_1/apple-farm/ladder_read.py`
+(farm maps vs the rest; the rule ran; wins; opponent trolls); (3) if fewer than six readings exist,
+submit the next round with `python3 cgauto/api_submit_once.py <file> --expected-sha256 <sha>` and
+create the one-shot cron for its reading at +62 min (local clock = UTC+3); (4) board (slot 3), the
+card's log, the five-part log note, commit, fast-forward `main`, pull the checkout; report the
+reading against the champion's 21.2/42 and the earlier rounds. **After the sixth reading: no further
+submission — the six numbers (mean, spread) go to the owner, who rules.** The hourly wake in between
+reads the current submission and does nothing else. The champion of record remains `41202036`.
 
 **The champion of record is the simplified bot** (owner ruling 2026-08-27 09:05Z: *"One point is not
 enough to make a decisive conclusion. But I like simplification of the algorithm, so let's name the
