@@ -2,7 +2,7 @@
 
 **Rules: `coordination/WORKING-RULES.md`** (read first). In one breath: two rows per track; every task born with done/dead/budget; Read → Design (≤ 2 rounds) → Build → Panel (one) → Ladder (one block) → Verdict; no evidence for two days = STALLED → owner says kill or extend; dead tasks go to `GRAVEYARD.md`; mail only for handoffs and verdicts; one ladder queue; everything lands on `main` at every gate; the owner says "board" and gets the five-part report (§9).
 
-Last updated: 2026-08-27T04:45Z (cron wake 9)
+Last updated: 2026-08-27T05:35Z (cron wake 10)
 
 ## Track D — Dancing trolls (finish Candidate 3, submit, verdict, close the line)
 
@@ -58,6 +58,8 @@ Last updated: 2026-08-27T04:45Z (cron wake 9)
 - 2026-08-26: Candidate 3 CLOSED at G-1 by the owner's bound — the panel failed its pre-committed risk gate (−65 own-score, `ka`=171). Loop cure confirmed as a mechanism (`xc=0`); no Candidate 2 re-run (no own-score gain); slot 2 released. — coordinator applying the owner's bound
 - 2026-08-26: branches cleaned (owner "1. 2. do it"): dead branches deleted, archive kept as a tag, integration of peer branches chartered as 0-2 after D-1's build. — owner
 - 2026-08-26: Track T goes first and fast; F starts as reads; F-2 needs T-1 + F-1 + owner go. — coordinator, under the owner's "board"
+
+**★ Morning brief for the owner: `local_claude_1/morning-brief-2026-08-27.md`** — the night in plain words (the measurement's five readings, the farm's self-stop and the two things a repair must fix, the two instruments finished, and my own mistakes).
 
 ## Owner's queue (≤ 3)
 
