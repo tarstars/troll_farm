@@ -1,5 +1,5 @@
 {
-  "written": "2026-08-28T11:1xZ: orchard 5 r1, r2 in place of orchard 4 (superseded)",
+  "written": "2026-08-28T11:3xZ: orchard 6 r1, r2 in place of orchard 5's round 2",
   "items": [
     {
       "id": "champion-restore-now",
@@ -50,10 +50,16 @@
       "label": "ORCHARD 5 (orchard 4 + the way home charged in the fruit and ore scores; owner: trolls collected the farthest fruits) -- round 1"
     },
     {
-      "file": "cgauto/submissions/candidate-orchard5-v6-instrument.rs",
-      "sha256": "751d7928d15e13fd311f28a6519685815ac24dacae4c6afb9d97991ca641afc6",
-      "id": "orchard5-r2",
-      "label": "ORCHARD 5 -- round 2"
+      "file": "cgauto/submissions/candidate-orchard6-v6-instrument.rs",
+      "sha256": "3238493631d6489fe4080a27c428e828931cff720d4c30ad0749e475eeb10350",
+      "id": "orchard6-r1",
+      "label": "ORCHARD 6 (orchard 5 + the orchard on the cells adjacent to the tent, one door kept free; owner) -- round 1"
+    },
+    {
+      "file": "cgauto/submissions/candidate-orchard6-v6-instrument.rs",
+      "sha256": "3238493631d6489fe4080a27c428e828931cff720d4c30ad0749e475eeb10350",
+      "id": "orchard6-r2",
+      "label": "ORCHARD 6 -- round 2"
     },
     {
       "file": "cgauto/submissions/candidate-apple-farm-v6-instrument.rs",
