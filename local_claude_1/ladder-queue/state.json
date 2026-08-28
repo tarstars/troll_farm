@@ -1,30 +1,13 @@
 {
   "current": {
-    "agent_id": 6670438,
-    "early_looks": [
-      {
-        "age_min": 0.7,
-        "agent_id": 6670438,
-        "at": "2026-08-28T10:45:01Z",
-        "rank": 128,
-        "score": 15.86,
-        "total": 176
-      },
-      {
-        "age_min": 5.7,
-        "agent_id": 6670479,
-        "at": "2026-08-28T10:50:02Z",
-        "rank": 171,
-        "score": 11.27,
-        "total": 176
-      }
-    ],
-    "file": "cgauto/submissions/candidate-orchard3-v6-instrument.rs",
-    "id": "orchard3-r1",
-    "label": "ORCHARD 3 (owner: plant first - lemon, lemon, plum from the first turns; each troll on a different resource of the bill) -- round 1",
-    "sha256": "52c36e53d821be6ec04cff36efeb7c42d5e6f964a011aef1058c9d6d04611600",
-    "submission_id": 41207599,
-    "submitted_at": "2026-08-28T10:44:18Z"
+    "agent_id": null,
+    "early_looks": [],
+    "file": "cgauto/submissions/candidate-orchard5-v6-instrument.rs",
+    "id": "orchard5-r1",
+    "label": "ORCHARD 5 (orchard 4 + the way home charged in the fruit and ore scores; owner: trolls collected the farthest fruits) -- round 1",
+    "sha256": "751d7928d15e13fd311f28a6519685815ac24dacae4c6afb9d97991ca641afc6",
+    "submission_id": 41207673,
+    "submitted_at": "2026-08-28T11:02:12Z"
   },
   "done": [
     {
@@ -614,6 +597,61 @@
       "sha256": "2227e506fe425755687d8dac2f176340083553e58a583686ca38d24cda641178",
       "submission_id": 41207487,
       "submitted_at": "2026-08-28T10:10:16Z"
+    },
+    {
+      "agent_id": 6670438,
+      "early_looks": [
+        {
+          "age_min": 0.7,
+          "agent_id": 6670438,
+          "at": "2026-08-28T10:45:01Z",
+          "rank": 128,
+          "score": 15.86,
+          "total": 176
+        },
+        {
+          "age_min": 5.7,
+          "agent_id": 6670479,
+          "at": "2026-08-28T10:50:02Z",
+          "rank": 171,
+          "score": 11.27,
+          "total": 176
+        },
+        {
+          "age_min": 10.7,
+          "agent_id": 6670479,
+          "at": "2026-08-28T10:55:02Z",
+          "rank": 164,
+          "score": 12.77,
+          "total": 176
+        },
+        {
+          "age_min": 15.7,
+          "agent_id": 6670479,
+          "at": "2026-08-28T11:00:02Z",
+          "rank": 155,
+          "score": 13.76,
+          "total": 176
+        }
+      ],
+      "file": "cgauto/submissions/candidate-orchard3-v6-instrument.rs",
+      "id": "orchard3-r1",
+      "label": "ORCHARD 3 (owner: plant first - lemon, lemon, plum from the first turns; each troll on a different resource of the bill) -- round 1",
+      "retired": {
+        "at": "2026-08-28T11:1xZ",
+        "by": "the owner: put orchard 5 on the platform as soon as it is ready - orchard 3's round cut short before its reading",
+        "last_early_look": {
+          "age_min": 15.7,
+          "agent_id": 6670479,
+          "at": "2026-08-28T11:00:02Z",
+          "rank": 155,
+          "score": 13.76,
+          "total": 176
+        }
+      },
+      "sha256": "52c36e53d821be6ec04cff36efeb7c42d5e6f964a011aef1058c9d6d04611600",
+      "submission_id": 41207599,
+      "submitted_at": "2026-08-28T10:44:18Z"
     }
   ]
 }
