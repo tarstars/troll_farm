@@ -57,12 +57,20 @@ def all_trains(lines):
 
 
 def main() -> int:
+    global ARM, SUBMISSION
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--arm", type=Path, default=ARM)
+    ap.add_argument("--submission", type=Path, default=SUBMISSION)
+    ap.add_argument("--out", type=Path, default=HERE / "results" / "fixtures.json")
+    args = ap.parse_args()
+    ARM, SUBMISSION = args.arm, args.submission
     base_text, arm_text = BASE.read_text(), ARM.read_text()
     got = sha(base_text)
     if got != BASE_SHA:
         print(f"REFUSED: base is {got}, expected {BASE_SHA}", file=sys.stderr)
         return 2
-    recorded = (HERE / "champion-third-troll-v6-instrument.rs.sha256").read_text().split()[0]
+    recorded = Path(str(ARM) + ".sha256").read_text().split()[0]
     if sha(arm_text) != recorded:
         print(f"REFUSED: arm is {sha(arm_text)}, its sidecar says {recorded}", file=sys.stderr)
         return 2
@@ -156,7 +164,7 @@ def main() -> int:
         "status": "PASS" if ok else "FAIL",
         "rows": rows,
     }
-    out = HERE / "results" / "fixtures.json"
+    out = args.out
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
     print(f"\n  {report['status']}  plays {plays}/{n}, differs from the champion on {differs}/{n}, "

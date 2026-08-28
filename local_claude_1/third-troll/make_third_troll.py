@@ -451,6 +451,7 @@ def configure_spec(spec: str) -> None:
 
 
 OTHERS_LIST = list(OTHERS)
+STACKED = False   # set by a derived generator whose replacements rewrite earlier ones' text
 
 
 def main() -> int:
@@ -470,6 +471,10 @@ def main() -> int:
     readable_edited = apply_replacements(readable, "the readable champion")
     expected_added = sum(plus_minus(r["anchor"], r["text"])[0] for r in REPLACEMENTS)
     expected_removed = sum(plus_minus(r["anchor"], r["text"])[1] for r in REPLACEMENTS)
+    if STACKED:
+        # Stacked edits (a later replacement rewrites lines an earlier one inserted): the
+        # declared count is the real diff of the readable source, not the sum of the parts.
+        expected_added, expected_removed = plus_minus(readable, readable_edited)
     delta_arm = len(arm_text.split("\n")) - len(arm_base.split("\n"))
     delta_readable = len(readable_edited.split("\n")) - len(readable.split("\n"))
     require(delta_arm == delta_readable == expected_added - expected_removed,

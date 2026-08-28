@@ -1,0 +1,246 @@
+--- readable/denial-off-champion.rs
++++ readable/denial-off-champion.rs (the third troll)
+@@ -624,7 +624,7 @@
+             }
+             fn can_train(view: &GameState, stats: Stats) -> bool {
+                 let n = view.units.iter().filter(|unit| unit.player == 0).count() as i32;
+-                if n >= 2 || TOTAL_TURNS - view.turn <= 20 {
++                if n >= 3 || TOTAL_TURNS - view.turn <= 20 {
+                     return false;
+                 }
+                 let cost = training_cost(n, stats.tuple());
+@@ -667,11 +667,15 @@
+                 }
+                 let n = view.units.iter().filter(|unit| unit.player == 0).count() as i32;
+                 let cost = training_cost(n, desired.tuple());
++                // Every troll fetches whatever is missing -- fruits if it can harvest, iron
++                // always; the joint choice keeps two trolls off the same tree (three heroes).
++                let fetches_fruit = unit.stats.harvest_power > 0;
++                let fetches_iron = true;
+                 for item in [PLUM, LEMON, APPLE, IRON] {
+-                    if item == APPLE && cost[item] <= view.inventories[0][item] {
++                    if cost[item] <= view.inventories[0][item] {
+                         continue;
+                     }
+-                    if item != APPLE && cost[item] <= view.inventories[0][item] {
++                    if (item == IRON && !fetches_iron) || (item != IRON && !fetches_fruit) {
+                         continue;
+                     }
+                     if item == IRON {
+@@ -686,7 +690,7 @@
+                         out.extend(Self::fruit_candidates(view, unit, kind, 6_000.0));
+                     }
+                 }
+-                if out.len() == 1 {
++                if out.len() == 1 && n < 2 {
+                     out.extend(Self::chop_candidates(view, unit, None));
+                 }
+                 out
+@@ -945,25 +949,30 @@
+                         .unwrap();
+                     return vec![best.command.clone()];
+                 }
+-                if ids.len() == 2 {
++                // The joint choice for every own troll at once (the third troll, 2026-08-28):
++                // a depth-first walk over the trolls in id order through every combination of
++                // one candidate per troll whose targets do not collide and whose PICKs do not
++                // overdraw the shack; the best sum of scores wins, the first found on a tie.
++                // With two trolls this is the pair search it replaces, choice for choice.
++                let lists: Vec<&Vec<Candidate>> =
++                    ids.iter().map(|id| &candidates_by_id[id]).collect();
++                let combinations = lists
++                    .iter()
++                    .fold(1usize, |n, list| n.saturating_mul(list.len()));
++                if combinations <= Self::JOINT_SELECT_LIMIT {
+                     let mut best_score = f64::NEG_INFINITY;
+-                    let mut best_pair = None;
+-                    for a in &candidates_by_id[&ids[0]] {
+-                        for b in &candidates_by_id[&ids[1]] {
+-                            if !Self::compatible(a.target, b.target)
+-                                || !Self::stock_compatible(a, b, inventory)
+-                            {
+-                                continue;
+-                            }
+-                            let score = a.score + b.score;
+-                            if score > best_score {
+-                                best_score = score;
+-                                best_pair = Some((a.command.clone(), b.command.clone()));
+-                            }
+-                        }
+-                    }
+-                    if let Some((a, b)) = best_pair {
+-                        return vec![a, b];
++                    let mut best_set = None;
++                    let mut chosen = Vec::new();
++                    Self::select_joint(
++                        &lists,
++                        inventory,
++                        &mut chosen,
++                        0.0,
++                        &mut best_score,
++                        &mut best_set,
++                    );
++                    if let Some(commands) = best_set {
++                        return commands;
+                     }
+                 }
+                 let mut used_targets = Vec::new();
+@@ -990,6 +999,55 @@
+                     commands.push(best.command);
+                 }
+                 commands
++            }
++            // Above this many combinations the greedy id-order pass below `select_joint`'s
++            // call is used instead (never reached with the champion's list sizes; a bound on
++            // the turn's time, not a behaviour).
++            const JOINT_SELECT_LIMIT: usize = 400_000;
++            fn select_joint<'a>(
++                lists: &[&'a Vec<Candidate>],
++                inventory: &[i32; 6],
++                chosen: &mut Vec<&'a Candidate>,
++                sum: f64,
++                best_score: &mut f64,
++                best_set: &mut Option<Vec<String>>,
++            ) {
++                let depth = chosen.len();
++                if depth == lists.len() {
++                    if sum > *best_score {
++                        *best_score = sum;
++                        *best_set = Some(chosen.iter().map(|c| c.command.clone()).collect());
++                    }
++                    return;
++                }
++                for candidate in lists[depth] {
++                    let targets_fit = chosen
++                        .iter()
++                        .all(|earlier| Self::compatible(earlier.target, candidate.target));
++                    let stock_fits = match Self::picked_item(&candidate.command) {
++                        Some(item) => {
++                            let taken = chosen
++                                .iter()
++                                .filter(|earlier| Self::picked_item(&earlier.command) == Some(item))
++                                .count() as i32;
++                            taken == 0 || inventory[item] >= taken + 1
++                        }
++                        None => true,
++                    };
++                    if !targets_fit || !stock_fits {
++                        continue;
++                    }
++                    chosen.push(candidate);
++                    Self::select_joint(
++                        lists,
++                        inventory,
++                        chosen,
++                        sum + candidate.score,
++                        best_score,
++                        best_set,
++                    );
++                    chosen.pop();
++                }
+             }
+             fn move_command(command: &str) -> Option<(i32, Cell)> {
+                 let fields: Vec<&str> = command.split_whitespace().collect();
+@@ -1246,7 +1304,7 @@
+                             let stats = Stats {
+                                 movement_speed,
+                                 carry_capacity,
+-                                harvest_power: 0,
++                                harvest_power: 1,
+                                 chop_power,
+                             };
+                             options.push(Self::opening_objective(view, stats));
+@@ -1272,7 +1330,7 @@
+                             Stats {
+                                 movement_speed: 1,
+                                 carry_capacity: 1,
+-                                harvest_power: 0,
++                                harvest_power: 1,
+                                 chop_power: 1,
+                             },
+                         )
+@@ -1402,11 +1460,23 @@
+                     self.opening_abandoned = true;
+                 }
+             }
++            // The third troll (owner, 2026-08-28): a fixed lumberjack -- speed 2, carry 3, no
++            // harvest power, chop 3 -- wanted once the second troll exists and while at least
++            // THIRD_TROLL_HORIZON turns remain; both trolls collect its bill together.
++            const THIRD_TROLL_HORIZON: i32 = 100;
++            fn third_troll() -> Stats {
++                Stats {
++                    movement_speed: 2,
++                    carry_capacity: 3,
++                    harvest_power: 0,
++                    chop_power: 3,
++                }
++            }
+             fn fallback_second_troll() -> Stats {
+                 Stats {
+                     movement_speed: 1,
+                     carry_capacity: 1,
+-                    harvest_power: 0,
++                    harvest_power: 1,
+                     chop_power: 1,
+                 }
+             }
+@@ -2065,11 +2135,34 @@
+                 self.reconcile_regeneration_commitments(view);
+                 self.ensure_opening(view);
+                 self.enforce_training_deadline(view);
+-                let desired = self
+-                    .desired_second
+-                    .map(|objective| objective.stats)
+-                    .unwrap_or_else(Self::fallback_second_troll);
+-                let train_now = !self.opening_abandoned && MoisanBot::can_train(view, desired);
++                let own_trolls = view.units.iter().filter(|unit| unit.player == 0).count();
++                let third_wanted =
++                    own_trolls == 2 && TOTAL_TURNS - view.turn >= Self::THIRD_TROLL_HORIZON;
++                // Reachable: every fruit of the bill still missing has a living tree of its
++                // kind that an own troll can walk to (iron is never the blocker: on a map
++                // without iron the price ignores it). Otherwise the funding ends for now.
++                let third_reachable = third_wanted && {
++                    let cost = training_cost(2, Self::third_troll().tuple());
++                    let scout = view.units.iter().find(|unit| unit.player == 0);
++                    [(PLUM, PlantKind::Plum), (LEMON, PlantKind::Lemon), (APPLE, PlantKind::Apple)]
++                        .into_iter()
++                        .all(|(item, kind)| {
++                            cost[item] <= view.inventories[0][item]
++                                || scout.map_or(false, |unit| {
++                                    !MoisanBot::fruit_candidates(view, unit, kind, 0.0).is_empty()
++                                })
++                        })
++                };
++                let desired = if own_trolls >= 2 {
++                    Self::third_troll()
++                } else {
++                    self.desired_second
++                        .map(|objective| objective.stats)
++                        .unwrap_or_else(Self::fallback_second_troll)
++                };
++                let train_now = !self.opening_abandoned
++                    && (own_trolls < 2 || third_wanted)
++                    && MoisanBot::can_train(view, desired);
+                 let mut out = Vec::new();
+                 if !self.announced {
+                     self.announced = true;
+@@ -2087,7 +2180,9 @@
+                 let mut my_units: Vec<&Unit> =
+                     view.units.iter().filter(|unit| unit.player == 0).collect();
+                 my_units.sort_by_key(|unit| unit.id);
+-                let early = !self.opening_abandoned && my_units.len() < 2 && !train_now;
++                let early = !self.opening_abandoned
++                    && (my_units.len() < 2 || third_reachable)
++                    && !train_now;
+                 let endgame = Self::endgame(view);
+                 let mut by_id = BTreeMap::new();
+                 for unit in my_units {
+@@ -2122,6 +2217,8 @@
+                             self.opponent_eta_penalty,
+                         )
+                     } else if early {
++                        // Three heroes: while the bill is collected nobody chops -- every
++                        // troll gets the funding list and nothing else.
+                         MoisanBot::early_candidates(view, unit, desired)
+                     } else {
+                         Self::main_candidates(
