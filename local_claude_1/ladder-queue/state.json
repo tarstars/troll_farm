@@ -1,14 +1,5 @@
 {
-  "current": {
-    "agent_id": null,
-    "early_looks": [],
-    "file": "cgauto/submissions/candidate-orchard7-v6-instrument.rs",
-    "id": "orchard7-r1",
-    "label": "ORCHARD 7 (orchard 6 + never abandon the opening, a 2+2 fruit reserve for the second troll, orchard cells within reach of the tent) -- round 1",
-    "sha256": "eb383fd1c5c344f3cfdd71ce99e41edb58f8c49f19e23d22d92a58cb9baee905",
-    "submission_id": 41209967,
-    "submitted_at": "2026-08-28T19:17:19Z"
-  },
+  "current": null,
   "done": [
     {
       "agent_id": 6670021,
@@ -1239,6 +1230,122 @@
       "sha256": "3238493631d6489fe4080a27c428e828931cff720d4c30ad0749e475eeb10350",
       "submission_id": 41209711,
       "submitted_at": "2026-08-28T18:08:36Z",
+      "total": 177
+    },
+    {
+      "age_min": 62.7,
+      "agent_id": 6671462,
+      "early_looks": [
+        {
+          "age_min": 2.7,
+          "agent_id": 6671462,
+          "at": "2026-08-28T19:20:02Z",
+          "rank": 158,
+          "score": 13.61,
+          "total": 177
+        },
+        {
+          "age_min": 7.7,
+          "agent_id": 6671462,
+          "at": "2026-08-28T19:25:02Z",
+          "rank": 161,
+          "score": 13.22,
+          "total": 177
+        },
+        {
+          "age_min": 12.7,
+          "agent_id": 6671462,
+          "at": "2026-08-28T19:30:01Z",
+          "rank": 151,
+          "score": 14.4,
+          "total": 177
+        },
+        {
+          "age_min": 17.7,
+          "agent_id": 6671462,
+          "at": "2026-08-28T19:35:02Z",
+          "rank": 135,
+          "score": 15.3,
+          "total": 177
+        },
+        {
+          "age_min": 22.7,
+          "agent_id": 6671462,
+          "at": "2026-08-28T19:40:01Z",
+          "rank": 137,
+          "score": 15.22,
+          "total": 177
+        },
+        {
+          "age_min": 27.7,
+          "agent_id": 6671462,
+          "at": "2026-08-28T19:45:02Z",
+          "rank": 131,
+          "score": 15.61,
+          "total": 177
+        },
+        {
+          "age_min": 32.7,
+          "agent_id": 6671462,
+          "at": "2026-08-28T19:50:02Z",
+          "rank": 129,
+          "score": 15.83,
+          "total": 177
+        },
+        {
+          "age_min": 37.7,
+          "agent_id": 6671462,
+          "at": "2026-08-28T19:55:01Z",
+          "rank": 124,
+          "score": 16.22,
+          "total": 177
+        },
+        {
+          "age_min": 42.7,
+          "agent_id": 6671462,
+          "at": "2026-08-28T20:00:02Z",
+          "rank": 110,
+          "score": 16.8,
+          "total": 177
+        },
+        {
+          "age_min": 47.7,
+          "agent_id": 6671462,
+          "at": "2026-08-28T20:05:02Z",
+          "rank": 118,
+          "score": 16.55,
+          "total": 177
+        },
+        {
+          "age_min": 52.7,
+          "agent_id": 6671462,
+          "at": "2026-08-28T20:10:01Z",
+          "rank": 113,
+          "score": 16.66,
+          "total": 177
+        },
+        {
+          "age_min": 57.7,
+          "agent_id": 6671462,
+          "at": "2026-08-28T20:15:02Z",
+          "rank": 113,
+          "score": 16.66,
+          "total": 177
+        }
+      ],
+      "file": "cgauto/submissions/candidate-orchard7-v6-instrument.rs",
+      "games_done": 160,
+      "games_in_package": 160,
+      "id": "orchard7-r1",
+      "label": "ORCHARD 7 (orchard 6 + never abandon the opening, a 2+2 fruit reserve for the second troll, orchard cells within reach of the tent) -- round 1",
+      "package": "local_claude_1/ladder-queue/games-41209967",
+      "package_sha256": "d39598b5f782ff9e2e663c4a7af834ae33072231e9a55d10b86c5e1202d1f536",
+      "rank": 114,
+      "read_at": "2026-08-28T20:22:00Z",
+      "score": 16.66,
+      "sha256": "eb383fd1c5c344f3cfdd71ce99e41edb58f8c49f19e23d22d92a58cb9baee905",
+      "submission_id": 41209967,
+      "submitted_at": "2026-08-28T19:17:19Z",
       "total": 177
     }
   ]
