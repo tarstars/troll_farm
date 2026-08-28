@@ -1,14 +1,5 @@
 {
-  "current": {
-    "agent_id": null,
-    "early_looks": [],
-    "file": "cgauto/submissions/candidate-orchard7-v6-instrument.rs",
-    "id": "orchard7-r2",
-    "label": "ORCHARD 7 -- round 2",
-    "sha256": "eb383fd1c5c344f3cfdd71ce99e41edb58f8c49f19e23d22d92a58cb9baee905",
-    "submission_id": 41210228,
-    "submitted_at": "2026-08-28T20:22:14Z"
-  },
+  "current": null,
   "done": [
     {
       "agent_id": 6670021,
@@ -1355,6 +1346,122 @@
       "sha256": "eb383fd1c5c344f3cfdd71ce99e41edb58f8c49f19e23d22d92a58cb9baee905",
       "submission_id": 41209967,
       "submitted_at": "2026-08-28T19:17:19Z",
+      "total": 177
+    },
+    {
+      "age_min": 62.8,
+      "agent_id": 6671561,
+      "early_looks": [
+        {
+          "age_min": 2.8,
+          "agent_id": 6671561,
+          "at": "2026-08-28T20:25:02Z",
+          "rank": 158,
+          "score": 13.76,
+          "total": 177
+        },
+        {
+          "age_min": 7.8,
+          "agent_id": 6671561,
+          "at": "2026-08-28T20:30:01Z",
+          "rank": 129,
+          "score": 15.83,
+          "total": 177
+        },
+        {
+          "age_min": 12.8,
+          "agent_id": 6671561,
+          "at": "2026-08-28T20:35:02Z",
+          "rank": 121,
+          "score": 16.47,
+          "total": 177
+        },
+        {
+          "age_min": 17.8,
+          "agent_id": 6671561,
+          "at": "2026-08-28T20:40:02Z",
+          "rank": 125,
+          "score": 16.18,
+          "total": 177
+        },
+        {
+          "age_min": 22.8,
+          "agent_id": 6671561,
+          "at": "2026-08-28T20:45:01Z",
+          "rank": 124,
+          "score": 16.2,
+          "total": 177
+        },
+        {
+          "age_min": 27.8,
+          "agent_id": 6671561,
+          "at": "2026-08-28T20:50:02Z",
+          "rank": 122,
+          "score": 16.44,
+          "total": 177
+        },
+        {
+          "age_min": 32.8,
+          "agent_id": 6671561,
+          "at": "2026-08-28T20:55:01Z",
+          "rank": 116,
+          "score": 16.78,
+          "total": 177
+        },
+        {
+          "age_min": 37.8,
+          "agent_id": 6671561,
+          "at": "2026-08-28T21:00:02Z",
+          "rank": 112,
+          "score": 17.08,
+          "total": 177
+        },
+        {
+          "age_min": 42.8,
+          "agent_id": 6671561,
+          "at": "2026-08-28T21:05:02Z",
+          "rank": 111,
+          "score": 17.11,
+          "total": 177
+        },
+        {
+          "age_min": 47.8,
+          "agent_id": 6671561,
+          "at": "2026-08-28T21:10:01Z",
+          "rank": 111,
+          "score": 17.09,
+          "total": 177
+        },
+        {
+          "age_min": 52.8,
+          "agent_id": 6671561,
+          "at": "2026-08-28T21:15:02Z",
+          "rank": 117,
+          "score": 16.64,
+          "total": 177
+        },
+        {
+          "age_min": 57.8,
+          "agent_id": 6671561,
+          "at": "2026-08-28T21:20:02Z",
+          "rank": 117,
+          "score": 16.64,
+          "total": 177
+        }
+      ],
+      "file": "cgauto/submissions/candidate-orchard7-v6-instrument.rs",
+      "games_done": 162,
+      "games_in_package": 162,
+      "id": "orchard7-r2",
+      "label": "ORCHARD 7 -- round 2",
+      "package": "local_claude_1/ladder-queue/games-41210228",
+      "package_sha256": "486cbf8033e1df8880623ed2ec89a328f3ad9bf792ab3a08905f3469f9c12bf6",
+      "rank": 117,
+      "read_at": "2026-08-28T21:27:03Z",
+      "score": 16.64,
+      "sha256": "eb383fd1c5c344f3cfdd71ce99e41edb58f8c49f19e23d22d92a58cb9baee905",
+      "submission_id": 41210228,
+      "submitted_at": "2026-08-28T20:22:14Z",
       "total": 177
     }
   ]
