@@ -1,5 +1,14 @@
 {
-  "current": null,
+  "current": {
+    "agent_id": null,
+    "early_looks": [],
+    "file": "cgauto/submissions/candidate-apple-farm-v6-instrument.rs",
+    "id": "apple-farm-r6",
+    "label": "the apple farm -- round 6 (the last)",
+    "sha256": "8c6bc206417c6d22b593372ce42e74ce5698646c1f8a860073f349a2a082708c",
+    "submission_id": 41208249,
+    "submitted_at": "2026-08-28T13:12:22Z"
+  },
   "done": [
     {
       "agent_id": 6670021,
