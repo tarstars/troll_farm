@@ -1,11 +1,41 @@
 {
-  "written": "2026-08-28T06:2xZ rewritten by local_claude_1 on the owner's word; (b), the second rounds and the apple farm rounds dropped for now",
+  "written": "2026-08-28T06:5xZ rewritten by local_claude_1: three heroes after the champion's hour, then its second round, the apple farm's rounds 5-6, the champion",
   "items": [
     {
       "id": "champion-restore-now",
       "label": "the champion of record put back at once (owner 06:2xZ: remove the three_troll bot); holds the ladder until the redesigned three-heroes bot is built",
       "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
       "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c"
+    },
+    {
+      "file": "cgauto/submissions/candidate-three-heroes-v6-instrument.rs",
+      "sha256": "2abb9fc29c574f330ebf94ddcea3ec4f1968f0961299946777744c831f919f69",
+      "id": "three-heroes-r1",
+      "label": "THREE HEROES (design round 2, owner ok 06:2xZ): second troll with harvest 1; both trolls collect, nobody chops, until the 2/3/0/3 third troll or unreachable -- round 1"
+    },
+    {
+      "file": "cgauto/submissions/candidate-three-heroes-v6-instrument.rs",
+      "sha256": "2abb9fc29c574f330ebf94ddcea3ec4f1968f0961299946777744c831f919f69",
+      "id": "three-heroes-r2",
+      "label": "THREE HEROES -- round 2 (a second reading; one reading is +-1.5)"
+    },
+    {
+      "file": "cgauto/submissions/candidate-apple-farm-v6-instrument.rs",
+      "sha256": "8c6bc206417c6d22b593372ce42e74ce5698646c1f8a860073f349a2a082708c",
+      "id": "apple-farm-r5",
+      "label": "the apple farm -- round 5 of the six the owner ordered on 08-27"
+    },
+    {
+      "file": "cgauto/submissions/candidate-apple-farm-v6-instrument.rs",
+      "sha256": "8c6bc206417c6d22b593372ce42e74ce5698646c1f8a860073f349a2a082708c",
+      "id": "apple-farm-r6",
+      "label": "the apple farm -- round 6 (the last)"
+    },
+    {
+      "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+      "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+      "id": "champion-final",
+      "label": "the champion of record restored to hold the ladder when the queue ends"
     }
   ]
 }
