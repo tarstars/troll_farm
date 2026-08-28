@@ -14,7 +14,7 @@ states (`fits/`), and what the repository already knew (`prior-art.md`).
 |---|---|---|---|---|
 | 1 | **delineate** | 30.89 | a **learned policy network** (ResNet trained by PPO, 101k parameters, one inference per troll + one for the "train plan", no lookahead, 2–3 ms a turn) — described first-hand by its author | HIGH on what it is; **no hand rules exist to copy** — only its action/target spaces, observation, training curriculum and measured habits (a rule-based imitation is written in its document) |
 | 2 | **norxondor_gorgonax** | 29.66 | a **fast rule-based 3–4-troll build-up bot**: its own telemetry reads 0.13 ms a turn — no search; a global two-phase state machine (P = produce, D = deforest) — the author never wrote anything | MEDIUM-HIGH: the train ladder is exact (441/443 specs), the phase switch, the planting cell, the lifecycle and the roles are measured; the target choice and the plant kind are not |
-| 3 | **Bubaptik** | 27.90 | a **3–4-troll build-up bot with speed-4 choppers**; a post-contest entrant, no trace on the web | MEDIUM: 191 games of its newest version (34 versions in the corpus); the train rule is exact (147/154), the wood switch is a hard global switch at its last TRAIN; target choices fitted 44–56 %, mid/late chop not recovered |
+| 3 | **Bubaptik** | 27.90 | a **3–4-troll build-up bot with speed-4 choppers**; not in the contest's top league (probably a later entrant), no trace on the web | MEDIUM: 191 games of its newest version (34 versions in the corpus); the train rule is exact (147/154), the wood switch is a hard global switch at its last TRAIN; target choices fitted 44–56 %, mid/late chop not recovered |
 | 4 | **MSz** | 27.72 | a **"farm-first" build-up bot**: an instant cheap worker on turn 1 (an exact rule), a two-ring orchard, then two carry-4 lumberjacks paid with lemons, fruit harvested all game — no Troll Farm write-up; his search is a GUESS from his other post-mortems | MEDIUM: lifecycle, ladder, funding sequence and roles measured; search, evaluation and target choice unknown |
 
 Our champion (yamo's design, #3 in the contest) is the other family — **two trolls**, one trained ≈ 2/2/0/2
@@ -29,14 +29,15 @@ chopper, chop everything, no orchard. The contest's top ten splits into exactly 
    caps); MSz trains on **turn 1** in 214 of 215 games by an exact rule (speed 2 iff plums ≥ 5, carry 2
    iff lemons ≥ 5, harvest 2 iff apples ≥ 5, chop 1), then carry-4 trolls at ≈97 and ≈128; Bubaptik on
    turn 2 (each talent = the highest level the starting stock affords, 147/154), then **speed-4**
-   trolls 4/3/h/2–3 at ≈115, ≈150, ≈164. **The training trigger is the same in all four: train the turn
-   the target becomes affordable** (delay 0 in 88–99 % of trainings). The late trolls are carry-3/4,
-   chop-3, harvest-0 lumberjacks; carry 4 costs 16+n lemons, speed 4 costs 16+n plums — hence the orchard.
-2. **They plant next to the shack, 30–40 trees a game** (delineate 40 — lemons first, bananas after
+   trolls 4/3/h/2–3 at ≈115, ≈150, ≈164. **The training trigger is the same in all four: train within a turn of
+   the target becoming affordable** (delay 0 or 1 in 88–99 % of trainings; delineate the same turn in
+   61 %). The late trolls are carry-3/4, chop-2/3 lumberjacks with little or no harvest power; carry 4
+   costs 16+n lemons, speed 4 costs 16+n plums — hence the orchard.
+2. **They plant next to the shack, 29–40 trees a game** (delineate 40 — lemons first, bananas after
    turn 100; norxondor lemon 35 % / plum 32 % / banana 26 %, never beyond distance 4; MSz a two-ring
    orchard within distance 2 in 91 % of plants, apples next to water; Bubaptik plums for the speed-4
    bills). One rule fits the planting cell everywhere: **the free cell minimising distance-to-shack plus
-   distance-to-the-troll** (84–90 % of all plants). Our champion plants 10 a game, 82 % after turn 250.
+   distance-to-the-troll** (78–90 % of all plants; MSz 77.6 %). Our champion plants 10 a game, 82 % after turn 250.
 3. **The game has two phases, and the switch is explicit.** norxondor's P→D switch (median turn 153,
    one turn after its last TRAIN in 62 % of games): only 7 chops in the first 100 turns, first wood at
    median turn 97, then the highest chop rate on the ladder and a clear-cut tied to the fourth troll.
@@ -46,7 +47,9 @@ chopper, chop everything, no orchard. The contest's top ten splits into exactly 
    farmer). delineate: no switch, its chop rate simply rises with the roster.
 4. **The wood comes from their own trees.** norxondor's signature is **plant-and-cut bananas** — a
    banana planted on the shack-adjacent cell and felled at size 1 the next turn (1 fruit point → 4 wood
-   points; 2,407 such cuts in 184 games). delineate chops 172 times a game: the first 50 turns on the
+   points; 1,116 bananas cut at size 1, and 2,407 own-tree cuts within four turns of planting, in 184
+   games). delineate's and Bubaptik's first wood comes early (median turn 24–26) from raids; norxondor's
+   and MSz's late (turn 97 and 116) from their own trees. delineate chops 172 times a game: the first 50 turns on the
    opponent's half (56 % within two cells of their shack — a nursery raid), the last 50 on its own banana
    farm at size 4. MSz cuts its own trees grown to full size (median age 26–37 turns). Bubaptik's early
    chops are denial (50 % on the opponent's trees), late ones 70 % its own.
@@ -69,7 +72,7 @@ chopper, chop everything, no orchard. The contest's top ten splits into exactly 
   and the meaning of its second message letter; MSz's search and evaluation; Bubaptik's roster cap and
   speed-1 fallback trigger; anything about older versions.
 - **A warning from our own history** (`prior-art.md`): the one time a norxondor-shaped controller was
-  built from fitted rules it lost by −173 points closed-loop despite 77 % move accuracy — a training
+  built from fitted rules it lost by −173 points closed-loop despite matching 77 % of its recorded decisions — a training
   ladder without its funding mechanism is inert (−170). What makes a third troll affordable is both
   workers collecting one bill together (+106 in that study) — norxondor's P mode is exactly that.
   A program built from these documents must be judged on real maps, never on per-decision accuracy.
@@ -81,11 +84,11 @@ chopper, chop everything, no orchard. The contest's top ten splits into exactly 
    it becomes affordable (the exact trigger the top four use). Evidence: all four; the repo's +106.
 2. **The orchard rule while funding**: plant lemons/plums from turn 1 on the free cell minimising
    distance-to-shack + distance-to-troll, never beyond distance 4; bananas after turn ~100. Evidence:
-   84–90 % of 20,000+ plants.
+   78–90 % of 20,000+ plants.
 3. **The explicit two-phase switch**: produce until the last planned troll is trained, then deforest —
    every troll chops, no more mining or training (norxondor, Bubaptik). Evidence: measured switch.
 4. **Plant-and-cut bananas** on the shack-adjacent cell in the deforest phase (1 point → 4).
-   Evidence: 2,407 cuts.
+   Evidence: 1,116 size-1 cuts.
 5. **The early raid**: in the first 50 turns, chop the opponent's freshly planted trees near their
    shack (delineate 56 %, Bubaptik 50 % of early targets). Evidence: measured; the mechanism guessed.
 
