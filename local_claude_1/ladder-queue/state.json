@@ -1,14 +1,5 @@
 {
-  "current": {
-    "agent_id": null,
-    "early_looks": [],
-    "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
-    "id": "champion-final",
-    "label": "the champion of record restored to hold the ladder when the queue ends",
-    "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
-    "submission_id": 41208579,
-    "submitted_at": "2026-08-28T14:17:17Z"
-  },
+  "current": null,
   "done": [
     {
       "agent_id": 6670021,
@@ -999,6 +990,122 @@
       "sha256": "8c6bc206417c6d22b593372ce42e74ce5698646c1f8a860073f349a2a082708c",
       "submission_id": 41208249,
       "submitted_at": "2026-08-28T13:12:22Z",
+      "total": 176
+    },
+    {
+      "age_min": 62.7,
+      "agent_id": 6670954,
+      "early_looks": [
+        {
+          "age_min": 2.7,
+          "agent_id": 6670954,
+          "at": "2026-08-28T14:20:01Z",
+          "rank": 104,
+          "score": 17.27,
+          "total": 176
+        },
+        {
+          "age_min": 7.7,
+          "agent_id": 6670954,
+          "at": "2026-08-28T14:25:02Z",
+          "rank": 120,
+          "score": 16.37,
+          "total": 176
+        },
+        {
+          "age_min": 12.7,
+          "agent_id": 6670954,
+          "at": "2026-08-28T14:30:02Z",
+          "rank": 116,
+          "score": 16.58,
+          "total": 176
+        },
+        {
+          "age_min": 17.7,
+          "agent_id": 6670954,
+          "at": "2026-08-28T14:35:01Z",
+          "rank": 114,
+          "score": 16.68,
+          "total": 176
+        },
+        {
+          "age_min": 22.7,
+          "agent_id": 6670954,
+          "at": "2026-08-28T14:40:02Z",
+          "rank": 112,
+          "score": 16.76,
+          "total": 176
+        },
+        {
+          "age_min": 27.7,
+          "agent_id": 6670954,
+          "at": "2026-08-28T14:45:02Z",
+          "rank": 107,
+          "score": 17.13,
+          "total": 176
+        },
+        {
+          "age_min": 32.7,
+          "agent_id": 6670954,
+          "at": "2026-08-28T14:50:01Z",
+          "rank": 97,
+          "score": 17.77,
+          "total": 176
+        },
+        {
+          "age_min": 37.7,
+          "agent_id": 6670954,
+          "at": "2026-08-28T14:55:02Z",
+          "rank": 89,
+          "score": 18.13,
+          "total": 176
+        },
+        {
+          "age_min": 42.7,
+          "agent_id": 6670954,
+          "at": "2026-08-28T15:00:02Z",
+          "rank": 85,
+          "score": 18.19,
+          "total": 176
+        },
+        {
+          "age_min": 47.7,
+          "agent_id": 6670954,
+          "at": "2026-08-28T15:05:01Z",
+          "rank": 85,
+          "score": 18.19,
+          "total": 176
+        },
+        {
+          "age_min": 52.7,
+          "agent_id": 6670954,
+          "at": "2026-08-28T15:10:02Z",
+          "rank": 85,
+          "score": 18.19,
+          "total": 176
+        },
+        {
+          "age_min": 57.7,
+          "agent_id": 6670954,
+          "at": "2026-08-28T15:15:02Z",
+          "rank": 85,
+          "score": 18.19,
+          "total": 176
+        }
+      ],
+      "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+      "games_done": 160,
+      "games_in_package": 160,
+      "id": "champion-final",
+      "label": "the champion of record restored to hold the ladder when the queue ends",
+      "package": "local_claude_1/ladder-queue/games-41208579",
+      "package_sha256": "1562616effb1ca55a2651c1af83b549fa1d1a2aec447d7b0433bec62d040a829",
+      "rank": 85,
+      "read_at": "2026-08-28T15:22:03Z",
+      "score": 18.19,
+      "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+      "submission_id": 41208579,
+      "submitted_at": "2026-08-28T14:17:17Z",
       "total": 176
     }
   ]
