@@ -1,30 +1,13 @@
 {
   "current": {
-    "agent_id": 6670074,
-    "early_looks": [
-      {
-        "age_min": 0.6,
-        "agent_id": 6670074,
-        "at": "2026-08-28T06:25:01Z",
-        "rank": 135,
-        "score": 15.39,
-        "total": 176
-      },
-      {
-        "age_min": 5.6,
-        "agent_id": 6670074,
-        "at": "2026-08-28T06:30:02Z",
-        "rank": 147,
-        "score": 14.48,
-        "total": 176
-      }
-    ],
-    "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
-    "id": "champion-restore-now",
-    "label": "the champion of record put back at once (owner 06:2xZ: remove the three_troll bot); holds the ladder until the redesigned three-heroes bot is built",
-    "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
-    "submission_id": 41206635,
-    "submitted_at": "2026-08-28T06:24:23Z"
+    "agent_id": null,
+    "early_looks": [],
+    "file": "cgauto/submissions/candidate-three-heroes-v6-instrument.rs",
+    "id": "three-heroes-r1",
+    "label": "THREE HEROES (design round 2, owner ok 06:2xZ): second troll with harvest 1; both trolls collect, nobody chops, until the 2/3/0/3 third troll or unreachable -- round 1",
+    "sha256": "2abb9fc29c574f330ebf94ddcea3ec4f1968f0961299946777744c831f919f69",
+    "submission_id": 41206680,
+    "submitted_at": "2026-08-28T06:38:03Z"
   },
   "done": [
     {
@@ -82,6 +65,53 @@
       "sha256": "89493fa0d68e1dea1079c35ca4b0a8ed9b36273ccb25f5663d51c1a9e48ded33",
       "submission_id": 41206542,
       "submitted_at": "2026-08-28T05:49:18Z"
+    },
+    {
+      "agent_id": 6670074,
+      "early_looks": [
+        {
+          "age_min": 0.6,
+          "agent_id": 6670074,
+          "at": "2026-08-28T06:25:01Z",
+          "rank": 135,
+          "score": 15.39,
+          "total": 176
+        },
+        {
+          "age_min": 5.6,
+          "agent_id": 6670074,
+          "at": "2026-08-28T06:30:02Z",
+          "rank": 147,
+          "score": 14.48,
+          "total": 176
+        },
+        {
+          "age_min": 10.6,
+          "agent_id": 6670074,
+          "at": "2026-08-28T06:35:01Z",
+          "rank": 129,
+          "score": 15.68,
+          "total": 176
+        }
+      ],
+      "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+      "id": "champion-restore-now",
+      "label": "the champion of record put back at once (owner 06:2xZ: remove the three_troll bot); holds the ladder until the redesigned three-heroes bot is built",
+      "retired": {
+        "at": "2026-08-28T06:3xZ",
+        "by": "the owner: put the rebuilt bot (three heroes) on the ladder before the queue we have now - the champion's hour cut short, no reading, no games collected",
+        "last_early_look": {
+          "age_min": 10.6,
+          "agent_id": 6670074,
+          "at": "2026-08-28T06:35:01Z",
+          "rank": 129,
+          "score": 15.68,
+          "total": 176
+        }
+      },
+      "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+      "submission_id": 41206635,
+      "submitted_at": "2026-08-28T06:24:23Z"
     }
   ]
 }
