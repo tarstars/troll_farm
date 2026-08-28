@@ -1,14 +1,5 @@
 {
-  "current": {
-    "agent_id": null,
-    "early_looks": [],
-    "file": "cgauto/submissions/candidate-orchard5-v6-instrument.rs",
-    "id": "orchard5-r2",
-    "label": "ORCHARD 5 -- round 2",
-    "sha256": "751d7928d15e13fd311f28a6519685815ac24dacae4c6afb9d97991ca641afc6",
-    "submission_id": 41207963,
-    "submitted_at": "2026-08-28T12:07:29Z"
-  },
+  "current": null,
   "done": [
     {
       "agent_id": 6670021,
@@ -767,6 +758,122 @@
       "sha256": "751d7928d15e13fd311f28a6519685815ac24dacae4c6afb9d97991ca641afc6",
       "submission_id": 41207673,
       "submitted_at": "2026-08-28T11:02:12Z",
+      "total": 176
+    },
+    {
+      "age_min": 62.5,
+      "agent_id": 6670655,
+      "early_looks": [
+        {
+          "age_min": 2.5,
+          "agent_id": 6670655,
+          "at": "2026-08-28T12:10:02Z",
+          "rank": 162,
+          "score": 12.93,
+          "total": 176
+        },
+        {
+          "age_min": 7.5,
+          "agent_id": 6670655,
+          "at": "2026-08-28T12:15:01Z",
+          "rank": 172,
+          "score": 11.04,
+          "total": 176
+        },
+        {
+          "age_min": 12.6,
+          "agent_id": 6670655,
+          "at": "2026-08-28T12:20:03Z",
+          "rank": 162,
+          "score": 12.91,
+          "total": 176
+        },
+        {
+          "age_min": 17.5,
+          "agent_id": 6670655,
+          "at": "2026-08-28T12:25:01Z",
+          "rank": 165,
+          "score": 12.56,
+          "total": 176
+        },
+        {
+          "age_min": 22.5,
+          "agent_id": 6670655,
+          "at": "2026-08-28T12:30:02Z",
+          "rank": 162,
+          "score": 12.99,
+          "total": 176
+        },
+        {
+          "age_min": 27.5,
+          "agent_id": 6670655,
+          "at": "2026-08-28T12:35:01Z",
+          "rank": 161,
+          "score": 13.3,
+          "total": 176
+        },
+        {
+          "age_min": 32.6,
+          "agent_id": 6670655,
+          "at": "2026-08-28T12:40:02Z",
+          "rank": 154,
+          "score": 13.95,
+          "total": 176
+        },
+        {
+          "age_min": 37.5,
+          "agent_id": 6670655,
+          "at": "2026-08-28T12:45:02Z",
+          "rank": 152,
+          "score": 14.11,
+          "total": 176
+        },
+        {
+          "age_min": 42.5,
+          "agent_id": 6670655,
+          "at": "2026-08-28T12:50:01Z",
+          "rank": 155,
+          "score": 13.97,
+          "total": 176
+        },
+        {
+          "age_min": 47.6,
+          "agent_id": 6670655,
+          "at": "2026-08-28T12:55:02Z",
+          "rank": 158,
+          "score": 13.59,
+          "total": 176
+        },
+        {
+          "age_min": 52.5,
+          "agent_id": 6670655,
+          "at": "2026-08-28T13:00:02Z",
+          "rank": 159,
+          "score": 13.51,
+          "total": 176
+        },
+        {
+          "age_min": 57.5,
+          "agent_id": 6670655,
+          "at": "2026-08-28T13:05:01Z",
+          "rank": 159,
+          "score": 13.51,
+          "total": 176
+        }
+      ],
+      "file": "cgauto/submissions/candidate-orchard5-v6-instrument.rs",
+      "games_done": 160,
+      "games_in_package": 160,
+      "id": "orchard5-r2",
+      "label": "ORCHARD 5 -- round 2",
+      "package": "local_claude_1/ladder-queue/games-41207963",
+      "package_sha256": "2b8ca3f0e0cee00d2affc4094884ac1b8ce6e962db7e6b5e9b05a663b3a8099e",
+      "rank": 159,
+      "read_at": "2026-08-28T13:12:08Z",
+      "score": 13.51,
+      "sha256": "751d7928d15e13fd311f28a6519685815ac24dacae4c6afb9d97991ca641afc6",
+      "submission_id": 41207963,
+      "submitted_at": "2026-08-28T12:07:29Z",
       "total": 176
     }
   ]
