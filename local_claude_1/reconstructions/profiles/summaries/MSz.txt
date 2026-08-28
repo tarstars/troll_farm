@@ -1,0 +1,12 @@
+MSz (Legend #4; agent 6479460; 216 games, all from raw replays; win rate 0.569, mean score 399 against 333 — the second-highest score of the four but the lowest win rate; it is the only one of the four with timeout strikes, 8 in 216 games).
+
+1. Buys the second troll on turn 1 in 214 of 215 games, always with chop 1 and as cheap as the random starting stock allows: 2 2 2 1 (31 %), 2 2 1 1 (18 %), 1 2 2 1 (17 %), 2 1 1 1 (14 %), 1 1 1 1 (13 %). No other top bot trains on turn 1.
+2. Third troll (84 % of games, median turn 95) always carry 4: 2 4 1 2 (46 %) or 2 4 1 3 (41 %); fourth (38 %, turn 129) is 2 4 0 3 in 89 %. Speed 2 in 98 % of trolls 3-4.
+3. The fruit specialist: 112 HARVEST commands and 129 fruits per game (the others 78-90), 78 fruit points (the others 27-33); wood is only 80 % of its score (93 % for delineate). It keeps harvesting to the last turn: 11.6 harvests in the last 30 turns (the others 2-4) and 14.6 DROPs.
+4. Apples: 11 % of its plants (20 % in the last 100 turns), 46 % of them next to water (water cuts the apple cooldown from 9 to 2 ticks), and apples are 32 % of all fruit it harvests. No other top bot farms apples.
+5. Front-loaded planting: 29 plants per game, 6.3 of them in the first 20 turns (3.9 in turns 1-10); banana 39 %, lemon 33 %, plum 17 %; median 2 cells from the shack, never beyond 6, 91 % on its own half.
+6. Chops late and at home: first wood at median turn 116; 118 CHOP commands per game (the fewest), 78 % nearer its own shack, 64 % on its own trees and only 16 % on opponent trees (delineate 24 %, norxondor 30 %); chop power 1 for 36 % of chops (the start troll and the cheap second troll keep chopping).
+7. Mines early: first MINE at median turn 20 and 1.2 MINEs per 10 turns in turns 11-30 — the chop-1 second troll mines the iron for the chop-3 trolls bought later.
+8. Step-wise MOVE (targets 1-3 cells away), so destinations are not visible in the corpus.
+9. Weak with two trolls (12 % wins in the 34 games where it never bought a third), 56 % with three, 77 % with four; 13 games ended early.
+10. Opening line of the start troll: move, pick, (move,) plant, move, pick, plant, pick, ... — three or four seeds planted 1-2 cells from the shack in the first 10 turns, the fastest farm start of the four.
