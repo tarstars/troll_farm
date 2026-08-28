@@ -1,14 +1,5 @@
 {
-  "current": {
-    "agent_id": null,
-    "early_looks": [],
-    "file": "cgauto/submissions/candidate-orchard5-v6-instrument.rs",
-    "id": "orchard5-r1",
-    "label": "ORCHARD 5 (orchard 4 + the way home charged in the fruit and ore scores; owner: trolls collected the farthest fruits) -- round 1",
-    "sha256": "751d7928d15e13fd311f28a6519685815ac24dacae4c6afb9d97991ca641afc6",
-    "submission_id": 41207673,
-    "submitted_at": "2026-08-28T11:02:12Z"
-  },
+  "current": null,
   "done": [
     {
       "agent_id": 6670021,
@@ -652,6 +643,122 @@
       "sha256": "52c36e53d821be6ec04cff36efeb7c42d5e6f964a011aef1058c9d6d04611600",
       "submission_id": 41207599,
       "submitted_at": "2026-08-28T10:44:18Z"
+    },
+    {
+      "age_min": 62.8,
+      "agent_id": 6670493,
+      "early_looks": [
+        {
+          "age_min": 2.8,
+          "agent_id": 6670493,
+          "at": "2026-08-28T11:05:01Z",
+          "rank": 174,
+          "score": 5.12,
+          "total": 176
+        },
+        {
+          "age_min": 7.8,
+          "agent_id": 6670493,
+          "at": "2026-08-28T11:10:02Z",
+          "rank": 170,
+          "score": 11.39,
+          "total": 176
+        },
+        {
+          "age_min": 12.8,
+          "agent_id": 6670493,
+          "at": "2026-08-28T11:15:02Z",
+          "rank": 170,
+          "score": 11.66,
+          "total": 176
+        },
+        {
+          "age_min": 17.8,
+          "agent_id": 6670493,
+          "at": "2026-08-28T11:20:02Z",
+          "rank": 164,
+          "score": 12.76,
+          "total": 176
+        },
+        {
+          "age_min": 22.8,
+          "agent_id": 6670493,
+          "at": "2026-08-28T11:25:01Z",
+          "rank": 152,
+          "score": 14.01,
+          "total": 176
+        },
+        {
+          "age_min": 27.8,
+          "agent_id": 6670493,
+          "at": "2026-08-28T11:30:02Z",
+          "rank": 159,
+          "score": 13.64,
+          "total": 176
+        },
+        {
+          "age_min": 32.8,
+          "agent_id": 6670493,
+          "at": "2026-08-28T11:35:02Z",
+          "rank": 160,
+          "score": 13.66,
+          "total": 176
+        },
+        {
+          "age_min": 37.8,
+          "agent_id": 6670493,
+          "at": "2026-08-28T11:40:01Z",
+          "rank": 147,
+          "score": 14.39,
+          "total": 176
+        },
+        {
+          "age_min": 42.8,
+          "agent_id": 6670493,
+          "at": "2026-08-28T11:45:02Z",
+          "rank": 147,
+          "score": 14.47,
+          "total": 176
+        },
+        {
+          "age_min": 47.8,
+          "agent_id": 6670493,
+          "at": "2026-08-28T11:50:02Z",
+          "rank": 144,
+          "score": 14.72,
+          "total": 176
+        },
+        {
+          "age_min": 52.8,
+          "agent_id": 6670493,
+          "at": "2026-08-28T11:55:01Z",
+          "rank": 144,
+          "score": 14.65,
+          "total": 176
+        },
+        {
+          "age_min": 57.8,
+          "agent_id": 6670493,
+          "at": "2026-08-28T12:00:02Z",
+          "rank": 144,
+          "score": 14.65,
+          "total": 176
+        }
+      ],
+      "file": "cgauto/submissions/candidate-orchard5-v6-instrument.rs",
+      "games_done": 160,
+      "games_in_package": 160,
+      "id": "orchard5-r1",
+      "label": "ORCHARD 5 (orchard 4 + the way home charged in the fruit and ore scores; owner: trolls collected the farthest fruits) -- round 1",
+      "package": "local_claude_1/ladder-queue/games-41207673",
+      "package_sha256": "34234cf957dc1ede408d43fe69f308239787ebdb764ad2aa01bbe7ade6f8f865",
+      "rank": 144,
+      "read_at": "2026-08-28T12:07:05Z",
+      "score": 14.65,
+      "sha256": "751d7928d15e13fd311f28a6519685815ac24dacae4c6afb9d97991ca641afc6",
+      "submission_id": 41207673,
+      "submitted_at": "2026-08-28T11:02:12Z",
+      "total": 176
     }
   ]
 }
