@@ -1,92 +1,80 @@
-# GOAL — steady state: keep the champion read, the board truthful, the mail clean; nothing new without the owner's word
+# GOAL — the third troll (owner 2026-08-28 04:3xZ: "set as next goal bot with the third troll"); the ladder rounds wind down; nothing else without the owner's word
 
-**THE NIGHT'S GOAL (owner 19:5xZ, asleep ~9 h until ≈ 05:00Z): recover the algorithms of the four top
-players** — delineate, norxondor_gorgonax, Bubaptik, MSz — each as a description of actions sufficient
-to write a program; all means allowed (internet, our corpus, replays). Plan and deliverables:
-`local_claude_1/reconstructions/PLAN.md`; board Track R. The floor's six rounds run on their timers
-in parallel and are not interrupted by this work.
+**THE NEXT EXPERIMENT — THE THIRD TROLL** (card `coordination/tasks/20260828-third-troll.md`): the
+champion of record (`41202036`, sha `0e92f8fa…`, readable `readable/denial-off-champion.rs`) plus one
+change — after the second troll is trained, both trolls collect the bill of a third troll (speed 2,
+carry 3, harvest 0, chop 3: 6 plums, 11 lemons, 2 apples, 11 iron with two trolls) — the starting troll
+harvests the plums and lemons, the trained troll mines the iron — and the bot trains it the turn the bill
+is affordable; the third troll chops like the second. Nothing else changes. Evidence:
+`docs/reports/2026-08-28-top-four-algorithms.pdf` §11 and `local_claude_1/reconstructions/README.md`
+(idea #1); `local_claude_1/reconstructions/prior-art.md` (the funding coalition +106 on the bench; a
+training plan alone −170). **Steps:** (1) design round 1 = the four questions on the card with the
+coordinator's recommended answers, presented to the owner in one message; build unless the owner
+objects; (2) the build through the generator chain (`local_claude_1/third-troll/make_third_troll.py`;
+templates `local_claude_1/the-floor/make_the_floor.py` for replacements, `local_claude_1/apple-farm/
+make_apple_farm.py` for insertions), the bed (`fixtures_diff.py` adapted), a smoke on real maps
+(`smoke.py` adapted: share and turn of the third troll, funding time, no stall), codex_1's reproduction
+(a handoff pinned to a pushed commit, the ≤ 10 MB slice); (3) the owner's prediction asked; the
+submission (`python3 cgauto/api_submit_once.py <file> --expected-sha256 <sha>`), a one-shot session cron
+at +62 min (local = UTC+3), the one-hour reading, the 160 games collected (`local_claude_1/narrate/
+collect_submission_games.py --agent-id <id> --submission-id <id> …`) and read (`local_claude_1/the-floor/
+ladder_read.py` works for any bot: talents and turn of every TRAIN, wins by opponent troll count).
 
-**THIS HOUR (from 2026-08-27 18:54:02Z): THE FLOOR is on the ladder** — submission **`41205061`**
-(sha `31cd23c0…`, `cgauto/submissions/candidate-the-floor-v6-instrument.rs`, 63,791 B; card
-`coordination/tasks/20260827-the-floor.md`; ladder queue slot 4), the owner's one-variable experiment
-("let's build the_floor", 17:5xZ; "submit now floor, put 5 resubmissions", 18:51Z): the champion of
-record with one change — the second troll is never weaker than speed 2, carry 2, chop 2; the bot waits
-for it, and from turn 35 takes the strongest floored troll it can afford or keeps waiting for the basic
-2/2/0/2. Built by `local_claude_1/the-floor/make_the_floor.py` (+17/−23, diff `readable/diffs/the-floor.diff`);
-bed PASS; smoke PASS 24/24 real maps; codex_1 reproduces (row 0-6, verdict pending).
+**THE LADDER MEANWHILE:** the floor's round 3 (`41206409`, submitted 04:21:54Z) is its **last** round:
+its reading at 05:24Z (timer `68fe25fd`; if `cg_rank.py` fails at login — it does most of the night —,
+the rating is the API's `score` stamped on our agent in the collected games; the rank "unreadable"),
+its games collected into `local_claude_1/the-floor/games-41206409/` and read; **no round 4** — the
+owner's new goal supersedes the six rounds; the three readings (19.2, 19.1, round 3) go to the owner.
+The floor stays on the ladder, unread, until the third-troll bot takes the slot; the champion of record
+returns only on the owner's word. Ledger rows `FLR-r1` … `FLR-r3` in
+`local_claude_1/ladder-measure/ledger-2026-08-26.md`.
 
-**THE FLOOR'S SIX ROUNDS (owner 18:51Z).** The same file is submitted six times in all, one hour
-each; ledger rows `FLR-r1` … `FLR-r6` in `local_claude_1/ladder-measure/ledger-2026-08-26.md`.
-**Round 1 = `41205061`, submitted 18:54:02Z, reading ≥ 19:54Z (timer 19:56Z).** Each round, ≥ 60 min
-after its submission (a one-shot session cron at +62 min; local clock = UTC+3): (1) `python3
-cgauto/cg_rank.py` — the reading; ledger row (score, rank, agent id, time); (2) collect its games —
-`local_claude_1/narrate/collect_submission_games.py --agent-id <id> --submission-id <id> --scratch
-<scratchpad>/… --output-dir local_claude_1/the-floor/games-<id> --observed-at-utc $(date -u …)` —
-check all 160 are done, and read them with `python3 local_claude_1/the-floor/ladder_read.py
-<package .jsonl.gz FILE> <agent id> <label>` (the second troll's talents and training turn per game —
-never below 2/2/0/2 —, wins, opponents' troll counts and ratings; compare with the champion's batch
-`local_claude_1/denial-ablation/games-41202036/` and the apple farm's rounds); (3) if fewer than six
-readings exist, submit the next round with `python3 cgauto/api_submit_once.py
-cgauto/submissions/candidate-the-floor-v6-instrument.rs --expected-sha256
-31cd23c021f184b0cc39aa7f38d4bfb099d56a9f815ce892bee1f3dada10d420` and create the one-shot cron for its
-reading at +62 min; (4) board (slot 4), the card's log, the five-part log note, commit, push,
-fast-forward `main`, pull the checkout; report the reading against the champion's 21.2/42 and the
-owner's prediction (not yet stated; coordinator's on record: about +1). **After the sixth reading: no
-further submission — the six numbers (mean, spread) go to the owner, who rules.** The hourly wake in
-between reads the current submission and does nothing else. The champion of record remains `41202036`.
+**THE APPLE FARM** is paused after four readings (19.8, 19.8, 18.6, 19.9 — mean 19.5; the champion
+21.2); rounds 5–6 only on the owner's word. **The floor** read 19.2, 19.1 (round 3 pending) — the
+mechanism worked in every game (every second troll `2/2/0/2` or better); the losses sit with 3+-troll
+opponents. Both are facts, not verdicts; the owner rules.
 
-**THE APPLE FARM is PAUSED after four readings (owner 18:51Z: "what left for previous experiments
-let's do later"):** 19.8/49, 19.8/50, 18.6/78, 19.9/47 — mean 19.5, spread 1.3 — against the champion's
-21.2/42 (rows `APL-1h`, `APL-r2` … `APL-r4`; all four packages collected and read in
-`local_claude_1/apple-farm/games-*/`; the rule ran in every farm-map game, 62/50/57/64 % wins there;
-identical-play games 43/53/56/68 %). Rounds 5–6 wait for the owner's word; nothing is submitted for
-them by this file.
+**Track R (the four top players' algorithms) is DONE and published:** the PDF
+`docs/reports/2026-08-28-top-four-algorithms.pdf` (8 pages, reviewed twice), `local_claude_1/reconstructions/`
+(README.md, four `ALGORITHM.md`, `sources/`, `profiles/`, `fits/`, `prior-art.md`, `REVIEW-2026-08-28.md`).
 
-**The champion of record is the simplified bot** (owner ruling 2026-08-27 09:05Z: *"One point is not
-enough to make a decisive conclusion. But I like simplification of the algorithm, so let's name the
-current approach the champion."*): submission **`41202036`** (08:21:51Z), agent `6667789`, file
-`cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs`, sha `0e92f8fa…` — the previous
-champion minus its four-line plum/lemon denial bonus; readable source `readable/denial-off-champion.rs`;
-`docs/STATE.md` §1. One-hour reading 21.2 at rank 42/176 (no drop); its 160 games in
-`local_claude_1/denial-ablation/games-41202036/`. **It is off the ladder while the experiments run and
-returns only on the owner's word.**
+**The champion of record is the simplified bot** (owner ruling 2026-08-27 09:05Z): submission
+`41202036` (08:21:51Z), agent `6667789`, `cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs`,
+sha `0e92f8fa…`; readable `readable/denial-off-champion.rs`; one-hour reading 21.2 at rank 42/176; its
+160 games in `local_claude_1/denial-ablation/games-41202036/`. **Restore target for any revert.**
 
-**Owner rulings 2026-08-27 10:04Z:** the banana farm line is **closed** (obituary in
-`coordination/GRAVEYARD.md`; the denial-first repair design is on file in its card); the inert code
-in the champion **stays** ("probably convenient for the nearest experiments"); the keep-your-goal
-question is **on hold** ("a little bit different angle soon") — L-1 and T-3 on hold, no readings, no
-analytics slice. When the next experiment comes it will be one variable on the current champion, built
-through the generator-and-compactor chain (`local_claude_1/the-floor/make_the_floor.py` is the template
-for replacements, `local_claude_1/apple-farm/make_apple_farm.py` for insertions), one hour on the
-ladder, one reading against the owner's stated prediction, games collected before the next submission.
+**Owner rulings 2026-08-27 10:04Z** still stand: the banana farm line closed; the inert code in the
+champion stays; the keep-your-goal question on hold.
 
 You are `local_claude_1`, sole Arena controller. Rules: `coordination/WORKING-RULES.md`; record:
 `coordination/BOARD.md`; ledger: `local_claude_1/ladder-measure/ledger-2026-08-26.md`; the latest
-handover: `coordination/HANDOVER-2026-08-27-apple-farm-five-rounds.md` (the floor and the census came
-after it: see the board, the cards and today's log); today's log: `local_claude_1/goal-log-2026-08-26.md`.
+handover: `coordination/HANDOVER-2026-08-28-third-troll.md`; today's log: `local_claude_1/goal-log-2026-08-26.md`.
 
-## Each wake (hourly cron; also on ack-required mail)
+## Each wake (hourly cron at :37; also on ack-required mail)
 
 1. `cd /home/tarstars/prj/troll_farm-local_claude_1 && python3 scripts/inbox_sweep.py --me local_claude_1 --fetch`;
    read every new message whole **before publishing anything**; `--mark` as its own step; commit the
-   seen state.
-2. **Ladder.** Read the current submission once with `python3 cgauto/cg_rank.py`; write the ledger
-   row (score, rank, agent id, time) if it is a reading (≥ 60 min), else one log line. No submission
-   outside the round protocol above.
+   seen state. (A message whose pinned commit is unreachable blocks every `--mark`: quarantine it by
+   adjudication — `coordination/quarantine.json` entry + a policy message — as entries 12–17 were.)
+2. **Ladder.** Read the current submission once (`python3 cgauto/cg_rank.py`; the fallback above);
+   write the ledger row if it is a reading (≥ 60 min), else one log line. No submission outside the
+   card's protocol.
 3. Rule on anything that blocks a peer; land artifacts on `main` at each gate; mark stalls.
 4. Board note (Moved / Stalled / Ladder / Decisions / Corrections) appended to
-   `local_claude_1/goal-log-2026-08-26.md`, board rows updated in the same commit; fast-forward
-   `main`; pull the checkout `/home/tarstars/prj/troll_farm`.
+   `local_claude_1/goal-log-2026-08-26.md`, board rows updated in the same commit; push; fast-forward
+   `main` (`git push origin agent/local_claude_1:main`); pull the checkout `/home/tarstars/prj/troll_farm`
+   in a separate call (the cwd resets there).
 
 ## Allowed without the owner
-The round protocol above (readings, collections, the next round's submission of the same file); the
+The card's protocol (the build, the bed, the smoke, codex_1's charter, the submission and its reading
+once the owner has given the prediction or said "go"); the floor's last reading and collection; the
 hourly reading; rulings that unblock a peer; stalls; landing artifacts; slices ≤ 10 MB on request;
 transport repairs (quarantine adjudications).
 
 ## Not allowed
-Any other submission; any build; promotion or revert rulings; new charters; rule changes; transfers
-> 10 MB; deletions.
+Any other submission (including the champion's return); promotion or revert rulings; new charters;
+rule changes; transfers > 10 MB; deletions.
 
 ## Done when
-There is no "done" — this is the resting state until the owner names the next experiment. Each wake
-ends with the board truthful and `origin/main` == `agent/local_claude_1` == the checkout.
+The third troll's one-hour reading is on the ledger with its games collected and read, and the owner
+has ruled. Each wake ends with the board truthful and `origin/main` == `agent/local_claude_1` == the checkout.
