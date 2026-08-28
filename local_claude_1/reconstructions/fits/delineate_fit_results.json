@@ -1,0 +1,270 @@
+{
+ "chop": {
+  "n": 10806,
+  "moved": 7651,
+  "all": {
+   "nearest tree (BFS from unit)": [
+    2132,
+    7651,
+    1171,
+    1484.1
+   ],
+   "nearest tree, ties -> bigger": [
+    1832,
+    7651,
+    546,
+    1539.0
+   ],
+   "champion value: wood/(travel+chops+return+1)": [
+    3200,
+    7651,
+    2178,
+    1566.7
+   ],
+   "wood/(travel+chops)": [
+    3381,
+    7651,
+    2351,
+    1603.7
+   ],
+   "wood/(travel+chops+1)": [
+    3505,
+    7651,
+    2409,
+    1686.9
+   ],
+   "size/(travel+chops+return)": [
+    2383,
+    7651,
+    1208,
+    1658.8
+   ],
+   "size/(travel+chops)": [
+    2773,
+    7651,
+    1543,
+    1810.2
+   ],
+   "size/travel(+1)": [
+    3671,
+    7651,
+    2672,
+    1892.8
+   ],
+   "biggest tree, ties -> nearest": [
+    2435,
+    7651,
+    1054,
+    1856.9
+   ],
+   "fewest chop turns, ties -> nearest": [
+    1039,
+    7651,
+    148,
+    963.0
+   ],
+   "min (travel + chops)": [
+    2111,
+    7651,
+    1066,
+    1456.8
+   ],
+   "min (travel + chops + return)": [
+    1645,
+    7651,
+    912,
+    1090.6
+   ],
+   "closest to own shack": [
+    978,
+    7651,
+    729,
+    550.2
+   ],
+   "closest to opponent shack": [
+    1430,
+    7651,
+    939,
+    880.1
+   ],
+   "nearest non-own-planted tree": [
+    1398,
+    7651,
+    583,
+    1076.6
+   ],
+   "nearest fruitless tree (fruits==0)": [
+    1555,
+    7651,
+    583,
+    1192.4
+   ],
+   "nearest full-size (4) tree": [
+    2438,
+    7651,
+    1057,
+    1857.4
+   ],
+   "nearest tree within 2 of the opponent shack (else nearest)": [
+    1510,
+    7651,
+    509,
+    1245.2
+   ],
+   "nearest opponent-planted tree (else nearest)": [
+    1594,
+    7651,
+    661,
+    1239.6
+   ],
+   "nearest tree on the opponent half (else nearest)": [
+    1406,
+    7651,
+    607,
+    1074.8
+   ],
+   "wood/(travel+chops), opp-half trees x2": [
+    3016,
+    7651,
+    2082,
+    1405.8
+   ],
+   "wood/(travel+chops) + denial: (size+fruits)/(travel+chops) for opp-half trees": [
+    1045,
+    7651,
+    416,
+    794.1
+   ],
+   "min d_opp, ties -> nearest": [
+    1261,
+    7651,
+    356,
+    1081.3
+   ]
+  },
+  "not_own_planted": {
+   "nearest tree (BFS from unit)": [
+    1395,
+    7648,
+    580,
+    1076.0
+   ],
+   "nearest tree, ties -> bigger": [
+    1153,
+    7648,
+    248,
+    1020.5
+   ],
+   "champion value: wood/(travel+chops+return+1)": [
+    1703,
+    7648,
+    1169,
+    700.9
+   ],
+   "wood/(travel+chops)": [
+    1764,
+    7648,
+    1269,
+    691.8
+   ],
+   "min (travel + chops)": [
+    1548,
+    7648,
+    591,
+    1202.9
+   ],
+   "min (travel + chops + return)": [
+    1295,
+    7648,
+    460,
+    1033.6
+   ],
+   "nearest tree within 2 of the opponent shack (else nearest)": [
+    1319,
+    7648,
+    362,
+    1132.8
+   ],
+   "nearest tree on the opponent half (else nearest)": [
+    1369,
+    7648,
+    581,
+    1052.5
+   ],
+   "wood/(travel+chops), opp-half trees x2": [
+    1776,
+    7648,
+    1271,
+    704.3
+   ],
+   "wood/(travel+chops) + denial: (size+fruits)/(travel+chops) for opp-half trees": [
+    591,
+    7648,
+    170,
+    494.6
+   ]
+  },
+  "unoccupied": {
+   "nearest tree (BFS from unit)": [
+    2256,
+    7651,
+    1141,
+    1629.2
+   ],
+   "nearest tree, ties -> bigger": [
+    1960,
+    7651,
+    536,
+    1672.7
+   ],
+   "champion value: wood/(travel+chops+return+1)": [
+    3651,
+    7651,
+    2214,
+    2014.0
+   ],
+   "wood/(travel+chops)": [
+    3806,
+    7651,
+    2428,
+    2000.1
+   ],
+   "min (travel + chops)": [
+    2394,
+    7651,
+    1139,
+    1708.0
+   ],
+   "min (travel + chops + return)": [
+    1975,
+    7651,
+    971,
+    1397.0
+   ],
+   "nearest tree within 2 of the opponent shack (else nearest)": [
+    1554,
+    7651,
+    496,
+    1295.7
+   ],
+   "nearest tree on the opponent half (else nearest)": [
+    1415,
+    7651,
+    600,
+    1087.9
+   ],
+   "wood/(travel+chops), opp-half trees x2": [
+    3223,
+    7651,
+    2118,
+    1606.7
+   ],
+   "wood/(travel+chops) + denial: (size+fruits)/(travel+chops) for opp-half trees": [
+    1096,
+    7651,
+    421,
+    846.6
+   ]
+  }
+ }
+}
