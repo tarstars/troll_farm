@@ -1,54 +1,13 @@
 {
   "current": {
-    "agent_id": 6670244,
-    "early_looks": [
-      {
-        "age_min": 2.7,
-        "agent_id": 6670244,
-        "at": "2026-08-28T08:55:01Z",
-        "rank": 154,
-        "score": 13.87,
-        "total": 176
-      },
-      {
-        "age_min": 7.7,
-        "agent_id": 6670244,
-        "at": "2026-08-28T09:00:02Z",
-        "rank": 148,
-        "score": 14.44,
-        "total": 176
-      },
-      {
-        "age_min": 12.7,
-        "agent_id": 6670244,
-        "at": "2026-08-28T09:05:02Z",
-        "rank": 134,
-        "score": 15.42,
-        "total": 176
-      },
-      {
-        "age_min": 17.7,
-        "agent_id": 6670244,
-        "at": "2026-08-28T09:10:01Z",
-        "rank": 106,
-        "score": 17.1,
-        "total": 176
-      },
-      {
-        "age_min": 22.7,
-        "agent_id": 6670244,
-        "at": "2026-08-28T09:15:02Z",
-        "rank": 83,
-        "score": 18.36,
-        "total": 176
-      }
-    ],
-    "file": "cgauto/submissions/candidate-apple-farm-v6-instrument.rs",
-    "id": "apple-farm-r5",
-    "label": "the apple farm -- round 5 of the six the owner ordered on 08-27",
-    "sha256": "8c6bc206417c6d22b593372ce42e74ce5698646c1f8a860073f349a2a082708c",
-    "submission_id": 41207182,
-    "submitted_at": "2026-08-28T08:52:19Z"
+    "agent_id": null,
+    "early_looks": [],
+    "file": "cgauto/submissions/candidate-orchard-v6-instrument.rs",
+    "id": "orchard-r1",
+    "label": "THE ORCHARD (owner 'let's do orchard', far-gate amendment, ok): three heroes + four lemons and two plums at the gate farthest from the enemy, planted after the second troll, protected until the third troll; the dance fix -- round 1",
+    "sha256": "8e0c0244a05abd3f6792aacca6ecabd38fcc522ad4a1761f863cc5feb96cd528",
+    "submission_id": 41207318,
+    "submitted_at": "2026-08-28T09:24:14Z"
   },
   "done": [
     {
@@ -393,6 +352,77 @@
       "submission_id": 41206957,
       "submitted_at": "2026-08-28T07:47:16Z",
       "total": 176
+    },
+    {
+      "agent_id": 6670244,
+      "early_looks": [
+        {
+          "age_min": 2.7,
+          "agent_id": 6670244,
+          "at": "2026-08-28T08:55:01Z",
+          "rank": 154,
+          "score": 13.87,
+          "total": 176
+        },
+        {
+          "age_min": 7.7,
+          "agent_id": 6670244,
+          "at": "2026-08-28T09:00:02Z",
+          "rank": 148,
+          "score": 14.44,
+          "total": 176
+        },
+        {
+          "age_min": 12.7,
+          "agent_id": 6670244,
+          "at": "2026-08-28T09:05:02Z",
+          "rank": 134,
+          "score": 15.42,
+          "total": 176
+        },
+        {
+          "age_min": 17.7,
+          "agent_id": 6670244,
+          "at": "2026-08-28T09:10:01Z",
+          "rank": 106,
+          "score": 17.1,
+          "total": 176
+        },
+        {
+          "age_min": 22.7,
+          "agent_id": 6670244,
+          "at": "2026-08-28T09:15:02Z",
+          "rank": 83,
+          "score": 18.36,
+          "total": 176
+        },
+        {
+          "age_min": 27.7,
+          "agent_id": 6670244,
+          "at": "2026-08-28T09:20:01Z",
+          "rank": 65,
+          "score": 18.96,
+          "total": 176
+        }
+      ],
+      "file": "cgauto/submissions/candidate-apple-farm-v6-instrument.rs",
+      "id": "apple-farm-r5",
+      "label": "the apple farm -- round 5 of the six the owner ordered on 08-27",
+      "retired": {
+        "at": "2026-08-28T09:2xZ",
+        "by": "the owner: the orchard now - the apple farm's round 5 cut short at ~30 min, no reading",
+        "last_early_look": {
+          "age_min": 27.7,
+          "agent_id": 6670244,
+          "at": "2026-08-28T09:20:01Z",
+          "rank": 65,
+          "score": 18.96,
+          "total": 176
+        }
+      },
+      "sha256": "8c6bc206417c6d22b593372ce42e74ce5698646c1f8a860073f349a2a082708c",
+      "submission_id": 41207182,
+      "submitted_at": "2026-08-28T08:52:19Z"
     }
   ]
 }
