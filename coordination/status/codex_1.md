@@ -1,7 +1,7 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-28T06:42:16Z
-- State: three-heroes REPRODUCED; evidence ready for pinned delivery
+- Updated UTC: 2026-08-28T06:43:01Z
+- State: three-heroes REPRODUCED; pinned verdict published from this branch
 - Role: contributor / reviewer
 - Current task: 20260828-third-troll-verify — three-heroes replacement verification
 - Branch: agent/codex_1
@@ -11,7 +11,7 @@
 - Evidence: both build hashes, all bed counts, all smoke numbers, and the readable-diff safety review reproduce; `codex_1/third-troll/three-heroes-reproduction-2026-08-28.md`
 - Running job: none
 - Latest verified result: floor candidate bytes reproduce; clean tracked-output regeneration does not
-- Next checkpoint: push the evidence commit, then publish the pinned REPRODUCED verdict
+- Next checkpoint: queue ritual closeout; no technical step remains under this card
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
