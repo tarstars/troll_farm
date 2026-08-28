@@ -15,7 +15,7 @@ states (`fits/`), and what the repository already knew (`prior-art.md`).
 | 1 | **delineate** | 30.89 | a **learned policy network** (ResNet trained by PPO, 101k parameters, one inference per troll + one for the "train plan", no lookahead, 2–3 ms a turn) — described first-hand by its author | HIGH on what it is; **no hand rules exist to copy** — only its action/target spaces, observation, training curriculum and measured habits (a rule-based imitation is written in its document) |
 | 2 | **norxondor_gorgonax** | 29.66 | a **fast rule-based 3–4-troll build-up bot**: its own telemetry reads 0.13 ms a turn — no search; a global two-phase state machine (P = produce, D = deforest) — the author never wrote anything | MEDIUM-HIGH: the train ladder is exact (441/443 specs), the phase switch, the planting cell, the lifecycle and the roles are measured; the target choice and the plant kind are not |
 | 3 | **Bubaptik** | 27.90 | a **3–4-troll build-up bot with speed-4 choppers**; not in the contest's top league (probably a later entrant), no trace on the web | MEDIUM: 191 games of its newest version (34 versions in the corpus); the train rule is exact (147/154), the wood switch is a hard global switch at its last TRAIN; target choices fitted 44–56 %, mid/late chop not recovered |
-| 4 | **MSz** | 27.72 | a **"farm-first" build-up bot**: an instant cheap worker on turn 1 (an exact rule), a two-ring orchard, then two carry-4 lumberjacks paid with lemons, fruit harvested all game — no Troll Farm write-up; his search is a GUESS from his other post-mortems | MEDIUM: lifecycle, ladder, funding sequence and roles measured; search, evaluation and target choice unknown |
+| 4 | **MSz** | 27.72 | a **"farm-first" build-up bot**: a cheap worker on turn 1 in 196 of 203 games (an exact rule), a two-ring orchard, then two carry-4 lumberjacks paid with lemons, fruit harvested all game — no Troll Farm write-up; his search is a GUESS from his other post-mortems | MEDIUM: lifecycle, ladder, funding sequence and roles measured; search, evaluation and target choice unknown |
 
 Our champion (yamo's design, #3 in the contest) is the other family — **two trolls**, one trained ≈ 2/2/0/2
 chopper, chop everything, no orchard. The contest's top ten splits into exactly these two families.
@@ -26,12 +26,13 @@ chopper, chop everything, no orchard. The contest's top ten splits into exactly 
    ends with 2.9 trolls (a third in 56 % of games at median turn 111, a fourth in 27 % at 144, winning
    91 % of the games where it has four); norxondor 3.5 (four or more in 52 %; ladder floors 2/2/1/1 →
    2/3/1/2 → 2/3/0/3 → 2/4/0/3 by roster size, each talent raised to the most the shack can pay, with
-   caps); MSz trains on **turn 1** in 214 of 215 games by an exact rule (speed 2 iff plums ≥ 5, carry 2
-   iff lemons ≥ 5, harvest 2 iff apples ≥ 5, chop 1), then carry-4 trolls at ≈97 and ≈128; Bubaptik on
+   caps); MSz trains on **turn 1** in 196 of 203 full-length games by an exact rule (speed 2 iff plums ≥ 5,
+   carry 2 iff lemons ≥ 5, harvest 2 iff apples ≥ 5 and lemons ≥ 5, chop 1), then carry-4 trolls at
+   ≈97 and ≈128 (the fourth only once it holds 12 iron); Bubaptik on
    turn 2 (each talent = the highest level the starting stock affords, 147/154), then **speed-4**
    trolls 4/3/h/2–3 at ≈115, ≈150, ≈164. **The training trigger is the same in all four: train within a turn of
-   the target becoming affordable** (delay 0 or 1 in 88–99 % of trainings; delineate the same turn in
-   61 %). The late trolls are carry-3/4, chop-2/3 lumberjacks with little or no harvest power; carry 4
+   the target becoming affordable** (88–100 % of trainings; on the very same turn: norxondor and MSz
+   99 %, delineate and Bubaptik 60–61 %). The late trolls are carry-3/4, chop-2/3 lumberjacks with little or no harvest power; carry 4
    costs 16+n lemons, speed 4 costs 16+n plums — hence the orchard.
 2. **They plant next to the shack, 29–40 trees a game** (delineate 40 — lemons first, bananas after
    turn 100; norxondor lemon 35 % / plum 32 % / banana 26 %, never beyond distance 4; MSz a two-ring
@@ -93,8 +94,9 @@ chopper, chop everything, no orchard. The contest's top ten splits into exactly 
    shack (delineate 56 %, Bubaptik 50 % of early targets). Evidence: measured; the mechanism guessed.
 
 Everything here is measurement; none of it is a verdict. The per-player documents carry the numbers,
-the pseudo-code and the guesses; they were written by four workers in parallel and read by the
-coordinator only at the level of their reports — a second pair of eyes is welcome.
+the pseudo-code and the guesses; they were written by four workers in parallel, then reviewed
+against their sources by a fifth (`REVIEW-2026-08-28.md`: contradictions fixed, unsupported claims
+downgraded to guesses, jargon explained, undefined names in the pseudo-code defined).
 
 ## Files
 

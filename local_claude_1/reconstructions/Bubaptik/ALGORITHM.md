@@ -9,9 +9,11 @@ where, what it harvests, how the game splits into phases, how it does against wh
 games of its newest version (numbers with `n`, sources in §6). The *training rule* is measured to the point
 where a program can copy it (§3.1: 95 % of purchases explained). The *mode switch* from fruit-farming to
 wood-cutting is measured as an event (§3.2). The *target-choice rules* (which tree to chop, which cell to plant,
-which tree to harvest) are fitted descriptions that explain 44–84 % of decisions teacher-forced, never the
+which tree to harvest) are fitted descriptions that explain 44–84 % of decisions teacher-forced (teacher-forced
+= the rule is asked what it would do in the bot's own recorded situations, one decision at a time), never the
 whole choice; the chop-target ordering in mid/late game is essentially not recovered (best rule ≈ 18 %
-expected accuracy). Every mechanism sentence that is not backed by a number is marked **GUESS**. The record's
+expected accuracy — "expected" = after the ties among the rule's equally-best choices are broken at random;
+"in-set" = the real choice was somewhere among those ties). Every mechanism sentence that is not backed by a number is marked **GUESS**. The record's
 closure applies (`../prior-art.md` §2, item 16 and §4): a fitted description is not an algorithm until it
 regenerates the bot's own play; this document is the description, with its gaps named in §5.
 
@@ -55,7 +57,8 @@ family in five ways: (a) it pays for **speed 4** (18 plums at roster 2) where th
 its orchard is therefore **plums** first (47 % of plants) rather than lemons/bananas; (c) the second troll is
 bought on **turn 2** with "whatever the starting stock affords" (MSz buys a cheap worker on turn 1, delineate
 on turn 7, norxondor on turn 9); (d) its wood phase is a **hard switch at the last TRAIN** (delineate has no
-switch); (e) it chops the least of the four top bots (136 CHOP commands, 69 wood per game vs delineate's 98).
+switch); (e) it banks the least wood of the four top bots (69 per game; MSz 80, norxondor 80, delineate 98),
+although MSz issues fewer CHOP commands (118 against Bubaptik's 136).
 From the two-troll chopper family (yamo, yaichi, skotz, Konstant, putibuzu, Escdemon) it shares only the
 hybrid harvest-and-chop second troll and the early denial chopping (Konstant's "rush to train the cutter who
 destroys the opponent's trees") — not the two-troll cap, not the pure banana plant-chop-drop loop. Its edge is
@@ -80,8 +83,9 @@ training fruits near the shack (before the last TRAIN: 773 plums, 687 lemons, 54
 `plan_end.json` → D). Chopping is low (1.5 per 10 turns at turns 50–120) and mostly denial: in turns 1–100,
 50 % of chops hit trees the opponent planted and 41 % wild trees (profile §5). The stock climbs to the target:
 plums 1.7 at turn 25 (spent on troll 2) → 9.4 at 100 → 11.3 at 125; lemons 1.4 → 6.8 → 7.8; iron 2.5 → 4.7 →
-5.5 (`train_trigger.json` → curves, n=192). The third troll is bought at median turn 115 (p25–p75 88–148), the
-fourth at 150 (132–174), a fifth at 164 (n=12).
+5.5 (`train_trigger.json` → curves, n=192). The third troll is bought at median turn 115 (p25–p75 = the middle
+half of the games: 88–148), the fourth at 150 (132–174), a fifth at 164 (n=12; the profile says 164 on 10 games,
+W4's `../fits/Bubaptik.md` prints 178 on 12 — not reconciled).
 
 **Phase C — the wood phase (from the last TRAIN to ~turn 290).** The switch is immediate and global: in the
 20 turns after the last TRAIN, CHOP goes from 0.03 to 0.69 commands per turn, PLANT from 0.03 to 0.15, MINE
@@ -113,7 +117,7 @@ each turn:
   if mode == TRAINING and target affordable:            # §3.1
       TRAIN target; roster += 1
       if roster == planned_roster: mode = WOOD           # §3.2 (how the plan length is set: GUESS)
-  for each troll (greedy, one after another — GUESS, see §3.7):
+  for each troll (greedy = each troll takes its own best job in turn, no joint search — GUESS, see §3.7):
       job = choose_job(troll)                            # §3.3–3.6
       emit the command; a walk is one MOVE to the job's cell (destination-style)
 ```
@@ -135,7 +139,8 @@ one exception had 9 lemons and waited two turns for the 10th to buy carry 3. But
 tree within reach? — **GUESS**) is not recovered.
 
 **Trolls 3, 4, 5.** Target = `4 3 h c`: speed 4 (18 plums at roster 2, 19 at 3), carry 3 (11 lemons at
-roster 2), `h` = the highest harvest level the apples afford (0 if apples < roster+1, else 1; 2–3 only when
+roster 2) — so the bill that must be affordable is the floor `4 3 0 2` (at roster 2: 18 plums, 11 lemons,
+2 apples, 6 iron), and `h` and `c` are then raised to what the stock affords: `h` = the highest harvest level the apples afford (0 if apples < roster+1, else 1; 2–3 only when
 apples allow — 64 zeros, 72 ones, 11 higher at troll 3; the bot never farms apples), `c` = 3 if iron ≥ roster+9,
 else 2 (troll 3: iron ≥ 11 → chop 3 in 37/37 cases, iron < 11 → chop 2 in 107/110; troll 4: iron ≥ 12 → chop 3
 in 59/59). Caps: speed 4 even when 5 or 6 was affordable (16/16 cases), carry 3 even when 4–6 was affordable
@@ -210,8 +215,10 @@ picked from the shack (890 PICKs). Not fitted.
   tree there** — "nearest tree on the opponent half, else nearest" 55.5 % (42.5 % expected), "nearest
   opponent-planted tree" 46.0 % (37.5), "closest to the opponent's shack" 38.8 % (23.8), plain "nearest tree"
   47.2 % (35.1), "nearest fruitless tree" 34.9 % (28.4). Value rules score 70 % in-set but only 10 % expected
-  (a carry-2 troll makes every tree of size ≥ 2 worth the same 2 wood). 57 % of all chop commands hit size-1
-  (young) trees (profile §5).
+  (a carry-2 troll makes every tree of size ≥ 2 worth the same 2 wood). The profile's "57 % of all chop
+  commands hit size-1 trees" is doubtful: that field reads the viewer's stage after the turn's tick and
+  contradicts the exact fits for delineate (`../delineate/ALGORITHM.md` §5b); the exact trip data below say
+  size 4 in 70 %.
 - Mid and late game (1,828 + 2,386 trips): **no simple rule reproduces the choice** — best are `wood /
   (travel + chop turns + 1)` 33.6 % / 31.3 % (18 % expected) and `size / (travel + 1)` 41.2 % late (17.7 %
   expected); "nearest tree" 15–18 %. Descriptively the target is size 4 in 70 % of moved-to chops, 44 %

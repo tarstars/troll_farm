@@ -22,7 +22,9 @@ on the web — `sources/SUMMARY.md` §2). It stands on three legs, and every num
 Vocabulary, once. **Talents** = a troll's four numbers in the game's order
 speed / carry / harvest / chop, written `2/3/1/2`. **Roster** = how many trolls you have.
 **Floor** = the smallest talents the bot accepts for its next troll; **cap** = the largest it
-will pay for. **BFS distance** = walking distance over grass. A **trip** = one troll's walk
+will pay for; a spec is the **componentwise maximum** when each talent separately is the largest
+level the shack can pay under its cap. **Free carry** = carry capacity minus the load already
+carried; **ceil** = rounded up. **BFS distance** = walking distance over grass. A **trip** = one troll's walk
 (zero or more MOVEs) ending in one action (harvest, chop, plant, pick, drop, mine).
 **Teacher-forced accuracy** = how often a rule picks the same target as the real bot did *from
 the real bot's own situations*; **closed-loop** = the rule playing the game by itself.
@@ -80,7 +82,10 @@ Turn numbers are medians unless stated.
 - **Turn 1:** if the drawn starting shack can pay for a `2/2/1/1` troll (5 plums, 5 lemons,
   2 apples, 2 iron with one existing troll), it TRAINs immediately: 76 of 184 games trained on
   turn 1 and every one of them satisfied that test; the other 108 did not and none trained
-  [W5]. The average score therefore *falls* from 17 at turn 0 to 15 at turn 10–25 [stats].
+  [W5]. (Reviewer's check on the fit tables, 184 games: 76/76 and 0/108 — exact. The `2/2/2/2`
+  bill that `fits/norxondor.md` §3 names as the test was affordable in only 35 of the 76, so
+  the floor is `2/2/1/1` with harvest and chop raised to what the stock affords.) The average
+  score therefore *falls* from 17 at turn 0 to 16 at turn 25 [stats].
 - **Turns 1–6, the start troll:** move off the shack, PICK a seed from the shack, PLANT it on
   the neighbouring cell, often PICK and PLANT again: the commonest first-ten-turn letter
   patterns are `MKPKMPMMMM` (22 games), `MKPMMMMMMM` (15), `MKPMMKPMMM` (12) [profile]. First
@@ -151,8 +156,10 @@ the first letter is T the trolls chop their **own** mature trees near home (46 %
 - Planting does *not* stop (0.8 plants per 10 turns to the end; last plant median turn 279
   [fits]): these are the plant-and-cut bananas of §3.5. Bananas in the shack fall from 7.5
   (turn 130) to 4.2 (turn 295) [stats].
-- Wood 64.6 at turn 250, 83.5 at 295; final score 366 vs 369 for the opponent in the contest
-  [stats] (the contest opponents were stronger than our corpus's: 345 vs 272 here [profile]).
+- Wood 64.6 at turn 250, 83.5 at 295; score 366 vs 369 for the opponent at turn 295 of the
+  contest series [stats] (the same page's record line says 370 − 356 over all games, which
+  is why `sources/SUMMARY.md` prints "366 vs 356"; the contest opponents were stronger than
+  our corpus's: 345 vs 272 here [profile]).
 
 ---
 
@@ -179,9 +186,15 @@ each turn, if mode1 != 'D' and roster n <= 4:
   5** [fits]; with the mode condition the rule reproduces every one of the 443 trains and every
   one of the 193 non-trains on affordable turns [W5]. The July study found the same
   zero-delay floors on 30 games (8,738 decisions, 62/62) [prior art].
-- Spec: **441 of 443** TRAINs are the componentwise maximum under these caps [W5]. (The
-  July caps `3/3/2/2, 4/5/2/2, 3/3/1/3, 3/4/1/3` fit 411 of 443 on the larger corpus —
-  speed 4, carry 5 and harvest 2 do occur at every stage when affordable; chop is fixed by
+- Spec: **441 of 443** TRAINs are the componentwise maximum under these caps [W5]. (Counting
+  note: the fit tables hold 444 TRAIN commands from the 184 full-length games; 443 of them are
+  at rosters 1–4, the 444th is the single sixth troll. The profile counts 545 commands with 5
+  failures over all 218 games; GUESS: the 5 "delay 1" cases below are re-issues after a
+  failed attempt. Reviewer's recount on the tables: 441/443 under these caps, 411/443 under the
+  July caps `3/3/2/2, 4/5/2/2, 3/3/1/3, 3/4/1/3`; the two misses bought chop 3 with 10 iron
+  on turn 1. Speed 4, carry 4–5 and harvest 2 do occur at every stage when affordable — carry
+  4 or 5 in 13 third trolls and 14 fourth trolls, so carry 4 is *not* reserved for the fifth
+  troll as `fits/norxondor.md` §3 reads; chop is fixed by
   stage: 2 in all 152 third trolls, 3 in all 87 fourth and 17 fifth [fits].) Harvest of the
   fourth/fifth troll is 0 when apples < n+1, 1 when ≥ n+1, 2 when ≥ n+4 (55/23/9 and 13/2/2
   cases) [W5] — it is not "harvest 0 by design", it is "harvest is whatever is affordable
@@ -239,8 +252,12 @@ go: one BFS step per turn toward the tree; CHOP until it falls (or until it is g
   **size-1** trees (629 of 3,294 trips: killing seedlings), then wild size 4 (625), opponent
   size 4 (542), own size 4 (520), opponent size 2 (434) [W5]. Over the whole game 30 % of chop
   commands hit opponent-planted trees and 36 % are nearer the opponent's shack than its own —
-  the most opponent-directed of the four bots studied [profile]. 63 % of chop commands land on
-  size-1 trees, 34 % on size-4 [profile].
+  the most opponent-directed of the four bots studied [profile]. The profile also prints "63 %
+  of chop commands on size-1 trees, 34 % on size 4", but that field reads the viewer's stage
+  *after* the turn's tick and contradicts the exact fits for delineate (see
+  `delineate/ALGORITHM.md` §5b); the exact trip data say size 4 in 56 %, size 1 in 19 %, size 2
+  in 17 % of the trees walked to [fits] — the in-place banana cuts of §3.5 are the extra size-1
+  chops.
 - **Co-chop.** An opponent troll was standing on the chosen tree when the trip started in
   25 % of early trips (54/215), 15 % of mid (312/2,087), 19 % of late (641/3,294) [W5] — a
   bias, not a rule (wala's `STEAL_OPPONENT_CHOP` [family]). GUESS on its weight.
@@ -293,8 +310,8 @@ stop: never a hard cap — planting continues to turn 279 (median last plant)
   age 1 turn at size 1 (1,116 chop runs; 2,407 of 5,161 own-tree chop runs within 0–4 turns of
   planting): PICK a banana at the shack → PLANT it on the shack-adjacent cell → CHOP it (a
   size-1 banana has 3 health: one blow for a chop-3 troll) → DROP 1 wood. One fruit point
-  becomes four wood points every ~4 turns per troll. This is why 63 % of chop commands are on
-  size-1 trees, why bananas are 44 % of picks but only 7 % of harvested fruit, and why the
+  becomes four wood points every ~4 turns per troll. This is why bananas are 44 % of picks but
+  only 7 % of harvested fruit, why 3,254 chops happen without moving [fits], and why the
   shack's bananas drain from turn 150 [stats]. Per game the bot banks 42 wood from its own
   trees, 23 from the opponent's, 14 from wild ones [fits].
 
@@ -331,7 +348,8 @@ Roles follow talents, as in FinkPloyd's "roles are determined mostly by stats" [
 (action turns per unit, [fits]). The start troll is the planter and picker; the chop-3 trolls
 never harvest. Assignment: GUESS — greedy per troll with reservation of chosen trees (the
 "no other own troll on the tree" restriction improves the chop fit; two own trolls rarely share
-a target), no Hungarian/Munkres step is visible. Conflicts: 0.1 MOVE_BLOCKED per game
+a target), no Hungarian/Munkres step (an optimal one-troll-per-task assignment algorithm) is
+visible. Conflicts: 0.1 MOVE_BLOCKED per game
 [profile] — collisions are handled (the referee blocks a move onto an own troll's cell).
 
 ### 3.9 One turn, assembled
@@ -343,6 +361,7 @@ for each own troll (GUESS: in id order):
     if load full: goal = DROP (§3.6)
     elif mode1 == 'D' or troll.harvest == 0: goal = best CHOP target (§3.3)
     elif holding a seed: goal = PLANT at the best cell (§3.5)
+    elif next to the shack, no seed in hand and a planting is wanted (§3.5): PICK the kind   # GUESS on the condition
     elif iron deficit and troll.chop >= 1 and no miner yet: goal = MINE (§3.7)
     elif a fruit deficit exists: goal = best HARVEST target (§3.4), else CHOP (§3.3)
     endgame banana loop (§3.5) interleaves with chopping from turn ~150
@@ -377,7 +396,7 @@ of §3.8 and the phase curves of §2.
 | chop target rule | wood/(travel+chops+1): 40.7 % (29.4 % expected) | 5,596 trips [fits] |
 | harvest target rule | min(fruits,free)/(travel+harvest+return+1): 59.2 % (40 % expected) | 7,528 [fits] |
 | chops on opponent-planted / nearer opp shack | 30 % / 36 % of chop commands | 41,247 [profile] |
-| chop commands on size 1 / 4 | 63 % / 34 % | [profile] |
+| chop destinations of size 4 / 1 / 2 (trips with movement) | 56 % / 19 % / 17 % (the profile's "63 % size 1" is the doubtful viewer field, §3.3) | 5,596 [fits] |
 | CHOP / HARVEST / PLANT / DROP / MINE / PICK per game | 189 / 78 / 29 / 91 / 8 / 14 | [profile] |
 | first wood turn | median 97 | [profile] |
 | wood in shack at 100 / 150 / 200 / 250 / 295 | 1.6 / 12.3 / 38.7 / 64.6 / 83.5 | [stats] |

@@ -28,10 +28,13 @@ training. The author's own first attempt (plain PPO on the full game) reached ~2
 to mine iron"; the final network "improved remarkably in the final 36 hours" [gist] — reproducible in
 outline, but the result depends on compute and on details the gist omits (listed in section 4). Our repository
 built a five-level PPO curriculum of the same shape (ledger Arc A: tasks learned at 98–99 %, int8 deployment
-at 7 ms) whose field value stayed "unproven" [docs/LEDGER-MAP.md §3]. **Route B — imitate the measured
+— the network's numbers rounded to small integers so it runs faster — at 7 ms) whose field value stayed
+"unproven" [docs/LEDGER-MAP.md §3]. **Route B — imitate the measured
 behaviour with rules:** sections 5–6 give the numbers and a rule set on our champion's building blocks. It
 can reproduce the *habits* (which trolls, which trees, when) but not the map-by-map judgement, and the
-record says a fitted description is not an algorithm until it wins games closed-loop [prior-art §2].
+record says a fitted description is not an algorithm until it wins games closed-loop (closed-loop = the
+rule set playing whole games by itself, as opposed to being asked one recorded decision at a time)
+[prior-art §2].
 
 ## 2. The actions and the per-turn procedure (as the author describes it)
 
@@ -78,7 +81,7 @@ masked [gist]:
 | planes | contents |
 |---:|---|
 | 0 | valid-cell mask |
-| 1–6 | cell type one-hot: grass, water, rock, iron, own shack, opponent shack |
+| 1–6 | cell type one-hot (one plane per kind, 1 where it applies): grass, water, rock, iron, own shack, opponent shack |
 | 7–15 | tree: any tree; kind one-hot plum/lemon/apple/banana; size, health, fruits, cooldown |
 | 16–17 | troll occupancy: own, opponent |
 | 18–27 | own troll on this cell: speed, carry, harvest, chop, carried resources (6 items) |
@@ -94,7 +97,8 @@ masked [gist]:
 
 Each cell holds only the troll on it, but "the network as a whole has full information of all trolls,
 trees, ..." (eulerscheZahl, post #28). The author: "I don't think the exact observation planes are all that
-important … anything sensible would work" [gist]. **Network:** 1 × 1 convolution stem; 4-block ResNet trunk
+important … anything sensible would work" [gist]. **Network:** 1 × 1 convolution stem (a convolution = the
+same small filter applied at every cell); 4-block ResNet trunk
 (a convolutional network with skip connections) masked to valid cells; the 13-per-cell spatial head; a
 pooled global vector concatenated with the global state; two value heads (shaped rewards for levels 1–3,
 true score difference for 4–5); the train-plan head [gist].
@@ -128,6 +132,14 @@ bonus sizes, and the manual patches for "getting stuck moving in an endless circ
 
 ## 5. The measured behaviour
 
+**Phases at a glance (medians; every number is repeated with its source in 5a–5b below).** Turns 1–7: the
+second troll is bought from the starting stock (a hybrid ≈ 2/2/1–2/2); turns 1–100: the start troll farms
+lemons/plums beside the shack while the trained troll raids the opponent's young trees near their shack
+(84 % of early chop destinations on the opponent's half); turn ≈ 111: a third troll (carry 4, chop 3) in
+56 % of games; turn ≈ 145: a fourth in 27 %; from turn 100 the orchard turns to bananas and the chop rate
+climbs from ≈ 3 to ≈ 10 per 10 turns; there is no endgame switch — planting and harvesting run to turns
+292–296 and the last DROP lands at turn 299.
+
 **5a. Game author's statistics [stats], n = 673 games.** 525-146-2 (78.0 % wins), score 418 vs 298, 297.0
 turns. Trolls at the end: 1 → 4 games (1 %), 2 → 254 (38 %), 3 → 179 (27 %), 4 → 179 (27 %), 5 → 53 (8 %),
 6 → 4 (1 %). Average talents: train-1 **1.96/2.22/1.52/2.00**, train-2 **2.47/3.35/0.98/2.50**, train-3
@@ -154,7 +166,8 @@ No TRAIN failed (425). **The spec rule:** each talent is the largest level the s
 `talent = floor(sqrt(bank[resource] − troll_count))` (plums → speed, lemons → carry, apples → harvest,
 iron → chop), exact in 22/26 games, the exceptions keeping harvest lower [prior-art n = 26]; over all 412
 TRAINs the chosen troll maximises carry × chop among the affordable ones in 97 %, speed + carry + chop in
-94 %, all four talents in only 80 % (harvest is not maxed: ≥ 2 in 109/215 second trolls, 16/121 third, 11/60
+94 %, all four talents in 80–90 % depending on the caps assumed (369/412 with caps 3/4/2/3, reviewer's count
+on the fit tables; harvest is not maxed: ≥ 2 in 109/215 second trolls, 16/121 third, 11/60
 fourth); a strictly bigger troll was affordable in 83/412 [fits]. **The timing rule:** train the turn the
 target is affordable — delay 0 turns in 251/412, 1 in 110, 2–5 in 34, 6+ in 17 [fits]. The bottleneck is
 fruit, not wood (carry 4 costs 2 + 16 = 18 lemons at roster 2, chop 3 costs 11 iron; wood at the TRAIN median
@@ -183,9 +196,11 @@ shack and cut the young trees the opponent plants there … again and again as t
 choppers cut the home orchard" [fits]. Destination trees: size 4 in 66 %, carrying fruit in 47 %, the nearest
 living tree in only 28 % [fits]; own bananas felled at size 4 (1,861 runs), median age at felling 17 turns
 [fits]; 3,155 chops without moving (1,355 right after planting on that cell, 1,300 right after a DROP)
-[fits]. *Conflict:* the profile's "size 1 in 64 % of chop strokes" is read from the viewer's stage field,
+[fits]. *Conflict:* the profile's "size 1 in 64 % of chop strokes" is read from the viewer's stage field
+(the profile itself warns that the stage it shows at a chop is the state *after* that turn's tick),
 the fits' "size 4 in 66 % of destinations" from exact states validated against the referee — trust the fits;
-the "plant, one tick, fell" reading in the profile summary is therefore doubtful. Rate ~3 per 10 turns from
+the "plant, one tick, fell" reading in the profile summary is therefore doubtful. The same caveat applies to
+the size-at-chop shares quoted from the profiles of the other three players. Rate ~3 per 10 turns from
 turn 11 to 130, rising to 10.5 by the end; wood banked per game by period 7.4 / 32.6 / 58.1 [profile].
 
 *Mining.* 171/223 games, 7.8 MINE, 11.5 iron per game; first MINE median turn 34; fades after turn 150 [profile].
@@ -203,8 +218,9 @@ planted in turns 275–299 over 215 games. Last 30 turns [profile]: CHOP 37 % of
 PLANT 6 %, HARVEST 5 %; 31 chops, 4.8 plants, 17.8 wood per game; last DROP median turn 299; trees left
 standing own 3.3 / wild 5.9 / opponent's 4.3. Zero MSG, zero timeouts, byte-exact replays [prior-art].
 
-**5c. Which simple rule reproduces its choices (teacher-forced) [fits].** Accuracy = share of decisions
-whose target is in the rule's best set; the tie-adjusted figure (random tie-break) is the honest one.
+**5c. Which simple rule reproduces its choices (teacher-forced) [fits].** Teacher-forced = the rule is
+asked what it would do in the bot's own recorded situations, one decision at a time. Accuracy = share of
+decisions whose target is in the rule's best set; the tie-adjusted figure (random tie-break) is the honest one.
 
 | decision (n) | best rules | accuracy (tie-adjusted) |
 |---|---|---|
@@ -229,10 +245,14 @@ worse (≤ 23 %): it chops its own trees deliberately. Unfitted: the choice *bet
 
 ## 6. A rule-based imitation (Route B) — pseudo-code on the champion's building blocks
 
-Building blocks in [champion]: `bfs_distances`; `training_cost(n, talents)` = plums n + speed², lemons
+Building blocks in [champion]: `bfs_distances` (BFS = walking distance over grass cells; `d(x)` below is
+that distance); `training_cost(n, talents)` = plums n + speed², lemons
 n + carry², apples n + harvest², iron n + chop²; `predict_tree` / `chop_outcome` (turns to fell a tree with a
-given chop power, growth included); the chop value `1000·min(size, free) / (travel + chops + return + 1)`;
-`ticks_until_fruit`; `select` (best compatible candidate per troll) and `resolve_move_conflicts`. An
+given chop power, growth included; `chop_turns(kind, size)` below is that number for the acting troll's chop
+power); the chop value `1000·min(size, free) / (travel + chops + return + 1)` (`free` = carry capacity minus
+the load carried); `ticks_until_fruit`; `select` (best compatible candidate per troll) and
+`resolve_move_conflicts`. In the code: `bank` = the shack's stock; `BANK` = walk to the nearest cell next to
+the shack and DROP; `deficits[kind]` = what the open bill still lacks of that resource. An
 **approximation** of the habits in section 5; expected gaps follow the code.
 
 ```
@@ -293,6 +313,29 @@ choice between harvesting, planting and chopping is unfitted. (4) Whether the ra
 a value function is undecided; W4's data favours a rule. (5) Route B failed here whenever judged by
 teacher-forced accuracy alone (Escdemon 56 % → 52 % integrated; a Norxondor clone −172 margin closed-loop
 [prior-art §2 item 2]): the rule set must be scored by playing games on official maps.
+
+## 6b. Numbers and parameters (the figures a program would copy; all from section 5)
+
+| parameter | value | n / source |
+|---|---|---|
+| second troll: turn | median 6–7 (turn 1 in 13 games) | 223 [profile], 215 [fits] |
+| second troll: talents | 2/2/2/2 45, 2/2/1/2 23, 2/3/1/2 17, 1/2/2/2 11 games; each talent = largest level the shack can pay | 223 [profile]; rule 22/26 [prior-art] |
+| third / fourth / fifth troll: share of games, median turn | 56 % at 111; 27 % at 144–146; 7 % at 166 | 125 / 61 / 16 games [profile] |
+| later trolls: talents | carry 4 in 88/125 (troll 3), 54/60 (troll 4); chop 3 in 76/125, 59/61; harvest 1 kept | [profile], [fits] |
+| training trigger | the turn the spec is affordable: delay 0 in 251/412, 1 in 110, 2–5 in 34, 6+ in 17 | 412 TRAINs [fits] |
+| trolls at the end | 2: 44 %, 3: 29 %, 4: 20 %, 5: 7 % (mean 2.91) | 223 [profile] |
+| plants per game, kinds | 39.7; banana 48 %, lemon 28 %, plum 19 %, apple 4 %; first plant lemon in 149/223 | 8,636 [fits], [profile] |
+| plant cell rule | free cell minimising d(shack) + d(troll): 89.9 %; distance 1/2/3/4 = 43/28/18/7 % | 8,636 [fits] |
+| plant kind rule | banana after turn 100, else the scarcer of plum/lemon: 50 % | 8,636 [fits] |
+| harvest target rule | nearest tree with fruit and no own troll on it: 70.5 % (57.0 tie-adjusted) | 9,741 [fits] |
+| harvests per game | 78.8 commands, 85 fruits; lemon 42 %; own trees 72 % | 223 [profile] |
+| chop target rule | size / (travel + 1): 48.0 % (24.7 tie-adjusted); turns 1–100 wood per turn with opponent-half trees × 2: 66.2 % | 7,651 [fits] |
+| chop destinations on the opponent's half, by 50-turn period | 84 / 74 / 46 / 29 / 22 / 14 % | 7,651 [fits] |
+| chops per game, wood | 172 commands, 129 land, 98 wood (75 own trees, 12.5 opponent's, 11 wild); first wood turn 26 | 223 [profile], [fits] |
+| mining | 171/223 games, 7.8 MINE, 11.5 iron, first MINE turn 34, fades after 150 | [profile] |
+| endgame | no switch; last PLANT 296, last HARVEST 292, last DROP 299 (medians) | [fits], [profile] |
+| score composition | 415 = 388 wood points + 27 fruit points (93 % wood) | 223 [profile] |
+| contest curve | score 47 / 85 / 168 / 296 / 421 at turns 100 / 150 / 200 / 250 / 295; wood 5.5 / 14.1 / 35.1 / 67.2 / 98.7 | 673 [stats] |
 
 ## 7. Sources and confidence
 

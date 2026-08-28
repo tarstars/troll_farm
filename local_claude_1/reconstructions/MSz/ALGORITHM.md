@@ -18,8 +18,10 @@ He wrote nothing about Troll Farm. This reconstruction stands on four legs, name
   #14, aangairbender #16, FinkPloyd #21, eulerscheZahl #23, Astrobytes; `sources/SUMMARY.md` §5), used to
   say what kind of machinery a bot with these numbers usually has.
 - **TOOLKIT** — MSz's own post-mortems of OTHER contests (`sources/MSz-github.com-marekesz-earlier-postmortems-2024.md`):
-  an exact simulation engine, nested beam search / hill climbing over action sets, Hungarian assignment,
-  hand-weighted evaluation. Nothing in them is about Troll Farm; everything drawn from them is a GUESS.
+  an exact simulation engine, nested beam search (look ahead while keeping only the few most promising plans)
+  / hill climbing (keep changing the plan while the score improves) over action sets, Hungarian assignment
+  (an exact one-troll-per-task matching), hand-weighted evaluation. Nothing in them is about Troll Farm;
+  everything drawn from them is a GUESS.
 
 Words used below. *Talents* = the four troll attributes speed / carry / harvest / chop (movementSpeed,
 carryCapacity, harvestPower, chopPower), written `2/4/1/3`. *Bill* = the price of one TRAIN: with `n` trolls
@@ -33,13 +35,16 @@ a run of step-wise MOVEs ending in the first non-move action. *Median* = the mid
 ## 1. What kind of program this is
 
 **Measured.** A build-up economy bot of the "farm-first staged scale" family (`prior-art.md` §1.4): it buys a
-cheap second troll on turn 1 in 214 of 215 games (CORPUS), seeds an orchard of training fruit 1–2 cells from
+cheap second troll on turn 1 in 196 of the 203 full-length games of the fit tables (reviewer's count; the
+profile's "214 of 215" is its 25-turn bin — median turn 1, mean 1.56; six of the exceptions trained in turns
+2–25 and one at turn 95, all with a troll affordable on turn 1, reason unknown), seeds an orchard of training fruit 1–2 cells from
 its shack in the first ten turns, harvests that orchard and the wild trees to pay for a carry-4 lumberjack
 (troll 3, bought in 84 % of games, median turn 95–97), then for a second carry-4, chop-3 lumberjack (troll 4,
 38 % of games, median turn 128–129), never a fifth (0 of 216), and from turn ~110 converts the map into wood
 while the two cheap trolls keep harvesting fruit to the last turn. It is the fruit specialist of the top
 four: 112 HARVEST commands and 129 fruits per game (the others 78–90), 78 fruit points per game (the others
-27–33), wood only 80 % of its points (321 wood + 81 fruit points; wood per game 51.4 from its own trees,
+27–34), wood only 80 % of its points (profile, 216 games: 320 wood + 78 fruit = 399; fits, 203 full-length
+games: 321 + 81; wood per game 51.4 from its own trees,
 16.7 from the map's initial trees, 12.8 from the opponent's — `fits/MSz.md` §5). It does not deny: 78 % of
 its chops are nearer its own shack, 16 % hit opponent-planted trees, 3.6 % of its early chop targets are
 the trees closest to the enemy shack (delineate: 40 %), and in the contest it scored 480 against the
@@ -85,7 +90,8 @@ tables, no exception):
 Five plums is exactly the bill of speed 2 with one troll owned (1 + 2²); the harvest ≤ carry clause is the
 same masking delineate describes ("masked troll targets where harvest > carry"). The contest averages
 (1.67/1.70/1.47/1.00) are what this rule gives on uniform 2–10 draws. The one game with troll 2 at turn 95
-is unexplained (possibly a bot failure on that map).
+is unexplained (possibly a bot failure on that map), as are the six full-length games that trained in turns
+2–25 instead of turn 1 (§1).
 
 ### Phase 1 — turns 2–~25: seed the orchard from the shack, start harvesting and mining (CORPUS)
 
@@ -105,7 +111,7 @@ climbs 1.3–1.9 points per 5 turns from turn 25 to 50.
 ### Phase 2 — turns ~25–97: fund troll 3, the carry-4 lumberjack (CORPUS + CONTEST)
 
 Troll 3 is `2/4/1/c` — carry 4 in 181/181, harvest 1 in 181/181, speed 2 in 177/181 (3 in 4), chop c = 2 in
-84, 3 in 74, 4 in 19 (CORPUS §1). The bills with two trolls owned: **6 plums, 18 lemons, 3 apples, and
+87, 3 in 75, 4 in 19 (of which the speed-2 ones: 84 / 74 / 19) (CORPUS §1). The bills with two trolls owned: **6 plums, 18 lemons, 3 apples, and
 6 / 11 / 18 iron** for chop 2 / 3 / 4.
 
 *The trigger.* The TRAIN fires on the first turn its spec is affordable: delay 0 in 441 of 444 TRAIN
@@ -190,8 +196,10 @@ each turn:
           c = max c in {2,3,4} with iron >= 2 + c*c;  TRAIN(2,4,1,c)        # 169/169 take max c
           # exception: 11 of 54 iron-bound cases waited 1-20 turns for c=3 (GUESS: search)
   elif roster == 3 and turn <= ~185:                                         # latest troll 4 seen: 184
-      if plum>=7 and lemon>=19 and apple>=3 and iron>=7:
-          c = 3 if iron>=12 else 2;  TRAIN(2,4,0,c)   # 65 of 73 are c=3; the bot mostly waits for 12 iron
+      if plum>=7 and lemon>=19 and apple>=3 and iron>=12:
+          TRAIN(2,4,0,3)                                                     # 65 of 73; it waits for the 12th iron
+      # exception: 8 of 73 bought (2,4,0,2) with 7-11 iron (median turn 115); the condition that
+      # lets it settle for chop 2 is not recovered (GUESS: a search outcome)
   # roster 4: never trains again (0/216)
 
   # --- B. resource wants (leg: CONTEST stocks flat at the bill; Astrobytes' deficit weights) ---
@@ -201,7 +209,8 @@ each turn:
 
   # --- C. orchard wants (leg: tables, own trees alive by kind) ---
   want_trees = {banana 3, lemon 2, plum 1, apple 1} within 2 cells of the shack until ~turn 150,
-               then {lemon 2, apple 1.5, plum 1, banana 1}          # measured means, not a proven rule
+               then {lemon 2, apple 1.5, plum 1, banana 1}          # GUESS as a rule: these are the measured
+               # means of own trees alive by kind (Phase 1 and 4), not a fitted target
   plant only if turn <= ~285 (last plant median 280, p90 287)
 
   # --- D. per troll, candidate jobs (leg: FAMILY — every write-up of this family has this list) ---
@@ -220,11 +229,12 @@ each turn:
       CHOP target (leg: chop fit, 6,918 trips with movement):
         size 4 in 71 %, own-planted 61 %, initial 20 %, opponent-planted 20 %, own half 75 %;
         the chosen tree is the 1st or 2nd nearest in 54 %;
-        best single formulas: size/(travel+1) 36 % (20 % honest), wood/(travel+chops) 33 % (25 %),
+        best single formulas (in brackets: the honest figure, after the rule's ties are broken at random):
+        size/(travel+1) 36 % (20 %), wood/(travel+chops) 33 % (25 %),
         our champion's wood/(travel+chops+return+1) 30 % (24 %)  -> no formula explains it; a plan search does
       PLANT cell (leg: plant fit, 6,069 plants):
         empty grass cell minimising (distance to shack + distance to the troll): 77.6 % (2,119 ties);
-        never farther than 6 from the shack; 1-2 cells in 91 %; on own half 91 %;
+        never farther than 6 from the shack; 1-2 cells in 91 %; on own half 91 % (100 % nearer its own shack);
         apples go to water-adjacent cells in 46 % (284 of 628), other kinds 10-21 %
       PLANT kind: the shack seed when the shack has it (PICK->PLANT), else the fruit just harvested
         (HARVEST->PLANT, one cycle); early banana-heavy, late lemon/apple (Phase 4 shares)
@@ -259,7 +269,7 @@ are a plan-search artefact. A program that copies the numbers should test these 
 
 | parameter | value | n / source |
 |---|---|---|
-| troll 2 turn | 1 | 214/215 games (CORPUS §1) |
+| troll 2 turn | 1 (196 of 203 full-length games in the tables; profile: median 1, mean 1.56, its "214/215" is a 25-turn bin) | tables; CORPUS §1 |
 | troll 2 talents | speed 2 iff plums ≥ 5; carry 2 iff lemons ≥ 5; harvest 2 iff apples ≥ 5 and carry 2; chop 1 | 196/196 (tables) |
 | troll 3 talents | 2/4/1/c, c = max affordable chop ≥ 2 | 181 games; 169/169 max-c (tables) |
 | troll 3 bill (roster 2) | 6 plums, 18 lemons, 3 apples, 6/11/18 iron for c = 2/3/4 | rules (`docs/mechanics.md`) |
