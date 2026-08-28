@@ -2,7 +2,7 @@
 
 Your goal for the night: *"recover algorithms of 4 top players … a description of actions which is
 enough for writing a program; all means are good."* The night shrank to two hours (the session stalled
-from 19:50Z to 02:58Z), so the work ran as eight parallel workers between 03:00Z and 03:45Z. What exists
+from 19:50Z to 02:58Z), so the work ran as eight parallel workers and three reviewers in about an hour and a half from 03:00Z. What exists
 now, per player, is **`<player>/ALGORITHM.md`** — the algorithm in plain words, then pseudo-code, every
 number with its source and n, every guess marked GUESS, every gap named — built on four legs: the public
 write-ups (`sources/`), our own corpus profiles (`profiles/`), decision-rule fits on exact per-turn
@@ -29,8 +29,8 @@ chopper, chop everything, no orchard. The contest's top ten splits into exactly 
    caps); MSz trains on **turn 1** in 196 of 203 full-length games by an exact rule (speed 2 iff plums ≥ 5,
    carry 2 iff lemons ≥ 5, harvest 2 iff apples ≥ 5 and lemons ≥ 5, chop 1), then carry-4 trolls at
    ≈97 and ≈128 (the fourth only once it holds 12 iron); Bubaptik on
-   turn 2 (each talent = the highest level the starting stock affords, 147/154), then **speed-4**
-   trolls 4/3/h/2–3 at ≈115, ≈150, ≈164. **The training trigger is the same in all four: train within a turn of
+   turn 2 in 154 of 186 traced first purchases (each talent = the highest level the starting stock
+   affords, 147/154), then **speed-4** trolls 4/3/h/2–3 at ≈115, ≈150, ≈164. **The training trigger is the same in all four: train within a turn of
    the target becoming affordable** (88–100 % of trainings; on the very same turn: norxondor and MSz
    99 %, delineate and Bubaptik 60–61 %). The late trolls are carry-3/4, chop-2/3 lumberjacks with little or no harvest power; carry 4
    costs 16+n lemons, speed 4 costs 16+n plums — hence the orchard.
@@ -57,8 +57,8 @@ chopper, chop everything, no orchard. The contest's top ten splits into exactly 
 5. **Movement is step-wise** in three of the four (delineate, norxondor, MSz issue MOVEs one to three
    cells at a time; the destination is invisible); Bubaptik moves destination-style.
 6. **No simple formula explains the chop-target choice of any of them.** Our champion's value rule
-   (wood per turn of the trip) predicts 20–42 % of their targets; the best rules 25–63 %; the repo's
-   earlier norxondor ranker reached 41.8 %. What the data supports instead: phases, roles (the starter
+   (wood per turn of the trip) predicts 30–42 % of their targets (16–30 % once ties are broken at
+   random); the best rules 25–63 %; the repo's earlier norxondor ranker reached 41.8 %. What the data supports instead: phases, roles (the starter
    farms at the shack, the chop-3 trolls only chop), denial and co-chop biases. This is the largest open
    gap for "writing a program" — and the per-player documents say so.
 
