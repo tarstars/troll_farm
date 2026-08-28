@@ -1,14 +1,14 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-28T06:43:01Z
-- State: three-heroes REPRODUCED; pinned verdict published from this branch
+- Updated UTC: 2026-08-28T09:26:22Z
+- State: orchard REPRODUCED; verdict evidence ready for pinned publication
 - Role: contributor / reviewer
-- Current task: 20260828-third-troll-verify — three-heroes replacement verification
+- Current task: 20260828-third-troll-verify — orchard replacement verification
 - Branch: agent/codex_1
 - Head: Candidate 3b reproduction is byte-identical at the verdict layer (`8280f927...`) and fails gates 4 and 6; Track T's three labelling edits are applied
 - Write set: coordination/status/codex_1.md; coordination/messages/codex_1/**; generated tracked outputs must remain byte-clean
-- Last concrete progress UTC: 2026-08-28T06:42:16Z
-- Evidence: both build hashes, all bed counts, all smoke numbers, and the readable-diff safety review reproduce; `codex_1/third-troll/three-heroes-reproduction-2026-08-28.md`
+- Last concrete progress UTC: 2026-08-28T09:26:22Z
+- Evidence: both build hashes, all bed counts, all smoke numbers, and the readable-diff safety review reproduce; `codex_1/third-troll/orchard-reproduction-2026-08-28.md`
 - Running job: none
 - Latest verified result: floor candidate bytes reproduce; clean tracked-output regeneration does not
 - Next checkpoint: queue ritual closeout; no technical step remains under this card
