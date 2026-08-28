@@ -1,7 +1,48 @@
 {
   "current": {
-    "agent_id": null,
-    "early_looks": [],
+    "agent_id": 6670244,
+    "early_looks": [
+      {
+        "age_min": 2.7,
+        "agent_id": 6670244,
+        "at": "2026-08-28T08:55:01Z",
+        "rank": 154,
+        "score": 13.87,
+        "total": 176
+      },
+      {
+        "age_min": 7.7,
+        "agent_id": 6670244,
+        "at": "2026-08-28T09:00:02Z",
+        "rank": 148,
+        "score": 14.44,
+        "total": 176
+      },
+      {
+        "age_min": 12.7,
+        "agent_id": 6670244,
+        "at": "2026-08-28T09:05:02Z",
+        "rank": 134,
+        "score": 15.42,
+        "total": 176
+      },
+      {
+        "age_min": 17.7,
+        "agent_id": 6670244,
+        "at": "2026-08-28T09:10:01Z",
+        "rank": 106,
+        "score": 17.1,
+        "total": 176
+      },
+      {
+        "age_min": 22.7,
+        "agent_id": 6670244,
+        "at": "2026-08-28T09:15:02Z",
+        "rank": 83,
+        "score": 18.36,
+        "total": 176
+      }
+    ],
     "file": "cgauto/submissions/candidate-apple-farm-v6-instrument.rs",
     "id": "apple-farm-r5",
     "label": "the apple farm -- round 5 of the six the owner ordered on 08-27",
