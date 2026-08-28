@@ -1,22 +1,70 @@
 {
   "current": {
-    "agent_id": 6670021,
-    "early_looks": [
-      {
-        "age_min": 12.7,
-        "agent_id": 6670021,
-        "at": "2026-08-28T06:02Z",
-        "rank": 172,
-        "score": 10.54,
-        "total": 176
-      }
-    ],
-    "file": "cgauto/submissions/candidate-third-troll-v6-instrument.rs",
-    "id": "third-troll-2303-r1",
-    "label": "THE THIRD TROLL (a): the champion of record + both trolls fund a 2/3/0/3 third troll (owner: 'I want to submit (a)') -- round 1",
-    "sha256": "89493fa0d68e1dea1079c35ca4b0a8ed9b36273ccb25f5663d51c1a9e48ded33",
-    "submission_id": 41206542,
-    "submitted_at": "2026-08-28T05:49:18Z"
+    "agent_id": null,
+    "early_looks": [],
+    "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+    "id": "champion-restore-now",
+    "label": "the champion of record put back at once (owner 06:2xZ: remove the three_troll bot); holds the ladder until the redesigned three-heroes bot is built",
+    "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+    "submission_id": 41206635,
+    "submitted_at": "2026-08-28T06:24:23Z"
   },
-  "done": []
+  "done": [
+    {
+      "agent_id": 6670021,
+      "early_looks": [
+        {
+          "age_min": 12.7,
+          "agent_id": 6670021,
+          "at": "2026-08-28T06:02Z",
+          "rank": 172,
+          "score": 10.54,
+          "total": 176
+        },
+        {
+          "age_min": 17.1,
+          "agent_id": 6670021,
+          "at": "2026-08-28T06:06:26Z",
+          "rank": 169,
+          "score": 11.74,
+          "total": 176
+        },
+        {
+          "age_min": 25.7,
+          "agent_id": 6670021,
+          "at": "2026-08-28T06:15:01Z",
+          "rank": 169,
+          "score": 11.75,
+          "total": 176
+        },
+        {
+          "age_min": 30.7,
+          "agent_id": 6670021,
+          "at": "2026-08-28T06:20:02Z",
+          "rank": 170,
+          "score": 11.34,
+          "total": 176
+        }
+      ],
+      "file": "cgauto/submissions/candidate-third-troll-v6-instrument.rs",
+      "id": "third-troll-2303-r1",
+      "label": "THE THIRD TROLL (a): the champion of record + both trolls fund a 2/3/0/3 third troll (owner: 'I want to submit (a)') -- round 1",
+      "retired": {
+        "at": "2026-08-28T06:2xZ",
+        "by": "the owner: remove the three_troll bot from the ladder - it is obviously bad and it is obvious why (the trained troll chops the fruit trees the bill needs)",
+        "games_collected": "local_claude_1/ladder-queue/games-41206542 (partial batch at ~35 min)",
+        "last_early_look": {
+          "age_min": 30.7,
+          "agent_id": 6670021,
+          "at": "2026-08-28T06:20:02Z",
+          "rank": 170,
+          "score": 11.34,
+          "total": 176
+        }
+      },
+      "sha256": "89493fa0d68e1dea1079c35ca4b0a8ed9b36273ccb25f5663d51c1a9e48ded33",
+      "submission_id": 41206542,
+      "submitted_at": "2026-08-28T05:49:18Z"
+    }
+  ]
 }

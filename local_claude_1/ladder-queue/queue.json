@@ -1,45 +1,9 @@
 {
-  "written": "2026-08-28T06:0xZ by local_claude_1 on the owner's word",
+  "written": "2026-08-28T06:2xZ rewritten by local_claude_1 on the owner's word; (b), the second rounds and the apple farm rounds dropped for now",
   "items": [
     {
-      "id": "third-troll-2303-r1",
-      "label": "THE THIRD TROLL (a): the champion of record + both trolls fund a 2/3/0/3 third troll (owner: 'I want to submit (a)') -- round 1",
-      "file": "cgauto/submissions/candidate-third-troll-v6-instrument.rs",
-      "sha256": "89493fa0d68e1dea1079c35ca4b0a8ed9b36273ccb25f5663d51c1a9e48ded33"
-    },
-    {
-      "id": "third-troll-2202-r1",
-      "label": "the third troll variant (b): the same bot with a 2/2/0/2 third troll (bill 6/6/2/6) -- round 1",
-      "file": "cgauto/submissions/candidate-third-troll-2202-v6-instrument.rs",
-      "sha256": "684104f136f93ac620447dadf95e9d491b467ac68eef8e4180f8081b114c00bf"
-    },
-    {
-      "id": "third-troll-2303-r2",
-      "label": "THE THIRD TROLL (a) -- round 2 (a second reading; one reading is +-1.5)",
-      "file": "cgauto/submissions/candidate-third-troll-v6-instrument.rs",
-      "sha256": "89493fa0d68e1dea1079c35ca4b0a8ed9b36273ccb25f5663d51c1a9e48ded33"
-    },
-    {
-      "id": "third-troll-2202-r2",
-      "label": "the third troll variant (b) -- round 2",
-      "file": "cgauto/submissions/candidate-third-troll-2202-v6-instrument.rs",
-      "sha256": "684104f136f93ac620447dadf95e9d491b467ac68eef8e4180f8081b114c00bf"
-    },
-    {
-      "id": "apple-farm-r5",
-      "label": "the apple farm -- round 5 of the six the owner ordered on 08-27 ('what left for previous experiments let's do later')",
-      "file": "cgauto/submissions/candidate-apple-farm-v6-instrument.rs",
-      "sha256": "8c6bc206417c6d22b593372ce42e74ce5698646c1f8a860073f349a2a082708c"
-    },
-    {
-      "id": "apple-farm-r6",
-      "label": "the apple farm -- round 6 (the last)",
-      "file": "cgauto/submissions/candidate-apple-farm-v6-instrument.rs",
-      "sha256": "8c6bc206417c6d22b593372ce42e74ce5698646c1f8a860073f349a2a082708c"
-    },
-    {
-      "id": "champion-restore",
-      "label": "the champion of record (41202036's file) -- restored to hold the ladder when the queue ends; its reading is a fresh baseline",
+      "id": "champion-restore-now",
+      "label": "the champion of record put back at once (owner 06:2xZ: remove the three_troll bot); holds the ladder until the redesigned three-heroes bot is built",
       "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
       "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c"
     }
