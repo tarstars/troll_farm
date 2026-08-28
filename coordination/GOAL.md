@@ -1,5 +1,11 @@
 # GOAL — steady state: keep the champion read, the board truthful, the mail clean; nothing new without the owner's word
 
+**THE NIGHT'S GOAL (owner 19:5xZ, asleep ~9 h until ≈ 05:00Z): recover the algorithms of the four top
+players** — delineate, norxondor_gorgonax, Bubaptik, MSz — each as a description of actions sufficient
+to write a program; all means allowed (internet, our corpus, replays). Plan and deliverables:
+`local_claude_1/reconstructions/PLAN.md`; board Track R. The floor's six rounds run on their timers
+in parallel and are not interrupted by this work.
+
 **THIS HOUR (from 2026-08-27 18:54:02Z): THE FLOOR is on the ladder** — submission **`41205061`**
 (sha `31cd23c0…`, `cgauto/submissions/candidate-the-floor-v6-instrument.rs`, 63,791 B; card
 `coordination/tasks/20260827-the-floor.md`; ladder queue slot 4), the owner's one-variable experiment

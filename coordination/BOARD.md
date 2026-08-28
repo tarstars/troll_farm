@@ -13,6 +13,12 @@ Last updated: 2026-08-27T19:45Z (THE FLOOR ON THE LADDER `41205061` since 18:54:
 | D-3 | Why did a troll on `m061` keep one goal for 171 turns? (`coordination/tasks/20260826-m061-stale-goal-read.md`) | claude_1 (codex_1 reviewed) | **CLOSED — ACCEPTED 15:08Z** (codex_1's re-run of `idleprobe.py` byte-identical) | — | — | spent | 15:08Z |
 | D-4 | **Candidate 3b** (`coordination/tasks/20260826-candidate-3b-stuck-holder-release.md`) | claude_1 (codex_1 reproduced) | **CLOSED — DEAD 15:27Z, REPRODUCED FAIL 15:49Z.** The release fires exactly where D-3 predicted (`m061` t73/t109), cures the kept-goal age (171/170 → 43/78), and recovers **0 of 44/47 points**: `m061` still 32/35 = Candidate 3. Gates 4 and 6 fail; seven pass (containment 240/240, `xc=0`, +25 outside `m061` unchanged). **Learned: `m061`'s loss is not the long goal.** Obituary in GRAVEYARD; diff `readable/diffs/candidate-3b-stuck-holder-release.diff` on `main`. | — | — | spent | 15:58Z |
 
+## Track R — Reconstructions of the four top players (owner 19:5xZ: "recover algorithms of 4 top players … description of actions which is enough for writing a program; all means are good")
+
+| # | task | owner | stage | next concrete step | blocked on | budget left | last evidence |
+|---|---|---|---|---|---|---|---|
+| R-1 | **delineate** (#1, 30.89; agent `6479768`, 223 corpus games), **norxondor_gorgonax** (#2, 29.66; `6480540`, 218), **Bubaptik** (#3, 27.90), **MSz** (#4, 27.72; `6479460`, 216) — one `ALGORITHM.md` each under `local_claude_1/reconstructions/` (plan: `PLAN.md`) | local_claude_1 (coordinator; four subagent workers: internet, prior art, corpus profiles, replay decision fits) | **RUNNING from 20:0xZ** — the night's work while the owner sleeps (~9 h) | workers report → per-player documents → `README.md` for the owner | — | the night; done by ~04:30Z with gaps named | 20:0xZ |
+
 ## Track T — Top-10 analytics (what the strong bots do that we don't)
 
 | # | task | owner | stage | next concrete step | blocked on | budget left | last evidence |
