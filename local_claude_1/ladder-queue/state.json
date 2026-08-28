@@ -1,5 +1,14 @@
 {
-  "current": null,
+  "current": {
+    "agent_id": null,
+    "early_looks": [],
+    "file": "cgauto/submissions/candidate-three-heroes-v6-instrument.rs",
+    "id": "three-heroes-r2",
+    "label": "THREE HEROES -- round 2 (a second reading; one reading is +-1.5)",
+    "sha256": "2abb9fc29c574f330ebf94ddcea3ec4f1968f0961299946777744c831f919f69",
+    "submission_id": 41206957,
+    "submitted_at": "2026-08-28T07:47:16Z"
+  },
   "done": [
     {
       "agent_id": 6670021,
