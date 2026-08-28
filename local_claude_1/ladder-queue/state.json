@@ -1,7 +1,24 @@
 {
   "current": {
-    "agent_id": null,
-    "early_looks": [],
+    "agent_id": 6670438,
+    "early_looks": [
+      {
+        "age_min": 0.7,
+        "agent_id": 6670438,
+        "at": "2026-08-28T10:45:01Z",
+        "rank": 128,
+        "score": 15.86,
+        "total": 176
+      },
+      {
+        "age_min": 5.7,
+        "agent_id": 6670479,
+        "at": "2026-08-28T10:50:02Z",
+        "rank": 171,
+        "score": 11.27,
+        "total": 176
+      }
+    ],
     "file": "cgauto/submissions/candidate-orchard3-v6-instrument.rs",
     "id": "orchard3-r1",
     "label": "ORCHARD 3 (owner: plant first - lemon, lemon, plum from the first turns; each troll on a different resource of the bill) -- round 1",

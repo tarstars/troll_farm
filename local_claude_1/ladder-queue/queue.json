@@ -1,5 +1,5 @@
 {
-  "written": "2026-08-28T10:3xZ: orchard 3 r1, r2 in place of orchard 2's round 2",
+  "written": "2026-08-28T11:0xZ: orchard 4 r1, r2 in place of orchard 3's round 2",
   "items": [
     {
       "id": "champion-restore-now",
@@ -44,10 +44,16 @@
       "label": "ORCHARD 3 (owner: plant first - lemon, lemon, plum from the first turns; each troll on a different resource of the bill) -- round 1"
     },
     {
-      "file": "cgauto/submissions/candidate-orchard3-v6-instrument.rs",
-      "sha256": "52c36e53d821be6ec04cff36efeb7c42d5e6f964a011aef1058c9d6d04611600",
-      "id": "orchard3-r2",
-      "label": "ORCHARD 3 -- round 2"
+      "file": "cgauto/submissions/candidate-orchard4-v6-instrument.rs",
+      "sha256": "84950d8f6a60a75e3c79c09bdd558c4dec8ab7c08337cc63254e69722e3eecee",
+      "id": "orchard4-r1",
+      "label": "ORCHARD 4 (orchard 3 with the assigned resource as a preference, not a lock) -- round 1"
+    },
+    {
+      "file": "cgauto/submissions/candidate-orchard4-v6-instrument.rs",
+      "sha256": "84950d8f6a60a75e3c79c09bdd558c4dec8ab7c08337cc63254e69722e3eecee",
+      "id": "orchard4-r2",
+      "label": "ORCHARD 4 -- round 2"
     },
     {
       "file": "cgauto/submissions/candidate-apple-farm-v6-instrument.rs",
